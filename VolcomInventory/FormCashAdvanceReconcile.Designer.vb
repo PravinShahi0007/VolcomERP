@@ -56,6 +56,8 @@ Partial Class FormCashAdvanceReconcile
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -125,7 +127,6 @@ Partial Class FormCashAdvanceReconcile
         Me.PCBBM = New DevExpress.XtraEditors.PanelControl()
         Me.BDelBBM = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddBBM = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -528,6 +529,7 @@ Partial Class FormCashAdvanceReconcile
         '
         Me.PanelControl3.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl3.Controls.Add(Me.SBReset)
+        Me.PanelControl3.Controls.Add(Me.SBAttachment)
         Me.PanelControl3.Controls.Add(Me.BPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BCancel)
@@ -543,11 +545,33 @@ Partial Class FormCashAdvanceReconcile
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Enabled = False
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(591, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(485, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 33)
         Me.BtnViewJournal.TabIndex = 21
         Me.BtnViewJournal.Text = "View Journal"
+        '
+        'SBReset
+        '
+        Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBReset.Enabled = False
+        Me.SBReset.Image = CType(resources.GetObject("SBReset.Image"), System.Drawing.Image)
+        Me.SBReset.Location = New System.Drawing.Point(590, 2)
+        Me.SBReset.Name = "SBReset"
+        Me.SBReset.Size = New System.Drawing.Size(89, 33)
+        Me.SBReset.TabIndex = 22
+        Me.SBReset.Text = "Reset"
+        '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.ImageIndex = 10
+        Me.SBAttachment.ImageList = Me.LargeImageCollection
+        Me.SBAttachment.Location = New System.Drawing.Point(679, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(106, 33)
+        Me.SBAttachment.TabIndex = 23
+        Me.SBAttachment.Text = "Attachment"
         '
         'BPrint
         '
@@ -1184,17 +1208,6 @@ Partial Class FormCashAdvanceReconcile
         Me.BAddBBM.TabIndex = 2
         Me.BAddBBM.Text = "Add"
         '
-        'SBReset
-        '
-        Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBReset.Enabled = False
-        Me.SBReset.Image = CType(resources.GetObject("SBReset.Image"), System.Drawing.Image)
-        Me.SBReset.Location = New System.Drawing.Point(696, 2)
-        Me.SBReset.Name = "SBReset"
-        Me.SBReset.Size = New System.Drawing.Size(89, 33)
-        Me.SBReset.TabIndex = 22
-        Me.SBReset.Text = "Reset"
-        '
         'FormCashAdvanceReconcile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1374,4 +1387,5 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents Label4 As Label
     Friend WithEvents DEActualReconcileDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents SBReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
 End Class
