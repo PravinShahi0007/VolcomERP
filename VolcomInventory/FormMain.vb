@@ -7825,6 +7825,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInvMat.print_list()
         ElseIf formName = "FormAREvalScheduke" Then
             print_raw(FormAREvalScheduke.GCData, "")
+        ElseIf formName = "FormDelayPayment" Then
+            print_raw(FormDelayPayment.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8649,6 +8651,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAREvalScheduke" Then
             FormAREvalScheduke.Close()
             FormAREvalScheduke.Dispose()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPayment.Close()
+            FormDelayPayment.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9526,6 +9531,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAREvalScheduke.viewData()
         ElseIf formName = "FormEmpAttnAssign" Then
             FormEmpAttnAssign.load_attn()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPayment.viewData()
         End If
     End Sub
     'Switch
