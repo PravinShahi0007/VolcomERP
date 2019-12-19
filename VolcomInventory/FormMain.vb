@@ -2920,8 +2920,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormAREvalScheduleDet.action = "upd"
                 FormAREvalScheduleDet.ShowDialog()
             ElseIf formName = "FormDelayPayment" Then
-                FormDelayPaymentDet.id = FormDelayPayment.GVData.GetFocusedRowCellValue("id_propose_delay_payment").ToString
-                FormDelayPaymentDet.ShowDialog()
+                If FormDelayPayment.GVData.RowCount > 0 And FormDelayPayment.GVData.FocusedRowHandle >= 0 Then
+                    FormDelayPaymentDet.id = FormDelayPayment.GVData.GetFocusedRowCellValue("id_propose_delay_payment").ToString
+                    FormDelayPaymentDet.ShowDialog()
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
