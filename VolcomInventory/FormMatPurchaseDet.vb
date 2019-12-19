@@ -65,6 +65,8 @@ GROUP BY pl.`id_mat_purc_list`"
     Sub action_load()
         view_currency(LECurrency)
         view_po_type(LEPOType)
+        LEPOType.EditValue = Nothing
+
         viewSeason(LESeason)
         'view delivery
         view_payment_type(LEpayment)
@@ -374,6 +376,8 @@ GROUP BY pl.`id_mat_purc_list`"
             stopCustom("Please fill all field.")
         ElseIf TEKurs.EditValue <= 0 Then
             stopCustom("Please fill kurs first")
+        ElseIf LEPOType.Text = "" Or LEPOType.EditValue = Nothing Then
+            stopCustom("Please select PO type")
         Else
             If id_purc <> "-1" Then
                 'edit
