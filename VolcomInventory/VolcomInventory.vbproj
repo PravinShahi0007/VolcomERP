@@ -826,6 +826,12 @@
     <Compile Include="FormDebitNoteDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDelayPayment.Designer.vb">
+      <DependentUpon>FormDelayPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDeliveryCargo.Designer.vb">
       <DependentUpon>FormDeliveryCargo.vb</DependentUpon>
     </Compile>
@@ -7852,6 +7858,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDebitNoteDet.resx">
       <DependentUpon>FormDebitNoteDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPayment.resx">
+      <DependentUpon>FormDelayPayment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeliveryCargo.resx">
       <DependentUpon>FormDeliveryCargo.vb</DependentUpon>

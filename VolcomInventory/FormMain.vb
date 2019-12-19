@@ -13919,4 +13919,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
     End Sub
+
+    Private Sub NBDelayPayment_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDelayPayment.LinkClicked
+        Try
+            FormDelayPayment.MdiParent = Me
+            FormDelayPayment.Show()
+            FormDelayPayment.WindowState = FormWindowState.Maximized
+            FormDelayPayment.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
 End Class
