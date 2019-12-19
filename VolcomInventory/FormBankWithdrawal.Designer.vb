@@ -113,7 +113,6 @@ Partial Class FormBankWithdrawal
         Me.GridColumnDueDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsOpenExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.BCreateExpense = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEPayTypeExpense = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -190,7 +189,6 @@ Partial Class FormBankWithdrawal
         CType(Me.CESelectExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEPayTypeExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1102,22 +1100,12 @@ Partial Class FormBankWithdrawal
         '
         'PanelControl4
         '
-        Me.PanelControl4.Controls.Add(Me.PanelControl5)
         Me.PanelControl4.Controls.Add(Me.BCreateExpense)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl4.Location = New System.Drawing.Point(0, 442)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(1091, 43)
         Me.PanelControl4.TabIndex = 21
-        '
-        'PanelControl5
-        '
-        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl5.Location = New System.Drawing.Point(741, 2)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(210, 39)
-        Me.PanelControl5.TabIndex = 8918
         '
         'BCreateExpense
         '
@@ -1306,12 +1294,12 @@ Partial Class FormBankWithdrawal
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(138, 26)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Report"
         '
         'GVFGPO
@@ -1588,7 +1576,6 @@ Partial Class FormBankWithdrawal
         CType(Me.CESelectExpense, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -1717,7 +1704,6 @@ Partial Class FormBankWithdrawal
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnTotalExpenseDP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalExpensePaid As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelectExpense As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnPaymentPendingExpense As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDueDateExpense As DevExpress.XtraGrid.Columns.GridColumn
