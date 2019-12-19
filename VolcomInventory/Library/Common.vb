@@ -6766,7 +6766,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Dim query As String = "SELECT employee_position FROM tb_m_employee WHERE id_employee='" + param + "' LIMIT 1"
             ret_var = execute_query(query, 0, True, "", "", "", "")
         ElseIf opt = "7" Then
-            Dim query As String = "SELECT dep.employee_position FROM tb_m_employee emp INNER JOIN tb_m_user usr ON usr.id_employee=emp.id_employee INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE usr.id_user='" + param + "' LIMIT 1"
+            Dim query As String = "SELECT emp.employee_position FROM tb_m_employee emp INNER JOIN tb_m_user usr ON usr.id_employee=emp.id_employee AND usr.id_user='" + param + "' LIMIT 1"
             ret_var = execute_query(query, 0, True, "", "", "", "")
         End If
         Return ret_var
