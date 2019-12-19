@@ -96,6 +96,9 @@ SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
 
         If Not SLEVendorPayment.EditValue.ToString = "0" Then
             where_string = " AND py.id_comp_contact='" & SLEVendorPayment.EditValue.ToString & "'"
+            BCreatePay.Visible = True
+        Else
+            BCreatePay.Visible = False
         End If
 
         If Not SLEPayTypePayment.EditValue.ToString = "0" Then
