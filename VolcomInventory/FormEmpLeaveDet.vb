@@ -161,10 +161,10 @@
         If Not is_hrd = "1" Then
             query += " WHERE is_hrd='2'"
         End If
-        'add unpaid leave
+        'add other type
         Dim id_leave_type As String = execute_query("SELECT IFNULL((SELECT id_leave_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave + "), 0 )", 0, True, "", "", "", "")
-        If id_leave_type = "7" Then
-            query += " UNION SELECT id_leave_type,leave_type FROM tb_lookup_leave_type WHERE id_leave_type = 7"
+        If Not id_emp_leave = "-1" Then
+            query += " UNION SELECT id_leave_type,leave_type FROM tb_lookup_leave_type WHERE id_leave_type = " + id_leave_type
         End If
         viewLookupQuery(LELeaveType, query, 0, "leave_type", "id_leave_type")
     End Sub
@@ -434,6 +434,53 @@
                     check_max_propose += total_minutes.Rows(i)("date") + ", "
                 End If
             Next
+        End If
+
+        'continue days
+        Dim max_continues As Integer = 5
+        Dim check_max_continues As String = ""
+
+        If leave_type = "1" And Not is_hrd = "1" Then
+            Dim data_all As DataTable = CType(GCLeaveDet.DataSource, DataTable).Copy
+
+            'included days
+            Dim days_included As List(Of Date) = New List(Of Date)
+
+            For i = 0 To data_all.Rows.Count - 1
+                Dim days As Date = Date.Parse(data_all.Rows(i)("datetime_start").ToString)
+
+                If Not days_included.Contains(days) Then
+                    days_included.Add(days)
+                End If
+            Next
+
+            Dim date_in As String = ""
+
+            For i = 0 To days_included.Count - 1
+                'before
+                Dim dayb_last As Date = days_included(i).AddDays(-max_continues)
+
+                For j = 1 To 100
+                    dayb_last = dayb_last.AddDays(1)
+
+                    date_in += dayb_last.ToString("yyyy-MM-dd") + ", "
+
+                    If dayb_last = days_included(i) Then
+                        Exit For
+                    End If
+                Next
+
+                'after
+                Dim dayb_current As Date = days_included(i)
+
+                For j = 1 To max_continues
+                    dayb_current = dayb_current.AddDays(1)
+
+                    date_in += dayb_current.ToString("yyyy-MM-dd") + ", "
+                Next
+            Next
+
+            Console.WriteLine(date_in)
         End If
 
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
