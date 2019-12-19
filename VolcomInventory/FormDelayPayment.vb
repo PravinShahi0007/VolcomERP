@@ -46,4 +46,10 @@
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
         viewData()
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
 End Class
