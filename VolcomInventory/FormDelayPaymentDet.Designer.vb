@@ -29,6 +29,8 @@ Partial Class FormDelayPaymentDet
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -38,19 +40,20 @@ Partial Class FormDelayPaymentDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,14 +61,13 @@ Partial Class FormDelayPaymentDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlBottom
@@ -161,7 +163,9 @@ Partial Class FormDelayPaymentDet
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlHead.Controls.Add(Me.DateEdit1)
+        Me.GroupControlHead.Controls.Add(Me.TextEdit1)
+        Me.GroupControlHead.Controls.Add(Me.LabelControl3)
+        Me.GroupControlHead.Controls.Add(Me.DEDueDate)
         Me.GroupControlHead.Controls.Add(Me.LabelControl1)
         Me.GroupControlHead.Controls.Add(Me.MENote)
         Me.GroupControlHead.Controls.Add(Me.LabelControl7)
@@ -171,22 +175,45 @@ Partial Class FormDelayPaymentDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(883, 109)
+        Me.GroupControlHead.Size = New System.Drawing.Size(883, 140)
         Me.GroupControlHead.TabIndex = 17
+        '
+        'DEDueDate
+        '
+        Me.DEDueDate.EditValue = Nothing
+        Me.DEDueDate.Location = New System.Drawing.Point(307, 14)
+        Me.DEDueDate.Name = "DEDueDate"
+        Me.DEDueDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDate.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEDueDate.Size = New System.Drawing.Size(132, 20)
+        Me.DEDueDate.TabIndex = 18
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(252, 17)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl1.TabIndex = 152
+        Me.LabelControl1.Text = "Due Date"
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(86, 41)
+        Me.MENote.Location = New System.Drawing.Point(109, 66)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 255
-        Me.MENote.Size = New System.Drawing.Size(384, 52)
+        Me.MENote.Size = New System.Drawing.Size(330, 52)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(31, 47)
+        Me.LabelControl7.Location = New System.Drawing.Point(31, 68)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 150
@@ -194,9 +221,9 @@ Partial Class FormDelayPaymentDet
         '
         'TxtNumber
         '
-        Me.TxtNumber.EditValue = "asasas"
+        Me.TxtNumber.EditValue = ""
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(86, 14)
+        Me.TxtNumber.Location = New System.Drawing.Point(109, 14)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
@@ -220,9 +247,9 @@ Partial Class FormDelayPaymentDet
         Me.PanelControl1.Controls.Add(Me.LEReportStatus)
         Me.PanelControl1.Controls.Add(Me.DECreated)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(672, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(653, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(209, 105)
+        Me.PanelControl1.Size = New System.Drawing.Size(228, 136)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
@@ -239,14 +266,14 @@ Partial Class FormDelayPaymentDet
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Location = New System.Drawing.Point(10, 15)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl4.TabIndex = 7
-        Me.LabelControl4.Text = "Date"
+        Me.LabelControl4.Text = "Created Date"
         '
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(56, 38)
+        Me.LEReportStatus.Location = New System.Drawing.Point(81, 38)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
@@ -263,7 +290,7 @@ Partial Class FormDelayPaymentDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(56, 12)
+        Me.DECreated.Location = New System.Drawing.Point(81, 12)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -274,30 +301,11 @@ Partial Class FormDelayPaymentDet
         Me.DECreated.Size = New System.Drawing.Size(136, 20)
         Me.DECreated.TabIndex = 6
         '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(224, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl1.TabIndex = 152
-        Me.LabelControl1.Text = "Due Date"
-        '
-        'DateEdit1
-        '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(275, 14)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Size = New System.Drawing.Size(195, 20)
-        Me.DateEdit1.TabIndex = 18
-        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.PanelControlNav)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 109)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 140)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(883, 40)
         Me.PanelControl3.TabIndex = 18
@@ -306,7 +314,6 @@ Partial Class FormDelayPaymentDet
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
-        Me.PanelControlNav.Controls.Add(Me.BtnEdit)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlNav.Location = New System.Drawing.Point(524, 2)
@@ -318,21 +325,11 @@ Partial Class FormDelayPaymentDet
         '
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.Image = CType(resources.GetObject("BtnDel.Image"), System.Drawing.Image)
-        Me.BtnDel.Location = New System.Drawing.Point(108, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(194, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(86, 36)
         Me.BtnDel.TabIndex = 7
         Me.BtnDel.Text = "Delete"
-        '
-        'BtnEdit
-        '
-        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
-        Me.BtnEdit.Location = New System.Drawing.Point(194, 0)
-        Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(86, 36)
-        Me.BtnEdit.TabIndex = 8
-        Me.BtnEdit.Text = "Edit"
         '
         'BtnAdd
         '
@@ -344,27 +341,49 @@ Partial Class FormDelayPaymentDet
         Me.BtnAdd.TabIndex = 6
         Me.BtnAdd.Text = "Add"
         '
-        'GridControl1
+        'GCData
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 149)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(883, 362)
-        Me.GridControl1.TabIndex = 19
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 180)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(883, 331)
+        Me.GCData.TabIndex = 19
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
-        'GridView1
+        'GVData
         '
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(31, 43)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl3.TabIndex = 153
+        Me.LabelControl3.Text = "Store Group"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Enabled = False
+        Me.TextEdit1.Location = New System.Drawing.Point(109, 40)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit1.Size = New System.Drawing.Size(330, 20)
+        Me.TextEdit1.TabIndex = 154
         '
         'FormDelayPaymentDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(883, 555)
-        Me.Controls.Add(Me.GridControl1)
+        Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupControlHead)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -378,6 +397,8 @@ Partial Class FormDelayPaymentDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -386,14 +407,13 @@ Partial Class FormDelayPaymentDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -407,7 +427,7 @@ Partial Class FormDelayPaymentDet
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControlHead As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
@@ -421,8 +441,9 @@ Partial Class FormDelayPaymentDet
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class
