@@ -50,4 +50,8 @@
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         FormMain.but_edit()
     End Sub
+
+    Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        GCData.DataSource = Nothing
+    End Sub
 End Class
