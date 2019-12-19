@@ -30,10 +30,19 @@
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
         'check AR
-        Dim query_check As String = "SELECT IFNULL(id_acc_ar,0) AS id_acc_ar FROM tb_m_comp c
+        Dim is_ok As Boolean = True
+
+        If Not SLEVendorPayment.EditValue.ToString = "0" Then
+            Dim query_check As String = "SELECT IFNULL(id_acc_ar,0) AS id_acc_ar FROM tb_m_comp c
 WHERE c.id_comp='" & SLEVendorPayment.EditValue.ToString & "'"
-        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If data_check.Rows(0)("id_acc_ar").ToString = "0" Then
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If data_check.Rows(0)("id_acc_ar").ToString = "0" Then
+                is_ok = False
+            End If
+        End If
+
+        '
+        If Not is_ok Then
             warningCustom("This company AR account is not set.")
         Else
             Dim q_where As String = ""

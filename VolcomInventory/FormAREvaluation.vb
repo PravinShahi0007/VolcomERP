@@ -66,7 +66,7 @@
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
         LEFT JOIN (
 	        SELECT e.id_comp_group, COUNT(e.id_sales_pos) AS `paid` FROM tb_ar_eval e 
-	        WHERE e.eval_date='2019-12-12 12:05:30' AND e.is_paid=1
+	        WHERE e.eval_date='" + eval_date + "' AND e.is_paid=1
 	        GROUP BY e.id_comp_group 
         ) p ON e.id_comp_group = p.id_comp_group
         WHERE e.eval_date='" + eval_date + "'
