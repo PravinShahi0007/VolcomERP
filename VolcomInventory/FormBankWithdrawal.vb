@@ -458,4 +458,9 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         showpopup.show()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BCreatePay_Click(sender As Object, e As EventArgs) Handles BCreatePay.Click
+        FormBankWithdrawalDet.report_mark_type = "159"
+        FormBankWithdrawalDet.ShowDialog()
+    End Sub
 End Class
