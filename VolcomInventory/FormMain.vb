@@ -1789,6 +1789,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAREvalScheduke" Then
             FormAREvalScheduleDet.action = "ins"
             FormAREvalScheduleDet.ShowDialog()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPaymentNew.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
