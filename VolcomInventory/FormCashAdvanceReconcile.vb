@@ -239,7 +239,7 @@
         End If
 
         'attachment
-        attachment = If(execute_query("SELECT COUNT(*) FROM tb_doc WHERE report_mark_type = 174 AND id_report = " + id_ca, 0, True, "", "", "", "") = "0", False, True)
+        'attachment = If(execute_query("SELECT COUNT(*) FROM tb_doc WHERE report_mark_type = 174 AND id_report = " + id_ca, 0, True, "", "", "", "") = "0", False, True)
 
         'save
         If acc_selected = False Then
