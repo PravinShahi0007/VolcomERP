@@ -221,7 +221,6 @@
             'data
             Report.LabelNumber.Text = "NO. " + TxtNumber.Text
             Report.LabelDate.Text = DECreated.Text.ToUpper
-            Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
             Report.LNote.Text = MENote.Text
             Report.LabelStoreGroup.Text = TxtStoreGroup.Text.ToUpper
             Report.LabelDueDate.Text = DEDueDate.Text.ToUpper

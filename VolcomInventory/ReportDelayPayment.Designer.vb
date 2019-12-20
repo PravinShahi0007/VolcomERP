@@ -39,12 +39,6 @@ Partial Public Class ReportDelayPayment
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelStoreGroup = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelTitleStatus = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelDotStatus = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelTitleApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelStatus = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelDotApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
@@ -170,15 +164,15 @@ Partial Public Class ReportDelayPayment
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelDueDate, Me.XrLabel5, Me.XrLabel4, Me.XrLabel1, Me.XrLabel2, Me.LabelStoreGroup, Me.XrLabel10, Me.LabelApprovedDate, Me.LabelTitleStatus, Me.LabelDotStatus, Me.LabelTitleApprovedDate, Me.LabelStatus, Me.LabelDotApprovedDate, Me.LabelDate, Me.XrLabel11})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelDueDate, Me.XrLabel5, Me.XrLabel4, Me.XrLabel1, Me.XrLabel2, Me.LabelStoreGroup, Me.XrLabel10, Me.LabelDate, Me.XrLabel11})
         Me.PageHeader.HeightF = 62.5!
         Me.PageHeader.Name = "PageHeader"
         Me.PageHeader.StylePriority.UseTextAlignment = False
         '
         'LabelDueDate
         '
-        Me.LabelDueDate.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDueDate.LocationFloat = New DevExpress.Utils.PointFloat(131.1344!, 16.18692!)
+        Me.LabelDueDate.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelDueDate.LocationFloat = New DevExpress.Utils.PointFloat(143.6345!, 16.18692!)
         Me.LabelDueDate.Name = "LabelDueDate"
         Me.LabelDueDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelDueDate.SizeF = New System.Drawing.SizeF(122.9174!, 16.18692!)
@@ -189,8 +183,8 @@ Partial Public Class ReportDelayPayment
         '
         'XrLabel5
         '
-        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(113.3104!, 16.18692!)
+        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(125.8104!, 16.18692!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -201,14 +195,14 @@ Partial Public Class ReportDelayPayment
         '
         'XrLabel4
         '
-        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 16.18692!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(113.3104!, 16.18692!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(125.8104!, 16.18692!)
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = "DUE DATE"
+        Me.XrLabel4.Text = "TGL PENANGGUHAN"
         Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel1
@@ -217,7 +211,7 @@ Partial Public Class ReportDelayPayment
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(113.3104!, 16.18692!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(125.8104!, 16.18692!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "STORE GROUP"
@@ -226,7 +220,7 @@ Partial Public Class ReportDelayPayment
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(113.3104!, 0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(125.8104!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -238,7 +232,7 @@ Partial Public Class ReportDelayPayment
         'LabelStoreGroup
         '
         Me.LabelStoreGroup.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStoreGroup.LocationFloat = New DevExpress.Utils.PointFloat(131.1344!, 0!)
+        Me.LabelStoreGroup.LocationFloat = New DevExpress.Utils.PointFloat(143.6345!, 0!)
         Me.LabelStoreGroup.Name = "LabelStoreGroup"
         Me.LabelStoreGroup.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelStoreGroup.SizeF = New System.Drawing.SizeF(122.9174!, 16.18692!)
@@ -258,81 +252,6 @@ Partial Public Class ReportDelayPayment
         Me.XrLabel10.StylePriority.UseTextAlignment = False
         Me.XrLabel10.Text = ":"
         Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
-        'LabelApprovedDate
-        '
-        Me.LabelApprovedDate.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(925.0832!, 32.37384!)
-        Me.LabelApprovedDate.Name = "LabelApprovedDate"
-        Me.LabelApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelApprovedDate.SizeF = New System.Drawing.SizeF(122.9169!, 16.18692!)
-        Me.LabelApprovedDate.StylePriority.UseFont = False
-        Me.LabelApprovedDate.StylePriority.UseTextAlignment = False
-        Me.LabelApprovedDate.Text = "[approved_date]"
-        Me.LabelApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.LabelApprovedDate.Visible = False
-        '
-        'LabelTitleStatus
-        '
-        Me.LabelTitleStatus.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitleStatus.LocationFloat = New DevExpress.Utils.PointFloat(793.9489!, 16.18692!)
-        Me.LabelTitleStatus.Name = "LabelTitleStatus"
-        Me.LabelTitleStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelTitleStatus.SizeF = New System.Drawing.SizeF(113.3102!, 16.18692!)
-        Me.LabelTitleStatus.StylePriority.UseFont = False
-        Me.LabelTitleStatus.StylePriority.UseTextAlignment = False
-        Me.LabelTitleStatus.Text = "STATUS"
-        Me.LabelTitleStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'LabelDotStatus
-        '
-        Me.LabelDotStatus.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDotStatus.LocationFloat = New DevExpress.Utils.PointFloat(907.2592!, 16.18692!)
-        Me.LabelDotStatus.Name = "LabelDotStatus"
-        Me.LabelDotStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelDotStatus.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
-        Me.LabelDotStatus.StylePriority.UseFont = False
-        Me.LabelDotStatus.StylePriority.UseTextAlignment = False
-        Me.LabelDotStatus.Text = ":"
-        Me.LabelDotStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
-        'LabelTitleApprovedDate
-        '
-        Me.LabelTitleApprovedDate.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitleApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(793.9489!, 32.37384!)
-        Me.LabelTitleApprovedDate.Name = "LabelTitleApprovedDate"
-        Me.LabelTitleApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelTitleApprovedDate.SizeF = New System.Drawing.SizeF(113.3102!, 16.18692!)
-        Me.LabelTitleApprovedDate.StylePriority.UseFont = False
-        Me.LabelTitleApprovedDate.StylePriority.UseTextAlignment = False
-        Me.LabelTitleApprovedDate.Text = "APPROVED DATE"
-        Me.LabelTitleApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.LabelTitleApprovedDate.Visible = False
-        '
-        'LabelStatus
-        '
-        Me.LabelStatus.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStatus.LocationFloat = New DevExpress.Utils.PointFloat(925.0834!, 16.18692!)
-        Me.LabelStatus.Name = "LabelStatus"
-        Me.LabelStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelStatus.SizeF = New System.Drawing.SizeF(122.9167!, 16.18692!)
-        Me.LabelStatus.StylePriority.UseFont = False
-        Me.LabelStatus.StylePriority.UseTextAlignment = False
-        Me.LabelStatus.Text = "[status]"
-        Me.LabelStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'LabelDotApprovedDate
-        '
-        Me.LabelDotApprovedDate.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDotApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(907.2592!, 32.37384!)
-        Me.LabelDotApprovedDate.Name = "LabelDotApprovedDate"
-        Me.LabelDotApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelDotApprovedDate.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
-        Me.LabelDotApprovedDate.StylePriority.UseFont = False
-        Me.LabelDotApprovedDate.StylePriority.UseTextAlignment = False
-        Me.LabelDotApprovedDate.Text = ":"
-        Me.LabelDotApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.LabelDotApprovedDate.Visible = False
         '
         'LabelDate
         '
@@ -461,12 +380,6 @@ Partial Public Class ReportDelayPayment
     Friend WithEvents LabelNumber As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelApprovedDate As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelTitleStatus As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelDotStatus As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelTitleApprovedDate As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelStatus As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelDotApprovedDate As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelDate As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelDueDate As DevExpress.XtraReports.UI.XRLabel
