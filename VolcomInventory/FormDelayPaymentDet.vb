@@ -4,7 +4,7 @@
     Dim id_report_status As String = "-1"
     Dim is_submit As String = "-1"
     Dim rmt As String = "233"
-    Dim id_comp_group As String = "-1"
+    Public id_comp_group As String = "-1"
 
     Private Sub FormDelayPaymentDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -46,20 +46,17 @@
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT dd.id_propose_delay_payment_det, dd.id_propose_delay_payment, 
-        dd.id_sales_pos, sp.sales_pos_number, CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, 
+        dd.id_sales_pos, sp.sales_pos_number, CONCAT(dd.comp_number, ' - ', dd.comp_name) AS `store`, 
         sp.sales_pos_date, sp.sales_pos_due_date, CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`, dd.amount, 
         dd.remark 
         FROM tb_propose_delay_payment_det dd
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = dd.id_sales_pos
-        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
-        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
-        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
         WHERE dd.id_propose_delay_payment=" + id + "
         ORDER BY dd.id_propose_delay_payment_det ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        GCData.RefreshDataSource()
+        GVData.RefreshData()
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
@@ -111,7 +108,9 @@
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-
+        Cursor = Cursors.WaitCursor
+        FormDelayPaymentPick.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
@@ -120,7 +119,7 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 Dim id_propose_delay_payment_det As String = GVData.GetFocusedRowCellValue("id_propose_delay_payment_det").ToString
-                Dim query As String = "DELETE FROM tb_propose_delay_payment_det WHERE id_propose_delay_payment_det=" + id + " "
+                Dim query As String = "DELETE FROM tb_propose_delay_payment_det WHERE id_propose_delay_payment_det=" + id_propose_delay_payment_det + " "
                 execute_non_query(query, True, "", "", "", "")
                 viewDetail()
                 Cursor = Cursors.Default
