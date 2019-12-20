@@ -29,9 +29,8 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim due_date As String = DateTime.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim query As String = "INSERT INTO tb_propose_delay_payment(id_comp_group, number, created_date, created_by, updated_date, updated_by, due_date, note, id_report_status)
-                VALUES('" + SLEStoreGroup.EditValue.ToString + "', '', NOW(), '" + id_user + "', NOW(), '" + id_user + "', '" + due_date + "', '" + addSlashes(MENote.Text) + "', 1); SELECT LAST_INSERT_ID(); "
+                VALUES('" + SLEStoreGroup.EditValue.ToString + "', getNumberRomawi(233), NOW(), '" + id_user + "', NOW(), '" + id_user + "', '" + due_date + "', '" + addSlashes(MENote.Text) + "', 1); SELECT LAST_INSERT_ID(); "
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
-                execute_non_query("CALL gen_number(" + id + ", 233);", True, "", "", "", "")
 
                 'open detil
                 FormDelayPaymentDet.id = id

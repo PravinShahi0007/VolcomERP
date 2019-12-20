@@ -197,7 +197,7 @@ Partial Class FormDelayPaymentDet
         Me.TxtStoreGroup.Name = "TxtStoreGroup"
         Me.TxtStoreGroup.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtStoreGroup.Properties.Appearance.Options.UseFont = True
-        Me.TxtStoreGroup.Size = New System.Drawing.Size(330, 20)
+        Me.TxtStoreGroup.Size = New System.Drawing.Size(367, 20)
         Me.TxtStoreGroup.TabIndex = 154
         '
         'LabelControl3
@@ -212,7 +212,7 @@ Partial Class FormDelayPaymentDet
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Location = New System.Drawing.Point(307, 14)
+        Me.DEDueDate.Location = New System.Drawing.Point(344, 14)
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -228,16 +228,16 @@ Partial Class FormDelayPaymentDet
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Location = New System.Drawing.Point(252, 17)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(87, 13)
         Me.LabelControl1.TabIndex = 152
-        Me.LabelControl1.Text = "Due Date"
+        Me.LabelControl1.Text = "Tgl. Penangguhan"
         '
         'MENote
         '
         Me.MENote.Location = New System.Drawing.Point(109, 66)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 255
-        Me.MENote.Size = New System.Drawing.Size(330, 52)
+        Me.MENote.Size = New System.Drawing.Size(367, 52)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
