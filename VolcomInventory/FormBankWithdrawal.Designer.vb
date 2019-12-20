@@ -801,6 +801,7 @@ Partial Class FormBankWithdrawal
         Me.BCreatePay.Size = New System.Drawing.Size(1091, 32)
         Me.BCreatePay.TabIndex = 19
         Me.BCreatePay.Text = "Create Payment"
+        Me.BCreatePay.Visible = False
         '
         'PanelControl2
         '
