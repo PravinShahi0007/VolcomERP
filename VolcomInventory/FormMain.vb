@@ -7827,6 +7827,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormAREvalScheduke.GCData, "")
         ElseIf formName = "FormDelayPayment" Then
             print_raw(FormDelayPayment.GCData, "")
+        ElseIf formName = "FormAccountingLedger" Then
+            FormAccountingLedger.print_form()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8654,6 +8656,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDelayPayment" Then
             FormDelayPayment.Close()
             FormDelayPayment.Dispose()
+        ElseIf formName = "FormAccountingLedger" Then
+            FormAccountingLedger.Close()
+            FormAccountingLedger.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -13940,6 +13945,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDelayPayment.Show()
             FormDelayPayment.WindowState = FormWindowState.Maximized
             FormDelayPayment.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAccountingLedger_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAccountingLedger.LinkClicked
+        Try
+            FormAccountingLedger.MdiParent = Me
+            FormAccountingLedger.Show()
+            FormAccountingLedger.WindowState = FormWindowState.Maximized
+            FormAccountingLedger.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
