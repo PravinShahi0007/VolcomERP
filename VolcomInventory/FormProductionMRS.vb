@@ -36,6 +36,7 @@
 
             allow_status()
             BMark.Enabled = True
+
         End If
         check_but()
     End Sub
@@ -47,6 +48,24 @@
         Else
             BEditMat.Visible = False
             BDelMat.Visible = False
+        End If
+
+        If id_report_status_g = "5" Then
+            PCAddDel.Visible = False
+            BCancel.Visible = False
+            BSave.Visible = False
+        Else
+            PCAddDel.Visible = True
+            BCancel.Visible = True
+            BSave.Visible = True
+        End If
+
+        If id_report_status_g = "6" Then
+            PCAddDel.Visible = False
+            BSave.Visible = False
+        Else
+            PCAddDel.Visible = True
+            BSave.Visible = True
         End If
     End Sub
     Sub allow_status()
@@ -330,7 +349,7 @@
             stopCustom("Please cancel packing list with this MRS")
         Else
             Dim q_upd As String = "UPDATE tb_prod_order_mrs SET id_report_status=5 WHERE id_prod_order_mrs='" & id_mrs & "'"
-            execute_non_query(q, True, "", "", "", "")
+            execute_non_query(q_upd, True, "", "", "", "")
             delete_all_mark_related("29", id_mrs)
             load_mrs()
         End If
