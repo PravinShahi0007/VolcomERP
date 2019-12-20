@@ -30,6 +30,7 @@
         TxtNumber.Text = data.Rows(0)("number").ToString
         DEDueDate.EditValue = data.Rows(0)("due_date")
         id_comp_group = data.Rows(0)("id_comp_group").ToString
+        TxtStoreGroup.Text = data.Rows(0)("group").ToString
         MENote.Text = data.Rows(0)("note").ToString
         DECreated.EditValue = data.Rows(0)("created_date")
         is_submit = data.Rows(0)("is_submit").ToString
@@ -43,7 +44,24 @@
     End Sub
 
     Sub viewDetail()
-
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT dd.id_propose_delay_payment_det, dd.id_propose_delay_payment, 
+        dd.id_sales_pos, sp.sales_pos_number, CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, 
+        sp.sales_pos_date, sp.sales_pos_due_date, CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`, dd.amount, 
+        dd.remark 
+        FROM tb_propose_delay_payment_det dd
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = dd.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        WHERE dd.id_propose_delay_payment=" + id + "
+        ORDER BY dd.id_propose_delay_payment_det ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
@@ -80,6 +98,7 @@
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
         ElseIf id_report_status = "5" Then
+            DEDueDate.Enabled = False
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
             BtnConfirm.Visible = False
@@ -210,6 +229,15 @@
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
         Cursor = Cursors.WaitCursor
+        If id_report_status = "5" Then
+            Dim query_check As String = "SELECT * FROM tb_report_mark rm WHERE id_report='" + id + "' AND rm.report_mark_type='" + rmt + "' "
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If data_check.Rows.Count <= 0 Then
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+        End If
+
         FormReportMark.report_mark_type = rmt
         FormReportMark.id_report = id
         FormReportMark.is_view = is_view
@@ -221,8 +249,9 @@
     Sub saveHead()
         'head
         Dim note As String = addSlashes(MENote.Text)
-        Dim query_head As String = "UPDATE tb_propose_delay_payment SET note='" + note + "', updated_date=NOW(), updated_by='" + id_user + "'
-        WHERE id_changes='" + id + "' "
+        Dim due_date As String = DateTime.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim query_head As String = "UPDATE tb_propose_delay_payment SET due_date='" + due_date + "',note='" + note + "', updated_date=NOW(), updated_by='" + id_user + "'
+        WHERE id_propose_delay_payment='" + id + "' "
         execute_non_query(query_head, True, "", "", "", "")
     End Sub
 
@@ -230,8 +259,13 @@
         Cursor = Cursors.WaitCursor
         makeSafeGV(GVData)
         For i As Integer = 0 To GVData.RowCount - 1
-            'Dim query As String = "UPDATE tb_propose_delay_payment_det SET remark='" + addSlashes("") + "' "
+            Dim query As String = "UPDATE tb_propose_delay_payment_det SET remark='" + addSlashes(GVData.GetRowCellValue(i, "remark").ToString) + "' 
+            WHERE id_propose_delay_payment_det='" + GVData.GetRowCellValue(i, "id_propose_delay_payment_det").ToString + "'; "
+            execute_non_query(query, True, "", "", "", "")
         Next
+        GCData.RefreshDataSource()
+        GVData.RefreshData()
+        GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -244,9 +278,67 @@
             'detail
             saveChangesDetail()
 
+            'refresh
+            FormDelayPayment.SLEStoreGroup.EditValue = id_comp_group
+            FormDelayPayment.viewData()
+            FormDelayPayment.GVData.FocusedRowHandle = find_row(FormDelayPayment.GVData, "id_propose_delay_payment", id)
             actionLoad()
-            FormFGDesignList.viewPropose()
-            FormFGDesignList.GVPropose.FocusedRowHandle = find_row(FormFGDesignList.GVPropose, "id_changes", id)
+        End If
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        makeSafeGV(GVData)
+        If GVData.RowCount <= 0 Then
+            stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this memo ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update 
+                saveHead()
+                saveChangesDetail()
+
+                'update confirm
+                Dim query As String = "UPDATE tb_propose_delay_payment SET is_submit=1 WHERE id_propose_delay_payment='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'submit approval 
+                submit_who_prepared(rmt, id, id_user)
+                BtnConfirm.Visible = False
+                actionLoad()
+                infoCustom("Propose submitted. Waiting for approval.")
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=3
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_propose_delay_payment SET is_submit=2 WHERE id_propose_delay_payment=" + id + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                FormDelayPayment.SLEStoreGroup.EditValue = id_comp_group
+                FormDelayPayment.viewData()
+                FormDelayPayment.GVData.FocusedRowHandle = find_row(FormDelayPayment.GVData, "id_propose_delay_payment", id)
+                actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class

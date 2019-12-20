@@ -162,7 +162,7 @@ Partial Class FormDelayPayment
         Me.GridColumncreated_date.FieldName = "created_date"
         Me.GridColumncreated_date.Name = "GridColumncreated_date"
         Me.GridColumncreated_date.Visible = True
-        Me.GridColumncreated_date.VisibleIndex = 2
+        Me.GridColumncreated_date.VisibleIndex = 3
         '
         'GridColumncreated_by
         '
@@ -176,7 +176,7 @@ Partial Class FormDelayPayment
         Me.GridColumncreated_by_name.FieldName = "created_by_name"
         Me.GridColumncreated_by_name.Name = "GridColumncreated_by_name"
         Me.GridColumncreated_by_name.Visible = True
-        Me.GridColumncreated_by_name.VisibleIndex = 3
+        Me.GridColumncreated_by_name.VisibleIndex = 4
         '
         'GridColumnupdated_date
         '
@@ -186,7 +186,7 @@ Partial Class FormDelayPayment
         Me.GridColumnupdated_date.FieldName = "updated_date"
         Me.GridColumnupdated_date.Name = "GridColumnupdated_date"
         Me.GridColumnupdated_date.Visible = True
-        Me.GridColumnupdated_date.VisibleIndex = 4
+        Me.GridColumnupdated_date.VisibleIndex = 5
         '
         'GridColumnupdated_by
         '
@@ -200,7 +200,7 @@ Partial Class FormDelayPayment
         Me.GridColumnupdated_by_name.FieldName = "updated_by_name"
         Me.GridColumnupdated_by_name.Name = "GridColumnupdated_by_name"
         Me.GridColumnupdated_by_name.Visible = True
-        Me.GridColumnupdated_by_name.VisibleIndex = 5
+        Me.GridColumnupdated_by_name.VisibleIndex = 6
         '
         'GridColumndue_date
         '
@@ -210,7 +210,7 @@ Partial Class FormDelayPayment
         Me.GridColumndue_date.FieldName = "due_date"
         Me.GridColumndue_date.Name = "GridColumndue_date"
         Me.GridColumndue_date.Visible = True
-        Me.GridColumndue_date.VisibleIndex = 6
+        Me.GridColumndue_date.VisibleIndex = 2
         '
         'GridColumnnote
         '
