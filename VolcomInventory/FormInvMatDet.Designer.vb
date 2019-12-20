@@ -53,6 +53,8 @@ Partial Class FormInvMatDet
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEVatPercent = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.TEGrandTotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TEVat = New DevExpress.XtraEditors.TextEdit()
@@ -73,8 +75,6 @@ Partial Class FormInvMatDet
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.TEVatPercent = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +100,7 @@ Partial Class FormInvMatDet
         Me.PanelControl8.SuspendLayout()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl9.SuspendLayout()
+        CType(Me.TEVatPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEGrandTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,7 +111,6 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEVatPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -449,6 +449,30 @@ Partial Class FormInvMatDet
         Me.PanelControl9.Size = New System.Drawing.Size(349, 92)
         Me.PanelControl9.TabIndex = 166
         '
+        'TEVatPercent
+        '
+        Me.TEVatPercent.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.TEVatPercent.Location = New System.Drawing.Point(88, 34)
+        Me.TEVatPercent.Name = "TEVatPercent"
+        Me.TEVatPercent.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEVatPercent.Properties.Appearance.Options.UseFont = True
+        Me.TEVatPercent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TEVatPercent.Properties.EditValueChangedDelay = 50
+        Me.TEVatPercent.Properties.Mask.EditMask = "n2"
+        Me.TEVatPercent.Properties.Mask.SaveLiteral = False
+        Me.TEVatPercent.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEVatPercent.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.TEVatPercent.Size = New System.Drawing.Size(57, 20)
+        Me.TEVatPercent.TabIndex = 8911
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Location = New System.Drawing.Point(151, 37)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl22.TabIndex = 8912
+        Me.LabelControl22.Text = "%"
+        '
         'TEGrandTotal
         '
         Me.TEGrandTotal.EditValue = ""
@@ -657,30 +681,6 @@ Partial Class FormInvMatDet
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
-        'TEVatPercent
-        '
-        Me.TEVatPercent.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TEVatPercent.Location = New System.Drawing.Point(88, 34)
-        Me.TEVatPercent.Name = "TEVatPercent"
-        Me.TEVatPercent.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEVatPercent.Properties.Appearance.Options.UseFont = True
-        Me.TEVatPercent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TEVatPercent.Properties.EditValueChangedDelay = 50
-        Me.TEVatPercent.Properties.Mask.EditMask = "n2"
-        Me.TEVatPercent.Properties.Mask.SaveLiteral = False
-        Me.TEVatPercent.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEVatPercent.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.TEVatPercent.Size = New System.Drawing.Size(57, 20)
-        Me.TEVatPercent.TabIndex = 8911
-        '
-        'LabelControl22
-        '
-        Me.LabelControl22.Location = New System.Drawing.Point(151, 37)
-        Me.LabelControl22.Name = "LabelControl22"
-        Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl22.TabIndex = 8912
-        Me.LabelControl22.Text = "%"
-        '
         'FormInvMatDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -722,6 +722,7 @@ Partial Class FormInvMatDet
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl9.ResumeLayout(False)
         Me.PanelControl9.PerformLayout()
+        CType(Me.TEVatPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEGrandTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -733,7 +734,6 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEVatPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

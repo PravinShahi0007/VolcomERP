@@ -570,6 +570,9 @@
         ElseIf report_mark_type = "231" Then
             'invoice mat
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_inv_mat WHERE id_inv_mat = '{0}'", id_report)
+        ElseIf report_mark_type = "233" Then
+            'delay payment
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_propose_delay_payment WHERE id_propose_delay_payment = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5372,9 +5375,8 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                     SELECT * FROM
                                     (
 	                                    /* Pay from */
-	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
+	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
 	                                    FROM tb_pn py
-	                                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
 	                                    WHERE py.id_pn=" & id_report & "
 	                                    UNION ALL
 	                                    /* Hutang dagang */
@@ -6844,6 +6846,38 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
             'refresh view
             FormInvMatDet.load_form()
+        ElseIf report_mark_type = "233" Then
+            'delay payment
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            'if completed
+            If id_status_reportx = "6" Then
+                Dim query_upd_inv As String = "UPDATE tb_sales_pos main
+                INNER JOIN (
+	                SELECT dd.id_propose_delay_payment, d.due_date, dd.id_sales_pos 
+	                FROM tb_propose_delay_payment_det dd
+	                INNER JOIN tb_propose_delay_payment d ON d.id_propose_delay_payment = dd.id_propose_delay_payment
+	                WHERE d.id_propose_delay_payment=" + id_report + "
+                ) src ON src.id_sales_pos = main.id_sales_pos
+                SET main.id_propose_delay_payment = src.id_propose_delay_payment,
+                main.propose_delay_payment_due_date = src.due_date "
+                execute_non_query(query_upd_inv, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_propose_delay_payment SET id_report_status='{0}' WHERE id_propose_delay_payment ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
+                FormDelayPayment.SLEStoreGroup.EditValue = FormDelayPaymentDet.id_comp_group
+                FormDelayPayment.viewData()
+                FormDelayPayment.GVData.FocusedRowHandle = find_row(FormDelayPayment.GVData, "id_propose_delay_payment", id_report)
+                FormDelayPaymentDet.actionLoad()
+            Catch ex As Exception
+            End Try
         End If
 
         'adding lead time

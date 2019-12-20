@@ -218,7 +218,21 @@ VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportInvMat.id_inv_mat = id_inv
+        ReportInvMat.dt = GCList.DataSource
+        Dim Report As New ReportInvMat()
 
+        If id_status = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click

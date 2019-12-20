@@ -213,6 +213,7 @@
     <Compile Include="ClassBudgetExpensePropose.vb" />
     <Compile Include="ClassBudgetExpenseRevision.vb" />
     <Compile Include="ClassBudgetRevPropose.vb" />
+    <Compile Include="ClassDelayPayment.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
@@ -276,6 +277,12 @@
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
     <Compile Include="ClassValidEAN13.vb" />
+    <Compile Include="FormAccountingLedger.Designer.vb">
+      <DependentUpon>FormAccountingLedger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingLedger.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAREvalScheduke.Designer.vb">
       <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
     </Compile>
@@ -824,6 +831,30 @@
       <DependentUpon>FormDebitNoteDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDebitNoteDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPayment.Designer.vb">
+      <DependentUpon>FormDelayPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentDet.Designer.vb">
+      <DependentUpon>FormDelayPaymentDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentNew.Designer.vb">
+      <DependentUpon>FormDelayPaymentNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentPick.Designer.vb">
+      <DependentUpon>FormDelayPaymentPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentPick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDeliveryCargo.Designer.vb">
@@ -6421,6 +6452,12 @@
     <Compile Include="ReportDebitNote.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDelayPayment.Designer.vb">
+      <DependentUpon>ReportDelayPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDelayPayment.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDeptHeadSurvey.Designer.vb">
       <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
     </Compile>
@@ -6779,6 +6816,12 @@
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportFGWoffList.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportInvMat.Designer.vb">
+      <DependentUpon>ReportInvMat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportInvMat.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportItemDel.Designer.vb">
@@ -7543,6 +7586,9 @@
       <DependentUpon>barcodeaa.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingLedger.resx">
+      <DependentUpon>FormAccountingLedger.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAREvalScheduke.resx">
       <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
     </EmbeddedResource>
@@ -7852,6 +7898,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDebitNoteDet.resx">
       <DependentUpon>FormDebitNoteDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPayment.resx">
+      <DependentUpon>FormDelayPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentDet.resx">
+      <DependentUpon>FormDelayPaymentDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentNew.resx">
+      <DependentUpon>FormDelayPaymentNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentPick.resx">
+      <DependentUpon>FormDelayPaymentPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeliveryCargo.resx">
       <DependentUpon>FormDeliveryCargo.vb</DependentUpon>
@@ -11085,6 +11143,9 @@
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportDelayPayment.resx">
+      <DependentUpon>ReportDelayPayment.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportDeptHeadSurvey.resx">
       <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
     </EmbeddedResource>
@@ -11283,6 +11344,9 @@
     <EmbeddedResource Include="ReportFGWoffList.resx">
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportInvMat.resx">
+      <DependentUpon>ReportInvMat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemDel.resx">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
