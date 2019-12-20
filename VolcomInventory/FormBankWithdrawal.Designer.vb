@@ -77,6 +77,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BCreatePay = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEPayTypePayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -648,6 +649,7 @@ Partial Class FormBankWithdrawal
         'XTPPayment
         '
         Me.XTPPayment.Controls.Add(Me.GCList)
+        Me.XTPPayment.Controls.Add(Me.BCreatePay)
         Me.XTPPayment.Controls.Add(Me.PanelControl2)
         Me.XTPPayment.Name = "XTPPayment"
         Me.XTPPayment.Size = New System.Drawing.Size(1091, 485)
@@ -660,7 +662,7 @@ Partial Class FormBankWithdrawal
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCList.Size = New System.Drawing.Size(1091, 441)
+        Me.GCList.Size = New System.Drawing.Size(1091, 409)
         Me.GCList.TabIndex = 18
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -780,6 +782,25 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'BCreatePay
+        '
+        Me.BCreatePay.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreatePay.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreatePay.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePay.Appearance.Options.UseBackColor = True
+        Me.BCreatePay.Appearance.Options.UseFont = True
+        Me.BCreatePay.Appearance.Options.UseForeColor = True
+        Me.BCreatePay.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePay.Location = New System.Drawing.Point(0, 453)
+        Me.BCreatePay.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreatePay.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreatePay.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreatePay.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreatePay.Name = "BCreatePay"
+        Me.BCreatePay.Size = New System.Drawing.Size(1091, 32)
+        Me.BCreatePay.TabIndex = 19
+        Me.BCreatePay.Text = "Create Payment"
         '
         'PanelControl2
         '
@@ -1542,7 +1563,7 @@ Partial Class FormBankWithdrawal
         Me.MinimizeBox = False
         Me.Name = "FormBankWithdrawal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Bank Withdrawal"
+        Me.Text = "Bukti Bank Keluar"
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPO.ResumeLayout(False)
         Me.XTPPO.ResumeLayout(False)
@@ -1737,4 +1758,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BCreatePay As DevExpress.XtraEditors.SimpleButton
 End Class

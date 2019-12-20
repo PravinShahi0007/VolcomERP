@@ -25,7 +25,41 @@
             BMark.Visible = False
             BtnSave.Visible = True
             '
-            If report_mark_type = "139" Or report_mark_type = "202" Then 'purchasing
+            If report_mark_type = "159" Then 'BBK umum
+                'load header
+                Try
+                    SLEVendor.EditValue = FormBankWithdrawal.SLEVendor.EditValue
+                    SLEPayType.EditValue = id_pay_type
+                    '
+                    SLEReportType.EditValue = report_mark_type
+                    'load detail
+                    For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
+                        'id_report,number,total,balance due
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
+                        newRow("report_mark_type") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "report_mark_type").ToString
+                        newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
+                        newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                        newRow("acc_description") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_description").ToString
+                        newRow("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                        newRow("id_dc") = "1"
+                        newRow("dc_code") = "D"
+                        newRow("id_comp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_comp_default").ToString
+                        newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
+                        newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
+                        newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp")
+                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
+                    '
+                    calculate_amount()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
+            ElseIf report_mark_type = "139" Or report_mark_type = "202" Then 'purchasing
                 'load header
                 Try
                     SLEVendor.EditValue = FormBankWithdrawal.SLEVendor.EditValue
