@@ -53,7 +53,7 @@ Partial Class FormProductionMRS
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BShowBOM = New DevExpress.XtraEditors.SimpleButton()
         Me.BEditMat = New DevExpress.XtraEditors.SimpleButton()
@@ -95,8 +95,8 @@ Partial Class FormProductionMRS
         CType(Me.GCMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SEQty, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -267,7 +267,7 @@ Partial Class FormProductionMRS
         Me.PanelControl1.Appearance.Options.UseBackColor = True
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.GCMat)
-        Me.PanelControl1.Controls.Add(Me.PanelControl2)
+        Me.PanelControl1.Controls.Add(Me.PCAddDel)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl1.Name = "PanelControl1"
@@ -471,17 +471,17 @@ Partial Class FormProductionMRS
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 8
         '
-        'PanelControl2
+        'PCAddDel
         '
-        Me.PanelControl2.Controls.Add(Me.BDelMat)
-        Me.PanelControl2.Controls.Add(Me.BShowBOM)
-        Me.PanelControl2.Controls.Add(Me.BEditMat)
-        Me.PanelControl2.Controls.Add(Me.BAddMat)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(887, 38)
-        Me.PanelControl2.TabIndex = 1
+        Me.PCAddDel.Controls.Add(Me.BDelMat)
+        Me.PCAddDel.Controls.Add(Me.BShowBOM)
+        Me.PCAddDel.Controls.Add(Me.BEditMat)
+        Me.PCAddDel.Controls.Add(Me.BAddMat)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 0)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(887, 38)
+        Me.PCAddDel.TabIndex = 1
         '
         'BDelMat
         '
@@ -786,8 +786,8 @@ Partial Class FormProductionMRS
         CType(Me.GCMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SEQty, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
@@ -829,7 +829,7 @@ Partial Class FormProductionMRS
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColSize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQtyOnHand As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BEditMat As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAddMat As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BDelMat As DevExpress.XtraEditors.SimpleButton
