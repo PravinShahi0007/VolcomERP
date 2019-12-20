@@ -463,7 +463,9 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
     End Sub
 
     Private Sub BCreatePay_Click(sender As Object, e As EventArgs) Handles BCreatePay.Click
-        FormBankWithdrawalDet.report_mark_type = "159"
-        FormBankWithdrawalDet.ShowDialog()
+        If Not SLEVendorPayment.EditValue.ToString = "0" Then
+            FormBankWithdrawalDet.report_mark_type = "159"
+            FormBankWithdrawalDet.ShowDialog()
+        End If
     End Sub
 End Class
