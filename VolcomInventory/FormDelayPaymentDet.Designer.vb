@@ -450,7 +450,6 @@ Partial Class FormDelayPaymentDet
         Me.GridColumnsales_pos_due_date.FieldName = "sales_pos_due_date"
         Me.GridColumnsales_pos_due_date.Name = "GridColumnsales_pos_due_date"
         Me.GridColumnsales_pos_due_date.OptionsColumn.AllowEdit = False
-        Me.GridColumnsales_pos_due_date.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "sales_pos_due_date", "TOTAL")})
         Me.GridColumnsales_pos_due_date.Visible = True
         Me.GridColumnsales_pos_due_date.VisibleIndex = 5
         '

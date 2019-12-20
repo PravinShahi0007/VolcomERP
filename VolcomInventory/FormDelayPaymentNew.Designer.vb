@@ -139,9 +139,9 @@ Partial Class FormDelayPaymentNew
         '
         Me.LabelControl3.Location = New System.Drawing.Point(19, 63)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(83, 13)
         Me.LabelControl3.TabIndex = 8929
-        Me.LabelControl3.Text = "Due Date"
+        Me.LabelControl3.Text = "Tgl Penangguhan"
         '
         'DEDueDate
         '
