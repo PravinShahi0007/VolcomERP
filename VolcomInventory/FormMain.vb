@@ -1789,6 +1789,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAREvalScheduke" Then
             FormAREvalScheduleDet.action = "ins"
             FormAREvalScheduleDet.ShowDialog()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPaymentNew.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2917,6 +2919,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormAREvalScheduleDet.id = FormAREvalScheduke.GVData.GetFocusedRowCellValue("id_ar_eval_setup_date").ToString
                 FormAREvalScheduleDet.action = "upd"
                 FormAREvalScheduleDet.ShowDialog()
+            ElseIf formName = "FormDelayPayment" Then
+                If FormDelayPayment.GVData.RowCount > 0 And FormDelayPayment.GVData.FocusedRowHandle >= 0 Then
+                    FormDelayPaymentDet.id = FormDelayPayment.GVData.GetFocusedRowCellValue("id_propose_delay_payment").ToString
+                    FormDelayPaymentDet.ShowDialog()
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7818,6 +7825,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInvMat.print_list()
         ElseIf formName = "FormAREvalScheduke" Then
             print_raw(FormAREvalScheduke.GCData, "")
+        ElseIf formName = "FormDelayPayment" Then
+            print_raw(FormDelayPayment.GCData, "")
         ElseIf formName = "FormAccountingLedger" Then
             FormAccountingLedger.print_form()
         Else
@@ -8644,6 +8653,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAREvalScheduke" Then
             FormAREvalScheduke.Close()
             FormAREvalScheduke.Dispose()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPayment.Close()
+            FormDelayPayment.Dispose()
         ElseIf formName = "FormAccountingLedger" Then
             FormAccountingLedger.Close()
             FormAccountingLedger.Dispose()
@@ -9524,6 +9536,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAREvalScheduke.viewData()
         ElseIf formName = "FormEmpAttnAssign" Then
             FormEmpAttnAssign.load_attn()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPayment.viewData()
         End If
     End Sub
     'Switch

@@ -213,6 +213,7 @@
     <Compile Include="ClassBudgetExpensePropose.vb" />
     <Compile Include="ClassBudgetExpenseRevision.vb" />
     <Compile Include="ClassBudgetRevPropose.vb" />
+    <Compile Include="ClassDelayPayment.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
@@ -836,6 +837,24 @@
       <DependentUpon>FormDelayPayment.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDelayPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentDet.Designer.vb">
+      <DependentUpon>FormDelayPaymentDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentNew.Designer.vb">
+      <DependentUpon>FormDelayPaymentNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentPick.Designer.vb">
+      <DependentUpon>FormDelayPaymentPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentPick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDeliveryCargo.Designer.vb">
@@ -7870,6 +7889,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDelayPayment.resx">
       <DependentUpon>FormDelayPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentDet.resx">
+      <DependentUpon>FormDelayPaymentDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentNew.resx">
+      <DependentUpon>FormDelayPaymentNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentPick.resx">
+      <DependentUpon>FormDelayPaymentPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeliveryCargo.resx">
       <DependentUpon>FormDeliveryCargo.vb</DependentUpon>
