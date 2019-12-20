@@ -6818,6 +6818,12 @@
     <Compile Include="ReportFGWoffList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportInvMat.Designer.vb">
+      <DependentUpon>ReportInvMat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportInvMat.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportItemDel.Designer.vb">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
     </Compile>
@@ -11338,6 +11344,9 @@
     <EmbeddedResource Include="ReportFGWoffList.resx">
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportInvMat.resx">
+      <DependentUpon>ReportInvMat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemDel.resx">
       <DependentUpon>ReportItemDel.vb</DependentUpon>

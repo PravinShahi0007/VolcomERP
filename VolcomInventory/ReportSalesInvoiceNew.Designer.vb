@@ -287,7 +287,7 @@ Partial Public Class ReportSalesInvoiceNew
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel18, Me.XrLabel17, Me.XrLabel16, Me.XrLabel12, Me.XrLabel11, Me.XrLabel1, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.LabelDueDate, Me.LabelPeriodDate, Me.LabelStoreName, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.LabelTitle, Me.LabelTitleNumber, Me.LabelTitleOwnComp, Me.XrLabel19, Me.XrLabel20, Me.LabelOwnCompAddress, Me.XrLabel22, Me.XrLabel23, Me.LabelOwnCompNPWP})
-        Me.TopMargin.HeightF = 136.7702!
+        Me.TopMargin.HeightF = 137.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -619,7 +619,7 @@ Partial Public Class ReportSalesInvoiceNew
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel25, Me.XrLabel26, Me.XrLabel27, Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 75.22209!
+        Me.BottomMargin.HeightF = 75.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
