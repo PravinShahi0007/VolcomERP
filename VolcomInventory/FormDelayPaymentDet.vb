@@ -115,7 +115,17 @@
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
-
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this item(s) ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim id_propose_delay_payment_det As String = GVData.GetFocusedRowCellValue("id_propose_delay_payment_det").ToString
+                Dim query As String = "DELETE FROM tb_propose_delay_payment_det WHERE id_propose_delay_payment_det=" + id + " "
+                execute_non_query(query, True, "", "", "", "")
+                viewDetail()
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 
     Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
