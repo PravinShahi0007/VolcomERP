@@ -476,7 +476,7 @@
             stopCustom("Please cancel packing list with this MRS")
         Else
             Dim q_upd As String = "UPDATE tb_prod_order_mrs SET id_report_status=5 WHERE id_prod_order_mrs='" & id_mrs & "'"
-            execute_non_query(q, True, "", "", "", "")
+            execute_non_query(q_upd, True, "", "", "", "")
             delete_all_mark_related("44", id_mrs)
             load_mrs()
         End If
