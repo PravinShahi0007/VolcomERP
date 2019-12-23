@@ -6854,7 +6854,8 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
             'if completed
             If id_status_reportx = "6" Then
-                Dim query_upd_inv As String = "UPDATE tb_sales_pos main
+                Dim query_upd_inv As String = "/* update tabel invoice */
+                UPDATE tb_sales_pos main
                 INNER JOIN (
 	                SELECT dd.id_propose_delay_payment, d.due_date, dd.id_sales_pos 
 	                FROM tb_propose_delay_payment_det dd
@@ -6862,7 +6863,16 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 	                WHERE d.id_propose_delay_payment=" + id_report + "
                 ) src ON src.id_sales_pos = main.id_sales_pos
                 SET main.id_propose_delay_payment = src.id_propose_delay_payment,
-                main.propose_delay_payment_due_date = src.due_date "
+                main.propose_delay_payment_due_date = src.due_date; 
+                /* update ar eval jika ada */
+                UPDATE tb_ar_eval main
+                INNER JOIN (
+	                SELECT d.id_sales_pos , d.id_propose_delay_payment_det
+	                FROM tb_propose_delay_payment_det d
+	                WHERE d.id_propose_delay_payment=" + id_report + "
+                ) src ON src.id_sales_pos = main.id_sales_pos
+                SET main.is_active=2, main.id_propose_delay_payment_det = src.id_propose_delay_payment_det, main.release_date=NOW()
+                WHERE main.is_active=1; "
                 execute_non_query(query_upd_inv, True, "", "", "", "")
             End If
 
