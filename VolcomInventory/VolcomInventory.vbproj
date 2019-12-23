@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="ClassAccounting.vb" />
     <Compile Include="ClassAPIZalora.vb" />
+    <Compile Include="ClassAREvaluation.vb" />
     <Compile Include="ClassBudgetExpense.Designer.vb">
       <DependentUpon>ClassBudgetExpense.vb</DependentUpon>
     </Compile>

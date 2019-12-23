@@ -1,15 +1,7 @@
 ﻿Public Class FormAREvaluation
     Public eval_date As String = ""
-    Dim super_user As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormAREvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'btn eval
-        If super_user = id_role_login Then
-            BtnEvaluation.Visible = True
-        Else
-            BtnEvaluation.Visible = False
-        End If
-
         'get last evaluation
         Dim query As String = "SELECT DATE_FORMAT(MAX(a.eval_date),'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
         DATE_FORMAT(MAX(a.eval_date),'%d %M %Y %H:%i:%s') AS `last_eval_date_label`
@@ -109,7 +101,7 @@
         End If
     End Sub
 
-    Private Sub BtnEvaluation_Click(sender As Object, e As EventArgs) Handles BtnEvaluation.Click
+    Private Sub BtnEvaluation_Click(sender As Object, e As EventArgs) 
         Dim tgl As String = execute_query("SELECT DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s') AS `eval_date`", 0, True, "", "", "", "")
         Try
             Dim query As String = "CALL getEvaluationAR('" + tgl + "');"

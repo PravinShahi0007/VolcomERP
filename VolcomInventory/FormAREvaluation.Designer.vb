@@ -20,10 +20,9 @@ Partial Class FormAREvaluation
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAREvaluation))
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnEvaluation = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewData = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseEval = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -91,7 +90,6 @@ Partial Class FormAREvaluation
         '
         'PanelNav
         '
-        Me.PanelNav.Controls.Add(Me.BtnEvaluation)
         Me.PanelNav.Controls.Add(Me.BtnViewData)
         Me.PanelNav.Controls.Add(Me.BtnBrowseEval)
         Me.PanelNav.Controls.Add(Me.LabelControl1)
@@ -100,17 +98,6 @@ Partial Class FormAREvaluation
         Me.PanelNav.Name = "PanelNav"
         Me.PanelNav.Size = New System.Drawing.Size(798, 50)
         Me.PanelNav.TabIndex = 0
-        '
-        'BtnEvaluation
-        '
-        Me.BtnEvaluation.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnEvaluation.Image = CType(resources.GetObject("BtnEvaluation.Image"), System.Drawing.Image)
-        Me.BtnEvaluation.Location = New System.Drawing.Point(663, 2)
-        Me.BtnEvaluation.Name = "BtnEvaluation"
-        Me.BtnEvaluation.Size = New System.Drawing.Size(133, 46)
-        Me.BtnEvaluation.TabIndex = 3
-        Me.BtnEvaluation.Text = "Get Evaluation"
-        Me.BtnEvaluation.Visible = False
         '
         'BtnViewData
         '
@@ -288,13 +275,13 @@ Partial Class FormAREvaluation
         'RepoBtnBBM
         '
         Me.RepoBtnBBM.AutoHeight = False
-        SerializableAppearanceObject3.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject3.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject3.Options.UseBackColor = True
-        SerializableAppearanceObject3.Options.UseFont = True
-        SerializableAppearanceObject3.Options.UseForeColor = True
-        Me.RepoBtnBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.RepoBtnBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.RepoBtnBBM.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnBBM.Name = "RepoBtnBBM"
         Me.RepoBtnBBM.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -338,7 +325,7 @@ Partial Class FormAREvaluation
         Me.XTCCreateNewEval.Location = New System.Drawing.Point(0, 28)
         Me.XTCCreateNewEval.Name = "XTCCreateNewEval"
         Me.XTCCreateNewEval.SelectedTabPage = Me.XTPInvoiceList
-        Me.XTCCreateNewEval.Size = New System.Drawing.Size(792, 308)
+        Me.XTCCreateNewEval.Size = New System.Drawing.Size(792, 314)
         Me.XTCCreateNewEval.TabIndex = 5
         Me.XTCCreateNewEval.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoiceList})
         '
@@ -346,7 +333,7 @@ Partial Class FormAREvaluation
         '
         Me.XTPInvoiceList.Controls.Add(Me.GCActiveList)
         Me.XTPInvoiceList.Name = "XTPInvoiceList"
-        Me.XTPInvoiceList.Size = New System.Drawing.Size(763, 302)
+        Me.XTPInvoiceList.Size = New System.Drawing.Size(763, 308)
         Me.XTPInvoiceList.Text = "Invoice List"
         '
         'GCActiveList
@@ -355,7 +342,7 @@ Partial Class FormAREvaluation
         Me.GCActiveList.Location = New System.Drawing.Point(0, 0)
         Me.GCActiveList.MainView = Me.GVActiveList
         Me.GCActiveList.Name = "GCActiveList"
-        Me.GCActiveList.Size = New System.Drawing.Size(763, 302)
+        Me.GCActiveList.Size = New System.Drawing.Size(763, 308)
         Me.GCActiveList.TabIndex = 0
         Me.GCActiveList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActiveList})
         '
@@ -382,9 +369,9 @@ Partial Class FormAREvaluation
         '
         Me.PanelControl1.Controls.Add(Me.BtnCreateEvaluation)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 336)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 342)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(792, 50)
+        Me.PanelControl1.Size = New System.Drawing.Size(792, 44)
         Me.PanelControl1.TabIndex = 1
         Me.PanelControl1.Visible = False
         '
@@ -394,7 +381,7 @@ Partial Class FormAREvaluation
         Me.BtnCreateEvaluation.Image = CType(resources.GetObject("BtnCreateEvaluation.Image"), System.Drawing.Image)
         Me.BtnCreateEvaluation.Location = New System.Drawing.Point(671, 2)
         Me.BtnCreateEvaluation.Name = "BtnCreateEvaluation"
-        Me.BtnCreateEvaluation.Size = New System.Drawing.Size(119, 46)
+        Me.BtnCreateEvaluation.Size = New System.Drawing.Size(119, 40)
         Me.BtnCreateEvaluation.TabIndex = 3
         Me.BtnCreateEvaluation.Text = "Hold Delivery"
         Me.BtnCreateEvaluation.Visible = False
@@ -483,13 +470,13 @@ Partial Class FormAREvaluation
         'RepositoryItemButtonEdit1
         '
         Me.RepositoryItemButtonEdit1.AutoHeight = False
-        SerializableAppearanceObject4.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject4.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject4.Options.UseBackColor = True
-        SerializableAppearanceObject4.Options.UseFont = True
-        SerializableAppearanceObject4.Options.UseForeColor = True
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject2.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject2.Options.UseBackColor = True
+        SerializableAppearanceObject2.Options.UseFont = True
+        SerializableAppearanceObject2.Options.UseForeColor = True
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -562,7 +549,6 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumninv As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnpaid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndiff As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnEvaluation As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPNewEval As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
