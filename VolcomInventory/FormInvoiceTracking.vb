@@ -98,11 +98,12 @@
             IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS total_due,
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
             ,sp.report_mark_type,rmt.report_mark_type_name
-            ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),sp.`sales_pos_due_date`) AS due_days,
+            ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date)) AS due_days,
             id_mail_warning_no,mail_warning_no, mail_warning_date, mail_warning_status,
             id_mail_notice_no,mail_notice_no, mail_notice_date, mail_notice_status,
             id_mail_invoice, mail_invoice_no, mail_invoice_date, mail_invoice_status,
-            bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`
+            bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`,
+            IFNULL(sp.id_propose_delay_payment,0) AS `id_propose_delay_payment`, mem.number AS `memo_number`, sp.propose_delay_payment_due_date
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -175,6 +176,7 @@
 	            ) rm
 	            GROUP BY rm.id_report
             ) bbm ON bbm.id_report = sp.id_sales_pos
+            LEFT JOIN tb_propose_delay_payment mem ON mem.id_propose_delay_payment = sp.id_propose_delay_payment
             WHERE sp.`id_report_status`='6' 
             " + cond_group + " 
             " + cond_store + "
@@ -206,7 +208,7 @@
     Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
 
-        If CEShowHighlight.EditValue = True Then
+        If CEShowHighlight.EditValue = True And e.RowHandle >= 0 Then
             Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim aging As Integer = 0
             Try
@@ -329,5 +331,19 @@
             stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkMemoPenangguhan_Click(sender As Object, e As EventArgs) Handles RepoLinkMemoPenangguhan.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_memo As String = GVUnpaid.GetFocusedRowCellValue("id_propose_delay_payment").ToString
+            If id_memo <> "0" Then
+                Dim inv As New ClassShowPopUp()
+                inv.id_report = id_memo
+                inv.report_mark_type = "233"
+                inv.show()
+            End If
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
