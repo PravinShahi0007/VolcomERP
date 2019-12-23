@@ -70,7 +70,7 @@
         GCItemList.DataSource = data
     End Sub
 
-    Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+    Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
