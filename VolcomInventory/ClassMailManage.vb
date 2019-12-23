@@ -41,7 +41,7 @@
         Return query
     End Function
 
-    Sub createEmail()
+    Sub createEmail(ByVal id_report_ref As String, ByVal report_mark_type_ref As String, ByVal report_number_ref As String)
         Dim query_mail_manage As String = "INSERT INTO tb_mail_manage(number, created_date, created_by, updated_date, updated_by, report_mark_type, id_mail_status, mail_status_note, mail_subject, mail_parameter) 
         VALUES('', NOW(), NULL, NOW(), NULL, " + rmt + ", 1, 'Draft', '" + mail_subject + "', '" + par1 + "'); SELECT LAST_INSERT_ID(); "
         id_mail_manage = execute_query(query_mail_manage, 0, True, "", "", "", "")
@@ -56,9 +56,9 @@
         INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
         WHERE m.report_mark_type=" + rmt + ";
         /*detil*/
-        INSERT INTO tb_mail_manage_det(id_mail_manage, report_mark_type, id_report, report_number) "
+        INSERT INTO tb_mail_manage_det(id_mail_manage, report_mark_type, id_report, report_number, id_report_ref, report_mark_type_ref, report_number_ref) "
         If rmt = "230" Then
-            query_mail_detail += "SELECT " + id_mail_manage + ", " + rmt + ", g.id_comp_group AS `id_report`, NULL AS `report_number` 
+            query_mail_detail += "SELECT " + id_mail_manage + ", " + rmt + ", g.id_comp_group AS `id_report`, NULL AS `report_number`, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
             FROM tb_m_comp_group g WHERE g.id_comp_group IN(" + par1 + ") "
         End If
         execute_non_query(query_mail_detail, True, "", "", "", "")
