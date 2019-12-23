@@ -37,6 +37,7 @@
     End Sub
 
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        resetViewData()
         load_store()
     End Sub
 
@@ -48,9 +49,11 @@
     Sub load_status_payment()
         Dim query As String = "SELECT 1 AS id_status_payment,'All Status' AS status_payment
         UNION
-        SELECT 2 AS id_status_payment,'Open' AS status_payment
+        SELECT 2 AS id_status_payment,'Unpaid' AS status_payment
         UNION
-        SELECT 3 AS id_status_payment,'Close' AS status_payment "
+        SELECT 3 AS id_status_payment,'Overdue' AS status_payment
+        UNION
+        SELECT 4 AS id_status_payment,'Paid' AS status_payment "
         viewSearchLookupQuery(SLEStatusInvoice, query, "id_status_payment", "status_payment", "id_status_payment")
     End Sub
 
@@ -77,11 +80,15 @@
         'filter status
         Dim id_status As String = SLEStatusInvoice.EditValue.ToString
         Dim cond_status As String = ""
+        Dim cond_having As String = ""
         If id_status = "1" Then 'a''
             cond_status = ""
-        ElseIf id_status = "2" Then 'open
+        ElseIf id_status = "2" Then 'open=unpaid
             cond_status = "AND sp.is_close_rec_payment=2 "
-        ElseIf id_status = "3" Then 'close
+        ElseIf id_status = "3" Then 'overdue
+            cond_status = "AND sp.is_close_rec_payment=2 "
+            cond_having += "AND due_days>0 "
+        ElseIf id_status = "4" Then 'close = paid
             cond_status = "AND sp.is_close_rec_payment=1 "
         End If
 
@@ -183,6 +190,7 @@
             " + cond_status + "
             " + cond_promo + "
             GROUP BY sp.`id_sales_pos` 
+            HAVING 1=1 " + cond_having + "
             ORDER BY id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCUnpaid.DataSource = data
@@ -345,5 +353,27 @@
             End If
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Sub resetViewData()
+        Cursor = Cursors.WaitCursor
+        GCUnpaid.DataSource = Nothing
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEStoreInvoice_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreInvoice.EditValueChanged
+        resetViewData()
+    End Sub
+
+    Private Sub SLEStatusInvoice_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStatusInvoice.EditValueChanged
+        resetViewData()
+    End Sub
+
+    Private Sub CEPromo_EditValueChanged(sender As Object, e As EventArgs) Handles CEPromo.EditValueChanged
+        resetViewData()
+    End Sub
+
+    Private Sub CEShowHighlight_EditValueChanged(sender As Object, e As EventArgs) Handles CEShowHighlight.EditValueChanged
+
     End Sub
 End Class
