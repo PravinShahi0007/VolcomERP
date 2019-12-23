@@ -96,6 +96,9 @@ SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
 
         If Not SLEVendorPayment.EditValue.ToString = "0" Then
             where_string = " AND py.id_comp_contact='" & SLEVendorPayment.EditValue.ToString & "'"
+            BCreatePay.Visible = True
+        Else
+            BCreatePay.Visible = False
         End If
 
         If Not SLEPayTypePayment.EditValue.ToString = "0" Then
@@ -457,5 +460,12 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         showpopup.id_report = GVFGPO.GetFocusedRowCellValue("id_report").ToString
         showpopup.show()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BCreatePay_Click(sender As Object, e As EventArgs) Handles BCreatePay.Click
+        If Not SLEVendorPayment.EditValue.ToString = "0" Then
+            FormBankWithdrawalDet.report_mark_type = "159"
+            FormBankWithdrawalDet.ShowDialog()
+        End If
     End Sub
 End Class
