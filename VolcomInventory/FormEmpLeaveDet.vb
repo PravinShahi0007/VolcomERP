@@ -376,10 +376,15 @@
         Dim leave_type As String = LELeaveType.EditValue.ToString
 
         'propose max
-        Dim max_propose As Integer = 2400
+        Dim max_propose As Integer = CType(execute_query("
+            SELECT sub.max_leave
+            FROM tb_m_employee AS emp
+            LEFT JOIN tb_m_departement_sub AS sub ON emp.id_departement_sub = sub.id_departement_sub
+            WHERE emp.id_employee = " + id_employee + "
+        ", 0, True, "", "", "", ""), Integer)
         Dim check_max_propose As String = ""
 
-        If leave_type = "1" And Not is_hrd = "1" Then
+        If leave_type = "1" And Not is_hrd = "1" And TETotLeave.EditValue > 0 Then
             Dim data_all As DataTable = CType(GCLeaveDet.DataSource, DataTable).Copy
 
             'included month
@@ -440,7 +445,7 @@
         Dim max_continues As Integer = 5
         Dim check_max_continues As List(Of String) = New List(Of String)
 
-        If leave_type = "1" And Not is_hrd = "1" Then
+        If leave_type = "1" And Not is_hrd = "1" And TETotLeave.EditValue > 0 Then
             Dim data_all As DataTable = CType(GCLeaveDet.DataSource, DataTable).Copy
 
             'included months & days
