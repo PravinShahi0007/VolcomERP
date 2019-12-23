@@ -26,8 +26,12 @@
 
             'min propose leave 1 week
             If Not FormEmpLeaveDet.is_hrd = "1" And FormEmpLeaveDet.LELeaveType.EditValue.ToString = "1" Then
-                DEStart.Properties.MinValue = Now.Date.AddDays(7)
-                DEUntil.Properties.MinValue = Now.Date.AddDays(7)
+                Dim leave_min_day As Integer = CType(get_opt_emp_field("leave_min_day"), Integer)
+
+                If leave_min_day > 0 Then
+                    DEStart.Properties.MinValue = Now.Date.AddDays(leave_min_day)
+                    DEUntil.Properties.MinValue = Now.Date.AddDays(leave_min_day)
+                End If
             End If
         End If
     End Sub
