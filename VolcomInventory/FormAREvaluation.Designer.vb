@@ -82,6 +82,7 @@ Partial Class FormAREvaluation
         Me.PanelControlCreateEval = New DevExpress.XtraEditors.PanelControl()
         Me.GridColumnid_comp_group_eval = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumngroup_eval = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnCreateMemo = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -539,6 +540,7 @@ Partial Class FormAREvaluation
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnCreateMemo)
         Me.PanelControl1.Controls.Add(Me.BtnCreateEvaluation)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 342)
@@ -703,6 +705,24 @@ Partial Class FormAREvaluation
         Me.GridColumngroup_eval.Visible = True
         Me.GridColumngroup_eval.VisibleIndex = 0
         '
+        'BtnCreateMemo
+        '
+        Me.BtnCreateMemo.Appearance.BackColor = System.Drawing.Color.Teal
+        Me.BtnCreateMemo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCreateMemo.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnCreateMemo.Appearance.Options.UseBackColor = True
+        Me.BtnCreateMemo.Appearance.Options.UseFont = True
+        Me.BtnCreateMemo.Appearance.Options.UseForeColor = True
+        Me.BtnCreateMemo.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCreateMemo.Location = New System.Drawing.Point(488, 2)
+        Me.BtnCreateMemo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnCreateMemo.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateMemo.Name = "BtnCreateMemo"
+        Me.BtnCreateMemo.Size = New System.Drawing.Size(183, 40)
+        Me.BtnCreateMemo.TabIndex = 4
+        Me.BtnCreateMemo.Text = "Create Memo Penangguhan"
+        Me.BtnCreateMemo.Visible = False
+        '
         'FormAREvaluation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -807,4 +827,5 @@ Partial Class FormAREvaluation
     Friend WithEvents PanelControlCreateEval As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnid_comp_group_eval As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumngroup_eval As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnCreateMemo As DevExpress.XtraEditors.SimpleButton
 End Class

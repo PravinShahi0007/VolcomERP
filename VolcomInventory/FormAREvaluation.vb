@@ -174,8 +174,10 @@
         GVActiveList.BestFitColumns()
         If GVActiveList.RowCount > 0 Then
             BtnCreateEvaluation.Visible = True
+            BtnCreateMemo.Visible = True
         Else
             BtnCreateEvaluation.Visible = False
+            BtnCreateMemo.Visible = False
         End If
 
         'store group
@@ -201,6 +203,7 @@
         GCActiveList.DataSource = Nothing
         GCGroupStoreList.DataSource = Nothing
         BtnCreateEvaluation.Visible = False
+        BtnCreateMemo.Visible = False
         Cursor = Cursors.Default
     End Sub
 
