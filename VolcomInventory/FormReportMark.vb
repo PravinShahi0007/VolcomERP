@@ -570,6 +570,9 @@
         ElseIf report_mark_type = "231" Then
             'invoice mat
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_inv_mat WHERE id_inv_mat = '{0}'", id_report)
+        ElseIf report_mark_type = "233" Then
+            'delay payment
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_propose_delay_payment WHERE id_propose_delay_payment = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4939,17 +4942,16 @@
                 GROUP BY rd.id_purc_rec
                 UNION ALL
                 /*total value item asset*/
-                SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
-                SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
+                SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, cont.id_comp,  
+                SUM(rd.qty) AS `qty`, SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
+                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-                INNER JOIN tb_m_departement dep ON dep.id_departement
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
                 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN (
- 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
+	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
 	                FROM tb_purc_order_det pod
 	                INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
 	                WHERE pod.id_purc_order=" + FormPurcReceiveDet.id_purc_order + "
@@ -4957,6 +4959,7 @@
                 ) poall ON poall.id_purc_order = r.id_purc_order
                 INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req  = rqd.id_purc_req
+                INNER JOIN tb_m_departement dep ON dep.id_departement=rq.`id_departement`
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
@@ -5558,21 +5561,8 @@ WHERE pd.`id_pn`='" & id_report & "'"
                             id_comp_group += dtg.Rows(i)("id_comp_group").ToString
                         Next
 
-                        Dim query_cek_email_release As String = "SELECT e.id_comp_group, IFNULL(ep.jum_not_paid,0) AS `jum_not_paid`
-                            FROM tb_ar_eval e
-                            LEFT JOIN (
-	                            SELECT e.id_comp_group,
-	                            COUNT(e.id_sales_pos) AS `jum_not_paid`
-	                            FROM tb_ar_eval e
-	                            WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
-	                            AND e.id_comp_group IN (" + id_comp_group + ") AND e.is_paid=2
-	                            GROUP BY e.id_comp_group
-                            ) ep ON ep.id_comp_group = e.id_comp_group
-                            WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
-                            AND e.id_comp_group IN (" + id_comp_group + ")
-                            GROUP BY e.id_comp_group
-                            HAVING jum_not_paid=0 "
-                        Dim data_cek_email_release As DataTable = execute_query(query_cek_email_release, -1, True, "", "", "", "")
+                        Dim ev As New ClassAREvaluation()
+                        Dim data_cek_email_release As DataTable = ev.dtCekEmailRelease(id_comp_group)
                         If data_cek_email_release.Rows.Count > 0 Then
                             'jika ada yg dibayar semua maka kirim email
                             Dim mm As New ClassMailManage()
@@ -5591,7 +5581,7 @@ WHERE pd.`id_pn`='" & id_report & "'"
                             mm.mail_title = mail_title
                             mm.par1 = id_comp_group
                             mm.rmt = "230"
-                            mm.createEmail()
+                            mm.createEmail(id_report, report_mark_type, report_number)
                             id_mail = mm.id_mail_manage
 
                             'email
@@ -6843,6 +6833,107 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
             'refresh view
             FormInvMatDet.load_form()
+        ElseIf report_mark_type = "233" Then
+            'delay payment
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            'if completed
+            If id_status_reportx = "6" Then
+                Dim query_upd_inv As String = "/* update tabel invoice */
+                UPDATE tb_sales_pos main
+                INNER JOIN (
+	                SELECT dd.id_propose_delay_payment, d.due_date, dd.id_sales_pos 
+	                FROM tb_propose_delay_payment_det dd
+	                INNER JOIN tb_propose_delay_payment d ON d.id_propose_delay_payment = dd.id_propose_delay_payment
+	                WHERE d.id_propose_delay_payment=" + id_report + "
+                ) src ON src.id_sales_pos = main.id_sales_pos
+                SET main.id_propose_delay_payment = src.id_propose_delay_payment,
+                main.propose_delay_payment_due_date = src.due_date; 
+                /* update ar eval jika ada */
+                UPDATE tb_ar_eval main
+                INNER JOIN (
+	                SELECT d.id_sales_pos , d.id_propose_delay_payment_det
+	                FROM tb_propose_delay_payment_det d
+	                WHERE d.id_propose_delay_payment=" + id_report + "
+                ) src ON src.id_sales_pos = main.id_sales_pos
+                SET main.is_active=2, main.id_propose_delay_payment_det = src.id_propose_delay_payment_det, main.release_date=NOW()
+                WHERE main.is_active=1; "
+                execute_non_query(query_upd_inv, True, "", "", "", "")
+
+                '=== checking release hanya utk keperluan email
+                'check apakah invoice yang di memo ada di evaluasi ato tidak
+                Dim query_in_evaluation As String = "SELECT md.id_propose_delay_payment_det,m.id_comp_group  
+                FROM tb_propose_delay_payment_det md
+                INNER JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment = md.id_propose_delay_payment
+                LEFT JOIN (
+	                SELECT e.id_ar_eval, e.id_sales_pos 
+	                FROM tb_ar_eval e
+	                INNER JOIN tb_propose_delay_payment_det md ON md.id_propose_delay_payment_det = e.id_propose_delay_payment_det
+	                WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
+                )  e ON e.id_sales_pos = md.id_sales_pos
+                WHERE md.id_propose_delay_payment=" + id_report + " AND !ISNULL(e.id_ar_eval) "
+                Dim data_in_evaluation As DataTable = execute_query(query_in_evaluation, -1, True, "", "", "", "")
+                If data_in_evaluation.Rows.Count > 0 Then
+                    Dim id_comp_group As String = data_in_evaluation.Rows(0)("id_comp_group").ToString
+                    Dim ev As New ClassAREvaluation()
+                    Dim data_cek_email_release As DataTable = ev.dtCekEmailRelease(id_comp_group)
+                    If data_cek_email_release.Rows.Count > 0 Then
+                        'jika ada yg dibayar semua maka kirim email
+                        Dim mm As New ClassMailManage()
+                        Dim id_mail As String = "-1"
+                        Dim mail_subject As String = get_setup_field("mail_subject_release_del")
+                        Dim mail_title As String = get_setup_field("mail_title_release_del")
+                        Dim mail_content As String = get_setup_field("mail_content_release_del")
+                        Dim query_mail_content_to As String = "SELECT CONCAT(e.employee_name, ' (',e.employee_position,')') AS `to_content_mail`
+                                FROM tb_opt o
+                                INNER JOIN tb_m_employee e ON e.id_employee = o.id_emp_wh_manager "
+                        Dim mail_content_to As String = execute_query(query_mail_content_to, 0, True, "", "", "", "")
+
+                        'send paramenter class
+                        mm.rmt = report_mark_type
+                        mm.mail_subject = mail_subject
+                        mm.mail_title = mail_title
+                        mm.par1 = id_comp_group
+                        mm.rmt = "230"
+                        mm.createEmail(id_report, report_mark_type, report_number)
+                        id_mail = mm.id_mail_manage
+
+                        'email
+                        Try
+                            Dim em As New ClassSendEmail()
+                            em.report_mark_type = "230"
+                            em.id_report = id_mail
+                            em.design_code = mail_title
+                            em.design = mail_subject
+                            em.comment_by = mail_content_to
+                            em.comment = mail_content
+                            em.dt = mm.getDetailData
+                            em.send_email()
+
+                            Dim query_log As String = mm.queryInsertLog("2", "Sent Successfully")
+                            execute_non_query(query_log, True, "", "", "", "")
+                        Catch ex As Exception
+                            Dim query_log As String = mm.queryInsertLog("3", addSlashes(ex.ToString))
+                            execute_non_query(query_log, True, "", "", "", "")
+                        End Try
+                    End If
+                End If
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_propose_delay_payment SET id_report_status='{0}' WHERE id_propose_delay_payment ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
+                FormDelayPayment.SLEStoreGroup.EditValue = FormDelayPaymentDet.id_comp_group
+                FormDelayPayment.viewData()
+                FormDelayPayment.GVData.FocusedRowHandle = find_row(FormDelayPayment.GVData, "id_propose_delay_payment", id_report)
+                FormDelayPaymentDet.actionLoad()
+            Catch ex As Exception
+            End Try
         End If
 
         'adding lead time

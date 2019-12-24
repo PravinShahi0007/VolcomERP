@@ -37,6 +37,7 @@
     End Sub
 
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        resetViewData()
         load_store()
     End Sub
 
@@ -48,9 +49,11 @@
     Sub load_status_payment()
         Dim query As String = "SELECT 1 AS id_status_payment,'All Status' AS status_payment
         UNION
-        SELECT 2 AS id_status_payment,'Open' AS status_payment
+        SELECT 2 AS id_status_payment,'Unpaid' AS status_payment
         UNION
-        SELECT 3 AS id_status_payment,'Close' AS status_payment "
+        SELECT 3 AS id_status_payment,'Overdue' AS status_payment
+        UNION
+        SELECT 4 AS id_status_payment,'Paid' AS status_payment "
         viewSearchLookupQuery(SLEStatusInvoice, query, "id_status_payment", "status_payment", "id_status_payment")
     End Sub
 
@@ -77,11 +80,15 @@
         'filter status
         Dim id_status As String = SLEStatusInvoice.EditValue.ToString
         Dim cond_status As String = ""
+        Dim cond_having As String = ""
         If id_status = "1" Then 'a''
             cond_status = ""
-        ElseIf id_status = "2" Then 'open
+        ElseIf id_status = "2" Then 'open=unpaid
             cond_status = "AND sp.is_close_rec_payment=2 "
-        ElseIf id_status = "3" Then 'close
+        ElseIf id_status = "3" Then 'overdue
+            cond_status = "AND sp.is_close_rec_payment=2 "
+            cond_having += "AND due_days>0 "
+        ElseIf id_status = "4" Then 'close = paid
             cond_status = "AND sp.is_close_rec_payment=1 "
         End If
 
@@ -98,11 +105,12 @@
             IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS total_due,
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
             ,sp.report_mark_type,rmt.report_mark_type_name
-            ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),sp.`sales_pos_due_date`) AS due_days,
+            ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date)) AS due_days,
             id_mail_warning_no,mail_warning_no, mail_warning_date, mail_warning_status,
             id_mail_notice_no,mail_notice_no, mail_notice_date, mail_notice_status,
             id_mail_invoice, mail_invoice_no, mail_invoice_date, mail_invoice_status,
-            bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`
+            bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`,
+            IFNULL(sp.id_propose_delay_payment,0) AS `id_propose_delay_payment`, mem.number AS `memo_number`, sp.propose_delay_payment_due_date
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -175,12 +183,14 @@
 	            ) rm
 	            GROUP BY rm.id_report
             ) bbm ON bbm.id_report = sp.id_sales_pos
+            LEFT JOIN tb_propose_delay_payment mem ON mem.id_propose_delay_payment = sp.id_propose_delay_payment
             WHERE sp.`id_report_status`='6' 
             " + cond_group + " 
             " + cond_store + "
             " + cond_status + "
             " + cond_promo + "
             GROUP BY sp.`id_sales_pos` 
+            HAVING 1=1 " + cond_having + "
             ORDER BY id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCUnpaid.DataSource = data
@@ -206,7 +216,7 @@
     Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
 
-        If CEShowHighlight.EditValue = True Then
+        If CEShowHighlight.EditValue = True And e.RowHandle >= 0 Then
             Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim aging As Integer = 0
             Try
@@ -329,5 +339,41 @@
             stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkMemoPenangguhan_Click(sender As Object, e As EventArgs) Handles RepoLinkMemoPenangguhan.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_memo As String = GVUnpaid.GetFocusedRowCellValue("id_propose_delay_payment").ToString
+            If id_memo <> "0" Then
+                Dim inv As New ClassShowPopUp()
+                inv.id_report = id_memo
+                inv.report_mark_type = "233"
+                inv.show()
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub resetViewData()
+        Cursor = Cursors.WaitCursor
+        GCUnpaid.DataSource = Nothing
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEStoreInvoice_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreInvoice.EditValueChanged
+        resetViewData()
+    End Sub
+
+    Private Sub SLEStatusInvoice_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStatusInvoice.EditValueChanged
+        resetViewData()
+    End Sub
+
+    Private Sub CEPromo_EditValueChanged(sender As Object, e As EventArgs) Handles CEPromo.EditValueChanged
+        resetViewData()
+    End Sub
+
+    Private Sub CEShowHighlight_EditValueChanged(sender As Object, e As EventArgs) Handles CEShowHighlight.EditValueChanged
+
     End Sub
 End Class
