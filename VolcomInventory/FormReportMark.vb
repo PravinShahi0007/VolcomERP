@@ -4942,17 +4942,16 @@
                 GROUP BY rd.id_purc_rec
                 UNION ALL
                 /*total value item asset*/
-                SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
-                SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
+                SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, cont.id_comp,  
+                SUM(rd.qty) AS `qty`, SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
+                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-                INNER JOIN tb_m_departement dep ON dep.id_departement
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
                 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN (
- 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
+	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
 	                FROM tb_purc_order_det pod
 	                INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
 	                WHERE pod.id_purc_order=" + FormPurcReceiveDet.id_purc_order + "
@@ -4960,6 +4959,7 @@
                 ) poall ON poall.id_purc_order = r.id_purc_order
                 INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req  = rqd.id_purc_req
+                INNER JOIN tb_m_departement dep ON dep.id_departement=rq.`id_departement`
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
