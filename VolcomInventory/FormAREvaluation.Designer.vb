@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormAREvaluation
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormAREvaluation
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAREvaluation))
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
@@ -51,7 +51,22 @@ Partial Class FormAREvaluation
         Me.XTPInvoiceList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCActiveList = New DevExpress.XtraGrid.GridControl()
         Me.GVActiveList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnid_sales_pos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_due_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_propose_delay_payment_eval = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmemo_number_eval = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpropose_delay_payment_due_date_eval = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndue_days = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnaging = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnperiod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumngroup = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPGroupStoreList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCGroupStoreList = New DevExpress.XtraGrid.GridControl()
+        Me.GVGroupStoreList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCreateEvaluation = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPGroupStore = New DevExpress.XtraTab.XtraTabPage()
@@ -63,6 +78,10 @@ Partial Class FormAREvaluation
         Me.GridColumnpaid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.BtnViewOverdue = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlCreateEval = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumnid_comp_group_eval = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumngroup_eval = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,12 +99,17 @@ Partial Class FormAREvaluation
         Me.XTPInvoiceList.SuspendLayout()
         CType(Me.GCActiveList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVActiveList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPGroupStoreList.SuspendLayout()
+        CType(Me.GCGroupStoreList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVGroupStoreList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XTPGroupStore.SuspendLayout()
         CType(Me.GCGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlCreateEval, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlCreateEval.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelNav
@@ -312,8 +336,8 @@ Partial Class FormAREvaluation
         'XTPNewEval
         '
         Me.XTPNewEval.Controls.Add(Me.XTCCreateNewEval)
-        Me.XTPNewEval.Controls.Add(Me.SimpleButton1)
         Me.XTPNewEval.Controls.Add(Me.PanelControl1)
+        Me.XTPNewEval.Controls.Add(Me.PanelControlCreateEval)
         Me.XTPNewEval.Name = "XTPNewEval"
         Me.XTPNewEval.Size = New System.Drawing.Size(792, 386)
         Me.XTPNewEval.Text = "Create New Evaluation"
@@ -322,18 +346,18 @@ Partial Class FormAREvaluation
         '
         Me.XTCCreateNewEval.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCCreateNewEval.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCCreateNewEval.Location = New System.Drawing.Point(0, 28)
+        Me.XTCCreateNewEval.Location = New System.Drawing.Point(0, 33)
         Me.XTCCreateNewEval.Name = "XTCCreateNewEval"
         Me.XTCCreateNewEval.SelectedTabPage = Me.XTPInvoiceList
-        Me.XTCCreateNewEval.Size = New System.Drawing.Size(792, 314)
+        Me.XTCCreateNewEval.Size = New System.Drawing.Size(792, 309)
         Me.XTCCreateNewEval.TabIndex = 5
-        Me.XTCCreateNewEval.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoiceList})
+        Me.XTCCreateNewEval.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoiceList, Me.XTPGroupStoreList})
         '
         'XTPInvoiceList
         '
         Me.XTPInvoiceList.Controls.Add(Me.GCActiveList)
         Me.XTPInvoiceList.Name = "XTPInvoiceList"
-        Me.XTPInvoiceList.Size = New System.Drawing.Size(763, 308)
+        Me.XTPInvoiceList.Size = New System.Drawing.Size(763, 303)
         Me.XTPInvoiceList.Text = "Invoice List"
         '
         'GCActiveList
@@ -342,28 +366,176 @@ Partial Class FormAREvaluation
         Me.GCActiveList.Location = New System.Drawing.Point(0, 0)
         Me.GCActiveList.MainView = Me.GVActiveList
         Me.GCActiveList.Name = "GCActiveList"
-        Me.GCActiveList.Size = New System.Drawing.Size(763, 308)
+        Me.GCActiveList.Size = New System.Drawing.Size(763, 303)
         Me.GCActiveList.TabIndex = 0
         Me.GCActiveList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActiveList})
         '
         'GVActiveList
         '
+        Me.GVActiveList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnstore, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnid_propose_delay_payment_eval, Me.GridColumnmemo_number_eval, Me.GridColumnpropose_delay_payment_due_date_eval, Me.GridColumndue_days, Me.GridColumnaging, Me.GridColumnperiod, Me.GridColumnamount, Me.GridColumngroup})
         Me.GVActiveList.GridControl = Me.GCActiveList
+        Me.GVActiveList.GroupCount = 1
+        Me.GVActiveList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:N2}")})
         Me.GVActiveList.Name = "GVActiveList"
         Me.GVActiveList.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVActiveList.OptionsBehavior.Editable = False
+        Me.GVActiveList.OptionsFind.AlwaysVisible = True
         Me.GVActiveList.OptionsView.ColumnAutoWidth = False
+        Me.GVActiveList.OptionsView.ShowFooter = True
+        Me.GVActiveList.OptionsView.ShowGroupedColumns = True
         Me.GVActiveList.OptionsView.ShowGroupPanel = False
+        Me.GVActiveList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumngroup, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'SimpleButton1
+        'GridColumnid_sales_pos
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.SimpleButton1.Location = New System.Drawing.Point(0, 0)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(792, 28)
-        Me.SimpleButton1.TabIndex = 4
-        Me.SimpleButton1.Text = "view overdue invoice"
-        Me.SimpleButton1.Visible = False
+        Me.GridColumnid_sales_pos.Caption = "id_sales_pos"
+        Me.GridColumnid_sales_pos.FieldName = "id_sales_pos"
+        Me.GridColumnid_sales_pos.Name = "GridColumnid_sales_pos"
+        Me.GridColumnid_sales_pos.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnsales_pos_number
+        '
+        Me.GridColumnsales_pos_number.Caption = "Invoice No."
+        Me.GridColumnsales_pos_number.FieldName = "sales_pos_number"
+        Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
+        Me.GridColumnsales_pos_number.OptionsColumn.AllowEdit = False
+        Me.GridColumnsales_pos_number.Visible = True
+        Me.GridColumnsales_pos_number.VisibleIndex = 0
+        '
+        'GridColumnstore
+        '
+        Me.GridColumnstore.Caption = "Store"
+        Me.GridColumnstore.FieldName = "store"
+        Me.GridColumnstore.Name = "GridColumnstore"
+        Me.GridColumnstore.OptionsColumn.AllowEdit = False
+        Me.GridColumnstore.Visible = True
+        Me.GridColumnstore.VisibleIndex = 2
+        '
+        'GridColumnsales_pos_date
+        '
+        Me.GridColumnsales_pos_date.Caption = "Created Date"
+        Me.GridColumnsales_pos_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_pos_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_pos_date.FieldName = "sales_pos_date"
+        Me.GridColumnsales_pos_date.Name = "GridColumnsales_pos_date"
+        Me.GridColumnsales_pos_date.OptionsColumn.AllowEdit = False
+        Me.GridColumnsales_pos_date.Visible = True
+        Me.GridColumnsales_pos_date.VisibleIndex = 3
+        '
+        'GridColumnsales_pos_due_date
+        '
+        Me.GridColumnsales_pos_due_date.Caption = "Due Date"
+        Me.GridColumnsales_pos_due_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_pos_due_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_pos_due_date.FieldName = "sales_pos_due_date"
+        Me.GridColumnsales_pos_due_date.Name = "GridColumnsales_pos_due_date"
+        Me.GridColumnsales_pos_due_date.OptionsColumn.AllowEdit = False
+        Me.GridColumnsales_pos_due_date.Visible = True
+        Me.GridColumnsales_pos_due_date.VisibleIndex = 5
+        '
+        'GridColumnid_propose_delay_payment_eval
+        '
+        Me.GridColumnid_propose_delay_payment_eval.Caption = "id_propose_delay_payment"
+        Me.GridColumnid_propose_delay_payment_eval.FieldName = "id_propose_delay_payment"
+        Me.GridColumnid_propose_delay_payment_eval.Name = "GridColumnid_propose_delay_payment_eval"
+        Me.GridColumnid_propose_delay_payment_eval.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnmemo_number_eval
+        '
+        Me.GridColumnmemo_number_eval.Caption = "Memo Penangguhan"
+        Me.GridColumnmemo_number_eval.FieldName = "memo_number"
+        Me.GridColumnmemo_number_eval.Name = "GridColumnmemo_number_eval"
+        Me.GridColumnmemo_number_eval.OptionsColumn.AllowEdit = False
+        Me.GridColumnmemo_number_eval.Visible = True
+        Me.GridColumnmemo_number_eval.VisibleIndex = 6
+        Me.GridColumnmemo_number_eval.Width = 120
+        '
+        'GridColumnpropose_delay_payment_due_date_eval
+        '
+        Me.GridColumnpropose_delay_payment_due_date_eval.Caption = "Tgl. Penangguhan"
+        Me.GridColumnpropose_delay_payment_due_date_eval.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnpropose_delay_payment_due_date_eval.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnpropose_delay_payment_due_date_eval.FieldName = "propose_delay_payment_due_date"
+        Me.GridColumnpropose_delay_payment_due_date_eval.Name = "GridColumnpropose_delay_payment_due_date_eval"
+        Me.GridColumnpropose_delay_payment_due_date_eval.OptionsColumn.AllowEdit = False
+        Me.GridColumnpropose_delay_payment_due_date_eval.Visible = True
+        Me.GridColumnpropose_delay_payment_due_date_eval.VisibleIndex = 7
+        Me.GridColumnpropose_delay_payment_due_date_eval.Width = 114
+        '
+        'GridColumndue_days
+        '
+        Me.GridColumndue_days.Caption = "due_days"
+        Me.GridColumndue_days.FieldName = "due_days"
+        Me.GridColumndue_days.Name = "GridColumndue_days"
+        Me.GridColumndue_days.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnaging
+        '
+        Me.GridColumnaging.Caption = "Aging"
+        Me.GridColumnaging.FieldName = "aging"
+        Me.GridColumnaging.Name = "GridColumnaging"
+        Me.GridColumnaging.UnboundExpression = "Iif([due_days] = 0, [due_days], Iif([due_days] < 0, [due_days], Concat('+', [due_" &
+    "days])))"
+        Me.GridColumnaging.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnaging.Visible = True
+        Me.GridColumnaging.VisibleIndex = 8
+        '
+        'GridColumnperiod
+        '
+        Me.GridColumnperiod.Caption = "Period"
+        Me.GridColumnperiod.FieldName = "period"
+        Me.GridColumnperiod.Name = "GridColumnperiod"
+        Me.GridColumnperiod.OptionsColumn.AllowEdit = False
+        Me.GridColumnperiod.Visible = True
+        Me.GridColumnperiod.VisibleIndex = 4
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.OptionsColumn.AllowEdit = False
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 9
+        '
+        'GridColumngroup
+        '
+        Me.GridColumngroup.Caption = "Store Group"
+        Me.GridColumngroup.FieldName = "group"
+        Me.GridColumngroup.Name = "GridColumngroup"
+        Me.GridColumngroup.OptionsColumn.AllowEdit = False
+        Me.GridColumngroup.Visible = True
+        Me.GridColumngroup.VisibleIndex = 1
+        '
+        'XTPGroupStoreList
+        '
+        Me.XTPGroupStoreList.Controls.Add(Me.GCGroupStoreList)
+        Me.XTPGroupStoreList.Name = "XTPGroupStoreList"
+        Me.XTPGroupStoreList.Size = New System.Drawing.Size(763, 303)
+        Me.XTPGroupStoreList.Text = "Group Store List"
+        '
+        'GCGroupStoreList
+        '
+        Me.GCGroupStoreList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCGroupStoreList.Location = New System.Drawing.Point(0, 0)
+        Me.GCGroupStoreList.MainView = Me.GVGroupStoreList
+        Me.GCGroupStoreList.Name = "GCGroupStoreList"
+        Me.GCGroupStoreList.Size = New System.Drawing.Size(763, 303)
+        Me.GCGroupStoreList.TabIndex = 1
+        Me.GCGroupStoreList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVGroupStoreList})
+        '
+        'GVGroupStoreList
+        '
+        Me.GVGroupStoreList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group_eval, Me.GridColumngroup_eval})
+        Me.GVGroupStoreList.GridControl = Me.GCGroupStoreList
+        Me.GVGroupStoreList.Name = "GVGroupStoreList"
+        Me.GVGroupStoreList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVGroupStoreList.OptionsBehavior.Editable = False
+        Me.GVGroupStoreList.OptionsFind.AlwaysVisible = True
+        Me.GVGroupStoreList.OptionsView.ColumnAutoWidth = False
+        Me.GVGroupStoreList.OptionsView.ShowGroupPanel = False
         '
         'PanelControl1
         '
@@ -373,13 +545,19 @@ Partial Class FormAREvaluation
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(792, 44)
         Me.PanelControl1.TabIndex = 1
-        Me.PanelControl1.Visible = False
         '
         'BtnCreateEvaluation
         '
+        Me.BtnCreateEvaluation.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BtnCreateEvaluation.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCreateEvaluation.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnCreateEvaluation.Appearance.Options.UseBackColor = True
+        Me.BtnCreateEvaluation.Appearance.Options.UseFont = True
+        Me.BtnCreateEvaluation.Appearance.Options.UseForeColor = True
         Me.BtnCreateEvaluation.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCreateEvaluation.Image = CType(resources.GetObject("BtnCreateEvaluation.Image"), System.Drawing.Image)
         Me.BtnCreateEvaluation.Location = New System.Drawing.Point(671, 2)
+        Me.BtnCreateEvaluation.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnCreateEvaluation.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCreateEvaluation.Name = "BtnCreateEvaluation"
         Me.BtnCreateEvaluation.Size = New System.Drawing.Size(119, 40)
         Me.BtnCreateEvaluation.TabIndex = 3
@@ -480,6 +658,51 @@ Partial Class FormAREvaluation
         Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
+        'BtnViewOverdue
+        '
+        Me.BtnViewOverdue.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnViewOverdue.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnViewOverdue.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnViewOverdue.Appearance.Options.UseBackColor = True
+        Me.BtnViewOverdue.Appearance.Options.UseFont = True
+        Me.BtnViewOverdue.Appearance.Options.UseForeColor = True
+        Me.BtnViewOverdue.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnViewOverdue.Location = New System.Drawing.Point(0, 0)
+        Me.BtnViewOverdue.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnViewOverdue.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnViewOverdue.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnViewOverdue.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnViewOverdue.Name = "BtnViewOverdue"
+        Me.BtnViewOverdue.Size = New System.Drawing.Size(792, 33)
+        Me.BtnViewOverdue.TabIndex = 19
+        Me.BtnViewOverdue.Text = "View Overdue Invoice"
+        '
+        'PanelControlCreateEval
+        '
+        Me.PanelControlCreateEval.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlCreateEval.Controls.Add(Me.BtnViewOverdue)
+        Me.PanelControlCreateEval.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlCreateEval.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlCreateEval.Name = "PanelControlCreateEval"
+        Me.PanelControlCreateEval.Size = New System.Drawing.Size(792, 33)
+        Me.PanelControlCreateEval.TabIndex = 6
+        Me.PanelControlCreateEval.Visible = False
+        '
+        'GridColumnid_comp_group_eval
+        '
+        Me.GridColumnid_comp_group_eval.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group_eval.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group_eval.Name = "GridColumnid_comp_group_eval"
+        Me.GridColumnid_comp_group_eval.OptionsColumn.AllowEdit = False
+        '
+        'GridColumngroup_eval
+        '
+        Me.GridColumngroup_eval.Caption = "Store Group"
+        Me.GridColumngroup_eval.FieldName = "group"
+        Me.GridColumngroup_eval.Name = "GridColumngroup_eval"
+        Me.GridColumngroup_eval.Visible = True
+        Me.GridColumngroup_eval.VisibleIndex = 0
+        '
         'FormAREvaluation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -509,12 +732,17 @@ Partial Class FormAREvaluation
         Me.XTPInvoiceList.ResumeLayout(False)
         CType(Me.GCActiveList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVActiveList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPGroupStoreList.ResumeLayout(False)
+        CType(Me.GCGroupStoreList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVGroupStoreList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.XTPGroupStore.ResumeLayout(False)
         CType(Me.GCGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlCreateEval, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlCreateEval.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -550,7 +778,6 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumnpaid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndiff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPNewEval As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnCreateEvaluation As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCCreateNewEval As DevExpress.XtraTab.XtraTabControl
@@ -560,4 +787,24 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumnid_propose_delay_payment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmemo_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoLinkMemo As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents XTPGroupStoreList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCGroupStoreList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVGroupStoreList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_sales_pos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_pos_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_pos_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_pos_due_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_propose_delay_payment_eval As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnmemo_number_eval As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpropose_delay_payment_due_date_eval As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndue_days As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnaging As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnperiod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumngroup As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnViewOverdue As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControlCreateEval As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumnid_comp_group_eval As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumngroup_eval As DevExpress.XtraGrid.Columns.GridColumn
 End Class

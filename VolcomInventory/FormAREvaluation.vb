@@ -130,10 +130,91 @@
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
         If XTCData.SelectedTabPageIndex = 0 Then
             PanelNav.Visible = False
+            PanelControlCreateEval.Visible = True
         ElseIf XTCData.SelectedTabPageIndex = 1 Then
             PanelNav.Visible = True
+            PanelControlCreateEval.Visible = False
         ElseIf XTCData.SelectedTabPageIndex = 2 Then
             PanelNav.Visible = True
+            PanelControlCreateEval.Visible = False
         End If
+    End Sub
+
+    Sub viewOverdue()
+        Cursor = Cursors.WaitCursor
+        'invoice list
+        Dim query As String = "SELECT sp.id_sales_pos, sp.sales_pos_number, cg.description AS `group`,CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, sp.sales_pos_date, sp.sales_pos_due_date,
+        IFNULL(sp.id_propose_delay_payment,0) AS `id_propose_delay_payment`, m.number AS `memo_number`, sp.propose_delay_payment_due_date, 
+        DATEDIFF(NOW(), IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date)) AS `due_days`,
+        CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`,
+        CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `amount`
+        FROM tb_sales_pos sp
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        LEFT JOIN (
+	         SELECT pyd.id_report, pyd.report_mark_type, 
+	         COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+	         SUM(pyd.value) AS  `value`
+	         FROM tb_rec_payment_det pyd
+	         INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+	         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = pyd.id_report AND sp.is_close_rec_payment=2
+	         WHERE py.`id_report_status`=6
+	         GROUP BY pyd.id_report, pyd.report_mark_type
+        ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+        LEFT JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment = sp.id_propose_delay_payment
+        WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
+        AND (DATEDIFF(NOW(),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date))>0)
+        GROUP BY sp.id_sales_pos
+        ORDER BY c.id_comp_group ASC, sp.id_sales_pos ASC; "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCActiveList.DataSource = data
+        GVActiveList.BestFitColumns()
+        If GVActiveList.RowCount > 0 Then
+            BtnCreateEvaluation.Visible = True
+        Else
+            BtnCreateEvaluation.Visible = False
+        End If
+
+        'store group
+        Dim query_group As String = "SELECT cg.id_comp_group, cg.description AS `group`
+        FROM tb_sales_pos sp
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
+        AND (DATEDIFF(NOW(),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date))>0)
+        GROUP BY cg.id_comp_group
+        ORDER BY c.id_comp_group ASC "
+        Dim data_group As DataTable = execute_query(query_group, -1, True, "", "", "", "")
+        GCGroupStoreList.DataSource = data_group
+        GVGroupStoreList.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub resetViewOverdue()
+        Cursor = Cursors.WaitCursor
+        GCActiveList.DataSource = Nothing
+        GCGroupStoreList.DataSource = Nothing
+        BtnCreateEvaluation.Visible = False
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormAREvaluation_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+    End Sub
+
+    Private Sub FormAREvaluation_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+        resetViewOverdue()
+    End Sub
+
+    Private Sub BtnViewOverdue_Click(sender As Object, e As EventArgs) Handles BtnViewOverdue.Click
+        viewOverdue()
     End Sub
 End Class

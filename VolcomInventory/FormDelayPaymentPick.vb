@@ -64,4 +64,8 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub FormDelayPaymentPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class
