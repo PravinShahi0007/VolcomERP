@@ -3,7 +3,9 @@
     Public mail_subject As String = ""
     Public mail_title As String = ""
     Public rmt As String = "-1"
+    Public typ As String = "1"
     Public par1 As String = ""
+    Public par2 As String = ""
 
     Public Function queryMain(ByVal condition As String, ByVal order_type As String) As String
         If order_type = "1" Then
@@ -61,10 +63,31 @@
         WHERE m.report_mark_type=" + rmt + ";
         /*detil*/
         INSERT INTO tb_mail_manage_det(id_mail_manage, report_mark_type, id_report, report_number, id_report_ref, report_mark_type_ref, report_number_ref) "
-        If rmt = "228" Then
+        If rmt = "227" Then 'email peringatan
+            If typ = "1" Then
+                'regular
+                query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, sp.report_mark_type, sp.id_sales_pos, sp.sales_pos_number, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
+                FROM tb_sales_pos sp
+                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+                INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+                INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+                INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+                INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+                LEFT JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment = sp.id_propose_delay_payment
+                WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
+                AND (DATEDIFF(NOW(),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date))>0)
+                AND cg.id_comp_group=" + par1 + "
+                GROUP BY sp.id_sales_pos	
+                ORDER BY c.id_comp_group ASC, sp.id_sales_pos ASC; "
+            ElseIf typ = "2" Then
+                'base on eval
+                query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, e.report_mark_type, e.id_sales_pos, e.report_number, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
+                FROM tb_ar_eval e WHERE e.id_comp_group=" + par2 + " AND e.eval_date='" + par1 + "'; "
+            End If
+        ElseIf rmt = "228" Then 'email hold delivery
             query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, e.report_mark_type, e.id_sales_pos, e.report_number, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
             FROM tb_ar_eval e WHERE e.eval_date='" + par1 + "'; "
-        ElseIf rmt = "230" Then
+        ElseIf rmt = "230" Then 'email release delivery
             query_mail_detail += "SELECT " + id_mail_manage + ", " + rmt + ", g.id_comp_group AS `id_report`, NULL AS `report_number`, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
             FROM tb_m_comp_group g WHERE g.id_comp_group IN(" + par1 + ") "
         End If
