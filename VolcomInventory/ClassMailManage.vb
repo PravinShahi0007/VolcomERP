@@ -41,9 +41,13 @@
         Return query
     End Function
 
-    Sub createEmail(ByVal id_report_ref As String, ByVal report_mark_type_ref As String, ByVal report_number_ref As String)
+    Sub createEmail(ByVal id_user_created As String, ByVal id_report_ref As String, ByVal report_mark_type_ref As String, ByVal report_number_ref As String)
+        If id_user_created = "0" Then
+            id_user_created = "NULL"
+        End If
+
         Dim query_mail_manage As String = "INSERT INTO tb_mail_manage(number, created_date, created_by, updated_date, updated_by, report_mark_type, id_mail_status, mail_status_note, mail_subject, mail_parameter) 
-        VALUES('', NOW(), NULL, NOW(), NULL, " + rmt + ", 1, 'Draft', '" + mail_subject + "', '" + par1 + "'); SELECT LAST_INSERT_ID(); "
+        VALUES('', NOW(), " + id_user_created + ", NOW(), " + id_user_created + ", " + rmt + ", 1, 'Draft', '" + mail_subject + "', '" + par1 + "'); SELECT LAST_INSERT_ID(); "
         id_mail_manage = execute_query(query_mail_manage, 0, True, "", "", "", "")
         'update number mail
         execute_non_query("CALL gen_number(" + id_mail_manage + ", " + rmt + ");", True, "", "", "", "")
@@ -57,7 +61,10 @@
         WHERE m.report_mark_type=" + rmt + ";
         /*detil*/
         INSERT INTO tb_mail_manage_det(id_mail_manage, report_mark_type, id_report, report_number, id_report_ref, report_mark_type_ref, report_number_ref) "
-        If rmt = "230" Then
+        If rmt = "228" Then
+            query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, e.report_mark_type, e.id_sales_pos, e.report_number, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
+            FROM tb_ar_eval e WHERE e.eval_date='" + par1 + "'; "
+        ElseIf rmt = "230" Then
             query_mail_detail += "SELECT " + id_mail_manage + ", " + rmt + ", g.id_comp_group AS `id_report`, NULL AS `report_number`, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
             FROM tb_m_comp_group g WHERE g.id_comp_group IN(" + par1 + ") "
         End If
@@ -93,13 +100,17 @@
         Return dt
     End Function
 
-    Function queryInsertLog(ByVal id_status_par As String, ByVal note_par As String) As String
+    Function queryInsertLog(ByVal id_user_par As String, ByVal id_status_par As String, ByVal note_par As String) As String
+        If id_user_par = "0" Then
+            id_user_par = "NULL"
+        End If
+
         Dim query As String = ""
         If id_mail_manage <> "-1" Then
-            query = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by=NULL, 
+            query = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by=" + id_user_par + ", 
             id_mail_status=" + id_status_par + ", mail_status_note='" + addSlashes(note_par) + "' WHERE id_mail_manage='" + id_mail_manage + "'; 
             INSERT INTO tb_mail_manage_log(id_mail_manage, log_date, id_user, id_mail_status, note) VALUES 
-            ('" + id_mail_manage + "', NOW(),NULL, '" + id_status_par + "', '" + addSlashes(note_par) + "'); "
+            ('" + id_mail_manage + "', NOW()," + id_user_par + ", '" + id_status_par + "', '" + addSlashes(note_par) + "'); "
         End If
         Return query
     End Function

@@ -2,13 +2,19 @@
     Public eval_date As String = ""
 
     Private Sub FormAREvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        getLastEvaluation()
+    End Sub
+
+    Sub getLastEvaluation()
         'get last evaluation
+        Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT DATE_FORMAT(MAX(a.eval_date),'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
         DATE_FORMAT(MAX(a.eval_date),'%d %M %Y %H:%i:%s') AS `last_eval_date_label`
         FROM tb_ar_eval a "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         eval_date = data.Rows(0)("last_eval_date").ToString
         BtnBrowseEval.Text = data.Rows(0)("last_eval_date_label").ToString
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormAREvaluation_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -206,6 +212,8 @@
         GCGroupStoreList.DataSource = Nothing
         BtnCreateEvaluation.Visible = False
         BtnActivateMemoPenangguhan.Visible = False
+        BtnCreateMemo.Visible = False
+        BtnDiscardMemo.Visible = False
         Cursor = Cursors.Default
     End Sub
 
@@ -250,12 +258,45 @@
     Private Sub BtnCreateEvaluation_Click(sender As Object, e As EventArgs) Handles BtnCreateEvaluation.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to hold delivery ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim err As String = ""
+            Dim date_now_origin As DateTime = getTimeDB()
+            Dim date_now As String = DateTime.Parse(date_now_origin).ToString("yyyy-MM-dd HH:mm:ss")
+            Dim date_now_display As String = DateTime.Parse(date_now_origin).ToString("dd MMMM yyyy")
+            Dim ev As New ClassAREvaluation()
+
+            'start
             FormMain.SplashScreenManager1.ShowWaitForm()
+
+            'hold delivery
             FormMain.SplashScreenManager1.SetWaitFormDescription("Processing hold delivery")
+            Try
+                ev.holdDelivery(date_now)
+            Catch ex As Exception
+                err += "- Hold delivery failed : " + ex.ToString + System.Environment.NewLine
+            End Try
+
+            'sending mail hold delivery
             FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email hold delivery")
+            Try
+                ev.sendEmailHoldDelivery(date_now, date_now_display)
+            Catch ex As Exception
+                err += "- Sending email hold delivery : " + ex.ToString + System.Environment.NewLine
+            End Try
+
+            'sendiing email peringatan
             FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email peringatan")
 
+            'end
             FormMain.SplashScreenManager1.CloseWaitForm()
+
+            'final msg
+            If err = "" Then
+                infoCustom("Hold delivery success")
+                getLastEvaluation()
+            Else
+                stopCustom("Failed excecution : " + System.Environment.NewLine + err)
+            End If
+            resetViewOverdue()
         End If
     End Sub
 End Class

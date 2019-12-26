@@ -5581,7 +5581,7 @@ WHERE pd.`id_pn`='" & id_report & "'"
                             mm.mail_title = mail_title
                             mm.par1 = id_comp_group
                             mm.rmt = "230"
-                            mm.createEmail(id_report, report_mark_type, report_number)
+                            mm.createEmail(id_user, id_report, report_mark_type, report_number)
                             id_mail = mm.id_mail_manage
 
                             'email
@@ -5596,10 +5596,10 @@ WHERE pd.`id_pn`='" & id_report & "'"
                                 em.dt = mm.getDetailData
                                 em.send_email()
 
-                                Dim query_log As String = mm.queryInsertLog("2", "Sent Successfully")
+                                Dim query_log As String = mm.queryInsertLog(id_user, "2", "Sent Successfully")
                                 execute_non_query(query_log, True, "", "", "", "")
                             Catch ex As Exception
-                                Dim query_log As String = mm.queryInsertLog("3", addSlashes(ex.ToString))
+                                Dim query_log As String = mm.queryInsertLog(id_user, "3", addSlashes(ex.ToString))
                                 execute_non_query(query_log, True, "", "", "", "")
                             End Try
                         End If
@@ -6897,7 +6897,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                         mm.mail_title = mail_title
                         mm.par1 = id_comp_group
                         mm.rmt = "230"
-                        mm.createEmail(id_report, report_mark_type, report_number)
+                        mm.createEmail(id_user, id_report, report_mark_type, report_number)
                         id_mail = mm.id_mail_manage
 
                         'email
@@ -6912,10 +6912,10 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                             em.dt = mm.getDetailData
                             em.send_email()
 
-                            Dim query_log As String = mm.queryInsertLog("2", "Sent Successfully")
+                            Dim query_log As String = mm.queryInsertLog(id_user, "2", "Sent Successfully")
                             execute_non_query(query_log, True, "", "", "", "")
                         Catch ex As Exception
-                            Dim query_log As String = mm.queryInsertLog("3", addSlashes(ex.ToString))
+                            Dim query_log As String = mm.queryInsertLog(id_user, "3", addSlashes(ex.ToString))
                             execute_non_query(query_log, True, "", "", "", "")
                         End Try
                     End If
