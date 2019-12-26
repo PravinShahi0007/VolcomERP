@@ -47,7 +47,7 @@
             query_where = " AND c.id_comp = '" & SLEVendorPayment.Properties.View.GetFocusedRowCellValue("id_comp").ToString & "'"
         End If
         '
-        If XTCInvoiceFGPO.SelectedTabPageIndex = 2 Then
+        If XTCInvoiceFGPO.SelectedTabPageIndex = 0 Then
             'list payment
             Dim query As String = "SELECT pn.*,pnt.pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
 ,det.report_number,det.inv_number
@@ -63,10 +63,10 @@ INNER JOIN (
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE pnt.is_payment=1 " & query_where
+WHERE 1=1 " & query_where
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCPayment.DataSource = data
-            GVPayment.BestFitColumns()
+            GCBPL.DataSource = data
+            GVBPL.BestFitColumns()
         ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
             If XTCDP.SelectedTabPageIndex = 0 Then
                 'list DP
@@ -111,6 +111,26 @@ WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & " GROUP 
                     PCDPFGPO.Visible = False
                 End If
             End If
+        ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 2 Then
+            'list payment
+            Dim query As String = "SELECT pn.*,pnt.pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
+,det.report_number,det.inv_number
+FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN (
+	SELECT id_pn_fgpo,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount 
+        ,GROUP_CONCAT(pnd.report_number) AS report_number,GROUP_CONCAT(pnd.inv_number) AS inv_number
+    FROM tb_pn_fgpo_det pnd 
+	GROUP BY pnd.`id_pn_fgpo`
+) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE pnt.is_payment=1 " & query_where
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCPayment.DataSource = data
+            GVPayment.BestFitColumns()
         End If
     End Sub
 
@@ -186,5 +206,12 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
     Private Sub GVPayment_DoubleClick(sender As Object, e As EventArgs) Handles GVPayment.DoubleClick
         FormInvoiceFGPODP.id_invoice = GVPayment.GetFocusedRowCellValue("id_pn_fgpo").ToString
         FormInvoiceFGPODP.ShowDialog()
+    End Sub
+
+    Private Sub GVBPL_DoubleClick(sender As Object, e As EventArgs) Handles GVBPL.DoubleClick
+        If GVBPL.RowCount > 0 Then
+            FormInvoiceFGPODP.id_invoice = GVPayment.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.ShowDialog()
+        End If
     End Sub
 End Class

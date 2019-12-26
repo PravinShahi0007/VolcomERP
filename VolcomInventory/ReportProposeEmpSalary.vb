@@ -44,7 +44,12 @@
             GBSalaryCurrent.Visible = False
             GBIncrease.Visible = False
         ElseIf category = "2" Then
-            GCBasicSalary.Visible = False
+            If type = "1" Then
+                GCBasicSalary.Visible = False
+            ElseIf type = "2" Then
+                GCTotalSalary.Visible = False
+            End If
+
             GCJobAllowance.Visible = False
             GCMealAllowance.Visible = False
             GCTransportAllowance.Visible = False
@@ -53,12 +58,15 @@
 
             If type = "1" Then
                 GCBasicSalaryCurrent.Visible = False
-                GCJobAllowanceCurrent.Visible = False
-                GCMealAllowanceCurrent.Visible = False
-                GCTransportAllowanceCurrent.Visible = False
-                GCHouseAllowanceCurrent.Visible = False
-                GCAttendanceAllowanceCurrent.Visible = False
+            ElseIf type = "2" Then
+                GCTotalSalaryCurrent.Visible = False
             End If
+
+            GCJobAllowanceCurrent.Visible = False
+            GCMealAllowanceCurrent.Visible = False
+            GCTransportAllowanceCurrent.Visible = False
+            GCHouseAllowanceCurrent.Visible = False
+            GCAttendanceAllowanceCurrent.Visible = False
         End If
 
         GVEmployee.BestFitColumns()
