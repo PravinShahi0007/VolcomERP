@@ -10,6 +10,11 @@
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
         '
+        If is_hrd = "1" Then
+            Text = "Leave Management"
+        Else
+            Text = "Propose Leave"
+        End If
     End Sub
 
     Private Sub FormEmpLeave_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated

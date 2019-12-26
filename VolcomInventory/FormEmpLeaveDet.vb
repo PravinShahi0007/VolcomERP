@@ -141,12 +141,11 @@
                     SBAttachment.Visible = True
                     BMark.Visible = False
                 Else
-                    SBSubmit.Visible = True
+                    SBSubmit.Visible = False
                     SBAttachment.Visible = True
                     BMark.Visible = True
                 End If
             End If
-
         End If
         '
     End Sub
@@ -617,7 +616,7 @@
             If problem = False Then
                 'add parent
                 Dim number As String = header_number_emp("1")
-                query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type,id_form_dc,id_user_who_create) VALUES('" & number & "','" & id_employee & "',NOW()," + If(leave_type = "7", "0", "1") + ",'" & id_employee_change & "','" & addSlashes(MELeavePurpose.Text) & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & leave_type & "','" & LEFormDC.EditValue.ToString & "','" & id_user & "');SELECT LAST_INSERT_ID(); "
+                query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type,id_form_dc,id_user_who_create) VALUES('" & number & "','" & id_employee & "',NOW()," + If(leave_type = "7" And Not is_hrd = "1", "0", "1") + ",'" & id_employee_change & "','" & addSlashes(MELeavePurpose.Text) & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & leave_type & "','" & LEFormDC.EditValue.ToString & "','" & id_user & "');SELECT LAST_INSERT_ID(); "
                 id_emp_leave = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_emp("1")
                 'add detail
@@ -657,9 +656,8 @@
                 End If
 
                 If is_hrd = "1" Then
-                    If Not leave_type = "7" Then
-                        submit_who_prepared("102", id_emp_leave, id_user)
-                    End If
+                    submit_who_prepared("102", id_emp_leave, id_user)
+
                     query = "UPDATE tb_emp_leave SET report_mark_type='102' WHERE id_emp_leave='" & id_emp_leave & "'"
                     execute_non_query(query, True, "", "", "", "")
                 Else
@@ -806,7 +804,7 @@
                     'End If
                 End If
                 '
-                If leave_type = "7" Then
+                If leave_type = "7" And Not is_hrd = "1" Then
                     infoCustom("Unpaid leave disimpan. Mohon untuk mencetak memo untuk meminta persetujuan HRD dan Management.")
                 Else
                     infoCustom("Cuti diajukan. Menunggu persetujuan.")
@@ -1037,7 +1035,7 @@
 
         Dim data As DataTable = execute_query("SELECT id_report_status, report_mark_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave, -1, True, "", "", "", "")
 
-        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.is_no_delete = "2"
         FormDocumentUpload.is_view = If(data.Rows(0)("id_report_status").ToString = "0", "-1", "1")
         FormDocumentUpload.id_report = id_emp_leave
         FormDocumentUpload.report_mark_type = data.Rows(0)("report_mark_type").ToString
