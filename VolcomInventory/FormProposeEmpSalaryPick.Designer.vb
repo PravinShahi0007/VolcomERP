@@ -34,15 +34,16 @@ Partial Class FormProposeEmpSalaryPick
         Me.GCActiveStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBInsert = New DevExpress.XtraEditors.SimpleButton()
         Me.GCBasicSalaryCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAllowJobCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAllowMealCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAllowTransCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAllowHouseCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAllowCarCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBInsert = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCIdEmployeeSalary = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,7 +62,7 @@ Partial Class FormProposeEmpSalaryPick
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeActive, Me.GCActiveStatus, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCBasicSalaryCurrent, Me.GCAllowJobCurrent, Me.GCAllowMealCurrent, Me.GCAllowTransCurrent, Me.GCAllowHouseCurrent, Me.GCAllowCarCurrent})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeActive, Me.GCActiveStatus, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCBasicSalaryCurrent, Me.GCAllowJobCurrent, Me.GCAllowMealCurrent, Me.GCAllowTransCurrent, Me.GCAllowHouseCurrent, Me.GCAllowCarCurrent, Me.GCIdEmployeeSalary})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -163,36 +164,6 @@ Partial Class FormProposeEmpSalaryPick
         Me.GCEmployeeStatus.Visible = True
         Me.GCEmployeeStatus.VisibleIndex = 6
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.SBClose)
-        Me.PanelControl1.Controls.Add(Me.SBInsert)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 690)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1008, 39)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'SBClose
-        '
-        Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(871, 2)
-        Me.SBClose.Name = "SBClose"
-        Me.SBClose.Size = New System.Drawing.Size(66, 35)
-        Me.SBClose.TabIndex = 1
-        Me.SBClose.Text = "Close"
-        '
-        'SBInsert
-        '
-        Me.SBInsert.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBInsert.Image = CType(resources.GetObject("SBInsert.Image"), System.Drawing.Image)
-        Me.SBInsert.Location = New System.Drawing.Point(937, 2)
-        Me.SBInsert.Name = "SBInsert"
-        Me.SBInsert.Size = New System.Drawing.Size(69, 35)
-        Me.SBInsert.TabIndex = 0
-        Me.SBInsert.Text = "Insert"
-        '
         'GCBasicSalaryCurrent
         '
         Me.GCBasicSalaryCurrent.FieldName = "basic_salary_current"
@@ -228,6 +199,41 @@ Partial Class FormProposeEmpSalaryPick
         Me.GCAllowCarCurrent.FieldName = "allow_car_current"
         Me.GCAllowCarCurrent.Name = "GCAllowCarCurrent"
         Me.GCAllowCarCurrent.OptionsColumn.AllowEdit = False
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SBClose)
+        Me.PanelControl1.Controls.Add(Me.SBInsert)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 690)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1008, 39)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'SBClose
+        '
+        Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
+        Me.SBClose.Location = New System.Drawing.Point(871, 2)
+        Me.SBClose.Name = "SBClose"
+        Me.SBClose.Size = New System.Drawing.Size(66, 35)
+        Me.SBClose.TabIndex = 1
+        Me.SBClose.Text = "Close"
+        '
+        'SBInsert
+        '
+        Me.SBInsert.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBInsert.Image = CType(resources.GetObject("SBInsert.Image"), System.Drawing.Image)
+        Me.SBInsert.Location = New System.Drawing.Point(937, 2)
+        Me.SBInsert.Name = "SBInsert"
+        Me.SBInsert.Size = New System.Drawing.Size(69, 35)
+        Me.SBInsert.TabIndex = 0
+        Me.SBInsert.Text = "Insert"
+        '
+        'GCIdEmployeeSalary
+        '
+        Me.GCIdEmployeeSalary.FieldName = "id_employee_salary"
+        Me.GCIdEmployeeSalary.Name = "GCIdEmployeeSalary"
         '
         'FormProposeEmpSalaryPick
         '
@@ -270,4 +276,5 @@ Partial Class FormProposeEmpSalaryPick
     Friend WithEvents GCAllowTransCurrent As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCAllowHouseCurrent As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCAllowCarCurrent As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIdEmployeeSalary As DevExpress.XtraGrid.Columns.GridColumn
 End Class

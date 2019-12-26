@@ -52,9 +52,9 @@ Partial Class FormMatMRSDet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyFree = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BEditMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
-        Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.BPickMatWO = New DevExpress.XtraEditors.SimpleButton()
         Me.TEWONumber = New DevExpress.XtraEditors.TextEdit()
@@ -71,6 +71,7 @@ Partial Class FormMatMRSDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMRSNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BCancelMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPProdOrderMRS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,6 +115,7 @@ Partial Class FormMatMRSDet
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.BCancelMark)
         Me.GroupControl3.Controls.Add(Me.BAttach)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Controls.Add(Me.BPrint)
@@ -425,6 +427,17 @@ Partial Class FormMatMRSDet
         Me.PanelControl2.Size = New System.Drawing.Size(887, 38)
         Me.PanelControl2.TabIndex = 1
         '
+        'BDelMat
+        '
+        Me.BDelMat.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelMat.ImageIndex = 1
+        Me.BDelMat.ImageList = Me.LargeImageCollection
+        Me.BDelMat.Location = New System.Drawing.Point(612, 2)
+        Me.BDelMat.Name = "BDelMat"
+        Me.BDelMat.Size = New System.Drawing.Size(91, 34)
+        Me.BDelMat.TabIndex = 20
+        Me.BDelMat.Text = "Delete"
+        '
         'BEditMat
         '
         Me.BEditMat.Dock = System.Windows.Forms.DockStyle.Right
@@ -446,17 +459,6 @@ Partial Class FormMatMRSDet
         Me.BAddMat.Size = New System.Drawing.Size(91, 34)
         Me.BAddMat.TabIndex = 21
         Me.BAddMat.Text = "Add"
-        '
-        'BDelMat
-        '
-        Me.BDelMat.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDelMat.ImageIndex = 1
-        Me.BDelMat.ImageList = Me.LargeImageCollection
-        Me.BDelMat.Location = New System.Drawing.Point(612, 2)
-        Me.BDelMat.Name = "BDelMat"
-        Me.BDelMat.Size = New System.Drawing.Size(91, 34)
-        Me.BDelMat.TabIndex = 20
-        Me.BDelMat.Text = "Delete"
         '
         'GroupGeneralHeader
         '
@@ -619,6 +621,15 @@ Partial Class FormMatMRSDet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "MRS Number"
         '
+        'BCancelMark
+        '
+        Me.BCancelMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelMark.Location = New System.Drawing.Point(95, 2)
+        Me.BCancelMark.Name = "BCancelMark"
+        Me.BCancelMark.Size = New System.Drawing.Size(75, 36)
+        Me.BCancelMark.TabIndex = 6
+        Me.BCancelMark.Text = "Cancel"
+        '
         'FormMatMRSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -715,4 +726,5 @@ Partial Class FormMatMRSDet
     Friend WithEvents BAttach As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQtyFree As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCancelMark As DevExpress.XtraEditors.SimpleButton
 End Class
