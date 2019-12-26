@@ -65,6 +65,8 @@ GROUP BY pl.`id_mat_purc_list`"
     Sub action_load()
         view_currency(LECurrency)
         view_po_type(LEPOType)
+        LEPOType.EditValue = Nothing
+
         viewSeason(LESeason)
         'view delivery
         view_payment_type(LEpayment)
@@ -345,7 +347,7 @@ GROUP BY pl.`id_mat_purc_list`"
 
     Private Sub BSearchCompTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSearchCompTo.Click
         FormPopUpContact.id_pop_up = "14"
-        FormPopUpContact.id_cat = "1"
+        FormPopUpContact.id_cat = "1,8"
         FormPopUpContact.ShowDialog()
     End Sub
 
@@ -374,6 +376,8 @@ GROUP BY pl.`id_mat_purc_list`"
             stopCustom("Please fill all field.")
         ElseIf TEKurs.EditValue <= 0 Then
             stopCustom("Please fill kurs first")
+        ElseIf LEPOType.Text = "" Or LEPOType.EditValue = Nothing Then
+            stopCustom("Please select PO type")
         Else
             If id_purc <> "-1" Then
                 'edit
@@ -591,6 +595,11 @@ GROUP BY pl.`id_mat_purc_list`"
             ReportMatPurchase.dt = GCListPurchase.DataSource
             ReportMatPurchase.id_mat_purc = id_purc
             'ReportMatPurchase.is_pre = "1"
+
+            If Not check_print_report_status(id_report_status_g) Then
+                ReportMatPurchase.is_pre = "1"
+            End If
+
             Dim Report As New ReportMatPurchase()
             '
             GridColumnColor.Visible = False
@@ -713,7 +722,7 @@ GROUP BY pl.`id_mat_purc_list`"
             BPickPORev.Enabled = False
         End If
 
-        If check_print_report_status(id_report_status_g) Then
+        If check_allow_print(id_report_status_g, "13", id_purc) Then
             BPrint.Enabled = True
         Else
             BPrint.Enabled = False
@@ -844,7 +853,7 @@ GROUP BY pl.`id_mat_purc_list`"
             Dim query As String = "SELECT '" & TECompName.Text & "' comp_name,'" & LESeason.Text & "' AS season,'" & LECurrency.Text & "' AS currency,FORMAT(pl.mat_det_price,4,'id_ID') AS mat_det_price,md.mat_det_name
 ,FORMAT(SUM(plp.total_qty_pd),0,'id_ID') AS total_qty_pd
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)),0,'id_ID') AS total_qty_order
-,FORMAT(pl.tolerance,0,'id_ID') AS tolerance
+,FORMAT(pl.tolerance,2,'id_ID') AS tolerance
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)),0,'id_ID') AS total_toleransi
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)+(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))),0,'id_ID') AS total 
 ,md.mat_det_code

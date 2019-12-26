@@ -6,6 +6,10 @@
     Public id_report_status_g As String = "-1"
     '
     Private Sub FormProductionMRS_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        load_mrs()
+    End Sub
+
+    Sub load_mrs()
         view_mrs()
         If id_mrs = "-1" Then
             'new
@@ -32,9 +36,11 @@
 
             allow_status()
             BMark.Enabled = True
+
         End If
         check_but()
     End Sub
+
     Sub check_but()
         If GVMat.RowCount > 0 Then
             BEditMat.Visible = True
@@ -42,6 +48,24 @@
         Else
             BEditMat.Visible = False
             BDelMat.Visible = False
+        End If
+
+        If id_report_status_g = "5" Then
+            PCAddDel.Visible = False
+            BCancel.Visible = False
+            BSave.Visible = False
+        Else
+            PCAddDel.Visible = True
+            BCancel.Visible = True
+            BSave.Visible = True
+        End If
+
+        If id_report_status_g = "6" Then
+            PCAddDel.Visible = False
+            BSave.Visible = False
+        Else
+            PCAddDel.Visible = True
+            BSave.Visible = True
         End If
     End Sub
     Sub allow_status()
@@ -317,4 +341,17 @@
         FormPopUpContact.ShowDialog()
     End Sub
 
+    Private Sub BCancelReport_Click(sender As Object, e As EventArgs) Handles BCancelReport.Click
+        'cek PL
+        Dim q As String = "SELECT * FROM tb_pl_mrs WHERE id_prod_order_mrs='" & id_mrs & "' AND id_report_status!=5"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            stopCustom("Please cancel packing list with this MRS")
+        Else
+            Dim q_upd As String = "UPDATE tb_prod_order_mrs SET id_report_status=5 WHERE id_prod_order_mrs='" & id_mrs & "'"
+            execute_non_query(q_upd, True, "", "", "", "")
+            delete_all_mark_related("29", id_mrs)
+            load_mrs()
+        End If
+    End Sub
 End Class

@@ -89,7 +89,7 @@
 
         'load detail
         Dim query_detail As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, det.id_employee_salary, ROUND(sal.basic_salary, 0) AS basic_salary_current, ROUND(sal.allow_job, 0) AS allow_job_current, ROUND(sal.allow_meal, 0) AS allow_meal_current, ROUND(sal.allow_trans, 0) AS allow_trans_current, ROUND(sal.allow_house, 0) AS allow_house_current, ROUND(sal.allow_car, 0) AS allow_car_current, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((det.basic_salary + det.allow_job + det.allow_meal + det.allow_trans + det.allow_house + det.allow_car) - (sal.basic_salary + sal.allow_job + sal.allow_meal + sal.allow_trans + sal.allow_house + sal.allow_car)) / (sal.basic_salary + sal.allow_job + sal.allow_meal + sal.allow_trans + sal.allow_house + sal.allow_car) * 100, 2), '%') AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((det.basic_salary + det.allow_job + det.allow_meal + det.allow_trans + det.allow_house + det.allow_car) - (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0))) / (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0)) * 100, 2), '%') AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
@@ -97,7 +97,7 @@
             LEFT JOIN tb_lookup_employee_status AS sts ON det.id_employee_status = sts.id_employee_status
             LEFT JOIN tb_m_employee_salary AS sal ON det.id_employee_salary = sal.id_employee_salary
             WHERE det.id_employee_sal_pps = " + id_employee_sal_pps + "
-            ORDER BY det.id_employee_level ASC
+            ORDER BY det.id_employee_level ASC, emp.employee_code ASC
         "
 
         Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
@@ -155,7 +155,7 @@
         If id_employee_sal_pps = "-1" Then
             query = "
                 INSERT INTO tb_employee_sal_pps (id_sal_pps_category, id_sal_pps_type, effective_date, id_report_status, note, created_by, created_at) 
-                VALUES (" + id_sal_pps_type + ", '" + effective_date + "', " + id_report_status + ", '" + note + "', " + id_employee_user + ", NOW());
+                VALUES (" + id_sal_pps_category + ", " + id_sal_pps_type + ", '" + effective_date + "', " + id_report_status + ", '" + note + "', " + id_employee_user + ", NOW());
                 SELECT LAST_INSERT_ID();
             "
 
@@ -356,7 +356,7 @@
     Private Sub LUEType_EditValueChanged(sender As Object, e As EventArgs) Handles LUEType.EditValueChanged
         'reset datasource
         Dim query As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, det.id_employee_salary, ROUND(sal.basic_salary, 0) AS basic_salary_current, ROUND(sal.allow_job, 0) AS allow_job_current, ROUND(sal.allow_meal, 0) AS allow_meal_current, ROUND(sal.allow_trans, 0) AS allow_trans_current, ROUND(sal.allow_house, 0) AS allow_house_current, ROUND(sal.allow_car, 0) AS allow_car_current, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, '-100.00%' AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, '-100.00%' AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
@@ -364,7 +364,7 @@
             LEFT JOIN tb_lookup_employee_status AS sts ON det.id_employee_status = sts.id_employee_status
             LEFT JOIN tb_m_employee_salary AS sal ON det.id_employee_salary = sal.id_employee_salary
             WHERE det.id_employee_sal_pps = -1
-            ORDER BY det.id_employee_level ASC
+            ORDER BY det.id_employee_level ASC, emp.employee_code ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -435,12 +435,24 @@
 
                 GVEmployee.SetRowCellValue(i, "fixed_salary", Math.Round(fixed_salary, 2).ToString + "%")
                 GVEmployee.SetRowCellValue(i, "non_fixed_salary", Math.Round(non_fixed_salary, 2).ToString + "%")
+            Catch ex As Exception
+                GVEmployee.SetRowCellValue(i, "fixed_salary", "50.00%")
+                GVEmployee.SetRowCellValue(i, "non_fixed_salary", "50.00%")
+            End Try
 
+            Try
                 'increase
                 Dim increase As Decimal = ((GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) - (GVEmployee.GetRowCellValue(i, "basic_salary_current") + GVEmployee.GetRowCellValue(i, "allow_job_current") + GVEmployee.GetRowCellValue(i, "allow_meal_current") + GVEmployee.GetRowCellValue(i, "allow_trans_current") + GVEmployee.GetRowCellValue(i, "allow_house_current") + GVEmployee.GetRowCellValue(i, "allow_car_current"))) / ((GVEmployee.GetRowCellValue(i, "basic_salary_current") + GVEmployee.GetRowCellValue(i, "allow_job_current") + GVEmployee.GetRowCellValue(i, "allow_meal_current") + GVEmployee.GetRowCellValue(i, "allow_trans_current") + GVEmployee.GetRowCellValue(i, "allow_house_current") + GVEmployee.GetRowCellValue(i, "allow_car_current"))) * 100
 
                 GVEmployee.SetRowCellValue(i, "increase", Math.Round(increase, 2).ToString + "%")
             Catch ex As Exception
+                Dim total As Decimal = GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")
+
+                If total = 0 Then
+                    GVEmployee.SetRowCellValue(i, "increase", "0.00%")
+                Else
+                    GVEmployee.SetRowCellValue(i, "increase", "100.00%")
+                End If
             End Try
         End If
 

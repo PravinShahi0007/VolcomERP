@@ -416,7 +416,7 @@ WHERE l.`is_cancel`=2 AND lp.id_mat_purc_list='" & id_list & "' AND lp.`id_prod_
                     warningCustom("Please select at least 1 PD Design")
                 Else
                     'header
-                    query = "UPDATE tb_mat_purc_list SET id_mat_det='" & SLEMaterial.EditValue.ToString & "',created_by='" & id_user & "',created_date=NOW(),qty_consumption='" & decimalSQL(TEConsumption.EditValue.ToString) & "',tolerance='" & decimalSQL(TEToleransi.EditValue.ToString) & "',note='" & addSlashes(MENote.Text) & "',is_breakdow='" & SLEBreakDown.EditValue.ToString & "' WHERE id_mat_purc_list='" & id_list & "'"
+                    query = "UPDATE tb_mat_purc_list SET id_mat_det='" & SLEMaterial.EditValue.ToString & "',created_by='" & id_user & "',created_date=NOW(),qty_consumption='" & decimalSQL(TEConsumption.EditValue.ToString) & "',tolerance='" & decimalSQL(TEToleransi.EditValue.ToString) & "',note='" & addSlashes(MENote.Text) & "',is_breakdown='" & SLEBreakDown.EditValue.ToString & "' WHERE id_mat_purc_list='" & id_list & "'"
                     execute_non_query(query, True, "", "", "", "")
 
                     'pd list

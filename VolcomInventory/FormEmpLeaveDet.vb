@@ -151,6 +151,7 @@
     End Sub
 
     Sub load_remaining()
+        TERemainingLeave.EditValue = 0
         Dim query As String = "SELECT id_emp,SUM(IF(plus_minus=1,qty,-qty))/60 AS qty,`type`,IF(`type`=1,'Leave','DP') as type_ket,date_expired FROM tb_emp_stock_leave
                                 WHERE id_emp='" & id_employee & "'
                                 GROUP BY id_emp,date_expired,`type`
@@ -163,6 +164,7 @@
         End If
     End Sub
     Sub load_adv_leave()
+        TEAdvLeaveTot.EditValue = 0
         Dim query As String = "SELECT id_emp,SUM(qty)/60 AS qty FROM `tb_emp_stock_leave_adv`
                                 WHERE id_emp='" & id_employee & "'
                                 GROUP BY id_emp"
@@ -351,6 +353,7 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim query As String = ""
         Dim problem As Boolean = False
+
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
             stopCustom("Lengkapi isian dengan lengkap !")
         ElseIf TERemainingLeaveAfter.EditValue < 0 Then

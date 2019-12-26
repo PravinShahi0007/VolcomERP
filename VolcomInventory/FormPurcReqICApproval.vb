@@ -81,6 +81,9 @@
         '    End If
         'End If
 
+        Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_report & "'"
+        execute_non_query(query_upd, True, "", "", "", "")
+
         submit_who_prepared("201", id_report, id_user_created)
     End Sub
 

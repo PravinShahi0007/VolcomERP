@@ -208,17 +208,21 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            'update confirm
-            Dim query As String = "UPDATE tb_item_coa_propose SET is_confirm=1 WHERE id_item_coa_propose='" + id + "'"
-            execute_non_query(query, True, "", "", "", "")
+        If GVMapping.RowCount > 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update confirm
+                Dim query As String = "UPDATE tb_item_coa_propose SET is_confirm=1 WHERE id_item_coa_propose='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
 
-            'submit approval
-            submit_who_prepared(135, id, id_user)
-            actionLoad()
-            Cursor = Cursors.Default
+                'submit approval
+                submit_who_prepared(135, id, id_user)
+                actionLoad()
+                Cursor = Cursors.Default
+            End If
+        Else
+            warningCustom("No account selected")
         End If
     End Sub
 

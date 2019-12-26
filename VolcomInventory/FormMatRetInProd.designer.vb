@@ -105,6 +105,8 @@ Partial Class FormMatRetInProd
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEPLType = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,6 +143,7 @@ Partial Class FormMatRetInProd
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LEPLType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollectionOld
@@ -165,9 +168,9 @@ Partial Class FormMatRetInProd
         Me.GroupControlRet.Controls.Add(Me.PanelControlSaveStorage)
         Me.GroupControlRet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlRet.Enabled = False
-        Me.GroupControlRet.Location = New System.Drawing.Point(0, 127)
+        Me.GroupControlRet.Location = New System.Drawing.Point(0, 150)
         Me.GroupControlRet.Name = "GroupControlRet"
-        Me.GroupControlRet.Size = New System.Drawing.Size(904, 257)
+        Me.GroupControlRet.Size = New System.Drawing.Size(904, 234)
         Me.GroupControlRet.TabIndex = 177
         Me.GroupControlRet.Text = "Return List"
         '
@@ -180,7 +183,7 @@ Partial Class FormMatRetInProd
         Me.GCRetDetail.MainView = Me.GVRetDetail
         Me.GCRetDetail.Name = "GCRetDetail"
         Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(882, 175)
+        Me.GCRetDetail.Size = New System.Drawing.Size(882, 152)
         Me.GCRetDetail.TabIndex = 1
         Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
         '
@@ -694,6 +697,8 @@ Partial Class FormMatRetInProd
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl8)
+        Me.GroupGeneralHeader.Controls.Add(Me.LEPLType)
         Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseComp)
         Me.GroupGeneralHeader.Controls.Add(Me.TEDesignCode)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl2)
@@ -714,7 +719,7 @@ Partial Class FormMatRetInProd
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(904, 127)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(904, 150)
         Me.GroupGeneralHeader.TabIndex = 176
         '
         'BtnBrowseComp
@@ -1007,6 +1012,27 @@ Partial Class FormMatRetInProd
         Me.BMark.TabIndex = 16
         Me.BMark.Text = "Mark"
         '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(27, 120)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl8.TabIndex = 174
+        Me.LabelControl8.Text = "PL Type"
+        '
+        'LEPLType
+        '
+        Me.LEPLType.Location = New System.Drawing.Point(111, 117)
+        Me.LEPLType.Name = "LEPLType"
+        Me.LEPLType.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPLType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPLType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_mat_type", "ID PL Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_mat_type", "PL Type")})
+        Me.LEPLType.Properties.NullText = ""
+        Me.LEPLType.Properties.ShowFooter = False
+        Me.LEPLType.Size = New System.Drawing.Size(331, 20)
+        Me.LEPLType.TabIndex = 173
+        '
         'FormMatRetInProd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1062,6 +1088,7 @@ Partial Class FormMatRetInProd
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.LEPLType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1149,4 +1176,6 @@ Partial Class FormMatRetInProd
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnBrowseComp As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEPLType As DevExpress.XtraEditors.LookUpEdit
 End Class

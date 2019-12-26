@@ -348,7 +348,7 @@ Public Class FormMain
         End If
 
         'hide all except print n close
-        If formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Then
+        If formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Or formName = "FormInvMat" Then
             RGAreaManage.Visible = False
         End If
 
@@ -1786,6 +1786,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
                 FormCompanyEmailMappingDet.ShowDialog()
             End If
+        ElseIf formName = "FormAREvalScheduke" Then
+            FormAREvalScheduleDet.action = "ins"
+            FormAREvalScheduleDet.ShowDialog()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPaymentNew.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2910,6 +2915,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormAccountingJournalAdj" Then
                 FormAccountingJournalAdjDet.id_trans_adj = FormAccountingJournalAdj.GVAccTrans.GetFocusedRowCellValue("id_acc_trans_adj").ToString
                 FormAccountingJournalAdjDet.ShowDialog()
+            ElseIf formName = "FormAREvalScheduke" Then
+                FormAREvalScheduleDet.id = FormAREvalScheduke.GVData.GetFocusedRowCellValue("id_ar_eval_setup_date").ToString
+                FormAREvalScheduleDet.action = "upd"
+                FormAREvalScheduleDet.ShowDialog()
+            ElseIf formName = "FormDelayPayment" Then
+                If FormDelayPayment.GVData.RowCount > 0 And FormDelayPayment.GVData.FocusedRowHandle >= 0 Then
+                    FormDelayPaymentDet.id = FormDelayPayment.GVData.GetFocusedRowCellValue("id_propose_delay_payment").ToString
+                    FormDelayPaymentDet.ShowDialog()
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6206,6 +6220,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     End If
                 End If
             End If
+        ElseIf formName = "FormAREvalScheduke" Then
+            Dim id As String = FormAREvalScheduke.GVData.GetFocusedRowCellValue("id_ar_eval_setup_date").ToString
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query_del As String = "DELETE FROM tb_ar_eval_setup_date WHERE id_ar_eval_setup_date='" + id + "'"
+                execute_non_query(query_del, True, "", "", "", "")
+                FormAREvalScheduke.viewData()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7799,6 +7821,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormInvoiceTracking" Then
             print_raw(FormInvoiceTracking.GCUnpaid, "")
+        ElseIf formName = "FormInvMat" Then
+            FormInvMat.print_list()
+        ElseIf formName = "FormAREvalScheduke" Then
+            print_raw(FormAREvalScheduke.GCData, "")
+        ElseIf formName = "FormDelayPayment" Then
+            print_raw(FormDelayPayment.GCData, "")
+        ElseIf formName = "FormAccountingLedger" Then
+            FormAccountingLedger.print_form()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8617,6 +8647,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormStockQC" Then
             FormStockQC.Close()
             FormStockQC.Dispose()
+        ElseIf formName = "FormInvMat" Then
+            FormInvMat.Close()
+            FormInvMat.Dispose()
+        ElseIf formName = "FormAREvalScheduke" Then
+            FormAREvalScheduke.Close()
+            FormAREvalScheduke.Dispose()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPayment.Close()
+            FormDelayPayment.Dispose()
+        ElseIf formName = "FormAccountingLedger" Then
+            FormAccountingLedger.Close()
+            FormAccountingLedger.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9490,6 +9532,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompanyEmailMapping.form_load()
         ElseIf formName = "FormInvoiceTracking" Then
             FormInvoiceTracking.viewData()
+        ElseIf formName = "FormAREvalScheduke" Then
+            FormAREvalScheduke.viewData()
+        ElseIf formName = "FormEmpAttnAssign" Then
+            FormEmpAttnAssign.load_attn()
+        ElseIf formName = "FormDelayPayment" Then
+            FormDelayPayment.viewData()
         End If
     End Sub
     'Switch
@@ -13727,7 +13775,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.WaitCursor
         Try
             FormEmpAttnAssign.MdiParent = Me
-            FormEmpAttnAssign.is_sales_dept = "1"
+            FormEmpAttnAssign.is_user_mapping = "1"
             FormEmpAttnAssign.Show()
             FormEmpAttnAssign.WindowState = FormWindowState.Maximized
             FormEmpAttnAssign.Focus()
@@ -13842,6 +13890,72 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormFollowUpAR.Show()
             FormFollowUpAR.WindowState = FormWindowState.Maximized
             FormFollowUpAR.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBInvMat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvMat.LinkClicked
+        Try
+            FormInvMat.MdiParent = Me
+            FormInvMat.Show()
+            FormInvMat.WindowState = FormWindowState.Maximized
+            FormInvMat.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAREvalSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAREvalSchedule.LinkClicked
+        Try
+            FormAREvalScheduke.MdiParent = Me
+            FormAREvalScheduke.Show()
+            FormAREvalScheduke.WindowState = FormWindowState.Maximized
+            FormAREvalScheduke.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAREvaluation_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAREvaluation.LinkClicked
+        Try
+            FormAREvaluation.MdiParent = Me
+            FormAREvaluation.Show()
+            FormAREvaluation.WindowState = FormWindowState.Maximized
+            FormAREvaluation.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBDelManifest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDelManifest.LinkClicked
+        Try
+            FormDelManifest.MdiParent = Me
+            FormDelManifest.Show()
+            FormDelManifest.WindowState = FormWindowState.Maximized
+            FormDelManifest.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBDelayPayment_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDelayPayment.LinkClicked
+        Try
+            FormDelayPayment.MdiParent = Me
+            FormDelayPayment.Show()
+            FormDelayPayment.WindowState = FormWindowState.Maximized
+            FormDelayPayment.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAccountingLedger_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAccountingLedger.LinkClicked
+        Try
+            FormAccountingLedger.MdiParent = Me
+            FormAccountingLedger.Show()
+            FormAccountingLedger.WindowState = FormWindowState.Maximized
+            FormAccountingLedger.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
