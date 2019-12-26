@@ -142,6 +142,8 @@
 
     Sub viewOverdue()
         Cursor = Cursors.WaitCursor
+        discardMemo()
+
         'invoice list
         Dim query As String = "SELECT sp.id_sales_pos, sp.sales_pos_number, cg.description AS `group`,CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, sp.sales_pos_date, sp.sales_pos_due_date,
         IFNULL(sp.id_propose_delay_payment,0) AS `id_propose_delay_payment`, m.number AS `memo_number`, sp.propose_delay_payment_due_date, 
@@ -174,10 +176,10 @@
         GVActiveList.BestFitColumns()
         If GVActiveList.RowCount > 0 Then
             BtnCreateEvaluation.Visible = True
-            BtnCreateMemo.Visible = True
+            BtnActivateMemoPenangguhan.Visible = True
         Else
             BtnCreateEvaluation.Visible = False
-            BtnCreateMemo.Visible = False
+            BtnActivateMemoPenangguhan.Visible = False
         End If
 
         'store group
@@ -203,7 +205,7 @@
         GCActiveList.DataSource = Nothing
         GCGroupStoreList.DataSource = Nothing
         BtnCreateEvaluation.Visible = False
-        BtnCreateMemo.Visible = False
+        BtnActivateMemoPenangguhan.Visible = False
         Cursor = Cursors.Default
     End Sub
 
@@ -219,5 +221,41 @@
 
     Private Sub BtnViewOverdue_Click(sender As Object, e As EventArgs) Handles BtnViewOverdue.Click
         viewOverdue()
+    End Sub
+
+    Private Sub BtnCreateMemo_Click(sender As Object, e As EventArgs) Handles BtnCreateMemo.Click
+
+    End Sub
+
+    Private Sub BtnDiscardMemo_Click(sender As Object, e As EventArgs) Handles BtnDiscardMemo.Click
+        discardMemo()
+    End Sub
+
+    Sub discardMemo()
+        BtnCreateMemo.Visible = False
+        BtnDiscardMemo.Visible = False
+        BtnCreateEvaluation.Visible = True
+        BtnActivateMemoPenangguhan.Visible = True
+        GridColumnis_select.Visible = False
+    End Sub
+
+    Private Sub BtnActivateMemoPenangguhan_Click(sender As Object, e As EventArgs) Handles BtnActivateMemoPenangguhan.Click
+        BtnCreateEvaluation.Visible = False
+        BtnActivateMemoPenangguhan.Visible = False
+        BtnDiscardMemo.Visible = True
+        BtnCreateMemo.Visible = True
+        GridColumnis_select.Visible = True
+    End Sub
+
+    Private Sub BtnCreateEvaluation_Click(sender As Object, e As EventArgs) Handles BtnCreateEvaluation.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to hold delivery ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Processing hold delivery")
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email hold delivery")
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email peringatan")
+
+            FormMain.SplashScreenManager1.CloseWaitForm()
+        End If
     End Sub
 End Class

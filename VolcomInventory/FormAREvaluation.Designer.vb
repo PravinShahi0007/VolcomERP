@@ -20,8 +20,8 @@ Partial Class FormAREvaluation
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAREvaluation))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewData = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseEval = New DevExpress.XtraEditors.ButtonEdit()
@@ -64,11 +64,20 @@ Partial Class FormAREvaluation
         Me.GridColumnperiod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumngroup = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPGroupStoreList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCGroupStoreList = New DevExpress.XtraGrid.GridControl()
         Me.GVGroupStoreList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_comp_group_eval = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumngroup_eval = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDiscardMemo = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCreateMemo = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnActivateMemoPenangguhan = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateEvaluation = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlCreateEval = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewOverdue = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPGroupStore = New DevExpress.XtraTab.XtraTabPage()
         Me.GCGroup = New DevExpress.XtraGrid.GridControl()
         Me.GVGroup = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -78,11 +87,7 @@ Partial Class FormAREvaluation
         Me.GridColumnpaid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.BtnViewOverdue = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControlCreateEval = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumnid_comp_group_eval = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumngroup_eval = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnCreateMemo = New DevExpress.XtraEditors.SimpleButton()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,17 +105,18 @@ Partial Class FormAREvaluation
         Me.XTPInvoiceList.SuspendLayout()
         CType(Me.GCActiveList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVActiveList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPGroupStoreList.SuspendLayout()
         CType(Me.GCGroupStoreList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVGroupStoreList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControlCreateEval, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlCreateEval.SuspendLayout()
         Me.XTPGroupStore.SuspendLayout()
         CType(Me.GCGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlCreateEval, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlCreateEval.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelNav
@@ -300,13 +306,13 @@ Partial Class FormAREvaluation
         'RepoBtnBBM
         '
         Me.RepoBtnBBM.AutoHeight = False
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.RepoBtnBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject9.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject9.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject9.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject9.Options.UseBackColor = True
+        SerializableAppearanceObject9.Options.UseFont = True
+        SerializableAppearanceObject9.Options.UseForeColor = True
+        Me.RepoBtnBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, "", Nothing, Nothing, True)})
         Me.RepoBtnBBM.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnBBM.Name = "RepoBtnBBM"
         Me.RepoBtnBBM.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -347,10 +353,10 @@ Partial Class FormAREvaluation
         '
         Me.XTCCreateNewEval.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCCreateNewEval.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCCreateNewEval.Location = New System.Drawing.Point(0, 33)
+        Me.XTCCreateNewEval.Location = New System.Drawing.Point(0, 28)
         Me.XTCCreateNewEval.Name = "XTCCreateNewEval"
         Me.XTCCreateNewEval.SelectedTabPage = Me.XTPInvoiceList
-        Me.XTCCreateNewEval.Size = New System.Drawing.Size(792, 309)
+        Me.XTCCreateNewEval.Size = New System.Drawing.Size(792, 314)
         Me.XTCCreateNewEval.TabIndex = 5
         Me.XTCCreateNewEval.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoiceList, Me.XTPGroupStoreList})
         '
@@ -358,7 +364,7 @@ Partial Class FormAREvaluation
         '
         Me.XTPInvoiceList.Controls.Add(Me.GCActiveList)
         Me.XTPInvoiceList.Name = "XTPInvoiceList"
-        Me.XTPInvoiceList.Size = New System.Drawing.Size(763, 303)
+        Me.XTPInvoiceList.Size = New System.Drawing.Size(763, 308)
         Me.XTPInvoiceList.Text = "Invoice List"
         '
         'GCActiveList
@@ -367,13 +373,14 @@ Partial Class FormAREvaluation
         Me.GCActiveList.Location = New System.Drawing.Point(0, 0)
         Me.GCActiveList.MainView = Me.GVActiveList
         Me.GCActiveList.Name = "GCActiveList"
-        Me.GCActiveList.Size = New System.Drawing.Size(763, 303)
+        Me.GCActiveList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCActiveList.Size = New System.Drawing.Size(763, 308)
         Me.GCActiveList.TabIndex = 0
         Me.GCActiveList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActiveList})
         '
         'GVActiveList
         '
-        Me.GVActiveList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnstore, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnid_propose_delay_payment_eval, Me.GridColumnmemo_number_eval, Me.GridColumnpropose_delay_payment_due_date_eval, Me.GridColumndue_days, Me.GridColumnaging, Me.GridColumnperiod, Me.GridColumnamount, Me.GridColumngroup})
+        Me.GVActiveList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnstore, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnid_propose_delay_payment_eval, Me.GridColumnmemo_number_eval, Me.GridColumnpropose_delay_payment_due_date_eval, Me.GridColumndue_days, Me.GridColumnaging, Me.GridColumnperiod, Me.GridColumnamount, Me.GridColumngroup, Me.GridColumnis_select})
         Me.GVActiveList.GridControl = Me.GCActiveList
         Me.GVActiveList.GroupCount = 1
         Me.GVActiveList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:N2}")})
@@ -510,6 +517,21 @@ Partial Class FormAREvaluation
         Me.GridColumngroup.Visible = True
         Me.GridColumngroup.VisibleIndex = 1
         '
+        'GridColumnis_select
+        '
+        Me.GridColumnis_select.Caption = "Select"
+        Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnis_select.FieldName = "is_select"
+        Me.GridColumnis_select.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnis_select.Name = "GridColumnis_select"
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
         'XTPGroupStoreList
         '
         Me.XTPGroupStoreList.Controls.Add(Me.GCGroupStoreList)
@@ -538,9 +560,26 @@ Partial Class FormAREvaluation
         Me.GVGroupStoreList.OptionsView.ColumnAutoWidth = False
         Me.GVGroupStoreList.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnid_comp_group_eval
+        '
+        Me.GridColumnid_comp_group_eval.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group_eval.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group_eval.Name = "GridColumnid_comp_group_eval"
+        Me.GridColumnid_comp_group_eval.OptionsColumn.AllowEdit = False
+        '
+        'GridColumngroup_eval
+        '
+        Me.GridColumngroup_eval.Caption = "Store Group"
+        Me.GridColumngroup_eval.FieldName = "group"
+        Me.GridColumngroup_eval.Name = "GridColumngroup_eval"
+        Me.GridColumngroup_eval.Visible = True
+        Me.GridColumngroup_eval.VisibleIndex = 0
+        '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnDiscardMemo)
         Me.PanelControl1.Controls.Add(Me.BtnCreateMemo)
+        Me.PanelControl1.Controls.Add(Me.BtnActivateMemoPenangguhan)
         Me.PanelControl1.Controls.Add(Me.BtnCreateEvaluation)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 342)
@@ -548,9 +587,63 @@ Partial Class FormAREvaluation
         Me.PanelControl1.Size = New System.Drawing.Size(792, 44)
         Me.PanelControl1.TabIndex = 1
         '
+        'BtnDiscardMemo
+        '
+        Me.BtnDiscardMemo.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BtnDiscardMemo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnDiscardMemo.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnDiscardMemo.Appearance.Options.UseBackColor = True
+        Me.BtnDiscardMemo.Appearance.Options.UseFont = True
+        Me.BtnDiscardMemo.Appearance.Options.UseForeColor = True
+        Me.BtnDiscardMemo.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDiscardMemo.Location = New System.Drawing.Point(232, 2)
+        Me.BtnDiscardMemo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnDiscardMemo.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnDiscardMemo.Name = "BtnDiscardMemo"
+        Me.BtnDiscardMemo.Size = New System.Drawing.Size(114, 40)
+        Me.BtnDiscardMemo.TabIndex = 5
+        Me.BtnDiscardMemo.Text = "Discard Memo"
+        Me.BtnDiscardMemo.Visible = False
+        '
+        'BtnCreateMemo
+        '
+        Me.BtnCreateMemo.Appearance.BackColor = System.Drawing.Color.Teal
+        Me.BtnCreateMemo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCreateMemo.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnCreateMemo.Appearance.Options.UseBackColor = True
+        Me.BtnCreateMemo.Appearance.Options.UseFont = True
+        Me.BtnCreateMemo.Appearance.Options.UseForeColor = True
+        Me.BtnCreateMemo.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCreateMemo.Location = New System.Drawing.Point(346, 2)
+        Me.BtnCreateMemo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnCreateMemo.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateMemo.Name = "BtnCreateMemo"
+        Me.BtnCreateMemo.Size = New System.Drawing.Size(191, 40)
+        Me.BtnCreateMemo.TabIndex = 4
+        Me.BtnCreateMemo.Text = "Create Memo Penangguhan"
+        Me.BtnCreateMemo.Visible = False
+        '
+        'BtnActivateMemoPenangguhan
+        '
+        Me.BtnActivateMemoPenangguhan.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen
+        Me.BtnActivateMemoPenangguhan.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnActivateMemoPenangguhan.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnActivateMemoPenangguhan.Appearance.Options.UseBackColor = True
+        Me.BtnActivateMemoPenangguhan.Appearance.Options.UseFont = True
+        Me.BtnActivateMemoPenangguhan.Appearance.Options.UseForeColor = True
+        Me.BtnActivateMemoPenangguhan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnActivateMemoPenangguhan.Location = New System.Drawing.Point(537, 2)
+        Me.BtnActivateMemoPenangguhan.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnActivateMemoPenangguhan.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnActivateMemoPenangguhan.Name = "BtnActivateMemoPenangguhan"
+        Me.BtnActivateMemoPenangguhan.Size = New System.Drawing.Size(134, 40)
+        Me.BtnActivateMemoPenangguhan.TabIndex = 6
+        Me.BtnActivateMemoPenangguhan.Text = "Memo Penangguhan"
+        Me.BtnActivateMemoPenangguhan.Visible = False
+        '
         'BtnCreateEvaluation
         '
-        Me.BtnCreateEvaluation.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BtnCreateEvaluation.Appearance.BackColor = System.Drawing.Color.OrangeRed
         Me.BtnCreateEvaluation.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnCreateEvaluation.Appearance.ForeColor = System.Drawing.Color.White
         Me.BtnCreateEvaluation.Appearance.Options.UseBackColor = True
@@ -565,6 +658,36 @@ Partial Class FormAREvaluation
         Me.BtnCreateEvaluation.TabIndex = 3
         Me.BtnCreateEvaluation.Text = "Hold Delivery"
         Me.BtnCreateEvaluation.Visible = False
+        '
+        'PanelControlCreateEval
+        '
+        Me.PanelControlCreateEval.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlCreateEval.Controls.Add(Me.BtnViewOverdue)
+        Me.PanelControlCreateEval.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlCreateEval.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlCreateEval.Name = "PanelControlCreateEval"
+        Me.PanelControlCreateEval.Size = New System.Drawing.Size(792, 28)
+        Me.PanelControlCreateEval.TabIndex = 6
+        Me.PanelControlCreateEval.Visible = False
+        '
+        'BtnViewOverdue
+        '
+        Me.BtnViewOverdue.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnViewOverdue.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnViewOverdue.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnViewOverdue.Appearance.Options.UseBackColor = True
+        Me.BtnViewOverdue.Appearance.Options.UseFont = True
+        Me.BtnViewOverdue.Appearance.Options.UseForeColor = True
+        Me.BtnViewOverdue.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnViewOverdue.Location = New System.Drawing.Point(0, 0)
+        Me.BtnViewOverdue.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnViewOverdue.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnViewOverdue.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnViewOverdue.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnViewOverdue.Name = "BtnViewOverdue"
+        Me.BtnViewOverdue.Size = New System.Drawing.Size(792, 28)
+        Me.BtnViewOverdue.TabIndex = 19
+        Me.BtnViewOverdue.Text = "View Overdue Invoice"
         '
         'XTPGroupStore
         '
@@ -650,78 +773,19 @@ Partial Class FormAREvaluation
         'RepositoryItemButtonEdit1
         '
         Me.RepositoryItemButtonEdit1.AutoHeight = False
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject10.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject10.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject10.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject10.Options.UseBackColor = True
+        SerializableAppearanceObject10.Options.UseFont = True
+        SerializableAppearanceObject10.Options.UseForeColor = True
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject10, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
-        'BtnViewOverdue
+        'SplashScreenManager1
         '
-        Me.BtnViewOverdue.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BtnViewOverdue.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BtnViewOverdue.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnViewOverdue.Appearance.Options.UseBackColor = True
-        Me.BtnViewOverdue.Appearance.Options.UseFont = True
-        Me.BtnViewOverdue.Appearance.Options.UseForeColor = True
-        Me.BtnViewOverdue.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnViewOverdue.Location = New System.Drawing.Point(0, 0)
-        Me.BtnViewOverdue.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnViewOverdue.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnViewOverdue.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnViewOverdue.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnViewOverdue.Name = "BtnViewOverdue"
-        Me.BtnViewOverdue.Size = New System.Drawing.Size(792, 33)
-        Me.BtnViewOverdue.TabIndex = 19
-        Me.BtnViewOverdue.Text = "View Overdue Invoice"
-        '
-        'PanelControlCreateEval
-        '
-        Me.PanelControlCreateEval.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlCreateEval.Controls.Add(Me.BtnViewOverdue)
-        Me.PanelControlCreateEval.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlCreateEval.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlCreateEval.Name = "PanelControlCreateEval"
-        Me.PanelControlCreateEval.Size = New System.Drawing.Size(792, 33)
-        Me.PanelControlCreateEval.TabIndex = 6
-        Me.PanelControlCreateEval.Visible = False
-        '
-        'GridColumnid_comp_group_eval
-        '
-        Me.GridColumnid_comp_group_eval.Caption = "id_comp_group"
-        Me.GridColumnid_comp_group_eval.FieldName = "id_comp_group"
-        Me.GridColumnid_comp_group_eval.Name = "GridColumnid_comp_group_eval"
-        Me.GridColumnid_comp_group_eval.OptionsColumn.AllowEdit = False
-        '
-        'GridColumngroup_eval
-        '
-        Me.GridColumngroup_eval.Caption = "Store Group"
-        Me.GridColumngroup_eval.FieldName = "group"
-        Me.GridColumngroup_eval.Name = "GridColumngroup_eval"
-        Me.GridColumngroup_eval.Visible = True
-        Me.GridColumngroup_eval.VisibleIndex = 0
-        '
-        'BtnCreateMemo
-        '
-        Me.BtnCreateMemo.Appearance.BackColor = System.Drawing.Color.Teal
-        Me.BtnCreateMemo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnCreateMemo.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnCreateMemo.Appearance.Options.UseBackColor = True
-        Me.BtnCreateMemo.Appearance.Options.UseFont = True
-        Me.BtnCreateMemo.Appearance.Options.UseForeColor = True
-        Me.BtnCreateMemo.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCreateMemo.Location = New System.Drawing.Point(488, 2)
-        Me.BtnCreateMemo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnCreateMemo.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnCreateMemo.Name = "BtnCreateMemo"
-        Me.BtnCreateMemo.Size = New System.Drawing.Size(183, 40)
-        Me.BtnCreateMemo.TabIndex = 4
-        Me.BtnCreateMemo.Text = "Create Memo Penangguhan"
-        Me.BtnCreateMemo.Visible = False
+        Me.SplashScreenManager1.ClosingDelay = 500
         '
         'FormAREvaluation
         '
@@ -752,17 +816,18 @@ Partial Class FormAREvaluation
         Me.XTPInvoiceList.ResumeLayout(False)
         CType(Me.GCActiveList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVActiveList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPGroupStoreList.ResumeLayout(False)
         CType(Me.GCGroupStoreList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVGroupStoreList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControlCreateEval, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlCreateEval.ResumeLayout(False)
         Me.XTPGroupStore.ResumeLayout(False)
         CType(Me.GCGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlCreateEval, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlCreateEval.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -828,4 +893,9 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumnid_comp_group_eval As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumngroup_eval As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnCreateMemo As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDiscardMemo As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnActivateMemoPenangguhan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class
