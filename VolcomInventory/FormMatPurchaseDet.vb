@@ -853,7 +853,7 @@ GROUP BY pl.`id_mat_purc_list`"
             Dim query As String = "SELECT '" & TECompName.Text & "' comp_name,'" & LESeason.Text & "' AS season,'" & LECurrency.Text & "' AS currency,FORMAT(pl.mat_det_price,4,'id_ID') AS mat_det_price,md.mat_det_name
 ,FORMAT(SUM(plp.total_qty_pd),0,'id_ID') AS total_qty_pd
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)),0,'id_ID') AS total_qty_order
-,FORMAT(pl.tolerance,0,'id_ID') AS tolerance
+,FORMAT(pl.tolerance,2,'id_ID') AS tolerance
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)),0,'id_ID') AS total_toleransi
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)+(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))),0,'id_ID') AS total 
 ,md.mat_det_code
