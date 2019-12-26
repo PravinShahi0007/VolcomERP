@@ -2,6 +2,8 @@
     Public Shared report_mark_type As String = "-1"
     Public Shared id_report As String = "-1"
 
+    Private data_sign As DataTable = New DataTable
+
     Private Sub ReportMemoUnpaidLeave_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim query As String = "SELECT formdc.form_dc,empl.id_emp,empl.emp_leave_number,empl.leave_purpose,lt.leave_type,empl.report_mark_type, empl.id_leave_type,
                                 emp.employee_name, empl.emp_leave_date,emp.employee_code, emp.employee_position, emp.id_departement, dep.departement, 
@@ -26,51 +28,63 @@
         XLKeperluan.Text = data.Rows(0)("leave_purpose").ToString
         XLLama.Text = data.Rows(0)("leave_total").ToString & " jam"
 
+        pre_load_asg_horz(report_mark_type, data.Rows(0)("id_emp").ToString, XrTable1, "1")
+
         Dim query_head As String = "
             SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT leave_memo_to1 FROM tb_opt_emp LIMIT 1)
             UNION ALL
             SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT leave_memo_to2 FROM tb_opt_emp LIMIT 1)
-            UNION ALL
-            SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT leave_memo_cc1 FROM tb_opt_emp LIMIT 1)
-            UNION ALL
-            SELECT id_employee, employee_name, employee_position
-            FROM tb_m_employee
-            WHERE id_employee = (
-	            SELECT usr.id_employee
-	            FROM tb_m_employee AS emp
-	            LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
-	            LEFT JOIN tb_m_user AS usr ON dep.id_user_head = usr.id_user
-	            WHERE emp.id_employee = " + data.Rows(0)("id_emp").ToString + "
-            )
         "
 
         Dim data_head As DataTable = execute_query(query_head, -1, True, "", "", "", "")
-
-        If data_head(2)("id_employee").ToString = data_head(3)("id_employee").ToString Then
-            XLCC2Dot.Visible = False
-            XLCC2.Visible = False
-            XLCC2Position.Visible = False
-
-            XPFrom.LocationF = New PointF(0, XPFrom.LocationF.Y - 23)
-
-            SubBand1.HeightF = SubBand1.HeightF - 23
-        End If
 
         XLTo1.Text = data_head(0)("employee_name").ToString
         XLToPosition1.Text = data_head(0)("employee_position").ToString
         XLTo2.Text = data_head(1)("employee_name").ToString
         XLToPosition2.Text = data_head(1)("employee_position").ToString
-        XLCC1.Text = data_head(2)("employee_name").ToString
-        XLCC1Position.Text = data_head(2)("employee_position").ToString
-        XLCC2.Text = data_head(3)("employee_name").ToString
-        XLCC2Position.Text = data_head(3)("employee_position").ToString
         XLFrom.Text = data.Rows(0)("employee_name").ToString
         XLFromPosition.Text = data.Rows(0)("employee_position").ToString
 
-        'number
-        Dim number As String = execute_query("SELECT CONCAT('/INT/', (SELECT `code` FROM tb_ot_memo_number_dep WHERE id_departement = " + data.Rows(0)("employee_position").ToString + "), '-MM/', (SELECT `code` FROM tb_ot_memo_number_mon WHERE `month` = " + DateTime.Parse(data.Rows(0)("emp_leave_date").ToString).ToString("%M") + "), '/', " + DateTime.Parse(data.Rows(0)("emp_leave_date").ToString).ToString("%y") + ") AS `number`", 0, True, "", "", "", "")
+        Dim y As Integer = 0
 
-        pre_load_asg_horz(report_mark_type, data.Rows(0)("id_emp").ToString, XrTable1, "1")
+        For i = data_sign.Rows.Count - 1 To 0 Step -1
+            If Not data_sign.Rows(i)("id_report_status").ToString = "1" Then
+                Dim label1 As DevExpress.XtraReports.UI.XRLabel = New DevExpress.XtraReports.UI.XRLabel
+                Dim label2 As DevExpress.XtraReports.UI.XRLabel = New DevExpress.XtraReports.UI.XRLabel
+
+                label1.Text = data_sign.Rows(i)("employee_name").ToString
+                label1.SizeF = New SizeF(300, 23)
+                label1.LocationF = New PointF(123, y)
+                label1.Font = New Font("Tahoma", 9.75)
+
+                Dim pad1 As DevExpress.XtraPrinting.PaddingInfo = New DevExpress.XtraPrinting.PaddingInfo
+                pad1.Left = 2
+                pad1.Right = 2
+
+                label1.Padding = pad1
+
+                label2.Text = data_sign.Rows(i)("role").ToString
+                label2.SizeF = New SizeF(250, 23)
+                label2.LocationF = New SizeF(437, y)
+                label2.Font = New Font("Tahoma", 9.75)
+
+                Dim pad2 As DevExpress.XtraPrinting.PaddingInfo = New DevExpress.XtraPrinting.PaddingInfo
+                pad2.Left = 2
+                pad2.Right = 2
+
+                label2.Padding = pad2
+
+                XPCC.Controls.Add(label1)
+                XPCC.Controls.Add(label2)
+
+                y = y + 23
+            End If
+        Next
+
+        'number
+        Dim number As String = execute_query("SELECT CONCAT('/INT/', (SELECT `code` FROM tb_ot_memo_number_dep WHERE id_departement = " + data.Rows(0)("id_departement").ToString + "), '-MM/', (SELECT `code` FROM tb_ot_memo_number_mon WHERE `month` = " + DateTime.Parse(data.Rows(0)("emp_leave_date").ToString).ToString("%M") + "), '/', " + DateTime.Parse(data.Rows(0)("emp_leave_date").ToString).ToString("%y") + ") AS `number`", 0, True, "", "", "", "")
+
+        XLNumber.Text = number
     End Sub
 
     Sub pre_load_asg_horz(ByVal report_mark_type As String, ByVal id_employee As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable, ByVal need_ceo As String)
@@ -165,6 +179,7 @@
 
         data_duplicate.Columns.Add("id_user", GetType(Integer))
         data_duplicate.Columns.Add("total", GetType(Integer))
+        data_duplicate.Columns.Add("inserted", GetType(Integer))
 
         'remove duplicate
         For i = 0 To data.Rows.Count - 1
@@ -177,11 +192,27 @@
             Next
 
             If index = -1 Then
-                data_duplicate.Rows.Add(data.Rows(i)("id_user"), 1)
+                data_duplicate.Rows.Add(data.Rows(i)("id_user"), 1, 0)
             Else
                 data_duplicate.Rows(index)("total") = data_duplicate.Rows(index)("total") + 1
             End If
         Next
+
+        Dim data_final As DataTable = data.Clone
+
+        For i = 0 To data.Rows.Count - 1
+            For j = 0 To data_duplicate.Rows.Count - 1
+                If data.Rows(i)("id_user").ToString = data_duplicate.Rows(j)("id_user").ToString And data_duplicate.Rows(j)("inserted").ToString = "0" Then
+                    data_final.ImportRow(data.Rows(i))
+
+                    data_duplicate.Rows(j)("inserted") = 1
+                End If
+            Next
+        Next
+
+        data = data_final
+
+        data_sign = data
 
         Dim cellsInRow As Integer = data.Rows.Count
         Dim rowHeight As Single = 25.0F
