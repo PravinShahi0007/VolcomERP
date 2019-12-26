@@ -144,6 +144,9 @@
                     SBSubmit.Visible = False
                     SBAttachment.Visible = True
                     BMark.Visible = True
+                    If data.Rows(0)("id_report_status").ToString = "5" Or data.Rows(0)("id_report_status").ToString = "6" Then
+                        BMark.Visible = False
+                    End If
                 End If
             End If
         End If
