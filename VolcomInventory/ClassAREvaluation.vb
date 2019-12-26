@@ -71,20 +71,20 @@
                 sm.dt = mm.getDetailData()
                 sm.send_email()
 
-                Dim querylog As String = "INSERT INTO tb_ar_eval_log(eval_date, log_time, log) 
-                    VALUES('" + date_eval + "', NOW(), 'Email Sent successfully'); " + mm.queryInsertLog(id_user, "2", "Sent successfully") + "; "
+                Dim querylog As String = "INSERT INTO tb_ar_eval_log(eval_date, log_time, log, is_success) 
+                    VALUES('" + date_eval + "', NOW(), 'Email Hold Delivery Sent successfully',1); " + mm.queryInsertLog(id_user, "2", "Sent successfully") + "; "
                 execute_non_query(querylog, True, "", "", "", "")
             End If
         Catch ex As Exception
             'Log
-            Dim query_log As String = "INSERT INTO tb_ar_eval_log(eval_date, log_time, log) 
-            VALUES('" + date_eval + "', NOW(), 'Failed send email : " + addSlashes(ex.ToString) + "'); " + mm.queryInsertLog(id_user, "3", addSlashes(ex.ToString))
+            Dim query_log As String = "INSERT INTO tb_ar_eval_log(eval_date, log_time, log, is_success) 
+            VALUES('" + date_eval + "', NOW(), 'Failed send email Hold Delivery : " + addSlashes(ex.ToString) + "',2); " + mm.queryInsertLog(id_user, "3", addSlashes(ex.ToString))
             execute_non_query(query_log, True, "", "", "", "")
         End Try
 
     End Sub
 
-    Sub sendEmailPeringatan(ByVal date_eval As String, ByVal id_group As String)
+    Sub sendEmailPeringatan(ByVal date_eval As String, ByVal id_group As String, ByVal group_name As String)
         Dim mm As New ClassMailManage()
         Dim id_mail As String = "-1"
         Try
@@ -93,14 +93,15 @@
             If data_cek_eval.Rows(0)("jum_eval") > 0 Then
                 'send paramenter class
                 mm.rmt = "227"
+                mm.typ = "2"
                 mm.par1 = date_eval
                 mm.par2 = id_group
                 mm.createEmail(id_user, "NULL", "NULL", "")
                 id_mail = mm.id_mail_manage
 
-                'send email
+                'data send email
                 Dim qcont As String = "SELECT cgho.comp_name AS `group_company`, UPPER(cg.description) AS `group_store`,
-                e.report_number, CONCAT(c.comp_number,' - ', c.comp_name) AS `store`,
+                e.id_sales_pos AS `id_report`,e.report_number, CONCAT(c.comp_number,' - ', c.comp_name) AS `store`,
                 CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`,
                 DATE_FORMAT(sp.sales_pos_due_date,'%d-%m-%y') AS `sales_pos_due_date`,
                 CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `amount`
@@ -123,22 +124,32 @@
                    GROUP BY pyd.id_report, pyd.report_mark_type
                 ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
                 LEFT JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment = sp.id_propose_delay_payment
-                WHERE e.id_comp_group=" + id_group + " AND e.eval_date='" + date_eval + "' AND e.is_active = 1 "
+                WHERE e.id_comp_group=" + id_group + " AND e.eval_date='" + date_eval + "' AND e.is_active=1 "
                 Dim dcont As DataTable = execute_query(qcont, -1, True, "", "", "", "")
+                Dim tot_amo As Double = 0
+                For i As Integer = 0 To dcont.Rows.Count - 1
+                    tot_amo += dcont.Rows(i)("amount")
+                Next
 
+                'send email
                 Dim sm As New ClassSendEmail()
                 sm.id_report = id_mail
                 sm.report_mark_type = "227"
                 sm.dt = dcont
                 Dim ttl As String = "Email Peringatan"
                 sm.par1 = ttl.ToUpper
-                sm.par2 = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+                sm.par2 = Double.Parse(tot_amo).ToString("N2")
                 sm.send_email()
+
+                'log
+                Dim querylog As String = "INSERT INTO tb_ar_eval_log(eval_date, log_time, log, is_success) 
+                    VALUES('" + date_eval + "', NOW(), '" + group_name + " - Email Sent successfully',1); " + mm.queryInsertLog(id_user, "2", "" + group_name + " - Sent successfully") + "; "
+                execute_non_query(querylog, True, "", "", "", "")
             End If
         Catch ex As Exception
             'Log
-            Dim query_log As String = "INSERT INTO tb_ar_eval_log(eval_date, log_time, log) 
-            VALUES('" + date_eval + "', NOW(), 'Failed send email : " + addSlashes(ex.ToString) + "'); " + mm.queryInsertLog(id_user, "3", addSlashes(ex.ToString))
+            Dim query_log As String = "INSERT INTO tb_ar_eval_log(eval_date, log_time, log, is_success) 
+            VALUES('" + date_eval + "', NOW(), '" + group_name + " - Failed send email : " + addSlashes(ex.ToString) + "',2); " + mm.queryInsertLog(id_user, "3", " + group_name + - " + addSlashes(ex.ToString))
             execute_non_query(query_log, True, "", "", "", "")
         End Try
     End Sub

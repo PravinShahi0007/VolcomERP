@@ -23,6 +23,7 @@ Partial Class FormAREvaluation
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewData = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseEval = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -121,6 +122,7 @@ Partial Class FormAREvaluation
         '
         'PanelNav
         '
+        Me.PanelNav.Controls.Add(Me.BtnLog)
         Me.PanelNav.Controls.Add(Me.BtnViewData)
         Me.PanelNav.Controls.Add(Me.BtnBrowseEval)
         Me.PanelNav.Controls.Add(Me.LabelControl1)
@@ -129,6 +131,15 @@ Partial Class FormAREvaluation
         Me.PanelNav.Name = "PanelNav"
         Me.PanelNav.Size = New System.Drawing.Size(798, 50)
         Me.PanelNav.TabIndex = 0
+        '
+        'BtnLog
+        '
+        Me.BtnLog.Image = CType(resources.GetObject("BtnLog.Image"), System.Drawing.Image)
+        Me.BtnLog.Location = New System.Drawing.Point(444, 13)
+        Me.BtnLog.Name = "BtnLog"
+        Me.BtnLog.Size = New System.Drawing.Size(104, 23)
+        Me.BtnLog.TabIndex = 3
+        Me.BtnLog.Text = "Execution Log"
         '
         'BtnViewData
         '
@@ -898,4 +909,5 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
+    Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
 End Class

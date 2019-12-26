@@ -272,7 +272,7 @@
             Try
                 ev.holdDelivery(date_now)
             Catch ex As Exception
-                err += "- Hold delivery failed : " + ex.ToString + System.Environment.NewLine
+                err += "- Failed Hold delivery  : " + ex.ToString + System.Environment.NewLine
             End Try
 
             'sending mail hold delivery
@@ -280,23 +280,49 @@
             Try
                 ev.sendEmailHoldDelivery(date_now, date_now_display)
             Catch ex As Exception
-                err += "- Sending email hold delivery : " + ex.ToString + System.Environment.NewLine
+                err += "- Failed sending email hold delivery : " + ex.ToString + System.Environment.NewLine
             End Try
 
             'sendiing email peringatan
-            FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email peringatan")
+            makeSafeGV(GVGroupStoreList)
+            For g As Integer = 0 To GVGroupStoreList.RowCount - 1
+                Dim id_group As String = GVGroupStoreList.GetRowCellValue(g, "id_comp_group").ToString
+                Dim group As String = GVGroupStoreList.GetRowCellValue(g, "group").ToString.ToUpper
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email peringatan for " + group)
+                Try
+                    ev.sendEmailPeringatan(date_now, id_group, group)
+                Catch ex As Exception
+                    err += "- Failed sending email peringatan for " + group + " : " + ex.ToString + System.Environment.NewLine
+                End Try
+            Next
+
 
             'end
             FormMain.SplashScreenManager1.CloseWaitForm()
 
             'final msg
             If err = "" Then
-                infoCustom("Hold delivery success")
-                getLastEvaluation()
+                Dim query_cek As String = "SELECT e.eval_date, e.log_time, e.log, IF(e.is_success=1,'Success', 'Failed') AS `log_status`
+                FROM tb_ar_eval_log e WHERE e.eval_date='" + date_now + "' AND e.is_success=2 "
+                Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+                If data_cek.Rows.Count <= 0 Then
+                    infoCustom("Hold delivery success")
+                Else
+                    warningCustom("Found some problem when execution process.")
+                    FormAREvaluationLog.eval_date = date_now
+                    FormAREvaluationLog.ShowDialog()
+                End If
             Else
                 stopCustom("Failed excecution : " + System.Environment.NewLine + err)
             End If
             resetViewOverdue()
         End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnLog.Click
+        Cursor = Cursors.WaitCursor
+        FormAREvaluationLog.eval_date = eval_date
+        FormAREvaluationLog.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
