@@ -1918,25 +1918,26 @@ Public Class ClassSendEmail
             Next
 
             '-- start attachment 
+            '-- sementara nonaktif
             'Create a New report. 
-            Dim id_sales_pos As String = ""
-            For i As Integer = 0 To (dt.Rows.Count - 1)
-                If i > 0 Then
-                    id_sales_pos += ","
-                End If
-                id_sales_pos += dt.Rows(i)("id_report").ToString
-            Next
-            ReportSummaryInvoice.id = id_sales_pos
-            Dim rpt As New ReportSummaryInvoice()
+            'Dim id_sales_pos As String = ""
+            'For i As Integer = 0 To (dt.Rows.Count - 1)
+            '    If i > 0 Then
+            '        id_sales_pos += ","
+            '    End If
+            '    id_sales_pos += dt.Rows(i)("id_report").ToString
+            'Next
+            'ReportSummaryInvoice.id = id_sales_pos
+            'Dim rpt As New ReportSummaryInvoice()
 
             '' Create a new memory stream and export the report into it as PDF.
-            Dim Mem As New MemoryStream()
-            'Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
-            rpt.ExportToXlsx(Mem)
+            'Dim Mem As New MemoryStream()
+            ''Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+            'rpt.ExportToXlsx(Mem)
             '' Create a new attachment and put the PDF report into it.
-            Mem.Seek(0, System.IO.SeekOrigin.Begin)
-            Dim Att = New Attachment(Mem, "list_inv" & report_mark_type & "_" & id_report & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-            mail.Attachments.Add(Att)
+            'Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            'Dim Att = New Attachment(Mem, "list_inv" & report_mark_type & "_" & id_report & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            'mail.Attachments.Add(Att)
             '-- end attachment
 
             Dim body_temp As String = email_body_invoice_jatuh_tempo(dt, titl.ToUpper, par1, par2, comment, design_code)
