@@ -11602,6 +11602,9 @@
     <EmbeddedResource Include="ReportSalesDelOrderOwnStore.resx">
       <DependentUpon>ReportSalesDelOrderOwnStore.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesDelOrderSlip.resx">
+      <DependentUpon>ReportSalesDelOrderSlip.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesInvoceDelSlip.resx">
       <DependentUpon>ReportSalesInvoceDelSlip.vb</DependentUpon>
     </EmbeddedResource>
