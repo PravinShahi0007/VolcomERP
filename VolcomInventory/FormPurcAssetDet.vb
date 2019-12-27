@@ -10,7 +10,13 @@
 
     Private Sub FormPurcAssetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCOA()
+        viewComp()
         actionLoad()
+    End Sub
+
+    Sub viewComp()
+        Dim query As String = "SELECT c.id_comp, c.comp_number,c.comp_name FROM tb_m_comp c"
+        viewSearchLookupQuery(SLEComp, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub viewCOA()
@@ -24,12 +30,21 @@
 
     Sub actionLoad()
         If action = "ins" Then
+            SLEComp.EditValue = "-1"
+            TxtComp.Text = ""
+            SLEComp.EditValue = "1"
+            TxtComp.Text = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + SLEComp.EditValue.ToString + "' ", 0, True, "", "", "", "")
+
         ElseIf action = "upd" Then
 
 
             Dim a As New ClassPurcAsset()
             Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", find_accum)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            '
+            TxtComp.Text = data.Rows(0)("asset_name").ToString
+            SLEComp.EditValue = data.Rows(0)("id_comp").ToString
+            '
             is_confirm = data.Rows(0)("is_confirm").ToString
             'generate number
             If is_confirm = "2" Then

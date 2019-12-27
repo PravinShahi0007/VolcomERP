@@ -169,6 +169,7 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
                     FROM tb_item it
                     INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                     INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
+                    INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = '" & id_departement & "'
                     LEFT JOIN
                     (
 	                    SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense`,ex.`id_item_cat_main` 

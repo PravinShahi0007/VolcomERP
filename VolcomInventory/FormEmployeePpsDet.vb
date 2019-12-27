@@ -1839,24 +1839,79 @@
 
         progress.ProgressBarControl.EditValue = 50
 
+        Dim use_cmd As String = get_opt_emp_field("emp_pps_use_cmd")
+
         ' image
         If System.IO.File.Exists(pps_path + id_pps + "_ava.jpg") Then
-            System.IO.File.Copy(pps_path + id_pps + "_ava.jpg", emp_image_path + id_employee + ".jpg", True)
+            If use_cmd = "1" Then
+                Dim cmd As String = "/c XCOPY """ + pps_path + id_pps + "_ava.jpg"" """ + emp_image_path + id_employee + ".jpg*"" /Y"
+
+                Dim startInfo As New ProcessStartInfo("CMD.EXE")
+
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden
+                startInfo.CreateNoWindow = True
+                startInfo.UseShellExecute = False
+                startInfo.Arguments = cmd
+
+                Process.Start(startInfo)
+            Else
+                System.IO.File.Copy(pps_path + id_pps + "_ava.jpg", emp_image_path + id_employee + ".jpg", True)
+            End If
         End If
 
         progress.ProgressBarControl.EditValue = 60
 
         ' att
         If System.IO.File.Exists(pps_path + id_pps + "_ktp.jpg") Then
-            System.IO.File.Copy(pps_path + id_pps + "_ktp.jpg", emp_image_path + id_employee + "_ktp.jpg", True)
+            If use_cmd = "1" Then
+                Dim cmd As String = "/c XCOPY """ + pps_path + id_pps + "_ktp.jpg"" """ + emp_image_path + id_employee + "_ktp.jpg*"" /Y"
+
+                Dim startInfo As New ProcessStartInfo("CMD.EXE")
+
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden
+                startInfo.CreateNoWindow = True
+                startInfo.UseShellExecute = False
+                startInfo.Arguments = cmd
+
+                Process.Start(startInfo)
+            Else
+                System.IO.File.Copy(pps_path + id_pps + "_ktp.jpg", emp_image_path + id_employee + "_ktp.jpg", True)
+            End If
         End If
 
         If System.IO.File.Exists(pps_path + id_pps + "_kk.jpg") Then
-            System.IO.File.Copy(pps_path + id_pps + "_kk.jpg", emp_image_path + id_employee + "_kk.jpg", True)
+            If use_cmd = "1" Then
+                Dim cmd As String = "/c XCOPY """ + pps_path + id_pps + "_kk.jpg"" """ + emp_image_path + id_employee + "_kk.jpg*"" /Y"
+
+                Dim startInfo As New ProcessStartInfo("CMD.EXE")
+
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden
+                startInfo.CreateNoWindow = True
+                startInfo.UseShellExecute = False
+                startInfo.Arguments = cmd
+
+                Process.Start(startInfo)
+            Else
+                System.IO.File.Copy(pps_path + id_pps + "_kk.jpg", emp_image_path + id_employee + "_kk.jpg", True)
+            End If
         End If
 
         If System.IO.File.Exists(pps_path + id_pps + "_rek.jpg") Then
-            System.IO.File.Copy(pps_path + id_pps + "_rek.jpg", emp_image_path + id_employee + "_rek.jpg", True)
+            If use_cmd = "1" Then
+                Dim cmd As String = "/c XCOPY """ + pps_path + id_pps + "_rek.jpg"" """ + emp_image_path + id_employee + "_rek.jpg*"" /Y"
+
+                Dim startInfo As New ProcessStartInfo("CMD.EXE")
+
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden
+                startInfo.CreateNoWindow = True
+                startInfo.UseShellExecute = False
+                startInfo.Arguments = cmd
+
+                Process.Start(startInfo)
+            Else
+                System.IO.File.Copy(pps_path + id_pps + "_rek.jpg", emp_image_path + id_employee + "_rek.jpg", True)
+            End If
+
         End If
 
         progress.ProgressBarControl.EditValue = 70
@@ -1871,7 +1926,20 @@
 
         For i = 1 To 100
             If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + ".jpg") Then
-                System.IO.File.Copy(pps_path + id_pps + "_position_" + i.ToString + ".jpg", emp_image_path + id_employee + "_position_" + i.ToString + ".jpg", True)
+                If use_cmd = "1" Then
+                    Dim cmd As String = "/c XCOPY """ + pps_path + id_pps + "_position_" + i.ToString + ".jpg"" """ + emp_image_path + id_employee + "_position_" + i.ToString + ".jpg*"" /Y"
+
+                    Dim startInfo As New ProcessStartInfo("CMD.EXE")
+
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden
+                    startInfo.CreateNoWindow = True
+                    startInfo.UseShellExecute = False
+                    startInfo.Arguments = cmd
+
+                    Process.Start(startInfo)
+                Else
+                    System.IO.File.Copy(pps_path + id_pps + "_position_" + i.ToString + ".jpg", emp_image_path + id_employee + "_position_" + i.ToString + ".jpg", True)
+                End If
             Else
                 Exit For
             End If
