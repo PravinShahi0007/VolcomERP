@@ -302,6 +302,12 @@
     <Compile Include="FormAREvaluation.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAREvaluationLog.Designer.vb">
+      <DependentUpon>FormAREvaluationLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvaluationLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAREvaluationPickDate.Designer.vb">
       <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
     </Compile>
@@ -1996,6 +2002,12 @@
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormInvoiceFGPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoiceFGPOAdd.Designer.vb">
+      <DependentUpon>FormInvoiceFGPOAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPOAdd.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormInvoiceFGPODP.Designer.vb">
@@ -7599,6 +7611,9 @@
     <EmbeddedResource Include="FormAREvaluation.resx">
       <DependentUpon>FormAREvaluation.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvaluationLog.resx">
+      <DependentUpon>FormAREvaluationLog.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluationPickDate.resx">
       <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
     </EmbeddedResource>
@@ -8495,6 +8510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPO.resx">
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceFGPOAdd.resx">
+      <DependentUpon>FormInvoiceFGPOAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPODP.resx">
       <DependentUpon>FormInvoiceFGPODP.vb</DependentUpon>
