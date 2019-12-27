@@ -1891,7 +1891,6 @@ Public Class ClassSendEmail
             client.Send(mail)
         ElseIf report_mark_type = "226" Or report_mark_type = "227" Then
             'EMAIL pemberitahuan/peringatan
-            Dim comp_name As String = execute_query("SELECT c.comp_name FROM tb_m_comp c WHERE c.id_comp=1", 0, True, "", "", "", "")
             Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
 
             Dim from_mail As MailAddress = New MailAddress(mail_address_from, head)
@@ -1947,7 +1946,8 @@ Public Class ClassSendEmail
             client.Send(mail)
         ElseIf report_mark_type = "228" Then
             'send email
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", design_code)
+            Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, design_code)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
             Dim query_send_to As String = "SELECT  m.id_mail_member_type,m.mail_address, IF(ISNULL(m.id_comp_contact), e.employee_name, cc.contact_person) AS `display_name`
