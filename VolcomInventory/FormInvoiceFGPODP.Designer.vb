@@ -83,7 +83,7 @@ Partial Class FormInvoiceFGPODP
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCBPL = New DevExpress.XtraTab.XtraTabControl()
@@ -136,8 +136,8 @@ Partial Class FormInvoiceFGPODP
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         CType(Me.XTCBPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCBPL.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
@@ -629,6 +629,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnIdRec.Name = "GridColumnIdRec"
         Me.GridColumnIdRec.OptionsColumn.AllowEdit = False
         Me.GridColumnIdRec.OptionsColumn.AllowFocus = False
+        Me.GridColumnIdRec.OptionsColumn.AllowShowHide = False
         '
         'GridColumn6
         '
@@ -683,12 +684,17 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn15.Caption = "ID Currency"
         Me.GridColumn15.FieldName = "id_currency"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.AllowFocus = False
+        Me.GridColumn15.OptionsColumn.AllowShowHide = False
         '
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Currency"
         Me.GridColumn12.FieldName = "currency"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.OptionsColumn.AllowFocus = False
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 4
         Me.GridColumn12.Width = 79
@@ -700,6 +706,8 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "kurs"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowFocus = False
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 6
         '
@@ -710,6 +718,8 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn2.FieldName = "value_bef_kurs"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 5
         Me.GridColumn2.Width = 111
@@ -736,11 +746,15 @@ Partial Class FormInvoiceFGPODP
         '
         Me.GridColumn8.Caption = "Price / Unit"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.AllowFocus = False
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "VAT / Unit"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.AllowFocus = False
         '
         'GridColumnPayment
         '
@@ -793,15 +807,15 @@ Partial Class FormInvoiceFGPODP
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
-        'PanelControl1
+        'PCAddDel
         '
-        Me.PanelControl1.Controls.Add(Me.BtnDelete)
-        Me.PanelControl1.Controls.Add(Me.BtnAdd)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 119)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1003, 45)
-        Me.PanelControl1.TabIndex = 20
+        Me.PCAddDel.Controls.Add(Me.BtnDelete)
+        Me.PCAddDel.Controls.Add(Me.BtnAdd)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 119)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(1003, 45)
+        Me.PCAddDel.TabIndex = 20
         '
         'BtnDelete
         '
@@ -953,7 +967,7 @@ Partial Class FormInvoiceFGPODP
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1003, 533)
         Me.Controls.Add(Me.XTCBPL)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.PCAddDel)
         Me.Controls.Add(Me.PanelControl8)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl7)
@@ -1004,8 +1018,8 @@ Partial Class FormInvoiceFGPODP
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         CType(Me.XTCBPL, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCBPL.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
@@ -1072,7 +1086,7 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCBPL As DevExpress.XtraTab.XtraTabControl

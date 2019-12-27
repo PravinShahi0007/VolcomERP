@@ -46,7 +46,7 @@ HAVING qty_po > 0"
             If data.Rows(0)("qty_po") > 0 Then
                 Dim q_det As String = "-- normal
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining ,prc.prod_order_wo_det_price, prc.prod_order_wo_vat, prc.kurs
-,dsg.design_display_name,prc.id_comp
+,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -58,12 +58,13 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
+	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+    INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
 )prc ON prc.id_prod_order=rec.`id_prod_order`
@@ -83,8 +84,6 @@ HAVING qty_rec_remaining > 0"
                     For i As Integer = 0 To dt_det.Rows.Count - 1
                         Dim qty_used As Integer = 0
 
-                        Console.WriteLine(qty_po.ToString & " - " & dt_det.Rows(i)("qty_rec_remaining").ToString)
-
                         If (qty_po - dt_det.Rows(i)("qty_rec_remaining")) < 0 Then
                             qty_used = dt_det.Rows(i)("qty_rec_remaining") - qty_po
                         Else
@@ -99,6 +98,12 @@ HAVING qty_rec_remaining > 0"
                         newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                         newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
                         newRow("qty") = qty_used
+                        '
+                        newRow("id_currency") = dt_det.Rows(i)("id_currency").ToString
+                        newRow("currency") = dt_det.Rows(i)("currency").ToString
+                        newRow("kurs") = dt_det.Rows(i)("kurs").ToString
+                        newRow("value_bef_kurs") = qty_used * (dt_det.Rows(i)("prod_order_wo_det_price"))
+                        '
                         newRow("value") = qty_used * (dt_det.Rows(i)("prod_order_wo_det_price") * dt_det.Rows(i)("kurs"))
                         newRow("vat") = qty_used * ((dt_det.Rows(i)("prod_order_wo_det_price") * dt_det.Rows(i)("prod_order_wo_vat")) * (dt_det.Rows(i)("kurs") / 100))
                         newRow("inv_number") = ""
@@ -136,7 +141,7 @@ GROUP BY pod.`id_prod_order`"
             If data.Rows(0)("qty_po") > 0 Then
                 Dim q_det As String = "-- extra
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining,(prc.prod_order_wo_det_price * 0.5) AS prod_order_wo_det_price, (prc.prod_order_wo_vat * 0.5) AS prod_order_wo_vat, prc.kurs
-,dsg.design_display_name,prc.id_comp
+,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -148,12 +153,13 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
+	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+    INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
 )prc ON prc.id_prod_order=rec.`id_prod_order`
@@ -190,6 +196,12 @@ HAVING qty_rec_remaining > 0"
                         newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                         newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
                         newRow("qty") = qty_used
+                        '
+                        newRow("id_currency") = dt_det.Rows(i)("id_currency").ToString
+                        newRow("currency") = dt_det.Rows(i)("currency").ToString
+                        newRow("kurs") = dt_det.Rows(i)("kurs").ToString
+                        newRow("value_bef_kurs") = qty_used * (dt_det.Rows(i)("prod_order_wo_det_price"))
+                        '
                         newRow("value") = qty_used * (dt_det.Rows(i)("prod_order_wo_det_price") * dt_det.Rows(i)("kurs"))
                         newRow("vat") = qty_used * ((dt_det.Rows(i)("prod_order_wo_det_price") * dt_det.Rows(i)("prod_order_wo_vat")) * (dt_det.Rows(i)("kurs") / 100))
                         newRow("inv_number") = ""
@@ -212,7 +224,7 @@ HAVING qty_rec_remaining > 0"
         ElseIf SLETypeInvoice.EditValue.ToString = "4" Then 'over memo
             Dim q_det As String = "-- extra
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining, (prc.prod_order_wo_det_price) * (100-overd.discount/100) AS prod_order_wo_det_price, prc.prod_order_wo_vat * (100-overd.discount/100) AS prod_order_wo_vat, prc.kurs
-,dsg.design_display_name,prc.id_comp
+,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -224,12 +236,13 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
+	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+    INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
 )prc ON prc.id_prod_order=rec.`id_prod_order`
@@ -256,6 +269,12 @@ HAVING qty_rec_remaining > 0"
                 newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                 newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
                 newRow("qty") = qty_used
+                '
+                newRow("id_currency") = dt_det.Rows(i)("id_currency").ToString
+                newRow("currency") = dt_det.Rows(i)("currency").ToString
+                newRow("kurs") = dt_det.Rows(i)("kurs").ToString
+                newRow("value_bef_kurs") = qty_used * (dt_det.Rows(i)("prod_order_wo_det_price"))
+                '
                 newRow("value") = qty_used * (dt_det.Rows(i)("prod_order_wo_det_price") * dt_det.Rows(i)("kurs"))
                 newRow("vat") = qty_used * ((dt_det.Rows(i)("prod_order_wo_det_price") * dt_det.Rows(i)("prod_order_wo_vat")) * (dt_det.Rows(i)("kurs") / 100))
                 newRow("inv_number") = ""
@@ -283,6 +302,12 @@ HAVING qty_rec_remaining > 0"
             newRow("report_number") = GVInvoice.GetFocusedRowCellValue("report_number")
             newRow("info_design") = GVInvoice.GetFocusedRowCellValue("info_design")
             newRow("qty") = GVInvoice.GetFocusedRowCellValue("qty")
+            '
+            newRow("id_currency") = GVInvoice.GetFocusedRowCellValue("id_currency").ToString
+            newRow("currency") = GVInvoice.GetFocusedRowCellValue("currency").ToString
+            newRow("kurs") = GVInvoice.GetFocusedRowCellValue("kurs")
+            newRow("value_bef_kurs") = GVInvoice.GetFocusedRowCellValue("value_bef_kurs")
+            '
             newRow("value") = GVInvoice.GetFocusedRowCellValue("value")
             newRow("vat") = GVInvoice.GetFocusedRowCellValue("vat")
             newRow("inv_number") = ""
@@ -306,8 +331,9 @@ HAVING qty_rec_remaining > 0"
 
     Sub view_det()
         Dim query As String = "
-Select pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note`, '' AS id_comp
+Select pnd.`id_prod_order`,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`value`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` , '' AS id_comp
 FROM tb_pn_fgpo_det pnd
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
 WHERE pnd.`id_pn_fgpo`='-1'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInvoice.DataSource = data
@@ -319,6 +345,7 @@ WHERE pnd.`id_pn_fgpo`='-1'"
             GVInvoice.DeleteRow(i)
         Next
         fill_grid()
+        GVInvoice.BestFitColumns()
     End Sub
 
     Private Sub BPickAll_Click(sender As Object, e As EventArgs) Handles BPickAll.Click
@@ -331,6 +358,12 @@ WHERE pnd.`id_pn_fgpo`='-1'"
                 newRow("report_number") = GVInvoice.GetRowCellValue(i, "report_number")
                 newRow("info_design") = GVInvoice.GetRowCellValue(i, "info_design")
                 newRow("qty") = GVInvoice.GetRowCellValue(i, "qty")
+                '
+                newRow("id_currency") = GVInvoice.GetRowCellValue(i, "id_currency").ToString
+                newRow("currency") = GVInvoice.GetRowCellValue(i, "currency").ToString
+                newRow("kurs") = GVInvoice.GetRowCellValue(i, "kurs")
+                newRow("value_bef_kurs") = GVInvoice.GetRowCellValue(i, "value_bef_kurs")
+                '
                 newRow("value") = GVInvoice.GetRowCellValue(i, "value")
                 newRow("vat") = GVInvoice.GetRowCellValue(i, "vat")
                 newRow("inv_number") = ""

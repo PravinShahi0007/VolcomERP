@@ -16,19 +16,35 @@
                 newRow("report_mark_type") = "22"
                 newRow("report_number") = TEReportNumber.Text
                 newRow("info_design") = TEInfoDesign.Text
-            Else
-                newRow("id_prod_order") = ""
-                newRow("id_report") = ""
-                newRow("report_mark_type") = ""
-                newRow("report_number") = TEReportNumber.Text
-                newRow("info_design") = ""
-            End If
 
-            newRow("qty") = ""
-            newRow("value") = ""
-            newRow("vat") = ""
-            newRow("inv_number") = ""
-            newRow("note") = ""
+                newRow("qty") = TEQty.EditValue
+                newRow("id_currency") = LECurrency.EditValue.ToString
+                newRow("currency") = LECurrency.Text
+                newRow("kurs") = TEKurs.EditValue
+                newRow("value_bef_kurs") = TEBeforeKurs.EditValue
+
+                newRow("value") = TEAfterKurs.EditValue
+                newRow("vat") = TEVat.EditValue
+                newRow("inv_number") = ""
+                newRow("note") = ""
+            Else
+                newRow("id_prod_order") = SLEFGPO.EditValue.ToString
+                newRow("id_report") = SLEFGPO.EditValue.ToString
+                newRow("report_mark_type") = "22"
+                newRow("report_number") = TEReportNumber.Text
+                newRow("info_design") = TEInfoDesign.Text
+
+                newRow("qty") = TEQty.EditValue
+                newRow("id_currency") = LECurrency.EditValue.ToString
+                newRow("currency") = LECurrency.Text
+                newRow("kurs") = TEKurs.EditValue
+                newRow("value_bef_kurs") = TEBeforeKurs.EditValue
+
+                newRow("value") = TEAfterKurs.EditValue
+                newRow("vat") = TEVat.EditValue
+                newRow("inv_number") = ""
+                newRow("note") = ""
+            End If
 
             TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
             FormInvoiceFGPODP.calculate()

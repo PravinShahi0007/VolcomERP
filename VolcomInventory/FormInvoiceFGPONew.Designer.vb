@@ -35,9 +35,9 @@ Partial Class FormInvoiceFGPONew
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PCPick = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPick = New DevExpress.XtraEditors.SimpleButton()
         Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPick = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -53,6 +53,7 @@ Partial Class FormInvoiceFGPONew
         Me.BLoad = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCFGPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.XTPReport = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
@@ -88,7 +89,10 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BLoadHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLETypeInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +107,8 @@ Partial Class FormInvoiceFGPONew
         CType(Me.XTCFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.XTPReport.SuspendLayout()
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl2.SuspendLayout()
@@ -112,8 +118,6 @@ Partial Class FormInvoiceFGPONew
         Me.XTPHistory.SuspendLayout()
         CType(Me.GCPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPayment, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -245,17 +249,17 @@ Partial Class FormInvoiceFGPONew
         Me.PCPick.Size = New System.Drawing.Size(851, 40)
         Me.PCPick.TabIndex = 4
         '
-        'BtnCancel
+        'BPickAll
         '
-        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.ImageIndex = 5
-        Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(774, 2)
-        Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
-        Me.BtnCancel.TabIndex = 18
-        Me.BtnCancel.TabStop = False
-        Me.BtnCancel.Text = "Close"
+        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPickAll.ImageIndex = 4
+        Me.BPickAll.ImageList = Me.LargeImageCollection
+        Me.BPickAll.Location = New System.Drawing.Point(619, 2)
+        Me.BPickAll.Name = "BPickAll"
+        Me.BPickAll.Size = New System.Drawing.Size(80, 36)
+        Me.BPickAll.TabIndex = 19
+        Me.BPickAll.TabStop = False
+        Me.BPickAll.Text = "Pick All"
         '
         'BPick
         '
@@ -269,17 +273,17 @@ Partial Class FormInvoiceFGPONew
         Me.BPick.TabStop = False
         Me.BPick.Text = "Pick"
         '
-        'BPickAll
+        'BtnCancel
         '
-        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPickAll.ImageIndex = 4
-        Me.BPickAll.ImageList = Me.LargeImageCollection
-        Me.BPickAll.Location = New System.Drawing.Point(619, 2)
-        Me.BPickAll.Name = "BPickAll"
-        Me.BPickAll.Size = New System.Drawing.Size(80, 36)
-        Me.BPickAll.TabIndex = 19
-        Me.BPickAll.TabStop = False
-        Me.BPickAll.Text = "Pick All"
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.ImageIndex = 5
+        Me.BtnCancel.ImageList = Me.LargeImageCollection
+        Me.BtnCancel.Location = New System.Drawing.Point(774, 2)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
+        Me.BtnCancel.TabIndex = 18
+        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.Text = "Close"
         '
         'PCSummary
         '
@@ -303,7 +307,7 @@ Partial Class FormInvoiceFGPONew
         '
         'GVInvoice
         '
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn7, Me.GridColumn8, Me.GridColumnNumber, Me.GridColumn10, Me.GridColumn9, Me.GridColumn12, Me.GridColumnPayment, Me.GridColumn13})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn7, Me.GridColumn8, Me.GridColumnNumber, Me.GridColumn10, Me.GridColumn9, Me.GridColumn12, Me.GridColumn24, Me.GridColumn23, Me.GridColumn25, Me.GridColumn22, Me.GridColumnPayment, Me.GridColumn13})
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
         Me.GVInvoice.OptionsBehavior.AutoExpandAllGroups = True
@@ -391,7 +395,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumnPayment.OptionsColumn.AllowFocus = False
         Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnPayment.Visible = True
-        Me.GridColumnPayment.VisibleIndex = 3
+        Me.GridColumnPayment.VisibleIndex = 6
         Me.GridColumnPayment.Width = 162
         '
         'GridColumn13
@@ -409,7 +413,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn13.OptionsColumn.AllowFocus = False
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat", "{0:N2}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
+        Me.GridColumn13.VisibleIndex = 7
         Me.GridColumn13.Width = 129
         '
         'BLoad
@@ -449,6 +453,17 @@ Partial Class FormInvoiceFGPONew
         Me.XTPInvoice.Name = "XTPInvoice"
         Me.XTPInvoice.Size = New System.Drawing.Size(851, 370)
         Me.XTPInvoice.Text = "FGPO"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.SLETypeInvoice)
+        Me.PanelControl1.Controls.Add(Me.BLoad)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(851, 40)
+        Me.PanelControl1.TabIndex = 22
         '
         'XTPReport
         '
@@ -832,16 +847,39 @@ Partial Class FormInvoiceFGPONew
         Me.BLoadHistory.TabIndex = 23
         Me.BLoadHistory.Text = "Load"
         '
-        'PanelControl1
+        'GridColumn22
         '
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.SLETypeInvoice)
-        Me.PanelControl1.Controls.Add(Me.BLoad)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(851, 40)
-        Me.PanelControl1.TabIndex = 22
+        Me.GridColumn22.Caption = "Kurs"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "kurs"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 5
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Currency"
+        Me.GridColumn23.FieldName = "currency"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 3
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "ID Currency"
+        Me.GridColumn24.FieldName = "id_currency"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Amount Before Kurs"
+        Me.GridColumn25.DisplayFormat.FormatString = "N2"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn25.FieldName = "value_bef_kurs"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 4
         '
         'FormInvoiceFGPONew
         '
@@ -871,6 +909,9 @@ Partial Class FormInvoiceFGPONew
         CType(Me.XTCFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCFGPO.ResumeLayout(False)
         Me.XTPInvoice.ResumeLayout(False)
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         Me.XTPReport.ResumeLayout(False)
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl2.ResumeLayout(False)
@@ -880,9 +921,6 @@ Partial Class FormInvoiceFGPONew
         Me.XTPHistory.ResumeLayout(False)
         CType(Me.GCPayment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPayment, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -955,4 +993,8 @@ Partial Class FormInvoiceFGPONew
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

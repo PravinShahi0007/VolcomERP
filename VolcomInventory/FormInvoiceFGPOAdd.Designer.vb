@@ -35,22 +35,22 @@ Partial Class FormInvoiceFGPOAdd
         Me.TEReportNumber = New DevExpress.XtraEditors.TextEdit()
         Me.XTCAdd = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPOther = New DevExpress.XtraTab.XtraTabPage()
-        Me.TEVat = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEBeforeKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEAfterVAT = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEVATPercent = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVat = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEAfterKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQty = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPOther = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,14 +60,14 @@ Partial Class FormInvoiceFGPOAdd
         CType(Me.XTCAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAdd.SuspendLayout()
         Me.XTPFGPO.SuspendLayout()
-        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBeforeKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEAfterVAT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVATPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEAfterKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl7
@@ -197,20 +197,20 @@ Partial Class FormInvoiceFGPOAdd
         '
         'XTPFGPO
         '
-        Me.XTPFGPO.Controls.Add(Me.TextEdit5)
+        Me.XTPFGPO.Controls.Add(Me.TEBeforeKurs)
         Me.XTPFGPO.Controls.Add(Me.LabelControl8)
         Me.XTPFGPO.Controls.Add(Me.LabelControl21)
         Me.XTPFGPO.Controls.Add(Me.TEKurs)
         Me.XTPFGPO.Controls.Add(Me.LECurrency)
-        Me.XTPFGPO.Controls.Add(Me.TextEdit4)
+        Me.XTPFGPO.Controls.Add(Me.TEAfterVAT)
         Me.XTPFGPO.Controls.Add(Me.LabelControl7)
         Me.XTPFGPO.Controls.Add(Me.LabelControl6)
-        Me.XTPFGPO.Controls.Add(Me.TextEdit3)
-        Me.XTPFGPO.Controls.Add(Me.TextEdit2)
-        Me.XTPFGPO.Controls.Add(Me.LabelControl5)
-        Me.XTPFGPO.Controls.Add(Me.TextEdit1)
-        Me.XTPFGPO.Controls.Add(Me.LabelControl3)
+        Me.XTPFGPO.Controls.Add(Me.TEVATPercent)
         Me.XTPFGPO.Controls.Add(Me.TEVat)
+        Me.XTPFGPO.Controls.Add(Me.LabelControl5)
+        Me.XTPFGPO.Controls.Add(Me.TEAfterKurs)
+        Me.XTPFGPO.Controls.Add(Me.LabelControl3)
+        Me.XTPFGPO.Controls.Add(Me.TEQty)
         Me.XTPFGPO.Controls.Add(Me.LabelControl4)
         Me.XTPFGPO.Controls.Add(Me.LabelControl1)
         Me.XTPFGPO.Controls.Add(Me.TEReportNumber)
@@ -221,126 +221,28 @@ Partial Class FormInvoiceFGPOAdd
         Me.XTPFGPO.Size = New System.Drawing.Size(445, 245)
         Me.XTPFGPO.Text = "FGPO"
         '
-        'XTPOther
+        'TEBeforeKurs
         '
-        Me.XTPOther.Name = "XTPOther"
-        Me.XTPOther.Size = New System.Drawing.Size(445, 95)
-        Me.XTPOther.Text = "Other"
+        Me.TEBeforeKurs.EditValue = ""
+        Me.TEBeforeKurs.Location = New System.Drawing.Point(178, 84)
+        Me.TEBeforeKurs.Name = "TEBeforeKurs"
+        Me.TEBeforeKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEBeforeKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBeforeKurs.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEBeforeKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEBeforeKurs.Properties.EditValueChangedDelay = 1
+        Me.TEBeforeKurs.Properties.Mask.EditMask = "N2"
+        Me.TEBeforeKurs.Size = New System.Drawing.Size(243, 20)
+        Me.TEBeforeKurs.TabIndex = 8924
+        Me.TEBeforeKurs.TabStop = False
         '
-        'TEVat
+        'LabelControl8
         '
-        Me.TEVat.EditValue = ""
-        Me.TEVat.Location = New System.Drawing.Point(349, 49)
-        Me.TEVat.Name = "TEVat"
-        Me.TEVat.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEVat.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEVat.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEVat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEVat.Properties.EditValueChangedDelay = 1
-        Me.TEVat.Properties.Mask.EditMask = "N2"
-        Me.TEVat.Size = New System.Drawing.Size(72, 20)
-        Me.TEVat.TabIndex = 8910
-        Me.TEVat.TabStop = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(325, 52)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(18, 13)
-        Me.LabelControl4.TabIndex = 8909
-        Me.LabelControl4.Text = "Qty"
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(108, 141)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit1.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit1.Properties.DisplayFormat.FormatString = "N2"
-        Me.TextEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.Mask.EditMask = "N2"
-        Me.TextEdit1.Size = New System.Drawing.Size(313, 20)
-        Me.TextEdit1.TabIndex = 8912
-        Me.TextEdit1.TabStop = False
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(16, 144)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(49, 13)
-        Me.LabelControl3.TabIndex = 8911
-        Me.LabelControl3.Text = "After Kurs"
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(195, 171)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit2.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit2.Properties.DisplayFormat.FormatString = "N2"
-        Me.TextEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit2.Properties.EditValueChangedDelay = 1
-        Me.TextEdit2.Properties.Mask.EditMask = "N2"
-        Me.TextEdit2.Size = New System.Drawing.Size(226, 20)
-        Me.TextEdit2.TabIndex = 8914
-        Me.TextEdit2.TabStop = False
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(16, 174)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(16, 13)
-        Me.LabelControl5.TabIndex = 8913
-        Me.LabelControl5.Text = "Vat"
-        '
-        'TextEdit3
-        '
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Location = New System.Drawing.Point(108, 171)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit3.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit3.Properties.DisplayFormat.FormatString = "N2"
-        Me.TextEdit3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit3.Properties.EditValueChangedDelay = 1
-        Me.TextEdit3.Properties.Mask.EditMask = "N2"
-        Me.TextEdit3.Size = New System.Drawing.Size(64, 20)
-        Me.TextEdit3.TabIndex = 8915
-        Me.TextEdit3.TabStop = False
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(178, 174)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl6.TabIndex = 8916
-        Me.LabelControl6.Text = "%"
-        '
-        'TextEdit4
-        '
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Location = New System.Drawing.Point(108, 200)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit4.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit4.Properties.DisplayFormat.FormatString = "N2"
-        Me.TextEdit4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit4.Properties.EditValueChangedDelay = 1
-        Me.TextEdit4.Properties.Mask.EditMask = "N2"
-        Me.TextEdit4.Size = New System.Drawing.Size(313, 20)
-        Me.TextEdit4.TabIndex = 8918
-        Me.TextEdit4.TabStop = False
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(16, 203)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(86, 13)
-        Me.LabelControl7.TabIndex = 8917
-        Me.LabelControl7.Text = "Amount after VAT"
+        Me.LabelControl8.Location = New System.Drawing.Point(16, 87)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl8.TabIndex = 8923
+        Me.LabelControl8.Text = "Before Kurs"
         '
         'LabelControl21
         '
@@ -382,28 +284,128 @@ Partial Class FormInvoiceFGPOAdd
         Me.LECurrency.Size = New System.Drawing.Size(64, 20)
         Me.LECurrency.TabIndex = 8920
         '
-        'LabelControl8
+        'TEAfterVAT
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(16, 87)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(56, 13)
-        Me.LabelControl8.TabIndex = 8923
-        Me.LabelControl8.Text = "Before Kurs"
+        Me.TEAfterVAT.EditValue = ""
+        Me.TEAfterVAT.Location = New System.Drawing.Point(108, 200)
+        Me.TEAfterVAT.Name = "TEAfterVAT"
+        Me.TEAfterVAT.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEAfterVAT.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEAfterVAT.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEAfterVAT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEAfterVAT.Properties.EditValueChangedDelay = 1
+        Me.TEAfterVAT.Properties.Mask.EditMask = "N2"
+        Me.TEAfterVAT.Properties.ReadOnly = True
+        Me.TEAfterVAT.Size = New System.Drawing.Size(313, 20)
+        Me.TEAfterVAT.TabIndex = 8918
+        Me.TEAfterVAT.TabStop = False
         '
-        'TextEdit5
+        'LabelControl7
         '
-        Me.TextEdit5.EditValue = ""
-        Me.TextEdit5.Location = New System.Drawing.Point(178, 84)
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit5.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit5.Properties.DisplayFormat.FormatString = "N2"
-        Me.TextEdit5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit5.Properties.EditValueChangedDelay = 1
-        Me.TextEdit5.Properties.Mask.EditMask = "N2"
-        Me.TextEdit5.Size = New System.Drawing.Size(243, 20)
-        Me.TextEdit5.TabIndex = 8924
-        Me.TextEdit5.TabStop = False
+        Me.LabelControl7.Location = New System.Drawing.Point(16, 203)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(86, 13)
+        Me.LabelControl7.TabIndex = 8917
+        Me.LabelControl7.Text = "Amount after VAT"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(178, 174)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl6.TabIndex = 8916
+        Me.LabelControl6.Text = "%"
+        '
+        'TEVATPercent
+        '
+        Me.TEVATPercent.EditValue = ""
+        Me.TEVATPercent.Location = New System.Drawing.Point(108, 171)
+        Me.TEVATPercent.Name = "TEVATPercent"
+        Me.TEVATPercent.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEVATPercent.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVATPercent.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEVATPercent.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEVATPercent.Properties.EditValueChangedDelay = 1
+        Me.TEVATPercent.Properties.Mask.EditMask = "N2"
+        Me.TEVATPercent.Size = New System.Drawing.Size(64, 20)
+        Me.TEVATPercent.TabIndex = 8915
+        Me.TEVATPercent.TabStop = False
+        '
+        'TEVat
+        '
+        Me.TEVat.EditValue = ""
+        Me.TEVat.Location = New System.Drawing.Point(195, 171)
+        Me.TEVat.Name = "TEVat"
+        Me.TEVat.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEVat.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVat.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEVat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEVat.Properties.EditValueChangedDelay = 1
+        Me.TEVat.Properties.Mask.EditMask = "N2"
+        Me.TEVat.Size = New System.Drawing.Size(226, 20)
+        Me.TEVat.TabIndex = 8914
+        Me.TEVat.TabStop = False
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(16, 174)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(16, 13)
+        Me.LabelControl5.TabIndex = 8913
+        Me.LabelControl5.Text = "Vat"
+        '
+        'TEAfterKurs
+        '
+        Me.TEAfterKurs.EditValue = ""
+        Me.TEAfterKurs.Location = New System.Drawing.Point(108, 141)
+        Me.TEAfterKurs.Name = "TEAfterKurs"
+        Me.TEAfterKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEAfterKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEAfterKurs.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEAfterKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEAfterKurs.Properties.EditValueChangedDelay = 1
+        Me.TEAfterKurs.Properties.Mask.EditMask = "N2"
+        Me.TEAfterKurs.Properties.ReadOnly = True
+        Me.TEAfterKurs.Size = New System.Drawing.Size(313, 20)
+        Me.TEAfterKurs.TabIndex = 8912
+        Me.TEAfterKurs.TabStop = False
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(16, 144)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl3.TabIndex = 8911
+        Me.LabelControl3.Text = "After Kurs"
+        '
+        'TEQty
+        '
+        Me.TEQty.EditValue = ""
+        Me.TEQty.Location = New System.Drawing.Point(349, 49)
+        Me.TEQty.Name = "TEQty"
+        Me.TEQty.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEQty.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQty.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEQty.Properties.EditValueChangedDelay = 1
+        Me.TEQty.Properties.Mask.EditMask = "N2"
+        Me.TEQty.Size = New System.Drawing.Size(72, 20)
+        Me.TEQty.TabIndex = 8910
+        Me.TEQty.TabStop = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(325, 52)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl4.TabIndex = 8909
+        Me.LabelControl4.Text = "Qty"
+        '
+        'XTPOther
+        '
+        Me.XTPOther.Name = "XTPOther"
+        Me.XTPOther.Size = New System.Drawing.Size(445, 245)
+        Me.XTPOther.Text = "Other"
         '
         'FormInvoiceFGPOAdd
         '
@@ -427,14 +429,14 @@ Partial Class FormInvoiceFGPOAdd
         Me.XTCAdd.ResumeLayout(False)
         Me.XTPFGPO.ResumeLayout(False)
         Me.XTPFGPO.PerformLayout()
-        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBeforeKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEAfterVAT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVATPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEAfterKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -456,18 +458,18 @@ Partial Class FormInvoiceFGPOAdd
     Friend WithEvents XTPFGPO As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPOther As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEVATPercent As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEVat As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEAfterKurs As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEQty As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEAfterVAT As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LECurrency As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEBeforeKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class
