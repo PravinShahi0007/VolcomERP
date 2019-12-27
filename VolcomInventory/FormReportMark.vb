@@ -5561,21 +5561,8 @@ WHERE pd.`id_pn`='" & id_report & "'"
                             id_comp_group += dtg.Rows(i)("id_comp_group").ToString
                         Next
 
-                        Dim query_cek_email_release As String = "SELECT e.id_comp_group, IFNULL(ep.jum_not_paid,0) AS `jum_not_paid`
-                            FROM tb_ar_eval e
-                            LEFT JOIN (
-	                            SELECT e.id_comp_group,
-	                            COUNT(e.id_sales_pos) AS `jum_not_paid`
-	                            FROM tb_ar_eval e
-	                            WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
-	                            AND e.id_comp_group IN (" + id_comp_group + ") AND e.is_paid=2
-	                            GROUP BY e.id_comp_group
-                            ) ep ON ep.id_comp_group = e.id_comp_group
-                            WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
-                            AND e.id_comp_group IN (" + id_comp_group + ")
-                            GROUP BY e.id_comp_group
-                            HAVING jum_not_paid=0 "
-                        Dim data_cek_email_release As DataTable = execute_query(query_cek_email_release, -1, True, "", "", "", "")
+                        Dim ev As New ClassAREvaluation()
+                        Dim data_cek_email_release As DataTable = ev.dtCekEmailRelease(id_comp_group)
                         If data_cek_email_release.Rows.Count > 0 Then
                             'jika ada yg dibayar semua maka kirim email
                             Dim mm As New ClassMailManage()
@@ -5594,7 +5581,7 @@ WHERE pd.`id_pn`='" & id_report & "'"
                             mm.mail_title = mail_title
                             mm.par1 = id_comp_group
                             mm.rmt = "230"
-                            mm.createEmail()
+                            mm.createEmail(id_user, id_report, report_mark_type, report_number)
                             id_mail = mm.id_mail_manage
 
                             'email
@@ -5609,10 +5596,10 @@ WHERE pd.`id_pn`='" & id_report & "'"
                                 em.dt = mm.getDetailData
                                 em.send_email()
 
-                                Dim query_log As String = mm.queryInsertLog("2", "Sent Successfully")
+                                Dim query_log As String = mm.queryInsertLog(id_user, "2", "Sent Successfully")
                                 execute_non_query(query_log, True, "", "", "", "")
                             Catch ex As Exception
-                                Dim query_log As String = mm.queryInsertLog("3", addSlashes(ex.ToString))
+                                Dim query_log As String = mm.queryInsertLog(id_user, "3", addSlashes(ex.ToString))
                                 execute_non_query(query_log, True, "", "", "", "")
                             End Try
                         End If
@@ -6874,6 +6861,65 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 SET main.is_active=2, main.id_propose_delay_payment_det = src.id_propose_delay_payment_det, main.release_date=NOW()
                 WHERE main.is_active=1; "
                 execute_non_query(query_upd_inv, True, "", "", "", "")
+
+                '=== checking release hanya utk keperluan email
+                'check apakah invoice yang di memo ada di evaluasi ato tidak
+                Dim query_in_evaluation As String = "SELECT md.id_propose_delay_payment_det,m.id_comp_group  
+                FROM tb_propose_delay_payment_det md
+                INNER JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment = md.id_propose_delay_payment
+                LEFT JOIN (
+	                SELECT e.id_ar_eval, e.id_sales_pos 
+	                FROM tb_ar_eval e
+	                INNER JOIN tb_propose_delay_payment_det md ON md.id_propose_delay_payment_det = e.id_propose_delay_payment_det
+	                WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
+                )  e ON e.id_sales_pos = md.id_sales_pos
+                WHERE md.id_propose_delay_payment=" + id_report + " AND !ISNULL(e.id_ar_eval) "
+                Dim data_in_evaluation As DataTable = execute_query(query_in_evaluation, -1, True, "", "", "", "")
+                If data_in_evaluation.Rows.Count > 0 Then
+                    Dim id_comp_group As String = data_in_evaluation.Rows(0)("id_comp_group").ToString
+                    Dim ev As New ClassAREvaluation()
+                    Dim data_cek_email_release As DataTable = ev.dtCekEmailRelease(id_comp_group)
+                    If data_cek_email_release.Rows.Count > 0 Then
+                        'jika ada yg dibayar semua maka kirim email
+                        Dim mm As New ClassMailManage()
+                        Dim id_mail As String = "-1"
+                        Dim mail_subject As String = get_setup_field("mail_subject_release_del")
+                        Dim mail_title As String = get_setup_field("mail_title_release_del")
+                        Dim mail_content As String = get_setup_field("mail_content_release_del")
+                        Dim query_mail_content_to As String = "SELECT CONCAT(e.employee_name, ' (',e.employee_position,')') AS `to_content_mail`
+                                FROM tb_opt o
+                                INNER JOIN tb_m_employee e ON e.id_employee = o.id_emp_wh_manager "
+                        Dim mail_content_to As String = execute_query(query_mail_content_to, 0, True, "", "", "", "")
+
+                        'send paramenter class
+                        mm.rmt = report_mark_type
+                        mm.mail_subject = mail_subject
+                        mm.mail_title = mail_title
+                        mm.par1 = id_comp_group
+                        mm.rmt = "230"
+                        mm.createEmail(id_user, id_report, report_mark_type, report_number)
+                        id_mail = mm.id_mail_manage
+
+                        'email
+                        Try
+                            Dim em As New ClassSendEmail()
+                            em.report_mark_type = "230"
+                            em.id_report = id_mail
+                            em.design_code = mail_title
+                            em.design = mail_subject
+                            em.comment_by = mail_content_to
+                            em.comment = mail_content
+                            em.dt = mm.getDetailData
+                            em.send_email()
+
+                            Dim query_log As String = mm.queryInsertLog(id_user, "2", "Sent Successfully")
+                            execute_non_query(query_log, True, "", "", "", "")
+                        Catch ex As Exception
+                            Dim query_log As String = mm.queryInsertLog(id_user, "3", addSlashes(ex.ToString))
+                            execute_non_query(query_log, True, "", "", "", "")
+                        End Try
+                    End If
+                End If
             End If
 
             'update
