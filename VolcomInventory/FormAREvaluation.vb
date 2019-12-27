@@ -189,12 +189,14 @@
         End If
 
         'store group
-        Dim query_group As String = "SELECT cg.id_comp_group, cg.description AS `group`
+        Dim query_group As String = "SELECT cg.id_comp_group, cg.description AS `group`, IFNULL(cg.id_comp,0) AS `id_ho`, IFNULL(cgc.email,'') AS `email_ho`
         FROM tb_sales_pos sp
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN tb_mail_manage_mapping map ON map.id_comp_group = cg.id_comp_group AND map.report_mark_type=227
+        LEFT JOIN tb_m_comp_contact cgc ON cgc.id_comp_contact = map.id_comp_contact
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
         WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
         AND (DATEDIFF(NOW(),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date))>0)
@@ -256,6 +258,26 @@
     End Sub
 
     Private Sub BtnCreateEvaluation_Click(sender As Object, e As EventArgs) Handles BtnCreateEvaluation.Click
+        'cek email group
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVGroupStoreList)
+        GVGroupStoreList.ActiveFilterString = "[email_ho]=''"
+        Dim null_comp As String = ""
+        For j As Integer = 0 To GVGroupStoreList.RowCount - 1
+            If GVGroupStoreList.GetRowCellValue(j, "email_ho").ToString = "" Then
+                null_comp += "- " + GVGroupStoreList.GetRowCellValue(j, "group").ToString + System.Environment.NewLine
+            End If
+        Next
+        GVGroupStoreList.ActiveFilterString = ""
+        If null_comp <> "" Then
+            Cursor = Cursors.Default
+            stopCustom("Please complete email address for this group store : " + System.Environment.NewLine + null_comp)
+            Exit Sub
+        End If
+        Cursor = Cursors.Default
+
+
+
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to hold delivery ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Dim err As String = ""
@@ -312,6 +334,7 @@
                     FormAREvaluationLog.eval_date = date_now
                     FormAREvaluationLog.ShowDialog()
                 End If
+                getLastEvaluation()
             Else
                 stopCustom("Failed excecution : " + System.Environment.NewLine + err)
             End If

@@ -55,8 +55,15 @@
         execute_non_query("CALL gen_number(" + id_mail_manage + ", " + rmt + ");", True, "", "", "", "")
         'insert member & detil
         Dim query_mail_detail As String = "/*member*/
-        INSERT INTO tb_mail_manage_member(id_mail_manage, id_mail_member_type, id_user, id_comp_contact, mail_address) 
-        SELECT " + id_mail_manage + " AS `id_mail_manage`, m.id_mail_member_type, m.id_user, NULL AS `id_comp_contact`, e.email_external AS `mail_address`
+        INSERT INTO tb_mail_manage_member(id_mail_manage, id_mail_member_type, id_user, id_comp_contact, mail_address) "
+        If rmt = "227" Then
+            query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, m.id_mail_member_type, NULL AS `id_user`, m.id_comp_contact, cc.email AS `mail_address`
+            FROM tb_mail_manage_mapping m
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+            WHERE m.report_mark_type=" + rmt + " AND m.id_comp_group=" + par2 + "
+            UNION "
+        End If
+        query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, m.id_mail_member_type, m.id_user, NULL AS `id_comp_contact`, e.email_external AS `mail_address`
         FROM tb_mail_manage_mapping_intern m
         INNER JOIN tb_m_user u ON u.id_user = m.id_user
         INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
@@ -76,7 +83,7 @@
                 LEFT JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment = sp.id_propose_delay_payment
                 WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
                 AND (DATEDIFF(NOW(),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date))>0)
-                AND cg.id_comp_group=" + par1 + "
+                AND cg.id_comp_group=" + par2 + "
                 GROUP BY sp.id_sales_pos	
                 ORDER BY c.id_comp_group ASC, sp.id_sales_pos ASC; "
             ElseIf typ = "2" Then

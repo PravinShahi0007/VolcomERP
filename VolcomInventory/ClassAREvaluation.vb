@@ -91,6 +91,17 @@
             Dim query_cek_eval As String = "SELECT COUNT(e.id_ar_eval) AS jum_eval FROM tb_ar_eval e WHERE e.eval_date='" + date_eval + "' AND e.id_comp_group='" + id_group + "' AND e.is_active=1 "
             Dim data_cek_eval As DataTable = execute_query(query_cek_eval, -1, True, "", "", "", "")
             If data_cek_eval.Rows(0)("jum_eval") > 0 Then
+                'create mail var
+                Dim qopt As String = "SELECT mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
+                Dim mail_head As String = dopt.Rows(0)("mail_head_peringatan").ToString
+                Dim mail_subject As String = dopt.Rows(0)("mail_subject_peringatan").ToString
+                Dim mail_title As String = dopt.Rows(0)("mail_title_peringatan").ToString
+                Dim mail_content_head As String = dopt.Rows(0)("mail_content_head_peringatan").ToString
+                Dim mail_content As String = dopt.Rows(0)("mail_content_peringatan").ToString
+                Dim mail_content_end As String = dopt.Rows(0)("mail_content_end_peringatan").ToString
+
                 'send paramenter class
                 mm.rmt = "227"
                 mm.typ = "2"
@@ -135,10 +146,14 @@
                 Dim sm As New ClassSendEmail()
                 sm.id_report = id_mail
                 sm.report_mark_type = "227"
+                sm.head = mail_head
+                sm.subj = mail_subject
+                sm.titl = mail_title
+                sm.par1 = mail_content_head + " " + dcont.Rows(0)("group_company").ToString
+                sm.par2 = mail_content
+                sm.comment = mail_content_end
+                sm.design_code = Double.Parse(tot_amo.ToString).ToString("N2")
                 sm.dt = dcont
-                Dim ttl As String = "Email Peringatan"
-                sm.par1 = ttl.ToUpper
-                sm.par2 = Double.Parse(tot_amo).ToString("N2")
                 sm.send_email()
 
                 'log

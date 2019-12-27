@@ -89,6 +89,7 @@ Partial Class FormAREvaluation
         Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.GridColumnid_ho = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -562,7 +563,7 @@ Partial Class FormAREvaluation
         '
         'GVGroupStoreList
         '
-        Me.GVGroupStoreList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group_eval, Me.GridColumngroup_eval})
+        Me.GVGroupStoreList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group_eval, Me.GridColumngroup_eval, Me.GridColumnid_ho})
         Me.GVGroupStoreList.GridControl = Me.GCGroupStoreList
         Me.GVGroupStoreList.Name = "GVGroupStoreList"
         Me.GVGroupStoreList.OptionsBehavior.AutoExpandAllGroups = True
@@ -798,6 +799,13 @@ Partial Class FormAREvaluation
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'GridColumnid_ho
+        '
+        Me.GridColumnid_ho.Caption = "id_ho"
+        Me.GridColumnid_ho.FieldName = "id_ho"
+        Me.GridColumnid_ho.Name = "GridColumnid_ho"
+        Me.GridColumnid_ho.OptionsColumn.AllowEdit = False
+        '
         'FormAREvaluation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -910,4 +918,5 @@ Partial Class FormAREvaluation
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
     Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_ho As DevExpress.XtraGrid.Columns.GridColumn
 End Class
