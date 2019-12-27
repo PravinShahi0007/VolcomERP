@@ -290,6 +290,7 @@ HAVING qty_rec_remaining > 0"
             TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
             FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
             FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
+            FormInvoiceFGPODP.SLEPayType.EditValue = SLETypeInvoice.EditValue
             Close()
         Else
             warningCustom("No receiving")

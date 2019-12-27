@@ -2004,6 +2004,12 @@
     <Compile Include="FormInvoiceFGPO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvoiceFGPOAdd.Designer.vb">
+      <DependentUpon>FormInvoiceFGPOAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPOAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormInvoiceFGPODP.Designer.vb">
       <DependentUpon>FormInvoiceFGPODP.vb</DependentUpon>
     </Compile>
@@ -8504,6 +8510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPO.resx">
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceFGPOAdd.resx">
+      <DependentUpon>FormInvoiceFGPOAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPODP.resx">
       <DependentUpon>FormInvoiceFGPODP.vb</DependentUpon>
