@@ -17,6 +17,10 @@ Public Class ClassSendEmail
     Public par1 As String = ""
     Public par2 As String = ""
     Public dt As DataTable
+    Public subj As String = ""
+    Public titl As String = ""
+    Public head As String = ""
+
 
     Sub send_email()
         'get param
@@ -1887,10 +1891,9 @@ Public Class ClassSendEmail
             client.Send(mail)
         ElseIf report_mark_type = "226" Or report_mark_type = "227" Then
             'EMAIL pemberitahuan/peringatan
-            Dim comp_name As String = execute_query("SELECT c.comp_name FROM tb_m_comp c WHERE c.id_comp=1", 0, True, "", "", "", "")
             Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
 
-            Dim from_mail As MailAddress = New MailAddress(mail_address_from, "" + par1 + " - " + comp_name + "")
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, head)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
@@ -1914,42 +1917,37 @@ Public Class ClassSendEmail
             Next
 
             '-- start attachment 
+            '-- sementara nonaktif
             'Create a New report. 
-            Dim id_sales_pos As String = ""
-            For i As Integer = 0 To (dt.Rows.Count - 1)
-                If i > 0 Then
-                    id_sales_pos += ","
-                End If
-                id_sales_pos += dt.Rows(i)("id_report").ToString
-            Next
-            ReportSummaryInvoice.id = id_sales_pos
-            Dim rpt As New ReportSummaryInvoice()
+            'Dim id_sales_pos As String = ""
+            'For i As Integer = 0 To (dt.Rows.Count - 1)
+            '    If i > 0 Then
+            '        id_sales_pos += ","
+            '    End If
+            '    id_sales_pos += dt.Rows(i)("id_report").ToString
+            'Next
+            'ReportSummaryInvoice.id = id_sales_pos
+            'Dim rpt As New ReportSummaryInvoice()
 
             '' Create a new memory stream and export the report into it as PDF.
-            Dim Mem As New MemoryStream()
-            'Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
-            rpt.ExportToXlsx(Mem)
+            'Dim Mem As New MemoryStream()
+            ''Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+            'rpt.ExportToXlsx(Mem)
             '' Create a new attachment and put the PDF report into it.
-            Mem.Seek(0, System.IO.SeekOrigin.Begin)
-            Dim Att = New Attachment(Mem, "list_inv" & report_mark_type & "_" & id_report & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-            mail.Attachments.Add(Att)
+            'Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            'Dim Att = New Attachment(Mem, "list_inv" & report_mark_type & "_" & id_report & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            'mail.Attachments.Add(Att)
             '-- end attachment
 
-            Dim tit As String = ""
-            If report_mark_type = "226" Then
-                tit = "H-3 Invoice Jatuh Tempo"
-            ElseIf report_mark_type = "227" Then
-                tit = "Invoice Jatuh Tempo"
-            End If
-            Dim subject_mail As String = execute_query("SELECT m.mail_subject FROM tb_mail_manage m WHERE m.id_mail_manage=" + id_report + "", 0, True, "", "", "", "")
-            Dim body_temp As String = email_body_invoice_jatuh_tempo(dt, tit.ToUpper, par2)
-            mail.Subject = subject_mail
+            Dim body_temp As String = email_body_invoice_jatuh_tempo(dt, titl.ToUpper, par1, par2, comment, design_code)
+            mail.Subject = subj
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
         ElseIf report_mark_type = "228" Then
             'send email
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", design_code)
+            Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, design_code)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
             Dim query_send_to As String = "SELECT  m.id_mail_member_type,m.mail_address, IF(ISNULL(m.id_comp_contact), e.employee_name, cc.contact_person) AS `display_name`
@@ -3544,7 +3542,7 @@ GROUP BY pdp.`id_prod_demand_design`"
         Return body_temp
     End Function
 
-    Function email_body_invoice_jatuh_tempo(ByVal dtp As DataTable, ByVal titlep As String, ByVal tot_amountp As String)
+    Function email_body_invoice_jatuh_tempo(ByVal dtp As DataTable, ByVal titlep As String, ByVal content_head As String, ByVal content As String, ByVal content_end As String, ByVal tot_amountp As String)
         Dim body_temp As String = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
             <tbody><tr>
               <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
@@ -3590,39 +3588,9 @@ GROUP BY pdp.`id_prod_demand_design`"
 
                  <tr>
                  	<td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
-	                  	<table cellpadding='0' width='100%' style='padding:5.0pt 5.0pt 0.0pt 0.0pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;' border='0'>
-		                  	<tr>
-		                  		<td width='20%'>Store Head Office</td>
-		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>" + dtp.Rows(0)("group_company").ToString + "</td>
-                        </tr>
-                        
-                        <tr>
-                            <td width='20%'>Group Store</td>
-                            <td width='2%'>:</td>
-                            <td width='77%'>" + dtp.Rows(0)("group_store").ToString + "</td>
-                        </tr>
-
-
-		                <tr>
-		                  	<td width='20%'>Amount</td>
-		                  	<td width='2%'>:</td>
-		                  	<td width='77%'>Rp " + tot_amountp + "</td>
-		                </tr>
-
-
-		                  	<tr>
-		                  		<td width='20%'></td>
-		                  		<td width='2%'></td>
-		                  		<td width='77%'></td>
-		                  	</tr>
-
-		                  	<tr>
-		                  		<td width='20%'><b>Detail Invoice</b></td>
-		                  		<td width='2%'><b></b></td>
-		                  		<td width='77%'></td>
-		                  	</tr>
-	                  	</table>
+                 		<p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content_head + "</p>
+                 		<p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content + "</p>
+	                  	
 	                 </td>
                  </tr>
 
@@ -3633,18 +3601,18 @@ GROUP BY pdp.`id_prod_demand_design`"
                     <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
                     <tr>
                       <th>No</th>
-                      <th>Invoive Number</th>
                       <th>Store</th>
-                      <th>Period</th>
-                      <th>Due Date</th>
-                      <th>Amount</th>
+                      <th>No Invoice</th>
+                      <th>Periode Penjualan</th>
+                      <th>Jatuh Tempo</th>
+                      <th>Nominal</th>
                     </tr> "
 
         For i As Integer = 0 To dtp.Rows.Count - 1
             body_temp += "<tr>
                 <td>" + (i + 1).ToString + "</td>
-                <td>" + dtp.Rows(i)("report_number").ToString + "</td>
                 <td>" + dtp.Rows(i)("store").ToString + "</td>
+                <td>" + dtp.Rows(i)("report_number").ToString + "</td>
                 <td>" + dtp.Rows(i)("period").ToString + "</td>
                 <td>" + dtp.Rows(i)("sales_pos_due_date").ToString + "</td>
                 <td align='center'>" + Decimal.Parse(dtp.Rows(i)("amount").ToString).ToString("N2") + "</td>
@@ -3654,18 +3622,24 @@ GROUP BY pdp.`id_prod_demand_design`"
         body_temp += "<tr>
             <th colspan='5'>TOTAL</th>
             <th>" + tot_amountp + "</th>
-        </tr>
+        </tr> "
 
-        </table>
+        body_temp += "</table>
                   </td>
 
+                 </tr>
+
+                 <tr>
+                 	<td style='padding:5.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                 		<p style='line-height:20.25pt;font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content_end + "</p>
+	                 </td>
                  </tr>
 
          
           <tr>
                   <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
                   <div>
-                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><b>Volcom ERP</b><u></u><u></u></span></p>
 
                   </div>
                   </td>
@@ -3681,7 +3655,7 @@ GROUP BY pdp.`id_prod_demand_design`"
                 <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
                  <tbody><tr>
                   <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
-                    <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+                    <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'></b><u></u><u></u></span>
                   <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
                   </td>
                  </tr>
@@ -3694,7 +3668,7 @@ GROUP BY pdp.`id_prod_demand_design`"
               </td>
              </tr>
             </tbody>
-        </table> "
+        </table>"
         Return body_temp
     End Function
 

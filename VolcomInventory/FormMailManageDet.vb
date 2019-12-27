@@ -3,9 +3,12 @@
     Public action As String = "-1"
     Public id As String = "-1"
     Dim id_mail_status As String = "-1"
+    Dim mail_head As String = ""
     Dim mail_subject As String = ""
     Dim mail_title As String = ""
+    Dim mail_content_head As String = ""
     Dim mail_content As String = ""
+    Dim mail_content_end As String = ""
     Dim mail_content_to As String = ""
 
     Private Sub FormMailManageDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -254,19 +257,19 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                Dim title As String = ""
-                Dim subj As String = ""
-                If rmt = "226" Then
-                    title = "H-3 Invoice Jatuh Tempo"
-                    subj = "Email Pemberitahuan : " + title
-                Else
-                    title = "Invoice Jatuh Tempo"
-                    subj = "Email Peringatan : " + title
-                End If
-                MESubject.Text = addSlashes(subj)
-                Dim total_amount As String = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+                Dim qopt As String = "SELECT mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
+                mail_head = dopt.Rows(0)("mail_head_peringatan").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_peringatan").ToString
+                mail_title = dopt.Rows(0)("mail_title_peringatan").ToString
+                mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
+                mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
+                mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
+
+                MESubject.Text = addSlashes(mail_subject)
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, title.ToUpper, total_amount)
+                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             End If
         ElseIf action = "upd" Then
@@ -375,19 +378,18 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                Dim title As String = ""
-                Dim subj As String = ""
-                If rmt = "226" Then
-                    title = "H-3 Invoice Jatuh Tempo"
-                    subj = "Email Pemberitahuan : " + title
-                Else
-                    title = "Invoice Jatuh Tempo"
-                    subj = "Email Peringatan : " + title
-                End If
-                MESubject.Text = addSlashes(subj)
-                Dim total_amount As String = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+                Dim qopt As String = "SELECT mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
+                mail_head = dopt.Rows(0)("mail_head_peringatan").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_peringatan").ToString
+                mail_title = dopt.Rows(0)("mail_title_peringatan").ToString
+                mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
+                mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
+                mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
+                MESubject.Text = addSlashes(mail_subject)
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, title.ToUpper, total_amount)
+                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             ElseIf rmt = "228" Or rmt = "230" Then
                 '-- load member
@@ -644,6 +646,16 @@
         Cursor = Cursors.Default
     End Sub
 
+    Function getTotalAmo(ByVal dtx As DataTable) As Double
+        Dim tot_amo As Double = 0
+        If rmt = "226" Or rmt = "227" Then
+            For i As Integer = 0 To dtx.Rows.Count - 1
+                tot_amo += dtx.Rows(i)("amount")
+            Next
+        End If
+        Return tot_amo
+    End Function
+
     Sub sendEmail()
         'send mail
         Dim sm As New ClassSendEmail()
@@ -657,15 +669,15 @@
             sm.dt = dtLoadDetail(id_sales_pos)
         ElseIf rmt = "226" Or rmt = "227" Then
             Dim id_sales_pos As String = getSavedInvoice()
-            sm.dt = dtLoadDetail(id_sales_pos)
-            Dim ttl As String = ""
-            If rmt = "226" Then
-                ttl = "Email Pemberitahuan"
-            Else
-                ttl = "Email Peringatan"
-            End If
-            sm.par1 = ttl.ToUpper
-            sm.par2 = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+            Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
+            sm.dt = dtx
+            sm.head = mail_head
+            sm.subj = mail_subject
+            sm.titl = mail_title
+            sm.par1 = mail_content_head + " " + dtx.Rows(0)("group_company").ToString
+            sm.par2 = mail_content
+            sm.comment = mail_content_end
+            sm.design_code = Double.Parse(getTotalAmo(dtx).ToString).ToString("N2")
         ElseIf rmt = "228" Or rmt = "230" Then
             Dim mm As New ClassMailManage
             mm.id_mail_manage = id
