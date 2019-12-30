@@ -309,7 +309,7 @@
             makeSafeGV(GVGroupStoreList)
             For g As Integer = 0 To GVGroupStoreList.RowCount - 1
                 Dim id_group As String = GVGroupStoreList.GetRowCellValue(g, "id_comp_group").ToString
-                Dim group As String = GVGroupStoreList.GetRowCellValue(g, "group").ToString.ToUpper
+                Dim group As String = addSlashes(GVGroupStoreList.GetRowCellValue(g, "group").ToString.ToUpper)
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email peringatan for " + group)
                 Try
                     ev.sendEmailPeringatan(date_now, id_group, group)
