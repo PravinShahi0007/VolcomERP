@@ -212,7 +212,7 @@
 
                 BBIBPJSKesehatan.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
                 BBIBPJSTK.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
-                BBIPajak.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+                'BBIPajak.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
 
                 BBonusAdjustment.Text = "Adjustment"
                 BandedGridColumnTotalAdjustment.Caption = "Adjustment"
