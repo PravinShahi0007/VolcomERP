@@ -1253,7 +1253,7 @@ Public Class FormSalesDelOrderDet
         'cek boleh print ato tidak
         Dim del As New ClassSalesDelOrder()
         If is_block_del_store = "1" And del.checkUnpaidInvoice(id_comp_group) Then
-            stopCustom("Slips cannot be printed, because invoice has not been paid by group store")
+            stopCustom("Hold delivery")
             Cursor = Cursors.Default
             Exit Sub
         End If
