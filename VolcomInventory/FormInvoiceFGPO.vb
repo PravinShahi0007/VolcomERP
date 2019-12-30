@@ -90,10 +90,20 @@ WHERE pnt.is_payment=2 " & query_where
                 GVDP.BestFitColumns()
             ElseIf XTCDP.SelectedTabPageIndex = 1 Then
                 'list FGPO for DP
-                Dim query As String = "SELECT 'no' AS is_check,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`,SUM(wod.`prod_order_wo_det_qty`) AS qty, wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS po_amount,(py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS dp_amount 
-,wod.`prod_order_wo_det_price`* SUM(wod.`prod_order_wo_det_qty`) AS po_amount,SUM(wod.`prod_order_wo_det_qty`) as qty,wod.`prod_order_wo_det_price`*(wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS po_amount_vat,(py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS dp_amount_vat
+                Dim query As String = "SELECT 'no' AS is_check,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`
+,SUM(wod.`prod_order_wo_det_qty`) AS qty
+,CAST(wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS po_amount_bef_kurs
+,CAST(wod.`prod_order_wo_det_price` *(wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS po_amount_vat_bef_kurs
+,CAST(wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS po_amount
+,CAST(wod.`prod_order_wo_det_price` * (wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS po_amount_vat
+,wo.id_currency,cur.currency,wo.prod_order_wo_kurs
+,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS dp_amount_bef_kurs
+,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS dp_amount_vat_bef_kurs
+,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount 
+,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount_vat
 FROM tb_prod_order_wo_det wod
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
@@ -101,7 +111,15 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=wo.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_lookup_payment py ON py.`id_payment`=wo.`id_payment` AND py.`dp_amount` > 0
-WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & " GROUP BY wo.`id_prod_order_wo`"
+LEFT JOIN 
+(
+	SELECT id_prod_order FROM `tb_pn_fgpo_det` pnd
+	INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+	WHERE pn.id_report_status !=5 AND pn.is_general!=1 AND pn.type=1
+	GROUP BY id_prod_order
+)dp_paid ON dp_paid.id_prod_order=po.id_prod_order
+WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' AND ISNULL(dp_paid.id_prod_order) " & query_where & "
+GROUP BY wo.`id_prod_order_wo`"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCDPFGPO.DataSource = data
                 GVDPFGPO.BestFitColumns()
@@ -199,19 +217,31 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
     End Sub
 
     Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
-        FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
-        FormInvoiceFGPODP.ShowDialog()
+        If GVDP.RowCount > 0 Then
+            FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.type = "1"
+            FormInvoiceFGPODP.ShowDialog()
+        End If
     End Sub
 
     Private Sub GVPayment_DoubleClick(sender As Object, e As EventArgs) Handles GVPayment.DoubleClick
-        FormInvoiceFGPODP.id_invoice = GVPayment.GetFocusedRowCellValue("id_pn_fgpo").ToString
-        FormInvoiceFGPODP.ShowDialog()
+        If GVPayment.RowCount > 0 Then
+            FormInvoiceFGPODP.id_invoice = GVPayment.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.type = "2"
+            FormInvoiceFGPODP.ShowDialog()
+        End If
     End Sub
 
     Private Sub GVBPL_DoubleClick(sender As Object, e As EventArgs) Handles GVBPL.DoubleClick
         If GVBPL.RowCount > 0 Then
-            FormInvoiceFGPODP.id_invoice = GVPayment.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.id_invoice = GVBPL.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.is_general = "1"
             FormInvoiceFGPODP.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        FormInvoiceFGPODP.is_general = "1"
+        FormInvoiceFGPODP.ShowDialog()
     End Sub
 End Class
