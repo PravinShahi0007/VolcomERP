@@ -63,19 +63,19 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelPrintedBy = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelPrintedByTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelPrintedDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelPrintedDateTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LabelCompleted = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +111,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XTRow.StylePriority.UseFont = False
         Me.XTRow.StylePriority.UseTextAlignment = False
         Me.XTRow.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XTRow.Weight = 0.92307690140763676R
+        Me.XTRow.Weight = 0.923076901407637R
         '
         'XrTableCell5
         '
@@ -129,7 +129,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "NO"
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell5.Weight = 0.88240323622791572R
+        Me.XrTableCell5.Weight = 0.882403236227916R
         '
         'XrTableCell8
         '
@@ -147,7 +147,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell8.StylePriority.UseTextAlignment = False
         Me.XrTableCell8.Text = "BARCODE"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell8.Weight = 2.6472098879496975R
+        Me.XrTableCell8.Weight = 2.6472098879497R
         '
         'XrTableCell7
         '
@@ -165,7 +165,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "DESCRIPTION"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell7.Weight = 6.3028808207594089R
+        Me.XrTableCell7.Weight = 6.30288082075941R
         '
         'XrTableCell9
         '
@@ -183,7 +183,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell9.StylePriority.UseTextAlignment = False
         Me.XrTableCell9.Text = "SIZE"
         Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell9.Weight = 1.2605760886614648R
+        Me.XrTableCell9.Weight = 1.26057608866146R
         '
         'XrTableCell10
         '
@@ -201,7 +201,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell10.StylePriority.UseTextAlignment = False
         Me.XrTableCell10.Text = "QTY"
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell10.Weight = 1.2605760773995434R
+        Me.XrTableCell10.Weight = 1.26057607739954R
         '
         'XrTableCell15
         '
@@ -219,7 +219,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell15.StylePriority.UseTextAlignment = False
         Me.XrTableCell15.Text = "TYPE"
         Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell15.Weight = 1.8908641793481102R
+        Me.XrTableCell15.Weight = 1.89086417934811R
         '
         'XrTableCell11
         '
@@ -237,7 +237,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell11.StylePriority.UseTextAlignment = False
         Me.XrTableCell11.Text = "PRICE"
         Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell11.Weight = 2.6219983175155521R
+        Me.XrTableCell11.Weight = 2.62199831751555R
         '
         'XrTableCell12
         '
@@ -255,7 +255,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell12.StylePriority.UseTextAlignment = False
         Me.XrTableCell12.Text = "AMOUNT"
         Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell12.Weight = 2.6219980175328503R
+        Me.XrTableCell12.Weight = 2.62199801753285R
         '
         'XrRowTotal
         '
@@ -263,7 +263,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrRowTotal.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell13, Me.RowTotalQty, Me.XrTableCell16, Me.XrTableCell14, Me.RowTotalAmount})
         Me.XrRowTotal.Name = "XrRowTotal"
         Me.XrRowTotal.StylePriority.UseBorderDashStyle = False
-        Me.XrRowTotal.Weight = 0.92307690140763676R
+        Me.XrRowTotal.Weight = 0.923076901407637R
         '
         'XrTableCell13
         '
@@ -280,7 +280,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell13.StylePriority.UsePadding = False
         Me.XrTableCell13.StylePriority.UseTextAlignment = False
         Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell13.Weight = 11.093068537469911R
+        Me.XrTableCell13.Weight = 11.0930685374699R
         '
         'RowTotalQty
         '
@@ -297,7 +297,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.RowTotalQty.StylePriority.UsePadding = False
         Me.RowTotalQty.StylePriority.UseTextAlignment = False
         Me.RowTotalQty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.RowTotalQty.Weight = 1.2605744084034831R
+        Me.RowTotalQty.Weight = 1.26057440840348R
         '
         'XrTableCell16
         '
@@ -314,7 +314,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell16.StylePriority.UsePadding = False
         Me.XrTableCell16.StylePriority.UseTextAlignment = False
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell16.Weight = 1.8908646262262581R
+        Me.XrTableCell16.Weight = 1.89086462622626R
         '
         'XrTableCell14
         '
@@ -331,7 +331,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell14.StylePriority.UsePadding = False
         Me.XrTableCell14.StylePriority.UseTextAlignment = False
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell14.Weight = 2.6219979262178863R
+        Me.XrTableCell14.Weight = 2.62199792621789R
         '
         'RowTotalAmount
         '
@@ -348,7 +348,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.RowTotalAmount.StylePriority.UsePadding = False
         Me.RowTotalAmount.StylePriority.UseTextAlignment = False
         Me.RowTotalAmount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.RowTotalAmount.Weight = 2.6219981545856292R
+        Me.RowTotalAmount.Weight = 2.62199815458563R
         '
         'TopMargin
         '
@@ -707,6 +707,18 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrLabel9
+        '
+        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(300.0!, 18.71793!)
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseTextAlignment = False
+        Me.XrLabel9.Text = "Distribution : 1.Inventory, 2.Accounting, 3.Customer"
+        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'LabelPrintedBy
         '
         Me.LabelPrintedBy.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -776,9 +788,24 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.ReportFooter.Name = "ReportFooter"
         Me.ReportFooter.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBandExceptFirstEntry
         '
+        'XrLabel15
+        '
+        Me.XrLabel15.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 9.999994!)
+        Me.XrLabel15.Name = "XrLabel15"
+        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel15.SizeF = New System.Drawing.SizeF(773.0!, 23.0!)
+        Me.XrLabel15.StylePriority.UseBorders = False
+        Me.XrLabel15.StylePriority.UseFont = False
+        Me.XrLabel15.StylePriority.UseTextAlignment = False
+        Me.XrLabel15.Text = "Note :"
+        Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'XrTable
         '
         Me.XrTable.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XrTable.KeepTogether = True
         Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(0.00001538185!, 102.2917!)
         Me.XrTable.Name = "XrTable"
         Me.XrTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
@@ -826,32 +853,6 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.LabelNote.StylePriority.UseBorders = False
         Me.LabelNote.StylePriority.UseFont = False
         Me.LabelNote.Text = "[note]"
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(300.0!, 18.71793!)
-        Me.XrLabel9.StylePriority.UseFont = False
-        Me.XrLabel9.StylePriority.UseTextAlignment = False
-        Me.XrLabel9.Text = "Distribution : 1.Inventory, 2.Accounting, 3.Customer"
-        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel15
-        '
-        Me.XrLabel15.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 9.999994!)
-        Me.XrLabel15.Name = "XrLabel15"
-        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel15.SizeF = New System.Drawing.SizeF(773.0!, 23.0!)
-        Me.XrLabel15.StylePriority.UseBorders = False
-        Me.XrLabel15.StylePriority.UseFont = False
-        Me.XrLabel15.StylePriority.UseTextAlignment = False
-        Me.XrLabel15.Text = "Note :"
-        Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportSalesDelOrderOwnStore
         '
