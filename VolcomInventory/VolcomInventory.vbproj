@@ -882,6 +882,12 @@
     <Compile Include="FormDelManifest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDelManifestDet.Designer.vb">
+      <DependentUpon>FormDelManifestDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelManifestDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDepartementSub.Designer.vb">
       <DependentUpon>FormDepartementSub.vb</DependentUpon>
     </Compile>
@@ -7942,6 +7948,9 @@
     <EmbeddedResource Include="FormDelManifest.resx">
       <DependentUpon>FormDelManifest.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDelManifestDet.resx">
+      <DependentUpon>FormDelManifestDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDepartementSub.resx">
       <DependentUpon>FormDepartementSub.vb</DependentUpon>
     </EmbeddedResource>
@@ -11628,6 +11637,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesDelOrderOwnStore.resx">
       <DependentUpon>ReportSalesDelOrderOwnStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesDelOrderSlip.resx">
+      <DependentUpon>ReportSalesDelOrderSlip.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesInvoceDelSlip.resx">
       <DependentUpon>ReportSalesInvoceDelSlip.vb</DependentUpon>
