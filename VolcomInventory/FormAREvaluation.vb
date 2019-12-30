@@ -182,7 +182,7 @@
         GVActiveList.BestFitColumns()
         If GVActiveList.RowCount > 0 Then
             BtnCreateEvaluation.Visible = True
-            BtnActivateMemoPenangguhan.Visible = True
+            BtnActivateMemoPenangguhan.Visible = False
         Else
             BtnCreateEvaluation.Visible = False
             BtnActivateMemoPenangguhan.Visible = False
@@ -347,5 +347,19 @@
         FormAREvaluationLog.eval_date = eval_date
         FormAREvaluationLog.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkMemoEval_Click(sender As Object, e As EventArgs) Handles RepoLinkMemoEval.Click
+        If GVActiveList.RowCount > 0 And GVActiveList.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_memo As String = GVActiveList.GetFocusedRowCellValue("id_propose_delay_payment").ToString
+            If id_memo <> "0" Then
+                Dim inv As New ClassShowPopUp()
+                inv.id_report = id_memo
+                inv.report_mark_type = "233"
+                inv.show()
+            End If
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
