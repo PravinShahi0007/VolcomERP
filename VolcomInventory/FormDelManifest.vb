@@ -47,4 +47,13 @@
 
         viewSearchLookupQuery(SLUE3PL, query, "id_comp", "comp_name", "id_comp")
     End Sub
+
+    Private Sub SBView_Click(sender As Object, e As EventArgs)
+        form_load()
+    End Sub
+
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
+        FormDelManifestDet.id_del_manifest = GVList.GetFocusedRowCellValue("id_del_manifest").ToString
+        FormDelManifestDet.ShowDialog()
+    End Sub
 End Class

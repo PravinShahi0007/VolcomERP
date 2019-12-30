@@ -49,6 +49,7 @@
         TEUpdatedDate.EditValue = data.Rows(0)("updated_date").ToString
         TECreatedBy.EditValue = data.Rows(0)("created_by").ToString
         TEUpdatedBy.EditValue = data.Rows(0)("updated_by").ToString
+        TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
 
         Dim query_det As String = "
             SELECT 0 AS no, mdet.id_wh_awb_det, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
@@ -70,6 +71,11 @@
             SLUE3PL.ReadOnly = False
 
             SBCancel.Enabled = False
+
+            If id_del_manifest <> "0" Then
+                SBCancel.Enabled = True
+            End If
+
             SBPrint.Enabled = False
             SBSave.Enabled = True
             SBComplete.Enabled = True
@@ -118,11 +124,13 @@
             'detail
             query = "INSERT INTO tb_del_manifest_det (id_del_manifest, id_wh_awb_det) VALUES "
 
-            For i = 1 To GVList.RowCount - 1
+            For i = 0 To GVList.RowCount - 1
                 If GVList.IsValidRowHandle(i) Then
-                    query += "(" + id_del_manifest + ", " + GVList.GetRowCellValue(i, "id_wh_awb_det").ToString + ")"
+                    query += "(" + id_del_manifest + ", " + GVList.GetRowCellValue(i, "id_wh_awb_det").ToString + "), "
                 End If
             Next
+
+            query = query.Substring(0, query.Length - 2)
 
             execute_non_query(query, True, "", "", "", "")
 

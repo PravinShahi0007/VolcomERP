@@ -23,12 +23,7 @@ Partial Class FormDelManifest
         Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,7 +31,12 @@ Partial Class FormDelManifest
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCDelManifest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDelManifest.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -84,54 +84,10 @@ Partial Class FormDelManifest
         Me.GVList.OptionsBehavior.Editable = False
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
-        'XTPDetail
+        'GridColumn8
         '
-        Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(760, 431)
-        Me.XTPDetail.Text = "Detail Manifest"
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.SBView)
-        Me.PanelControl1.Controls.Add(Me.SLUE3PL)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(766, 43)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'SBView
-        '
-        Me.SBView.Location = New System.Drawing.Point(246, 10)
-        Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(75, 23)
-        Me.SBView.TabIndex = 2
-        Me.SBView.Text = "View"
-        '
-        'SLUE3PL
-        '
-        Me.SLUE3PL.Location = New System.Drawing.Point(40, 12)
-        Me.SLUE3PL.Name = "SLUE3PL"
-        Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUE3PL.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUE3PL.Size = New System.Drawing.Size(200, 20)
-        Me.SLUE3PL.TabIndex = 1
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(17, 13)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "3PL"
+        Me.GridColumn8.FieldName = "id_del_manifest"
+        Me.GridColumn8.Name = "GridColumn8"
         '
         'GridColumn1
         '
@@ -189,10 +145,54 @@ Partial Class FormDelManifest
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
         '
-        'GridColumn8
+        'XTPDetail
         '
-        Me.GridColumn8.FieldName = "id_del_manifest"
-        Me.GridColumn8.Name = "GridColumn8"
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.Size = New System.Drawing.Size(760, 431)
+        Me.XTPDetail.Text = "Detail Manifest"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SBView)
+        Me.PanelControl1.Controls.Add(Me.SLUE3PL)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(766, 43)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'SBView
+        '
+        Me.SBView.Location = New System.Drawing.Point(246, 10)
+        Me.SBView.Name = "SBView"
+        Me.SBView.Size = New System.Drawing.Size(75, 23)
+        Me.SBView.TabIndex = 2
+        Me.SBView.Text = "View"
+        '
+        'SLUE3PL
+        '
+        Me.SLUE3PL.Location = New System.Drawing.Point(40, 12)
+        Me.SLUE3PL.Name = "SLUE3PL"
+        Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUE3PL.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUE3PL.Size = New System.Drawing.Size(200, 20)
+        Me.SLUE3PL.TabIndex = 1
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(17, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "3PL"
         '
         'FormDelManifest
         '

@@ -22,6 +22,16 @@
             query_where += "AND a.id_store = " + SLUECompany.EditValue.ToString
         End If
 
+        Dim query_in As String = ""
+
+        For i = 0 To FormDelManifestDet.GVList.RowCount - 1
+            If FormDelManifestDet.GVList.IsValidRowHandle(i) Then
+                query_in += FormDelManifestDet.GVList.GetRowCellValue(i, "id_wh_awb_det").ToString + ", "
+            End If
+        Next
+
+        query_in = query_in.Substring(0, query_in.Length - 2)
+
         Dim query As String = "
             SELECT 'no' AS is_select, adet.id_wh_awb_det, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
             FROM tb_wh_awbill_det AS adet
@@ -29,7 +39,7 @@
             LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
             LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
             LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
-            WHERE 1 " + query_where + "
+            WHERE adet.id_wh_awb_det NOT IN (SELECT x.id_wh_awb_det FROM tb_del_manifest_det AS x LEFT JOIN tb_del_manifest AS y ON x.id_del_manifest = y.id_del_manifest WHERE y.id_report_status <> 5 AND x.id_del_manifest <> " + FormDelManifestDet.id_del_manifest + ") AND adet.id_wh_awb_det NOT IN (" + query_in + ") " + query_where + "
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
