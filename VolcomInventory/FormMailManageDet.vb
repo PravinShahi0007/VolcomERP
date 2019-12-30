@@ -257,19 +257,31 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                Dim qopt As String = "SELECT mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
+                Dim qopt As String = "SELECT 
+                mail_head_pemberitahuan,mail_subject_pemberitahuan, mail_title_pemberitahuan , mail_content_head_pemberitahuan, mail_content_pemberitahuan, mail_content_end_pemberitahuan,
+                mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
-                mail_head = dopt.Rows(0)("mail_head_peringatan").ToString
-                mail_subject = dopt.Rows(0)("mail_subject_peringatan").ToString
-                mail_title = dopt.Rows(0)("mail_title_peringatan").ToString
-                mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
-                mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
-                mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
+                If rmt = "226" Then
+                    mail_head = dopt.Rows(0)("mail_head_pemberitahuan").ToString
+                    mail_subject = dopt.Rows(0)("mail_subject_pemberitahuan").ToString
+                    mail_title = dopt.Rows(0)("mail_title_pemberitahuan").ToString
+                    mail_content_head = dopt.Rows(0)("mail_content_head_pemberitahuan").ToString
+                    mail_content = dopt.Rows(0)("mail_content_pemberitahuan").ToString
+                    mail_content_end = dopt.Rows(0)("mail_content_end_pemberitahuan").ToString
+                ElseIf rmt = "227" Then
+                    mail_head = dopt.Rows(0)("mail_head_peringatan").ToString
+                    mail_subject = dopt.Rows(0)("mail_subject_peringatan").ToString
+                    mail_title = dopt.Rows(0)("mail_title_peringatan").ToString
+                    mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
+                    mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
+                    mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
+                End If
+
 
                 MESubject.Text = addSlashes(mail_subject)
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
+                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             End If
         ElseIf action = "upd" Then
@@ -378,18 +390,29 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                Dim qopt As String = "SELECT mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
+                Dim qopt As String = "SELECT 
+                mail_head_pemberitahuan,mail_subject_pemberitahuan, mail_title_pemberitahuan , mail_content_head_pemberitahuan, mail_content_pemberitahuan, mail_content_end_pemberitahuan,
+                mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
-                mail_head = dopt.Rows(0)("mail_head_peringatan").ToString
-                mail_subject = dopt.Rows(0)("mail_subject_peringatan").ToString
-                mail_title = dopt.Rows(0)("mail_title_peringatan").ToString
-                mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
-                mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
-                mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
-                MESubject.Text = addSlashes(mail_subject)
+                If rmt = "226" Then
+                    mail_head = dopt.Rows(0)("mail_head_pemberitahuan").ToString
+                    mail_subject = dopt.Rows(0)("mail_subject_pemberitahuan").ToString
+                    mail_title = dopt.Rows(0)("mail_title_pemberitahuan").ToString
+                    mail_content_head = dopt.Rows(0)("mail_content_head_pemberitahuan").ToString
+                    mail_content = dopt.Rows(0)("mail_content_pemberitahuan").ToString
+                    mail_content_end = dopt.Rows(0)("mail_content_end_pemberitahuan").ToString
+                ElseIf rmt = "227" Then
+                    mail_head = dopt.Rows(0)("mail_head_peringatan").ToString
+                    mail_subject = dopt.Rows(0)("mail_subject_peringatan").ToString
+                    mail_title = dopt.Rows(0)("mail_title_peringatan").ToString
+                    mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
+                    mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
+                    mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
+                    MESubject.Text = addSlashes(mail_subject)
+                End If
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
+                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             ElseIf rmt = "228" Or rmt = "230" Then
                 '-- load member
