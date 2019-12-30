@@ -246,7 +246,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1003, 119)
+        Me.PanelControl2.Size = New System.Drawing.Size(1003, 122)
         Me.PanelControl2.TabIndex = 5
         '
         'PanelControl6
@@ -263,7 +263,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(587, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(414, 115)
+        Me.PanelControl6.Size = New System.Drawing.Size(414, 118)
         Me.PanelControl6.TabIndex = 166
         '
         'DEDueDateInv
@@ -363,7 +363,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(390, 115)
+        Me.PanelControl3.Size = New System.Drawing.Size(390, 118)
         Me.PanelControl3.TabIndex = 165
         '
         'SLEPayType
@@ -596,7 +596,7 @@ Partial Class FormInvoiceFGPODP
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
-        Me.GCList.Size = New System.Drawing.Size(997, 205)
+        Me.GCList.Size = New System.Drawing.Size(997, 202)
         Me.GCList.TabIndex = 19
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -812,7 +812,7 @@ Partial Class FormInvoiceFGPODP
         Me.PCAddDel.Controls.Add(Me.BtnDelete)
         Me.PCAddDel.Controls.Add(Me.BtnAdd)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCAddDel.Location = New System.Drawing.Point(0, 119)
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 122)
         Me.PCAddDel.Name = "PCAddDel"
         Me.PCAddDel.Size = New System.Drawing.Size(1003, 45)
         Me.PCAddDel.TabIndex = 20
@@ -840,10 +840,10 @@ Partial Class FormInvoiceFGPODP
         'XTCBPL
         '
         Me.XTCBPL.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCBPL.Location = New System.Drawing.Point(0, 164)
+        Me.XTCBPL.Location = New System.Drawing.Point(0, 167)
         Me.XTCBPL.Name = "XTCBPL"
         Me.XTCBPL.SelectedTabPage = Me.XTPDetail
-        Me.XTCBPL.Size = New System.Drawing.Size(1003, 233)
+        Me.XTCBPL.Size = New System.Drawing.Size(1003, 230)
         Me.XTCBPL.TabIndex = 21
         Me.XTCBPL.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPDraft})
         '
@@ -851,7 +851,7 @@ Partial Class FormInvoiceFGPODP
         '
         Me.XTPDetail.Controls.Add(Me.GCList)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(997, 205)
+        Me.XTPDetail.Size = New System.Drawing.Size(997, 202)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPDraft
