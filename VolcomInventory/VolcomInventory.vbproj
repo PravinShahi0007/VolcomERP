@@ -888,6 +888,12 @@
     <Compile Include="FormDelManifestDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDelManifestPick.Designer.vb">
+      <DependentUpon>FormDelManifestPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelManifestPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDepartementSub.Designer.vb">
       <DependentUpon>FormDepartementSub.vb</DependentUpon>
     </Compile>
@@ -7950,6 +7956,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDelManifestDet.resx">
       <DependentUpon>FormDelManifestDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelManifestPick.resx">
+      <DependentUpon>FormDelManifestPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDepartementSub.resx">
       <DependentUpon>FormDepartementSub.vb</DependentUpon>

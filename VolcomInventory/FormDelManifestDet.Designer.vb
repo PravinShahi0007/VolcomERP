@@ -24,9 +24,6 @@ Partial Class FormDelManifestDet
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.SBAttachement = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -43,31 +40,32 @@ Partial Class FormDelManifestDet
         Me.GridColumnIdWhAwbDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDeliverySlip = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSDO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnWarehouse = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStoreGroup = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPrepareOrder = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTotalDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStoreAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStoreName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDestination = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWeight = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDim = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFinal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TEUpdatedBy = New DevExpress.XtraEditors.TextEdit()
-        Me.DEUpdatedDate = New DevExpress.XtraEditors.DateEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCompany = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TEUpdatedDate = New DevExpress.XtraEditors.TextEdit()
+        Me.TECreatedDate = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,16 +75,14 @@ Partial Class FormDelManifestDet
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label7
@@ -110,44 +106,17 @@ Partial Class FormDelManifestDet
         'SBAttachement
         '
         Me.SBAttachement.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SBAttachement.Location = New System.Drawing.Point(0, 535)
+        Me.SBAttachement.Location = New System.Drawing.Point(0, 635)
         Me.SBAttachement.Name = "SBAttachement"
         Me.SBAttachement.Size = New System.Drawing.Size(1008, 45)
         Me.SBAttachement.TabIndex = 9
         Me.SBAttachement.Text = "Attachment"
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.Label1)
-        Me.PanelControl3.Controls.Add(Me.MENote)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 580)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1008, 100)
-        Me.PanelControl3.TabIndex = 8
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 17)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(30, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Note"
-        '
-        'MENote
-        '
-        Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MENote.Location = New System.Drawing.Point(75, 16)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(921, 71)
-        Me.MENote.TabIndex = 0
-        '
         'PanelControl4
         '
         Me.PanelControl4.Controls.Add(Me.Label8)
         Me.PanelControl4.Controls.Add(Me.SBCancel)
+        Me.PanelControl4.Controls.Add(Me.SBPrint)
         Me.PanelControl4.Controls.Add(Me.TEReportStatus)
         Me.PanelControl4.Controls.Add(Me.SBSave)
         Me.PanelControl4.Controls.Add(Me.SBComplete)
@@ -170,7 +139,7 @@ Partial Class FormDelManifestDet
         '
         Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
-        Me.SBCancel.Location = New System.Drawing.Point(653, 2)
+        Me.SBCancel.Location = New System.Drawing.Point(557, 2)
         Me.SBCancel.Name = "SBCancel"
         Me.SBCancel.Size = New System.Drawing.Size(129, 45)
         Me.SBCancel.TabIndex = 4
@@ -244,18 +213,20 @@ Partial Class FormDelManifestDet
         Me.GCList.Location = New System.Drawing.Point(0, 118)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(1008, 417)
+        Me.GCList.Size = New System.Drawing.Size(1008, 517)
         Me.GCList.TabIndex = 6
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdWhAwbDet, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnWarehouse, Me.GridColumnStore, Me.GridColumnStoreGroup, Me.GridColumnPrepareOrder, Me.GridColumnOLStoreOrder, Me.GridColumnCategory, Me.GridColumnTotalDelivery, Me.GridColumnCreatedDate, Me.GridColumn1, Me.GridColumn2})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdWhAwbDet, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
+        Me.GVList.OptionsFind.AlwaysVisible = True
         Me.GVList.OptionsView.ColumnAutoWidth = False
         Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
+        Me.GVList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDestination, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnNo
         '
@@ -275,7 +246,7 @@ Partial Class FormDelManifestDet
         'GridColumnDeliverySlip
         '
         Me.GridColumnDeliverySlip.Caption = "Delivery Slip"
-        Me.GridColumnDeliverySlip.FieldName = "pl_sales_order_del_number"
+        Me.GridColumnDeliverySlip.FieldName = "do_no"
         Me.GridColumnDeliverySlip.Name = "GridColumnDeliverySlip"
         Me.GridColumnDeliverySlip.OptionsColumn.AllowEdit = False
         Me.GridColumnDeliverySlip.Visible = True
@@ -284,102 +255,123 @@ Partial Class FormDelManifestDet
         'GridColumnSDO
         '
         Me.GridColumnSDO.Caption = "No. SDO"
-        Me.GridColumnSDO.FieldName = "combine_number"
+        Me.GridColumnSDO.FieldName = "pl_sales_order_del_number"
         Me.GridColumnSDO.Name = "GridColumnSDO"
         Me.GridColumnSDO.OptionsColumn.AllowEdit = False
         Me.GridColumnSDO.Visible = True
         Me.GridColumnSDO.VisibleIndex = 2
         '
-        'GridColumnWarehouse
+        'GridColumnStoreAccount
         '
-        Me.GridColumnWarehouse.Caption = "Store Name"
-        Me.GridColumnWarehouse.FieldName = "wh"
-        Me.GridColumnWarehouse.Name = "GridColumnWarehouse"
-        Me.GridColumnWarehouse.OptionsColumn.AllowEdit = False
-        Me.GridColumnWarehouse.Visible = True
-        Me.GridColumnWarehouse.VisibleIndex = 3
+        Me.GridColumnStoreAccount.Caption = "Store Account"
+        Me.GridColumnStoreAccount.FieldName = "comp_number"
+        Me.GridColumnStoreAccount.Name = "GridColumnStoreAccount"
+        Me.GridColumnStoreAccount.OptionsColumn.AllowEdit = False
+        Me.GridColumnStoreAccount.Visible = True
+        Me.GridColumnStoreAccount.VisibleIndex = 4
         '
-        'GridColumnStore
+        'GridColumnStoreName
         '
-        Me.GridColumnStore.Caption = "Qty"
-        Me.GridColumnStore.FieldName = "store"
-        Me.GridColumnStore.Name = "GridColumnStore"
-        Me.GridColumnStore.OptionsColumn.AllowEdit = False
-        Me.GridColumnStore.Visible = True
-        Me.GridColumnStore.VisibleIndex = 4
+        Me.GridColumnStoreName.Caption = "Store Name"
+        Me.GridColumnStoreName.FieldName = "comp_name"
+        Me.GridColumnStoreName.Name = "GridColumnStoreName"
+        Me.GridColumnStoreName.OptionsColumn.AllowEdit = False
+        Me.GridColumnStoreName.Visible = True
+        Me.GridColumnStoreName.VisibleIndex = 3
         '
-        'GridColumnStoreGroup
+        'GridColumnQty
         '
-        Me.GridColumnStoreGroup.Caption = "Destination"
-        Me.GridColumnStoreGroup.FieldName = "comp_group"
-        Me.GridColumnStoreGroup.Name = "GridColumnStoreGroup"
-        Me.GridColumnStoreGroup.OptionsColumn.AllowEdit = False
-        Me.GridColumnStoreGroup.Visible = True
-        Me.GridColumnStoreGroup.VisibleIndex = 5
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 5
         '
-        'GridColumnPrepareOrder
+        'GridColumnDestination
         '
-        Me.GridColumnPrepareOrder.Caption = "Weight"
-        Me.GridColumnPrepareOrder.FieldName = "sales_order_number"
-        Me.GridColumnPrepareOrder.Name = "GridColumnPrepareOrder"
-        Me.GridColumnPrepareOrder.OptionsColumn.AllowEdit = False
-        Me.GridColumnPrepareOrder.Visible = True
-        Me.GridColumnPrepareOrder.VisibleIndex = 6
+        Me.GridColumnDestination.Caption = "Destination"
+        Me.GridColumnDestination.FieldName = "city"
+        Me.GridColumnDestination.Name = "GridColumnDestination"
+        Me.GridColumnDestination.OptionsColumn.AllowEdit = False
+        Me.GridColumnDestination.Visible = True
+        Me.GridColumnDestination.VisibleIndex = 6
         '
-        'GridColumnOLStoreOrder
+        'GridColumnWeight
         '
-        Me.GridColumnOLStoreOrder.Caption = "P"
-        Me.GridColumnOLStoreOrder.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
-        Me.GridColumnOLStoreOrder.OptionsColumn.AllowEdit = False
-        Me.GridColumnOLStoreOrder.Visible = True
-        Me.GridColumnOLStoreOrder.VisibleIndex = 7
+        Me.GridColumnWeight.Caption = "Weight"
+        Me.GridColumnWeight.DisplayFormat.FormatString = "N2"
+        Me.GridColumnWeight.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnWeight.FieldName = "weight"
+        Me.GridColumnWeight.Name = "GridColumnWeight"
+        Me.GridColumnWeight.OptionsColumn.AllowEdit = False
+        Me.GridColumnWeight.Visible = True
+        Me.GridColumnWeight.VisibleIndex = 7
         '
-        'GridColumnCategory
+        'GridColumnP
         '
-        Me.GridColumnCategory.Caption = "L"
-        Me.GridColumnCategory.FieldName = "so_status"
-        Me.GridColumnCategory.Name = "GridColumnCategory"
-        Me.GridColumnCategory.OptionsColumn.AllowEdit = False
-        Me.GridColumnCategory.Visible = True
-        Me.GridColumnCategory.VisibleIndex = 8
+        Me.GridColumnP.Caption = "P"
+        Me.GridColumnP.DisplayFormat.FormatString = "N2"
+        Me.GridColumnP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnP.FieldName = "width"
+        Me.GridColumnP.Name = "GridColumnP"
+        Me.GridColumnP.OptionsColumn.AllowEdit = False
+        Me.GridColumnP.Visible = True
+        Me.GridColumnP.VisibleIndex = 8
         '
-        'GridColumnTotalDelivery
+        'GridColumnL
         '
-        Me.GridColumnTotalDelivery.Caption = "T"
-        Me.GridColumnTotalDelivery.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTotalDelivery.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalDelivery.FieldName = "total"
-        Me.GridColumnTotalDelivery.Name = "GridColumnTotalDelivery"
-        Me.GridColumnTotalDelivery.OptionsColumn.AllowEdit = False
-        Me.GridColumnTotalDelivery.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
-        Me.GridColumnTotalDelivery.Visible = True
-        Me.GridColumnTotalDelivery.VisibleIndex = 9
+        Me.GridColumnL.Caption = "L"
+        Me.GridColumnL.DisplayFormat.FormatString = "N2"
+        Me.GridColumnL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnL.FieldName = "length"
+        Me.GridColumnL.Name = "GridColumnL"
+        Me.GridColumnL.OptionsColumn.AllowEdit = False
+        Me.GridColumnL.Visible = True
+        Me.GridColumnL.VisibleIndex = 9
         '
-        'GridColumnCreatedDate
+        'GridColumnT
         '
-        Me.GridColumnCreatedDate.Caption = "Dim"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnCreatedDate.FieldName = "pl_sales_order_del_date"
-        Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
-        Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
-        Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 10
+        Me.GridColumnT.Caption = "T"
+        Me.GridColumnT.DisplayFormat.FormatString = "N2"
+        Me.GridColumnT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnT.FieldName = "height"
+        Me.GridColumnT.Name = "GridColumnT"
+        Me.GridColumnT.OptionsColumn.AllowEdit = False
+        Me.GridColumnT.Visible = True
+        Me.GridColumnT.VisibleIndex = 10
         '
-        'GridColumn1
+        'GridColumnDim
         '
-        Me.GridColumn1.Caption = "Final Weight"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 11
+        Me.GridColumnDim.Caption = "Dim"
+        Me.GridColumnDim.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDim.FieldName = "volume"
+        Me.GridColumnDim.Name = "GridColumnDim"
+        Me.GridColumnDim.OptionsColumn.AllowEdit = False
+        Me.GridColumnDim.Visible = True
+        Me.GridColumnDim.VisibleIndex = 11
         '
-        'GridColumn2
+        'GridColumnFinal
         '
-        Me.GridColumn2.Caption = "Remark"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 12
+        Me.GridColumnFinal.Caption = "Final Weight"
+        Me.GridColumnFinal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnFinal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnFinal.FieldName = "c_weight"
+        Me.GridColumnFinal.Name = "GridColumnFinal"
+        Me.GridColumnFinal.OptionsColumn.AllowEdit = False
+        Me.GridColumnFinal.Visible = True
+        Me.GridColumnFinal.VisibleIndex = 12
+        '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.OptionsColumn.AllowEdit = False
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 13
         '
         'Label4
         '
@@ -409,24 +401,6 @@ Partial Class FormDelManifestDet
         Me.TEUpdatedBy.Properties.ReadOnly = True
         Me.TEUpdatedBy.Size = New System.Drawing.Size(200, 20)
         Me.TEUpdatedBy.TabIndex = 5
-        '
-        'DEUpdatedDate
-        '
-        Me.DEUpdatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DEUpdatedDate.EditValue = Nothing
-        Me.DEUpdatedDate.Location = New System.Drawing.Point(796, 38)
-        Me.DEUpdatedDate.Name = "DEUpdatedDate"
-        Me.DEUpdatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUpdatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUpdatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.DEUpdatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUpdatedDate.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.DEUpdatedDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUpdatedDate.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
-        Me.DEUpdatedDate.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEUpdatedDate.Properties.ReadOnly = True
-        Me.DEUpdatedDate.Size = New System.Drawing.Size(200, 20)
-        Me.DEUpdatedDate.TabIndex = 4
         '
         'Label3
         '
@@ -459,66 +433,90 @@ Partial Class FormDelManifestDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.TextEdit1)
         Me.PanelControl2.Controls.Add(Me.SLUE3PL)
+        Me.PanelControl2.Controls.Add(Me.TEUpdatedDate)
+        Me.PanelControl2.Controls.Add(Me.TECreatedDate)
+        Me.PanelControl2.Controls.Add(Me.TENumber)
         Me.PanelControl2.Controls.Add(Me.Label7)
         Me.PanelControl2.Controls.Add(Me.Label6)
         Me.PanelControl2.Controls.Add(Me.Label4)
         Me.PanelControl2.Controls.Add(Me.Label5)
         Me.PanelControl2.Controls.Add(Me.TEUpdatedBy)
-        Me.PanelControl2.Controls.Add(Me.DEUpdatedDate)
         Me.PanelControl2.Controls.Add(Me.Label3)
         Me.PanelControl2.Controls.Add(Me.Label2)
         Me.PanelControl2.Controls.Add(Me.TECreatedBy)
-        Me.PanelControl2.Controls.Add(Me.DECreatedDate)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1008, 69)
         Me.PanelControl2.TabIndex = 7
         '
-        'TextEdit1
-        '
-        Me.TextEdit1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit1.Location = New System.Drawing.Point(86, 38)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(200, 20)
-        Me.TextEdit1.TabIndex = 13
-        '
         'SLUE3PL
         '
         Me.SLUE3PL.Location = New System.Drawing.Point(86, 12)
         Me.SLUE3PL.Name = "SLUE3PL"
         Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUE3PL.Properties.View = Me.GridView1
+        Me.SLUE3PL.Properties.View = Me.SearchLookUpEdit1View
         Me.SLUE3PL.Size = New System.Drawing.Size(200, 20)
-        Me.SLUE3PL.TabIndex = 12
+        Me.SLUE3PL.TabIndex = 18
         '
-        'GridView1
+        'SearchLookUpEdit1View
         '
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdComp, Me.GCCompany})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
-        'DECreatedDate
+        'GCIdComp
         '
-        Me.DECreatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DECreatedDate.EditValue = Nothing
-        Me.DECreatedDate.Location = New System.Drawing.Point(796, 12)
-        Me.DECreatedDate.Name = "DECreatedDate"
-        Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreatedDate.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.DECreatedDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreatedDate.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
-        Me.DECreatedDate.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DECreatedDate.Properties.ReadOnly = True
-        Me.DECreatedDate.Size = New System.Drawing.Size(200, 20)
-        Me.DECreatedDate.TabIndex = 0
+        Me.GCIdComp.FieldName = "id_comp"
+        Me.GCIdComp.Name = "GCIdComp"
+        '
+        'GCCompany
+        '
+        Me.GCCompany.Caption = "3PL"
+        Me.GCCompany.FieldName = "comp_name"
+        Me.GCCompany.Name = "GCCompany"
+        Me.GCCompany.Visible = True
+        Me.GCCompany.VisibleIndex = 0
+        '
+        'TEUpdatedDate
+        '
+        Me.TEUpdatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEUpdatedDate.Location = New System.Drawing.Point(796, 38)
+        Me.TEUpdatedDate.Name = "TEUpdatedDate"
+        Me.TEUpdatedDate.Properties.ReadOnly = True
+        Me.TEUpdatedDate.Size = New System.Drawing.Size(200, 20)
+        Me.TEUpdatedDate.TabIndex = 15
+        '
+        'TECreatedDate
+        '
+        Me.TECreatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TECreatedDate.Location = New System.Drawing.Point(796, 12)
+        Me.TECreatedDate.Name = "TECreatedDate"
+        Me.TECreatedDate.Properties.ReadOnly = True
+        Me.TECreatedDate.Size = New System.Drawing.Size(200, 20)
+        Me.TECreatedDate.TabIndex = 14
+        '
+        'TENumber
+        '
+        Me.TENumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TENumber.Location = New System.Drawing.Point(86, 38)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(200, 20)
+        Me.TENumber.TabIndex = 13
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(686, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(96, 45)
+        Me.SBPrint.TabIndex = 14
+        Me.SBPrint.Text = "Print"
         '
         'FormDelManifestDet
         '
@@ -527,16 +525,12 @@ Partial Class FormDelManifestDet
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.GCList)
         Me.Controls.Add(Me.SBAttachement)
-        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Name = "FormDelManifestDet"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Outbound Delivery Manifest Detail"
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
@@ -547,17 +541,15 @@ Partial Class FormDelManifestDet
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -565,9 +557,6 @@ Partial Class FormDelManifestDet
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents SBAttachement As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents Label1 As Label
-    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents Label8 As Label
     Friend WithEvents SBCancel As DevExpress.XtraEditors.SimpleButton
@@ -583,27 +572,31 @@ Partial Class FormDelManifestDet
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDeliverySlip As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSDO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnWarehouse As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnStore As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnStoreGroup As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPrepareOrder As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnOLStoreOrder As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnTotalDelivery As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents TEUpdatedBy As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents DEUpdatedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents DECreatedDate As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents SLUE3PL As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnIdWhAwbDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEUpdatedDate As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECreatedDate As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLUE3PL As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCIdComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCompany As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStoreAccount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStoreName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDestination As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnWeight As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDim As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFinal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
 End Class
