@@ -24,7 +24,9 @@
         If rmt = "225" Then
             Dim qdet As String = "SELECT '' AS `no`, sp.id_sales_pos AS `id_report`, sp.sales_pos_number AS `report_number`,
             CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, g.description AS `group_store`,
-            cg.comp_name AS `group_company`, prd.period,
+            cg.comp_name AS `group_company`, 
+            CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`,
+            DATE_FORMAT(sp.sales_pos_due_date,'%d-%m-%y') AS `sales_pos_due_date`,
             sp.sales_pos_total_qty AS `qty_invoice`, 
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `amount`,
             prd.amount AS `total_amount`,
@@ -201,9 +203,22 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                MESubject.Text = addSlashes("Sales Invoice " + ddet.Rows(0)("group_store").ToString + " : " + ddet.Rows(0)("period").ToString)
+
+                'load var
+                Dim qopt As String = "SELECT mail_head_invoice,mail_subject_invoice, mail_title_invoice , mail_content_head_invoice, mail_content_invoice ,mail_content_end_invoice
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
+                mail_head = dopt.Rows(0)("mail_head_invoice").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString
+                mail_title = dopt.Rows(0)("mail_title_invoice").ToString
+                mail_content_head = dopt.Rows(0)("mail_content_head_invoice").ToString
+                mail_content = dopt.Rows(0)("mail_content_invoice").ToString
+                mail_content_end = dopt.Rows(0)("mail_content_end_invoice").ToString
+                MESubject.Text = addSlashes(mail_subject)
+
+                'mail template
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_penjualan(ddet)
+                Dim html As String = m.email_body_invoice_penjualan(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             ElseIf rmt = "226" Or rmt = "227" Then
                 '-- mail type
@@ -346,8 +361,22 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
+
+                'load var
+                Dim qopt As String = "SELECT mail_head_invoice,mail_subject_invoice, mail_title_invoice , mail_content_head_invoice, mail_content_invoice ,mail_content_end_invoice
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
+                mail_head = dopt.Rows(0)("mail_head_invoice").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString
+                mail_title = dopt.Rows(0)("mail_title_invoice").ToString
+                mail_content_head = dopt.Rows(0)("mail_content_head_invoice").ToString
+                mail_content = dopt.Rows(0)("mail_content_invoice").ToString
+                mail_content_end = dopt.Rows(0)("mail_content_end_invoice").ToString
+                MESubject.Text = addSlashes(mail_subject)
+
+                'mail template
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_penjualan(ddet)
+                Dim html As String = m.email_body_invoice_penjualan(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             ElseIf rmt = "226" Or rmt = "227" Then
                 '-- load member
@@ -671,7 +700,7 @@
 
     Function getTotalAmo(ByVal dtx As DataTable) As Double
         Dim tot_amo As Double = 0
-        If rmt = "226" Or rmt = "227" Then
+        If rmt = "225" Or rmt = "226" Or rmt = "227" Then
             For i As Integer = 0 To dtx.Rows.Count - 1
                 tot_amo += dtx.Rows(i)("amount")
             Next
@@ -689,7 +718,15 @@
         'jika ada parameter lain
         If rmt = "225" Then
             Dim id_sales_pos As String = getSavedInvoice()
-            sm.dt = dtLoadDetail(id_sales_pos)
+            Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
+            sm.dt = dtx
+            sm.head = mail_head
+            sm.subj = mail_subject
+            sm.titl = mail_title
+            sm.par1 = mail_content_head + " " + dtx.Rows(0)("group_company").ToString
+            sm.par2 = mail_content
+            sm.comment = mail_content_end
+            sm.design_code = Double.Parse(getTotalAmo(dtx).ToString).ToString("N2")
         ElseIf rmt = "226" Or rmt = "227" Then
             Dim id_sales_pos As String = getSavedInvoice()
             Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
