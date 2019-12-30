@@ -10,6 +10,11 @@
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
         '
+        If is_hrd = "1" Then
+            Text = "Leave Management"
+        Else
+            Text = "Propose Leave"
+        End If
     End Sub
 
     Private Sub FormEmpLeave_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -39,8 +44,8 @@
     Sub load_sum()
         Dim date_from As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_end As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim query As String = "SELECT empl.*,lvl.`employee_level`,dep_sub.departement_sub,dep.departement,empx.employee_name as who_create,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total FROM tb_emp_leave empl
-                                INNER JOIN tb_lookup_report_status STATUS ON status.id_report_status=empl.id_report_status
+        Dim query As String = "SELECT empl.*,lvl.`employee_level`,dep_sub.departement_sub,dep.departement,empx.employee_name as who_create,empld.min_date,empld.max_date,IF(empl.id_report_status=0,'Waiting',status.report_status) AS report_status,emp.employee_name,emp.employee_code,empld.hours_total FROM tb_emp_leave empl
+                                LEFT JOIN tb_lookup_report_status STATUS ON status.id_report_status=empl.id_report_status
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=empl.id_emp
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level  
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
@@ -68,8 +73,8 @@
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BViewOnLeave.Click
         Dim date_from As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_end As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim query As String = "SELECT empl.*,lvl.`employee_level`,dep_sub.departement_sub,dep.departement,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total  FROM tb_emp_leave empl
-                                INNER JOIN tb_lookup_report_status STATUS ON status.id_report_status=empl.id_report_status
+        Dim query As String = "SELECT empl.*,lvl.`employee_level`,dep_sub.departement_sub,dep.departement,empld.min_date,empld.max_date,IF(empl.id_report_status=0,'Waiting',status.report_status) AS report_status,emp.employee_name,emp.employee_code,empld.hours_total  FROM tb_emp_leave empl
+                                LEFT JOIN tb_lookup_report_status STATUS ON status.id_report_status=empl.id_report_status
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=empl.id_emp
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.id_departement_sub=emp.id_departement_sub

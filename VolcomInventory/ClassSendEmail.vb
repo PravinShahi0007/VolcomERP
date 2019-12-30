@@ -986,7 +986,7 @@ Public Class ClassSendEmail
 
 
                 'Grid Detail
-                ReportStyleGridviewBlackLine(Report.GVItemList)
+                'ReportStyleGridviewBlackLine(Report.GVItemList)
 
                 'Parse val
                 Report.LabelTo.Text = dt.Rows(0)("store_account").ToString
@@ -997,7 +997,7 @@ Public Class ClassSendEmail
                 Report.LabelNote.Text = dt.Rows(0)("note").ToString
                 Report.LabelPrepare.Text = dt.Rows(0)("order_number").ToString
                 Report.LabelCat.Text = dt.Rows(0)("order_cat").ToString
-                Report.LabelUni3.Text = "-"
+                'Report.LabelUni3.Text = "-"
                 Report.LabelUni6.Text = "-"
                 Report.PanelUni.Visible = False
 

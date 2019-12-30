@@ -169,6 +169,7 @@ Partial Class FormEmpLeavePick
         'GridColumnIDScheduleType
         '
         Me.GridColumnIDScheduleType.Caption = "ID Schedule Type"
+        Me.GridColumnIDScheduleType.FieldName = "id_schedule_type"
         Me.GridColumnIDScheduleType.Name = "GridColumnIDScheduleType"
         '
         'GridColumn9
