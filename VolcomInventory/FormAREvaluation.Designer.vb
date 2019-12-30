@@ -20,8 +20,8 @@ Partial Class FormAREvaluation
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAREvaluation))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewData = New DevExpress.XtraEditors.SimpleButton()
@@ -72,6 +72,7 @@ Partial Class FormAREvaluation
         Me.GVGroupStoreList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_comp_group_eval = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumngroup_eval = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_ho = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDiscardMemo = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateMemo = New DevExpress.XtraEditors.SimpleButton()
@@ -89,7 +90,7 @@ Partial Class FormAREvaluation
         Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.GridColumnid_ho = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkMemoEval = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +120,7 @@ Partial Class FormAREvaluation
         CType(Me.GCGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkMemoEval, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelNav
@@ -318,13 +320,13 @@ Partial Class FormAREvaluation
         'RepoBtnBBM
         '
         Me.RepoBtnBBM.AutoHeight = False
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.RepoBtnBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject3.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject3.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject3.Options.UseBackColor = True
+        SerializableAppearanceObject3.Options.UseFont = True
+        SerializableAppearanceObject3.Options.UseForeColor = True
+        Me.RepoBtnBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
         Me.RepoBtnBBM.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnBBM.Name = "RepoBtnBBM"
         Me.RepoBtnBBM.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -385,7 +387,7 @@ Partial Class FormAREvaluation
         Me.GCActiveList.Location = New System.Drawing.Point(0, 0)
         Me.GCActiveList.MainView = Me.GVActiveList
         Me.GCActiveList.Name = "GCActiveList"
-        Me.GCActiveList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCActiveList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepoLinkMemoEval})
         Me.GCActiveList.Size = New System.Drawing.Size(763, 308)
         Me.GCActiveList.TabIndex = 0
         Me.GCActiveList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActiveList})
@@ -462,9 +464,10 @@ Partial Class FormAREvaluation
         'GridColumnmemo_number_eval
         '
         Me.GridColumnmemo_number_eval.Caption = "Memo Penangguhan"
+        Me.GridColumnmemo_number_eval.ColumnEdit = Me.RepoLinkMemoEval
         Me.GridColumnmemo_number_eval.FieldName = "memo_number"
         Me.GridColumnmemo_number_eval.Name = "GridColumnmemo_number_eval"
-        Me.GridColumnmemo_number_eval.OptionsColumn.AllowEdit = False
+        Me.GridColumnmemo_number_eval.OptionsColumn.ReadOnly = True
         Me.GridColumnmemo_number_eval.Visible = True
         Me.GridColumnmemo_number_eval.VisibleIndex = 6
         Me.GridColumnmemo_number_eval.Width = 120
@@ -586,6 +589,13 @@ Partial Class FormAREvaluation
         Me.GridColumngroup_eval.Name = "GridColumngroup_eval"
         Me.GridColumngroup_eval.Visible = True
         Me.GridColumngroup_eval.VisibleIndex = 0
+        '
+        'GridColumnid_ho
+        '
+        Me.GridColumnid_ho.Caption = "id_ho"
+        Me.GridColumnid_ho.FieldName = "id_ho"
+        Me.GridColumnid_ho.Name = "GridColumnid_ho"
+        Me.GridColumnid_ho.OptionsColumn.AllowEdit = False
         '
         'PanelControl1
         '
@@ -785,13 +795,13 @@ Partial Class FormAREvaluation
         'RepositoryItemButtonEdit1
         '
         Me.RepositoryItemButtonEdit1.AutoHeight = False
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject4.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject4.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject4.Options.UseBackColor = True
+        SerializableAppearanceObject4.Options.UseFont = True
+        SerializableAppearanceObject4.Options.UseForeColor = True
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -799,12 +809,10 @@ Partial Class FormAREvaluation
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'GridColumnid_ho
+        'RepoLinkMemoEval
         '
-        Me.GridColumnid_ho.Caption = "id_ho"
-        Me.GridColumnid_ho.FieldName = "id_ho"
-        Me.GridColumnid_ho.Name = "GridColumnid_ho"
-        Me.GridColumnid_ho.OptionsColumn.AllowEdit = False
+        Me.RepoLinkMemoEval.AutoHeight = False
+        Me.RepoLinkMemoEval.Name = "RepoLinkMemoEval"
         '
         'FormAREvaluation
         '
@@ -847,6 +855,7 @@ Partial Class FormAREvaluation
         CType(Me.GCGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkMemoEval, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -919,4 +928,5 @@ Partial Class FormAREvaluation
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
     Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnid_ho As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoLinkMemoEval As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class
