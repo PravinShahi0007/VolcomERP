@@ -1791,6 +1791,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAREvalScheduleDet.ShowDialog()
         ElseIf formName = "FormDelayPayment" Then
             FormDelayPaymentNew.ShowDialog()
+        ElseIf formName = "FormDelManifest" Then
+            FormDelManifestDet.id_del_manifest = "0"
+            FormDelManifestDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2924,6 +2927,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormDelayPaymentDet.id = FormDelayPayment.GVData.GetFocusedRowCellValue("id_propose_delay_payment").ToString
                     FormDelayPaymentDet.ShowDialog()
                 End If
+            ElseIf formName = "FormDelManifest" Then
+                Try
+                    FormDelManifestDet.id_del_manifest = FormDelManifest.GVList.GetFocusedRowCellValue("id_del_manifest").ToString
+                    FormDelManifestDet.ShowDialog()
+                Catch ex As Exception
+                End Try
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7841,6 +7850,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormAREvaluation.XTCData.SelectedTabPageIndex = 2 Then
                 print_raw(FormAREvaluation.GCGroup, "")
             End If
+        ElseIf formName = "FormDelManifest" Then
+            print(FormDelManifest.GCList, FormDelManifest.Text)
         Else
             RPSubMenu.Visible = False
         End If
@@ -8674,6 +8685,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAREvaluation" Then
             FormAREvaluation.Close()
             FormAREvaluation.Dispose()
+        ElseIf formName = "FormDelManifest" Then
+            FormDelManifest.Close()
+            FormDelManifest.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9553,6 +9567,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpAttnAssign.load_attn()
         ElseIf formName = "FormDelayPayment" Then
             FormDelayPayment.viewData()
+        ElseIf formName = "FormDelManifest" Then
+            FormDelManifest.form_load()
         End If
     End Sub
     'Switch
