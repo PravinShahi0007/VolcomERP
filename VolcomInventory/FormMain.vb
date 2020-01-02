@@ -1794,6 +1794,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDelManifest" Then
             FormDelManifestDet.id_del_manifest = "0"
             FormDelManifestDet.ShowDialog()
+        ElseIf formName = "FormFollowUpAR" Then
+            FormFollowUpARDetail.action = "ins"
+            FormFollowUpARDetail.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2933,6 +2936,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormDelManifestDet.ShowDialog()
                 Catch ex As Exception
                 End Try
+            ElseIf formName = "FormFollowUpAR" Then
+                If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 And FormFollowUpAR.GVData.RowCount > 0 And FormFollowUpAR.GVData.FocusedRowHandle >= 0 Then
+                    FormFollowUpARDetail.action = "upd"
+                    FormFollowUpARDetail.id = FormFollowUpAR.GVData.GetFocusedRowCellValue("id_follow_up_ar").ToString
+                    FormFollowUpARDetail.ShowDialog()
+                ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 And FormFollowUpAR.GVActive.RowCount > 0 And FormFollowUpAR.GVActive.FocusedRowHandle >= 0 Then
+                    FormFollowUpARDetail.action = "upd"
+                    FormFollowUpARDetail.id = FormFollowUpAR.GVActive.GetFocusedRowCellValue("id_follow_up_ar").ToString
+                    FormFollowUpARDetail.ShowDialog()
+                End If
+
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6237,6 +6251,27 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 execute_non_query(query_del, True, "", "", "", "")
                 FormAREvalScheduke.viewData()
             End If
+        ElseIf formName = "FormFollowUpAR" Then
+            Dim idx As String = ""
+            If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 And FormFollowUpAR.GVData.RowCount > 0 And FormFollowUpAR.GVData.FocusedRowHandle >= 0 Then
+                idx = FormFollowUpAR.GVData.GetFocusedRowCellValue("id_follow_up_ar").ToString
+            ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 And FormFollowUpAR.GVActive.RowCount > 0 And FormFollowUpAR.GVActive.FocusedRowHandle >= 0 Then
+                idx = FormFollowUpAR.GVActive.GetFocusedRowCellValue("id_follow_up_ar").ToString
+            End If
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Try
+                    Dim query_del As String = "DELETE FROM tb_follow_up_ar WHERE id_follow_up_ar='" + idx + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 Then
+                        FormFollowUpAR.viewList()
+                    ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 Then
+                        FormFollowUpAR.viewActive()
+                    End If
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7858,6 +7893,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormARCollectionAvg.XTCData.SelectedTabPageIndex = 1 Then
                 print_raw(FormARCollectionAvg.GCDetail, "")
             End If
+        ElseIf FormName = "FormFollowUpAR" Then
+            If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 Then
+                print_raw(FormFollowUpAR.GCData, "")
+            ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 Then
+                print_raw(FormFollowUpAR.GCActive, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8697,6 +8738,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormARCollectionAvg" Then
             FormARCollectionAvg.Close()
             FormARCollectionAvg.Dispose()
+        ElseIf FormName = "FormFollowUpAR" Then
+            FormFollowUpAR.Close()
+            FormFollowUpAR.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9578,6 +9622,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDelayPayment.viewData()
         ElseIf formName = "FormDelManifest" Then
             FormDelManifest.form_load()
+        ElseIf FormName = "FormFollowUpAR" Then
+            If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 Then
+                FormFollowUpAR.viewList()
+            ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 Then
+                FormFollowUpAR.viewActive()
+            End If
         End If
     End Sub
     'Switch

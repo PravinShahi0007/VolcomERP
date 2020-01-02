@@ -21,6 +21,13 @@ Partial Class FormFollowUpAR
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFollowUpAR))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCAR = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -35,22 +42,20 @@ Partial Class FormFollowUpAR
         Me.GridColumnfollow_up_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnfollow_up_input = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPInvoiceOpen = New DevExpress.XtraTab.XtraTabPage()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCActive = New DevExpress.XtraGrid.GridControl()
+        Me.GVActive = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCAR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAR.SuspendLayout()
         Me.XTPList.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPInvoiceOpen.SuspendLayout()
+        CType(Me.GCActive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVActive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -63,6 +68,62 @@ Partial Class FormFollowUpAR
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1019, 43)
         Me.PanelControl1.TabIndex = 4
+        '
+        'BView
+        '
+        Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
+        Me.BView.Location = New System.Drawing.Point(231, 11)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(60, 20)
+        Me.BView.TabIndex = 8928
+        Me.BView.Text = "View"
+        '
+        'SLEStoreGroup
+        '
+        Me.SLEStoreGroup.Location = New System.Drawing.Point(80, 11)
+        Me.SLEStoreGroup.Name = "SLEStoreGroup"
+        Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreGroup.Properties.View = Me.GridView3
+        Me.SLEStoreGroup.Size = New System.Drawing.Size(145, 20)
+        Me.SLEStoreGroup.TabIndex = 8927
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumncomp_group, Me.GridColumndescription})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "id_comp_group"
+        Me.GridColumn1.FieldName = "id_comp_group"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumncomp_group
+        '
+        Me.GridColumncomp_group.Caption = "Group"
+        Me.GridColumncomp_group.FieldName = "comp_group"
+        Me.GridColumncomp_group.Name = "GridColumncomp_group"
+        Me.GridColumncomp_group.Visible = True
+        Me.GridColumncomp_group.VisibleIndex = 0
+        '
+        'GridColumndescription
+        '
+        Me.GridColumndescription.Caption = "Description"
+        Me.GridColumndescription.FieldName = "description"
+        Me.GridColumndescription.Name = "GridColumndescription"
+        Me.GridColumndescription.Visible = True
+        Me.GridColumndescription.VisibleIndex = 1
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(16, 14)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl1.TabIndex = 8926
+        Me.LabelControl1.Text = "Store Group"
         '
         'XTCAR
         '
@@ -183,65 +244,26 @@ Partial Class FormFollowUpAR
         '
         'XTPInvoiceOpen
         '
+        Me.XTPInvoiceOpen.Controls.Add(Me.GCActive)
         Me.XTPInvoiceOpen.Name = "XTPInvoiceOpen"
         Me.XTPInvoiceOpen.Size = New System.Drawing.Size(1013, 457)
         Me.XTPInvoiceOpen.Text = "Current Invoice Open"
         '
-        'BView
+        'GCActive
         '
-        Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
-        Me.BView.Location = New System.Drawing.Point(231, 11)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(60, 20)
-        Me.BView.TabIndex = 8928
-        Me.BView.Text = "View"
+        Me.GCActive.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCActive.Location = New System.Drawing.Point(0, 0)
+        Me.GCActive.MainView = Me.GVActive
+        Me.GCActive.Name = "GCActive"
+        Me.GCActive.Size = New System.Drawing.Size(1013, 457)
+        Me.GCActive.TabIndex = 0
+        Me.GCActive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActive})
         '
-        'SLEStoreGroup
+        'GVActive
         '
-        Me.SLEStoreGroup.Location = New System.Drawing.Point(80, 11)
-        Me.SLEStoreGroup.Name = "SLEStoreGroup"
-        Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStoreGroup.Properties.View = Me.GridView3
-        Me.SLEStoreGroup.Size = New System.Drawing.Size(145, 20)
-        Me.SLEStoreGroup.TabIndex = 8927
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumncomp_group, Me.GridColumndescription})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "id_comp_group"
-        Me.GridColumn1.FieldName = "id_comp_group"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumncomp_group
-        '
-        Me.GridColumncomp_group.Caption = "Group"
-        Me.GridColumncomp_group.FieldName = "comp_group"
-        Me.GridColumncomp_group.Name = "GridColumncomp_group"
-        Me.GridColumncomp_group.Visible = True
-        Me.GridColumncomp_group.VisibleIndex = 0
-        '
-        'GridColumndescription
-        '
-        Me.GridColumndescription.Caption = "Description"
-        Me.GridColumndescription.FieldName = "description"
-        Me.GridColumndescription.Name = "GridColumndescription"
-        Me.GridColumndescription.Visible = True
-        Me.GridColumndescription.VisibleIndex = 1
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(16, 14)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl1.TabIndex = 8926
-        Me.LabelControl1.Text = "Store Group"
+        Me.GVActive.GridControl = Me.GCActive
+        Me.GVActive.Name = "GVActive"
+        Me.GVActive.OptionsView.ShowGroupPanel = False
         '
         'FormFollowUpAR
         '
@@ -256,13 +278,16 @@ Partial Class FormFollowUpAR
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCAR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCAR.ResumeLayout(False)
         Me.XTPList.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPInvoiceOpen.ResumeLayout(False)
+        CType(Me.GCActive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVActive, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -289,4 +314,6 @@ Partial Class FormFollowUpAR
     Friend WithEvents GridColumncomp_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCActive As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVActive As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
