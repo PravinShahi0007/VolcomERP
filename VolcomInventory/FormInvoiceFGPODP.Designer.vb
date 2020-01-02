@@ -73,19 +73,22 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddNewRow = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCBPL = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDraft = New DevExpress.XtraTab.XtraTabPage()
@@ -134,8 +137,11 @@ Partial Class FormInvoiceFGPODP
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
         CType(Me.XTCBPL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -595,7 +601,7 @@ Partial Class FormInvoiceFGPODP
         Me.GCList.Location = New System.Drawing.Point(0, 0)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal, Me.RepositoryItemLookUpEdit1, Me.RISLECurrency})
         Me.GCList.Size = New System.Drawing.Size(997, 202)
         Me.GCList.TabIndex = 19
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
@@ -614,7 +620,7 @@ Partial Class FormInvoiceFGPODP
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumn3, Me.GridColumnNumber, Me.GridColumn11, Me.GridColumnNote, Me.GridColumn15, Me.GridColumn12, Me.GridColumn4, Me.GridColumn2, Me.GridColumn10, Me.GridColumn8, Me.GridColumn7, Me.GridColumnPayment, Me.GridColumn9})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumn3, Me.GridColumnNumber, Me.GridColumn11, Me.GridColumnNote, Me.GridColumn15, Me.GridColumn4, Me.GridColumn2, Me.GridColumn10, Me.GridColumnPayment, Me.GridColumn9})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -641,11 +647,9 @@ Partial Class FormInvoiceFGPODP
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Design"
+        Me.GridColumn3.Caption = "Description"
         Me.GridColumn3.FieldName = "info_design"
         Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.OptionsColumn.AllowFocus = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 323
@@ -655,8 +659,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnNumber.Caption = "Reffrence"
         Me.GridColumnNumber.FieldName = "report_number"
         Me.GridColumnNumber.Name = "GridColumnNumber"
-        Me.GridColumnNumber.OptionsColumn.AllowEdit = False
-        Me.GridColumnNumber.OptionsColumn.AllowFocus = False
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 0
         Me.GridColumnNumber.Width = 182
@@ -681,23 +683,42 @@ Partial Class FormInvoiceFGPODP
         '
         'GridColumn15
         '
-        Me.GridColumn15.Caption = "ID Currency"
+        Me.GridColumn15.Caption = "Currency"
+        Me.GridColumn15.ColumnEdit = Me.RISLECurrency
         Me.GridColumn15.FieldName = "id_currency"
         Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowEdit = False
-        Me.GridColumn15.OptionsColumn.AllowFocus = False
         Me.GridColumn15.OptionsColumn.AllowShowHide = False
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 4
         '
-        'GridColumn12
+        'RISLECurrency
         '
-        Me.GridColumn12.Caption = "Currency"
-        Me.GridColumn12.FieldName = "currency"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.AllowEdit = False
-        Me.GridColumn12.OptionsColumn.AllowFocus = False
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
-        Me.GridColumn12.Width = 79
+        Me.RISLECurrency.AutoHeight = False
+        Me.RISLECurrency.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLECurrency.Name = "RISLECurrency"
+        Me.RISLECurrency.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ID Currency"
+        Me.GridColumn7.FieldName = "id_currency"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Currency"
+        Me.GridColumn8.FieldName = "currency"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
         '
         'GridColumn4
         '
@@ -706,8 +727,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "kurs"
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.AllowEdit = False
-        Me.GridColumn4.OptionsColumn.AllowFocus = False
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 6
         '
@@ -718,8 +737,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn2.FieldName = "value_bef_kurs"
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.OptionsColumn.AllowFocus = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 5
         Me.GridColumn2.Width = 111
@@ -735,26 +752,9 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "qty"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.OptionsColumn.AllowFocus = False
-        Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 3
         Me.GridColumn10.Width = 90
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Price / Unit"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.AllowFocus = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "VAT / Unit"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.OptionsColumn.AllowFocus = False
         '
         'GridColumnPayment
         '
@@ -763,24 +763,18 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnPayment.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnPayment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnPayment.Caption = "Sub Total Amount"
-        Me.GridColumnPayment.ColumnEdit = Me.RITEDecimal
         Me.GridColumnPayment.DisplayFormat.FormatString = "N2"
         Me.GridColumnPayment.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnPayment.FieldName = "value"
+        Me.GridColumnPayment.FieldName = "valuex"
         Me.GridColumnPayment.Name = "GridColumnPayment"
         Me.GridColumnPayment.OptionsColumn.AllowEdit = False
         Me.GridColumnPayment.OptionsColumn.AllowFocus = False
-        Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
+        Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "valuex", "{0:N2}")})
+        Me.GridColumnPayment.UnboundExpression = "[value_bef_kurs] * [kurs]"
+        Me.GridColumnPayment.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPayment.Visible = True
         Me.GridColumnPayment.VisibleIndex = 7
         Me.GridColumnPayment.Width = 102
-        '
-        'RITEDecimal
-        '
-        Me.RITEDecimal.AutoHeight = False
-        Me.RITEDecimal.Mask.EditMask = "N2"
-        Me.RITEDecimal.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEDecimal.Name = "RITEDecimal"
         '
         'GridColumn9
         '
@@ -793,8 +787,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "vat"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.OptionsColumn.AllowFocus = False
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat", "{0:N2}")})
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 8
@@ -807,10 +799,24 @@ Partial Class FormInvoiceFGPODP
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
+        'RITEDecimal
+        '
+        Me.RITEDecimal.AutoHeight = False
+        Me.RITEDecimal.Mask.EditMask = "N2"
+        Me.RITEDecimal.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEDecimal.Name = "RITEDecimal"
+        '
+        'RepositoryItemLookUpEdit1
+        '
+        Me.RepositoryItemLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit1.Name = "RepositoryItemLookUpEdit1"
+        '
         'PCAddDel
         '
         Me.PCAddDel.Controls.Add(Me.BtnDelete)
         Me.PCAddDel.Controls.Add(Me.BtnAdd)
+        Me.PCAddDel.Controls.Add(Me.BAddNewRow)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCAddDel.Location = New System.Drawing.Point(0, 122)
         Me.PCAddDel.Name = "PCAddDel"
@@ -821,7 +827,7 @@ Partial Class FormInvoiceFGPODP
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(819, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(649, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(91, 41)
         Me.BtnDelete.TabIndex = 5
@@ -831,11 +837,21 @@ Partial Class FormInvoiceFGPODP
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(910, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(740, 2)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(91, 41)
+        Me.BtnAdd.Size = New System.Drawing.Size(176, 41)
         Me.BtnAdd.TabIndex = 4
-        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Text = "Add with FGPO Refference"
+        '
+        'BAddNewRow
+        '
+        Me.BAddNewRow.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddNewRow.Image = CType(resources.GetObject("BAddNewRow.Image"), System.Drawing.Image)
+        Me.BAddNewRow.Location = New System.Drawing.Point(916, 2)
+        Me.BAddNewRow.Name = "BAddNewRow"
+        Me.BAddNewRow.Size = New System.Drawing.Size(85, 41)
+        Me.BAddNewRow.TabIndex = 6
+        Me.BAddNewRow.Text = "Add"
         '
         'XTCBPL
         '
@@ -858,7 +874,7 @@ Partial Class FormInvoiceFGPODP
         '
         Me.XTPDraft.Controls.Add(Me.GCDraft)
         Me.XTPDraft.Name = "XTPDraft"
-        Me.XTPDraft.Size = New System.Drawing.Size(997, 205)
+        Me.XTPDraft.Size = New System.Drawing.Size(997, 202)
         Me.XTPDraft.Text = "Draft Journal"
         '
         'GCDraft
@@ -867,7 +883,7 @@ Partial Class FormInvoiceFGPODP
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.MainView = Me.GVDraft
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(997, 205)
+        Me.GCDraft.Size = New System.Drawing.Size(997, 202)
         Me.GCDraft.TabIndex = 2
         Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
@@ -1016,8 +1032,11 @@ Partial Class FormInvoiceFGPODP
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
         CType(Me.XTCBPL, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1080,8 +1099,6 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents SMEditCost As ToolStripMenuItem
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DERefDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
@@ -1105,7 +1122,12 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents DEDueDateInv As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISLECurrency As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BAddNewRow As DevExpress.XtraEditors.SimpleButton
 End Class

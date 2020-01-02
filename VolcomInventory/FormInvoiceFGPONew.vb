@@ -295,28 +295,30 @@ HAVING qty_rec_remaining > 0"
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BPick.Click
         If GVInvoice.RowCount > 0 Then
-            Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
-            newRow("id_prod_order") = SLEFGPO.EditValue.ToString
-            newRow("id_report") = GVInvoice.GetFocusedRowCellValue("id_report")
-            newRow("report_mark_type") = GVInvoice.GetFocusedRowCellValue("report_mark_type")
-            newRow("report_number") = GVInvoice.GetFocusedRowCellValue("report_number")
-            newRow("info_design") = GVInvoice.GetFocusedRowCellValue("info_design")
-            newRow("qty") = GVInvoice.GetFocusedRowCellValue("qty")
-            '
-            newRow("id_currency") = GVInvoice.GetFocusedRowCellValue("id_currency").ToString
-            newRow("currency") = GVInvoice.GetFocusedRowCellValue("currency").ToString
-            newRow("kurs") = GVInvoice.GetFocusedRowCellValue("kurs")
-            newRow("value_bef_kurs") = GVInvoice.GetFocusedRowCellValue("value_bef_kurs")
-            '
-            newRow("value") = GVInvoice.GetFocusedRowCellValue("value")
-            newRow("vat") = GVInvoice.GetFocusedRowCellValue("vat")
-            newRow("inv_number") = ""
-            newRow("note") = ""
-            TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
-            FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
-            FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
-            FormInvoiceFGPODP.SLEPayType.EditValue = SLETypeInvoice.EditValue
-            Close()
+            Try
+                Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
+                newRow("id_prod_order") = SLEFGPO.EditValue.ToString
+                newRow("id_report") = GVInvoice.GetFocusedRowCellValue("id_report")
+                newRow("report_mark_type") = GVInvoice.GetFocusedRowCellValue("report_mark_type")
+                newRow("report_number") = GVInvoice.GetFocusedRowCellValue("report_number")
+                newRow("info_design") = GVInvoice.GetFocusedRowCellValue("info_design")
+                newRow("qty") = GVInvoice.GetFocusedRowCellValue("qty")
+                '
+                newRow("id_currency") = GVInvoice.GetFocusedRowCellValue("id_currency").ToString
+                newRow("kurs") = GVInvoice.GetFocusedRowCellValue("kurs")
+                newRow("value_bef_kurs") = GVInvoice.GetFocusedRowCellValue("value_bef_kurs")
+                '
+                newRow("vat") = GVInvoice.GetFocusedRowCellValue("vat")
+                newRow("inv_number") = ""
+                newRow("note") = ""
+                TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
+                FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
+                FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
+                FormInvoiceFGPODP.SLEPayType.EditValue = SLETypeInvoice.EditValue
+                Close()
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
         Else
             warningCustom("No receiving")
         End If
@@ -350,29 +352,32 @@ WHERE pnd.`id_pn_fgpo`='-1'"
 
     Private Sub BPickAll_Click(sender As Object, e As EventArgs) Handles BPickAll.Click
         If GVInvoice.RowCount > 0 Then
-            For i As Integer = 0 To GVInvoice.RowCount - 1
-                Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
-                newRow("id_report") = SLEFGPO.EditValue.ToString
-                newRow("id_report") = GVInvoice.GetRowCellValue(i, "id_report")
-                newRow("report_mark_type") = GVInvoice.GetRowCellValue(i, "report_mark_type")
-                newRow("report_number") = GVInvoice.GetRowCellValue(i, "report_number")
-                newRow("info_design") = GVInvoice.GetRowCellValue(i, "info_design")
-                newRow("qty") = GVInvoice.GetRowCellValue(i, "qty")
-                '
-                newRow("id_currency") = GVInvoice.GetRowCellValue(i, "id_currency").ToString
-                newRow("currency") = GVInvoice.GetRowCellValue(i, "currency").ToString
-                newRow("kurs") = GVInvoice.GetRowCellValue(i, "kurs")
-                newRow("value_bef_kurs") = GVInvoice.GetRowCellValue(i, "value_bef_kurs")
-                '
-                newRow("value") = GVInvoice.GetRowCellValue(i, "value")
-                newRow("vat") = GVInvoice.GetRowCellValue(i, "vat")
-                newRow("inv_number") = ""
-                newRow("note") = ""
-                TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
-            Next
-            FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
-            FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
-            Close()
+            Try
+                For i As Integer = 0 To GVInvoice.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = SLEFGPO.EditValue.ToString
+                    newRow("id_report") = GVInvoice.GetRowCellValue(i, "id_report")
+                    newRow("report_mark_type") = GVInvoice.GetRowCellValue(i, "report_mark_type")
+                    newRow("report_number") = GVInvoice.GetRowCellValue(i, "report_number")
+                    newRow("info_design") = GVInvoice.GetRowCellValue(i, "info_design")
+                    newRow("qty") = GVInvoice.GetRowCellValue(i, "qty")
+                    '
+                    newRow("id_currency") = GVInvoice.GetRowCellValue(i, "id_currency").ToString
+                    newRow("kurs") = GVInvoice.GetRowCellValue(i, "kurs")
+                    newRow("value_bef_kurs") = GVInvoice.GetRowCellValue(i, "value_bef_kurs")
+                    '
+                    newRow("vat") = GVInvoice.GetRowCellValue(i, "vat")
+                    newRow("inv_number") = ""
+                    newRow("note") = ""
+                    TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
+                FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
+                Close()
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
+
         Else
             warningCustom("No receiving")
         End If

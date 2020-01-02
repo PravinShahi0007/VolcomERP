@@ -219,7 +219,7 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
     Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
         If GVDP.RowCount > 0 Then
             FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
-            FormInvoiceFGPODP.type = "1"
+            FormInvoiceFGPODP.type = "2"
             FormInvoiceFGPODP.ShowDialog()
         End If
     End Sub
@@ -235,13 +235,13 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
     Private Sub GVBPL_DoubleClick(sender As Object, e As EventArgs) Handles GVBPL.DoubleClick
         If GVBPL.RowCount > 0 Then
             FormInvoiceFGPODP.id_invoice = GVBPL.GetFocusedRowCellValue("id_pn_fgpo").ToString
-            FormInvoiceFGPODP.is_general = "1"
+            FormInvoiceFGPODP.doc_type = GVBPL.GetFocusedRowCellValue("doc_type").ToString
             FormInvoiceFGPODP.ShowDialog()
         End If
     End Sub
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
-        FormInvoiceFGPODP.is_general = "1"
+        FormInvoiceFGPODP.doc_type = "1"
         FormInvoiceFGPODP.ShowDialog()
     End Sub
 End Class

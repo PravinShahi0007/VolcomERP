@@ -11,41 +11,21 @@
         Try
             Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
             '
-            If XTCAdd.SelectedTabPageIndex = 0 Then 'fgpo
-                newRow("id_prod_order") = SLEFGPO.EditValue.ToString
-                newRow("id_report") = SLEFGPO.EditValue.ToString
-                newRow("report_mark_type") = "22"
-                newRow("report_number") = SLEFGPO.Text
-                newRow("info_design") = TEInfoDesign.Text
-                '
-                newRow("qty") = TEQty.EditValue
-                newRow("id_currency") = LECurrency.EditValue.ToString
-                newRow("currency") = LECurrency.Text
-                newRow("kurs") = TEKurs.EditValue
-                newRow("value_bef_kurs") = TEBeforeKurs.EditValue
-                '
-                newRow("value") = TEAfterKurs.EditValue
-                newRow("vat") = TEVat.EditValue
-                newRow("inv_number") = ""
-                newRow("note") = ""
-            Else
-                newRow("id_prod_order") = SLEFGPO.EditValue.ToString
-                newRow("id_report") = SLEFGPO.EditValue.ToString
-                newRow("report_mark_type") = "22"
-                newRow("report_number") = SLEFGPO.Text
-                newRow("info_design") = TEInfoDesign.Text
-                '
-                newRow("qty") = TEQty.EditValue
-                newRow("id_currency") = LECurrency.EditValue.ToString
-                newRow("currency") = LECurrency.Text
-                newRow("kurs") = TEKurs.EditValue
-                newRow("value_bef_kurs") = TEBeforeKurs.EditValue
-                '
-                newRow("value") = TEAfterKurs.EditValue
-                newRow("vat") = TEVat.EditValue
-                newRow("inv_number") = ""
-                newRow("note") = ""
-            End If
+            newRow("id_prod_order") = SLEFGPO.EditValue.ToString
+            newRow("id_report") = SLEFGPO.EditValue.ToString
+
+            newRow("report_mark_type") = SLEReportType.EditValue.ToString
+            newRow("report_number") = SLEFGPO.Text
+            newRow("info_design") = TEInfoDesign.Text
+            '
+            newRow("qty") = TEQty.EditValue
+            newRow("id_currency") = LECurrency.EditValue.ToString
+            newRow("kurs") = TEKurs.EditValue
+            newRow("value_bef_kurs") = TEBeforeKurs.EditValue
+            '
+            newRow("vat") = TEVat.EditValue
+            newRow("inv_number") = ""
+            newRow("note") = ""
 
             TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
             FormInvoiceFGPODP.calculate()
@@ -72,6 +52,11 @@
         End If
     End Sub
 
+    Sub load_report_type()
+        Dim query As String = "SELECT report_mark_type,report_mark_type_name FROM `tb_lookup_report_mark_type` WHERE is_payable_bpl='1'"
+        viewSearchLookupQuery(SLEReportType, query, "report_mark_type", "report_mark_type_name", "report_mark_type")
+    End Sub
+
     Private Sub FormInvoiceFGPOAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEVATPercent.EditValue = 0.00
         TEVat.EditValue = 0.00
@@ -81,8 +66,10 @@
         TEBeforeKurs.EditValue = 0.00
         TEAfterKurs.EditValue = 0.00
         '
+        load_report_type()
+
         view_currency()
-        view_fgpo()
+        view_po()
     End Sub
 
     Private Sub view_currency()
@@ -90,14 +77,29 @@
         viewLookupQuery(LECurrency, query, 0, "currency", "id_currency")
     End Sub
 
-    Sub view_fgpo()
-        Dim query As String = "SELECT po.`id_prod_order`,po.`prod_order_number`,dsg.`design_display_name`,dsg.`design_code`
+    Sub view_po()
+        Dim query As String = ""
+
+        If SLEReportType.EditValue.ToString = "22" Then 'fgpo
+            query = "SELECT po.`id_prod_order` AS id_report,po.`prod_order_number` AS report_number,dsg.`design_display_name` AS description,dsg.`design_code` AS info
 FROM tb_prod_order po 
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 WHERE po.`id_report_status`='6'
 GROUP BY po.`id_prod_order`"
-        viewSearchLookupQuery(SLEFGPO, query, "id_prod_order", "prod_order_number", "id_prod_order")
+        ElseIf SLEReportType.EditValue.ToString = "13" Then 'material
+            query = "SELECT po.`id_mat_purc` AS id_report,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
+FROM tb_mat_purc_det pod 
+INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
+INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
+INNER JOIN tb_mat_purc po ON pod.id_mat_purc=po.id_mat_purc 
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact_to
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+WHERE po.`id_report_status`='6'
+GROUP BY pod.id_mat_purc"
+        End If
+
+        viewSearchLookupQuery(SLEFGPO, query, "id_report", "report_number", "id_report")
         Try
             SLEFGPO.EditValue = Nothing
         Catch ex As Exception
@@ -122,7 +124,7 @@ GROUP BY po.`id_prod_order`"
         Dim vat As Decimal = 0.00
         '
         Try
-            TEInfoDesign.Text = SLEFGPO.Properties.View.GetFocusedRowCellValue("design_display_name").ToString
+            TEInfoDesign.Text = SLEFGPO.Properties.View.GetFocusedRowCellValue("description").ToString
 
             bef_kurs = TEBeforeKurs.EditValue
             kurs = TEKurs.EditValue
@@ -169,5 +171,9 @@ GROUP BY po.`id_prod_order`"
         Else
             calculate_fgpo(False)
         End If
+    End Sub
+
+    Private Sub SLEReportType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEReportType.EditValueChanged
+        view_po()
     End Sub
 End Class
