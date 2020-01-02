@@ -17,6 +17,7 @@
                     If is_already = False Then
                         Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
                         newRow("id_prod_order") = id_po
+                        newRow("id_acc") = GVList.GetRowCellValue(i, "id_acc").ToString
                         newRow("id_report") = GVList.GetRowCellValue(i, "id_pn_fgpo").ToString
                         newRow("report_mark_type") = "199"
                         newRow("report_number") = GVList.GetRowCellValue(i, "number").ToString
@@ -54,13 +55,13 @@
 
     Sub load_dp()
         Dim query As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det,pnd.qty, pn.`id_pn_fgpo`,pn.`number`,pnd.`value`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
-,dsg.`design_code`,dsg.`design_display_name`,wo.id_comp,wo.comp_name
+,dsg.`design_code`,dsg.`design_display_name`, wo.id_comp,wo.comp_name, wo.id_acc_dp AS id_acc
 FROM `tb_pn_fgpo_det` pnd
 INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
 LEFT JOIN 
 (
-    SELECT c.`comp_name`,c.id_comp,wo.id_prod_order
+    SELECT c.`comp_name`,c.id_comp,wo.id_prod_order,c.id_acc_dp
     FROM tb_prod_order_wo wo
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
     INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovhp.id_comp_contact

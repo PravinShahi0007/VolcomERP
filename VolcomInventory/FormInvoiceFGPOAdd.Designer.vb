@@ -34,6 +34,10 @@ Partial Class FormInvoiceFGPOAdd
         Me.TEInfoDesign = New DevExpress.XtraEditors.TextEdit()
         Me.XTCAdd = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
+        Me.SLEReportType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TEBeforeKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
@@ -67,10 +71,6 @@ Partial Class FormInvoiceFGPOAdd
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.TEOthQty = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEReportType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +79,8 @@ Partial Class FormInvoiceFGPOAdd
         CType(Me.XTCAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAdd.SuspendLayout()
         Me.XTPFGPO.SuspendLayout()
+        CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEBeforeKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,8 +99,6 @@ Partial Class FormInvoiceFGPOAdd
         CType(Me.TEOthVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOthAfterKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOthQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl7
@@ -205,7 +205,6 @@ Partial Class FormInvoiceFGPOAdd
         '
         Me.TEInfoDesign.Location = New System.Drawing.Point(108, 49)
         Me.TEInfoDesign.Name = "TEInfoDesign"
-        Me.TEInfoDesign.Properties.ReadOnly = True
         Me.TEInfoDesign.Size = New System.Drawing.Size(256, 20)
         Me.TEInfoDesign.TabIndex = 8
         Me.TEInfoDesign.TabStop = False
@@ -246,6 +245,37 @@ Partial Class FormInvoiceFGPOAdd
         Me.XTPFGPO.Name = "XTPFGPO"
         Me.XTPFGPO.Size = New System.Drawing.Size(498, 245)
         Me.XTPFGPO.Text = "FGPO"
+        '
+        'SLEReportType
+        '
+        Me.SLEReportType.Location = New System.Drawing.Point(108, 18)
+        Me.SLEReportType.Name = "SLEReportType"
+        Me.SLEReportType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEReportType.Properties.View = Me.GridView3
+        Me.SLEReportType.Size = New System.Drawing.Size(134, 20)
+        Me.SLEReportType.TabIndex = 8924
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Report Mark Type"
+        Me.GridColumn9.FieldName = "report_mark_type"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Type"
+        Me.GridColumn10.FieldName = "report_mark_type_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
         '
         'TEBeforeKurs
         '
@@ -664,37 +694,6 @@ Partial Class FormInvoiceFGPOAdd
         Me.LabelControl15.TabIndex = 8931
         Me.LabelControl15.Text = "Qty"
         '
-        'SLEReportType
-        '
-        Me.SLEReportType.Location = New System.Drawing.Point(108, 18)
-        Me.SLEReportType.Name = "SLEReportType"
-        Me.SLEReportType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEReportType.Properties.View = Me.GridView3
-        Me.SLEReportType.Size = New System.Drawing.Size(134, 20)
-        Me.SLEReportType.TabIndex = 8924
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Report Mark Type"
-        Me.GridColumn9.FieldName = "report_mark_type"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Type"
-        Me.GridColumn10.FieldName = "report_mark_type_name"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        '
         'FormInvoiceFGPOAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -716,6 +715,8 @@ Partial Class FormInvoiceFGPOAdd
         Me.XTCAdd.ResumeLayout(False)
         Me.XTPFGPO.ResumeLayout(False)
         Me.XTPFGPO.PerformLayout()
+        CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEBeforeKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -735,8 +736,6 @@ Partial Class FormInvoiceFGPOAdd
         CType(Me.TEOthVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOthAfterKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOthQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

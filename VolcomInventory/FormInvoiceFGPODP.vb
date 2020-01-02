@@ -24,8 +24,14 @@
         viewSearchLookupRepositoryQuery(RISLECurrency, query, 0, "currency", "id_currency")
     End Sub
 
+    Private Sub view_coa()
+        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM tb_a_acc WHERE id_is_det='2'"
+        viewSearchLookupRepositoryQuery(RISLECOA, query, 0, "acc_description", "id_acc")
+    End Sub
+
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_currency()
+        view_coa()
         'check 
         DEDateCreated.EditValue = Now
         DERefDate.EditValue = Now
@@ -53,6 +59,14 @@
                 SLEPayType.Properties.ReadOnly = False
                 SLEVendor.Properties.ReadOnly = False
             Else
+                GCReff.OptionsColumn.AllowFocus = False
+                GCDescription.OptionsColumn.AllowFocus = False
+                GCQty.OptionsColumn.AllowFocus = False
+                GCCur.OptionsColumn.AllowFocus = False
+                GCBeforeKurs.OptionsColumn.AllowFocus = False
+                GCKurs.OptionsColumn.AllowFocus = False
+                GCVat.OptionsColumn.AllowFocus = False
+
                 If type = "1" Then 'DP
                     BtnPrint.Visible = False
                     BtnViewJournal.Visible = False
@@ -67,6 +81,7 @@
                         For i = 0 To FormInvoiceFGPO.GVDPFGPO.RowCount - 1
                             Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                             newRow("id_prod_order") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
+                            newRow("id_acc") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_acc").ToString
                             newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
                             newRow("report_mark_type") = "22"
                             newRow("report_number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
@@ -125,6 +140,8 @@
             BtnPrint.Visible = True
             BtnViewJournal.Visible = True
             BMark.Visible = True
+            BtnSave.Visible = False
+            PCAddDel.Visible = False
             DEDueDate.Properties.ReadOnly = True
             DERefDate.Properties.ReadOnly = True
             DEDueDateInv.Properties.ReadOnly = True
@@ -132,11 +149,6 @@
             SLEPayType.Properties.ReadOnly = True
             SLEVendor.Properties.ReadOnly = True
             '
-            BtnPrint.Visible = True
-            BtnViewJournal.Visible = True
-            BMark.Visible = True
-            DEDueDate.Properties.ReadOnly = True
-            DERefDate.Properties.ReadOnly = True
 
             Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
@@ -160,7 +172,7 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
 
     Sub load_det()
         Dim query As String = "
-Select pnd.`id_prod_order`,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` 
+Select pnd.`id_prod_order`,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` 
 FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
 WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
@@ -350,13 +362,6 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
 
     Private Sub BAddNewRow_Click(sender As Object, e As EventArgs) Handles BAddNewRow.Click
         Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-        '
-        newRow("id_prod_order") = ""
-        newRow("id_report") = ""
-
-        newRow("report_mark_type") = ""
-        newRow("report_number") = ""
-        newRow("info_design") = ""
         '
         newRow("qty") = 1
         newRow("id_currency") = 1

@@ -46,7 +46,7 @@ HAVING qty_po > 0"
             If data.Rows(0)("qty_po") > 0 Then
                 Dim q_det As String = "-- normal
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining ,prc.prod_order_wo_det_price, prc.prod_order_wo_vat, prc.kurs
-,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency
+,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency,prc.id_acc
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -58,12 +58,16 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
+	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+    INNER JOIN tb_m_city city ON city.id_city=c.id_city
+    INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+    INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+    INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
     INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
@@ -94,6 +98,7 @@ HAVING qty_rec_remaining > 0"
                         Dim newRow As DataRow = (TryCast(GCInvoice.DataSource, DataTable)).NewRow()
                         newRow("id_report") = dt_det.Rows(i)("id_prod_order_rec").ToString
                         newRow("id_comp") = dt_det.Rows(i)("id_comp").ToString
+                        newRow("id_acc") = dt_det.Rows(i)("id_acc").ToString
                         newRow("report_mark_type") = "28"
                         newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                         newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
@@ -141,7 +146,7 @@ GROUP BY pod.`id_prod_order`"
             If data.Rows(0)("qty_po") > 0 Then
                 Dim q_det As String = "-- extra
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining,(prc.prod_order_wo_det_price * 0.5) AS prod_order_wo_det_price, (prc.prod_order_wo_vat * 0.5) AS prod_order_wo_vat, prc.kurs
-,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency
+,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency,prc.id_acc
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -153,12 +158,16 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
+	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+    INNER JOIN tb_m_city city ON city.id_city=c.id_city
+    INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+    INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+    INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
     INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
@@ -192,6 +201,7 @@ HAVING qty_rec_remaining > 0"
                         Dim newRow As DataRow = (TryCast(GCInvoice.DataSource, DataTable)).NewRow()
                         newRow("id_report") = dt_det.Rows(i)("id_prod_order_rec").ToString
                         newRow("id_comp") = dt_det.Rows(i)("id_comp").ToString
+                        newRow("id_acc") = dt_det.Rows(i)("id_acc").ToString
                         newRow("report_mark_type") = "28"
                         newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                         newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
@@ -224,7 +234,7 @@ HAVING qty_rec_remaining > 0"
         ElseIf SLETypeInvoice.EditValue.ToString = "4" Then 'over memo
             Dim q_det As String = "-- extra
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining, (prc.prod_order_wo_det_price) * (100-overd.discount/100) AS prod_order_wo_det_price, prc.prod_order_wo_vat * (100-overd.discount/100) AS prod_order_wo_vat, prc.kurs
-,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency
+,dsg.design_display_name,prc.id_comp,prc.id_currency,prc.currency,prc.id_acc
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -236,12 +246,16 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
+	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+    INNER JOIN tb_m_city city ON city.id_city=c.id_city
+    INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+    INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+    INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
     INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
@@ -265,6 +279,7 @@ HAVING qty_rec_remaining > 0"
                 Dim newRow As DataRow = (TryCast(GCInvoice.DataSource, DataTable)).NewRow()
                 newRow("id_report") = dt_det.Rows(i)("id_prod_order_rec").ToString
                 newRow("id_comp") = dt_det.Rows(i)("id_comp").ToString
+                newRow("id_acc") = dt_det.Rows(i)("id_acc").ToString
                 newRow("report_mark_type") = "28"
                 newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                 newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
@@ -298,6 +313,7 @@ HAVING qty_rec_remaining > 0"
             Try
                 Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
                 newRow("id_prod_order") = SLEFGPO.EditValue.ToString
+                newRow("id_acc") = GVInvoice.GetFocusedRowCellValue("id_acc")
                 newRow("id_report") = GVInvoice.GetFocusedRowCellValue("id_report")
                 newRow("report_mark_type") = GVInvoice.GetFocusedRowCellValue("report_mark_type")
                 newRow("report_number") = GVInvoice.GetFocusedRowCellValue("report_number")
@@ -333,7 +349,7 @@ HAVING qty_rec_remaining > 0"
 
     Sub view_det()
         Dim query As String = "
-Select pnd.`id_prod_order`,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`value`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` , '' AS id_comp
+Select pnd.`id_prod_order`,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`,pnd.value, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` , '' AS id_comp
 FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
 WHERE pnd.`id_pn_fgpo`='-1'"
@@ -355,7 +371,8 @@ WHERE pnd.`id_pn_fgpo`='-1'"
             Try
                 For i As Integer = 0 To GVInvoice.RowCount - 1
                     Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
-                    newRow("id_report") = SLEFGPO.EditValue.ToString
+                    newRow("id_prod_order") = SLEFGPO.EditValue.ToString
+                    newRow("id_acc") = GVInvoice.GetRowCellValue(i, "id_acc")
                     newRow("id_report") = GVInvoice.GetRowCellValue(i, "id_report")
                     newRow("report_mark_type") = GVInvoice.GetRowCellValue(i, "report_mark_type")
                     newRow("report_number") = GVInvoice.GetRowCellValue(i, "report_number")
