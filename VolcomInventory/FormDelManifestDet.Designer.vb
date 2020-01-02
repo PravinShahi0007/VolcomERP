@@ -278,7 +278,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnStoreAccount.Name = "GridColumnStoreAccount"
         Me.GridColumnStoreAccount.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreAccount.Visible = True
-        Me.GridColumnStoreAccount.VisibleIndex = 4
+        Me.GridColumnStoreAccount.VisibleIndex = 3
         '
         'GridColumnStoreName
         '
@@ -287,7 +287,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnStoreName.Name = "GridColumnStoreName"
         Me.GridColumnStoreName.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreName.Visible = True
-        Me.GridColumnStoreName.VisibleIndex = 3
+        Me.GridColumnStoreName.VisibleIndex = 4
         '
         'GridColumnQty
         '
