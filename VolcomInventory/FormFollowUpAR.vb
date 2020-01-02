@@ -56,4 +56,8 @@
     Private Sub FormFollowUpAR_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        FormMain.but_edit()
+    End Sub
 End Class

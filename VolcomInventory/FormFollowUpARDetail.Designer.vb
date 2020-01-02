@@ -21,13 +21,17 @@ Partial Class FormFollowUpARDetail
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFollowUpARDetail))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDue = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnsales_pos_due_date_sle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEDueDate = New DevExpress.XtraEditors.LabelControl()
         Me.MEFollowUp = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -35,10 +39,6 @@ Partial Class FormFollowUpARDetail
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFollowUpDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsales_pos_due_date_sle = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,16 +61,6 @@ Partial Class FormFollowUpARDetail
         Me.PanelControl1.Size = New System.Drawing.Size(396, 43)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnSave
-        '
-        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(310, 2)
-        Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(84, 39)
-        Me.BtnSave.TabIndex = 0
-        Me.BtnSave.Text = "Save"
-        '
         'BtnDiscard
         '
         Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
@@ -80,6 +70,16 @@ Partial Class FormFollowUpARDetail
         Me.BtnDiscard.Size = New System.Drawing.Size(84, 39)
         Me.BtnDiscard.TabIndex = 1
         Me.BtnDiscard.Text = "Discard"
+        '
+        'BtnSave
+        '
+        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
+        Me.BtnSave.Location = New System.Drawing.Point(310, 2)
+        Me.BtnSave.Name = "BtnSave"
+        Me.BtnSave.Size = New System.Drawing.Size(84, 39)
+        Me.BtnSave.TabIndex = 0
+        Me.BtnSave.Text = "Save"
         '
         'SLEStoreGroup
         '
@@ -99,6 +99,28 @@ Partial Class FormFollowUpARDetail
         Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView3.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "id_comp_group"
+        Me.GridColumn1.FieldName = "id_comp_group"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumncomp_group
+        '
+        Me.GridColumncomp_group.Caption = "Group"
+        Me.GridColumncomp_group.FieldName = "comp_group"
+        Me.GridColumncomp_group.Name = "GridColumncomp_group"
+        Me.GridColumncomp_group.Visible = True
+        Me.GridColumncomp_group.VisibleIndex = 0
+        '
+        'GridColumndescription
+        '
+        Me.GridColumndescription.Caption = "Description"
+        Me.GridColumndescription.FieldName = "description"
+        Me.GridColumndescription.Name = "GridColumndescription"
+        Me.GridColumndescription.Visible = True
+        Me.GridColumndescription.VisibleIndex = 1
+        '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(19, 18)
@@ -112,10 +134,6 @@ Partial Class FormFollowUpARDetail
         Me.SLEDue.Location = New System.Drawing.Point(118, 41)
         Me.SLEDue.Name = "SLEDue"
         Me.SLEDue.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEDue.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.SLEDue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.SLEDue.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.SLEDue.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.SLEDue.Properties.ShowClearButton = False
         Me.SLEDue.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEDue.Size = New System.Drawing.Size(247, 20)
@@ -128,6 +146,16 @@ Partial Class FormFollowUpARDetail
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnsales_pos_due_date_sle
+        '
+        Me.GridColumnsales_pos_due_date_sle.Caption = "Due Date"
+        Me.GridColumnsales_pos_due_date_sle.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_pos_due_date_sle.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_pos_due_date_sle.FieldName = "sales_pos_due_date"
+        Me.GridColumnsales_pos_due_date_sle.Name = "GridColumnsales_pos_due_date_sle"
+        Me.GridColumnsales_pos_due_date_sle.Visible = True
+        Me.GridColumnsales_pos_due_date_sle.VisibleIndex = 0
         '
         'SLEDueDate
         '
@@ -187,38 +215,6 @@ Partial Class FormFollowUpARDetail
         Me.LabelControl4.Size = New System.Drawing.Size(72, 13)
         Me.LabelControl4.TabIndex = 8937
         Me.LabelControl4.Text = "Follow Up Date"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "id_comp_group"
-        Me.GridColumn1.FieldName = "id_comp_group"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumncomp_group
-        '
-        Me.GridColumncomp_group.Caption = "Group"
-        Me.GridColumncomp_group.FieldName = "comp_group"
-        Me.GridColumncomp_group.Name = "GridColumncomp_group"
-        Me.GridColumncomp_group.Visible = True
-        Me.GridColumncomp_group.VisibleIndex = 0
-        '
-        'GridColumndescription
-        '
-        Me.GridColumndescription.Caption = "Description"
-        Me.GridColumndescription.FieldName = "description"
-        Me.GridColumndescription.Name = "GridColumndescription"
-        Me.GridColumndescription.Visible = True
-        Me.GridColumndescription.VisibleIndex = 1
-        '
-        'GridColumnsales_pos_due_date_sle
-        '
-        Me.GridColumnsales_pos_due_date_sle.Caption = "Due Date"
-        Me.GridColumnsales_pos_due_date_sle.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnsales_pos_due_date_sle.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsales_pos_due_date_sle.FieldName = "sales_pos_due_date"
-        Me.GridColumnsales_pos_due_date_sle.Name = "GridColumnsales_pos_due_date_sle"
-        Me.GridColumnsales_pos_due_date_sle.Visible = True
-        Me.GridColumnsales_pos_due_date_sle.VisibleIndex = 0
         '
         'FormFollowUpARDetail
         '

@@ -65,13 +65,14 @@
         Catch ex As Exception
             id_cg = "-1"
         End Try
-        Dim query As String = "SELECT sp.sales_pos_due_date 
+        Dim query As String = "SELECT sp.sales_pos_due_date, DATE_FORMAT(sp.sales_pos_due_date,'%d %M %Y') AS `due_date`
         FROM tb_sales_pos sp
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         WHERE sp.id_report_status=6 AND c.id_comp_group=" + id_cg + "
-        GROUP BY sp.sales_pos_due_date "
-        viewSearchLookupQuery(SLEDue, query, "sales_pos_due_date", "sales_pos_due_date", "sales_pos_due_date")
+        GROUP BY sp.sales_pos_due_date 
+        ORDER BY sp.sales_pos_due_date DESC "
+        viewSearchLookupQuery(SLEDue, query, "sales_pos_due_date", "due_date", "sales_pos_due_date")
     End Sub
 
     Private Sub FormFollowUpARDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -87,7 +88,7 @@
             Dim query As String = f.queryMain("AND f.id_follow_up_ar='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             SLEStoreGroup.EditValue = data.Rows(0)("id_comp_group").ToString
-            SLEDue.EditValue = data.Rows(0)("sales_pos_due_date")
+            SLEDue.EditValue = data.Rows(0)("due_date")
             DEFollowUpDate.EditValue = data.Rows(0)("follow_up_date")
             MEFollowUp.Text = data.Rows(0)("follow_up").ToString
             MEResult.Text = data.Rows(0)("follow_up_result").ToString
