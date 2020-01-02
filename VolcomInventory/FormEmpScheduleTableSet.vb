@@ -3,7 +3,7 @@
     '1 = schedule table
     '2 = attnassigndet
     Private Sub FormEmpScheduleTableSet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If Not id_role_login = get_setup_field("id_role_super_admin") Then
+        If Not id_role_login = get_setup_field("id_role_super_admin") And get_setup_field("attn_assign_min_date") = "1" Then
             If Not (FormEmpSchedule.is_security = "1" And opt = "1") Then
                 Dim date_min As Date
                 'Dim query_date As String = "SELECT IF(NOW()>=IF(DAYOFMONTH(LAST_DAY(NOW()))='31',LAST_DAY(NOW()),DATE_ADD(LAST_DAY(NOW()),INTERVAL 1 DAY)),
