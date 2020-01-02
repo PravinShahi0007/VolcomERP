@@ -27,6 +27,7 @@ Partial Class FormDelManifestDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBComplete = New DevExpress.XtraEditors.SimpleButton()
@@ -65,7 +66,6 @@ Partial Class FormDelManifestDet
         Me.TEUpdatedDate = New DevExpress.XtraEditors.TextEdit()
         Me.TECreatedDate = New DevExpress.XtraEditors.TextEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
-        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +144,16 @@ Partial Class FormDelManifestDet
         Me.SBCancel.Size = New System.Drawing.Size(129, 45)
         Me.SBCancel.TabIndex = 4
         Me.SBCancel.Text = "Cancel Propose"
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(686, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(96, 45)
+        Me.SBPrint.TabIndex = 14
+        Me.SBPrint.Text = "Print"
         '
         'TEReportStatus
         '
@@ -507,16 +517,6 @@ Partial Class FormDelManifestDet
         Me.TENumber.Properties.ReadOnly = True
         Me.TENumber.Size = New System.Drawing.Size(200, 20)
         Me.TENumber.TabIndex = 13
-        '
-        'SBPrint
-        '
-        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(686, 2)
-        Me.SBPrint.Name = "SBPrint"
-        Me.SBPrint.Size = New System.Drawing.Size(96, 45)
-        Me.SBPrint.TabIndex = 14
-        Me.SBPrint.Text = "Print"
         '
         'FormDelManifestDet
         '

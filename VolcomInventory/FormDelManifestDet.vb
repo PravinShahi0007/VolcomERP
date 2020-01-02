@@ -79,6 +79,9 @@
             SBPrint.Enabled = False
             SBSave.Enabled = True
             SBComplete.Enabled = True
+
+            SBAdd.Enabled = True
+            SBAdd.Enabled = True
         Else
             SLUE3PL.ReadOnly = True
 
@@ -90,6 +93,9 @@
             If data.Rows(0)("id_report_status").ToString = "5" Then
                 SBPrint.Enabled = False
             End If
+
+            SBAdd.Enabled = False
+            SBAdd.Enabled = False
         End If
     End Sub
 
@@ -148,5 +154,9 @@
                 GVList.SetRowCellValue(i, "no", i + 1)
             End If
         Next
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+
     End Sub
 End Class
