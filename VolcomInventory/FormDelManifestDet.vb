@@ -81,7 +81,7 @@
             SBComplete.Enabled = True
 
             SBAdd.Enabled = True
-            SBAdd.Enabled = True
+            SBRemove.Enabled = True
         Else
             SLUE3PL.ReadOnly = True
 
@@ -95,7 +95,7 @@
             End If
 
             SBAdd.Enabled = False
-            SBAdd.Enabled = False
+            SBRemove.Enabled = False
         End If
     End Sub
 
@@ -139,6 +139,8 @@
             query = query.Substring(0, query.Length - 2)
 
             execute_non_query(query, True, "", "", "", "")
+
+            execute_non_query("CALL gen_number(" + id_del_manifest + ", '232')", True, "", "", "", "")
 
             If type = "draft" Then
                 form_load()

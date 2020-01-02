@@ -22,7 +22,7 @@
             query_where += "AND a.id_store = " + SLUECompany.EditValue.ToString
         End If
 
-        Dim query_in As String = ""
+        Dim query_in As String = "0, "
 
         For i = 0 To FormDelManifestDet.GVList.RowCount - 1
             If FormDelManifestDet.GVList.IsValidRowHandle(i) Then
