@@ -160,6 +160,9 @@
                 Dim querylog As String = "INSERT INTO tb_ar_eval_log(eval_date, log_time, log, is_success) 
                     VALUES('" + date_eval + "', NOW(), '" + group_name + " - Email Sent successfully',1); " + mm.queryInsertLog(id_user, "2", "" + group_name + " - Sent successfully") + "; "
                 execute_non_query(querylog, True, "", "", "", "")
+
+                'log follow up
+                mm.insertLogFollowUp()
             End If
         Catch ex As Exception
             'Log
