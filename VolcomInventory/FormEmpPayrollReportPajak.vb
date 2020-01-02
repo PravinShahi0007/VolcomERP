@@ -100,8 +100,14 @@
 
         If dialog.ShowDialog() = DialogResult.OK Then
             Dim type As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "DW ", "")
+            Dim month_date As String = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
 
-            TBFileAddress.Text = dialog.SelectedPath & "\Report Pajak " + type + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy") + ".xls"
+            If FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
+                type = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString + " "
+                month_date = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+            End If
+
+            TBFileAddress.Text = dialog.SelectedPath & "\Report Pajak " + type + month_date + ".xls"
         End If
 
         dialog.Dispose()
