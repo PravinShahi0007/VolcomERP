@@ -29,7 +29,37 @@
     End Sub
 
     Sub viewActive()
-
+        Cursor = Cursors.WaitCursor
+        Dim cond As String = ""
+        If SLEStoreGroup.EditValue.ToString <> "0" Then
+            cond = "AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'"
+        End If
+        Dim query As String = "SELECT far.id_follow_up_ar,cg.description AS `group` , sp.sales_pos_due_date, far.follow_up_date, far.follow_up, far.follow_up_result,
+        SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) - IFNULL(pyd.`value`,0.00)) AS `amount`
+        FROM tb_sales_pos sp 
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        LEFT JOIN (
+           SELECT pyd.id_report, pyd.report_mark_type, 
+           COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+           SUM(pyd.value) AS  `value`
+           FROM tb_rec_payment_det pyd
+           INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+           WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183)
+           GROUP BY pyd.id_report, pyd.report_mark_type
+        ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+        INNER JOIN tb_follow_up_ar far ON far.id_comp_group = c.id_comp_group AND far.due_date = sp.sales_pos_due_date
+        WHERE sp.is_close_rec_payment=2 
+        " + cond + "
+        GROUP BY c.id_comp_group, sp.sales_pos_due_date, far.id_follow_up_ar
+        ORDER BY cg.description ASC, sp.sales_pos_due_date ASC, far.follow_up_date ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCActive.DataSource = data
+        GVActive.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BView_Click_1(sender As Object, e As EventArgs) Handles BView.Click
@@ -58,6 +88,10 @@
     End Sub
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        FormMain.but_edit()
+    End Sub
+
+    Private Sub GVActive_DoubleClick(sender As Object, e As EventArgs) Handles GVActive.DoubleClick
         FormMain.but_edit()
     End Sub
 End Class

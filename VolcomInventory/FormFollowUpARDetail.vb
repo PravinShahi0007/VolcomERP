@@ -31,6 +31,8 @@
 
     Sub refreshMainView()
         FormFollowUpAR.SLEStoreGroup.EditValue = "0"
+        FormFollowUpAR.GCData.DataSource = Nothing
+        FormFollowUpAR.GCActive.DataSource = Nothing
         If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 Then
             FormFollowUpAR.viewList()
             FormFollowUpAR.GVData.FocusedRowHandle = find_row(FormFollowUpAR.GVData, "id_follow_up_ar", id)
@@ -38,8 +40,7 @@
             FormFollowUpAR.viewActive()
             FormFollowUpAR.GVActive.FocusedRowHandle = find_row(FormFollowUpAR.GVActive, "id_follow_up_ar", id)
         Else
-            FormFollowUpAR.GCData.DataSource = Nothing
-            FormFollowUpAR.GCActive.DataSource = Nothing
+
         End If
     End Sub
 
