@@ -759,7 +759,7 @@
             Dim cml As New ClassMailManage()
             cml.id_mail_manage = id
             cml.rmt = rmt
-            cml.insertLogFollowUp()
+            cml.insertLogFollowUp("")
         Catch ex As Exception
             Dim query As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
             id_mail_status=3, mail_status_note='" + addSlashes(ex.ToString) + "' WHERE id_mail_manage='" + id + "';" + queryInsertLog("3", ex.ToString) + "; "

@@ -162,7 +162,7 @@
                 execute_non_query(querylog, True, "", "", "", "")
 
                 'log follow up
-                mm.insertLogFollowUp()
+                mm.insertLogFollowUp("")
             End If
         Catch ex As Exception
             'Log
