@@ -6489,6 +6489,12 @@
     <Compile Include="ReportDelayPayment.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDelManifest.Designer.vb">
+      <DependentUpon>ReportDelManifest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDelManifest.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDeptHeadSurvey.Designer.vb">
       <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
     </Compile>
@@ -11197,6 +11203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDelayPayment.resx">
       <DependentUpon>ReportDelayPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDelManifest.resx">
+      <DependentUpon>ReportDelManifest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDeptHeadSurvey.resx">
       <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
