@@ -10,6 +10,7 @@
     Dim mail_content As String = ""
     Dim mail_content_end As String = ""
     Dim mail_content_to As String = ""
+    Dim super_user As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormMailManageDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -163,7 +164,7 @@
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_user u ON u.id_user = m.id_user
                 INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-                WHERE e.email_external!='' AND m.report_mark_type='" + rmt + "'
+                WHERE e.email_external!='' AND m.report_mark_type='" + rmt + "' AND (ISNULL(m.id_comp_group) OR m.id_comp_group='" + FormMailManage.SLEStoreGroup.EditValue.ToString + "')
                 UNION
                 SELECT m.id_mail_manage_mapping AS `index`,0 AS `id_mail_manage_member`,0 AS `id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type, 0 AS `id_user`, m.id_comp_contact,
                 cc.contact_person AS `description`, cc.email AS `mail_address`
@@ -538,6 +539,17 @@
                 BtnCancel.Visible = False
                 BtnSend.Text = "Resend"
             End If
+
+            'jika sent tapi bukan super user
+            If id_mail_status = "2" And id_role_login <> super_user Then
+                BtnSend.Visible = False
+            End If
+        End If
+
+        'include mail management
+        Dim management_mail As String = getMailManagement(rmt)
+        If management_mail <> "" Then
+            MECC.Text += management_mail + ";"
         End If
         Cursor = Cursors.Default
     End Sub
