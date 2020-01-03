@@ -57,7 +57,7 @@
                 mm.mail_subject = mail_subject
                 mm.mail_title = mail_title
                 mm.par1 = date_eval
-                mm.createEmail(id_user, "NULL", "NULL", "")
+                mm.createEmail("-1", id_user, "NULL", "NULL", "")
                 id_mail = mm.id_mail_manage
 
                 'send email
@@ -107,7 +107,7 @@
                 mm.typ = "2"
                 mm.par1 = date_eval
                 mm.par2 = id_group
-                mm.createEmail(id_user, "NULL", "NULL", "")
+                mm.createEmail(id_group, id_user, "NULL", "NULL", "")
                 id_mail = mm.id_mail_manage
 
                 'data send email
