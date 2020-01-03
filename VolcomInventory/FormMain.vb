@@ -3,6 +3,7 @@ Imports System
 Imports System.Windows.Forms
 Imports DevExpress.XtraPrinting
 Imports System.Xml
+Imports System.Runtime.InteropServices
 
 Public Class FormMain
     Public connection_problem As Boolean = False
@@ -70,6 +71,7 @@ Public Class FormMain
         NotifyIconVI.ShowBalloonTip(2000, "Information", "Volcom ERP is now running." + Environment.NewLine + "Right click at volcom icon for more option.", ToolTipIcon.Info)
         Cursor = Cursors.Default
     End Sub
+
     '----------- check version
     Sub check_and_update_version()
         Dim update_url As String = get_setup_field("update_address")
@@ -553,7 +555,6 @@ Public Class FormMain
             TimerNotif.Enabled = False
             Badge1.Visible = False
             Opacity = 0
-
 
             'close all notif
             Dim array = AlertControlNotif.AlertFormList.ToArray()
@@ -13959,5 +13960,42 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Catch ex As Exception
             errorProcess()
         End Try
+    End Sub
+
+    'iddle
+    <DllImport("user32.dll")> Shared Function GetLastInputInfo(ByRef plii As LASTINPUTINFO) As Boolean
+    End Function
+
+    <StructLayout(LayoutKind.Sequential)> Structure LASTINPUTINFO
+        <MarshalAs(UnmanagedType.U4)> Public cbSize As Integer
+        <MarshalAs(UnmanagedType.U4)> Public dwTime As Integer
+    End Structure
+
+    Dim idletime As Integer
+    Dim lastInputInf As New LASTINPUTINFO()
+
+    Public Function GetLastInputTime() As Integer
+
+        idletime = 0
+        lastInputInf.cbSize = Marshal.SizeOf(lastInputInf)
+        lastInputInf.dwTime = 0
+
+        If GetLastInputInfo(lastInputInf) Then
+            idletime = Environment.TickCount - lastInputInf.dwTime
+        End If
+
+        If idletime > 0 Then
+            Return idletime / 1000
+        Else : Return 0
+        End If
+
+    End Function
+
+    Private Sub TimerIddle_Tick(sender As Object, e As EventArgs) Handles TimerIddle.Tick
+        If CInt(GetLastInputTime()) > get_setup_field("system_auto_logout") Then
+            TimerIddle.Stop()
+            TimerIddle.Enabled = False
+            logOutCmd()
+        End If
     End Sub
 End Class

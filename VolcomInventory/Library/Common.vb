@@ -60,7 +60,6 @@ Module Common
         Return ret_var
     End Function
 
-
     Function combine_header_number(ByVal header As String, ByVal increment As Integer, ByVal digit As Integer)
         Dim header_number, zero_number As String
         header_number = ""
