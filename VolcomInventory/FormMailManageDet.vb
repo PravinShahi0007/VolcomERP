@@ -547,11 +547,7 @@
         End If
 
         'include mail management
-        Dim qmm As String = "SELECT o.management_mail 
-        FROM tb_lookup_report_mark_type rmt 
-        JOIN tb_opt_scheduler o
-        WHERE rmt.report_mark_type=225 AND rmt.is_mail_management=1 "
-        Dim management_mail As String = execute_query(qmm, 0, True, "", "", "", "")
+        Dim management_mail As String = getMailManagement(rmt)
         If management_mail <> "" Then
             MECC.Text += management_mail + ";"
         End If

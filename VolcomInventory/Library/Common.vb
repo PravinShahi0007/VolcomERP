@@ -6799,4 +6799,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Return out
     End Function
 
+    Public Function getMailManagement(ByVal rmt As String) As String
+        Dim qmm As String = "SELECT o.management_mail 
+        FROM tb_lookup_report_mark_type rmt 
+        JOIN tb_opt_scheduler o
+        WHERE rmt.report_mark_type=225 AND rmt.is_mail_management=1 "
+        Dim management_mail As String = execute_query(qmm, 0, True, "", "", "", "").ToString
+        Return management_mail
+    End Function
+
 End Module
