@@ -89,7 +89,7 @@
 
         'load detail
         Dim query_detail As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((det.basic_salary + det.allow_job + det.allow_meal + det.allow_trans + det.allow_house + det.allow_car) - (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0))) / (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0)) * 100, 2), '%') AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, dp.total_workdays, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ((SELECT basic_salary_current) + (SELECT allow_job_current) + (SELECT allow_meal_current) + (SELECT allow_trans_current) + (SELECT allow_house_current) + (SELECT allow_car_current)) AS total_salary_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((det.basic_salary + det.allow_job + det.allow_meal + det.allow_trans + det.allow_house + det.allow_car) - (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0))) / (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0)) * 100, 2), '%') AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
@@ -112,6 +112,8 @@
 
             id_employee_sal_pps = "-1"
         End If
+
+        update_current()
     End Sub
 
     Sub permission_load()
@@ -356,7 +358,7 @@
     Private Sub LUEType_EditValueChanged(sender As Object, e As EventArgs) Handles LUEType.EditValueChanged
         'reset datasource
         Dim query As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, '-100.00%' AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, dp.total_workdays, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ((SELECT basic_salary_current) + (SELECT allow_job_current) + (SELECT allow_meal_current) + (SELECT allow_trans_current) + (SELECT allow_house_current) + (SELECT allow_car_current)) AS total_salary_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, '-100.00%' AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
@@ -428,37 +430,51 @@
             'calculate composition & increase
             Dim i As Integer = e.RowHandle
 
-            Try
-                'composition
-                Dim fixed_salary As Decimal = (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans")) / (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) * 100
-                Dim non_fixed_salary As Decimal = (GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) / (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) * 100
+            'composition
+            calculate_composition(i)
 
-                GVEmployee.SetRowCellValue(i, "fixed_salary", Math.Round(fixed_salary, 2).ToString + "%")
-                GVEmployee.SetRowCellValue(i, "non_fixed_salary", Math.Round(non_fixed_salary, 2).ToString + "%")
-            Catch ex As Exception
-                GVEmployee.SetRowCellValue(i, "fixed_salary", "50.00%")
-                GVEmployee.SetRowCellValue(i, "non_fixed_salary", "50.00%")
-            End Try
-
-            Try
-                'increase
-                Dim increase As Decimal = ((GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) - (GVEmployee.GetRowCellValue(i, "basic_salary_current") + GVEmployee.GetRowCellValue(i, "allow_job_current") + GVEmployee.GetRowCellValue(i, "allow_meal_current") + GVEmployee.GetRowCellValue(i, "allow_trans_current") + GVEmployee.GetRowCellValue(i, "allow_house_current") + GVEmployee.GetRowCellValue(i, "allow_car_current"))) / ((GVEmployee.GetRowCellValue(i, "basic_salary_current") + GVEmployee.GetRowCellValue(i, "allow_job_current") + GVEmployee.GetRowCellValue(i, "allow_meal_current") + GVEmployee.GetRowCellValue(i, "allow_trans_current") + GVEmployee.GetRowCellValue(i, "allow_house_current") + GVEmployee.GetRowCellValue(i, "allow_car_current"))) * 100
-
-                GVEmployee.SetRowCellValue(i, "increase", Math.Round(increase, 2).ToString + "%")
-            Catch ex As Exception
-                Dim total As Decimal = GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")
-
-                If total = 0 Then
-                    GVEmployee.SetRowCellValue(i, "increase", "0.00%")
-                Else
-                    GVEmployee.SetRowCellValue(i, "increase", "100.00%")
-                End If
-            End Try
+            'increase
+            calculate_increase(i)
         End If
 
         If e.Column.FieldName.ToString = "id_employee_status_det" Then
             GVEmployee.BestFitColumns()
         End If
+    End Sub
+
+    Sub calculate_composition(ByVal i As Integer)
+        Try
+            Dim fixed_salary As Decimal = (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans")) / (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) * 100
+            Dim non_fixed_salary As Decimal = (GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) / (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) * 100
+
+            GVEmployee.SetRowCellValue(i, "fixed_salary", Math.Round(fixed_salary, 2).ToString + "%")
+            GVEmployee.SetRowCellValue(i, "non_fixed_salary", Math.Round(non_fixed_salary, 2).ToString + "%")
+        Catch ex As Exception
+            GVEmployee.SetRowCellValue(i, "fixed_salary", "50.00%")
+            GVEmployee.SetRowCellValue(i, "non_fixed_salary", "50.00%")
+        End Try
+    End Sub
+
+    Sub calculate_increase(ByVal i As Integer)
+        Try
+            Dim increase As Decimal = 0.00
+
+            If LUEType.EditValue.ToString = "1" Then
+                increase = ((GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) - GVEmployee.GetRowCellValue(i, "total_salary_current")) / GVEmployee.GetRowCellValue(i, "total_salary_current") * 100
+            Else
+                increase = ((GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) - GVEmployee.GetRowCellValue(i, "basic_salary_current")) / GVEmployee.GetRowCellValue(i, "basic_salary_current") * 100
+            End If
+
+            GVEmployee.SetRowCellValue(i, "increase", Math.Round(increase, 2).ToString + "%")
+        Catch ex As Exception
+            Dim total As Decimal = GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")
+
+            If total = 0 Then
+                GVEmployee.SetRowCellValue(i, "increase", "0.00%")
+            Else
+                GVEmployee.SetRowCellValue(i, "increase", "100.00%")
+            End If
+        End Try
     End Sub
 
     Private clone As DataView = Nothing
@@ -516,5 +532,27 @@
         FormDocumentUpload.report_mark_type = If(LUECategory.EditValue.ToString = "1", "197", "229")
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub update_current()
+        For i = 0 To GVEmployee.RowCount - 1
+            If GVEmployee.IsValidRowHandle(i) Then
+                Dim salary_min_basic As Integer = GVEmployee.GetRowCellValue(i, "allow_job_current") + GVEmployee.GetRowCellValue(i, "allow_meal_current") + GVEmployee.GetRowCellValue(i, "allow_trans_current") + GVEmployee.GetRowCellValue(i, "allow_house_current") + GVEmployee.GetRowCellValue(i, "allow_car_current")
+
+                If LUEType.EditValue.ToString = "1" Then
+                    If salary_min_basic = 0 Then
+                        GVEmployee.SetRowCellValue(i, "total_salary_current", GVEmployee.GetRowCellValue(i, "basic_salary_current") * GVEmployee.GetRowCellValue(i, "total_workdays"))
+
+                        calculate_increase(i)
+                    End If
+                Else
+                    If salary_min_basic > 0 Then
+                        GVEmployee.SetRowCellValue(i, "basic_salary_current", GVEmployee.GetRowCellValue(i, "total_salary_current") / GVEmployee.GetRowCellValue(i, "total_workdays"))
+
+                        calculate_increase(i)
+                    End If
+                End If
+            End If
+        Next
     End Sub
 End Class
