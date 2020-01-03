@@ -52,6 +52,8 @@ Partial Class FormFollowUpAR
         Me.GridColumnamount_act = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_follow_up_ar_act = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPFollowUpHist = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButtonRecap = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +66,8 @@ Partial Class FormFollowUpAR
         Me.XTPInvoiceOpen.SuspendLayout()
         CType(Me.GCActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVActive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -253,6 +257,7 @@ Partial Class FormFollowUpAR
         'XTPInvoiceOpen
         '
         Me.XTPInvoiceOpen.Controls.Add(Me.GCActive)
+        Me.XTPInvoiceOpen.Controls.Add(Me.PanelControl2)
         Me.XTPInvoiceOpen.Name = "XTPInvoiceOpen"
         Me.XTPInvoiceOpen.Size = New System.Drawing.Size(1013, 457)
         Me.XTPInvoiceOpen.Text = "Current Invoice Open"
@@ -263,7 +268,7 @@ Partial Class FormFollowUpAR
         Me.GCActive.Location = New System.Drawing.Point(0, 0)
         Me.GCActive.MainView = Me.GVActive
         Me.GCActive.Name = "GCActive"
-        Me.GCActive.Size = New System.Drawing.Size(1013, 457)
+        Me.GCActive.Size = New System.Drawing.Size(1013, 407)
         Me.GCActive.TabIndex = 0
         Me.GCActive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActive})
         '
@@ -350,8 +355,26 @@ Partial Class FormFollowUpAR
         'XTPFollowUpHist
         '
         Me.XTPFollowUpHist.Name = "XTPFollowUpHist"
-        Me.XTPFollowUpHist.Size = New System.Drawing.Size(0, 0)
+        Me.XTPFollowUpHist.Size = New System.Drawing.Size(1013, 457)
         Me.XTPFollowUpHist.Text = "History Follow Up"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SimpleButtonRecap)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 407)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1013, 50)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'SimpleButtonRecap
+        '
+        Me.SimpleButtonRecap.Image = CType(resources.GetObject("SimpleButtonRecap.Image"), System.Drawing.Image)
+        Me.SimpleButtonRecap.Location = New System.Drawing.Point(11, 12)
+        Me.SimpleButtonRecap.Name = "SimpleButtonRecap"
+        Me.SimpleButtonRecap.Size = New System.Drawing.Size(97, 25)
+        Me.SimpleButtonRecap.TabIndex = 8929
+        Me.SimpleButtonRecap.Text = "Create Recap"
         '
         'FormFollowUpAR
         '
@@ -376,6 +399,8 @@ Partial Class FormFollowUpAR
         Me.XTPInvoiceOpen.ResumeLayout(False)
         CType(Me.GCActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVActive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -412,4 +437,6 @@ Partial Class FormFollowUpAR
     Friend WithEvents GridColumnamount_act As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_follow_up_ar_act As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPFollowUpHist As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButtonRecap As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -35,7 +35,7 @@
             cond = "AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'"
         End If
         Dim query As String = "SELECT far.id_follow_up_ar,cg.description AS `group` , sp.sales_pos_due_date, far.follow_up_date, far.follow_up, far.follow_up_result,
-        SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) - IFNULL(pyd.`value`,0.00)) AS `amount`
+        SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) - IFNULL(pyd.`value`,0.00)) AS `amount`, c.id_comp_group
         FROM tb_sales_pos sp 
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -93,5 +93,35 @@
 
     Private Sub GVActive_DoubleClick(sender As Object, e As EventArgs) Handles GVActive.DoubleClick
         FormMain.but_edit()
+    End Sub
+
+    Private Sub SimpleButtonRecap_Click(sender As Object, e As EventArgs) Handles SimpleButtonRecap.Click
+        If GVActive.RowCount < 1 Then
+            stopCustom("No follow Up.")
+        ElseIf Not SLEStoreGroup.EditValue.ToString = "0" Then
+            stopCustom("Please select all store.")
+        Else
+            Dim id_follow_up_recap As String = "0"
+
+            Dim query As String = "INSERT INTO tb_follow_up_recap (follow_up_date, created_date, created_by, id_report_status) VALUES (DATE(NOW()), NOW(), " + id_user + ", 1); SELECT LAST_INSERT_ID();"
+
+            id_follow_up_recap = execute_query(query, 0, True, "", "", "", "")
+
+            Dim query_det As String = "INSERT INTO tb_follow_up_recap_det (id_follow_up_recap, id_comp_group, `group`, due_date, follow_up_date, follow_up, follow_up_result) VALUES "
+
+            For i = 0 To GVActive.RowCount - 1
+                If GVActive.IsValidRowHandle(i) Then
+                    query_det += "(" + id_follow_up_recap + ", " + GVActive.GetRowCellValue(i, "id_comp_group").ToString + ", '', '" + Date.Parse(GVActive.GetRowCellValue(i, "sales_pos_due_date")).ToString("yyyy-MM-dd") + "', '" + Date.Parse(GVActive.GetRowCellValue(i, "follow_up_date")).ToString("yyyy-MM-dd") + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up").ToString) + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up_result").ToString) + "'), "
+                End If
+            Next
+
+            query_det = query_det.Substring(0, query_det.Length - 2)
+
+            execute_non_query(query_det, True, "", "", "", "")
+        End If
+    End Sub
+
+    Sub print_recap(ByVal id_follow_up_recap As String)
+
     End Sub
 End Class

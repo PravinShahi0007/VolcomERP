@@ -6867,6 +6867,12 @@
     <Compile Include="ReportFGWoffList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFollowUpAR.Designer.vb">
+      <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFollowUpAR.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportInvMat.Designer.vb">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
     </Compile>
@@ -11424,6 +11430,9 @@
     <EmbeddedResource Include="ReportFGWoffList.resx">
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFollowUpAR.resx">
+      <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
