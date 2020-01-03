@@ -190,8 +190,8 @@
 
         For i = 0 To GVList.RowCount - 1
             If GVList.IsValidRowHandle(i) Then
-                If Not id_group.Contains(GVList.GetRowCellValue(i, "id_wh_awb_det").ToString) Then
-                    id_group.Add(GVList.GetRowCellValue(i, "id_wh_awb_det").ToString)
+                If Not id_group.Contains(GVList.GetRowCellValue(i, "id_comp_group").ToString) Then
+                    id_group.Add(GVList.GetRowCellValue(i, "id_comp_group").ToString)
                 End If
             End If
         Next
