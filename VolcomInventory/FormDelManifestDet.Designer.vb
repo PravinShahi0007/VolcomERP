@@ -66,6 +66,7 @@ Partial Class FormDelManifestDet
         Me.TEUpdatedDate = New DevExpress.XtraEditors.TextEdit()
         Me.TECreatedDate = New DevExpress.XtraEditors.TextEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumnIdCompGroup = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -229,7 +230,7 @@ Partial Class FormDelManifestDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdWhAwbDet, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdWhAwbDet, Me.GridColumnIdCompGroup, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsFind.AlwaysVisible = True
@@ -268,8 +269,6 @@ Partial Class FormDelManifestDet
         Me.GridColumnSDO.FieldName = "pl_sales_order_del_number"
         Me.GridColumnSDO.Name = "GridColumnSDO"
         Me.GridColumnSDO.OptionsColumn.AllowEdit = False
-        Me.GridColumnSDO.Visible = True
-        Me.GridColumnSDO.VisibleIndex = 2
         '
         'GridColumnStoreAccount
         '
@@ -278,7 +277,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnStoreAccount.Name = "GridColumnStoreAccount"
         Me.GridColumnStoreAccount.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreAccount.Visible = True
-        Me.GridColumnStoreAccount.VisibleIndex = 3
+        Me.GridColumnStoreAccount.VisibleIndex = 2
         '
         'GridColumnStoreName
         '
@@ -287,7 +286,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnStoreName.Name = "GridColumnStoreName"
         Me.GridColumnStoreName.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreName.Visible = True
-        Me.GridColumnStoreName.VisibleIndex = 4
+        Me.GridColumnStoreName.VisibleIndex = 3
         '
         'GridColumnQty
         '
@@ -298,7 +297,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 4
         '
         'GridColumnDestination
         '
@@ -307,7 +306,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnDestination.Name = "GridColumnDestination"
         Me.GridColumnDestination.OptionsColumn.AllowEdit = False
         Me.GridColumnDestination.Visible = True
-        Me.GridColumnDestination.VisibleIndex = 6
+        Me.GridColumnDestination.VisibleIndex = 5
         '
         'GridColumnWeight
         '
@@ -318,7 +317,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnWeight.Name = "GridColumnWeight"
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
         Me.GridColumnWeight.Visible = True
-        Me.GridColumnWeight.VisibleIndex = 7
+        Me.GridColumnWeight.VisibleIndex = 6
         '
         'GridColumnP
         '
@@ -329,7 +328,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnP.Name = "GridColumnP"
         Me.GridColumnP.OptionsColumn.AllowEdit = False
         Me.GridColumnP.Visible = True
-        Me.GridColumnP.VisibleIndex = 8
+        Me.GridColumnP.VisibleIndex = 7
         '
         'GridColumnL
         '
@@ -340,7 +339,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnL.Name = "GridColumnL"
         Me.GridColumnL.OptionsColumn.AllowEdit = False
         Me.GridColumnL.Visible = True
-        Me.GridColumnL.VisibleIndex = 9
+        Me.GridColumnL.VisibleIndex = 8
         '
         'GridColumnT
         '
@@ -351,7 +350,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnT.Name = "GridColumnT"
         Me.GridColumnT.OptionsColumn.AllowEdit = False
         Me.GridColumnT.Visible = True
-        Me.GridColumnT.VisibleIndex = 10
+        Me.GridColumnT.VisibleIndex = 9
         '
         'GridColumnDim
         '
@@ -362,7 +361,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnDim.Name = "GridColumnDim"
         Me.GridColumnDim.OptionsColumn.AllowEdit = False
         Me.GridColumnDim.Visible = True
-        Me.GridColumnDim.VisibleIndex = 11
+        Me.GridColumnDim.VisibleIndex = 10
         '
         'GridColumnFinal
         '
@@ -373,7 +372,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnFinal.Name = "GridColumnFinal"
         Me.GridColumnFinal.OptionsColumn.AllowEdit = False
         Me.GridColumnFinal.Visible = True
-        Me.GridColumnFinal.VisibleIndex = 12
+        Me.GridColumnFinal.VisibleIndex = 11
         '
         'GridColumnRemark
         '
@@ -381,7 +380,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowEdit = False
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 13
+        Me.GridColumnRemark.VisibleIndex = 12
         '
         'Label4
         '
@@ -518,6 +517,11 @@ Partial Class FormDelManifestDet
         Me.TENumber.Size = New System.Drawing.Size(200, 20)
         Me.TENumber.TabIndex = 13
         '
+        'GridColumnIdCompGroup
+        '
+        Me.GridColumnIdCompGroup.FieldName = "id_comp_group"
+        Me.GridColumnIdCompGroup.Name = "GridColumnIdCompGroup"
+        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -599,4 +603,5 @@ Partial Class FormDelManifestDet
     Friend WithEvents GridColumnFinal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnIdCompGroup As DevExpress.XtraGrid.Columns.GridColumn
 End Class

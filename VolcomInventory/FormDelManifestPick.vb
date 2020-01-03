@@ -1,6 +1,10 @@
 ﻿Public Class FormDelManifestPick
+    Public is_block_del_store As String = get_setup_field("is_block_del_store")
+
     Private Sub FormDelManifestPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_comp()
+
+        DateEditCreatedDate.EditValue = Now
     End Sub
 
     Private Sub FormDelManifestPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -8,20 +12,34 @@
     End Sub
 
     Sub view_comp()
-        Dim query As String = "(SELECT 0 AS id_comp, '' AS comp_name) UNION ALL (SELECT id_comp, CONCAT(comp_number, ' - ', comp_name) AS comp_name FROM tb_m_comp WHERE id_comp_cat = 6)"
+        Dim query As String = "
+            SELECT cg.id_comp_group, CONCAT(cg.comp_group, ' - ', cg.description) AS comp_group
+            FROM tb_m_comp AS c
+            LEFT JOIN tb_m_comp_group AS cg ON c.id_comp_group = cg.id_comp_group
+            WHERE c.id_comp_cat = 6
+            GROUP BY c.id_comp_group
+        "
 
-        viewSearchLookupQuery(SLUECompany, query, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLUECompanyGroup, query, "id_comp_group", "comp_group", "id_comp_group")
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
         Cursor = Cursors.WaitCursor
 
-        Dim query_where As String = ""
+        'chek invoice
+        Dim del As New ClassSalesDelOrder()
 
-        If SLUECompany.EditValue.ToString = "0" Then
-            query_where += "AND a.id_store = " + SLUECompany.EditValue.ToString
+        If is_block_del_store = "1" And del.checkUnpaidInvoice(SLUECompanyGroup.EditValue.ToString) Then
+            stopCustom("Hold delivery")
+
+            Cursor = Cursors.Default
+
+            Exit Sub
         End If
 
+        Dim query_where As String = "AND c.id_comp_group = " + SLUECompanyGroup.EditValue.ToString + " AND DATE(a.awbill_date) = '" + Date.Parse(DateEditCreatedDate.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+
+        'not in
         Dim query_in As String = "0, "
 
         For i = 0 To FormDelManifestDet.GVList.RowCount - 1
@@ -33,7 +51,7 @@
         query_in = query_in.Substring(0, query_in.Length - 2)
 
         Dim query As String = "
-            SELECT 'no' AS is_select, adet.id_wh_awb_det, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
+            SELECT 'no' AS is_select, adet.id_wh_awb_det, c.id_comp_group, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
             FROM tb_wh_awbill_det AS adet
             LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
             LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
@@ -61,6 +79,7 @@
                 data.Rows.Add(
                     0,
                     GVList.GetRowCellValue(i, "id_wh_awb_det"),
+                    GVList.GetRowCellValue(i, "id_comp_group"),
                     GVList.GetRowCellValue(i, "do_no"),
                     GVList.GetRowCellValue(i, "pl_sales_order_del_number"),
                     GVList.GetRowCellValue(i, "comp_number"),
