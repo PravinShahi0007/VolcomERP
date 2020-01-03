@@ -1850,6 +1850,11 @@ Public Class ClassSendEmail
                     mail.CC.Add(to_mail)
                 End If
             Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
 
             '-- start attachment 
             'Create a New report. 
@@ -1915,6 +1920,11 @@ Public Class ClassSendEmail
                     mail.CC.Add(to_mail)
                 End If
             Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
 
             '-- start attachment 
             '-- sementara nonaktif
@@ -1966,12 +1976,19 @@ Public Class ClassSendEmail
                     mail.CC.Add(to_mail)
                 End If
             Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
+
             mail.Subject = design
             mail.IsBodyHtml = True
             mail.Body = emailOnHold(comment_by, comment, dt)
             client.Send(mail)
         ElseIf report_mark_type = "230" Then
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", design_code)
+            Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, design_code)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
             Dim query_send_to As String = "SELECT  m.id_mail_member_type,m.mail_address, IF(ISNULL(m.id_comp_contact), e.employee_name, cc.contact_person) AS `display_name`
@@ -1990,6 +2007,12 @@ Public Class ClassSendEmail
                     mail.CC.Add(to_mail)
                 End If
             Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
+
             mail.Subject = design
             mail.IsBodyHtml = True
             mail.Body = emailReleaseDel(comment_by, comment, dt)

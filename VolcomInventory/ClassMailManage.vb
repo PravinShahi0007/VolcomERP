@@ -43,9 +43,15 @@
         Return query
     End Function
 
-    Sub createEmail(ByVal id_user_created As String, ByVal id_report_ref As String, ByVal report_mark_type_ref As String, ByVal report_number_ref As String)
+    Sub createEmail(ByVal id_comp_group_par As String, ByVal id_user_created As String, ByVal id_report_ref As String, ByVal report_mark_type_ref As String, ByVal report_number_ref As String)
         If id_user_created = "0" Then
             id_user_created = "NULL"
+        End If
+
+        'group toko
+        Dim cond_internal_group As String = ""
+        If id_comp_group_par <> "-1" Then
+            cond_internal_group = "OR m.id_comp_group='" + id_comp_group_par + "' "
         End If
 
         Dim query_mail_manage As String = "INSERT INTO tb_mail_manage(number, created_date, created_by, updated_date, updated_by, report_mark_type, id_mail_status, mail_status_note, mail_subject, mail_parameter) 
@@ -57,6 +63,7 @@
         Dim query_mail_detail As String = "/*member*/
         INSERT INTO tb_mail_manage_member(id_mail_manage, id_mail_member_type, id_user, id_comp_contact, mail_address) "
         If rmt = "227" Then
+            'to dari comp group
             query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, m.id_mail_member_type, NULL AS `id_user`, m.id_comp_contact, cc.email AS `mail_address`
             FROM tb_mail_manage_mapping m
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
@@ -67,8 +74,8 @@
         FROM tb_mail_manage_mapping_intern m
         INNER JOIN tb_m_user u ON u.id_user = m.id_user
         INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-        WHERE m.report_mark_type=" + rmt + ";
-        /*detil*/
+        WHERE m.report_mark_type=" + rmt + " AND (ISNULL(m.id_comp_group) " + cond_internal_group + "); "
+        query_mail_detail += "/*detil*/
         INSERT INTO tb_mail_manage_det(id_mail_manage, report_mark_type, id_report, report_number, id_report_ref, report_mark_type_ref, report_number_ref) "
         If rmt = "227" Then 'email peringatan
             If typ = "1" Then
@@ -144,4 +151,20 @@
         End If
         Return query
     End Function
+
+    Sub insertLogFollowUp(ByVal follow_up_remark As String)
+        If rmt = "225" Or rmt = "226" Or rmt = "227" Then
+            Dim query As String = "INSERT INTO tb_follow_up_ar(id_comp_group, due_date, follow_up, follow_up_result, follow_up_date, follow_up_input) 
+            SELECT c.id_comp_group, sp.sales_pos_due_date, CONCAT(rmt.report_mark_type_name, '" + follow_up_remark + "'), '', DATE(mm.updated_date), NOW()
+            FROM tb_mail_manage_det mmd
+            INNER JOIN tb_mail_manage mm ON mm.id_mail_manage = mmd.id_mail_manage
+            INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = mmd.id_report AND sp.report_mark_type = mmd.report_mark_type
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = mm.report_mark_type
+            WHERE mmd.id_mail_manage=" + id_mail_manage + "
+            GROUP BY sp.sales_pos_due_date "
+            execute_non_query(query, True, "", "", "", "")
+        End If
+    End Sub
 End Class

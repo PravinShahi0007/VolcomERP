@@ -233,6 +233,7 @@
     <Compile Include="ClassFGWHAlloc.vb" />
     <Compile Include="ClassFGWoff.vb" />
     <Compile Include="ClassFingerPrint.vb" />
+    <Compile Include="ClassFollowUpAR.vb" />
     <Compile Include="ClassItemCat.vb" />
     <Compile Include="ClassItemDel.vb" />
     <Compile Include="ClassItemExpense.vb" />
@@ -1990,6 +1991,17 @@
       <DependentUpon>FormFollowUpAR.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFollowUpAR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFollowUpARDet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormFollowUpARDet.resx</DependentUpon>
+    </Compile>
+    <Compile Include="FormFollowUpARDetail.Designer.vb">
+      <DependentUpon>FormFollowUpARDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFollowUpARDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormGuide.Designer.vb">
@@ -6489,6 +6501,12 @@
     <Compile Include="ReportDelayPayment.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDelManifest.Designer.vb">
+      <DependentUpon>ReportDelManifest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDelManifest.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDeptHeadSurvey.Designer.vb">
       <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
     </Compile>
@@ -6847,6 +6865,12 @@
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportFGWoffList.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFollowUpAR.Designer.vb">
+      <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFollowUpAR.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportInvMat.Designer.vb">
@@ -8528,6 +8552,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFollowUpAR.resx">
       <DependentUpon>FormFollowUpAR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFollowUpARDet.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormFollowUpARDet1.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFollowUpARDetail.resx">
+      <DependentUpon>FormFollowUpARDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
@@ -11198,6 +11229,9 @@
     <EmbeddedResource Include="ReportDelayPayment.resx">
       <DependentUpon>ReportDelayPayment.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportDelManifest.resx">
+      <DependentUpon>ReportDelManifest.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportDeptHeadSurvey.resx">
       <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
     </EmbeddedResource>
@@ -11396,6 +11430,9 @@
     <EmbeddedResource Include="ReportFGWoffList.resx">
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFollowUpAR.resx">
+      <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
