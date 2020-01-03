@@ -6804,8 +6804,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         FROM tb_lookup_report_mark_type rmt 
         JOIN tb_opt_scheduler o
         WHERE rmt.report_mark_type=" + rmt + " AND rmt.is_mail_management=1 "
-        Dim management_mail As String = execute_query(qmm, 0, True, "", "", "", "").ToString
+        Dim data As DataTable = execute_query(qmm, -1, True, "", "", "", "")
+        Dim management_mail As String = ""
+        If data.Rows.Count > 0 Then
+            management_mail = data.Rows(0)("management_mail").ToString
+        End If
         Return management_mail
     End Function
-
 End Module
