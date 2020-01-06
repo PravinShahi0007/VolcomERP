@@ -723,8 +723,8 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString & " (" & data.Rows(i)("departement").ToString & ")"
             Next
             '
-            'Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
-            'Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+            Report.LBillTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
+            Report.LBillAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
 
             Report.LShipTo.Text = TEShipDestination.Text
             Report.LShipToAddress.Text = MESHipAddress.Text
