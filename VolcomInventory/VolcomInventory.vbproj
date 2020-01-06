@@ -7317,6 +7317,12 @@
     <Compile Include="ReportSalesDelOrderOwnStore.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesDelOrderOwnStore2.Designer.vb">
+      <DependentUpon>ReportSalesDelOrderOwnStore2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesDelOrderOwnStore2.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesDelOrderSlip.Designer.vb" />
     <Compile Include="ReportSalesDelOrderSlip.vb">
       <SubType>Component</SubType>
@@ -11692,6 +11698,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesDelOrderOwnStore.resx">
       <DependentUpon>ReportSalesDelOrderOwnStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesDelOrderOwnStore2.resx">
+      <DependentUpon>ReportSalesDelOrderOwnStore2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesDelOrderSlip.resx">
       <DependentUpon>ReportSalesDelOrderSlip.vb</DependentUpon>
