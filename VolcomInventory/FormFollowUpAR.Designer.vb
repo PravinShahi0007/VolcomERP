@@ -293,6 +293,7 @@ Partial Class FormFollowUpAR
         Me.GridColumngroup_active.Caption = "Store Group"
         Me.GridColumngroup_active.FieldName = "group"
         Me.GridColumngroup_active.Name = "GridColumngroup_active"
+        Me.GridColumngroup_active.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumngroup_active.Visible = True
         Me.GridColumngroup_active.VisibleIndex = 0
         '
@@ -303,6 +304,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnsales_pos_due_date_act.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnsales_pos_due_date_act.FieldName = "sales_pos_due_date"
         Me.GridColumnsales_pos_due_date_act.Name = "GridColumnsales_pos_due_date_act"
+        Me.GridColumnsales_pos_due_date_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnsales_pos_due_date_act.Visible = True
         Me.GridColumnsales_pos_due_date_act.VisibleIndex = 2
         '
@@ -313,6 +315,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnfollow_up_date_act.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnfollow_up_date_act.FieldName = "follow_up_date"
         Me.GridColumnfollow_up_date_act.Name = "GridColumnfollow_up_date_act"
+        Me.GridColumnfollow_up_date_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnfollow_up_date_act.Visible = True
         Me.GridColumnfollow_up_date_act.VisibleIndex = 3
         Me.GridColumnfollow_up_date_act.Width = 111
@@ -322,6 +325,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnfollow_up_act.Caption = "Follow Up"
         Me.GridColumnfollow_up_act.FieldName = "follow_up"
         Me.GridColumnfollow_up_act.Name = "GridColumnfollow_up_act"
+        Me.GridColumnfollow_up_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnfollow_up_act.Visible = True
         Me.GridColumnfollow_up_act.VisibleIndex = 4
         Me.GridColumnfollow_up_act.Width = 94
@@ -331,6 +335,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnfollow_up_result_act.Caption = "Follow Up Result"
         Me.GridColumnfollow_up_result_act.FieldName = "follow_up_result"
         Me.GridColumnfollow_up_result_act.Name = "GridColumnfollow_up_result_act"
+        Me.GridColumnfollow_up_result_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnfollow_up_result_act.Visible = True
         Me.GridColumnfollow_up_result_act.VisibleIndex = 5
         Me.GridColumnfollow_up_result_act.Width = 155
@@ -342,6 +347,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnamount_act.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnamount_act.FieldName = "amount"
         Me.GridColumnamount_act.Name = "GridColumnamount_act"
+        Me.GridColumnamount_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnamount_act.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "amount", "{0:N2}", "2")})
         Me.GridColumnamount_act.Visible = True
         Me.GridColumnamount_act.VisibleIndex = 1

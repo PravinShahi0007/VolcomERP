@@ -128,6 +128,7 @@
     Dim last_grp As String = ""
     Dim last_due As String = ""
     Dim tot_amo_grp As Double
+    Dim tot_amo As Double
     Private Sub GVActive_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVActive.CustomSummaryCalculate
         Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
@@ -135,6 +136,7 @@
         ' Initialization 
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
             tot_amo_grp = 0.00
+            tot_amo =0.00
         End If
 
         ' Calculation 
@@ -154,6 +156,8 @@
             Select Case summaryID
                 Case 1
                     tot_amo_grp += amo
+                Case 2
+                    tot_amo += amo
             End Select
         End If
 
@@ -164,6 +168,13 @@
                     Dim sum_res As Double = 0.00
                     Try
                         sum_res = tot_amo_grp
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case 2 'total 
+                    Dim sum_res As Double = 0.00
+                    Try
+                        sum_res = tot_amo
                     Catch ex As Exception
                     End Try
                     e.TotalValue = sum_res
