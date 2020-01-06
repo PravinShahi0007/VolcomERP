@@ -27,14 +27,14 @@
             no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
 
             'delivery slip
-            'Dim do_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+            Dim do_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
-            'do_no.Text = dt.Rows(i)("do_no").ToString
+            do_no.Text = dt.Rows(i)("do_no").ToString
 
             'number
-            Dim number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+            'Dim number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
-            number.Text = dt.Rows(i)("pl_sales_order_del_number").ToString
+            'number.Text = dt.Rows(i)("pl_sales_order_del_number").ToString
 
             'store account
             Dim comp_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
@@ -99,8 +99,8 @@
             'add last border
             If i = dt.Rows.Count - 1 Then
                 no.Borders = no.Borders Or DevExpress.XtraPrinting.BorderSide.Bottom
-                'do_no.Borders = do_no.Borders Or DevExpress.XtraPrinting.BorderSide.Bottom
-                number.Borders = number.Borders Or DevExpress.XtraPrinting.BorderSide.Bottom
+                do_no.Borders = do_no.Borders Or DevExpress.XtraPrinting.BorderSide.Bottom
+                'number.Borders = number.Borders Or DevExpress.XtraPrinting.BorderSide.Bottom
                 comp_number.Borders = comp_number.Borders Or DevExpress.XtraPrinting.BorderSide.Bottom
                 comp_name.Borders = comp_name.Borders Or DevExpress.XtraPrinting.BorderSide.Bottom
                 qty.Borders = qty.Borders Or DevExpress.XtraPrinting.BorderSide.Bottom
