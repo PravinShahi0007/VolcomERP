@@ -53,6 +53,9 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEProposedDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnCancellPropose = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
         CType(Me.DEExpired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,11 +77,15 @@ Partial Class FormProdOverMemoDet
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelBottomRight.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlTop
         '
         Me.GroupControlTop.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlTop.Controls.Add(Me.LabelControl4)
+        Me.GroupControlTop.Controls.Add(Me.DEProposedDate)
         Me.GroupControlTop.Controls.Add(Me.LExpired)
         Me.GroupControlTop.Controls.Add(Me.DEExpired)
         Me.GroupControlTop.Controls.Add(Me.DECreated)
@@ -88,12 +95,12 @@ Partial Class FormProdOverMemoDet
         Me.GroupControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlTop.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlTop.Name = "GroupControlTop"
-        Me.GroupControlTop.Size = New System.Drawing.Size(979, 83)
+        Me.GroupControlTop.Size = New System.Drawing.Size(979, 84)
         Me.GroupControlTop.TabIndex = 0
         '
         'LExpired
         '
-        Me.LExpired.Location = New System.Drawing.Point(675, 46)
+        Me.LExpired.Location = New System.Drawing.Point(679, 46)
         Me.LExpired.Name = "LExpired"
         Me.LExpired.Size = New System.Drawing.Size(62, 13)
         Me.LExpired.TabIndex = 6
@@ -129,16 +136,18 @@ Partial Class FormProdOverMemoDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(675, 20)
+        Me.LabelControl3.Location = New System.Drawing.Point(679, 20)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl3.TabIndex = 3
-        Me.LabelControl3.Text = "Date"
+        Me.LabelControl3.Text = "Updated at"
         '
         'TxtMemoNumber
         '
+        Me.TxtMemoNumber.EditValue = "[auto generated]"
         Me.TxtMemoNumber.Location = New System.Drawing.Point(114, 17)
         Me.TxtMemoNumber.Name = "TxtMemoNumber"
+        Me.TxtMemoNumber.Properties.ReadOnly = True
         Me.TxtMemoNumber.Size = New System.Drawing.Size(297, 20)
         Me.TxtMemoNumber.TabIndex = 0
         '
@@ -156,9 +165,9 @@ Partial Class FormProdOverMemoDet
         Me.GroupControlMiddle.Controls.Add(Me.GCData)
         Me.GroupControlMiddle.Controls.Add(Me.PanelControlNav)
         Me.GroupControlMiddle.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 83)
+        Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 84)
         Me.GroupControlMiddle.Name = "GroupControlMiddle"
-        Me.GroupControlMiddle.Size = New System.Drawing.Size(979, 375)
+        Me.GroupControlMiddle.Size = New System.Drawing.Size(979, 374)
         Me.GroupControlMiddle.TabIndex = 1
         '
         'GCData
@@ -167,7 +176,7 @@ Partial Class FormProdOverMemoDet
         Me.GCData.Location = New System.Drawing.Point(20, 44)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(957, 329)
+        Me.GCData.Size = New System.Drawing.Size(957, 328)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -289,6 +298,7 @@ Partial Class FormProdOverMemoDet
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnClose)
+        Me.PanelControlBottom.Controls.Add(Me.BtnCancellPropose)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 529)
@@ -310,7 +320,7 @@ Partial Class FormProdOverMemoDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(610, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(484, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 41)
         Me.BtnAttachment.TabIndex = 4
@@ -320,7 +330,7 @@ Partial Class FormProdOverMemoDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(716, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(590, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 41)
         Me.BtnPrint.TabIndex = 3
@@ -330,11 +340,12 @@ Partial Class FormProdOverMemoDet
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(803, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(677, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(87, 41)
         Me.BtnClose.TabIndex = 2
         Me.BtnClose.Text = "Close"
+        Me.BtnClose.Visible = False
         '
         'BtnSave
         '
@@ -409,6 +420,38 @@ Partial Class FormProdOverMemoDet
         Me.LabelControl21.TabIndex = 144
         Me.LabelControl21.Text = "Status"
         '
+        'DEProposedDate
+        '
+        Me.DEProposedDate.EditValue = Nothing
+        Me.DEProposedDate.Enabled = False
+        Me.DEProposedDate.Location = New System.Drawing.Point(114, 43)
+        Me.DEProposedDate.Name = "DEProposedDate"
+        Me.DEProposedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEProposedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEProposedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
+        Me.DEProposedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEProposedDate.Size = New System.Drawing.Size(297, 20)
+        Me.DEProposedDate.TabIndex = 7
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(33, 46)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Created Date"
+        '
+        'BtnCancellPropose
+        '
+        Me.BtnCancellPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancellPropose.Image = CType(resources.GetObject("BtnCancellPropose.Image"), System.Drawing.Image)
+        Me.BtnCancellPropose.Location = New System.Drawing.Point(764, 2)
+        Me.BtnCancellPropose.Name = "BtnCancellPropose"
+        Me.BtnCancellPropose.Size = New System.Drawing.Size(126, 41)
+        Me.BtnCancellPropose.TabIndex = 17
+        Me.BtnCancellPropose.Text = "Cancell Propose"
+        Me.BtnCancellPropose.Visible = False
+        '
         'FormProdOverMemoDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -446,6 +489,8 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight.ResumeLayout(False)
         Me.PanelBottomRight.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -483,4 +528,7 @@ Partial Class FormProdOverMemoDet
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEProposedDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BtnCancellPropose As DevExpress.XtraEditors.SimpleButton
 End Class

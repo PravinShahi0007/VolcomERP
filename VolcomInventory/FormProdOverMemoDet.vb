@@ -16,6 +16,7 @@
             BtnMark.Visible = False
             viewDetail()
         ElseIf action = "upd" Then
+            BtnCancellPropose.Visible = True
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
             BtnMark.Visible = True
@@ -24,6 +25,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             TxtMemoNumber.Text = data.Rows(0)("memo_number").ToString
+            DEProposedDate.EditValue = data.Rows(0)("proposed_date")
             DECreated.EditValue = data.Rows(0)("created_date")
             DEExpired.EditValue = data.Rows(0)("expired_date")
             MENote.Text = data.Rows(0)("memo_note").ToString
@@ -57,6 +59,7 @@
         MENote.Enabled = False
         BtnSave.Enabled = False
         PanelControlNav.Enabled = False
+        GVData.OptionsBehavior.ReadOnly = True
 
         If check_print_report_status(id_report_status) Then
             BtnPrint.Enabled = True
@@ -71,6 +74,9 @@
         If id_report_status = "6" Then
             LExpired.Visible = True
             DEExpired.Visible = True
+            BtnCancellPropose.Visible = True
+        ElseIf id_report_status = "5" Then
+            BtnCancellPropose.Visible = False
         End If
     End Sub
 
@@ -101,6 +107,11 @@
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
         Cursor = Cursors.WaitCursor
+        If isEmptyApproval(id_prod_over_memo, "126") And (id_report_status = 5 Or id_report_status = "6") Then
+            stopCustom("Approval list not found")
+            Exit Sub
+            Cursor = Cursors.Default
+        End If
         FormReportMark.report_mark_type = "126"
         FormReportMark.id_report = id_prod_over_memo
         If is_view = "1" Then
@@ -152,9 +163,10 @@
                 Dim memo_note As String = addSlashes(MENote.Text)
 
                 'main
-                Dim qi As String = "INSERT INTO tb_prod_over_memo(memo_number, created_date, lead_time, memo_note, id_report_status) 
-                VALUES('" + memo_number + "', NOW(), '" + decimalSQL(lead_time.ToString) + "', '" + memo_note + "', 1); SELECT LAST_INSERT_ID(); "
+                Dim qi As String = "INSERT INTO tb_prod_over_memo(memo_number, proposed_date, created_date, lead_time, memo_note, id_report_status) 
+                VALUES('" + memo_number + "', NOW(), NOW(), '" + decimalSQL(lead_time.ToString) + "', '" + memo_note + "', 1); SELECT LAST_INSERT_ID(); "
                 id_prod_over_memo = execute_query(qi, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_prod_over_memo + ", 126)", True, "", "", "", "")
 
                 'detail
                 Dim qd As String = "INSERT INTO tb_prod_over_memo_det(id_prod_over_memo, id_prod_order, remark, qty, discount) VALUES "
@@ -171,8 +183,8 @@
                 actionLoad()
                 FormProdOverMemo.viewData()
                 FormProdOverMemo.GVMemo.FocusedRowHandle = find_row(FormProdOverMemo.GVMemo, "id_prod_over_memo", id_prod_over_memo)
-                infoCustom("Memo : " + TxtMemoNumber.Text + " created successfully, please upload attachment file !")
-                showAttach()
+                infoCustom("Memo : " + TxtMemoNumber.Text + " created successfully.")
+                'showAttach()
                 Cursor = Cursors.Default
             End If
         End If
@@ -180,29 +192,53 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        ReportProdOverMemo.id_report = id_prod_over_memo
-        ReportProdOverMemo.dt = GCData.DataSource
-        Dim Report As New ReportProdOverMemo()
+        If Not check_allow_print(id_report_status, "126", id_prod_over_memo) Then
+            warningCustom("Can't print, please complete all approval on system first")
+        Else
+            ReportProdOverMemo.id_report = id_prod_over_memo
+            ReportProdOverMemo.dt = GCData.DataSource
+            Dim Report As New ReportProdOverMemo()
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVData)
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
 
-        Report.LabelNo.Text = TxtMemoNumber.Text
-        Report.LabelDate.Text = DECreated.Text
-        Report.LabelNote.Text = MENote.Text
+            Report.LabelNo.Text = TxtMemoNumber.Text
+            Report.LabelDate.Text = DECreated.Text
+            Report.LabelNote.Text = MENote.Text
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreviewDialog()
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancellPropose_Click(sender As Object, e As EventArgs) Handles BtnCancellPropose.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_prod_over_memo SET id_report_status=5 WHERE id_prod_over_memo='" + id_prod_over_memo + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "126", id_prod_over_memo)
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            'refresh
+            action = "upd"
+            actionLoad()
+            FormProdOverMemo.viewData()
+            FormProdOverMemo.GVMemo.FocusedRowHandle = find_row(FormProdOverMemo.GVMemo, "id_prod_over_memo", id_prod_over_memo)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
