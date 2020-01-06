@@ -60,12 +60,8 @@
         BtnSave.Enabled = False
         PanelControlNav.Enabled = False
         GVData.OptionsBehavior.ReadOnly = True
+        BtnPrint.Enabled = True
 
-        If check_print_report_status(id_report_status) Then
-            BtnPrint.Enabled = True
-        Else
-            BtnPrint.Enabled = False
-        End If
 
         If is_view = "1" Then
             BtnSave.Visible = False
@@ -77,6 +73,7 @@
             BtnCancellPropose.Visible = True
         ElseIf id_report_status = "5" Then
             BtnCancellPropose.Visible = False
+            BtnPrint.Visible = False
         End If
     End Sub
 
