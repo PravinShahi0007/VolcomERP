@@ -66,6 +66,9 @@ Public Class FormLogin
                         FormMain.TimerNotif.Enabled = False
                     End If
 
+                    FormMain.TimerIddle.Enabled = True
+                    FormMain.TimerIddle.Start()
+
                     FormMain.LoginToolStripMenuItem.Visible = False
                     FormMain.LogoutToolStripMenuItem.Visible = True
                     FormMain.DashboardToolStripMenuItem.Visible = True
