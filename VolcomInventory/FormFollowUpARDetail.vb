@@ -88,11 +88,18 @@
             Dim f As New ClassFollowUpAR()
             Dim query As String = f.queryMain("AND f.id_follow_up_ar='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            SLEStoreGroup.EditValue = data.Rows(0)("id_comp_group").ToString
-            SLEDue.EditValue = data.Rows(0)("due_date")
-            DEFollowUpDate.EditValue = data.Rows(0)("follow_up_date")
-            MEFollowUp.Text = data.Rows(0)("follow_up").ToString
-            MEResult.Text = data.Rows(0)("follow_up_result").ToString
+            If data.Rows.Count > 0 Then
+                SLEStoreGroup.EditValue = data.Rows(0)("id_comp_group").ToString
+                SLEDue.EditValue = data.Rows(0)("due_date")
+                DEFollowUpDate.EditValue = data.Rows(0)("follow_up_date")
+                MEFollowUp.Text = data.Rows(0)("follow_up").ToString
+                MEResult.Text = data.Rows(0)("follow_up_result").ToString
+            Else
+                stopCustom("Follow up detail not found")
+                Cursor = Cursors.Default
+                Close()
+                Exit Sub
+            End If
         End If
     End Sub
 

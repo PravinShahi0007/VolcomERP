@@ -330,6 +330,7 @@ Partial Class FormInvoiceTracking
         Me.GVUnpaid.OptionsFind.AlwaysVisible = True
         Me.GVUnpaid.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVUnpaid.OptionsView.ColumnAutoWidth = False
+        Me.GVUnpaid.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVUnpaid.OptionsView.ShowFooter = True
         Me.GVUnpaid.OptionsView.ShowGroupPanel = False
         Me.GVUnpaid.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn27, DevExpress.Data.ColumnSortOrder.Ascending)})
