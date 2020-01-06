@@ -194,6 +194,13 @@
         Else
             ReportProdOverMemo.id_report = id_prod_over_memo
             ReportProdOverMemo.dt = GCData.DataSource
+            ReportProdOverMemo.rmt = "126"
+            If id_report_status <> "6" Then
+                ReportProdOverMemo.is_pre = "1"
+            Else
+                ReportProdOverMemo.is_pre = "-1"
+            End If
+            ReportProdOverMemo.id_report_status = LEReportStatus.EditValue.ToString
             Dim Report As New ReportProdOverMemo()
 
             ' '... 
@@ -205,11 +212,43 @@
             Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            'Grid Detail
-            ReportStyleGridview(Report.GVData)
+            'Grid Detail style
+            'style
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
 
-            Report.LabelNo.Text = TxtMemoNumber.Text
-            Report.LabelDate.Text = DECreated.Text
+            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 7, FontStyle.Bold)
+
+            Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 7, FontStyle.Bold)
+
+            Report.GVData.AppearancePrint.HeaderPanel.BorderColor = Color.Black
+            Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Bold)
+
+            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7.3, FontStyle.Bold)
+
+            Report.GVData.AppearancePrint.Row.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 7.3, FontStyle.Regular)
+
+            Report.GVData.AppearancePrint.Lines.BackColor = Color.Black
+
+            Report.GVData.OptionsPrint.ExpandAllDetails = True
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.OptionsPrint.PrintDetails = True
+            Report.GVData.OptionsPrint.PrintFooter = True
+
+            'data
+            Report.LabelNumber.Text = TxtMemoNumber.Text
+            Report.LabelDate.Text = DateTime.Parse(DECreated.EditValue.ToString).ToString("dd MMMM yyyy")
             Report.LabelNote.Text = MENote.Text
 
             'Show the report's preview. 
@@ -236,6 +275,12 @@
             FormProdOverMemo.viewData()
             FormProdOverMemo.GVMemo.FocusedRowHandle = find_row(FormProdOverMemo.GVMemo, "id_prod_over_memo", id_prod_over_memo)
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class

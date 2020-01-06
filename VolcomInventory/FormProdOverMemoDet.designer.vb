@@ -21,6 +21,8 @@ Partial Class FormProdOverMemoDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdOverMemoDet))
         Me.GroupControlTop = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEProposedDate = New DevExpress.XtraEditors.DateEdit()
         Me.LExpired = New DevExpress.XtraEditors.LabelControl()
         Me.DEExpired = New DevExpress.XtraEditors.DateEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
@@ -46,6 +48,7 @@ Partial Class FormProdOverMemoDet
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancellPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -53,11 +56,11 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEProposedDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnCancellPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
+        CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEExpired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEExpired.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,8 +80,6 @@ Partial Class FormProdOverMemoDet
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelBottomRight.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlTop
@@ -97,6 +98,27 @@ Partial Class FormProdOverMemoDet
         Me.GroupControlTop.Name = "GroupControlTop"
         Me.GroupControlTop.Size = New System.Drawing.Size(979, 84)
         Me.GroupControlTop.TabIndex = 0
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(33, 46)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Created Date"
+        '
+        'DEProposedDate
+        '
+        Me.DEProposedDate.EditValue = Nothing
+        Me.DEProposedDate.Enabled = False
+        Me.DEProposedDate.Location = New System.Drawing.Point(114, 43)
+        Me.DEProposedDate.Name = "DEProposedDate"
+        Me.DEProposedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEProposedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEProposedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
+        Me.DEProposedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEProposedDate.Size = New System.Drawing.Size(297, 20)
+        Me.DEProposedDate.TabIndex = 7
         '
         'LExpired
         '
@@ -182,7 +204,7 @@ Partial Class FormProdOverMemoDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumn1, Me.GridColumnQty})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumn1, Me.GridColumnQty, Me.GridColumnno})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
@@ -209,8 +231,8 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnPONumber.Name = "GridColumnPONumber"
         Me.GridColumnPONumber.OptionsColumn.AllowEdit = False
         Me.GridColumnPONumber.Visible = True
-        Me.GridColumnPONumber.VisibleIndex = 0
-        Me.GridColumnPONumber.Width = 89
+        Me.GridColumnPONumber.VisibleIndex = 1
+        Me.GridColumnPONumber.Width = 147
         '
         'GridColumnCode
         '
@@ -219,8 +241,8 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 120
+        Me.GridColumnCode.VisibleIndex = 2
+        Me.GridColumnCode.Width = 199
         '
         'GridColumnDescription
         '
@@ -229,8 +251,8 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnDescription.Name = "GridColumnDescription"
         Me.GridColumnDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDescription.Visible = True
-        Me.GridColumnDescription.VisibleIndex = 2
-        Me.GridColumnDescription.Width = 514
+        Me.GridColumnDescription.VisibleIndex = 3
+        Me.GridColumnDescription.Width = 858
         '
         'GridColumnRemark
         '
@@ -238,8 +260,8 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 5
-        Me.GridColumnRemark.Width = 102
+        Me.GridColumnRemark.VisibleIndex = 6
+        Me.GridColumnRemark.Width = 178
         '
         'GridColumn1
         '
@@ -249,8 +271,8 @@ Partial Class FormProdOverMemoDet
         Me.GridColumn1.FieldName = "discount"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 4
-        Me.GridColumn1.Width = 77
+        Me.GridColumn1.VisibleIndex = 5
+        Me.GridColumn1.Width = 127
         '
         'GridColumnQty
         '
@@ -259,8 +281,8 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 3
-        Me.GridColumnQty.Width = 39
+        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.Width = 64
         '
         'PanelControlNav
         '
@@ -347,6 +369,17 @@ Partial Class FormProdOverMemoDet
         Me.BtnClose.Text = "Close"
         Me.BtnClose.Visible = False
         '
+        'BtnCancellPropose
+        '
+        Me.BtnCancellPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancellPropose.Image = CType(resources.GetObject("BtnCancellPropose.Image"), System.Drawing.Image)
+        Me.BtnCancellPropose.Location = New System.Drawing.Point(764, 2)
+        Me.BtnCancellPropose.Name = "BtnCancellPropose"
+        Me.BtnCancellPropose.Size = New System.Drawing.Size(126, 41)
+        Me.BtnCancellPropose.TabIndex = 17
+        Me.BtnCancellPropose.Text = "Cancell Propose"
+        Me.BtnCancellPropose.Visible = False
+        '
         'BtnSave
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
@@ -420,37 +453,15 @@ Partial Class FormProdOverMemoDet
         Me.LabelControl21.TabIndex = 144
         Me.LabelControl21.Text = "Status"
         '
-        'DEProposedDate
+        'GridColumnno
         '
-        Me.DEProposedDate.EditValue = Nothing
-        Me.DEProposedDate.Enabled = False
-        Me.DEProposedDate.Location = New System.Drawing.Point(114, 43)
-        Me.DEProposedDate.Name = "DEProposedDate"
-        Me.DEProposedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEProposedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEProposedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
-        Me.DEProposedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEProposedDate.Size = New System.Drawing.Size(297, 20)
-        Me.DEProposedDate.TabIndex = 7
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(33, 46)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl4.TabIndex = 8
-        Me.LabelControl4.Text = "Created Date"
-        '
-        'BtnCancellPropose
-        '
-        Me.BtnCancellPropose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancellPropose.Image = CType(resources.GetObject("BtnCancellPropose.Image"), System.Drawing.Image)
-        Me.BtnCancellPropose.Location = New System.Drawing.Point(764, 2)
-        Me.BtnCancellPropose.Name = "BtnCancellPropose"
-        Me.BtnCancellPropose.Size = New System.Drawing.Size(126, 41)
-        Me.BtnCancellPropose.TabIndex = 17
-        Me.BtnCancellPropose.Text = "Cancell Propose"
-        Me.BtnCancellPropose.Visible = False
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.OptionsColumn.AllowEdit = False
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.VisibleIndex = 0
+        Me.GridColumnno.Width = 59
         '
         'FormProdOverMemoDet
         '
@@ -468,6 +479,8 @@ Partial Class FormProdOverMemoDet
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlTop.ResumeLayout(False)
         Me.GroupControlTop.PerformLayout()
+        CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEExpired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEExpired.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -489,8 +502,6 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight.ResumeLayout(False)
         Me.PanelBottomRight.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -531,4 +542,5 @@ Partial Class FormProdOverMemoDet
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEProposedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents BtnCancellPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
 End Class
