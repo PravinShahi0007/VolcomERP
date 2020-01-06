@@ -90,7 +90,7 @@ WHERE pnt.is_payment=2 " & query_where
                 GVDP.BestFitColumns()
             ElseIf XTCDP.SelectedTabPageIndex = 1 Then
                 'list FGPO for DP
-                Dim query As String = "SELECT 'no' AS is_check,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`
+                Dim query As String = "SELECT 'no' AS is_check,c.id_acc_dp AS id_acc,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`
 ,SUM(wod.`prod_order_wo_det_qty`) AS qty
 ,CAST(wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS po_amount_bef_kurs
 ,CAST(wod.`prod_order_wo_det_price` *(wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS po_amount_vat_bef_kurs
@@ -115,7 +115,7 @@ LEFT JOIN
 (
 	SELECT id_prod_order FROM `tb_pn_fgpo_det` pnd
 	INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
-	WHERE pn.id_report_status !=5 AND pn.is_general!=1 AND pn.type=1
+	WHERE pn.id_report_status !=5 AND pn.doc_type=2 AND pn.type=1
 	GROUP BY id_prod_order
 )dp_paid ON dp_paid.id_prod_order=po.id_prod_order
 WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' AND ISNULL(dp_paid.id_prod_order) " & query_where & "
@@ -219,7 +219,7 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
     Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
         If GVDP.RowCount > 0 Then
             FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
-            FormInvoiceFGPODP.type = "1"
+            FormInvoiceFGPODP.type = "2"
             FormInvoiceFGPODP.ShowDialog()
         End If
     End Sub
@@ -235,13 +235,13 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
     Private Sub GVBPL_DoubleClick(sender As Object, e As EventArgs) Handles GVBPL.DoubleClick
         If GVBPL.RowCount > 0 Then
             FormInvoiceFGPODP.id_invoice = GVBPL.GetFocusedRowCellValue("id_pn_fgpo").ToString
-            FormInvoiceFGPODP.is_general = "1"
+            FormInvoiceFGPODP.doc_type = GVBPL.GetFocusedRowCellValue("doc_type").ToString
             FormInvoiceFGPODP.ShowDialog()
         End If
     End Sub
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
-        FormInvoiceFGPODP.is_general = "1"
+        FormInvoiceFGPODP.doc_type = "1"
         FormInvoiceFGPODP.ShowDialog()
     End Sub
 End Class
