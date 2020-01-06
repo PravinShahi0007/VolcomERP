@@ -225,7 +225,7 @@ Public Class FormSalesDelOrderSlip
 
 
             'Grid Detail
-            ReportStyleGridviewBlackLine(Report.GVItemList)
+            'ReportStyleGridviewBlackLine(Report.GVItemList)
 
             'Parse val
             Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
@@ -236,7 +236,7 @@ Public Class FormSalesDelOrderSlip
             Report.LabelNote.Text = MENote.Text
             Report.LabelPrepare.Text = "-"
             Report.LabelCat.Text = "-"
-            Report.LabelUni3.Text = "-"
+            'Report.LabelUni3.Text = "-"
             Report.LabelUni6.Text = "-"
             Report.PanelUni.Visible = False
 

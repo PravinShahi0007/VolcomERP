@@ -24,6 +24,12 @@
 
     Private Sub FormMasterCompanySingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         action_load()
+
+        If id_comp_group_add = "-1" Then
+            GroupControlStoreGroup.Visible = False
+
+            Size = New Size(Size.Width, Size.Height - 56)
+        End If
     End Sub
 
     Sub load_contract_template()
@@ -87,9 +93,9 @@
         End If
 
         If id_comp_group_add = "-1" Then
-            GroupControlStoreGroup.Visible = False
+            'GroupControlStoreGroup.Visible = False
 
-            Size = New Size(Size.Width, Size.Height - 56)
+            'Size = New Size(Size.Width, Size.Height - 56)
         Else
             Dim query As String = "SELECT comp_group, description FROM tb_m_comp_group WHERE id_comp_group = " + id_comp_group_add
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -260,6 +266,8 @@
 
             'load button approval
             BPrint.Visible = True
+
+            BResetMark.Visible = False
 
             If is_active = "1" Or is_active = "2" Then
                 BApproval.Visible = False

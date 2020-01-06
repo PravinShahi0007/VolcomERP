@@ -25,6 +25,14 @@
 
         GridColumnName.SummaryItem.DisplayFormat = "Grand Total: "
 
+        If data.Rows(0)("is_thr").ToString = "1" Then
+            GBSalary.Visible = False
+            gridBand3.Visible = False
+            gridBand2.Visible = False
+        Else
+            GBTHR.Visible = False
+        End If
+
         'mark
         If id_pre = "-1" Then
             load_mark_horz("192", id_payroll, "2", "1", XrTable1)

@@ -895,6 +895,7 @@ Partial Class FormMailManage
         Me.XTPUnpaidBill.Controls.Add(Me.PanelControl6)
         Me.XTPUnpaidBill.Controls.Add(Me.PanelControl5)
         Me.XTPUnpaidBill.Name = "XTPUnpaidBill"
+        Me.XTPUnpaidBill.PageVisible = False
         Me.XTPUnpaidBill.Size = New System.Drawing.Size(921, 415)
         Me.XTPUnpaidBill.Text = "Unpaid Sales Invoice"
         '

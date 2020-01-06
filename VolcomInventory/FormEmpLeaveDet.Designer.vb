@@ -110,10 +110,12 @@ Partial Class FormEmpLeaveDet
         Me.Label6 = New System.Windows.Forms.Label()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancelPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.ToolTipController1 = New DevExpress.Utils.ToolTipController(Me.components)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1101,16 +1103,29 @@ Partial Class FormEmpLeaveDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SBAttachment)
         Me.PanelControl3.Controls.Add(Me.BCancelPropose)
         Me.PanelControl3.Controls.Add(Me.BPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BCancel)
+        Me.PanelControl3.Controls.Add(Me.SBSubmit)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 495)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(718, 37)
         Me.PanelControl3.TabIndex = 3
+        '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.ImageIndex = 10
+        Me.SBAttachment.ImageList = Me.LargeImageCollection
+        Me.SBAttachment.Location = New System.Drawing.Point(313, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(99, 33)
+        Me.SBAttachment.TabIndex = 5
+        Me.SBAttachment.Text = "Attachment"
         '
         'BCancelPropose
         '
@@ -1129,7 +1144,7 @@ Partial Class FormEmpLeaveDet
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.ImageIndex = 6
         Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(495, 2)
+        Me.BPrint.Location = New System.Drawing.Point(412, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(73, 33)
         Me.BPrint.TabIndex = 3
@@ -1151,11 +1166,22 @@ Partial Class FormEmpLeaveDet
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(568, 2)
+        Me.BCancel.Location = New System.Drawing.Point(485, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
         Me.BCancel.TabIndex = 1
         Me.BCancel.Text = "Cancel"
+        '
+        'SBSubmit
+        '
+        Me.SBSubmit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSubmit.ImageIndex = 19
+        Me.SBSubmit.ImageList = Me.LargeImageCollection
+        Me.SBSubmit.Location = New System.Drawing.Point(558, 2)
+        Me.SBSubmit.Name = "SBSubmit"
+        Me.SBSubmit.Size = New System.Drawing.Size(83, 33)
+        Me.SBSubmit.TabIndex = 6
+        Me.SBSubmit.Text = "Submit"
         '
         'BSave
         '
@@ -1344,4 +1370,6 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents TEAdvLeaveTot As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label9 As Label
     Friend WithEvents ToolTipController1 As DevExpress.Utils.ToolTipController
+    Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBSubmit As DevExpress.XtraEditors.SimpleButton
 End Class

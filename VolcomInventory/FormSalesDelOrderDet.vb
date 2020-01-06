@@ -1253,7 +1253,7 @@ Public Class FormSalesDelOrderDet
         'cek boleh print ato tidak
         Dim del As New ClassSalesDelOrder()
         If is_block_del_store = "1" And del.checkUnpaidInvoice(id_comp_group) Then
-            stopCustom("Slips cannot be printed, because invoice has not been paid by group store")
+            stopCustom("Hold delivery")
             Cursor = Cursors.Default
             Exit Sub
         End If
@@ -1312,7 +1312,7 @@ Public Class FormSalesDelOrderDet
 
 
             'Grid Detail
-            ReportStyleGridviewBlackLine(Report.GVItemList)
+            'ReportStyleGridviewBlackLine(Report.GVItemList)
 
             'Parse val
             Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
@@ -1323,7 +1323,7 @@ Public Class FormSalesDelOrderDet
             Report.LabelNote.Text = MENote.Text
             Report.LabelPrepare.Text = TxtSalesOrder.Text
             Report.LabelCat.Text = LEStatusSO.Text
-            Report.LabelUni3.Text = TxtNIK.Text
+            'Report.LabelUni3.Text = TxtNIK.Text
             Report.LabelUni6.Text = TxtEmployee.Text
             If id_so_status = "7" Or id_so_status = "9" Then
                 Report.PanelUni.Visible = True

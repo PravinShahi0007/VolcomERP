@@ -17,6 +17,10 @@ Public Class ClassSendEmail
     Public par1 As String = ""
     Public par2 As String = ""
     Public dt As DataTable
+    Public subj As String = ""
+    Public titl As String = ""
+    Public head As String = ""
+
 
     Sub send_email()
         'get param
@@ -982,7 +986,7 @@ Public Class ClassSendEmail
 
 
                 'Grid Detail
-                ReportStyleGridviewBlackLine(Report.GVItemList)
+                'ReportStyleGridviewBlackLine(Report.GVItemList)
 
                 'Parse val
                 Report.LabelTo.Text = dt.Rows(0)("store_account").ToString
@@ -993,7 +997,7 @@ Public Class ClassSendEmail
                 Report.LabelNote.Text = dt.Rows(0)("note").ToString
                 Report.LabelPrepare.Text = dt.Rows(0)("order_number").ToString
                 Report.LabelCat.Text = dt.Rows(0)("order_cat").ToString
-                Report.LabelUni3.Text = "-"
+                'Report.LabelUni3.Text = "-"
                 Report.LabelUni6.Text = "-"
                 Report.PanelUni.Visible = False
 
@@ -1824,7 +1828,7 @@ Public Class ClassSendEmail
             Dim comp_name As String = execute_query("SELECT c.comp_name FROM tb_m_comp c WHERE c.id_comp=1", 0, True, "", "", "", "")
             Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
 
-            Dim from_mail As MailAddress = New MailAddress(mail_address_from, "Sales Invoice - " + comp_name + "")
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, head)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
@@ -1846,6 +1850,11 @@ Public Class ClassSendEmail
                     mail.CC.Add(to_mail)
                 End If
             Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
 
             '-- start attachment 
             'Create a New report. 
@@ -1879,7 +1888,7 @@ Public Class ClassSendEmail
             '-- end attachment
 
 
-            Dim body_temp As String = email_body_invoice_penjualan(dt)
+            Dim body_temp As String = email_body_invoice_penjualan(dt, titl.ToUpper, par1, par2, comment, design_code)
             Dim subject_mail As String = execute_query("SELECT m.mail_subject FROM tb_mail_manage m WHERE m.id_mail_manage=" + id_report + "", 0, True, "", "", "", "")
             mail.Subject = subject_mail
             mail.IsBodyHtml = True
@@ -1887,10 +1896,9 @@ Public Class ClassSendEmail
             client.Send(mail)
         ElseIf report_mark_type = "226" Or report_mark_type = "227" Then
             'EMAIL pemberitahuan/peringatan
-            Dim comp_name As String = execute_query("SELECT c.comp_name FROM tb_m_comp c WHERE c.id_comp=1", 0, True, "", "", "", "")
             Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
 
-            Dim from_mail As MailAddress = New MailAddress(mail_address_from, "" + par1 + " - " + comp_name + "")
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, head)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
@@ -1912,44 +1920,44 @@ Public Class ClassSendEmail
                     mail.CC.Add(to_mail)
                 End If
             Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
 
             '-- start attachment 
+            '-- sementara nonaktif
             'Create a New report. 
-            Dim id_sales_pos As String = ""
-            For i As Integer = 0 To (dt.Rows.Count - 1)
-                If i > 0 Then
-                    id_sales_pos += ","
-                End If
-                id_sales_pos += dt.Rows(i)("id_report").ToString
-            Next
-            ReportSummaryInvoice.id = id_sales_pos
-            Dim rpt As New ReportSummaryInvoice()
+            'Dim id_sales_pos As String = ""
+            'For i As Integer = 0 To (dt.Rows.Count - 1)
+            '    If i > 0 Then
+            '        id_sales_pos += ","
+            '    End If
+            '    id_sales_pos += dt.Rows(i)("id_report").ToString
+            'Next
+            'ReportSummaryInvoice.id = id_sales_pos
+            'Dim rpt As New ReportSummaryInvoice()
 
             '' Create a new memory stream and export the report into it as PDF.
-            Dim Mem As New MemoryStream()
-            'Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
-            rpt.ExportToXlsx(Mem)
+            'Dim Mem As New MemoryStream()
+            ''Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+            'rpt.ExportToXlsx(Mem)
             '' Create a new attachment and put the PDF report into it.
-            Mem.Seek(0, System.IO.SeekOrigin.Begin)
-            Dim Att = New Attachment(Mem, "list_inv" & report_mark_type & "_" & id_report & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-            mail.Attachments.Add(Att)
+            'Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            'Dim Att = New Attachment(Mem, "list_inv" & report_mark_type & "_" & id_report & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            'mail.Attachments.Add(Att)
             '-- end attachment
 
-            Dim tit As String = ""
-            If report_mark_type = "226" Then
-                tit = "H-3 Invoice Jatuh Tempo"
-            ElseIf report_mark_type = "227" Then
-                tit = "Invoice Jatuh Tempo"
-            End If
-            Dim subject_mail As String = execute_query("SELECT m.mail_subject FROM tb_mail_manage m WHERE m.id_mail_manage=" + id_report + "", 0, True, "", "", "", "")
-            Dim body_temp As String = email_body_invoice_jatuh_tempo(dt, tit.ToUpper, par2)
-            mail.Subject = subject_mail
+            Dim body_temp As String = email_body_invoice_jatuh_tempo(dt, titl.ToUpper, par1, par2, comment, design_code)
+            mail.Subject = subj
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
         ElseIf report_mark_type = "228" Then
             'send email
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", design_code)
+            Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, design_code)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
             Dim query_send_to As String = "SELECT  m.id_mail_member_type,m.mail_address, IF(ISNULL(m.id_comp_contact), e.employee_name, cc.contact_person) AS `display_name`
@@ -1968,12 +1976,19 @@ Public Class ClassSendEmail
                     mail.CC.Add(to_mail)
                 End If
             Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
+
             mail.Subject = design
             mail.IsBodyHtml = True
             mail.Body = emailOnHold(comment_by, comment, dt)
             client.Send(mail)
         ElseIf report_mark_type = "230" Then
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", design_code)
+            Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, design_code)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
             Dim query_send_to As String = "SELECT  m.id_mail_member_type,m.mail_address, IF(ISNULL(m.id_comp_contact), e.employee_name, cc.contact_person) AS `display_name`
@@ -1992,6 +2007,12 @@ Public Class ClassSendEmail
                     mail.CC.Add(to_mail)
                 End If
             Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
+
             mail.Subject = design
             mail.IsBodyHtml = True
             mail.Body = emailReleaseDel(comment_by, comment, dt)
@@ -3386,165 +3407,7 @@ GROUP BY pdp.`id_prod_demand_design`"
         Return body_temp
     End Function
 
-    Function email_body_invoice_penjualan(ByVal dtp As DataTable)
-        Dim body_temp As String = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
-            <tbody><tr>
-              <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
-              <div align='center'>
-
-              <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
-               <tbody><tr>
-                <td style='padding:0in 0in 0in 0in'></td>
-               </tr>
-               <tr>
-                <td style='padding:0in 0in 0in 0in'>
-                <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
-                </td>
-               </tr>
-               <tr>
-                <td style='padding:0in 0in 0in 0in'></td>
-               </tr>
-               <tr>
-                <td style='padding:0in 0in 0in 0in'>
-                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
-                 <tbody><tr>
-                  <td style='padding:0in 0in 0in 0in'>
-
-                  </td>
-                 </tr>
-                </tbody></table>
-
-
-                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
-                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
-                
-
-                <!-- start body -->
-                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
-                 <tbody>
-                 <tr>
-                  <td style='padding:15.0pt 15.0pt 0pt 15.0pt' colspan='3'>
-                  <div>
-                    <b><span class='MsoNormal' style='line-height:14.25pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>SALES INVOICE</span></b>
-                  </div>
-                  </td>
-                 </tr>
-
-                 <tr>
-                 	<td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
-	                  	<table cellpadding='0' width='100%' style='padding:5.0pt 5.0pt 0.0pt 0.0pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;' border='0'>
-		                  	<tr>
-		                  		<td width='20%'>Store HO</td>
-		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>" + dtp.Rows(0)("group_company").ToString + "</td>
-                            </tr>
-                        
-                            <tr>
-                                <td width='20%'>Group Store</td>
-                                <td width='2%'>:</td>
-                                <td width='77%'>" + dtp.Rows(0)("group_store").ToString + "</td>
-                            </tr>
-
-                            <tr>
-                                <td width='20%'>Period</td>
-                                <td width='2%'>:</td>
-                                <td width='77%'>" + dtp.Rows(0)("period").ToString + "</td>
-                            </tr>
-
-		            
-
-		                  	<tr>
-		                  		<td width='20%'>Amount</td>
-		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>Rp " + Decimal.Parse(dtp.Rows(0)("total_amount").ToString).ToString("N2") + "</td>
-		                  	</tr>
-
-
-		                  	<tr>
-		                  		<td width='20%'></td>
-		                  		<td width='2%'></td>
-		                  		<td width='77%'></td>
-		                  	</tr>
-
-		                  	<tr>
-		                  		<td width='20%'><b>Detail Invoice</b></td>
-		                  		<td width='2%'><b></b></td>
-		                  		<td width='77%'></td>
-		                  	</tr>
-	                  	</table>
-	                 </td>
-                 </tr>
-
-               
-         
-                 <tr>
-                  <td style='padding:1.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
-                    <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
-                    <tr>
-                      <th>No</th>
-                      <th>Invoive Number</th>
-                      <th>Store</th>
-                      <th>Qty</th>
-                      <th>Amount</th>
-                    </tr> "
-        For i As Integer = 0 To dtp.Rows.Count - 1
-            body_temp += "<tr>
-                <td>" + (i + 1).ToString + "</td>
-                <td>" + dtp.Rows(i)("report_number").ToString + "</td>
-                <td>" + dtp.Rows(i)("store").ToString + "</td>
-                <td align='center'>" + Decimal.Parse(dtp.Rows(i)("qty_invoice").ToString).ToString("N0") + "</td>
-                <td align='center'>" + Decimal.Parse(dtp.Rows(i)("amount").ToString).ToString("N2") + "</td>
-            </tr>"
-        Next
-
-        body_temp += "<tr>
-            <th colspan='3'>TOTAL</th>
-            <th>" + Decimal.Parse(dtp.Rows(0)("total_qty").ToString).ToString("N0") + "</th>
-            <th>" + Decimal.Parse(dtp.Rows(0)("total_amount").ToString).ToString("N2") + "</th>
-        </tr>
-        </table>
-                  </td>
-
-                 </tr>
-
-         
-          <tr>
-                  <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
-                  <div>
-                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
-
-                  </div>
-                  </td>
-                 </tr>
-                </tbody>
-              </table>
-              <!-- end body -->
-
-
-                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
-                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
-                <div align='center'>
-                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
-                 <tbody><tr>
-                  <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
-                    <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
-                  <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
-                  </td>
-                 </tr>
-                </tbody></table>
-                </div>
-                </td>
-               </tr>
-              </tbody></table>	
-              </div>
-              </td>
-             </tr>
-            </tbody>
-        </table>"
-        Return body_temp
-    End Function
-
-    Function email_body_invoice_jatuh_tempo(ByVal dtp As DataTable, ByVal titlep As String, ByVal tot_amountp As String)
+    Function email_body_invoice_penjualan(ByVal dtp As DataTable, ByVal titlep As String, ByVal content_head As String, ByVal content As String, ByVal content_end As String, ByVal tot_amountp As String)
         Dim body_temp As String = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
             <tbody><tr>
               <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
@@ -3590,39 +3453,9 @@ GROUP BY pdp.`id_prod_demand_design`"
 
                  <tr>
                  	<td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
-	                  	<table cellpadding='0' width='100%' style='padding:5.0pt 5.0pt 0.0pt 0.0pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;' border='0'>
-		                  	<tr>
-		                  		<td width='20%'>Store Head Office</td>
-		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>" + dtp.Rows(0)("group_company").ToString + "</td>
-                        </tr>
-                        
-                        <tr>
-                            <td width='20%'>Group Store</td>
-                            <td width='2%'>:</td>
-                            <td width='77%'>" + dtp.Rows(0)("group_store").ToString + "</td>
-                        </tr>
-
-
-		                <tr>
-		                  	<td width='20%'>Amount</td>
-		                  	<td width='2%'>:</td>
-		                  	<td width='77%'>Rp " + tot_amountp + "</td>
-		                </tr>
-
-
-		                  	<tr>
-		                  		<td width='20%'></td>
-		                  		<td width='2%'></td>
-		                  		<td width='77%'></td>
-		                  	</tr>
-
-		                  	<tr>
-		                  		<td width='20%'><b>Detail Invoice</b></td>
-		                  		<td width='2%'><b></b></td>
-		                  		<td width='77%'></td>
-		                  	</tr>
-	                  	</table>
+                 		<p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content_head + "</p>
+                 		<p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content + "</p>
+	                  	
 	                 </td>
                  </tr>
 
@@ -3633,18 +3466,18 @@ GROUP BY pdp.`id_prod_demand_design`"
                     <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
                     <tr>
                       <th>No</th>
-                      <th>Invoive Number</th>
                       <th>Store</th>
-                      <th>Period</th>
-                      <th>Due Date</th>
-                      <th>Amount</th>
+                      <th>No Invoice</th>
+                      <th>Periode Penjualan</th>
+                      <th>Jatuh Tempo</th>
+                      <th>Nominal</th>
                     </tr> "
 
         For i As Integer = 0 To dtp.Rows.Count - 1
             body_temp += "<tr>
                 <td>" + (i + 1).ToString + "</td>
-                <td>" + dtp.Rows(i)("report_number").ToString + "</td>
                 <td>" + dtp.Rows(i)("store").ToString + "</td>
+                <td>" + dtp.Rows(i)("report_number").ToString + "</td>
                 <td>" + dtp.Rows(i)("period").ToString + "</td>
                 <td>" + dtp.Rows(i)("sales_pos_due_date").ToString + "</td>
                 <td align='center'>" + Decimal.Parse(dtp.Rows(i)("amount").ToString).ToString("N2") + "</td>
@@ -3654,18 +3487,24 @@ GROUP BY pdp.`id_prod_demand_design`"
         body_temp += "<tr>
             <th colspan='5'>TOTAL</th>
             <th>" + tot_amountp + "</th>
-        </tr>
+        </tr> "
 
-        </table>
+        body_temp += "</table>
                   </td>
 
+                 </tr>
+
+                 <tr>
+                 	<td style='padding:5.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                 		<p style='line-height:20.25pt;font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content_end + "</p>
+	                 </td>
                  </tr>
 
          
           <tr>
                   <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
                   <div>
-                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><b>Volcom ERP</b><u></u><u></u></span></p>
 
                   </div>
                   </td>
@@ -3681,7 +3520,7 @@ GROUP BY pdp.`id_prod_demand_design`"
                 <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
                  <tbody><tr>
                   <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
-                    <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+                    <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'></b><u></u><u></u></span>
                   <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
                   </td>
                  </tr>
@@ -3694,7 +3533,137 @@ GROUP BY pdp.`id_prod_demand_design`"
               </td>
              </tr>
             </tbody>
-        </table> "
+        </table>"
+        Return body_temp
+    End Function
+
+    Function email_body_invoice_jatuh_tempo(ByVal dtp As DataTable, ByVal titlep As String, ByVal content_head As String, ByVal content As String, ByVal content_end As String, ByVal tot_amountp As String)
+        Dim body_temp As String = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+            <tbody><tr>
+              <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+              <div align='center'>
+
+              <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+               <tbody><tr>
+                <td style='padding:0in 0in 0in 0in'></td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'>
+                <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+                </td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'></td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'>
+                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+                 <tbody><tr>
+                  <td style='padding:0in 0in 0in 0in'>
+
+                  </td>
+                 </tr>
+                </tbody></table>
+
+
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                
+
+                <!-- start body -->
+                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                 <tbody>
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 0pt 15.0pt' colspan='3'>
+                  <div>
+                    <b><span class='MsoNormal' style='line-height:14.25pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>" + titlep + "</span></b>
+                  </div>
+                  </td>
+                 </tr>
+
+                 <tr>
+                 	<td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                 		<p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content_head + "</p>
+                 		<p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content + "</p>
+	                  	
+	                 </td>
+                 </tr>
+
+               
+         
+                 <tr>
+                  <td style='padding:1.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                    <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                    <tr>
+                      <th>No</th>
+                      <th>Store</th>
+                      <th>No Invoice</th>
+                      <th>Periode Penjualan</th>
+                      <th>Jatuh Tempo</th>
+                      <th>Nominal</th>
+                    </tr> "
+
+        For i As Integer = 0 To dtp.Rows.Count - 1
+            body_temp += "<tr>
+                <td>" + (i + 1).ToString + "</td>
+                <td>" + dtp.Rows(i)("store").ToString + "</td>
+                <td>" + dtp.Rows(i)("report_number").ToString + "</td>
+                <td>" + dtp.Rows(i)("period").ToString + "</td>
+                <td>" + dtp.Rows(i)("sales_pos_due_date").ToString + "</td>
+                <td align='center'>" + Decimal.Parse(dtp.Rows(i)("amount").ToString).ToString("N2") + "</td>
+            </tr>"
+        Next
+
+        body_temp += "<tr>
+            <th colspan='5'>TOTAL</th>
+            <th>" + tot_amountp + "</th>
+        </tr> "
+
+        body_temp += "</table>
+                  </td>
+
+                 </tr>
+
+                 <tr>
+                 	<td style='padding:5.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                 		<p style='line-height:20.25pt;font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + content_end + "</p>
+	                 </td>
+                 </tr>
+
+         
+          <tr>
+                  <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><b>Volcom ERP</b><u></u><u></u></span></p>
+
+                  </div>
+                  </td>
+                 </tr>
+                </tbody>
+              </table>
+              <!-- end body -->
+
+
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                <div align='center'>
+                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                 <tbody><tr>
+                  <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+                    <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'></b><u></u><u></u></span>
+                  <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
+                  </td>
+                 </tr>
+                </tbody></table>
+                </div>
+                </td>
+               </tr>
+              </tbody></table>	
+              </div>
+              </td>
+             </tr>
+            </tbody>
+        </table>"
         Return body_temp
     End Function
 

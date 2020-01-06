@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="ClassAccounting.vb" />
     <Compile Include="ClassAPIZalora.vb" />
+    <Compile Include="ClassAREvaluation.vb" />
     <Compile Include="ClassBudgetExpense.Designer.vb">
       <DependentUpon>ClassBudgetExpense.vb</DependentUpon>
     </Compile>
@@ -232,6 +233,7 @@
     <Compile Include="ClassFGWHAlloc.vb" />
     <Compile Include="ClassFGWoff.vb" />
     <Compile Include="ClassFingerPrint.vb" />
+    <Compile Include="ClassFollowUpAR.vb" />
     <Compile Include="ClassItemCat.vb" />
     <Compile Include="ClassItemDel.vb" />
     <Compile Include="ClassItemExpense.vb" />
@@ -283,6 +285,12 @@
     <Compile Include="FormAccountingLedger.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormARCollectionAvg.Designer.vb">
+      <DependentUpon>FormARCollectionAvg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormARCollectionAvg.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAREvalScheduke.Designer.vb">
       <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
     </Compile>
@@ -299,6 +307,12 @@
       <DependentUpon>FormAREvaluation.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAREvaluation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAREvaluationLog.Designer.vb">
+      <DependentUpon>FormAREvaluationLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvaluationLog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAREvaluationPickDate.Designer.vb">
@@ -873,6 +887,18 @@
       <DependentUpon>FormDelManifest.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDelManifest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelManifestDet.Designer.vb">
+      <DependentUpon>FormDelManifestDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelManifestDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelManifestPick.Designer.vb">
+      <DependentUpon>FormDelManifestPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelManifestPick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDepartementSub.Designer.vb">
@@ -1967,6 +1993,17 @@
     <Compile Include="FormFollowUpAR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFollowUpARDet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormFollowUpARDet.resx</DependentUpon>
+    </Compile>
+    <Compile Include="FormFollowUpARDetail.Designer.vb">
+      <DependentUpon>FormFollowUpARDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFollowUpARDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormGuide.Designer.vb">
       <DependentUpon>FormGuide.vb</DependentUpon>
     </Compile>
@@ -1995,6 +2032,12 @@
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormInvoiceFGPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoiceFGPOAdd.Designer.vb">
+      <DependentUpon>FormInvoiceFGPOAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPOAdd.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormInvoiceFGPODP.Designer.vb">
@@ -6458,6 +6501,12 @@
     <Compile Include="ReportDelayPayment.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDelManifest.Designer.vb">
+      <DependentUpon>ReportDelManifest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDelManifest.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDeptHeadSurvey.Designer.vb">
       <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
     </Compile>
@@ -6818,6 +6867,12 @@
     <Compile Include="ReportFGWoffList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFollowUpAR.Designer.vb">
+      <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFollowUpAR.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportInvMat.Designer.vb">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
     </Compile>
@@ -7002,6 +7057,12 @@
       <DependentUpon>ReportMatWO.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportMatWO.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportMemoUnpaidLeave.Designer.vb">
+      <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMemoUnpaidLeave.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportOutboundManifest.Designer.vb">
@@ -7589,6 +7650,9 @@
     <EmbeddedResource Include="FormAccountingLedger.resx">
       <DependentUpon>FormAccountingLedger.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormARCollectionAvg.resx">
+      <DependentUpon>FormARCollectionAvg.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAREvalScheduke.resx">
       <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
     </EmbeddedResource>
@@ -7597,6 +7661,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluation.resx">
       <DependentUpon>FormAREvaluation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvaluationLog.resx">
+      <DependentUpon>FormAREvaluationLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluationPickDate.resx">
       <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
@@ -7919,6 +7986,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDelManifest.resx">
       <DependentUpon>FormDelManifest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelManifestDet.resx">
+      <DependentUpon>FormDelManifestDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelManifestPick.resx">
+      <DependentUpon>FormDelManifestPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDepartementSub.resx">
       <DependentUpon>FormDepartementSub.vb</DependentUpon>
@@ -8480,6 +8553,13 @@
     <EmbeddedResource Include="FormFollowUpAR.resx">
       <DependentUpon>FormFollowUpAR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFollowUpARDet.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormFollowUpARDet1.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFollowUpARDetail.resx">
+      <DependentUpon>FormFollowUpARDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
     </EmbeddedResource>
@@ -8494,6 +8574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPO.resx">
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceFGPOAdd.resx">
+      <DependentUpon>FormInvoiceFGPOAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPODP.resx">
       <DependentUpon>FormInvoiceFGPODP.vb</DependentUpon>
@@ -11146,6 +11229,9 @@
     <EmbeddedResource Include="ReportDelayPayment.resx">
       <DependentUpon>ReportDelayPayment.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportDelManifest.resx">
+      <DependentUpon>ReportDelManifest.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportDeptHeadSurvey.resx">
       <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
     </EmbeddedResource>
@@ -11345,6 +11431,9 @@
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportFollowUpAR.resx">
+      <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
     </EmbeddedResource>
@@ -11456,6 +11545,9 @@
     <EmbeddedResource Include="ReportMatWO.resx">
       <DependentUpon>ReportMatWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
+      <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
@@ -11600,6 +11692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesDelOrderOwnStore.resx">
       <DependentUpon>ReportSalesDelOrderOwnStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesDelOrderSlip.resx">
+      <DependentUpon>ReportSalesDelOrderSlip.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesInvoceDelSlip.resx">
       <DependentUpon>ReportSalesInvoceDelSlip.vb</DependentUpon>

@@ -3,10 +3,14 @@
     Public action As String = "-1"
     Public id As String = "-1"
     Dim id_mail_status As String = "-1"
+    Dim mail_head As String = ""
     Dim mail_subject As String = ""
     Dim mail_title As String = ""
+    Dim mail_content_head As String = ""
     Dim mail_content As String = ""
+    Dim mail_content_end As String = ""
     Dim mail_content_to As String = ""
+    Dim super_user As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormMailManageDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -21,7 +25,9 @@
         If rmt = "225" Then
             Dim qdet As String = "SELECT '' AS `no`, sp.id_sales_pos AS `id_report`, sp.sales_pos_number AS `report_number`,
             CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, g.description AS `group_store`,
-            cg.comp_name AS `group_company`, prd.period,
+            cg.comp_name AS `group_company`, 
+            CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`,
+            DATE_FORMAT(sp.sales_pos_due_date,'%d-%m-%y') AS `sales_pos_due_date`,
             sp.sales_pos_total_qty AS `qty_invoice`, 
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `amount`,
             prd.amount AS `total_amount`,
@@ -158,7 +164,7 @@
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_user u ON u.id_user = m.id_user
                 INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-                WHERE e.email_external!='' AND m.report_mark_type='" + rmt + "'
+                WHERE e.email_external!='' AND m.report_mark_type='" + rmt + "' AND (ISNULL(m.id_comp_group) OR m.id_comp_group='" + FormMailManage.SLEStoreGroup.EditValue.ToString + "')
                 UNION
                 SELECT m.id_mail_manage_mapping AS `index`,0 AS `id_mail_manage_member`,0 AS `id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type, 0 AS `id_user`, m.id_comp_contact,
                 cc.contact_person AS `description`, cc.email AS `mail_address`
@@ -198,9 +204,22 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                MESubject.Text = addSlashes("Sales Invoice " + ddet.Rows(0)("group_store").ToString + " : " + ddet.Rows(0)("period").ToString)
+
+                'load var
+                Dim qopt As String = "SELECT mail_head_invoice,mail_subject_invoice, mail_title_invoice , mail_content_head_invoice, mail_content_invoice ,mail_content_end_invoice
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
+                mail_head = dopt.Rows(0)("mail_head_invoice").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString
+                mail_title = dopt.Rows(0)("mail_title_invoice").ToString
+                mail_content_head = dopt.Rows(0)("mail_content_head_invoice").ToString
+                mail_content = dopt.Rows(0)("mail_content_invoice").ToString
+                mail_content_end = dopt.Rows(0)("mail_content_end_invoice").ToString
+                MESubject.Text = addSlashes(mail_subject)
+
+                'mail template
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_penjualan(ddet)
+                Dim html As String = m.email_body_invoice_penjualan(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             ElseIf rmt = "226" Or rmt = "227" Then
                 '-- mail type
@@ -254,19 +273,31 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                Dim title As String = ""
-                Dim subj As String = ""
+                Dim qopt As String = "SELECT 
+                mail_head_pemberitahuan,mail_subject_pemberitahuan, mail_title_pemberitahuan , mail_content_head_pemberitahuan, mail_content_pemberitahuan, mail_content_end_pemberitahuan,
+                mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
                 If rmt = "226" Then
-                    title = "H-3 Invoice Jatuh Tempo"
-                    subj = "Email Pemberitahuan : " + title
-                Else
-                    title = "Invoice Jatuh Tempo"
-                    subj = "Email Peringatan : " + title
+                    mail_head = dopt.Rows(0)("mail_head_pemberitahuan").ToString
+                    mail_subject = dopt.Rows(0)("mail_subject_pemberitahuan").ToString
+                    mail_title = dopt.Rows(0)("mail_title_pemberitahuan").ToString
+                    mail_content_head = dopt.Rows(0)("mail_content_head_pemberitahuan").ToString
+                    mail_content = dopt.Rows(0)("mail_content_pemberitahuan").ToString
+                    mail_content_end = dopt.Rows(0)("mail_content_end_pemberitahuan").ToString
+                ElseIf rmt = "227" Then
+                    mail_head = dopt.Rows(0)("mail_head_peringatan").ToString
+                    mail_subject = dopt.Rows(0)("mail_subject_peringatan").ToString
+                    mail_title = dopt.Rows(0)("mail_title_peringatan").ToString
+                    mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
+                    mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
+                    mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
                 End If
-                MESubject.Text = addSlashes(subj)
-                Dim total_amount As String = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+
+
+                MESubject.Text = addSlashes(mail_subject)
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, title.ToUpper, total_amount)
+                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             End If
         ElseIf action = "upd" Then
@@ -331,8 +362,22 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
+
+                'load var
+                Dim qopt As String = "SELECT mail_head_invoice,mail_subject_invoice, mail_title_invoice , mail_content_head_invoice, mail_content_invoice ,mail_content_end_invoice
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
+                mail_head = dopt.Rows(0)("mail_head_invoice").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString
+                mail_title = dopt.Rows(0)("mail_title_invoice").ToString
+                mail_content_head = dopt.Rows(0)("mail_content_head_invoice").ToString
+                mail_content = dopt.Rows(0)("mail_content_invoice").ToString
+                mail_content_end = dopt.Rows(0)("mail_content_end_invoice").ToString
+                MESubject.Text = addSlashes(mail_subject)
+
+                'mail template
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_penjualan(ddet)
+                Dim html As String = m.email_body_invoice_penjualan(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             ElseIf rmt = "226" Or rmt = "227" Then
                 '-- load member
@@ -375,19 +420,29 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                Dim title As String = ""
-                Dim subj As String = ""
+                Dim qopt As String = "SELECT 
+                mail_head_pemberitahuan,mail_subject_pemberitahuan, mail_title_pemberitahuan , mail_content_head_pemberitahuan, mail_content_pemberitahuan, mail_content_end_pemberitahuan,
+                mail_head_peringatan,mail_subject_peringatan, mail_title_peringatan , mail_content_head_peringatan, mail_content_peringatan ,mail_content_end_peringatan
+                FROM tb_opt "
+                Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
                 If rmt = "226" Then
-                    title = "H-3 Invoice Jatuh Tempo"
-                    subj = "Email Pemberitahuan : " + title
-                Else
-                    title = "Invoice Jatuh Tempo"
-                    subj = "Email Peringatan : " + title
+                    mail_head = dopt.Rows(0)("mail_head_pemberitahuan").ToString
+                    mail_subject = dopt.Rows(0)("mail_subject_pemberitahuan").ToString
+                    mail_title = dopt.Rows(0)("mail_title_pemberitahuan").ToString
+                    mail_content_head = dopt.Rows(0)("mail_content_head_pemberitahuan").ToString
+                    mail_content = dopt.Rows(0)("mail_content_pemberitahuan").ToString
+                    mail_content_end = dopt.Rows(0)("mail_content_end_pemberitahuan").ToString
+                ElseIf rmt = "227" Then
+                    mail_head = dopt.Rows(0)("mail_head_peringatan").ToString
+                    mail_subject = dopt.Rows(0)("mail_subject_peringatan").ToString
+                    mail_title = dopt.Rows(0)("mail_title_peringatan").ToString
+                    mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
+                    mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
+                    mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
+                    MESubject.Text = addSlashes(mail_subject)
                 End If
-                MESubject.Text = addSlashes(subj)
-                Dim total_amount As String = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
                 Dim m As New ClassSendEmail()
-                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, title.ToUpper, total_amount)
+                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             ElseIf rmt = "228" Or rmt = "230" Then
                 '-- load member
@@ -484,6 +539,17 @@
                 BtnCancel.Visible = False
                 BtnSend.Text = "Resend"
             End If
+
+            'jika sent tapi bukan super user
+            If id_mail_status = "2" And id_role_login <> super_user Then
+                BtnSend.Visible = False
+            End If
+        End If
+
+        'include mail management
+        Dim management_mail As String = getMailManagement(rmt)
+        If management_mail <> "" Then
+            MECC.Text += management_mail + ";"
         End If
         Cursor = Cursors.Default
     End Sub
@@ -644,6 +710,16 @@
         Cursor = Cursors.Default
     End Sub
 
+    Function getTotalAmo(ByVal dtx As DataTable) As Double
+        Dim tot_amo As Double = 0
+        If rmt = "225" Or rmt = "226" Or rmt = "227" Then
+            For i As Integer = 0 To dtx.Rows.Count - 1
+                tot_amo += dtx.Rows(i)("amount")
+            Next
+        End If
+        Return tot_amo
+    End Function
+
     Sub sendEmail()
         'send mail
         Dim sm As New ClassSendEmail()
@@ -654,18 +730,26 @@
         'jika ada parameter lain
         If rmt = "225" Then
             Dim id_sales_pos As String = getSavedInvoice()
-            sm.dt = dtLoadDetail(id_sales_pos)
+            Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
+            sm.dt = dtx
+            sm.head = mail_head
+            sm.subj = mail_subject
+            sm.titl = mail_title
+            sm.par1 = mail_content_head + " " + dtx.Rows(0)("group_company").ToString
+            sm.par2 = mail_content
+            sm.comment = mail_content_end
+            sm.design_code = Double.Parse(getTotalAmo(dtx).ToString).ToString("N2")
         ElseIf rmt = "226" Or rmt = "227" Then
             Dim id_sales_pos As String = getSavedInvoice()
-            sm.dt = dtLoadDetail(id_sales_pos)
-            Dim ttl As String = ""
-            If rmt = "226" Then
-                ttl = "Email Pemberitahuan"
-            Else
-                ttl = "Email Peringatan"
-            End If
-            sm.par1 = ttl.ToUpper
-            sm.par2 = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+            Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
+            sm.dt = dtx
+            sm.head = mail_head
+            sm.subj = mail_subject
+            sm.titl = mail_title
+            sm.par1 = mail_content_head + " " + dtx.Rows(0)("group_company").ToString
+            sm.par2 = mail_content
+            sm.comment = mail_content_end
+            sm.design_code = Double.Parse(getTotalAmo(dtx).ToString).ToString("N2")
         ElseIf rmt = "228" Or rmt = "230" Then
             Dim mm As New ClassMailManage
             mm.id_mail_manage = id
@@ -682,6 +766,12 @@
             Dim querylog As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
             id_mail_status=2, mail_status_note='Sent successfully' WHERE id_mail_manage='" + id + "'; " + queryInsertLog("2", "Sent successfully") + "; "
             execute_non_query(querylog, True, "", "", "", "")
+
+            'insert log
+            Dim cml As New ClassMailManage()
+            cml.id_mail_manage = id
+            cml.rmt = rmt
+            cml.insertLogFollowUp("")
         Catch ex As Exception
             Dim query As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
             id_mail_status=3, mail_status_note='" + addSlashes(ex.ToString) + "' WHERE id_mail_manage='" + id + "';" + queryInsertLog("3", ex.ToString) + "; "
