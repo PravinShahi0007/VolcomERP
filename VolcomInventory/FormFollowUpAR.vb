@@ -34,7 +34,7 @@
         If SLEStoreGroup.EditValue.ToString <> "0" Then
             cond = "AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'"
         End If
-        Dim query As String = "SELECT far.id_follow_up_ar,cg.description AS `group` , sp.sales_pos_due_date, far.follow_up_date, far.follow_up, far.follow_up_result,
+        Dim query As String = "SELECT far.id_follow_up_ar, cg.id_comp_group,cg.description AS `group` , sp.sales_pos_due_date, far.follow_up_date, far.follow_up, far.follow_up_result,
         SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) - IFNULL(pyd.`value`,0.00)) AS `amount`, c.id_comp_group
         FROM tb_sales_pos sp 
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -123,5 +123,51 @@
 
     Sub print_recap(ByVal id_follow_up_recap As String)
 
+    End Sub
+
+    Dim last_grp As String = ""
+    Dim last_due As String = ""
+    Dim tot_amo_grp As Double
+    Private Sub GVActive_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVActive.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_amo_grp = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim grp As String = View.GetRowCellValue(e.RowHandle, "id_comp_group").ToString
+            Dim due As String = DateTime.Parse(View.GetRowCellValue(e.RowHandle, "sales_pos_due_date").ToString).ToString("yyyy-MM-dd")
+            Dim amo As Double = 0.00
+            'amo = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "amount").ToString, "0.00"))
+            Console.WriteLine(grp.ToString)
+            If grp <> last_grp Or due <> last_due Then
+                last_grp = grp
+                last_due = due
+                amo = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "amount").ToString, "0.00"))
+            Else
+                amo = 0.00
+            End If
+            Select Case summaryID
+                Case 1
+                    tot_amo_grp += amo
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'total group
+                    Dim sum_res As Double = 0.00
+                    Try
+                        sum_res = tot_amo_grp
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
     End Sub
 End Class
