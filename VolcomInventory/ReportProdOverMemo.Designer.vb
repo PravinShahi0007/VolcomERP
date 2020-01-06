@@ -21,11 +21,12 @@ Partial Public Class ReportProdOverMemo
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportProdOverMemo))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelNumber = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrPanel2 = New DevExpress.XtraReports.UI.XRPanel()
@@ -36,16 +37,18 @@ Partial Public Class ReportProdOverMemo
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -56,28 +59,6 @@ Partial Public Class ReportProdOverMemo
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1049.0!, 175.0!)
-        Me.WinControlContainer1.WinControl = Me.GCData
-        '
-        'GCData
-        '
-        Me.GCData.Location = New System.Drawing.Point(20, 44)
-        Me.GCData.MainView = Me.GVData
-        Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(1007, 168)
-        Me.GCData.TabIndex = 0
-        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
-        '
-        'GVData
-        '
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsView.ShowGroupPanel = False
-        '
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelTitle, Me.LabelNumber, Me.XrPictureBox1})
@@ -86,6 +67,38 @@ Partial Public Class ReportProdOverMemo
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'LabelTitle
+        '
+        Me.LabelTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelTitle.LocationFloat = New DevExpress.Utils.PointFloat(576.9522!, 25.33332!)
+        Me.LabelTitle.Name = "LabelTitle"
+        Me.LabelTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelTitle.SizeF = New System.Drawing.SizeF(472.0478!, 25.08334!)
+        Me.LabelTitle.StylePriority.UseFont = False
+        Me.LabelTitle.StylePriority.UseTextAlignment = False
+        Me.LabelTitle.Text = "OVER PRODUCTION MEMO"
+        Me.LabelTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'LabelNumber
+        '
+        Me.LabelNumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNumber.LocationFloat = New DevExpress.Utils.PointFloat(732.5479!, 50.41666!)
+        Me.LabelNumber.Name = "LabelNumber"
+        Me.LabelNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelNumber.SizeF = New System.Drawing.SizeF(316.4521!, 14.5!)
+        Me.LabelNumber.StylePriority.UseFont = False
+        Me.LabelNumber.StylePriority.UseTextAlignment = False
+        Me.LabelNumber.Text = "NO. 00001"
+        Me.LabelNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.33332!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(210.4167!, 39.58334!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        '
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrPageInfo1})
@@ -93,6 +106,21 @@ Partial Public Class ReportProdOverMemo
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel8
+        '
+        Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.ForeColor = System.Drawing.Color.Gray
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(2.000014!, 2.67626!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(548.8425!, 16.04167!)
+        Me.XrLabel8.StylePriority.UseBorderColor = False
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseForeColor = False
+        Me.XrLabel8.StylePriority.UseTextAlignment = False
+        Me.XrLabel8.Text = "Printed from Volcom ERP ([printed_date])"
+        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrPageInfo1
         '
@@ -192,38 +220,6 @@ Partial Public Class ReportProdOverMemo
         Me.PageHeader.HeightF = 37.5!
         Me.PageHeader.Name = "PageHeader"
         '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.33332!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(210.4167!, 39.58334!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-        '
-        'LabelTitle
-        '
-        Me.LabelTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitle.LocationFloat = New DevExpress.Utils.PointFloat(576.9522!, 25.33332!)
-        Me.LabelTitle.Name = "LabelTitle"
-        Me.LabelTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelTitle.SizeF = New System.Drawing.SizeF(472.0478!, 25.08334!)
-        Me.LabelTitle.StylePriority.UseFont = False
-        Me.LabelTitle.StylePriority.UseTextAlignment = False
-        Me.LabelTitle.Text = "OVER PRODUCTION MEMO"
-        Me.LabelTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'LabelNumber
-        '
-        Me.LabelNumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelNumber.LocationFloat = New DevExpress.Utils.PointFloat(732.5479!, 50.41666!)
-        Me.LabelNumber.Name = "LabelNumber"
-        Me.LabelNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelNumber.SizeF = New System.Drawing.SizeF(316.4521!, 14.5!)
-        Me.LabelNumber.StylePriority.UseFont = False
-        Me.LabelNumber.StylePriority.UseTextAlignment = False
-        Me.LabelNumber.Text = "NO. 00001"
-        Me.LabelNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
         'XrLabel11
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -260,20 +256,49 @@ Partial Public Class ReportProdOverMemo
         Me.XrLabel10.Text = ":"
         Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'XrLabel8
+        'GCData
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(2.000014!, 2.67626!)
-        Me.XrLabel8.Name = "XrLabel8"
-        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(548.8425!, 16.04167!)
-        Me.XrLabel8.StylePriority.UseBorderColor = False
-        Me.XrLabel8.StylePriority.UseFont = False
-        Me.XrLabel8.StylePriority.UseForeColor = False
-        Me.XrLabel8.StylePriority.UseTextAlignment = False
-        Me.XrLabel8.Text = "Printed from Volcom ERP ([printed_date])"
-        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.GCData.Location = New System.Drawing.Point(20, 44)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(1007, 168)
+        Me.GCData.TabIndex = 0
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 59
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "QTY"
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 64
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 127
+        '
+        'WinControlContainer1
+        '
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1049.0!, 175.0833!)
+        Me.WinControlContainer1.WinControl = Me.GCData
         '
         'ReportProdOverMemo
         '
@@ -285,9 +310,9 @@ Partial Public Class ReportProdOverMemo
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -303,9 +328,6 @@ Partial Public Class ReportProdOverMemo
     Friend WithEvents LabelNote As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents LabelTitle As DevExpress.XtraReports.UI.XRLabel
@@ -314,4 +336,10 @@ Partial Public Class ReportProdOverMemo
     Friend WithEvents LabelDate As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

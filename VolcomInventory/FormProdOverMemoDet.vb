@@ -44,7 +44,8 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "SELECT md.discount,md.id_prod_over_memo_det, md.id_prod_over_memo, md.id_prod_order, po.prod_order_number, d.design_code AS `code`, d.design_display_name AS `name`, md.remark, md.qty
+        Dim query As String = "SELECT md.discount,md.id_prod_over_memo_det, md.id_prod_over_memo, md.id_prod_order, po.prod_order_number, d.design_code AS `code`, d.design_display_name AS `name`, md.remark, 
+        md.qty, get_total_po(po.id_prod_order, 1) AS `qty_order`, get_total_po(po.id_prod_order, 3) AS `qty_max_order`
         FROM tb_prod_over_memo_det md
         INNER JOIN tb_prod_order po ON po.id_prod_order = md.id_prod_order
         INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
@@ -52,6 +53,7 @@
         WHERE md.id_prod_over_memo=" + id_prod_over_memo + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        GVData.BestFitColumns()
     End Sub
 
     Sub allow_status()
@@ -215,6 +217,12 @@
             'Grid Detail style
             'style
             Report.GVData.OptionsPrint.UsePrintStyles = True
+
+            Report.GVData.AppearancePrint.BandPanel.BorderColor = Color.Black
+            Report.GVData.AppearancePrint.BandPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.BandPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.BandPanel.Font = New Font("Tahoma", 7, FontStyle.Bold)
+
             Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
             Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
             Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
