@@ -218,7 +218,7 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
             Dim newRowh As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
             newRowh("no") = jum_row
             newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
-            newRowh("acc_description") = dh.Rows(0)("acc_description").ToString
+            newRowh("acc_description") = dh.Rows(0)("acc_name").ToString & "" & dh.Rows(0)("acc_description").ToString
             newRowh("cc") = "000"
             newRowh("report_number") = ""
             newRowh("note") = MENote.Text
@@ -238,11 +238,11 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
                 newRow("report_number") = GVList.GetRowCellValue(i, "report_number").ToString
                 newRow("note") = GVList.GetRowCellValue(i, "note").ToString
                 If GVList.GetRowCellValue(i, "valuex") < 0 Then
-                    newRow("debit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
-                    newRow("credit") = 0
-                Else
                     newRow("debit") = 0
                     newRow("credit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
+                Else
+                    newRow("debit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
+                    newRow("credit") = 0
                 End If
                 TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
                 GCDraft.RefreshDataSource()
