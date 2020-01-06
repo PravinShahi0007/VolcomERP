@@ -124,7 +124,7 @@
                             ) a 
                             GROUP BY a.id_prod_order
                         ) mm ON mm.id_prod_order = a.id_prod_order
-                        WHERE 1=1 " & query_where & "
+                        WHERE 1=1 AND a.id_report_status=6 " & query_where & "
                         GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data_par.Rows.Count = 0 Then
