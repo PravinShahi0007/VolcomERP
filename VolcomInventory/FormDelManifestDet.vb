@@ -9,7 +9,11 @@
     End Sub
 
     Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
-        FormDelManifestPick.ShowDialog()
+        If SLUE3PL.EditValue.ToString = "0" Then
+            stopCustom("Please select 3PL.")
+        Else
+            FormDelManifestPick.ShowDialog()
+        End If
     End Sub
 
     Private Sub SBRemove_Click(sender As Object, e As EventArgs) Handles SBRemove.Click
@@ -55,7 +59,7 @@
         TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
 
         Dim query_det As String = "
-            SELECT 0 AS no, mdet.id_wh_awb_det, c.id_comp_group, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
+            SELECT 0 AS no, mdet.id_wh_awb_det, c.id_comp_group, a.awbill_date, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
             FROM tb_del_manifest_det AS mdet
             LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
             LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
