@@ -390,6 +390,7 @@ WHERE pnd.`id_pn_fgpo`='-1'"
                 Next
                 FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
                 FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
+                FormInvoiceFGPODP.SLEPayType.EditValue = SLETypeInvoice.EditValue
                 Close()
             Catch ex As Exception
                 MsgBox(ex.ToString)

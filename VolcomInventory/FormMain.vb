@@ -13992,10 +13992,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     End Function
 
     Private Sub TimerIddle_Tick(sender As Object, e As EventArgs) Handles TimerIddle.Tick
-        If CInt(GetLastInputTime()) > get_setup_field("system_auto_logout") Then
-            TimerIddle.Stop()
-            TimerIddle.Enabled = False
-            logOutCmd()
-        End If
+        'If CInt(GetLastInputTime()) > get_setup_field("system_auto_logout") Then
+        '    TimerIddle.Stop()
+        '    TimerIddle.Enabled = False
+        '    logOutCmd()
+        'End If
     End Sub
 End Class
