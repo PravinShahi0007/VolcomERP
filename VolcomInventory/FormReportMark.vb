@@ -5588,7 +5588,7 @@ WHERE pd.`id_pn`='" & id_report & "'"
                             mm.mail_title = mail_title
                             mm.par1 = id_comp_group
                             mm.rmt = "230"
-                            mm.createEmail(id_comp_group, id_user, id_report, report_mark_type, report_number)
+                            mm.createEmail("-1", id_user, id_report, report_mark_type, report_number)
                             id_mail = mm.id_mail_manage
 
                             'email
