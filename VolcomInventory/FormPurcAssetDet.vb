@@ -36,8 +36,6 @@
             TxtComp.Text = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + SLEComp.EditValue.ToString + "' ", 0, True, "", "", "", "")
 
         ElseIf action = "upd" Then
-
-
             Dim a As New ClassPurcAsset()
             Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", find_accum)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

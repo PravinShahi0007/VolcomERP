@@ -5409,7 +5409,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     execute_non_query(qc, True, "", "", "", "")
                     FormBankWithdrawal.load_expense()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "189" Then
-                    'close fgpo
+                    'Close FGPO
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
 FROM tb_pn_det pd
 WHERE pd.`id_pn`='" & id_report & "'"

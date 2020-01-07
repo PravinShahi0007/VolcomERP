@@ -22,11 +22,17 @@ Partial Class FormPurcReqDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcReqDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TENoteIA = New DevExpress.XtraEditors.TextEdit()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.SLEIAApproval = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -78,6 +84,11 @@ Partial Class FormPurcReqDet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLEShipTo = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
@@ -93,22 +104,21 @@ Partial Class FormPurcReqDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.PCIAIC = New DevExpress.XtraEditors.PanelControl()
-        Me.TENoteIA = New DevExpress.XtraEditors.TextEdit()
         Me.TENoteIC = New DevExpress.XtraEditors.TextEdit()
-        Me.SLEIAApproval = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEICApproval = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,6 +142,8 @@ Partial Class FormPurcReqDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEShipTo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
@@ -146,10 +158,7 @@ Partial Class FormPurcReqDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCIAIC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCIAIC.SuspendLayout()
-        CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -169,6 +178,20 @@ Partial Class FormPurcReqDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(955, 41)
         Me.PanelControl1.TabIndex = 0
+        '
+        'TENoteIA
+        '
+        Me.TENoteIA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TENoteIA.EditValue = ""
+        Me.TENoteIA.Location = New System.Drawing.Point(337, 11)
+        Me.TENoteIA.Name = "TENoteIA"
+        Me.TENoteIA.Properties.EditValueChangedDelay = 1
+        Me.TENoteIA.Properties.ReadOnly = True
+        Me.TENoteIA.Size = New System.Drawing.Size(270, 20)
+        Me.TENoteIA.TabIndex = 8914
+        Me.TENoteIA.TabStop = False
+        Me.TENoteIA.Visible = False
         '
         'BtnAttachment
         '
@@ -214,6 +237,39 @@ Partial Class FormPurcReqDet
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
+        'SLEIAApproval
+        '
+        Me.SLEIAApproval.Enabled = False
+        Me.SLEIAApproval.Location = New System.Drawing.Point(154, 11)
+        Me.SLEIAApproval.Name = "SLEIAApproval"
+        Me.SLEIAApproval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEIAApproval.Properties.View = Me.GridView3
+        Me.SLEIAApproval.Size = New System.Drawing.Size(177, 20)
+        Me.SLEIAApproval.TabIndex = 8912
+        Me.SLEIAApproval.Visible = False
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "ID Approval"
+        Me.GridColumn22.FieldName = "id_approval"
+        Me.GridColumn22.Name = "GridColumn22"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Approval"
+        Me.GridColumn23.FieldName = "approval"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
+        '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
@@ -237,6 +293,16 @@ Partial Class FormPurcReqDet
         Me.BtnCancel.TabIndex = 14
         Me.BtnCancel.TabStop = False
         Me.BtnCancel.Text = "Cancel"
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(91, 14)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl11.TabIndex = 8910
+        Me.LabelControl11.Text = "IA Approval"
+        Me.LabelControl11.Visible = False
         '
         'BtnSave
         '
@@ -511,7 +577,7 @@ Partial Class FormPurcReqDet
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem})
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem, Me.RISLEShipTo})
         Me.GCItemList.Size = New System.Drawing.Size(955, 180)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -520,7 +586,7 @@ Partial Class FormPurcReqDet
         '
         Me.GVItemList.AppearancePrint.Row.Options.UseTextOptions = True
         Me.GVItemList.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn21, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumn20, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumnUOM, Me.GridColumn13, Me.GridColumn3, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn21, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumn20, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumnUOM, Me.GridColumn13, Me.GridColumn3, Me.GridColumn14, Me.GridColumn17, Me.GridColumn28, Me.GridColumn15})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Nothing, "{0:N2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -762,17 +828,57 @@ Partial Class FormPurcReqDet
         Me.GridColumn14.FieldName = "note"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 9
+        Me.GridColumn14.VisibleIndex = 10
         Me.GridColumn14.Width = 281
         '
         'GridColumn17
         '
-        Me.GridColumn17.Caption = "Shipping Destination"
-        Me.GridColumn17.FieldName = "ship_destination"
+        Me.GridColumn17.Caption = "Ship To"
+        Me.GridColumn17.ColumnEdit = Me.RISLEShipTo
+        Me.GridColumn17.FieldName = "ship_to"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 7
-        Me.GridColumn17.Width = 119
+        Me.GridColumn17.Width = 73
+        '
+        'RISLEShipTo
+        '
+        Me.RISLEShipTo.AutoHeight = False
+        Me.RISLEShipTo.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEShipTo.Name = "RISLEShipTo"
+        Me.RISLEShipTo.View = Me.GridView4
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn27, Me.GridColumn24, Me.GridColumn25})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "ID Comp"
+        Me.GridColumn26.FieldName = "id_comp"
+        Me.GridColumn26.Name = "GridColumn26"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Ship To"
+        Me.GridColumn24.FieldName = "comp_name"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 1
+        Me.GridColumn24.Width = 471
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Address"
+        Me.GridColumn25.FieldName = "address_primary"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 2
+        Me.GridColumn25.Width = 962
         '
         'GridColumn15
         '
@@ -780,7 +886,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn15.FieldName = "ship_address"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 8
+        Me.GridColumn15.VisibleIndex = 9
         Me.GridColumn15.Width = 107
         '
         'RepositoryItemSpinEdit1
@@ -941,20 +1047,6 @@ Partial Class FormPurcReqDet
         Me.PCIAIC.TabIndex = 173
         Me.PCIAIC.Visible = False
         '
-        'TENoteIA
-        '
-        Me.TENoteIA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TENoteIA.EditValue = ""
-        Me.TENoteIA.Location = New System.Drawing.Point(337, 11)
-        Me.TENoteIA.Name = "TENoteIA"
-        Me.TENoteIA.Properties.EditValueChangedDelay = 1
-        Me.TENoteIA.Properties.ReadOnly = True
-        Me.TENoteIA.Size = New System.Drawing.Size(270, 20)
-        Me.TENoteIA.TabIndex = 8914
-        Me.TENoteIA.TabStop = False
-        Me.TENoteIA.Visible = False
-        '
         'TENoteIC
         '
         Me.TENoteIC.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -967,39 +1059,6 @@ Partial Class FormPurcReqDet
         Me.TENoteIC.Size = New System.Drawing.Size(682, 20)
         Me.TENoteIC.TabIndex = 8913
         Me.TENoteIC.TabStop = False
-        '
-        'SLEIAApproval
-        '
-        Me.SLEIAApproval.Enabled = False
-        Me.SLEIAApproval.Location = New System.Drawing.Point(154, 11)
-        Me.SLEIAApproval.Name = "SLEIAApproval"
-        Me.SLEIAApproval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEIAApproval.Properties.View = Me.GridView3
-        Me.SLEIAApproval.Size = New System.Drawing.Size(177, 20)
-        Me.SLEIAApproval.TabIndex = 8912
-        Me.SLEIAApproval.Visible = False
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "ID Approval"
-        Me.GridColumn22.FieldName = "id_approval"
-        Me.GridColumn22.Name = "GridColumn22"
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Approval"
-        Me.GridColumn23.FieldName = "approval"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 0
         '
         'SLEICApproval
         '
@@ -1033,16 +1092,6 @@ Partial Class FormPurcReqDet
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
         '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(91, 14)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl11.TabIndex = 8910
-        Me.LabelControl11.Text = "IA Approval"
-        Me.LabelControl11.Visible = False
-        '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1062,6 +1111,24 @@ Partial Class FormPurcReqDet
         Me.BSetShipping.TabIndex = 13
         Me.BSetShipping.TabStop = False
         Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Code"
+        Me.GridColumn27.FieldName = "comp_number"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 0
+        Me.GridColumn27.Width = 199
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Ship Destination"
+        Me.GridColumn28.FieldName = "ship_destination"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 8
+        Me.GridColumn28.Width = 116
         '
         'FormPurcReqDet
         '
@@ -1083,7 +1150,10 @@ Partial Class FormPurcReqDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1109,6 +1179,8 @@ Partial Class FormPurcReqDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEShipTo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
@@ -1126,10 +1198,7 @@ Partial Class FormPurcReqDet
         CType(Me.PCIAIC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCIAIC.ResumeLayout(False)
         Me.PCIAIC.PerformLayout()
-        CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1221,4 +1290,11 @@ Partial Class FormPurcReqDet
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TENoteIA As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TENoteIC As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents RISLEShipTo As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
