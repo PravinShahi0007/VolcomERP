@@ -214,35 +214,69 @@ Public Class FormSalesDelOrderSlip
             GVItemList.ActiveFilterString = ""
             GridColumnNo.Visible = False
         Else
-            ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del_slip
-            ReportSalesDelOrderOwnStore.rmt = "103"
-            ReportSalesDelOrderOwnStore.is_combine = "1"
-            ReportSalesDelOrderOwnStore.id_report_status = id_report_status
-            ReportSalesDelOrderOwnStore.id_store = id_store
-            ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
-            ReportSalesDelOrderOwnStore.is_no_print = "-1"
-            Dim Report As New ReportSalesDelOrderOwnStore()
+            Dim id_commerce_type As String = execute_query("SELECT id_commerce_type FROM tb_m_comp WHERE id_comp = " + id_store, 0, True, "", "", "", "")
+
+            If id_commerce_type = "2" Then
+                ReportSalesDelOrderOwnStore2.id = id_pl_sales_order_del_slip
+                ReportSalesDelOrderOwnStore2.rmt = "103"
+                ReportSalesDelOrderOwnStore2.is_combine = "1"
+                ReportSalesDelOrderOwnStore2.id_report_status = id_report_status
+                ReportSalesDelOrderOwnStore2.id_store = id_store
+                ReportSalesDelOrderOwnStore2.is_use_unique_code = is_use_unique_code
+                ReportSalesDelOrderOwnStore2.is_no_print = "-1"
+                Dim Report As New ReportSalesDelOrderOwnStore2()
 
 
-            'Grid Detail
-            'ReportStyleGridviewBlackLine(Report.GVItemList)
+                'Grid Detail
+                'ReportStyleGridviewBlackLine(Report.GVItemList)
 
-            'Parse val
-            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-            Report.LabelAddress.Text = MEAdrressCompTo.Text
-            Report.LRecDate.Text = DEForm.Text
-            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
-            Report.LabelNote.Text = MENote.Text
-            Report.LabelPrepare.Text = "-"
-            Report.LabelCat.Text = "-"
-            'Report.LabelUni3.Text = "-"
-            Report.LabelUni6.Text = "-"
-            Report.PanelUni.Visible = False
+                'Parse val
+                Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+                Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+                Report.LabelAddress.Text = MEAdrressCompTo.Text
+                Report.LRecDate.Text = DEForm.Text
+                Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+                Report.LabelNote.Text = MENote.Text
+                Report.LabelPrepare.Text = "-"
+                Report.LabelCat.Text = "-"
+                'Report.LabelUni3.Text = "-"
+                Report.LabelUni6.Text = "-"
+                Report.PanelUni.Visible = False
 
-            'Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreview()
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
+            Else
+                ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del_slip
+                ReportSalesDelOrderOwnStore.rmt = "103"
+                ReportSalesDelOrderOwnStore.is_combine = "1"
+                ReportSalesDelOrderOwnStore.id_report_status = id_report_status
+                ReportSalesDelOrderOwnStore.id_store = id_store
+                ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
+                ReportSalesDelOrderOwnStore.is_no_print = "-1"
+                Dim Report As New ReportSalesDelOrderOwnStore()
+
+
+                'Grid Detail
+                'ReportStyleGridviewBlackLine(Report.GVItemList)
+
+                'Parse val
+                Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+                Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+                Report.LabelAddress.Text = MEAdrressCompTo.Text
+                Report.LRecDate.Text = DEForm.Text
+                Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+                Report.LabelNote.Text = MENote.Text
+                Report.LabelPrepare.Text = "-"
+                Report.LabelCat.Text = "-"
+                'Report.LabelUni3.Text = "-"
+                Report.LabelUni6.Text = "-"
+                Report.PanelUni.Visible = False
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
+            End If
         End If
 
     End Sub
@@ -253,7 +287,14 @@ Public Class FormSalesDelOrderSlip
 
     Sub prePrinting()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderOwnStore.id_pre = "1"
+        Dim id_commerce_type As String = execute_query("SELECT id_commerce_type FROM tb_m_comp WHERE id_comp = " + id_store, 0, True, "", "", "", "")
+
+        If id_commerce_type = "2" Then
+            ReportSalesDelOrderOwnStore2.id_pre = "1"
+        Else
+            ReportSalesDelOrderOwnStore.id_pre = "1"
+        End If
+
         getReport()
         Cursor = Cursors.Default
     End Sub
@@ -264,7 +305,14 @@ Public Class FormSalesDelOrderSlip
 
     Sub printing()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderOwnStore.id_pre = "-1"
+        Dim id_commerce_type As String = execute_query("SELECT id_commerce_type FROM tb_m_comp WHERE id_comp = " + id_store, 0, True, "", "", "", "")
+
+        If id_commerce_type = "2" Then
+            ReportSalesDelOrderOwnStore2.id_pre = "-1"
+        Else
+            ReportSalesDelOrderOwnStore.id_pre = "-1"
+        End If
+
         getReport()
         Cursor = Cursors.Default
     End Sub

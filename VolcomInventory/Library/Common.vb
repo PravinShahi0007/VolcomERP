@@ -6811,4 +6811,14 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         End If
         Return management_mail
     End Function
+
+    Public Function isEmptyApproval(ByVal id_report_par As String, ByVal rmt As String) As Boolean
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.id_report='" + id_report_par + "' AND rm.report_mark_type='" + rmt + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 End Module

@@ -4114,12 +4114,19 @@
             'infoCustom("Status changed.")
         ElseIf report_mark_type = "126" Then
             'Production Over Memo
-            If id_status_reportx = "3" Then
-                id_status_reportx = "6"
-            End If
 
             If id_status_reportx = "6" Then
                 Cursor = Cursors.WaitCursor
+
+                'check upload file
+                Dim query_file As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type='" + report_mark_type + "' AND d.id_report='" + id_report + "' "
+                Dim data_file As DataTable = execute_query(query_file, -1, True, "", "", "", "")
+                If data_file.Rows.Count <= 0 Then
+                    stopCustom("Document not found. Please attach document first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 Dim query_upd_datetime As String = "UPDATE tb_prod_over_memo SET created_date=NOW() WHERE id_prod_over_memo='" + id_report + "' "
                 execute_non_query(query_upd_datetime, True, "", "", "", "")
                 Dim mail As New ClassSendEmail()
@@ -5402,7 +5409,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     execute_non_query(qc, True, "", "", "", "")
                     FormBankWithdrawal.load_expense()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "189" Then
-                    'close fgpo
+                    'Close FGPO
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
 FROM tb_pn_det pd
 WHERE pd.`id_pn`='" & id_report & "'"
