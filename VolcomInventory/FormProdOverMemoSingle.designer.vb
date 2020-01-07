@@ -759,7 +759,11 @@ Partial Class FormProdOverMemoSingle
         '
         'GridColumnqty
         '
-        Me.GridColumnqty.Caption = "Qty"
+        Me.GridColumnqty.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnqty.AppearanceCell.Options.UseFont = True
+        Me.GridColumnqty.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnqty.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnqty.Caption = "Over Qty"
         Me.GridColumnqty.FieldName = "qty"
         Me.GridColumnqty.Name = "GridColumnqty"
         Me.GridColumnqty.Visible = True

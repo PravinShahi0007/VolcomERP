@@ -84,6 +84,7 @@
         Dim query = "SELECT 'no' AS `check`,
                         IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, 
                         IFNULL(SUM(pod.prod_order_qty),0) AS qty_order, 
+                        (IFNULL(SUM(pod.prod_order_qty),0)+ ROUND(IFNULL(SUM(pod.prod_order_qty),0) * (a.tolerance_over/100))) AS `qty_max_order`,
                         CONCAT(comp.comp_number,' - ',comp.comp_name) AS `comp_name`,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, 
                         a.prod_order_date,a.id_report_status,c.report_status, 
                         b.id_design,b.id_delivery, e.delivery, f.season, e.id_season , wod.prod_order_wo_det_price
@@ -124,7 +125,7 @@
                             ) a 
                             GROUP BY a.id_prod_order
                         ) mm ON mm.id_prod_order = a.id_prod_order
-                        WHERE 1=1 AND a.id_report_status=6 " & query_where & "
+                        WHERE 1=1 AND a.id_report_status=6 AND a.is_closing_rec=2 " & query_where & "
                         GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data_par.Rows.Count = 0 Then
@@ -193,11 +194,14 @@
                 newRow("code") = GVProd.GetRowCellValue(i, "design_code").ToString
                 newRow("name") = GVProd.GetRowCellValue(i, "design_display_name").ToString
                 newRow("qty") = GVProd.GetRowCellValue(i, "qty")
+                newRow("qty_order") = GVProd.GetRowCellValue(i, "qty_order")
+                newRow("qty_max_order") = GVProd.GetRowCellValue(i, "qty_max_order")
                 newRow("discount") = 0
                 newRow("remark") = GVProd.GetRowCellValue(i, "remark").ToString
                 TryCast(FormProdOverMemoDet.GCData.DataSource, DataTable).Rows.Add(newRow)
                 FormProdOverMemoDet.GCData.RefreshDataSource()
                 FormProdOverMemoDet.GVData.RefreshData()
+                FormProdOverMemoDet.GVData.BestFitColumns()
             Next
             Close()
         End If
