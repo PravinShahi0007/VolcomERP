@@ -364,6 +364,14 @@ WHERE pnd.`id_pn_fgpo`='-1'"
         Next
         fill_grid()
         GVInvoice.BestFitColumns()
+        'check if dp on process
+        Dim qdp As String = "SELECT * FROM tb_pn_fgpo_det pnd
+INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' AND pn.`id_report_status`!=5 AND pn.`id_report_status`!=6"
+        Dim dtdp As DataTable = execute_query(qdp, -1, True, "", "", "", "")
+        If dtdp.Rows.Count > 0 Then
+            warningCustom("Please note there are BPL DP waiting to approve, DP will not show if not approved.")
+        End If
     End Sub
 
     Private Sub BPickAll_Click(sender As Object, e As EventArgs) Handles BPickAll.Click
