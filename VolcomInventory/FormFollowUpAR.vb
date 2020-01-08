@@ -53,6 +53,7 @@
         ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
         INNER JOIN tb_follow_up_ar far ON far.id_comp_group = c.id_comp_group AND far.due_date = sp.sales_pos_due_date
         WHERE sp.is_close_rec_payment=2 AND sp.id_report_status=6
+        AND DATEDIFF(NOW(),sp.sales_pos_due_date)>0
         " + cond + "
         GROUP BY c.id_comp_group, sp.sales_pos_due_date, far.id_follow_up_ar
         ORDER BY cg.description ASC, sp.sales_pos_due_date ASC, far.follow_up_date ASC "

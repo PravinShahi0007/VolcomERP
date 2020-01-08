@@ -105,7 +105,7 @@
             IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS total_due,
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
             ,sp.report_mark_type,rmt.report_mark_type_name
-            ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date)) AS due_days,
+            ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),sp.sales_pos_due_date) AS due_days,
             id_mail_warning_no,mail_warning_no, mail_warning_date, mail_warning_status,
             id_mail_notice_no,mail_notice_no, mail_notice_date, mail_notice_status,
             id_mail_invoice, mail_invoice_no, mail_invoice_date, mail_invoice_status,
