@@ -36,6 +36,7 @@
             FROM tb_propose_delay_payment_det dd 
             INNER JOIN tb_propose_delay_payment d ON d.id_propose_delay_payment = dd.id_propose_delay_payment AND d.id_report_status!=5 AND d.id_comp_group='" + FormDelayPaymentDet.id_comp_group + "'
         )
+        AND sp.sales_pos_total>0
         ORDER BY sp.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
