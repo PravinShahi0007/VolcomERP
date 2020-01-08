@@ -97,6 +97,7 @@ Partial Class FormInvoiceFGPODP
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPickDP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddNewRow = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCBPL = New DevExpress.XtraTab.XtraTabControl()
@@ -112,6 +113,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -518,7 +520,7 @@ Partial Class FormInvoiceFGPODP
         Me.SLEVatAcc.Name = "SLEVatAcc"
         Me.SLEVatAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEVatAcc.Properties.View = Me.GridView4
-        Me.SLEVatAcc.Size = New System.Drawing.Size(136, 20)
+        Me.SLEVatAcc.Size = New System.Drawing.Size(234, 20)
         Me.SLEVatAcc.TabIndex = 8915
         '
         'GridView4
@@ -569,7 +571,7 @@ Partial Class FormInvoiceFGPODP
         'TEVat
         '
         Me.TEVat.EditValue = ""
-        Me.TEVat.Location = New System.Drawing.Point(230, 34)
+        Me.TEVat.Location = New System.Drawing.Point(328, 34)
         Me.TEVat.Name = "TEVat"
         Me.TEVat.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TEVat.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -577,7 +579,7 @@ Partial Class FormInvoiceFGPODP
         Me.TEVat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEVat.Properties.EditValueChangedDelay = 1
         Me.TEVat.Properties.ReadOnly = True
-        Me.TEVat.Size = New System.Drawing.Size(238, 20)
+        Me.TEVat.Size = New System.Drawing.Size(140, 20)
         Me.TEVat.TabIndex = 8908
         Me.TEVat.TabStop = False
         '
@@ -912,6 +914,7 @@ Partial Class FormInvoiceFGPODP
         'PCAddDel
         '
         Me.PCAddDel.Controls.Add(Me.BtnDelete)
+        Me.PCAddDel.Controls.Add(Me.BPickDP)
         Me.PCAddDel.Controls.Add(Me.BtnAdd)
         Me.PCAddDel.Controls.Add(Me.BAddNewRow)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
@@ -924,21 +927,31 @@ Partial Class FormInvoiceFGPODP
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(649, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(576, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(91, 41)
         Me.BtnDelete.TabIndex = 5
         Me.BtnDelete.Text = "Delete"
         '
+        'BPickDP
+        '
+        Me.BPickDP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPickDP.Image = CType(resources.GetObject("BPickDP.Image"), System.Drawing.Image)
+        Me.BPickDP.Location = New System.Drawing.Point(667, 2)
+        Me.BPickDP.Name = "BPickDP"
+        Me.BPickDP.Size = New System.Drawing.Size(100, 41)
+        Me.BPickDP.TabIndex = 7
+        Me.BPickDP.Text = "Pick DP"
+        '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(740, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(767, 2)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(176, 41)
+        Me.BtnAdd.Size = New System.Drawing.Size(149, 41)
         Me.BtnAdd.TabIndex = 4
-        Me.BtnAdd.Text = "Add with FGPO Refference"
+        Me.BtnAdd.Text = "Add with Refference"
         '
         'BAddNewRow
         '
@@ -986,12 +999,13 @@ Partial Class FormInvoiceFGPODP
         '
         'GVDraft
         '
-        Me.GVDraft.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoDraft, Me.GridColumnacc_name_Draft, Me.GridColumnacc_description_draft, Me.GridColumnreport_number_draft, Me.GridColumnnote_draft, Me.GridColumndebit_draft, Me.GridColumncredit_draft, Me.GridColumncc})
+        Me.GVDraft.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoDraft, Me.GridColumn4, Me.GridColumnacc_name_Draft, Me.GridColumnacc_description_draft, Me.GridColumnreport_number_draft, Me.GridColumnnote_draft, Me.GridColumndebit_draft, Me.GridColumncredit_draft, Me.GridColumncc})
         Me.GVDraft.GridControl = Me.GCDraft
         Me.GVDraft.Name = "GVDraft"
         Me.GVDraft.OptionsBehavior.Editable = False
         Me.GVDraft.OptionsView.ShowFooter = True
         Me.GVDraft.OptionsView.ShowGroupPanel = False
+        Me.GVDraft.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndebit_draft, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumnNoDraft
         '
@@ -1002,8 +1016,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnNoDraft.Caption = "No"
         Me.GridColumnNoDraft.FieldName = "no"
         Me.GridColumnNoDraft.Name = "GridColumnNoDraft"
-        Me.GridColumnNoDraft.Visible = True
-        Me.GridColumnNoDraft.VisibleIndex = 0
         Me.GridColumnNoDraft.Width = 38
         '
         'GridColumnacc_name_Draft
@@ -1019,7 +1031,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnacc_description_draft.FieldName = "acc_description"
         Me.GridColumnacc_description_draft.Name = "GridColumnacc_description_draft"
         Me.GridColumnacc_description_draft.Visible = True
-        Me.GridColumnacc_description_draft.VisibleIndex = 1
+        Me.GridColumnacc_description_draft.VisibleIndex = 0
         Me.GridColumnacc_description_draft.Width = 224
         '
         'GridColumnreport_number_draft
@@ -1028,7 +1040,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnreport_number_draft.FieldName = "report_number"
         Me.GridColumnreport_number_draft.Name = "GridColumnreport_number_draft"
         Me.GridColumnreport_number_draft.Visible = True
-        Me.GridColumnreport_number_draft.VisibleIndex = 3
+        Me.GridColumnreport_number_draft.VisibleIndex = 2
         Me.GridColumnreport_number_draft.Width = 66
         '
         'GridColumnnote_draft
@@ -1037,7 +1049,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnnote_draft.FieldName = "note"
         Me.GridColumnnote_draft.Name = "GridColumnnote_draft"
         Me.GridColumnnote_draft.Visible = True
-        Me.GridColumnnote_draft.VisibleIndex = 4
+        Me.GridColumnnote_draft.VisibleIndex = 3
         Me.GridColumnnote_draft.Width = 293
         '
         'GridColumndebit_draft
@@ -1049,7 +1061,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumndebit_draft.Name = "GridColumndebit_draft"
         Me.GridColumndebit_draft.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumndebit_draft.Visible = True
-        Me.GridColumndebit_draft.VisibleIndex = 5
+        Me.GridColumndebit_draft.VisibleIndex = 4
         Me.GridColumndebit_draft.Width = 143
         '
         'GridColumncredit_draft
@@ -1061,7 +1073,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumncredit_draft.Name = "GridColumncredit_draft"
         Me.GridColumncredit_draft.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumncredit_draft.Visible = True
-        Me.GridColumncredit_draft.VisibleIndex = 6
+        Me.GridColumncredit_draft.VisibleIndex = 5
         Me.GridColumncredit_draft.Width = 176
         '
         'GridColumncc
@@ -1070,8 +1082,14 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumncc.FieldName = "cc"
         Me.GridColumncc.Name = "GridColumncc"
         Me.GridColumncc.Visible = True
-        Me.GridColumncc.VisibleIndex = 2
+        Me.GridColumncc.VisibleIndex = 1
         Me.GridColumncc.Width = 39
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID ACC"
+        Me.GridColumn4.FieldName = "id_acc"
+        Me.GridColumn4.Name = "GridColumn4"
         '
         'FormInvoiceFGPODP
         '
@@ -1240,4 +1258,6 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPickDP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
