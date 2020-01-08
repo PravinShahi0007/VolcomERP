@@ -21,30 +21,40 @@ Partial Class FormFollowUpARHistory
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFollowUpARHistory))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButtonPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButtonMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButtonClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButtonMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButtonPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCActive = New DevExpress.XtraGrid.GridControl()
         Me.GVActive = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TextEditCreatedDate = New DevExpress.XtraEditors.TextEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TextEditFollowUpDate = New DevExpress.XtraEditors.TextEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TextEditCreatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.TextEditReportStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TextEditCreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEditFollowUpDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEditCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEditReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -59,15 +69,15 @@ Partial Class FormFollowUpARHistory
         Me.PanelControl2.Size = New System.Drawing.Size(784, 50)
         Me.PanelControl2.TabIndex = 2
         '
-        'SimpleButtonPrint
+        'SimpleButtonClose
         '
-        Me.SimpleButtonPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButtonPrint.Image = CType(resources.GetObject("SimpleButtonPrint.Image"), System.Drawing.Image)
-        Me.SimpleButtonPrint.Location = New System.Drawing.Point(702, 2)
-        Me.SimpleButtonPrint.Name = "SimpleButtonPrint"
-        Me.SimpleButtonPrint.Size = New System.Drawing.Size(80, 46)
-        Me.SimpleButtonPrint.TabIndex = 8929
-        Me.SimpleButtonPrint.Text = "Print"
+        Me.SimpleButtonClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButtonClose.Image = CType(resources.GetObject("SimpleButtonClose.Image"), System.Drawing.Image)
+        Me.SimpleButtonClose.Location = New System.Drawing.Point(622, 2)
+        Me.SimpleButtonClose.Name = "SimpleButtonClose"
+        Me.SimpleButtonClose.Size = New System.Drawing.Size(80, 46)
+        Me.SimpleButtonClose.TabIndex = 8931
+        Me.SimpleButtonClose.Text = "Close"
         '
         'SimpleButtonMark
         '
@@ -79,34 +89,34 @@ Partial Class FormFollowUpARHistory
         Me.SimpleButtonMark.TabIndex = 8930
         Me.SimpleButtonMark.Text = "Mark"
         '
-        'SimpleButtonClose
+        'SimpleButtonPrint
         '
-        Me.SimpleButtonClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButtonClose.Image = CType(resources.GetObject("SimpleButtonClose.Image"), System.Drawing.Image)
-        Me.SimpleButtonClose.Location = New System.Drawing.Point(622, 2)
-        Me.SimpleButtonClose.Name = "SimpleButtonClose"
-        Me.SimpleButtonClose.Size = New System.Drawing.Size(80, 46)
-        Me.SimpleButtonClose.TabIndex = 8931
-        Me.SimpleButtonClose.Text = "Close"
+        Me.SimpleButtonPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButtonPrint.Image = CType(resources.GetObject("SimpleButtonPrint.Image"), System.Drawing.Image)
+        Me.SimpleButtonPrint.Location = New System.Drawing.Point(702, 2)
+        Me.SimpleButtonPrint.Name = "SimpleButtonPrint"
+        Me.SimpleButtonPrint.Size = New System.Drawing.Size(80, 46)
+        Me.SimpleButtonPrint.TabIndex = 8929
+        Me.SimpleButtonPrint.Text = "Print"
         '
         'GCActive
         '
         Me.GCActive.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCActive.Location = New System.Drawing.Point(0, 41)
+        Me.GCActive.Location = New System.Drawing.Point(0, 69)
         Me.GCActive.MainView = Me.GVActive
         Me.GCActive.Name = "GCActive"
-        Me.GCActive.Size = New System.Drawing.Size(784, 470)
+        Me.GCActive.Size = New System.Drawing.Size(784, 442)
         Me.GCActive.TabIndex = 3
         Me.GCActive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActive})
         '
         'GVActive
         '
         Me.GVActive.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.GVActive.GridControl = Me.GCActive
         Me.GVActive.GroupCount = 1
         Me.GVActive.GroupFormat = ""
-        Me.GVActive.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "group", Me.GridColumn2, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumn3, "{0:N0}")})
+        Me.GVActive.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "group", Me.GridColumn2, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "amount", Me.GridColumn3, "", "1")})
         Me.GVActive.Name = "GVActive"
         Me.GVActive.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVActive.OptionsBehavior.ReadOnly = True
@@ -115,8 +125,20 @@ Partial Class FormFollowUpARHistory
         Me.GVActive.OptionsView.ShowGroupPanel = False
         Me.GVActive.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn3)
+        Me.GridBand1.Columns.Add(Me.GridColumn4)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 365
+        '
         'GridColumn1
         '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn1.Caption = "NO"
         Me.GridColumn1.FieldName = "no"
         Me.GridColumn1.Name = "GridColumn1"
@@ -124,6 +146,8 @@ Partial Class FormFollowUpARHistory
         '
         'GridColumn2
         '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn2.Caption = "NAMA TOKO"
         Me.GridColumn2.FieldName = "group"
         Me.GridColumn2.Name = "GridColumn2"
@@ -147,6 +171,15 @@ Partial Class FormFollowUpARHistory
         Me.GridColumn4.Visible = True
         Me.GridColumn4.Width = 128
         '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "FOLLOW UP BY FINANCE"
+        Me.gridBand2.Columns.Add(Me.GridColumn5)
+        Me.gridBand2.Columns.Add(Me.GridColumn6)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 151
+        '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "TANGGAL"
@@ -163,6 +196,13 @@ Partial Class FormFollowUpARHistory
         Me.GridColumn6.Visible = True
         Me.GridColumn6.Width = 76
         '
+        'gridBand3
+        '
+        Me.gridBand3.Columns.Add(Me.GridColumn7)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 100
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "HASIL FOLLOW UP"
@@ -172,58 +212,98 @@ Partial Class FormFollowUpARHistory
         Me.GridColumn7.Visible = True
         Me.GridColumn7.Width = 100
         '
-        'GridBand1
+        'GridColumn8
         '
-        Me.GridBand1.Columns.Add(Me.GridColumn1)
-        Me.GridBand1.Columns.Add(Me.GridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn3)
-        Me.GridBand1.Columns.Add(Me.GridColumn4)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 365
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "FOLLOW UP BY FINANCE"
-        Me.gridBand2.Columns.Add(Me.GridColumn5)
-        Me.gridBand2.Columns.Add(Me.GridColumn6)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 151
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Columns.Add(Me.GridColumn7)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 100
+        Me.GridColumn8.FieldName = "id_comp_group"
+        Me.GridColumn8.Name = "GridColumn8"
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TextEditCreatedDate)
+        Me.PanelControl1.Controls.Add(Me.Label4)
+        Me.PanelControl1.Controls.Add(Me.TextEditFollowUpDate)
+        Me.PanelControl1.Controls.Add(Me.Label3)
+        Me.PanelControl1.Controls.Add(Me.TextEditCreatedBy)
+        Me.PanelControl1.Controls.Add(Me.Label2)
         Me.PanelControl1.Controls.Add(Me.TextEditReportStatus)
         Me.PanelControl1.Controls.Add(Me.Label1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 69)
         Me.PanelControl1.TabIndex = 4
         '
-        'Label1
+        'TextEditCreatedDate
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(14, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(74, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Report Status"
+        Me.TextEditCreatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextEditCreatedDate.Location = New System.Drawing.Point(622, 38)
+        Me.TextEditCreatedDate.Name = "TextEditCreatedDate"
+        Me.TextEditCreatedDate.Properties.ReadOnly = True
+        Me.TextEditCreatedDate.Size = New System.Drawing.Size(150, 20)
+        Me.TextEditCreatedDate.TabIndex = 7
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(537, 41)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(72, 13)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Created Date"
+        '
+        'TextEditFollowUpDate
+        '
+        Me.TextEditFollowUpDate.Location = New System.Drawing.Point(97, 38)
+        Me.TextEditFollowUpDate.Name = "TextEditFollowUpDate"
+        Me.TextEditFollowUpDate.Properties.ReadOnly = True
+        Me.TextEditFollowUpDate.Size = New System.Drawing.Size(150, 20)
+        Me.TextEditFollowUpDate.TabIndex = 5
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 41)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(79, 13)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Follow Up Date"
+        '
+        'TextEditCreatedBy
+        '
+        Me.TextEditCreatedBy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextEditCreatedBy.Location = New System.Drawing.Point(622, 12)
+        Me.TextEditCreatedBy.Name = "TextEditCreatedBy"
+        Me.TextEditCreatedBy.Properties.ReadOnly = True
+        Me.TextEditCreatedBy.Size = New System.Drawing.Size(150, 20)
+        Me.TextEditCreatedBy.TabIndex = 3
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(537, 15)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(61, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Created By"
         '
         'TextEditReportStatus
         '
-        Me.TextEditReportStatus.Location = New System.Drawing.Point(99, 11)
+        Me.TextEditReportStatus.Location = New System.Drawing.Point(97, 12)
         Me.TextEditReportStatus.Name = "TextEditReportStatus"
         Me.TextEditReportStatus.Properties.ReadOnly = True
         Me.TextEditReportStatus.Size = New System.Drawing.Size(150, 20)
         Me.TextEditReportStatus.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 15)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(74, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Report Status"
         '
         'FormFollowUpARHistory
         '
@@ -245,6 +325,9 @@ Partial Class FormFollowUpARHistory
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TextEditCreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEditFollowUpDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEditCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEditReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -269,4 +352,11 @@ Partial Class FormFollowUpARHistory
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TextEditReportStatus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label1 As Label
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents TextEditFollowUpDate As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TextEditCreatedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TextEditCreatedDate As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label4 As Label
 End Class

@@ -67,7 +67,7 @@
         Cursor = Cursors.WaitCursor
 
         Dim query As String = "
-            SELECT r.id_follow_up_recap, e.employee_name AS created_by, r.created_date, s.report_status
+            SELECT r.id_follow_up_recap, e.employee_name AS created_by, r.created_date, r.follow_up_date, s.report_status
             FROM tb_follow_up_recap AS r
             LEFT JOIN tb_m_user AS u ON r.created_by = u.id_user
             LEFT JOIN tb_m_employee AS e ON u.id_employee= e.id_employee
