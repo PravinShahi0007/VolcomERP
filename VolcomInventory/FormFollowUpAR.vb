@@ -167,4 +167,61 @@
         FormFollowUpARHistory.id_follow_up_recap = GridViewHistory.GetFocusedRowCellValue("id_follow_up_recap").ToString
         FormFollowUpARHistory.ShowDialog()
     End Sub
+
+    Dim last_grp As String = ""
+    Dim last_due As String = ""
+    Dim tot_amo_grp As Double
+    Dim tot_amo As Double
+    Private Sub GVActive_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVActive.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_amo_grp = 0.00
+            tot_amo = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim grp As String = View.GetRowCellValue(e.RowHandle, "id_comp_group").ToString
+            Dim due As String = DateTime.Parse(View.GetRowCellValue(e.RowHandle, "sales_pos_due_date").ToString).ToString("yyyy-MM-dd")
+            Dim amo As Double = 0.00
+            'amo = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "amount").ToString, "0.00"))
+            Console.WriteLine(grp.ToString)
+            If grp <> last_grp Or due <> last_due Then
+                last_grp = grp
+                last_due = due
+                amo = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "amount").ToString, "0.00"))
+            Else
+                amo = 0.00
+            End If
+            Select Case summaryID
+                Case 1
+                    tot_amo_grp += amo
+                Case 2
+                    tot_amo += amo
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'total group
+                    Dim sum_res As Double = 0.00
+                    Try
+                        sum_res = tot_amo_grp
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case 2 'total 
+                    Dim sum_res As Double = 0.00
+                    Try
+                        sum_res = tot_amo
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
+    End Sub
 End Class
