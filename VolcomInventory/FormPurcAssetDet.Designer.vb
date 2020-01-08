@@ -62,6 +62,13 @@ Partial Class FormPurcAssetDet
         Me.TxtVA = New DevExpress.XtraEditors.TextEdit()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelDepDetail = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtComp = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAccumDep = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEAccumDep = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -81,13 +88,6 @@ Partial Class FormPurcAssetDet
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelCHeck = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtComp = New DevExpress.XtraEditors.TextEdit()
-        Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelApp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +117,9 @@ Partial Class FormPurcAssetDet
         Me.GroupControl2.SuspendLayout()
         CType(Me.PanelDepDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDepDetail.SuspendLayout()
+        CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAccumDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEAccumDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,9 +128,6 @@ Partial Class FormPurcAssetDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelCHeck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelCHeck.SuspendLayout()
-        CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -568,6 +568,64 @@ Partial Class FormPurcAssetDet
         Me.PanelDepDetail.Size = New System.Drawing.Size(799, 133)
         Me.PanelDepDetail.TabIndex = 26
         '
+        'TxtComp
+        '
+        Me.TxtComp.Enabled = False
+        Me.TxtComp.Location = New System.Drawing.Point(556, 16)
+        Me.TxtComp.Name = "TxtComp"
+        Me.TxtComp.Size = New System.Drawing.Size(217, 20)
+        Me.TxtComp.TabIndex = 8926
+        Me.TxtComp.TabStop = False
+        '
+        'SLEComp
+        '
+        Me.SLEComp.EditValue = "pick"
+        Me.SLEComp.Location = New System.Drawing.Point(477, 16)
+        Me.SLEComp.Name = "SLEComp"
+        Me.SLEComp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEComp.Properties.NullText = ""
+        Me.SLEComp.Properties.View = Me.GridView4
+        Me.SLEComp.Size = New System.Drawing.Size(73, 20)
+        Me.SLEComp.TabIndex = 8925
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumncomp_number, Me.GridColumn14})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID Comp Contact"
+        Me.GridColumn13.FieldName = "id_comp_contact"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Name"
+        Me.GridColumn14.FieldName = "comp_name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Code"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 0
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(305, 17)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl12.TabIndex = 29
+        Me.LabelControl12.Text = "Tag"
+        '
         'TxtAccumDep
         '
         Me.TxtAccumDep.Location = New System.Drawing.Point(477, 94)
@@ -733,63 +791,6 @@ Partial Class FormPurcAssetDet
         Me.LabelControl9.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl9.TabIndex = 19
         '
-        'LabelControl12
-        '
-        Me.LabelControl12.Location = New System.Drawing.Point(305, 17)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(18, 13)
-        Me.LabelControl12.TabIndex = 29
-        Me.LabelControl12.Text = "Tag"
-        '
-        'TxtComp
-        '
-        Me.TxtComp.Enabled = False
-        Me.TxtComp.Location = New System.Drawing.Point(477, 14)
-        Me.TxtComp.Name = "TxtComp"
-        Me.TxtComp.Size = New System.Drawing.Size(100, 20)
-        Me.TxtComp.TabIndex = 8926
-        Me.TxtComp.TabStop = False
-        '
-        'SLEComp
-        '
-        Me.SLEComp.Location = New System.Drawing.Point(583, 14)
-        Me.SLEComp.Name = "SLEComp"
-        Me.SLEComp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEComp.Properties.NullText = ""
-        Me.SLEComp.Properties.View = Me.GridView4
-        Me.SLEComp.Size = New System.Drawing.Size(190, 20)
-        Me.SLEComp.TabIndex = 8925
-        '
-        'GridView4
-        '
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumncomp_number})
-        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView4.Name = "GridView4"
-        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView4.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "ID Comp Contact"
-        Me.GridColumn13.FieldName = "id_comp_contact"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Name"
-        Me.GridColumn14.FieldName = "comp_name"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 1
-        '
-        'GridColumncomp_number
-        '
-        Me.GridColumncomp_number.Caption = "Code"
-        Me.GridColumncomp_number.FieldName = "comp_number"
-        Me.GridColumncomp_number.Name = "GridColumncomp_number"
-        Me.GridColumncomp_number.Visible = True
-        Me.GridColumncomp_number.VisibleIndex = 0
-        '
         'FormPurcAssetDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -834,6 +835,9 @@ Partial Class FormPurcAssetDet
         CType(Me.PanelDepDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDepDetail.ResumeLayout(False)
         Me.PanelDepDetail.PerformLayout()
+        CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAccumDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEAccumDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -843,9 +847,6 @@ Partial Class FormPurcAssetDet
         CType(Me.PanelCHeck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelCHeck.ResumeLayout(False)
         Me.PanelCHeck.PerformLayout()
-        CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

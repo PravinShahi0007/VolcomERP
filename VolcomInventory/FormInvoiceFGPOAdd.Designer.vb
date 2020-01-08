@@ -139,9 +139,9 @@ Partial Class FormInvoiceFGPOAdd
         '
         Me.LabelControl1.Location = New System.Drawing.Point(16, 21)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(14, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl1.TabIndex = 5
-        Me.LabelControl1.Text = "PO"
+        Me.LabelControl1.Text = "Reffrence"
         '
         'LabelControl2
         '
@@ -495,6 +495,7 @@ Partial Class FormInvoiceFGPOAdd
         Me.XTPOther.Controls.Add(Me.TEOthQty)
         Me.XTPOther.Controls.Add(Me.LabelControl15)
         Me.XTPOther.Name = "XTPOther"
+        Me.XTPOther.PageVisible = False
         Me.XTPOther.Size = New System.Drawing.Size(498, 245)
         Me.XTPOther.Text = "Other"
         '
