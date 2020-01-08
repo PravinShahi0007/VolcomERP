@@ -974,47 +974,93 @@ Public Class ClassSendEmail
         </table> "
 
                 '-- start attachment 
-                ReportSalesDelOrderOwnStore.id_pre = "1"
-                ReportSalesDelOrderOwnStore.id = id_report
-                ReportSalesDelOrderOwnStore.rmt = dt.Rows(0)("rmt").ToString
-                ReportSalesDelOrderOwnStore.id_report_status = "6"
-                ReportSalesDelOrderOwnStore.id_store = dt.Rows(0)("id_store").ToString
-                ReportSalesDelOrderOwnStore.is_combine = dt.Rows(0)("is_combine").ToString
-                ReportSalesDelOrderOwnStore.is_use_unique_code = dt.Rows(0)("is_use_unique_code").ToString
-                ReportSalesDelOrderOwnStore.is_no_print = "1"
-                Dim Report As New ReportSalesDelOrderOwnStore()
+                Dim id_commerce_type As String = execute_query("SELECT id_commerce_type FROM tb_m_comp WHERE id_comp = " + dt.Rows(0)("id_store").ToString, 0, True, "", "", "", "")
+
+                If id_commerce_type = "2" Then
+                    ReportSalesDelOrderOwnStore2.id_pre = "1"
+                    ReportSalesDelOrderOwnStore2.id = id_report
+                    ReportSalesDelOrderOwnStore2.rmt = dt.Rows(0)("rmt").ToString
+                    ReportSalesDelOrderOwnStore2.id_report_status = "6"
+                    ReportSalesDelOrderOwnStore2.id_store = dt.Rows(0)("id_store").ToString
+                    ReportSalesDelOrderOwnStore2.is_combine = dt.Rows(0)("is_combine").ToString
+                    ReportSalesDelOrderOwnStore2.is_use_unique_code = dt.Rows(0)("is_use_unique_code").ToString
+                    ReportSalesDelOrderOwnStore2.is_no_print = "1"
+                    Dim Report As New ReportSalesDelOrderOwnStore2()
 
 
-                'Grid Detail
-                'ReportStyleGridviewBlackLine(Report.GVItemList)
+                    'Grid Detail
+                    'ReportStyleGridviewBlackLine(Report.GVItemList)
 
-                'Parse val
-                Report.LabelTo.Text = dt.Rows(0)("store_account").ToString
-                Report.LabelFrom.Text = dt.Rows(0)("wh_account").ToString
-                Report.LabelAddress.Text = dt.Rows(0)("store_address").ToString
-                Report.LRecDate.Text = dt.Rows(0)("del_created_date").ToString
-                Report.LRecNumber.Text = dt.Rows(0)("del_number").ToString
-                Report.LabelNote.Text = dt.Rows(0)("note").ToString
-                Report.LabelPrepare.Text = dt.Rows(0)("order_number").ToString
-                Report.LabelCat.Text = dt.Rows(0)("order_cat").ToString
-                'Report.LabelUni3.Text = "-"
-                Report.LabelUni6.Text = "-"
-                Report.PanelUni.Visible = False
+                    'Parse val
+                    Report.LabelTo.Text = dt.Rows(0)("store_account").ToString
+                    Report.LabelFrom.Text = dt.Rows(0)("wh_account").ToString
+                    Report.LabelAddress.Text = dt.Rows(0)("store_address").ToString
+                    Report.LRecDate.Text = dt.Rows(0)("del_created_date").ToString
+                    Report.LRecNumber.Text = dt.Rows(0)("del_number").ToString
+                    Report.LabelNote.Text = dt.Rows(0)("note").ToString
+                    Report.LabelPrepare.Text = dt.Rows(0)("order_number").ToString
+                    Report.LabelCat.Text = dt.Rows(0)("order_cat").ToString
+                    'Report.LabelUni3.Text = "-"
+                    Report.LabelUni6.Text = "-"
+                    Report.PanelUni.Visible = False
 
-                ' Create a new memory stream and export the report into it as PDF.
-                Dim Mem As New MemoryStream()
-                Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
-                Report.ExportToPdf(Mem)
-                ' Create a new attachment and put the PDF report into it.
-                Mem.Seek(0, System.IO.SeekOrigin.Begin)
-                Dim Att = New Attachment(Mem, report_mark_type & "_" & unik_file & ".pdf", "application/pdf")
-                mail.Attachments.Add(Att)
-                '-- end attachment
+                    ' Create a new memory stream and export the report into it as PDF.
+                    Dim Mem As New MemoryStream()
+                    Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+                    Report.ExportToPdf(Mem)
+                    ' Create a new attachment and put the PDF report into it.
+                    Mem.Seek(0, System.IO.SeekOrigin.Begin)
+                    Dim Att = New Attachment(Mem, report_mark_type & "_" & unik_file & ".pdf", "application/pdf")
+                    mail.Attachments.Add(Att)
+                    '-- end attachment
 
-                mail.Subject = "Delivery Confirmation - " + dt.Rows(0)("del_number").ToString
-                mail.IsBodyHtml = True
-                mail.Body = body_temp
-                client.Send(mail)
+                    mail.Subject = "Delivery Confirmation - " + dt.Rows(0)("del_number").ToString
+                    mail.IsBodyHtml = True
+                    mail.Body = body_temp
+                    client.Send(mail)
+                Else
+                    ReportSalesDelOrderOwnStore.id_pre = "1"
+                    ReportSalesDelOrderOwnStore.id = id_report
+                    ReportSalesDelOrderOwnStore.rmt = dt.Rows(0)("rmt").ToString
+                    ReportSalesDelOrderOwnStore.id_report_status = "6"
+                    ReportSalesDelOrderOwnStore.id_store = dt.Rows(0)("id_store").ToString
+                    ReportSalesDelOrderOwnStore.is_combine = dt.Rows(0)("is_combine").ToString
+                    ReportSalesDelOrderOwnStore.is_use_unique_code = dt.Rows(0)("is_use_unique_code").ToString
+                    ReportSalesDelOrderOwnStore.is_no_print = "1"
+                    Dim Report As New ReportSalesDelOrderOwnStore()
+
+
+                    'Grid Detail
+                    'ReportStyleGridviewBlackLine(Report.GVItemList)
+
+                    'Parse val
+                    Report.LabelTo.Text = dt.Rows(0)("store_account").ToString
+                    Report.LabelFrom.Text = dt.Rows(0)("wh_account").ToString
+                    Report.LabelAddress.Text = dt.Rows(0)("store_address").ToString
+                    Report.LRecDate.Text = dt.Rows(0)("del_created_date").ToString
+                    Report.LRecNumber.Text = dt.Rows(0)("del_number").ToString
+                    Report.LabelNote.Text = dt.Rows(0)("note").ToString
+                    Report.LabelPrepare.Text = dt.Rows(0)("order_number").ToString
+                    Report.LabelCat.Text = dt.Rows(0)("order_cat").ToString
+                    'Report.LabelUni3.Text = "-"
+                    Report.LabelUni6.Text = "-"
+                    Report.PanelUni.Visible = False
+
+                    ' Create a new memory stream and export the report into it as PDF.
+                    Dim Mem As New MemoryStream()
+                    Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+                    Report.ExportToPdf(Mem)
+                    ' Create a new attachment and put the PDF report into it.
+                    Mem.Seek(0, System.IO.SeekOrigin.Begin)
+                    Dim Att = New Attachment(Mem, report_mark_type & "_" & unik_file & ".pdf", "application/pdf")
+                    mail.Attachments.Add(Att)
+                    '-- end attachment
+
+                    mail.Subject = "Delivery Confirmation - " + dt.Rows(0)("del_number").ToString
+                    mail.IsBodyHtml = True
+                    mail.Body = body_temp
+                    client.Send(mail)
+                End If
             End If
         ElseIf report_mark_type = "39" Then
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Online Store Order - Volcom ERP")

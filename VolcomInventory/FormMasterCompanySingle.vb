@@ -706,7 +706,7 @@
 
     Private Sub TECompanyCode_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECompanyCode.Validating
         Dim query_jml As String
-        query_jml = String.Format("SELECT COUNT(id_comp) FROM tb_m_comp WHERE comp_number='{0}' AND id_comp!='{1}' AND id_comp_cat='" + LECompanyCategory.EditValue.ToString + "' ", TECompanyCode.Text, id_company)
+        query_jml = String.Format("SELECT COUNT(id_comp) FROM tb_m_comp WHERE comp_number='{0}' AND id_comp!='{1}' AND id_comp_cat='" + LECompanyCategory.EditValue.ToString + "' ", addSlashes(TECompanyCode.Text), id_company)
         Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
         If Not jml < 1 Then
             EP_TE_already_used(EPCompany, TECompanyCode, "1")

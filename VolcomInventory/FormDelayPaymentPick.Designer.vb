@@ -37,15 +37,21 @@ Partial Class FormDelayPaymentPick
         Me.GridColumnremark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAllInvoice = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.CESelectAllInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.PanelControl4)
         Me.PanelControlNav.Controls.Add(Me.BtnDiscard)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -204,6 +210,24 @@ Partial Class FormDelayPaymentPick
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.CESelectAllInvoice)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(84, 44)
+        Me.PanelControl4.TabIndex = 21
+        '
+        'CESelectAllInvoice
+        '
+        Me.CESelectAllInvoice.Location = New System.Drawing.Point(9, 12)
+        Me.CESelectAllInvoice.Name = "CESelectAllInvoice"
+        Me.CESelectAllInvoice.Properties.Caption = "Select All"
+        Me.CESelectAllInvoice.Size = New System.Drawing.Size(66, 19)
+        Me.CESelectAllInvoice.TabIndex = 21
+        '
         'FormDelayPaymentPick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -219,6 +243,9 @@ Partial Class FormDelayPaymentPick
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.CESelectAllInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -240,4 +267,6 @@ Partial Class FormDelayPaymentPick
     Friend WithEvents GridColumnremark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelectAllInvoice As DevExpress.XtraEditors.CheckEdit
 End Class

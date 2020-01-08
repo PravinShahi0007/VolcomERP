@@ -21,6 +21,8 @@ Partial Class FormProdOverMemoDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdOverMemoDet))
         Me.GroupControlTop = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEProposedDate = New DevExpress.XtraEditors.DateEdit()
         Me.LExpired = New DevExpress.XtraEditors.LabelControl()
         Me.DEExpired = New DevExpress.XtraEditors.DateEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
@@ -29,15 +31,6 @@ Partial Class FormProdOverMemoDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlMiddle = New DevExpress.XtraEditors.GroupControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdPO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -46,6 +39,7 @@ Partial Class FormProdOverMemoDet
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancellPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -53,8 +47,26 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumnId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnIdPO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnPONumber = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_max_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_total = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
+        CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEExpired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEExpired.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,7 +75,6 @@ Partial Class FormProdOverMemoDet
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,11 +85,14 @@ Partial Class FormProdOverMemoDet
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelBottomRight.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlTop
         '
         Me.GroupControlTop.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlTop.Controls.Add(Me.LabelControl4)
+        Me.GroupControlTop.Controls.Add(Me.DEProposedDate)
         Me.GroupControlTop.Controls.Add(Me.LExpired)
         Me.GroupControlTop.Controls.Add(Me.DEExpired)
         Me.GroupControlTop.Controls.Add(Me.DECreated)
@@ -88,12 +102,33 @@ Partial Class FormProdOverMemoDet
         Me.GroupControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlTop.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlTop.Name = "GroupControlTop"
-        Me.GroupControlTop.Size = New System.Drawing.Size(979, 83)
+        Me.GroupControlTop.Size = New System.Drawing.Size(979, 84)
         Me.GroupControlTop.TabIndex = 0
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(33, 46)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Created Date"
+        '
+        'DEProposedDate
+        '
+        Me.DEProposedDate.EditValue = Nothing
+        Me.DEProposedDate.Enabled = False
+        Me.DEProposedDate.Location = New System.Drawing.Point(114, 43)
+        Me.DEProposedDate.Name = "DEProposedDate"
+        Me.DEProposedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEProposedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEProposedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
+        Me.DEProposedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEProposedDate.Size = New System.Drawing.Size(297, 20)
+        Me.DEProposedDate.TabIndex = 7
         '
         'LExpired
         '
-        Me.LExpired.Location = New System.Drawing.Point(675, 46)
+        Me.LExpired.Location = New System.Drawing.Point(679, 46)
         Me.LExpired.Name = "LExpired"
         Me.LExpired.Size = New System.Drawing.Size(62, 13)
         Me.LExpired.TabIndex = 6
@@ -129,16 +164,18 @@ Partial Class FormProdOverMemoDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(675, 20)
+        Me.LabelControl3.Location = New System.Drawing.Point(679, 20)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl3.TabIndex = 3
-        Me.LabelControl3.Text = "Date"
+        Me.LabelControl3.Text = "Updated at"
         '
         'TxtMemoNumber
         '
+        Me.TxtMemoNumber.EditValue = "[auto generated]"
         Me.TxtMemoNumber.Location = New System.Drawing.Point(114, 17)
         Me.TxtMemoNumber.Name = "TxtMemoNumber"
+        Me.TxtMemoNumber.Properties.ReadOnly = True
         Me.TxtMemoNumber.Size = New System.Drawing.Size(297, 20)
         Me.TxtMemoNumber.TabIndex = 0
         '
@@ -156,9 +193,9 @@ Partial Class FormProdOverMemoDet
         Me.GroupControlMiddle.Controls.Add(Me.GCData)
         Me.GroupControlMiddle.Controls.Add(Me.PanelControlNav)
         Me.GroupControlMiddle.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 83)
+        Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 84)
         Me.GroupControlMiddle.Name = "GroupControlMiddle"
-        Me.GroupControlMiddle.Size = New System.Drawing.Size(979, 375)
+        Me.GroupControlMiddle.Size = New System.Drawing.Size(979, 374)
         Me.GroupControlMiddle.TabIndex = 1
         '
         'GCData
@@ -167,91 +204,9 @@ Partial Class FormProdOverMemoDet
         Me.GCData.Location = New System.Drawing.Point(20, 44)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(957, 329)
+        Me.GCData.Size = New System.Drawing.Size(957, 328)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
-        '
-        'GVData
-        '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumn1, Me.GridColumnQty})
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsView.ShowFooter = True
-        Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnId
-        '
-        Me.GridColumnId.Caption = "Id"
-        Me.GridColumnId.FieldName = "id_prod_over_memo_det"
-        Me.GridColumnId.Name = "GridColumnId"
-        Me.GridColumnId.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnIdPO
-        '
-        Me.GridColumnIdPO.Caption = "Id PO"
-        Me.GridColumnIdPO.FieldName = "id_prod_order"
-        Me.GridColumnIdPO.Name = "GridColumnIdPO"
-        Me.GridColumnIdPO.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnPONumber
-        '
-        Me.GridColumnPONumber.Caption = "FGPO#"
-        Me.GridColumnPONumber.FieldName = "prod_order_number"
-        Me.GridColumnPONumber.Name = "GridColumnPONumber"
-        Me.GridColumnPONumber.OptionsColumn.AllowEdit = False
-        Me.GridColumnPONumber.Visible = True
-        Me.GridColumnPONumber.VisibleIndex = 0
-        Me.GridColumnPONumber.Width = 89
-        '
-        'GridColumnCode
-        '
-        Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.FieldName = "code"
-        Me.GridColumnCode.Name = "GridColumnCode"
-        Me.GridColumnCode.OptionsColumn.AllowEdit = False
-        Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 120
-        '
-        'GridColumnDescription
-        '
-        Me.GridColumnDescription.Caption = "Description"
-        Me.GridColumnDescription.FieldName = "name"
-        Me.GridColumnDescription.Name = "GridColumnDescription"
-        Me.GridColumnDescription.OptionsColumn.AllowEdit = False
-        Me.GridColumnDescription.Visible = True
-        Me.GridColumnDescription.VisibleIndex = 2
-        Me.GridColumnDescription.Width = 514
-        '
-        'GridColumnRemark
-        '
-        Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "remark"
-        Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 5
-        Me.GridColumnRemark.Width = 102
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Discount (%)"
-        Me.GridColumn1.DisplayFormat.FormatString = "N0"
-        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn1.FieldName = "discount"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 4
-        Me.GridColumn1.Width = 77
-        '
-        'GridColumnQty
-        '
-        Me.GridColumnQty.Caption = "Qty"
-        Me.GridColumnQty.FieldName = "qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 3
-        Me.GridColumnQty.Width = 39
         '
         'PanelControlNav
         '
@@ -289,6 +244,7 @@ Partial Class FormProdOverMemoDet
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnClose)
+        Me.PanelControlBottom.Controls.Add(Me.BtnCancellPropose)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 529)
@@ -310,7 +266,7 @@ Partial Class FormProdOverMemoDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(610, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(484, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 41)
         Me.BtnAttachment.TabIndex = 4
@@ -320,7 +276,7 @@ Partial Class FormProdOverMemoDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(716, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(590, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 41)
         Me.BtnPrint.TabIndex = 3
@@ -330,11 +286,23 @@ Partial Class FormProdOverMemoDet
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(803, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(677, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(87, 41)
         Me.BtnClose.TabIndex = 2
         Me.BtnClose.Text = "Close"
+        Me.BtnClose.Visible = False
+        '
+        'BtnCancellPropose
+        '
+        Me.BtnCancellPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancellPropose.Image = CType(resources.GetObject("BtnCancellPropose.Image"), System.Drawing.Image)
+        Me.BtnCancellPropose.Location = New System.Drawing.Point(764, 2)
+        Me.BtnCancellPropose.Name = "BtnCancellPropose"
+        Me.BtnCancellPropose.Size = New System.Drawing.Size(126, 41)
+        Me.BtnCancellPropose.TabIndex = 17
+        Me.BtnCancellPropose.Text = "Cancell Propose"
+        Me.BtnCancellPropose.Visible = False
         '
         'BtnSave
         '
@@ -409,6 +377,159 @@ Partial Class FormProdOverMemoDet
         Me.LabelControl21.TabIndex = 144
         Me.LabelControl21.Text = "Status"
         '
+        'GVData
+        '
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumn1, Me.GridColumnQty, Me.GridColumnno, Me.BandedGridColumnqty_order, Me.BandedGridColumnqty_max_order, Me.BandedGridColumnqty_total})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnId
+        '
+        Me.GridColumnId.Caption = "Id"
+        Me.GridColumnId.FieldName = "id_prod_over_memo_det"
+        Me.GridColumnId.Name = "GridColumnId"
+        Me.GridColumnId.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnIdPO
+        '
+        Me.GridColumnIdPO.Caption = "Id PO"
+        Me.GridColumnIdPO.FieldName = "id_prod_order"
+        Me.GridColumnIdPO.Name = "GridColumnIdPO"
+        Me.GridColumnIdPO.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnPONumber
+        '
+        Me.GridColumnPONumber.Caption = "FGPO#"
+        Me.GridColumnPONumber.FieldName = "prod_order_number"
+        Me.GridColumnPONumber.Name = "GridColumnPONumber"
+        Me.GridColumnPONumber.OptionsColumn.AllowEdit = False
+        Me.GridColumnPONumber.Visible = True
+        Me.GridColumnPONumber.Width = 147
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.OptionsColumn.AllowEdit = False
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.Width = 199
+        '
+        'GridColumnDescription
+        '
+        Me.GridColumnDescription.Caption = "Description"
+        Me.GridColumnDescription.FieldName = "name"
+        Me.GridColumnDescription.Name = "GridColumnDescription"
+        Me.GridColumnDescription.OptionsColumn.AllowEdit = False
+        Me.GridColumnDescription.Visible = True
+        Me.GridColumnDescription.Width = 858
+        '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.Width = 178
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Discount (%)"
+        Me.GridColumn1.DisplayFormat.FormatString = "N0"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "discount"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.Width = 127
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Over Tolerance"
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.Width = 64
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.OptionsColumn.AllowEdit = False
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.Width = 59
+        '
+        'BandedGridColumnqty_order
+        '
+        Me.BandedGridColumnqty_order.Caption = "FGPO"
+        Me.BandedGridColumnqty_order.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_order.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_order.FieldName = "qty_order"
+        Me.BandedGridColumnqty_order.Name = "BandedGridColumnqty_order"
+        Me.BandedGridColumnqty_order.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnqty_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
+        Me.BandedGridColumnqty_order.Visible = True
+        '
+        'BandedGridColumnqty_max_order
+        '
+        Me.BandedGridColumnqty_max_order.Caption = "Max Tolerance"
+        Me.BandedGridColumnqty_max_order.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_max_order.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_max_order.FieldName = "qty_max_order"
+        Me.BandedGridColumnqty_max_order.Name = "BandedGridColumnqty_max_order"
+        Me.BandedGridColumnqty_max_order.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnqty_max_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_max_order", "{0:N0}")})
+        Me.BandedGridColumnqty_max_order.Visible = True
+        Me.BandedGridColumnqty_max_order.Width = 95
+        '
+        'BandedGridColumnqty_total
+        '
+        Me.BandedGridColumnqty_total.Caption = "Total"
+        Me.BandedGridColumnqty_total.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_total.FieldName = "qty_total"
+        Me.BandedGridColumnqty_total.Name = "BandedGridColumnqty_total"
+        Me.BandedGridColumnqty_total.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnqty_total.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_total", "{0:N0}")})
+        Me.BandedGridColumnqty_total.UnboundExpression = "[qty_max_order] + [qty]"
+        Me.BandedGridColumnqty_total.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnqty_total.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GridColumnId)
+        Me.GridBand1.Columns.Add(Me.GridColumnIdPO)
+        Me.GridBand1.Columns.Add(Me.GridColumnno)
+        Me.GridBand1.Columns.Add(Me.GridColumnPONumber)
+        Me.GridBand1.Columns.Add(Me.GridColumnCode)
+        Me.GridBand1.Columns.Add(Me.GridColumnDescription)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 1263
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "QTY"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnqty_order)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnqty_max_order)
+        Me.gridBand2.Columns.Add(Me.GridColumnQty)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnqty_total)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 309
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Columns.Add(Me.GridColumn1)
+        Me.gridBand3.Columns.Add(Me.GridColumnRemark)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 305
+        '
         'FormProdOverMemoDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -425,6 +546,8 @@ Partial Class FormProdOverMemoDet
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlTop.ResumeLayout(False)
         Me.GroupControlTop.PerformLayout()
+        CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEExpired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEExpired.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -433,7 +556,6 @@ Partial Class FormProdOverMemoDet
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlMiddle.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
@@ -446,6 +568,7 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight.ResumeLayout(False)
         Me.PanelBottomRight.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -463,7 +586,6 @@ Partial Class FormProdOverMemoDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControlBottom As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelBottomRight As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
@@ -475,12 +597,23 @@ Partial Class FormProdOverMemoDet
     Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdPO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPONumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDescription As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEProposedDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BtnCancellPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnIdPO As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnno As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnPONumber As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnDescription As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnqty_order As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnqty_max_order As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnqty_total As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

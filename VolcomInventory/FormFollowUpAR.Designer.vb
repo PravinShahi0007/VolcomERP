@@ -51,9 +51,16 @@ Partial Class FormFollowUpAR
         Me.GridColumnfollow_up_result_act = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount_act = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_follow_up_ar_act = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPFollowUpHist = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButtonRecap = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPFollowUpHist = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridControlHistory = New DevExpress.XtraGrid.GridControl()
+        Me.GridViewHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +75,9 @@ Partial Class FormFollowUpAR
         CType(Me.GVActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        Me.XTPFollowUpHist.SuspendLayout()
+        CType(Me.GridControlHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -260,7 +270,7 @@ Partial Class FormFollowUpAR
         Me.XTPInvoiceOpen.Controls.Add(Me.PanelControl2)
         Me.XTPInvoiceOpen.Name = "XTPInvoiceOpen"
         Me.XTPInvoiceOpen.Size = New System.Drawing.Size(1013, 457)
-        Me.XTPInvoiceOpen.Text = "Current Invoice Open"
+        Me.XTPInvoiceOpen.Text = "Current Overdue Invoice"
         '
         'GCActive
         '
@@ -277,7 +287,7 @@ Partial Class FormFollowUpAR
         Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumngroup_active, Me.GridColumnsales_pos_due_date_act, Me.GridColumnfollow_up_date_act, Me.GridColumnfollow_up_act, Me.GridColumnfollow_up_result_act, Me.GridColumnamount_act, Me.GridColumnid_follow_up_ar_act})
         Me.GVActive.GridControl = Me.GCActive
         Me.GVActive.GroupCount = 1
-        Me.GVActive.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount_act, "{0:N2}")})
+        Me.GVActive.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "amount", Me.GridColumnamount_act, "{0:N2}", "1")})
         Me.GVActive.Name = "GVActive"
         Me.GVActive.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVActive.OptionsBehavior.ReadOnly = True
@@ -293,6 +303,7 @@ Partial Class FormFollowUpAR
         Me.GridColumngroup_active.Caption = "Store Group"
         Me.GridColumngroup_active.FieldName = "group"
         Me.GridColumngroup_active.Name = "GridColumngroup_active"
+        Me.GridColumngroup_active.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumngroup_active.Visible = True
         Me.GridColumngroup_active.VisibleIndex = 0
         '
@@ -303,6 +314,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnsales_pos_due_date_act.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnsales_pos_due_date_act.FieldName = "sales_pos_due_date"
         Me.GridColumnsales_pos_due_date_act.Name = "GridColumnsales_pos_due_date_act"
+        Me.GridColumnsales_pos_due_date_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnsales_pos_due_date_act.Visible = True
         Me.GridColumnsales_pos_due_date_act.VisibleIndex = 2
         '
@@ -313,6 +325,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnfollow_up_date_act.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnfollow_up_date_act.FieldName = "follow_up_date"
         Me.GridColumnfollow_up_date_act.Name = "GridColumnfollow_up_date_act"
+        Me.GridColumnfollow_up_date_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnfollow_up_date_act.Visible = True
         Me.GridColumnfollow_up_date_act.VisibleIndex = 3
         Me.GridColumnfollow_up_date_act.Width = 111
@@ -322,6 +335,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnfollow_up_act.Caption = "Follow Up"
         Me.GridColumnfollow_up_act.FieldName = "follow_up"
         Me.GridColumnfollow_up_act.Name = "GridColumnfollow_up_act"
+        Me.GridColumnfollow_up_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnfollow_up_act.Visible = True
         Me.GridColumnfollow_up_act.VisibleIndex = 4
         Me.GridColumnfollow_up_act.Width = 94
@@ -331,6 +345,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnfollow_up_result_act.Caption = "Follow Up Result"
         Me.GridColumnfollow_up_result_act.FieldName = "follow_up_result"
         Me.GridColumnfollow_up_result_act.Name = "GridColumnfollow_up_result_act"
+        Me.GridColumnfollow_up_result_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnfollow_up_result_act.Visible = True
         Me.GridColumnfollow_up_result_act.VisibleIndex = 5
         Me.GridColumnfollow_up_result_act.Width = 155
@@ -342,7 +357,8 @@ Partial Class FormFollowUpAR
         Me.GridColumnamount_act.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnamount_act.FieldName = "amount"
         Me.GridColumnamount_act.Name = "GridColumnamount_act"
-        Me.GridColumnamount_act.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamount_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnamount_act.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "amount", "{0:N2}", "2")})
         Me.GridColumnamount_act.Visible = True
         Me.GridColumnamount_act.VisibleIndex = 1
         '
@@ -351,12 +367,7 @@ Partial Class FormFollowUpAR
         Me.GridColumnid_follow_up_ar_act.Caption = "id_follow_up_ar"
         Me.GridColumnid_follow_up_ar_act.FieldName = "id_follow_up_ar"
         Me.GridColumnid_follow_up_ar_act.Name = "GridColumnid_follow_up_ar_act"
-        '
-        'XTPFollowUpHist
-        '
-        Me.XTPFollowUpHist.Name = "XTPFollowUpHist"
-        Me.XTPFollowUpHist.Size = New System.Drawing.Size(1013, 457)
-        Me.XTPFollowUpHist.Text = "History Follow Up"
+        Me.GridColumnid_follow_up_ar_act.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'PanelControl2
         '
@@ -375,6 +386,80 @@ Partial Class FormFollowUpAR
         Me.SimpleButtonRecap.Size = New System.Drawing.Size(97, 25)
         Me.SimpleButtonRecap.TabIndex = 8929
         Me.SimpleButtonRecap.Text = "Create Recap"
+        '
+        'XTPFollowUpHist
+        '
+        Me.XTPFollowUpHist.Controls.Add(Me.GridControlHistory)
+        Me.XTPFollowUpHist.Name = "XTPFollowUpHist"
+        Me.XTPFollowUpHist.Size = New System.Drawing.Size(1013, 457)
+        Me.XTPFollowUpHist.Text = "History Follow Up"
+        '
+        'GridControlHistory
+        '
+        Me.GridControlHistory.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControlHistory.Location = New System.Drawing.Point(0, 0)
+        Me.GridControlHistory.MainView = Me.GridViewHistory
+        Me.GridControlHistory.Name = "GridControlHistory"
+        Me.GridControlHistory.Size = New System.Drawing.Size(1013, 457)
+        Me.GridControlHistory.TabIndex = 1
+        Me.GridControlHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewHistory})
+        '
+        'GridViewHistory
+        '
+        Me.GridViewHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5})
+        Me.GridViewHistory.GridControl = Me.GridControlHistory
+        Me.GridViewHistory.Name = "GridViewHistory"
+        Me.GridViewHistory.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GridViewHistory.OptionsBehavior.Editable = False
+        Me.GridViewHistory.OptionsBehavior.ReadOnly = True
+        Me.GridViewHistory.OptionsView.ColumnAutoWidth = False
+        Me.GridViewHistory.OptionsView.ShowFooter = True
+        Me.GridViewHistory.OptionsView.ShowGroupedColumns = True
+        Me.GridViewHistory.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "GridColumn4"
+        Me.GridColumn4.FieldName = "id_follow_up_recap"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Follow Up Date"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn6.FieldName = "follow_up_date"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.Width = 82
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Created By"
+        Me.GridColumn2.FieldName = "created_by"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Created Date"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "created_date"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Report Status"
+        Me.GridColumn5.FieldName = "report_status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 77
         '
         'FormFollowUpAR
         '
@@ -401,6 +486,9 @@ Partial Class FormFollowUpAR
         CType(Me.GVActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.XTPFollowUpHist.ResumeLayout(False)
+        CType(Me.GridControlHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -439,4 +527,11 @@ Partial Class FormFollowUpAR
     Friend WithEvents XTPFollowUpHist As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButtonRecap As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridControlHistory As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridViewHistory As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

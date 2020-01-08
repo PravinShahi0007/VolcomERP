@@ -2004,6 +2004,12 @@
     <Compile Include="FormFollowUpARDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFollowUpARHistory.Designer.vb">
+      <DependentUpon>FormFollowUpARHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFollowUpARHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormGuide.Designer.vb">
       <DependentUpon>FormGuide.vb</DependentUpon>
     </Compile>
@@ -7317,6 +7323,12 @@
     <Compile Include="ReportSalesDelOrderOwnStore.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesDelOrderOwnStore2.Designer.vb">
+      <DependentUpon>ReportSalesDelOrderOwnStore2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesDelOrderOwnStore2.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesDelOrderSlip.Designer.vb" />
     <Compile Include="ReportSalesDelOrderSlip.vb">
       <SubType>Component</SubType>
@@ -8559,6 +8571,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFollowUpARDetail.resx">
       <DependentUpon>FormFollowUpARDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFollowUpARHistory.resx">
+      <DependentUpon>FormFollowUpARHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
@@ -11692,6 +11707,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesDelOrderOwnStore.resx">
       <DependentUpon>ReportSalesDelOrderOwnStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesDelOrderOwnStore2.resx">
+      <DependentUpon>ReportSalesDelOrderOwnStore2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesDelOrderSlip.resx">
       <DependentUpon>ReportSalesDelOrderSlip.vb</DependentUpon>

@@ -573,6 +573,9 @@
         ElseIf report_mark_type = "233" Then
             'delay payment
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_propose_delay_payment WHERE id_propose_delay_payment = '{0}'", id_report)
+        ElseIf report_mark_type = "234" Then
+            'follow up recap
+            query = String.Format("SELECT id_report_status,'' as report_number FROM tb_follow_up_recap WHERE id_follow_up_recap = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4114,12 +4117,19 @@
             'infoCustom("Status changed.")
         ElseIf report_mark_type = "126" Then
             'Production Over Memo
-            If id_status_reportx = "3" Then
-                id_status_reportx = "6"
-            End If
 
             If id_status_reportx = "6" Then
                 Cursor = Cursors.WaitCursor
+
+                'check upload file
+                Dim query_file As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type='" + report_mark_type + "' AND d.id_report='" + id_report + "' "
+                Dim data_file As DataTable = execute_query(query_file, -1, True, "", "", "", "")
+                If data_file.Rows.Count <= 0 Then
+                    stopCustom("Document not found. Please attach document first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 Dim query_upd_datetime As String = "UPDATE tb_prod_over_memo SET created_date=NOW() WHERE id_prod_over_memo='" + id_report + "' "
                 execute_non_query(query_upd_datetime, True, "", "", "", "")
                 Dim mail As New ClassSendEmail()
@@ -4919,9 +4929,9 @@
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='2'
                 GROUP BY rd.id_purc_rec
                 UNION ALL
-                /*total value item inventory*/
+                /*total value item inventory tanpa diskon*/
                 SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
-                SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
+                SUM(rd.qty * (pod.`value`)) AS `debit`,
                 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
@@ -4941,9 +4951,9 @@
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1'
                 GROUP BY rd.id_purc_rec
                 UNION ALL
-                /*total value item asset*/
+                /*total value item asset tanpa diskon*/
                 SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, cont.id_comp,  
-                SUM(rd.qty) AS `qty`, SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
+                SUM(rd.qty) AS `qty`, SUM(rd.qty * (pod.`value`)) AS `debit`,
                 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
@@ -4964,6 +4974,31 @@
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2
+                GROUP BY rd.id_purc_rec, rq.id_departement
+                UNION ALL
+                SELECT " + id_acc_trans + ",(SELECT id_acc_pendapatan_lain FROM tb_opt_accounting) AS `id_acc`, cont.id_comp,  
+                SUM(rd.qty) AS `qty`,
+                0 AS `debit`,
+                SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN (
+	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
+	                FROM tb_purc_order_det pod
+	                INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
+	                WHERE pod.id_purc_order=" + FormPurcReceiveDet.id_purc_order + "
+	                GROUP BY pod.id_purc_order
+                ) poall ON poall.id_purc_order = r.id_purc_order
+                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
+                INNER JOIN tb_purc_req rq ON rq.id_purc_req  = rqd.id_purc_req
+                INNER JOIN tb_m_departement dep ON dep.id_departement=rq.`id_departement`
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
+                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
+                WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec, rq.id_departement
                 UNION ALL
                 /*total vat in*/
@@ -5402,7 +5437,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     execute_non_query(qc, True, "", "", "", "")
                     FormBankWithdrawal.load_expense()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "189" Then
-                    'close fgpo
+                    'Close FGPO
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
 FROM tb_pn_det pd
 WHERE pd.`id_pn`='" & id_report & "'"
@@ -5581,8 +5616,18 @@ WHERE pd.`id_pn`='" & id_report & "'"
                             mm.mail_title = mail_title
                             mm.par1 = id_comp_group
                             mm.rmt = "230"
-                            mm.createEmail(id_comp_group, id_user, id_report, report_mark_type, report_number)
+                            mm.createEmail("-1", id_user, id_report, report_mark_type, report_number)
                             id_mail = mm.id_mail_manage
+
+                            'email rep address
+                            Dim query_email_rep As String = "INSERT INTO tb_mail_manage_member(id_mail_manage, id_mail_member_type, id_user, id_comp_contact, mail_address)
+                            SELECT " + id_mail + " AS `id_mail_manage`, m.id_mail_member_type, m.id_user, NULL AS `id_comp_contact`, e.email_external AS `mail_address`
+                            FROM tb_mail_manage_mapping_intern m
+                            INNER JOIN tb_m_user u ON u.id_user = m.id_user
+                            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+                            WHERE m.report_mark_type=228 AND 
+                            m.id_comp_group IN (" + id_comp_group + ") "
+                            execute_non_query(query_email_rep, True, "", "", "", "")
 
                             'email
                             Try
@@ -6279,83 +6324,110 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
                 'det journal
                 Dim qjd As String = ""
-                If pn_type = "1" Then 'dp
-                    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
-                                    SELECT * FROM
-                                    (
-                                        /* DP vendor */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
-                                        FROM tb_pn_fgpo_det pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
-                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        WHERE pn.id_pn_fgpo=" & id_report & "
-                                        GROUP BY pn.id_pn_fgpo
-                                        UNION ALL
-                                        /* uang muka PPN WIP */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
-                                        FROM tb_pn_fgpo_det pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
-                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        WHERE pn.id_pn_fgpo=" & id_report & "
-                                        GROUP BY pn.id_pn_fgpo
-                                        UNION ALL
-                                        /* hutang dagang total */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(pnd.value + pnd.vat) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
-                                        FROM tb_pn_fgpo_det pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
-                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        WHERE pn.id_pn_fgpo=" & id_report & "
-                                        GROUP BY pn.id_pn_fgpo
-                                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
-                ElseIf pn_type = "2" Or pn_type = "3" Or pn_type = "4" Then 'payment / extra / over memo
-                    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
-                                    SELECT * FROM
-                                    (
-                                        /* HPP jika domestik or international */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,(pnd.value) AS `debit`,0 AS `credit`,pnd.`info_design` AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
-                                        FROM `tb_pn_fgpo_det` pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
-                                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
-                                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
-                                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
-                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='28'
-                                        UNION ALL
-                                        /* Balik DP */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,0 AS `debit`,(-pnd.value) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
-                                        FROM `tb_pn_fgpo_det` pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
-                                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
-                                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
-                                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
-                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='199'
-                                        UNION ALL
-                                        /* VAT */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT id_acc_vat_fg FROM tb_opt_accounting) AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,IF(SUM(pnd.vat)<0,0,SUM(pnd.vat)) AS `debit`,IF(SUM(pnd.vat)<0,-SUM(pnd.vat),0) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
-                                        FROM `tb_pn_fgpo_det` pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
-                                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
-                                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
-                                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
-                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' 
-                                        UNION ALL
-                                        /* Hutang Dagang */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,IF(SUM(pnd.vat+pnd.value)<0,SUM(-(pnd.vat+pnd.value)),0) AS `debit`,IF(SUM(pnd.vat+pnd.value)<0,0,SUM(pnd.vat+pnd.value)) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
-                                        FROM `tb_pn_fgpo_det` pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
-                                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
-                                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
-                                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
-                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' 
-                                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
-                End If
+                qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
+                SELECT * FROM
+                (
+	                /* Per row */
+	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`, pn.id_comp,0 AS `qty`,IF(SUM(pnd.value)<0,0,SUM(pnd.value)) AS `debit`,IF(SUM(pnd.value)>0,0,-SUM(pnd.value)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+	                FROM tb_pn_fgpo_det pnd
+	                INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+	                INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+	                WHERE pn.id_pn_fgpo=" & id_report & "
+	                GROUP BY pnd.id_pn_fgpo_det
+	                UNION ALL
+	                /* PPN */
+	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pn.id_acc_vat AS `id_acc`, pn.id_comp,  0 AS `qty`,IF(SUM(pnd.vat)<0,0,SUM(pnd.vat)) AS `debit`,IF(SUM(pnd.vat)>0,0,-SUM(pnd.vat)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+	                FROM tb_pn_fgpo_det pnd
+	                INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+	                INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+	                WHERE pn.id_pn_fgpo=" & id_report & "
+	                GROUP BY pn.id_pn_fgpo
+	                UNION ALL
+	                /* hutang dagang total */
+	                SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,IF(SUM(pnd.value + pnd.vat)>0,0,-SUM(pnd.value + pnd.vat)) AS `debit`,IF(SUM(pnd.value + pnd.vat)<0,0,SUM(pnd.value + pnd.vat)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+	                FROM tb_pn_fgpo_det pnd
+	                INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+	                INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+	                WHERE pn.id_pn_fgpo=" & id_report & "
+	                GROUP BY pn.id_pn_fgpo
+                )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                'If pn_type = "1" Then 'dp
+                '    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
+                '            SELECT * FROM
+                '            (
+                '             /* DP vendor */
+                '             SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`, pn.id_comp,0 AS `qty`,IF(SUM(pnd.value)<0,0,SUM(pnd.value)) AS `debit`,IF(SUM(pnd.value)>0,0,-SUM(pnd.value)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                '             FROM tb_pn_fgpo_det pnd
+                '             INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                '             INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                '             WHERE pn.id_pn_fgpo=" & id_report & "
+                '             GROUP BY pnd.id_pn_fgpo_det
+                '             UNION ALL
+                '             /* uang muka PPN WIP */
+                '             SELECT '" & id_acc_trans & "' AS id_acc_trans,pn.id_acc_vat AS `id_acc`, pn.id_comp,  0 AS `qty`,IF(SUM(pnd.vat)<0,0,SUM(pnd.vat)) AS `debit`,IF(SUM(pnd.vat)>0,0,-SUM(pnd.vat)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                '             FROM tb_pn_fgpo_det pnd
+                '             INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                '             INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                '             WHERE pn.id_pn_fgpo=" & id_report & "
+                '             GROUP BY pn.id_pn_fgpo
+                '             UNION ALL
+                '             /* hutang dagang total */
+                '             SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,IF(SUM(pnd.value + pnd.vat)>0,0,-SUM(pnd.value + pnd.vat)) AS `debit`,IF(SUM(pnd.value + pnd.vat)<0,0,SUM(pnd.value + pnd.vat)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                '             FROM tb_pn_fgpo_det pnd
+                '             INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                '             INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                '             WHERE pn.id_pn_fgpo=" & id_report & "
+                '             GROUP BY pn.id_pn_fgpo
+                '            )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                'ElseIf pn_type = "2" Or pn_type = "3" Or pn_type = "4" Then 'payment / extra / over memo
+                '    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
+                '                    SELECT * FROM
+                '                    (
+                '                        /* HPP jika domestik or international */
+                '                        SELECT '" & id_acc_trans & "' AS id_acc_trans,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,(pnd.value) AS `debit`,0 AS `credit`,pnd.`info_design` AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                '                        FROM `tb_pn_fgpo_det` pnd
+                '                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+                '                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                '                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
+                '                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+                '                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+                '                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
+                '                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='28'
+                '                        UNION ALL
+                '                        /* Balik DP */
+                '                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,0 AS `debit`,(-pnd.value) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                '                        FROM `tb_pn_fgpo_det` pnd
+                '                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+                '                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                '                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
+                '                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+                '                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+                '                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
+                '                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='199'
+                '                        UNION ALL
+                '                        /* VAT */
+                '                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT id_acc_vat_fg FROM tb_opt_accounting) AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,IF(SUM(pnd.vat)<0,0,SUM(pnd.vat)) AS `debit`,IF(SUM(pnd.vat)<0,-SUM(pnd.vat),0) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                '                        FROM `tb_pn_fgpo_det` pnd
+                '                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+                '                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                '                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
+                '                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+                '                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+                '                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
+                '                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' 
+                '                        UNION ALL
+                '                        /* Hutang Dagang */
+                '                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,IF(SUM(pnd.vat+pnd.value)<0,SUM(-(pnd.vat+pnd.value)),0) AS `debit`,IF(SUM(pnd.vat+pnd.value)<0,0,SUM(pnd.vat+pnd.value)) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                '                        FROM `tb_pn_fgpo_det` pnd
+                '                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+                '                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                '                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
+                '                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+                '                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+                '                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
+                '                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' 
+                '                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                'End If
                 execute_non_query(qjd, True, "", "", "", "")
             End If
 
@@ -6897,7 +6969,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                         mm.mail_title = mail_title
                         mm.par1 = id_comp_group
                         mm.rmt = "230"
-                        mm.createEmail("-1", id_user, id_report, report_mark_type, report_number)
+                        mm.createEmail(id_comp_group, id_user, id_report, report_mark_type, report_number)
                         id_mail = mm.id_mail_manage
 
                         'email
@@ -6934,6 +7006,15 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 FormDelayPaymentDet.actionLoad()
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "234" Then
+            'follow up ar
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_follow_up_recap SET id_report_status='{0}' WHERE id_follow_up_recap ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time

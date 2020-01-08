@@ -89,7 +89,7 @@
 
         'load detail
         Dim query_detail As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, dp.total_workdays, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ((SELECT basic_salary_current) + (SELECT allow_job_current) + (SELECT allow_meal_current) + (SELECT allow_trans_current) + (SELECT allow_house_current) + (SELECT allow_car_current)) AS total_salary_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((det.basic_salary + det.allow_job + det.allow_meal + det.allow_trans + det.allow_house + det.allow_car) - (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0))) / (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0)) * 100, 2), '%') AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, dp.total_workdays, det.employee_position, IF(emp.id_employee_active = 1, TIMESTAMPDIFF(YEAR, emp.employee_join_date, DATE(NOW())), TIMESTAMPDIFF(YEAR, emp.employee_join_date, emp.employee_last_date)) AS length_work, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ((SELECT basic_salary_current) + (SELECT allow_job_current) + (SELECT allow_meal_current) + (SELECT allow_trans_current) + (SELECT allow_house_current) + (SELECT allow_car_current)) AS total_salary_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((det.basic_salary + det.allow_job + det.allow_meal + det.allow_trans + det.allow_house + det.allow_car) - (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0))) / (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0)) * 100, 2), '%') AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det, det.reason
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
@@ -114,6 +114,10 @@
         End If
 
         update_current()
+
+        If LUEType.EditValue.ToString = "2" Then
+            GCIncreaseRp.UnboundExpression = "[basic_salary] - [basic_salary_current]"
+        End If
     End Sub
 
     Sub permission_load()
@@ -121,7 +125,6 @@
 
         If id_report_status = "0" Then
             SBMark.Enabled = False
-            SBPrint.Enabled = False
             SBAttachment.Enabled = False
         Else
             SBSubmit.Enabled = False
@@ -139,6 +142,8 @@
             RemoveEmployeeToolStripMenuItem.Visible = False
 
             RepositoryItemSearchLookUpEdit.ReadOnly = True
+
+            RITEReason.ReadOnly = True
         End If
     End Sub
 
@@ -190,15 +195,16 @@
                 Dim allow_car As String = GVEmployee.GetRowCellValue(i, "allow_car").ToString
                 Dim id_employee_status_det As String = GVEmployee.GetRowCellValue(i, "id_employee_status_det").ToString
                 Dim id_employee_salary As String = GVEmployee.GetRowCellValue(i, "id_employee_salary").ToString
+                Dim reason As String = addSlashes(GVEmployee.GetRowCellValue(i, "reason").ToString)
 
-                values += "(" + id_employee_sal_pps + ", " + id_employee + ", " + id_departement + ", '" + employee_position + "', " + id_employee_level + ", " + id_employee_status + ", " + basic_salary + ", " + allow_job + ", " + allow_meal + ", " + allow_trans + ", " + allow_house + ", " + allow_car + ", " + id_employee_status_det + ", " + id_employee_salary + "), "
+                values += "(" + id_employee_sal_pps + ", " + id_employee + ", " + id_departement + ", '" + employee_position + "', " + id_employee_level + ", " + id_employee_status + ", " + basic_salary + ", " + allow_job + ", " + allow_meal + ", " + allow_trans + ", " + allow_house + ", " + allow_car + ", " + id_employee_status_det + ", " + id_employee_salary + ", '" + reason + "'), "
             End If
         Next
 
         If Not values = "" Then
             values = values.Substring(0, values.Length - 2)
 
-            query = "INSERT INTO tb_employee_sal_pps_det (id_employee_sal_pps, id_employee, id_departement, employee_position, id_employee_level, id_employee_status, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, id_employee_status_det, id_employee_salary) VALUES " + values + ""
+            query = "INSERT INTO tb_employee_sal_pps_det (id_employee_sal_pps, id_employee, id_departement, employee_position, id_employee_level, id_employee_status, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, id_employee_status_det, id_employee_salary, reason) VALUES " + values + ""
 
             execute_non_query(query, True, "", "", "", "")
         End If
@@ -417,6 +423,12 @@
         End If
 
         GVEmployee.BestFitColumns()
+
+        If LUEType.EditValue.ToString = "2" Then
+            GCIncreaseRp.UnboundExpression = "[basic_salary] - [basic_salary_current]"
+        Else
+            GCIncreaseRp.UnboundExpression = "[total_salary] - [total_salary_current]"
+        End If
     End Sub
 
     Private Sub RepositoryItemCheckEdit_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit.Click
@@ -513,6 +525,8 @@
             GBIncrease.Visible = False
 
             GBContract.Visible = True
+
+            GBNote.Visible = False
         ElseIf LUECategory.EditValue.ToString = "2" Then
             GBSalary.Caption = "Salary Propose"
 
@@ -520,6 +534,8 @@
             GBIncrease.Visible = True
 
             GBContract.Visible = False
+
+            GBNote.Visible = True
         End If
 
         GVEmployee.BestFitColumns()
@@ -554,5 +570,41 @@
                 End If
             End If
         Next
+    End Sub
+
+    Private Sub GVEmployee_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVEmployee.CustomSummaryCalculate
+        Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
+
+        If item.FieldName.ToString = "increase" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    Dim percentage As Decimal = 0.00
+
+                    Try
+                        If e.IsGroupSummary Then
+                            If LUEType.EditValue.ToString = "2" Then
+                                percentage = e.GetGroupSummary(e.GroupRowHandle, GVEmployee.GroupSummary.Item(14)) / e.GetGroupSummary(e.GroupRowHandle, GVEmployee.GroupSummary.Item(7)) * 100
+                            Else
+                                percentage = e.GetGroupSummary(e.GroupRowHandle, GVEmployee.GroupSummary.Item(14)) / e.GetGroupSummary(e.GroupRowHandle, GVEmployee.GroupSummary.Item(13)) * 100
+                            End If
+
+                            Dim percentage_str As String = Decimal.Round(percentage, 2).ToString.Replace(",", ".")
+
+                            e.TotalValue = percentage_str + If(Not percentage_str.Contains("."), ".00", "") + "%"
+                        ElseIf e.IsTotalSummary Then
+                            If LUEType.EditValue.ToString = "2" Then
+                                percentage = (GVEmployee.Columns("basic_salary").SummaryItem.SummaryValue - GVEmployee.Columns("basic_salary_current").SummaryItem.SummaryValue) / GVEmployee.Columns("basic_salary_current").SummaryItem.SummaryValue * 100
+                            Else
+                                percentage = (GVEmployee.Columns("total_salary").SummaryItem.SummaryValue - GVEmployee.Columns("total_salary_current").SummaryItem.SummaryValue) / GVEmployee.Columns("total_salary_current").SummaryItem.SummaryValue * 100
+                            End If
+
+                            Dim percentage_str As String = Decimal.Round(percentage, 2).ToString.Replace(",", ".")
+
+                            e.TotalValue = percentage_str + If(Not percentage_str.Contains("."), ".00", "") + "%"
+                        End If
+                    Catch ex As Exception
+                    End Try
+            End Select
+        End If
     End Sub
 End Class

@@ -46,20 +46,20 @@ Partial Class FormInvoiceFGPODPSplit
         Me.BSplit.Location = New System.Drawing.Point(2, 2)
         Me.BSplit.Name = "BSplit"
         Me.BSplit.Size = New System.Drawing.Size(368, 30)
-        Me.BSplit.TabIndex = 0
+        Me.BSplit.TabIndex = 3
         Me.BSplit.Text = "Split"
         '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(12, 24)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(96, 13)
         Me.LabelControl1.TabIndex = 1
-        Me.LabelControl1.Text = "Amount"
+        Me.LabelControl1.Text = "Amount Before Kurs"
         '
         'TEAmount
         '
-        Me.TEAmount.Location = New System.Drawing.Point(93, 21)
+        Me.TEAmount.Location = New System.Drawing.Point(114, 21)
         Me.TEAmount.Name = "TEAmount"
         Me.TEAmount.Properties.Appearance.Options.UseTextOptions = True
         Me.TEAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -67,12 +67,12 @@ Partial Class FormInvoiceFGPODPSplit
         Me.TEAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEAmount.Properties.Mask.EditMask = "N2"
         Me.TEAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEAmount.Size = New System.Drawing.Size(267, 20)
-        Me.TEAmount.TabIndex = 2
+        Me.TEAmount.Size = New System.Drawing.Size(246, 20)
+        Me.TEAmount.TabIndex = 1
         '
         'TEVAT
         '
-        Me.TEVAT.Location = New System.Drawing.Point(93, 47)
+        Me.TEVAT.Location = New System.Drawing.Point(114, 47)
         Me.TEVAT.Name = "TEVAT"
         Me.TEVAT.Properties.Appearance.Options.UseTextOptions = True
         Me.TEVAT.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -80,8 +80,8 @@ Partial Class FormInvoiceFGPODPSplit
         Me.TEVAT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEVAT.Properties.Mask.EditMask = "N2"
         Me.TEVAT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEVAT.Size = New System.Drawing.Size(267, 20)
-        Me.TEVAT.TabIndex = 4
+        Me.TEVAT.Size = New System.Drawing.Size(246, 20)
+        Me.TEVAT.TabIndex = 2
         '
         'LabelControl2
         '
