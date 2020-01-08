@@ -10,6 +10,7 @@
     End Sub
 
     Sub form_load()
+        TEKurs.EditValue = 1.0
         TETotal.EditValue = 0.00
         DEDateCreated.EditValue = Now
         TEPayNumber.Text = "[Auto generate]"
@@ -493,5 +494,52 @@ VALUES('" & report_mark_type & "','" & SLEPayFrom.EditValue.ToString & "','" & S
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub BGenerateSelisihKurs_Click(sender As Object, e As EventArgs)
+        Dim id_pn As String = ""
+        For i As Integer = 0 To GVList.RowCount - 1
+            If GVList.GetRowCellValue(i, "report_mark_type").ToString = "189" Then
+                If Not i = 0 Then
+                    id_pn = ","
+                End If
+                id_pn += GVList.GetRowCellValue(i, "id_report").ToString
+            End If
+        Next
+
+        Dim query As String = ""
+
+        'Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+        'newRow("id_report") = "0"
+        'newRow("report_mark_type") = "0"
+
+        'newRow("id_acc") = SLECOA.EditValue.ToString
+        'newRow("vendor") = TxtSupplier.Text
+
+        'newRow("id_comp") = "1"
+        'newRow("comp_number") = "000"
+
+        'newRow("acc_name") = TxtCOA.Text
+        'newRow("acc_description") = SLECOA.Text
+        'newRow("number") = addSlashes(TxtReff.Text)
+        'newRow("total_pay") = 0
+
+        'If LEDK.EditValue.ToString = "2" Then
+        '    newRow("value") = TxtAmount.EditValue * -1
+        '    newRow("balance_due") = TxtAmount.EditValue * -1
+        'Else
+        '    newRow("value") = TxtAmount.EditValue
+        '    newRow("balance_due") = TxtAmount.EditValue
+        'End If
+
+        'newRow("note") = addSlashes(TxtDescription.Text)
+        'newRow("id_dc") = LEDK.EditValue.ToString
+        'newRow("dc_code") = LEDK.Text
+        'newRow("value_view") = TxtAmount.EditValue
+        'TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable).Rows.Add(newRow)
+        'FormBankWithdrawalDet.GCList.RefreshDataSource()
+        'FormBankWithdrawalDet.GVList.RefreshData()
+        'FormBankWithdrawalDet.calculate_amount()
+        'actionLoad()
     End Sub
 End Class

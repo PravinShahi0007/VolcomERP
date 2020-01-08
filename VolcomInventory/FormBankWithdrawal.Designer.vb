@@ -153,6 +153,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePaymentFGPO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEFGPOVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -205,6 +207,7 @@ Partial Class FormBankWithdrawal
         CType(Me.RICEFGPOPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPOVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -1497,6 +1500,8 @@ Partial Class FormBankWithdrawal
         '
         'PanelControl6
         '
+        Me.PanelControl6.Controls.Add(Me.TEKurs)
+        Me.PanelControl6.Controls.Add(Me.LabelControl9)
         Me.PanelControl6.Controls.Add(Me.SLEFGPOVendor)
         Me.PanelControl6.Controls.Add(Me.LabelControl10)
         Me.PanelControl6.Controls.Add(Me.BViewFGPOPay)
@@ -1505,6 +1510,28 @@ Partial Class FormBankWithdrawal
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(1091, 44)
         Me.PanelControl6.TabIndex = 15
+        '
+        'TEKurs
+        '
+        Me.TEKurs.EditValue = ""
+        Me.TEKurs.Location = New System.Drawing.Point(266, 12)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Size = New System.Drawing.Size(161, 20)
+        Me.TEKurs.TabIndex = 8920
+        Me.TEKurs.TabStop = False
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(237, 15)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl9.TabIndex = 8919
+        Me.LabelControl9.Text = "Kurs"
         '
         'SLEFGPOVendor
         '
@@ -1547,7 +1574,7 @@ Partial Class FormBankWithdrawal
         '
         'BViewFGPOPay
         '
-        Me.BViewFGPOPay.Location = New System.Drawing.Point(237, 10)
+        Me.BViewFGPOPay.Location = New System.Drawing.Point(433, 10)
         Me.BViewFGPOPay.Name = "BViewFGPOPay"
         Me.BViewFGPOPay.Size = New System.Drawing.Size(60, 23)
         Me.BViewFGPOPay.TabIndex = 8916
@@ -1615,6 +1642,7 @@ Partial Class FormBankWithdrawal
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEFGPOVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1760,4 +1788,6 @@ Partial Class FormBankWithdrawal
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BCreatePay As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
 End Class

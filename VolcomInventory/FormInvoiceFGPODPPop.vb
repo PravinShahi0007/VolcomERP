@@ -35,7 +35,7 @@
                             TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
                         Else
                             Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
-                            newRow("id_prod_order") = ""
+                            newRow("id_prod_order") = "0"
                             newRow("id_acc") = GVList.GetRowCellValue(i, "id_acc").ToString
                             newRow("id_report") = GVList.GetRowCellValue(i, "id_pn_fgpo").ToString
                             newRow("report_mark_type") = "199"
@@ -107,7 +107,7 @@ WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.rep
             query = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det,pnd.qty, pn.`id_pn_fgpo`,pn.`number`,pnd.id_currency,cur.currency,pnd.kurs,pnd.`value_bef_kurs`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
 , pn.id_comp,com.comp_name, com.id_acc_dp AS id_acc
 FROM `tb_pn_fgpo_det` pnd
-INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pnd.id_pn_fgpo
+INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
 INNER JOIN tb_m_comp com ON com.`id_comp`=pn.`id_comp`
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
 LEFT JOIN
@@ -116,7 +116,7 @@ LEFT JOIN
     INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
     WHERE pnd.`report_mark_type`='199' AND pn.id_report_status!=5 AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
 )used ON used.id_report=pnd.id_pn_fgpo
-WHERE pn.`id_report_status`= '6' AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "' AND pnd.report_mark_type='22' AND pn.`type`='1' AND ISNULL(used.id_report) AND pn.doc_type!='2'"
+WHERE pn.`id_report_status`= '6' AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "' AND pnd.report_mark_type!='199' AND pn.`type`='1' AND ISNULL(used.id_report) AND pn.doc_type!='2'"
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
