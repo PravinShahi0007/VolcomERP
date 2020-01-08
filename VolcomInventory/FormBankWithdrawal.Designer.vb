@@ -1298,7 +1298,7 @@ Partial Class FormBankWithdrawal
         Me.XTPFGPO.Controls.Add(Me.PanelControl6)
         Me.XTPFGPO.Name = "XTPFGPO"
         Me.XTPFGPO.Size = New System.Drawing.Size(1091, 485)
-        Me.XTPFGPO.Text = "PO Finished Goods"
+        Me.XTPFGPO.Text = "Bukti Pembelian"
         '
         'GCFGPO
         '
