@@ -573,6 +573,9 @@
         ElseIf report_mark_type = "233" Then
             'delay payment
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_propose_delay_payment WHERE id_propose_delay_payment = '{0}'", id_report)
+        ElseIf report_mark_type = "234" Then
+            'follow up recap
+            query = String.Format("SELECT id_report_status,'' as report_number FROM tb_follow_up_recap WHERE id_follow_up_recap = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -6951,6 +6954,15 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 FormDelayPaymentDet.actionLoad()
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "234" Then
+            'follow up ar
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_follow_up_recap SET id_report_status='{0}' WHERE id_follow_up_recap ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time

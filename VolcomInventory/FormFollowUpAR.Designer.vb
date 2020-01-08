@@ -59,6 +59,7 @@ Partial Class FormFollowUpAR
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -397,7 +398,7 @@ Partial Class FormFollowUpAR
         '
         'GridViewHistory
         '
-        Me.GridViewHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn2, Me.GridColumn3})
+        Me.GridViewHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5})
         Me.GridViewHistory.GridControl = Me.GridControlHistory
         Me.GridViewHistory.Name = "GridViewHistory"
         Me.GridViewHistory.OptionsBehavior.AutoExpandAllGroups = True
@@ -431,6 +432,14 @@ Partial Class FormFollowUpAR
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Report Status"
+        Me.GridColumn5.FieldName = "report_status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 2
         '
         'FormFollowUpAR
         '
@@ -503,4 +512,5 @@ Partial Class FormFollowUpAR
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

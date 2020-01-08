@@ -66,10 +66,11 @@
         Cursor = Cursors.WaitCursor
 
         Dim query As String = "
-            SELECT r.id_follow_up_recap, e.employee_name AS created_by, r.created_date
+            SELECT r.id_follow_up_recap, e.employee_name AS created_by, r.created_date, s.report_status
             FROM tb_follow_up_recap AS r
             LEFT JOIN tb_m_user AS u ON r.created_by = u.id_user
             LEFT JOIN tb_m_employee AS e ON u.id_employee= e.id_employee
+            LEFT JOIN tb_lookup_report_status AS s ON r.id_report_status = s.id_report_status
             ORDER BY r.id_follow_up_recap DESC
         "
 
@@ -129,41 +130,41 @@
         ElseIf Not SLEStoreGroup.EditValue.ToString = "0" Then
             stopCustom("Please select all store.")
         Else
-            viewActive()
+            Dim confirm As DialogResult
 
-            Dim id_follow_up_recap As String = "0"
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to create recap ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            Dim query As String = "INSERT INTO tb_follow_up_recap (follow_up_date, created_date, created_by, id_report_status) VALUES (DATE(NOW()), NOW(), " + id_user + ", 1); SELECT LAST_INSERT_ID();"
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                viewActive()
 
-            id_follow_up_recap = execute_query(query, 0, True, "", "", "", "")
+                Dim id_follow_up_recap As String = "0"
 
-            Dim query_det As String = "INSERT INTO tb_follow_up_recap_det (id_follow_up_recap, id_comp_group, `group`, amount, due_date, follow_up_date, follow_up, follow_up_result) VALUES "
+                Dim query As String = "INSERT INTO tb_follow_up_recap (follow_up_date, created_date, created_by, id_report_status) VALUES (DATE(NOW()), NOW(), " + id_user + ", 1); SELECT LAST_INSERT_ID();"
 
-            For i = 0 To GVActive.RowCount - 1
-                If GVActive.IsValidRowHandle(i) Then
-                    query_det += "(" + id_follow_up_recap + ", " + GVActive.GetRowCellValue(i, "id_comp_group").ToString + ", '" + addSlashes(GVActive.GetRowCellValue(i, "group").ToString) + "', " + decimalSQL(GVActive.GetRowCellValue(i, "amount").ToString) + ", '" + Date.Parse(GVActive.GetRowCellValue(i, "sales_pos_due_date")).ToString("yyyy-MM-dd") + "', '" + Date.Parse(GVActive.GetRowCellValue(i, "follow_up_date")).ToString("yyyy-MM-dd") + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up").ToString) + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up_result").ToString) + "'), "
-                End If
-            Next
+                id_follow_up_recap = execute_query(query, 0, True, "", "", "", "")
 
-            query_det = query_det.Substring(0, query_det.Length - 2)
+                Dim query_det As String = "INSERT INTO tb_follow_up_recap_det (id_follow_up_recap, id_comp_group, `group`, amount, due_date, follow_up_date, follow_up, follow_up_result) VALUES "
 
-            execute_non_query(query_det, True, "", "", "", "")
+                For i = 0 To GVActive.RowCount - 1
+                    If GVActive.IsValidRowHandle(i) Then
+                        query_det += "(" + id_follow_up_recap + ", " + GVActive.GetRowCellValue(i, "id_comp_group").ToString + ", '" + addSlashes(GVActive.GetRowCellValue(i, "group").ToString) + "', " + decimalSQL(GVActive.GetRowCellValue(i, "amount").ToString) + ", '" + Date.Parse(GVActive.GetRowCellValue(i, "sales_pos_due_date")).ToString("yyyy-MM-dd") + "', '" + Date.Parse(GVActive.GetRowCellValue(i, "follow_up_date")).ToString("yyyy-MM-dd") + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up").ToString) + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up_result").ToString) + "'), "
+                    End If
+                Next
 
-            print_recap(id_follow_up_recap)
+                query_det = query_det.Substring(0, query_det.Length - 2)
+
+                execute_non_query(query_det, True, "", "", "", "")
+
+                submit_who_prepared("234", id_follow_up_recap, id_user)
+
+                FormFollowUpARHistory.id_follow_up_recap = id_follow_up_recap
+                FormFollowUpARHistory.ShowDialog()
+            End If
         End If
     End Sub
 
-    Sub print_recap(ByVal id_follow_up_recap As String)
-        Dim report As ReportFollowUpAR = New ReportFollowUpAR
-
-        report.id_follow_up_recap = id_follow_up_recap
-
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
-
-        tool.ShowPreviewDialog()
-    End Sub
-
     Private Sub GridViewHistory_DoubleClick(sender As Object, e As EventArgs) Handles GridViewHistory.DoubleClick
-        print_recap(GridViewHistory.GetFocusedRowCellValue("id_follow_up_recap").ToString)
+        FormFollowUpARHistory.id_follow_up_recap = GridViewHistory.GetFocusedRowCellValue("id_follow_up_recap").ToString
+        FormFollowUpARHistory.ShowDialog()
     End Sub
 End Class

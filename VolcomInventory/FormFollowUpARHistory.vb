@@ -1,8 +1,9 @@
-﻿Public Class ReportFollowUpAR
+﻿Public Class FormFollowUpARHistory
     Public id_follow_up_recap As String = "0"
+    Public is_view As String = "-1"
 
-    Private Sub ReportFollowUpAR_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        XrLabelYear.Text = "Tahun " + execute_query("SELECT YEAR(follow_up_date) AS follow_up_date FROM tb_follow_up_recap WHERE id_follow_up_recap = " + id_follow_up_recap, 0, True, "", "", "", "")
+    Private Sub FormFollowUpARHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TextEditReportStatus.Text = execute_query("SELECT s.report_status FROM tb_follow_up_recap AS r LEFT JOIN tb_lookup_report_status AS s ON r.id_report_status = s.id_report_status WHERE r.id_follow_up_recap = " + id_follow_up_recap, 0, True, "", "", "", "")
 
         Dim query As String = "
             SELECT (@no := IF(@last_group <> `group`, (@no + 1), @no)) AS `no`, `group`, `amount`, `due_date`, `follow_up_date`, `follow_up`, `follow_up_result`, (@last_group := `group`) AS `last_group`
@@ -20,23 +21,40 @@
         GCActive.DataSource = data
 
         GVActive.BestFitColumns()
+    End Sub
 
-        'mark
-        Dim id_pre As String = execute_query("SELECT IF(id_report_status = 6, -1, 1) AS id_pre FROM tb_follow_up_recap WHERE id_follow_up_recap = " + id_follow_up_recap, 0, True, "", "", "", "")
+    Private Sub FormFollowUpARHistory_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 
-        If id_pre = "-1" Then
-            load_mark_horz("234", id_follow_up_recap, "2", "1", XrTable1)
-        Else
-            pre_load_mark_horz("234", id_follow_up_recap, "2", "2", XrTable1)
-        End If
+    Private Sub SimpleButtonMark_Click(sender As Object, e As EventArgs) Handles SimpleButtonMark.Click
+        Cursor = Cursors.WaitCursor
 
-        'force align left
-        For i = 0 To XrTable1.Rows.Count - 1
-            For j = 0 To XrTable1.Rows.Item(i).Cells.Count - 1
-                XrTable1.Rows.Item(i).Cells.Item(j).Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-                XrTable1.Rows.Item(i).Cells.Item(j).TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-            Next
-        Next
+        FormReportMark.report_mark_type = "234"
+        FormReportMark.id_report = id_follow_up_recap
+        FormReportMark.is_view = is_view
+
+        FormReportMark.ShowDialog()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButtonClose_Click(sender As Object, e As EventArgs) Handles SimpleButtonClose.Click
+        Close()
+    End Sub
+
+    Private Sub SimpleButtonPrint_Click(sender As Object, e As EventArgs) Handles SimpleButtonPrint.Click
+        print_recap(id_follow_up_recap)
+    End Sub
+
+    Sub print_recap(ByVal id_follow_up_recap As String)
+        Dim report As ReportFollowUpAR = New ReportFollowUpAR
+
+        report.id_follow_up_recap = id_follow_up_recap
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreviewDialog()
     End Sub
 
     Private Sub GVActive_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVActive.CustomSummaryCalculate
