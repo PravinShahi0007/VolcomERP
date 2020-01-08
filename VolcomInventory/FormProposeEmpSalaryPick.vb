@@ -87,7 +87,7 @@
                     Dim allow_car_current As Decimal = GVEmployee.GetRowCellValue(selected_row, "allow_car_current")
                     Dim total_salary_current As Decimal = basic_salary_current + allow_job_current + allow_meal_current + allow_trans_current + allow_house_current + allow_car_current
 
-                    data.Rows.Add(id_employee, employee_code, employee_name, id_departement, departement, total_workdays, employee_position, id_employee_level, employee_level, id_employee_status, employee_status, id_employee_salary, basic_salary_current, allow_job_current, allow_meal_current, allow_trans_current, allow_house_current, allow_car_current, total_salary_current, 0, 0, 0, 0, 0, 0, If(id_employee_salary = "0", "0.00%", "-100.00%"), "50.00%", "50.00%", 0)
+                    data.Rows.Add(id_employee, employee_code, employee_name, id_departement, departement, total_workdays, employee_position, id_employee_level, employee_level, id_employee_status, employee_status, id_employee_salary, basic_salary_current, allow_job_current, allow_meal_current, allow_trans_current, allow_house_current, allow_car_current, total_salary_current, 0, 0, 0, 0, 0, 0, If(id_employee_salary = "0", "0.00%", "-100.00%"), "50.00%", "50.00%", 0, "")
                 End If
             Next
 

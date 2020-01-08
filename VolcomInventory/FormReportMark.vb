@@ -5588,8 +5588,18 @@ WHERE pd.`id_pn`='" & id_report & "'"
                             mm.mail_title = mail_title
                             mm.par1 = id_comp_group
                             mm.rmt = "230"
-                            mm.createEmail(id_comp_group, id_user, id_report, report_mark_type, report_number)
+                            mm.createEmail("-1", id_user, id_report, report_mark_type, report_number)
                             id_mail = mm.id_mail_manage
+
+                            'email rep address
+                            Dim query_email_rep As String = "INSERT INTO tb_mail_manage_member(id_mail_manage, id_mail_member_type, id_user, id_comp_contact, mail_address)
+                            SELECT " + id_mail + " AS `id_mail_manage`, m.id_mail_member_type, m.id_user, NULL AS `id_comp_contact`, e.email_external AS `mail_address`
+                            FROM tb_mail_manage_mapping_intern m
+                            INNER JOIN tb_m_user u ON u.id_user = m.id_user
+                            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+                            WHERE m.report_mark_type=228 AND 
+                            m.id_comp_group IN (" + id_comp_group + ") "
+                            execute_non_query(query_email_rep, True, "", "", "", "")
 
                             'email
                             Try
@@ -6904,7 +6914,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                         mm.mail_title = mail_title
                         mm.par1 = id_comp_group
                         mm.rmt = "230"
-                        mm.createEmail("-1", id_user, id_report, report_mark_type, report_number)
+                        mm.createEmail(id_comp_group, id_user, id_report, report_mark_type, report_number)
                         id_mail = mm.id_mail_manage
 
                         'email
