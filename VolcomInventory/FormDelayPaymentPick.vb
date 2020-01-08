@@ -69,4 +69,17 @@
     Private Sub FormDelayPaymentPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub CESelectAllInvoice_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAllInvoice.CheckedChanged
+        Dim val As String = ""
+        If CESelectAllInvoice.EditValue = True Then
+            val = "yes"
+        Else
+            val = "no"
+        End If
+
+        For i As Integer = 0 To GVData.RowCount - 1
+            GVData.SetRowCellValue(i, "is_select", val)
+        Next
+    End Sub
 End Class
