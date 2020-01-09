@@ -5358,6 +5358,25 @@
         AAAASUVORK5CYII=
 </value>
   </data>
+  <data name="NBCollectionAvg.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAATdEVYdFRpdGxlAEtQSTtDaGFydDtCYXLwqg3ZAAADAUlEQVQ4T3VSf0zMYRh/OydFIzPzF2t1
+        u6OEazidSi5KLlfpB1urxRgzo2WhVFjNhE7N1KQZ/VLST3XTD3SlQnW6u+pu/eQ6kdywbEjt431vzUq8
+        22ef53ne5/P5Pnu/DwHwX9AzL+GBWplY0o34IrWS5tw5PX8XZoIey3PFXSjTTyH2gZYVFszpmZUQYkHB
+        ZcJptjpbqMHNlxM4fV/NGqxm9ps1sxIqisvcrkzIkiA2w7OR5jbRua+R3vITUTmqfxsoT3vMNFhwuWgn
+        lEMXwJjmtteq9Hjc+wuV7UZwudyFDg4OFvb29hYVUn9SvlvGNGQ+E06zNROWdh+EvEQGDoez7FFlC2rj
+        klEdGoZHewK/lksDFAU+UrFAIOA09YwQ0nhe1tiaFADG1GBxcoEEJdoDqHpxHbm+fkmKiEN4klcO5XMt
+        hQZ1dx+iNHDfZL7EJ4HH480j2hvBgDoVjKnBsvP33FGjS0Rt2VUoIo9Mtqj60WMwwS80GuPfJ9BN4+ZX
+        ehRJA5Hp6rmbaNIDgaYoqOX+zGB5bPZmPO/PQMXRSDQVK9De9xETk1PwDTpJnwnmuK1vFPXZhcgWudeS
+        zitS4NkxtF3yYQYrom+uR9tAHkplAejUGaAZHDOLvP2P/zHQDJqg6hzAbRexibxM9gLqI9Gc6GE2OCZf
+        jdbeeyjeJUV37zvojZ8xPPYNkj1Hsc33MNy8D8DVKwLarjfIXLfZROpiRM8azohQfcKlgRosDb+wquF2
+        RQwK9of8aK+sweD7L3gz+hUqOo1KN4wO3Vt06A1oyS+F3FH4lGqIFYXNNLPts7a0tLS9KBQFFYeEYWjw
+        A0ZM4xgZG4eRgvFQ3zCyXL0Qz3cOn7VVDDliT+pBLPh8vlWacEtKzg4/qMoUMAwYYeg3oqOkGllbvXCR
+        tzaVLtWiOQZ3NrmRbBcxcXJy4tD/bB3vKNybukbYkCbY8EnOX//pMs9ZecrBMZjeLWI9cwxubRAR+jgk
+        w2mjeRI7O7v57Et0oiUMNLZhNXaXslJAfgMpUzeT+BVzngAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="NBGAccounting.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -7829,6 +7848,6 @@
     <value>1150, 17</value>
   </metadata>
   <metadata name="AdornerUIManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1260, 17</value>
+    <value>17, 56</value>
   </metadata>
 </root>

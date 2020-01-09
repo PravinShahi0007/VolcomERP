@@ -19,6 +19,14 @@
         Else
             pre_load_mark_horz("222", id, "2", "2", XrTable)
         End If
+
+        'force align left
+        For i = 0 To XrTable.Rows.Count - 1
+            For j = 0 To XrTable.Rows.Item(i).Cells.Count - 1
+                XrTable.Rows.Item(i).Cells.Item(j).Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+                XrTable.Rows.Item(i).Cells.Item(j).TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            Next
+        Next
     End Sub
 
     Private Sub GVSummary_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVSummary.CustomSummaryCalculate

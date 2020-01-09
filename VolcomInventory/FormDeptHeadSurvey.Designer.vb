@@ -116,7 +116,6 @@ Partial Class FormDeptHeadSurvey
         Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCNo, Me.GCQuestion, Me.GCValue, Me.GCInformation})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
-        Me.GVList.OptionsView.ShowColumnHeaders = False
         Me.GVList.OptionsView.ShowGroupPanel = False
         Me.GVList.RowHeight = 50
         '
@@ -127,6 +126,7 @@ Partial Class FormDeptHeadSurvey
         '
         'GCNo
         '
+        Me.GCNo.Caption = "No"
         Me.GCNo.FieldName = "no"
         Me.GCNo.Name = "GCNo"
         Me.GCNo.OptionsColumn.AllowEdit = False
@@ -135,6 +135,7 @@ Partial Class FormDeptHeadSurvey
         '
         'GCQuestion
         '
+        Me.GCQuestion.Caption = "Pertanyaan"
         Me.GCQuestion.FieldName = "question"
         Me.GCQuestion.Name = "GCQuestion"
         Me.GCQuestion.OptionsColumn.AllowEdit = False
@@ -143,6 +144,7 @@ Partial Class FormDeptHeadSurvey
         '
         'GCValue
         '
+        Me.GCValue.Caption = "Nilai"
         Me.GCValue.ColumnEdit = Me.RIUEValue
         Me.GCValue.FieldName = "value"
         Me.GCValue.MinWidth = 70
@@ -158,6 +160,7 @@ Partial Class FormDeptHeadSurvey
         '
         'GCInformation
         '
+        Me.GCInformation.Caption = "Catatan"
         Me.GCInformation.ColumnEdit = Me.RIMEInformation
         Me.GCInformation.FieldName = "information"
         Me.GCInformation.MinWidth = 500

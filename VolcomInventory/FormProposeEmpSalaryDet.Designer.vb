@@ -41,7 +41,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.CMSGCEmployee = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RemoveEmployeeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCEmployeeId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -52,7 +51,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCBasicSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCJobAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCMealAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -60,7 +58,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCHouseAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCAttendanceAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCBasicSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITESalary = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GCJobAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -69,12 +66,12 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCHouseAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCAttendanceAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBComposition = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCFixedSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCNonFixedSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBIncrease = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCFixedSalaryRp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCNonFixedSalaryRp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIncrease = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBContract = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCIncreaseRp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCContract = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemSearchLookUpEdit = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -83,6 +80,10 @@ Partial Class FormProposeEmpSalaryDet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCContractAttachment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GCReason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RITEReason = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GCTotalWorkDays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCLengthOfWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdEmployeeSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LUECategory = New DevExpress.XtraEditors.LookUpEdit()
@@ -94,6 +95,13 @@ Partial Class FormProposeEmpSalaryDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBComposition = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBIncrease = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBContract = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBNote = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +119,7 @@ Partial Class FormProposeEmpSalaryDet
         CType(Me.RepositoryItemSearchLookUpEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEReason, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LUECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -308,7 +317,7 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCEmployee.Location = New System.Drawing.Point(0, 133)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITESalary, Me.RepositoryItemCheckEdit, Me.RepositoryItemSearchLookUpEdit})
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITESalary, Me.RepositoryItemCheckEdit, Me.RepositoryItemSearchLookUpEdit, Me.RITEReason})
         Me.GCEmployee.Size = New System.Drawing.Size(1008, 454)
         Me.GCEmployee.TabIndex = 3
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
@@ -365,11 +374,11 @@ Partial Class FormProposeEmpSalaryDet
         Me.GVEmployee.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
-        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBSalaryCurrent, Me.GBSalary, Me.GBComposition, Me.GBIncrease, Me.GBContract})
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCEmployeeId, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCIdEmployeeSalary, Me.GCBasicSalaryCurrent, Me.GCJobAllowanceCurrent, Me.GCMealAllowanceCurrent, Me.GCTransportAllowanceCurrent, Me.GCHouseAllowanceCurrent, Me.GCAttendanceAllowanceCurrent, Me.GCTotalSalaryCurrent, Me.GCBasicSalary, Me.GCJobAllowance, Me.GCMealAllowance, Me.GCTransportAllowance, Me.GCHouseAllowance, Me.GCAttendanceAllowance, Me.GCTotalSalary, Me.GCFixedSalary, Me.GCNonFixedSalary, Me.GCIncrease, Me.GCContract, Me.GCContractAttachment})
+        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBSalaryCurrent, Me.GBSalary, Me.GBComposition, Me.GBIncrease, Me.GBContract, Me.GBNote})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCEmployeeId, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCTotalWorkDays, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCLengthOfWork, Me.GCIdEmployeeSalary, Me.GCBasicSalaryCurrent, Me.GCJobAllowanceCurrent, Me.GCMealAllowanceCurrent, Me.GCTransportAllowanceCurrent, Me.GCHouseAllowanceCurrent, Me.GCAttendanceAllowanceCurrent, Me.GCTotalSalaryCurrent, Me.GCBasicSalary, Me.GCJobAllowance, Me.GCMealAllowance, Me.GCTransportAllowance, Me.GCHouseAllowance, Me.GCAttendanceAllowance, Me.GCTotalSalary, Me.GCFixedSalary, Me.GCNonFixedSalary, Me.GCFixedSalaryRp, Me.GCNonFixedSalaryRp, Me.GCIncrease, Me.GCIncreaseRp, Me.GCContract, Me.GCContractAttachment, Me.GCReason})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
-        Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GCBasicSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GCJobAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GCMealAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GCTransportAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", Me.GCHouseAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GCAttendanceAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary", Me.GCTotalSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary_current", Me.GCBasicSalaryCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job_current", Me.GCJobAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal_current", Me.GCMealAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans_current", Me.GCTransportAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house_current", Me.GCHouseAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car_current", Me.GCAttendanceAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_current", Me.GCTotalSalaryCurrent, "{0:N0}")})
+        Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GCBasicSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GCJobAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GCMealAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GCTransportAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", Me.GCHouseAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GCAttendanceAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary", Me.GCTotalSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary_current", Me.GCBasicSalaryCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job_current", Me.GCJobAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal_current", Me.GCMealAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans_current", Me.GCTransportAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house_current", Me.GCHouseAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car_current", Me.GCAttendanceAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_current", Me.GCTotalSalaryCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "increase_rp", Me.GCIncreaseRp, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "increase", Me.GCIncrease, "")})
         Me.GVEmployee.LevelIndent = 0
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
@@ -378,23 +387,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.GVEmployee.OptionsView.ShowFooter = True
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GBEmployee
-        '
-        Me.GBEmployee.Caption = "Employee"
-        Me.GBEmployee.Columns.Add(Me.GCEmployeeId)
-        Me.GBEmployee.Columns.Add(Me.GCNIP)
-        Me.GBEmployee.Columns.Add(Me.GCName)
-        Me.GBEmployee.Columns.Add(Me.GCIdDepartement)
-        Me.GBEmployee.Columns.Add(Me.GCDepartement)
-        Me.GBEmployee.Columns.Add(Me.GCPosition)
-        Me.GBEmployee.Columns.Add(Me.GCIdEmployeeLevel)
-        Me.GBEmployee.Columns.Add(Me.GCLevel)
-        Me.GBEmployee.Columns.Add(Me.GCIdEmployeeStatus)
-        Me.GBEmployee.Columns.Add(Me.GCEmployeeStatus)
-        Me.GBEmployee.Name = "GBEmployee"
-        Me.GBEmployee.VisibleIndex = 0
-        Me.GBEmployee.Width = 315
         '
         'GCEmployeeId
         '
@@ -463,20 +455,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
         Me.GCEmployeeStatus.Visible = True
         Me.GCEmployeeStatus.Width = 90
-        '
-        'GBSalaryCurrent
-        '
-        Me.GBSalaryCurrent.Caption = "Salary Current"
-        Me.GBSalaryCurrent.Columns.Add(Me.GCBasicSalaryCurrent)
-        Me.GBSalaryCurrent.Columns.Add(Me.GCJobAllowanceCurrent)
-        Me.GBSalaryCurrent.Columns.Add(Me.GCMealAllowanceCurrent)
-        Me.GBSalaryCurrent.Columns.Add(Me.GCTransportAllowanceCurrent)
-        Me.GBSalaryCurrent.Columns.Add(Me.GCHouseAllowanceCurrent)
-        Me.GBSalaryCurrent.Columns.Add(Me.GCAttendanceAllowanceCurrent)
-        Me.GBSalaryCurrent.Columns.Add(Me.GCTotalSalaryCurrent)
-        Me.GBSalaryCurrent.Name = "GBSalaryCurrent"
-        Me.GBSalaryCurrent.VisibleIndex = 1
-        Me.GBSalaryCurrent.Width = 627
         '
         'GCBasicSalaryCurrent
         '
@@ -558,24 +536,7 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCTotalSalaryCurrent.Name = "GCTotalSalaryCurrent"
         Me.GCTotalSalaryCurrent.OptionsColumn.AllowEdit = False
         Me.GCTotalSalaryCurrent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_current", "{0:N0}")})
-        Me.GCTotalSalaryCurrent.UnboundExpression = "[basic_salary_current] + [allow_job_current] + [allow_meal_current] + [allow_tran" &
-    "s_current] + [allow_house_current] + [allow_car_current]"
-        Me.GCTotalSalaryCurrent.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GCTotalSalaryCurrent.Visible = True
-        '
-        'GBSalary
-        '
-        Me.GBSalary.Caption = "Salary Propose"
-        Me.GBSalary.Columns.Add(Me.GCBasicSalary)
-        Me.GBSalary.Columns.Add(Me.GCJobAllowance)
-        Me.GBSalary.Columns.Add(Me.GCMealAllowance)
-        Me.GBSalary.Columns.Add(Me.GCTransportAllowance)
-        Me.GBSalary.Columns.Add(Me.GCHouseAllowance)
-        Me.GBSalary.Columns.Add(Me.GCAttendanceAllowance)
-        Me.GBSalary.Columns.Add(Me.GCTotalSalary)
-        Me.GBSalary.Name = "GBSalary"
-        Me.GBSalary.VisibleIndex = 2
-        Me.GBSalary.Width = 619
         '
         'GCBasicSalary
         '
@@ -675,15 +636,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCTotalSalary.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GCTotalSalary.Visible = True
         '
-        'GBComposition
-        '
-        Me.GBComposition.Caption = "Composition"
-        Me.GBComposition.Columns.Add(Me.GCFixedSalary)
-        Me.GBComposition.Columns.Add(Me.GCNonFixedSalary)
-        Me.GBComposition.Name = "GBComposition"
-        Me.GBComposition.VisibleIndex = 3
-        Me.GBComposition.Width = 165
-        '
         'GCFixedSalary
         '
         Me.GCFixedSalary.Caption = "Fixed Salary"
@@ -701,13 +653,31 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCNonFixedSalary.Visible = True
         Me.GCNonFixedSalary.Width = 90
         '
-        'GBIncrease
+        'GCFixedSalaryRp
         '
-        Me.GBIncrease.Caption = "Increase"
-        Me.GBIncrease.Columns.Add(Me.GCIncrease)
-        Me.GBIncrease.Name = "GBIncrease"
-        Me.GBIncrease.VisibleIndex = 4
-        Me.GBIncrease.Width = 75
+        Me.GCFixedSalaryRp.Caption = "Fixed Salary (Rp)"
+        Me.GCFixedSalaryRp.DisplayFormat.FormatString = "N0"
+        Me.GCFixedSalaryRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCFixedSalaryRp.FieldName = "fixed_salary_rp"
+        Me.GCFixedSalaryRp.Name = "GCFixedSalaryRp"
+        Me.GCFixedSalaryRp.OptionsColumn.AllowEdit = False
+        Me.GCFixedSalaryRp.UnboundExpression = "[basic_salary] + [allow_job] + [allow_meal] + [allow_trans]"
+        Me.GCFixedSalaryRp.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GCFixedSalaryRp.Visible = True
+        Me.GCFixedSalaryRp.Width = 93
+        '
+        'GCNonFixedSalaryRp
+        '
+        Me.GCNonFixedSalaryRp.Caption = "Non-fixed Salary (Rp)"
+        Me.GCNonFixedSalaryRp.DisplayFormat.FormatString = "N0"
+        Me.GCNonFixedSalaryRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCNonFixedSalaryRp.FieldName = "non_fixed_salary_rp"
+        Me.GCNonFixedSalaryRp.Name = "GCNonFixedSalaryRp"
+        Me.GCNonFixedSalaryRp.OptionsColumn.AllowEdit = False
+        Me.GCNonFixedSalaryRp.UnboundExpression = "[allow_house] + [allow_car]"
+        Me.GCNonFixedSalaryRp.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GCNonFixedSalaryRp.Visible = True
+        Me.GCNonFixedSalaryRp.Width = 114
         '
         'GCIncrease
         '
@@ -715,16 +685,21 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCIncrease.FieldName = "increase"
         Me.GCIncrease.Name = "GCIncrease"
         Me.GCIncrease.OptionsColumn.AllowEdit = False
+        Me.GCIncrease.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GCIncrease.Visible = True
         '
-        'GBContract
+        'GCIncreaseRp
         '
-        Me.GBContract.Caption = "SK / Contract"
-        Me.GBContract.Columns.Add(Me.GCContract)
-        Me.GBContract.Columns.Add(Me.GCContractAttachment)
-        Me.GBContract.Name = "GBContract"
-        Me.GBContract.VisibleIndex = 5
-        Me.GBContract.Width = 325
+        Me.GCIncreaseRp.Caption = "Increase (Rp)"
+        Me.GCIncreaseRp.DisplayFormat.FormatString = "N0"
+        Me.GCIncreaseRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCIncreaseRp.FieldName = "increase_rp"
+        Me.GCIncreaseRp.Name = "GCIncreaseRp"
+        Me.GCIncreaseRp.OptionsColumn.AllowEdit = False
+        Me.GCIncreaseRp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "increase_rp", "{0:N0}")})
+        Me.GCIncreaseRp.UnboundExpression = "[total_salary] - [total_salary_current]"
+        Me.GCIncreaseRp.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GCIncreaseRp.Visible = True
         '
         'GCContract
         '
@@ -786,6 +761,34 @@ Partial Class FormProposeEmpSalaryDet
         Me.RepositoryItemCheckEdit.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureChecked"), System.Drawing.Image)
         Me.RepositoryItemCheckEdit.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit.PictureGrayed"), System.Drawing.Image)
         Me.RepositoryItemCheckEdit.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureUnchecked"), System.Drawing.Image)
+        '
+        'GCReason
+        '
+        Me.GCReason.Caption = "Reason"
+        Me.GCReason.ColumnEdit = Me.RITEReason
+        Me.GCReason.FieldName = "reason"
+        Me.GCReason.MinWidth = 100
+        Me.GCReason.Name = "GCReason"
+        Me.GCReason.Visible = True
+        Me.GCReason.Width = 100
+        '
+        'RITEReason
+        '
+        Me.RITEReason.AutoHeight = False
+        Me.RITEReason.Name = "RITEReason"
+        '
+        'GCTotalWorkDays
+        '
+        Me.GCTotalWorkDays.FieldName = "total_workdays"
+        Me.GCTotalWorkDays.Name = "GCTotalWorkDays"
+        '
+        'GCLengthOfWork
+        '
+        Me.GCLengthOfWork.Caption = "Length of Work (Year)"
+        Me.GCLengthOfWork.FieldName = "length_work"
+        Me.GCLengthOfWork.Name = "GCLengthOfWork"
+        Me.GCLengthOfWork.OptionsColumn.AllowEdit = False
+        Me.GCLengthOfWork.Visible = True
         '
         'GCIdEmployeeSalary
         '
@@ -891,6 +894,89 @@ Partial Class FormProposeEmpSalaryDet
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Note"
         '
+        'GBEmployee
+        '
+        Me.GBEmployee.Caption = "Employee"
+        Me.GBEmployee.Columns.Add(Me.GCEmployeeId)
+        Me.GBEmployee.Columns.Add(Me.GCNIP)
+        Me.GBEmployee.Columns.Add(Me.GCName)
+        Me.GBEmployee.Columns.Add(Me.GCIdDepartement)
+        Me.GBEmployee.Columns.Add(Me.GCDepartement)
+        Me.GBEmployee.Columns.Add(Me.GCPosition)
+        Me.GBEmployee.Columns.Add(Me.GCIdEmployeeLevel)
+        Me.GBEmployee.Columns.Add(Me.GCLevel)
+        Me.GBEmployee.Columns.Add(Me.GCIdEmployeeStatus)
+        Me.GBEmployee.Columns.Add(Me.GCEmployeeStatus)
+        Me.GBEmployee.Columns.Add(Me.GCLengthOfWork)
+        Me.GBEmployee.Name = "GBEmployee"
+        Me.GBEmployee.VisibleIndex = 0
+        Me.GBEmployee.Width = 390
+        '
+        'GBSalaryCurrent
+        '
+        Me.GBSalaryCurrent.Caption = "Salary Current"
+        Me.GBSalaryCurrent.Columns.Add(Me.GCBasicSalaryCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCJobAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCMealAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCTransportAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCHouseAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCAttendanceAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCTotalSalaryCurrent)
+        Me.GBSalaryCurrent.Name = "GBSalaryCurrent"
+        Me.GBSalaryCurrent.VisibleIndex = 1
+        Me.GBSalaryCurrent.Width = 627
+        '
+        'GBSalary
+        '
+        Me.GBSalary.Caption = "Salary Propose"
+        Me.GBSalary.Columns.Add(Me.GCBasicSalary)
+        Me.GBSalary.Columns.Add(Me.GCJobAllowance)
+        Me.GBSalary.Columns.Add(Me.GCMealAllowance)
+        Me.GBSalary.Columns.Add(Me.GCTransportAllowance)
+        Me.GBSalary.Columns.Add(Me.GCHouseAllowance)
+        Me.GBSalary.Columns.Add(Me.GCAttendanceAllowance)
+        Me.GBSalary.Columns.Add(Me.GCTotalSalary)
+        Me.GBSalary.Name = "GBSalary"
+        Me.GBSalary.VisibleIndex = 2
+        Me.GBSalary.Width = 619
+        '
+        'GBComposition
+        '
+        Me.GBComposition.Caption = "Composition"
+        Me.GBComposition.Columns.Add(Me.GCFixedSalary)
+        Me.GBComposition.Columns.Add(Me.GCNonFixedSalary)
+        Me.GBComposition.Columns.Add(Me.GCFixedSalaryRp)
+        Me.GBComposition.Columns.Add(Me.GCNonFixedSalaryRp)
+        Me.GBComposition.Name = "GBComposition"
+        Me.GBComposition.VisibleIndex = 3
+        Me.GBComposition.Width = 372
+        '
+        'GBIncrease
+        '
+        Me.GBIncrease.Caption = "Increase"
+        Me.GBIncrease.Columns.Add(Me.GCIncrease)
+        Me.GBIncrease.Columns.Add(Me.GCIncreaseRp)
+        Me.GBIncrease.Name = "GBIncrease"
+        Me.GBIncrease.VisibleIndex = 4
+        Me.GBIncrease.Width = 150
+        '
+        'GBContract
+        '
+        Me.GBContract.Caption = "SK / Contract"
+        Me.GBContract.Columns.Add(Me.GCContract)
+        Me.GBContract.Columns.Add(Me.GCContractAttachment)
+        Me.GBContract.Name = "GBContract"
+        Me.GBContract.VisibleIndex = 5
+        Me.GBContract.Width = 325
+        '
+        'GBNote
+        '
+        Me.GBNote.Caption = "Note"
+        Me.GBNote.Columns.Add(Me.GCReason)
+        Me.GBNote.Name = "GBNote"
+        Me.GBNote.VisibleIndex = 6
+        Me.GBNote.Width = 100
+        '
         'FormProposeEmpSalaryDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -924,6 +1010,7 @@ Partial Class FormProposeEmpSalaryDet
         CType(Me.RepositoryItemSearchLookUpEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEReason, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -992,8 +1079,6 @@ Partial Class FormProposeEmpSalaryDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBEmployee As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBSalaryCurrent As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GCBasicSalaryCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCJobAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCMealAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1001,13 +1086,23 @@ Partial Class FormProposeEmpSalaryDet
     Friend WithEvents GCHouseAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCAttendanceAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCTotalSalaryCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GBSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBComposition As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBIncrease As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GCIncrease As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GBContract As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GCIdEmployeeSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents LUECategory As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label7 As Label
     Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCTotalWorkDays As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCFixedSalaryRp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCNonFixedSalaryRp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCIncreaseRp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCReason As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RITEReason As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GCLengthOfWork As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GBEmployee As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBSalaryCurrent As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBComposition As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBIncrease As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBContract As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBNote As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

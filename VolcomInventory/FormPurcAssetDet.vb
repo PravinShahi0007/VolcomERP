@@ -10,7 +10,20 @@
 
     Private Sub FormPurcAssetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCOA()
+        viewComp()
         actionLoad()
+    End Sub
+
+    Sub viewComp()
+        Dim query As String = "SELECT id_comp, comp_number,comp_name FROM tb_m_comp"
+        viewSearchLookupQuery(SLEComp, query, "id_comp", "comp_number", "id_comp")
+        '
+        Try
+            TxtComp.Text = get_company_x(get_setup_field("id_own_company").ToString, "1")
+            SLEComp.EditValue = get_setup_field("id_own_company").ToString
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Sub viewCOA()
@@ -24,12 +37,22 @@
 
     Sub actionLoad()
         If action = "ins" Then
+            MsgBox("3ins")
+            SLEComp.EditValue = "-1"
+            TxtComp.Text = ""
+            SLEComp.EditValue = "1"
+            TxtComp.Text = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + SLEComp.EditValue.ToString + "' ", 0, True, "", "", "", "")
         ElseIf action = "upd" Then
-
-
             Dim a As New ClassPurcAsset()
             Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", find_accum)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            '
+            If data.Rows(0)("ship_to").ToString = "0" Then
+                SLEComp.EditValue = get_setup_field("id_own_company")
+            Else
+                SLEComp.EditValue = data.Rows(0)("ship_to").ToString
+            End If
+            '
             is_confirm = data.Rows(0)("is_confirm").ToString
             'generate number
             If is_confirm = "2" Then
@@ -221,5 +244,13 @@
         FormPurcAssetValueAddedList.BtnAdd.Visible = False
         FormPurcAssetValueAddedList.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEComp_EditValueChanged(sender As Object, e As EventArgs) Handles SLEComp.EditValueChanged
+        Try
+            TxtComp.Text = SLEComp.Properties.View.GetFocusedRowCellValue("comp_name").ToString
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

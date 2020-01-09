@@ -32,25 +32,44 @@
 
         If tab = "store_group" Then
             LCName.Text = "Store Group"
+
             query_name = "SELECT id_comp_group AS id, comp_group AS `name`, description AS detail, CONCAT(comp_group, ' | ', description) AS description FROM tb_m_comp_group WHERE id_comp IS NOT NULL"
+
             GridColumnVName.Caption = "Store Group"
             GridColumnVDetail.Caption = "Description"
+
+            LCGroup.Visible = False
+            SLUEGroup.Visible = False
+
+            LCContact.Location = New Point(21, 50)
+            SLUEContact.Location = New Point(106, 49)
+
+            LCType.Location = New Point(21, 76)
+            SLUEType.Location = New Point(106, 75)
+
+            PCDetail.Size = New Size(534, PCDetail.Size.Height - 25)
         Else
             LCName.Text = "Employee"
+
             query_name = "
                 SELECT usr.id_user AS id, emp.employee_code AS `name`, CONCAT(emp.employee_name, ' | ', emp.email_external) AS detail, CONCAT(emp.employee_code, ' | ', emp.employee_name, ' | ', emp.email_external) AS description
                 FROM tb_m_user AS usr
                 LEFT JOIN tb_m_employee AS emp ON usr.id_employee = emp.id_employee
                 WHERE emp.id_employee_active = 1
             "
+
             GridColumnVName.Caption = "Code"
             GridColumnVDetail.Caption = "Name"
+
             LCContact.Visible = False
             SLUEContact.Visible = False
-            LCType.Location = New Point(21, 50)
-            SLUEType.Location = New Point(106, 49)
+
+            LCType.Location = New Point(21, 76)
+            SLUEType.Location = New Point(106, 75)
+
             PCDetail.Size = New Size(534, PCDetail.Size.Height - 25)
-            Size = New Size(550, Size.Height - 25)
+
+            viewSearchLookupQuery(SLUEGroup, "SELECT 0 AS id, '' AS name, '' AS detail, '' AS description UNION ALL SELECT id_comp_group AS id, comp_group AS `name`, description AS detail, CONCAT(comp_group, ' | ', description) AS description FROM tb_m_comp_group WHERE id_comp IS NOT NULL", "id", "description", "id")
         End If
 
         viewSearchLookupQuery(SLUEName, query_name, "id", "description", "id")
@@ -93,7 +112,7 @@
                 Dim c As DevExpress.XtraEditors.CheckEdit = CType(PCCheck.Controls.Item(i), DevExpress.XtraEditors.CheckEdit)
 
                 If c.EditValue Then
-                    Dim query As String = "INSERT INTO tb_mail_manage_mapping_intern (id_user, report_mark_type, id_mail_member_type) VALUES (" + SLUEName.EditValue.ToString + ", " + c.Name.ToString.Replace("CheckEdit", "") + ", " + SLUEType.EditValue.ToString + ")"
+                    Dim query As String = "INSERT INTO tb_mail_manage_mapping_intern (id_comp_group, id_user, report_mark_type, id_mail_member_type) VALUES (" + If(SLUEGroup.EditValue.ToString = "0", "NULL", SLUEGroup.EditValue.ToString) + ", " + SLUEName.EditValue.ToString + ", " + c.Name.ToString.Replace("CheckEdit", "") + ", " + SLUEType.EditValue.ToString + ")"
 
                     execute_non_query(query, True, "", "", "", "")
                 End If

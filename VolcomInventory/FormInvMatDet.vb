@@ -1,4 +1,6 @@
-﻿Public Class FormInvMatDet
+﻿Imports DevExpress.XtraReports.UI
+
+Public Class FormInvMatDet
     Public id_inv As String = "-1"
     Public id_status As String = "1"
 
@@ -14,6 +16,7 @@
 
         If id_inv = "-1" Then 'new
             BtnPrint.Visible = False
+            PanelControlPreview.Visible = False
             BtnViewJournal.Visible = False
             BMark.Visible = False
             DEDueDate.Properties.ReadOnly = False
@@ -68,6 +71,7 @@
             End If
         Else 'edit
             BtnPrint.Visible = True
+            PanelControlPreview.Visible = True
             BMark.Visible = True
             DEDueDate.Properties.ReadOnly = True
             DERefDate.Properties.ReadOnly = True
@@ -218,7 +222,33 @@ VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportInvMat.id_inv_mat = id_inv
+        ReportInvMat.rmt = "231"
+        ReportInvMat.dt = GCList.DataSource
+        Dim Report As New ReportInvMat()
 
+        If id_status = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        If CEPrintPreview.EditValue = True Then
+            Dim Tool As ReportPrintTool = New ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        Else
+            Dim instance As New Printing.PrinterSettings
+            Dim DefaultPrinter As String = instance.PrinterName
+
+            ' THIS IS TO PRINT THE REPORT
+            Report.PrinterName = DefaultPrinter
+            Report.CreateDocument()
+            Report.PrintingSystem.ShowMarginsWarning = False
+            Report.Print()
+        End If
+
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
