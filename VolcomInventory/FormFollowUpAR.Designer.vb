@@ -57,8 +57,10 @@ Partial Class FormFollowUpAR
         Me.GridControlHistory = New DevExpress.XtraGrid.GridControl()
         Me.GridViewHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -268,7 +270,7 @@ Partial Class FormFollowUpAR
         Me.XTPInvoiceOpen.Controls.Add(Me.PanelControl2)
         Me.XTPInvoiceOpen.Name = "XTPInvoiceOpen"
         Me.XTPInvoiceOpen.Size = New System.Drawing.Size(1013, 457)
-        Me.XTPInvoiceOpen.Text = "Current Invoice Open"
+        Me.XTPInvoiceOpen.Text = "Current Overdue Invoice"
         '
         'GCActive
         '
@@ -404,7 +406,7 @@ Partial Class FormFollowUpAR
         '
         'GridViewHistory
         '
-        Me.GridViewHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn2, Me.GridColumn3})
+        Me.GridViewHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5})
         Me.GridViewHistory.GridControl = Me.GridControlHistory
         Me.GridViewHistory.Name = "GridViewHistory"
         Me.GridViewHistory.OptionsBehavior.AutoExpandAllGroups = True
@@ -421,13 +423,24 @@ Partial Class FormFollowUpAR
         Me.GridColumn4.FieldName = "id_follow_up_recap"
         Me.GridColumn4.Name = "GridColumn4"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Follow Up Date"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn6.FieldName = "follow_up_date"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.Width = 82
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Created By"
         Me.GridColumn2.FieldName = "created_by"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -437,7 +450,16 @@ Partial Class FormFollowUpAR
         Me.GridColumn3.FieldName = "created_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Report Status"
+        Me.GridColumn5.FieldName = "report_status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 77
         '
         'FormFollowUpAR
         '
@@ -510,4 +532,6 @@ Partial Class FormFollowUpAR
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

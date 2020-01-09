@@ -59,9 +59,10 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number AS `do_no`, d.pl_sales_order_del_date AS `scan_date`, 
+        Dim query As String = "SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
         c.comp_number AS `store_number`, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`
         FROM tb_pl_sales_order_del d
+        LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
         LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del

@@ -2004,6 +2004,12 @@
     <Compile Include="FormFollowUpARDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFollowUpARHistory.Designer.vb">
+      <DependentUpon>FormFollowUpARHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFollowUpARHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormGuide.Designer.vb">
       <DependentUpon>FormGuide.vb</DependentUpon>
     </Compile>
@@ -8565,6 +8571,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFollowUpARDetail.resx">
       <DependentUpon>FormFollowUpARDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFollowUpARHistory.resx">
+      <DependentUpon>FormFollowUpARHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>

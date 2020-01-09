@@ -187,7 +187,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
 
     Sub load_blank_draft()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0.00 AS `debit`, 0.00 AS `credit` "
+        Dim query As String = "SELECT 0 AS `no`,'' AS id_acc, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0.00 AS `debit`, 0.00 AS `credit` "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDraft.DataSource = data
         GVDraft.DeleteSelectedRows()
@@ -212,43 +212,62 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
             jum_row += 1
             Dim qh As String = "SELECT acc.acc_name,acc.acc_description
 FROM tb_m_comp c 
-INNER JOIN tb_a_acc acc ON acc.id_acc=" & If(SLEPayType.EditValue.ToString = 1, "c.id_acc_dp", "c.id_acc_ap") & "
+INNER JOIN tb_a_acc acc ON acc.id_acc=id_acc_ap
 WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
             Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
-            Dim newRowh As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
-            newRowh("no") = jum_row
-            newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
-            newRowh("acc_description") = dh.Rows(0)("acc_name").ToString & "" & dh.Rows(0)("acc_description").ToString
-            newRowh("cc") = "000"
-            newRowh("report_number") = ""
-            newRowh("note") = MENote.Text
-            newRowh("debit") = 0
-            newRowh("credit") = TETotal.EditValue
-            TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
-            GCDraft.RefreshDataSource()
-            GVDraft.RefreshData()
-
-            'detil
-            For i As Integer = 0 To GVList.RowCount - 1
-                jum_row += 1
-                Dim newRow As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
-                newRow("no") = jum_row
-                newRow("acc_description") = GVList.GetRowCellDisplayText(i, "id_acc").ToString
-                newRow("cc") = "000"
-                newRow("report_number") = GVList.GetRowCellValue(i, "report_number").ToString
-                newRow("note") = GVList.GetRowCellValue(i, "note").ToString
-                If GVList.GetRowCellValue(i, "valuex") < 0 Then
-                    newRow("debit") = 0
-                    newRow("credit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
-                Else
-                    newRow("debit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
-                    newRow("credit") = 0
+            If dh.Rows.Count > 0 Then
+                If TETotal.EditValue > 0 Then
+                    Dim newRowh As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                    newRowh("no") = jum_row
+                    newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
+                    newRowh("acc_description") = dh.Rows(0)("acc_name").ToString & " - " & dh.Rows(0)("acc_description").ToString
+                    newRowh("cc") = "000"
+                    newRowh("report_number") = ""
+                    newRowh("note") = MENote.Text
+                    newRowh("debit") = 0
+                    newRowh("credit") = TETotal.EditValue
+                    TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
+                    GCDraft.RefreshDataSource()
+                    GVDraft.RefreshData()
                 End If
-                TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
-                GCDraft.RefreshDataSource()
-                GVDraft.RefreshData()
-            Next
-            GVDraft.BestFitColumns()
+
+                'detil
+                For i As Integer = 0 To GVList.RowCount - 1
+                    Dim found As Boolean = False
+                    Dim row_found As Integer = 0
+                    For j As Integer = 0 To GVDraft.RowCount - 1
+                        row_found = j
+                    Next
+
+                    If found Then
+                        GVDraft.SetRowCellValue(row_found, "debit", GVDraft.GetRowCellValue(row_found, "debit") + Math.Abs(GVList.GetRowCellValue(i, "valuex")))
+
+                    Else
+                        jum_row += 1
+                        Dim newRow As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                        newRow("no") = jum_row
+                        newRow("id_acc") = GVList.GetRowCellValue(i, "id_acc").ToString
+                        newRow("acc_description") = GVList.GetRowCellDisplayText(i, "id_acc").ToString
+                        newRow("cc") = "000"
+                        newRow("report_number") = GVList.GetRowCellValue(i, "report_number").ToString
+                        newRow("note") = GVList.GetRowCellValue(i, "info_design").ToString
+                        If GVList.GetRowCellValue(i, "valuex") < 0 Then
+                            newRow("debit") = 0
+                            newRow("credit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
+                        Else
+                            newRow("debit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
+                            newRow("credit") = 0
+                        End If
+                        TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
+                        GCDraft.RefreshDataSource()
+                        GVDraft.RefreshData()
+                    End If
+                Next
+                GVDraft.BestFitColumns()
+            Else
+                MsgBox(SLEVendor.Text & " DP/AP account is not set")
+                XTCBPL.SelectedTabPageIndex = 0
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
@@ -306,6 +325,7 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
         End If
 
         Dim is_dup As Boolean = False
+
         If is_ok Then
             'check on grid
             Dim inv_number As String = ""
@@ -458,5 +478,9 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
         If XTCBPL.SelectedTabPageIndex = 1 Then
             load_draft()
         End If
+    End Sub
+
+    Private Sub BPickDP_Click(sender As Object, e As EventArgs) Handles BPickDP.Click
+        FormInvoiceFGPODPPop.ShowDialog()
     End Sub
 End Class

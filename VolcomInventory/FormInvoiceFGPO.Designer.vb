@@ -19,6 +19,8 @@ Partial Class FormInvoiceFGPO
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceFGPO))
         Me.XTCInvoiceFGPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBPL = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBPL = New DevExpress.XtraGrid.GridControl()
@@ -35,7 +37,16 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBBPLUmum = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPaymentFGPO = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.XTPDP = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCDP = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPWaitingDP = New DevExpress.XtraTab.XtraTabPage()
@@ -99,11 +110,16 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BBDPFGPO = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPBPL.SuspendLayout()
         CType(Me.GCBPL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBPL, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDP.SuspendLayout()
         CType(Me.XTCDP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDP.SuspendLayout()
@@ -139,7 +155,7 @@ Partial Class FormInvoiceFGPO
         'XTPBPL
         '
         Me.XTPBPL.Controls.Add(Me.GCBPL)
-        Me.XTPBPL.Controls.Add(Me.BCreatePO)
+        Me.XTPBPL.Controls.Add(Me.PanelControl2)
         Me.XTPBPL.Name = "XTPBPL"
         Me.XTPBPL.Size = New System.Drawing.Size(1155, 558)
         Me.XTPBPL.Text = "BPL"
@@ -147,10 +163,10 @@ Partial Class FormInvoiceFGPO
         'GCBPL
         '
         Me.GCBPL.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBPL.Location = New System.Drawing.Point(0, 0)
+        Me.GCBPL.Location = New System.Drawing.Point(0, 45)
         Me.GCBPL.MainView = Me.GVBPL
         Me.GCBPL.Name = "GCBPL"
-        Me.GCBPL.Size = New System.Drawing.Size(1155, 526)
+        Me.GCBPL.Size = New System.Drawing.Size(1155, 513)
         Me.GCBPL.TabIndex = 20
         Me.GCBPL.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBPL})
         '
@@ -298,24 +314,82 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn30.VisibleIndex = 2
         Me.GridColumn30.Width = 190
         '
-        'BCreatePO
+        'PanelControl2
         '
-        Me.BCreatePO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreatePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreatePO.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreatePO.Appearance.Options.UseBackColor = True
-        Me.BCreatePO.Appearance.Options.UseFont = True
-        Me.BCreatePO.Appearance.Options.UseForeColor = True
-        Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePO.Location = New System.Drawing.Point(0, 526)
-        Me.BCreatePO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreatePO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(1155, 32)
-        Me.BCreatePO.TabIndex = 19
-        Me.BCreatePO.Text = "Create Payment"
+        Me.PanelControl2.Controls.Add(Me.BtnDropQuickMenu)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1155, 45)
+        Me.PanelControl2.TabIndex = 21
+        '
+        'BtnDropQuickMenu
+        '
+        Me.BtnDropQuickMenu.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDropQuickMenu.DropDownControl = Me.PopupMenu1
+        Me.BtnDropQuickMenu.Image = CType(resources.GetObject("BtnDropQuickMenu.Image"), System.Drawing.Image)
+        Me.BtnDropQuickMenu.ImageIndex = 17
+        Me.BtnDropQuickMenu.Location = New System.Drawing.Point(1036, 2)
+        Me.BtnDropQuickMenu.Name = "BtnDropQuickMenu"
+        Me.BtnDropQuickMenu.Size = New System.Drawing.Size(117, 41)
+        Me.BtnDropQuickMenu.TabIndex = 108
+        Me.BtnDropQuickMenu.Text = "Create"
+        '
+        'PopupMenu1
+        '
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBBPLUmum), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDPFGPO), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPaymentFGPO)})
+        Me.PopupMenu1.Manager = Me.BarManager1
+        Me.PopupMenu1.Name = "PopupMenu1"
+        '
+        'BBBPLUmum
+        '
+        Me.BBBPLUmum.Caption = "BPL Umum"
+        Me.BBBPLUmum.Id = 0
+        Me.BBBPLUmum.Name = "BBBPLUmum"
+        '
+        'BBPaymentFGPO
+        '
+        Me.BBPaymentFGPO.Caption = "Payment FGPO"
+        Me.BBPaymentFGPO.Id = 1
+        Me.BBPaymentFGPO.Name = "BBPaymentFGPO"
+        '
+        'BarManager1
+        '
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBBPLUmum, Me.BBPaymentFGPO, Me.BBDPFGPO})
+        Me.BarManager1.MaxItemId = 3
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1161, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 629)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1161, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 629)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1161, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 629)
         '
         'XTPDP
         '
@@ -339,6 +413,7 @@ Partial Class FormInvoiceFGPO
         '
         Me.XTPWaitingDP.Controls.Add(Me.GCDP)
         Me.XTPWaitingDP.Name = "XTPWaitingDP"
+        Me.XTPWaitingDP.PageVisible = False
         Me.XTPWaitingDP.Size = New System.Drawing.Size(1149, 530)
         Me.XTPWaitingDP.Text = "List DP"
         '
@@ -759,6 +834,7 @@ Partial Class FormInvoiceFGPO
         Me.XTPPayment.Controls.Add(Me.GCPayment)
         Me.XTPPayment.Controls.Add(Me.BCreatePayment)
         Me.XTPPayment.Name = "XTPPayment"
+        Me.XTPPayment.PageVisible = False
         Me.XTPPayment.Size = New System.Drawing.Size(1155, 558)
         Me.XTPPayment.Text = "Payment"
         '
@@ -980,6 +1056,12 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
+        'BBDPFGPO
+        '
+        Me.BBDPFGPO.Caption = "DP FGPO"
+        Me.BBDPFGPO.Id = 2
+        Me.BBDPFGPO.Name = "BBDPFGPO"
+        '
         'FormInvoiceFGPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -987,17 +1069,25 @@ Partial Class FormInvoiceFGPO
         Me.ClientSize = New System.Drawing.Size(1161, 629)
         Me.Controls.Add(Me.XTCInvoiceFGPO)
         Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormInvoiceFGPO"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Invoice FGPO"
+        Me.Text = "Bukti Pembelian"
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCInvoiceFGPO.ResumeLayout(False)
         Me.XTPBPL.ResumeLayout(False)
         CType(Me.GCBPL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBPL, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDP.ResumeLayout(False)
         CType(Me.XTCDP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDP.ResumeLayout(False)
@@ -1019,6 +1109,7 @@ Partial Class FormInvoiceFGPO
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -1082,7 +1173,6 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BCreatePO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCBPL As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVBPL As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1102,4 +1192,15 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDropQuickMenu As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BBBPLUmum As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBPaymentFGPO As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents BBDPFGPO As DevExpress.XtraBars.BarButtonItem
 End Class
