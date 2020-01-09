@@ -138,6 +138,7 @@
                     newRow("note") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_name").ToString
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
+
                 calculate_amount()
             End If
         Else

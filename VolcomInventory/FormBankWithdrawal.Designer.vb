@@ -161,6 +161,12 @@ Partial Class FormBankWithdrawal
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewFGPOPay = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -1329,7 +1335,7 @@ Partial Class FormBankWithdrawal
         '
         'GVFGPO
         '
-        Me.GVFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn52, Me.GridColumn40, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn53, Me.GridColumn41, Me.GridColumn54, Me.GridColumn50, Me.GridColumn51})
+        Me.GVFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn52, Me.GridColumn40, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn59, Me.GridColumn58, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn60, Me.GridColumn49, Me.GridColumn53, Me.GridColumn41, Me.GridColumn54, Me.GridColumn50, Me.GridColumn51})
         Me.GVFGPO.GridControl = Me.GCFGPO
         Me.GVFGPO.Name = "GVFGPO"
         Me.GVFGPO.OptionsView.ShowFooter = True
@@ -1354,7 +1360,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.Visible = True
         Me.GridColumn52.VisibleIndex = 0
-        Me.GridColumn52.Width = 96
+        Me.GridColumn52.Width = 108
         '
         'RICEFGPOPayment
         '
@@ -1370,7 +1376,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 3
-        Me.GridColumn40.Width = 96
+        Me.GridColumn40.Width = 108
         '
         'GridColumn45
         '
@@ -1381,7 +1387,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 1
-        Me.GridColumn45.Width = 128
+        Me.GridColumn45.Width = 143
         '
         'GridColumn46
         '
@@ -1394,7 +1400,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn46.OptionsColumn.ReadOnly = True
         Me.GridColumn46.Visible = True
         Me.GridColumn46.VisibleIndex = 2
-        Me.GridColumn46.Width = 129
+        Me.GridColumn46.Width = 146
         '
         'GridColumn47
         '
@@ -1416,7 +1422,11 @@ Partial Class FormBankWithdrawal
         '
         'GridColumn49
         '
-        Me.GridColumn49.Caption = "Amount"
+        Me.GridColumn49.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn49.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn49.Caption = "Amount (Kurs Payment)"
         Me.GridColumn49.DisplayFormat.FormatString = "N2"
         Me.GridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn49.FieldName = "total"
@@ -1425,41 +1435,49 @@ Partial Class FormBankWithdrawal
         Me.GridColumn49.OptionsColumn.ReadOnly = True
         Me.GridColumn49.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn49.Visible = True
-        Me.GridColumn49.VisibleIndex = 4
-        Me.GridColumn49.Width = 162
+        Me.GridColumn49.VisibleIndex = 9
+        Me.GridColumn49.Width = 189
         '
         'GridColumn53
         '
+        Me.GridColumn53.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn53.Caption = "Amount Paid"
         Me.GridColumn53.DisplayFormat.FormatString = "N2"
         Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn53.FieldName = "total_paid"
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
-        Me.GridColumn53.Visible = True
-        Me.GridColumn53.VisibleIndex = 5
-        Me.GridColumn53.Width = 150
+        Me.GridColumn53.Width = 134
         '
         'GridColumn41
         '
+        Me.GridColumn41.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn41.Caption = "Balance"
         Me.GridColumn41.DisplayFormat.FormatString = "N2"
         Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn41.FieldName = "balance"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
-        Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 6
-        Me.GridColumn41.Width = 157
+        Me.GridColumn41.Width = 141
         '
         'GridColumn54
         '
+        Me.GridColumn54.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn54.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn54.Caption = "Payment Pending"
         Me.GridColumn54.FieldName = "total_pending"
         Me.GridColumn54.Name = "GridColumn54"
         Me.GridColumn54.Visible = True
-        Me.GridColumn54.VisibleIndex = 7
-        Me.GridColumn54.Width = 155
+        Me.GridColumn54.VisibleIndex = 10
+        Me.GridColumn54.Width = 177
         '
         'GridColumn50
         '
@@ -1516,11 +1534,16 @@ Partial Class FormBankWithdrawal
         Me.TEKurs.EditValue = ""
         Me.TEKurs.Location = New System.Drawing.Point(266, 12)
         Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TEKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEKurs.Properties.DisplayFormat.FormatString = "N2"
         Me.TEKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEKurs.Size = New System.Drawing.Size(161, 20)
         Me.TEKurs.TabIndex = 8920
         Me.TEKurs.TabStop = False
@@ -1579,6 +1602,82 @@ Partial Class FormBankWithdrawal
         Me.BViewFGPOPay.Size = New System.Drawing.Size(60, 23)
         Me.BViewFGPOPay.TabIndex = 8916
         Me.BViewFGPOPay.Text = "view"
+        '
+        'GridColumn55
+        '
+        Me.GridColumn55.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn55.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn55.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn55.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn55.Caption = "Before Kurs"
+        Me.GridColumn55.DisplayFormat.FormatString = "N2"
+        Me.GridColumn55.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn55.FieldName = "value_bef_kurs"
+        Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.Visible = True
+        Me.GridColumn55.VisibleIndex = 5
+        Me.GridColumn55.Width = 98
+        '
+        'GridColumn56
+        '
+        Me.GridColumn56.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn56.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn56.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn56.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn56.Caption = "Kurs BPL"
+        Me.GridColumn56.DisplayFormat.FormatString = "N2"
+        Me.GridColumn56.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn56.FieldName = "kurs"
+        Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.Visible = True
+        Me.GridColumn56.VisibleIndex = 6
+        Me.GridColumn56.Width = 81
+        '
+        'GridColumn57
+        '
+        Me.GridColumn57.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn57.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn57.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn57.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn57.Caption = "Vat (Rp)"
+        Me.GridColumn57.DisplayFormat.FormatString = "N2"
+        Me.GridColumn57.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn57.FieldName = "vat_bpl"
+        Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.Visible = True
+        Me.GridColumn57.VisibleIndex = 7
+        Me.GridColumn57.Width = 81
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.Caption = "Currency"
+        Me.GridColumn58.FieldName = "currency"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 4
+        Me.GridColumn58.Width = 66
+        '
+        'GridColumn59
+        '
+        Me.GridColumn59.Caption = "ID Currency"
+        Me.GridColumn59.FieldName = "id_currency"
+        Me.GridColumn59.Name = "GridColumn59"
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn60.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn60.Caption = "Amount (Kurs BPL)"
+        Me.GridColumn60.DisplayFormat.FormatString = "N2"
+        Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn60.FieldName = "total_bpl"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_bpl", "{0:N2}")})
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 8
+        Me.GridColumn60.Width = 160
         '
         'FormBankWithdrawal
         '
@@ -1790,4 +1889,10 @@ Partial Class FormBankWithdrawal
     Friend WithEvents BCreatePay As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

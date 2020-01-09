@@ -4976,6 +4976,7 @@
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2
                 GROUP BY rd.id_purc_rec, rq.id_departement
                 UNION ALL
+                /*Discount ke pendapatan lain-lain*/
                 SELECT " + id_acc_trans + ",(SELECT id_acc_pendapatan_lain FROM tb_opt_accounting) AS `id_acc`, cont.id_comp,  
                 SUM(rd.qty) AS `qty`,
                 0 AS `debit`,
@@ -5000,6 +5001,7 @@
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec, rq.id_departement
+                HAVING debit!=0 OR credit!=0
                 UNION ALL
                 /*total vat in*/
                 SELECT " + id_acc_trans + ",o.acc_coa_vat_in AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,

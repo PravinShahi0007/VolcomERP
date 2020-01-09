@@ -87,6 +87,8 @@ Partial Class FormBankWithdrawalDet
         Me.XTCBBK = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPJournal = New DevExpress.XtraTab.XtraTabPage()
@@ -101,8 +103,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,10 +145,10 @@ Partial Class FormBankWithdrawalDet
         Me.XTPPayment.SuspendLayout()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -831,6 +831,29 @@ Partial Class FormBankWithdrawalDet
         Me.PCAddDel.Size = New System.Drawing.Size(939, 47)
         Me.PCAddDel.TabIndex = 19
         '
+        'TEKurs
+        '
+        Me.TEKurs.EditValue = ""
+        Me.TEKurs.Location = New System.Drawing.Point(40, 14)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.ReadOnly = True
+        Me.TEKurs.Size = New System.Drawing.Size(161, 20)
+        Me.TEKurs.TabIndex = 8908
+        Me.TEKurs.TabStop = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 17)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8907
+        Me.LabelControl4.Text = "Kurs"
+        '
         'BtnDelete
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
@@ -970,28 +993,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
-        'TEKurs
-        '
-        Me.TEKurs.EditValue = ""
-        Me.TEKurs.Location = New System.Drawing.Point(40, 14)
-        Me.TEKurs.Name = "TEKurs"
-        Me.TEKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKurs.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEKurs.Properties.EditValueChangedDelay = 1
-        Me.TEKurs.Size = New System.Drawing.Size(161, 20)
-        Me.TEKurs.TabIndex = 8908
-        Me.TEKurs.TabStop = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 17)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl4.TabIndex = 8907
-        Me.LabelControl4.Text = "Kurs"
-        '
         'FormBankWithdrawalDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1056,10 +1057,10 @@ Partial Class FormBankWithdrawalDet
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
         Me.PCAddDel.PerformLayout()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
