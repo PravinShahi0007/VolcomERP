@@ -5170,7 +5170,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
     End Function
 
     Function getOptionView() As String
-        Dim query As String = "SELECT * FROM tb_lookup_option_view a ORDER BY a.id_option_view ASC "
+        Dim query As String = "SELECT * FROM tb_lookup_option_view a ORDER BY a.id_option_view DESC "
         Return query
     End Function
 
