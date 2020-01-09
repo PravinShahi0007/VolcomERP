@@ -5443,7 +5443,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
 FROM tb_pn_det pd
 WHERE pd.`id_pn`='" & id_report & "'"
-                    Dim dt As DataTable = execute_query(qry, "", True, "", "", "", "")
+                    Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
                     '
                     For i As Integer = 0 To dt.Rows.Count - 1
                         If dt.Rows(i)("report_mark_type").ToString = "189" Then 'payment

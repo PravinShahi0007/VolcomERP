@@ -1346,6 +1346,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn44.Caption = "ID"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.OptionsColumn.AllowEdit = False
+        Me.GridColumn44.OptionsColumn.AllowFocus = False
         Me.GridColumn44.OptionsColumn.ReadOnly = True
         '
         'GridColumn52
@@ -1374,6 +1375,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn40.Caption = "Type"
         Me.GridColumn40.FieldName = "type"
         Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.OptionsColumn.AllowEdit = False
+        Me.GridColumn40.OptionsColumn.AllowFocus = False
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 3
         Me.GridColumn40.Width = 108
@@ -1384,6 +1387,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn45.FieldName = "number"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.OptionsColumn.AllowEdit = False
+        Me.GridColumn45.OptionsColumn.AllowFocus = False
         Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 1
@@ -1397,6 +1401,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn46.FieldName = "created_date"
         Me.GridColumn46.Name = "GridColumn46"
         Me.GridColumn46.OptionsColumn.AllowEdit = False
+        Me.GridColumn46.OptionsColumn.AllowFocus = False
         Me.GridColumn46.OptionsColumn.ReadOnly = True
         Me.GridColumn46.Visible = True
         Me.GridColumn46.VisibleIndex = 2
@@ -1408,6 +1413,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn47.FieldName = "employee_name"
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.OptionsColumn.AllowEdit = False
+        Me.GridColumn47.OptionsColumn.AllowFocus = False
         Me.GridColumn47.OptionsColumn.ReadOnly = True
         Me.GridColumn47.Width = 183
         '
@@ -1417,6 +1423,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn48.FieldName = "report_status"
         Me.GridColumn48.Name = "GridColumn48"
         Me.GridColumn48.OptionsColumn.AllowEdit = False
+        Me.GridColumn48.OptionsColumn.AllowFocus = False
         Me.GridColumn48.OptionsColumn.ReadOnly = True
         Me.GridColumn48.Width = 191
         '
@@ -1432,6 +1439,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn49.FieldName = "total"
         Me.GridColumn49.Name = "GridColumn49"
         Me.GridColumn49.OptionsColumn.AllowEdit = False
+        Me.GridColumn49.OptionsColumn.AllowFocus = False
         Me.GridColumn49.OptionsColumn.ReadOnly = True
         Me.GridColumn49.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn49.Visible = True
@@ -1449,6 +1457,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn53.FieldName = "total_paid"
         Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.OptionsColumn.AllowEdit = False
+        Me.GridColumn53.OptionsColumn.AllowFocus = False
         Me.GridColumn53.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
         Me.GridColumn53.Width = 134
         '
@@ -1463,6 +1473,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn41.FieldName = "balance"
         Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.OptionsColumn.AllowEdit = False
+        Me.GridColumn41.OptionsColumn.AllowFocus = False
         Me.GridColumn41.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
         Me.GridColumn41.Width = 141
         '
@@ -1475,6 +1487,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn54.Caption = "Payment Pending"
         Me.GridColumn54.FieldName = "total_pending"
         Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.OptionsColumn.AllowEdit = False
+        Me.GridColumn54.OptionsColumn.AllowFocus = False
         Me.GridColumn54.Visible = True
         Me.GridColumn54.VisibleIndex = 10
         Me.GridColumn54.Width = 177
@@ -1485,6 +1499,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn50.FieldName = "comp_number"
         Me.GridColumn50.Name = "GridColumn50"
         Me.GridColumn50.OptionsColumn.AllowEdit = False
+        Me.GridColumn50.OptionsColumn.AllowFocus = False
         Me.GridColumn50.OptionsColumn.ReadOnly = True
         Me.GridColumn50.Width = 82
         '
@@ -1494,6 +1509,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn51.FieldName = "comp_name"
         Me.GridColumn51.Name = "GridColumn51"
         Me.GridColumn51.OptionsColumn.AllowEdit = False
+        Me.GridColumn51.OptionsColumn.AllowFocus = False
         Me.GridColumn51.OptionsColumn.ReadOnly = True
         Me.GridColumn51.Width = 131
         '
@@ -1614,6 +1630,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn55.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn55.FieldName = "value_bef_kurs"
         Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.OptionsColumn.AllowEdit = False
+        Me.GridColumn55.OptionsColumn.AllowFocus = False
         Me.GridColumn55.Visible = True
         Me.GridColumn55.VisibleIndex = 5
         Me.GridColumn55.Width = 98
@@ -1629,6 +1647,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn56.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn56.FieldName = "kurs"
         Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.OptionsColumn.AllowEdit = False
+        Me.GridColumn56.OptionsColumn.AllowFocus = False
         Me.GridColumn56.Visible = True
         Me.GridColumn56.VisibleIndex = 6
         Me.GridColumn56.Width = 81
@@ -1644,6 +1664,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn57.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn57.FieldName = "vat_bpl"
         Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.OptionsColumn.AllowEdit = False
+        Me.GridColumn57.OptionsColumn.AllowFocus = False
         Me.GridColumn57.Visible = True
         Me.GridColumn57.VisibleIndex = 7
         Me.GridColumn57.Width = 81
@@ -1653,6 +1675,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn58.Caption = "Currency"
         Me.GridColumn58.FieldName = "currency"
         Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.OptionsColumn.AllowEdit = False
+        Me.GridColumn58.OptionsColumn.AllowFocus = False
         Me.GridColumn58.Visible = True
         Me.GridColumn58.VisibleIndex = 4
         Me.GridColumn58.Width = 66
@@ -1662,6 +1686,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn59.Caption = "ID Currency"
         Me.GridColumn59.FieldName = "id_currency"
         Me.GridColumn59.Name = "GridColumn59"
+        Me.GridColumn59.OptionsColumn.AllowEdit = False
+        Me.GridColumn59.OptionsColumn.AllowFocus = False
         '
         'GridColumn60
         '
@@ -1674,6 +1700,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn60.FieldName = "total_bpl"
         Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.OptionsColumn.AllowEdit = False
+        Me.GridColumn60.OptionsColumn.AllowFocus = False
         Me.GridColumn60.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_bpl", "{0:N2}")})
         Me.GridColumn60.Visible = True
         Me.GridColumn60.VisibleIndex = 8
