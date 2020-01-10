@@ -294,7 +294,7 @@
         IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro_stt.report_status AS `ro_status`,
         IFNULL(ret.id_sales_return,0) AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret_stt.report_status AS `ret_status`,
         IFNULL(inv.id_sales_pos,0) AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv_stt.report_status AS `inv_status`,
-        IFNULL(cn.id_sales_pos,0) AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn_stt.report_status AS `cn_status`,
+        IFNULL(cn.id_sales_pos,0) AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn.report_status AS `cn_status`,
         IFNULL(rec_pay.id_rec_payment,0) AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
         IFNULL(ret_pay.id_rec_payment,0) AS `id_ret_pay`,ret_pay.`number` AS `ret_pay_number`, ret_pay.date_created AS `ret_pay_date`, IF(!ISNULL(ret_pay.id_report),'Returned', NULL) AS `ret_pay_status`,
         '0' AS `report_mark_type`, 
@@ -336,9 +336,14 @@
         LEFT JOIN tb_sales_pos_det invd ON invd.id_pl_sales_order_del_det = deld.id_pl_sales_order_del_det
         LEFT JOIN tb_sales_pos inv ON inv.id_sales_pos = invd.id_sales_pos
         LEFT JOIN tb_lookup_report_status inv_stt ON inv_stt.id_report_status = inv.id_report_status
-        LEFT JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det_ref = invd.id_sales_pos_det
-        LEFT JOIN tb_sales_pos cn ON cn.id_sales_pos = cnd.id_sales_pos
-        LEFT JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
+        LEFT JOIN (
+            SELECT cnd.id_sales_pos_det_ref, cn.id_sales_pos,cn.sales_pos_number, cn.sales_pos_date, cn_stt.report_status
+            FROM tb_sales_pos cn
+            INNER JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos = cn.id_sales_pos
+            INNER JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
+            WHERE cn.id_report_status!=5 AND cn.report_mark_type=118
+            GROUP BY cnd.id_sales_pos_det_ref    
+        ) cn ON cn.id_sales_pos_det_ref = invd.id_sales_pos_det
         LEFT JOIN (
 	        SELECT a.id_report, a.id_rec_payment, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
 	        FROM
