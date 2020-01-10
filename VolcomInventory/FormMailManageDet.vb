@@ -172,7 +172,7 @@
                 FROM tb_mail_manage_mapping m
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
-                WHERE m.id_comp_group='" + FormMailManage.SLEStoreGroup.EditValue.ToString + "' AND cc.email!='' AND m.report_mark_type='" + rmt + "'
+                WHERE m.id_comp_group='" + FormMailManage.SLEStoreGroup.EditValue.ToString + "' AND cc.id_comp='" + FormMailManage.SLEStoreCompany.EditValue.ToString + "' AND cc.email!='' AND m.report_mark_type='" + rmt + "'
                 ORDER BY id_mail_member_type ASC, `index` ASC "
                 Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
                 GCMember.DataSource = df
