@@ -285,6 +285,12 @@
     <Compile Include="FormAccountingLedger.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAPReport.Designer.vb">
+      <DependentUpon>FormAPReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAPReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormARCollectionAvg.Designer.vb">
       <DependentUpon>FormARCollectionAvg.vb</DependentUpon>
     </Compile>
@@ -2320,18 +2326,6 @@
       <DependentUpon>FormMasterCompanyLegal.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterCompanyLegal.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormMasterCompGroupHead.Designer.vb">
-      <DependentUpon>FormMasterCompGroupHead.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormMasterCompGroupHead.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormMasterCompGroupHeadDet.Designer.vb">
-      <DependentUpon>FormMasterCompGroupHeadDet.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormMasterCompGroupHeadDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterComputer.Designer.vb">
@@ -7674,6 +7668,9 @@
     <EmbeddedResource Include="FormAccountingLedger.resx">
       <DependentUpon>FormAccountingLedger.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAPReport.resx">
+      <DependentUpon>FormAPReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormARCollectionAvg.resx">
       <DependentUpon>FormARCollectionAvg.vb</DependentUpon>
     </EmbeddedResource>
@@ -8742,12 +8739,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCompanyLegal.resx">
       <DependentUpon>FormMasterCompanyLegal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMasterCompGroupHead.resx">
-      <DependentUpon>FormMasterCompGroupHead.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMasterCompGroupHeadDet.resx">
-      <DependentUpon>FormMasterCompGroupHeadDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComputer.resx">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>

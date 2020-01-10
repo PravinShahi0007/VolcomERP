@@ -23,6 +23,8 @@
     End Sub
 
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TEKurs.EditValue = 1.0
+        '
         load_vendor()
         load_trans_type()
         load_status_payment()
@@ -130,7 +132,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
             BCreatePaymentFGPO.Visible = False
         End If
 
-        Dim query As String = "CALL view_payment_fgpo('" & where_string & "')"
+        Dim query As String = "CALL view_payment_fgpo('" & where_string & "'," & decimalSQL(TEKurs.EditValue.ToString).ToString & ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCFGPO.DataSource = data

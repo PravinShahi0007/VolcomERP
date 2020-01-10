@@ -62,14 +62,23 @@
         TEVat.EditValue = 0.00
         TEQty.EditValue = 1
         '
-        TEKurs.EditValue = 0.00
+        If FormInvoiceFGPODP.GVList.RowCount >= 1 Then
+            TEKurs.EditValue = FormInvoiceFGPODP.GVList.GetRowCellValue(0, "kurs")
+        Else
+            TEKurs.EditValue = 0.00
+        End If
+
         TEBeforeKurs.EditValue = 0.00
         TEAfterKurs.EditValue = 0.00
-        '
+
         load_report_type()
 
         view_currency()
         view_po()
+
+        If FormInvoiceFGPODP.GVList.RowCount >= 1 Then
+            LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormInvoiceFGPODP.GVList.GetRowCellValue(0, "id_currency").ToString)
+        End If
     End Sub
 
     Private Sub view_currency()
@@ -161,9 +170,9 @@ GROUP BY pod.id_mat_purc"
         End If
     End Sub
 
-    Private Sub LECurrency_EditValueChanged(sender As Object, e As EventArgs) Handles LECurrency.EditValueChanged
-        load_kurs()
-    End Sub
+    'Private Sub LECurrency_EditValueChanged(sender As Object, e As EventArgs) Handles LECurrency.EditValueChanged
+    '    load_kurs()
+    'End Sub
 
     Private Sub TEKurs_EditValueChanged(sender As Object, e As EventArgs) Handles TEKurs.EditValueChanged
         If Not TEVATPercent.EditValue = 0 Then
