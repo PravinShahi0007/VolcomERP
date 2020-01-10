@@ -68,12 +68,15 @@ Partial Class FormAREvaluation
         Me.GridColumngroup = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnid_store_company_active = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPGroupStoreList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCGroupStoreList = New DevExpress.XtraGrid.GridControl()
         Me.GVGroupStoreList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_comp_group_eval = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumngroup_eval = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ho = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnho = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnemail_ho = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDiscardMemo = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateMemo = New DevExpress.XtraEditors.SimpleButton()
@@ -91,8 +94,6 @@ Partial Class FormAREvaluation
         Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.GridColumnho = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnemail_ho = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -396,7 +397,7 @@ Partial Class FormAREvaluation
         '
         'GVActiveList
         '
-        Me.GVActiveList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnstore, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnid_propose_delay_payment_eval, Me.GridColumnmemo_number_eval, Me.GridColumnpropose_delay_payment_due_date_eval, Me.GridColumndue_days, Me.GridColumnaging, Me.GridColumnperiod, Me.GridColumnamount, Me.GridColumngroup, Me.GridColumnis_select})
+        Me.GVActiveList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnstore, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnid_propose_delay_payment_eval, Me.GridColumnmemo_number_eval, Me.GridColumnpropose_delay_payment_due_date_eval, Me.GridColumndue_days, Me.GridColumnaging, Me.GridColumnperiod, Me.GridColumnamount, Me.GridColumngroup, Me.GridColumnis_select, Me.GridColumnid_store_company_active})
         Me.GVActiveList.GridControl = Me.GCActiveList
         Me.GVActiveList.GroupCount = 1
         Me.GVActiveList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:N2}")})
@@ -554,12 +555,18 @@ Partial Class FormAREvaluation
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
+        'GridColumnid_store_company_active
+        '
+        Me.GridColumnid_store_company_active.Caption = "id_store_company"
+        Me.GridColumnid_store_company_active.FieldName = "id_store_company"
+        Me.GridColumnid_store_company_active.Name = "GridColumnid_store_company_active"
+        '
         'XTPGroupStoreList
         '
         Me.XTPGroupStoreList.Controls.Add(Me.GCGroupStoreList)
         Me.XTPGroupStoreList.Name = "XTPGroupStoreList"
         Me.XTPGroupStoreList.Size = New System.Drawing.Size(763, 308)
-        Me.XTPGroupStoreList.Text = "Group Store List"
+        Me.XTPGroupStoreList.Text = "Store Company List"
         '
         'GCGroupStoreList
         '
@@ -603,6 +610,24 @@ Partial Class FormAREvaluation
         Me.GridColumnid_ho.FieldName = "id_ho"
         Me.GridColumnid_ho.Name = "GridColumnid_ho"
         Me.GridColumnid_ho.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnho
+        '
+        Me.GridColumnho.Caption = "Store Company"
+        Me.GridColumnho.FieldName = "ho"
+        Me.GridColumnho.Name = "GridColumnho"
+        Me.GridColumnho.OptionsColumn.AllowEdit = False
+        Me.GridColumnho.Visible = True
+        Me.GridColumnho.VisibleIndex = 1
+        Me.GridColumnho.Width = 148
+        '
+        'GridColumnemail_ho
+        '
+        Me.GridColumnemail_ho.Caption = "Email Address"
+        Me.GridColumnemail_ho.FieldName = "email_ho"
+        Me.GridColumnemail_ho.Name = "GridColumnemail_ho"
+        Me.GridColumnemail_ho.Visible = True
+        Me.GridColumnemail_ho.VisibleIndex = 2
         '
         'PanelControl1
         '
@@ -816,24 +841,6 @@ Partial Class FormAREvaluation
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'GridColumnho
-        '
-        Me.GridColumnho.Caption = "Store Company"
-        Me.GridColumnho.FieldName = "ho"
-        Me.GridColumnho.Name = "GridColumnho"
-        Me.GridColumnho.OptionsColumn.AllowEdit = False
-        Me.GridColumnho.Visible = True
-        Me.GridColumnho.VisibleIndex = 1
-        Me.GridColumnho.Width = 148
-        '
-        'GridColumnemail_ho
-        '
-        Me.GridColumnemail_ho.Caption = "Email Address"
-        Me.GridColumnemail_ho.FieldName = "email_ho"
-        Me.GridColumnemail_ho.Name = "GridColumnemail_ho"
-        Me.GridColumnemail_ho.Visible = True
-        Me.GridColumnemail_ho.VisibleIndex = 2
-        '
         'FormAREvaluation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -951,4 +958,5 @@ Partial Class FormAREvaluation
     Friend WithEvents RepoLinkMemoEval As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumnho As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnemail_ho As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_store_company_active As DevExpress.XtraGrid.Columns.GridColumn
 End Class

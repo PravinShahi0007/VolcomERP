@@ -98,11 +98,11 @@
 
     End Sub
 
-    Sub sendEmailPeringatan(ByVal date_eval As String, ByVal id_group As String, ByVal group_name As String)
+    Sub sendEmailPeringatan(ByVal date_eval As String, ByVal id_group As String, ByVal id_store_comp As String, ByVal group_name As String)
         Dim mm As New ClassMailManage()
         Dim id_mail As String = "-1"
         Try
-            Dim query_cek_eval As String = "SELECT COUNT(e.id_ar_eval) AS jum_eval FROM tb_ar_eval e WHERE e.eval_date='" + date_eval + "' AND e.id_comp_group='" + id_group + "' AND e.is_active=1 "
+            Dim query_cek_eval As String = "SELECT COUNT(e.id_ar_eval) AS jum_eval FROM tb_ar_eval e WHERE e.eval_date='" + date_eval + "' AND e.id_comp_group='" + id_group + "' AND e.id_store_company='" + id_store_comp + "' AND e.is_active=1 "
             Dim data_cek_eval As DataTable = execute_query(query_cek_eval, -1, True, "", "", "", "")
             If data_cek_eval.Rows(0)("jum_eval") > 0 Then
                 'create mail var
@@ -121,6 +121,7 @@
                 mm.typ = "2"
                 mm.par1 = date_eval
                 mm.par2 = id_group
+                mm.par3 = id_store_comp
                 mm.createEmail(id_group, id_user, "NULL", "NULL", "")
                 id_mail = mm.id_mail_manage
 
@@ -149,7 +150,7 @@
                    GROUP BY pyd.id_report, pyd.report_mark_type
                 ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
                 LEFT JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment = sp.id_propose_delay_payment
-                WHERE e.id_comp_group=" + id_group + " AND e.eval_date='" + date_eval + "' AND e.is_active=1 "
+                WHERE e.id_comp_group=" + id_group + " AND e.id_store_company='" + id_store_comp + "' AND e.eval_date='" + date_eval + "' AND e.is_active=1 "
                 Dim dcont As DataTable = execute_query(qcont, -1, True, "", "", "", "")
                 Dim tot_amo As Double = 0
                 For i As Integer = 0 To dcont.Rows.Count - 1
