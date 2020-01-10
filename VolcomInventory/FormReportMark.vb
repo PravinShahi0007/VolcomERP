@@ -4976,6 +4976,7 @@
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2
                 GROUP BY rd.id_purc_rec, rq.id_departement
                 UNION ALL
+                /*Discount ke pendapatan lain-lain*/
                 SELECT " + id_acc_trans + ",(SELECT id_acc_pendapatan_lain FROM tb_opt_accounting) AS `id_acc`, cont.id_comp,  
                 SUM(rd.qty) AS `qty`,
                 0 AS `debit`,
@@ -5000,6 +5001,7 @@
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec, rq.id_departement
+                HAVING debit!=0 OR credit!=0
                 UNION ALL
                 /*total vat in*/
                 SELECT " + id_acc_trans + ",o.acc_coa_vat_in AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
@@ -5441,7 +5443,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
 FROM tb_pn_det pd
 WHERE pd.`id_pn`='" & id_report & "'"
-                    Dim dt As DataTable = execute_query(qry, "", True, "", "", "", "")
+                    Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
                     '
                     For i As Integer = 0 To dt.Rows.Count - 1
                         If dt.Rows(i)("report_mark_type").ToString = "189" Then 'payment
@@ -6328,24 +6330,27 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 SELECT * FROM
                 (
 	                /* Per row */
-	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`, pn.id_comp,0 AS `qty`,IF(SUM(pnd.value)<0,0,SUM(pnd.value)) AS `debit`,IF(SUM(pnd.value)>0,0,-SUM(pnd.value)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`, cf.id_comp,0 AS `qty`,IF(SUM(pnd.value)<0,0,SUM(pnd.value)) AS `debit`,IF(SUM(pnd.value)>0,0,-SUM(pnd.value)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
 	                FROM tb_pn_fgpo_det pnd
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
 	                INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
 	                INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
 	                WHERE pn.id_pn_fgpo=" & id_report & "
 	                GROUP BY pnd.id_pn_fgpo_det
 	                UNION ALL
 	                /* PPN */
-	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pn.id_acc_vat AS `id_acc`, pn.id_comp,  0 AS `qty`,IF(SUM(pnd.vat)<0,0,SUM(pnd.vat)) AS `debit`,IF(SUM(pnd.vat)>0,0,-SUM(pnd.vat)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pn.id_acc_vat AS `id_acc`, cf.id_comp,  0 AS `qty`,IF(SUM(pnd.vat)<0,0,SUM(pnd.vat)) AS `debit`,IF(SUM(pnd.vat)>0,0,-SUM(pnd.vat)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
 	                FROM tb_pn_fgpo_det pnd
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
 	                INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
 	                INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
 	                WHERE pn.id_pn_fgpo=" & id_report & "
 	                GROUP BY pn.id_pn_fgpo
 	                UNION ALL
 	                /* hutang dagang total */
-	                SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,IF(SUM(pnd.value + pnd.vat)>0,0,-SUM(pnd.value + pnd.vat)) AS `debit`,IF(SUM(pnd.value + pnd.vat)<0,0,SUM(pnd.value + pnd.vat)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+	                SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, cf.id_comp,  0 AS `qty`,IF(SUM(pnd.value + pnd.vat)>0,0,-SUM(pnd.value + pnd.vat)) AS `debit`,IF(SUM(pnd.value + pnd.vat)<0,0,SUM(pnd.value + pnd.vat)) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
 	                FROM tb_pn_fgpo_det pnd
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
 	                INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
 	                INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
 	                WHERE pn.id_pn_fgpo=" & id_report & "

@@ -87,7 +87,18 @@
     End Sub
 
     Private Sub SLUEName_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEName.EditValueChanged
-        viewSearchLookupQuery(SLUEContact, "SELECT id_comp_contact, contact_person, position, email, CONCAT(contact_person, ' | ', IFNULL(position, '-'), ' | ', IFNULL(email, '-')) AS description FROM tb_m_comp_contact WHERE id_comp = (SELECT id_comp FROM tb_m_comp_group WHERE id_comp_group = " + SLUEName.EditValue.ToString + ")", "id_comp_contact", "description", "id_comp_contact")
+        viewSearchLookupQuery(SLUEContact, "
+            SELECT id_comp_contact, (SELECT comp_name FROM tb_m_comp WHERE id_comp = (SELECT id_comp FROM tb_m_comp_group WHERE id_comp_group = " + SLUEName.EditValue.ToString + ")) AS comp_name, contact_person, position, email, CONCAT((SELECT comp_name), ' | ', contact_person, ' | ', IFNULL(position, '-'), ' | ', IFNULL(email, '-')) AS description 
+            FROM tb_m_comp_contact 
+            WHERE id_comp = (SELECT id_comp FROM tb_m_comp_group WHERE id_comp_group = " + SLUEName.EditValue.ToString + ")
+            UNION
+            SELECT ccontact.id_comp_contact, comp.comp_name, ccontact.contact_person, ccontact.position, ccontact.email, CONCAT(comp.comp_name, ' | ', ccontact.contact_person, ' | ', IFNULL(ccontact.position, '-'), ' | ', IFNULL(ccontact.email, '-')) AS description 
+            FROM tb_m_comp_group_other AS cother
+            LEFT JOIN tb_m_comp AS comp ON cother.id_comp = comp.id_comp
+            LEFT JOIN tb_m_comp_contact AS ccontact ON cother.id_comp = ccontact.id_comp AND ccontact.is_default = 1
+            WHERE cother.id_comp_group = " + SLUEName.EditValue.ToString + "
+
+        ", "id_comp_contact", "description", "id_comp_contact")
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click

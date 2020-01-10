@@ -14061,4 +14061,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
     End Sub
+
+    Private Sub NBAPReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAPReport.LinkClicked
+        Try
+            FormAPReport.MdiParent = Me
+            FormAPReport.Show()
+            FormAPReport.WindowState = FormWindowState.Maximized
+            FormAPReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
 End Class
