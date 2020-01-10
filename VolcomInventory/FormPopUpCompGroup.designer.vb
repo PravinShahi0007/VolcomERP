@@ -32,6 +32,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnPosition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnContactNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -39,13 +40,14 @@ Partial Class FormPopUpCompGroup
         Me.BAddComp = New DevExpress.XtraEditors.SimpleButton()
         Me.PopupMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BBIContact = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBIEditContact = New DevExpress.XtraBars.BarButtonItem()
         Me.BarManager = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BBIEditContact = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBIContactOther = New DevExpress.XtraBars.BarButtonItem()
+        Me.GridColumnCompanyName = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCGroupComp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVGroupComp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.is_active_company, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,17 +62,17 @@ Partial Class FormPopUpCompGroup
         'GCGroupComp
         '
         Me.GCGroupComp.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCGroupComp.Location = New System.Drawing.Point(0, 0)
+        Me.GCGroupComp.Location = New System.Drawing.Point(0, 36)
         Me.GCGroupComp.MainView = Me.GVGroupComp
         Me.GCGroupComp.Name = "GCGroupComp"
         Me.GCGroupComp.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.is_active_company, Me.RepositoryItemCheckEdit1})
-        Me.GCGroupComp.Size = New System.Drawing.Size(635, 301)
+        Me.GCGroupComp.Size = New System.Drawing.Size(635, 265)
         Me.GCGroupComp.TabIndex = 4
         Me.GCGroupComp.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVGroupComp})
         '
         'GVGroupComp
         '
-        Me.GVGroupComp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.GridColumnNo, Me.GridColumnGroup, Me.GridColumn1, Me.GridColumnIdComp, Me.GridColumnContactName, Me.GridColumnPosition, Me.GridColumnContactNumber, Me.GridColumnEmail, Me.GridColumnStatus})
+        Me.GVGroupComp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.GridColumnNo, Me.GridColumnGroup, Me.GridColumn1, Me.GridColumnCompanyName, Me.GridColumnIdComp, Me.GridColumnContactName, Me.GridColumnPosition, Me.GridColumnContactNumber, Me.GridColumnEmail, Me.GridColumnStatus})
         Me.GVGroupComp.GridControl = Me.GCGroupComp
         Me.GVGroupComp.Name = "GVGroupComp"
         Me.GVGroupComp.OptionsBehavior.Editable = False
@@ -124,7 +126,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnContactName.FieldName = "contact_person"
         Me.GridColumnContactName.Name = "GridColumnContactName"
         Me.GridColumnContactName.Visible = True
-        Me.GridColumnContactName.VisibleIndex = 3
+        Me.GridColumnContactName.VisibleIndex = 4
         Me.GridColumnContactName.Width = 148
         '
         'GridColumnPosition
@@ -133,7 +135,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnPosition.FieldName = "position"
         Me.GridColumnPosition.Name = "GridColumnPosition"
         Me.GridColumnPosition.Visible = True
-        Me.GridColumnPosition.VisibleIndex = 4
+        Me.GridColumnPosition.VisibleIndex = 5
         '
         'GridColumnContactNumber
         '
@@ -141,7 +143,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnContactNumber.FieldName = "contact_number"
         Me.GridColumnContactNumber.Name = "GridColumnContactNumber"
         Me.GridColumnContactNumber.Visible = True
-        Me.GridColumnContactNumber.VisibleIndex = 5
+        Me.GridColumnContactNumber.VisibleIndex = 6
         Me.GridColumnContactNumber.Width = 132
         '
         'GridColumnEmail
@@ -150,8 +152,16 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnEmail.FieldName = "email"
         Me.GridColumnEmail.Name = "GridColumnEmail"
         Me.GridColumnEmail.Visible = True
-        Me.GridColumnEmail.VisibleIndex = 6
+        Me.GridColumnEmail.VisibleIndex = 7
         Me.GridColumnEmail.Width = 145
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "comp_status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 8
         '
         'is_active_company
         '
@@ -199,21 +209,15 @@ Partial Class FormPopUpCompGroup
         '
         'PopupMenu
         '
-        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBIContact)})
+        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBIContact), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIContactOther)})
         Me.PopupMenu.Manager = Me.BarManager
         Me.PopupMenu.Name = "PopupMenu"
         '
         'BBIContact
         '
-        Me.BBIContact.Caption = "Add Contact"
+        Me.BBIContact.Caption = "Add Company"
         Me.BBIContact.Id = 0
         Me.BBIContact.Name = "BBIContact"
-        '
-        'BBIEditContact
-        '
-        Me.BBIEditContact.Caption = "Edit Contact"
-        Me.BBIEditContact.Id = 1
-        Me.BBIEditContact.Name = "BBIEditContact"
         '
         'BarManager
         '
@@ -222,8 +226,8 @@ Partial Class FormPopUpCompGroup
         Me.BarManager.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager.DockControls.Add(Me.barDockControlRight)
         Me.BarManager.Form = Me
-        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBIContact, Me.BBIEditContact})
-        Me.BarManager.MaxItemId = 2
+        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBIContact, Me.BBIEditContact, Me.BBIContactOther})
+        Me.BarManager.MaxItemId = 3
         '
         'barDockControlTop
         '
@@ -253,21 +257,33 @@ Partial Class FormPopUpCompGroup
         Me.barDockControlRight.Location = New System.Drawing.Point(635, 0)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 301)
         '
-        'GridColumnStatus
+        'BBIEditContact
         '
-        Me.GridColumnStatus.Caption = "Status"
-        Me.GridColumnStatus.FieldName = "comp_status"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 7
+        Me.BBIEditContact.Caption = "Edit Contact"
+        Me.BBIEditContact.Id = 1
+        Me.BBIEditContact.Name = "BBIEditContact"
+        '
+        'BBIContactOther
+        '
+        Me.BBIContactOther.Caption = "Add Another Company"
+        Me.BBIContactOther.Id = 2
+        Me.BBIContactOther.Name = "BBIContactOther"
+        '
+        'GridColumnCompanyName
+        '
+        Me.GridColumnCompanyName.Caption = "Company Name"
+        Me.GridColumnCompanyName.FieldName = "comp_name"
+        Me.GridColumnCompanyName.Name = "GridColumnCompanyName"
+        Me.GridColumnCompanyName.Visible = True
+        Me.GridColumnCompanyName.VisibleIndex = 3
         '
         'FormPopUpCompGroup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(635, 301)
-        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GCGroupComp)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
@@ -315,4 +331,6 @@ Partial Class FormPopUpCompGroup
     Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BBIEditContact As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BBIContactOther As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumnCompanyName As DevExpress.XtraGrid.Columns.GridColumn
 End Class
