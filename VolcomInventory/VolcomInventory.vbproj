@@ -2328,18 +2328,6 @@
     <Compile Include="FormMasterCompanyLegal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMasterCompGroupHead.Designer.vb">
-      <DependentUpon>FormMasterCompGroupHead.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormMasterCompGroupHead.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormMasterCompGroupHeadDet.Designer.vb">
-      <DependentUpon>FormMasterCompGroupHeadDet.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormMasterCompGroupHeadDet.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FormMasterComputer.Designer.vb">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
     </Compile>
@@ -8751,12 +8739,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCompanyLegal.resx">
       <DependentUpon>FormMasterCompanyLegal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMasterCompGroupHead.resx">
-      <DependentUpon>FormMasterCompGroupHead.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMasterCompGroupHeadDet.resx">
-      <DependentUpon>FormMasterCompGroupHeadDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComputer.resx">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
