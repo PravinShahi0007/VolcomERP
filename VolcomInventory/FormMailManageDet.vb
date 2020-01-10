@@ -30,6 +30,7 @@
             DATE_FORMAT(sp.sales_pos_due_date,'%d-%m-%y') AS `sales_pos_due_date`,
             sp.sales_pos_total_qty AS `qty_invoice`, 
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `amount`,
+            prd.period AS `period_header`,
             prd.amount AS `total_amount`,
             prd.total_qty AS `total_qty`,
             sp.report_mark_type
@@ -37,10 +38,10 @@
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
             INNER JOIN tb_m_comp_group g ON g.id_comp_group = c.id_comp_group
-            INNER JOIN tb_m_comp cg ON cg.id_comp = g.id_comp
+            INNER JOIN tb_m_comp cg ON cg.id_comp = c.id_store_company
             INNER JOIN (
 	            SELECT c.id_comp_group,
-	            GROUP_CONCAT(DISTINCT CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d %M %Y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d %M %Y')) ORDER BY sp.id_sales_pos ASC SEPARATOR ', ') AS `period`,
+	            GROUP_CONCAT(DISTINCT CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) ORDER BY sp.id_sales_pos ASC SEPARATOR ', ') AS `period`,
 	            SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS `amount`,
                 SUM(sp.sales_pos_total_qty) AS `total_qty`
 	            FROM tb_sales_pos sp
@@ -210,7 +211,7 @@
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
                 mail_head = dopt.Rows(0)("mail_head_invoice").ToString
-                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString + ddet.Rows(0)("period_header").ToString + " - " + ddet.Rows(0)("group_store").ToString
                 mail_title = dopt.Rows(0)("mail_title_invoice").ToString
                 mail_content_head = dopt.Rows(0)("mail_content_head_invoice").ToString
                 mail_content = dopt.Rows(0)("mail_content_invoice").ToString
@@ -368,7 +369,7 @@
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
                 mail_head = dopt.Rows(0)("mail_head_invoice").ToString
-                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString + ddet.Rows(0)("period_header").ToString + " - " + ddet.Rows(0)("group_store").ToString
                 mail_title = dopt.Rows(0)("mail_title_invoice").ToString
                 mail_content_head = dopt.Rows(0)("mail_content_head_invoice").ToString
                 mail_content = dopt.Rows(0)("mail_content_invoice").ToString
