@@ -179,7 +179,6 @@
                         newRow("balance_due") = -selisih_kurs
                     End If
 
-
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 End If
                 calculate_amount()
@@ -197,6 +196,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 TEPayNumber.Text = data.Rows(0)("number").ToString
+                TEKurs.EditValue = data.Rows(0)("kurs")
                 report_mark_type = data.Rows(0)("report_mark_type").ToString
                 SLEVendor.EditValue = data.Rows(0)("id_comp_contact").ToString
                 SLEPayType.EditValue = data.Rows(0)("id_pay_type").ToString
@@ -437,8 +437,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 warningCustom("You pay more than balance due.")
             Else
                 'header
-                Dim query As String = "INSERT INTO tb_pn(report_mark_type,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 
-VALUES('" & report_mark_type & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 
+VALUES('" & report_mark_type & "','" & Decimal.Parse(TEKurs.EditValue.ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
                 id_payment = execute_query(query, 0, True, "", "", "", "")
                 'detail
                 query = "INSERT INTO tb_pn_det(id_pn,id_report,report_mark_type,number,vendor,id_comp,id_acc,id_dc,total_pay,value,balance_due,note) VALUES"

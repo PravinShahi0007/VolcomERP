@@ -146,6 +146,11 @@ Partial Class FormMasterCompanySingle
         Me.BApproval = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCCompany = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDesc = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControlStoreGroup = New DevExpress.XtraEditors.GroupControl()
+        Me.TECompGroupDescription = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl41 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECompGroup = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl40 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPLegal = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
         Me.GCLegal = New DevExpress.XtraGrid.GridControl()
@@ -191,11 +196,13 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
-        Me.GroupControlStoreGroup = New DevExpress.XtraEditors.GroupControl()
-        Me.TECompGroup = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl40 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl41 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECompGroupDescription = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl42 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStoreCompany = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -257,6 +264,10 @@ Partial Class FormMasterCompanySingle
         CType(Me.XTCCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCompany.SuspendLayout()
         Me.XTPDesc.SuspendLayout()
+        CType(Me.GroupControlStoreGroup, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControlStoreGroup.SuspendLayout()
+        CType(Me.TECompGroupDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPLegal.SuspendLayout()
         CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl8.SuspendLayout()
@@ -283,10 +294,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControlStoreGroup, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControlStoreGroup.SuspendLayout()
-        CType(Me.TECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECompGroupDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -1177,6 +1186,8 @@ Partial Class FormMasterCompanySingle
         '
         'GroupControl4
         '
+        Me.GroupControl4.Controls.Add(Me.LabelControl42)
+        Me.GroupControl4.Controls.Add(Me.SLEStoreCompany)
         Me.GroupControl4.Controls.Add(Me.LabelControl33)
         Me.GroupControl4.Controls.Add(Me.BCommerceType)
         Me.GroupControl4.Controls.Add(Me.LECommerceType)
@@ -1594,6 +1605,57 @@ Partial Class FormMasterCompanySingle
         Me.XTPDesc.Name = "XTPDesc"
         Me.XTPDesc.Size = New System.Drawing.Size(639, 578)
         Me.XTPDesc.Text = "General"
+        '
+        'GroupControlStoreGroup
+        '
+        Me.GroupControlStoreGroup.Controls.Add(Me.TECompGroupDescription)
+        Me.GroupControlStoreGroup.Controls.Add(Me.LabelControl41)
+        Me.GroupControlStoreGroup.Controls.Add(Me.TECompGroup)
+        Me.GroupControlStoreGroup.Controls.Add(Me.LabelControl40)
+        Me.GroupControlStoreGroup.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControlStoreGroup.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControlStoreGroup.Name = "GroupControlStoreGroup"
+        Me.GroupControlStoreGroup.Size = New System.Drawing.Size(639, 56)
+        Me.GroupControlStoreGroup.TabIndex = 15
+        Me.GroupControlStoreGroup.Text = "Store Group"
+        '
+        'TECompGroupDescription
+        '
+        Me.TECompGroupDescription.Location = New System.Drawing.Point(229, 27)
+        Me.TECompGroupDescription.Name = "TECompGroupDescription"
+        Me.TECompGroupDescription.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECompGroupDescription.Properties.Appearance.Options.UseFont = True
+        Me.TECompGroupDescription.Properties.ReadOnly = True
+        Me.TECompGroupDescription.Size = New System.Drawing.Size(390, 20)
+        Me.TECompGroupDescription.TabIndex = 26
+        '
+        'LabelControl41
+        '
+        Me.LabelControl41.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl41.Location = New System.Drawing.Point(170, 30)
+        Me.LabelControl41.Name = "LabelControl41"
+        Me.LabelControl41.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl41.TabIndex = 25
+        Me.LabelControl41.Text = "Description"
+        '
+        'TECompGroup
+        '
+        Me.TECompGroup.Location = New System.Drawing.Point(92, 27)
+        Me.TECompGroup.Name = "TECompGroup"
+        Me.TECompGroup.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECompGroup.Properties.Appearance.Options.UseFont = True
+        Me.TECompGroup.Properties.ReadOnly = True
+        Me.TECompGroup.Size = New System.Drawing.Size(72, 20)
+        Me.TECompGroup.TabIndex = 24
+        '
+        'LabelControl40
+        '
+        Me.LabelControl40.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl40.Location = New System.Drawing.Point(11, 30)
+        Me.LabelControl40.Name = "LabelControl40"
+        Me.LabelControl40.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl40.TabIndex = 23
+        Me.LabelControl40.Text = "Company Group"
         '
         'XTPLegal
         '
@@ -2045,56 +2107,64 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
         '
-        'GroupControlStoreGroup
+        'LabelControl42
         '
-        Me.GroupControlStoreGroup.Controls.Add(Me.TECompGroupDescription)
-        Me.GroupControlStoreGroup.Controls.Add(Me.LabelControl41)
-        Me.GroupControlStoreGroup.Controls.Add(Me.TECompGroup)
-        Me.GroupControlStoreGroup.Controls.Add(Me.LabelControl40)
-        Me.GroupControlStoreGroup.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControlStoreGroup.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControlStoreGroup.Name = "GroupControlStoreGroup"
-        Me.GroupControlStoreGroup.Size = New System.Drawing.Size(639, 56)
-        Me.GroupControlStoreGroup.TabIndex = 15
-        Me.GroupControlStoreGroup.Text = "Store Group"
+        Me.LabelControl42.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl42.Location = New System.Drawing.Point(330, 167)
+        Me.LabelControl42.Name = "LabelControl42"
+        Me.LabelControl42.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl42.TabIndex = 53
+        Me.LabelControl42.Text = "Store Company"
         '
-        'TECompGroup
+        'SLEStoreCompany
         '
-        Me.TECompGroup.Location = New System.Drawing.Point(92, 27)
-        Me.TECompGroup.Name = "TECompGroup"
-        Me.TECompGroup.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECompGroup.Properties.Appearance.Options.UseFont = True
-        Me.TECompGroup.Properties.ReadOnly = True
-        Me.TECompGroup.Size = New System.Drawing.Size(72, 20)
-        Me.TECompGroup.TabIndex = 24
+        Me.SLEStoreCompany.Location = New System.Drawing.Point(413, 164)
+        Me.SLEStoreCompany.Name = "SLEStoreCompany"
+        Me.SLEStoreCompany.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEStoreCompany.Properties.Appearance.Options.UseFont = True
+        Me.SLEStoreCompany.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreCompany.Properties.View = Me.GridView5
+        Me.SLEStoreCompany.Size = New System.Drawing.Size(219, 20)
+        Me.SLEStoreCompany.TabIndex = 54
         '
-        'LabelControl40
+        'GridView5
         '
-        Me.LabelControl40.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl40.Location = New System.Drawing.Point(11, 30)
-        Me.LabelControl40.Name = "LabelControl40"
-        Me.LabelControl40.Size = New System.Drawing.Size(77, 13)
-        Me.LabelControl40.TabIndex = 23
-        Me.LabelControl40.Text = "Company Group"
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn27, Me.GridColumn25, Me.GridColumn26})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsBehavior.Editable = False
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl41
+        'GridColumn24
         '
-        Me.LabelControl41.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl41.Location = New System.Drawing.Point(170, 30)
-        Me.LabelControl41.Name = "LabelControl41"
-        Me.LabelControl41.Size = New System.Drawing.Size(53, 13)
-        Me.LabelControl41.TabIndex = 25
-        Me.LabelControl41.Text = "Description"
+        Me.GridColumn24.Caption = "Id Comp Group"
+        Me.GridColumn24.FieldName = "id_comp_group"
+        Me.GridColumn24.Name = "GridColumn24"
         '
-        'TECompGroupDescription
+        'GridColumn25
         '
-        Me.TECompGroupDescription.Location = New System.Drawing.Point(229, 27)
-        Me.TECompGroupDescription.Name = "TECompGroupDescription"
-        Me.TECompGroupDescription.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECompGroupDescription.Properties.Appearance.Options.UseFont = True
-        Me.TECompGroupDescription.Properties.ReadOnly = True
-        Me.TECompGroupDescription.Size = New System.Drawing.Size(390, 20)
-        Me.TECompGroupDescription.TabIndex = 26
+        Me.GridColumn25.Caption = "Number"
+        Me.GridColumn25.FieldName = "comp_number"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 0
+        Me.GridColumn25.Width = 279
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Company Name"
+        Me.GridColumn26.FieldName = "comp_name"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 1
+        Me.GridColumn26.Width = 1334
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "GridColumn27"
+        Me.GridColumn27.FieldName = "id_comp"
+        Me.GridColumn27.Name = "GridColumn27"
         '
         'FormMasterCompanySingle
         '
@@ -2175,6 +2245,11 @@ Partial Class FormMasterCompanySingle
         CType(Me.XTCCompany, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCCompany.ResumeLayout(False)
         Me.XTPDesc.ResumeLayout(False)
+        CType(Me.GroupControlStoreGroup, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControlStoreGroup.ResumeLayout(False)
+        Me.GroupControlStoreGroup.PerformLayout()
+        CType(Me.TECompGroupDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPLegal.ResumeLayout(False)
         CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl8.ResumeLayout(False)
@@ -2204,11 +2279,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControlStoreGroup, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControlStoreGroup.ResumeLayout(False)
-        Me.GroupControlStoreGroup.PerformLayout()
-        CType(Me.TECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECompGroupDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2387,4 +2459,11 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents LabelControl41 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECompGroup As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl40 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl42 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEStoreCompany As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

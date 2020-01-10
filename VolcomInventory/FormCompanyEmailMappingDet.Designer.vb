@@ -52,6 +52,7 @@ Partial Class FormCompanyEmailMappingDet
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLUEName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEContact.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,7 +120,7 @@ Partial Class FormCompanyEmailMappingDet
         '
         'SearchLookUpEdit2View
         '
-        Me.SearchLookUpEdit2View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.SearchLookUpEdit2View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn14, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.SearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit2View.Name = "SearchLookUpEdit2View"
         Me.SearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -136,7 +137,7 @@ Partial Class FormCompanyEmailMappingDet
         Me.GridColumn6.FieldName = "contact_person"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.VisibleIndex = 1
         '
         'GridColumn7
         '
@@ -144,7 +145,7 @@ Partial Class FormCompanyEmailMappingDet
         Me.GridColumn7.FieldName = "position"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.VisibleIndex = 2
         '
         'GridColumn8
         '
@@ -152,7 +153,7 @@ Partial Class FormCompanyEmailMappingDet
         Me.GridColumn8.FieldName = "email"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
+        Me.GridColumn8.VisibleIndex = 3
         '
         'GridColumn9
         '
@@ -320,6 +321,14 @@ Partial Class FormCompanyEmailMappingDet
         Me.GridColumn13.FieldName = "description"
         Me.GridColumn13.Name = "GridColumn13"
         '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Company Name"
+        Me.GridColumn14.FieldName = "comp_name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
         'FormCompanyEmailMappingDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -383,4 +392,5 @@ Partial Class FormCompanyEmailMappingDet
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
