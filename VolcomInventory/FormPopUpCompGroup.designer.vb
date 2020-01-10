@@ -27,7 +27,6 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnGroupHeader = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnGroup = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnContactName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPosition = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,7 +46,7 @@ Partial Class FormPopUpCompGroup
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BBIEditContact = New DevExpress.XtraBars.BarButtonItem()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCGroupComp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVGroupComp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.is_active_company, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,7 +71,7 @@ Partial Class FormPopUpCompGroup
         '
         'GVGroupComp
         '
-        Me.GVGroupComp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.GridColumnNo, Me.GridColumnGroupHeader, Me.GridColumnGroup, Me.GridColumn1, Me.GridColumnIdComp, Me.GridColumn2, Me.GridColumnContactName, Me.GridColumnPosition, Me.GridColumnContactNumber, Me.GridColumnEmail, Me.GridColumnStatus})
+        Me.GVGroupComp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.GridColumnNo, Me.GridColumnGroupHeader, Me.GridColumnGroup, Me.GridColumn1, Me.GridColumnIdComp, Me.GridColumnContactName, Me.GridColumnPosition, Me.GridColumnContactNumber, Me.GridColumnEmail, Me.GridColumnStatus})
         Me.GVGroupComp.GridControl = Me.GCGroupComp
         Me.GVGroupComp.Name = "GVGroupComp"
         Me.GVGroupComp.OptionsBehavior.Editable = False
@@ -115,14 +114,6 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnGroup.VisibleIndex = 2
         Me.GridColumnGroup.Width = 70
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Description"
-        Me.GridColumn1.FieldName = "description"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 3
-        '
         'GridColumnIdComp
         '
         Me.GridColumnIdComp.FieldName = "id_comp"
@@ -134,7 +125,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnContactName.FieldName = "contact_person"
         Me.GridColumnContactName.Name = "GridColumnContactName"
         Me.GridColumnContactName.Visible = True
-        Me.GridColumnContactName.VisibleIndex = 5
+        Me.GridColumnContactName.VisibleIndex = 4
         Me.GridColumnContactName.Width = 148
         '
         'GridColumnPosition
@@ -143,7 +134,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnPosition.FieldName = "position"
         Me.GridColumnPosition.Name = "GridColumnPosition"
         Me.GridColumnPosition.Visible = True
-        Me.GridColumnPosition.VisibleIndex = 6
+        Me.GridColumnPosition.VisibleIndex = 5
         '
         'GridColumnContactNumber
         '
@@ -151,7 +142,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnContactNumber.FieldName = "contact_number"
         Me.GridColumnContactNumber.Name = "GridColumnContactNumber"
         Me.GridColumnContactNumber.Visible = True
-        Me.GridColumnContactNumber.VisibleIndex = 7
+        Me.GridColumnContactNumber.VisibleIndex = 6
         Me.GridColumnContactNumber.Width = 132
         '
         'GridColumnEmail
@@ -160,7 +151,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnEmail.FieldName = "email"
         Me.GridColumnEmail.Name = "GridColumnEmail"
         Me.GridColumnEmail.Visible = True
-        Me.GridColumnEmail.VisibleIndex = 8
+        Me.GridColumnEmail.VisibleIndex = 7
         Me.GridColumnEmail.Width = 145
         '
         'GridColumnStatus
@@ -169,7 +160,7 @@ Partial Class FormPopUpCompGroup
         Me.GridColumnStatus.FieldName = "comp_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 9
+        Me.GridColumnStatus.VisibleIndex = 8
         '
         'is_active_company
         '
@@ -271,13 +262,13 @@ Partial Class FormPopUpCompGroup
         Me.BBIEditContact.Id = 1
         Me.BBIEditContact.Name = "BBIEditContact"
         '
-        'GridColumn2
+        'GridColumn1
         '
-        Me.GridColumn2.Caption = "Company Name"
-        Me.GridColumn2.FieldName = "comp_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn1.Caption = "Description"
+        Me.GridColumn1.FieldName = "description"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 3
         '
         'FormPopUpCompGroup
         '
@@ -334,5 +325,4 @@ Partial Class FormPopUpCompGroup
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnGroupHeader As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
