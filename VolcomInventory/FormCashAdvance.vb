@@ -135,10 +135,14 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=ca.`id_employee`
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=ca.`id_report_status`
 INNER JOIN tb_lookup_report_status sts_rb ON sts_rb.id_report_status=ca.rb_id_report_status
 LEFT JOIN 
-(
-    SELECT id_cash_advance,count(id_cash_advance) as jml,SUM(`value`) AS recon_value FROM tb_cash_advance_report GROUP BY id_cash_advance
-    UNION
-    SELECT id_cash_advance,count(id_cash_advance) as jml,SUM(`value`) AS recon_value FROM tb_cash_advance_report_det GROUP BY id_cash_advance
+( 
+    SELECT id_cash_advance, count(jml) as jml, SUM(recon_value) as recon_value
+    FROM (
+        SELECT id_cash_advance,count(id_cash_advance) as jml,SUM(`value`) AS recon_value FROM tb_cash_advance_report GROUP BY id_cash_advance
+        UNION
+        SELECT id_cash_advance,count(id_cash_advance) as jml,0 AS recon_value FROM tb_cash_advance_report_det GROUP BY id_cash_advance
+    ) AS tb
+    GROUP BY id_cash_advance
 ) recon ON recon.id_cash_advance=ca.id_cash_advance
 WHERE 1=1 " & where_string & " ORDER BY ca.`date_created` DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
