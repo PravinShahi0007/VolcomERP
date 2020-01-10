@@ -204,6 +204,7 @@
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
         Dim id_comp_group As String = SLEStoreGroup.EditValue.ToString
+        Dim id_store_company As String = SLEStoreCompany.EditValue.ToString
         If id_comp_group <> "0" Then
             Cursor = Cursors.WaitCursor
             '--- check email group
@@ -211,7 +212,7 @@
             SELECT cc.email AS `email_group`
             FROM tb_mail_manage_mapping m
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
-            WHERE m.id_comp_group=" + id_comp_group + " AND m.report_mark_type=225 AND m.id_mail_member_type=2 AND cc.email!='' "
+            WHERE m.id_comp_group=" + id_comp_group + " AND cc.id_comp='" + id_store_company + "' AND m.report_mark_type=225 AND m.id_mail_member_type=2 AND cc.email!='' "
             Dim dcg As DataTable = execute_query(qcg, -1, True, "", "", "", "")
             If dcg.Rows.Count <= 0 Then
                 Cursor = Cursors.Default
@@ -520,5 +521,10 @@
             m.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub SLEStoreCompany_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreCompany.EditValueChanged
+        GCInvoiceList.DataSource = Nothing
+        BCreatePO.Visible = False
     End Sub
 End Class
