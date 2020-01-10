@@ -150,6 +150,11 @@ Partial Class FormMailManage
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStoreCompany = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_comp_group_inv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp_inv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPHistory.SuspendLayout()
@@ -197,6 +202,8 @@ Partial Class FormMailManage
         Me.PanelControl9.SuspendLayout()
         CType(Me.SLEStoreGroupUnpaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMailManage
@@ -206,7 +213,7 @@ Partial Class FormMailManage
         Me.XTCMailManage.Location = New System.Drawing.Point(0, 0)
         Me.XTCMailManage.Name = "XTCMailManage"
         Me.XTCMailManage.SelectedTabPage = Me.XTPHistory
-        Me.XTCMailManage.Size = New System.Drawing.Size(927, 443)
+        Me.XTCMailManage.Size = New System.Drawing.Size(1055, 520)
         Me.XTCMailManage.TabIndex = 0
         Me.XTCMailManage.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPHistory, Me.XTPSalesInvoiceList, Me.XTPUnpaidBill})
         '
@@ -452,7 +459,7 @@ Partial Class FormMailManage
         Me.XTPSalesInvoiceList.Controls.Add(Me.PanelControl3)
         Me.XTPSalesInvoiceList.Controls.Add(Me.PanelControl1)
         Me.XTPSalesInvoiceList.Name = "XTPSalesInvoiceList"
-        Me.XTPSalesInvoiceList.Size = New System.Drawing.Size(921, 415)
+        Me.XTPSalesInvoiceList.Size = New System.Drawing.Size(1049, 492)
         Me.XTPSalesInvoiceList.Text = "Sales Invoice"
         '
         'GCInvoiceList
@@ -463,7 +470,7 @@ Partial Class FormMailManage
         Me.GCInvoiceList.MainView = Me.GVInvoiceList
         Me.GCInvoiceList.Name = "GCInvoiceList"
         Me.GCInvoiceList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RepositoryItemCheckEdit2})
-        Me.GCInvoiceList.Size = New System.Drawing.Size(921, 332)
+        Me.GCInvoiceList.Size = New System.Drawing.Size(1049, 409)
         Me.GCInvoiceList.TabIndex = 18
         Me.GCInvoiceList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoiceList})
         '
@@ -722,9 +729,9 @@ Partial Class FormMailManage
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Controls.Add(Me.BCreatePO)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 375)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 452)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(921, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(1049, 40)
         Me.PanelControl3.TabIndex = 4
         '
         'PanelControl4
@@ -754,7 +761,7 @@ Partial Class FormMailManage
         Me.BCreatePO.Appearance.Options.UseFont = True
         Me.BCreatePO.Appearance.Options.UseForeColor = True
         Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCreatePO.Location = New System.Drawing.Point(820, 2)
+        Me.BCreatePO.Location = New System.Drawing.Point(948, 2)
         Me.BCreatePO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BCreatePO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -767,6 +774,7 @@ Partial Class FormMailManage
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEStoreCompany)
         Me.PanelControl1.Controls.Add(Me.PanelControl8)
         Me.PanelControl1.Controls.Add(Me.BtnAlreadyProcessed)
         Me.PanelControl1.Controls.Add(Me.BtnPending)
@@ -775,7 +783,7 @@ Partial Class FormMailManage
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(921, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(1049, 43)
         Me.PanelControl1.TabIndex = 3
         '
         'PanelControl8
@@ -783,7 +791,7 @@ Partial Class FormMailManage
         Me.PanelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl8.Controls.Add(Me.BtnPendingGroup)
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl8.Location = New System.Drawing.Point(709, 2)
+        Me.PanelControl8.Location = New System.Drawing.Point(837, 2)
         Me.PanelControl8.Name = "PanelControl8"
         Me.PanelControl8.Size = New System.Drawing.Size(210, 39)
         Me.PanelControl8.TabIndex = 8930
@@ -814,7 +822,7 @@ Partial Class FormMailManage
         Me.BtnAlreadyProcessed.Appearance.Options.UseBackColor = True
         Me.BtnAlreadyProcessed.Appearance.Options.UseFont = True
         Me.BtnAlreadyProcessed.Appearance.Options.UseForeColor = True
-        Me.BtnAlreadyProcessed.Location = New System.Drawing.Point(304, 11)
+        Me.BtnAlreadyProcessed.Location = New System.Drawing.Point(551, 11)
         Me.BtnAlreadyProcessed.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnAlreadyProcessed.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnAlreadyProcessed.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -832,7 +840,7 @@ Partial Class FormMailManage
         Me.BtnPending.Appearance.Options.UseBackColor = True
         Me.BtnPending.Appearance.Options.UseFont = True
         Me.BtnPending.Appearance.Options.UseForeColor = True
-        Me.BtnPending.Location = New System.Drawing.Point(226, 11)
+        Me.BtnPending.Location = New System.Drawing.Point(473, 11)
         Me.BtnPending.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnPending.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnPending.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -847,6 +855,7 @@ Partial Class FormMailManage
         Me.SLEStoreGroup.Location = New System.Drawing.Point(78, 11)
         Me.SLEStoreGroup.Name = "SLEStoreGroup"
         Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreGroup.Properties.ShowClearButton = False
         Me.SLEStoreGroup.Properties.View = Me.GridView3
         Me.SLEStoreGroup.Size = New System.Drawing.Size(145, 20)
         Me.SLEStoreGroup.TabIndex = 8923
@@ -1477,11 +1486,49 @@ Partial Class FormMailManage
         Me.LabelControl2.TabIndex = 8922
         Me.LabelControl2.Text = "Store Group"
         '
+        'SLEStoreCompany
+        '
+        Me.SLEStoreCompany.Location = New System.Drawing.Point(225, 11)
+        Me.SLEStoreCompany.Name = "SLEStoreCompany"
+        Me.SLEStoreCompany.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreCompany.Properties.ShowClearButton = False
+        Me.SLEStoreCompany.Properties.View = Me.GridView4
+        Me.SLEStoreCompany.Size = New System.Drawing.Size(242, 20)
+        Me.SLEStoreCompany.TabIndex = 8931
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group_inv, Me.GridColumnid_comp_inv, Me.GridColumncomp_name_inv})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_comp_group_inv
+        '
+        Me.GridColumnid_comp_group_inv.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group_inv.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group_inv.Name = "GridColumnid_comp_group_inv"
+        '
+        'GridColumnid_comp_inv
+        '
+        Me.GridColumnid_comp_inv.Caption = "id_comp"
+        Me.GridColumnid_comp_inv.FieldName = "id_comp"
+        Me.GridColumnid_comp_inv.Name = "GridColumnid_comp_inv"
+        '
+        'GridColumncomp_name_inv
+        '
+        Me.GridColumncomp_name_inv.Caption = "Store Company"
+        Me.GridColumncomp_name_inv.FieldName = "comp_name"
+        Me.GridColumncomp_name_inv.Name = "GridColumncomp_name_inv"
+        Me.GridColumncomp_name_inv.Visible = True
+        Me.GridColumncomp_name_inv.VisibleIndex = 0
+        '
         'FormMailManage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(927, 443)
+        Me.ClientSize = New System.Drawing.Size(1055, 520)
         Me.Controls.Add(Me.XTCMailManage)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -1538,6 +1585,8 @@ Partial Class FormMailManage
         Me.PanelControl9.ResumeLayout(False)
         CType(Me.SLEStoreGroupUnpaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1671,4 +1720,9 @@ Partial Class FormMailManage
     Friend WithEvents GridColumnmail_statusinv As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMSUnpaid As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents SLEStoreCompany As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_comp_group_inv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_comp_inv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_name_inv As DevExpress.XtraGrid.Columns.GridColumn
 End Class
