@@ -866,6 +866,8 @@
             WHERE cgroup.id_comp_group = " + SLEGroup.EditValue.ToString + " AND cgroup.id_comp IS NOT NULL
         "
         viewSearchLookupQuery(SLEStoreCompany, query, "id_comp", "comp_name", "id_comp")
+        Dim tmp_comp As String = execute_query("SELECT IFNULL(id_comp, 0) AS id_comp FROM tb_m_comp_group WHERE id_comp_group = " + SLEGroup.EditValue.ToString, 0, True, "", "", "", "")
+        SLEStoreCompany.EditValue = tmp_comp
     End Sub
 
     Private Sub BRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BRefresh.Click
