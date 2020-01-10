@@ -364,7 +364,7 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
             warningCustom("Invoice number duplicate")
         ElseIf is_not_mapping Then
             warningCustom("This vendor AP account is not set.")
-        ElseIf is_cur_ok Then
+        ElseIf Not is_cur_ok Then
             warningCustom("Make sure currency and kurs is same")
         Else
             If id_invoice = "-1" Then
