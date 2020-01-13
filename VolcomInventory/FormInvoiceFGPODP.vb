@@ -216,6 +216,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=id_acc_ap
 WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
             Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
             If dh.Rows.Count > 0 Then
+                'total
                 If TETotal.EditValue > 0 Then
                     Dim newRowh As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
                     newRowh("no") = jum_row
@@ -225,7 +226,7 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
                     newRowh("report_number") = ""
                     newRowh("note") = MENote.Text
                     newRowh("debit") = 0
-                    newRowh("credit") = TETotal.EditValue
+                    newRowh("credit") = TETotal.EditValue + TEVat.EditValue
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
                     GCDraft.RefreshDataSource()
                     GVDraft.RefreshData()
@@ -263,6 +264,23 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
                         GVDraft.RefreshData()
                     End If
                 Next
+                'vat
+                If TEVat.EditValue > 0 Then
+                    Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                    newRowvat("no") = jum_row
+                    newRowvat("acc_name") = get_acc(SLEVatAcc.EditValue, "1")
+                    newRowvat("acc_description") = SLEVatAcc.Text
+                    newRowvat("cc") = "000"
+                    newRowvat("report_number") = ""
+                    newRowvat("note") = MENote.Text
+                    newRowvat("debit") = TEVat.EditValue
+                    newRowvat("credit") = 0
+                    TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+                End If
+                '
+                GCDraft.RefreshDataSource()
+                GVDraft.RefreshData()
+
                 GVDraft.BestFitColumns()
             Else
                 MsgBox(SLEVendor.Text & " DP/AP account is not set")
