@@ -333,6 +333,12 @@
     <Compile Include="FormBankWithdrawalAdd.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankWithdrawalAttachement.Designer.vb">
+      <DependentUpon>FormBankWithdrawalAttachement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalAttachement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCompanyEmailMapping.Designer.vb">
       <DependentUpon>FormCompanyEmailMapping.vb</DependentUpon>
     </Compile>
@@ -7691,6 +7697,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalAdd.resx">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalAttachement.resx">
+      <DependentUpon>FormBankWithdrawalAttachement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCompanyEmailMapping.resx">
       <DependentUpon>FormCompanyEmailMapping.vb</DependentUpon>
