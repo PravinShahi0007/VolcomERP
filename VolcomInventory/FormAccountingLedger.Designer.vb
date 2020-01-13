@@ -54,6 +54,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -269,9 +270,42 @@ Partial Class FormAccountingLedger
         '
         'GVAccountingLedger
         '
-        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn16, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21})
+        Me.GVAccountingLedger.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVAccountingLedger.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVAccountingLedger.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVAccountingLedger.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVAccountingLedger.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVAccountingLedger.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVAccountingLedger.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVAccountingLedger.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVAccountingLedger.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVAccountingLedger.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVAccountingLedger.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVAccountingLedger.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVAccountingLedger.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVAccountingLedger.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVAccountingLedger.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVAccountingLedger.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVAccountingLedger.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVAccountingLedger.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVAccountingLedger.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVAccountingLedger.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVAccountingLedger.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVAccountingLedger.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVAccountingLedger.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVAccountingLedger.AppearancePrint.Row.Options.UseFont = True
+        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn16, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21})
         Me.GVAccountingLedger.GridControl = Me.GCAccountingLedger
-        Me.GVAccountingLedger.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "number", Me.GridColumn16, "")})
+        Me.GVAccountingLedger.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "number", Me.GridColumn16, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", Me.GridColumn9, "{0:N0}")})
+        Me.GVAccountingLedger.LevelIndent = 0
         Me.GVAccountingLedger.Name = "GVAccountingLedger"
         Me.GVAccountingLedger.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVAccountingLedger.OptionsBehavior.Editable = False
@@ -356,6 +390,16 @@ Partial Class FormAccountingLedger
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
         '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Qty"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "qty"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 7
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Debit"
@@ -365,7 +409,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N0}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 8
         '
         'GridColumn8
         '
@@ -376,7 +420,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N0}")})
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.VisibleIndex = 9
         '
         'GridColumn9
         '
@@ -385,8 +429,9 @@ Partial Class FormAccountingLedger
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "balance"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", "{0:N0}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.VisibleIndex = 10
         '
         'GridColumn21
         '
@@ -461,4 +506,5 @@ Partial Class FormAccountingLedger
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
