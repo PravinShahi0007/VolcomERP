@@ -7899,6 +7899,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 Then
                 print_raw(FormFollowUpAR.GCActive, "")
             End If
+        ElseIf formName = "FormAccountingWorksheet" Then
+            FormAccountingWorksheet.print_form()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8741,6 +8743,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf FormName = "FormFollowUpAR" Then
             FormFollowUpAR.Close()
             FormFollowUpAR.Dispose()
+        ElseIf formName = "FormAccountingWorksheet" Then
+            FormAccountingWorksheet.Close()
+            FormAccountingWorksheet.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9630,6 +9635,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormAccountingLedger" Then
             FormAccountingLedger.view_form()
+        ElseIf formName = "FormAccountingWorksheet" Then
+            FormAccountingWorksheet.view_form()
         End If
     End Sub
     'Switch
@@ -14070,6 +14077,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAPReport.Show()
             FormAPReport.WindowState = FormWindowState.Maximized
             FormAPReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAccountingWorksheet_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAccountingWorksheet.LinkClicked
+        Try
+            FormAccountingWorksheet.MdiParent = Me
+            FormAccountingWorksheet.Show()
+            FormAccountingWorksheet.WindowState = FormWindowState.Maximized
+            FormAccountingWorksheet.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
