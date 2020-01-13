@@ -66,6 +66,24 @@
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+        'last balance
+        data.Columns.Add("last_balance", GetType(Long))
+
+        Dim last_acc As String = data.Rows(0)("acc_name").ToString
+
+        For i = 0 To data.Rows.Count - 1
+            If Not last_acc = data.Rows(i)("acc_name").ToString Then
+                data.Rows(i - 1)("last_balance") = data.Rows(i - 1)("balance")
+            End If
+
+            last_acc = data.Rows(i)("acc_name").ToString
+
+            'last loop
+            If i = data.Rows.Count - 1 Then
+                data.Rows(i)("last_balance") = data.Rows(i)("balance")
+            End If
+        Next
+
         'parent
         Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc"
 
@@ -134,7 +152,16 @@
     End Sub
 
     Sub print_form()
+        Dim report As ReportAccountingLedger = New ReportAccountingLedger
 
+        report.data = GCAccountingLedger.DataSource
+
+        report.XLPeriod.Text = DEFrom.Text + " - " + DETo.Text
+        report.XLAccount.Text = SLUEFrom.Text + " - " + SLUETo.Text
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreview()
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
