@@ -14,6 +14,7 @@
         view_acc_category(LEAccCat)
         view_active(LEActive)
         view_is_det(LEDetail)
+        view_dc(LEType)
 
         If id_acc = "-1" Then
             'new
@@ -43,12 +44,14 @@
             LEAccCat.ItemIndex = LEAccCat.Properties.GetDataSourceRowIndex("id_acc_cat", data.Rows(0)("id_acc_cat").ToString)
             LEActive.ItemIndex = LEActive.Properties.GetDataSourceRowIndex("id_status", data.Rows(0)("id_status").ToString)
             LEDetail.ItemIndex = LEDetail.Properties.GetDataSourceRowIndex("id_is_det", data.Rows(0)("id_is_det").ToString)
+            LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_dc", data.Rows(0)("id_dc").ToString)
             MEAccDesc.Text = data.Rows(0)("acc_description").ToString
 
             SLEParentAccount.Properties.ReadOnly = True
             LEAccCat.Properties.ReadOnly = True
             MEAccDesc.Properties.ReadOnly = True
             LEDetail.Properties.ReadOnly = True
+            LEType.Properties.ReadOnly = True
         End If
     End Sub
 
@@ -82,6 +85,16 @@
 
         lookup.Properties.DisplayMember = "is_det"
         lookup.Properties.ValueMember = "id_is_det"
+        lookup.ItemIndex = 0
+    End Sub
+    Private Sub view_dc(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
+        Dim query As String = "SELECT id_dc,dc FROM tb_lookup_dc"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        lookup.Properties.DataSource = data
+
+        lookup.Properties.DisplayMember = "dc"
+        lookup.Properties.ValueMember = "id_dc"
         lookup.ItemIndex = 0
     End Sub
 
@@ -123,9 +136,9 @@
             If id_acc = "-1" Then
                 'new
                 If SLEParentAccount.EditValue = "-1" Then
-                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status) VALUES('{0}','{1}','{2}','{3}','{4}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString)
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString)
                 Else
-                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status) VALUES('{0}','{1}','{2}','{3}','{4}','{5}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString)
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6});SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString)
                 End If
 
                 id_acc = execute_query(query, 0, True, "", "", "", "")
@@ -139,7 +152,7 @@
                 Close()
             Else
                 'edit
-                query = String.Format("UPDATE tb_a_acc SET acc_description='{0}',id_acc_cat='{1}',id_is_det='{2}',id_status='{3}' WHERE id_acc='{4}'", MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, id_acc)
+                query = String.Format("UPDATE tb_a_acc SET acc_description='{0}',id_acc_cat='{1}',id_is_det='{2}',id_status='{3}',id_dc='{5}' WHERE id_acc='{4}'", MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, id_acc, LEType.EditValue.ToString)
                 execute_non_query(query, True, "", "", "", "")
                 FormAccounting.view_acc()
                 FormAccounting.CreateNodes(FormAccounting.TreeList1)
