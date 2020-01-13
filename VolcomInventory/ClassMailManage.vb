@@ -80,7 +80,7 @@
         INSERT INTO tb_mail_manage_det(id_mail_manage, report_mark_type, id_report, report_number, id_report_ref, report_mark_type_ref, report_number_ref) "
         If rmt = "227" Then 'email peringatan
             If typ = "1" Then
-                'regular
+                'regular process
                 query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, sp.report_mark_type, sp.id_sales_pos, sp.sales_pos_number, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
                 FROM tb_sales_pos sp
                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
