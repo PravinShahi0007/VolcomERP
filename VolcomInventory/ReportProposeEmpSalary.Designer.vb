@@ -35,6 +35,7 @@ Partial Public Class ReportProposeEmpSalary
         Me.GCLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCLengthOfWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCBasicSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCJobAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -95,7 +96,6 @@ Partial Public Class ReportProposeEmpSalary
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.GCLengthOfWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITESalary, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -299,6 +299,14 @@ Partial Public Class ReportProposeEmpSalary
         Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
         Me.GCEmployeeStatus.Visible = True
         Me.GCEmployeeStatus.Width = 90
+        '
+        'GCLengthOfWork
+        '
+        Me.GCLengthOfWork.Caption = "Length of Work"
+        Me.GCLengthOfWork.FieldName = "length_work"
+        Me.GCLengthOfWork.Name = "GCLengthOfWork"
+        Me.GCLengthOfWork.OptionsColumn.AllowEdit = False
+        Me.GCLengthOfWork.Visible = True
         '
         'GBSalaryCurrent
         '
@@ -951,14 +959,6 @@ Partial Public Class ReportProposeEmpSalary
         Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
-        '
-        'GCLengthOfWork
-        '
-        Me.GCLengthOfWork.Caption = "Length of Work (Year)"
-        Me.GCLengthOfWork.FieldName = "length_work"
-        Me.GCLengthOfWork.Name = "GCLengthOfWork"
-        Me.GCLengthOfWork.OptionsColumn.AllowEdit = False
-        Me.GCLengthOfWork.Visible = True
         '
         'ReportProposeEmpSalary
         '

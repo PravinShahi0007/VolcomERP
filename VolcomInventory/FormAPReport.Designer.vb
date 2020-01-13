@@ -188,7 +188,7 @@ Partial Class FormAPReport
         '
         'GridBandInvoice
         '
-        Me.GridBandInvoice.Caption = "BPL"
+        Me.GridBandInvoice.Caption = "Refference"
         Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_number)
         Me.GridBandInvoice.Columns.Add(Me.GridColumncomp)
         Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_date)
@@ -199,8 +199,8 @@ Partial Class FormAPReport
         '
         'GridColumnsales_pos_number
         '
-        Me.GridColumnsales_pos_number.Caption = "BPL No."
-        Me.GridColumnsales_pos_number.FieldName = "sales_pos_number"
+        Me.GridColumnsales_pos_number.Caption = "Report No."
+        Me.GridColumnsales_pos_number.FieldName = "report_number"
         Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
         Me.GridColumnsales_pos_number.Visible = True
         '
@@ -216,7 +216,7 @@ Partial Class FormAPReport
         Me.GridColumnsales_pos_date.Caption = "Created Date"
         Me.GridColumnsales_pos_date.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnsales_pos_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsales_pos_date.FieldName = "sales_pos_date"
+        Me.GridColumnsales_pos_date.FieldName = "created_date"
         Me.GridColumnsales_pos_date.Name = "GridColumnsales_pos_date"
         Me.GridColumnsales_pos_date.Visible = True
         '
@@ -225,7 +225,7 @@ Partial Class FormAPReport
         Me.GridColumnsales_pos_due_date.Caption = "Due Date"
         Me.GridColumnsales_pos_due_date.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnsales_pos_due_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsales_pos_due_date.FieldName = "sales_pos_due_date"
+        Me.GridColumnsales_pos_due_date.FieldName = "due_date"
         Me.GridColumnsales_pos_due_date.Name = "GridColumnsales_pos_due_date"
         Me.GridColumnsales_pos_due_date.Visible = True
         '
@@ -342,7 +342,7 @@ Partial Class FormAPReport
         'GridColumnrec_payment_status
         '
         Me.GridColumnrec_payment_status.Caption = "Status"
-        Me.GridColumnrec_payment_status.FieldName = "rec_payment_status"
+        Me.GridColumnrec_payment_status.FieldName = "payment_status"
         Me.GridColumnrec_payment_status.Name = "GridColumnrec_payment_status"
         Me.GridColumnrec_payment_status.Visible = True
         '
