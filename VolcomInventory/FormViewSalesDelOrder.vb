@@ -21,6 +21,7 @@
     Public sample_check As String
     Public qty_pl As Decimal
     Public allow_sum As Decimal
+    Dim id_combine As String = "-1"
 
     Private Sub FormViewSalesOrder_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -50,7 +51,7 @@
         'query view based on edit id's
         Dim query As String = "SELECT b.id_so_status, b.id_sales_order, a.id_store_contact_to, a.id_comp_contact_from, d.id_commerce_type, (d.comp_name) AS store_name_to, (d1.comp_name) AS comp_name_from, (d.comp_number) AS store_number_to, (d1.comp_number) AS comp_number_from, (d.address_primary) AS store_address_to, a.id_report_status, f.report_status, "
         query += "a.pl_sales_order_del_note, a.pl_sales_order_del_date, a.pl_sales_order_del_number, b.sales_order_number, b.sales_order_ol_shop_number, "
-        query += "DATE_FORMAT(a.pl_sales_order_del_date,'%Y-%m-%d') AS pl_sales_order_del_datex, b.id_so_type, IFNULL(ac.combine_number,'-') AS `combine_number` "
+        query += "DATE_FORMAT(a.pl_sales_order_del_date,'%Y-%m-%d') AS pl_sales_order_del_datex, b.id_so_type, IFNULL(a.id_combine,0) AS `id_combine`,IFNULL(ac.combine_number,'-') AS `combine_number` "
         query += "FROM tb_pl_sales_order_del a "
         query += "LEFT JOIN tb_pl_sales_order_del_combine ac ON ac.id_combine = a.id_combine "
         query += "INNER JOIN tb_sales_order b ON a.id_sales_order = b.id_sales_order "
@@ -81,6 +82,7 @@
         id_sales_order = data.Rows(0)("id_sales_order").ToString
         TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
         TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
+        id_combine = data.Rows(0)("id_combine").ToString
         id_commerce_type = data.Rows(0)("id_commerce_type").ToString
 
         'detail2
@@ -305,6 +307,9 @@
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
+        If id_combine <> "0" And (id_report_status = "1" Or id_report_status = "3") Then
+            FormReportMark.GCMark.Enabled = False
+        End If
         FormReportMark.is_view_finalize = "1"
         FormReportMark.id_report = id_pl_sales_order_del
         FormReportMark.report_mark_type = "43"
