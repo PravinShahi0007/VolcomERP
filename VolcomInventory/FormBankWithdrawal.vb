@@ -23,6 +23,8 @@
     End Sub
 
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TEKurs.EditValue = 1.0
+        '
         load_vendor()
         load_trans_type()
         load_status_payment()
@@ -130,7 +132,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
             BCreatePaymentFGPO.Visible = False
         End If
 
-        Dim query As String = "CALL view_payment_fgpo('" & where_string & "')"
+        Dim query As String = "CALL view_payment_fgpo('" & where_string & "'," & decimalSQL(TEKurs.EditValue.ToString).ToString & ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCFGPO.DataSource = data
@@ -158,22 +160,30 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 
         id_pay_type_po = SLEPayType.EditValue.ToString
 
-        If SLEStatusPayment.EditValue.ToString = "0" Then 'open include overdue and only dp
-            where_string += " AND po.is_close_pay=2 "
-            BCreatePO.Visible = True
-        ElseIf SLEStatusPayment.EditValue.ToString = "1" Then 'paid
-            where_string += " AND po.is_close_pay=1 "
+        If XTPPOList.SelectedTabPageIndex = 0 Then
+            If SLEStatusPayment.EditValue.ToString = "0" Then 'open include overdue and only dp
+                where_string += " AND po.is_close_pay=2 "
+                BCreatePO.Visible = True
+            ElseIf SLEStatusPayment.EditValue.ToString = "1" Then 'paid
+                where_string += " AND po.is_close_pay=1 "
+                BCreatePO.Visible = False
+            ElseIf SLEStatusPayment.EditValue.ToString = "2" Then 'overdue
+                where_string += " AND po.due_date < DATE(NOW()) AND po.is_close_pay=2 "
+                BCreatePO.Visible = True
+            ElseIf SLEStatusPayment.EditValue.ToString = "3" Then 'overdue H-7
+                where_string += " AND DATE_SUB(po.due_date, INTERVAL 7 DAY) < DATE(NOW()) AND po.is_close_pay=2 "
+                BCreatePO.Visible = True
+            End If
+        End If
+
+        If XTPPOList.SelectedTabPageIndex = 1 Then
             BCreatePO.Visible = False
-        ElseIf SLEStatusPayment.EditValue.ToString = "2" Then 'overdue
-            where_string += " AND po.pay_due_date < DATE(NOW()) AND po.is_close_pay=2 "
-            BCreatePO.Visible = True
-        ElseIf SLEStatusPayment.EditValue.ToString = "3" Then 'overdue H-7
-            where_string += " AND DATE_SUB(po.pay_due_date, INTERVAL 7 DAY) < DATE(NOW()) AND po.is_close_pay=2 "
+        Else
             BCreatePO.Visible = True
         End If
 
         Dim query As String = "SELECT 'no' AS is_check
-,po.report_mark_type,po.is_close_pay,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
+,po.report_mark_type,po.is_close_pay,po.pay_due_date,po.due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
 ,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
 ,SUM(pod.qty*(pod.value-pod.discount))-po.disc_value AS amo_po
 ,po.vat_value AS amo_vat
@@ -186,7 +196,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 	,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value))-IFNULL(payment.value,0) AS total_due
 ,IFNULL(payment_dp.value,0) as total_dp
 ,IFNULL(payment_pending.jml,0) as total_pending
-,DATEDIFF(po.`pay_due_date`,NOW()) AS due_days
+,DATEDIFF(po.`due_date`,NOW()) AS due_days
 ,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
 ,po.report_mark_type
 " & q_acc & "
@@ -224,13 +234,28 @@ LEFT JOIN
 	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report
 )payment_pending ON payment_pending.id_report=po.id_purc_order
-WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCPOList.DataSource = data
-        GVPOList.BestFitColumns()
+WHERE 1=1 " & where_string & " {query_active} GROUP BY po.id_purc_order " & having_string
+
+        If XTPPOList.SelectedTabPageIndex = 0 Then
+            'active
+            query = query.Replace("{query_active}", "AND po.is_active_payment = 1")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCPOList.DataSource = data
+            GVPOList.BestFitColumns()
+        Else
+            'non active
+            query = query.Replace("{query_active}", "AND po.is_active_payment = 2")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCPOListNonActive.DataSource = data
+            GVPOListNonActive.BestFitColumns()
+        End If
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        buttonView_click()
+    End Sub
+
+    Sub buttonView_click()
         Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp
 WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
@@ -466,6 +491,42 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         If Not SLEVendorPayment.EditValue.ToString = "0" Then
             FormBankWithdrawalDet.report_mark_type = "159"
             FormBankWithdrawalDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItemAdd_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemAdd.Click
+        FormBankWithdrawalAttachement.id_purc_order = GVPOListNonActive.GetFocusedRowCellValue("id_purc_order").ToString
+        FormBankWithdrawalAttachement.ShowDialog()
+    End Sub
+
+    Private Sub RICEAttachment_Click(sender As Object, e As EventArgs) Handles RICEAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        FormDocumentUpload.is_no_delete = "-1"
+        FormDocumentUpload.is_view = "1"
+        FormDocumentUpload.id_report = GVPOList.GetFocusedRowCellValue("id_purc_order").ToString
+        FormDocumentUpload.report_mark_type = "235"
+
+        FormDocumentUpload.ShowDialog()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTPPOList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTPPOList.SelectedPageChanged
+        If XTPPOList.SelectedTabPageIndex = 1 Then
+            LabelControl5.Visible = False
+            SLEStatusPayment.Visible = False
+
+            BView.Location = New Point(438, 9)
+
+            BCreatePO.Visible = False
+        Else
+            LabelControl5.Visible = True
+            SLEStatusPayment.Visible = True
+
+            BCreatePO.Visible = True
+
+            BView.Location = New Point(649, 9)
         End If
     End Sub
 End Class

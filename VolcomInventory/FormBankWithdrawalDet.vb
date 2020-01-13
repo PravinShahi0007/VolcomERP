@@ -10,6 +10,7 @@
     End Sub
 
     Sub form_load()
+        TEKurs.EditValue = 1.0
         TETotal.EditValue = 0.00
         DEDateCreated.EditValue = Now
         TEPayNumber.Text = "[Auto generate]"
@@ -115,6 +116,7 @@
                 SLEVendor.EditValue = id_comp_contact
                 SLEReportType.EditValue = report_mark_type
                 SLEPayType.Visible = False
+                Dim selisih_kurs As Decimal = 0.00
                 'load detail
                 For i As Integer = 0 To FormBankWithdrawal.GVFGPO.RowCount - 1
                     'id_report, number, total, balance due
@@ -136,7 +138,49 @@
                     newRow("balance_due") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
                     newRow("note") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_name").ToString
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    If FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_paid") = 0 Then
+                        selisih_kurs += FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total") - FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_bpl")
+                    End If
                 Next
+                'selisih kurs
+                If Not selisih_kurs = 0 Then
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = 0
+                    newRow("report_mark_type") = 0
+                    Dim q_acc As String = ""
+                    If selisih_kurs > 0 Then
+                        'kerugian kurs
+                        q_acc = "SELECT id_acc,acc_name,acc_description FROM tb_a_acc WHERE id_acc=(SELECT id_acc_rugi_kurs FROM tb_opt_accounting LIMIT 1)"
+                    Else
+                        'keuntungan kurs
+                        q_acc = "SELECT id_acc,acc_name,acc_description FROM tb_a_acc WHERE id_acc=(SELECT id_acc_untung_kurs FROM tb_opt_accounting LIMIT 1)"
+                    End If
+                    Dim dt_acc As DataTable = execute_query(q_acc, -1, True, "", "", "", "")
+
+                    newRow("id_acc") = dt_acc.Rows(0)("id_acc").ToString
+                    newRow("acc_name") = dt_acc.Rows(0)("acc_name").ToString
+                    newRow("acc_description") = dt_acc.Rows(0)("acc_description").ToString
+                    newRow("note") = dt_acc.Rows(0)("acc_description").ToString
+
+                    newRow("vendor") = FormBankWithdrawal.GVFGPO.GetRowCellValue(0, "comp_number").ToString
+
+                    newRow("id_comp") = FormBankWithdrawal.GVFGPO.GetRowCellValue(0, "id_comp_default").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVFGPO.GetRowCellValue(0, "comp_number_default").ToString
+                    newRow("total_pay") = 0
+                    newRow("value") = selisih_kurs
+                    newRow("value_view") = selisih_kurs
+                    If selisih_kurs > 0 Then 'kerugian kurs
+                        newRow("id_dc") = 1
+                        newRow("dc_code") = "D"
+                        newRow("balance_due") = selisih_kurs
+                    Else 'keuntungan kurs
+                        newRow("id_dc") = 2
+                        newRow("dc_code") = "K"
+                        newRow("balance_due") = -selisih_kurs
+                    End If
+
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                End If
                 calculate_amount()
             End If
         Else
@@ -152,6 +196,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 TEPayNumber.Text = data.Rows(0)("number").ToString
+                TEKurs.EditValue = data.Rows(0)("kurs")
                 report_mark_type = data.Rows(0)("report_mark_type").ToString
                 SLEVendor.EditValue = data.Rows(0)("id_comp_contact").ToString
                 SLEPayType.EditValue = data.Rows(0)("id_pay_type").ToString
@@ -392,8 +437,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 warningCustom("You pay more than balance due.")
             Else
                 'header
-                Dim query As String = "INSERT INTO tb_pn(report_mark_type,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 
-VALUES('" & report_mark_type & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 
+VALUES('" & report_mark_type & "','" & Decimal.Parse(TEKurs.EditValue.ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
                 id_payment = execute_query(query, 0, True, "", "", "", "")
                 'detail
                 query = "INSERT INTO tb_pn_det(id_pn,id_report,report_mark_type,number,vendor,id_comp,id_acc,id_dc,total_pay,value,balance_due,note) VALUES"
@@ -493,5 +538,52 @@ VALUES('" & report_mark_type & "','" & SLEPayFrom.EditValue.ToString & "','" & S
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub BGenerateSelisihKurs_Click(sender As Object, e As EventArgs)
+        Dim id_pn As String = ""
+        For i As Integer = 0 To GVList.RowCount - 1
+            If GVList.GetRowCellValue(i, "report_mark_type").ToString = "189" Then
+                If Not i = 0 Then
+                    id_pn = ","
+                End If
+                id_pn += GVList.GetRowCellValue(i, "id_report").ToString
+            End If
+        Next
+
+        Dim query As String = ""
+
+        'Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+        'newRow("id_report") = "0"
+        'newRow("report_mark_type") = "0"
+
+        'newRow("id_acc") = SLECOA.EditValue.ToString
+        'newRow("vendor") = TxtSupplier.Text
+
+        'newRow("id_comp") = "1"
+        'newRow("comp_number") = "000"
+
+        'newRow("acc_name") = TxtCOA.Text
+        'newRow("acc_description") = SLECOA.Text
+        'newRow("number") = addSlashes(TxtReff.Text)
+        'newRow("total_pay") = 0
+
+        'If LEDK.EditValue.ToString = "2" Then
+        '    newRow("value") = TxtAmount.EditValue * -1
+        '    newRow("balance_due") = TxtAmount.EditValue * -1
+        'Else
+        '    newRow("value") = TxtAmount.EditValue
+        '    newRow("balance_due") = TxtAmount.EditValue
+        'End If
+
+        'newRow("note") = addSlashes(TxtDescription.Text)
+        'newRow("id_dc") = LEDK.EditValue.ToString
+        'newRow("dc_code") = LEDK.Text
+        'newRow("value_view") = TxtAmount.EditValue
+        'TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable).Rows.Add(newRow)
+        'FormBankWithdrawalDet.GCList.RefreshDataSource()
+        'FormBankWithdrawalDet.GVList.RefreshData()
+        'FormBankWithdrawalDet.calculate_amount()
+        'actionLoad()
     End Sub
 End Class

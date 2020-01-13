@@ -303,9 +303,17 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         'check
         Dim is_ok As Boolean = True
+        'check currency and kurs
+        Dim is_cur_ok As Boolean = True
+
         For i = 0 To GVList.RowCount - 1
             If GVList.GetRowCellValue(i, "inv_number").ToString = "" Or GVList.GetRowCellValue(i, "id_currency").ToString = "" Or GVList.GetRowCellValue(i, "id_acc").ToString = "" Then
                 is_ok = False
+                Exit For
+            End If
+            If Not GVList.GetRowCellValue(i, "id_currency").ToString = GVList.GetRowCellValue(0, "id_currency").ToString Or Not GVList.GetRowCellValue(i, "kurs").ToString = GVList.GetRowCellValue(0, "kurs").ToString Then
+                is_cur_ok = False
+                Exit For
             End If
         Next
 
@@ -356,6 +364,8 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
             warningCustom("Invoice number duplicate")
         ElseIf is_not_mapping Then
             warningCustom("This vendor AP account is not set.")
+        ElseIf Not is_cur_ok Then
+            warningCustom("Make sure currency and kurs is same")
         Else
             If id_invoice = "-1" Then
                 'header
@@ -457,8 +467,15 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
         Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
         '
         newRow("qty") = 1
-        newRow("id_currency") = 1
-        newRow("kurs") = 1
+
+        If GVList.RowCount >= 1 Then
+            newRow("id_currency") = GVList.GetRowCellValue(0, "id_currency")
+            newRow("kurs") = GVList.GetRowCellValue(0, "kurs")
+        Else
+            newRow("id_currency") = 1
+            newRow("kurs") = 1
+        End If
+
         newRow("value_bef_kurs") = 0
         '
         newRow("vat") = 0
