@@ -1802,6 +1802,19 @@ Module Common
 
         Return result
     End Function
+    'get acc detail
+    Function get_acc(ByVal id_acc As String, ByVal opt As String)
+        Dim result As String = ""
+        Dim query As String = ""
+
+        If opt = "1" Then
+            'acc name
+            query = "SELECT acc_name FROM tb_a_acc WHERE id_acc='" & id_acc & "'"
+            result = execute_query(query, 0, True, "", "", "", "")
+        End If
+
+        Return result
+    End Function
     'company xx
     Function get_company_x(ByVal id_comp As String, ByVal opt As String)
         Dim result As String = ""

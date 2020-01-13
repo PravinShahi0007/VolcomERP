@@ -36,6 +36,7 @@ Public Class FormSalesDelOrderDet
     Dim id_store_type As String = "-1"
     Dim is_use_unique_code As String = "-1"
     Dim action_scan_btn As String = ""
+    Dim id_combine As String = "-1"
 
 
     Private Sub FormSalesDelOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -113,6 +114,7 @@ Public Class FormSalesDelOrderDet
             id_sales_order = data.Rows(0)("id_sales_order").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
             TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
+            id_combine = data.Rows(0)("id_combine").ToString
             is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
             id_comp_group = data.Rows(0)("id_comp_group").ToString
             id_commerce_type = data.Rows(0)("id_commerce_type").ToString
@@ -842,6 +844,9 @@ Public Class FormSalesDelOrderDet
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
+        If id_combine <> "0" And (id_report_status = "1" Or id_report_status = "3") Then
+            FormReportMark.GCMark.Enabled = False
+        End If
         FormReportMark.id_report = id_pl_sales_order_del
         FormReportMark.report_mark_type = "43"
         FormReportMark.form_origin = Name

@@ -95,7 +95,7 @@
             SELECT ccontact.id_comp_contact, comp.comp_name, ccontact.contact_person, ccontact.position, ccontact.email, CONCAT(comp.comp_name, ' | ', ccontact.contact_person, ' | ', IFNULL(ccontact.position, '-'), ' | ', IFNULL(ccontact.email, '-')) AS description 
             FROM tb_m_comp_group_other AS cother
             LEFT JOIN tb_m_comp AS comp ON cother.id_comp = comp.id_comp
-            LEFT JOIN tb_m_comp_contact AS ccontact ON cother.id_comp = ccontact.id_comp AND ccontact.is_default = 1
+            LEFT JOIN tb_m_comp_contact AS ccontact ON cother.id_comp = ccontact.id_comp
             WHERE cother.id_comp_group = " + SLUEName.EditValue.ToString + "
 
         ", "id_comp_contact", "description", "id_comp_contact")

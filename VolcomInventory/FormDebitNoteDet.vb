@@ -8,6 +8,7 @@
     Sub load_form()
         DERefDate.EditValue = Now
         DEDueDate.EditValue = Now
+        DEDueDateInv.EditValue = Now
 
         view_status()
         load_header()
@@ -119,6 +120,7 @@
             BtnPrint.Visible = False
             DEDueDate.Properties.ReadOnly = False
             DERefDate.Properties.ReadOnly = False
+            DEDueDateInv.Properties.ReadOnly = False
         Else 'edit
             BtnSave.Visible = False
             BMark.Visible = True
@@ -126,6 +128,7 @@
             '
             DEDueDate.Properties.ReadOnly = True
             DERefDate.Properties.ReadOnly = True
+            DEDueDateInv.Properties.ReadOnly = True
         End If
 
         If is_view = "1" Then
@@ -147,7 +150,7 @@
     End Sub
 
     Sub load_header()
-        Dim query As String = "SELECT dn.`id_debit_note`,dn.due_date,dn.ref_date,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,dn.id_report_status,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
+        Dim query As String = "SELECT dn.`id_debit_note`,dn.due_date,dn.due_date_inv,dn.ref_date,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,dn.id_report_status,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
 INNER JOIN tb_m_comp comp ON comp.`id_comp`=dn.`id_comp`
 INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -163,6 +166,7 @@ WHERE dn.id_debit_note='" & id_dn & "'"
             DECreated.Text = Date.Parse(data.Rows(0)("created_date").ToString).ToString("dd MMMM yyyy")
             DEDueDate.EditValue = data.Rows(0)("due_date")
             DERefDate.EditValue = data.Rows(0)("ref_date")
+            DEDueDateInv.EditValue = data.Rows(0)("due_date_inv")
             TENumber.Text = data.Rows(0)("number").ToString
             TECreatedBy.Text = data.Rows(0)("employee_name").ToString
             MENote.Text = data.Rows(0)("note").ToString
@@ -233,7 +237,7 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
             warningCustom("Please complete your detail input")
         Else
             If id_dn = "-1" Then 'new
-                Dim query As String = "INSERT INTO tb_debit_note(id_comp,id_dn_type,created_by,created_date,due_date,ref_date,note,id_report_status) VALUES('" & id_comp & "','" & id_dn_type & "','" & id_user & "',NOW(),'" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_debit_note(id_comp,id_dn_type,created_by,created_date,due_date,due_date_inv,ref_date,note,id_report_status) VALUES('" & id_comp & "','" & id_dn_type & "','" & id_user & "',NOW(),'" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDateInv.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
                 id_dn = execute_query(query, 0, True, "", "", "", "")
 
                 query = "CALL gen_number('" & id_dn & "','221')"

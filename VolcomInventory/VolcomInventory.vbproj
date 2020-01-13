@@ -285,6 +285,12 @@
     <Compile Include="FormAccountingLedger.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAccountingWorksheet.Designer.vb">
+      <DependentUpon>FormAccountingWorksheet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingWorksheet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAPReport.Designer.vb">
       <DependentUpon>FormAPReport.vb</DependentUpon>
     </Compile>
@@ -6432,6 +6438,12 @@
     <Compile Include="ReportAccountingLedger.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAccountingWorksheet.Designer.vb">
+      <DependentUpon>ReportAccountingWorksheet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAccountingWorksheet.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportAttnSum.Designer.vb">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </Compile>
@@ -7679,6 +7691,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingLedger.resx">
       <DependentUpon>FormAccountingLedger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingWorksheet.resx">
+      <DependentUpon>FormAccountingWorksheet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAPReport.resx">
       <DependentUpon>FormAPReport.vb</DependentUpon>
@@ -11222,6 +11237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAccountingLedger.resx">
       <DependentUpon>ReportAccountingLedger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAccountingWorksheet.resx">
+      <DependentUpon>ReportAccountingWorksheet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
