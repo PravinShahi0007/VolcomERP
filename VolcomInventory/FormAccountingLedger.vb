@@ -93,56 +93,65 @@
 
         Dim last_g As Integer = 0
 
-        'add column
-        For g = 0 To 100
-            Dim group_i As String = "group_" + g.ToString
-            Dim parent_group_i As String = "parent_group_" + g.ToString
+        'check is detail
+        Dim id_is_det As String = execute_query("SELECT id_is_det FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", 0, True, "", "", "", "")
 
-            'add column to datatable
-            data.Columns.Add(group_i, GetType(String))
-            data.Columns.Add(parent_group_i, GetType(String))
+        'single group
+        If id_is_det = "2" Then
+            GVAccountingLedger.Columns("acc_name").GroupIndex = 0
+        Else
+            'multi group
+            'add column
+            For g = 0 To 100
+                Dim group_i As String = "group_" + g.ToString
+                Dim parent_group_i As String = "parent_group_" + g.ToString
 
-            'add column to gridview
-            Dim col As DevExpress.XtraGrid.Columns.GridColumn = GVAccountingLedger.Columns.Add()
+                'add column to datatable
+                data.Columns.Add(group_i, GetType(String))
+                data.Columns.Add(parent_group_i, GetType(String))
 
-            col.Caption = "Account"
-            col.FieldName = group_i
+                'add column to gridview
+                Dim col As DevExpress.XtraGrid.Columns.GridColumn = GVAccountingLedger.Columns.Add()
 
-            For i = 0 To data.Rows.Count - 1
-                For j = 0 To data_parent.Rows.Count - 1
-                    If g = 0 Then
-                        If data.Rows(i)("id_acc_parent").ToString = data_parent.Rows(j)("id_acc").ToString Then
-                            data.Rows(i)(group_i) = data_parent.Rows(j)("acc_name").ToString + " - " + data_parent.Rows(j)("acc_description").ToString
-                            data.Rows(i)(parent_group_i) = data_parent.Rows(j)("id_acc_parent").ToString
+                col.Caption = "Account"
+                col.FieldName = group_i
 
-                            last_added = data_parent.Rows(j)("acc_name").ToString
+                For i = 0 To data.Rows.Count - 1
+                    For j = 0 To data_parent.Rows.Count - 1
+                        If g = 0 Then
+                            If data.Rows(i)("id_acc_parent").ToString = data_parent.Rows(j)("id_acc").ToString Then
+                                data.Rows(i)(group_i) = data_parent.Rows(j)("acc_name").ToString + " - " + data_parent.Rows(j)("acc_description").ToString
+                                data.Rows(i)(parent_group_i) = data_parent.Rows(j)("id_acc_parent").ToString
+
+                                last_added = data_parent.Rows(j)("acc_name").ToString
+                            End If
+                        Else
+                            If data.Rows(i)("parent_group_" + (g - 1).ToString).ToString = data_parent.Rows(j)("id_acc").ToString Then
+                                data.Rows(i)(group_i) = data_parent.Rows(j)("acc_name").ToString + " - " + data_parent.Rows(j)("acc_description").ToString
+                                data.Rows(i)(parent_group_i) = data_parent.Rows(j)("id_acc_parent").ToString
+
+                                last_added = data_parent.Rows(j)("acc_name").ToString
+                            End If
                         End If
-                    Else
-                        If data.Rows(i)("parent_group_" + (g - 1).ToString).ToString = data_parent.Rows(j)("id_acc").ToString Then
-                            data.Rows(i)(group_i) = data_parent.Rows(j)("acc_name").ToString + " - " + data_parent.Rows(j)("acc_description").ToString
-                            data.Rows(i)(parent_group_i) = data_parent.Rows(j)("id_acc_parent").ToString
-
-                            last_added = data_parent.Rows(j)("acc_name").ToString
-                        End If
-                    End If
+                    Next
                 Next
+
+                last_g = g
+
+                If SLUETo.EditValue.ToString = last_added Then
+                    Exit For
+                End If
             Next
 
-            last_g = g
+            'group index
+            For i = last_g To 0 Step -1
+                Dim group_i As String = "group_" + i.ToString
 
-            If SLUETo.EditValue.ToString = last_added Then
-                Exit For
-            End If
-        Next
+                GVAccountingLedger.Columns(group_i).GroupIndex = last_g - i
+            Next
 
-        'group index
-        For i = last_g To 0 Step -1
-            Dim group_i As String = "group_" + i.ToString
-
-            GVAccountingLedger.Columns(group_i).GroupIndex = last_g - i
-        Next
-
-        GVAccountingLedger.Columns("acc_name").GroupIndex = last_g + 1
+            GVAccountingLedger.Columns("acc_name").GroupIndex = last_g + 1
+        End If
 
         GCAccountingLedger.DataSource = data
 
@@ -155,6 +164,7 @@
         Dim report As ReportAccountingLedger = New ReportAccountingLedger
 
         report.data = GCAccountingLedger.DataSource
+        report.id_is_det = execute_query("SELECT id_is_det FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", 0, True, "", "", "", "")
 
         report.XLPeriod.Text = DEFrom.Text + " - " + DETo.Text
         report.XLAccount.Text = SLUEFrom.Text + " - " + SLUETo.Text
