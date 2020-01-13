@@ -151,7 +151,7 @@
         discardMemo()
 
         'invoice list
-        Dim query As String = "SELECT sp.id_sales_pos, sp.sales_pos_number, cg.description AS `group`,CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, sp.sales_pos_date, sp.sales_pos_due_date,
+        Dim query As String = "SELECT sp.id_sales_pos, sp.sales_pos_number, IFNULL(c.id_store_company,0) AS `id_store_company`,cg.description AS `group`,CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, sp.sales_pos_date, sp.sales_pos_due_date,
         IFNULL(sp.id_propose_delay_payment,0) AS `id_propose_delay_payment`, m.number AS `memo_number`, sp.propose_delay_payment_due_date, 
         DATEDIFF(NOW(), IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date)) AS `due_days`,
         CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`,
@@ -190,19 +190,25 @@
         End If
 
         'store group
-        Dim query_group As String = "SELECT cg.id_comp_group, cg.description AS `group`, IFNULL(cg.id_comp,0) AS `id_ho`, IFNULL(cgc.email,'') AS `email_ho`
+        Dim query_group As String = "SELECT cg.id_comp_group, cg.description AS `group`, IFNULL(c.id_store_company,0) AS `id_ho`, cho.comp_name AS `ho`, IFNULL(map.email,'') AS `email_ho`
         FROM tb_sales_pos sp
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        LEFT JOIN tb_mail_manage_mapping map ON map.id_comp_group = cg.id_comp_group AND map.report_mark_type=227
-        LEFT JOIN tb_m_comp_contact cgc ON cgc.id_comp_contact = map.id_comp_contact
+        INNER JOIN tb_m_comp cho ON cho.id_comp = c.id_store_company
+        LEFT JOIN (
+	        SELECT cgc.id_comp AS `id_store_company`,cgc.email 
+	        FROM tb_mail_manage_mapping map
+	        INNER JOIN tb_m_comp_contact cgc ON cgc.id_comp_contact = map.id_comp_contact 
+	        WHERE map.report_mark_type=227 AND map.id_mail_member_type=2
+	        GROUP BY cgc.id_comp
+        ) map ON map.id_store_company = c.id_store_company
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
         WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
         AND sp.report_mark_type!=66 AND sp.report_mark_type!=67 AND sp.report_mark_type!=118  
         AND (DATEDIFF(NOW(),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date))>0)
-        GROUP BY cg.id_comp_group
+        GROUP BY cg.id_comp_group, c.id_store_company
         ORDER BY c.id_comp_group ASC "
         Dim data_group As DataTable = execute_query(query_group, -1, True, "", "", "", "")
         GCGroupStoreList.DataSource = data_group
@@ -260,6 +266,24 @@
     End Sub
 
     Private Sub BtnCreateEvaluation_Click(sender As Object, e As EventArgs) Handles BtnCreateEvaluation.Click
+        'cek store company
+        Cursor = Cursors.WaitCursor
+        GVActiveList.ActiveFilterString = ""
+        GVActiveList.ActiveFilterString = "[id_store_company]=0"
+        Dim null_store_comp As String = ""
+        For g As Integer = 0 To GVActiveList.RowCount - 1
+            If GVActiveList.GetRowCellValue(g, "id_store_company").ToString = "0" Then
+                null_store_comp += "- " + GVActiveList.GetRowCellValue(g, "group").ToString + System.Environment.NewLine
+            End If
+        Next
+        GVActiveList.ActiveFilterString = ""
+        If null_store_comp <> "" Then
+            Cursor = Cursors.Default
+            stopCustom("Please complete store company data for this group store : " + System.Environment.NewLine + null_store_comp)
+            Exit Sub
+        End If
+        Cursor = Cursors.Default
+
         'cek email group
         Cursor = Cursors.WaitCursor
         makeSafeGV(GVGroupStoreList)
@@ -311,10 +335,11 @@
             makeSafeGV(GVGroupStoreList)
             For g As Integer = 0 To GVGroupStoreList.RowCount - 1
                 Dim id_group As String = GVGroupStoreList.GetRowCellValue(g, "id_comp_group").ToString
+                Dim id_store_company As String = GVGroupStoreList.GetRowCellValue(g, "id_ho").ToString
                 Dim group As String = addSlashes(GVGroupStoreList.GetRowCellValue(g, "group").ToString.ToUpper)
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email peringatan for " + group)
                 Try
-                    ev.sendEmailPeringatan(date_now, id_group, group)
+                    ev.sendEmailPeringatan(date_now, id_group, id_store_company, group)
                 Catch ex As Exception
                     err += "- Failed sending email peringatan for " + group + " : " + ex.ToString + System.Environment.NewLine
                 End Try

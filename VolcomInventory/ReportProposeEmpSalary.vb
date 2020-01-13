@@ -9,7 +9,7 @@
         GCEmployee.DataSource = data
 
         GCEmployeeStatus.Caption = GCEmployeeStatus.Caption.Replace(" ", Environment.NewLine)
-        GCLengthOfWork.Caption = "Length of Work" + Environment.NewLine + "(Year)"
+        GCLengthOfWork.Caption = "Length of Work"
         GCBasicSalary.Caption = GCBasicSalary.Caption.Replace(" ", Environment.NewLine)
         GCJobAllowance.Caption = GCJobAllowance.Caption.Replace(" ", Environment.NewLine)
         GCMealAllowance.Caption = GCMealAllowance.Caption.Replace(" ", Environment.NewLine)
