@@ -9628,6 +9628,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 Then
                 FormFollowUpAR.viewActive()
             End If
+        ElseIf formName = "FormAccountingLedger" Then
+            FormAccountingLedger.view_form()
         End If
     End Sub
     'Switch
