@@ -125,14 +125,17 @@
 
         'filter promo
         Dim cond_promo As String = ""
+        Dim cond_promo_trans As String = ""
         If CEPromo.EditValue = True Then
             cond_promo = ""
+            cond_promo_trans = ""
         Else
             cond_promo = "AND a.sales_pos_total>0 "
+            cond_promo_trans = "AND a.report_mark_type!=116"
         End If
 
         Dim query_c As ClassSalesInv = New ClassSalesInv()
-        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 " + cond_store + " " + cond_promo + " AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1")
+        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 " + cond_store + " " + cond_promo + " " + cond_promo_trans + " AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesPOS.DataSource = data
         dt = data
