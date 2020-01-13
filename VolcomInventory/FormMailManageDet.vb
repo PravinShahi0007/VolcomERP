@@ -30,6 +30,7 @@
             DATE_FORMAT(sp.sales_pos_due_date,'%d-%m-%y') AS `sales_pos_due_date`,
             sp.sales_pos_total_qty AS `qty_invoice`, 
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `amount`,
+            prd.period AS `period_header`,
             prd.amount AS `total_amount`,
             prd.total_qty AS `total_qty`,
             sp.report_mark_type
@@ -37,10 +38,10 @@
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
             INNER JOIN tb_m_comp_group g ON g.id_comp_group = c.id_comp_group
-            INNER JOIN tb_m_comp cg ON cg.id_comp = g.id_comp
+            INNER JOIN tb_m_comp cg ON cg.id_comp = c.id_store_company
             INNER JOIN (
 	            SELECT c.id_comp_group,
-	            GROUP_CONCAT(DISTINCT CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d %M %Y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d %M %Y')) ORDER BY sp.id_sales_pos ASC SEPARATOR ', ') AS `period`,
+	            GROUP_CONCAT(DISTINCT CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) ORDER BY sp.id_sales_pos ASC SEPARATOR ', ') AS `period`,
 	            SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS `amount`,
                 SUM(sp.sales_pos_total_qty) AS `total_qty`
 	            FROM tb_sales_pos sp
@@ -171,7 +172,7 @@
                 FROM tb_mail_manage_mapping m
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
-                WHERE m.id_comp_group='" + FormMailManage.SLEStoreGroup.EditValue.ToString + "' AND cc.email!='' AND m.report_mark_type='" + rmt + "'
+                WHERE m.id_comp_group='" + FormMailManage.SLEStoreGroup.EditValue.ToString + "' AND cc.id_comp='" + FormMailManage.SLEStoreCompany.EditValue.ToString + "' AND cc.email!='' AND m.report_mark_type='" + rmt + "'
                 ORDER BY id_mail_member_type ASC, `index` ASC "
                 Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
                 GCMember.DataSource = df
@@ -210,7 +211,7 @@
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
                 mail_head = dopt.Rows(0)("mail_head_invoice").ToString
-                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString + ddet.Rows(0)("period_header").ToString + " - " + ddet.Rows(0)("group_store").ToString
                 mail_title = dopt.Rows(0)("mail_title_invoice").ToString
                 mail_content_head = dopt.Rows(0)("mail_content_head_invoice").ToString
                 mail_content = dopt.Rows(0)("mail_content_invoice").ToString
@@ -368,7 +369,7 @@
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
                 mail_head = dopt.Rows(0)("mail_head_invoice").ToString
-                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString
+                mail_subject = dopt.Rows(0)("mail_subject_invoice").ToString + ddet.Rows(0)("period_header").ToString + " - " + ddet.Rows(0)("group_store").ToString
                 mail_title = dopt.Rows(0)("mail_title_invoice").ToString
                 mail_content_head = dopt.Rows(0)("mail_content_head_invoice").ToString
                 mail_content = dopt.Rows(0)("mail_content_invoice").ToString
@@ -439,7 +440,7 @@
                     mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
                     mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
                     mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
-                    MESubject.Text = addSlashes(mail_subject)
+                    'MESubject.Text = addSlashes(mail_subject)
                 End If
                 Dim m As New ClassSendEmail()
                 Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
@@ -733,7 +734,7 @@
             Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
             sm.dt = dtx
             sm.head = mail_head
-            sm.subj = mail_subject
+            sm.subj = addSlashes(MESubject.Text)
             sm.titl = mail_title
             sm.par1 = mail_content_head + " " + dtx.Rows(0)("group_company").ToString
             sm.par2 = mail_content
@@ -744,7 +745,7 @@
             Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
             sm.dt = dtx
             sm.head = mail_head
-            sm.subj = mail_subject
+            sm.subj = addSlashes(MESubject.Text)
             sm.titl = mail_title
             sm.par1 = mail_content_head + " " + dtx.Rows(0)("group_company").ToString
             sm.par2 = mail_content

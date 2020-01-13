@@ -6,6 +6,7 @@
     Public typ As String = "1"
     Public par1 As String = ""
     Public par2 As String = ""
+    Public par3 As String = ""
 
     Public Function queryMain(ByVal condition As String, ByVal order_type As String) As String
         If order_type = "1" Then
@@ -67,7 +68,7 @@
             query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, m.id_mail_member_type, NULL AS `id_user`, m.id_comp_contact, cc.email AS `mail_address`
             FROM tb_mail_manage_mapping m
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
-            WHERE m.report_mark_type=" + rmt + " AND m.id_comp_group=" + par2 + "
+            WHERE m.report_mark_type=" + rmt + " AND m.id_comp_group=" + par2 + " AND cc.id_comp = " + par3 + "
             UNION "
         End If
         query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, m.id_mail_member_type, m.id_user, NULL AS `id_comp_contact`, e.email_external AS `mail_address`
@@ -79,7 +80,7 @@
         INSERT INTO tb_mail_manage_det(id_mail_manage, report_mark_type, id_report, report_number, id_report_ref, report_mark_type_ref, report_number_ref) "
         If rmt = "227" Then 'email peringatan
             If typ = "1" Then
-                'regular
+                'regular process
                 query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, sp.report_mark_type, sp.id_sales_pos, sp.sales_pos_number, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
                 FROM tb_sales_pos sp
                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -96,7 +97,8 @@
             ElseIf typ = "2" Then
                 'base on eval
                 query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, e.report_mark_type, e.id_sales_pos, e.report_number, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
-                FROM tb_ar_eval e WHERE e.id_comp_group=" + par2 + " AND e.eval_date='" + par1 + "'; "
+                FROM tb_ar_eval e 
+                WHERE e.id_comp_group=" + par2 + " AND e.id_store_company=" + par3 + " AND e.eval_date='" + par1 + "'; "
             End If
         ElseIf rmt = "228" Then 'email hold delivery
             query_mail_detail += "SELECT " + id_mail_manage + " AS `id_mail_manage`, e.report_mark_type, e.id_sales_pos, e.report_number, " + id_report_ref + ", " + report_mark_type_ref + ", '" + report_number_ref + "'
