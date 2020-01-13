@@ -1250,6 +1250,7 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
             execute_non_query(query, True, "", "", "", "")
             action_load()
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SLEGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEGroup.EditValueChanged
