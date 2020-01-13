@@ -44,10 +44,13 @@
         'General
         Dim query_curr_year As String = "SELECT YEAR(NOW())"
         current_year = execute_query(query_curr_year, 0, True, "", "", "", "")
+        Dim tgl As DateTime = getTimeDB()
 
         'tab daily
         viewStore()
         viewOption()
+        DEFrom.EditValue = tgl
+        DEUntil.EditValue = tgl
 
         'Tab Weekly
         viewDay()
@@ -89,14 +92,51 @@
 
     '=======================TAB DAILY TRANSACTION=========================
     Sub viewSalesPOS()
+        'Prepare paramater
+        date_from_selected = "0000-01-01"
+        date_until_selected = "9999-01-01"
         Try
-            Dim data As DataTable = CreateData()
-            GCSalesPOS.DataSource = data
-            dt = data
-            check_menu()
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
-            errorConnection()
         End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            id_store_selected = SLEStore.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        'modify value
+        If id_store_selected = "0" Then
+            label_store_selected = "All Store"
+        Else
+            label_store_selected = SLEStore.Properties.View.GetFocusedRowCellValue("comp_name_label").ToString
+        End If
+
+        'selected store
+        Dim cond_store As String = ""
+        If id_store_selected <> "0" Then
+            cond_store = "AND c.id_comp=''" + id_store_selected + "'' "
+        End If
+
+        'filter promo
+        Dim cond_promo As String = ""
+        If CEPromo.EditValue = True Then
+            cond_promo = ""
+        Else
+            cond_promo = "AND a.sales_pos_total>0 "
+        End If
+
+        Dim query_c As ClassSalesInv = New ClassSalesInv()
+        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 " + cond_store + " " + cond_promo + " AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesPOS.DataSource = data
+        dt = data
+        check_menu()
     End Sub
 
     Private Function CreateData() As DataTable
@@ -156,36 +196,6 @@
         Else
             BExpand.Visible = False
             BHide.Visible = False
-        End If
-
-        'Prepare paramater
-        date_from_selected = "0000-01-01"
-        date_until_selected = "9999-01-01"
-        Try
-            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
-
-        Try
-            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
-
-        Try
-            id_store_selected = SLEStore.EditValue.ToString
-        Catch ex As Exception
-        End Try
-
-        'modify value
-        If id_store_selected = "0" Then
-            label_store_selected = "All Store"
-        Else
-            label_store_selected = SLEStore.Properties.View.GetFocusedRowCellValue("comp_name_label").ToString
-        End If
-
-        'selected store
-        If id_store_selected = "0" Then
-            id_store_selected = "%%"
         End If
 
         viewSalesPOS()
