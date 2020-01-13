@@ -296,7 +296,6 @@
         IFNULL(inv.id_sales_pos,0) AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv.report_status AS `inv_status`,
         IFNULL(cn.id_sales_pos,0) AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn.report_status AS `cn_status`,
         IFNULL(rec_pay.id_rec_payment,0) AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
-        IFNULL(ret_pay.id_rec_payment,0) AS `id_ret_pay`,ret_pay.`number` AS `ret_pay_number`, ret_pay.date_created AS `ret_pay_date`, IF(!ISNULL(ret_pay.id_report),'Returned', NULL) AS `ret_pay_status`,
         '0' AS `report_mark_type`, 
         IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
@@ -325,72 +324,68 @@
         INNER JOIN tb_m_product_code prodcode ON prodcode.id_product = prod.id_product
         INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prodcode.id_code_detail
         LEFT JOIN (
-            SELECT deld.id_sales_order_det, deld.id_pl_sales_order_del_det,del.id_pl_sales_order_del, del.pl_sales_order_del_number, del.pl_sales_order_del_date, del_stt.report_status 
-            FROM tb_pl_sales_order_del_det deld
-            INNER JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
-            INNER JOIN tb_lookup_report_status del_stt ON del_stt.id_report_status = del.id_report_status
-            WHERE del.id_report_status!=5 
+           SELECT deld.id_sales_order_det, deld.id_pl_sales_order_del_det,del.id_pl_sales_order_del, del.pl_sales_order_del_number, del.pl_sales_order_del_date, del_stt.report_status 
+           FROM tb_pl_sales_order_del_det deld
+           INNER JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
+           INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
+           INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           INNER JOIN tb_lookup_report_status del_stt ON del_stt.id_report_status = del.id_report_status
+           WHERE del.id_report_status!=5 AND c.id_commerce_type=2
         ) del ON del.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
-            SELECT rod.id_sales_order_det, rod.id_sales_return_order_det,
-            ro.id_sales_return_order, ro.sales_return_order_number, ro.sales_return_order_date, ro_stt.report_status
-            FROM tb_sales_return_order_det rod
-            INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = rod.id_sales_return_order
-            INNER JOIN tb_lookup_report_status ro_stt ON ro_stt.id_report_status = ro.id_report_status
-            WHERE ro.id_report_status!=5
+           SELECT rod.id_sales_order_det, rod.id_sales_return_order_det,
+           ro.id_sales_return_order, ro.sales_return_order_number, ro.sales_return_order_date, ro_stt.report_status
+           FROM tb_sales_return_order_det rod
+           INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = rod.id_sales_return_order
+           INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ro.id_store_contact_to
+           INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           INNER JOIN tb_lookup_report_status ro_stt ON ro_stt.id_report_status = ro.id_report_status
+           WHERE ro.id_report_status!=5 AND c.id_commerce_type=2
         ) ro ON ro.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
-            SELECT retd.id_sales_return_order_det, retd.id_sales_return_det,
-            ret.id_sales_return, ret.sales_return_number, ret.sales_return_date, ret_stt.report_status 
-            FROM tb_sales_return_det retd
-            INNER JOIN tb_sales_return ret ON ret.id_sales_return = retd.id_sales_return
-            INNER JOIN tb_lookup_report_status ret_stt ON ret_stt.id_report_status = ret.id_report_status
-            WHERE ret.id_report_status!=5
+           SELECT retd.id_sales_return_order_det, retd.id_sales_return_det,
+           ret.id_sales_return, ret.sales_return_number, ret.sales_return_date, ret_stt.report_status 
+           FROM tb_sales_return_det retd
+           INNER JOIN tb_sales_return ret ON ret.id_sales_return = retd.id_sales_return
+           INNER JOIN tb_lookup_report_status ret_stt ON ret_stt.id_report_status = ret.id_report_status
+           INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ret.id_store_contact_from
+           INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           WHERE ret.id_report_status!=5 AND c.id_commerce_type=2
         ) ret ON ret.id_sales_return_order_det = ro.id_sales_return_order_det
         LEFT JOIN (
-            SELECT invd.id_pl_sales_order_del_det, invd.id_sales_pos_det,
-            inv.id_sales_pos, inv.sales_pos_number, inv.sales_pos_date, inv_stt.report_status, inv.is_close_rec_payment
-            FROM tb_sales_pos_det invd
-            INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = invd.id_sales_pos
-            INNER JOIN tb_lookup_report_status inv_stt ON inv_stt.id_report_status = inv.id_report_status
-            WHERE inv.id_report_status!=5
+           SELECT invd.id_pl_sales_order_del_det, invd.id_sales_pos_det,
+           inv.id_sales_pos, inv.sales_pos_number, inv.sales_pos_date, inv_stt.report_status, inv.is_close_rec_payment
+           FROM tb_sales_pos_det invd
+           INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = invd.id_sales_pos
+           INNER JOIN tb_lookup_report_status inv_stt ON inv_stt.id_report_status = inv.id_report_status
+           INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = inv.id_store_contact_from
+           INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           WHERE inv.id_report_status!=5 AND c.id_commerce_type=2
         ) inv ON inv.id_pl_sales_order_del_det = del.id_pl_sales_order_del_det
         LEFT JOIN (
-            SELECT cnd.id_sales_pos_det_ref, cn.id_sales_pos,cn.sales_pos_number, cn.sales_pos_date, cn_stt.report_status
-            FROM tb_sales_pos cn
-            INNER JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos = cn.id_sales_pos
-            INNER JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
-            WHERE cn.id_report_status!=5 AND cn.report_mark_type=118
-            GROUP BY cnd.id_sales_pos_det_ref    
+           SELECT cnd.id_sales_pos_det_ref, cn.id_sales_pos,cn.sales_pos_number, cn.sales_pos_date, cn_stt.report_status
+           FROM tb_sales_pos cn
+           INNER JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos = cn.id_sales_pos
+           INNER JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
+           INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = cn.id_store_contact_from
+           INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           WHERE cn.id_report_status!=5 AND cn.report_mark_type=118 AND c.id_commerce_type=2
+           GROUP BY cnd.id_sales_pos_det_ref    
         ) cn ON cn.id_sales_pos_det_ref = inv.id_sales_pos_det
         LEFT JOIN (
-	        SELECT a.id_report, a.id_rec_payment, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
-	        FROM
-	        (
-		        SELECT rd.id_report, r.id_rec_payment, r.`number`, r.date_created,rd.`value`
-		        FROM tb_rec_payment_det rd
-		        INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
-		        INNER JOIN tb_sales_pos p ON p.id_sales_pos = rd.id_report
-		        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from " + qcomp1 + "
-		        WHERE (rd.report_mark_type=48 OR rd.report_mark_type=54) AND r.id_report_status=6
-		        ORDER BY r.id_rec_payment DESC
-	        ) a
-	        GROUP BY a.id_report
+          SELECT a.id_report, a.id_rec_payment, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
+          FROM
+          (
+             SELECT rd.id_report, r.id_rec_payment, r.`number`, r.date_created,rd.`value`
+             FROM tb_rec_payment_det rd
+             INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+             INNER JOIN tb_sales_pos p ON p.id_sales_pos = rd.id_report
+             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from 
+             WHERE (rd.report_mark_type=48 OR rd.report_mark_type=54 OR rd.report_mark_type=118) AND r.id_report_status=6
+             ORDER BY r.id_rec_payment DESC
+          ) a
+          GROUP BY a.id_report
         ) rec_pay ON rec_pay.id_report = inv.id_sales_pos
-        LEFT JOIN (
-            SELECT a.id_report, a.id_rec_payment, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
-            FROM
-            (
-                SELECT rd.id_report, r.id_rec_payment, r.`number`, r.date_created,rd.`value`
-                FROM tb_rec_payment_det rd
-                INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
-                INNER JOIN tb_sales_pos p ON p.id_sales_pos = rd.id_report
-                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from " + qcomp1 + "
-                WHERE rd.report_mark_type=118 AND r.id_report_status=6
-                ORDER BY r.id_rec_payment DESC
-            ) a
-            GROUP BY a.id_report
-        ) ret_pay ON ret_pay.id_report = cn.id_sales_pos
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
