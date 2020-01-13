@@ -98,11 +98,11 @@
 
     End Sub
 
-    Sub sendEmailPeringatan(ByVal date_eval As String, ByVal id_group As String, ByVal group_name As String)
+    Sub sendEmailPeringatan(ByVal date_eval As String, ByVal id_group As String, ByVal id_store_comp As String, ByVal group_name As String)
         Dim mm As New ClassMailManage()
         Dim id_mail As String = "-1"
         Try
-            Dim query_cek_eval As String = "SELECT COUNT(e.id_ar_eval) AS jum_eval FROM tb_ar_eval e WHERE e.eval_date='" + date_eval + "' AND e.id_comp_group='" + id_group + "' AND e.is_active=1 "
+            Dim query_cek_eval As String = "SELECT COUNT(e.id_ar_eval) AS jum_eval FROM tb_ar_eval e WHERE e.eval_date='" + date_eval + "' AND e.id_comp_group='" + id_group + "' AND e.id_store_company='" + id_store_comp + "' AND e.is_active=1 "
             Dim data_cek_eval As DataTable = execute_query(query_cek_eval, -1, True, "", "", "", "")
             If data_cek_eval.Rows(0)("jum_eval") > 0 Then
                 'create mail var
@@ -110,7 +110,7 @@
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
                 Dim mail_head As String = dopt.Rows(0)("mail_head_peringatan").ToString
-                Dim mail_subject As String = dopt.Rows(0)("mail_subject_peringatan").ToString
+                Dim mail_subject As String = dopt.Rows(0)("mail_subject_peringatan").ToString + " - " + group_name
                 Dim mail_title As String = dopt.Rows(0)("mail_title_peringatan").ToString
                 Dim mail_content_head As String = dopt.Rows(0)("mail_content_head_peringatan").ToString
                 Dim mail_content As String = dopt.Rows(0)("mail_content_peringatan").ToString
@@ -121,6 +121,8 @@
                 mm.typ = "2"
                 mm.par1 = date_eval
                 mm.par2 = id_group
+                mm.par3 = id_store_comp
+                mm.mail_subject = mail_subject
                 mm.createEmail(id_group, id_user, "NULL", "NULL", "")
                 id_mail = mm.id_mail_manage
 
@@ -136,7 +138,7 @@
                 INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
                 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
                 INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-                INNER JOIN tb_m_comp cgho ON cgho.id_comp = cg.id_comp
+                INNER JOIN tb_m_comp cgho ON cgho.id_comp = c.id_store_company
                 INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
                 LEFT JOIN (
                    SELECT pyd.id_report, pyd.report_mark_type, 
@@ -149,7 +151,7 @@
                    GROUP BY pyd.id_report, pyd.report_mark_type
                 ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
                 LEFT JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment = sp.id_propose_delay_payment
-                WHERE e.id_comp_group=" + id_group + " AND e.eval_date='" + date_eval + "' AND e.is_active=1 "
+                WHERE e.id_comp_group=" + id_group + " AND e.id_store_company='" + id_store_comp + "' AND e.eval_date='" + date_eval + "' AND e.is_active=1 "
                 Dim dcont As DataTable = execute_query(qcont, -1, True, "", "", "", "")
                 Dim tot_amo As Double = 0
                 For i As Integer = 0 To dcont.Rows.Count - 1
@@ -161,7 +163,7 @@
                 sm.id_report = id_mail
                 sm.report_mark_type = "227"
                 sm.head = mail_head
-                sm.subj = mail_subject + " - " + dcont.Rows(0)("group_store").ToString
+                sm.subj = mail_subject
                 sm.titl = mail_title
                 sm.par1 = mail_content_head + " " + dcont.Rows(0)("group_company").ToString
                 sm.par2 = mail_content

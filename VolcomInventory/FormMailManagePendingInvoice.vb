@@ -36,7 +36,7 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT cg.id_comp_group,cg.comp_group AS `group`, cg.description AS `group_description`, hc.comp_name AS `comp_group_office`,
+        Dim query As String = "SELECT cg.id_comp_group,cg.comp_group AS `group`, cg.description AS `group_description`, c.id_store_company, hc.comp_name AS `comp_group_office`,
         SUM(sp.sales_pos_total_qty) AS `total_qty`, SUM(sp.`sales_pos_total`) AS sales_pos_total,
         SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS amount
         FROM tb_sales_pos sp 
@@ -44,10 +44,10 @@
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        LEFT JOIN tb_m_comp hc ON hc.id_comp = cg.id_comp
+        LEFT JOIN tb_m_comp hc ON hc.id_comp = c.id_store_company
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
         WHERE sp.`id_report_status`='6' AND sp.is_pending_mail=1 AND sp.sales_pos_total>0
-        GROUP BY cg.id_comp_group 
+        GROUP BY cg.id_comp_group, c.id_store_company
         ORDER BY id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -89,6 +89,7 @@
             If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
                 Cursor = Cursors.WaitCursor
                 FormMailManage.SLEStoreGroup.EditValue = GVData.GetFocusedRowCellValue("id_comp_group").ToString
+                FormMailManage.SLEStoreCompany.EditValue = GVData.GetFocusedRowCellValue("id_store_company").ToString
                 FormMailManage.viewPendingInvoice()
                 Close()
                 Cursor = Cursors.Default
