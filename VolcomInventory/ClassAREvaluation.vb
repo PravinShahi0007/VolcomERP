@@ -110,7 +110,7 @@
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
                 Dim mail_head As String = dopt.Rows(0)("mail_head_peringatan").ToString
-                Dim mail_subject As String = dopt.Rows(0)("mail_subject_peringatan").ToString
+                Dim mail_subject As String = dopt.Rows(0)("mail_subject_peringatan").ToString + " - " + group_name
                 Dim mail_title As String = dopt.Rows(0)("mail_title_peringatan").ToString
                 Dim mail_content_head As String = dopt.Rows(0)("mail_content_head_peringatan").ToString
                 Dim mail_content As String = dopt.Rows(0)("mail_content_peringatan").ToString
@@ -122,6 +122,7 @@
                 mm.par1 = date_eval
                 mm.par2 = id_group
                 mm.par3 = id_store_comp
+                mm.mail_subject = mail_subject
                 mm.createEmail(id_group, id_user, "NULL", "NULL", "")
                 id_mail = mm.id_mail_manage
 
@@ -162,7 +163,7 @@
                 sm.id_report = id_mail
                 sm.report_mark_type = "227"
                 sm.head = mail_head
-                sm.subj = mail_subject + " - " + dcont.Rows(0)("group_store").ToString
+                sm.subj = mail_subject
                 sm.titl = mail_title
                 sm.par1 = mail_content_head + " " + dcont.Rows(0)("group_company").ToString
                 sm.par2 = mail_content

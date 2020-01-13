@@ -440,7 +440,7 @@
                     mail_content_head = dopt.Rows(0)("mail_content_head_peringatan").ToString
                     mail_content = dopt.Rows(0)("mail_content_peringatan").ToString
                     mail_content_end = dopt.Rows(0)("mail_content_end_peringatan").ToString
-                    MESubject.Text = addSlashes(mail_subject)
+                    'MESubject.Text = addSlashes(mail_subject)
                 End If
                 Dim m As New ClassSendEmail()
                 Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
@@ -734,7 +734,7 @@
             Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
             sm.dt = dtx
             sm.head = mail_head
-            sm.subj = mail_subject
+            sm.subj = addSlashes(MESubject.Text)
             sm.titl = mail_title
             sm.par1 = mail_content_head + " " + dtx.Rows(0)("group_company").ToString
             sm.par2 = mail_content
@@ -745,7 +745,7 @@
             Dim dtx As DataTable = dtLoadDetail(id_sales_pos)
             sm.dt = dtx
             sm.head = mail_head
-            sm.subj = mail_subject
+            sm.subj = addSlashes(MESubject.Text)
             sm.titl = mail_title
             sm.par1 = mail_content_head + " " + dtx.Rows(0)("group_company").ToString
             sm.par2 = mail_content
