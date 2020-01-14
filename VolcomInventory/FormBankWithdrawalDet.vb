@@ -182,6 +182,7 @@
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 End If
                 calculate_amount()
+                TEKurs.EditValue = FormBankWithdrawal.TEKurs.EditValue
             End If
         Else
             PCAddDel.Visible = False

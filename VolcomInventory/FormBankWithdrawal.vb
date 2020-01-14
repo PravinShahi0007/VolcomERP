@@ -468,6 +468,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             If is_pending = True Then
                 warningCustom("Please process all pending payment for selected purchase")
             Else
+                FormBankWithdrawalDet.TEKurs.EditValue = TEKurs.EditValue
                 FormBankWithdrawalDet.report_mark_type = "189"
                 FormBankWithdrawalDet.ShowDialog()
             End If
