@@ -79,7 +79,8 @@ WHERE cd.`id_code`='16' OR cd.id_code='40'"
 
             'check on propose
             For j As Integer = 0 To GVDivision.RowCount - 1
-                Dim query_cek_pps As String = "SELECT pp.*,ppdiv.`id_code_division`,ppd.`year_after` FROM `tb_sample_budget_pps_div` ppdiv
+                Dim query_cek_pps As String = "SELECT pp.*,ppdiv.`id_code_division`,ppd.`year_after` 
+FROM `tb_sample_budget_pps_div` ppdiv
 INNER JOIN `tb_sample_budget_pps_det` ppd ON ppd.`id_sample_budget_pps_det`=ppdiv.`id_sample_budget_pps_det`
 INNER JOIN `tb_sample_budget_pps` pp ON pp.`id_sample_budget_pps`=ppd.`id_sample_budget_pps`
 WHERE ppdiv.`is_after` = '1' AND pp.`id_report_status`!=5 AND pp.`id_report_status`!=6

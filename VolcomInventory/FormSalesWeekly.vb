@@ -44,10 +44,13 @@
         'General
         Dim query_curr_year As String = "SELECT YEAR(NOW())"
         current_year = execute_query(query_curr_year, 0, True, "", "", "", "")
+        Dim tgl As DateTime = getTimeDB()
 
         'tab daily
         viewStore()
         viewOption()
+        DEFrom.EditValue = tgl
+        DEUntil.EditValue = tgl
 
         'Tab Weekly
         viewDay()
@@ -89,14 +92,54 @@
 
     '=======================TAB DAILY TRANSACTION=========================
     Sub viewSalesPOS()
+        'Prepare paramater
+        date_from_selected = "0000-01-01"
+        date_until_selected = "9999-01-01"
         Try
-            Dim data As DataTable = CreateData()
-            GCSalesPOS.DataSource = data
-            dt = data
-            check_menu()
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
-            errorConnection()
         End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            id_store_selected = SLEStore.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        'modify value
+        If id_store_selected = "0" Then
+            label_store_selected = "All Store"
+        Else
+            label_store_selected = SLEStore.Properties.View.GetFocusedRowCellValue("comp_name_label").ToString
+        End If
+
+        'selected store
+        Dim cond_store As String = ""
+        If id_store_selected <> "0" Then
+            cond_store = "AND c.id_comp=''" + id_store_selected + "'' "
+        End If
+
+        'filter promo
+        Dim cond_promo As String = ""
+        Dim cond_promo_trans As String = ""
+        If CEPromo.EditValue = True Then
+            cond_promo = ""
+            cond_promo_trans = ""
+        Else
+            cond_promo = "AND a.sales_pos_total>0 "
+            cond_promo_trans = "AND a.report_mark_type!=116"
+        End If
+
+        Dim query_c As ClassSalesInv = New ClassSalesInv()
+        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 " + cond_store + " " + cond_promo + " " + cond_promo_trans + " AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesPOS.DataSource = data
+        dt = data
+        check_menu()
     End Sub
 
     Private Function CreateData() As DataTable
@@ -156,36 +199,6 @@
         Else
             BExpand.Visible = False
             BHide.Visible = False
-        End If
-
-        'Prepare paramater
-        date_from_selected = "0000-01-01"
-        date_until_selected = "9999-01-01"
-        Try
-            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
-
-        Try
-            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
-
-        Try
-            id_store_selected = SLEStore.EditValue.ToString
-        Catch ex As Exception
-        End Try
-
-        'modify value
-        If id_store_selected = "0" Then
-            label_store_selected = "All Store"
-        Else
-            label_store_selected = SLEStore.Properties.View.GetFocusedRowCellValue("comp_name_label").ToString
-        End If
-
-        'selected store
-        If id_store_selected = "0" Then
-            id_store_selected = "%%"
         End If
 
         viewSalesPOS()
@@ -780,21 +793,53 @@
             id_sales_pos = GVSalesPOS.GetFocusedRowCellValue("id_sales_pos").ToString
         Catch ex As Exception
         End Try
-
-        Dim id_memo_type As String = "-1"
+        Dim rmt As String = "-1"
         Try
-            id_memo_type = GVSalesPOS.GetFocusedRowCellValue("id_memo_type").ToString
+            rmt = GVSalesPOS.GetFocusedRowCellValue("report_mark_type").ToString
         Catch ex As Exception
         End Try
-
-        If id_memo_type = "1" Then
-            FormViewSalesPOS.id_sales_pos = id_sales_pos
-            FormViewSalesPOS.ShowDialog()
-        ElseIf id_memo_type = "2" Then
-            FormViewSalesCreditNote.id_sales_pos = id_sales_pos
-            FormViewSalesCreditNote.ShowDialog()
-        End If
-
+        Dim sm As New ClassShowPopUp()
+        sm.report_mark_type = rmt
+        sm.id_report = id_sales_pos
+        sm.show()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.True
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.True
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSDaily_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSDaily.Click
+        If GVSalesPOS.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "sr_daily.xlsx"
+            exportToXLS(path, "daily sales", GCSalesPOS)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
