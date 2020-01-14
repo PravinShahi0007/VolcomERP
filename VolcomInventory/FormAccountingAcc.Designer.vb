@@ -45,6 +45,8 @@ Partial Class FormAccountingAcc
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.EPACC = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LEType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,6 +61,7 @@ Partial Class FormAccountingAcc
         CType(Me.TEAccountDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPACC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -66,7 +69,7 @@ Partial Class FormAccountingAcc
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 237)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 254)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(665, 36)
         Me.PanelControl1.TabIndex = 0
@@ -91,6 +94,8 @@ Partial Class FormAccountingAcc
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.LEType)
+        Me.PanelControl3.Controls.Add(Me.LabelControl2)
         Me.PanelControl3.Controls.Add(Me.MEAccDesc)
         Me.PanelControl3.Controls.Add(Me.TEAccount)
         Me.PanelControl3.Controls.Add(Me.SLEParentAccount)
@@ -106,7 +111,7 @@ Partial Class FormAccountingAcc
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(665, 237)
+        Me.PanelControl3.Size = New System.Drawing.Size(665, 254)
         Me.PanelControl3.TabIndex = 54
         '
         'MEAccDesc
@@ -305,11 +310,33 @@ Partial Class FormAccountingAcc
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
+        'LEType
+        '
+        Me.LEType.Location = New System.Drawing.Point(130, 214)
+        Me.LEType.Name = "LEType"
+        Me.LEType.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_dc", "id_dc", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dc", "Debit / Credit")})
+        Me.LEType.Properties.NullText = ""
+        Me.LEType.Properties.ShowFooter = False
+        Me.LEType.Size = New System.Drawing.Size(134, 20)
+        Me.LEType.TabIndex = 122
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(18, 216)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(73, 15)
+        Me.LabelControl2.TabIndex = 121
+        Me.LabelControl2.Text = "Debit / Credit"
+        '
         'FormAccountingAcc
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(665, 273)
+        Me.ClientSize = New System.Drawing.Size(665, 290)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -334,6 +361,7 @@ Partial Class FormAccountingAcc
         CType(Me.TEAccountDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPACC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -361,4 +389,6 @@ Partial Class FormAccountingAcc
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents EPACC As System.Windows.Forms.ErrorProvider
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents LEType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class
