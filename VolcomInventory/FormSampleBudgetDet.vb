@@ -86,7 +86,7 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
                 'get year
                 Dim year_str As String = FormSampleBudget.DEYearBudget.Text
 
-                Dim str_code_lokal As String = "SELECT * FROM tb_m_code_detail WHERE id_code='40'"
+                Dim str_code_lokal As String = "SELECT * FROM tb_m_code_detail WHERE id_code='40' AND is_active='1'"
                 Dim data_code_lokal As DataTable = execute_query(str_code_lokal, -1, True, "", "", "", "")
 
                 'Local development
@@ -106,7 +106,7 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
 
                 'Men youth kids
                 Dim newRow_after2 As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
-                newRow_after2("description_after") = "Budget Pembelian Sample Import Mens, Youth, Kids " & year_str
+                newRow_after2("description_after") = "Budget Pembelian Produk Sample Import Mens, Youth, Kids " & year_str
                 newRow_after2("year_after") = year_str
                 newRow_after2("value_usd_after") = 0.00
                 newRow_after2("value_rp_after") = 0.00
@@ -119,7 +119,7 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
 
                 'Women
                 Dim newRow_after3 As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
-                newRow_after3("description_after") = "Budget Pembelian Sample Import Womens " & year_str
+                newRow_after3("description_after") = "Budget Pembelian Produk Sample Import Womens " & year_str
                 newRow_after3("year_after") = year_str
                 newRow_after3("value_usd_after") = 0.00
                 newRow_after3("value_rp_after") = 0.00
