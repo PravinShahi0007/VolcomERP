@@ -227,6 +227,9 @@
         ElseIf tab_index = 6 Then
             page_active = "sal"
             ActiveControl = DEFromSal
+        ElseIf tab_index = 7 Then
+            page_active = "order"
+            ActiveControl = DEFromSO
         End If
     End Sub
 
