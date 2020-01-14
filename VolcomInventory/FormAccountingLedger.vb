@@ -161,17 +161,20 @@
     End Sub
 
     Sub print_form()
-        Dim report As ReportAccountingLedger = New ReportAccountingLedger
+        'Try
+        '    Dim report As ReportAccountingLedger = New ReportAccountingLedger
 
-        report.data = GCAccountingLedger.DataSource
-        report.id_is_det = execute_query("SELECT id_is_det FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", 0, True, "", "", "", "")
+        '    report.data = GCAccountingLedger.DataSource
+        '    report.id_is_det = execute_query("SELECT id_is_det FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", 0, True, "", "", "", "")
 
-        report.XLPeriod.Text = DEFrom.Text + " - " + DETo.Text
-        report.XLAccount.Text = SLUEFrom.Text + " - " + SLUETo.Text
+        '    report.XLPeriod.Text = DEFrom.Text + " - " + DETo.Text
+        '    report.XLAccount.Text = SLUEFrom.Text + " - " + SLUETo.Text
 
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        '    Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
-        tool.ShowPreview()
+        '    tool.ShowPreview()
+        'Catch ex As Exception
+        'End Try
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
@@ -205,11 +208,15 @@
     Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
 
-        Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+        Try
+            Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
 
-        showpopup.report_mark_type = GVAccountingLedger.GetFocusedRowCellValue("report_mark_type").ToString
-        showpopup.id_report = GVAccountingLedger.GetFocusedRowCellValue("id_report").ToString
-        showpopup.show()
+            showpopup.report_mark_type = GVAccountingLedger.GetFocusedRowCellValue("report_mark_type").ToString
+            showpopup.id_report = GVAccountingLedger.GetFocusedRowCellValue("id_report").ToString
+            showpopup.show()
+        Catch ex As Exception
+            stopCustom("Document Not Found")
+        End Try
 
         Cursor = Cursors.Default
     End Sub
@@ -234,5 +241,15 @@
                 e.TotalValue = "Sub Total" + GVAccountingLedger.GetGroupRowDisplayText(e.GroupRowHandle).Replace("Account", "")
             End If
         End If
+    End Sub
+
+    Private Sub GVAccountingLedger_Click(sender As Object, e As EventArgs) Handles GVAccountingLedger.Click
+        Try
+            Console.WriteLine(GVAccountingLedger.FocusedRowHandle)
+            Console.WriteLine(GVAccountingLedger.GetRowGroupIndexByRowHandle(GVAccountingLedger.FocusedRowHandle))
+            Console.WriteLine(GVAccountingLedger.GetGroupRowValue(GVAccountingLedger.FocusedRowHandle))
+        Catch ex As Exception
+            Console.WriteLine(ex)
+        End Try
     End Sub
 End Class
