@@ -793,21 +793,53 @@
             id_sales_pos = GVSalesPOS.GetFocusedRowCellValue("id_sales_pos").ToString
         Catch ex As Exception
         End Try
-
-        Dim id_memo_type As String = "-1"
+        Dim rmt As String = "-1"
         Try
-            id_memo_type = GVSalesPOS.GetFocusedRowCellValue("id_memo_type").ToString
+            rmt = GVSalesPOS.GetFocusedRowCellValue("report_mark_type").ToString
         Catch ex As Exception
         End Try
-
-        If id_memo_type = "1" Then
-            FormViewSalesPOS.id_sales_pos = id_sales_pos
-            FormViewSalesPOS.ShowDialog()
-        ElseIf id_memo_type = "2" Then
-            FormViewSalesCreditNote.id_sales_pos = id_sales_pos
-            FormViewSalesCreditNote.ShowDialog()
-        End If
-
+        Dim sm As New ClassShowPopUp()
+        sm.report_mark_type = rmt
+        sm.id_report = id_sales_pos
+        sm.show()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.True
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.True
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSDaily_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSDaily.Click
+        If GVSalesPOS.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "sr_daily.xlsx"
+            exportToXLS(path, "daily sales", GCSalesPOS)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
