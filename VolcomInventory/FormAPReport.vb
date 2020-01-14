@@ -155,7 +155,8 @@ LEFT JOIN (
 	COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_pn,NULL)) AS `total_on_process`
 	FROM tb_pn_det pyd
 	INNER JOIN tb_pn py ON py.`id_pn`=pyd.`id_pn` AND py.`id_report_status`=6
-    INNER JOIN tb_m_comp c ON c.id_comp = py.id_comp " & cond_vendor & "
+    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=py.id_comp_contact
+    INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp " & cond_vendor & "
 	GROUP BY pyd.id_report, pyd.report_mark_type
 ) pyd ON pyd.`id_report`=p.`id_report` AND pyd.`report_mark_type`=p.`report_mark_type`
 WHERE 1=1 " & cond & "

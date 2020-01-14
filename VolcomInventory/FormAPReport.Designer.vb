@@ -200,7 +200,7 @@ Partial Class FormAPReport
         'GridColumnsales_pos_number
         '
         Me.GridColumnsales_pos_number.Caption = "Report No."
-        Me.GridColumnsales_pos_number.FieldName = "report_number"
+        Me.GridColumnsales_pos_number.FieldName = "number"
         Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
         Me.GridColumnsales_pos_number.Visible = True
         '

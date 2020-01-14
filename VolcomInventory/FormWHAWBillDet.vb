@@ -11,11 +11,11 @@
     End Sub
 
     Sub load_awb()
-        'TELength.EditValue = 0.00
-        'TEWidth.EditValue = 0.00
-        'TEHeight.EditValue = 0.00
-        'TEVolume.EditValue = 0.00
-        'TEWeight.EditValue = 0.00
+        TELength.EditValue = 0.00
+        TEWidth.EditValue = 0.00
+        TEHeight.EditValue = 0.00
+        TEVolume.EditValue = 0.00
+        TEWeight.EditValue = 0.00
 
         TEBeratTerpakai.EditValue = 0
         TEVolumeVolc.EditValue = 0
