@@ -14092,4 +14092,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
     End Sub
+
+    Private Sub NBReportBalanceSheet_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBReportBalanceSheet.LinkClicked
+        Try
+            FormReportBalanceSheet.MdiParent = Me
+            FormReportBalanceSheet.Show()
+            FormReportBalanceSheet.WindowState = FormWindowState.Maximized
+            FormReportBalanceSheet.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
 End Class
