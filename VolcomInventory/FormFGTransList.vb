@@ -437,7 +437,7 @@
             cond_promo_trans = ""
         Else
             cond_promo = "AND sp.sales_pos_total>0 "
-            cond_promo_trans = "AND a.report_mark_type!=116 "
+            cond_promo_trans = "AND sp.report_mark_type!=116 "
         End If
         'date paramater
         Dim date_from_selected As String = "0000-01-01"
@@ -457,7 +457,8 @@
         sp.sales_pos_date, sp.sales_pos_due_date,
         sp.sales_pos_start_period, sp.sales_pos_end_period,
         prod.id_product, prod.id_design, prod.`code`, prod.`code_main`,
-        prod.`name`, prod.`size`, prod.`class`, spd.sales_pos_det_qty, spd.design_price_retail, (spd.sales_pos_det_qty * spd.design_price_retail) AS `amount`
+        prod.`name`, prod.`size`, prod.`class`, spd.sales_pos_det_qty, spd.design_price_retail, (spd.sales_pos_det_qty * spd.design_price_retail) AS `amount`,
+        stt.report_status
         FROM tb_sales_pos_det spd
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -475,6 +476,7 @@
 	        INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dsg_code.id_code_detail AND cls.id_code=" + id_code_class + "
 	        WHERE dsg.id_lookup_status_order!=2
         ) prod ON prod.id_product = spd.id_product
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
         WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + cond_promo_trans
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSales.DataSource = data

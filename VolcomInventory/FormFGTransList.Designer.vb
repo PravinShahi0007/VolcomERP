@@ -223,19 +223,6 @@ Partial Class FormFGTransList
         Me.XTPSales = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSales = New DevExpress.XtraGrid.GridControl()
         Me.GVSales = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
-        Me.CEPromo = New DevExpress.XtraEditors.CheckEdit()
-        Me.SLEPeriodType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnExportToXLSSal = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnViewSal = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntilSal = New DevExpress.XtraEditors.DateEdit()
-        Me.DEFromSal = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumnid_sales_pos_det = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_pos = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -258,6 +245,20 @@ Partial Class FormFGTransList
         Me.GridColumnsales_pos_det_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_retail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.CEPromo = New DevExpress.XtraEditors.CheckEdit()
+        Me.SLEPeriodType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnExportToXLSSal = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewSal = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntilSal = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromSal = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -2386,7 +2387,7 @@ Partial Class FormFGTransList
         '
         'GVSales
         '
-        Me.GVSales.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_pos_det, Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnreport_mark_type_name, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumncomp_group, Me.GridColumncomp_group_name, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnsales_pos_start_period, Me.GridColumnsales_pos_end_period, Me.GridColumnid_product, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumncode_main, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnclass_sal, Me.GridColumnsales_pos_det_qty, Me.GridColumndesign_price_retail, Me.GridColumnamount})
+        Me.GVSales.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_pos_det, Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnreport_mark_type_name, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumncomp_group, Me.GridColumncomp_group_name, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnsales_pos_start_period, Me.GridColumnsales_pos_end_period, Me.GridColumnid_product, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumncode_main, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnclass_sal, Me.GridColumnsales_pos_det_qty, Me.GridColumndesign_price_retail, Me.GridColumnamount, Me.GridColumnreport_status})
         Me.GVSales.GridControl = Me.GCSales
         Me.GVSales.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", Me.GridColumnsales_pos_det_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:N2}")})
         Me.GVSales.Name = "GVSales"
@@ -2396,6 +2397,190 @@ Partial Class FormFGTransList
         Me.GVSales.OptionsView.ColumnAutoWidth = False
         Me.GVSales.OptionsView.ShowFooter = True
         Me.GVSales.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_sales_pos_det
+        '
+        Me.GridColumnid_sales_pos_det.Caption = "id_sales_pos_det"
+        Me.GridColumnid_sales_pos_det.FieldName = "id_sales_pos_det"
+        Me.GridColumnid_sales_pos_det.Name = "GridColumnid_sales_pos_det"
+        '
+        'GridColumnid_sales_pos
+        '
+        Me.GridColumnid_sales_pos.Caption = "id_sales_pos"
+        Me.GridColumnid_sales_pos.FieldName = "id_sales_pos"
+        Me.GridColumnid_sales_pos.Name = "GridColumnid_sales_pos"
+        '
+        'GridColumnsales_pos_number
+        '
+        Me.GridColumnsales_pos_number.Caption = "Number"
+        Me.GridColumnsales_pos_number.FieldName = "sales_pos_number"
+        Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
+        Me.GridColumnsales_pos_number.Visible = True
+        Me.GridColumnsales_pos_number.VisibleIndex = 0
+        '
+        'GridColumnreport_mark_type_name
+        '
+        Me.GridColumnreport_mark_type_name.Caption = "Type"
+        Me.GridColumnreport_mark_type_name.FieldName = "report_mark_type_name"
+        Me.GridColumnreport_mark_type_name.Name = "GridColumnreport_mark_type_name"
+        Me.GridColumnreport_mark_type_name.Visible = True
+        Me.GridColumnreport_mark_type_name.VisibleIndex = 1
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Store Account"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 2
+        '
+        'GridColumncomp_name
+        '
+        Me.GridColumncomp_name.Caption = "Store"
+        Me.GridColumncomp_name.FieldName = "comp_name"
+        Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.Visible = True
+        Me.GridColumncomp_name.VisibleIndex = 3
+        '
+        'GridColumncomp_group
+        '
+        Me.GridColumncomp_group.Caption = "Store Group"
+        Me.GridColumncomp_group.FieldName = "comp_group"
+        Me.GridColumncomp_group.Name = "GridColumncomp_group"
+        Me.GridColumncomp_group.Visible = True
+        Me.GridColumncomp_group.VisibleIndex = 4
+        '
+        'GridColumncomp_group_name
+        '
+        Me.GridColumncomp_group_name.Caption = "Store Group Desc."
+        Me.GridColumncomp_group_name.FieldName = "comp_group_name"
+        Me.GridColumncomp_group_name.Name = "GridColumncomp_group_name"
+        Me.GridColumncomp_group_name.Visible = True
+        Me.GridColumncomp_group_name.VisibleIndex = 5
+        '
+        'GridColumnsales_pos_date
+        '
+        Me.GridColumnsales_pos_date.Caption = "Created Date"
+        Me.GridColumnsales_pos_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_pos_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_pos_date.FieldName = "sales_pos_date"
+        Me.GridColumnsales_pos_date.Name = "GridColumnsales_pos_date"
+        Me.GridColumnsales_pos_date.Visible = True
+        Me.GridColumnsales_pos_date.VisibleIndex = 6
+        '
+        'GridColumnsales_pos_due_date
+        '
+        Me.GridColumnsales_pos_due_date.Caption = "Due Date"
+        Me.GridColumnsales_pos_due_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_pos_due_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_pos_due_date.FieldName = "sales_pos_due_date"
+        Me.GridColumnsales_pos_due_date.Name = "GridColumnsales_pos_due_date"
+        Me.GridColumnsales_pos_due_date.Visible = True
+        Me.GridColumnsales_pos_due_date.VisibleIndex = 7
+        '
+        'GridColumnsales_pos_start_period
+        '
+        Me.GridColumnsales_pos_start_period.Caption = "Period Start"
+        Me.GridColumnsales_pos_start_period.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_pos_start_period.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_pos_start_period.FieldName = "sales_pos_start_period"
+        Me.GridColumnsales_pos_start_period.Name = "GridColumnsales_pos_start_period"
+        Me.GridColumnsales_pos_start_period.Visible = True
+        Me.GridColumnsales_pos_start_period.VisibleIndex = 8
+        '
+        'GridColumnsales_pos_end_period
+        '
+        Me.GridColumnsales_pos_end_period.Caption = "Period End"
+        Me.GridColumnsales_pos_end_period.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_pos_end_period.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_pos_end_period.FieldName = "sales_pos_end_period"
+        Me.GridColumnsales_pos_end_period.Name = "GridColumnsales_pos_end_period"
+        Me.GridColumnsales_pos_end_period.Visible = True
+        Me.GridColumnsales_pos_end_period.VisibleIndex = 9
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumnid_design
+        '
+        Me.GridColumnid_design.Caption = "id_design"
+        Me.GridColumnid_design.FieldName = "id_design"
+        Me.GridColumnid_design.Name = "GridColumnid_design"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 11
+        '
+        'GridColumncode_main
+        '
+        Me.GridColumncode_main.Caption = "Main Code"
+        Me.GridColumncode_main.FieldName = "code_main"
+        Me.GridColumncode_main.Name = "GridColumncode_main"
+        Me.GridColumncode_main.Visible = True
+        Me.GridColumncode_main.VisibleIndex = 12
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 13
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 14
+        '
+        'GridColumnclass_sal
+        '
+        Me.GridColumnclass_sal.Caption = "Class"
+        Me.GridColumnclass_sal.FieldName = "class"
+        Me.GridColumnclass_sal.Name = "GridColumnclass_sal"
+        Me.GridColumnclass_sal.Visible = True
+        Me.GridColumnclass_sal.VisibleIndex = 15
+        '
+        'GridColumnsales_pos_det_qty
+        '
+        Me.GridColumnsales_pos_det_qty.Caption = "Qty"
+        Me.GridColumnsales_pos_det_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnsales_pos_det_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnsales_pos_det_qty.FieldName = "sales_pos_det_qty"
+        Me.GridColumnsales_pos_det_qty.Name = "GridColumnsales_pos_det_qty"
+        Me.GridColumnsales_pos_det_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", "{0:N0}")})
+        Me.GridColumnsales_pos_det_qty.Visible = True
+        Me.GridColumnsales_pos_det_qty.VisibleIndex = 16
+        '
+        'GridColumndesign_price_retail
+        '
+        Me.GridColumndesign_price_retail.Caption = "Price"
+        Me.GridColumndesign_price_retail.DisplayFormat.FormatString = "N2"
+        Me.GridColumndesign_price_retail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price_retail.FieldName = "design_price_retail"
+        Me.GridColumndesign_price_retail.Name = "GridColumndesign_price_retail"
+        Me.GridColumndesign_price_retail.Visible = True
+        Me.GridColumndesign_price_retail.VisibleIndex = 17
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 18
         '
         'GroupControl6
         '
@@ -2532,189 +2717,13 @@ Partial Class FormFGTransList
         Me.LabelControl2.TabIndex = 8892
         Me.LabelControl2.Text = "From"
         '
-        'GridColumnid_sales_pos_det
+        'GridColumnreport_status
         '
-        Me.GridColumnid_sales_pos_det.Caption = "id_sales_pos_det"
-        Me.GridColumnid_sales_pos_det.FieldName = "id_sales_pos_det"
-        Me.GridColumnid_sales_pos_det.Name = "GridColumnid_sales_pos_det"
-        '
-        'GridColumnid_sales_pos
-        '
-        Me.GridColumnid_sales_pos.Caption = "id_sales_pos"
-        Me.GridColumnid_sales_pos.FieldName = "id_sales_pos"
-        Me.GridColumnid_sales_pos.Name = "GridColumnid_sales_pos"
-        '
-        'GridColumnsales_pos_number
-        '
-        Me.GridColumnsales_pos_number.Caption = "Number"
-        Me.GridColumnsales_pos_number.FieldName = "sales_pos_number"
-        Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
-        Me.GridColumnsales_pos_number.Visible = True
-        Me.GridColumnsales_pos_number.VisibleIndex = 0
-        '
-        'GridColumnreport_mark_type_name
-        '
-        Me.GridColumnreport_mark_type_name.Caption = "Type"
-        Me.GridColumnreport_mark_type_name.FieldName = "report_mark_type_name"
-        Me.GridColumnreport_mark_type_name.Name = "GridColumnreport_mark_type_name"
-        Me.GridColumnreport_mark_type_name.Visible = True
-        Me.GridColumnreport_mark_type_name.VisibleIndex = 1
-        '
-        'GridColumncomp_number
-        '
-        Me.GridColumncomp_number.Caption = "Store Account"
-        Me.GridColumncomp_number.FieldName = "comp_number"
-        Me.GridColumncomp_number.Name = "GridColumncomp_number"
-        Me.GridColumncomp_number.Visible = True
-        Me.GridColumncomp_number.VisibleIndex = 2
-        '
-        'GridColumncomp_name
-        '
-        Me.GridColumncomp_name.Caption = "Store"
-        Me.GridColumncomp_name.FieldName = "comp_name"
-        Me.GridColumncomp_name.Name = "GridColumncomp_name"
-        Me.GridColumncomp_name.Visible = True
-        Me.GridColumncomp_name.VisibleIndex = 3
-        '
-        'GridColumncomp_group
-        '
-        Me.GridColumncomp_group.Caption = "Store Group"
-        Me.GridColumncomp_group.FieldName = "comp_group"
-        Me.GridColumncomp_group.Name = "GridColumncomp_group"
-        Me.GridColumncomp_group.Visible = True
-        Me.GridColumncomp_group.VisibleIndex = 4
-        '
-        'GridColumncomp_group_name
-        '
-        Me.GridColumncomp_group_name.Caption = "Store Group Desc."
-        Me.GridColumncomp_group_name.FieldName = "comp_group_name"
-        Me.GridColumncomp_group_name.Name = "GridColumncomp_group_name"
-        Me.GridColumncomp_group_name.Visible = True
-        Me.GridColumncomp_group_name.VisibleIndex = 5
-        '
-        'GridColumnsales_pos_date
-        '
-        Me.GridColumnsales_pos_date.Caption = "Created Date"
-        Me.GridColumnsales_pos_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnsales_pos_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsales_pos_date.FieldName = "sales_pos_date"
-        Me.GridColumnsales_pos_date.Name = "GridColumnsales_pos_date"
-        Me.GridColumnsales_pos_date.Visible = True
-        Me.GridColumnsales_pos_date.VisibleIndex = 6
-        '
-        'GridColumnsales_pos_due_date
-        '
-        Me.GridColumnsales_pos_due_date.Caption = "Due Date"
-        Me.GridColumnsales_pos_due_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnsales_pos_due_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsales_pos_due_date.FieldName = "sales_pos_due_date"
-        Me.GridColumnsales_pos_due_date.Name = "GridColumnsales_pos_due_date"
-        Me.GridColumnsales_pos_due_date.Visible = True
-        Me.GridColumnsales_pos_due_date.VisibleIndex = 7
-        '
-        'GridColumnsales_pos_start_period
-        '
-        Me.GridColumnsales_pos_start_period.Caption = "Period Start"
-        Me.GridColumnsales_pos_start_period.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnsales_pos_start_period.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsales_pos_start_period.FieldName = "sales_pos_start_period"
-        Me.GridColumnsales_pos_start_period.Name = "GridColumnsales_pos_start_period"
-        Me.GridColumnsales_pos_start_period.Visible = True
-        Me.GridColumnsales_pos_start_period.VisibleIndex = 8
-        '
-        'GridColumnsales_pos_end_period
-        '
-        Me.GridColumnsales_pos_end_period.Caption = "Period End"
-        Me.GridColumnsales_pos_end_period.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnsales_pos_end_period.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsales_pos_end_period.FieldName = "sales_pos_end_period"
-        Me.GridColumnsales_pos_end_period.Name = "GridColumnsales_pos_end_period"
-        Me.GridColumnsales_pos_end_period.Visible = True
-        Me.GridColumnsales_pos_end_period.VisibleIndex = 9
-        '
-        'GridColumnid_product
-        '
-        Me.GridColumnid_product.Caption = "id_product"
-        Me.GridColumnid_product.FieldName = "id_product"
-        Me.GridColumnid_product.Name = "GridColumnid_product"
-        '
-        'GridColumnid_design
-        '
-        Me.GridColumnid_design.Caption = "id_design"
-        Me.GridColumnid_design.FieldName = "id_design"
-        Me.GridColumnid_design.Name = "GridColumnid_design"
-        '
-        'GridColumncode
-        '
-        Me.GridColumncode.Caption = "Code"
-        Me.GridColumncode.FieldName = "code"
-        Me.GridColumncode.Name = "GridColumncode"
-        Me.GridColumncode.Visible = True
-        Me.GridColumncode.VisibleIndex = 10
-        '
-        'GridColumncode_main
-        '
-        Me.GridColumncode_main.Caption = "Main Code"
-        Me.GridColumncode_main.FieldName = "code_main"
-        Me.GridColumncode_main.Name = "GridColumncode_main"
-        Me.GridColumncode_main.Visible = True
-        Me.GridColumncode_main.VisibleIndex = 11
-        '
-        'GridColumnname
-        '
-        Me.GridColumnname.Caption = "Description"
-        Me.GridColumnname.FieldName = "name"
-        Me.GridColumnname.Name = "GridColumnname"
-        Me.GridColumnname.Visible = True
-        Me.GridColumnname.VisibleIndex = 12
-        '
-        'GridColumnsize
-        '
-        Me.GridColumnsize.Caption = "Size"
-        Me.GridColumnsize.FieldName = "size"
-        Me.GridColumnsize.Name = "GridColumnsize"
-        Me.GridColumnsize.Visible = True
-        Me.GridColumnsize.VisibleIndex = 13
-        '
-        'GridColumnclass_sal
-        '
-        Me.GridColumnclass_sal.Caption = "Class"
-        Me.GridColumnclass_sal.FieldName = "class"
-        Me.GridColumnclass_sal.Name = "GridColumnclass_sal"
-        Me.GridColumnclass_sal.Visible = True
-        Me.GridColumnclass_sal.VisibleIndex = 14
-        '
-        'GridColumnsales_pos_det_qty
-        '
-        Me.GridColumnsales_pos_det_qty.Caption = "Qty"
-        Me.GridColumnsales_pos_det_qty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnsales_pos_det_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnsales_pos_det_qty.FieldName = "sales_pos_det_qty"
-        Me.GridColumnsales_pos_det_qty.Name = "GridColumnsales_pos_det_qty"
-        Me.GridColumnsales_pos_det_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", "{0:N0}")})
-        Me.GridColumnsales_pos_det_qty.Visible = True
-        Me.GridColumnsales_pos_det_qty.VisibleIndex = 15
-        '
-        'GridColumndesign_price_retail
-        '
-        Me.GridColumndesign_price_retail.Caption = "Price"
-        Me.GridColumndesign_price_retail.DisplayFormat.FormatString = "N2"
-        Me.GridColumndesign_price_retail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndesign_price_retail.FieldName = "design_price_retail"
-        Me.GridColumndesign_price_retail.Name = "GridColumndesign_price_retail"
-        Me.GridColumndesign_price_retail.Visible = True
-        Me.GridColumndesign_price_retail.VisibleIndex = 16
-        '
-        'GridColumnamount
-        '
-        Me.GridColumnamount.Caption = "Amount"
-        Me.GridColumnamount.DisplayFormat.FormatString = "N2"
-        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnamount.FieldName = "amount"
-        Me.GridColumnamount.Name = "GridColumnamount"
-        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
-        Me.GridColumnamount.Visible = True
-        Me.GridColumnamount.VisibleIndex = 17
+        Me.GridColumnreport_status.Caption = "Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.Visible = True
+        Me.GridColumnreport_status.VisibleIndex = 10
         '
         'FormFGTransList
         '
@@ -3051,4 +3060,5 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnsales_pos_det_qty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndesign_price_retail As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
 End Class
