@@ -21,24 +21,6 @@ Partial Public Class ReportAccountingLedger
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportAccountingLedger))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        Me.GCAccountingLedger = New DevExpress.XtraGrid.GridControl()
-        Me.GVAccountingLedger = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XLAccount = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
@@ -52,197 +34,28 @@ Partial Public Class ReportAccountingLedger
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.GCAccountingLedger, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVAccountingLedger, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XrTable = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCellNo = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellReportNumber = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellCompany = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellJournalDate = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellReff = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellDescription = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellQty = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellDebit = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellCredit = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellBalance = New DevExpress.XtraReports.UI.XRTableCell()
+        CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1, Me.XLAccount, Me.XrLabel4, Me.XrLabel2, Me.XrLabel1, Me.XrLabel3, Me.XLPeriod})
-        Me.Detail.HeightF = 153.625!
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLAccount, Me.XrLabel4, Me.XrLabel2, Me.XrLabel1, Me.XrLabel3, Me.XLPeriod, Me.XrTable})
+        Me.Detail.HeightF = 116.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 64.99998!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1075.0!, 88.62501!)
-        Me.WinControlContainer1.WinControl = Me.GCAccountingLedger
-        '
-        'GCAccountingLedger
-        '
-        Me.GCAccountingLedger.Location = New System.Drawing.Point(0, 44)
-        Me.GCAccountingLedger.MainView = Me.GVAccountingLedger
-        Me.GCAccountingLedger.Name = "GCAccountingLedger"
-        Me.GCAccountingLedger.Size = New System.Drawing.Size(1032, 85)
-        Me.GCAccountingLedger.TabIndex = 1
-        Me.GCAccountingLedger.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccountingLedger})
-        '
-        'GVAccountingLedger
-        '
-        Me.GVAccountingLedger.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
-        Me.GVAccountingLedger.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingLedger.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVAccountingLedger.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVAccountingLedger.AppearancePrint.FooterPanel.Options.UseBorderColor = True
-        Me.GVAccountingLedger.AppearancePrint.FooterPanel.Options.UseFont = True
-        Me.GVAccountingLedger.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
-        Me.GVAccountingLedger.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingLedger.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVAccountingLedger.AppearancePrint.GroupFooter.Options.UseBackColor = True
-        Me.GVAccountingLedger.AppearancePrint.GroupFooter.Options.UseBorderColor = True
-        Me.GVAccountingLedger.AppearancePrint.GroupFooter.Options.UseFont = True
-        Me.GVAccountingLedger.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
-        Me.GVAccountingLedger.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingLedger.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVAccountingLedger.AppearancePrint.GroupRow.Options.UseBackColor = True
-        Me.GVAccountingLedger.AppearancePrint.GroupRow.Options.UseBorderColor = True
-        Me.GVAccountingLedger.AppearancePrint.GroupRow.Options.UseFont = True
-        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
-        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
-        Me.GVAccountingLedger.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVAccountingLedger.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
-        Me.GVAccountingLedger.AppearancePrint.Lines.Options.UseBackColor = True
-        Me.GVAccountingLedger.AppearancePrint.Row.BackColor = System.Drawing.Color.White
-        Me.GVAccountingLedger.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingLedger.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBackColor = True
-        Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVAccountingLedger.AppearancePrint.Row.Options.UseFont = True
-        Me.GVAccountingLedger.ColumnPanelRowHeight = 32
-        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn16, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21})
-        Me.GVAccountingLedger.GridControl = Me.GCAccountingLedger
-        Me.GVAccountingLedger.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "number", Me.GridColumn16, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", Me.GridColumn9, "{0:N0}")})
-        Me.GVAccountingLedger.LevelIndent = 0
-        Me.GVAccountingLedger.Name = "GVAccountingLedger"
-        Me.GVAccountingLedger.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVAccountingLedger.OptionsBehavior.Editable = False
-        Me.GVAccountingLedger.OptionsView.ShowFooter = True
-        Me.GVAccountingLedger.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.FieldName = "id_report"
-        Me.GridColumn20.Name = "GridColumn20"
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.FieldName = "report_mark_type"
-        Me.GridColumn19.Name = "GridColumn19"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.FieldName = "id_report_ref"
-        Me.GridColumn18.Name = "GridColumn18"
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.FieldName = "report_mark_type_ref"
-        Me.GridColumn17.Name = "GridColumn17"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "No"
-        Me.GridColumn16.FieldName = "number"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 1
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Account"
-        Me.GridColumn1.FieldName = "acc_name"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Report Number"
-        Me.GridColumn2.FieldName = "report_number"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Company"
-        Me.GridColumn3.FieldName = "comp_number"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Journal Date"
-        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn4.FieldName = "date_created"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Reff"
-        Me.GridColumn5.FieldName = "report_number_ref"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Description"
-        Me.GridColumn6.FieldName = "acc_trans_note"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Debit"
-        Me.GridColumn7.DisplayFormat.FormatString = "N0"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "debit"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N0}")})
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Credit"
-        Me.GridColumn8.DisplayFormat.FormatString = "N0"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "credit"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N0}")})
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 9
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Balance"
-        Me.GridColumn9.DisplayFormat.FormatString = "N0"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "balance"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", "{0:N0}")})
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 10
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.DisplayFormat.FormatString = "N0"
-        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn21.FieldName = "last_balance"
-        Me.GridColumn21.Name = "GridColumn21"
         '
         'XLAccount
         '
@@ -377,15 +190,123 @@ Partial Public Class ReportAccountingLedger
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(1075.0!, 20.00001!)
         '
-        'GridColumn10
+        'XrTable
         '
-        Me.GridColumn10.Caption = "Qty"
-        Me.GridColumn10.DisplayFormat.FormatString = "N2"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "qty"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
+        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 66.00002!)
+        Me.XrTable.Name = "XrTable"
+        Me.XrTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow})
+        Me.XrTable.SizeF = New System.Drawing.SizeF(1075.0!, 50.0!)
+        '
+        'XrTableRow
+        '
+        Me.XrTableRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCellNo, Me.XrTableCellReportNumber, Me.XrTableCellCompany, Me.XrTableCellJournalDate, Me.XrTableCellReff, Me.XrTableCellDescription, Me.XrTableCellQty, Me.XrTableCellDebit, Me.XrTableCellCredit, Me.XrTableCellBalance})
+        Me.XrTableRow.Font = New System.Drawing.Font("Tahoma", 8.75!, System.Drawing.FontStyle.Bold)
+        Me.XrTableRow.Name = "XrTableRow"
+        Me.XrTableRow.StylePriority.UseFont = False
+        Me.XrTableRow.StylePriority.UseTextAlignment = False
+        Me.XrTableRow.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableRow.Weight = 2.0R
+        '
+        'XrTableCellNo
+        '
+        Me.XrTableCellNo.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellNo.Name = "XrTableCellNo"
+        Me.XrTableCellNo.StylePriority.UseBorders = False
+        Me.XrTableCellNo.StylePriority.UsePadding = False
+        Me.XrTableCellNo.Text = "No"
+        Me.XrTableCellNo.Weight = 0.19072847858157926R
+        '
+        'XrTableCellReportNumber
+        '
+        Me.XrTableCellReportNumber.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellReportNumber.Name = "XrTableCellReportNumber"
+        Me.XrTableCellReportNumber.StylePriority.UseBorders = False
+        Me.XrTableCellReportNumber.StylePriority.UsePadding = False
+        Me.XrTableCellReportNumber.Text = "Report Number"
+        Me.XrTableCellReportNumber.Weight = 0.98807953311130137R
+        '
+        'XrTableCellCompany
+        '
+        Me.XrTableCellCompany.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellCompany.Name = "XrTableCellCompany"
+        Me.XrTableCellCompany.StylePriority.UseBorders = False
+        Me.XrTableCellCompany.StylePriority.UsePadding = False
+        Me.XrTableCellCompany.Text = "Company"
+        Me.XrTableCellCompany.Weight = 0.63576155706746684R
+        '
+        'XrTableCellJournalDate
+        '
+        Me.XrTableCellJournalDate.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellJournalDate.Name = "XrTableCellJournalDate"
+        Me.XrTableCellJournalDate.StylePriority.UseBorders = False
+        Me.XrTableCellJournalDate.StylePriority.UsePadding = False
+        Me.XrTableCellJournalDate.Text = "Journal Date"
+        Me.XrTableCellJournalDate.Weight = 0.85430459214490628R
+        '
+        'XrTableCellReff
+        '
+        Me.XrTableCellReff.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellReff.Name = "XrTableCellReff"
+        Me.XrTableCellReff.StylePriority.UseBorders = False
+        Me.XrTableCellReff.StylePriority.UsePadding = False
+        Me.XrTableCellReff.Text = "Reff"
+        Me.XrTableCellReff.Weight = 0.5761587171182263R
+        '
+        'XrTableCellDescription
+        '
+        Me.XrTableCellDescription.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellDescription.Name = "XrTableCellDescription"
+        Me.XrTableCellDescription.StylePriority.UseBorders = False
+        Me.XrTableCellDescription.StylePriority.UsePadding = False
+        Me.XrTableCellDescription.Text = "Description"
+        Me.XrTableCellDescription.Weight = 0.84105949504296063R
+        '
+        'XrTableCellQty
+        '
+        Me.XrTableCellQty.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellQty.Name = "XrTableCellQty"
+        Me.XrTableCellQty.StylePriority.UseBorders = False
+        Me.XrTableCellQty.StylePriority.UsePadding = False
+        Me.XrTableCellQty.Text = "Qty"
+        Me.XrTableCellQty.Weight = 0.7019868485581654R
+        '
+        'XrTableCellDebit
+        '
+        Me.XrTableCellDebit.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellDebit.Name = "XrTableCellDebit"
+        Me.XrTableCellDebit.StylePriority.UseBorders = False
+        Me.XrTableCellDebit.StylePriority.UsePadding = False
+        Me.XrTableCellDebit.Text = "Debit"
+        Me.XrTableCellDebit.Weight = 0.68211929991476172R
+        '
+        'XrTableCellCredit
+        '
+        Me.XrTableCellCredit.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellCredit.Name = "XrTableCellCredit"
+        Me.XrTableCellCredit.StylePriority.UseBorders = False
+        Me.XrTableCellCredit.StylePriority.UsePadding = False
+        Me.XrTableCellCredit.Text = "Credit"
+        Me.XrTableCellCredit.Weight = 0.76158910645031652R
+        '
+        'XrTableCellBalance
+        '
+        Me.XrTableCellBalance.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellBalance.Name = "XrTableCellBalance"
+        Me.XrTableCellBalance.StylePriority.UseBorders = False
+        Me.XrTableCellBalance.StylePriority.UsePadding = False
+        Me.XrTableCellBalance.Text = "Balance"
+        Me.XrTableCellBalance.Weight = 0.60264910534114735R
         '
         'ReportAccountingLedger
         '
@@ -397,8 +318,7 @@ Partial Public Class ReportAccountingLedger
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
-        CType(Me.GCAccountingLedger, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVAccountingLedger, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -416,23 +336,16 @@ Partial Public Class ReportAccountingLedger
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XLAccount As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XLPeriod As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCAccountingLedger As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVAccountingLedger As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XrTable As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCellNo As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellReportNumber As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellCompany As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellJournalDate As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellReff As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellDescription As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellQty As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellDebit As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellCredit As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellBalance As DevExpress.XtraReports.UI.XRTableCell
 End Class
