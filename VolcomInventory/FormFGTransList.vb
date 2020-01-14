@@ -224,6 +224,9 @@
         ElseIf tab_index = 5 Then
             page_active = "trf"
             ActiveControl = DEFromTrf
+        ElseIf tab_index = 6 Then
+            page_active = "sal"
+            ActiveControl = DEFromSal
         End If
     End Sub
 
