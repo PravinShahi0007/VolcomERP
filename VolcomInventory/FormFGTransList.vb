@@ -16,9 +16,23 @@
         DEUntilTrf.EditValue = data_dt.Rows(0)("dt")
         DEFromNonStock.EditValue = data_dt.Rows(0)("dt")
         DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
+        DEFromSal.EditValue = data_dt.Rows(0)("dt")
+        DEUntilSal.EditValue = data_dt.Rows(0)("dt")
+
+        'lookup
+        viewPeriodType()
 
         ActiveControl = DEFromRec
         page_active = "rec"
+    End Sub
+
+    Sub viewPeriodType()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '1' AS `id_period_type`,'Sales Date' AS `period_type`
+        UNION
+        SELECT '2' AS `id_period_type`,'Entry Date' AS `period_type` "
+        viewSearchLookupQuery(SLEPeriodType, query, "id_period_type", "period_type", "id_period_type")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewRec()
@@ -398,5 +412,72 @@
             exportToXLS(path, "trf", GCFGTrf)
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnViewSal_Click(sender As Object, e As EventArgs) Handles BtnViewSal.Click
+        viewSal()
+    End Sub
+
+    Sub viewSal()
+        Cursor = Cursors.WaitCursor
+        'class
+        Dim id_code_class As String = get_setup_field("id_code_fg_class")
+        'period type
+        Dim col_date As String = ""
+        If SLEPeriodType.EditValue.ToString = "1" Then
+            col_date = "sp.sales_pos_end_period"
+        Else
+            col_date = "sp.sales_pos_date"
+        End If
+        'filter promo
+        Dim cond_promo As String = ""
+        Dim cond_promo_trans As String = ""
+        If CEPromo.EditValue = True Then
+            cond_promo = ""
+            cond_promo_trans = ""
+        Else
+            cond_promo = "AND sp.sales_pos_total>0 "
+            cond_promo_trans = "AND a.report_mark_type!=116 "
+        End If
+        'date paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromSal.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilSal.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query As String = "SELECT spd.id_sales_pos_det, spd.id_sales_pos, sp.sales_pos_number, rmt.report_mark_type_name, 
+        c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`,
+        sp.sales_pos_date, sp.sales_pos_due_date,
+        sp.sales_pos_start_period, sp.sales_pos_end_period,
+        prod.id_product, prod.id_design, prod.`code`, prod.`code_main`,
+        prod.`name`, prod.`size`, prod.`class`, spd.sales_pos_det_qty, spd.design_price_retail, (spd.sales_pos_det_qty * spd.design_price_retail) AS `amount`
+        FROM tb_sales_pos_det spd
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN (
+	        SELECT prod.id_product, prod.id_design, prod.product_full_code AS `code`, dsg.design_code AS `code_main`,
+	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`
+	        FROM tb_m_product prod
+	        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+	        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prod_code.id_code_detail
+	        INNER JOIN tb_m_design_code dsg_code ON dsg_code.id_design = dsg.id_design
+	        INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dsg_code.id_code_detail AND cls.id_code=" + id_code_class + "
+	        WHERE dsg.id_lookup_status_order!=2
+        ) prod ON prod.id_product = spd.id_product
+        WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + cond_promo_trans
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSales.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 End Class
