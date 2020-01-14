@@ -309,6 +309,7 @@ Partial Class FormAccountingLedger
         Me.GVAccountingLedger.Name = "GVAccountingLedger"
         Me.GVAccountingLedger.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVAccountingLedger.OptionsBehavior.Editable = False
+        Me.GVAccountingLedger.OptionsView.ColumnAutoWidth = False
         Me.GVAccountingLedger.OptionsView.ShowFooter = True
         Me.GVAccountingLedger.OptionsView.ShowGroupPanel = False
         '
