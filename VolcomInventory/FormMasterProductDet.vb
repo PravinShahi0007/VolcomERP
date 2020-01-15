@@ -324,7 +324,7 @@
         max_order = TEMaxOrder.Text
         min_stock = TEMinStock.Text
         max_stock = TEMaxStock.Text
-        product_ean_code = TEEanCode.Text.ToString
+        product_ean_code = trimSpace(TEEanCode.Text.ToString)
 
         'validate
         EP_TE_cant_blank(EPMasterProduct, TEName)

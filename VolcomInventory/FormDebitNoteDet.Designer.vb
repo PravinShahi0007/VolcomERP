@@ -30,6 +30,10 @@ Partial Class FormDebitNoteDet
         Me.TEVendor = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.DERefDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.DECreated = New DevExpress.XtraEditors.TextEdit()
@@ -38,6 +42,7 @@ Partial Class FormDebitNoteDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancelDebitNote = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -70,7 +75,8 @@ Partial Class FormDebitNoteDet
         Me.GCClaimPcs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEDueDateInv = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +86,10 @@ Partial Class FormDebitNoteDet
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,6 +111,8 @@ Partial Class FormDebitNoteDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDateInv.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDateInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -111,7 +123,7 @@ Partial Class FormDebitNoteDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1044, 118)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1044, 163)
         Me.GroupGeneralHeader.TabIndex = 186
         '
         'PanelControlTopLeft
@@ -126,7 +138,7 @@ Partial Class FormDebitNoteDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(745, 114)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(662, 159)
         Me.PanelControlTopLeft.TabIndex = 8939
         '
         'TEDNType
@@ -160,7 +172,7 @@ Partial Class FormDebitNoteDet
         Me.MEAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAddress.Properties.Appearance.Options.UseFont = True
         Me.MEAddress.Properties.ReadOnly = True
-        Me.MEAddress.Size = New System.Drawing.Size(295, 43)
+        Me.MEAddress.Size = New System.Drawing.Size(316, 79)
         Me.MEAddress.TabIndex = 4444
         '
         'LabelControl1
@@ -183,7 +195,7 @@ Partial Class FormDebitNoteDet
         Me.TEVendor.Properties.Appearance.Options.UseFont = True
         Me.TEVendor.Properties.EditValueChangedDelay = 1
         Me.TEVendor.Properties.ReadOnly = True
-        Me.TEVendor.Size = New System.Drawing.Size(295, 20)
+        Me.TEVendor.Size = New System.Drawing.Size(212, 20)
         Me.TEVendor.TabIndex = 8888
         Me.TEVendor.TabStop = False
         '
@@ -199,6 +211,12 @@ Partial Class FormDebitNoteDet
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.DEDueDateInv)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl4)
+        Me.PanelControlTopRight.Controls.Add(Me.DERefDate)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
+        Me.PanelControlTopRight.Controls.Add(Me.DEDueDate)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl9)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopRight.Controls.Add(Me.TECreatedBy)
         Me.PanelControlTopRight.Controls.Add(Me.DECreated)
@@ -206,44 +224,86 @@ Partial Class FormDebitNoteDet
         Me.PanelControlTopRight.Controls.Add(Me.TENumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(765, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(682, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(277, 114)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(360, 159)
         Me.PanelControlTopRight.TabIndex = 8941
+        '
+        'DERefDate
+        '
+        Me.DERefDate.EditValue = Nothing
+        Me.DERefDate.Location = New System.Drawing.Point(109, 111)
+        Me.DERefDate.Name = "DERefDate"
+        Me.DERefDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERefDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERefDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DERefDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERefDate.Size = New System.Drawing.Size(241, 20)
+        Me.DERefDate.TabIndex = 172
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(13, 114)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(80, 13)
+        Me.LabelControl10.TabIndex = 171
+        Me.LabelControl10.Text = "Refference Date"
+        '
+        'DEDueDate
+        '
+        Me.DEDueDate.EditValue = Nothing
+        Me.DEDueDate.Location = New System.Drawing.Point(109, 85)
+        Me.DEDueDate.Name = "DEDueDate"
+        Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDate.Size = New System.Drawing.Size(241, 20)
+        Me.DEDueDate.TabIndex = 170
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(13, 88)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl9.TabIndex = 169
+        Me.LabelControl9.Text = "Payment Date"
         '
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(3, 62)
+        Me.LabelControl2.Location = New System.Drawing.Point(13, 62)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl2.TabIndex = 164
-        Me.LabelControl2.Text = "Craeted By"
+        Me.LabelControl2.Text = "Created By"
         '
         'TECreatedBy
         '
         Me.TECreatedBy.EditValue = ""
-        Me.TECreatedBy.Location = New System.Drawing.Point(67, 59)
+        Me.TECreatedBy.Location = New System.Drawing.Point(109, 59)
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.EditValueChangedDelay = 1
         Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(200, 20)
+        Me.TECreatedBy.Size = New System.Drawing.Size(241, 20)
         Me.TECreatedBy.TabIndex = 163
         '
         'DECreated
         '
         Me.DECreated.EditValue = ""
-        Me.DECreated.Location = New System.Drawing.Point(67, 7)
+        Me.DECreated.Location = New System.Drawing.Point(109, 7)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.EditValueChangedDelay = 1
         Me.DECreated.Properties.ReadOnly = True
-        Me.DECreated.Size = New System.Drawing.Size(200, 20)
+        Me.DECreated.Size = New System.Drawing.Size(241, 20)
         Me.DECreated.TabIndex = 162
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(3, 36)
+        Me.LabelControl5.Location = New System.Drawing.Point(13, 36)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl5.TabIndex = 155
@@ -252,17 +312,17 @@ Partial Class FormDebitNoteDet
         'TENumber
         '
         Me.TENumber.EditValue = ""
-        Me.TENumber.Location = New System.Drawing.Point(67, 33)
+        Me.TENumber.Location = New System.Drawing.Point(109, 33)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.EditValueChangedDelay = 1
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(200, 20)
+        Me.TENumber.Size = New System.Drawing.Size(241, 20)
         Me.TENumber.TabIndex = 8
         '
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(3, 10)
+        Me.LabelControl7.Location = New System.Drawing.Point(13, 10)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 159
@@ -300,12 +360,23 @@ Partial Class FormDebitNoteDet
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 485)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 505)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1044, 38)
         Me.PanelControl3.TabIndex = 187
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(612, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 34)
+        Me.BtnViewJournal.TabIndex = 15
+        Me.BtnViewJournal.Text = "View Journal"
+        Me.BtnViewJournal.Visible = False
         '
         'BCancelDebitNote
         '
@@ -380,7 +451,7 @@ Partial Class FormDebitNoteDet
         Me.GroupControl3.Controls.Add(Me.PanelControlBottomMiddle)
         Me.GroupControl3.Controls.Add(Me.PanelControlBottomLeft)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 361)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 381)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(1044, 124)
         Me.GroupControl3.TabIndex = 188
@@ -473,9 +544,9 @@ Partial Class FormDebitNoteDet
         Me.GroupControlList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Location = New System.Drawing.Point(0, 118)
+        Me.GroupControlList.Location = New System.Drawing.Point(0, 163)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(1044, 243)
+        Me.GroupControlList.Size = New System.Drawing.Size(1044, 218)
         Me.GroupControlList.TabIndex = 189
         Me.GroupControlList.Text = "Item List"
         '
@@ -487,7 +558,7 @@ Partial Class FormDebitNoteDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RIMDescription})
-        Me.GCItemList.Size = New System.Drawing.Size(1022, 239)
+        Me.GCItemList.Size = New System.Drawing.Size(1022, 214)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -659,22 +730,32 @@ Partial Class FormDebitNoteDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'BtnViewJournal
+        'DEDueDateInv
         '
-        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(612, 2)
-        Me.BtnViewJournal.Name = "BtnViewJournal"
-        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 34)
-        Me.BtnViewJournal.TabIndex = 15
-        Me.BtnViewJournal.Text = "View Journal"
-        Me.BtnViewJournal.Visible = False
+        Me.DEDueDateInv.EditValue = Nothing
+        Me.DEDueDateInv.Location = New System.Drawing.Point(109, 135)
+        Me.DEDueDateInv.Name = "DEDueDateInv"
+        Me.DEDueDateInv.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDateInv.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDateInv.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDateInv.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDateInv.Size = New System.Drawing.Size(241, 20)
+        Me.DEDueDateInv.TabIndex = 174
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(13, 138)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(83, 13)
+        Me.LabelControl4.TabIndex = 173
+        Me.LabelControl4.Text = "Due Date Invoice"
         '
         'FormDebitNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1044, 523)
+        Me.ClientSize = New System.Drawing.Size(1044, 543)
         Me.Controls.Add(Me.GroupControlList)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
@@ -695,6 +776,10 @@ Partial Class FormDebitNoteDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -718,6 +803,8 @@ Partial Class FormDebitNoteDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDateInv.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDateInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -772,4 +859,10 @@ Partial Class FormDebitNoteDet
     Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BCancelDebitNote As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DERefDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEDueDateInv As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class

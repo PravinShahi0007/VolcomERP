@@ -723,8 +723,11 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString & " (" & data.Rows(i)("departement").ToString & ")"
             Next
             '
-            Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
-            Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+            Report.LBillTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
+            Report.LBillAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+
+            Report.LShipTo.Text = TEShipDestination.Text
+            Report.LShipToAddress.Text = MESHipAddress.Text
 
             If Not LEReportStatus.EditValue = "6" Then
                 Report.id_pre = "2"
@@ -800,7 +803,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             execute_non_query(query_trans, True, "", "", "", "")
             submit_who_prepared(rmt, id_po, id_user)
 
-            query = "UPDATE tb_purc_order SET is_submit='1' WHERE id_purc_order='" & id_po & "'"
+            query = "UPDATE tb_purc_order SET is_submit='1',report_mark_type='" & rmt & "' WHERE id_purc_order='" & id_po & "'"
             execute_non_query(query, True, "", "", "", "")
             '
             load_form()

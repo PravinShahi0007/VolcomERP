@@ -49,6 +49,7 @@ Partial Class FormSalesPOSDet
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.DEBOF = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelOLStoreNumber = New DevExpress.XtraEditors.LabelControl()
@@ -171,7 +172,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -612,6 +612,15 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(212, 174)
         Me.PanelControlTopRight.TabIndex = 8935
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl16.Location = New System.Drawing.Point(6, 113)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl16.TabIndex = 8941
+        Me.LabelControl16.Text = "BOF Date"
         '
         'DEBOF
         '
@@ -1697,6 +1706,7 @@ Partial Class FormSalesPOSDet
         Me.BtnLoadPOS.Size = New System.Drawing.Size(120, 36)
         Me.BtnLoadPOS.TabIndex = 28
         Me.BtnLoadPOS.Text = "Load from POS"
+        Me.BtnLoadPOS.Visible = False
         '
         'BtnExportToReport
         '
@@ -1719,6 +1729,7 @@ Partial Class FormSalesPOSDet
         Me.BtnImportOLStoreNew.Size = New System.Drawing.Size(171, 36)
         Me.BtnImportOLStoreNew.TabIndex = 26
         Me.BtnImportOLStoreNew.Text = "Load XLS OL Store (Detail)"
+        Me.BtnImportOLStoreNew.Visible = False
         '
         'BtnNoStock
         '
@@ -1898,15 +1909,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.FieldName = "design_price"
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
-        '
-        'LabelControl16
-        '
-        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(6, 113)
-        Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(46, 13)
-        Me.LabelControl16.TabIndex = 8941
-        Me.LabelControl16.Text = "BOF Date"
         '
         'FormSalesPOSDet
         '

@@ -9,6 +9,7 @@
     Public is_need_bank_account As String = "-1"
     '
     Public id_comp_group_add As String = "-1"
+    Public is_add_other As String = "-1"
 
     Dim data_map As DataTable
 
@@ -17,6 +18,8 @@
             FormPopUpCompGroup.view_comp_group()
 
             FormPopUpCompGroup.GVGroupComp.FocusedRowHandle = find_row(FormPopUpCompGroup.GVGroupComp, "id_comp_group", id_comp_group_add)
+
+            Console.WriteLine(id_company)
         End If
 
         Dispose()
@@ -24,6 +27,12 @@
 
     Private Sub FormMasterCompanySingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         action_load()
+
+        If id_comp_group_add = "-1" Then
+            GroupControlStoreGroup.Visible = False
+
+            Size = New Size(Size.Width, Size.Height - 56)
+        End If
     End Sub
 
     Sub load_contract_template()
@@ -54,6 +63,7 @@
         XTCCompany.SelectedTabPage = XTCCompany.TabPages(0)
         'LE/SLE
         view_comp_group()
+        view_store_company()
         view_country(LECountry)
         view_category(LECompanyCategory)
         view_status(LEStatus)
@@ -87,9 +97,9 @@
         End If
 
         If id_comp_group_add = "-1" Then
-            GroupControlStoreGroup.Visible = False
+            'GroupControlStoreGroup.Visible = False
 
-            Size = New Size(Size.Width, Size.Height - 56)
+            'Size = New Size(Size.Width, Size.Height - 56)
         Else
             Dim query As String = "SELECT comp_group, description FROM tb_m_comp_group WHERE id_comp_group = " + id_comp_group_add
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -165,6 +175,8 @@
             TENPWPAddress.Text = data.Rows(0)("npwp_address").ToString
             '
             SLEGroup.EditValue = id_comp_group
+            view_store_company()
+            SLEStoreCompany.EditValue = data.Rows(0)("id_store_company").ToString
             SLEVendorType.EditValue = id_vendor_type
             SLEBankAccount.EditValue = id_bank
 
@@ -261,8 +273,13 @@
             'load button approval
             BPrint.Visible = True
 
+            BResetMark.Visible = False
+
             If is_active = "1" Or is_active = "2" Then
                 BApproval.Visible = False
+                If Not is_view = "1" Then
+                    BResetMark.Visible = True
+                End If
             Else
                 BApproval.Visible = True
                 '
@@ -469,13 +486,19 @@
             id_def_drawer = "-1"
         End If
 
+        Dim id_store_company As String = "0"
+        Try
+            id_store_company = SLEStoreCompany.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
         If id_company = "-1" Then
             'new
             If Not formIsValidInGroup(EPCompany, GroupControl1) Or Not formIsValidInGroup(EPCompany, GroupControl2) Or Not formIsValidInGroup(EPCompany, GroupControl3) Then
                 errorInput()
             Else
                 'insert to company
-                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type,id_bank,bank_rek,bank_attn_name,bank_address,npwp_name,npwp_address, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
+                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type,id_bank,bank_rek,bank_attn_name,bank_address,npwp_name,npwp_address, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def,id_store_company) "
                 query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}', "
                 If id_dept = "0" Then
                     query += "NULL, "
@@ -518,9 +541,14 @@
                     query += "'" + id_so_type + "', "
                 End If
                 If id_def_drawer = "-1" Then
+                    query += "NULL, "
+                Else
+                    query += "'" + id_def_drawer + "', "
+                End If
+                If id_store_company = "0" Then
                     query += "NULL "
                 Else
-                    query += "'" + id_def_drawer + "' "
+                    query += "'" + id_store_company + "' "
                 End If
                 query += "); SELECT LAST_INSERT_ID(); "
                 query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address, npwp_name, npwp_address)
@@ -546,12 +574,19 @@
                 End If
 
                 'add contact group
-                If Not id_comp_group_add = "-1" Then
+                If Not id_comp_group_add = "-1" And is_add_other = "-1" Then
                     query = "UPDATE tb_m_comp_group SET id_comp = " + id_baru + " WHERE id_comp_group = " + id_comp_group_add
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
                 id_company = id_baru
+
+                'another company
+                If is_add_other = "1" Then
+                    query = "INSERT tb_m_comp_group_other (id_comp_group, id_comp) VALUES ('" + id_comp_group_add + "', '" + id_company + "')"
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
                 infoCustom("Detail company saved.")
 
                 action_load()
@@ -609,9 +644,14 @@
                     query += "id_so_type = '" + id_so_type + "', "
                 End If
                 If id_def_drawer = "-1" Then
-                    query += "id_drawer_def = NULL "
+                    query += "id_drawer_def = NULL, "
                 Else
-                    query += "id_drawer_def = '" + id_def_drawer + "' "
+                    query += "id_drawer_def = '" + id_def_drawer + "', "
+                End If
+                If id_store_company = "0" Then
+                    query += "id_store_company = NULL "
+                Else
+                    query += "id_store_company = '" + id_store_company + "' "
                 End If
                 query += "WHERE id_comp='" + id_company + "' "
                 query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address, npwp_name, npwp_address)
@@ -695,7 +735,7 @@
 
     Private Sub TECompanyCode_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECompanyCode.Validating
         Dim query_jml As String
-        query_jml = String.Format("SELECT COUNT(id_comp) FROM tb_m_comp WHERE comp_number='{0}' AND id_comp!='{1}' AND id_comp_cat='" + LECompanyCategory.EditValue.ToString + "' ", TECompanyCode.Text, id_company)
+        query_jml = String.Format("SELECT COUNT(id_comp) FROM tb_m_comp WHERE comp_number='{0}' AND id_comp!='{1}' AND id_comp_cat='" + LECompanyCategory.EditValue.ToString + "' ", addSlashes(TECompanyCode.Text), id_company)
         Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
         If Not jml < 1 Then
             EP_TE_already_used(EPCompany, TECompanyCode, "1")
@@ -809,6 +849,25 @@
     Sub view_comp_group()
         Dim query As String = "SELECT id_comp_group,comp_group,description FROM tb_m_comp_group "
         viewSearchLookupQuery(SLEGroup, query, "id_comp_group", "description", "id_comp_group")
+    End Sub
+
+    Sub view_store_company()
+        Dim query As String = "
+            SELECT 0 AS id_comp_group, 0 AS id_comp, '' AS comp_number, '' AS comp_name
+            UNION ALL
+            SELECT cother.id_comp_group, comp.id_comp, comp.comp_number, comp.comp_name
+            FROM tb_m_comp_group_other AS cother
+            LEFT JOIN tb_m_comp AS comp ON cother.id_comp = comp.id_comp
+            WHERE cother.id_comp_group = " + SLEGroup.EditValue.ToString + "
+            UNION ALL
+            SELECT cgroup.id_comp_group, comp.id_comp, comp.comp_number, comp.comp_name
+            FROM tb_m_comp_group AS cgroup
+            LEFT JOIN tb_m_comp AS comp ON cgroup.id_comp = comp.id_comp
+            WHERE cgroup.id_comp_group = " + SLEGroup.EditValue.ToString + " AND cgroup.id_comp IS NOT NULL
+        "
+        viewSearchLookupQuery(SLEStoreCompany, query, "id_comp", "comp_name", "id_comp")
+        Dim tmp_comp As String = execute_query("SELECT IFNULL(id_comp, 0) AS id_comp FROM tb_m_comp_group WHERE id_comp_group = " + SLEGroup.EditValue.ToString, 0, True, "", "", "", "")
+        SLEStoreCompany.EditValue = tmp_comp
     End Sub
 
     Private Sub BRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BRefresh.Click
@@ -1191,5 +1250,10 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
             execute_non_query(query, True, "", "", "", "")
             action_load()
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEGroup.EditValueChanged
+        view_store_company()
     End Sub
 End Class

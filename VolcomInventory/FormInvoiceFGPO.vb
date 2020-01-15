@@ -30,48 +30,85 @@
     End Sub
 
     Sub load_vendor()
-        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name
+        Dim query As String = "SELECT 0 AS id_comp,'All' as comp_name
                                 UNION
-                                SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
-                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
                                 WHERE c.id_comp_cat='1' "
-        viewSearchLookupQuery(SLEVendorPayment, query, "id_comp_contact", "comp_name", "id_comp_contact")
+        viewSearchLookupQuery(SLEVendorPayment, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_list(ByVal is_filter_design As String)
-        Dim query_where As String = ""
-
-        If SLEVendorPayment.EditValue.ToString = "0" Then
-            is_all_vendor = "1"
+        Dim q_pay As String = "SELECT id_acc_dp,id_acc_ap FROM tb_m_comp WHERE id_comp='" & SLEVendorPayment.EditValue.ToString & "'"
+        Dim dt_pay As DataTable = execute_query(q_pay, -1, True, "", "", "", "")
+        If Not SLEVendorPayment.EditValue.ToString = "0" AndAlso (dt_pay.Rows(0)("id_acc_dp").ToString = "" Or dt_pay.Rows(0)("id_acc_ap").ToString = "") Then
+            warningCustom("Please set this vendor DP/AP account first")
         Else
-            query_where = " AND c.id_comp = '" & SLEVendorPayment.EditValue.ToString & "'"
-        End If
-        '
-        If XTCInvoiceFGPO.SelectedTabPageIndex = 2 Then
+            Dim query_where As String = ""
 
-        ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
-            If XTCDP.SelectedTabPageIndex = 0 Then
-                'list DP
-                Dim query As String = "SELECT pn.*,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount FROM tb_pn_fgpo pn
+            If SLEVendorPayment.EditValue.ToString = "0" Then
+                is_all_vendor = "1"
+            Else
+                query_where = " AND c.id_comp = '" & SLEVendorPayment.Properties.View.GetFocusedRowCellValue("id_comp").ToString & "'"
+            End If
+            '
+            If XTCInvoiceFGPO.SelectedTabPageIndex = 0 Then
+                'list payment
+                Dim query As String = "SELECT pn.*,pnt.pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
+,det.report_number,det.inv_number
+FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
 INNER JOIN (
-	SELECT id_pn_fgpo,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount FROM tb_pn_fgpo_det pnd 
+	SELECT id_pn_fgpo,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount 
+        ,GROUP_CONCAT(pnd.report_number) AS report_number,GROUP_CONCAT(pnd.inv_number) AS inv_number
+    FROM tb_pn_fgpo_det pnd 
 	GROUP BY pnd.`id_pn_fgpo`
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
 WHERE 1=1 " & query_where
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                GCDP.DataSource = data
-                GVDP.BestFitColumns()
-            ElseIf XTCDP.SelectedTabPageIndex = 1 Then
-                'list FGPO for DP
-                Dim query As String = "SELECT 'no' AS is_check,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`,SUM(wod.`prod_order_wo_det_qty`) AS qty, wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS po_amount,(py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS dp_amount 
-,wod.`prod_order_wo_det_price`* SUM(wod.`prod_order_wo_det_qty`) AS po_amount,SUM(wod.`prod_order_wo_det_qty`) as qty,wod.`prod_order_wo_det_price`*(wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS po_amount_vat,(py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS dp_amount_vat
+                GCBPL.DataSource = data
+                GVBPL.BestFitColumns()
+            ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
+                If XTCDP.SelectedTabPageIndex = 0 Then
+                    'list DP
+                    Dim query As String = "SELECT pn.*,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount
+,det.report_number,det.inv_number
+ FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN (
+	SELECT id_pn_fgpo,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount 
+    ,GROUP_CONCAT(pnd.report_number) AS report_number,GROUP_CONCAT(pnd.inv_number) AS inv_number
+    FROM tb_pn_fgpo_det pnd 
+	GROUP BY pnd.`id_pn_fgpo`
+) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE pnt.is_payment=2 " & query_where
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    GCDP.DataSource = data
+                    GVDP.BestFitColumns()
+                ElseIf XTCDP.SelectedTabPageIndex = 1 Then
+                    'list FGPO for DP
+                    Dim query As String = "SELECT 'no' AS is_check,c.id_acc_dp AS id_acc,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`
+,SUM(wod.`prod_order_wo_det_qty`) AS qty
+,CAST(wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS po_amount_bef_kurs
+,CAST(wod.`prod_order_wo_det_price` *(wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS po_amount_vat_bef_kurs
+,CAST(wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS po_amount
+,CAST(wod.`prod_order_wo_det_price` * (wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS po_amount_vat
+,wo.id_currency,cur.currency,wo.prod_order_wo_kurs
+,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS dp_amount_bef_kurs
+,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS dp_amount_vat_bef_kurs
+,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount 
+,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount_vat
 FROM tb_prod_order_wo_det wod
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
@@ -79,18 +116,48 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=wo.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_lookup_payment py ON py.`id_payment`=wo.`id_payment` AND py.`dp_amount` > 0
-WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & " GROUP BY wo.`id_prod_order_wo`"
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                GCDPFGPO.DataSource = data
-                GVDPFGPO.BestFitColumns()
-                '
-                If SLEVendorPayment.EditValue.ToString = "0" Then
-                    PCDPFGPO.Visible = False
-                Else
-                    PCDPFGPO.Visible = True
+LEFT JOIN 
+(
+	SELECT id_prod_order FROM `tb_pn_fgpo_det` pnd
+	INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+	WHERE pn.id_report_status !=5 AND pn.doc_type=2 AND pn.type=1
+	GROUP BY id_prod_order
+)dp_paid ON dp_paid.id_prod_order=po.id_prod_order
+WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' AND ISNULL(dp_paid.id_prod_order) " & query_where & "
+GROUP BY wo.`id_prod_order_wo`"
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    GCDPFGPO.DataSource = data
+                    GVDPFGPO.BestFitColumns()
+                    If Not SLEVendorPayment.EditValue.ToString = "0" Then
+                        PCDPFGPO.Visible = True
+                    Else
+                        PCDPFGPO.Visible = False
+                    End If
                 End If
+            ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 2 Then
+                'list payment
+                Dim query As String = "SELECT pn.*,pnt.pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
+,det.report_number,det.inv_number
+FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN (
+	SELECT id_pn_fgpo,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount 
+        ,GROUP_CONCAT(pnd.report_number) AS report_number,GROUP_CONCAT(pnd.inv_number) AS inv_number
+    FROM tb_pn_fgpo_det pnd 
+	GROUP BY pnd.`id_pn_fgpo`
+) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE pnt.is_payment=1 " & query_where
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCPayment.DataSource = data
+                GVPayment.BestFitColumns()
             End If
         End If
+        '
+
     End Sub
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
@@ -143,22 +210,51 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
         load_list("1")
     End Sub
 
-    Private Sub GVDPFGPO_DoubleClick(sender As Object, e As EventArgs) Handles GVDPFGPO.DoubleClick
-        If GVDPFGPO.RowCount > 0 Then
-            FormReportPaymentFGPO.id_fgpo = GVDPFGPO.GetFocusedRowCellValue("id_prod_order").ToString
-            FormReportPaymentFGPO.ShowDialog()
-        Else
-            warningCustom("Please choose FGPO first")
+    'Private Sub GVDPFGPO_DoubleClick(sender As Object, e As EventArgs) Handles GVDPFGPO.DoubleClick
+    '    If GVDPFGPO.RowCount > 0 Then
+    '        FormReportPaymentFGPO.id_fgpo = GVDPFGPO.GetFocusedRowCellValue("id_prod_order").ToString
+    '        FormReportPaymentFGPO.ShowDialog()
+    '    Else
+    '        warningCustom("Please choose FGPO first")
+    '    End If
+    'End Sub
+
+    Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
+        If GVDP.RowCount > 0 Then
+            FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.type = "2"
+            FormInvoiceFGPODP.ShowDialog()
         End If
     End Sub
 
-    Private Sub BCreatePayment_Click(sender As Object, e As EventArgs) Handles BCreatePayment.Click
+    Private Sub GVPayment_DoubleClick(sender As Object, e As EventArgs) Handles GVPayment.DoubleClick
+        If GVPayment.RowCount > 0 Then
+            FormInvoiceFGPODP.id_invoice = GVPayment.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.type = "2"
+            FormInvoiceFGPODP.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub GVBPL_DoubleClick(sender As Object, e As EventArgs) Handles GVBPL.DoubleClick
+        If GVBPL.RowCount > 0 Then
+            FormInvoiceFGPODP.id_invoice = GVBPL.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.doc_type = GVBPL.GetFocusedRowCellValue("doc_type").ToString
+            FormInvoiceFGPODP.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BBBPLUmum_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBBPLUmum.ItemClick
+        FormInvoiceFGPODP.doc_type = "1"
+        FormInvoiceFGPODP.ShowDialog()
+    End Sub
+
+    Private Sub BBPaymentFGPO_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPaymentFGPO.ItemClick
+        FormInvoiceFGPODP.doc_type = "2"
         FormInvoiceFGPODP.type = "2"
         FormInvoiceFGPODP.ShowDialog()
     End Sub
 
-    Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
-        FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
-        FormInvoiceFGPODP.ShowDialog()
+    Private Sub BBDPFGPO_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDPFGPO.ItemClick
+        XTCInvoiceFGPO.SelectedTabPageIndex = 1
     End Sub
 End Class

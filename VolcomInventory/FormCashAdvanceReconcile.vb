@@ -46,6 +46,7 @@
 
         BMark.Enabled = False
         BPrint.Enabled = False
+        SBReset.Enabled = False
 
         'check status
         query = "
@@ -53,13 +54,11 @@
             LEFT JOIN 
             (
                 SELECT id_cash_advance, COUNT(id_cash_advance) AS jml FROM tb_cash_advance_report GROUP BY id_cash_advance
+                UNION
+                SELECT id_cash_advance, COUNT(id_cash_advance) AS jml FROM tb_cash_advance_report_det GROUP BY id_cash_advance
             ) recon ON recon.id_cash_advance = ca.id_cash_advance
              WHERE ca.id_cash_advance = '" & id_ca & "'"
         Dim dataCash As DataTable = execute_query(query, -1, True, "", "", "", "")
-
-        If dataCash.Rows(0)("rb_id_report_status").ToString = "6" Then
-            BtnViewJournal.Enabled = True
-        End If
 
         'load status
         TEStatus.EditValue = dataCash.Rows(0)("rb_status").ToString
@@ -74,6 +73,9 @@
         'report detail
         query = "SELECT *, (SELECT acc_description FROM tb_a_acc WHERE id_acc = tb_cash_advance_report_det.id_acc) AS acc_description, (SELECT acc_name FROM tb_a_acc WHERE id_acc = tb_cash_advance_report_det.id_acc) AS acc_name FROM tb_cash_advance_report_det WHERE id_cash_advance='" & id_ca & "'"
         Dim dataDetail As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GVBankWithdrawal.OptionsBehavior.Editable = True
+        GVBankDeposit.OptionsBehavior.Editable = True
 
         If dataDetail.Rows.Count > 0 Then
             If dataDetail.Rows(0)("id_bill_type").ToString = "22" Then
@@ -93,11 +95,19 @@
             End If
         End If
 
-        If dataReport.Rows.Count > 0 Then
+        BLock.Enabled = True
+
+        If dataReport.Rows.Count > 0 Or dataDetail.Rows.Count > 0 Then
             BSave.Enabled = False
             BLock.Enabled = False
             BMark.Enabled = True
             BPrint.Enabled = True
+            SBReset.Enabled = True
+        End If
+
+        If dataCash.Rows(0)("rb_id_report_status").ToString = "6" Then
+            BtnViewJournal.Enabled = True
+            SBReset.Enabled = False
         End If
     End Sub
 
@@ -111,13 +121,13 @@
         If GVBankWithdrawal.RowCount = 0 Then
             BDelBBK.Visible = False
         Else
-            BDelBBK.Visible = False
+            BDelBBK.Visible = True
         End If
         '
         If GVBankDeposit.RowCount = 0 Then
             BDelBBM.Visible = False
         Else
-            BDelBBM.Visible = False
+            BDelBBM.Visible = True
         End If
     End Sub
 
@@ -206,6 +216,7 @@
         'check
         Dim acc_selected = True
         Dim val_ok = True
+        Dim attachment = True
 
         If XTPWithdrawal.PageVisible Then
             For i = 0 To GVBankWithdrawal.RowCount - 1
@@ -229,6 +240,9 @@
             End If
         End If
 
+        'attachment
+        'attachment = If(execute_query("SELECT COUNT(*) FROM tb_doc WHERE report_mark_type = 174 AND id_report = " + id_ca, 0, True, "", "", "", "") = "0", False, True)
+
         'save
         If acc_selected = False Then
             If XTPWithdrawal.PageVisible Then
@@ -246,18 +260,22 @@
             End If
 
             warningCustom("Please make sure your cash is balance")
+        ElseIf Not attachment Then
+            warningCustom("Please add attachment")
         Else
             Dim query As String = ""
 
-            'report
-            query = "INSERT INTO tb_cash_advance_report(id_cash_advance,id_acc,description,value,note) VALUES"
-            For i As Integer = 0 To GVJournalDet.RowCount - 1
-                query += If(Not i = 0, ",", "")
+            If GVJournalDet.RowCount > 0 Then
+                'report
+                query = "INSERT INTO tb_cash_advance_report(id_cash_advance,id_acc,description,value,note) VALUES"
+                For i As Integer = 0 To GVJournalDet.RowCount - 1
+                    query += If(Not i = 0, ",", "")
 
-                query += "('" & id_ca & "','" & GVJournalDet.GetRowCellValue(i, "id_acc").ToString & "','" & GVJournalDet.GetRowCellValue(i, "description").ToString & "','" & decimalSQL(GVJournalDet.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVJournalDet.GetRowCellValue(i, "note").ToString) & "')"
-            Next
+                    query += "('" & id_ca & "','" & GVJournalDet.GetRowCellValue(i, "id_acc").ToString & "','" & GVJournalDet.GetRowCellValue(i, "description").ToString & "','" & decimalSQL(GVJournalDet.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVJournalDet.GetRowCellValue(i, "note").ToString) & "')"
+                Next
 
-            execute_non_query(query, True, "", "", "", "")
+                execute_non_query(query, True, "", "", "", "")
+            End If
 
             'report detail
             Dim id_bill_type As String = ""
@@ -312,7 +330,19 @@
             check_lock()
         Else
             If GVJournalDet.RowCount = 0 Then
-                warningCustom("Please insert detail report first")
+                'warningCustom("Please insert detail report first")
+
+                lock = True
+
+                check_lock()
+
+                Dim data As DataTable = execute_query("SELECT 0 AS id_cash_advance_report, 0 AS is_val_ca, NULL AS id_acc, '' AS description, '' AS note, " + decimalSQL(TECashInAdvance.EditValue) + " AS value", -1, True, "", "", "", "")
+                GCBankDeposit.DataSource = data
+
+                XTPWithdrawal.PageVisible = False
+                XTPDeposit.PageVisible = True
+
+                XTCCA.SelectedTabPageIndex = 2
             Else
                 Dim acc_selected = True
                 Dim value_selected = True
@@ -483,5 +513,59 @@
             GVBankDeposit.DeleteSelectedRows()
             check_but()
         End If
+    End Sub
+
+    Private Sub SBReset_Click(sender As Object, e As EventArgs) Handles SBReset.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All approval will be reset. Are you sure want to reset ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+
+            Dim query As String = ""
+
+            query = "DELETE FROM tb_cash_advance_report WHERE id_cash_advance = " + id_ca
+
+            execute_non_query(query, True, "", "", "", "")
+
+            query = "DELETE FROM tb_cash_advance_report_det WHERE id_cash_advance = " + id_ca
+
+            execute_non_query(query, True, "", "", "", "")
+
+            query = "UPDATE tb_cash_advance SET act_report_back_date = NULL, rb_id_report_status = 1 WHERE id_cash_advance = " + id_ca
+
+            execute_non_query(query, True, "", "", "", "")
+
+            query = "DELETE FROM tb_report_mark WHERE report_mark_type = 174 AND id_report = " + id_ca
+
+            execute_non_query(query, True, "", "", "", "")
+
+            XTPWithdrawal.PageVisible = False
+            XTPDeposit.PageVisible = False
+
+            lock = False
+
+            load_form()
+
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim is_view As String = execute_query("SELECT IF((SELECT COUNT(*) FROM tb_cash_advance_report WHERE id_cash_advance = " + id_ca + ") = 0, -1, 1) AS is_view", 0, True, "", "", "", "")
+
+        FormDocumentUpload.is_view = is_view
+        FormDocumentUpload.id_report = id_ca
+        FormDocumentUpload.report_mark_type = "174"
+        FormDocumentUpload.ShowDialog()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCCA_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCCA.SelectedPageChanged
+        check_but()
     End Sub
 End Class

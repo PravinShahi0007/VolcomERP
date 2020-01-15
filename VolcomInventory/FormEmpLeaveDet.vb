@@ -35,6 +35,8 @@
         load_form_dc()
         TENumber.Text = header_number_emp("1")
         '
+        SBAttachment.Visible = False
+        SBSubmit.Visible = False
         If id_emp_leave = "-1" Then 'new
             TEEmployeeCode.Properties.ReadOnly = False
             BPickEmployee.Visible = True
@@ -133,6 +135,20 @@
                 BCancelPropose.Visible = False
             End If
 
+            If LELeaveType.EditValue.ToString = "7" Then
+                If data.Rows(0)("id_report_status").ToString = "0" Then
+                    SBSubmit.Visible = True
+                    SBAttachment.Visible = True
+                    BMark.Visible = False
+                Else
+                    SBSubmit.Visible = False
+                    SBAttachment.Visible = True
+                    BMark.Visible = True
+                    If data.Rows(0)("id_report_status").ToString = "5" Or data.Rows(0)("id_report_status").ToString = "6" Then
+                        BMark.Visible = False
+                    End If
+                End If
+            End If
         End If
         '
     End Sub
@@ -147,10 +163,16 @@
         If Not is_hrd = "1" Then
             query += " WHERE is_hrd='2'"
         End If
+        'add other type
+        Dim id_leave_type As String = execute_query("SELECT IFNULL((SELECT id_leave_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave + "), 0 )", 0, True, "", "", "", "")
+        If Not id_emp_leave = "-1" Then
+            query += " UNION SELECT id_leave_type,leave_type FROM tb_lookup_leave_type WHERE id_leave_type = " + id_leave_type
+        End If
         viewLookupQuery(LELeaveType, query, 0, "leave_type", "id_leave_type")
     End Sub
 
     Sub load_remaining()
+        TERemainingLeave.EditValue = 0
         Dim query As String = "SELECT id_emp,SUM(IF(plus_minus=1,qty,-qty))/60 AS qty,`type`,IF(`type`=1,'Leave','DP') as type_ket,date_expired FROM tb_emp_stock_leave
                                 WHERE id_emp='" & id_employee & "'
                                 GROUP BY id_emp,date_expired,`type`
@@ -163,6 +185,7 @@
         End If
     End Sub
     Sub load_adv_leave()
+        TEAdvLeaveTot.EditValue = 0
         Dim query As String = "SELECT id_emp,SUM(qty)/60 AS qty FROM `tb_emp_stock_leave_adv`
                                 WHERE id_emp='" & id_employee & "'
                                 GROUP BY id_emp"
@@ -351,20 +374,212 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim query As String = ""
         Dim problem As Boolean = False
+        Dim check_input As Boolean = True
+        Dim leave_type As String = LELeaveType.EditValue.ToString
+
+        'propose max
+        Dim max_propose As Integer = CType(execute_query("
+            SELECT sub.max_leave
+            FROM tb_m_employee AS emp
+            LEFT JOIN tb_m_departement_sub AS sub ON emp.id_departement_sub = sub.id_departement_sub
+            WHERE emp.id_employee = " + id_employee + "
+        ", 0, True, "", "", "", ""), Integer)
+        Dim check_max_propose As String = ""
+
+        If leave_type = "1" And Not is_hrd = "1" And TETotLeave.EditValue > 0 Then
+            Dim data_all As DataTable = CType(GCLeaveDet.DataSource, DataTable).Copy
+
+            'included month
+            Dim month_include As List(Of String) = New List(Of String)
+
+            For i = 0 To data_all.Rows.Count - 1
+                Dim month As String = "'" + Date.Parse(data_all.Rows(i)("datetime_start").ToString).ToString("yyyy-M") + "'"
+
+                If Not month_include.Contains(month) Then
+                    month_include.Add(month)
+                End If
+            Next
+
+            Dim query_check_max As String = "
+                SELECT ld.id_emp_leave_det, ld.id_schedule, ld.datetime_start, ld.datetime_until, IF(ld.is_full_day = 1, 'yes', 'no') AS is_full_day, ld.minutes_total, (ld.minutes_total / 60) AS hours_total
+                FROM tb_emp_leave_det AS ld
+                LEFT JOIN tb_emp_leave AS l ON ld.id_emp_leave = l.id_emp_leave
+                WHERE CONCAT(YEAR(datetime_start), '-', MONTH(datetime_start)) IN (" + String.Join(",", month_include) + ") AND l.id_emp = " + id_employee + " AND l.id_leave_type = " + leave_type + " AND id_report_status <> 5
+            "
+
+            data_all.Merge(execute_query(query_check_max, -1, True, "", "", "", ""))
+
+            'check
+            Dim total_minutes As DataTable = New DataTable
+
+            total_minutes.Columns.Add("date", GetType(String))
+            total_minutes.Columns.Add("total", GetType(Integer))
+
+            For i = 0 To data_all.Rows.Count - 1
+                Dim month As String = Date.Parse(data_all.Rows(i)("datetime_start").ToString).ToString("MMMM yyyy")
+                Dim minutes_total As Integer = data_all.Rows(i)("minutes_total")
+
+                Dim index As Integer = -1
+
+                For j = 0 To total_minutes.Rows.Count - 1
+                    If total_minutes.Rows(j)("date").ToString = month Then
+                        index = j
+
+                        Exit For
+                    End If
+                Next
+
+                If index = -1 Then
+                    total_minutes.Rows.Add(month, minutes_total)
+                Else
+                    total_minutes.Rows(index)("total") = total_minutes.Rows(index)("total") + minutes_total
+                End If
+            Next
+
+            For i = 0 To total_minutes.Rows.Count - 1
+                If total_minutes.Rows(i)("total") > max_propose Then
+                    check_max_propose += total_minutes.Rows(i)("date") + ", "
+                End If
+            Next
+        End If
+
+        'continue days
+        Dim max_continues As Integer = 5
+        Dim check_max_continues As List(Of String) = New List(Of String)
+
+        If leave_type = "1" And Not is_hrd = "1" And TETotLeave.EditValue > 0 Then
+            Dim data_all As DataTable = CType(GCLeaveDet.DataSource, DataTable).Copy
+
+            'included months & days
+            Dim months_included As List(Of String) = New List(Of String)
+
+            For i = 0 To data_all.Rows.Count - 1
+                Dim months As String = Date.Parse(data_all.Rows(i)("datetime_start").ToString).ToString("yyyy-MM-01")
+
+                Dim months_pre As String = Date.Parse(months).AddMonths(-1).ToString("yyyy-MM-01")
+                Dim months_nex As String = Date.Parse(months).AddMonths(1).ToString("yyyy-MM-01")
+
+                If Not months_included.Contains(months.Substring(0, months.Length - 3)) Then
+                    months_included.Add(months.Substring(0, months.Length - 3))
+                End If
+
+                If Not months_included.Contains(months_pre.Substring(0, months.Length - 3)) Then
+                    months_included.Add(months_pre.Substring(0, months.Length - 3))
+                End If
+
+                If Not months_included.Contains(months_nex.Substring(0, months.Length - 3)) Then
+                    months_included.Add(months_nex.Substring(0, months.Length - 3))
+                End If
+            Next
+
+            'get schedule
+            Dim query_in As String = ""
+
+            For i = 0 To months_included.Count - 1
+                query_in += "sch.date LIKE '" + months_included(i) + "%' OR "
+            Next
+
+            Dim query_schedule As String = "
+                SELECT sch.date, IF(lvd.id_schedule IS NULL, 0, 1) AS is_leave
+                FROM tb_emp_schedule AS sch
+                LEFT JOIN tb_emp_leave_det AS lvd ON sch.id_schedule = lvd.id_schedule
+                WHERE sch.id_schedule_type = 1 AND (" + query_in.Substring(0, query_in.Length - 4) + ") AND sch.id_employee = " + id_employee + "
+                ORDER BY sch.date ASC
+            "
+
+            Dim data_sch As DataTable = execute_query(query_schedule, -1, True, "", "", "", "")
+
+            'check match
+            For i = 0 To data_sch.Rows.Count - 1
+                For j = 0 To data_all.Rows.Count - 1
+                    If Date.Parse(data_sch.Rows(i)("date").ToString).ToString("yyyy-MM-dd") = Date.Parse(data_all.Rows(j)("datetime_start").ToString).ToString("yyyy-MM-dd") Then
+                        data_sch.Rows(i)("is_leave") = 1
+                    End If
+                Next
+            Next
+
+            'check max continues
+            Dim curr_continues As Integer = 0
+
+            For i = 0 To data_sch.Rows.Count - 1
+                If data_sch.Rows(i)("is_leave") = 1 Then
+                    curr_continues = curr_continues + 1
+
+                    check_max_continues.Add(Date.Parse(data_sch.Rows(i)("date").ToString).ToString("dd MMMM yyyy"))
+                Else
+                    If curr_continues > max_continues Then
+                        'in propose
+                        Dim in_propose As Boolean = False
+
+                        For j = 0 To data_all.Rows.Count - 1
+                            If check_max_continues.Contains(Date.Parse(data_all.Rows(j)("datetime_start").ToString).ToString("dd MMMM yyyy")) Then
+                                in_propose = True
+                            End If
+                        Next
+
+                        If in_propose Then
+                            Exit For
+                        End If
+                    End If
+
+                    curr_continues = 0
+
+                    check_max_continues = New List(Of String)
+                End If
+
+            Next
+
+            If curr_continues <= max_continues Then
+                check_max_continues = New List(Of String)
+            End If
+        End If
+
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
             stopCustom("Lengkapi isian dengan lengkap !")
+
+            check_input = False
         ElseIf TERemainingLeaveAfter.EditValue < 0 Then
-            stopCustom("Sisa cuti tidak mencukupi.")
-        ElseIf LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "1" Then
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Sisa cuti tidak mencukupi, apakah anda ingin mengajukan unpaid leave?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            'change to unpaid leave
+            If confirm = DialogResult.Yes Then
+                leave_type = "7"
+                TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
+
+                check_input = True
+            Else
+                check_input = False
+            End If
+        ElseIf leave_type = "2" And LEFormDC.EditValue.ToString = "1" Then
             stopCustom("Sakit harus menggunakan form atau DC.")
-        ElseIf TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) And LELeaveType.EditValue.ToString = "4" Then
+
+            check_input = False
+        ElseIf TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) And leave_type = "4" Then
             stopCustom("Advance Leave sudah melebihi batas yang ditentukan.")
+
+            check_input = False
+        ElseIf Not check_max_propose = "" Then
+            check_max_propose = check_max_propose.Substring(0, check_max_propose.Length - 2)
+
+            stopCustom("Cuti bulan " + check_max_propose + " anda melebihi " + (max_propose / 60).ToString + " jam. Hubungi HRD untuk mengajukan cuti lebih dari " + (max_propose / 60).ToString + " jam.")
+
+            check_input = False
+        ElseIf check_max_continues.Count > 0 Then
+            stopCustom("Maksimal cuti " + max_continues.ToString + " hari berturut-turut. Tanggal anda cuti dari " + check_max_continues(0) + " - " + check_max_continues(check_max_continues.Count - 1) + ". Hubungi HRD untuk mengajukan cuti lebih dari " + max_continues.ToString + " hari berturut-turut.")
+
+            check_input = False
         Else
-            If LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" And GVLeaveDet.RowCount > 1 Then
+            check_input = True
+        End If
+
+        If check_input Then
+            If leave_type = "2" And LEFormDC.EditValue.ToString = "2" And GVLeaveDet.RowCount > 1 Then
                 'lebih dari 1 hari sakit pakai form
                 stopCustom("Hanya dapat mengajukan sakit dengan form satu hari dalam satu bulan." & vbNewLine & "Ajukan surat keterangan sakit dari dokter (DC) untuk pengajuan sakit.")
                 problem = True
-            ElseIf LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" Then
+            ElseIf leave_type = "2" And LEFormDC.EditValue.ToString = "2" Then
                 'check if sudah form sekali dalam sebulan.
                 Dim date_sick As String = Date.Parse(GVLeaveDet.GetRowCellValue(0, "datetime_start")).ToString("yyyy-MM-dd")
                 '
@@ -378,7 +593,7 @@
                 End If
             End If
 
-            If LELeaveType.EditValue.ToString = "6" Then
+            If leave_type = "6" Then
                 'check if sudah lebih dari 2 jam dalam sebulan.
                 Dim query_cek As String = "SELECT SUM(minutes_total) AS total_min FROM tb_emp_leave_det ld
                                         INNER JOIN tb_emp_leave l ON l.id_emp_leave=ld.id_emp_leave
@@ -404,7 +619,7 @@
             If problem = False Then
                 'add parent
                 Dim number As String = header_number_emp("1")
-                query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type,id_form_dc,id_user_who_create) VALUES('" & number & "','" & id_employee & "',NOW(),1,'" & id_employee_change & "','" & addSlashes(MELeavePurpose.Text) & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & LELeaveType.EditValue.ToString & "','" & LEFormDC.EditValue.ToString & "','" & id_user & "');SELECT LAST_INSERT_ID(); "
+                query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type,id_form_dc,id_user_who_create) VALUES('" & number & "','" & id_employee & "',NOW()," + If(leave_type = "7" And Not is_hrd = "1", "0", "1") + ",'" & id_employee_change & "','" & addSlashes(MELeavePurpose.Text) & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & leave_type & "','" & LEFormDC.EditValue.ToString & "','" & id_user & "');SELECT LAST_INSERT_ID(); "
                 id_emp_leave = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_emp("1")
                 'add detail
@@ -422,7 +637,7 @@
                     query += "('" & id_emp_leave & "','" & GVLeaveDet.GetRowCellValue(i, "id_schedule").ToString & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_start").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_until").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & is_full_day & "','" & GVLeaveDet.GetRowCellValue(i, "minutes_total").ToString & "')"
                 Next
                 execute_non_query(query, True, "", "", "", "")
-                If LELeaveType.EditValue.ToString = "1" Then
+                If leave_type = "1" Then
                     'add usage
                     query = "INSERT INTO tb_emp_leave_usage(id_emp_leave,`type`,date_expired,qty) VALUES"
                     For i As Integer = 0 To GVLeaveUsage.RowCount - 1
@@ -445,12 +660,15 @@
 
                 If is_hrd = "1" Then
                     submit_who_prepared("102", id_emp_leave, id_user)
+
                     query = "UPDATE tb_emp_leave SET report_mark_type='102' WHERE id_emp_leave='" & id_emp_leave & "'"
                     execute_non_query(query, True, "", "", "", "")
                 Else
                     'if HRM propose
                     If get_opt_emp_field("id_emp_hrd_manager").ToString = id_employee Then
-                        submit_who_prepared_no_user("104", id_emp_leave, id_employee)
+                        If Not leave_type = "7" Then
+                            submit_who_prepared_no_user("104", id_emp_leave, id_employee)
+                        End If
                         query = "UPDATE tb_emp_leave SET report_mark_type='104' WHERE id_emp_leave='" & id_emp_leave & "'"
                         execute_non_query(query, True, "", "", "", "")
                     Else
@@ -477,15 +695,21 @@
                             '2 = coordinator - asst mgr
                             '3 = staff - spv
                             If jum_check = "1" Or Not jum_check_dept_head = "0" Then
-                                submit_who_prepared_no_user("110", id_emp_leave, id_employee)
+                                If Not leave_type = "7" Then
+                                    submit_who_prepared_no_user("110", id_emp_leave, id_employee)
+                                End If
                                 query = "UPDATE tb_emp_leave SET report_mark_type='110' WHERE id_emp_leave='" & id_emp_leave & "'"
                                 execute_non_query(query, True, "", "", "", "")
                             ElseIf jum_check = "2" Or Not jum_check_sub_dept_head = "0" Then
-                                submit_who_prepared_no_user("109", id_emp_leave, id_employee)
+                                If Not leave_type = "7" Then
+                                    submit_who_prepared_no_user("109", id_emp_leave, id_employee)
+                                End If
                                 query = "UPDATE tb_emp_leave SET report_mark_type='109' WHERE id_emp_leave='" & id_emp_leave & "'"
                                 execute_non_query(query, True, "", "", "", "")
                             Else
-                                submit_who_prepared_no_user("108", id_emp_leave, id_employee)
+                                If Not leave_type = "7" Then
+                                    submit_who_prepared_no_user("108", id_emp_leave, id_employee)
+                                End If
                                 query = "UPDATE tb_emp_leave SET report_mark_type='108' WHERE id_emp_leave='" & id_emp_leave & "'"
                                 execute_non_query(query, True, "", "", "", "")
                             End If
@@ -493,11 +717,15 @@
                             Dim query_pic As String = "SELECT is_pic FROM tb_m_employee WHERE id_employee='" & id_employee & "'"
                             Dim data_pic As DataTable = execute_query(query_pic, -1, True, "", "", "", "")
                             If data_pic.Rows(0)("is_pic").ToString = "1" Then 'pic
-                                submit_who_prepared_no_user("164", id_emp_leave, id_employee)
+                                If Not leave_type = "7" Then
+                                    submit_who_prepared_no_user("164", id_emp_leave, id_employee)
+                                End If
                                 query = "UPDATE tb_emp_leave SET report_mark_type='164' WHERE id_emp_leave='" & id_emp_leave & "'"
                                 execute_non_query(query, True, "", "", "", "")
                             Else 'non pic
-                                submit_who_prepared_no_user("165", id_emp_leave, id_employee)
+                                If Not leave_type = "7" Then
+                                    submit_who_prepared_no_user("165", id_emp_leave, id_employee)
+                                End If
                                 query = "UPDATE tb_emp_leave SET report_mark_type='165' WHERE id_emp_leave='" & id_emp_leave & "'"
                                 execute_non_query(query, True, "", "", "", "")
                             End If
@@ -523,55 +751,67 @@
                             '3 = staff - spv
                             If jum_check = "1" Or Not jum_check_dept_head = "0" Then
                                 If id_employee = get_opt_emp_field("id_emp_admin_mng").ToString Then
-                                    submit_who_prepared_no_user("124", id_emp_leave, id_employee)
+                                    If Not leave_type = "7" Then
+                                        submit_who_prepared_no_user("124", id_emp_leave, id_employee)
+                                    End If
                                     query = "UPDATE tb_emp_leave SET report_mark_type='124' WHERE id_emp_leave='" & id_emp_leave & "'"
                                     execute_non_query(query, True, "", "", "", "")
                                 Else
-                                    submit_who_prepared_no_user("99", id_emp_leave, id_employee)
+                                    If Not leave_type = "7" Then
+                                        submit_who_prepared_no_user("99", id_emp_leave, id_employee)
+                                    End If
                                     query = "UPDATE tb_emp_leave SET report_mark_type='99' WHERE id_emp_leave='" & id_emp_leave & "'"
                                     execute_non_query(query, True, "", "", "", "")
                                 End If
                             ElseIf jum_check = "2" Or Not jum_check_sub_dept_head = "0" Then
-                                submit_who_prepared_no_user("96", id_emp_leave, id_employee)
+                                If Not leave_type = "7" Then
+                                    submit_who_prepared_no_user("96", id_emp_leave, id_employee)
+                                End If
                                 query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
                                 execute_non_query(query, True, "", "", "", "")
                             Else
-                                submit_who_prepared_no_user("95", id_emp_leave, id_employee)
+                                If Not leave_type = "7" Then
+                                    submit_who_prepared_no_user("95", id_emp_leave, id_employee)
+                                End If
                                 query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
                                 execute_non_query(query, True, "", "", "", "")
                             End If
                         End If
                     End If
 
-                        'after 2017/2/22 admin Manager still approved by HRD
-                        'filter by level
-                        'Dim jum_check_dept_head As String = ""
-                        'query = "SELECT COUNT(*) as jum FROM tb_m_departement dep
-                        '            INNER JOIN tb_m_user usr ON usr.id_user=dep.id_user_head
-                        '            WHERE usr.id_employee='" & id_employee & "'"
-                        'jum_check_dept_head = execute_query(query, 0, True, "", "", "", "")
-                        ''1 = Dept Head
-                        'If jum_check_dept_head = "1" Then
-                        '    submit_who_prepared_no_user("99", id_emp_leave, id_employee)
-                        '    query = "UPDATE tb_emp_leave SET report_mark_type='99' WHERE id_emp_leave='" & id_emp_leave & "'"
-                        '    execute_non_query(query, True, "", "", "", "")
-                        'Else
-                        '    Dim id_user_admin_management As String = get_opt_emp_field("id_user_admin_mng").ToString
-                        '    If get_id_employee(id_user_admin_management) = id_employee Then
-                        '        'if admin Head Dept
-                        '        submit_who_prepared_no_user("104", id_emp_leave, id_employee)
-                        '        query = "UPDATE tb_emp_leave SET report_mark_type='104' WHERE id_emp_leave='" & id_emp_leave & "'"
-                        '        execute_non_query(query, True, "", "", "", "")
-                        '    Else
-                        '        'if staff biasa
-                        '        submit_who_prepared_no_user("95", id_emp_leave, id_employee)
-                        '        query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
-                        '        execute_non_query(query, True, "", "", "", "")
-                        '    End If
-                        'End If
-                    End If
+                    'after 2017/2/22 admin Manager still approved by HRD
+                    'filter by level
+                    'Dim jum_check_dept_head As String = ""
+                    'query = "SELECT COUNT(*) as jum FROM tb_m_departement dep
+                    '            INNER JOIN tb_m_user usr ON usr.id_user=dep.id_user_head
+                    '            WHERE usr.id_employee='" & id_employee & "'"
+                    'jum_check_dept_head = execute_query(query, 0, True, "", "", "", "")
+                    ''1 = Dept Head
+                    'If jum_check_dept_head = "1" Then
+                    '    submit_who_prepared_no_user("99", id_emp_leave, id_employee)
+                    '    query = "UPDATE tb_emp_leave SET report_mark_type='99' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    '    execute_non_query(query, True, "", "", "", "")
+                    'Else
+                    '    Dim id_user_admin_management As String = get_opt_emp_field("id_user_admin_mng").ToString
+                    '    If get_id_employee(id_user_admin_management) = id_employee Then
+                    '        'if admin Head Dept
+                    '        submit_who_prepared_no_user("104", id_emp_leave, id_employee)
+                    '        query = "UPDATE tb_emp_leave SET report_mark_type='104' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    '        execute_non_query(query, True, "", "", "", "")
+                    '    Else
+                    '        'if staff biasa
+                    '        submit_who_prepared_no_user("95", id_emp_leave, id_employee)
+                    '        query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    '        execute_non_query(query, True, "", "", "", "")
+                    '    End If
+                    'End If
+                End If
                 '
-                infoCustom("Cuti diajukan. Menunggu persetujuan.")
+                If leave_type = "7" And Not is_hrd = "1" Then
+                    infoCustom("Unpaid leave disimpan. Mohon untuk mencetak memo untuk meminta persetujuan HRD dan Management.")
+                Else
+                    infoCustom("Cuti diajukan. Menunggu persetujuan.")
+                End If
                 '
                 FormEmpLeave.DEStart.EditValue = Now
                 FormEmpLeave.DEUntil.EditValue = Now
@@ -579,7 +819,7 @@
                 FormEmpLeave.GVLeave.FocusedRowHandle = find_row(FormEmpLeave.GVLeave, "id_emp_leave", id_emp_leave)
                 '
                 '
-                If is_hrd = "1" Then
+                If is_hrd = "1" Or leave_type = "7" Then
                     load_form()
                 Else
                     Close()
@@ -647,13 +887,25 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        ReportEmpLeave.id_report = id_emp_leave
-        ReportEmpLeave.report_mark_type = report_mark_type
+        Dim data As DataTable = execute_query("SELECT id_report_status, id_leave_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave, -1, True, "", "", "", "")
 
-        Dim Report As New ReportEmpLeave()
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+        If data.Rows(0)("id_leave_type").ToString = "7" And data.Rows(0)("id_report_status").ToString = "0" Then
+            ReportMemoUnpaidLeave.id_report = id_emp_leave
+            ReportMemoUnpaidLeave.report_mark_type = report_mark_type
+
+            Dim Report As New ReportMemoUnpaidLeave()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        Else
+            ReportEmpLeave.id_report = id_emp_leave
+            ReportEmpLeave.report_mark_type = report_mark_type
+
+            Dim Report As New ReportEmpLeave()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
     End Sub
 
     Private Sub LEpayment_KeyDown(sender As Object, e As KeyEventArgs) Handles LELeaveType.KeyDown
@@ -778,6 +1030,43 @@
             Else
                 infoCustom("This record created by system without document.")
             End If
+        End If
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim data As DataTable = execute_query("SELECT id_report_status, report_mark_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave, -1, True, "", "", "", "")
+
+        FormDocumentUpload.is_no_delete = "2"
+        FormDocumentUpload.is_view = If(data.Rows(0)("id_report_status").ToString = "0", "-1", "1")
+        FormDocumentUpload.id_report = id_emp_leave
+        FormDocumentUpload.report_mark_type = data.Rows(0)("report_mark_type").ToString
+        FormDocumentUpload.ShowDialog()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
+        Dim data As DataTable = execute_query("SELECT id_report_status, report_mark_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave, -1, True, "", "", "", "")
+
+        'check attachment
+        Dim attachment As String = execute_query("SELECT COUNT(*) FROM tb_doc WHERE report_mark_type = " + data.Rows(0)("report_mark_type").ToString + " AND id_report = " + id_emp_leave, 0, True, "", "", "", "")
+
+        If Not attachment = "0" Then
+            If data.Rows(0)("report_mark_type").ToString = "102" Then
+                submit_who_prepared(data.Rows(0)("report_mark_type").ToString, id_emp_leave, id_user)
+            Else
+                submit_who_prepared_no_user(data.Rows(0)("report_mark_type").ToString, id_emp_leave, id_employee)
+            End If
+
+            execute_non_query("UPDATE tb_emp_leave SET id_report_status = 1 WHERE id_emp_leave = " + id_emp_leave, True, "", "", "", "")
+
+            infoCustom("Cuti diajukan. Menunggu persetujuan.")
+
+            Close()
+        Else
+            stopCustom("Mohon lampirkan memo yg telah disetujui Management.")
         End If
     End Sub
 End Class

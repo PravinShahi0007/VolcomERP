@@ -12,40 +12,48 @@
     End Sub
 
     Private Sub BRefuse_Click(sender As Object, e As EventArgs) Handles BRefuse.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to not approve ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = DialogResult.Yes Then
-            Dim query As String = ""
-            If step_approve = "1" Then
-                query = "UPDATE tb_purc_req pr SET pr.ic_approval='3',ic_note='" & addSlashes(MEComment.Text) & "',ic_approve_by='" & id_user & "' WHERE id_purc_req='" & id_report & "'"
-            ElseIf step_approve = "2" Then
-                query = "UPDATE tb_purc_req pr SET pr.ia_approval='3',ia_note='" & addSlashes(MEComment.Text) & "',ia_approve_by='" & id_user & "' WHERE id_purc_req='" & id_report & "'"
+        If MEComment.Text = "" Then
+            warningCustom("Please input comment first")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to not approve ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query As String = ""
+                If step_approve = "1" Then
+                    query = "UPDATE tb_purc_req pr SET pr.ic_approval='3',ic_note='" & addSlashes(MEComment.Text) & "',ic_approve_by='" & id_user & "',ic_approve_date=NOW() WHERE id_purc_req='" & id_report & "'"
+                ElseIf step_approve = "2" Then
+                    query = "UPDATE tb_purc_req pr SET pr.ia_approval='3',ia_note='" & addSlashes(MEComment.Text) & "',ia_approve_by='" & id_user & "' WHERE id_purc_req='" & id_report & "'"
+                End If
+                execute_non_query(query, True, "", "", "", "")
+                '
+                If step_approve = "1" Then
+                    submit_pr()
+                End If
+                '
+                Close()
             End If
-            execute_non_query(query, True, "", "", "", "")
-            '
-            If step_approve = "1" Then
-                submit_pr()
-            End If
-            '
-            Close()
         End If
     End Sub
 
     Private Sub BAccept_Click(sender As Object, e As EventArgs) Handles BAccept.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to approve ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = DialogResult.Yes Then
-            Dim query As String = ""
-            If step_approve = "1" Then
-                query = "UPDATE tb_purc_req pr SET pr.ic_approval='2',pr.ic_note='" & addSlashes(MEComment.Text) & "',pr.ic_approve_by='" & id_user & "' WHERE pr.id_purc_req='" & id_report & "'"
-            ElseIf step_approve = "2" Then
-                query = "UPDATE tb_purc_req pr SET pr.ia_approval='2',pr.ia_note='" & addSlashes(MEComment.Text) & "',pr.ia_approve_by='" & id_user & "' WHERE pr.id_purc_req='" & id_report & "'"
+        If MEComment.Text = "" Then
+            warningCustom("Please input comment first")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to approve ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query As String = ""
+                If step_approve = "1" Then
+                    query = "UPDATE tb_purc_req pr SET pr.ic_approval='2',pr.ic_note='" & addSlashes(MEComment.Text) & "',pr.ic_approve_by='" & id_user & "',ic_approve_date=NOW() WHERE pr.id_purc_req='" & id_report & "'"
+                ElseIf step_approve = "2" Then
+                    query = "UPDATE tb_purc_req pr SET pr.ia_approval='2',pr.ia_note='" & addSlashes(MEComment.Text) & "',pr.ia_approve_by='" & id_user & "' WHERE pr.id_purc_req='" & id_report & "'"
+                End If
+                execute_non_query(query, True, "", "", "", "")
+                '
+                If step_approve = "1" Then
+                    submit_pr()
+                End If
+                '
+                Close()
             End If
-            execute_non_query(query, True, "", "", "", "")
-            '
-            If step_approve = "1" Then
-                submit_pr()
-            End If
-            '
-            Close()
         End If
     End Sub
 
@@ -72,6 +80,9 @@
         '        'submit_who_prepared("201", id_report, id_user_created)
         '    End If
         'End If
+
+        Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_report & "'"
+        execute_non_query(query_upd, True, "", "", "", "")
 
         submit_who_prepared("201", id_report, id_user_created)
     End Sub

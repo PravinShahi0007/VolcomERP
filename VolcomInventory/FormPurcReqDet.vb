@@ -14,9 +14,9 @@
     Sub load_approval_ic_ia()
         Dim query As String = "SELECT '1' AS id_approval,'No Action' AS approval
 UNION
-SELECT '2' AS id_approval,'No Action' AS approval
+SELECT '2' AS id_approval,'Approve' AS approval
 UNION
-SELECT '3' AS id_approval,'No Action' AS approval"
+SELECT '3' AS id_approval,'Not Approve' AS approval"
         viewSearchLookupQuery(SLEICApproval, query, "id_approval", "approval", "id_approval")
         viewSearchLookupQuery(SLEIAApproval, query, "id_approval", "approval", "id_approval")
     End Sub
@@ -111,7 +111,15 @@ SELECT '3' AS id_approval,'No Action' AS approval"
     End Sub
 
     Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_vendor()
         load_form()
+    End Sub
+    '
+    Sub load_vendor()
+        Dim query As String = "SELECT 0 AS id_comp,'Custom' AS comp_number,'Custom' AS comp_name,'Custom' AS address_primary
+UNION ALL
+SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_active='1'"
+        viewSearchLookupRepositoryQuery(RISLEShipTo, query, 0, "comp_number", "id_comp")
     End Sub
     '
     Sub load_purc_type()
@@ -169,6 +177,7 @@ SELECT '3' AS id_approval,'No Action' AS approval"
                     FROM tb_item it
                     INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                     INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
+                    INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = '" & id_departement & "'
                     LEFT JOIN
                     (
 	                    SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense`,ex.`id_item_cat_main` 
@@ -213,6 +222,7 @@ SELECT '3' AS id_approval,'No Action' AS approval"
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         GVItemList.AddNewRow()
         GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+        GVItemList.SetFocusedRowCellValue("ship_destination", get_setup_field("id_own_company"))
         check_but()
     End Sub
 
@@ -317,7 +327,7 @@ SELECT '3' AS id_approval,'No Action' AS approval"
                 End If
 
                 If id_req = "-1" Then 'new
-                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,is_store_purchase,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date) VALUES('" & id_departement & "','" & is_store_purchase & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,is_store_purchase,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date) VALUES('" & id_departement & "','" & is_store_purchase & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & addSlashes(MENote.Text) & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_req As String = execute_query(query, 0, True, "", "", "", "")
                     '
                     Dim query_det As String = ""
@@ -325,10 +335,10 @@ SELECT '3' AS id_approval,'No Action' AS approval"
                         If Not query_det = "" Then
                             query_det += ","
                         End If
-                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense_opex").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','0.00','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_destination").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_address").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "item_detail").ToString) & "')"
+                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense_opex").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','0.00','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_to").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_destination").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_address").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "item_detail").ToString) & "')"
                     Next
                     '
-                    query_det = "INSERT INTO `tb_purc_req_det`(id_purc_req,id_item,id_b_expense_opex,id_b_expense,qty,value,budget,budget_remaining,note,ship_destination,ship_address,item_detail)
+                    query_det = "INSERT INTO `tb_purc_req_det`(id_purc_req,id_item,id_b_expense_opex,id_b_expense,qty,value,budget,budget_remaining,note,ship_to,ship_destination,ship_address,item_detail)
                                                 VALUES" & query_det
                     '
                     execute_non_query(query_det, True, "", "", "", "")
@@ -492,6 +502,7 @@ GROUP BY req.`id_purc_req`"
 
         For i As Integer = 0 To GVItemList.RowCount - 1
             If GVItemList.GetRowCellValue(i, "ship_destination").ToString = "" Or GVItemList.GetRowCellValue(i, "ship_address").ToString = "" Then
+                GVItemList.SetRowCellValue(i, "ship_to", id_own_company)
                 GVItemList.SetRowCellValue(i, "ship_destination", get_company_x(id_own_company, "1").ToString)
                 GVItemList.SetRowCellValue(i, "ship_address", get_company_x(id_own_company, "3").ToString)
             End If
@@ -550,5 +561,16 @@ GROUP BY req.`id_purc_req`"
         End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RISLEShipTo_EditValueChanged(sender As Object, e As EventArgs) Handles RISLEShipTo.EditValueChanged
+        Try
+            Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
+            '
+            GVItemList.SetFocusedRowCellValue("ship_destination", sle.Properties.View.GetFocusedRowCellValue("comp_name").ToString())
+            GVItemList.SetFocusedRowCellValue("ship_address", sle.Properties.View.GetFocusedRowCellValue("address_primary").ToString())
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 End Class

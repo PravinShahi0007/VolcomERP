@@ -113,7 +113,7 @@
 
 
 
-        Dim query As String = "SELECT p.id_sales_pos, p.id_comp_contact, p.id_comp, CONCAT(p.comp_number,' - ', p.comp_name) AS `comp`,
+        Dim query As String = "SELECT p.id_sales_pos, p.id_comp_contact, p.id_comp, CONCAT(p.comp_number,' - ', p.comp_name) AS `comp`, p.comp_group,
         p.sales_pos_date, p.sales_pos_due_date, p.sales_pos_number, p.sales_pos_note, 
         p.sales_pos_total, p.sales_pos_discount, p.sales_pos_potongan,
         IF(typ.`is_receive_payment`=2,-1,1) * ((p.`sales_pos_total`*((100-p.sales_pos_discount)/100))-p.`sales_pos_potongan`) AS `amount`,
@@ -127,20 +127,22 @@
         pyd.`number` AS `paid_number`, IFNULL(pyd.`value`,0) AS `paid`, pyd.date_created AS `paid_date`, IFNULL(pyd.total_on_process,0) AS `on_process`,
         IF(p.is_close_rec_payment=1,'Close','Open') AS `rec_payment_status`
         FROM (	
-	        SELECT p.id_sales_pos, p.id_store_contact_from AS `id_comp_contact`, cc.id_comp, c.comp_number, c.comp_name, p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
+	        SELECT p.id_sales_pos, p.id_store_contact_from AS `id_comp_contact`, cc.id_comp, c.comp_number, c.comp_name, cg.comp_group, p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
 	        p.sales_pos_date, p.sales_pos_due_date, p.sales_pos_number, p.sales_pos_note, 
 	        p.sales_pos_total, p.sales_pos_discount, p.sales_pos_potongan
 	        FROM tb_sales_pos p
 	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from
             INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
 	        WHERE p.id_report_status=6 AND p.id_memo_type!=9 AND p.sales_pos_total>0 " + cond_group + " " + cond_vendor + "
 	        UNION ALL
-	        SELECT p.id_sales_pos, p.id_comp_contact_bill AS `id_comp_contact`, cc.id_comp, c.comp_number, c.comp_name, p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
+	        SELECT p.id_sales_pos, p.id_comp_contact_bill AS `id_comp_contact`, cc.id_comp, c.comp_number, c.comp_name, cg.comp_group, p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
 	        p.sales_pos_date, p.sales_pos_due_date, p.sales_pos_number, p.sales_pos_note, 
 	        p.sales_pos_total, p.sales_pos_discount, p.sales_pos_potongan
 	        FROM tb_sales_pos p
 	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_comp_contact_bill
             INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
 	        WHERE p.id_report_status=6 AND p.id_memo_type=9 AND p.sales_pos_total>0 " + cond_group + " " + cond_vendor + "
         ) p
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type` = p.`id_memo_type`
@@ -148,7 +150,7 @@
 	        SELECT pyd.id_report, pyd.report_mark_type, py.date_created, py.`number`, SUM(pyd.`value`) AS `value`,
 	        COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_on_process`
 	        FROM tb_rec_payment_det pyd
-	        INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment` AND py.`id_report_status`!=5
+	        INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment` AND py.`id_report_status`=6
 	        GROUP BY pyd.id_report, pyd.report_mark_type
         ) pyd ON pyd.`id_report`=p.`id_sales_pos` AND pyd.`report_mark_type`=p.`report_mark_type`
         WHERE 1=1 " + cond + "

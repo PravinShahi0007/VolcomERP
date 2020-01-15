@@ -288,7 +288,7 @@
         ElseIf report_mark_type = "179" Then
             'sample material purchase
             FormSampleExpenseDet.Close()
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'propose employee salary
             FormProposeEmpSalaryDet.Close()
         ElseIf report_mark_type = "200" Then
@@ -320,6 +320,18 @@
         ElseIf report_mark_type = "223" Then
             'bpjs kesehatan
             FormEmpBPJSKesehatanDet.Close()
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            FormProductionFinalClearSummary.Close()
+        ElseIf report_mark_type = "231" Then
+            'invoice
+            FormInvMatDet.Close()
+        ElseIf report_mark_type = "233" Then
+            'delay payment
+            FormDelayPaymentDet.Close()
+        ElseIf report_mark_type = "234" Then
+            'follow up ar
+            FormFollowUpARHistory.Close()
         End If
     End Sub
     Sub show()
@@ -1093,8 +1105,8 @@ GROUP BY rec.`id_prod_order`"
             'sample material purchase
             FormSampleExpenseDet.id_purc = id_report
             FormSampleExpenseDet.ShowDialog()
-        ElseIf report_mark_type = "197" Then
-            'sample material purchase
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
+            'propose employee salary
             FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
             FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
@@ -1139,6 +1151,26 @@ GROUP BY rec.`id_prod_order`"
             FormEmpBPJSKesehatanDet.id = id_report
             FormEmpBPJSKesehatanDet.is_approve = "1"
             FormEmpBPJSKesehatanDet.ShowDialog()
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            FormProductionFinalClearSummary.id_prod_fc_sum = id_report
+            FormProductionFinalClearSummary.is_vew = "1"
+            FormProductionFinalClearSummary.ShowDialog()
+        ElseIf report_mark_type = "231" Then
+            'invoice
+            FormInvMatDet.id_inv = id_report
+            FormInvMatDet.is_view = "1"
+            FormInvMatDet.ShowDialog()
+        ElseIf report_mark_type = "233" Then
+            'delay payment
+            FormDelayPaymentDet.id = id_report
+            FormDelayPaymentDet.is_view = "1"
+            FormDelayPaymentDet.ShowDialog()
+        ElseIf report_mark_type = "234" Then
+            'follow up ar
+            FormFollowUpARHistory.id_follow_up_recap = id_report
+            FormFollowUpARHistory.is_view = "1"
+            FormFollowUpARHistory.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1921,8 +1953,8 @@ GROUP BY rec.`id_prod_order`"
             field_date = "created_date"
         ElseIf report_mark_type = "159" Then
             'item del
-            table_name = "tb_payment"
-            field_id = "id_payment"
+            table_name = "tb_pn"
+            field_id = "id_pn"
             field_number = "number"
             field_date = "date_created"
         ElseIf report_mark_type = "160" Or report_mark_type = "169" Then
@@ -1991,7 +2023,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_payroll"
             field_number = "report_number"
             field_date = "NOW()"
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'propose employee salary
             table_name = "tb_employee_sal_pps"
             field_id = "id_employee_sal_pps"
@@ -2068,6 +2100,30 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_pay_bpjs_kesehatan"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            table_name = "tb_prod_fc_sum"
+            field_id = "id_prod_fc_sum"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "231" Then
+            'summary qc report
+            table_name = "tb_inv_mat"
+            field_id = "id_inv_mat"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "233" Then
+            'delay payment
+            table_name = "tb_propose_delay_payment"
+            field_id = "id_propose_delay_payment"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "234" Then
+            'follow up ar
+            table_name = "tb_follow_up_recap"
+            field_id = "id_follow_up_recap"
+            field_number = "''"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -2351,12 +2407,17 @@ GROUP BY rec.`id_prod_order`"
                         info_col = datax.Rows(0)("employee_name").ToString
                     End If
                 ElseIf report_mark_type = "100" Then
-                    query = "SELECT dep.`departement` FROM `tb_emp_assign_sch` sch
-                         INNER JOIN tb_m_departement dep ON dep.`id_departement`=sch.`id_departement`
+                    query = "SELECT sch.id_departement, dep.`departement`, dep_sub.departement_sub FROM `tb_emp_assign_sch` sch
+                         LEFT JOIN tb_m_departement dep ON dep.`id_departement`=sch.`id_departement`
+                         LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.`id_departement_sub`=sch.`id_departement_sub`
                          WHERE sch.`id_assign_sch`='" + id_report + "'"
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
-                        info_col = datax.Rows(0)("departement").ToString
+                        If datax.Rows(0)("id_departement").ToString = "17" Then
+                            info_col = datax.Rows(0)("departement_sub").ToString
+                        Else
+                            info_col = datax.Rows(0)("departement").ToString
+                        End If
                     End If
                 ElseIf report_mark_type = "103" Then
                     'combine delivery

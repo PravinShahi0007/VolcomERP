@@ -1,5 +1,6 @@
 ﻿Public Class FormProductionFinalClearSummary
     Public id_prod_fc_sum As String = "0"
+    Public is_vew As String = "0"
 
     Private id_report_status As String = "-1"
 
@@ -32,6 +33,7 @@
         DEUpdatedDate.EditValue = Nothing
         id_report_status = "-1"
         TEReportStatus.EditValue = ""
+        MENote.EditValue = ""
 
         Dim data As DataTable = New DataTable
 
@@ -41,6 +43,8 @@
         data.Columns.Add("name", GetType(String))
         data.Columns.Add("prod_fc_number", GetType(String))
         data.Columns.Add("pl_category", GetType(String))
+        data.Columns.Add("pl_category_sub", GetType(String))
+        data.Columns.Add("prod_fc_det_qty", GetType(Decimal))
         data.Columns.Add("qty_po", GetType(Decimal))
         data.Columns.Add("qty_rec", GetType(Decimal))
         data.Columns.Add("prod_fc_date", GetType(String))
@@ -50,11 +54,13 @@
         'controls
         SBAdd.Enabled = True
         SBRemove.Enabled = True
-        SBComplete.Enabled = True
+        SBSubmit.Enabled = True
         SBSave.Enabled = True
         SBAttachment.Enabled = False
-        SBCancel.Enabled = False
+        SBReset.Enabled = False
         SBPrint.Enabled = False
+        SBMark.Enabled = False
+        MENote.ReadOnly = False
     End Sub
 
     Sub load_form()
@@ -75,13 +81,15 @@
         DEUpdatedDate.EditValue = If(data.Rows(0)("updated_date").ToString = "", Nothing, data.Rows(0)("updated_date"))
         id_report_status = data.Rows(0)("id_report_status")
         TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
+        MENote.EditValue = data.Rows(0)("note").ToString
 
         'detail
         Dim query_detail As String = "
-            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
+            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category_sub, qty.prod_fc_det_qty, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
             FROM tb_prod_fc_sum_det AS fc_sum_det
             LEFT JOIN tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
             LEFT JOIN tb_lookup_pl_category AS cat ON fc.id_pl_category = cat.id_pl_category
+            LEFT JOIN tb_lookup_pl_category_sub AS cat_sub ON fc.id_pl_category_sub = cat_sub.id_pl_category_sub
             LEFT JOIN tb_prod_order AS po ON fc.id_prod_order = po.id_prod_order
             LEFT JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
             LEFT JOIN tb_m_design d ON d.id_design = pdd.id_design
@@ -89,6 +97,11 @@
             LEFT JOIN tb_m_ovh_price AS ovh ON ovh.id_ovh_price = wo.id_ovh_price
             LEFT JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = ovh.id_comp_contact 
             LEFT JOIN tb_m_comp AS comp ON comp.id_comp = cc.id_comp
+            LEFT JOIN (
+                SELECT id_prod_fc, SUM(prod_fc_det_qty) AS prod_fc_det_qty
+                FROM tb_prod_fc_det
+                GROUP BY id_prod_fc
+            ) AS qty ON fc.id_prod_fc = qty.id_prod_fc
             WHERE fc_sum_det.id_prod_fc_sum = " + id_prod_fc_sum + "
         "
 
@@ -102,19 +115,31 @@
         If id_report_status = "0" Then
             SBAdd.Enabled = True
             SBRemove.Enabled = True
-            SBComplete.Enabled = True
+            SBSubmit.Enabled = True
             SBSave.Enabled = True
             SBAttachment.Enabled = True
-            SBCancel.Enabled = True
+            SBReset.Enabled = False
             SBPrint.Enabled = False
+            SBMark.Enabled = False
+            MENote.ReadOnly = False
         Else
             SBAdd.Enabled = False
             SBRemove.Enabled = False
-            SBComplete.Enabled = False
+            SBSubmit.Enabled = False
             SBSave.Enabled = False
             SBAttachment.Enabled = True
-            SBCancel.Enabled = False
+            SBReset.Enabled = True
             SBPrint.Enabled = False
+            SBMark.Enabled = True
+            MENote.ReadOnly = True
+        End If
+
+        If id_report_status = "5" Or id_report_status = "6" Then
+            SBReset.Enabled = False
+        End If
+
+        If is_vew = "1" Then
+            SBReset.Visible = False
         End If
     End Sub
 
@@ -126,16 +151,16 @@
         GVList.DeleteSelectedRows()
     End Sub
 
-    Private Sub SBComplete_Click(sender As Object, e As EventArgs) Handles SBComplete.Click
+    Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
         If GVList.RowCount <= 0 Then
             errorCustom("No qc report selected")
         Else
             Dim confirm As DialogResult
 
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to complete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
             If confirm = Windows.Forms.DialogResult.Yes Then
-                save("complete")
+                save("submit")
 
                 Close()
             End If
@@ -163,28 +188,14 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SBCancel_Click(sender As Object, e As EventArgs) Handles SBCancel.Click
-        Dim confirm As DialogResult
-
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query As String = "UPDATE tb_prod_fc_sum SET id_report_status = 5 WHERE id_prod_fc_sum = " + id_prod_fc_sum
-
-            execute_non_query(query, True, "", "", "", "")
-
-            Close()
-        End If
-    End Sub
-
     Sub save(type As String)
         Dim query As String = ""
 
-        Dim id_report_status As String = If(type = "complete", "6", "0")
+        Dim id_report_status As String = If(type = "submit", "1", "0")
 
         'tb_prod_fc_sum
         If id_prod_fc_sum = "0" Then
-            query = "INSERT INTO tb_prod_fc_sum (created_date, created_by, id_report_status) VALUES (NOW(), " + id_user + ", " + id_report_status + "); SELECT LAST_INSERT_ID();"
+            query = "INSERT INTO tb_prod_fc_sum (created_date, created_by, id_report_status, note) VALUES (NOW(), " + id_user + ", " + id_report_status + ", '" + addSlashes(MENote.EditValue.ToString) + "'); SELECT LAST_INSERT_ID();"
 
             id_prod_fc_sum = execute_query(query, 0, True, "", "", "", "")
 
@@ -197,7 +208,7 @@
 
             execute_non_query(query, True, "", "", "", "")
         Else
-            query = "UPDATE tb_prod_fc_sum SET updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + id_report_status + " WHERE id_prod_fc_sum = " + id_prod_fc_sum
+            query = "UPDATE tb_prod_fc_sum SET updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + id_report_status + ", note = '" + addSlashes(MENote.EditValue.ToString) + "' WHERE id_prod_fc_sum = " + id_prod_fc_sum
 
             execute_non_query(query, True, "", "", "", "")
         End If
@@ -216,6 +227,11 @@
         query = query.Substring(0, query.Length - 2)
 
         execute_non_query(query, True, "", "", "", "")
+
+        'submit
+        If type = "submit" Then
+            submit_who_prepared("222", id_prod_fc_sum, id_user)
+        End If
     End Sub
 
     Private Sub GVList_RowCountChanged(sender As Object, e As EventArgs) Handles GVList.RowCountChanged
@@ -259,21 +275,21 @@
 	            SELECT fc.id_prod_order, SUM(IF(fc.id_pl_category = 1, fc_det.prod_fc_det_qty, 0)) AS normal, SUM(IF(fc.id_pl_category = 2, fc_det.prod_fc_det_qty, 0)) AS minor, SUM(IF(fc.id_pl_category = 3, fc_det.prod_fc_det_qty, 0)) AS major, SUM(IF(fc.id_pl_category = 4, fc_det.prod_fc_det_qty, 0)) AS afkir
 	            FROM tb_prod_fc_det AS fc_det
 	            LEFT JOIN tb_prod_fc AS fc ON fc_det.id_prod_fc = fc.id_prod_fc
-	            WHERE fc.id_report_status = 6
+	            WHERE fc.id_prod_fc IN (" + include + ")
 	            GROUP BY fc.id_prod_order
             ) AS qc_report ON po.id_prod_order = qc_report.id_prod_order
             LEFT JOIN (
 	            SELECT po_det.id_prod_order, SUM(po_det.prod_order_qty) AS qty_po
 	            FROM tb_prod_order_det AS po_det
 	            LEFT JOIN tb_prod_order AS po ON po_det.id_prod_order = po.id_prod_order
-	            WHERE po.id_report_status = 6
+	            WHERE po_det.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (" + include + "))
 	            GROUP BY po_det.id_prod_order
             ) AS qty_po ON po.id_prod_order = qty_po.id_prod_order
             LEFT JOIN (
 	            SELECT rec.id_prod_order, SUM(rec_det.prod_order_rec_det_qty) AS qty_rec
 	            FROM tb_prod_order_rec_det AS rec_det
 	            LEFT JOIN tb_prod_order_rec AS rec ON rec_det.id_prod_order_rec = rec.id_prod_order_rec
-	            WHERE rec.id_report_status = 6
+	            WHERE rec.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (" + include + "))
 	            GROUP BY rec.id_prod_order
             ) AS qty_rec ON po.id_prod_order = qty_rec.id_prod_order
             LEFT JOIN (
@@ -299,10 +315,10 @@
         If XtraTabControl.SelectedTabPageIndex = 1 Then
             view_summary()
 
-            If id_report_status = "6" Then
-                SBPrint.Enabled = True
-            Else
+            If id_report_status = "0" Or id_report_status = "-1" Then
                 SBPrint.Enabled = False
+            Else
+                SBPrint.Enabled = True
             End If
         Else
             SBPrint.Enabled = False
@@ -342,15 +358,53 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
-        Dim Report As New ReportProductionFinalClearSummary()
+        If Not check_allow_print(id_report_status, "222", id_prod_fc_sum) Then
+            warningCustom("Can't print, please complete all approval on system first")
+        Else
+            Dim Report As New ReportProductionFinalClearSummary()
 
-        Report.XLDepartement.Text = execute_query("SELECT departement FROM tb_m_departement WHERE id_departement = 4", 0, True, "", "", "", "")
-        Report.XLNumber.Text = TENumber.EditValue.ToString
+            Report.XLDepartement.Text = execute_query("SELECT departement FROM tb_m_departement WHERE id_departement = 4", 0, True, "", "", "", "")
+            Report.XLNumber.Text = TENumber.EditValue.ToString
 
-        Report.data = GCSummary.DataSource
+            Report.id = id_prod_fc_sum
+            Report.data = GCSummary.DataSource
+            Report.id_pre = If(id_report_status = "6", "-1", "1")
 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Report.XLNote.Text = MENote.EditValue.ToString
 
-        Tool.ShowPreviewDialog()
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+
+            Tool.ShowPreviewDialog()
+        End If
+    End Sub
+
+    Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
+        FormReportMark.id_report = id_prod_fc_sum
+        FormReportMark.report_mark_type = "222"
+        FormReportMark.is_view = is_vew
+
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub SBReset_Click(sender As Object, e As EventArgs) Handles SBReset.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Try
+                Dim query_upd As String = "
+                    -- delete report mark
+                    DELETE FROM tb_report_mark WHERE report_mark_type = 222 AND id_report = " + id_prod_fc_sum + "; 
+                    -- reset confirm
+                    UPDATE tb_prod_fc_sum SET id_report_status = 0 WHERE id_prod_fc_sum = " + id_prod_fc_sum + ";
+                "
+
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                load_form()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+                Close()
+            End Try
+        End If
     End Sub
 End Class

@@ -5,6 +5,7 @@
         If is_menu = "1" Then
             PanelControl3.Visible = False
         Else
+            GridColumnCompanyName.Visible = False
             GridColumnContactName.Visible = False
             GridColumnPosition.Visible = False
             GridColumnContactNumber.Visible = False
@@ -16,8 +17,34 @@
     End Sub
 
     Sub view_comp_group()
-        Dim query As String = "SELECT cgroup.id_comp_group,cgroup.comp_group,cgroup.description,ccontact.id_comp,ccontact.contact_person,ccontact.contact_number,ccontact.position,ccontact.email,(SELECT comp_status FROM tb_lookup_comp_status WHERE comp.is_active = id_comp_status) AS comp_status FROM tb_m_comp_group AS cgroup LEFT JOIN tb_m_comp AS comp ON cgroup.id_comp = comp.id_comp LEFT JOIN tb_m_comp_contact AS ccontact ON cgroup.id_comp = ccontact.id_comp AND ccontact.is_default = 1"
+        Dim query As String = "
+            SELECT cgroup.id_comp_group, cgroup.comp_group, comp.comp_name, cgroup.description, ccontact.id_comp, ccontact.contact_person, ccontact.contact_number, ccontact.position, ccontact.email, (SELECT comp_status FROM tb_lookup_comp_status WHERE comp.is_active = id_comp_status) AS comp_status 
+            FROM tb_m_comp_group AS cgroup 
+            LEFT JOIN tb_m_comp AS comp ON cgroup.id_comp = comp.id_comp 
+            LEFT JOIN tb_m_comp_contact AS ccontact ON cgroup.id_comp = ccontact.id_comp AND ccontact.is_default = 1
+        "
+
+        If is_menu = "1" Then
+            query = "
+                SELECT *
+                FROM (
+                    SELECT cgroup.id_comp_group, cgroup.comp_group, comp.comp_name, cgroup.description, ccontact.id_comp, ccontact.contact_person, ccontact.contact_number, ccontact.position, ccontact.email, (SELECT comp_status FROM tb_lookup_comp_status WHERE comp.is_active = id_comp_status) AS comp_status 
+                    FROM tb_m_comp_group AS cgroup 
+                    LEFT JOIN tb_m_comp AS comp ON cgroup.id_comp = comp.id_comp 
+                    LEFT JOIN tb_m_comp_contact AS ccontact ON cgroup.id_comp = ccontact.id_comp AND ccontact.is_default = 1
+                    UNION ALL
+                    SELECT cgroup.id_comp_group, cgroup.comp_group, comp.comp_name, cgroup.description, ccontact.id_comp, ccontact.contact_person, ccontact.contact_number, ccontact.position, ccontact.email, (SELECT comp_status FROM tb_lookup_comp_status WHERE comp.is_active = id_comp_status) AS comp_status
+                    FROM tb_m_comp_group_other AS cother
+                    LEFT JOIN tb_m_comp_group AS cgroup ON cother.id_comp_group = cgroup.id_comp_group
+                    LEFT JOIN tb_m_comp AS comp ON cother.id_comp = comp.id_comp 
+                    LEFT JOIN tb_m_comp_contact AS ccontact ON cother.id_comp = ccontact.id_comp AND ccontact.is_default = 1
+                ) AS tb
+                ORDER BY tb.comp_group
+            "
+        End If
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
         GCGroupComp.DataSource = data
     End Sub
 
@@ -90,9 +117,11 @@
                 PopupMenu.ShowPopup(Cursor.Position)
 
                 If GVGroupComp.GetFocusedRowCellValue("id_comp").ToString = "" Then
-                    BBIContact.Caption = "Add Contact"
+                    BBIContact.Caption = "Add Company"
+                    BBIContactOther.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
                 Else
-                    BBIContact.Caption = "View/Edit Contact"
+                    BBIContact.Caption = "View/Edit Company"
+                    BBIContactOther.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
                 End If
             End If
         End If
@@ -109,6 +138,15 @@
                 FormMasterCompanySingle.id_comp_group_add = GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
                 FormMasterCompanySingle.ShowDialog()
             End If
+        End If
+    End Sub
+
+    Private Sub BBIContactOther_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIContactOther.ItemClick
+        If is_menu = "1" Then
+            FormMasterCompanySingle.id_company = "-1"
+            FormMasterCompanySingle.id_comp_group_add = GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
+            FormMasterCompanySingle.is_add_other = "1"
+            FormMasterCompanySingle.ShowDialog()
         End If
     End Sub
 End Class

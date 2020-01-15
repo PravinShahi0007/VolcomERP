@@ -8,7 +8,7 @@
 
         form_load()
 
-        Dim data_date As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE DATE(NOW()) >= ot_periode_start AND DATE(NOW()) <= ot_periode_end AND id_payroll_type = 1", -1, True, "", "", "", "")
+        Dim data_date As DataTable = execute_query("(SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE DATE(NOW()) >= ot_periode_start AND DATE(NOW()) <= ot_periode_end AND id_payroll_type = 1) UNION (SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY ot_periode_end DESC LIMIT 1)", -1, True, "", "", "", "")
 
         SLUEPayroll.EditValue = data_date.Rows(0)("id_payroll")
         DEStart.EditValue = data_date.Rows(0)("periode_start")
@@ -199,7 +199,7 @@
                     LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_verification_det.id_employee_status = employee_status.id_employee_status
                     LEFT JOIN tb_lookup_report_status AS report_status ON ot_verification.id_report_status = report_status.id_report_status
                     LEFT JOIN tb_m_employee AS created_by ON ot_verification.created_by = created_by.id_employee
-                    WHERE 1 " + where_date + " " + where_departement + " " + where_employee + ")
+                    WHERE 1 AND (ot_verification_det.id_employee IN (SELECT id_employee FROM tb_ot_det WHERE id_ot = ot.id_ot AND ot_date = ot_verification.ot_date)) " + where_date + " " + where_departement + " " + where_employee + ")
                     UNION ALL
                     (SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_det.to_salary, ot_det.conversion_type, ot_det.id_ot, 0 AS id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, '' AS start_work_ot, '' AS end_work_ot, ot_det.ot_break AS break_hours, 0.0 AS ot_hours, 0.0 AS total_hours, 0.0 AS point_ot, ot_det.ot_note, '' AS is_valid, 0 AS id_report_status, 'Waiting Verify' AS report_status, '' AS created_by, '' AS created_at
                     FROM tb_ot_det AS ot_det

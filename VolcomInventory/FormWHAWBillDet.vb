@@ -11,11 +11,11 @@
     End Sub
 
     Sub load_awb()
-        'TELength.EditValue = 0.00
-        'TEWidth.EditValue = 0.00
-        'TEHeight.EditValue = 0.00
-        'TEVolume.EditValue = 0.00
-        'TEWeight.EditValue = 0.00
+        TELength.EditValue = 0.00
+        TEWidth.EditValue = 0.00
+        TEHeight.EditValue = 0.00
+        TEVolume.EditValue = 0.00
+        TEWeight.EditValue = 0.00
 
         TEBeratTerpakai.EditValue = 0
         TEVolumeVolc.EditValue = 0
@@ -97,6 +97,12 @@
 
             If data.Rows(0)("is_lock").ToString = "1" Then
                 BSave.Visible = False
+            End If
+
+            If isCreatedManifest() Then
+                TECompCode.Properties.ReadOnly = True
+                BBrowse.Enabled = False
+                BRemoveDO.Enabled = False
             End If
         End If
 
@@ -325,6 +331,19 @@
         Close()
     End Sub
 
+    Function isCreatedManifest() As Boolean
+        Dim query As String = "SELECT ad.id_awbill FROM tb_del_manifest_det od
+        INNER JOIN tb_del_manifest o ON o.id_del_manifest = od.id_del_manifest
+        INNER JOIN tb_wh_awbill_det ad ON ad.id_wh_awb_det = od.id_wh_awb_det
+        WHERE o.id_report_status!=5 AND ad.id_awbill=" + id_awb + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim query As String = ""
 
@@ -429,29 +448,34 @@
             Else 'edit
                 query = "UPDATE tb_wh_awbill SET is_paid_by_store='" + is_paid_by_store + "',id_store='" + id_comp + "',id_cargo='" + SLECargo.EditValue.ToString + "',cargo_rate='" + decimalSQL(TEChargeRate.EditValue.ToString) + "',cargo_lead_time='" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "',cargo_min_weight='" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "',weight='" + decimalSQL(TEWeight.EditValue.ToString) + "',`length`='" + decimalSQL(TELength.EditValue.ToString) + "',width='" + decimalSQL(TEWidth.EditValue.ToString) + "',height='" + decimalSQL(TEHeight.EditValue.ToString) + "',weight_calc='" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "',c_weight='" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "',c_tot_price='" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "',a_weight='" + decimalSQL(vol_airport.ToString) + "',a_tot_price='" + decimalSQL(TEPriceAirport.EditValue.ToString) + "',awbill_no='" + addSlashes(TEAwbNo.Text.ToString) + "',awbill_inv_no='" + addSlashes(TEInvNo.Text.ToString) + "',pick_up_date=" + date_pickup + ",rec_by_store_date=" + date_store + ",rec_by_store_person='" + rec_store_by + "',awbill_note='" + addSlashes(MENote.Text) + "',id_cargo_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "id_cargo").ToString) + "',cargo_rate_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "',cargo_lead_time_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "',cargo_min_weight_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "',mark_different='" & mark_diff & "' WHERE id_awbill='" + id_awb + "'"
                 execute_non_query(query, True, "", "", "", "")
-                '
-                query = "DELETE FROM tb_wh_awbill_det WHERE id_awbill='" + id_awb + "'"
-                execute_non_query(query, True, "", "", "", "")
-                '
-                If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,do_no,qty) VALUES"
-                    For i As Integer = 0 To GVDO.RowCount - 1
-                        Dim id_pl_sales_order_del As String = "NULL"
-                        Try
-                            id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
-                        Catch ex As Exception
-                        End Try
-                        If id_pl_sales_order_del = "" Then
-                            id_pl_sales_order_del = "NULL"
-                        End If
 
-                        If Not i = 0 Then
-                            query += ","
-                        End If
-                        query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
-                    Next
+                'detail
+                If Not isCreatedManifest()Then
+                    '
+                    query = "DELETE FROM tb_wh_awbill_det WHERE id_awbill='" + id_awb + "'"
                     execute_non_query(query, True, "", "", "", "")
+                    '
+                    If GVDO.RowCount > 0 Then
+                        query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,do_no,qty) VALUES"
+                        For i As Integer = 0 To GVDO.RowCount - 1
+                            Dim id_pl_sales_order_del As String = "NULL"
+                            Try
+                                id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                            Catch ex As Exception
+                            End Try
+                            If id_pl_sales_order_del = "" Then
+                                id_pl_sales_order_del = "NULL"
+                            End If
+
+                            If Not i = 0 Then
+                                query += ","
+                            End If
+                            query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
+                        Next
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
                 End If
+
 
                 'infoCustom("AWB calculation updated.")
                 Dim find_string As String = ""
