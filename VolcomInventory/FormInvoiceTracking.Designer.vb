@@ -22,26 +22,32 @@ Partial Class FormInvoiceTracking
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceTracking))
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnExportToXLSTrf = New DevExpress.XtraEditors.SimpleButton()
-        Me.CEPromo = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEStatusInvoice = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEPromo = New DevExpress.XtraEditors.CheckEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.SLEStoreInvoice = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CEPeriod = New DevExpress.XtraEditors.CheckEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnExportToXLSTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEStatusInvoice = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEStoreInvoice = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCUnpaid = New DevExpress.XtraGrid.GridControl()
         Me.GVUnpaid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -107,14 +113,23 @@ Partial Class FormInvoiceTracking
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.CEPromo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEPromo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,51 +146,195 @@ Partial Class FormInvoiceTracking
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl3)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLSTrf)
-        Me.PanelControl1.Controls.Add(Me.CEPromo)
-        Me.PanelControl1.Controls.Add(Me.CEShowHighlight)
-        Me.PanelControl1.Controls.Add(Me.SLEStoreGroup)
         Me.PanelControl1.Controls.Add(Me.BView)
-        Me.PanelControl1.Controls.Add(Me.LabelControl3)
-        Me.PanelControl1.Controls.Add(Me.SLEStatusInvoice)
-        Me.PanelControl1.Controls.Add(Me.SLEStoreInvoice)
-        Me.PanelControl1.Controls.Add(Me.LabelControl5)
-        Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1173, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(1173, 74)
         Me.PanelControl1.TabIndex = 3
         '
-        'BtnExportToXLSTrf
+        'PanelControl3
         '
-        Me.BtnExportToXLSTrf.Image = CType(resources.GetObject("BtnExportToXLSTrf.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(866, 12)
-        Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
-        Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
-        Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(106, 20)
-        Me.BtnExportToXLSTrf.TabIndex = 8926
-        Me.BtnExportToXLSTrf.Text = "Export to XLS"
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.PanelControl2)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(651, 70)
+        Me.PanelControl3.TabIndex = 8932
         '
-        'CEPromo
+        'PanelControl2
         '
-        Me.CEPromo.Location = New System.Drawing.Point(610, 12)
-        Me.CEPromo.Name = "CEPromo"
-        Me.CEPromo.Properties.Caption = "Include Promo"
-        Me.CEPromo.Size = New System.Drawing.Size(89, 19)
-        Me.CEPromo.TabIndex = 8925
+        Me.PanelControl2.Controls.Add(Me.SLEStatusInvoice)
+        Me.PanelControl2.Controls.Add(Me.DEUntil)
+        Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
+        Me.PanelControl2.Controls.Add(Me.CEPromo)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Controls.Add(Me.LabelControl5)
+        Me.PanelControl2.Controls.Add(Me.DEFrom)
+        Me.PanelControl2.Controls.Add(Me.SLEStoreInvoice)
+        Me.PanelControl2.Controls.Add(Me.CEPeriod)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Controls.Add(Me.SLEStoreGroup)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(651, 70)
+        Me.PanelControl2.TabIndex = 8931
+        '
+        'SLEStatusInvoice
+        '
+        Me.SLEStatusInvoice.Location = New System.Drawing.Point(486, 10)
+        Me.SLEStatusInvoice.Name = "SLEStatusInvoice"
+        Me.SLEStatusInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStatusInvoice.Properties.View = Me.GridView5
+        Me.SLEStatusInvoice.Size = New System.Drawing.Size(149, 20)
+        Me.SLEStatusInvoice.TabIndex = 8919
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID Status payment"
+        Me.GridColumn16.FieldName = "id_status_payment"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Status"
+        Me.GridColumn17.FieldName = "status_payment"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Enabled = False
+        Me.DEUntil.Location = New System.Drawing.Point(267, 37)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEUntil.Size = New System.Drawing.Size(177, 20)
+        Me.DEUntil.TabIndex = 8930
         '
         'CEShowHighlight
         '
-        Me.CEShowHighlight.Location = New System.Drawing.Point(706, 12)
+        Me.CEShowHighlight.Location = New System.Drawing.Point(544, 38)
         Me.CEShowHighlight.Name = "CEShowHighlight"
         Me.CEShowHighlight.Properties.Caption = "Show Highlight"
         Me.CEShowHighlight.Size = New System.Drawing.Size(90, 19)
         Me.CEShowHighlight.TabIndex = 8924
         '
+        'CEPromo
+        '
+        Me.CEPromo.Location = New System.Drawing.Point(449, 38)
+        Me.CEPromo.Name = "CEPromo"
+        Me.CEPromo.Properties.Caption = "Include Promo"
+        Me.CEPromo.Size = New System.Drawing.Size(89, 19)
+        Me.CEPromo.TabIndex = 8925
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(235, 13)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl2.TabIndex = 8911
+        Me.LabelControl2.Text = "Store"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(235, 40)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl1.TabIndex = 8929
+        Me.LabelControl1.Text = "Until"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(449, 13)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl5.TabIndex = 8918
+        Me.LabelControl5.Text = "Status"
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Enabled = False
+        Me.DEFrom.Location = New System.Drawing.Point(84, 37)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEFrom.Size = New System.Drawing.Size(145, 20)
+        Me.DEFrom.TabIndex = 8928
+        '
+        'SLEStoreInvoice
+        '
+        Me.SLEStoreInvoice.Location = New System.Drawing.Point(267, 10)
+        Me.SLEStoreInvoice.Name = "SLEStoreInvoice"
+        Me.SLEStoreInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreInvoice.Properties.View = Me.GridView2
+        Me.SLEStoreInvoice.Size = New System.Drawing.Size(177, 20)
+        Me.SLEStoreInvoice.TabIndex = 8912
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID Comp Contact"
+        Me.GridColumn13.FieldName = "id_comp"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Store"
+        Me.GridColumn14.FieldName = "comp_name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'CEPeriod
+        '
+        Me.CEPeriod.EditValue = True
+        Me.CEPeriod.Location = New System.Drawing.Point(12, 37)
+        Me.CEPeriod.Name = "CEPeriod"
+        Me.CEPeriod.Properties.Caption = "All Period"
+        Me.CEPeriod.Size = New System.Drawing.Size(75, 19)
+        Me.CEPeriod.TabIndex = 8927
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 13)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl3.TabIndex = 8922
+        Me.LabelControl3.Text = "Store Group"
+        '
         'SLEStoreGroup
         '
-        Me.SLEStoreGroup.Location = New System.Drawing.Point(79, 12)
+        Me.SLEStoreGroup.Location = New System.Drawing.Point(84, 10)
         Me.SLEStoreGroup.Name = "SLEStoreGroup"
         Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStoreGroup.Properties.View = Me.GridView3
@@ -212,109 +371,33 @@ Partial Class FormInvoiceTracking
         Me.GridColumndescription.Visible = True
         Me.GridColumndescription.VisibleIndex = 1
         '
+        'BtnExportToXLSTrf
+        '
+        Me.BtnExportToXLSTrf.Image = CType(resources.GetObject("BtnExportToXLSTrf.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(726, 26)
+        Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
+        Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(106, 20)
+        Me.BtnExportToXLSTrf.TabIndex = 8926
+        Me.BtnExportToXLSTrf.Text = "Export to XLS"
+        '
         'BView
         '
         Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
-        Me.BView.Location = New System.Drawing.Point(802, 12)
+        Me.BView.Location = New System.Drawing.Point(662, 26)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(60, 20)
         Me.BView.TabIndex = 8913
         Me.BView.Text = "View"
         '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(15, 15)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl3.TabIndex = 8922
-        Me.LabelControl3.Text = "Store Group"
-        '
-        'SLEStatusInvoice
-        '
-        Me.SLEStatusInvoice.Location = New System.Drawing.Point(481, 12)
-        Me.SLEStatusInvoice.Name = "SLEStatusInvoice"
-        Me.SLEStatusInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStatusInvoice.Properties.View = Me.GridView5
-        Me.SLEStatusInvoice.Size = New System.Drawing.Size(123, 20)
-        Me.SLEStatusInvoice.TabIndex = 8919
-        '
-        'GridView5
-        '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17})
-        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView5.Name = "GridView5"
-        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView5.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "ID Status payment"
-        Me.GridColumn16.FieldName = "id_status_payment"
-        Me.GridColumn16.Name = "GridColumn16"
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Status"
-        Me.GridColumn17.FieldName = "status_payment"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 0
-        '
-        'SLEStoreInvoice
-        '
-        Me.SLEStoreInvoice.Location = New System.Drawing.Point(262, 12)
-        Me.SLEStoreInvoice.Name = "SLEStoreInvoice"
-        Me.SLEStoreInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStoreInvoice.Properties.View = Me.GridView2
-        Me.SLEStoreInvoice.Size = New System.Drawing.Size(177, 20)
-        Me.SLEStoreInvoice.TabIndex = 8912
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "ID Comp Contact"
-        Me.GridColumn13.FieldName = "id_comp"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Store"
-        Me.GridColumn14.FieldName = "comp_name"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(444, 15)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl5.TabIndex = 8918
-        Me.LabelControl5.Text = "Status"
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(230, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl2.TabIndex = 8911
-        Me.LabelControl2.Text = "Store"
-        '
         'GCUnpaid
         '
         Me.GCUnpaid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCUnpaid.Location = New System.Drawing.Point(0, 43)
+        Me.GCUnpaid.Location = New System.Drawing.Point(0, 74)
         Me.GCUnpaid.MainView = Me.GVUnpaid
         Me.GCUnpaid.Name = "GCUnpaid"
         Me.GCUnpaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepoBtnMoreBBM, Me.RepositoryItemCheckEdit2, Me.RepoLinkInvoice, Me.RepoLinkBBM, Me.RepoLinkEMailNotice, Me.RepoLinkEmailWarning, Me.RepoLinkEmailInvoice, Me.RepoLinkMemoPenangguhan})
-        Me.GCUnpaid.Size = New System.Drawing.Size(1173, 463)
+        Me.GCUnpaid.Size = New System.Drawing.Size(1173, 432)
         Me.GCUnpaid.TabIndex = 20
         Me.GCUnpaid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUnpaid})
         '
@@ -912,15 +995,24 @@ Partial Class FormInvoiceTracking
         Me.Text = "Invoice Tracking"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
-        CType(Me.CEPromo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEPromo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1021,4 +1113,10 @@ Partial Class FormInvoiceTracking
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnid_propose_delay_payment As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents CEPeriod As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class

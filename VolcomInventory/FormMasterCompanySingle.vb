@@ -545,7 +545,7 @@
                 Else
                     query += "'" + id_def_drawer + "', "
                 End If
-                If id_store_company = "0" Then
+                If id_store_company = "0" Or id_store_company = "" Then
                     query += "NULL "
                 Else
                     query += "'" + id_store_company + "' "
@@ -648,7 +648,7 @@
                 Else
                     query += "id_drawer_def = '" + id_def_drawer + "', "
                 End If
-                If id_store_company = "0" Then
+                If id_store_company = "0" Or id_store_company = "" Then
                     query += "id_store_company = NULL "
                 Else
                     query += "id_store_company = '" + id_store_company + "' "
