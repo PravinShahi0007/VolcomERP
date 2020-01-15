@@ -70,7 +70,9 @@ WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND p
         ElseIf GVBudgetList.RowCount = 0 Then
             stopCustom("Nothing to revise")
         Else
-            FormSetupBudgetOPEXDet.is_rev = "1"
+            If GVBudgetList.Columns("value_expense").SummaryItem.SummaryValue > 0 Then
+                FormSetupBudgetOPEXDet.is_rev = "1"
+            End If
             FormSetupBudgetOPEXDet.ShowDialog()
         End If
         '
