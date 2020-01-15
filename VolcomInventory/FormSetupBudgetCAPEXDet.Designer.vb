@@ -61,6 +61,7 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCBeforeAfter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCBeforeAfter.SuspendLayout()
         Me.XTPBefore.SuspendLayout()
@@ -309,6 +310,7 @@ Partial Class FormSetupBudgetCAPEXDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BAttachment)
         Me.PanelControl1.Controls.Add(Me.BMark)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
@@ -496,6 +498,18 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.LabelControl7.TabIndex = 159
         Me.LabelControl7.Text = "Date Created"
         '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.ImageIndex = 14
+        Me.BAttachment.ImageList = Me.LargeImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(737, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(105, 35)
+        Me.BAttachment.TabIndex = 24
+        Me.BAttachment.TabStop = False
+        Me.BAttachment.Text = "Attachment"
+        '
         'FormSetupBudgetCAPEXDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -581,4 +595,5 @@ Partial Class FormSetupBudgetCAPEXDet
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDepartement As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

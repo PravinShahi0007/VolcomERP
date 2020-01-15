@@ -22,24 +22,27 @@ Partial Class FormReportBalanceSheet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TLBalanceSheet = New DevExpress.XtraTreeList.TreeList()
         Me.treeListBand3 = New DevExpress.XtraTreeList.Columns.TreeListBand()
-        Me.TCLAccount = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.TCLDescription = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.treeListBand4 = New DevExpress.XtraTreeList.Columns.TreeListBand()
-        Me.TCLDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.TCLCreadit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCIDAcc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCIDAccParent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLAccount = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLDescription = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLCreadit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.treeListBand1 = New DevExpress.XtraTreeList.Columns.TreeListBand()
         Me.treeListBand2 = New DevExpress.XtraTreeList.Columns.TreeListBand()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneralLedger = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPBalanceSheet = New DevExpress.XtraTab.XtraTabPage()
+        Me.TLLedger = New DevExpress.XtraTreeList.TreeList()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TLBalanceSheet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
+        Me.XTPGeneralLedger.SuspendLayout()
         Me.XTPBalanceSheet.SuspendLayout()
+        CType(Me.TLLedger, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -70,6 +73,23 @@ Partial Class FormReportBalanceSheet
         Me.treeListBand3.Caption = "Account"
         Me.treeListBand3.Name = "treeListBand3"
         '
+        'treeListBand4
+        '
+        Me.treeListBand4.Caption = "Amount"
+        Me.treeListBand4.Name = "treeListBand4"
+        '
+        'TCIDAcc
+        '
+        Me.TCIDAcc.Caption = "ID"
+        Me.TCIDAcc.FieldName = "id_acc"
+        Me.TCIDAcc.Name = "TCIDAcc"
+        '
+        'TCIDAccParent
+        '
+        Me.TCIDAccParent.Caption = "ID Acc Parent"
+        Me.TCIDAccParent.FieldName = "id_acc_parent"
+        Me.TCIDAccParent.Name = "TCIDAccParent"
+        '
         'TCLAccount
         '
         Me.TCLAccount.Caption = "Account"
@@ -88,22 +108,6 @@ Partial Class FormReportBalanceSheet
         Me.TCLDescription.VisibleIndex = 1
         Me.TCLDescription.Width = 175
         '
-        'treeListBand4
-        '
-        Me.treeListBand4.Caption = "Amount"
-        Me.treeListBand4.Name = "treeListBand4"
-        '
-        'TCLDebit
-        '
-        Me.TCLDebit.Caption = "Debit"
-        Me.TCLDebit.FieldName = "debit"
-        Me.TCLDebit.Format.FormatString = "N2"
-        Me.TCLDebit.Format.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TCLDebit.Name = "TCLDebit"
-        Me.TCLDebit.Visible = True
-        Me.TCLDebit.VisibleIndex = 2
-        Me.TCLDebit.Width = 175
-        '
         'TCLCreadit
         '
         Me.TCLCreadit.Caption = "Credit"
@@ -115,17 +119,16 @@ Partial Class FormReportBalanceSheet
         Me.TCLCreadit.VisibleIndex = 3
         Me.TCLCreadit.Width = 175
         '
-        'TCIDAcc
+        'TCLDebit
         '
-        Me.TCIDAcc.Caption = "ID"
-        Me.TCIDAcc.FieldName = "id_acc"
-        Me.TCIDAcc.Name = "TCIDAcc"
-        '
-        'TCIDAccParent
-        '
-        Me.TCIDAccParent.Caption = "ID Acc Parent"
-        Me.TCIDAccParent.FieldName = "id_acc_parent"
-        Me.TCIDAccParent.Name = "TCIDAccParent"
+        Me.TCLDebit.Caption = "Debit"
+        Me.TCLDebit.FieldName = "debit"
+        Me.TCLDebit.Format.FormatString = "N2"
+        Me.TCLDebit.Format.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TCLDebit.Name = "TCLDebit"
+        Me.TCLDebit.Visible = True
+        Me.TCLDebit.VisibleIndex = 2
+        Me.TCLDebit.Width = 175
         '
         'TCAllChild
         '
@@ -160,6 +163,7 @@ Partial Class FormReportBalanceSheet
         '
         'XTPGeneralLedger
         '
+        Me.XTPGeneralLedger.Controls.Add(Me.TLLedger)
         Me.XTPGeneralLedger.Name = "XTPGeneralLedger"
         Me.XTPGeneralLedger.Size = New System.Drawing.Size(894, 438)
         Me.XTPGeneralLedger.Text = "Ledger"
@@ -170,6 +174,14 @@ Partial Class FormReportBalanceSheet
         Me.XTPBalanceSheet.Name = "XTPBalanceSheet"
         Me.XTPBalanceSheet.Size = New System.Drawing.Size(894, 438)
         Me.XTPBalanceSheet.Text = "Balance Sheet"
+        '
+        'TLLedger
+        '
+        Me.TLLedger.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TLLedger.Location = New System.Drawing.Point(0, 0)
+        Me.TLLedger.Name = "TLLedger"
+        Me.TLLedger.Size = New System.Drawing.Size(894, 438)
+        Me.TLLedger.TabIndex = 0
         '
         'FormReportBalanceSheet
         '
@@ -188,7 +200,9 @@ Partial Class FormReportBalanceSheet
         CType(Me.TLBalanceSheet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPGeneralLedger.ResumeLayout(False)
         Me.XTPBalanceSheet.ResumeLayout(False)
+        CType(Me.TLLedger, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -209,4 +223,5 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents TCAllChild As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents treeListBand3 As DevExpress.XtraTreeList.Columns.TreeListBand
     Friend WithEvents treeListBand4 As DevExpress.XtraTreeList.Columns.TreeListBand
+    Friend WithEvents TLLedger As DevExpress.XtraTreeList.TreeList
 End Class
