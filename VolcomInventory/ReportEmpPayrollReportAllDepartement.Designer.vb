@@ -190,11 +190,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCInformation.AppearanceCell.Options.UseFont = True
         Me.GCInformation.Caption = " "
         Me.GCInformation.FieldName = "information"
-        Me.GCInformation.MinWidth = 250
+        Me.GCInformation.MinWidth = 225
         Me.GCInformation.Name = "GCInformation"
         Me.GCInformation.Visible = True
         Me.GCInformation.VisibleIndex = 0
-        Me.GCInformation.Width = 250
+        Me.GCInformation.Width = 225
         '
         'GCVCIN
         '
@@ -207,12 +207,12 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCIN.DisplayFormat.FormatString = "N0"
         Me.GCVCIN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCVCIN.FieldName = "volcom_indonesia"
-        Me.GCVCIN.MaxWidth = 100
+        Me.GCVCIN.MaxWidth = 90
         Me.GCVCIN.Name = "GCVCIN"
         Me.GCVCIN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "volcom_indonesia", "{0:N0}")})
         Me.GCVCIN.Visible = True
         Me.GCVCIN.VisibleIndex = 1
-        Me.GCVCIN.Width = 100
+        Me.GCVCIN.Width = 90
         '
         'GCVCINSOGO
         '
