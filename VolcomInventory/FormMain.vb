@@ -7579,6 +7579,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
             ElseIf page = "sal" Then
                 print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+            ElseIf page = "order" Then
+                print(FormFGTransList.GCSO, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")
