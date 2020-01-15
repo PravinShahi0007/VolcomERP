@@ -168,7 +168,7 @@ VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_item_cat_main").ToS
                 FormSetupBudgetOPEX.DEStart.EditValue = Now
                 FormSetupBudgetOPEX.DEUntil.EditValue = Now
                 FormSetupBudgetOPEX.load_propose()
-                Close()
+                'Close()
             Else 'new
                 Dim query As String = "INSERT INTO `tb_b_opex_pps`(`id_type`,`date_created`,`created_by`,`note`,`id_report_status`) 
 VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "

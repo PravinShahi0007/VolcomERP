@@ -38,6 +38,12 @@ WHERE pps.id_b_expense_propose = '" & id_pps & "'"
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 TECreatedBy.Text = data.Rows(0)("employee_name")
                 MENote.Text = data.Rows(0)("note").ToString
+
+                If data.Rows(0)("is_submit").ToString = "1" Then
+                    BMark.Text = "Mark"
+                Else
+                    BMark.Text = "Submit"
+                End If
             End If
             '
             BtnSave.Visible = False
@@ -230,7 +236,7 @@ VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_item_cat_main").ToS
                 FormSetupBudgetCAPEX.DEStart.EditValue = Now
                 FormSetupBudgetCAPEX.DEUntil.EditValue = Now
                 FormSetupBudgetCAPEX.load_propose()
-                Close()
+                'Close()
             Else 'new
                 Dim query As String = "INSERT INTO `tb_b_expense_propose`(`id_type`,`date_created`,`id_created_user`,`note`,`id_report_status`) 
 VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "
@@ -241,7 +247,7 @@ VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
                 'detail
                 For i As Integer = 0 To GVAfter.RowCount - 1
                     Dim query_det As String = "INSERT INTO `tb_b_expense_propose_year`(`id_b_expense_propose`,id_item_cat_main,`year`,`value_before`,`value_after`)
-VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat_main").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "',NULL,'" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat_main").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "',0,'" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                 Next
                 '
@@ -252,7 +258,7 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
                 FormSetupBudgetCAPEX.DEStart.EditValue = Now
                 FormSetupBudgetCAPEX.DEUntil.EditValue = Now
                 FormSetupBudgetCAPEX.load_propose()
-                Close()
+                'Close()
             End If
         End If
     End Sub
