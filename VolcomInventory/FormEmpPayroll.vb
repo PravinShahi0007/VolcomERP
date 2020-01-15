@@ -130,6 +130,7 @@
                 BReset.Visible = False
                 BSubmit.Visible = True
                 CMDelEmp.Enabled = True
+                BtnViewJournal.Enabled = False
             Else
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
@@ -142,6 +143,7 @@
                 'BReport.Enabled = True
                 BPrintSlip.Enabled = False
                 SBSendSlip.Enabled = False
+                BtnViewJournal.Enabled = False
                 BPrint.Enabled = True
                 BReset.Visible = True
                 BSubmit.Visible = False
@@ -151,6 +153,7 @@
             If id_report_status = "6" Then
                 BPrintSlip.Enabled = True
                 SBSendSlip.Enabled = True
+                BtnViewJournal.Enabled = True
                 BReset.Visible = False
             End If
 
@@ -994,5 +997,167 @@
         Else
             errorCustom("Please select payroll period.")
         End If
+    End Sub
+
+    Sub insert_jurnal(ByVal id_payroll As String)
+        Dim payroll_det As DataTable = execute_query("SELECT DATE_FORMAT(periode_end, '%M %Y') AS periode, report_number FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
+
+        Dim data_gaji_map As DataTable = execute_query("SELECT id_acc, id_departement, id_departement_sub FROM tb_coa_map_departement WHERE type = 1", -1, True, "", "", "", "")
+        Dim data_miss_map As DataTable = execute_query("SELECT id_acc, id_departement, id_departement_sub FROM tb_coa_map_departement WHERE type = 2", -1, True, "", "", "", "")
+
+        Dim data_sum As DataTable = execute_query("CALL view_payroll_sum(" + id_payroll + ")", -1, True, "", "", "", "")
+
+        Dim rmt As DataTable = execute_query("SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type = 192 AND rm.id_report = '" + id_payroll + "' AND rm.id_report_status = 1", -1, True, "", "", "", "")
+
+        Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) VALUES ('" + header_number_acc("1") + "', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+
+        Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
+
+        'office
+        Dim total_bpjskes As Decimal = 0.00
+        Dim total_bpjsjp As Decimal = 0.00
+        Dim total_bpjstk As Decimal = 0.00
+        Dim total_missing As Decimal = 0.00
+        Dim total_cash As Decimal = 0.00
+
+        Dim total_all As Decimal = 0.00
+
+        Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
+
+        For i = 0 To data_sum.Rows.Count - 1
+            If data_sum.Rows(i)("is_office_payroll").ToString = "1" Then
+                Dim salary As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_other")
+
+                'get id_acc gaji
+                Dim id_acc_gaji As String = ""
+
+                For j = 0 To data_gaji_map.Rows.Count - 1
+                    If data_sum.Rows(i)("id_departement").ToString = data_gaji_map.Rows(j)("id_departement").ToString Then
+                        id_acc_gaji = data_gaji_map.Rows(j)("id_acc").ToString
+
+                        Exit For
+                    End If
+                Next
+
+                insert_detail = insert_detail + "('" + id_acc_trans + "', '" + id_acc_gaji + "', 0, " + decimalSQL(salary) + ", 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+                total_bpjskes = total_bpjskes + data_sum.Rows(i)("d_bpjskes")
+                total_bpjsjp = total_bpjsjp + data_sum.Rows(i)("d_jaminan_pensiun")
+                total_bpjstk = total_bpjstk + data_sum.Rows(i)("d_bpjstk")
+                total_missing = total_missing + data_sum.Rows(i)("d_missing")
+                total_cash = total_cash + data_sum.Rows(i)("d_meditation_cash")
+
+                total_all = total_all + salary
+            End If
+        Next
+
+        total_all = total_all - (total_bpjskes + total_bpjsjp + total_bpjstk + total_missing + total_cash)
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1153, " + decimalSQL(total_bpjskes) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. BPJS Kesehatan', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1153, " + decimalSQL(total_bpjsjp) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Jaminan Pensiun', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1153, " + decimalSQL(total_bpjstk) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. BPJS TK', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1161, " + decimalSQL(total_missing) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Tab. Missing Security', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+        If total_cash > 0 Then
+            insert_detail = insert_detail + "('" + id_acc_trans + "', 317, " + decimalSQL(total_cash) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Kas Bon', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+        End If
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1223, " + decimalSQL(total_all) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Office', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+        'sogo
+        total_bpjskes = 0.00
+        total_bpjsjp = 0.00
+        total_bpjstk = 0.00
+        total_missing = 0.00
+        total_cash = 0.00
+
+        total_all = 0.00
+
+        For i = 0 To data_sum.Rows.Count - 1
+            If data_sum.Rows(i)("id_departement").ToString = "17" Then
+                Dim salary As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_other")
+
+                'get id_acc gaji
+                Dim id_acc_gaji As String = ""
+
+                For j = 0 To data_gaji_map.Rows.Count - 1
+                    If data_sum.Rows(i)("id_departement").ToString = data_gaji_map.Rows(j)("id_departement").ToString Then
+                        id_acc_gaji = data_gaji_map.Rows(j)("id_acc").ToString
+
+                        Exit For
+                    End If
+                Next
+
+                insert_detail = insert_detail + "('" + id_acc_trans + "', '" + id_acc_gaji + "', 0, " + decimalSQL(salary) + ", 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+                total_bpjskes = total_bpjskes + data_sum.Rows(i)("d_bpjskes")
+                total_bpjsjp = total_bpjsjp + data_sum.Rows(i)("d_jaminan_pensiun")
+                total_bpjstk = total_bpjstk + data_sum.Rows(i)("d_bpjstk")
+                total_missing = total_missing + data_sum.Rows(i)("d_missing")
+                total_cash = total_cash + data_sum.Rows(i)("d_meditation_cash")
+
+                total_all = total_all + salary
+            End If
+        Next
+
+        total_all = total_all - (total_bpjskes + total_bpjsjp + total_bpjstk + total_missing + total_cash)
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1153, " + decimalSQL(total_bpjskes) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. BPJS Kesehatan', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1153, " + decimalSQL(total_bpjsjp) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Jaminan Pensiun', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1153, " + decimalSQL(total_bpjstk) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. BPJS TK', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+        For i = 0 To data_sum.Rows.Count - 1
+            If data_sum.Rows(i)("id_departement").ToString = "17" Then
+                'get id_acc missing
+                Dim id_acc_miss As String = ""
+
+                For j = 0 To data_miss_map.Rows.Count - 1
+                    If data_sum.Rows(i)("id_departement_sub").ToString = data_miss_map.Rows(j)("id_departement_sub").ToString Then
+                        id_acc_miss = data_miss_map.Rows(j)("id_acc").ToString
+
+                        Exit For
+                    End If
+                Next
+
+                insert_detail = insert_detail + "('" + id_acc_trans + "', " + id_acc_miss + ", " + decimalSQL(data_sum.Rows(i)("d_missing")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Tab. Missing', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+            End If
+        Next
+
+        If total_cash > 0 Then
+            insert_detail = insert_detail + "('" + id_acc_trans + "', 317, " + decimalSQL(total_cash) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Kas Bon', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+        End If
+
+        insert_detail = insert_detail + "('" + id_acc_trans + "', 1223, " + decimalSQL(total_all) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Sogo', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "')"
+
+        execute_non_query(insert_detail, True, "", "", "", "")
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type = 192 AND ad.id_report = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
