@@ -41,6 +41,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnReff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -132,7 +133,7 @@ Partial Class FormWHSvcLevel
         Me.DEFromReturn = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnExportToXLSSO = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSvcLelel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLelel.SuspendLayout()
         Me.XTPBySO.SuspendLayout()
@@ -415,9 +416,18 @@ Partial Class FormWHSvcLevel
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 18
         '
+        'GridColumnorder_type
+        '
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
+        '
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.BtnExportToXLSSO)
         Me.GCFilter.Controls.Add(Me.BtnView)
         Me.GCFilter.Controls.Add(Me.BHide)
         Me.GCFilter.Controls.Add(Me.BExpand)
@@ -465,6 +475,7 @@ Partial Class FormWHSvcLevel
         Me.DEUntil.EditValue = Nothing
         Me.DEUntil.Location = New System.Drawing.Point(202, 9)
         Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -478,6 +489,7 @@ Partial Class FormWHSvcLevel
         Me.DEFrom.EditValue = Nothing
         Me.DEFrom.Location = New System.Drawing.Point(58, 9)
         Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -769,6 +781,7 @@ Partial Class FormWHSvcLevel
         Me.DEUntilCode.EditValue = Nothing
         Me.DEUntilCode.Location = New System.Drawing.Point(596, 9)
         Me.DEUntilCode.Name = "DEUntilCode"
+        Me.DEUntilCode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntilCode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilCode.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilCode.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -782,6 +795,7 @@ Partial Class FormWHSvcLevel
         Me.DEFromCode.EditValue = Nothing
         Me.DEFromCode.Location = New System.Drawing.Point(452, 9)
         Me.DEFromCode.Name = "DEFromCode"
+        Me.DEFromCode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFromCode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromCode.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromCode.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -1088,6 +1102,7 @@ Partial Class FormWHSvcLevel
         Me.DEUntilAcc.EditValue = Nothing
         Me.DEUntilAcc.Location = New System.Drawing.Point(613, 9)
         Me.DEUntilAcc.Name = "DEUntilAcc"
+        Me.DEUntilAcc.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntilAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilAcc.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -1101,6 +1116,7 @@ Partial Class FormWHSvcLevel
         Me.DEFromAcc.EditValue = Nothing
         Me.DEFromAcc.Location = New System.Drawing.Point(469, 9)
         Me.DEFromAcc.Name = "DEFromAcc"
+        Me.DEFromAcc.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFromAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromAcc.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -1350,6 +1366,7 @@ Partial Class FormWHSvcLevel
         Me.DEUntilReturn.EditValue = Nothing
         Me.DEUntilReturn.Location = New System.Drawing.Point(202, 9)
         Me.DEUntilReturn.Name = "DEUntilReturn"
+        Me.DEUntilReturn.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntilReturn.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilReturn.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilReturn.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -1363,6 +1380,7 @@ Partial Class FormWHSvcLevel
         Me.DEFromReturn.EditValue = Nothing
         Me.DEFromReturn.Location = New System.Drawing.Point(58, 9)
         Me.DEFromReturn.Name = "DEFromReturn"
+        Me.DEFromReturn.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFromReturn.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromReturn.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromReturn.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -1387,13 +1405,14 @@ Partial Class FormWHSvcLevel
         Me.LabelControl8.TabIndex = 8892
         Me.LabelControl8.Text = "From"
         '
-        'GridColumnorder_type
+        'BtnExportToXLSSO
         '
-        Me.GridColumnorder_type.Caption = "Type"
-        Me.GridColumnorder_type.FieldName = "order_type"
-        Me.GridColumnorder_type.Name = "GridColumnorder_type"
-        Me.GridColumnorder_type.Visible = True
-        Me.GridColumnorder_type.VisibleIndex = 1
+        Me.BtnExportToXLSSO.Location = New System.Drawing.Point(398, 9)
+        Me.BtnExportToXLSSO.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSSO.Name = "BtnExportToXLSSO"
+        Me.BtnExportToXLSSO.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSSO.TabIndex = 8901
+        Me.BtnExportToXLSSO.Text = "Export to XLS"
         '
         'FormWHSvcLevel
         '
@@ -1571,4 +1590,5 @@ Partial Class FormWHSvcLevel
     Friend WithEvents GridColumnprepare_statusror As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnfinal_comment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportToXLSSO As DevExpress.XtraEditors.SimpleButton
 End Class
