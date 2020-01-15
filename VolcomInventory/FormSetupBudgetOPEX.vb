@@ -109,4 +109,8 @@ ORDER BY pps.id_b_opex_pps DESC"
         FormSetupBudgetOPEXDet.id_pps = GVProposeList.GetFocusedRowCellValue("id_b_opex_pps").ToString
         FormSetupBudgetOPEXDet.ShowDialog()
     End Sub
+
+    Private Sub BSearchBudgetCat_Click(sender As Object, e As EventArgs) Handles BSearchBudgetCat.Click
+
+    End Sub
 End Class
