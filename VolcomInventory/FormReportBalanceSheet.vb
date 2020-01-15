@@ -1,6 +1,10 @@
 ﻿Public Class FormReportBalanceSheet
     Private Sub FormReportBalanceSheet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CreateNodes(TLBalanceSheet)
+        Try
+            CreateNodes(TLBalanceSheet)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Sub CreateNodes(ByVal tl As DevExpress.XtraTreeList.TreeList)
@@ -27,7 +31,6 @@
         For i As Integer = 0 To data_filter.Length - 1
             Dim rootNode As DevExpress.XtraTreeList.Nodes.TreeListNode = tl.AppendNode(New Object() {data_filter(i)("id_acc").ToString, data_filter(i)("id_acc_parent").ToString, data_filter(i)("acc_name").ToString, data_filter(i)("acc_description").ToString, data_filter(i)("debit"), data_filter(i)("credit"), data_filter(i)("id_all_child"), data_filter(i)("comp_name"), data_filter(i)("comp_number"), data_filter(i)("id_comp")}, parentForRootNodes)
             recursive_nodes(data_filter(i)("id_acc").ToString, rootNode, tl, data)
-
         Next
 
         ' Create a child node for the node1            
