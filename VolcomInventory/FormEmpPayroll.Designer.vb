@@ -137,6 +137,7 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditViewSend = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -159,7 +160,6 @@ Partial Class FormEmpPayroll
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetting = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPayroll.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
@@ -539,6 +539,7 @@ Partial Class FormEmpPayroll
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(1338, 39)
         Me.PanelControl4.TabIndex = 1
+        Me.PanelControl4.Visible = False
         '
         'SBExportExcel
         '
@@ -1409,6 +1410,17 @@ Partial Class FormEmpPayroll
         Me.PanelControl2.Size = New System.Drawing.Size(1338, 39)
         Me.PanelControl2.TabIndex = 2
         '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Enabled = False
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(547, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 35)
+        Me.BtnViewJournal.TabIndex = 115
+        Me.BtnViewJournal.Text = "View Journal"
+        '
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1643,17 +1655,6 @@ Partial Class FormEmpPayroll
         Me.BSetting.Size = New System.Drawing.Size(97, 35)
         Me.BSetting.TabIndex = 0
         Me.BSetting.Text = "Setting"
-        '
-        'BtnViewJournal
-        '
-        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnViewJournal.Enabled = False
-        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(547, 2)
-        Me.BtnViewJournal.Name = "BtnViewJournal"
-        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 35)
-        Me.BtnViewJournal.TabIndex = 115
-        Me.BtnViewJournal.Text = "View Journal"
         '
         'FormEmpPayroll
         '
