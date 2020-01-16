@@ -167,12 +167,18 @@ WHERE ppd.id_b_expense_propose='" & id_pps & "'"
                 rmt = "208"
             End If
 
-            query = "UPDATE tb_b_expense_propose SET is_submit='1' WHERE id_b_expense_propose='" & id_pps & "'"
-            execute_non_query(query, True, "", "", "", "")
-            submit_who_prepared(rmt, id_pps, id_user)
-            '
-            load_form()
-            infoCustom("Budget submitted")
+            query = "SELECT * FROM tb_doc WHERE id_report='" & id_pps & "' AND report_mark_type='" & rmt & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                query = "UPDATE tb_b_expense_propose SET is_submit='1' WHERE id_b_expense_propose='" & id_pps & "'"
+                execute_non_query(query, True, "", "", "", "")
+                submit_who_prepared(rmt, id_pps, id_user)
+                '
+                load_form()
+                infoCustom("Budget submitted")
+            Else
+                warningCustom("Please upload attachment first.")
+            End If
         End If
     End Sub
 
@@ -279,5 +285,17 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
 
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVAfter_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVAfter.RowStyle
+        If Not GVAfter.GetRowCellValue(e.RowHandle, "value_before") = GVAfter.GetRowCellValue(e.RowHandle, "value_after") Then
+            e.Appearance.BackColor = Color.Honeydew
+            e.Appearance.BackColor2 = Color.Honeydew
+            e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Bold)
+        Else
+            e.Appearance.BackColor = Color.White
+            e.Appearance.BackColor2 = Color.White
+            e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Regular)
+        End If
     End Sub
 End Class
