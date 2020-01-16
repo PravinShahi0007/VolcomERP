@@ -184,6 +184,10 @@
                 calculate_amount()
                 TEKurs.EditValue = FormBankWithdrawal.TEKurs.EditValue
             ElseIf report_mark_type = "223" Then 'BPJS Kesehatan
+                'load header
+                SLEVendor.EditValue = 1
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
                 'load detail
                 Dim data_map As DataTable = execute_query("
                     SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
@@ -282,6 +286,7 @@
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                     Next
                 Next
+                calculate_amount()
             End If
         Else
             PCAddDel.Visible = False

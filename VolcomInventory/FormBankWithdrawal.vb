@@ -567,6 +567,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         GVBPJSKesehatan.ActiveFilterString = "[is_check]='yes'"
 
         If GVBPJSKesehatan.RowCount > 0 Then
+            FormBankWithdrawalDet.id_pay_type = "2"
             FormBankWithdrawalDet.report_mark_type = "223"
             FormBankWithdrawalDet.ShowDialog()
         Else
