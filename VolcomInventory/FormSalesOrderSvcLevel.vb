@@ -1074,8 +1074,10 @@
             If id_manifest = "" Then
                 id_manifest = "-1"
             End If
-            FormDelManifestDet.id_del_manifest = id_manifest
-            FormDelManifestDet.ShowDialog()
+            If id_manifest <> "-1" Then
+                FormDelManifestDet.id_del_manifest = id_manifest
+                FormDelManifestDet.ShowDialog()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub
