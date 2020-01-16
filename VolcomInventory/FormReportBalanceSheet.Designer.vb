@@ -25,8 +25,8 @@ Partial Class FormReportBalanceSheet
         Me.TCLAccount = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCLDescription = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.treeListBand4 = New DevExpress.XtraTreeList.Columns.TreeListBand()
-        Me.TCLDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCLCreadit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCIDAcc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCIDAccParent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn()
@@ -70,6 +70,7 @@ Partial Class FormReportBalanceSheet
         Me.TLBalanceSheet.Location = New System.Drawing.Point(0, 0)
         Me.TLBalanceSheet.Name = "TLBalanceSheet"
         Me.TLBalanceSheet.OptionsBehavior.EnableFiltering = True
+        Me.TLBalanceSheet.OptionsBehavior.PopulateServiceColumns = True
         Me.TLBalanceSheet.OptionsFilter.FilterMode = DevExpress.XtraTreeList.FilterMode.Smart
         Me.TLBalanceSheet.OptionsFilter.ShowAllValuesInFilterPopup = True
         Me.TLBalanceSheet.OptionsFind.AllowFindPanel = True
@@ -79,7 +80,9 @@ Partial Class FormReportBalanceSheet
         '
         'treeListBand3
         '
-        Me.treeListBand3.Caption = "Account"
+        Me.treeListBand3.Caption = "Chart Of Account"
+        Me.treeListBand3.Columns.Add(Me.TCLAccount)
+        Me.treeListBand3.Columns.Add(Me.TCLDescription)
         Me.treeListBand3.Name = "treeListBand3"
         Me.treeListBand3.Width = 423
         '
@@ -90,7 +93,7 @@ Partial Class FormReportBalanceSheet
         Me.TCLAccount.Name = "TCLAccount"
         Me.TCLAccount.Visible = True
         Me.TCLAccount.VisibleIndex = 0
-        Me.TCLAccount.Width = 211
+        Me.TCLAccount.Width = 212
         '
         'TCLDescription
         '
@@ -99,24 +102,15 @@ Partial Class FormReportBalanceSheet
         Me.TCLDescription.Name = "TCLDescription"
         Me.TCLDescription.Visible = True
         Me.TCLDescription.VisibleIndex = 1
-        Me.TCLDescription.Width = 212
+        Me.TCLDescription.Width = 211
         '
         'treeListBand4
         '
         Me.treeListBand4.Caption = "Amount"
+        Me.treeListBand4.Columns.Add(Me.TCLCreadit)
+        Me.treeListBand4.Columns.Add(Me.TCLDebit)
         Me.treeListBand4.Name = "treeListBand4"
         Me.treeListBand4.Width = 453
-        '
-        'TCLDebit
-        '
-        Me.TCLDebit.Caption = "Previous Month"
-        Me.TCLDebit.FieldName = "debit"
-        Me.TCLDebit.Format.FormatString = "N2"
-        Me.TCLDebit.Format.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TCLDebit.Name = "TCLDebit"
-        Me.TCLDebit.Visible = True
-        Me.TCLDebit.VisibleIndex = 2
-        Me.TCLDebit.Width = 227
         '
         'TCLCreadit
         '
@@ -126,8 +120,19 @@ Partial Class FormReportBalanceSheet
         Me.TCLCreadit.Format.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TCLCreadit.Name = "TCLCreadit"
         Me.TCLCreadit.Visible = True
-        Me.TCLCreadit.VisibleIndex = 3
+        Me.TCLCreadit.VisibleIndex = 2
         Me.TCLCreadit.Width = 226
+        '
+        'TCLDebit
+        '
+        Me.TCLDebit.Caption = "Previous Month"
+        Me.TCLDebit.FieldName = "debit"
+        Me.TCLDebit.Format.FormatString = "N2"
+        Me.TCLDebit.Format.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TCLDebit.Name = "TCLDebit"
+        Me.TCLDebit.Visible = True
+        Me.TCLDebit.VisibleIndex = 3
+        Me.TCLDebit.Width = 227
         '
         'TCIDAcc
         '
@@ -150,15 +155,11 @@ Partial Class FormReportBalanceSheet
         'treeListBand1
         '
         Me.treeListBand1.Caption = "Account"
-        Me.treeListBand1.Columns.Add(Me.TCLAccount)
-        Me.treeListBand1.Columns.Add(Me.TCLDescription)
         Me.treeListBand1.Name = "treeListBand1"
         '
         'treeListBand2
         '
         Me.treeListBand2.Caption = "Amount"
-        Me.treeListBand2.Columns.Add(Me.TCLDebit)
-        Me.treeListBand2.Columns.Add(Me.TCLCreadit)
         Me.treeListBand2.Name = "treeListBand2"
         '
         'XTCBalanceSheet
@@ -319,7 +320,7 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents TCLedCredit As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents TCLIDAcc As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents TCLIdAccParent As DevExpress.XtraTreeList.Columns.TreeListColumn
+    Friend WithEvents TCLedIDAllChild As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents treeListBand3 As DevExpress.XtraTreeList.Columns.TreeListBand
     Friend WithEvents treeListBand4 As DevExpress.XtraTreeList.Columns.TreeListBand
-    Friend WithEvents TCLedIDAllChild As DevExpress.XtraTreeList.Columns.TreeListColumn
 End Class
