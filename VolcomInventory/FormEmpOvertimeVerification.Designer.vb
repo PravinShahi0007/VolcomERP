@@ -298,7 +298,6 @@ Partial Class FormEmpOvertimeVerification
         Me.SLUEPayroll.Location = New System.Drawing.Point(652, 64)
         Me.SLUEPayroll.Name = "SLUEPayroll"
         Me.SLUEPayroll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEPayroll.Properties.ReadOnly = True
         Me.SLUEPayroll.Properties.View = Me.SearchLookUpEdit1View
         Me.SLUEPayroll.Size = New System.Drawing.Size(344, 20)
         Me.SLUEPayroll.TabIndex = 26
