@@ -59,7 +59,7 @@
         TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
 
         Dim query_det As String = "
-            SELECT 0 AS no, mdet.id_wh_awb_det, c.id_comp_group, a.awbill_date, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
+            SELECT 0 AS no, mdet.id_wh_awb_det, c.id_comp_group, a.awbill_date, a.id_awbill, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
             FROM tb_del_manifest_det AS mdet
             LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
             LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
@@ -84,6 +84,7 @@
             End If
 
             SBPrint.Enabled = False
+            SBPrePrint.Enabled = True
             SBSave.Enabled = True
             SBComplete.Enabled = True
 
@@ -94,11 +95,13 @@
 
             SBCancel.Enabled = False
             SBPrint.Enabled = True
+            SBPrePrint.Enabled = True
             SBSave.Enabled = False
             SBComplete.Enabled = False
 
             If data.Rows(0)("id_report_status").ToString = "5" Then
                 SBPrint.Enabled = False
+                SBPrePrint.Enabled = False
             End If
 
             SBAdd.Enabled = False
@@ -108,6 +111,7 @@
         SBAttachement.Enabled = True
 
         If id_del_manifest = "0" Then
+            SBPrePrint.Enabled = False
             SBAttachement.Enabled = False
         End If
     End Sub
@@ -182,50 +186,29 @@
     End Sub
 
     Private Sub GVList_RowCountChanged(sender As Object, e As EventArgs) Handles GVList.RowCountChanged
+        Dim last_collie As String = ""
+
+        Dim no As Integer = 1
+
         For i = 0 To GVList.RowCount - 1
             If GVList.IsValidRowHandle(i) Then
-                GVList.SetRowCellValue(i, "no", i + 1)
+                If i = 0 Then
+                    last_collie = GVList.GetRowCellValue(i, "id_awbill").ToString
+                End If
+
+                If Not last_collie = GVList.GetRowCellValue(i, "id_awbill").ToString Then
+                    no = no + 1
+                End If
+
+                GVList.SetRowCellValue(i, "no", no)
+
+                last_collie = GVList.GetRowCellValue(i, "id_awbill").ToString
             End If
         Next
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
-        Dim id_group As List(Of String) = New List(Of String)
-
-        For i = 0 To GVList.RowCount - 1
-            If GVList.IsValidRowHandle(i) Then
-                If Not id_group.Contains(GVList.GetRowCellValue(i, "id_comp_group").ToString) Then
-                    id_group.Add(GVList.GetRowCellValue(i, "id_comp_group").ToString)
-                End If
-            End If
-        Next
-
-        Dim on_hold As Boolean = False
-
-        For i = 0 To id_group.Count - 1
-            'chek invoice
-            Dim del As New ClassSalesDelOrder()
-
-            If is_block_del_store = "1" And del.checkUnpaidInvoice(id_group(i)) Then
-                on_hold = True
-            End If
-        Next
-
-        If on_hold Then
-            stopCustom("Hold delivery")
-        Else
-            Dim report As ReportDelManifest = New ReportDelManifest
-
-            report.id_del_manifest = id_del_manifest
-            report.dt = GCList.DataSource
-
-            report.XrLabelNumber.Text = TENumber.Text
-            report.XrLabel3PL.Text = SLUE3PL.Text
-
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
-
-            tool.ShowPreview()
-        End If
+        print("2")
     End Sub
 
     Private Sub SBAttachement_Click(sender As Object, e As EventArgs) Handles SBAttachement.Click
@@ -250,5 +233,51 @@
         End Try
 
         Dispose()
+    End Sub
+
+    Private Sub SBPrePrint_Click(sender As Object, e As EventArgs) Handles SBPrePrint.Click
+        print("1")
+    End Sub
+
+    Sub print(ByVal id_pre As String)
+        Dim id_group As List(Of String) = New List(Of String)
+
+        For i = 0 To GVList.RowCount - 1
+            If GVList.IsValidRowHandle(i) Then
+                If Not id_group.Contains(GVList.GetRowCellValue(i, "id_comp_group").ToString) Then
+                    id_group.Add(GVList.GetRowCellValue(i, "id_comp_group").ToString)
+                End If
+            End If
+        Next
+
+        Dim on_hold As Boolean = False
+
+        If id_pre = "2" Then
+            For i = 0 To id_group.Count - 1
+                'chek invoice
+                Dim del As New ClassSalesDelOrder()
+
+                If is_block_del_store = "1" And del.checkUnpaidInvoice(id_group(i)) Then
+                    on_hold = True
+                End If
+            Next
+        End If
+
+        If on_hold Then
+            stopCustom("Hold delivery")
+        Else
+            Dim report As ReportDelManifest = New ReportDelManifest
+
+            report.id_del_manifest = id_del_manifest
+            report.id_pre = id_pre
+            report.dt = GCList.DataSource
+
+            report.XrLabelNumber.Text = TENumber.Text
+            report.XrLabel3PL.Text = SLUE3PL.Text
+
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+            tool.ShowPreview()
+        End If
     End Sub
 End Class
