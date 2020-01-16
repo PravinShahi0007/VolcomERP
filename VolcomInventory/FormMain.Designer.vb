@@ -415,6 +415,7 @@ Partial Class FormMain
         Me.NBAccountingLedger = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAccountingWorksheet = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCollectionAvg = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBReportBalanceSheet = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdRec = New DevExpress.XtraNavBar.NavBarItem()
@@ -449,7 +450,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBReportBalanceSheet = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3145,6 +3145,7 @@ Partial Class FormMain
         '
         Me.NBSetupBudgetCAPEX.Caption = "Setup Budget CAPEX"
         Me.NBSetupBudgetCAPEX.Name = "NBSetupBudgetCAPEX"
+        Me.NBSetupBudgetCAPEX.SmallImage = CType(resources.GetObject("NBSetupBudgetCAPEX.SmallImage"), System.Drawing.Image)
         '
         'NBAssetManagement
         '
@@ -3154,13 +3155,13 @@ Partial Class FormMain
         '
         'NBProposeExpenseBudgetAdmin
         '
-        Me.NBProposeExpenseBudgetAdmin.Caption = "Propose Budget CAPEX"
+        Me.NBProposeExpenseBudgetAdmin.Caption = "Propose Budget CAPEX (unused)"
         Me.NBProposeExpenseBudgetAdmin.Name = "NBProposeExpenseBudgetAdmin"
         Me.NBProposeExpenseBudgetAdmin.SmallImage = CType(resources.GetObject("NBProposeExpenseBudgetAdmin.SmallImage"), System.Drawing.Image)
         '
         'NBRevExpenseBudgetAdmin
         '
-        Me.NBRevExpenseBudgetAdmin.Caption = "Revision Budget CAPEX"
+        Me.NBRevExpenseBudgetAdmin.Caption = "Revision Budget CAPEX (unused)"
         Me.NBRevExpenseBudgetAdmin.Name = "NBRevExpenseBudgetAdmin"
         Me.NBRevExpenseBudgetAdmin.SmallImage = CType(resources.GetObject("NBRevExpenseBudgetAdmin.SmallImage"), System.Drawing.Image)
         '
@@ -3241,6 +3242,12 @@ Partial Class FormMain
         Me.NBCollectionAvg.Caption = "Collection Average"
         Me.NBCollectionAvg.Name = "NBCollectionAvg"
         Me.NBCollectionAvg.SmallImage = CType(resources.GetObject("NBCollectionAvg.SmallImage"), System.Drawing.Image)
+        '
+        'NBReportBalanceSheet
+        '
+        Me.NBReportBalanceSheet.Caption = "Balance Sheet"
+        Me.NBReportBalanceSheet.Name = "NBReportBalanceSheet"
+        Me.NBReportBalanceSheet.SmallImage = CType(resources.GetObject("NBReportBalanceSheet.SmallImage"), System.Drawing.Image)
         '
         'NBQC
         '
@@ -3517,12 +3524,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBReportBalanceSheet
-        '
-        Me.NBReportBalanceSheet.Caption = "Balance Sheet"
-        Me.NBReportBalanceSheet.Name = "NBReportBalanceSheet"
-        Me.NBReportBalanceSheet.SmallImage = CType(resources.GetObject("NBReportBalanceSheet.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
