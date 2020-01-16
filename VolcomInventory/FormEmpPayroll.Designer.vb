@@ -62,6 +62,8 @@ Partial Class FormEmpPayroll
         Me.GridColumnLastUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -135,6 +137,7 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditViewSend = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -157,8 +160,6 @@ Partial Class FormEmpPayroll
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetting = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPayroll.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
@@ -520,6 +521,16 @@ Partial Class FormEmpPayroll
         Me.GCStatus.Visible = True
         Me.GCStatus.VisibleIndex = 6
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.FieldName = "is_thr"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.FieldName = "is_dw"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
         'PanelControl4
         '
         Me.PanelControl4.Controls.Add(Me.SBExportExcel)
@@ -528,6 +539,7 @@ Partial Class FormEmpPayroll
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(1338, 39)
         Me.PanelControl4.TabIndex = 1
+        Me.PanelControl4.Visible = False
         '
         'SBExportExcel
         '
@@ -1380,6 +1392,7 @@ Partial Class FormEmpPayroll
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.BtnAttachment)
         Me.PanelControl2.Controls.Add(Me.BReport)
@@ -1396,6 +1409,17 @@ Partial Class FormEmpPayroll
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1338, 39)
         Me.PanelControl2.TabIndex = 2
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Enabled = False
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(547, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 35)
+        Me.BtnViewJournal.TabIndex = 115
+        Me.BtnViewJournal.Text = "View Journal"
         '
         'PanelControl3
         '
@@ -1632,16 +1656,6 @@ Partial Class FormEmpPayroll
         Me.BSetting.TabIndex = 0
         Me.BSetting.Text = "Setting"
         '
-        'GridColumn6
-        '
-        Me.GridColumn6.FieldName = "is_thr"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.FieldName = "is_dw"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
         'FormEmpPayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1835,4 +1849,5 @@ Partial Class FormEmpPayroll
     Friend WithEvents RITETotalSalaryTHR As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
 End Class
