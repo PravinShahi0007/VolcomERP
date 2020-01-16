@@ -155,6 +155,7 @@ WHERE ppd.id_b_expense_propose='" & id_pps & "'"
             Else
                 FormReportMark.report_mark_type = "208"
             End If
+            FormReportMark.ShowDialog()
         Else
             'submit
             Dim query As String = ""
@@ -166,7 +167,7 @@ WHERE ppd.id_b_expense_propose='" & id_pps & "'"
                 rmt = "208"
             End If
 
-            query = "UPDATE tb_b_expense_propose SET is_submit='1' WHERE id_b_opex_pps='" & id_pps & "'"
+            query = "UPDATE tb_b_expense_propose SET is_submit='1' WHERE id_b_expense_propose='" & id_pps & "'"
             execute_non_query(query, True, "", "", "", "")
             submit_who_prepared(rmt, id_pps, id_user)
             '
