@@ -2595,10 +2595,14 @@ GROUP BY rec.`id_prod_order`"
 
             ElseIf report_mark_type = "13" Then
                 query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
-                                ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount
+                                ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty
+                                ,cur.currency AS currency ,SUM(det.`mat_purc_det_qty`*det.`mat_purc_det_price`) AS amount_usd
+                                ,tb.`mat_purc_kurs` AS kurs
+                                ,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount
                                 FROM " & table_name & " tb
                                 INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`
                                 INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN tb_lookup_currency cur ON cur.id_currency=tb.id_currency
                                 INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
                                 WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
@@ -2607,19 +2611,25 @@ GROUP BY rec.`id_prod_order`"
                 query_view += " GROUP BY tb." & field_id & ""
                 '
                 query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
-                                    ,c.`comp_name`,0.00 AS tot_qty,0.00 AS tot_amount
+                                    ,c.`comp_name`,0.00 AS tot_qty,cur.currency AS currency,0.00 AS amount_usd,0.00 AS kurs,0.00 AS tot_amount
                                     FROM " & table_name & " tb
                                     INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`
                                     INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
                                     INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
+                                    INNER JOIN tb_lookup_currency cur ON cur.id_currency=tb.id_currency
                                    WHERE tb.id_report_status='-1'"
                 query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
-                                ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount
+                                ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty
+                                ,cur.currency AS currency
+                                ,SUM(det.`mat_purc_det_qty`*det.`mat_purc_det_price`) AS amount_usd
+                                ,tb.`mat_purc_kurs` AS kurs
+                                ,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount
                                 FROM tb_report_mark_cancel_report rmcr
                                " & generate_left_join_cancel("query") & "
                                INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report
                                INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`
                                 INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN tb_lookup_currency cur ON cur.id_currency=tb.id_currency
                                 INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
@@ -2920,10 +2930,19 @@ WHERE tb.id_report_status='6' AND IF(ISNULL(pp.id_design),2,1)=2 AND IF(ISNULL(r
             gv.Columns("tot_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             gv.Columns("tot_qty").DisplayFormat.FormatString = "{0:n2}"
 
+            gv.Columns("kurs").Caption = "Kurs"
+            gv.Columns("kurs").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns("kurs").DisplayFormat.FormatString = "{0:n2}"
+
+            gv.Columns("amount_usd").Caption = "Total Amount"
+            gv.Columns("amount_usd").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns("amount_usd").DisplayFormat.FormatString = "{0:n2}"
+
             gv.Columns("tot_amount").Caption = "Total Amount (Rp)"
             gv.Columns("tot_amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             gv.Columns("tot_amount").DisplayFormat.FormatString = "{0:n2}"
 
+            gv.Columns("currency").Caption = "Currency"
             gv.Columns("comp_name").Caption = "Vendor"
             gv.Columns("date_created").Caption = "Created Date"
             gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
