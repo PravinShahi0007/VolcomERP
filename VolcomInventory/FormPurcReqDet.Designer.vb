@@ -87,8 +87,10 @@ Partial Class FormPurcReqDet
         Me.RISLEShipTo = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
@@ -111,8 +113,6 @@ Partial Class FormPurcReqDet
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -416,6 +416,7 @@ Partial Class FormPurcReqDet
         Me.DEYearBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEYearBudget.Properties.Mask.EditMask = "yyyy"
         Me.DEYearBudget.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEYearBudget.Properties.ReadOnly = True
         Me.DEYearBudget.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
         Me.DEYearBudget.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
         Me.DEYearBudget.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
@@ -862,6 +863,15 @@ Partial Class FormPurcReqDet
         Me.GridColumn26.FieldName = "id_comp"
         Me.GridColumn26.Name = "GridColumn26"
         '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Code"
+        Me.GridColumn27.FieldName = "comp_number"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 0
+        Me.GridColumn27.Width = 199
+        '
         'GridColumn24
         '
         Me.GridColumn24.Caption = "Ship To"
@@ -879,6 +889,15 @@ Partial Class FormPurcReqDet
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 2
         Me.GridColumn25.Width = 962
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Ship Destination"
+        Me.GridColumn28.FieldName = "ship_destination"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 8
+        Me.GridColumn28.Width = 116
         '
         'GridColumn15
         '
@@ -1111,24 +1130,6 @@ Partial Class FormPurcReqDet
         Me.BSetShipping.TabIndex = 13
         Me.BSetShipping.TabStop = False
         Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "Code"
-        Me.GridColumn27.FieldName = "comp_number"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 0
-        Me.GridColumn27.Width = 199
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "Ship Destination"
-        Me.GridColumn28.FieldName = "ship_destination"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 8
-        Me.GridColumn28.Width = 116
         '
         'FormPurcReqDet
         '

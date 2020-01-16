@@ -6,6 +6,10 @@
     Dim id_departement As String = "-1"
     '
     Private Sub FormSetupBudgetCAPEXDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
+    Sub load_form()
         If id_pps = "-1" Then 'new
             TENumber.Text = "[auto_generate]"
             TEDepartement.Text = get_departement_x(FormSetupBudgetCAPEX.LEDeptSum.EditValue.ToString, "1")
@@ -34,6 +38,12 @@ WHERE pps.id_b_expense_propose = '" & id_pps & "'"
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 TECreatedBy.Text = data.Rows(0)("employee_name")
                 MENote.Text = data.Rows(0)("note").ToString
+
+                If data.Rows(0)("is_submit").ToString = "1" Then
+                    BMark.Text = "Mark"
+                Else
+                    BMark.Text = "Submit"
+                End If
             End If
             '
             BtnSave.Visible = False
@@ -137,15 +147,33 @@ WHERE ppd.id_b_expense_propose='" & id_pps & "'"
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.id_report = id_pps
-        FormReportMark.is_view = is_view
-        If is_rev = "1" Then 'revision
-            FormReportMark.report_mark_type = "209"
+        If BMark.Text = "Mark" Then
+            FormReportMark.id_report = id_pps
+            FormReportMark.is_view = is_view
+            If is_rev = "1" Then 'revision
+                FormReportMark.report_mark_type = "209"
+            Else
+                FormReportMark.report_mark_type = "208"
+            End If
+            FormReportMark.ShowDialog()
         Else
-            FormReportMark.report_mark_type = "208"
-        End If
+            'submit
+            Dim query As String = ""
+            Dim rmt As String = ""
 
-        FormReportMark.ShowDialog()
+            If is_rev = "1" Then 'revision
+                rmt = "209"
+            Else
+                rmt = "208"
+            End If
+
+            query = "UPDATE tb_b_expense_propose SET is_submit='1' WHERE id_b_expense_propose='" & id_pps & "'"
+            execute_non_query(query, True, "", "", "", "")
+            submit_who_prepared(rmt, id_pps, id_user)
+            '
+            load_form()
+            infoCustom("Budget submitted")
+        End If
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
@@ -202,17 +230,17 @@ VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_item_cat_main").ToS
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                 Next
 
-                submit_who_prepared("209", id_pps, id_user)
+                'submit_who_prepared("209", id_pps, id_user)
                 infoCustom("Revise budget proposed")
 
                 FormSetupBudgetCAPEX.XTCSampleBudget.SelectedTabPageIndex = 1
                 FormSetupBudgetCAPEX.DEStart.EditValue = Now
                 FormSetupBudgetCAPEX.DEUntil.EditValue = Now
                 FormSetupBudgetCAPEX.load_propose()
-                Close()
+                'Close()
             Else 'new
-                Dim query As String = "INSERT INTO `tb_b_expense_propose`(`id_type`,`date_created`,`id_created_user`,`note`,`id_report_status`) 
-VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_b_expense_propose`(`id_type`,`date_created`,`id_created_user`,`note`,`id_report_status`,`id_departement`) 
+VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & FormSetupBudgetCAPEX.LEDeptSum.EditValue.ToString & "');SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(query, 0, True, "", "", "", "")
                 '
                 query = "CALL gen_number('" & id_pps & "','208')"
@@ -220,19 +248,36 @@ VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
                 'detail
                 For i As Integer = 0 To GVAfter.RowCount - 1
                     Dim query_det As String = "INSERT INTO `tb_b_expense_propose_year`(`id_b_expense_propose`,id_item_cat_main,`year`,`value_before`,`value_after`)
-VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat_main").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "',NULL,'" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat_main").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "',0,'" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                 Next
                 '
-                submit_who_prepared("208", id_pps, id_user)
+                'submit_who_prepared("208", id_pps, id_user)
                 infoCustom("Budget proposed")
                 '
                 FormSetupBudgetCAPEX.XTCSampleBudget.SelectedTabPageIndex = 1
                 FormSetupBudgetCAPEX.DEStart.EditValue = Now
                 FormSetupBudgetCAPEX.DEUntil.EditValue = Now
                 FormSetupBudgetCAPEX.load_propose()
-                Close()
+                'Close()
             End If
         End If
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.is_view = is_view
+
+        If is_rev = "1" Then
+            FormDocumentUpload.id_report = id_pps
+            FormDocumentUpload.report_mark_type = "209"
+        Else
+            FormDocumentUpload.id_report = id_pps
+            FormDocumentUpload.report_mark_type = "208"
+        End If
+
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

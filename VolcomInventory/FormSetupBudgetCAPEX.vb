@@ -89,7 +89,9 @@ WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND p
         ElseIf GVBudgetList.RowCount = 0 Or LEDeptSum.EditValue.ToString = "0" Then
             stopCustom("Please choose departement first")
         Else
-            FormSetupBudgetCAPEXDet.is_rev = "1"
+            If GVBudgetList.Columns("value_expense").SummaryItem.SummaryValue > 0 Then
+                FormSetupBudgetCAPEXDet.is_rev = "1"
+            End If
             FormSetupBudgetCAPEXDet.ShowDialog()
         End If
     End Sub

@@ -1,7 +1,7 @@
 ﻿Public Class FormReportBalanceSheet
     Private Sub FormReportBalanceSheet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            CreateNodes(TLBalanceSheet)
+            CreateNodes(TLLedger)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

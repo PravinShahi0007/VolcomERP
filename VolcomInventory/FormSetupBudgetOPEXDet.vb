@@ -161,14 +161,14 @@ VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_item_cat_main").ToS
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                 Next
 
-                submit_who_prepared("204", id_pps, id_user)
+                'submit_who_prepared("204", id_pps, id_user)
                 infoCustom("Revise budget created, press submit to continue approval process")
 
                 FormSetupBudgetOPEX.XTCSampleBudget.SelectedTabPageIndex = 1
                 FormSetupBudgetOPEX.DEStart.EditValue = Now
                 FormSetupBudgetOPEX.DEUntil.EditValue = Now
                 FormSetupBudgetOPEX.load_propose()
-                Close()
+                'Close()
             Else 'new
                 Dim query As String = "INSERT INTO `tb_b_opex_pps`(`id_type`,`date_created`,`created_by`,`note`,`id_report_status`) 
 VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "
@@ -223,6 +223,7 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
             submit_who_prepared(rmt, id_pps, id_user)
             '
             load_form()
+            infoCustom("Budget submitted")
         End If
     End Sub
 

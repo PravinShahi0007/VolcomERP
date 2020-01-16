@@ -280,7 +280,7 @@ Partial Class FormSetupBudgetOPEX
         Me.XTPProposal.Controls.Add(Me.GCProposeList)
         Me.XTPProposal.Controls.Add(Me.PanelControl3)
         Me.XTPProposal.Name = "XTPProposal"
-        Me.XTPProposal.Size = New System.Drawing.Size(936, 591)
+        Me.XTPProposal.Size = New System.Drawing.Size(978, 584)
         Me.XTPProposal.Text = "List Proposal"
         '
         'GCProposeList
@@ -289,7 +289,7 @@ Partial Class FormSetupBudgetOPEX
         Me.GCProposeList.Location = New System.Drawing.Point(0, 43)
         Me.GCProposeList.MainView = Me.GVProposeList
         Me.GCProposeList.Name = "GCProposeList"
-        Me.GCProposeList.Size = New System.Drawing.Size(936, 548)
+        Me.GCProposeList.Size = New System.Drawing.Size(978, 541)
         Me.GCProposeList.TabIndex = 6
         Me.GCProposeList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProposeList})
         '
@@ -366,7 +366,7 @@ Partial Class FormSetupBudgetOPEX
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(936, 43)
+        Me.PanelControl3.Size = New System.Drawing.Size(978, 43)
         Me.PanelControl3.TabIndex = 5
         '
         'BShowAll
@@ -382,7 +382,7 @@ Partial Class FormSetupBudgetOPEX
         Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BEdit.Image = CType(resources.GetObject("BEdit.Image"), System.Drawing.Image)
         Me.BEdit.ImageIndex = 2
-        Me.BEdit.Location = New System.Drawing.Point(837, 2)
+        Me.BEdit.Location = New System.Drawing.Point(879, 2)
         Me.BEdit.Name = "BEdit"
         Me.BEdit.Size = New System.Drawing.Size(97, 39)
         Me.BEdit.TabIndex = 8908
@@ -445,7 +445,7 @@ Partial Class FormSetupBudgetOPEX
         Me.XTPMutasiBudget.Controls.Add(Me.PanelControl4)
         Me.XTPMutasiBudget.Controls.Add(Me.BPrint)
         Me.XTPMutasiBudget.Name = "XTPMutasiBudget"
-        Me.XTPMutasiBudget.Size = New System.Drawing.Size(936, 591)
+        Me.XTPMutasiBudget.Size = New System.Drawing.Size(978, 584)
         Me.XTPMutasiBudget.Text = "Pemakaian Budget"
         '
         'GCBudgetCard
@@ -454,7 +454,7 @@ Partial Class FormSetupBudgetOPEX
         Me.GCBudgetCard.Location = New System.Drawing.Point(0, 38)
         Me.GCBudgetCard.MainView = Me.GVBudgetCard
         Me.GCBudgetCard.Name = "GCBudgetCard"
-        Me.GCBudgetCard.Size = New System.Drawing.Size(936, 526)
+        Me.GCBudgetCard.Size = New System.Drawing.Size(978, 514)
         Me.GCBudgetCard.TabIndex = 7
         Me.GCBudgetCard.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetCard})
         '
@@ -562,7 +562,7 @@ Partial Class FormSetupBudgetOPEX
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(936, 38)
+        Me.PanelControl4.Size = New System.Drawing.Size(978, 38)
         Me.PanelControl4.TabIndex = 6
         '
         'BSearchBudgetCat
@@ -668,9 +668,9 @@ Partial Class FormSetupBudgetOPEX
         'BPrint
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BPrint.Location = New System.Drawing.Point(0, 564)
+        Me.BPrint.Location = New System.Drawing.Point(0, 552)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(936, 27)
+        Me.BPrint.Size = New System.Drawing.Size(978, 32)
         Me.BPrint.TabIndex = 8924
         Me.BPrint.Text = "Print"
         '
