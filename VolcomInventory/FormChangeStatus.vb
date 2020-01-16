@@ -54,6 +54,23 @@
             gv = Nothing
         End If
 
+        'blocking cancel
+        If id_pop_up = "2" And SLEStatusRec.EditValue.ToString = "5" Then
+            Dim am As String = ""
+            For a As Integer = 0 To gv.RowCount - 1
+                Dim id_del_manifest As String = gv.GetRowCellValue(a, "id_del_manifest").ToString
+                Dim del_number As String = gv.GetRowCellValue(a, "pl_sales_order_del_number").ToString
+                If id_del_manifest <> "0" Then
+                    am += "- " + del_number + System.Environment.NewLine
+                End If
+            Next
+            If am <> "" Then
+                stopCustom("Some delivery number already created on Outbound Delivery Manifest" + System.Environment.NewLine + am)
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+        End If
+
         For c As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
             Dim id_report As String = gv.GetRowCellValue(c, id).ToString
             Dim query_jml As String = ""
@@ -363,7 +380,7 @@
 
     Sub sendEmailConfirmation(ByVal id_commerce_type As String, ByVal id_report As String)
         If id_pop_up = "2" Then
-            If id_commerce_type = "2" Then
+            If id_commerce_type = "2" And SLEStatusRec.EditValue.ToString = "6" Then
                 'only online store
                 Dim query As String = "SELECT del.id_pl_sales_order_del, del.pl_sales_order_del_number AS `del_number`, 
                 DATE_FORMAT(del.pl_sales_order_del_date, '%d %M %Y') AS `scan_date`, DATE_FORMAT(fcom.final_comment_date,'%d %M %Y %H:%i') AS `del_date`,

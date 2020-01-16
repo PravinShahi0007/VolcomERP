@@ -52,7 +52,7 @@
         query_in = query_in.Substring(0, query_in.Length - 2)
 
         Dim query As String = "
-            SELECT 'no' AS is_select, adet.id_wh_awb_det, c.id_comp_group, a.awbill_date, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
+            SELECT 'no' AS is_select, adet.id_wh_awb_det, c.id_comp_group, a.awbill_date, a.id_awbill, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
             FROM tb_wh_awbill_det AS adet
             LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
             LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
@@ -82,6 +82,7 @@
                     GVList.GetRowCellValue(i, "id_wh_awb_det"),
                     GVList.GetRowCellValue(i, "id_comp_group"),
                     GVList.GetRowCellValue(i, "awbill_date"),
+                    GVList.GetRowCellValue(i, "id_awbill"),
                     GVList.GetRowCellValue(i, "do_no"),
                     GVList.GetRowCellValue(i, "pl_sales_order_del_number"),
                     GVList.GetRowCellValue(i, "comp_number"),

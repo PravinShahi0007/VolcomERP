@@ -90,6 +90,7 @@
             SBFill.Visible = False
             BGCActualHours.Visible = False
             BGCPointOt.Visible = False
+            SLUEPayroll.Properties.ReadOnly = True
         End If
 
         loaded = True
@@ -141,21 +142,21 @@
             "
 
             'sogo only for october 2019
-            If LEDepartement.EditValue.ToString = "17" Then
-                query_att = "
-                    SELECT emp.id_employee, emp.id_departement, emp.id_departement_sub, dep.departement, DATE_FORMAT('" + date_search.ToString + "', '%d %M %Y') AS `date`, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_level, emp.id_employee_status, sts.employee_status, 1 AS to_salary, IF((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + date_search.ToString + "' AND id_religion IN (0, emp.id_religion)) IS NULL, 2, 1) AS is_day_off, 1 AS conversion_type, 1 AS is_store, DATE_FORMAT(input.time_in, '%H:%i:%s') AS start_work_att, DATE_FORMAT(input.time_out, '%H:%i:%s') AS end_work_att, '' AS start_work_ot, '' AS end_work_ot, 0.0 break_hours, 0.0 AS ot_hours, 0.0 total_hours, 0.0 point_ot, '' AS ot_note, 'no' AS is_valid, 1 AS id_schedule_type, '' AS `in`, '' AS `out`, 2 AS ot_potention
-                    FROM tb_m_employee AS emp
-                    LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
-                    LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
-                    LEFT JOIN (
-                        SELECT input_det.id_employee, input_det.time_in, input_det.time_out
-                        FROM tb_emp_attn_input_det AS input_det
-                        LEFT JOIN tb_emp_attn_input AS input ON input_det.id_emp_attn_input = input.id_emp_attn_input
-                        WHERE input_det.date = '" + date_search.ToString + "'
-                    ) AS input ON emp.id_employee = input.id_employee
-                    WHERE emp.id_departement = " + LEDepartement.EditValue.ToString + "
-                "
-            End If
+            'If LEDepartement.EditValue.ToString = "17" Then
+            '    query_att = "
+            '        SELECT emp.id_employee, emp.id_departement, emp.id_departement_sub, dep.departement, DATE_FORMAT('" + date_search.ToString + "', '%d %M %Y') AS `date`, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_level, emp.id_employee_status, sts.employee_status, 1 AS to_salary, IF((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + date_search.ToString + "' AND id_religion IN (0, emp.id_religion)) IS NULL, 2, 1) AS is_day_off, 1 AS conversion_type, 1 AS is_store, DATE_FORMAT(input.time_in, '%H:%i:%s') AS start_work_att, DATE_FORMAT(input.time_out, '%H:%i:%s') AS end_work_att, '' AS start_work_ot, '' AS end_work_ot, 0.0 break_hours, 0.0 AS ot_hours, 0.0 total_hours, 0.0 point_ot, '' AS ot_note, 'no' AS is_valid, 1 AS id_schedule_type, '' AS `in`, '' AS `out`, 2 AS ot_potention
+            '        FROM tb_m_employee AS emp
+            '        LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
+            '        LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
+            '        LEFT JOIN (
+            '            SELECT input_det.id_employee, input_det.time_in, input_det.time_out
+            '            FROM tb_emp_attn_input_det AS input_det
+            '            LEFT JOIN tb_emp_attn_input AS input ON input_det.id_emp_attn_input = input.id_emp_attn_input
+            '            WHERE input_det.date = '" + date_search.ToString + "'
+            '        ) AS input ON emp.id_employee = input.id_employee
+            '        WHERE emp.id_departement = " + LEDepartement.EditValue.ToString + "
+            '    "
+            'End If
 
             Dim data_att As DataTable = execute_query(query_att, -1, True, "", "", "", "")
 
@@ -669,7 +670,7 @@
     End Sub
 
     Sub change_payroll()
-        Dim id_payroll As String = execute_query("SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE id_payroll_type = 1 AND DATE(NOW()) BETWEEN ot_periode_start AND ot_periode_end), 0)", 0, True, "", "", "", "")
+        Dim id_payroll As String = execute_query("SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE id_payroll_type = 1 AND DATE(NOW()) BETWEEN periode_start AND periode_end), 0)", 0, True, "", "", "", "")
 
         If Not id_payroll = "0" Then
             SLUEPayroll.EditValue = id_payroll
