@@ -31,6 +31,7 @@ Partial Class FormSetupBudgetOPEXDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -59,7 +60,6 @@ Partial Class FormSetupBudgetOPEXDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,6 +205,18 @@ Partial Class FormSetupBudgetOPEXDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1069, 39)
         Me.PanelControl1.TabIndex = 5
+        '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.ImageIndex = 14
+        Me.BAttachment.ImageList = Me.LargeImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(737, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(105, 35)
+        Me.BAttachment.TabIndex = 20
+        Me.BAttachment.TabStop = False
+        Me.BAttachment.Text = "Attachment"
         '
         'BtnPrint
         '
@@ -405,6 +417,8 @@ Partial Class FormSetupBudgetOPEXDet
         Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
+        Me.GVAfter.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GVAfter.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVAfter.OptionsView.ShowFooter = True
         Me.GVAfter.OptionsView.ShowGroupPanel = False
         '
@@ -472,18 +486,6 @@ Partial Class FormSetupBudgetOPEXDet
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
-        'BAttachment
-        '
-        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttachment.ImageIndex = 14
-        Me.BAttachment.ImageList = Me.LargeImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(737, 2)
-        Me.BAttachment.Name = "BAttachment"
-        Me.BAttachment.Size = New System.Drawing.Size(105, 35)
-        Me.BAttachment.TabIndex = 20
-        Me.BAttachment.TabStop = False
-        Me.BAttachment.Text = "Attachment"
         '
         'FormSetupBudgetOPEXDet
         '
