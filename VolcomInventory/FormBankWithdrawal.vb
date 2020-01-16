@@ -563,6 +563,16 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
     End Sub
 
     Private Sub SBPayBPJSKesehatan_Click(sender As Object, e As EventArgs) Handles SBPayBPJSKesehatan.Click
+        GVBPJSKesehatan.ActiveFilterString = ""
+        GVBPJSKesehatan.ActiveFilterString = "[is_check]='yes'"
 
+        If GVBPJSKesehatan.RowCount > 0 Then
+            FormBankWithdrawalDet.report_mark_type = "223"
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("Please select item first.")
+        End If
+
+        GVBPJSKesehatan.ActiveFilterString = ""
     End Sub
 End Class
