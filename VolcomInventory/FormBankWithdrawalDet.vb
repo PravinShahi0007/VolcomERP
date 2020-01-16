@@ -197,6 +197,8 @@
                     WHERE type = 3
                 ", -1, True, "", "", "", "")
 
+                Dim total_office As Decimal = 0.00
+
                 For i As Integer = 0 To FormBankWithdrawal.GVBPJSKesehatan.RowCount - 1
                     'id_report,number,total,balance due
                     Dim query As String = "
@@ -235,6 +237,8 @@
 
                                     Exit For
                                 End If
+
+                                total_office = total_office + data.Rows(j)("contribution_karyawan")
                             Else
                                 If data.Rows(j)("id_departement").ToString = "17" Then
                                     'store sogo
@@ -284,6 +288,38 @@
                         newRow("balance_due") = balance
                         newRow("note") = ""
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                        If j = data.Rows.Count - 1 Then
+                            If total_office > 0 Then
+                                Dim query_last As String = "
+                                    SELECT acc.id_acc, acc.acc_name, acc.acc_description, comp.id_comp, comp.comp_number, comp.comp_name AS vendor
+                                    FROM tb_a_acc AS acc
+                                    LEFT JOIN tb_m_comp AS comp ON comp.id_comp = 1
+                                    WHERE acc.id_acc = 1153
+                                "
+
+                                Dim data_last As DataTable = execute_query(query_last, -1, True, "", "", "", "")
+
+                                Dim newRow2 As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                                newRow2("id_report") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "id_pay_bpjs_kesehatan").ToString
+                                newRow2("report_mark_type") = "223"
+                                newRow2("id_acc") = data_last.Rows(0)("id_acc")
+                                newRow2("acc_name") = data_last.Rows(0)("acc_name").ToString
+                                newRow2("acc_description") = data_last.Rows(0)("acc_description").ToString
+                                newRow2("vendor") = data_last.Rows(0)("vendor").ToString
+                                newRow2("id_dc") = "1"
+                                newRow2("dc_code") = "D"
+                                newRow2("id_comp") = data_last.Rows(0)("id_comp")
+                                newRow2("comp_number") = data_last.Rows(0)("comp_number").ToString
+                                newRow2("number") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "number").ToString
+                                newRow2("total_pay") = 0
+                                newRow2("value") = total_office
+                                newRow2("value_view") = total_office
+                                newRow2("balance_due") = total_office
+                                newRow2("note") = ""
+                                TryCast(GCList.DataSource, DataTable).Rows.Add(newRow2)
+                            End If
+                        End If
                     Next
                 Next
                 calculate_amount()
