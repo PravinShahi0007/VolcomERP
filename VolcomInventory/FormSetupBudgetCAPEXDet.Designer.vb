@@ -193,7 +193,7 @@ Partial Class FormSetupBudgetCAPEXDet
         '
         Me.XTPAfter.Controls.Add(Me.GCAfter)
         Me.XTPAfter.Name = "XTPAfter"
-        Me.XTPAfter.Size = New System.Drawing.Size(1063, 311)
+        Me.XTPAfter.Size = New System.Drawing.Size(1063, 290)
         Me.XTPAfter.Text = "Propose"
         '
         'GCAfter
@@ -203,7 +203,7 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.GCAfter.MainView = Me.GVAfter
         Me.GCAfter.Name = "GCAfter"
         Me.GCAfter.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCAfter.Size = New System.Drawing.Size(1063, 311)
+        Me.GCAfter.Size = New System.Drawing.Size(1063, 290)
         Me.GCAfter.TabIndex = 7
         Me.GCAfter.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAfter})
         '
@@ -212,6 +212,8 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
+        Me.GVAfter.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GVAfter.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVAfter.OptionsView.ShowFooter = True
         Me.GVAfter.OptionsView.ShowGroupPanel = False
         '
