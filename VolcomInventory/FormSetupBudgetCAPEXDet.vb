@@ -238,8 +238,8 @@ VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_item_cat_main").ToS
                 FormSetupBudgetCAPEX.load_propose()
                 'Close()
             Else 'new
-                Dim query As String = "INSERT INTO `tb_b_expense_propose`(`id_type`,`date_created`,`id_created_user`,`note`,`id_report_status`) 
-VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_b_expense_propose`(`id_type`,`date_created`,`id_created_user`,`note`,`id_report_status`,`id_departement`) 
+VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & FormSetupBudgetCAPEX.LEDeptSum.EditValue.ToString & "');SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(query, 0, True, "", "", "", "")
                 '
                 query = "CALL gen_number('" & id_pps & "','208')"

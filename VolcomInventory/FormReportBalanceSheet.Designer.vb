@@ -21,8 +21,10 @@ Partial Class FormReportBalanceSheet
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TLBalanceSheet = New DevExpress.XtraTreeList.TreeList()
+        Me.treeListBand3 = New DevExpress.XtraTreeList.Columns.TreeListBand()
         Me.TCLAccount = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCLDescription = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.treeListBand4 = New DevExpress.XtraTreeList.Columns.TreeListBand()
         Me.TCLDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCLCreadit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCIDAcc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
@@ -41,9 +43,8 @@ Partial Class FormReportBalanceSheet
         Me.TCLedCredit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCLIDAcc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCLIdAccParent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLedIDAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.XTPBalanceSheet = New DevExpress.XtraTab.XtraTabPage()
-        Me.treeListBand3 = New DevExpress.XtraTreeList.Columns.TreeListBand()
-        Me.treeListBand4 = New DevExpress.XtraTreeList.Columns.TreeListBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TLBalanceSheet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCBalanceSheet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +77,12 @@ Partial Class FormReportBalanceSheet
         Me.TLBalanceSheet.Size = New System.Drawing.Size(894, 438)
         Me.TLBalanceSheet.TabIndex = 1
         '
+        'treeListBand3
+        '
+        Me.treeListBand3.Caption = "Account"
+        Me.treeListBand3.Name = "treeListBand3"
+        Me.treeListBand3.Width = 423
+        '
         'TCLAccount
         '
         Me.TCLAccount.Caption = "Account"
@@ -93,6 +100,12 @@ Partial Class FormReportBalanceSheet
         Me.TCLDescription.Visible = True
         Me.TCLDescription.VisibleIndex = 1
         Me.TCLDescription.Width = 212
+        '
+        'treeListBand4
+        '
+        Me.treeListBand4.Caption = "Amount"
+        Me.treeListBand4.Name = "treeListBand4"
+        Me.treeListBand4.Width = 453
         '
         'TCLDebit
         '
@@ -169,10 +182,12 @@ Partial Class FormReportBalanceSheet
         'TLLedger
         '
         Me.TLLedger.Bands.AddRange(New DevExpress.XtraTreeList.Columns.TreeListBand() {Me.treeListBand5, Me.treeListBand6})
-        Me.TLLedger.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.TCLIDAcc, Me.TCLIdAccParent, Me.TCLAccName, Me.TCLAccDescription, Me.TCLedDebit, Me.TCLedCredit})
+        Me.TLLedger.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.TCLIDAcc, Me.TCLIdAccParent, Me.TCLAccName, Me.TCLAccDescription, Me.TCLedDebit, Me.TCLedCredit, Me.TCLedIDAllChild})
         Me.TLLedger.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TLLedger.Location = New System.Drawing.Point(0, 0)
         Me.TLLedger.Name = "TLLedger"
+        Me.TLLedger.OptionsBehavior.EnableFiltering = True
+        Me.TLLedger.OptionsFind.AllowFindPanel = True
         Me.TLLedger.Size = New System.Drawing.Size(894, 438)
         Me.TLLedger.TabIndex = 0
         '
@@ -244,28 +259,18 @@ Partial Class FormReportBalanceSheet
         Me.TCLIdAccParent.FieldName = "id_acc_parent"
         Me.TCLIdAccParent.Name = "TCLIdAccParent"
         '
+        'TCLedIDAllChild
+        '
+        Me.TCLedIDAllChild.Caption = "ID All Child"
+        Me.TCLedIDAllChild.FieldName = "id_all_child"
+        Me.TCLedIDAllChild.Name = "TCLedIDAllChild"
+        '
         'XTPBalanceSheet
         '
         Me.XTPBalanceSheet.Controls.Add(Me.TLBalanceSheet)
         Me.XTPBalanceSheet.Name = "XTPBalanceSheet"
         Me.XTPBalanceSheet.Size = New System.Drawing.Size(894, 438)
         Me.XTPBalanceSheet.Text = "Balance Sheet"
-        '
-        'treeListBand3
-        '
-        Me.treeListBand3.Caption = "Account"
-        Me.treeListBand3.Columns.Add(Me.TCLAccount)
-        Me.treeListBand3.Columns.Add(Me.TCLDescription)
-        Me.treeListBand3.Name = "treeListBand3"
-        Me.treeListBand3.Width = 423
-        '
-        'treeListBand4
-        '
-        Me.treeListBand4.Caption = "Amount"
-        Me.treeListBand4.Columns.Add(Me.TCLDebit)
-        Me.treeListBand4.Columns.Add(Me.TCLCreadit)
-        Me.treeListBand4.Name = "treeListBand4"
-        Me.treeListBand4.Width = 453
         '
         'FormReportBalanceSheet
         '
@@ -316,4 +321,5 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents TCLIdAccParent As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents treeListBand3 As DevExpress.XtraTreeList.Columns.TreeListBand
     Friend WithEvents treeListBand4 As DevExpress.XtraTreeList.Columns.TreeListBand
+    Friend WithEvents TCLedIDAllChild As DevExpress.XtraTreeList.Columns.TreeListColumn
 End Class
