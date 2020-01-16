@@ -1061,4 +1061,22 @@
             End If
         End If
     End Sub
+
+    Private Sub LinkManifest_Click(sender As Object, e As EventArgs) Handles LinkManifest.Click
+        If GVSalesDelOrder.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_manifest As String = "-1"
+            Try
+                id_manifest = GVSalesDelOrder.GetFocusedRowCellValue("id_del_manifest").ToString
+            Catch ex As Exception
+                id_manifest = "-1"
+            End Try
+            If id_manifest = "" Then
+                id_manifest = "-1"
+            End If
+            FormDelManifestDet.id_del_manifest = id_manifest
+            FormDelManifestDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
