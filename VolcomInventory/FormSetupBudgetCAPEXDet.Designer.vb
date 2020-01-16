@@ -46,8 +46,9 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -95,7 +96,7 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.XTCBeforeAfter.Location = New System.Drawing.Point(0, 120)
         Me.XTCBeforeAfter.Name = "XTCBeforeAfter"
         Me.XTCBeforeAfter.SelectedTabPage = Me.XTPBefore
-        Me.XTCBeforeAfter.Size = New System.Drawing.Size(1069, 339)
+        Me.XTCBeforeAfter.Size = New System.Drawing.Size(1069, 318)
         Me.XTCBeforeAfter.TabIndex = 11
         Me.XTCBeforeAfter.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBefore, Me.XTPAfter})
         '
@@ -103,7 +104,7 @@ Partial Class FormSetupBudgetCAPEXDet
         '
         Me.XTPBefore.Controls.Add(Me.GCBefore)
         Me.XTPBefore.Name = "XTPBefore"
-        Me.XTPBefore.Size = New System.Drawing.Size(1063, 311)
+        Me.XTPBefore.Size = New System.Drawing.Size(1063, 290)
         Me.XTPBefore.Text = "Before"
         '
         'GCBefore
@@ -113,7 +114,7 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.GCBefore.MainView = Me.GVBefore
         Me.GCBefore.Name = "GCBefore"
         Me.GCBefore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBudget})
-        Me.GCBefore.Size = New System.Drawing.Size(1063, 311)
+        Me.GCBefore.Size = New System.Drawing.Size(1063, 290)
         Me.GCBefore.TabIndex = 6
         Me.GCBefore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBefore})
         '
@@ -284,7 +285,7 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 459)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 438)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1069, 73)
         Me.PanelControl3.TabIndex = 10
@@ -309,27 +310,28 @@ Partial Class FormSetupBudgetCAPEXDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BAttachment)
         Me.PanelControl1.Controls.Add(Me.BMark)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 532)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 511)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1069, 39)
         Me.PanelControl1.TabIndex = 9
         '
-        'BMark
+        'BAttachment
         '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.ImageIndex = 4
-        Me.BMark.ImageList = Me.LargeImageCollection
-        Me.BMark.Location = New System.Drawing.Point(2, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 35)
-        Me.BMark.TabIndex = 23
-        Me.BMark.TabStop = False
-        Me.BMark.Text = "Mark"
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.ImageIndex = 14
+        Me.BAttachment.ImageList = Me.LargeImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(737, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(105, 35)
+        Me.BAttachment.TabIndex = 24
+        Me.BAttachment.TabStop = False
+        Me.BAttachment.Text = "Attachment"
         '
         'LargeImageCollection
         '
@@ -351,6 +353,18 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.LargeImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(75, 35)
+        Me.BMark.TabIndex = 23
+        Me.BMark.TabStop = False
+        Me.BMark.Text = "Mark"
         '
         'BtnPrint
         '
@@ -500,7 +514,7 @@ Partial Class FormSetupBudgetCAPEXDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1069, 571)
+        Me.ClientSize = New System.Drawing.Size(1069, 550)
         Me.Controls.Add(Me.XTCBeforeAfter)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
@@ -581,4 +595,5 @@ Partial Class FormSetupBudgetCAPEXDet
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDepartement As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
 End Class
