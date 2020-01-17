@@ -15,6 +15,7 @@
         Dim row As DevExpress.XtraReports.UI.XRTableRow = XrTableRow
 
         Dim last_collie As String = ""
+        Dim last_combine As String = ""
 
         Dim number As Integer = 1
 
@@ -23,8 +24,15 @@
         For i = 0 To dt.Rows.Count - 1
             If i = 0 Then
                 last_collie = dt.Rows(i)("id_awbill").ToString
+                last_combine = dt.Rows(i)("combine_number").ToString
             End If
 
+            'skip same combine
+            If last_combine = dt.Rows(i)("combine_number").ToString And Not i = 0 Then
+                Continue For
+            End If
+
+            'count number
             If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
                 number = number + 1
             End If
@@ -41,6 +49,7 @@
             no.Text = number.ToString
             no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
 
+            'remove border top
             If Not i = 0 Then
                 If last_collie = dt.Rows(i)("id_awbill").ToString Then
                     no.Text = ""
@@ -55,10 +64,20 @@
 
             collie.Text = dt.Rows(i)("id_awbill").ToString
 
+            'remove border top
+            If Not i = 0 Then
+                If last_collie = dt.Rows(i)("id_awbill").ToString Then
+                    collie.Text = ""
+                    collie.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                Else
+                    collie.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                End If
+            End If
+
             'delivery slip
             Dim do_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
 
-            do_no.Text = dt.Rows(i)("do_no").ToString
+            do_no.Text = dt.Rows(i)("combine_number").ToString
 
             'number
             'Dim number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
@@ -126,6 +145,7 @@
             Dim remark As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(13)
 
             last_collie = dt.Rows(i)("id_awbill").ToString
+            last_combine = dt.Rows(i)("combine_number").ToString
 
             total_qty = total_qty + dt.Rows(i)("qty").ToString
         Next
