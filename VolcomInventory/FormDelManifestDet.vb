@@ -3,9 +3,15 @@
 
     Public is_block_del_store As String = get_setup_field("is_block_del_store")
 
+    Private loaded As Boolean = False
+
     Private Sub FormDelManifestDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        loaded = False
+
         view_3pl()
         form_load()
+
+        loaded = True
     End Sub
 
     Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
@@ -59,17 +65,66 @@
         TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
 
         Dim query_det As String = "
-            SELECT 0 AS no, mdet.id_wh_awb_det, c.id_comp_group, a.awbill_date, a.id_awbill, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, adet.qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
-            FROM tb_del_manifest_det AS mdet
-            LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
-            LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
-            LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
-            LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
-            LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
-            WHERE mdet.id_del_manifest = " + id_del_manifest + "
+            SELECT *
+            FROM (
+                SELECT 0 AS no, mdet.id_wh_awb_det, c.id_comp_group, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
+                FROM tb_del_manifest_det AS mdet
+                LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
+                LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
+                LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
+                LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
+                LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
+                LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pdel.id_combine = pdelc.id_combine
+                LEFT JOIN (
+	                SELECT z3.combine_number, SUM(pl_sales_order_del_det_qty) AS qty
+	                FROM tb_pl_sales_order_del_det AS z1
+	                LEFT JOIN tb_pl_sales_order_del AS z2 ON z1.id_pl_sales_order_del = z2.id_pl_sales_order_del
+	                LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
+	                GROUP BY z2.id_combine
+                ) AS z ON pdelc.combine_number = z.combine_number
+                WHERE mdet.id_del_manifest = " + id_del_manifest + "
+            ) AS tb
+            ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC
         "
 
-        GCList.DataSource = execute_query(query_det, -1, True, "", "", "", "")
+        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+
+        'manipulate merge qty & total qty
+        Dim last_collie As String = ""
+        Dim last_combine As String = ""
+
+        Dim total_qty As Integer = 0
+
+        Dim qty_manipulated As String = ""
+
+        For i = 0 To data_det.Rows.Count - 1
+            If i = 0 Then
+                last_collie = data_det.Rows(i)("id_awbill").ToString
+                last_combine = data_det.Rows(i)("combine_number").ToString
+
+                total_qty = total_qty + Integer.Parse(data_det.Rows(i)("qty").ToString.Replace(" ", ""))
+            End If
+
+            'merge qty
+            If Not last_collie = data_det.Rows(i)("id_awbill").ToString Then
+                qty_manipulated = qty_manipulated + " "
+            End If
+
+            'total qty
+            If Not last_combine = data_det.Rows(i)("combine_number").ToString Then
+                total_qty = total_qty + Integer.Parse(data_det.Rows(i)("qty").ToString.Replace(" ", ""))
+            End If
+
+            data_det.Rows(i)("qty") = data_det.Rows(i)("qty") + qty_manipulated
+
+            last_collie = data_det.Rows(i)("id_awbill").ToString
+            last_combine = data_det.Rows(i)("combine_number").ToString
+        Next
+
+        GCList.DataSource = data_det
+
+        'set total qty
+        GridColumnQty.SummaryItem.DisplayFormat = total_qty.ToString
 
         GVList.BestFitColumns()
 
@@ -186,7 +241,13 @@
     End Sub
 
     Private Sub GVList_RowCountChanged(sender As Object, e As EventArgs) Handles GVList.RowCountChanged
+        'manipulate numbering, merge qty & total qty
         Dim last_collie As String = ""
+        Dim last_combine As String = ""
+
+        Dim total_qty As Integer = 0
+
+        Dim qty_manipulated As String = ""
 
         Dim no As Integer = 1
 
@@ -194,17 +255,34 @@
             If GVList.IsValidRowHandle(i) Then
                 If i = 0 Then
                     last_collie = GVList.GetRowCellValue(i, "id_awbill").ToString
+                    last_combine = GVList.GetRowCellValue(i, "combine_number").ToString
+
+                    total_qty = total_qty + Integer.Parse(GVList.GetRowCellValue(i, "qty").ToString.Replace(" ", ""))
                 End If
 
+                'numbering & merge qty
                 If Not last_collie = GVList.GetRowCellValue(i, "id_awbill").ToString Then
+                    qty_manipulated = qty_manipulated + " "
+
                     no = no + 1
                 End If
+
+                'total qty
+                If Not last_combine = GVList.GetRowCellValue(i, "combine_number").ToString Then
+                    total_qty = total_qty + Integer.Parse(GVList.GetRowCellValue(i, "qty").ToString.Replace(" ", ""))
+                End If
+
+                GVList.SetRowCellValue(i, "qty", GVList.GetRowCellValue(i, "qty").ToString.Replace(" ", "") + qty_manipulated)
 
                 GVList.SetRowCellValue(i, "no", no)
 
                 last_collie = GVList.GetRowCellValue(i, "id_awbill").ToString
+                last_combine = GVList.GetRowCellValue(i, "combine_number").ToString
             End If
         Next
+
+        'set total qty
+        GridColumnQty.SummaryItem.DisplayFormat = total_qty.ToString
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
@@ -229,6 +307,10 @@
     Private Sub FormDelManifestDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Try
             FormDelManifest.form_load()
+
+            If Not id_del_manifest = "0" Then
+                FormDelManifest.GVList.FocusedRowHandle = find_row(FormDelManifest.GVList, "id_del_manifest", id_del_manifest)
+            End If
         Catch ex As Exception
         End Try
 
@@ -266,11 +348,15 @@
         If on_hold Then
             stopCustom("Hold delivery")
         Else
+            Dim data_view As DataView = New DataView(GCList.DataSource)
+
+            data_view.Sort = "comp_number ASC, id_awbill ASC, combine_number ASC"
+
             Dim report As ReportDelManifest = New ReportDelManifest
 
             report.id_del_manifest = id_del_manifest
             report.id_pre = id_pre
-            report.dt = GCList.DataSource
+            report.dt = data_view.ToTable
 
             report.XrLabelNumber.Text = TENumber.Text
             report.XrLabel3PL.Text = SLUE3PL.Text
@@ -278,6 +364,24 @@
             Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
             tool.ShowPreview()
+        End If
+    End Sub
+
+    Private Sub SLUE3PL_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles SLUE3PL.EditValueChanging
+        If loaded And GVList.RowCount > 0 Then
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Change 3PL will reset list, are you sure ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                For i = GVList.RowCount - 1 To 0 Step -1
+                    If GVList.IsValidRowHandle(i) Then
+                        GVList.DeleteRow(i)
+                    End If
+                Next
+            Else
+                e.Cancel = True
+            End If
         End If
     End Sub
 End Class
