@@ -197,14 +197,12 @@
                     WHERE type = 3
                 ", -1, True, "", "", "", "")
 
-                Dim total_office As Decimal = 0.00
-
                 For i As Integer = 0 To FormBankWithdrawal.GVBPJSKesehatan.RowCount - 1
                     'id_report,number,total,balance due
                     Dim query As String = "
-                        SELECT id_departement, id_departement_sub, is_store, SUM(ROUND(bpjs_kesehatan_contribution)) AS contribution_karyawan, SUM(ROUND(bpjs_kesehatan_contribution * 100 * 0.04)) AS contribution_perusahaan
+                        SELECT id_departement, id_departement_sub, is_store, SUM(ROUND(bpjs_kesehatan_contribution)) AS contribution_karyawan, SUM(ROUND(bpjs_kesehatan_contribution * 100 * 0.04)) AS contribution_perusahaan, periode, departement_display
 	                    FROM (
-	                        SELECT id_departement, IF(id_departement = 17, id_departement_sub, id_departement) AS id_departement_sub, (SELECT is_store FROM tb_m_departement WHERE id_departement = tb_pay_bpjs_kesehatan_det.id_departement) AS is_store, bpjs_kesehatan_contribution
+	                        SELECT id_departement, IF(id_departement = 17, id_departement_sub, id_departement) AS id_departement_sub, (SELECT is_store FROM tb_m_departement WHERE id_departement = tb_pay_bpjs_kesehatan_det.id_departement) AS is_store, bpjs_kesehatan_contribution, (SELECT DATE_FORMAT(periode_end, '%M %Y') FROM tb_emp_payroll WHERE id_payroll = (SELECT id_payroll FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = tb_pay_bpjs_kesehatan_det.id_pay_bpjs_kesehatan)) AS periode, (SELECT departement_display FROM tb_m_departement WHERE id_departement = tb_pay_bpjs_kesehatan_det.id_departement) AS departement_display
 	                        FROM tb_pay_bpjs_kesehatan_det
 	                        WHERE id_pay_bpjs_kesehatan = " + FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "id_pay_bpjs_kesehatan").ToString + "
 	                    ) AS tb
@@ -212,6 +210,8 @@
                     "
 
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                    Dim total_office As Decimal = 0.00
 
                     For j = 0 To data.Rows.Count - 1
                         'get id_acc, acc_name, acc_description, vendor, id_comp, comp_number
@@ -222,6 +222,11 @@
                         Dim id_comp As Integer = 0
                         Dim comp_number As String = ""
                         Dim balance As Decimal = 0.00
+                        Dim note As String = "BPJS " + data.Rows(j)("periode").ToString + " (dibayar perusahaan)"
+
+                        If data.Rows(j)("is_store").ToString = "2" Or data.Rows(j)("id_departement").ToString = "17" Then
+                            total_office = total_office + data.Rows(j)("contribution_karyawan")
+                        End If
 
                         For k = 0 To data_map.Rows.Count - 1
                             'office
@@ -237,8 +242,6 @@
 
                                     Exit For
                                 End If
-
-                                total_office = total_office + data.Rows(j)("contribution_karyawan")
                             Else
                                 If data.Rows(j)("id_departement").ToString = "17" Then
                                     'store sogo
@@ -263,6 +266,7 @@
                                         id_comp = data_map.Rows(k)("id_comp")
                                         comp_number = data_map.Rows(k)("comp_number").ToString
                                         balance = data.Rows(j)("contribution_karyawan") + data.Rows(j)("contribution_perusahaan")
+                                        note = "BPJS " + data.Rows(j)("periode").ToString + " " + data.Rows(j)("departement_display").ToString
 
                                         Exit For
                                     End If
@@ -286,7 +290,7 @@
                         newRow("value") = balance
                         newRow("value_view") = balance
                         newRow("balance_due") = balance
-                        newRow("note") = ""
+                        newRow("note") = note
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
 
                         If j = data.Rows.Count - 1 Then
@@ -316,7 +320,7 @@
                                 newRow2("value") = total_office
                                 newRow2("value_view") = total_office
                                 newRow2("balance_due") = total_office
-                                newRow2("note") = ""
+                                newRow2("note") = "BPJS " + data.Rows(j)("periode").ToString + " (dibayar karyawan)"
                                 TryCast(GCList.DataSource, DataTable).Rows.Add(newRow2)
                             End If
                         End If
