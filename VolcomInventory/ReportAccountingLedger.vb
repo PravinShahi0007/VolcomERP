@@ -93,53 +93,63 @@
         For i = 0 To data_group.Rows.Count - 1
             row = XrTable.InsertRowBelow(row)
 
-            row.Font = New Font(XrTableRow.Font.FontFamily, 7.75, FontStyle.Regular)
+            row.Font = New Font(XrTableRow.Font.FontFamily, 7.75, If(data_group.Rows(i)("type").ToString = "detail", FontStyle.Regular, FontStyle.Bold))
             row.HeightF = 20
             row.Tag = data_group.Rows(i)("type").ToString
 
             Dim number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
             number.Text = data_group.Rows(i)("number").ToString + If(data_group.Rows(i)("type").ToString = "detail", ".", "")
             number.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            number.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim report_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
             report_number.Text = data_group.Rows(i)("report_number").ToString
             report_number.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            report_number.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim comp_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
             comp_number.Text = data_group.Rows(i)("comp_number").ToString
             comp_number.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            comp_number.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim date_created As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
             date_created.Text = If(data_group.Rows(i)("date_created").ToString = "", "", Date.Parse(data_group.Rows(i)("date_created").ToString).ToString("dd MMM yyyy"))
             date_created.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            date_created.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim report_number_ref As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
             report_number_ref.Text = data_group.Rows(i)("report_number_ref").ToString
             report_number_ref.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            report_number_ref.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim acc_trans_note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
             acc_trans_note.Text = data_group.Rows(i)("acc_trans_note").ToString
             acc_trans_note.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            acc_trans_note.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
             qty.Text = If(data_group.Rows(i)("qty").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("qty").ToString), "##,##0"))
             qty.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            qty.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim debit As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
             debit.Text = If(data_group.Rows(i)("debit").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("debit").ToString), "##,##0"))
             debit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             debit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            debit.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim credit As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
             credit.Text = If(data_group.Rows(i)("credit").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("credit").ToString), "##,##0"))
             credit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             credit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            credit.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim balance As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
             balance.Text = If(data_group.Rows(i)("balance").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("balance").ToString), "##,##0"))
             balance.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             balance.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            balance.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
         Next
 
         'rowspan

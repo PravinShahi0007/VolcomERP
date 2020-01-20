@@ -242,14 +242,4 @@
             End If
         End If
     End Sub
-
-    Private Sub GVAccountingLedger_Click(sender As Object, e As EventArgs) Handles GVAccountingLedger.Click
-        Try
-            Console.WriteLine(GVAccountingLedger.FocusedRowHandle)
-            Console.WriteLine(GVAccountingLedger.GetRowGroupIndexByRowHandle(GVAccountingLedger.FocusedRowHandle))
-            Console.WriteLine(GVAccountingLedger.GetGroupRowValue(GVAccountingLedger.FocusedRowHandle))
-        Catch ex As Exception
-            Console.WriteLine(ex)
-        End Try
-    End Sub
 End Class
