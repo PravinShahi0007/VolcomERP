@@ -372,6 +372,8 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
         If dtdp.Rows.Count > 0 Then
             warningCustom("Please note there are BPL DP waiting to approve, DP will not show if not approved.")
         End If
+        '
+        load_po()
     End Sub
 
     Private Sub BPickAll_Click(sender As Object, e As EventArgs) Handles BPickAll.Click
@@ -410,6 +412,10 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
     End Sub
 
     Private Sub BLoadPO_Click(sender As Object, e As EventArgs) Handles BLoadPO.Click
+        load_po()
+    End Sub
+
+    Sub load_po()
         Dim id_po As String = SLEFGPO.EditValue.ToString
         Dim query As String = "SET @id_po = '" & id_po & "';
 
