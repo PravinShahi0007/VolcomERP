@@ -6,6 +6,7 @@
     Private Sub FormInvoiceFGPODPSplit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEAmount.EditValue = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("value_bef_kurs")
         TEVAT.EditValue = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("vat")
+        TEQty.EditValue = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("qty")
         '
         TEAmount.Focus()
     End Sub
@@ -22,6 +23,7 @@
             'update focused row
             FormInvoiceFGPODP.GVList.SetFocusedRowCellValue("value_bef_kurs", FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("value_bef_kurs") - TEAmount.EditValue)
             FormInvoiceFGPODP.GVList.SetFocusedRowCellValue("vat", FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("vat") - TEVAT.EditValue)
+            FormInvoiceFGPODP.GVList.SetFocusedRowCellValue("qty", FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("qty") - TEQty.EditValue)
             'add splitted value
             Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
             newRow("id_prod_order") = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("id_prod_order")
@@ -30,7 +32,7 @@
             newRow("report_mark_type") = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("report_mark_type")
             newRow("report_number") = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("report_number")
             newRow("info_design") = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("info_design")
-            newRow("qty") = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("qty")
+            newRow("qty") = TEQty.EditValue
             '
             newRow("id_currency") = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("id_currency")
             newRow("kurs") = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("kurs")

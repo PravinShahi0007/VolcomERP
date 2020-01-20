@@ -25,17 +25,20 @@ Partial Class FormInvoiceFGPODPSplit
         Me.TEAmount = New DevExpress.XtraEditors.TextEdit()
         Me.TEVAT = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQty = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVAT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BSplit)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 87)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 108)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(372, 34)
         Me.PanelControl1.TabIndex = 0
@@ -91,11 +94,34 @@ Partial Class FormInvoiceFGPODPSplit
         Me.LabelControl2.TabIndex = 3
         Me.LabelControl2.Text = "VAT"
         '
+        'TEQty
+        '
+        Me.TEQty.Location = New System.Drawing.Point(114, 73)
+        Me.TEQty.Name = "TEQty"
+        Me.TEQty.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEQty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQty.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEQty.Properties.Mask.EditMask = "N2"
+        Me.TEQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQty.Size = New System.Drawing.Size(246, 20)
+        Me.TEQty.TabIndex = 4
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 76)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl3.TabIndex = 5
+        Me.LabelControl3.Text = "Qty"
+        '
         'FormInvoiceFGPODPSplit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(372, 121)
+        Me.ClientSize = New System.Drawing.Size(372, 142)
+        Me.Controls.Add(Me.TEQty)
+        Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.TEVAT)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.TEAmount)
@@ -111,6 +137,7 @@ Partial Class FormInvoiceFGPODPSplit
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.TEAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVAT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -122,4 +149,6 @@ Partial Class FormInvoiceFGPODPSplit
     Friend WithEvents TEAmount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEVAT As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEQty As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class
