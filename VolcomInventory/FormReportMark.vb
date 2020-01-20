@@ -5465,6 +5465,10 @@ WHERE pd.`id_pn`='" & id_report & "'"
                     Next
                     '
                     FormBankWithdrawal.load_fgpo()
+                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "223" Then
+                    'close bpjs
+                    execute_non_query("UPDATE tb_pay_bpjs_kesehatan SET is_close_pay = 1 WHERE id_pay_bpjs_kesehatan IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
+                    FormBankWithdrawal.view_bpjskesehatan()
                 End If
                 '
             End If

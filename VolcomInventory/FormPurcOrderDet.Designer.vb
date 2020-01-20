@@ -140,6 +140,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumnDiscPercent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDisc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -148,7 +149,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1014,7 +1014,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControlBottomLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlBottomLeft.Location = New System.Drawing.Point(2, 2)
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
-        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(380, 125)
+        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(538, 125)
         Me.PanelControlBottomLeft.TabIndex = 171
         '
         'LabelControl21
@@ -1029,28 +1029,26 @@ Partial Class FormPurcOrderDet
         '
         Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MENote.Location = New System.Drawing.Point(56, 36)
+        Me.MENote.Location = New System.Drawing.Point(100, 36)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(299, 70)
+        Me.MENote.Size = New System.Drawing.Size(413, 70)
         Me.MENote.TabIndex = 6
-        Me.MENote.Visible = False
         '
         'LabelControl18
         '
         Me.LabelControl18.Location = New System.Drawing.Point(10, 37)
         Me.LabelControl18.Name = "LabelControl18"
-        Me.LabelControl18.Size = New System.Drawing.Size(28, 13)
+        Me.LabelControl18.Size = New System.Drawing.Size(88, 13)
         Me.LabelControl18.TabIndex = 138
-        Me.LabelControl18.Text = "Notes"
-        Me.LabelControl18.Visible = False
+        Me.LabelControl18.Text = "Special Instruction"
         '
         'LEReportStatus
         '
         Me.LEReportStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(56, 8)
+        Me.LEReportStatus.Location = New System.Drawing.Point(100, 8)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -1058,7 +1056,7 @@ Partial Class FormPurcOrderDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(299, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(413, 20)
         Me.LEReportStatus.TabIndex = 7
         '
         'TEShipDestination
@@ -1575,6 +1573,12 @@ Partial Class FormPurcOrderDet
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Width = 126
         '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Item Detail"
+        Me.GridColumn30.FieldName = "item_detail"
+        Me.GridColumn30.Name = "GridColumn30"
+        '
         'RepositoryItemSpinEdit2
         '
         Me.RepositoryItemSpinEdit2.AutoHeight = False
@@ -1638,12 +1642,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "Item Detail"
-        Me.GridColumn30.FieldName = "item_detail"
-        Me.GridColumn30.Name = "GridColumn30"
         '
         'FormPurcOrderDet
         '
