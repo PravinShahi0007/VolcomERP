@@ -37,6 +37,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnIdWhAwbDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCollie = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCombinedNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDeliverySlip = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSDO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStoreAccount = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -109,7 +110,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnDim.OptionsColumn.AllowEdit = False
         Me.GridColumnDim.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnDim.Visible = True
-        Me.GridColumnDim.VisibleIndex = 12
+        Me.GridColumnDim.VisibleIndex = 11
         '
         'GridColumnT
         '
@@ -121,7 +122,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnT.OptionsColumn.AllowEdit = False
         Me.GridColumnT.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnT.Visible = True
-        Me.GridColumnT.VisibleIndex = 11
+        Me.GridColumnT.VisibleIndex = 10
         '
         'GridColumnL
         '
@@ -133,7 +134,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnL.OptionsColumn.AllowEdit = False
         Me.GridColumnL.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnL.Visible = True
-        Me.GridColumnL.VisibleIndex = 10
+        Me.GridColumnL.VisibleIndex = 9
         '
         'GridColumnP
         '
@@ -145,7 +146,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnP.OptionsColumn.AllowEdit = False
         Me.GridColumnP.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnP.Visible = True
-        Me.GridColumnP.VisibleIndex = 9
+        Me.GridColumnP.VisibleIndex = 8
         '
         'GridColumnWeight
         '
@@ -157,7 +158,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
         Me.GridColumnWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnWeight.Visible = True
-        Me.GridColumnWeight.VisibleIndex = 8
+        Me.GridColumnWeight.VisibleIndex = 7
         '
         'GridColumnDestination
         '
@@ -167,7 +168,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnDestination.OptionsColumn.AllowEdit = False
         Me.GridColumnDestination.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnDestination.Visible = True
-        Me.GridColumnDestination.VisibleIndex = 7
+        Me.GridColumnDestination.VisibleIndex = 6
         '
         'GridColumnQty
         '
@@ -179,7 +180,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.VisibleIndex = 5
         '
         'GridColumnStoreName
         '
@@ -200,7 +201,7 @@ Partial Class FormDelManifestPick
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnIdWhAwbDet, Me.GridColumnCreatedDate, Me.GridColumnCollie, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnIdWhAwbDet, Me.GridColumnCreatedDate, Me.GridColumnCollie, Me.GridColumnCombinedNumber, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsFind.AlwaysVisible = True
@@ -236,7 +237,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 1
+        Me.GridColumnCreatedDate.VisibleIndex = 13
         '
         'GridColumnCollie
         '
@@ -245,7 +246,15 @@ Partial Class FormDelManifestPick
         Me.GridColumnCollie.Name = "GridColumnCollie"
         Me.GridColumnCollie.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnCollie.Visible = True
-        Me.GridColumnCollie.VisibleIndex = 2
+        Me.GridColumnCollie.VisibleIndex = 1
+        '
+        'GridColumnCombinedNumber
+        '
+        Me.GridColumnCombinedNumber.Caption = "Delivery Slip"
+        Me.GridColumnCombinedNumber.FieldName = "combine_number"
+        Me.GridColumnCombinedNumber.Name = "GridColumnCombinedNumber"
+        Me.GridColumnCombinedNumber.OptionsColumn.AllowEdit = False
+        Me.GridColumnCombinedNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         '
         'GridColumnDeliverySlip
         '
@@ -255,7 +264,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnDeliverySlip.OptionsColumn.AllowEdit = False
         Me.GridColumnDeliverySlip.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnDeliverySlip.Visible = True
-        Me.GridColumnDeliverySlip.VisibleIndex = 3
+        Me.GridColumnDeliverySlip.VisibleIndex = 2
         '
         'GridColumnSDO
         '
@@ -273,7 +282,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnStoreAccount.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreAccount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnStoreAccount.Visible = True
-        Me.GridColumnStoreAccount.VisibleIndex = 5
+        Me.GridColumnStoreAccount.VisibleIndex = 3
         Me.GridColumnStoreAccount.Width = 78
         '
         'GridColumnFinal
@@ -286,7 +295,7 @@ Partial Class FormDelManifestPick
         Me.GridColumnFinal.OptionsColumn.AllowEdit = False
         Me.GridColumnFinal.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnFinal.Visible = True
-        Me.GridColumnFinal.VisibleIndex = 13
+        Me.GridColumnFinal.VisibleIndex = 12
         '
         'GridColumnRemark
         '
@@ -481,4 +490,5 @@ Partial Class FormDelManifestPick
     Friend WithEvents DateEditCreatedDateTo As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCollie As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCombinedNumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -649,7 +649,11 @@
                         FormReportMark.change_status("6")
                     End If
 
-                    Close()
+                    If Not ot_date = Nothing Then
+                        SBView_Click(SBView, New EventArgs)
+                    Else
+                        Close()
+                    End If
                 Else
                     GVAttendance.ActiveFilterString = "[ot_potention] = '1'"
                 End If
@@ -812,9 +816,7 @@
 
             execute_non_query(query, True, "", "", "", "")
 
-            id = "0"
-
-            FormEmpOvertimeVerification_Load(Me, New EventArgs)
+            SBView_Click(SBView, New EventArgs)
         End If
     End Sub
 
