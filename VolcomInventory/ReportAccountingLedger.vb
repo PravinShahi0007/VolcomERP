@@ -88,79 +88,73 @@
             no = no + 1
         Next
 
-        'Dim row As DevExpress.XtraReports.UI.XRTableRow = XrTableRow
+        Dim row As DevExpress.XtraReports.UI.XRTableRow = XrTableRow
 
-        'For i = 0 To data_group.Rows.Count - 1
-        '    row = XrTable.InsertRowBelow(row)
+        For i = 0 To data_group.Rows.Count - 1
+            row = XrTable.InsertRowBelow(row)
 
-        '    row.HeightF = 20
+            row.Font = New Font(XrTableRow.Font.FontFamily, 7.75, FontStyle.Regular)
+            row.HeightF = 20
+            row.Tag = data_group.Rows(i)("type").ToString
 
-        '    If data_group.Rows(i)("type").ToString = "group" Then
-        '        If row.Cells.Count = 10 Then
-        '            row.Cells.Remove(row.Cells.Item(9))
-        '            row.Cells.Remove(row.Cells.Item(8))
-        '            row.Cells.Remove(row.Cells.Item(7))
-        '            row.Cells.Remove(row.Cells.Item(6))
-        '            row.Cells.Remove(row.Cells.Item(5))
-        '            row.Cells.Remove(row.Cells.Item(4))
-        '            row.Cells.Remove(row.Cells.Item(3))
-        '            row.Cells.Remove(row.Cells.Item(2))
-        '            row.Cells.Remove(row.Cells.Item(1))
-        '        End If
-        '    End If
+            Dim number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+            number.Text = data_group.Rows(i)("number").ToString + If(data_group.Rows(i)("type").ToString = "detail", ".", "")
+            number.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
 
-        '    Dim number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
-        '    number.Text = data_group.Rows(i)("number").ToString
-        '    number.WidthF = XrTableCellNo.WidthF
+            Dim report_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+            report_number.Text = data_group.Rows(i)("report_number").ToString
+            report_number.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
 
-        '    If data_group.Rows(i)("type").ToString = "detail" Then
-        '        If row.Cells.Count = 1 Then
-        '            Dim report_number As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            report_number.Text = data_group.Rows(i)("report_number").ToString
-        '            report_number.WidthF = XrTableCellReportNumber.WidthF
-        '            row.InsertCell(report_number, 1)
+            Dim comp_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            comp_number.Text = data_group.Rows(i)("comp_number").ToString
+            comp_number.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
 
-        '            Dim comp_number As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            comp_number.Text = data_group.Rows(i)("comp_number").ToString
-        '            comp_number.WidthF = XrTableCellCompany.WidthF
-        '            row.InsertCell(comp_number, 2)
+            Dim date_created As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+            date_created.Text = If(data_group.Rows(i)("date_created").ToString = "", "", Date.Parse(data_group.Rows(i)("date_created").ToString).ToString("dd MMM yyyy"))
+            date_created.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
 
-        '            Dim date_created As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            date_created.Text = data_group.Rows(i)("date_created").ToString
-        '            date_created.WidthF = XrTableCellJournalDate.WidthF
-        '            row.InsertCell(date_created, 3)
+            Dim report_number_ref As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            report_number_ref.Text = data_group.Rows(i)("report_number_ref").ToString
+            report_number_ref.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
 
-        '            Dim report_number_ref As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            report_number_ref.Text = data_group.Rows(i)("report_number_ref").ToString
-        '            report_number_ref.WidthF = XrTableCellReff.WidthF
-        '            row.InsertCell(report_number_ref, 4)
+            Dim acc_trans_note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+            acc_trans_note.Text = data_group.Rows(i)("acc_trans_note").ToString
+            acc_trans_note.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
 
-        '            Dim acc_trans_note As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            acc_trans_note.Text = data_group.Rows(i)("acc_trans_note").ToString
-        '            acc_trans_note.WidthF = XrTableCellDescription.WidthF
-        '            row.InsertCell(acc_trans_note, 5)
+            Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+            qty.Text = If(data_group.Rows(i)("qty").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("qty").ToString), "##,##0"))
+            qty.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
-        '            Dim qty As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            qty.Text = data_group.Rows(i)("qty").ToString
-        '            qty.WidthF = XrTableCellQty.WidthF
-        '            row.InsertCell(qty, 6)
+            Dim debit As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+            debit.Text = If(data_group.Rows(i)("debit").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("debit").ToString), "##,##0"))
+            debit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            debit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
-        '            Dim debit As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            debit.Text = data_group.Rows(i)("debit").ToString
-        '            debit.WidthF = XrTableCellDebit.WidthF
-        '            row.InsertCell(debit, 7)
+            Dim credit As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
+            credit.Text = If(data_group.Rows(i)("credit").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("credit").ToString), "##,##0"))
+            credit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            credit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
-        '            Dim credit As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            credit.Text = data_group.Rows(i)("credit").ToString
-        '            credit.WidthF = XrTableCellCredit.WidthF
-        '            row.InsertCell(credit, 8)
+            Dim balance As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
+            balance.Text = If(data_group.Rows(i)("balance").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("balance").ToString), "##,##0"))
+            balance.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            balance.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Next
 
-        '            Dim balance As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-        '            balance.Text = data_group.Rows(i)("balance").ToString
-        '            balance.WidthF = XrTableCellBalance.WidthF
-        '            row.InsertCell(balance, 9)
-        '        End If
-        '    End If
-        'Next
+        'rowspan
+        For i = 0 To XrTable.Rows.Count - 1
+            If XrTable.Rows.Item(i).Tag = "group" Then
+                XrTable.Rows.Item(i).Cells.RemoveAt(9)
+                XrTable.Rows.Item(i).Cells.RemoveAt(8)
+                XrTable.Rows.Item(i).Cells.RemoveAt(7)
+                XrTable.Rows.Item(i).Cells.RemoveAt(6)
+                XrTable.Rows.Item(i).Cells.RemoveAt(5)
+                XrTable.Rows.Item(i).Cells.RemoveAt(4)
+                XrTable.Rows.Item(i).Cells.RemoveAt(3)
+                XrTable.Rows.Item(i).Cells.RemoveAt(2)
+                XrTable.Rows.Item(i).Cells.RemoveAt(1)
+            End If
+        Next
     End Sub
 End Class
