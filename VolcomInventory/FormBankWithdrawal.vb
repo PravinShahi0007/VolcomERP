@@ -530,4 +530,50 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             BView.Location = New Point(649, 9)
         End If
     End Sub
+
+    Sub view_bpjskesehatan()
+        Dim query As String = "
+            SELECT 'no' AS is_check, bpjs.id_pay_bpjs_kesehatan, bpjs.number, DATE_FORMAT(py.periode_end, '%M %Y') AS payroll_periode, IF(py.id_payroll_type = 1, 'Organic', 'Daily Worker') AS payroll_type, total_amount.total_amount
+            FROM tb_pay_bpjs_kesehatan AS bpjs
+            LEFT JOIN tb_emp_payroll AS py ON bpjs.id_payroll = py.id_payroll
+            LEFT JOIN tb_lookup_report_status AS rs ON bpjs.id_report_status = rs.id_report_status
+            LEFT JOIN (
+                SELECT id_pay_bpjs_kesehatan, SUM(total_amount) AS total_amount
+                FROM (
+                    SELECT id_pay_bpjs_kesehatan, ROUND((bpjs_kesehatan_contribution + (bpjs_kesehatan_contribution * 100 * 0.04)), 0) AS total_amount
+                    FROM tb_pay_bpjs_kesehatan_det
+                ) AS tb
+                GROUP BY id_pay_bpjs_kesehatan
+            ) AS total_amount ON bpjs.id_pay_bpjs_kesehatan = total_amount.id_pay_bpjs_kesehatan
+            WHERE bpjs.id_report_status = 6 AND bpjs.is_close_pay = 2
+            ORDER BY py.periode_end DESC, py.id_payroll_type ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCBPJSKesehatan.DataSource = data
+
+        GVBPJSKesehatan.BestFitColumns()
+    End Sub
+
+    Private Sub XTCPO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPO.SelectedPageChanged
+        If XTCPO.SelectedTabPage.Name = "XTPBPJSKesehatan" Then
+            view_bpjskesehatan()
+        End If
+    End Sub
+
+    Private Sub SBPayBPJSKesehatan_Click(sender As Object, e As EventArgs) Handles SBPayBPJSKesehatan.Click
+        GVBPJSKesehatan.ActiveFilterString = ""
+        GVBPJSKesehatan.ActiveFilterString = "[is_check]='yes'"
+
+        If GVBPJSKesehatan.RowCount > 0 Then
+            FormBankWithdrawalDet.id_pay_type = "2"
+            FormBankWithdrawalDet.report_mark_type = "223"
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("Please select item first.")
+        End If
+
+        GVBPJSKesehatan.ActiveFilterString = ""
+    End Sub
 End Class
