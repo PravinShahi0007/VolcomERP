@@ -307,7 +307,12 @@
         Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
             Dim id_item_cek As String = GVData.GetRowCellValue(i, "id_item").ToString
-            Dim dt As DataRow() = dst.Select("[id_item]='" + id_item_cek + "'")
+            Dim dt As DataRow()
+            If GVData.GetRowCellValue(i, "is_store_request").ToString = "yes" Then
+                dt = dst.Select("[id_item]='" + id_item_cek + "' AND [id_departement]='" & id_purc_store & "'")
+            Else
+                dt = dst.Select("[id_item]='" + id_item_cek + "' AND [id_departement]='" & id_dep & "'")
+            End If
             If dt.Length <= 0 Then
                 GVData.SetRowCellValue(i, "stt", "Product not found;")
                 cond_data = False
