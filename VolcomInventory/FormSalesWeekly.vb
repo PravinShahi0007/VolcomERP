@@ -13,6 +13,10 @@
     Public dt As DataTable
 
     'selected-Tab2
+    Public date_from_weekdate_selected As String = "0000-01-01"
+    Public date_until_weekdate_selected As String = "9999-12-01"
+
+    'selected-Tab 3
     Public date_from_weekly_selected As String = "0000-01-01"
     Public date_until_weekly_selected As String = "9999-12-01"
     Public dt_weekly As DataTable
@@ -22,7 +26,6 @@
     Public retail_list_ws As New List(Of String)
     Public rev_bef_list_ws As New List(Of String)
 
-    'selected-Tab 3
     Public date_from_monthly_selected As String = "0000-01-01"
     Public date_until_monthly_selected As String = "0000-01-01"
     Public label_from_monthly_selected As String = ""
@@ -952,6 +955,38 @@
     End Sub
 
     Private Sub BtnViewDateWeekly_Click(sender As Object, e As EventArgs) Handles BtnViewDateWeekly.Click
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        date_from_weekdate_selected = "0000-01-01"
+        date_until_weekdate_selected = "9999-01-01"
+        Try
+            date_from_weekdate_selected = DateTime.Parse(DEFromWeek.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
 
+        Try
+            date_until_weekdate_selected = DateTime.Parse(DEEndWeek.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'Prepare Baded
+        BGVSalesWeeklyByDate.Columns.Clear()
+        BGVSalesWeeklyByDate.Bands.Clear()
+        BGVSalesWeeklyByDate.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+
+        ' Make the group footers always visible.
+        BGVSalesWeeklyByDate.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+
+        'set band
+        Dim band_desc As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesPOSWeekly.Bands.AddBand("DESCRIPTION")
+        band_desc.AppearanceHeader.Font = New Font(BGVSalesPOSWeekly.Appearance.Row.Font.FontFamily, BGVSalesPOSWeekly.Appearance.Row.Font.Size, FontStyle.Bold)
+
+        'excecute query
+        Dim query As String = "CALL view_sales_weekly_by_date('" + date_from_weekdate_selected + "', '" + date_until_weekdate_selected + "')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To data.Columns.Count - 1
+
+        Next
+        Cursor = Cursors.Default
     End Sub
 End Class
