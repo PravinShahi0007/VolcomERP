@@ -26,18 +26,7 @@ Partial Class FormSampleBudget
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.GCBudgetList = New DevExpress.XtraGrid.GridControl()
-        Me.GVBudgetList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEBudget = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnValUsd = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnValRp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BRevision = New DevExpress.XtraEditors.SimpleButton()
         Me.BNewBudget = New DevExpress.XtraEditors.SimpleButton()
@@ -95,12 +84,27 @@ Partial Class FormSampleBudget
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BSearchCard = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GVBudgetList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnYear = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnDivision = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnValUsd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnValRp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCBudgetList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVBudgetList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -130,6 +134,7 @@ Partial Class FormSampleBudget
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBudgetList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -189,119 +194,12 @@ Partial Class FormSampleBudget
         Me.GCBudgetList.TabIndex = 5
         Me.GCBudgetList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetList})
         '
-        'GVBudgetList
-        '
-        Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn9, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumn22, Me.GridColumnValRp, Me.GridColumn8})
-        Me.GVBudgetList.GridControl = Me.GCBudgetList
-        Me.GVBudgetList.Name = "GVBudgetList"
-        Me.GVBudgetList.OptionsBehavior.ReadOnly = True
-        Me.GVBudgetList.OptionsView.ShowFooter = True
-        Me.GVBudgetList.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn7.Caption = "*"
-        Me.GridColumn7.ColumnEdit = Me.RICEBudget
-        Me.GridColumn7.FieldName = "is_check"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Width = 36
-        '
         'RICEBudget
         '
         Me.RICEBudget.AutoHeight = False
         Me.RICEBudget.Name = "RICEBudget"
         Me.RICEBudget.ValueChecked = "yes"
         Me.RICEBudget.ValueUnchecked = "no"
-        '
-        'GridColumnId
-        '
-        Me.GridColumnId.Caption = "Id"
-        Me.GridColumnId.FieldName = "id_sample_purc_budget"
-        Me.GridColumnId.Name = "GridColumnId"
-        '
-        'GridColumnDesc
-        '
-        Me.GridColumnDesc.Caption = "Description"
-        Me.GridColumnDesc.FieldName = "description"
-        Me.GridColumnDesc.Name = "GridColumnDesc"
-        Me.GridColumnDesc.Visible = True
-        Me.GridColumnDesc.VisibleIndex = 0
-        Me.GridColumnDesc.Width = 215
-        '
-        'GridColumnYear
-        '
-        Me.GridColumnYear.Caption = "Year"
-        Me.GridColumnYear.FieldName = "year"
-        Me.GridColumnYear.Name = "GridColumnYear"
-        Me.GridColumnYear.Visible = True
-        Me.GridColumnYear.VisibleIndex = 1
-        Me.GridColumnYear.Width = 177
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Id Division"
-        Me.GridColumn9.FieldName = "id_division"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'GridColumnDivision
-        '
-        Me.GridColumnDivision.Caption = "Category"
-        Me.GridColumnDivision.FieldName = "division"
-        Me.GridColumnDivision.Name = "GridColumnDivision"
-        Me.GridColumnDivision.Visible = True
-        Me.GridColumnDivision.VisibleIndex = 2
-        Me.GridColumnDivision.Width = 177
-        '
-        'GridColumnValUsd
-        '
-        Me.GridColumnValUsd.Caption = "Amount USD"
-        Me.GridColumnValUsd.DisplayFormat.FormatString = "N2"
-        Me.GridColumnValUsd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnValUsd.FieldName = "value_usd"
-        Me.GridColumnValUsd.Name = "GridColumnValUsd"
-        Me.GridColumnValUsd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd", "{0:N2}")})
-        Me.GridColumnValUsd.Visible = True
-        Me.GridColumnValUsd.VisibleIndex = 3
-        Me.GridColumnValUsd.Width = 134
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Kurs"
-        Me.GridColumn22.DisplayFormat.FormatString = "N2"
-        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn22.FieldName = "kurs"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Width = 133
-        '
-        'GridColumnValRp
-        '
-        Me.GridColumnValRp.Caption = "Amount Rp"
-        Me.GridColumnValRp.DisplayFormat.FormatString = "N2"
-        Me.GridColumnValRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnValRp.FieldName = "value_rp"
-        Me.GridColumnValRp.Name = "GridColumnValRp"
-        Me.GridColumnValRp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp", "{0:N2}")})
-        Me.GridColumnValRp.Visible = True
-        Me.GridColumnValRp.VisibleIndex = 4
-        Me.GridColumnValRp.Width = 167
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.Caption = "Total Amount (Rp)"
-        Me.GridColumn8.DisplayFormat.FormatString = "N2"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "tot_amo"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
-        Me.GridColumn8.UnboundExpression = "[value_rp] + [value_usd] * [kurs]"
-        Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn8.Width = 184
         '
         'PanelControl2
         '
@@ -629,7 +527,7 @@ Partial Class FormSampleBudget
         '
         'GridColumn16
         '
-        Me.GridColumn16.Caption = "Amount (Rp)"
+        Me.GridColumn16.Caption = "Budget (Rp)"
         Me.GridColumn16.DisplayFormat.FormatString = "N2"
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn16.FieldName = "value_rp"
@@ -639,7 +537,7 @@ Partial Class FormSampleBudget
         '
         'GridColumn17
         '
-        Me.GridColumn17.Caption = "Amount (USD)"
+        Me.GridColumn17.Caption = "Budget (USD)"
         Me.GridColumn17.DisplayFormat.FormatString = "N2"
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "value_usd"
@@ -649,7 +547,7 @@ Partial Class FormSampleBudget
         '
         'GridColumn18
         '
-        Me.GridColumn18.Caption = "Balance (Rp)"
+        Me.GridColumn18.Caption = "Balance Budget (Rp)"
         Me.GridColumn18.DisplayFormat.FormatString = "N2"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "bal_rp"
@@ -659,7 +557,7 @@ Partial Class FormSampleBudget
         '
         'GridColumn19
         '
-        Me.GridColumn19.Caption = "Balance (USD)"
+        Me.GridColumn19.Caption = "Balance Budget (USD)"
         Me.GridColumn19.DisplayFormat.FormatString = "N2"
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "bal_usd"
@@ -874,6 +772,179 @@ Partial Class FormSampleBudget
         Me.BPrint.TabIndex = 8924
         Me.BPrint.Text = "Print"
         '
+        'GVBudgetList
+        '
+        Me.GVBudgetList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4})
+        Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn7, Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn9, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumn22, Me.GridColumn24, Me.GridColumnValRp, Me.GridColumn8})
+        Me.GVBudgetList.GridControl = Me.GCBudgetList
+        Me.GVBudgetList.Name = "GVBudgetList"
+        Me.GVBudgetList.OptionsBehavior.ReadOnly = True
+        Me.GVBudgetList.OptionsView.ShowFooter = True
+        Me.GVBudgetList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.Caption = "*"
+        Me.GridColumn7.ColumnEdit = Me.RICEBudget
+        Me.GridColumn7.FieldName = "is_check"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Width = 36
+        '
+        'GridColumnId
+        '
+        Me.GridColumnId.Caption = "Id"
+        Me.GridColumnId.FieldName = "id_sample_purc_budget"
+        Me.GridColumnId.Name = "GridColumnId"
+        '
+        'GridColumnDesc
+        '
+        Me.GridColumnDesc.Caption = "Description"
+        Me.GridColumnDesc.FieldName = "description"
+        Me.GridColumnDesc.Name = "GridColumnDesc"
+        Me.GridColumnDesc.Visible = True
+        Me.GridColumnDesc.Width = 316
+        '
+        'GridColumnYear
+        '
+        Me.GridColumnYear.Caption = "Year"
+        Me.GridColumnYear.FieldName = "year"
+        Me.GridColumnYear.Name = "GridColumnYear"
+        Me.GridColumnYear.Visible = True
+        Me.GridColumnYear.Width = 126
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Id Division"
+        Me.GridColumn9.FieldName = "id_division"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumnDivision
+        '
+        Me.GridColumnDivision.Caption = "Category"
+        Me.GridColumnDivision.FieldName = "division"
+        Me.GridColumnDivision.Name = "GridColumnDivision"
+        Me.GridColumnDivision.Visible = True
+        Me.GridColumnDivision.Width = 166
+        '
+        'GridColumnValUsd
+        '
+        Me.GridColumnValUsd.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnValUsd.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnValUsd.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnValUsd.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnValUsd.Caption = "Budget USD"
+        Me.GridColumnValUsd.DisplayFormat.FormatString = "N2"
+        Me.GridColumnValUsd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnValUsd.FieldName = "value_usd"
+        Me.GridColumnValUsd.Name = "GridColumnValUsd"
+        Me.GridColumnValUsd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd", "{0:N2}")})
+        Me.GridColumnValUsd.Visible = True
+        Me.GridColumnValUsd.Width = 196
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "Kurs"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "kurs"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.Width = 194
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.Caption = "Budget USD After Kurs"
+        Me.GridColumn24.DisplayFormat.FormatString = "N2"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn24.FieldName = "after_kurs"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "after_kurs", "{0:N2}")})
+        Me.GridColumn24.UnboundExpression = "[value_usd] * [kurs]"
+        Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.Width = 108
+        '
+        'GridColumnValRp
+        '
+        Me.GridColumnValRp.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnValRp.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnValRp.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnValRp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnValRp.Caption = "Budget Rp"
+        Me.GridColumnValRp.DisplayFormat.FormatString = "N2"
+        Me.GridColumnValRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnValRp.FieldName = "value_rp"
+        Me.GridColumnValRp.Name = "GridColumnValRp"
+        Me.GridColumnValRp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp", "{0:N2}")})
+        Me.GridColumnValRp.Visible = True
+        Me.GridColumnValRp.Width = 244
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.Caption = "Total Amount in Rp"
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "tot_amo"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
+        Me.GridColumn8.UnboundExpression = "[value_rp] + [value_usd] * [kurs]"
+        Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.Width = 282
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Description"
+        Me.GridBand1.Columns.Add(Me.GridColumn7)
+        Me.GridBand1.Columns.Add(Me.GridColumnId)
+        Me.GridBand1.Columns.Add(Me.GridColumnYear)
+        Me.GridBand1.Columns.Add(Me.GridColumnDivision)
+        Me.GridBand1.Columns.Add(Me.GridColumnDesc)
+        Me.GridBand1.Columns.Add(Me.GridColumn9)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 608
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Budget USD"
+        Me.gridBand2.Columns.Add(Me.GridColumnValUsd)
+        Me.gridBand2.Columns.Add(Me.GridColumn22)
+        Me.gridBand2.Columns.Add(Me.GridColumn24)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 498
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Budget Rp"
+        Me.gridBand3.Columns.Add(Me.GridColumnValRp)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 244
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Total"
+        Me.gridBand4.Columns.Add(Me.GridColumn8)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 282
+        '
         'FormSampleBudget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -892,7 +963,6 @@ Partial Class FormSampleBudget
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCBudgetList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVBudgetList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -924,6 +994,7 @@ Partial Class FormSampleBudget
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBudgetList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -933,13 +1004,6 @@ Partial Class FormSampleBudget
     Friend WithEvents DEYearBudget As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCBudgetList As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVBudgetList As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnYear As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnValUsd As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnValRp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BRevision As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BNewBudget As DevExpress.XtraEditors.SimpleButton
@@ -955,7 +1019,6 @@ Partial Class FormSampleBudget
     Friend WithEvents GCProposeList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProposeList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEBudget As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -964,7 +1027,6 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BShowAll As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPMutasiBudget As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
@@ -992,8 +1054,6 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSearchBudgetCat As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEBudgetCat As DevExpress.XtraEditors.SearchLookUpEdit
@@ -1002,4 +1062,20 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GVBudgetList As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnYear As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnValUsd As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnValRp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

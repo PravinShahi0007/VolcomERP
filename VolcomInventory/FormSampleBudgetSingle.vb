@@ -64,18 +64,18 @@ WHERE cd.`id_code`='16' OR cd.id_code='40'"
             '
             Dim notif_string As String = "Note : "
             'check on grid
-            For i As Integer = 0 To FormSampleBudgetDet.GVAfter.RowCount - 1
-                For j As Integer = 0 To GVDivision.RowCount - 1
-                    'MsgBox("Is edit : " & is_edit & " | is_rev : " & FormSampleBudgetDet.is_rev & " | j=" & i & " | focuse row handle : " & FormSampleBudgetDet.GVAfter.FocusedRowHandle)
-                    If (is_edit = "1" And FormSampleBudgetDet.GVAfter.FocusedRowHandle = i) Then
-                    Else
-                        If ("," & FormSampleBudgetDet.GVAfter.GetRowCellValue(i, "id_division_after").ToString & ",").Contains(GVDivision.GetRowCellValue(j, "id_code_detail").ToString) Then
-                            notif_string += vbNewLine & GVDivision.GetRowCellValue(j, "code_detail_name").ToString & "  " & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & " already on list."
-                            is_on_grid = True
-                        End If
-                    End If
-                Next
-            Next
+            'For i As Integer = 0 To FormSampleBudgetDet.GVAfter.RowCount - 1
+            '    For j As Integer = 0 To GVDivision.RowCount - 1
+            '        'MsgBox("Is edit : " & is_edit & " | is_rev : " & FormSampleBudgetDet.is_rev & " | j=" & i & " | focuse row handle : " & FormSampleBudgetDet.GVAfter.FocusedRowHandle)
+            '        If (is_edit = "1" And FormSampleBudgetDet.GVAfter.FocusedRowHandle = i) Then
+            '        Else
+            '            If ("," & FormSampleBudgetDet.GVAfter.GetRowCellValue(i, "id_division_after").ToString & ",").Contains(GVDivision.GetRowCellValue(j, "id_code_detail").ToString) Then
+            '                notif_string += vbNewLine & GVDivision.GetRowCellValue(j, "code_detail_name").ToString & "  " & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & " already on list."
+            '                is_on_grid = True
+            '            End If
+            '        End If
+            '    Next
+            'Next
 
             'check on propose
             For j As Integer = 0 To GVDivision.RowCount - 1
@@ -149,5 +149,21 @@ WHERE pb.id_sample_purc_budget != 0 AND bd.id_code_division='" & GVDivision.GetR
             End If
         End If
         GVDivision.ActiveFilterString = ""
+    End Sub
+
+    Private Sub TEBudgetUSD_EditValueChanged(sender As Object, e As EventArgs) Handles TEBudgetUSD.EditValueChanged
+        calculate_in_rp()
+    End Sub
+
+    Sub calculate_in_rp()
+        Try
+            TEBudgetinRP.EditValue = TEBudgetUSD.EditValue * TEBudgetKurs.EditValue
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TEBudgetKurs_EditValueChanged(sender As Object, e As EventArgs) Handles TEBudgetKurs.EditValueChanged
+        calculate_in_rp()
     End Sub
 End Class
