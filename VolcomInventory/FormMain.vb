@@ -7166,7 +7166,42 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                 Tool.ShowPreview()
             ElseIf FormSalesWeekly.XTCPOS.SelectedTabPageIndex = 1 Then
+                'modify period
+                Dim period_from As String = ""
+                Dim period_until As String = ""
+                If FormSalesWeekly.date_from_weekdate_selected = "0000-01-01" Then
+                    period_from = "-"
+                Else
+                    period_from = DateTime.Parse(FormSalesWeekly.date_from_weekdate_selected).ToString("dd MMM yyyy")
+                End If
+                If FormSalesWeekly.date_until_weekdate_selected = "9999-01-01" Then
+                    period_until = "-"
+                Else
+                    period_until = DateTime.Parse(FormSalesWeekly.date_until_weekdate_selected).ToString("dd MMM yyyy")
+                End If
 
+                '... 
+                ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                FormSalesWeekly.BGVSalesWeeklyByDate.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                ReportSalesPOSWeeklyByDate.dt = FormSalesWeekly.dt_weekly_by_date
+
+
+                Dim Report As New ReportSalesPOSWeeklyByDate()
+                Report.BGVSalesWeeklyByDate.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                Report.LabelYear.Text = FormSalesWeekly.year_selected
+                Report.LabelPeriod.Text = period_from + " / " + period_until
+                Report.LabelWeek.Text = FormSalesWeekly.week_selected
+
+                ReportStyleBanded(Report.BGVSalesWeeklyByDate)
+
+                ' Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
             ElseIf FormSalesWeekly.XTCPOS.SelectedTabPageIndex = 2 Then
                 If FormSalesWeekly.XTCMonthlySales.SelectedTabPageIndex = 0 Then
                     'modify period

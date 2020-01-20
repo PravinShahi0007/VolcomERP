@@ -15,6 +15,9 @@
     'selected-Tab2
     Public date_from_weekdate_selected As String = "0000-01-01"
     Public date_until_weekdate_selected As String = "9999-12-01"
+    Public dt_weekly_by_date As DataTable
+    Public year_selected As String = ""
+    Public week_selected As String = ""
 
     'selected-Tab 3
     Public date_from_weekly_selected As String = "0000-01-01"
@@ -973,11 +976,12 @@
             date_from_weekdate_selected = DateTime.Parse(DEFromWeek.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-
         Try
             date_until_weekdate_selected = DateTime.Parse(DEEndWeek.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+        year_selected = TxtYear.Text
+        week_selected = TxtWeek.Text
 
         'Prepare Baded
         BGVSalesWeeklyByDate.Columns.Clear()
@@ -1148,6 +1152,7 @@
             End If
         Next
         GCSalesWeeklyByDate.DataSource = data
+        dt_weekly_by_date = data
 
         'hide column
         BGVSalesWeeklyByDate.Columns("id_store").Visible = False
