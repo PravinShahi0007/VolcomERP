@@ -335,7 +335,7 @@
         Dim query As String = "SELECT ad.id_awbill FROM tb_del_manifest_det od
         INNER JOIN tb_del_manifest o ON o.id_del_manifest = od.id_del_manifest
         INNER JOIN tb_wh_awbill_det ad ON ad.id_wh_awb_det = od.id_wh_awb_det
-        WHERE o.id_report_status!=5 AND ad.id_awbill=" + id_awb + " "
+        WHERE IFNULL(o.id_report_status,0)!=5 AND ad.id_awbill=" + id_awb + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             Return True

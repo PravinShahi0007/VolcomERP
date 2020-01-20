@@ -55,11 +55,12 @@
         DEEndWeekly.EditValue = tgl
 
         'Tab Weekly
-        viewDay()
-        TxtYear.Text = current_year
-        TxtWeek.Text = "1"
+
+        'TxtYear.Text = current_year
+        'TxtWeek.Text = "1"
 
         'Tab Monthly
+        viewDay()
         viewFilterMonth()
         viewFilterYear()
     End Sub
@@ -77,20 +78,23 @@
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            If Not first_load_weekly Then
-                LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
-            End If
         ElseIf XTCPOS.SelectedTabPageIndex = 2 Then
             bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            LEFromMonth.ItemIndex = LEFromMonth.Properties.GetDataSourceRowIndex("code_month", "01")
-            LEUntilMonth.ItemIndex = LEUntilMonth.Properties.GetDataSourceRowIndex("code_month", "01")
+            If XTCMonthlySales.SelectedTabPageIndex = 0 Then
+                If Not first_load_weekly Then
+                    LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
+                End If
+            Else
+                LEFromMonth.ItemIndex = LEFromMonth.Properties.GetDataSourceRowIndex("code_month", "01")
+                LEUntilMonth.ItemIndex = LEUntilMonth.Properties.GetDataSourceRowIndex("code_month", "01")
 
-            LEFromYear.ItemIndex = LEFromYear.Properties.GetDataSourceRowIndex("label_year", current_year)
-            LEUntilYear.ItemIndex = LEUntilYear.Properties.GetDataSourceRowIndex("label_year", current_year)
+                LEFromYear.ItemIndex = LEFromYear.Properties.GetDataSourceRowIndex("label_year", current_year)
+                LEUntilYear.ItemIndex = LEUntilYear.Properties.GetDataSourceRowIndex("label_year", current_year)
+            End If
         End If
     End Sub
 
@@ -857,70 +861,84 @@
         End If
     End Sub
 
-    Private Sub CESearchByWeek_CheckedChanged(sender As Object, e As EventArgs) Handles CESearchByWeek.CheckedChanged
-        If CESearchByWeek.EditValue = True Then
-            TxtYear.Enabled = True
-            TxtWeek.Enabled = True
-            TxtYear.Text = current_year
-            TxtWeek.Text = "1"
-            DEFromWeekly.Enabled = False
-            DEEndWeekly.Enabled = False
-            LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
-            LEDayWeekly.Enabled = False
-            TxtYear.Focus()
-        Else
-            TxtYear.Enabled = False
-            TxtWeek.Enabled = False
-            TxtYear.Text = ""
-            TxtWeek.Text = ""
-            DEFromWeekly.Enabled = True
-            DEEndWeekly.Enabled = True
-            LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
-            LEDayWeekly.Enabled = True
-            DEFromWeekly.Focus()
-        End If
+    Private Sub CESearchByWeek_CheckedChanged(sender As Object, e As EventArgs)
+        'If CESearchByWeek.EditValue = True Then
+        '    TxtYear.Enabled = True
+        '    TxtWeek.Enabled = True
+        '    TxtYear.Text = current_year
+        '    TxtWeek.Text = "1"
+        '    DEFromWeekly.Enabled = False
+        '    DEEndWeekly.Enabled = False
+        '    LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
+        '    LEDayWeekly.Enabled = False
+        '    TxtYear.Focus()
+        'Else
+        '    TxtYear.Enabled = False
+        '    TxtWeek.Enabled = False
+        '    TxtYear.Text = ""
+        '    TxtWeek.Text = ""
+        '    DEFromWeekly.Enabled = True
+        '    DEEndWeekly.Enabled = True
+        '    LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
+        '    LEDayWeekly.Enabled = True
+        '    DEFromWeekly.Focus()
+        'End If
     End Sub
 
-    Private Sub TxtYear_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtYear.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            TxtWeek.Focus()
-        End If
+    Private Sub TxtYear_KeyDown(sender As Object, e As KeyEventArgs)
+        'If e.KeyCode = Keys.Enter Then
+        '    TxtWeek.Focus()
+        'End If
     End Sub
 
-    Private Sub TxtWeek_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtWeek.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            BtnViewWeeklySales.Focus()
-        End If
+    Private Sub TxtWeek_KeyDown(sender As Object, e As KeyEventArgs)
+        'If e.KeyCode = Keys.Enter Then
+        '    BtnViewWeeklySales.Focus()
+        'End If
     End Sub
 
     Sub fillWeeklyPeriod()
-        If CESearchByWeek.EditValue = True Then
+        'If CESearchByWeek.EditValue = True Then
+        '    Cursor = Cursors.WaitCursor
+        '    Dim week As String = "1"
+        '    Try
+        '        week = TxtWeek.Text
+        '    Catch ex As Exception
+        '    End Try
+        '    If week = "" Then
+        '        week = "1"
+        '    End If
+        '    Dim query As String = "CALL view_range_date_by_week_number('" + TxtYear.Text + "', " + week + ")"
+        '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '    DEFromWeekly.EditValue = data.Rows(0)("FirstDayOfWeek")
+        '    DEEndWeekly.EditValue = data.Rows(0)("LastDayOfWeek")
+        '    Cursor = Cursors.Default
+        'End If
+    End Sub
+
+    Private Sub TxtYear_EditValueChanged(sender As Object, e As EventArgs)
+        fillWeeklyPeriod()
+    End Sub
+
+    Private Sub TxtWeek_EditValueChanged(sender As Object, e As EventArgs)
+        fillWeeklyPeriod()
+    End Sub
+
+    Private Sub GroupControl1_Paint(sender As Object, e As PaintEventArgs) Handles GroupControl1.Paint
+
+    End Sub
+
+    Private Sub BtnExportToXLSWeekly_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSWeekly.Click
+        If BGVSalesPOSWeekly.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
-            Dim week As String = "1"
-            Try
-                week = TxtWeek.Text
-            Catch ex As Exception
-            End Try
-            If week = "" Then
-                week = "1"
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
             End If
-            Dim query As String = "CALL view_range_date_by_week_number('" + TxtYear.Text + "', " + week + ")"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            DEFromWeekly.EditValue = data.Rows(0)("FirstDayOfWeek")
-            DEEndWeekly.EditValue = data.Rows(0)("LastDayOfWeek")
+            path = path + "sr_weekly.xlsx"
+            exportToXLS(path, "weekly sales", GCSalesPOSWeekly)
             Cursor = Cursors.Default
         End If
-    End Sub
-
-    Private Sub TxtYear_EditValueChanged(sender As Object, e As EventArgs) Handles TxtYear.EditValueChanged
-        fillWeeklyPeriod()
-    End Sub
-
-    Private Sub TxtWeek_EditValueChanged(sender As Object, e As EventArgs) Handles TxtWeek.EditValueChanged
-        fillWeeklyPeriod()
-    End Sub
-
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
-        exportToXLS()
     End Sub
 End Class
