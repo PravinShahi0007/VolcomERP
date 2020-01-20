@@ -191,7 +191,7 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
         query_where += " AND cat.id_expense_type='" & SLEExpenseType.EditValue.ToString & "' "
         '
         Dim query As String = "SELECT '-' AS status_val,cat.id_expense_type,rd.item_detail,rd.id_b_expense,rd.id_b_expense_opex,icd.id_vendor_type,icd.item_cat_detail,vt.vendor_type,req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
-                                ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_item_type,req.id_report_status,typ.item_type,itm.latest_price,rd.ship_destination,rd.ship_address
+                                ,req.note,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_item_type,req.id_report_status,typ.item_type,itm.latest_price,rd.ship_destination,rd.ship_address
                                 FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
                                 INNER JOIN tb_lookup_purc_item_type typ ON typ.id_item_type=req.id_item_type
