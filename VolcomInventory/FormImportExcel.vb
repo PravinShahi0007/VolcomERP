@@ -107,7 +107,14 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "35" Then
             MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         ElseIf id_pop_up = "42" Then
-            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='')", oledbconn)
+            Dim is_import_all_order As String = get_setup_field("is_import_all_order")
+            If is_import_all_order = "1" Then
+                MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='') ", oledbconn)
+            Else
+                Dim qry As String = "SELECT DATE_FORMAT(MAX(s.status_date),'%Y-%m-%d') as `st_date` FROM tb_sales_order_det_status s"
+                Dim data As DataTable = execute_query(qry, -1, True, "", "", "", "")
+                MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='') AND (DateValue(LEFT([Updated at],10))>=DateValue('" & data.Rows(0)("st_date").ToString & "'))", oledbconn)
+            End If
         ElseIf id_pop_up = "43" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([SEX]='')", oledbconn)
         ElseIf id_pop_up = "44" Then
@@ -2623,8 +2630,8 @@ Public Class FormImportExcel
             INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
             INNER JOIN tb_m_product_code prodcode ON prodcode.id_product = prod.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodcode.id_code_detail
-            WHERE c.id_commerce_type=2 AND so.id_report_status='6' AND so.sales_order_ol_shop_number!='' AND sod.item_id!='' AND sod.ol_store_id!=''
-            AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+            WHERE c.id_commerce_type=2 AND so.id_report_status='6' AND so.sales_order_ol_shop_number!='' AND sod.item_id!='' AND sod.ol_store_id!='' "
+            'AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
             Dim tb1 = data_temp.AsEnumerable()

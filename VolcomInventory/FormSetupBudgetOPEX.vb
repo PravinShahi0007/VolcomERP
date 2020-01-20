@@ -70,7 +70,9 @@ WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND p
         ElseIf GVBudgetList.RowCount = 0 Then
             stopCustom("Nothing to revise")
         Else
-            FormSetupBudgetOPEXDet.is_rev = "1"
+            If GVBudgetList.Columns("value_expense").SummaryItem.SummaryValue > 0 Then
+                FormSetupBudgetOPEXDet.is_rev = "1"
+            End If
             FormSetupBudgetOPEXDet.ShowDialog()
         End If
         '
@@ -106,5 +108,9 @@ ORDER BY pps.id_b_opex_pps DESC"
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
         FormSetupBudgetOPEXDet.id_pps = GVProposeList.GetFocusedRowCellValue("id_b_opex_pps").ToString
         FormSetupBudgetOPEXDet.ShowDialog()
+    End Sub
+
+    Private Sub BSearchBudgetCat_Click(sender As Object, e As EventArgs) Handles BSearchBudgetCat.Click
+
     End Sub
 End Class

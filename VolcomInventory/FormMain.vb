@@ -7166,60 +7166,64 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                 Tool.ShowPreview()
             ElseIf FormSalesWeekly.XTCPOS.SelectedTabPageIndex = 1 Then
-                'modify period
-                Dim period_from As String = ""
-                Dim period_until As String = ""
-                If FormSalesWeekly.date_from_weekly_selected = "0000-01-01" Then
-                    period_from = "-"
-                Else
-                    period_from = DateTime.Parse(FormSalesWeekly.date_from_weekly_selected).ToString("dd MMM yyyy")
-                End If
-                If FormSalesWeekly.date_until_weekly_selected = "9999-01-01" Then
-                    period_until = "-"
-                Else
-                    period_until = DateTime.Parse(FormSalesWeekly.date_until_weekly_selected).ToString("dd MMM yyyy")
-                End If
 
-                '... 
-                ' creating and saving the view's layout to a new memory stream 
-                Dim str As System.IO.Stream
-                str = New System.IO.MemoryStream()
-                FormSalesWeekly.BGVSalesPOSWeekly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                ReportSalesPOSWeekly.dt = FormSalesWeekly.dt_weekly
-                Dim Report As New ReportSalesPOSWeekly()
-                Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-
-                Report.LabelPeriod.Text = period_from + " / " + period_until
-                Report.LabelBegin.Text = FormSalesWeekly.day_weekly_selected
-
-                ReportStyleBanded(Report.BandedGridView1)
-
-                ' Show the report's preview. 
-                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-                Tool.ShowPreview()
             ElseIf FormSalesWeekly.XTCPOS.SelectedTabPageIndex = 2 Then
-                'modify period
+                If FormSalesWeekly.XTCMonthlySales.SelectedTabPageIndex = 0 Then
+                    'modify period
+                    Dim period_from As String = ""
+                    Dim period_until As String = ""
+                    If FormSalesWeekly.date_from_weekly_selected = "0000-01-01" Then
+                        period_from = "-"
+                    Else
+                        period_from = DateTime.Parse(FormSalesWeekly.date_from_weekly_selected).ToString("dd MMM yyyy")
+                    End If
+                    If FormSalesWeekly.date_until_weekly_selected = "9999-01-01" Then
+                        period_until = "-"
+                    Else
+                        period_until = DateTime.Parse(FormSalesWeekly.date_until_weekly_selected).ToString("dd MMM yyyy")
+                    End If
+
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormSalesWeekly.BGVSalesPOSWeekly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportSalesPOSWeekly.dt = FormSalesWeekly.dt_weekly
+                    Dim Report As New ReportSalesPOSWeekly()
+                    Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                    Report.LabelPeriod.Text = period_from + " / " + period_until
+                    Report.LabelBegin.Text = FormSalesWeekly.day_weekly_selected
+
+                    ReportStyleBanded(Report.BandedGridView1)
+
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
+                Else
+                    'modify period
 
 
-                '... 
-                ' creating and saving the view's layout to a new memory stream 
-                Dim str As System.IO.Stream
-                str = New System.IO.MemoryStream()
-                FormSalesWeekly.BGVSalesPOSMonthly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                ReportSalesPOSMonthly.dt = FormSalesWeekly.dt_monthly
-                Dim Report As New ReportSalesPOSMonthly()
-                Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                Report.LabelPeriod.Text = FormSalesWeekly.label_from_monthly_selected + "/" + FormSalesWeekly.label_until_monthly_selected
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormSalesWeekly.BGVSalesPOSMonthly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportSalesPOSMonthly.dt = FormSalesWeekly.dt_monthly
+                    Dim Report As New ReportSalesPOSMonthly()
+                    Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    Report.LabelPeriod.Text = FormSalesWeekly.label_from_monthly_selected + "/" + FormSalesWeekly.label_until_monthly_selected
 
-                ReportStyleBanded(Report.BandedGridView1)
+                    ReportStyleBanded(Report.BandedGridView1)
 
-                ' Show the report's preview. 
-                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-                Tool.ShowPreview()
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
+                End If
             End If
         ElseIf formName = "FormSalesCreditNote" Then
             'CREDIT NOTE
@@ -7579,6 +7583,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
             ElseIf page = "sal" Then
                 print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+            ElseIf page = "order" Then
+                print(FormFGTransList.GCSO, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")

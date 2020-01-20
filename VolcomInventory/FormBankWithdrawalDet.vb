@@ -182,6 +182,151 @@
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 End If
                 calculate_amount()
+                TEKurs.EditValue = FormBankWithdrawal.TEKurs.EditValue
+            ElseIf report_mark_type = "223" Then 'BPJS Kesehatan
+                'load header
+                SLEVendor.EditValue = 1
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+                'load detail
+                Dim data_map As DataTable = execute_query("
+                    SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
+                    FROM tb_coa_map_departement AS map
+                    LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
+                    LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
+                    WHERE type = 3
+                ", -1, True, "", "", "", "")
+
+                For i As Integer = 0 To FormBankWithdrawal.GVBPJSKesehatan.RowCount - 1
+                    'id_report,number,total,balance due
+                    Dim query As String = "
+                        SELECT id_departement, id_departement_sub, is_store, SUM(ROUND(bpjs_kesehatan_contribution)) AS contribution_karyawan, SUM(ROUND(bpjs_kesehatan_contribution * 100 * 0.04)) AS contribution_perusahaan, periode, departement_display
+	                    FROM (
+	                        SELECT id_departement, IF(id_departement = 17, id_departement_sub, id_departement) AS id_departement_sub, (SELECT is_store FROM tb_m_departement WHERE id_departement = tb_pay_bpjs_kesehatan_det.id_departement) AS is_store, bpjs_kesehatan_contribution, (SELECT DATE_FORMAT(periode_end, '%M %Y') FROM tb_emp_payroll WHERE id_payroll = (SELECT id_payroll FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = tb_pay_bpjs_kesehatan_det.id_pay_bpjs_kesehatan)) AS periode, (SELECT departement_display FROM tb_m_departement WHERE id_departement = tb_pay_bpjs_kesehatan_det.id_departement) AS departement_display
+	                        FROM tb_pay_bpjs_kesehatan_det
+	                        WHERE id_pay_bpjs_kesehatan = " + FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "id_pay_bpjs_kesehatan").ToString + "
+	                    ) AS tb
+                        GROUP BY id_departement_sub
+                    "
+
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                    Dim total_office As Decimal = 0.00
+
+                    For j = 0 To data.Rows.Count - 1
+                        'get id_acc, acc_name, acc_description, vendor, id_comp, comp_number
+                        Dim id_acc As Integer = 0
+                        Dim acc_name As String = ""
+                        Dim acc_description As String = ""
+                        Dim vendor As String = ""
+                        Dim id_comp As Integer = 0
+                        Dim comp_number As String = ""
+                        Dim balance As Decimal = 0.00
+                        Dim note As String = "BPJS " + data.Rows(j)("periode").ToString + " (dibayar perusahaan)"
+
+                        If data.Rows(j)("is_store").ToString = "2" Or data.Rows(j)("id_departement").ToString = "17" Then
+                            total_office = total_office + data.Rows(j)("contribution_karyawan")
+                        End If
+
+                        For k = 0 To data_map.Rows.Count - 1
+                            'office
+                            If data.Rows(j)("is_store").ToString = "2" Then
+                                If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
+                                    id_acc = data_map.Rows(k)("id_acc")
+                                    acc_name = data_map.Rows(k)("acc_name").ToString
+                                    acc_description = data_map.Rows(k)("acc_description").ToString
+                                    vendor = data_map.Rows(k)("vendor").ToString
+                                    id_comp = data_map.Rows(k)("id_comp")
+                                    comp_number = data_map.Rows(k)("comp_number").ToString
+                                    balance = data.Rows(j)("contribution_perusahaan")
+
+                                    Exit For
+                                End If
+                            Else
+                                If data.Rows(j)("id_departement").ToString = "17" Then
+                                    'store sogo
+                                    If data.Rows(j)("id_departement_sub").ToString = data_map.Rows(k)("id_departement_sub").ToString Then
+                                        id_acc = data_map.Rows(k)("id_acc")
+                                        acc_name = data_map.Rows(k)("acc_name").ToString
+                                        acc_description = data_map.Rows(k)("acc_description").ToString
+                                        vendor = data_map.Rows(k)("vendor").ToString
+                                        id_comp = data_map.Rows(k)("id_comp")
+                                        comp_number = data_map.Rows(k)("comp_number").ToString
+                                        balance = data.Rows(j)("contribution_perusahaan")
+
+                                        Exit For
+                                    End If
+                                Else
+                                    'store volcom
+                                    If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
+                                        id_acc = data_map.Rows(k)("id_acc")
+                                        acc_name = data_map.Rows(k)("acc_name").ToString
+                                        acc_description = data_map.Rows(k)("acc_description").ToString
+                                        vendor = data_map.Rows(k)("vendor").ToString
+                                        id_comp = data_map.Rows(k)("id_comp")
+                                        comp_number = data_map.Rows(k)("comp_number").ToString
+                                        balance = data.Rows(j)("contribution_karyawan") + data.Rows(j)("contribution_perusahaan")
+                                        note = "BPJS " + data.Rows(j)("periode").ToString + " " + data.Rows(j)("departement_display").ToString
+
+                                        Exit For
+                                    End If
+                                End If
+                            End If
+                        Next
+
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "id_pay_bpjs_kesehatan").ToString
+                        newRow("report_mark_type") = "223"
+                        newRow("id_acc") = id_acc
+                        newRow("acc_name") = acc_name
+                        newRow("acc_description") = acc_description
+                        newRow("vendor") = vendor
+                        newRow("id_dc") = "1"
+                        newRow("dc_code") = "D"
+                        newRow("id_comp") = id_comp
+                        newRow("comp_number") = comp_number
+                        newRow("number") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "number").ToString
+                        newRow("total_pay") = 0
+                        newRow("value") = balance
+                        newRow("value_view") = balance
+                        newRow("balance_due") = balance
+                        newRow("note") = note
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                        If j = data.Rows.Count - 1 Then
+                            If total_office > 0 Then
+                                Dim query_last As String = "
+                                    SELECT acc.id_acc, acc.acc_name, acc.acc_description, comp.id_comp, comp.comp_number, comp.comp_name AS vendor
+                                    FROM tb_a_acc AS acc
+                                    LEFT JOIN tb_m_comp AS comp ON comp.id_comp = 1
+                                    WHERE acc.id_acc = 1153
+                                "
+
+                                Dim data_last As DataTable = execute_query(query_last, -1, True, "", "", "", "")
+
+                                Dim newRow2 As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                                newRow2("id_report") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "id_pay_bpjs_kesehatan").ToString
+                                newRow2("report_mark_type") = "223"
+                                newRow2("id_acc") = data_last.Rows(0)("id_acc")
+                                newRow2("acc_name") = data_last.Rows(0)("acc_name").ToString
+                                newRow2("acc_description") = data_last.Rows(0)("acc_description").ToString
+                                newRow2("vendor") = data_last.Rows(0)("vendor").ToString
+                                newRow2("id_dc") = "1"
+                                newRow2("dc_code") = "D"
+                                newRow2("id_comp") = data_last.Rows(0)("id_comp")
+                                newRow2("comp_number") = data_last.Rows(0)("comp_number").ToString
+                                newRow2("number") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "number").ToString
+                                newRow2("total_pay") = 0
+                                newRow2("value") = total_office
+                                newRow2("value_view") = total_office
+                                newRow2("balance_due") = total_office
+                                newRow2("note") = "BPJS " + data.Rows(j)("periode").ToString + " (dibayar karyawan)"
+                                TryCast(GCList.DataSource, DataTable).Rows.Add(newRow2)
+                            End If
+                        End If
+                    Next
+                Next
+                calculate_amount()
             End If
         Else
             PCAddDel.Visible = False

@@ -144,7 +144,8 @@
         EP_SLE_cant_blank(ErrorProvider, SLUECategory)
 
         If formIsValidInPanel(ErrorProvider, PanelControl1) Then
-            If SLUECategory.EditValue.ToString = "1" Then
+            If id_popup = "1" And SLUECategory.EditValue.ToString = "1" Then
+                'disable bpjs kesehatan
                 errorCustom(SLUECategory.Text + " cannot be added.")
             Else
                 If GVDeduction.RowCount > 0 Then

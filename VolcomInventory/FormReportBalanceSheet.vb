@@ -1,9 +1,13 @@
 ﻿Public Class FormReportBalanceSheet
     Private Sub FormReportBalanceSheet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CreateNodes(TLBalanceSheet)
+        Try
+            CreateNodes(TLLedger, "")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
-    Sub CreateNodes(ByVal tl As DevExpress.XtraTreeList.TreeList)
+    Sub CreateNodes(ByVal tl As DevExpress.XtraTreeList.TreeList, ByVal opt As String)
         tl.ClearNodes()
         tl.BeginUnboundLoad()
         ' Create a root node .
@@ -20,6 +24,7 @@
         query += " SELECT id_acc,SUM(debit) AS debit,SUM(credit) AS credit FROM tb_a_acc_trans_det GROUP BY id_acc"
         query += " ) a GROUP BY id_acc"
         query += " ) entry ON entry.id_acc=a.id_acc"
+        query += " " & opt
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim data_filter As DataRow() = data.Select("[id_acc_parent] is NULL AND [id_status]='1'")
@@ -27,7 +32,6 @@
         For i As Integer = 0 To data_filter.Length - 1
             Dim rootNode As DevExpress.XtraTreeList.Nodes.TreeListNode = tl.AppendNode(New Object() {data_filter(i)("id_acc").ToString, data_filter(i)("id_acc_parent").ToString, data_filter(i)("acc_name").ToString, data_filter(i)("acc_description").ToString, data_filter(i)("debit"), data_filter(i)("credit"), data_filter(i)("id_all_child"), data_filter(i)("comp_name"), data_filter(i)("comp_number"), data_filter(i)("id_comp")}, parentForRootNodes)
             recursive_nodes(data_filter(i)("id_acc").ToString, rootNode, tl, data)
-
         Next
 
         ' Create a child node for the node1            
@@ -66,6 +70,16 @@
                     End If
                 End If
             Next
+        End If
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        If XTCBalanceSheet.SelectedTabPageIndex = 0 Then
+            CreateNodes(TLLedger, "")
+        ElseIf XTCBalanceSheet.SelectedTabPageIndex = 1 Then
+            CreateNodes(TLBalanceSheet, " WHERE b.is_balance_sheet='1'")
+        ElseIf XTCBalanceSheet.SelectedTabPageIndex = 2 Then
+            CreateNodes(TLProfitAndLoss, " WHERE b.is_profit_loss='1'")
         End If
     End Sub
 End Class
