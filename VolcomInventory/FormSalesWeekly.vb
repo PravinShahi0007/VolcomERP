@@ -55,9 +55,8 @@
         DEEndWeekly.EditValue = tgl
 
         'Tab Weekly
-
-        'TxtYear.Text = current_year
-        'TxtWeek.Text = "1"
+        TxtYear.Text = current_year
+        TxtWeek.Text = "1"
 
         'Tab Monthly
         viewDay()
@@ -153,7 +152,7 @@
     Private Function CreateData() As DataTable
         Dim query_c As ClassSalesInv = New ClassSalesInv()
         Dim query As String = query_c.queryMainReport("AND a.id_report_status=''6'' AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1")
-        
+
         Dim dtm As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         Dim date_from_selectedx As String = "0001-01-01"
@@ -886,42 +885,28 @@
     End Sub
 
     Private Sub TxtYear_KeyDown(sender As Object, e As KeyEventArgs)
-        'If e.KeyCode = Keys.Enter Then
-        '    TxtWeek.Focus()
-        'End If
+
     End Sub
 
     Private Sub TxtWeek_KeyDown(sender As Object, e As KeyEventArgs)
-        'If e.KeyCode = Keys.Enter Then
-        '    BtnViewWeeklySales.Focus()
-        'End If
+
     End Sub
 
     Sub fillWeeklyPeriod()
-        'If CESearchByWeek.EditValue = True Then
-        '    Cursor = Cursors.WaitCursor
-        '    Dim week As String = "1"
-        '    Try
-        '        week = TxtWeek.Text
-        '    Catch ex As Exception
-        '    End Try
-        '    If week = "" Then
-        '        week = "1"
-        '    End If
-        '    Dim query As String = "CALL view_range_date_by_week_number('" + TxtYear.Text + "', " + week + ")"
-        '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        '    DEFromWeekly.EditValue = data.Rows(0)("FirstDayOfWeek")
-        '    DEEndWeekly.EditValue = data.Rows(0)("LastDayOfWeek")
-        '    Cursor = Cursors.Default
-        'End If
-    End Sub
-
-    Private Sub TxtYear_EditValueChanged(sender As Object, e As EventArgs)
-        fillWeeklyPeriod()
-    End Sub
-
-    Private Sub TxtWeek_EditValueChanged(sender As Object, e As EventArgs)
-        fillWeeklyPeriod()
+        Cursor = Cursors.WaitCursor
+        Dim week As String = "1"
+        Try
+            week = TxtWeek.Text
+        Catch ex As Exception
+        End Try
+        If week = "" Then
+            week = "1"
+        End If
+        Dim query As String = "CALL view_range_date_by_week_number('" + TxtYear.Text + "', " + week + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        DEFromWeek.EditValue = data.Rows(0)("FirstDayOfWeek")
+        DEEndWeek.EditValue = data.Rows(0)("LastDayOfWeek")
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub GroupControl1_Paint(sender As Object, e As PaintEventArgs) Handles GroupControl1.Paint
@@ -940,5 +925,33 @@
             exportToXLS(path, "weekly sales", GCSalesPOSWeekly)
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub TxtYear_EditValueChanged(sender As Object, e As EventArgs) Handles TxtYear.EditValueChanged
+        fillWeeklyPeriod()
+    End Sub
+
+    Private Sub TxtWeek_EditValueChanged(sender As Object, e As EventArgs) Handles TxtWeek.EditValueChanged
+        fillWeeklyPeriod()
+    End Sub
+
+    Private Sub TxtYear_KeyDown_1(sender As Object, e As KeyEventArgs) Handles TxtYear.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            TxtWeek.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtWeek_KeyDown_1(sender As Object, e As KeyEventArgs) Handles TxtWeek.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnViewDateWeekly.Focus()
+        End If
+    End Sub
+
+    Private Sub BtnExportToXLSDateWeekly_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSDateWeekly.Click
+
+    End Sub
+
+    Private Sub BtnViewDateWeekly_Click(sender As Object, e As EventArgs) Handles BtnViewDateWeekly.Click
+
     End Sub
 End Class
