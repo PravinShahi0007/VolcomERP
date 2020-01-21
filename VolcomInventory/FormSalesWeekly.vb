@@ -13,6 +13,13 @@
     Public dt As DataTable
 
     'selected-Tab2
+    Public date_from_weekdate_selected As String = "0000-01-01"
+    Public date_until_weekdate_selected As String = "9999-12-01"
+    Public dt_weekly_by_date As DataTable
+    Public year_selected As String = ""
+    Public week_selected As String = ""
+
+    'selected-Tab 3
     Public date_from_weekly_selected As String = "0000-01-01"
     Public date_until_weekly_selected As String = "9999-12-01"
     Public dt_weekly As DataTable
@@ -22,7 +29,6 @@
     Public retail_list_ws As New List(Of String)
     Public rev_bef_list_ws As New List(Of String)
 
-    'selected-Tab 3
     Public date_from_monthly_selected As String = "0000-01-01"
     Public date_until_monthly_selected As String = "0000-01-01"
     Public label_from_monthly_selected As String = ""
@@ -51,11 +57,15 @@
         viewOption()
         DEFrom.EditValue = tgl
         DEUntil.EditValue = tgl
+        DEFromWeekly.EditValue = tgl
+        DEEndWeekly.EditValue = tgl
 
         'Tab Weekly
-        viewDay()
+        TxtYear.Text = current_year
+        TxtWeek.Text = "1"
 
         'Tab Monthly
+        viewDay()
         viewFilterMonth()
         viewFilterYear()
     End Sub
@@ -73,20 +83,23 @@
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            If Not first_load_weekly Then
-                LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "1")
-            End If
         ElseIf XTCPOS.SelectedTabPageIndex = 2 Then
             bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            LEFromMonth.ItemIndex = LEFromMonth.Properties.GetDataSourceRowIndex("code_month", "01")
-            LEUntilMonth.ItemIndex = LEUntilMonth.Properties.GetDataSourceRowIndex("code_month", "01")
+            If XTCMonthlySales.SelectedTabPageIndex = 0 Then
+                If Not first_load_weekly Then
+                    LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
+                End If
+            Else
+                LEFromMonth.ItemIndex = LEFromMonth.Properties.GetDataSourceRowIndex("code_month", "01")
+                LEUntilMonth.ItemIndex = LEUntilMonth.Properties.GetDataSourceRowIndex("code_month", "01")
 
-            LEFromYear.ItemIndex = LEFromYear.Properties.GetDataSourceRowIndex("label_year", current_year)
-            LEUntilYear.ItemIndex = LEUntilYear.Properties.GetDataSourceRowIndex("label_year", current_year)
+                LEFromYear.ItemIndex = LEFromYear.Properties.GetDataSourceRowIndex("label_year", current_year)
+                LEUntilYear.ItemIndex = LEUntilYear.Properties.GetDataSourceRowIndex("label_year", current_year)
+            End If
         End If
     End Sub
 
@@ -145,7 +158,7 @@
     Private Function CreateData() As DataTable
         Dim query_c As ClassSalesInv = New ClassSalesInv()
         Dim query As String = query_c.queryMainReport("AND a.id_report_status=''6'' AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1")
-        
+
         Dim dtm As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         Dim date_from_selectedx As String = "0001-01-01"
@@ -301,12 +314,22 @@
             Dim band_desc As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesPOSWeekly.Bands.AddBand("DESCRIPTION")
             band_desc.AppearanceHeader.Font = New Font(BGVSalesPOSWeekly.Appearance.Row.Font.FontFamily, BGVSalesPOSWeekly.Appearance.Row.Font.Size, FontStyle.Bold)
 
+            'cond promo
+            Dim include_promo As String = ""
+            If CEPromoWeekly.EditValue = True Then
+                include_promo = "1"
+            Else
+                include_promo = "2"
+            End If
+
             'excecute query
-            Dim query As String = "CALL view_sales_weekly('" + date_from_weekly_selected + "', '" + date_until_weekly_selected + "', '" + id_day_weekly_selected + "')"
+            Dim query As String = "CALL view_sales_weekly('" + date_from_weekly_selected + "', '" + date_until_weekly_selected + "', '" + id_day_weekly_selected + "', " + include_promo + ")"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To data.Columns.Count - 1
                 If data.Columns(i).ColumnName.ToString = "id_store_contact_from" Or data.Columns(i).ColumnName.ToString = "id_store" _
-                Or data.Columns(i).ColumnName.ToString = "Store" Or data.Columns(i).ColumnName.ToString = "Area" Or data.Columns(i).ColumnName.ToString = "Country" _
+                Or data.Columns(i).ColumnName.ToString = "Store Acc" Or data.Columns(i).ColumnName.ToString = "Store" _
+                Or data.Columns(i).ColumnName.ToString = "Store Group" Or data.Columns(i).ColumnName.ToString = "Store Group Desc" _
+                Or data.Columns(i).ColumnName.ToString = "Area" Or data.Columns(i).ColumnName.ToString = "Country" _
                 Or data.Columns(i).ColumnName.ToString = "Region" Or data.Columns(i).ColumnName.ToString = "State" Or data.Columns(i).ColumnName.ToString = "City" _
                 Or data.Columns(i).ColumnName.ToString = "Store Type" Or data.Columns(i).ColumnName.ToString = "PIC" _
                 Or data.Columns(i).ColumnName.ToString = "id_area" Or data.Columns(i).ColumnName.ToString = "id_country" _
@@ -444,15 +467,15 @@
 
                     BGVSalesPOSWeekly.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                     BGVSalesPOSWeekly.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    BGVSalesPOSWeekly.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+                    BGVSalesPOSWeekly.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
 
                     BGVSalesPOSWeekly.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                    BGVSalesPOSWeekly.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n2}"
+                    BGVSalesPOSWeekly.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n0}"
 
                     Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
                     item.FieldName = data.Columns(i).ColumnName.ToString
                     item.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                    item.DisplayFormat = "{0:n2}"
+                    item.DisplayFormat = "{0:n0}"
                     item.ShowInGroupColumnFooter = BGVSalesPOSWeekly.Columns(data.Columns(i).ColumnName.ToString)
                     BGVSalesPOSWeekly.GroupSummary.Add(item)
                 End If
@@ -830,16 +853,345 @@
     End Sub
 
     Private Sub BtnExportToXLSDaily_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSDaily.Click
-        If GVSalesPOS.RowCount > 0 Then
+        If BGVSalesPOSWeekly.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
             Dim path As String = Application.StartupPath & "\download\"
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)
             End If
-            path = path + "sr_daily.xlsx"
-            exportToXLS(path, "daily sales", GCSalesPOS)
+            path = path + "sr_weekly.xlsx"
+            exportToXLS(path, "weekly sales", GCSalesPOSWeekly)
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub CESearchByWeek_CheckedChanged(sender As Object, e As EventArgs)
+        'If CESearchByWeek.EditValue = True Then
+        '    TxtYear.Enabled = True
+        '    TxtWeek.Enabled = True
+        '    TxtYear.Text = current_year
+        '    TxtWeek.Text = "1"
+        '    DEFromWeekly.Enabled = False
+        '    DEEndWeekly.Enabled = False
+        '    LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
+        '    LEDayWeekly.Enabled = False
+        '    TxtYear.Focus()
+        'Else
+        '    TxtYear.Enabled = False
+        '    TxtWeek.Enabled = False
+        '    TxtYear.Text = ""
+        '    TxtWeek.Text = ""
+        '    DEFromWeekly.Enabled = True
+        '    DEEndWeekly.Enabled = True
+        '    LEDayWeekly.ItemIndex = LEDayWeekly.Properties.GetDataSourceRowIndex("id_day", "2")
+        '    LEDayWeekly.Enabled = True
+        '    DEFromWeekly.Focus()
+        'End If
+    End Sub
+
+    Private Sub TxtYear_KeyDown(sender As Object, e As KeyEventArgs)
+
+    End Sub
+
+    Private Sub TxtWeek_KeyDown(sender As Object, e As KeyEventArgs)
+
+    End Sub
+
+    Sub fillWeeklyPeriod()
+        Cursor = Cursors.WaitCursor
+        Dim week As String = "1"
+        Try
+            week = TxtWeek.Text
+        Catch ex As Exception
+        End Try
+        If week = "" Then
+            week = "1"
+        End If
+        Dim query As String = "CALL view_range_date_by_week_number('" + TxtYear.Text + "', " + week + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        DEFromWeek.EditValue = data.Rows(0)("FirstDayOfWeek")
+        DEEndWeek.EditValue = data.Rows(0)("LastDayOfWeek")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GroupControl1_Paint(sender As Object, e As PaintEventArgs) Handles GroupControl1.Paint
+
+    End Sub
+
+    Private Sub BtnExportToXLSWeekly_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSWeekly.Click
+        If BGVSalesPOSWeekly.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            BGVSalesPOSWeekly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To BGVSalesPOSWeekly.Columns.Count - 1
+                If BGVSalesPOSWeekly.Columns(i).OwnerBand.ToString <> "DESCRIPTION" Then
+                    BGVSalesPOSWeekly.Columns(i).Caption = BGVSalesPOSWeekly.Columns(i).OwnerBand.ToString + " " + BGVSalesPOSWeekly.Columns(i).Caption
+                End If
+            Next
+
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "sr_monthly_by_week.xlsx"
+            exportToXLS(path, "monthly sales by week", GCSalesPOSWeekly)
+
+            'restore column opt
+            BGVSalesPOSWeekly.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub TxtYear_EditValueChanged(sender As Object, e As EventArgs) Handles TxtYear.EditValueChanged
+        fillWeeklyPeriod()
+    End Sub
+
+    Private Sub TxtWeek_EditValueChanged(sender As Object, e As EventArgs) Handles TxtWeek.EditValueChanged
+        fillWeeklyPeriod()
+    End Sub
+
+    Private Sub TxtYear_KeyDown_1(sender As Object, e As KeyEventArgs) Handles TxtYear.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            TxtWeek.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtWeek_KeyDown_1(sender As Object, e As KeyEventArgs) Handles TxtWeek.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnViewDateWeekly.Focus()
+        End If
+    End Sub
+
+    Private Sub BtnExportToXLSDateWeekly_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSDateWeekly.Click
+        If BGVSalesWeeklyByDate.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            BGVSalesWeeklyByDate.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To BGVSalesWeeklyByDate.Columns.Count - 1
+                If BGVSalesWeeklyByDate.Columns(i).OwnerBand.ToString <> "DESCRIPTION" Then
+                    BGVSalesWeeklyByDate.Columns(i).Caption = BGVSalesWeeklyByDate.Columns(i).OwnerBand.ToString + " " + BGVSalesWeeklyByDate.Columns(i).Caption
+                End If
+            Next
+
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "sr_weekly.xlsx"
+            exportToXLS(path, "weekly sales", GCSalesWeeklyByDate)
+
+            'restore column opt
+            BGVSalesWeeklyByDate.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnViewDateWeekly_Click(sender As Object, e As EventArgs) Handles BtnViewDateWeekly.Click
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        date_from_weekdate_selected = "0000-01-01"
+        date_until_weekdate_selected = "9999-01-01"
+        Try
+            date_from_weekdate_selected = DateTime.Parse(DEFromWeek.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_weekdate_selected = DateTime.Parse(DEEndWeek.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        year_selected = TxtYear.Text
+        week_selected = TxtWeek.Text
+
+        'Prepare Baded
+        BGVSalesWeeklyByDate.Columns.Clear()
+        BGVSalesWeeklyByDate.Bands.Clear()
+        BGVSalesWeeklyByDate.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+
+        ' Make the group footers always visible.
+        BGVSalesWeeklyByDate.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+
+        'set band
+        Dim band_desc As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesWeeklyByDate.Bands.AddBand("DESCRIPTION")
+        band_desc.AppearanceHeader.Font = New Font(BGVSalesWeeklyByDate.Appearance.Row.Font.FontFamily, BGVSalesWeeklyByDate.Appearance.Row.Font.Size, FontStyle.Bold)
+
+        'cond promo
+        Dim include_promo As String = ""
+        If CEPromoWeeklyByDate.EditValue = True Then
+            include_promo = "1"
+        Else
+            include_promo = "2"
+        End If
+
+        'excecute query
+        Dim query As String = "CALL view_sales_weekly_by_date('" + date_from_weekdate_selected + "', '" + date_until_weekdate_selected + "', " + include_promo + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To data.Columns.Count - 1
+            If data.Columns(i).ColumnName.ToString.Contains("_Qty") Then
+                Dim st_caption As Integer = data.Columns(i).ColumnName.ToString.Length - 4
+
+                Dim found_band As Boolean = False
+                For Each group As DevExpress.XtraGrid.Views.BandedGrid.GridBand In BGVSalesWeeklyByDate.Bands
+                    If group.Caption.ToString = data.Columns(i).ColumnName.ToString.Substring(0, st_caption) Then
+                        found_band = True
+                        group.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Qty"))
+                        Exit For
+                    End If
+                Next group
+
+                If Not found_band Then
+                    Dim band_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesWeeklyByDate.Bands.AddBand(data.Columns(i).ColumnName.ToString.Substring(0, st_caption))
+                    band_new.AppearanceHeader.Font = New Font(BGVSalesWeeklyByDate.Appearance.Row.Font.FontFamily, BGVSalesWeeklyByDate.Appearance.Row.Font.Size, FontStyle.Bold)
+                    band_new.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Qty"))
+                End If
+
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
+
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n0}"
+
+                Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                item.FieldName = data.Columns(i).ColumnName.ToString
+                item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                item.DisplayFormat = "{0:n0}"
+                item.ShowInGroupColumnFooter = BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString)
+                BGVSalesWeeklyByDate.GroupSummary.Add(item)
+            ElseIf data.Columns(i).ColumnName.ToString.Contains("_Sales") Then
+                Dim st_caption As Integer = data.Columns(i).ColumnName.ToString.Length - 6
+
+                Dim found_band As Boolean = False
+                For Each group As DevExpress.XtraGrid.Views.BandedGrid.GridBand In BGVSalesWeeklyByDate.Bands
+                    If group.Caption.ToString = data.Columns(i).ColumnName.ToString.Substring(0, st_caption) Then
+                        found_band = True
+                        group.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Retail"))
+                        Exit For
+                    End If
+                Next group
+
+                If Not found_band Then
+                    Dim band_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesWeeklyByDate.Bands.AddBand(data.Columns(i).ColumnName.ToString.Substring(0, st_caption))
+                    band_new.AppearanceHeader.Font = New Font(BGVSalesWeeklyByDate.Appearance.Row.Font.FontFamily, BGVSalesWeeklyByDate.Appearance.Row.Font.Size, FontStyle.Bold)
+                    band_new.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Retail"))
+                End If
+
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n2}"
+
+                Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                item.FieldName = data.Columns(i).ColumnName.ToString
+                item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                item.DisplayFormat = "{0:n2}"
+                item.ShowInGroupColumnFooter = BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString)
+                BGVSalesWeeklyByDate.GroupSummary.Add(item)
+            ElseIf data.Columns(i).ColumnName.ToString.Contains("_Revenue_Bef") Then
+                Dim st_caption As Integer = data.Columns(i).ColumnName.ToString.Length - 12
+                rev_bef_list_ws.Add(data.Columns(i).ColumnName.ToString)
+
+                Dim found_band As Boolean = False
+                For Each group As DevExpress.XtraGrid.Views.BandedGrid.GridBand In BGVSalesWeeklyByDate.Bands
+                    If group.Caption.ToString = data.Columns(i).ColumnName.ToString.Substring(0, st_caption) Then
+                        found_band = True
+                        group.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Rev. Before Tax"))
+                        Exit For
+                    End If
+                Next group
+
+                If Not found_band Then
+                    Dim band_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesWeeklyByDate.Bands.AddBand(data.Columns(i).ColumnName.ToString.Substring(0, st_caption))
+                    band_new.AppearanceHeader.Font = New Font(BGVSalesWeeklyByDate.Appearance.Row.Font.FontFamily, BGVSalesWeeklyByDate.Appearance.Row.Font.Size, FontStyle.Bold)
+                    band_new.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Rev. Before Tax"))
+                End If
+
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n2}"
+
+                Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                item.FieldName = data.Columns(i).ColumnName.ToString
+                item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                item.DisplayFormat = "{0:n2}"
+                item.ShowInGroupColumnFooter = BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString)
+                BGVSalesWeeklyByDate.GroupSummary.Add(item)
+            ElseIf data.Columns(i).ColumnName.ToString.Contains("_Revenue") Then
+                Dim st_caption As Integer = data.Columns(i).ColumnName.ToString.Length - 8
+
+                Dim found_band As Boolean = False
+                For Each group As DevExpress.XtraGrid.Views.BandedGrid.GridBand In BGVSalesWeeklyByDate.Bands
+                    If group.Caption.ToString = data.Columns(i).ColumnName.ToString.Substring(0, st_caption) Then
+                        found_band = True
+                        group.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Rev. After Tax"))
+                        Exit For
+                    End If
+                Next group
+
+                If Not found_band Then
+                    Dim band_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesWeeklyByDate.Bands.AddBand(data.Columns(i).ColumnName.ToString.Substring(0, st_caption))
+                    band_new.AppearanceHeader.Font = New Font(BGVSalesWeeklyByDate.Appearance.Row.Font.FontFamily, BGVSalesWeeklyByDate.Appearance.Row.Font.Size, FontStyle.Bold)
+                    band_new.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Rev. After Tax"))
+                End If
+
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n2}"
+
+                Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                item.FieldName = data.Columns(i).ColumnName.ToString
+                item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                item.DisplayFormat = "{0:n2}"
+                item.ShowInGroupColumnFooter = BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString)
+                BGVSalesWeeklyByDate.GroupSummary.Add(item)
+            Else
+                band_desc.Columns.Add(BGVSalesWeeklyByDate.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                If data.Columns(i).ColumnName.ToString = "Store" Then
+                    BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).FieldNameSortGroup = "id_store"
+                ElseIf data.Columns(i).ColumnName.ToString = "Area" Then
+                    BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).FieldNameSortGroup = "id_area"
+                ElseIf data.Columns(i).ColumnName.ToString = "Country" Then
+                    BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).FieldNameSortGroup = "id_country"
+                ElseIf data.Columns(i).ColumnName.ToString = "Region" Then
+                    BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).FieldNameSortGroup = "id_region"
+                ElseIf data.Columns(i).ColumnName.ToString = "State" Then
+                    BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).FieldNameSortGroup = "id_state"
+                ElseIf data.Columns(i).ColumnName.ToString = "City" Then
+                    BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).FieldNameSortGroup = "id_city"
+                ElseIf data.Columns(i).ColumnName.ToString = "Store Type" Then
+                    BGVSalesWeeklyByDate.Columns(data.Columns(i).ColumnName.ToString).FieldNameSortGroup = "id_store_type"
+                End If
+            End If
+        Next
+        GCSalesWeeklyByDate.DataSource = data
+        dt_weekly_by_date = data
+
+        'hide column
+        BGVSalesWeeklyByDate.Columns("id_store").Visible = False
+        BGVSalesWeeklyByDate.Columns("id_area").Visible = False
+        BGVSalesWeeklyByDate.Columns("id_country").Visible = False
+        BGVSalesWeeklyByDate.Columns("id_region").Visible = False
+        BGVSalesWeeklyByDate.Columns("id_state").Visible = False
+        BGVSalesWeeklyByDate.Columns("id_city").Visible = False
+        BGVSalesWeeklyByDate.Columns("id_store_type").Visible = False
+        Cursor = Cursors.Default
     End Sub
 End Class

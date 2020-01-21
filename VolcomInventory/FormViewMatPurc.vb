@@ -146,20 +146,20 @@
         Dim total, sub_tot, gross_tot, vat, discount As Decimal
 
         Try
-            sub_tot = Decimal.Parse(GVListPurchase.Columns("total").SummaryText.ToString)
-            vat = (Decimal.Parse(TEVat.Text) / 100) * Decimal.Parse(GVListPurchase.Columns("total").SummaryText.ToString)
-            discount = Decimal.Parse(GVListPurchase.Columns("discount").SummaryText.ToString)
+            sub_tot = GVListPurchase.Columns("total").SummaryItem.SummaryValue
+            vat = (TEVat.EditValue / 100) * GVListPurchase.Columns("total").SummaryItem.SummaryValue
+            discount = GVListPurchase.Columns("discount").SummaryItem.SummaryValue
         Catch ex As Exception
         End Try
 
-        TEDiscount.Text = discount.ToString("0.00")
-        TEVatTot.Text = vat.ToString("0.00")
+        TEDiscount.EditValue = discount
+        TEVatTot.EditValue = vat
 
         gross_tot = sub_tot + discount
-        TEGrossTot.Text = gross_tot.ToString("0.00")
+        TEGrossTot.EditValue = gross_tot
 
         total = sub_tot + vat
-        TETot.Text = total.ToString("0.00")
+        TETot.EditValue = total
         METotSay.Text = ConvertCurrencyToEnglish(Double.Parse(total.ToString), LECurrency.EditValue.ToString)
     End Sub
 

@@ -2294,7 +2294,7 @@ Module Common
         words.Append(".")
         words.Replace(words(0), Char.ToUpper(words(0)), 0, 1)
 
-        Return words.ToString.First().ToString().ToUpper() + words.ToString.Substring(1)
+        Return words.ToString.First().ToString().ToUpper() & words.ToString.Substring(1)
     End Function
 
     Private Sub AddWords(ByVal number As Short, ByVal suffix As String)
