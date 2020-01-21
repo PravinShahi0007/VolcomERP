@@ -14179,4 +14179,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBListFixedAsset_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBListFixedAsset.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcAsset.is_view = "1"
+            FormPurcAsset.MdiParent = Me
+            FormPurcAsset.Show()
+            FormPurcAsset.WindowState = FormWindowState.Maximized
+            FormPurcAsset.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
