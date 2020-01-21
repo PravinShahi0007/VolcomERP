@@ -1,6 +1,17 @@
 ﻿Public Class FormPurcAsset
+    Public is_view As String = "2"
+
     Private Sub FormPurcAsset_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewPending()
+        If is_view = "1" Then
+            XTPPending.PageVisible = False
+            XTPDepresiasi.PageVisible = False
+            XTCAsset.SelectedTabPageIndex = 1
+            viewActive()
+        Else
+            XTPPending.PageVisible = True
+            XTPDepresiasi.PageVisible = True
+            viewPending()
+        End If
     End Sub
 
     Sub viewPending()
