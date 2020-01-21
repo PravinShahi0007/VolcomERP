@@ -8,6 +8,7 @@
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+
     End Sub
 
     Sub load_unit()
@@ -93,10 +94,26 @@ GROUP BY ad.id_comp"
         If XTCBalanceSheet.SelectedTabPageIndex = 0 Then
             CreateNodes(TLLedger, "", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
         ElseIf XTCBalanceSheet.SelectedTabPageIndex = 1 Then
-            CreateNodes(TLBalanceSheet, " WHERE b.is_balance_sheet='1'", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
+            If XTCBS.SelectedTabPageIndex = 0 Then
+                CreateNodes(TLBalanceSheet, " WHERE b.is_balance_sheet='1'", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
+            ElseIf XTCBS.SelectedTabPageIndex = 1 Then
+                load_report(GCAktiva, "1")
+                GVAktiva.BestFitColumns()
+                GVAktiva.ExpandAllGroups()
+                load_report(GCPasiva, "2")
+                GVPasiva.BestFitColumns()
+                GVPasiva.ExpandAllGroups()
+            End If
         ElseIf XTCBalanceSheet.SelectedTabPageIndex = 2 Then
             CreateNodes(TLProfitAndLoss, " WHERE b.is_profit_loss='1'", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
         End If
+    End Sub
+
+    Sub load_report(ByVal gc As DevExpress.XtraGrid.GridControl, ByVal opt As String)
+        Dim date_str As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim unit_str As String = SLEUnit.EditValue.ToString
+        Dim query As String = "CALL acc_show_report('" & date_str & "','" & opt & "','" & unit_str & "')"
+        gc.DataSource = execute_query(query, -1, True, "", "", "", "")
     End Sub
 
     Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
@@ -104,5 +121,11 @@ GROUP BY ad.id_comp"
             DEUntil.EditValue = New DateTime(DEUntil.EditValue.Year, DEUntil.EditValue.Month, Date.DaysInMonth(DEUntil.EditValue.Year, DEUntil.EditValue.Month))
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub XTCBS_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCBS.SelectedPageChanged
+        If XTCBS.SelectedTabPageIndex = 1 Then
+            SplitterBS.SplitterPosition = SplitterBS.Width / 2
+        End If
     End Sub
 End Class
