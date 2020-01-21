@@ -141,4 +141,10 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             SplitterBS.SplitterPosition = SplitterBS.Width / 2
         End If
     End Sub
+
+    Private Sub XTCProfitAndLoss_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCProfitAndLoss.SelectedPageChanged
+        If XTCProfitAndLoss.SelectedTabPageIndex = 1 Then
+            SplitterPL.SplitterPosition = SplitterPL.Width / 2
+        End If
+    End Sub
 End Class

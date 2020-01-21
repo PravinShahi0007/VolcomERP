@@ -102,7 +102,7 @@ Partial Class FormReportBalanceSheet
         Me.TCPLCredit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCPLIdAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.XTPPLReportView = New DevExpress.XtraTab.XtraTabPage()
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.SplitterPL = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.GCReceiveable = New DevExpress.XtraGrid.GridControl()
         Me.GVReceiveable = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -163,8 +163,8 @@ Partial Class FormReportBalanceSheet
         Me.XTPPATreeView.SuspendLayout()
         CType(Me.TLProfitAndLoss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPLReportView.SuspendLayout()
-        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainerControl1.SuspendLayout()
+        CType(Me.SplitterPL, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitterPL.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GCReceiveable, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -894,24 +894,24 @@ Partial Class FormReportBalanceSheet
         '
         'XTPPLReportView
         '
-        Me.XTPPLReportView.Controls.Add(Me.SplitContainerControl1)
+        Me.XTPPLReportView.Controls.Add(Me.SplitterPL)
         Me.XTPPLReportView.Name = "XTPPLReportView"
         Me.XTPPLReportView.Size = New System.Drawing.Size(888, 416)
         Me.XTPPLReportView.Text = "Report View"
         '
-        'SplitContainerControl1
+        'SplitterPL
         '
-        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainerControl1.Name = "SplitContainerControl1"
-        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl3)
-        Me.SplitContainerControl1.Panel1.Text = "Panel1"
-        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl4)
-        Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(888, 416)
-        Me.SplitContainerControl1.SplitterPosition = 422
-        Me.SplitContainerControl1.TabIndex = 1
-        Me.SplitContainerControl1.Text = "SplitContainerControl1"
+        Me.SplitterPL.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitterPL.Location = New System.Drawing.Point(0, 0)
+        Me.SplitterPL.Name = "SplitterPL"
+        Me.SplitterPL.Panel1.Controls.Add(Me.GroupControl3)
+        Me.SplitterPL.Panel1.Text = "Panel1"
+        Me.SplitterPL.Panel2.Controls.Add(Me.GroupControl4)
+        Me.SplitterPL.Panel2.Text = "Panel2"
+        Me.SplitterPL.Size = New System.Drawing.Size(888, 416)
+        Me.SplitterPL.SplitterPosition = 422
+        Me.SplitterPL.TabIndex = 1
+        Me.SplitterPL.Text = "SplitContainerControl1"
         '
         'GroupControl3
         '
@@ -1215,8 +1215,8 @@ Partial Class FormReportBalanceSheet
         Me.XTPPATreeView.ResumeLayout(False)
         CType(Me.TLProfitAndLoss, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPLReportView.ResumeLayout(False)
-        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainerControl1.ResumeLayout(False)
+        CType(Me.SplitterPL, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitterPL.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.GCReceiveable, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1308,7 +1308,7 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents BandedGridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents SplitterPL As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCReceiveable As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVReceiveable As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
