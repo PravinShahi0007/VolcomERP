@@ -1442,38 +1442,38 @@
                     End If
 
                     'post journal
-                    Dim queryj As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                    VALUES ('" + header_number_acc("1") + "','" + report_number + "','15','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                    Dim idj As String = execute_query(queryj, 0, True, "", "", "", "")
-                    increase_inc_acc("1")
+                    'Dim queryj As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                    'VALUES ('" + header_number_acc("1") + "','" + report_number + "','15','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                    'Dim idj As String = execute_query(queryj, 0, True, "", "", "", "")
+                    'increase_inc_acc("1")
 
-                    Dim qdj As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_status_open)
-                    (SELECT '" + idj + "',1132,(prc.mat_det_price * rd.mat_purc_rec_det_qty) AS `debit_val`, 0 AS `credit_val` , 'Auto Posting', '16', '" + id_report + "', r.mat_purc_rec_number, 2
-                    FROM tb_mat_purc_rec_det rd
-                    INNER JOIN tb_mat_purc_rec r ON r.id_mat_purc_rec = rd.id_mat_purc_rec
-                    INNER JOIN tb_mat_purc_det pod ON pod.id_mat_purc_det = rd.id_mat_purc_det
-                    INNER JOIN tb_m_mat_det_price prc ON prc.id_mat_det_price = pod.id_mat_det_price
-                    WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0)
-                    UNION ALL
-                    (SELECT '" + idj + "',191,SUM(prc.mat_det_price * rd.mat_purc_rec_det_qty)*(po.mat_purc_vat/100) AS `debit_val`, 0 AS `credit_val`, 'Auto Posting', '16', '" + id_report + "', r.mat_purc_rec_number, 2
-                    FROM tb_mat_purc_rec_det rd
-                    INNER JOIN tb_mat_purc_rec r ON r.id_mat_purc_rec = rd.id_mat_purc_rec
-                    INNER JOIN tb_mat_purc_det pod ON pod.id_mat_purc_det = rd.id_mat_purc_det
-                    INNER JOIN tb_m_mat_det_price prc ON prc.id_mat_det_price = pod.id_mat_det_price
-                    INNER JOIN tb_mat_purc po ON po.id_mat_purc = pod.id_mat_purc
-                    WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0)
-                    UNION ALL
-                    (SELECT '" + idj + "',a.id_acc,0 AS `debit_val`,SUM(prc.mat_det_price * rd.mat_purc_rec_det_qty)*((po.mat_purc_vat+100)/100) AS `credit_val`, 'Auto Posting', '16', '" + id_report + "', r.mat_purc_rec_number, 2
-                    FROM tb_mat_purc_rec_det rd
-                    INNER JOIN tb_mat_purc_rec r ON r.id_mat_purc_rec = rd.id_mat_purc_rec
-                    INNER JOIN tb_mat_purc_det pod ON pod.id_mat_purc_det = rd.id_mat_purc_det
-                    INNER JOIN tb_m_mat_det_price prc ON prc.id_mat_det_price = pod.id_mat_det_price
-                    INNER JOIN tb_mat_purc po ON po.id_mat_purc = pod.id_mat_purc
-                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact_to
-                    INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-                    JOIN tb_a_acc a ON a.acc_name LIKE CONCAT('2112','%',c.comp_number) AND a.id_is_det=2
-                    WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0) "
-                    execute_non_query(qdj, True, "", "", "", "")
+                    'Dim qdj As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_status_open)
+                    '(SELECT '" + idj + "',1132,(prc.mat_det_price * rd.mat_purc_rec_det_qty) AS `debit_val`, 0 AS `credit_val` , 'Auto Posting', '16', '" + id_report + "', r.mat_purc_rec_number, 2
+                    'FROM tb_mat_purc_rec_det rd
+                    'INNER JOIN tb_mat_purc_rec r ON r.id_mat_purc_rec = rd.id_mat_purc_rec
+                    'INNER JOIN tb_mat_purc_det pod ON pod.id_mat_purc_det = rd.id_mat_purc_det
+                    'INNER JOIN tb_m_mat_det_price prc ON prc.id_mat_det_price = pod.id_mat_det_price
+                    'WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0)
+                    'UNION ALL
+                    '(SELECT '" + idj + "',191,SUM(prc.mat_det_price * rd.mat_purc_rec_det_qty)*(po.mat_purc_vat/100) AS `debit_val`, 0 AS `credit_val`, 'Auto Posting', '16', '" + id_report + "', r.mat_purc_rec_number, 2
+                    'FROM tb_mat_purc_rec_det rd
+                    'INNER JOIN tb_mat_purc_rec r ON r.id_mat_purc_rec = rd.id_mat_purc_rec
+                    'INNER JOIN tb_mat_purc_det pod ON pod.id_mat_purc_det = rd.id_mat_purc_det
+                    'INNER JOIN tb_m_mat_det_price prc ON prc.id_mat_det_price = pod.id_mat_det_price
+                    'INNER JOIN tb_mat_purc po ON po.id_mat_purc = pod.id_mat_purc
+                    'WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0)
+                    'UNION ALL
+                    '(SELECT '" + idj + "',a.id_acc,0 AS `debit_val`,SUM(prc.mat_det_price * rd.mat_purc_rec_det_qty)*((po.mat_purc_vat+100)/100) AS `credit_val`, 'Auto Posting', '16', '" + id_report + "', r.mat_purc_rec_number, 2
+                    'FROM tb_mat_purc_rec_det rd
+                    'INNER JOIN tb_mat_purc_rec r ON r.id_mat_purc_rec = rd.id_mat_purc_rec
+                    'INNER JOIN tb_mat_purc_det pod ON pod.id_mat_purc_det = rd.id_mat_purc_det
+                    'INNER JOIN tb_m_mat_det_price prc ON prc.id_mat_det_price = pod.id_mat_det_price
+                    'INNER JOIN tb_mat_purc po ON po.id_mat_purc = pod.id_mat_purc
+                    'INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact_to
+                    'INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                    'JOIN tb_a_acc a ON a.acc_name LIKE CONCAT('2112','%',c.comp_number) AND a.id_is_det=2
+                    'WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0) "
+                    'execute_non_query(qdj, True, "", "", "", "")
 
                     'infoCustom("Status changed.")
                     Try

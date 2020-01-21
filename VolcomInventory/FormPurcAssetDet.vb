@@ -66,6 +66,11 @@
             SLEAccountFixedAsset.EditValue = data.Rows(0)("id_acc_fa").ToString
             DECreated.EditValue = data.Rows(0)("acq_date")
             TxtCost.EditValue = data.Rows(0)("acq_cost")
+            '
+            If data.Rows(0)("is_confirm") = "1" Then
+                SLEComp.EditValue = data.Rows(0)("id_comp_tag").ToString
+            End If
+            '
             If data.Rows(0)("id_report_status") = "6" And data.Rows(0)("is_active_v") = "1" Then
                 PanelControlVA.Visible = True
                 TxtVA.EditValue = data.Rows(0)("acq_cost_va")
@@ -189,10 +194,11 @@
                     is_non_depresiasi = "2"
                 End If
                 Dim useful_life As String = decimalSQL(TxtUseful.EditValue.ToString)
+                Dim id_tag As String = SLEComp.EditValue.ToString
                 Dim id_acc_dep As String = SLEDep.EditValue.ToString
                 Dim id_acc_dep_accum As String = SLEAccumDep.EditValue.ToString
                 Dim accum_dep As String = decimalSQL(TxtAccumDep.EditValue.ToString)
-                Dim query As String = "UPDATE tb_purc_rec_asset SET id_parent='" + id + "',asset_name='" + asset_name + "',
+                Dim query As String = "UPDATE tb_purc_rec_asset SET id_comp_tag='" + id_tag + "',id_parent='" + id + "',asset_name='" + asset_name + "',
                 asset_note='" + asset_note + "', is_non_depresiasi='" + is_non_depresiasi + "',useful_life='" + useful_life + "',
                 id_acc_dep='" + id_acc_dep + "', id_acc_dep_accum='" + id_acc_dep_accum + "', accum_dep='" + accum_dep + "',
                 is_confirm=1 WHERE id_purc_rec_asset='" + id + "' "
