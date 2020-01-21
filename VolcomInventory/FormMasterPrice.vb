@@ -28,6 +28,7 @@
         query += "ORDER BY b.range DESC) "
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
         viewSearchLookupQuery(SLESeasonHistDet, query, "id_season", "season", "id_season")
+        viewSearchLookupQuery(SLESeasonHistSum, query, "id_season", "season", "id_season")
     End Sub
 
     Sub viewClass()
@@ -39,6 +40,7 @@
         WHERE cd.id_code=" + id_code_class + " "
         viewSearchLookupQuery(SLEClass, query, "id_class", "class_display_name", "id_class")
         viewSearchLookupQuery(SLEClassHistDet, query, "id_class", "class_display_name", "id_class")
+        viewSearchLookupQuery(SLEClassHistSum, query, "id_class", "class_display_name", "id_class")
     End Sub
 
     Sub viewDel()
@@ -54,6 +56,7 @@
         query += "ORDER BY id_delivery ASC "
         viewSearchLookupQuery(SLEDel, query, "id_delivery", "delivery", "id_delivery")
         viewSearchLookupQuery(SLEDelHistDet, query, "id_delivery", "delivery", "id_delivery")
+        viewSearchLookupQuery(SLEDelHistSum, query, "id_delivery", "delivery", "id_delivery")
     End Sub
 
     Sub browsePrice()
@@ -341,5 +344,136 @@
             exportToXLS(path, "active price", GCBrowsePrice)
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub FormMasterPrice_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F7 And XTCBrowse.SelectedTabPageIndex = 2 Then
+            FormMenuAuth.type = "4"
+            FormMenuAuth.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BtnExportToXLSHistSum_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSHistSum.Click
+        If GVHistSummary.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "pl_hist_summary.xlsx"
+            exportToXLS(path, "summary", GCHistSummary)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnViewHistSum_Click(sender As Object, e As EventArgs) Handles BtnViewHistSum.Click
+        viewHistSummary()
+    End Sub
+
+    Sub viewHistSummary()
+        'season
+        Dim cond_season As String = ""
+        Dim id_season As String = SLESeasonHistSum.EditValue.ToString
+        If id_season <> "0" Then
+            cond_season = "AND d.id_season='" + id_season + "' "
+        End If
+
+        'del
+        Dim cond_del As String = ""
+        Dim id_delivery As String = SLEDelHistSum.EditValue.ToString
+        If id_delivery <> "0" Then
+            cond_del = "AND d.id_delivery='" + id_delivery + "' "
+        End If
+
+        'class
+        Dim cond_class As String = ""
+        Dim id_class As String = SLEClassHistSum.EditValue.ToString
+        If id_class <> "0" Then
+            cond_class = "AND cls.id_class='" + id_class + "' "
+        End If
+
+        Dim query As String = "SELECT d.id_design,d.design_code AS `code`, d.design_display_name AS `name`, sc.size_chart, cls.id_class,cls.class, src.id_source, src.`source`, LEFT(last_prc.design_cat,1) AS `design_cat_view`,ss.season, sd.delivery,
+        IF(d.final_is_approve=1, d.design_cop,0) AS `cost`, IFNULL(np.design_price,0) AS `normal_price`, IFNULL(mp.design_price,0) AS `mkd_price`, 
+        IFNULL(ep.design_price,0) AS `eos_price`, IFNULL(sp.design_price,0) AS `sale_price`, last_prc.design_price_date AS `last_updated`
+        FROM tb_m_design d
+        LEFT JOIN (
+	        SELECT d.id_design, GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC) AS `size_chart`
+	        FROM tb_m_product p
+	        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+	        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+	        GROUP BY d.id_design
+        ) sc ON sc.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code_detail AS `id_class`, cd.display_name AS `class` 
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code IN (SELECT o.id_code_fg_class FROM tb_opt o)
+	        GROUP BY dc.id_design
+        ) cls ON cls.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code_detail AS `id_source`,cd.display_name AS `source` 
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code IN (SELECT o.id_code_fg_source FROM tb_opt o)
+	        GROUP BY dc.id_design
+        ) src ON src.id_design = d.id_design
+        INNER JOIN tb_season ss ON ss.id_season = d.id_season
+        INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
+        LEFT JOIN (
+	        SELECT * FROM (
+		        SELECT prc.id_design, prc.design_price 
+		        FROM tb_m_design_price prc
+		        WHERE prc.design_price>0 AND prc.id_design_price_type=1 AND prc.design_price_start_date<=NOW()
+		        ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
+	        ) p
+	        GROUP BY p.id_design
+        ) np ON np.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT * FROM (
+		        SELECT prc.id_design, prc.design_price 
+		        FROM tb_m_design_price prc
+		        WHERE prc.design_price>0 AND prc.id_design_price_type=2 AND prc.design_price_start_date<=NOW()
+		        ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
+	        ) p
+	        GROUP BY p.id_design
+        ) mp ON mp.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT * FROM (
+		        SELECT prc.id_design, prc.design_price 
+		        FROM tb_m_design_price prc
+		        WHERE prc.design_price>0 AND prc.id_design_price_type=3 AND prc.design_price_start_date<=NOW()
+		        ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
+	        ) p
+	        GROUP BY p.id_design
+        ) ep ON ep.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT * FROM (
+		        SELECT prc.id_design, prc.design_price 
+		        FROM tb_m_design_price prc
+		        WHERE prc.design_price>0 AND prc.id_design_price_type=3 AND prc.design_price_start_date<=NOW()
+		        ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
+	        ) p
+	        GROUP BY p.id_design
+        ) sp ON sp.id_design = d.id_design
+        LEFT JOIN( 
+          Select * FROM ( 
+	          Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+	          price.id_design_price_type, price_type.design_price_type,
+	          cat.id_design_cat, cat.design_cat
+	          From tb_m_design_price price 
+	          INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+	          INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
+	          WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	          ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
+          ) a 
+          GROUP BY a.id_design 
+        ) last_prc ON last_prc.id_design = d.id_design 
+         WHERE d.id_lookup_status_order!=2 
+        " + cond_season + "
+        " + cond_del + "
+        " + cond_class + "
+        ORDER BY cls.class ASC, d.id_design ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCHistSummary.DataSource = data
     End Sub
 End Class
