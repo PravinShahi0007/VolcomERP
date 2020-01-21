@@ -141,20 +141,20 @@
     End Sub
 
     Sub print_form()
-        'Try
-        '    Dim report As ReportAccountingWorksheet = New ReportAccountingWorksheet
+        Try
+            Dim report As ReportAccountingWorksheet = New ReportAccountingWorksheet
 
-        '    report.data = GCAccountingWorksheet.DataSource
-        '    report.id_is_det = execute_query("SELECT id_is_det FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", 0, True, "", "", "", "")
+            report.data = GCAccountingWorksheet.DataSource
+            report.id_is_det = execute_query("SELECT id_is_det FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", 0, True, "", "", "", "")
 
-        '    report.XLPeriod.Text = DEFrom.Text + " - " + DETo.Text
-        '    report.XLAccount.Text = SLUEFrom.Text + " - " + SLUETo.Text
+            report.XLPeriod.Text = DEFrom.Text + " - " + DETo.Text
+            report.XLAccount.Text = SLUEFrom.Text + " - " + SLUETo.Text
 
-        '    Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
-        '    tool.ShowPreview()
-        'Catch ex As Exception
-        'End Try
+            tool.ShowPreview()
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub view_acc_to()
