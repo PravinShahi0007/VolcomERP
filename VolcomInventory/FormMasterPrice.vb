@@ -3,6 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Dim super_user As String = get_setup_field("id_role_super_admin")
+    Public is_price_list As Boolean = False
 
     Private Sub FormMasterPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
@@ -12,6 +13,10 @@
         DEFrom.EditValue = dt_now.Rows(0)("tgl")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+
+        If is_price_list Then
+            XTPImport.PageVisible = False
+        End If
     End Sub
 
     Sub viewSeason()
