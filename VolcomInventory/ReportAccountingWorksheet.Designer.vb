@@ -21,18 +21,6 @@ Partial Public Class ReportAccountingWorksheet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportAccountingWorksheet))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLAccount = New DevExpress.XtraReports.UI.XRLabel()
-        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrTable = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCellNo = New DevExpress.XtraReports.UI.XRTableCell()
@@ -41,17 +29,107 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellDebit = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCellCredit = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCellEnding = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLAccount = New DevExpress.XtraReports.UI.XRLabel()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable, Me.XLPeriod, Me.XrLabel3, Me.XrLabel1, Me.XrLabel2, Me.XrLabel4, Me.XLAccount})
-        Me.Detail.HeightF = 116.0!
+        Me.Detail.HeightF = 106.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrTable
+        '
+        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(0!, 66.00002!)
+        Me.XrTable.Name = "XrTable"
+        Me.XrTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow})
+        Me.XrTable.SizeF = New System.Drawing.SizeF(1075.0!, 40.0!)
+        '
+        'XrTableRow
+        '
+        Me.XrTableRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCellNo, Me.XrTableCellAccount, Me.XrTableCellBeginning, Me.XrTableCellDebit, Me.XrTableCellCredit, Me.XrTableCellEnding})
+        Me.XrTableRow.Font = New System.Drawing.Font("Tahoma", 8.75!, System.Drawing.FontStyle.Bold)
+        Me.XrTableRow.Name = "XrTableRow"
+        Me.XrTableRow.StylePriority.UseFont = False
+        Me.XrTableRow.StylePriority.UseTextAlignment = False
+        Me.XrTableRow.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableRow.Weight = 1.6R
+        '
+        'XrTableCellNo
+        '
+        Me.XrTableCellNo.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellNo.Name = "XrTableCellNo"
+        Me.XrTableCellNo.StylePriority.UseBorders = False
+        Me.XrTableCellNo.StylePriority.UsePadding = False
+        Me.XrTableCellNo.Text = "No"
+        Me.XrTableCellNo.Weight = 0.106036363952854R
+        '
+        'XrTableCellAccount
+        '
+        Me.XrTableCellAccount.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellAccount.Name = "XrTableCellAccount"
+        Me.XrTableCellAccount.StylePriority.UseBorders = False
+        Me.XrTableCellAccount.StylePriority.UsePadding = False
+        Me.XrTableCellAccount.Text = "Account"
+        Me.XrTableCellAccount.Weight = 2.4211634678153957R
+        '
+        'XrTableCellBeginning
+        '
+        Me.XrTableCellBeginning.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellBeginning.Name = "XrTableCellBeginning"
+        Me.XrTableCellBeginning.StylePriority.UseBorders = False
+        Me.XrTableCellBeginning.StylePriority.UsePadding = False
+        Me.XrTableCellBeginning.Text = "Beginning"
+        Me.XrTableCellBeginning.Weight = 0.31810907483906109R
+        '
+        'XrTableCellDebit
+        '
+        Me.XrTableCellDebit.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellDebit.Name = "XrTableCellDebit"
+        Me.XrTableCellDebit.StylePriority.UseBorders = False
+        Me.XrTableCellDebit.StylePriority.UsePadding = False
+        Me.XrTableCellDebit.Text = "Debit"
+        Me.XrTableCellDebit.Weight = 0.31810907941746946R
+        '
+        'XrTableCellCredit
+        '
+        Me.XrTableCellCredit.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellCredit.Name = "XrTableCellCredit"
+        Me.XrTableCellCredit.StylePriority.UseBorders = False
+        Me.XrTableCellCredit.StylePriority.UsePadding = False
+        Me.XrTableCellCredit.Text = "Credit"
+        Me.XrTableCellCredit.Weight = 0.31810908471233262R
+        '
+        'XrTableCellEnding
+        '
+        Me.XrTableCellEnding.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellEnding.Name = "XrTableCellEnding"
+        Me.XrTableCellEnding.StylePriority.UseBorders = False
+        Me.XrTableCellEnding.StylePriority.UsePadding = False
+        Me.XrTableCellEnding.Text = "Ending"
+        Me.XrTableCellEnding.Weight = 0.31810916098408215R
         '
         'XLPeriod
         '
@@ -138,6 +216,20 @@ Partial Public Class ReportAccountingWorksheet
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(924.9999!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XLTitle, Me.XrPictureBox1})
@@ -171,98 +263,6 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-        '
-        'XrTable
-        '
-        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(0!, 66.00002!)
-        Me.XrTable.Name = "XrTable"
-        Me.XrTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow})
-        Me.XrTable.SizeF = New System.Drawing.SizeF(1075.0!, 50.0!)
-        '
-        'XrTableRow
-        '
-        Me.XrTableRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCellNo, Me.XrTableCellAccount, Me.XrTableCellBeginning, Me.XrTableCellDebit, Me.XrTableCellCredit, Me.XrTableCellEnding})
-        Me.XrTableRow.Font = New System.Drawing.Font("Tahoma", 8.75!, System.Drawing.FontStyle.Bold)
-        Me.XrTableRow.Name = "XrTableRow"
-        Me.XrTableRow.StylePriority.UseFont = False
-        Me.XrTableRow.StylePriority.UseTextAlignment = False
-        Me.XrTableRow.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableRow.Weight = 2.0R
-        '
-        'XrTableCellNo
-        '
-        Me.XrTableCellNo.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCellNo.Name = "XrTableCellNo"
-        Me.XrTableCellNo.StylePriority.UseBorders = False
-        Me.XrTableCellNo.StylePriority.UsePadding = False
-        Me.XrTableCellNo.Text = "No"
-        Me.XrTableCellNo.Weight = 0.10603636395285448R
-        '
-        'XrTableCellAccount
-        '
-        Me.XrTableCellAccount.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCellAccount.Name = "XrTableCellAccount"
-        Me.XrTableCellAccount.StylePriority.UseBorders = False
-        Me.XrTableCellAccount.StylePriority.UsePadding = False
-        Me.XrTableCellAccount.Text = "Account"
-        Me.XrTableCellAccount.Weight = 1.9439998480178489R
-        '
-        'XrTableCellBeginning
-        '
-        Me.XrTableCellBeginning.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCellBeginning.Name = "XrTableCellBeginning"
-        Me.XrTableCellBeginning.StylePriority.UseBorders = False
-        Me.XrTableCellBeginning.StylePriority.UsePadding = False
-        Me.XrTableCellBeginning.Text = "Beginning"
-        Me.XrTableCellBeginning.Weight = 0.44181817493646047R
-        '
-        'XrTableCellDebit
-        '
-        Me.XrTableCellDebit.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCellDebit.Name = "XrTableCellDebit"
-        Me.XrTableCellDebit.StylePriority.UseBorders = False
-        Me.XrTableCellDebit.StylePriority.UsePadding = False
-        Me.XrTableCellDebit.Text = "Debit"
-        Me.XrTableCellDebit.Weight = 0.44181816603164842R
-        '
-        'XrTableCellCredit
-        '
-        Me.XrTableCellCredit.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCellCredit.Name = "XrTableCellCredit"
-        Me.XrTableCellCredit.StylePriority.UseBorders = False
-        Me.XrTableCellCredit.StylePriority.UsePadding = False
-        Me.XrTableCellCredit.Text = "Credit"
-        Me.XrTableCellCredit.Weight = 0.44181817132651141R
-        '
-        'XrTableCellEnding
-        '
-        Me.XrTableCellEnding.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCellEnding.Name = "XrTableCellEnding"
-        Me.XrTableCellEnding.StylePriority.UseBorders = False
-        Me.XrTableCellEnding.StylePriority.UsePadding = False
-        Me.XrTableCellEnding.Text = "Ending"
-        Me.XrTableCellEnding.Weight = 0.4241455074558716R
-        '
-        'XrPageInfo1
-        '
-        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(924.9999!, 0!)
-        Me.XrPageInfo1.Name = "XrPageInfo1"
-        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
-        Me.XrPageInfo1.StylePriority.UseBorders = False
-        Me.XrPageInfo1.StylePriority.UseFont = False
-        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
-        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'ReportAccountingWorksheet
         '
