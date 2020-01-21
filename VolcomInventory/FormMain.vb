@@ -7490,7 +7490,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMasterPrice" Then
             'MASTER PRICE
             If FormMasterPrice.XTCPrice.SelectedTabPageIndex = 0 Then
-                print_raw(FormMasterPrice.GCBrowsePrice, "")
+                If FormMasterPrice.XTCBrowse.SelectedTabPageIndex = 0 Then
+                    print_raw(FormMasterPrice.GCBrowsePrice, "")
+                ElseIf FormMasterPrice.XTCBrowse.SelectedTabPageIndex = 1 Then
+                    print_raw(FormMasterPrice.GCHistDet, "")
+                ElseIf FormMasterPrice.XTCBrowse.SelectedTabPageIndex = 2 Then
+                    print_raw(FormMasterPrice.GCHistSummary, "")
+                End If
                 'print(FormMasterPrice.GCBrowsePrice, "MASTER PRODUCT" + System.Environment.NewLine + "SEASON : " + FormMasterPrice.SLESeason.Text.ToUpper + " / " + "DEL : " + FormMasterPrice.SLEDel.Text.ToUpper + " / " + "DATE : " + FormMasterPrice.DEFrom.Text.ToUpper)
             ElseIf FormMasterPrice.XTCPrice.SelectedTabPageIndex = 1 Then
                 print(FormMasterPrice.GCPrice, "IMPORT PRICE FROM EXCEL")
