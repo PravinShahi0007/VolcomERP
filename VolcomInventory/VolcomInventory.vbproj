@@ -943,6 +943,12 @@
     <Compile Include="FormDeptHeadSurveyDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDocTracking.Designer.vb">
+      <DependentUpon>FormDocTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDocTracking.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDocumentScanUpload.Designer.vb">
       <DependentUpon>FormDocumentScanUpload.vb</DependentUpon>
     </Compile>
