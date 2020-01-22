@@ -381,6 +381,7 @@ Partial Class FormMain
         Me.NBDebitNote = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBBankDeposit = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCashAdvance = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBReportBalanceSheet = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAccFY = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBInvoiceFGPO = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAcc = New DevExpress.XtraNavBar.NavBarItem()
@@ -417,7 +418,7 @@ Partial Class FormMain
         Me.NBAccountingLedger = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAccountingWorksheet = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCollectionAvg = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBReportBalanceSheet = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBListFixedAsset = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdRec = New DevExpress.XtraNavBar.NavBarItem()
@@ -452,7 +453,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBListFixedAsset = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3036,6 +3036,12 @@ Partial Class FormMain
         Me.NBCashAdvance.Name = "NBCashAdvance"
         Me.NBCashAdvance.SmallImage = CType(resources.GetObject("NBCashAdvance.SmallImage"), System.Drawing.Image)
         '
+        'NBReportBalanceSheet
+        '
+        Me.NBReportBalanceSheet.Caption = "Report Accounting"
+        Me.NBReportBalanceSheet.Name = "NBReportBalanceSheet"
+        Me.NBReportBalanceSheet.SmallImage = CType(resources.GetObject("NBReportBalanceSheet.SmallImage"), System.Drawing.Image)
+        '
         'NBAccFY
         '
         Me.NBAccFY.Caption = "Fiscal Year"
@@ -3258,11 +3264,11 @@ Partial Class FormMain
         Me.NBCollectionAvg.Name = "NBCollectionAvg"
         Me.NBCollectionAvg.SmallImage = CType(resources.GetObject("NBCollectionAvg.SmallImage"), System.Drawing.Image)
         '
-        'NBReportBalanceSheet
+        'NBListFixedAsset
         '
-        Me.NBReportBalanceSheet.Caption = "Balance Sheet"
-        Me.NBReportBalanceSheet.Name = "NBReportBalanceSheet"
-        Me.NBReportBalanceSheet.SmallImage = CType(resources.GetObject("NBReportBalanceSheet.SmallImage"), System.Drawing.Image)
+        Me.NBListFixedAsset.Caption = "List Fixed Asset"
+        Me.NBListFixedAsset.Name = "NBListFixedAsset"
+        Me.NBListFixedAsset.SmallImage = CType(resources.GetObject("NBListFixedAsset.SmallImage"), System.Drawing.Image)
         '
         'NBQC
         '
@@ -3539,12 +3545,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBListFixedAsset
-        '
-        Me.NBListFixedAsset.Caption = "List Fixed Asset"
-        Me.NBListFixedAsset.Name = "NBListFixedAsset"
-        Me.NBListFixedAsset.SmallImage = CType(resources.GetObject("NBListFixedAsset.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
