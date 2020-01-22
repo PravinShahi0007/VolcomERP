@@ -195,6 +195,7 @@ Partial Public Class ReportPurcOrder
         'GridColumnPOItemDesc
         '
         Me.GridColumnPOItemDesc.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnPOItemDesc.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumnPOItemDesc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnPOItemDesc.Caption = "Item"
         Me.GridColumnPOItemDesc.ColumnEdit = Me.RepositoryItemMemoEdit1
@@ -207,6 +208,12 @@ Partial Public Class ReportPurcOrder
         '
         'RepositoryItemMemoEdit1
         '
+        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit1.AppearanceDisabled.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.AppearanceDisabled.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit1.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumnQtyPO
