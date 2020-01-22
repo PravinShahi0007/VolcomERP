@@ -8074,6 +8074,9 @@
     <EmbeddedResource Include="FormDeptHeadSurveyDet.resx">
       <DependentUpon>FormDeptHeadSurveyDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDocTracking.resx">
+      <DependentUpon>FormDocTracking.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDocumentScanUpload.resx">
       <DependentUpon>FormDocumentScanUpload.vb</DependentUpon>
     </EmbeddedResource>
