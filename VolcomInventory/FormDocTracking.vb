@@ -39,6 +39,18 @@
         Catch ex As Exception
         End Try
 
+        'comp
+        Dim id_comp As String = "0"
+        If SLEComp.EditValue = Nothing Then
+            stopCustom("Please select account first")
+            Cursor = Cursors.Default
+            Exit Sub
+        Else
+            id_comp = SLEComp.EditValue.ToString
+        End If
+        Dim query As String = "CALL view_doc_tracking(" + id_comp + ", '" + date_from_selected + "', '" + date_until_selected + "')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
         Cursor = Cursors.Default
     End Sub
 End Class
