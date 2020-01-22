@@ -46,11 +46,17 @@ Partial Class FormDocTracking
         Me.BandedGridColumndel_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsal_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsal_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnid_report = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnreport_mark_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         Me.BandedGridColumnexp_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnexp_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_report = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnreport_mark_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnrts_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnrts_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.BandedGridColumnrqc_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnrqc_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnadj_out_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnadj_out_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -65,8 +71,6 @@ Partial Class FormDocTracking
         Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumnrts_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -207,7 +211,7 @@ Partial Class FormDocTracking
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.gridBand14, Me.gridBand1, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.gridBand9, Me.gridBand10, Me.gridBand11, Me.gridBand12, Me.gridBand13})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_report, Me.BandedGridColumnreport_mark_type, Me.BandedGridColumntrans_date, Me.BandedGridColumnbeg_number, Me.BandedGridColumnbeg_qty, Me.BandedGridColumnreceive_number, Me.BandedGridColumnreceive_qty, Me.BandedGridColumntrf_number, Me.BandedGridColumntrf_qty, Me.BandedGridColumndel_number, Me.BandedGridColumndel_qty, Me.BandedGridColumnsal_number, Me.BandedGridColumnsal_qty, Me.BandedGridColumnexp_number, Me.BandedGridColumnexp_qty, Me.BandedGridColumnrts_number, Me.BandedGridColumn1})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_report, Me.BandedGridColumnreport_mark_type, Me.BandedGridColumntrans_date, Me.BandedGridColumnbeg_number, Me.BandedGridColumnbeg_qty, Me.BandedGridColumnreceive_number, Me.BandedGridColumnreceive_qty, Me.BandedGridColumntrf_number, Me.BandedGridColumntrf_qty, Me.BandedGridColumndel_number, Me.BandedGridColumndel_qty, Me.BandedGridColumnsal_number, Me.BandedGridColumnsal_qty, Me.BandedGridColumnexp_number, Me.BandedGridColumnexp_qty, Me.BandedGridColumnrts_number, Me.BandedGridColumnrts_qty, Me.BandedGridColumnrqc_number, Me.BandedGridColumnrqc_qty, Me.BandedGridColumnadj_out_number, Me.BandedGridColumnadj_out_qty})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -320,22 +324,6 @@ Partial Class FormDocTracking
         Me.BandedGridColumnsal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", "{0:N0}")})
         Me.BandedGridColumnsal_qty.Visible = True
         '
-        'BandedGridColumnid_report
-        '
-        Me.BandedGridColumnid_report.Caption = "id_report"
-        Me.BandedGridColumnid_report.FieldName = "id_report"
-        Me.BandedGridColumnid_report.Name = "BandedGridColumnid_report"
-        '
-        'BandedGridColumnreport_mark_type
-        '
-        Me.BandedGridColumnreport_mark_type.Caption = "Report Mark Type"
-        Me.BandedGridColumnreport_mark_type.FieldName = "report_mark_type"
-        Me.BandedGridColumnreport_mark_type.Name = "BandedGridColumnreport_mark_type"
-        '
-        'SplashScreenManager1
-        '
-        Me.SplashScreenManager1.ClosingDelay = 500
-        '
         'BandedGridColumnexp_number
         '
         Me.BandedGridColumnexp_number.Caption = "Number"
@@ -352,6 +340,76 @@ Partial Class FormDocTracking
         Me.BandedGridColumnexp_qty.Name = "BandedGridColumnexp_qty"
         Me.BandedGridColumnexp_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "exp_qty", "{0:N0}")})
         Me.BandedGridColumnexp_qty.Visible = True
+        '
+        'BandedGridColumnid_report
+        '
+        Me.BandedGridColumnid_report.Caption = "id_report"
+        Me.BandedGridColumnid_report.FieldName = "id_report"
+        Me.BandedGridColumnid_report.Name = "BandedGridColumnid_report"
+        '
+        'BandedGridColumnreport_mark_type
+        '
+        Me.BandedGridColumnreport_mark_type.Caption = "Report Mark Type"
+        Me.BandedGridColumnreport_mark_type.FieldName = "report_mark_type"
+        Me.BandedGridColumnreport_mark_type.Name = "BandedGridColumnreport_mark_type"
+        '
+        'BandedGridColumnrts_number
+        '
+        Me.BandedGridColumnrts_number.Caption = "Number"
+        Me.BandedGridColumnrts_number.FieldName = "rts_number"
+        Me.BandedGridColumnrts_number.Name = "BandedGridColumnrts_number"
+        Me.BandedGridColumnrts_number.Visible = True
+        '
+        'BandedGridColumnrts_qty
+        '
+        Me.BandedGridColumnrts_qty.Caption = "Qty"
+        Me.BandedGridColumnrts_qty.ColumnEdit = Me.RepoQty
+        Me.BandedGridColumnrts_qty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnrts_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnrts_qty.FieldName = "rts_qty"
+        Me.BandedGridColumnrts_qty.Name = "BandedGridColumnrts_qty"
+        Me.BandedGridColumnrts_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rts_qty", "{0:N0}")})
+        Me.BandedGridColumnrts_qty.Visible = True
+        '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
+        '
+        'BandedGridColumnrqc_number
+        '
+        Me.BandedGridColumnrqc_number.Caption = "Number"
+        Me.BandedGridColumnrqc_number.FieldName = "rqc_number"
+        Me.BandedGridColumnrqc_number.Name = "BandedGridColumnrqc_number"
+        Me.BandedGridColumnrqc_number.Visible = True
+        '
+        'BandedGridColumnrqc_qty
+        '
+        Me.BandedGridColumnrqc_qty.Caption = "Qty"
+        Me.BandedGridColumnrqc_qty.ColumnEdit = Me.RepoQty
+        Me.BandedGridColumnrqc_qty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnrqc_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnrqc_qty.FieldName = "rqc_qty"
+        Me.BandedGridColumnrqc_qty.Name = "BandedGridColumnrqc_qty"
+        Me.BandedGridColumnrqc_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rqc_qty", "{0:N0}")})
+        Me.BandedGridColumnrqc_qty.Visible = True
+        '
+        'BandedGridColumnadj_out_number
+        '
+        Me.BandedGridColumnadj_out_number.Caption = "Number"
+        Me.BandedGridColumnadj_out_number.FieldName = "adj_out_number"
+        Me.BandedGridColumnadj_out_number.Name = "BandedGridColumnadj_out_number"
+        Me.BandedGridColumnadj_out_number.Visible = True
+        '
+        'BandedGridColumnadj_out_qty
+        '
+        Me.BandedGridColumnadj_out_qty.Caption = "Qty"
+        Me.BandedGridColumnadj_out_qty.ColumnEdit = Me.RepoQty
+        Me.BandedGridColumnadj_out_qty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnadj_out_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnadj_out_qty.FieldName = "adj_out_qty"
+        Me.BandedGridColumnadj_out_qty.Name = "BandedGridColumnadj_out_qty"
+        Me.BandedGridColumnadj_out_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_qty", "{0:N0}")})
+        Me.BandedGridColumnadj_out_qty.Visible = True
         '
         'gridBand2
         '
@@ -417,27 +475,36 @@ Partial Class FormDocTracking
         'gridBand7
         '
         Me.gridBand7.Caption = "RETURN"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnrts_number)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnrts_qty)
         Me.gridBand7.Name = "gridBand7"
         Me.gridBand7.VisibleIndex = 7
-        Me.gridBand7.Width = 75
+        Me.gridBand7.Width = 150
         '
         'gridBand8
         '
         Me.gridBand8.Caption = "RETURN TRF"
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrqc_number)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrqc_qty)
         Me.gridBand8.Name = "gridBand8"
         Me.gridBand8.VisibleIndex = 8
+        Me.gridBand8.Width = 150
         '
         'gridBand9
         '
         Me.gridBand9.Caption = "ADJ. OUT"
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnadj_out_number)
         Me.gridBand9.Name = "gridBand9"
         Me.gridBand9.VisibleIndex = 9
+        Me.gridBand9.Width = 75
         '
         'gridBand10
         '
         Me.gridBand10.Caption = "ADJ. IN"
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnadj_out_qty)
         Me.gridBand10.Name = "gridBand10"
         Me.gridBand10.VisibleIndex = 10
+        Me.gridBand10.Width = 75
         '
         'gridBand11
         '
@@ -456,21 +523,6 @@ Partial Class FormDocTracking
         '
         Me.gridBand13.Name = "gridBand13"
         Me.gridBand13.VisibleIndex = 13
-        '
-        'BandedGridColumnrts_number
-        '
-        Me.BandedGridColumnrts_number.Caption = "Number"
-        Me.BandedGridColumnrts_number.FieldName = "rts_number"
-        Me.BandedGridColumnrts_number.Name = "BandedGridColumnrts_number"
-        Me.BandedGridColumnrts_number.Visible = True
-        '
-        'BandedGridColumn1
-        '
-        Me.BandedGridColumn1.Caption = "Qty"
-        Me.BandedGridColumn1.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.Visible = True
         '
         'FormDocTracking
         '
@@ -527,6 +579,10 @@ Partial Class FormDocTracking
     Friend WithEvents BandedGridColumndel_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsal_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsal_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnexp_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnexp_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnrts_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnrts_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -534,15 +590,15 @@ Partial Class FormDocTracking
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnexp_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnexp_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnrqc_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnrqc_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnadj_out_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnadj_out_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnrts_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
