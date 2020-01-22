@@ -8,6 +8,8 @@
 
         Dim last_departement As String = ""
 
+        Dim number As Integer = 1
+
         Dim departement_company_contribution_1 As Integer = 0
         Dim departement_company_contribution_2 As Integer = 0
         Dim departement_employee_contribution_1 As Integer = 0
@@ -110,7 +112,7 @@
             'no
             Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
 
-            no.Text = data.Rows(i)("no").ToString
+            no.Text = number.ToString
             no.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
             no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
             no.BackColor = Color.White
@@ -210,6 +212,8 @@
                 departement_salary = 0
                 departement_total = 0
             End If
+
+            number += 1
 
             departement_company_contribution_1 += data.Rows(i)("company_contribution_1")
             departement_company_contribution_2 += data.Rows(i)("company_contribution_2")
@@ -317,5 +321,14 @@
         Else
             pre_load_mark_horz("192", id_payroll, "2", "2", XrTable1)
         End If
+
+        'remove last signature
+        For i = 0 To XrTable1.Rows.Count - 1
+            For j = 0 To XrTable1.Rows.Item(i).Cells.Count - 1
+                If j = XrTable1.Rows.Item(i).Cells.Count - 1 Then
+                    XrTable1.Rows.Item(i).Cells.RemoveAt(j)
+                End If
+            Next
+        Next
     End Sub
 End Class
