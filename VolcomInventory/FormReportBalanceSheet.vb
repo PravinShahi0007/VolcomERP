@@ -145,4 +145,22 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             SplitterBS.SplitterPosition = SplitterBS.Width / 2
         End If
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        If XTCBalanceSheet.SelectedTabPageIndex = 0 Then
+
+        ElseIf XTCBalanceSheet.SelectedTabPageIndex = 1 Then
+            If XTCBS.SelectedTabPageIndex = 0 Then
+
+            ElseIf XTCBS.SelectedTabPageIndex = 1 Then
+
+            End If
+        ElseIf XTCBalanceSheet.SelectedTabPageIndex = 2 Then
+            If XTCProfitAndLoss.SelectedTabPageIndex = 0 Then
+
+            ElseIf XTCProfitAndLoss.SelectedTabPageIndex = 1 Then
+                print(GCProfitAndLoss, "Profit And Loss")
+            End If
+        End If
+    End Sub
 End Class
