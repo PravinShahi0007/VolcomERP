@@ -112,12 +112,9 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             If XTCProfitAndLoss.SelectedTabPageIndex = 0 Then
                 CreateNodes(TLProfitAndLoss, " WHERE b.is_profit_loss='1'", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
             ElseIf XTCProfitAndLoss.SelectedTabPageIndex = 1 Then
-                load_report(GCReceiveable, "3")
-                GVReceiveable.BestFitColumns()
-                GVReceiveable.ExpandAllGroups()
-                load_report(GCExpense, "4")
-                GVExpense.BestFitColumns()
-                GVExpense.ExpandAllGroups()
+                load_report_pl(GCProfitAndLoss)
+                GVProfitAndLoss.BestFitColumns()
+                GVProfitAndLoss.ExpandAllGroups()
             End If
         End If
     End Sub
@@ -126,6 +123,13 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
         Dim date_str As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim unit_str As String = SLEUnit.EditValue.ToString
         Dim query As String = "CALL acc_show_report('" & date_str & "','" & opt & "','" & unit_str & "')"
+        gc.DataSource = execute_query(query, -1, True, "", "", "", "")
+    End Sub
+
+    Sub load_report_pl(ByVal gc As DevExpress.XtraGrid.GridControl)
+        Dim date_str As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim unit_str As String = SLEUnit.EditValue.ToString
+        Dim query As String = "CALL acc_report_profit_loss('" & date_str & "','" & unit_str & "')"
         gc.DataSource = execute_query(query, -1, True, "", "", "", "")
     End Sub
 
@@ -139,12 +143,6 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
     Private Sub XTCBS_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCBS.SelectedPageChanged
         If XTCBS.SelectedTabPageIndex = 1 Then
             SplitterBS.SplitterPosition = SplitterBS.Width / 2
-        End If
-    End Sub
-
-    Private Sub XTCProfitAndLoss_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCProfitAndLoss.SelectedPageChanged
-        If XTCProfitAndLoss.SelectedTabPageIndex = 1 Then
-            SplitterPL.SplitterPosition = SplitterPL.Width / 2
         End If
     End Sub
 End Class

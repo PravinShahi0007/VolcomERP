@@ -8,16 +8,22 @@
 
         Dim last_departement As String = ""
 
+        Dim number As Integer = 1
+
         Dim departement_company_contribution_1 As Integer = 0
         Dim departement_company_contribution_2 As Integer = 0
         Dim departement_employee_contribution_1 As Integer = 0
         Dim departement_employee_contribution_2 As Integer = 0
+        Dim departement_salary_before As Integer = 0
+        Dim departement_salary As Integer = 0
         Dim departement_total As Integer = 0
 
         Dim total_company_contribution_1 As Integer = 0
         Dim total_company_contribution_2 As Integer = 0
         Dim total_employee_contribution_1 As Integer = 0
         Dim total_employee_contribution_2 As Integer = 0
+        Dim total_salary_before As Integer = 0
+        Dim total_salary As Integer = 0
         Dim total As Integer = 0
 
         For i = 0 To data.Rows.Count - 1
@@ -41,6 +47,20 @@
                 total_text.Text = "TOTAL"
                 total_text.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
                 total_text.BackColor = Color.LightGray
+
+                'salary before
+                Dim sal_before As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+
+                sal_before.Text = Format(departement_salary_before, "##,##0")
+                sal_before.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                sal_before.BackColor = Color.LightGray
+
+                'salary
+                Dim sal As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+
+                sal.Text = Format(departement_salary, "##,##0")
+                sal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                sal.BackColor = Color.LightGray
 
                 'company 1
                 Dim departement_company_1 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
@@ -92,7 +112,7 @@
             'no
             Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
 
-            no.Text = data.Rows(i)("no").ToString
+            no.Text = number.ToString
             no.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
             no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
             no.BackColor = Color.White
@@ -188,19 +208,27 @@
                 departement_company_contribution_2 = 0
                 departement_employee_contribution_1 = 0
                 departement_employee_contribution_2 = 0
+                departement_salary_before = 0
+                departement_salary = 0
                 departement_total = 0
             End If
+
+            number += 1
 
             departement_company_contribution_1 += data.Rows(i)("company_contribution_1")
             departement_company_contribution_2 += data.Rows(i)("company_contribution_2")
             departement_employee_contribution_1 += data.Rows(i)("employee_contribution_1")
             departement_employee_contribution_2 += data.Rows(i)("employee_contribution_2")
+            departement_salary_before += data.Rows(i)("employee_salary_before")
+            departement_salary += data.Rows(i)("employee_salary")
             departement_total += data.Rows(i)("company_contribution_1") + data.Rows(i)("company_contribution_2") + data.Rows(i)("employee_contribution_1") + data.Rows(i)("employee_contribution_2")
 
             total_company_contribution_1 += data.Rows(i)("company_contribution_1")
             total_company_contribution_2 += data.Rows(i)("company_contribution_2")
             total_employee_contribution_1 += data.Rows(i)("employee_contribution_1")
             total_employee_contribution_2 += data.Rows(i)("employee_contribution_2")
+            total_salary_before += data.Rows(i)("employee_salary_before")
+            total_salary += data.Rows(i)("employee_salary")
             total += data.Rows(i)("company_contribution_1") + data.Rows(i)("company_contribution_2") + data.Rows(i)("employee_contribution_1") + data.Rows(i)("employee_contribution_2")
 
             'total departement last
@@ -223,6 +251,20 @@
                 total_text.Text = "TOTAL"
                 total_text.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
                 total_text.BackColor = Color.LightGray
+
+                'salary before
+                Dim sal_before As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+
+                sal_before.Text = Format(departement_salary_before, "##,##0")
+                sal_before.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                sal_before.BackColor = Color.LightGray
+
+                'salary
+                Dim sal As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+
+                sal.Text = Format(departement_salary, "##,##0")
+                sal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                sal.BackColor = Color.LightGray
 
                 'company 1
                 Dim departement_company_1 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
@@ -265,6 +307,8 @@
 
         XTTotal.HeightF = 16
 
+        XTTotal.Cells.Item(2).Text = Format(total_salary_before, "##,##0")
+        XTTotal.Cells.Item(3).Text = Format(total_salary, "##,##0")
         XTTotal.Cells.Item(4).Text = Format(total_company_contribution_1, "##,##0")
         XTTotal.Cells.Item(5).Text = Format(total_company_contribution_2, "##,##0")
         XTTotal.Cells.Item(6).Text = Format(total_employee_contribution_1, "##,##0")
@@ -277,5 +321,14 @@
         Else
             pre_load_mark_horz("192", id_payroll, "2", "2", XrTable1)
         End If
+
+        'remove last signature
+        For i = 0 To XrTable1.Rows.Count - 1
+            For j = 0 To XrTable1.Rows.Item(i).Cells.Count - 1
+                If j = XrTable1.Rows.Item(i).Cells.Count - 1 Then
+                    XrTable1.Rows.Item(i).Cells.RemoveAt(j)
+                End If
+            Next
+        Next
     End Sub
 End Class
