@@ -210,6 +210,10 @@ Partial Public Class ReportPurcOrder
         '
         Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
         Me.RepositoryItemMemoEdit1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit1.AppearanceDisabled.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.AppearanceDisabled.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit1.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumnQtyPO
