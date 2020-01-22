@@ -21,20 +21,27 @@ Partial Class FormDocTracking
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDocTracking))
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_comp_cat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.BandedGridColumnid_report = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnreport_mark_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.BandedGridColumntrans_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnbeg_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnbeg_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -47,19 +54,18 @@ Partial Class FormDocTracking
         Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.BandedGridColumnid_report = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnreport_mark_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
-        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelNav
@@ -76,6 +82,45 @@ Partial Class FormDocTracking
         Me.PanelNav.Name = "PanelNav"
         Me.PanelNav.Size = New System.Drawing.Size(1007, 48)
         Me.PanelNav.TabIndex = 0
+        '
+        'BView
+        '
+        Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
+        Me.BView.Location = New System.Drawing.Point(635, 14)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(60, 20)
+        Me.BView.TabIndex = 8914
+        Me.BView.Text = "View"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Enabled = False
+        Me.DEUntil.Location = New System.Drawing.Point(452, 14)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEUntil.Size = New System.Drawing.Size(177, 20)
+        Me.DEUntil.TabIndex = 8933
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(244, 17)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl3.TabIndex = 8934
+        Me.LabelControl3.Text = "From"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(425, 17)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl1.TabIndex = 8932
+        Me.LabelControl1.Text = "Until"
         '
         'LabelControl2
         '
@@ -122,28 +167,6 @@ Partial Class FormDocTracking
         Me.GridColumnid_comp_cat.FieldName = "id_comp_cat"
         Me.GridColumnid_comp_cat.Name = "GridColumnid_comp_cat"
         '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Enabled = False
-        Me.DEUntil.Location = New System.Drawing.Point(452, 14)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEUntil.Size = New System.Drawing.Size(177, 20)
-        Me.DEUntil.TabIndex = 8933
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(425, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl1.TabIndex = 8932
-        Me.LabelControl1.Text = "Until"
-        '
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
@@ -158,37 +181,21 @@ Partial Class FormDocTracking
         Me.DEFrom.Size = New System.Drawing.Size(145, 20)
         Me.DEFrom.TabIndex = 8931
         '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(244, 17)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl3.TabIndex = 8934
-        Me.LabelControl3.Text = "From"
-        '
-        'BView
-        '
-        Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
-        Me.BView.Location = New System.Drawing.Point(635, 14)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(60, 20)
-        Me.BView.TabIndex = 8914
-        Me.BView.Text = "View"
-        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 48)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoQty})
         Me.GCData.Size = New System.Drawing.Size(1007, 438)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.gridBand1, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.gridBand9, Me.gridBand10, Me.gridBand11, Me.gridBand12, Me.gridBand13})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_report, Me.BandedGridColumnreport_mark_type})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.gridBand14, Me.gridBand1, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.gridBand9, Me.gridBand10, Me.gridBand11, Me.gridBand12, Me.gridBand13})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_report, Me.BandedGridColumnreport_mark_type, Me.BandedGridColumntrans_date, Me.BandedGridColumnbeg_number, Me.BandedGridColumnbeg_qty})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -197,87 +204,6 @@ Partial Class FormDocTracking
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        '
-        'gridBand1
-        '
-        Me.gridBand1.Caption = "RECEIVE"
-        Me.gridBand1.Name = "gridBand1"
-        Me.gridBand1.VisibleIndex = 1
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "TRANSFER"
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "DELIVERY"
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "SALES"
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 4
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "EXPENSE"
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 5
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "RETURN"
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 6
-        '
-        'gridBand8
-        '
-        Me.gridBand8.Caption = "RETURN TRF"
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 7
-        '
-        'gridBand9
-        '
-        Me.gridBand9.Caption = "ADJ. OUT"
-        Me.gridBand9.Name = "gridBand9"
-        Me.gridBand9.VisibleIndex = 8
-        '
-        'gridBand10
-        '
-        Me.gridBand10.Caption = "ADJ. IN"
-        Me.gridBand10.Name = "gridBand10"
-        Me.gridBand10.VisibleIndex = 9
-        '
-        'gridBand11
-        '
-        Me.gridBand11.Caption = "REPAIR"
-        Me.gridBand11.Name = "gridBand11"
-        Me.gridBand11.VisibleIndex = 10
-        '
-        'gridBand12
-        '
-        Me.gridBand12.Caption = "RET. REPAIR"
-        Me.gridBand12.Name = "gridBand12"
-        Me.gridBand12.VisibleIndex = 11
-        Me.gridBand12.Width = 87
-        '
-        'gridBand13
-        '
-        Me.gridBand13.Name = "gridBand13"
-        Me.gridBand13.VisibleIndex = 12
-        '
-        'SplashScreenManager1
-        '
-        Me.SplashScreenManager1.ClosingDelay = 500
         '
         'BandedGridColumnid_report
         '
@@ -290,6 +216,130 @@ Partial Class FormDocTracking
         Me.BandedGridColumnreport_mark_type.Caption = "Report Mark Type"
         Me.BandedGridColumnreport_mark_type.FieldName = "report_mark_type"
         Me.BandedGridColumnreport_mark_type.Name = "BandedGridColumnreport_mark_type"
+        '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
+        '
+        'BandedGridColumntrans_date
+        '
+        Me.BandedGridColumntrans_date.Caption = "Date"
+        Me.BandedGridColumntrans_date.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.BandedGridColumntrans_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumntrans_date.FieldName = "trans_date"
+        Me.BandedGridColumntrans_date.Name = "BandedGridColumntrans_date"
+        Me.BandedGridColumntrans_date.Visible = True
+        '
+        'BandedGridColumnbeg_number
+        '
+        Me.BandedGridColumnbeg_number.Caption = "Number"
+        Me.BandedGridColumnbeg_number.FieldName = "beg_number"
+        Me.BandedGridColumnbeg_number.Name = "BandedGridColumnbeg_number"
+        Me.BandedGridColumnbeg_number.Visible = True
+        '
+        'BandedGridColumnbeg_qty
+        '
+        Me.BandedGridColumnbeg_qty.Caption = "Qty"
+        Me.BandedGridColumnbeg_qty.ColumnEdit = Me.RepoQty
+        Me.BandedGridColumnbeg_qty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnbeg_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnbeg_qty.FieldName = "beg_qty"
+        Me.BandedGridColumnbeg_qty.Name = "BandedGridColumnbeg_qty"
+        Me.BandedGridColumnbeg_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "beg_qty", "{0:N0}")})
+        Me.BandedGridColumnbeg_qty.Visible = True
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.BandedGridColumntrans_date)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 75
+        '
+        'gridBand14
+        '
+        Me.gridBand14.Caption = "BEGINNING"
+        Me.gridBand14.Columns.Add(Me.BandedGridColumnbeg_number)
+        Me.gridBand14.Columns.Add(Me.BandedGridColumnbeg_qty)
+        Me.gridBand14.Name = "gridBand14"
+        Me.gridBand14.VisibleIndex = 1
+        Me.gridBand14.Width = 150
+        '
+        'gridBand1
+        '
+        Me.gridBand1.Caption = "RECEIVE"
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.VisibleIndex = 2
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "TRANSFER"
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 3
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "DELIVERY"
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 4
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "SALES"
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 5
+        '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "EXPENSE"
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 6
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "RETURN"
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 7
+        '
+        'gridBand8
+        '
+        Me.gridBand8.Caption = "RETURN TRF"
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 8
+        '
+        'gridBand9
+        '
+        Me.gridBand9.Caption = "ADJ. OUT"
+        Me.gridBand9.Name = "gridBand9"
+        Me.gridBand9.VisibleIndex = 9
+        '
+        'gridBand10
+        '
+        Me.gridBand10.Caption = "ADJ. IN"
+        Me.gridBand10.Name = "gridBand10"
+        Me.gridBand10.VisibleIndex = 10
+        '
+        'gridBand11
+        '
+        Me.gridBand11.Caption = "REPAIR"
+        Me.gridBand11.Name = "gridBand11"
+        Me.gridBand11.VisibleIndex = 11
+        '
+        'gridBand12
+        '
+        Me.gridBand12.Caption = "RET. REPAIR"
+        Me.gridBand12.Name = "gridBand12"
+        Me.gridBand12.VisibleIndex = 12
+        Me.gridBand12.Width = 87
+        '
+        'gridBand13
+        '
+        Me.gridBand13.Name = "gridBand13"
+        Me.gridBand13.VisibleIndex = 13
+        '
+        'RepoQty
+        '
+        Me.RepoQty.AutoHeight = False
+        Me.RepoQty.Name = "RepoQty"
         '
         'FormDocTracking
         '
@@ -304,14 +354,15 @@ Partial Class FormDocTracking
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNav.ResumeLayout(False)
         Me.PanelNav.PerformLayout()
-        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -330,7 +381,15 @@ Partial Class FormDocTracking
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
+    Friend WithEvents BandedGridColumnid_report As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnreport_mark_type As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumntrans_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnbeg_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnbeg_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepoQty As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -343,7 +402,4 @@ Partial Class FormDocTracking
     Friend WithEvents gridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
-    Friend WithEvents BandedGridColumnid_report As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnreport_mark_type As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
