@@ -20,7 +20,7 @@ Partial Class FormReportBalanceSheet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -157,7 +157,7 @@ Partial Class FormReportBalanceSheet
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Controls.Add(Me.SLEUnit)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.BView)
@@ -169,13 +169,13 @@ Partial Class FormReportBalanceSheet
         Me.PanelControl1.Size = New System.Drawing.Size(900, 48)
         Me.PanelControl1.TabIndex = 0
         '
-        'SimpleButton1
+        'BPrint
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(500, 14)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(50, 23)
-        Me.SimpleButton1.TabIndex = 6
-        Me.SimpleButton1.Text = "print"
+        Me.BPrint.Location = New System.Drawing.Point(500, 14)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(50, 23)
+        Me.BPrint.TabIndex = 6
+        Me.BPrint.Text = "print"
         '
         'SLEUnit
         '
@@ -1142,7 +1142,7 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents XTCBS As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPBSLedger As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPBSReport As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCProfitAndLoss As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPATreeView As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPPLReportView As DevExpress.XtraTab.XtraTabPage

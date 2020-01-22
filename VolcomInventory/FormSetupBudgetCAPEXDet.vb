@@ -288,14 +288,18 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
     End Sub
 
     Private Sub GVAfter_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVAfter.RowStyle
-        If Not GVAfter.GetRowCellValue(e.RowHandle, "value_before") = GVAfter.GetRowCellValue(e.RowHandle, "value_after") Then
-            e.Appearance.BackColor = Color.Honeydew
-            e.Appearance.BackColor2 = Color.Honeydew
-            e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Bold)
-        Else
-            e.Appearance.BackColor = Color.White
-            e.Appearance.BackColor2 = Color.White
-            e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Regular)
-        End If
+        Try
+            If Not GVAfter.GetRowCellValue(e.RowHandle, "value_before") = GVAfter.GetRowCellValue(e.RowHandle, "value_after") Then
+                e.Appearance.BackColor = Color.Honeydew
+                e.Appearance.BackColor2 = Color.Honeydew
+                e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Bold)
+            Else
+                e.Appearance.BackColor = Color.White
+                e.Appearance.BackColor2 = Color.White
+                e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Regular)
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
