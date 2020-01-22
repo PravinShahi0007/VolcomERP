@@ -242,7 +242,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCLocation, Me.GCDepartement, Me.GCNo, Me.GCEmployeeKjp, Me.GCEmployeeName, Me.GCJenisKelamin, Me.GCEmployeeDOB, Me.GCKepProg, Me.GCEmployeeSalaryBefore, Me.GCEmployeeSalary, Me.GCCompanyContribution1, Me.GCCompanyContribution2, Me.GCEmployeeContribution1, Me.GCEmployeeContribution2, Me.GCTotalContribution})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 2
-        Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_contribution", Me.GCTotalContribution, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_1", Me.GCCompanyContribution1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_2", Me.GCCompanyContribution2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_1", Me.GCEmployeeContribution1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_2", Me.GCEmployeeContribution2, "{0:N0}")})
+        Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_contribution", Me.GCTotalContribution, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_1", Me.GCCompanyContribution1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_2", Me.GCCompanyContribution2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_1", Me.GCEmployeeContribution1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_2", Me.GCEmployeeContribution2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_salary_before", Me.GCEmployeeSalaryBefore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_salary", Me.GCEmployeeSalary, "{0:N0}")})
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsBehavior.Editable = False
@@ -324,6 +324,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCEmployeeSalaryBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCEmployeeSalaryBefore.FieldName = "employee_salary_before"
         Me.GCEmployeeSalaryBefore.Name = "GCEmployeeSalaryBefore"
+        Me.GCEmployeeSalaryBefore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_salary_before", "{0:N0}")})
         Me.GCEmployeeSalaryBefore.Visible = True
         '
         'GCEmployeeSalary
@@ -333,6 +334,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCEmployeeSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCEmployeeSalary.FieldName = "employee_salary"
         Me.GCEmployeeSalary.Name = "GCEmployeeSalary"
+        Me.GCEmployeeSalary.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_salary", "{0:N0}")})
         Me.GCEmployeeSalary.Visible = True
         Me.GCEmployeeSalary.Width = 155
         '
