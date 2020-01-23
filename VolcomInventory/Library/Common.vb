@@ -2115,6 +2115,29 @@ Module Common
         componentLink.CreateDocument()
         componentLink.ShowPreview()
     End Sub
+
+    Sub print_treelist(ByVal treelist As DevExpress.XtraTreeList.TreeList, ByVal title_here As String)
+        title_print = ""
+        title_print = title_here
+        Dim componentLink As New PrintableComponentLink(New PrintingSystem())
+        componentLink.Component = treelist
+        componentLink.Landscape = True
+        AddHandler componentLink.CreateMarginalHeaderArea, AddressOf CreateMarginalHeaderArea
+        AddHandler componentLink.CreateReportHeaderArea, AddressOf CreateReportHeaderArea
+        Dim phf As PageHeaderFooter = TryCast(componentLink.PageHeaderFooter, PageHeaderFooter)
+
+        ' Clear the PageHeaderFooter's contents.
+        phf.Header.Content.Clear()
+
+        ' Add custom information to the link's header.
+        phf.Footer.Content.AddRange(New String() _
+            {"Printed By: " + name_user + "", "", "Date: [Date Printed]"})
+        phf.Footer.LineAlignment = BrickAlignment.Near
+
+        componentLink.CreateDocument()
+        componentLink.ShowPreview()
+    End Sub
+
     Sub print_no_footer(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
         title_print = ""
         title_print = title_here
