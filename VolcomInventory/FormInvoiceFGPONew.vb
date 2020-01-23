@@ -13,7 +13,7 @@
     End Sub
 
     Sub view_fgpo()
-        Dim query As String = "SELECT po.`id_prod_order`,po.`prod_order_number`,dsg.`design_display_name`,dsg.`design_code`
+        Dim query As String = "SELECT po.`id_prod_order`,po.`prod_order_number`,dsg.`design_display_name`,dsg.`design_code`,CONCAT(po.`prod_order_number`,' - ',dsg.`design_display_name`) AS view_po
 FROM tb_prod_order_rec_det recd 
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
@@ -22,7 +22,7 @@ INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 WHERE po.`id_report_status`='6'
 GROUP BY po.`id_prod_order`"
-        viewSearchLookupQuery(SLEFGPO, query, "id_prod_order", "design_display_name", "id_prod_order")
+        viewSearchLookupQuery(SLEFGPO, query, "id_prod_order", "view_po", "id_prod_order")
     End Sub
 
     Sub fill_grid()
@@ -504,5 +504,9 @@ WHERE pnd.`id_prod_order`='" & id_po & "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPayment.DataSource = data
         GVPayment.BestFitColumns()
+    End Sub
+
+    Private Sub BPrintInfo_Click(sender As Object, e As EventArgs) Handles BPrintInfo.Click
+        print(GCRec, SLEFGPO.Text)
     End Sub
 End Class
