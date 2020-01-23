@@ -127,8 +127,21 @@
         GVData.CloseEditor()
         makeSafeGV(GVData)
 
+        'cek debit dan credit yg nol
+        Dim cond_zero As Boolean = False
+        For c As Integer = 0 To GVData.RowCount - 1
+            Dim debit_val As Decimal = GVData.GetRowCellValue(c, "debit")
+            Dim credit_val As Decimal = GVData.GetRowCellValue(c, "credit")
+            If debit_val = 0 And credit_val = 0 Then
+                cond_zero = True
+                Exit For
+            End If
+        Next
+
         If GVData.Columns("debit").SummaryItem.SummaryValue <> GVData.Columns("credit").SummaryItem.SummaryValue Then
             stopCustom("The totals of the debits and credits must equal ")
+        ElseIf cond_zero Then
+            stopCustom("There is a COA with zero debit and credit ")
         Else
             Cursor = Cursors.WaitCursor
             makeSafeGV(GVData)

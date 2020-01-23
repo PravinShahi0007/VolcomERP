@@ -828,8 +828,6 @@ Partial Class FormPurcReqDet
         Me.GridColumn14.Caption = "Note"
         Me.GridColumn14.FieldName = "note"
         Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 10
         Me.GridColumn14.Width = 281
         '
         'GridColumn17

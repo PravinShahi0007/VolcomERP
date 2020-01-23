@@ -1444,10 +1444,14 @@ Partial Class FormPurcOrderDet
         '
         'RepositoryItemMemoEdit1
         '
+        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumn23
         '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn23.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn23.Caption = "Item Description"

@@ -943,6 +943,12 @@
     <Compile Include="FormDeptHeadSurveyDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDocTracking.Designer.vb">
+      <DependentUpon>FormDocTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDocTracking.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDocumentScanUpload.Designer.vb">
       <DependentUpon>FormDocumentScanUpload.vb</DependentUpon>
     </Compile>
@@ -7441,6 +7447,12 @@
     <Compile Include="ReportSalesPOSWeekly.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesPOSWeeklyByDate.Designer.vb">
+      <DependentUpon>ReportSalesPOSWeeklyByDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesPOSWeeklyByDate.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesPromo.designer.vb">
       <DependentUpon>ReportSalesPromo.vb</DependentUpon>
     </Compile>
@@ -8061,6 +8073,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeptHeadSurveyDet.resx">
       <DependentUpon>FormDeptHeadSurveyDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDocTracking.resx">
+      <DependentUpon>FormDocTracking.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocumentScanUpload.resx">
       <DependentUpon>FormDocumentScanUpload.vb</DependentUpon>
@@ -11807,6 +11822,9 @@
     <EmbeddedResource Include="ReportSalesPOSWeekly.resx">
       <DependentUpon>ReportSalesPOSWeekly.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesPOSWeeklyByDate.resx">
+      <DependentUpon>ReportSalesPOSWeeklyByDate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesPromo.resx">
       <DependentUpon>ReportSalesPromo.vb</DependentUpon>
