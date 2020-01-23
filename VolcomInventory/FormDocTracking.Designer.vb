@@ -34,51 +34,52 @@ Partial Class FormDocTracking
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumntrans_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnbeg_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLink = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnbeg_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnreceive_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnreceive_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumntrf_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntrf_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndel_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndel_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnsal_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsal_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnexp_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnexp_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnrts_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrts_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnrqc_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrqc_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnadj_out_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnadj_out_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnadj_in_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnadj_in_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnrepair_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrepair_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnret_repair_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnret_repair_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnbal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_report = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnreport_mark_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.RepoLink = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,12 +90,13 @@ Partial Class FormDocTracking
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLink, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelNav
         '
+        Me.PanelNav.Controls.Add(Me.BtnExportToXLS)
         Me.PanelNav.Controls.Add(Me.BView)
         Me.PanelNav.Controls.Add(Me.DEUntil)
         Me.PanelNav.Controls.Add(Me.LabelControl3)
@@ -229,6 +231,13 @@ Partial Class FormDocTracking
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.BandedGridColumntrans_date)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 75
+        '
         'BandedGridColumntrans_date
         '
         Me.BandedGridColumntrans_date.Caption = "Date"
@@ -239,6 +248,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumntrans_date.OptionsColumn.AllowEdit = False
         Me.BandedGridColumntrans_date.Visible = True
         '
+        'gridBand14
+        '
+        Me.gridBand14.Caption = "BEGINNING"
+        Me.gridBand14.Columns.Add(Me.BandedGridColumnbeg_number)
+        Me.gridBand14.Columns.Add(Me.BandedGridColumnbeg_qty)
+        Me.gridBand14.Name = "gridBand14"
+        Me.gridBand14.VisibleIndex = 1
+        Me.gridBand14.Width = 150
+        '
         'BandedGridColumnbeg_number
         '
         Me.BandedGridColumnbeg_number.Caption = "Number"
@@ -246,6 +264,11 @@ Partial Class FormDocTracking
         Me.BandedGridColumnbeg_number.FieldName = "beg_number"
         Me.BandedGridColumnbeg_number.Name = "BandedGridColumnbeg_number"
         Me.BandedGridColumnbeg_number.Visible = True
+        '
+        'RepoLink
+        '
+        Me.RepoLink.AutoHeight = False
+        Me.RepoLink.Name = "RepoLink"
         '
         'BandedGridColumnbeg_qty
         '
@@ -262,6 +285,15 @@ Partial Class FormDocTracking
         '
         Me.RepoQty.AutoHeight = False
         Me.RepoQty.Name = "RepoQty"
+        '
+        'gridBand1
+        '
+        Me.gridBand1.Caption = "RECEIVE"
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnreceive_number)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnreceive_qty)
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.VisibleIndex = 2
+        Me.gridBand1.Width = 150
         '
         'BandedGridColumnreceive_number
         '
@@ -282,6 +314,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumnreceive_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_qty", "{0:N0}")})
         Me.BandedGridColumnreceive_qty.Visible = True
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "TRANSFER"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumntrf_number)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumntrf_qty)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 3
+        Me.gridBand3.Width = 150
+        '
         'BandedGridColumntrf_number
         '
         Me.BandedGridColumntrf_number.Caption = "Number"
@@ -301,6 +342,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumntrf_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "trf_qty", "{0:N0}")})
         Me.BandedGridColumntrf_qty.Visible = True
         '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "DELIVERY"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumndel_number)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumndel_qty)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 4
+        Me.gridBand4.Width = 150
+        '
         'BandedGridColumndel_number
         '
         Me.BandedGridColumndel_number.Caption = "Number"
@@ -318,6 +368,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumndel_qty.Name = "BandedGridColumndel_qty"
         Me.BandedGridColumndel_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", "{0:N0}")})
         Me.BandedGridColumndel_qty.Visible = True
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "SALES"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnsal_number)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnsal_qty)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 5
+        Me.gridBand5.Width = 150
         '
         'BandedGridColumnsal_number
         '
@@ -338,6 +397,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumnsal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", "{0:N0}")})
         Me.BandedGridColumnsal_qty.Visible = True
         '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "EXPENSE"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnexp_number)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnexp_qty)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 6
+        Me.gridBand6.Width = 150
+        '
         'BandedGridColumnexp_number
         '
         Me.BandedGridColumnexp_number.Caption = "Number"
@@ -355,6 +423,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumnexp_qty.Name = "BandedGridColumnexp_qty"
         Me.BandedGridColumnexp_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "exp_qty", "{0:N0}")})
         Me.BandedGridColumnexp_qty.Visible = True
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "RETURN"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnrts_number)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnrts_qty)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 7
+        Me.gridBand7.Width = 150
         '
         'BandedGridColumnrts_number
         '
@@ -375,6 +452,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumnrts_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rts_qty", "{0:N0}")})
         Me.BandedGridColumnrts_qty.Visible = True
         '
+        'gridBand8
+        '
+        Me.gridBand8.Caption = "RETURN TRF"
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrqc_number)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrqc_qty)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 8
+        Me.gridBand8.Width = 150
+        '
         'BandedGridColumnrqc_number
         '
         Me.BandedGridColumnrqc_number.Caption = "Number"
@@ -393,6 +479,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumnrqc_qty.Name = "BandedGridColumnrqc_qty"
         Me.BandedGridColumnrqc_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rqc_qty", "{0:N0}")})
         Me.BandedGridColumnrqc_qty.Visible = True
+        '
+        'gridBand9
+        '
+        Me.gridBand9.Caption = "ADJ. OUT"
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnadj_out_number)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnadj_out_qty)
+        Me.gridBand9.Name = "gridBand9"
+        Me.gridBand9.VisibleIndex = 9
+        Me.gridBand9.Width = 150
         '
         'BandedGridColumnadj_out_number
         '
@@ -413,6 +508,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumnadj_out_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_qty", "{0:N0}")})
         Me.BandedGridColumnadj_out_qty.Visible = True
         '
+        'gridBand10
+        '
+        Me.gridBand10.Caption = "ADJ. IN"
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnadj_in_number)
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnadj_in_qty)
+        Me.gridBand10.Name = "gridBand10"
+        Me.gridBand10.VisibleIndex = 10
+        Me.gridBand10.Width = 150
+        '
         'BandedGridColumnadj_in_number
         '
         Me.BandedGridColumnadj_in_number.Caption = "Number"
@@ -431,6 +535,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumnadj_in_qty.Name = "BandedGridColumnadj_in_qty"
         Me.BandedGridColumnadj_in_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_in_qty", "{0:N0}")})
         Me.BandedGridColumnadj_in_qty.Visible = True
+        '
+        'gridBand11
+        '
+        Me.gridBand11.Caption = "REPAIR"
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnrepair_number)
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnrepair_qty)
+        Me.gridBand11.Name = "gridBand11"
+        Me.gridBand11.VisibleIndex = 11
+        Me.gridBand11.Width = 150
         '
         'BandedGridColumnrepair_number
         '
@@ -451,6 +564,15 @@ Partial Class FormDocTracking
         Me.BandedGridColumnrepair_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "repair_qty", "{0:N0}")})
         Me.BandedGridColumnrepair_qty.Visible = True
         '
+        'gridBand12
+        '
+        Me.gridBand12.Caption = "RET. REPAIR"
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnret_repair_number)
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnret_repair_qty)
+        Me.gridBand12.Name = "gridBand12"
+        Me.gridBand12.VisibleIndex = 12
+        Me.gridBand12.Width = 150
+        '
         'BandedGridColumnret_repair_number
         '
         Me.BandedGridColumnret_repair_number.Caption = "Number"
@@ -468,6 +590,14 @@ Partial Class FormDocTracking
         Me.BandedGridColumnret_repair_qty.Name = "BandedGridColumnret_repair_qty"
         Me.BandedGridColumnret_repair_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_repair_qty", "{0:N0}")})
         Me.BandedGridColumnret_repair_qty.Visible = True
+        '
+        'gridBand13
+        '
+        Me.gridBand13.Columns.Add(Me.BandedGridColumnbal)
+        Me.gridBand13.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
+        Me.gridBand13.Name = "gridBand13"
+        Me.gridBand13.VisibleIndex = 13
+        Me.gridBand13.Width = 75
         '
         'BandedGridColumnbal
         '
@@ -494,133 +624,15 @@ Partial Class FormDocTracking
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'gridBand2
+        'BtnExportToXLS
         '
-        Me.gridBand2.Columns.Add(Me.BandedGridColumntrans_date)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 75
-        '
-        'gridBand14
-        '
-        Me.gridBand14.Caption = "BEGINNING"
-        Me.gridBand14.Columns.Add(Me.BandedGridColumnbeg_number)
-        Me.gridBand14.Columns.Add(Me.BandedGridColumnbeg_qty)
-        Me.gridBand14.Name = "gridBand14"
-        Me.gridBand14.VisibleIndex = 1
-        Me.gridBand14.Width = 150
-        '
-        'gridBand1
-        '
-        Me.gridBand1.Caption = "RECEIVE"
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnreceive_number)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnreceive_qty)
-        Me.gridBand1.Name = "gridBand1"
-        Me.gridBand1.VisibleIndex = 2
-        Me.gridBand1.Width = 150
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "TRANSFER"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumntrf_number)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumntrf_qty)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 3
-        Me.gridBand3.Width = 150
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "DELIVERY"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumndel_number)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumndel_qty)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 4
-        Me.gridBand4.Width = 150
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "SALES"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnsal_number)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnsal_qty)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 5
-        Me.gridBand5.Width = 150
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "EXPENSE"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnexp_number)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnexp_qty)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 6
-        Me.gridBand6.Width = 150
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "RETURN"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnrts_number)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnrts_qty)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 7
-        Me.gridBand7.Width = 150
-        '
-        'gridBand8
-        '
-        Me.gridBand8.Caption = "RETURN TRF"
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrqc_number)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrqc_qty)
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 8
-        Me.gridBand8.Width = 150
-        '
-        'gridBand9
-        '
-        Me.gridBand9.Caption = "ADJ. OUT"
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnadj_out_number)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnadj_out_qty)
-        Me.gridBand9.Name = "gridBand9"
-        Me.gridBand9.VisibleIndex = 9
-        Me.gridBand9.Width = 150
-        '
-        'gridBand10
-        '
-        Me.gridBand10.Caption = "ADJ. IN"
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnadj_in_number)
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnadj_in_qty)
-        Me.gridBand10.Name = "gridBand10"
-        Me.gridBand10.VisibleIndex = 10
-        Me.gridBand10.Width = 150
-        '
-        'gridBand11
-        '
-        Me.gridBand11.Caption = "REPAIR"
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnrepair_number)
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnrepair_qty)
-        Me.gridBand11.Name = "gridBand11"
-        Me.gridBand11.VisibleIndex = 11
-        Me.gridBand11.Width = 150
-        '
-        'gridBand12
-        '
-        Me.gridBand12.Caption = "RET. REPAIR"
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnret_repair_number)
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnret_repair_qty)
-        Me.gridBand12.Name = "gridBand12"
-        Me.gridBand12.VisibleIndex = 12
-        Me.gridBand12.Width = 150
-        '
-        'gridBand13
-        '
-        Me.gridBand13.Columns.Add(Me.BandedGridColumnbal)
-        Me.gridBand13.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
-        Me.gridBand13.Name = "gridBand13"
-        Me.gridBand13.VisibleIndex = 13
-        Me.gridBand13.Width = 75
-        '
-        'RepoLink
-        '
-        Me.RepoLink.AutoHeight = False
-        Me.RepoLink.Name = "RepoLink"
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(701, 14)
+        Me.BtnExportToXLS.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(103, 20)
+        Me.BtnExportToXLS.TabIndex = 8902
+        Me.BtnExportToXLS.Text = "Export to XLS"
         '
         'FormDocTracking
         '
@@ -643,8 +655,8 @@ Partial Class FormDocTracking
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLink, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -708,4 +720,5 @@ Partial Class FormDocTracking
     Friend WithEvents gridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepoLink As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
 End Class
