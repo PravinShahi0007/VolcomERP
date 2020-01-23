@@ -7957,6 +7957,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAccountingWorksheet.print_form()
         ElseIf formName = "FormEmpUniCreditNote" Then
             print(FormEmpUniCreditNote.GCData, "Credit Note Uniform")
+        ElseIf formName = "FormDocTracking" Then
+            print_raw(FormDocTracking.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8805,6 +8807,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpUniCreditNote" Then
             FormEmpUniCreditNote.Close()
             FormEmpUniCreditNote.Dispose()
+        ElseIf formName = "FormDocTracking" Then
+            FormDocTracking.Close()
+            FormDocTracking.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
