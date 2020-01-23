@@ -38,6 +38,7 @@ Partial Class FormDocTracking
         Me.BandedGridColumntrans_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnbeg_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLink = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnbeg_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -78,6 +79,7 @@ Partial Class FormDocTracking
         Me.BandedGridColumnid_report = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnreport_mark_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,11 +90,13 @@ Partial Class FormDocTracking
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLink, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelNav
         '
+        Me.PanelNav.Controls.Add(Me.BtnExportToXLS)
         Me.PanelNav.Controls.Add(Me.BView)
         Me.PanelNav.Controls.Add(Me.DEUntil)
         Me.PanelNav.Controls.Add(Me.LabelControl3)
@@ -209,7 +213,7 @@ Partial Class FormDocTracking
         Me.GCData.Location = New System.Drawing.Point(0, 48)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoQty})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoQty, Me.RepoLink})
         Me.GCData.Size = New System.Drawing.Size(1007, 438)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -241,6 +245,7 @@ Partial Class FormDocTracking
         Me.BandedGridColumntrans_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumntrans_date.FieldName = "trans_date"
         Me.BandedGridColumntrans_date.Name = "BandedGridColumntrans_date"
+        Me.BandedGridColumntrans_date.OptionsColumn.AllowEdit = False
         Me.BandedGridColumntrans_date.Visible = True
         '
         'gridBand14
@@ -255,9 +260,15 @@ Partial Class FormDocTracking
         'BandedGridColumnbeg_number
         '
         Me.BandedGridColumnbeg_number.Caption = "Number"
+        Me.BandedGridColumnbeg_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnbeg_number.FieldName = "beg_number"
         Me.BandedGridColumnbeg_number.Name = "BandedGridColumnbeg_number"
         Me.BandedGridColumnbeg_number.Visible = True
+        '
+        'RepoLink
+        '
+        Me.RepoLink.AutoHeight = False
+        Me.RepoLink.Name = "RepoLink"
         '
         'BandedGridColumnbeg_qty
         '
@@ -287,6 +298,7 @@ Partial Class FormDocTracking
         'BandedGridColumnreceive_number
         '
         Me.BandedGridColumnreceive_number.Caption = "Number"
+        Me.BandedGridColumnreceive_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnreceive_number.FieldName = "receive_number"
         Me.BandedGridColumnreceive_number.Name = "BandedGridColumnreceive_number"
         Me.BandedGridColumnreceive_number.Visible = True
@@ -314,6 +326,7 @@ Partial Class FormDocTracking
         'BandedGridColumntrf_number
         '
         Me.BandedGridColumntrf_number.Caption = "Number"
+        Me.BandedGridColumntrf_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumntrf_number.FieldName = "trf_number"
         Me.BandedGridColumntrf_number.Name = "BandedGridColumntrf_number"
         Me.BandedGridColumntrf_number.Visible = True
@@ -341,6 +354,7 @@ Partial Class FormDocTracking
         'BandedGridColumndel_number
         '
         Me.BandedGridColumndel_number.Caption = "Number"
+        Me.BandedGridColumndel_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumndel_number.FieldName = "del_number"
         Me.BandedGridColumndel_number.Name = "BandedGridColumndel_number"
         Me.BandedGridColumndel_number.Visible = True
@@ -367,6 +381,7 @@ Partial Class FormDocTracking
         'BandedGridColumnsal_number
         '
         Me.BandedGridColumnsal_number.Caption = "Number"
+        Me.BandedGridColumnsal_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnsal_number.FieldName = "sal_number"
         Me.BandedGridColumnsal_number.Name = "BandedGridColumnsal_number"
         Me.BandedGridColumnsal_number.Visible = True
@@ -394,6 +409,7 @@ Partial Class FormDocTracking
         'BandedGridColumnexp_number
         '
         Me.BandedGridColumnexp_number.Caption = "Number"
+        Me.BandedGridColumnexp_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnexp_number.FieldName = "exp_number"
         Me.BandedGridColumnexp_number.Name = "BandedGridColumnexp_number"
         Me.BandedGridColumnexp_number.Visible = True
@@ -420,6 +436,7 @@ Partial Class FormDocTracking
         'BandedGridColumnrts_number
         '
         Me.BandedGridColumnrts_number.Caption = "Number"
+        Me.BandedGridColumnrts_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnrts_number.FieldName = "rts_number"
         Me.BandedGridColumnrts_number.Name = "BandedGridColumnrts_number"
         Me.BandedGridColumnrts_number.Visible = True
@@ -447,6 +464,7 @@ Partial Class FormDocTracking
         'BandedGridColumnrqc_number
         '
         Me.BandedGridColumnrqc_number.Caption = "Number"
+        Me.BandedGridColumnrqc_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnrqc_number.FieldName = "rqc_number"
         Me.BandedGridColumnrqc_number.Name = "BandedGridColumnrqc_number"
         Me.BandedGridColumnrqc_number.Visible = True
@@ -474,6 +492,7 @@ Partial Class FormDocTracking
         'BandedGridColumnadj_out_number
         '
         Me.BandedGridColumnadj_out_number.Caption = "Number"
+        Me.BandedGridColumnadj_out_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnadj_out_number.FieldName = "adj_out_number"
         Me.BandedGridColumnadj_out_number.Name = "BandedGridColumnadj_out_number"
         Me.BandedGridColumnadj_out_number.Visible = True
@@ -501,6 +520,7 @@ Partial Class FormDocTracking
         'BandedGridColumnadj_in_number
         '
         Me.BandedGridColumnadj_in_number.Caption = "Number"
+        Me.BandedGridColumnadj_in_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnadj_in_number.FieldName = "adj_in_number"
         Me.BandedGridColumnadj_in_number.Name = "BandedGridColumnadj_in_number"
         Me.BandedGridColumnadj_in_number.Visible = True
@@ -528,6 +548,7 @@ Partial Class FormDocTracking
         'BandedGridColumnrepair_number
         '
         Me.BandedGridColumnrepair_number.Caption = "Number"
+        Me.BandedGridColumnrepair_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnrepair_number.FieldName = "repair_number"
         Me.BandedGridColumnrepair_number.Name = "BandedGridColumnrepair_number"
         Me.BandedGridColumnrepair_number.Visible = True
@@ -555,6 +576,7 @@ Partial Class FormDocTracking
         'BandedGridColumnret_repair_number
         '
         Me.BandedGridColumnret_repair_number.Caption = "Number"
+        Me.BandedGridColumnret_repair_number.ColumnEdit = Me.RepoLink
         Me.BandedGridColumnret_repair_number.FieldName = "ret_repair_number"
         Me.BandedGridColumnret_repair_number.Name = "BandedGridColumnret_repair_number"
         Me.BandedGridColumnret_repair_number.Visible = True
@@ -572,6 +594,7 @@ Partial Class FormDocTracking
         'gridBand13
         '
         Me.gridBand13.Columns.Add(Me.BandedGridColumnbal)
+        Me.gridBand13.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.gridBand13.Name = "gridBand13"
         Me.gridBand13.VisibleIndex = 13
         Me.gridBand13.Width = 75
@@ -601,6 +624,16 @@ Partial Class FormDocTracking
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(701, 14)
+        Me.BtnExportToXLS.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(103, 20)
+        Me.BtnExportToXLS.TabIndex = 8902
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        '
         'FormDocTracking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -622,6 +655,7 @@ Partial Class FormDocTracking
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLink, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -664,6 +698,13 @@ Partial Class FormDocTracking
     Friend WithEvents BandedGridColumnrqc_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnadj_out_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnadj_out_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnadj_in_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnadj_in_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnrepair_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnrepair_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnret_repair_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnret_repair_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnbal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -675,14 +716,9 @@ Partial Class FormDocTracking
     Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnadj_in_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnadj_in_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnrepair_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnrepair_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnret_repair_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnret_repair_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnbal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepoLink As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
 End Class

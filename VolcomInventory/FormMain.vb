@@ -7950,6 +7950,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormAccountingWorksheet" Then
             FormAccountingWorksheet.print_form()
+        ElseIf formName = "FormDocTracking" Then
+            print_raw(FormDocTracking.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8795,6 +8797,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAccountingWorksheet" Then
             FormAccountingWorksheet.Close()
             FormAccountingWorksheet.Dispose()
+        ElseIf formName = "FormDocTracking" Then
+            FormDocTracking.Close()
+            FormDocTracking.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
