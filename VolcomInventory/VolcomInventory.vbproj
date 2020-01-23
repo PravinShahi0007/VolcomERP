@@ -1471,6 +1471,18 @@
     <Compile Include="FormEmpUniBudgetSet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniCreditNote.Designer.vb">
+      <DependentUpon>FormEmpUniCreditNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniCreditNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniCreditNoteDet.Designer.vb">
+      <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniCreditNoteDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniExpense.Designer.vb">
       <DependentUpon>FormEmpUniExpense.vb</DependentUpon>
     </Compile>
@@ -8334,6 +8346,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniBudgetSet.resx">
       <DependentUpon>FormEmpUniBudgetSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniCreditNote.resx">
+      <DependentUpon>FormEmpUniCreditNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniCreditNoteDet.resx">
+      <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniExpense.resx">
       <DependentUpon>FormEmpUniExpense.vb</DependentUpon>

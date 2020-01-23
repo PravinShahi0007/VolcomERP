@@ -1797,6 +1797,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFollowUpAR" Then
             FormFollowUpARDetail.action = "ins"
             FormFollowUpARDetail.ShowDialog()
+        ElseIf formName = "FormEmpUniCreditNote" Then
+            FormEmpUniCreditNoteDet.id_emp_uni_ex = "0"
+            FormEmpUniCreditNoteDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2946,7 +2949,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormFollowUpARDetail.id = FormFollowUpAR.GVActive.GetFocusedRowCellValue("id_follow_up_ar").ToString
                     FormFollowUpARDetail.ShowDialog()
                 End If
-
+            ElseIf formName = "FormEmpUniCreditNote" Then
+                FormEmpUniCreditNoteDet.id_emp_uni_ex = FormEmpUniCreditNote.GVData.GetFocusedRowCellValue("id_emp_uni_ex").ToString
+                FormEmpUniCreditNoteDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7950,6 +7955,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormAccountingWorksheet" Then
             FormAccountingWorksheet.print_form()
+        ElseIf formName = "FormEmpUniCreditNote" Then
+            print(FormEmpUniCreditNote.GCData, "Credit Note Uniform")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8795,6 +8802,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAccountingWorksheet" Then
             FormAccountingWorksheet.Close()
             FormAccountingWorksheet.Dispose()
+        ElseIf formName = "FormEmpUniCreditNote" Then
+            FormEmpUniCreditNote.Close()
+            FormEmpUniCreditNote.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9686,6 +9696,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAccountingLedger.view_form()
         ElseIf formName = "FormAccountingWorksheet" Then
             FormAccountingWorksheet.view_form()
+        ElseIf formName = "FormEmpUniCreditNote" Then
+            FormEmpUniCreditNote.view_form()
         End If
     End Sub
     'Switch
@@ -14188,6 +14200,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPurcAsset.Show()
             FormPurcAsset.WindowState = FormWindowState.Maximized
             FormPurcAsset.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBUniformCreditNote_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBUniformCreditNote.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpUniCreditNote.MdiParent = Me
+            FormEmpUniCreditNote.Show()
+            FormEmpUniCreditNote.WindowState = FormWindowState.Maximized
+            FormEmpUniCreditNote.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
