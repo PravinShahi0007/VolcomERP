@@ -7,6 +7,7 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
         'Prepare paramater
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
@@ -19,9 +20,10 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "CALL view_trans_summary('" + date_from_selected + "','" + date_until_selected + "') "
+        Dim query As String = "CALL view_trans_summary_less('" + date_from_selected + "','" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
