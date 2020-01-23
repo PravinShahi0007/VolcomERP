@@ -20,6 +20,7 @@
 
     Private Sub FormDocTracking_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
+        checkFormAccess(Name)
     End Sub
 
     Private Sub FormDocTracking_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
@@ -52,5 +53,28 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLink_Click(sender As Object, e As EventArgs) Handles RepoLink.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_report As String = "0"
+            Try
+                id_report = GVData.GetFocusedRowCellValue("id_report").ToString
+            Catch ex As Exception
+            End Try
+            myCoalesce(id_report, "0")
+            Dim rmt As String = "0"
+            Try
+                rmt = GVData.GetFocusedRowCellValue("report_mark_type").ToString
+            Catch ex As Exception
+            End Try
+            myCoalesce(rmt, "0")
+            Dim sm As New ClassShowPopUp()
+            sm.id_report = id_report
+            sm.report_mark_type = rmt
+            sm.show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
