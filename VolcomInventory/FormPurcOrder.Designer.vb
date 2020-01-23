@@ -97,6 +97,7 @@ Partial Class FormPurcOrder
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -184,7 +185,8 @@ Partial Class FormPurcOrder
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.MenuGCPO = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CloseReceivingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -236,6 +238,7 @@ Partial Class FormPurcOrder
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuGCPO.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -883,6 +886,7 @@ Partial Class FormPurcOrder
         '
         'GCPO
         '
+        Me.GCPO.ContextMenuStrip = Me.MenuGCPO
         Me.GCPO.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCPO.Location = New System.Drawing.Point(0, 42)
         Me.GCPO.MainView = Me.GVPO
@@ -962,6 +966,14 @@ Partial Class FormPurcOrder
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 5
         Me.GridColumn36.Width = 88
+        '
+        'GridColumn89
+        '
+        Me.GridColumn89.Caption = "Approval Status"
+        Me.GridColumn89.FieldName = "report_status"
+        Me.GridColumn89.Name = "GridColumn89"
+        Me.GridColumn89.Visible = True
+        Me.GridColumn89.VisibleIndex = 7
         '
         'GridColumn4
         '
@@ -1771,13 +1783,17 @@ Partial Class FormPurcOrder
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
-        'GridColumn89
+        'MenuGCPO
         '
-        Me.GridColumn89.Caption = "Approval Status"
-        Me.GridColumn89.FieldName = "report_status"
-        Me.GridColumn89.Name = "GridColumn89"
-        Me.GridColumn89.Visible = True
-        Me.GridColumn89.VisibleIndex = 7
+        Me.MenuGCPO.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseReceivingToolStripMenuItem})
+        Me.MenuGCPO.Name = "MenuGCPO"
+        Me.MenuGCPO.Size = New System.Drawing.Size(158, 26)
+        '
+        'CloseReceivingToolStripMenuItem
+        '
+        Me.CloseReceivingToolStripMenuItem.Name = "CloseReceivingToolStripMenuItem"
+        Me.CloseReceivingToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.CloseReceivingToolStripMenuItem.Text = "Close Receiving"
         '
         'FormPurcOrder
         '
@@ -1849,6 +1865,7 @@ Partial Class FormPurcOrder
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuGCPO.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2018,4 +2035,6 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn81 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BBDropPOItem As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumn89 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents MenuGCPO As ContextMenuStrip
+    Friend WithEvents CloseReceivingToolStripMenuItem As ToolStripMenuItem
 End Class
