@@ -150,7 +150,7 @@
         Else
             If CEDO.Checked = True Then 'view do
                 gridBandDO.Visible = True
-                query = "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,do.do_no,do.qty,do.reff, do.scan_date, grp.id_comp_group,grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query = "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,do.do_no, NULL AS `do_no_combine`,do.qty, 0 AS `amount`,do.reff, do.scan_date, grp.id_comp_group,grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -174,7 +174,7 @@
                             ) head ON head.id_wh_awb_det=awbd.id_wh_awb_det"
                 query += " WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + ""
                 query += " UNION ALL "
-                query += "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,awbd.do_no,awbd.qty, UPPER(sos.so_status) AS `reff`,do.pl_sales_order_del_date AS `scan_date`, grp.id_comp_group, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query += "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,awbd.do_no, doc.combine_number AS `do_no_combine`,awbd.qty,  dod.amount, UPPER(sos.so_status) AS `reff`,do.pl_sales_order_del_date AS `scan_date`, grp.id_comp_group, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -195,6 +195,14 @@
 	                            GROUP BY awbd.id_awbill
                             ) head ON head.id_wh_awb_det=awbd.id_wh_awb_det
                         inner join tb_pl_sales_order_del do ON do.id_pl_sales_order_del =awbd.id_pl_sales_order_del
+                        INNER JOIN (
+	                        SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number, d.pl_sales_order_del_date,SUM(dd.design_price * dd.pl_sales_order_del_det_qty) AS `amount`
+	                        FROM tb_pl_sales_order_del d
+	                        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+	                        WHERE d.id_report_status!=5 
+	                        GROUP BY d.id_pl_sales_order_del
+                        ) dod ON dod.id_pl_sales_order_del = do.id_pl_sales_order_del
+                        LEFT JOIN tb_pl_sales_order_del_combine doc ON doc.id_combine = do.id_combine
 				        INNER JOIN tb_sales_order so ON so.id_sales_order = do.id_sales_order
 				        INNER JOIN tb_lookup_so_status sos ON sos.id_so_status = so.id_so_status"
                 query += " WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + ""

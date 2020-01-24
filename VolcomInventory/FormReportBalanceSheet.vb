@@ -153,7 +153,7 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             If XTCBS.SelectedTabPageIndex = 0 Then
                 print_treelist(TLBalanceSheet, "Balance Sheet")
             ElseIf XTCBS.SelectedTabPageIndex = 1 Then
-
+                print_bs()
             End If
         ElseIf XTCBalanceSheet.SelectedTabPageIndex = 2 Then
             If XTCProfitAndLoss.SelectedTabPageIndex = 0 Then
@@ -162,5 +162,14 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
                 print(GCProfitAndLoss, "Profit And Loss")
             End If
         End If
+    End Sub
+    Sub print_bs()
+        Cursor = Cursors.WaitCursor
+        Dim Report As New ReportBalanceSheet()
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+
+        Cursor = Cursors.Default
     End Sub
 End Class
