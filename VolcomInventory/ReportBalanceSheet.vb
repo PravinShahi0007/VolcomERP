@@ -193,6 +193,9 @@
         '
         CPThisMonth.Text = Decimal.Parse(FormReportBalanceSheet.GVPasiva.Columns("this_month").SummaryItem.SummaryValue.ToString).ToString("N2")
         CPPrevMonth.Text = Decimal.Parse(FormReportBalanceSheet.GVPasiva.Columns("prev_month").SummaryItem.SummaryValue.ToString).ToString("N2")
+        '
+        Lunit.Text = FormReportBalanceSheet.SLEUnit.Text
+        Luntil.Text = FormReportBalanceSheet.DEUntil.Text
     End Sub
 
     Sub add_row(ByVal xtb As DevExpress.XtraReports.UI.XRTable, ByVal acc_name As String, ByVal acc_desc As String, ByVal pad As Integer, ByVal border_all As Boolean, ByVal prev_month_value As String, ByVal this_month_value As String)
