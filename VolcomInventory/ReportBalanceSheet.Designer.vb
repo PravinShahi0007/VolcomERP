@@ -69,6 +69,10 @@ Partial Public Class ReportBalanceSheet
         Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.Lunit = New DevExpress.XtraReports.UI.XRLabel()
+        Me.Luntil = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTablePasiva, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTableAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -242,8 +246,8 @@ Partial Public Class ReportBalanceSheet
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1})
-        Me.TopMargin.HeightF = 49.34804!
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.Luntil, Me.Lunit, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1})
+        Me.TopMargin.HeightF = 75.34804!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -339,11 +343,13 @@ Partial Public Class ReportBalanceSheet
         Me.XrTable6.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable6.Font = New System.Drawing.Font("Segoe UI", 7.0!)
         Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(500.0!, 0!)
         Me.XrTable6.Name = "XrTable6"
         Me.XrTable6.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow6})
         Me.XrTable6.SizeF = New System.Drawing.SizeF(500.0!, 25.0!)
         Me.XrTable6.StylePriority.UseBorders = False
+        Me.XrTable6.StylePriority.UseFont = False
         Me.XrTable6.StylePriority.UseTextAlignment = False
         Me.XrTable6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -404,11 +410,13 @@ Partial Public Class ReportBalanceSheet
         Me.XrTable5.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable5.Font = New System.Drawing.Font("Segoe UI", 7.0!)
         Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable5.Name = "XrTable5"
         Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow5})
         Me.XrTable5.SizeF = New System.Drawing.SizeF(500.0!, 25.0!)
         Me.XrTable5.StylePriority.UseBorders = False
+        Me.XrTable5.StylePriority.UseFont = False
         Me.XrTable5.StylePriority.UseTextAlignment = False
         Me.XrTable5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -617,18 +625,56 @@ Partial Public Class ReportBalanceSheet
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.34804!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 12.34804!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(1000.0!, 23.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.Text = "BALANCE SHEET"
         '
+        'XrLabel2
+        '
+        Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 35.34805!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(50.94705!, 13.0!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.Text = "Unit :"
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.34804!)
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(50.94706!, 13.0!)
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.Text = "Until :"
+        '
+        'Lunit
+        '
+        Me.Lunit.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Lunit.LocationFloat = New DevExpress.Utils.PointFloat(50.94705!, 35.34805!)
+        Me.Lunit.Name = "Lunit"
+        Me.Lunit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.Lunit.SizeF = New System.Drawing.SizeF(282.0077!, 13.0!)
+        Me.Lunit.StylePriority.UseFont = False
+        '
+        'Luntil
+        '
+        Me.Luntil.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Luntil.LocationFloat = New DevExpress.Utils.PointFloat(50.94705!, 48.34804!)
+        Me.Luntil.Name = "Luntil"
+        Me.Luntil.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.Luntil.SizeF = New System.Drawing.SizeF(282.0077!, 13.0!)
+        Me.Luntil.StylePriority.UseFont = False
+        '
         'ReportBalanceSheet
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(98, 71, 49, 24)
+        Me.Margins = New System.Drawing.Printing.Margins(98, 71, 75, 24)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -695,4 +741,8 @@ Partial Public Class ReportBalanceSheet
     Friend WithEvents XrTableCell23 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell24 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents Luntil As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents Lunit As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
 End Class
