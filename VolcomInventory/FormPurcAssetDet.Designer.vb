@@ -66,8 +66,8 @@ Partial Class FormPurcAssetDet
         Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAccumDep = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
@@ -88,6 +88,27 @@ Partial Class FormPurcAssetDet
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelCHeck = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCCurrent = New DevExpress.XtraEditors.GroupControl()
+        Me.DELocationDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LCLocationDate = New DevExpress.XtraEditors.LabelControl()
+        Me.SBSaveCurrent = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEDepartmentCurrent = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridViewSLUEDepartmentCurrent = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLUEEmployeeCurrent = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridViewSLUEEmployeeCurrent = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUELocationCurrent = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelApp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,6 +149,15 @@ Partial Class FormPurcAssetDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelCHeck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelCHeck.SuspendLayout()
+        CType(Me.GCCurrent, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCCurrent.SuspendLayout()
+        CType(Me.DELocationDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DELocationDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEDepartmentCurrent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewSLUEDepartmentCurrent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEEmployeeCurrent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewSLUEEmployeeCurrent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUELocationCurrent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -139,7 +169,7 @@ Partial Class FormPurcAssetDet
         Me.PanelControl1.Controls.Add(Me.BtnCreate)
         Me.PanelControl1.Controls.Add(Me.PanelApp)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 385)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 485)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(803, 47)
         Me.PanelControl1.TabIndex = 300
@@ -543,7 +573,7 @@ Partial Class FormPurcAssetDet
         Me.GroupControl2.Location = New System.Drawing.Point(0, 217)
         Me.GroupControl2.LookAndFeel.SkinName = "Office 2007 Blue"
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(803, 168)
+        Me.GroupControl2.Size = New System.Drawing.Size(803, 166)
         Me.GroupControl2.TabIndex = 200
         Me.GroupControl2.Text = "Depreciation"
         '
@@ -565,7 +595,7 @@ Partial Class FormPurcAssetDet
         Me.PanelDepDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelDepDetail.Location = New System.Drawing.Point(2, 33)
         Me.PanelDepDetail.Name = "PanelDepDetail"
-        Me.PanelDepDetail.Size = New System.Drawing.Size(799, 133)
+        Me.PanelDepDetail.Size = New System.Drawing.Size(799, 131)
         Me.PanelDepDetail.TabIndex = 26
         '
         'TxtComp
@@ -602,14 +632,6 @@ Partial Class FormPurcAssetDet
         Me.GridColumn13.FieldName = "id_comp_contact"
         Me.GridColumn13.Name = "GridColumn13"
         '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Name"
-        Me.GridColumn14.FieldName = "comp_name"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 1
-        '
         'GridColumncomp_number
         '
         Me.GridColumncomp_number.Caption = "Code"
@@ -617,6 +639,14 @@ Partial Class FormPurcAssetDet
         Me.GridColumncomp_number.Name = "GridColumncomp_number"
         Me.GridColumncomp_number.Visible = True
         Me.GridColumncomp_number.VisibleIndex = 0
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Name"
+        Me.GridColumn14.FieldName = "comp_name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
         '
         'LabelControl12
         '
@@ -791,14 +821,199 @@ Partial Class FormPurcAssetDet
         Me.LabelControl9.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl9.TabIndex = 19
         '
+        'GCCurrent
+        '
+        Me.GCCurrent.Controls.Add(Me.DELocationDate)
+        Me.GCCurrent.Controls.Add(Me.LCLocationDate)
+        Me.GCCurrent.Controls.Add(Me.SBSaveCurrent)
+        Me.GCCurrent.Controls.Add(Me.LabelControl21)
+        Me.GCCurrent.Controls.Add(Me.SLUEDepartmentCurrent)
+        Me.GCCurrent.Controls.Add(Me.SLUEEmployeeCurrent)
+        Me.GCCurrent.Controls.Add(Me.LabelControl20)
+        Me.GCCurrent.Controls.Add(Me.SLUELocationCurrent)
+        Me.GCCurrent.Controls.Add(Me.LabelControl18)
+        Me.GCCurrent.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GCCurrent.Location = New System.Drawing.Point(0, 383)
+        Me.GCCurrent.Name = "GCCurrent"
+        Me.GCCurrent.Size = New System.Drawing.Size(803, 102)
+        Me.GCCurrent.TabIndex = 301
+        Me.GCCurrent.Text = "Employee"
+        '
+        'DELocationDate
+        '
+        Me.DELocationDate.EditValue = Nothing
+        Me.DELocationDate.Location = New System.Drawing.Point(475, 59)
+        Me.DELocationDate.Name = "DELocationDate"
+        Me.DELocationDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DELocationDate.Properties.Appearance.Options.UseFont = True
+        Me.DELocationDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DELocationDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DELocationDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DELocationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DELocationDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DELocationDate.Size = New System.Drawing.Size(222, 20)
+        Me.DELocationDate.TabIndex = 26
+        '
+        'LCLocationDate
+        '
+        Me.LCLocationDate.Location = New System.Drawing.Point(402, 62)
+        Me.LCLocationDate.Name = "LCLocationDate"
+        Me.LCLocationDate.Size = New System.Drawing.Size(23, 13)
+        Me.LCLocationDate.TabIndex = 25
+        Me.LCLocationDate.Text = "Date"
+        '
+        'SBSaveCurrent
+        '
+        Me.SBSaveCurrent.Image = CType(resources.GetObject("SBSaveCurrent.Image"), System.Drawing.Image)
+        Me.SBSaveCurrent.Location = New System.Drawing.Point(710, 59)
+        Me.SBSaveCurrent.Name = "SBSaveCurrent"
+        Me.SBSaveCurrent.Size = New System.Drawing.Size(65, 30)
+        Me.SBSaveCurrent.TabIndex = 24
+        Me.SBSaveCurrent.Text = "Save"
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(402, 36)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl21.TabIndex = 23
+        Me.LabelControl21.Text = "Department"
+        '
+        'SLUEDepartmentCurrent
+        '
+        Me.SLUEDepartmentCurrent.Location = New System.Drawing.Point(475, 33)
+        Me.SLUEDepartmentCurrent.Name = "SLUEDepartmentCurrent"
+        Me.SLUEDepartmentCurrent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEDepartmentCurrent.Properties.NullText = ""
+        Me.SLUEDepartmentCurrent.Properties.ShowClearButton = False
+        Me.SLUEDepartmentCurrent.Properties.View = Me.GridViewSLUEDepartmentCurrent
+        Me.SLUEDepartmentCurrent.Size = New System.Drawing.Size(300, 20)
+        Me.SLUEDepartmentCurrent.TabIndex = 22
+        '
+        'GridViewSLUEDepartmentCurrent
+        '
+        Me.GridViewSLUEDepartmentCurrent.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16})
+        Me.GridViewSLUEDepartmentCurrent.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridViewSLUEDepartmentCurrent.Name = "GridViewSLUEDepartmentCurrent"
+        Me.GridViewSLUEDepartmentCurrent.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridViewSLUEDepartmentCurrent.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Id"
+        Me.GridColumn15.FieldName = "id_departement"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Department"
+        Me.GridColumn16.FieldName = "departement"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'SLUEEmployeeCurrent
+        '
+        Me.SLUEEmployeeCurrent.Location = New System.Drawing.Point(77, 33)
+        Me.SLUEEmployeeCurrent.Name = "SLUEEmployeeCurrent"
+        Me.SLUEEmployeeCurrent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEEmployeeCurrent.Properties.NullText = ""
+        Me.SLUEEmployeeCurrent.Properties.ShowClearButton = False
+        Me.SLUEEmployeeCurrent.Properties.View = Me.GridViewSLUEEmployeeCurrent
+        Me.SLUEEmployeeCurrent.Size = New System.Drawing.Size(300, 20)
+        Me.SLUEEmployeeCurrent.TabIndex = 20
+        '
+        'GridViewSLUEEmployeeCurrent
+        '
+        Me.GridViewSLUEEmployeeCurrent.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
+        Me.GridViewSLUEEmployeeCurrent.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridViewSLUEEmployeeCurrent.Name = "GridViewSLUEEmployeeCurrent"
+        Me.GridViewSLUEEmployeeCurrent.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridViewSLUEEmployeeCurrent.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "GridColumn10"
+        Me.GridColumn10.FieldName = "id_departement"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Department"
+        Me.GridColumn11.FieldName = "departement"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "GridColumn12"
+        Me.GridColumn12.FieldName = "id_employee"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "NIP"
+        Me.GridColumn18.FieldName = "employee_code"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Employee"
+        Me.GridColumn19.FieldName = "employee_name"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 2
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "GridColumn20"
+        Me.GridColumn20.FieldName = "id_employee_active"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Active Status"
+        Me.GridColumn21.FieldName = "employee_active"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 3
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Location = New System.Drawing.Point(15, 36)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl20.TabIndex = 21
+        Me.LabelControl20.Text = "Employee"
+        '
+        'SLUELocationCurrent
+        '
+        Me.SLUELocationCurrent.Location = New System.Drawing.Point(77, 59)
+        Me.SLUELocationCurrent.Name = "SLUELocationCurrent"
+        Me.SLUELocationCurrent.Size = New System.Drawing.Size(300, 20)
+        Me.SLUELocationCurrent.TabIndex = 3
+        '
+        'LabelControl18
+        '
+        Me.LabelControl18.Location = New System.Drawing.Point(15, 62)
+        Me.LabelControl18.Name = "LabelControl18"
+        Me.LabelControl18.Size = New System.Drawing.Size(40, 13)
+        Me.LabelControl18.TabIndex = 2
+        Me.LabelControl18.Text = "Location"
+        '
         'FormPurcAssetDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(803, 432)
+        Me.ClientSize = New System.Drawing.Size(803, 532)
         Me.Controls.Add(Me.GroupControl2)
-        Me.Controls.Add(Me.GroupControl1)
+        Me.Controls.Add(Me.GCCurrent)
         Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.GroupControl1)
         Me.MinimizeBox = False
         Me.Name = "FormPurcAssetDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -847,6 +1062,16 @@ Partial Class FormPurcAssetDet
         CType(Me.PanelCHeck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelCHeck.ResumeLayout(False)
         Me.PanelCHeck.PerformLayout()
+        CType(Me.GCCurrent, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GCCurrent.ResumeLayout(False)
+        Me.GCCurrent.PerformLayout()
+        CType(Me.DELocationDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DELocationDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEDepartmentCurrent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewSLUEDepartmentCurrent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEEmployeeCurrent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewSLUEEmployeeCurrent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUELocationCurrent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -919,4 +1144,25 @@ Partial Class FormPurcAssetDet
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCurrent As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents SBSaveCurrent As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLUEDepartmentCurrent As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridViewSLUEDepartmentCurrent As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLUEEmployeeCurrent As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridViewSLUEEmployeeCurrent As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLUELocationCurrent As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DELocationDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LCLocationDate As DevExpress.XtraEditors.LabelControl
 End Class
