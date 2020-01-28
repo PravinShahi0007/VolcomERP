@@ -382,7 +382,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
-        GVItemList.DeleteSelectedRows()
+        GVItemList.DeleteRow(GVItemList.RowCount - 1)
         check_but()
     End Sub
 
