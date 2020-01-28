@@ -364,8 +364,6 @@ Partial Class FormFGTransSummary
         Me.GridColumnCost.FieldName = "amount_cost"
         Me.GridColumnCost.Name = "GridColumnCost"
         Me.GridColumnCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_cost", "{0:N2}")})
-        Me.GridColumnCost.Visible = True
-        Me.GridColumnCost.VisibleIndex = 16
         Me.GridColumnCost.Width = 126
         '
         'GridColumnqty_exp

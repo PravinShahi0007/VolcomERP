@@ -1,8 +1,9 @@
 ﻿Public Class FormFGTransSummary
     Private Sub FormFGTransSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
+        Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`, LAST_DAY(DATE(NOW())) AS `last_date` ", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEUntil.Properties.MaxValue = data_dt.Rows(0)("last_date")
     End Sub
 
     Sub viewData()
