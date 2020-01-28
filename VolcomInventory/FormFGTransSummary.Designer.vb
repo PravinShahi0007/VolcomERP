@@ -273,7 +273,7 @@ Partial Class FormFGTransSummary
         '
         'GridColumnRet
         '
-        Me.GridColumnRet.Caption = "RETURN"
+        Me.GridColumnRet.Caption = "RET"
         Me.GridColumnRet.DisplayFormat.FormatString = "N0"
         Me.GridColumnRet.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnRet.FieldName = "qty_ret"
@@ -399,7 +399,7 @@ Partial Class FormFGTransSummary
         '
         'GridColumnqty_exp
         '
-        Me.GridColumnqty_exp.Caption = "EXPENSE"
+        Me.GridColumnqty_exp.Caption = "EXP"
         Me.GridColumnqty_exp.DisplayFormat.FormatString = "N0"
         Me.GridColumnqty_exp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty_exp.FieldName = "qty_exp"
