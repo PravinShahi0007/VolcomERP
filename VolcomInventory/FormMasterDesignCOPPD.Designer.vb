@@ -278,11 +278,9 @@ Partial Class FormMasterDesignCOPPD
         Me.LECurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LECurrency.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_currency", "Id Currency", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("currency", "Currency")})
         Me.LECurrency.Properties.NullText = ""
-        Me.LECurrency.Properties.ReadOnly = True
         Me.LECurrency.Properties.ShowFooter = False
         Me.LECurrency.Size = New System.Drawing.Size(177, 20)
         Me.LECurrency.TabIndex = 2
-        Me.LECurrency.Visible = False
         '
         'LabelControl7
         '
