@@ -20,6 +20,8 @@ Partial Class FormFGTransSummary
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEAmoType = New DevExpress.XtraEditors.LookUpEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
         Me.BExpand = New DevExpress.XtraEditors.SimpleButton()
@@ -47,8 +49,11 @@ Partial Class FormFGTransSummary
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty_exp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpros = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnExportToXLSRec = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
+        CType(Me.LEAmoType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,6 +65,9 @@ Partial Class FormFGTransSummary
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.BtnExportToXLSRec)
+        Me.GCFilter.Controls.Add(Me.LabelControl1)
+        Me.GCFilter.Controls.Add(Me.LEAmoType)
         Me.GCFilter.Controls.Add(Me.BtnView)
         Me.GCFilter.Controls.Add(Me.BHide)
         Me.GCFilter.Controls.Add(Me.BExpand)
@@ -73,9 +81,25 @@ Partial Class FormFGTransSummary
         Me.GCFilter.Size = New System.Drawing.Size(754, 39)
         Me.GCFilter.TabIndex = 4
         '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(319, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl1.TabIndex = 8900
+        Me.LabelControl1.Text = "Amount Type"
+        '
+        'LEAmoType
+        '
+        Me.LEAmoType.Location = New System.Drawing.Point(389, 9)
+        Me.LEAmoType.Name = "LEAmoType"
+        Me.LEAmoType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEAmoType.Size = New System.Drawing.Size(125, 20)
+        Me.LEAmoType.TabIndex = 8899
+        '
         'BtnView
         '
-        Me.BtnView.Location = New System.Drawing.Point(317, 9)
+        Me.BtnView.Location = New System.Drawing.Point(520, 9)
         Me.BtnView.LookAndFeel.SkinName = "Blue"
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 20)
@@ -158,7 +182,7 @@ Partial Class FormFGTransSummary
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCompNumber, Me.GridColumnCompName, Me.GridColumnBegin, Me.GridColumn4, Me.GridColumnDel, Me.GridColumnSal, Me.GridColumnRet, Me.GridColumnretTrf, Me.GridColumnTrf, Me.GridColumnRepair, Me.GridColumnRetRep, Me.GridColumnAdjIn, Me.GridColumnAdjOut, Me.GridColumnEnd, Me.GridColumnType, Me.GridColumnPrice, Me.GridColumnCost, Me.GridColumnqty_exp})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCompNumber, Me.GridColumnCompName, Me.GridColumnBegin, Me.GridColumn4, Me.GridColumnDel, Me.GridColumnSal, Me.GridColumnRet, Me.GridColumnretTrf, Me.GridColumnTrf, Me.GridColumnRepair, Me.GridColumnRetRep, Me.GridColumnAdjIn, Me.GridColumnAdjOut, Me.GridColumnEnd, Me.GridColumnType, Me.GridColumnPrice, Me.GridColumnCost, Me.GridColumnqty_exp, Me.GridColumnpros})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_beg", Me.GridColumnBegin, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_del", Me.GridColumnDel, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret", Me.GridColumnRet, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret_trf", Me.GridColumnretTrf, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_trf", Me.GridColumnTrf, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rep", Me.GridColumnRepair, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rep_ret", Me.GridColumnRetRep, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sal", Me.GridColumnSal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj_in", Me.GridColumnAdjIn, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj_out", Me.GridColumnAdjOut, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_end", Me.GridColumnEnd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_price", Me.GridColumnPrice, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_cost", Me.GridColumnCost, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_exp", Me.GridColumnqty_exp, "{0:N0}")})
@@ -352,8 +376,6 @@ Partial Class FormFGTransSummary
         Me.GridColumnPrice.FieldName = "amount_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_price", "{0:N2}")})
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 15
         Me.GridColumnPrice.Width = 113
         '
         'GridColumnCost
@@ -377,6 +399,26 @@ Partial Class FormFGTransSummary
         Me.GridColumnqty_exp.Visible = True
         Me.GridColumnqty_exp.VisibleIndex = 5
         '
+        'GridColumnpros
+        '
+        Me.GridColumnpros.Caption = "%"
+        Me.GridColumnpros.DisplayFormat.FormatString = "N2"
+        Me.GridColumnpros.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpros.FieldName = "pros"
+        Me.GridColumnpros.Name = "GridColumnpros"
+        Me.GridColumnpros.OptionsColumn.ReadOnly = True
+        Me.GridColumnpros.Visible = True
+        Me.GridColumnpros.VisibleIndex = 15
+        '
+        'BtnExportToXLSRec
+        '
+        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(601, 9)
+        Me.BtnExportToXLSRec.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSRec.Name = "BtnExportToXLSRec"
+        Me.BtnExportToXLSRec.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSRec.TabIndex = 8901
+        Me.BtnExportToXLSRec.Text = "Export to XLS"
+        '
         'FormFGTransSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -389,6 +431,7 @@ Partial Class FormFGTransSummary
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
+        CType(Me.LEAmoType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -427,4 +470,8 @@ Partial Class FormFGTransSummary
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnqty_exp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEAmoType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents GridColumnpros As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportToXLSRec As DevExpress.XtraEditors.SimpleButton
 End Class
