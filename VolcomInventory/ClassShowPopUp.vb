@@ -332,6 +332,9 @@
         ElseIf report_mark_type = "234" Then
             'follow up ar
             FormFollowUpARHistory.Close()
+        ElseIf report_mark_type = "236" Then
+            'UNIFORM CREDIT NOTE
+            FormEmpUniCreditNoteDet.Close()
         End If
     End Sub
     Sub show()
@@ -1171,6 +1174,11 @@ GROUP BY rec.`id_prod_order`"
             FormFollowUpARHistory.id_follow_up_recap = id_report
             FormFollowUpARHistory.is_view = "1"
             FormFollowUpARHistory.ShowDialog()
+        ElseIf report_mark_type = "236" Then
+            'UNIFORM CREDIT NOTE
+            FormEmpUniCreditNoteDet.id_emp_uni_ex = id_report
+            FormEmpUniCreditNoteDet.is_view = "1"
+            FormEmpUniCreditNoteDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1837,7 +1845,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_asset_rec"
             field_number = "asset_rec_no"
             field_date = "asset_rec_date"
-        ElseIf report_mark_type = "132" Then
+        ElseIf report_mark_type = "132" Or report_mark_type = "236" Then
             'uniform expense
             table_name = "tb_emp_uni_ex"
             field_id = "id_emp_uni_ex"

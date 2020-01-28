@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormPurcAsset
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,11 +17,11 @@ Partial Class FormPurcAsset
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAsset))
         Me.XTCAsset = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPending = New DevExpress.XtraTab.XtraTabPage()
@@ -38,6 +38,8 @@ Partial Class FormPurcAsset
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ValueaddedAssetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InputEmployeeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MoveLocationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVActive = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -51,6 +53,9 @@ Partial Class FormPurcAsset
         Me.GridColumnaccumDepVA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnaccumDepTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAssetNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSold = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -82,6 +87,7 @@ Partial Class FormPurcAsset
         Me.PanelNavDep = New DevExpress.XtraEditors.PanelControl()
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.ViewMoveHistoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -218,25 +224,38 @@ Partial Class FormPurcAsset
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem, Me.ValueaddedAssetToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem, Me.ValueaddedAssetToolStripMenuItem, Me.InputEmployeeToolStripMenuItem, Me.MoveLocationToolStripMenuItem, Me.ViewMoveHistoryToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(174, 114)
         '
         'RecordToolStripMenuItem
         '
         Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
-        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.RecordToolStripMenuItem.Text = "Record"
         '
         'ValueaddedAssetToolStripMenuItem
         '
         Me.ValueaddedAssetToolStripMenuItem.Name = "ValueaddedAssetToolStripMenuItem"
-        Me.ValueaddedAssetToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.ValueaddedAssetToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.ValueaddedAssetToolStripMenuItem.Text = "Value-added asset"
+        Me.ValueaddedAssetToolStripMenuItem.Visible = False
+        '
+        'InputEmployeeToolStripMenuItem
+        '
+        Me.InputEmployeeToolStripMenuItem.Name = "InputEmployeeToolStripMenuItem"
+        Me.InputEmployeeToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.InputEmployeeToolStripMenuItem.Text = "Input Employee"
+        '
+        'MoveLocationToolStripMenuItem
+        '
+        Me.MoveLocationToolStripMenuItem.Name = "MoveLocationToolStripMenuItem"
+        Me.MoveLocationToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.MoveLocationToolStripMenuItem.Text = "Move Location"
         '
         'GVActive
         '
-        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumnacqCost, Me.GridColumnacqCostVA, Me.GridColumnacqCostTotal, Me.GridColumnBookValue, Me.GridColumnaccumDep, Me.GridColumnaccumDepVA, Me.GridColumnaccumDepTotal, Me.GridColumnAssetNumber})
+        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumnacqCost, Me.GridColumnacqCostVA, Me.GridColumnacqCostTotal, Me.GridColumnBookValue, Me.GridColumnaccumDep, Me.GridColumnaccumDepVA, Me.GridColumnaccumDepTotal, Me.GridColumnAssetNumber, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
         Me.GVActive.GridControl = Me.GCActive
         Me.GVActive.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost", Me.GridColumnacqCost, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "book_value", Me.GridColumnBookValue, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value", Me.GridColumnaccumDep, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost_va", Me.GridColumnacqCostVA, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost_total", Me.GridColumnacqCostTotal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value_va", Me.GridColumnaccumDepVA, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value_total", Me.GridColumnaccumDepTotal, "{0:N2}")})
         Me.GVActive.Name = "GVActive"
@@ -362,6 +381,30 @@ Partial Class FormPurcAsset
         Me.GridColumnAssetNumber.Name = "GridColumnAssetNumber"
         Me.GridColumnAssetNumber.Visible = True
         Me.GridColumnAssetNumber.VisibleIndex = 0
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Employee (current)"
+        Me.GridColumn5.FieldName = "employee_name_current"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 8
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Department (current)"
+        Me.GridColumn6.FieldName = "departement_current"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 9
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Location (current)"
+        Me.GridColumn7.FieldName = "location_current"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 10
         '
         'XTPSold
         '
@@ -575,13 +618,13 @@ Partial Class FormPurcAsset
         '
         Me.BtnApply.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.[True]
         Me.BtnApply.AutoHeight = False
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.LightSeaGreen
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.BtnApply.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Apply", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject3.BackColor = System.Drawing.Color.LightSeaGreen
+        SerializableAppearanceObject3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject3.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject3.Options.UseBackColor = True
+        SerializableAppearanceObject3.Options.UseFont = True
+        SerializableAppearanceObject3.Options.UseForeColor = True
+        Me.BtnApply.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Apply", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
         Me.BtnApply.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.BtnApply.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnApply.Name = "BtnApply"
@@ -602,13 +645,13 @@ Partial Class FormPurcAsset
         '
         Me.BtnDetail.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.[True]
         Me.BtnDetail.AutoHeight = False
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.BtnDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject4.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject4.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject4.Options.UseBackColor = True
+        SerializableAppearanceObject4.Options.UseFont = True
+        SerializableAppearanceObject4.Options.UseForeColor = True
+        Me.BtnDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
         Me.BtnDetail.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.BtnDetail.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnDetail.Name = "BtnDetail"
@@ -690,6 +733,12 @@ Partial Class FormPurcAsset
         Me.LabelControl1.Size = New System.Drawing.Size(182, 19)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Depreciation Schedule"
+        '
+        'ViewMoveHistoryToolStripMenuItem
+        '
+        Me.ViewMoveHistoryToolStripMenuItem.Name = "ViewMoveHistoryToolStripMenuItem"
+        Me.ViewMoveHistoryToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ViewMoveHistoryToolStripMenuItem.Text = "View Move History"
         '
         'FormPurcAsset
         '
@@ -785,4 +834,10 @@ Partial Class FormPurcAsset
     Friend WithEvents GridColumnIsValueAdded As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnassetType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumniDAsset As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents InputEmployeeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents MoveLocationToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViewMoveHistoryToolStripMenuItem As ToolStripMenuItem
 End Class
