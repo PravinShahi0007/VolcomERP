@@ -6921,6 +6921,18 @@
     <Compile Include="ReportFGStockSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGTransSummary.Designer.vb">
+      <DependentUpon>ReportFGTransSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGTransSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFGTransSummaryReport.Designer.vb">
+      <DependentUpon>ReportFGTransSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGTransSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGTrf.Designer.vb">
       <DependentUpon>ReportFGTrf.vb</DependentUpon>
     </Compile>
@@ -11550,6 +11562,9 @@
     <EmbeddedResource Include="ReportFGStockSum.resx">
       <DependentUpon>ReportFGStockSum.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGTransSummaryReport.resx">
+      <DependentUpon>ReportFGTransSummaryReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGTrf.resx">
       <DependentUpon>ReportFGTrf.vb</DependentUpon>

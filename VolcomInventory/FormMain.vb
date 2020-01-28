@@ -7646,7 +7646,27 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGAging" Then
             print_raw(FormFGAging.GCDesign, "")
         ElseIf formName = "FormFGTransSummary" Then
-            print_raw(FormFGTransSummary.GCData, "")
+            ReportFGTransSummaryReport.dt = FormFGTransSummary.GCData.DataSource
+            Dim Report As New ReportFGTransSummaryReport()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            FormFGTransSummary.GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
+
+            'Label
+            Report.LabelPeriod.Text = FormFGTransSummary.DEFrom.Text + " - " + FormFGTransSummary.DEUntil.Text
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         ElseIf formName = "FormFGFirstDel" Then
             print_raw(FormFGFirstDel.GCData, "")
         ElseIf formName = "FormFGCompareStockCard" Then
