@@ -2729,7 +2729,7 @@ LEFT JOIN (
 LEFT JOIN (
 	SELECT id_prod_order FROM tb_prod_order_rec WHERE id_report_status!=5
 )rec ON rec.id_prod_order=det.`id_prod_order`
-WHERE tb.id_report_status='6' AND IF(ISNULL(pp.id_design),2,1)=2 AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
+WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If

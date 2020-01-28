@@ -2988,6 +2988,12 @@
     <Compile Include="FormPurcAssetDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcAssetHistory.Designer.vb">
+      <DependentUpon>FormPurcAssetHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcAssetValueAdded.Designer.vb">
       <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
     </Compile>
@@ -6480,6 +6486,12 @@
     <Compile Include="ReportAttnSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBalanceSheet.Designer.vb">
+      <DependentUpon>ReportBalanceSheet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBalanceSheet.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBankDeposit.Designer.vb">
       <DependentUpon>ReportBankDeposit.vb</DependentUpon>
     </Compile>
@@ -9131,6 +9143,9 @@
     <EmbeddedResource Include="FormPurcAssetDet.resx">
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetHistory.resx">
+      <DependentUpon>FormPurcAssetHistory.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetValueAdded.resx">
       <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
     </EmbeddedResource>
@@ -11294,6 +11309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBalanceSheet.resx">
+      <DependentUpon>ReportBalanceSheet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankDeposit.resx">
       <DependentUpon>ReportBankDeposit.vb</DependentUpon>
