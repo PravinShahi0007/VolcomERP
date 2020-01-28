@@ -1,12 +1,17 @@
 ﻿Public Class FormEmpUniCreditNoteDet
     Public id_emp_uni_ex As String = "0"
 
+    Public is_view As Boolean = False
+
     Private id_emp_uni_ex_ref As String = "0"
     Private id_departement As String = "0"
     Private id_pl_sales_order_del As String = "0"
     Private id_comp_contact As String = "0"
 
     Private max_qty As DataTable = New DataTable
+
+    Private bof_column As String = get_setup_field("bof_column")
+    Private bof_xls_so As String = get_setup_field("bof_xls_inv")
 
     Private Sub FormEmpUniCreditNoteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_category()
@@ -30,6 +35,7 @@
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            TEExpense.Text = data.Rows(0)("emp_uni_ex_number_ref").ToString
             TxtNumber.Text = data.Rows(0)("emp_uni_ex_number").ToString
             DECreated.EditValue = data.Rows(0)("emp_uni_ex_date")
             MENote.Text = data.Rows(0)("emp_uni_ex_note").ToString
@@ -52,6 +58,10 @@
             GCData.DataSource = data_detail
         End If
 
+        If LEReportStatus.EditValue.ToString = "5" Or LEReportStatus.EditValue.ToString = "6" Then
+            is_view = True
+        End If
+
         'controls
         If id_emp_uni_ex = "0" Then
             BtnMark.Enabled = False
@@ -61,6 +71,10 @@
             BtnAttachment.Enabled = True
             BtnPrint.Enabled = False
             BtnSave.Enabled = True
+            TEExpense.ReadOnly = False
+            SBPick.Enabled = True
+            RepositoryItemTextEdit.ReadOnly = False
+            MENote.ReadOnly = False
         Else
             BtnMark.Enabled = True
             BtnViewJournal.Enabled = True
@@ -69,11 +83,21 @@
             BtnAttachment.Enabled = False
             BtnPrint.Enabled = True
             BtnSave.Enabled = False
+            TEExpense.ReadOnly = True
+            SBPick.Enabled = False
+            RepositoryItemTextEdit.ReadOnly = True
+            MENote.ReadOnly = True
         End If
 
         If LEReportStatus.EditValue.ToString = "6" Then
             BtnDraftJournal.Visible = False
             BtnViewJournal.Visible = True
+        End If
+
+        If LEReportStatus.EditValue.ToString <> "5" And bof_column = "1" Then
+            BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
         End If
     End Sub
 
@@ -245,18 +269,18 @@
 
                 execute_non_query(qd, True, "", "", "", "")
 
-                'reserved stock
-                'Dim rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
-
-                'rsv_stock.reservedStock(id_emp_uni_ex, 132)
-
                 'draft journal
-                'Dim acc As New ClassAccounting()
+                Dim acc As New ClassAccounting()
 
-                'acc.generateJournalSalesDraft(id_emp_uni_ex, "132")
+                acc.generateJournalSalesDraft(id_emp_uni_ex, "236")
 
                 'submit mark
-                'submit_who_prepared("236", id_emp_uni_ex, id_user)
+                submit_who_prepared("236", id_emp_uni_ex, id_user)
+
+                load_form()
+
+                FormEmpUniCreditNote.view_form()
+                FormEmpUniCreditNote.GVData.FocusedRowHandle = find_row(FormEmpUniCreditNote.GVData, "id_emp_uni_ex", id_emp_uni_ex)
 
                 Cursor = Cursors.Default
             End If
@@ -314,7 +338,7 @@
 
     Private Sub BtnDraftJournal_Click(sender As Object, e As EventArgs) Handles BtnDraftJournal.Click
         Cursor = Cursors.WaitCursor
-        FormAccountingDraftJournal.is_view = "1"
+        FormAccountingDraftJournal.is_view = If(is_view, "1", "-1")
         FormAccountingDraftJournal.id_report = id_emp_uni_ex
         FormAccountingDraftJournal.report_number = TxtNumber.Text
         FormAccountingDraftJournal.report_mark_type = "236"
@@ -324,5 +348,196 @@
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         Close()
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "236"
+        FormReportMark.id_report = id_emp_uni_ex
+        If is_view Then
+            FormReportMark.is_view = "1"
+        End If
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportEmpUniExpense.id_emp_uni_ex = id_emp_uni_ex
+        ReportEmpUniExpense.dt = GCData.DataSource
+        Dim Report As New ReportEmpUniExpense()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVData)
+
+        'Parse val
+        Report.LabelTitle.Text = "BUKTI CREDIT NOTE UNIFORM"
+        Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelNIK.Text = TxtNIP.Text.ToUpper
+        Report.LabelName.Text = TxtEmployeeName.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToString
+        Report.LNote.Text = MENote.Text.ToString
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        Cursor = Cursors.WaitCursor
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'copy stream column
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'hide column
+            For c As Integer = 0 To GVData.Columns.Count - 1
+                GVData.Columns(c).Visible = False
+            Next
+            GridColumnCode.VisibleIndex = 0
+            GridColumnQty.VisibleIndex = 1
+            GridColumnCost.VisibleIndex = 2
+            GridColumnNumber.VisibleIndex = 3
+            GridColumnAccount.VisibleIndex = 4
+            GridColumnStart.VisibleIndex = 5
+            GridColumnEnd.VisibleIndex = 6
+            GridColumnDueEate.VisibleIndex = 7
+            GridColumnType.VisibleIndex = 8
+            DEStart.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+            DEEnd.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+            GVData.OptionsPrint.PrintFooter = False
+            GVData.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_so + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVData, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+
+            'show column
+            GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+            DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+            GVData.OptionsPrint.PrintFooter = True
+            GVData.OptionsPrint.PrintHeader = True
+            Cursor = Cursors.Default
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Microsoft.Office.Interop.Excel.Application
+        Dim wBook As Microsoft.Office.Interop.Excel.Workbook
+        Dim wSheet As Microsoft.Office.Interop.Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then 'code
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                ElseIf j = 1 Then 'qty
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "qty")
+                ElseIf j = 2 Then 'harga
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "design_cop")
+                ElseIf j = 3 Then 'number
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtNumber.Text
+                ElseIf j = 4 Then 'account toko
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtAccNo.Text
+                ElseIf j = 5 Then 'period from
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEStart.EditValue
+                ElseIf j = 6 Then 'period end
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEEnd.EditValue
+                ElseIf j = 7 Then 'due date
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEEnd.EditValue
+                ElseIf j = 8 Then 'type
+                    wSheet.Cells(rowIndex + 1, colIndex) = "1"
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
     End Sub
 End Class

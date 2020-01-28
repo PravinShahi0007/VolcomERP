@@ -79,7 +79,7 @@ Partial Class FormEmpUniCreditNote
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Expense Number"
-        Me.GridColumn3.FieldName = "emp_uni_ex_number"
+        Me.GridColumn3.FieldName = "emp_uni_ex_number_ref"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1

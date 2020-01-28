@@ -420,8 +420,8 @@
         ElseIf report_mark_type = "129" Then
             'Asset Rec
             query = String.Format("SELECT id_report_status, asset_rec_no as report_number FROM tb_a_asset_rec WHERE id_asset_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "132" Then
-            'UNIFORM EXPENS
+        ElseIf report_mark_type = "132" Or report_mark_type = "236" Then
+            'UNIFORM EXPENS & CREDIT NOTE
             query = String.Format("SELECT id_report_status,emp_uni_ex_number as report_number FROM tb_emp_uni_ex WHERE id_emp_uni_ex = '{0}'", id_report)
         ElseIf report_mark_type = "133" Then
             'REVENUE BUDGET
@@ -4197,7 +4197,7 @@
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "132" Then
+        ElseIf report_mark_type = "132" Or report_mark_type = "236" Then
             'Uniform expense
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -4205,12 +4205,14 @@
 
             If id_status_reportx = "5" Then
                 'cancelled
-                Dim cancel_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
-                cancel_rsv_stock.cancelReservedStock(id_report, "132")
+                If report_mark_type = "132" Then
+                    Dim cancel_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
+                    cancel_rsv_stock.cancelReservedStock(id_report, report_mark_type)
+                End If
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
-                complete_rsv_stock.completedStock(id_report, "132")
+                complete_rsv_stock.completedStock(id_report, report_mark_type)
             End If
 
             'update status
@@ -4223,6 +4225,10 @@
                 FormEmpUniExpenseDet.actionLoad()
                 FormEmpUniExpense.viewData()
                 FormEmpUniExpense.GVData.FocusedRowHandle = find_row(FormEmpUniExpense.GVData, "id_emp_uni_ex", id_report)
+            ElseIf form_origin = "FormEmpUniCreditNoteDet" Then
+                FormEmpUniCreditNoteDet.load_form()
+                FormEmpUniCreditNote.view_form()
+                FormEmpUniCreditNote.GVData.FocusedRowHandle = find_row(FormEmpUniCreditNote.GVData, "id_emp_uni_ex", id_report)
             Else
                 'code here
             End If
