@@ -2950,8 +2950,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormFollowUpARDetail.ShowDialog()
                 End If
             ElseIf formName = "FormEmpUniCreditNote" Then
-                FormEmpUniCreditNoteDet.id_emp_uni_ex = FormEmpUniCreditNote.GVData.GetFocusedRowCellValue("id_emp_uni_ex").ToString
-                FormEmpUniCreditNoteDet.ShowDialog()
+                Try
+                    FormEmpUniCreditNoteDet.id_emp_uni_ex = FormEmpUniCreditNote.GVData.GetFocusedRowCellValue("id_emp_uni_ex").ToString
+                    FormEmpUniCreditNoteDet.ShowDialog()
+                Catch ex As Exception
+                End Try
             Else
                 RPSubMenu.Visible = False
             End If

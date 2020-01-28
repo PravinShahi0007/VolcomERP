@@ -360,6 +360,7 @@ Public Class FormEmpUniExpenseDet
         Report.LabelNIK.Text = TxtNIP.Text.ToUpper
         Report.LabelName.Text = TxtEmployeeName.Text.ToUpper
         Report.LabelDate.Text = DECreated.Text.ToString
+        Report.LNote.Text = MENote.Text.ToString
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
