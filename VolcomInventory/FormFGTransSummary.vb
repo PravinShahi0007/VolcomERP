@@ -97,4 +97,55 @@
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Dim tot_sal As Double
+    Dim tot_end As Double
+    Dim tot_sal_grp As Double
+    Dim tot_end_grp As Double
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+        Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_sal = 0.0
+            tot_end = 0.0
+            tot_sal_grp = 0.0
+            tot_end_grp = 0.0
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim sal As Double = View.GetRowCellValue(e.RowHandle, "qty_sal")
+            Dim endd As Double = View.GetRowCellValue(e.RowHandle, "qty_end")
+            Select Case summaryID
+                Case "a"
+                    tot_sal += sal
+                    tot_end += endd
+                Case "b"
+                    tot_sal_grp += sal
+                    tot_end_grp += endd
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case "a" 'total summary
+                    Dim sum_res As Double = 0.0
+                    Try
+                        sum_res = Math.Abs((tot_sal / tot_end) * 100)
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "b" 'group summary
+                    Dim sum_res As Double = 0.0
+                    Try
+                        sum_res = Math.Abs((tot_sal_grp / tot_end_grp) * 100)
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
+    End Sub
 End Class
