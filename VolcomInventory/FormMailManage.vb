@@ -37,6 +37,25 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub load_store_company()
+        Cursor = Cursors.WaitCursor
+        Dim id_comp_group As String = "-1"
+        Try
+            id_comp_group = SLEStoreGroup.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT cg.id_comp_group, c.id_comp,c.comp_name 
+        FROM tb_m_comp_group cg 
+        INNER JOIN tb_m_comp c ON c.id_comp = cg.id_comp 
+        WHERE cg.id_comp_group=" + id_comp_group + " 
+        UNION ALL 
+        SELECT cg.id_comp_group, c.id_comp,c.comp_name 
+        FROM tb_m_comp_group_other cg INNER JOIN tb_m_comp c ON c.id_comp = cg.id_comp 
+        WHERE cg.id_comp_group=" + id_comp_group + " "
+        viewSearchLookupQuery(SLEStoreCompany, query, "id_comp", "comp_name", "id_comp")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewPendingInvoice()
         GridColumnmail_numberinv.Visible = False
         GridColumnmail_dateinv.Visible = False
@@ -52,6 +71,7 @@
     Sub loadInvoice(ByVal cond As String, ByVal typ As String)
         Cursor = Cursors.WaitCursor
         Dim id_comp_group As String = SLEStoreGroup.EditValue.ToString
+        Dim id_store_company As String = SLEStoreCompany.EditValue.ToString
 
         Dim qry_show_mail As String = ""
         Dim col_show_mail As String = ""
@@ -85,7 +105,7 @@
             INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
             INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
             " + qry_show_mail + "
-            WHERE sp.`id_report_status`='6' AND c.id_comp_group='" + id_comp_group + "' 
+            WHERE sp.`id_report_status`='6' AND c.id_comp_group='" + id_comp_group + "' AND c.id_store_company='" + id_store_company + "'
             " + cond + "
             GROUP BY sp.`id_sales_pos` 
             ORDER BY id_sales_pos ASC "
@@ -184,6 +204,7 @@
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
         Dim id_comp_group As String = SLEStoreGroup.EditValue.ToString
+        Dim id_store_company As String = SLEStoreCompany.EditValue.ToString
         If id_comp_group <> "0" Then
             Cursor = Cursors.WaitCursor
             '--- check email group
@@ -191,7 +212,7 @@
             SELECT cc.email AS `email_group`
             FROM tb_mail_manage_mapping m
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
-            WHERE m.id_comp_group=" + id_comp_group + " AND m.report_mark_type=225 AND m.id_mail_member_type=2 AND cc.email!='' "
+            WHERE m.id_comp_group=" + id_comp_group + " AND cc.id_comp='" + id_store_company + "' AND m.report_mark_type=225 AND m.id_mail_member_type=2 AND cc.email!='' "
             Dim dcg As DataTable = execute_query(qcg, -1, True, "", "", "", "")
             If dcg.Rows.Count <= 0 Then
                 Cursor = Cursors.Default
@@ -233,6 +254,7 @@
     End Sub
 
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        load_store_company()
         GCInvoiceList.DataSource = Nothing
         BCreatePO.Visible = False
     End Sub
@@ -499,5 +521,10 @@
             m.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub SLEStoreCompany_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreCompany.EditValueChanged
+        GCInvoiceList.DataSource = Nothing
+        BCreatePO.Visible = False
     End Sub
 End Class

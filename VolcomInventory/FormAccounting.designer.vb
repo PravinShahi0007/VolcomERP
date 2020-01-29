@@ -90,6 +90,7 @@ Partial Class FormAccounting
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -154,7 +155,7 @@ Partial Class FormAccounting
         '
         'GVAcc
         '
-        Me.GVAcc.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.company, Me.address_primary, Me.is_active, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVAcc.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.company, Me.address_primary, Me.is_active, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn11})
         Me.GVAcc.GridControl = Me.GCAcc
         Me.GVAcc.Name = "GVAcc"
         Me.GVAcc.OptionsBehavior.Editable = False
@@ -195,7 +196,7 @@ Partial Class FormAccounting
         Me.is_active.FieldName = "id_status"
         Me.is_active.Name = "is_active"
         Me.is_active.Visible = True
-        Me.is_active.VisibleIndex = 3
+        Me.is_active.VisibleIndex = 4
         Me.is_active.Width = 110
         '
         'RepositoryItemCheckEdit1
@@ -765,13 +766,21 @@ Partial Class FormAccounting
         '
         Me.BalanceMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewTransaction})
         Me.BalanceMenu.Name = "ContextMenuStripYM"
-        Me.BalanceMenu.Size = New System.Drawing.Size(137, 26)
+        Me.BalanceMenu.Size = New System.Drawing.Size(136, 26)
         '
         'SMViewTransaction
         '
         Me.SMViewTransaction.Name = "SMViewTransaction"
-        Me.SMViewTransaction.Size = New System.Drawing.Size(136, 22)
+        Me.SMViewTransaction.Size = New System.Drawing.Size(135, 22)
         Me.SMViewTransaction.Text = "Transaction"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Debit / Credit"
+        Me.GridColumn11.FieldName = "dc"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 3
         '
         'FormAccounting
         '
@@ -890,4 +899,5 @@ Partial Class FormAccounting
     Friend WithEvents TEClaimDesc As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEClaimAccount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

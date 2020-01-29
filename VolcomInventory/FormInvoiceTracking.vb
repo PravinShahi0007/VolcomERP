@@ -1,4 +1,6 @@
 ﻿Public Class FormInvoiceTracking
+    Dim tgl_sekarang As Date
+
     Private Sub FormInvoiceTracking_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -44,6 +46,9 @@
     Private Sub FormInvoiceTracking_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_group_store()
         load_status_payment()
+
+        'tgl sekarang
+        tgl_sekarang = getTimeDB()
     End Sub
 
     Sub load_status_payment()
@@ -100,12 +105,28 @@
             cond_promo = "AND sp.sales_pos_total>0 "
         End If
 
+        'filter sales period
+        Dim cond_period As String = ""
+        If CEPeriod.EditValue = False Then
+            Dim date_from_selected As String = "0000-01-01"
+            Dim date_until_selected As String = "9999-01-01"
+            Try
+                date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Try
+                date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            cond_period = "AND (sp.sales_pos_end_period>='" + date_from_selected + "' AND sp.sales_pos_end_period<='" + date_until_selected + "') "
+        End If
+
         Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`, sp.`sales_pos_start_period`, sp.`sales_pos_end_period`
             ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`, sp.sales_pos_total_qty, IFNULL(pyd.`value`,0.00) AS total_rec, 
             IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS total_due,
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
             ,sp.report_mark_type,rmt.report_mark_type_name
-            ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date)) AS due_days,
+            ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),sp.sales_pos_due_date) AS due_days,
             id_mail_warning_no,mail_warning_no, mail_warning_date, mail_warning_status,
             id_mail_notice_no,mail_notice_no, mail_notice_date, mail_notice_status,
             id_mail_invoice, mail_invoice_no, mail_invoice_date, mail_invoice_status,
@@ -189,6 +210,7 @@
             " + cond_store + "
             " + cond_status + "
             " + cond_promo + "
+            " + cond_period + "
             GROUP BY sp.`id_sales_pos` 
             HAVING 1=1 " + cond_having + "
             ORDER BY id_sales_pos ASC "
@@ -264,7 +286,7 @@
     Private Sub RepoLinkEMailNotice_Click(sender As Object, e As EventArgs) Handles RepoLinkEMailNotice.Click
         If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            FormMailManageDet.action="upd"
+            FormMailManageDet.action = "upd"
             FormMailManageDet.id = GVUnpaid.GetFocusedRowCellValue("id_mail_notice_no").ToString
             FormMailManageDet.rmt = "226"
             FormMailManageDet.ShowDialog()
@@ -375,5 +397,20 @@
 
     Private Sub CEShowHighlight_EditValueChanged(sender As Object, e As EventArgs) Handles CEShowHighlight.EditValueChanged
 
+    End Sub
+
+    Private Sub CEPeriod_EditValueChanged(sender As Object, e As EventArgs) Handles CEPeriod.EditValueChanged
+        If CEPeriod.EditValue = True Then
+            DEFrom.EditValue = Nothing
+            DEUntil.EditValue = Nothing
+            DEFrom.Enabled = False
+            DEUntil.Enabled = False
+        Else
+            DEFrom.EditValue = tgl_sekarang
+            DEUntil.EditValue = tgl_sekarang
+            DEFrom.Enabled = True
+            DEUntil.Enabled = True
+            DEFrom.Focus()
+        End If
     End Sub
 End Class

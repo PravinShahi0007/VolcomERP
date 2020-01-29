@@ -36,6 +36,7 @@
             FROM tb_propose_delay_payment_det dd 
             INNER JOIN tb_propose_delay_payment d ON d.id_propose_delay_payment = dd.id_propose_delay_payment AND d.id_report_status!=5 AND d.id_comp_group='" + FormDelayPaymentDet.id_comp_group + "'
         )
+        AND sp.sales_pos_total>0
         ORDER BY sp.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -63,5 +64,22 @@
             GVData.ActiveFilterString = ""
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormDelayPaymentPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub CESelectAllInvoice_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAllInvoice.CheckedChanged
+        Dim val As String = ""
+        If CESelectAllInvoice.EditValue = True Then
+            val = "yes"
+        Else
+            val = "no"
+        End If
+
+        For i As Integer = 0 To GVData.RowCount - 1
+            GVData.SetRowCellValue(i, "is_select", val)
+        Next
     End Sub
 End Class

@@ -26,6 +26,7 @@ Partial Public Class ReportPurcReq
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,6 +77,7 @@ Partial Public Class ReportPurcReq
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,7 +96,7 @@ Partial Public Class ReportPurcReq
         '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.0004132589!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
         Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(736.9996!, 157.2917!)
         Me.WinControlContainer1.WinControl = Me.GCItemList
@@ -105,7 +107,7 @@ Partial Public Class ReportPurcReq
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem, Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoEdit2})
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem, Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoEdit2, Me.RepositoryItemMemoEdit3})
         Me.GCItemList.Size = New System.Drawing.Size(708, 151)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -137,16 +139,25 @@ Partial Public Class ReportPurcReq
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 169
+        Me.GridColumn2.Width = 220
         '
         'GridColumn3
         '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn3.Caption = "Description"
+        Me.GridColumn3.ColumnEdit = Me.RepositoryItemMemoEdit3
         Me.GridColumn3.FieldName = "item_detail"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 250
+        Me.GridColumn3.Width = 623
+        '
+        'RepositoryItemMemoEdit3
+        '
+        Me.RepositoryItemMemoEdit3.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
         '
         'GridColumn4
         '
@@ -161,7 +172,7 @@ Partial Public Class ReportPurcReq
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 88
+        Me.GridColumn4.Width = 91
         '
         'GridColumnUOM
         '
@@ -175,15 +186,13 @@ Partial Public Class ReportPurcReq
         Me.GridColumnUOM.OptionsColumn.AllowEdit = False
         Me.GridColumnUOM.Visible = True
         Me.GridColumnUOM.VisibleIndex = 3
-        Me.GridColumnUOM.Width = 68
+        Me.GridColumnUOM.Width = 79
         '
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Note"
         Me.GridColumn14.FieldName = "note"
         Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 6
         Me.GridColumn14.Width = 467
         '
         'GridColumn17
@@ -196,7 +205,7 @@ Partial Public Class ReportPurcReq
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 4
-        Me.GridColumn17.Width = 322
+        Me.GridColumn17.Width = 243
         '
         'RepositoryItemMemoEdit1
         '
@@ -212,7 +221,7 @@ Partial Public Class ReportPurcReq
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 5
-        Me.GridColumn15.Width = 268
+        Me.GridColumn15.Width = 376
         '
         'RepositoryItemMemoEdit2
         '
@@ -654,6 +663,7 @@ Partial Public Class ReportPurcReq
         Me.Version = "15.1"
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -717,4 +727,5 @@ Partial Public Class ReportPurcReq
     Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel19 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents RepositoryItemMemoEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

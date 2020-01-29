@@ -18,7 +18,7 @@
         End If
 
         Dim query As String = "
-            SELECT emp.id_employee, emp.employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_level, 0) AS id_employee_level, lv.employee_level, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, IFNULL(sal.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0)) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0)) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0)) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0)) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0)) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0)) AS allow_car_current
+            SELECT emp.id_employee, emp.employee_code, emp.employee_name, emp.id_departement, dp.departement, dp.total_workdays, emp.employee_position, IF(emp.id_employee_active = 1, TIMESTAMPDIFF(MONTH, emp.employee_actual_join_date, DATE(NOW())), TIMESTAMPDIFF(MONTH, emp.employee_actual_join_date, emp.employee_last_date)) AS tmp_length_work, IF((SELECT tmp_length_work) < 12, CONCAT((SELECT tmp_length_work), ' month'), CONCAT(FLOOR((SELECT tmp_length_work) / 12), ' year')) AS length_work, IFNULL(emp.id_employee_level, 0) AS id_employee_level, lv.employee_level, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, IFNULL(sal.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0)) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0)) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0)) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0)) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0)) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0)) AS allow_car_current
             FROM tb_m_employee AS emp
             LEFT JOIN tb_m_departement AS dp ON emp.id_departement = dp.id_departement
             LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
@@ -72,20 +72,24 @@
                     Dim employee_name As String = GVEmployee.GetRowCellValue(selected_row, "employee_name").ToString
                     Dim id_departement As String = GVEmployee.GetRowCellValue(selected_row, "id_departement").ToString
                     Dim departement As String = GVEmployee.GetRowCellValue(selected_row, "departement").ToString
+                    Dim total_workdays As Decimal = GVEmployee.GetRowCellValue(selected_row, "total_workdays")
                     Dim employee_position As String = GVEmployee.GetRowCellValue(selected_row, "employee_position").ToString
+                    Dim tmp_length_work As Integer = GVEmployee.GetRowCellValue(selected_row, "tmp_length_work")
+                    Dim length_work As String = GVEmployee.GetRowCellValue(selected_row, "length_work").ToString
                     Dim id_employee_level As String = GVEmployee.GetRowCellValue(selected_row, "id_employee_level").ToString
                     Dim employee_level As String = GVEmployee.GetRowCellValue(selected_row, "employee_level").ToString
                     Dim id_employee_status As String = GVEmployee.GetRowCellValue(selected_row, "id_employee_status").ToString
                     Dim employee_status As String = GVEmployee.GetRowCellValue(selected_row, "employee_status").ToString
                     Dim id_employee_salary As String = GVEmployee.GetRowCellValue(selected_row, "id_employee_salary").ToString
-                    Dim basic_salary_current As String = GVEmployee.GetRowCellValue(selected_row, "basic_salary_current")
-                    Dim allow_job_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_job_current")
-                    Dim allow_meal_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_meal_current")
-                    Dim allow_trans_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_trans_current")
-                    Dim allow_house_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_house_current")
-                    Dim allow_car_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_car_current")
+                    Dim basic_salary_current As Decimal = GVEmployee.GetRowCellValue(selected_row, "basic_salary_current")
+                    Dim allow_job_current As Decimal = GVEmployee.GetRowCellValue(selected_row, "allow_job_current")
+                    Dim allow_meal_current As Decimal = GVEmployee.GetRowCellValue(selected_row, "allow_meal_current")
+                    Dim allow_trans_current As Decimal = GVEmployee.GetRowCellValue(selected_row, "allow_trans_current")
+                    Dim allow_house_current As Decimal = GVEmployee.GetRowCellValue(selected_row, "allow_house_current")
+                    Dim allow_car_current As Decimal = GVEmployee.GetRowCellValue(selected_row, "allow_car_current")
+                    Dim total_salary_current As Decimal = basic_salary_current + allow_job_current + allow_meal_current + allow_trans_current + allow_house_current + allow_car_current
 
-                    data.Rows.Add(id_employee, employee_code, employee_name, id_departement, departement, employee_position, id_employee_level, employee_level, id_employee_status, employee_status, id_employee_salary, basic_salary_current, allow_job_current, allow_meal_current, allow_trans_current, allow_house_current, allow_car_current, 0, 0, 0, 0, 0, 0, If(id_employee_salary = "0", "0.00%", "-100.00%"), "50.00%", "50.00%", 0)
+                    data.Rows.Add(id_employee, employee_code, employee_name, id_departement, departement, total_workdays, employee_position, tmp_length_work, length_work, id_employee_level, employee_level, id_employee_status, employee_status, id_employee_salary, basic_salary_current, allow_job_current, allow_meal_current, allow_trans_current, allow_house_current, allow_car_current, total_salary_current, 0, 0, 0, 0, 0, 0, If(id_employee_salary = "0", "0.00%", "-100.00%"), "50.00%", "50.00%", 0, "")
                 End If
             Next
 

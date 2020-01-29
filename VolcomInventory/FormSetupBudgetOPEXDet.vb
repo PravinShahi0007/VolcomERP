@@ -4,6 +4,10 @@
     Public is_view As String = "-1"
 
     Private Sub FormSampleBudgetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
+    Sub load_form()
         If id_pps = "-1" Then 'new
             TENumber.Text = "[auto_generate]"
             TECreatedBy.Text = get_user_identify(id_user, "1")
@@ -12,6 +16,7 @@
             BtnSave.Visible = True
             BtnPrint.Visible = False
             BMark.Visible = False
+            BAttachment.Visible = False
         Else 'view
             Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_b_opex_pps` pps
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
@@ -28,11 +33,17 @@ WHERE pps.id_b_opex_pps = '" & id_pps & "'"
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 TECreatedBy.Text = data.Rows(0)("employee_name")
                 MENote.Text = data.Rows(0)("note").ToString
+                If data.Rows(0)("is_submit").ToString = "1" Then
+                    BMark.Text = "Mark"
+                Else
+                    BMark.Text = "Submit"
+                End If
             End If
             '
             BtnSave.Visible = False
             BtnPrint.Visible = True
             BMark.Visible = True
+            BAttachment.Visible = True
         End If
         '
         load_before_det()
@@ -150,14 +161,14 @@ VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_item_cat_main").ToS
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                 Next
 
-                submit_who_prepared("204", id_pps, id_user)
-                infoCustom("Revise budget proposed")
+                'submit_who_prepared("204", id_pps, id_user)
+                infoCustom("Revise budget created, press submit to continue approval process")
 
                 FormSetupBudgetOPEX.XTCSampleBudget.SelectedTabPageIndex = 1
                 FormSetupBudgetOPEX.DEStart.EditValue = Now
                 FormSetupBudgetOPEX.DEUntil.EditValue = Now
                 FormSetupBudgetOPEX.load_propose()
-                Close()
+                'Close()
             Else 'new
                 Dim query As String = "INSERT INTO `tb_b_opex_pps`(`id_type`,`date_created`,`created_by`,`note`,`id_report_status`) 
 VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "
@@ -168,32 +179,59 @@ VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
                 'detail
                 For i As Integer = 0 To GVAfter.RowCount - 1
                     Dim query_det As String = "INSERT INTO `tb_b_opex_pps_det`(`id_b_opex_pps`,id_item_cat_main,`year`,`value_before`,`value_after`)
-VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat_main").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "',NULL,'" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat_main").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "',0,'" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                 Next
                 '
-                submit_who_prepared("203", id_pps, id_user)
-                infoCustom("Budget proposed")
+                'submit_who_prepared("203", id_pps, id_user)
+                infoCustom("Budget created, press submit to continue approval process")
+                load_form()
                 '
                 FormSetupBudgetOPEX.XTCSampleBudget.SelectedTabPageIndex = 1
                 FormSetupBudgetOPEX.DEStart.EditValue = Now
                 FormSetupBudgetOPEX.DEUntil.EditValue = Now
                 FormSetupBudgetOPEX.load_propose()
-                Close()
+                'Close()
             End If
         End If
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.id_report = id_pps
-        FormReportMark.is_view = is_view
-        If is_rev = "1" Then 'revision
-            FormReportMark.report_mark_type = "204"
-        Else
-            FormReportMark.report_mark_type = "203"
-        End If
+        If BMark.Text = "Mark" Then
+            FormReportMark.id_report = id_pps
+            FormReportMark.is_view = is_view
+            If is_rev = "1" Then 'revision
+                FormReportMark.report_mark_type = "204"
+            Else
+                FormReportMark.report_mark_type = "203"
+            End If
 
-        FormReportMark.ShowDialog()
+            FormReportMark.ShowDialog()
+        Else
+            'submit
+            'cek sudah ada attachment blm
+            Dim query As String = ""
+            Dim rmt As String = ""
+
+            If is_rev = "1" Then 'revision
+                rmt = "204"
+            Else
+                rmt = "203"
+            End If
+
+            query = "SELECT * FROM tb_doc WHERE id_report='" & id_pps & "' AND report_mark_type='" & rmt & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                query = "UPDATE tb_b_opex_pps SET is_submit='1' WHERE id_b_opex_pps='" & id_pps & "'"
+                execute_non_query(query, True, "", "", "", "")
+                submit_who_prepared(rmt, id_pps, id_user)
+                '
+                load_form()
+                infoCustom("Budget submitted")
+            Else
+                warningCustom("Please upload attachment first.")
+            End If
+        End If
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
@@ -228,5 +266,38 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.is_view = is_view
+
+        If is_rev = "1" Then
+            FormDocumentUpload.id_report = id_pps
+            FormDocumentUpload.report_mark_type = "204"
+        Else
+            FormDocumentUpload.id_report = id_pps
+            FormDocumentUpload.report_mark_type = "203"
+        End If
+
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVAfter_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVAfter.RowStyle
+        Try
+            If Not GVAfter.GetRowCellValue(e.RowHandle, "value_before") = GVAfter.GetRowCellValue(e.RowHandle, "value_after") Then
+                e.Appearance.BackColor = Color.Honeydew
+                e.Appearance.BackColor2 = Color.Honeydew
+                e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Bold)
+            Else
+                e.Appearance.BackColor = Color.White
+                e.Appearance.BackColor2 = Color.White
+                e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Regular)
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

@@ -43,6 +43,8 @@ Partial Class FormWHAWBillDetDO
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -51,7 +53,8 @@ Partial Class FormWHAWBillDetDO
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnLoadDO = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCDO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RCIDO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,11 +79,11 @@ Partial Class FormWHAWBillDetDO
         'GCDO
         '
         Me.GCDO.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDO.Location = New System.Drawing.Point(0, 0)
+        Me.GCDO.Location = New System.Drawing.Point(0, 23)
         Me.GCDO.MainView = Me.GVDO
         Me.GCDO.Name = "GCDO"
         Me.GCDO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCIDO})
-        Me.GCDO.Size = New System.Drawing.Size(812, 235)
+        Me.GCDO.Size = New System.Drawing.Size(812, 212)
         Me.GCDO.TabIndex = 2
         Me.GCDO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDO})
         '
@@ -215,6 +218,7 @@ Partial Class FormWHAWBillDetDO
         'XTPBOF
         '
         Me.XTPBOF.Controls.Add(Me.GCDO)
+        Me.XTPBOF.Controls.Add(Me.BtnLoadDO)
         Me.XTPBOF.Name = "XTPBOF"
         Me.XTPBOF.Size = New System.Drawing.Size(812, 235)
         Me.XTPBOF.Text = "BOF"
@@ -240,7 +244,7 @@ Partial Class FormWHAWBillDetDO
         '
         'GVDOERP
         '
-        Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumnIdDel})
+        Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumnIdDel, Me.GridColumncombine_number, Me.GridColumnreport_status})
         Me.GVDOERP.GridControl = Me.GCDOERP
         Me.GVDOERP.Name = "GVDOERP"
         Me.GVDOERP.OptionsCustomization.AllowColumnMoving = False
@@ -274,7 +278,7 @@ Partial Class FormWHAWBillDetDO
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.OptionsColumn.AllowFocus = False
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 2
         Me.GridColumn8.Width = 119
         '
         'GridColumn9
@@ -285,7 +289,7 @@ Partial Class FormWHAWBillDetDO
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.AllowFocus = False
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.VisibleIndex = 3
         Me.GridColumn9.Width = 83
         '
         'GridColumn10
@@ -296,7 +300,7 @@ Partial Class FormWHAWBillDetDO
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.AllowFocus = False
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.VisibleIndex = 4
         Me.GridColumn10.Width = 201
         '
         'GridColumn11
@@ -307,7 +311,7 @@ Partial Class FormWHAWBillDetDO
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.OptionsColumn.AllowFocus = False
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 5
         Me.GridColumn11.Width = 86
         '
         'GridColumn12
@@ -319,7 +323,7 @@ Partial Class FormWHAWBillDetDO
         Me.GridColumn12.FieldName = "is_check"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.VisibleIndex = 7
         Me.GridColumn12.Width = 61
         '
         'RepositoryItemCheckEdit1
@@ -328,6 +332,21 @@ Partial Class FormWHAWBillDetDO
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridColumnIdDel
+        '
+        Me.GridColumnIdDel.Caption = "ID Del"
+        Me.GridColumnIdDel.FieldName = "id_pl_sales_order_del"
+        Me.GridColumnIdDel.Name = "GridColumnIdDel"
+        '
+        'GridColumncombine_number
+        '
+        Me.GridColumncombine_number.Caption = "Combine No"
+        Me.GridColumncombine_number.FieldName = "combine_number"
+        Me.GridColumncombine_number.Name = "GridColumncombine_number"
+        Me.GridColumncombine_number.OptionsColumn.AllowEdit = False
+        Me.GridColumncombine_number.Visible = True
+        Me.GridColumncombine_number.VisibleIndex = 1
         '
         'GCFilter
         '
@@ -416,11 +435,22 @@ Partial Class FormWHAWBillDetDO
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
         '
-        'GridColumnIdDel
+        'BtnLoadDO
         '
-        Me.GridColumnIdDel.Caption = "ID Del"
-        Me.GridColumnIdDel.FieldName = "id_pl_sales_order_del"
-        Me.GridColumnIdDel.Name = "GridColumnIdDel"
+        Me.BtnLoadDO.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnLoadDO.Location = New System.Drawing.Point(0, 0)
+        Me.BtnLoadDO.Name = "BtnLoadDO"
+        Me.BtnLoadDO.Size = New System.Drawing.Size(812, 23)
+        Me.BtnLoadDO.TabIndex = 3
+        Me.BtnLoadDO.Text = "Load DO"
+        '
+        'GridColumnreport_status
+        '
+        Me.GridColumnreport_status.Caption = "Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.Visible = True
+        Me.GridColumnreport_status.VisibleIndex = 6
         '
         'FormWHAWBillDetDO
         '
@@ -494,4 +524,7 @@ Partial Class FormWHAWBillDetDO
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnIdDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncombine_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnLoadDO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
 End Class

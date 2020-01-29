@@ -283,7 +283,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Then
+        If formName = "FormWork" Or formName = "FormPurcAsset" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Then
             RGAreaManage.Visible = False
         End If
 
@@ -403,7 +403,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormDebitNote" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Then
+        If formName = "FormWork" Or formName = "FormDebitNote" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Then
             RGAreaManage.Visible = True
         End If
 
@@ -1791,6 +1791,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAREvalScheduleDet.ShowDialog()
         ElseIf formName = "FormDelayPayment" Then
             FormDelayPaymentNew.ShowDialog()
+        ElseIf formName = "FormDelManifest" Then
+            FormDelManifestDet.id_del_manifest = "0"
+            FormDelManifestDet.ShowDialog()
+        ElseIf formName = "FormFollowUpAR" Then
+            FormFollowUpARDetail.action = "ins"
+            FormFollowUpARDetail.ShowDialog()
+        ElseIf formName = "FormEmpUniCreditNote" Then
+            FormEmpUniCreditNoteDet.id_emp_uni_ex = "0"
+            FormEmpUniCreditNoteDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2924,6 +2933,28 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormDelayPaymentDet.id = FormDelayPayment.GVData.GetFocusedRowCellValue("id_propose_delay_payment").ToString
                     FormDelayPaymentDet.ShowDialog()
                 End If
+            ElseIf formName = "FormDelManifest" Then
+                Try
+                    FormDelManifestDet.id_del_manifest = FormDelManifest.GVList.GetFocusedRowCellValue("id_del_manifest").ToString
+                    FormDelManifestDet.ShowDialog()
+                Catch ex As Exception
+                End Try
+            ElseIf formName = "FormFollowUpAR" Then
+                If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 And FormFollowUpAR.GVData.RowCount > 0 And FormFollowUpAR.GVData.FocusedRowHandle >= 0 Then
+                    FormFollowUpARDetail.action = "upd"
+                    FormFollowUpARDetail.id = FormFollowUpAR.GVData.GetFocusedRowCellValue("id_follow_up_ar").ToString
+                    FormFollowUpARDetail.ShowDialog()
+                ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 And FormFollowUpAR.GVActive.RowCount > 0 And FormFollowUpAR.GVActive.FocusedRowHandle >= 0 Then
+                    FormFollowUpARDetail.action = "upd"
+                    FormFollowUpARDetail.id = FormFollowUpAR.GVActive.GetFocusedRowCellValue("id_follow_up_ar").ToString
+                    FormFollowUpARDetail.ShowDialog()
+                End If
+            ElseIf formName = "FormEmpUniCreditNote" Then
+                Try
+                    FormEmpUniCreditNoteDet.id_emp_uni_ex = FormEmpUniCreditNote.GVData.GetFocusedRowCellValue("id_emp_uni_ex").ToString
+                    FormEmpUniCreditNoteDet.ShowDialog()
+                Catch ex As Exception
+                End Try
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6228,6 +6259,27 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 execute_non_query(query_del, True, "", "", "", "")
                 FormAREvalScheduke.viewData()
             End If
+        ElseIf formName = "FormFollowUpAR" Then
+            Dim idx As String = ""
+            If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 And FormFollowUpAR.GVData.RowCount > 0 And FormFollowUpAR.GVData.FocusedRowHandle >= 0 Then
+                idx = FormFollowUpAR.GVData.GetFocusedRowCellValue("id_follow_up_ar").ToString
+            ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 And FormFollowUpAR.GVActive.RowCount > 0 And FormFollowUpAR.GVActive.FocusedRowHandle >= 0 Then
+                idx = FormFollowUpAR.GVActive.GetFocusedRowCellValue("id_follow_up_ar").ToString
+            End If
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Try
+                    Dim query_del As String = "DELETE FROM tb_follow_up_ar WHERE id_follow_up_ar='" + idx + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 Then
+                        FormFollowUpAR.viewList()
+                    ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 Then
+                        FormFollowUpAR.viewActive()
+                    End If
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7125,57 +7177,96 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'modify period
                 Dim period_from As String = ""
                 Dim period_until As String = ""
-                If FormSalesWeekly.date_from_weekly_selected = "0000-01-01" Then
+                If FormSalesWeekly.date_from_weekdate_selected = "0000-01-01" Then
                     period_from = "-"
                 Else
-                    period_from = DateTime.Parse(FormSalesWeekly.date_from_weekly_selected).ToString("dd MMM yyyy")
+                    period_from = DateTime.Parse(FormSalesWeekly.date_from_weekdate_selected).ToString("dd MMM yyyy")
                 End If
-                If FormSalesWeekly.date_until_weekly_selected = "9999-01-01" Then
+                If FormSalesWeekly.date_until_weekdate_selected = "9999-01-01" Then
                     period_until = "-"
                 Else
-                    period_until = DateTime.Parse(FormSalesWeekly.date_until_weekly_selected).ToString("dd MMM yyyy")
+                    period_until = DateTime.Parse(FormSalesWeekly.date_until_weekdate_selected).ToString("dd MMM yyyy")
                 End If
 
                 '... 
                 ' creating and saving the view's layout to a new memory stream 
                 Dim str As System.IO.Stream
                 str = New System.IO.MemoryStream()
-                FormSalesWeekly.BGVSalesPOSWeekly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                FormSalesWeekly.BGVSalesWeeklyByDate.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
                 str.Seek(0, System.IO.SeekOrigin.Begin)
-                ReportSalesPOSWeekly.dt = FormSalesWeekly.dt_weekly
-                Dim Report As New ReportSalesPOSWeekly()
-                Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                ReportSalesPOSWeeklyByDate.dt = FormSalesWeekly.dt_weekly_by_date
+
+
+                Dim Report As New ReportSalesPOSWeeklyByDate()
+                Report.BGVSalesWeeklyByDate.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
                 str.Seek(0, System.IO.SeekOrigin.Begin)
 
+                Report.LabelYear.Text = FormSalesWeekly.year_selected
                 Report.LabelPeriod.Text = period_from + " / " + period_until
-                Report.LabelBegin.Text = FormSalesWeekly.day_weekly_selected
+                Report.LabelWeek.Text = FormSalesWeekly.week_selected
 
-                ReportStyleBanded(Report.BandedGridView1)
+                ReportStyleBanded(Report.BGVSalesWeeklyByDate)
 
                 ' Show the report's preview. 
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                 Tool.ShowPreview()
             ElseIf FormSalesWeekly.XTCPOS.SelectedTabPageIndex = 2 Then
-                'modify period
+                If FormSalesWeekly.XTCMonthlySales.SelectedTabPageIndex = 0 Then
+                    'modify period
+                    Dim period_from As String = ""
+                    Dim period_until As String = ""
+                    If FormSalesWeekly.date_from_weekly_selected = "0000-01-01" Then
+                        period_from = "-"
+                    Else
+                        period_from = DateTime.Parse(FormSalesWeekly.date_from_weekly_selected).ToString("dd MMM yyyy")
+                    End If
+                    If FormSalesWeekly.date_until_weekly_selected = "9999-01-01" Then
+                        period_until = "-"
+                    Else
+                        period_until = DateTime.Parse(FormSalesWeekly.date_until_weekly_selected).ToString("dd MMM yyyy")
+                    End If
+
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormSalesWeekly.BGVSalesPOSWeekly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportSalesPOSWeekly.dt = FormSalesWeekly.dt_weekly
+                    Dim Report As New ReportSalesPOSWeekly()
+                    Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                    Report.LabelPeriod.Text = period_from + " / " + period_until
+                    Report.LabelBegin.Text = FormSalesWeekly.day_weekly_selected
+
+                    ReportStyleBanded(Report.BandedGridView1)
+
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
+                Else
+                    'modify period
 
 
-                '... 
-                ' creating and saving the view's layout to a new memory stream 
-                Dim str As System.IO.Stream
-                str = New System.IO.MemoryStream()
-                FormSalesWeekly.BGVSalesPOSMonthly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                ReportSalesPOSMonthly.dt = FormSalesWeekly.dt_monthly
-                Dim Report As New ReportSalesPOSMonthly()
-                Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                Report.LabelPeriod.Text = FormSalesWeekly.label_from_monthly_selected + "/" + FormSalesWeekly.label_until_monthly_selected
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormSalesWeekly.BGVSalesPOSMonthly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportSalesPOSMonthly.dt = FormSalesWeekly.dt_monthly
+                    Dim Report As New ReportSalesPOSMonthly()
+                    Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    Report.LabelPeriod.Text = FormSalesWeekly.label_from_monthly_selected + "/" + FormSalesWeekly.label_until_monthly_selected
 
-                ReportStyleBanded(Report.BandedGridView1)
+                    ReportStyleBanded(Report.BandedGridView1)
 
-                ' Show the report's preview. 
-                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-                Tool.ShowPreview()
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
+                End If
             End If
         ElseIf formName = "FormSalesCreditNote" Then
             'CREDIT NOTE
@@ -7407,7 +7498,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMasterPrice" Then
             'MASTER PRICE
             If FormMasterPrice.XTCPrice.SelectedTabPageIndex = 0 Then
-                print_raw(FormMasterPrice.GCBrowsePrice, "")
+                If FormMasterPrice.XTCBrowse.SelectedTabPageIndex = 0 Then
+                    print_raw(FormMasterPrice.GCBrowsePrice, "")
+                ElseIf FormMasterPrice.XTCBrowse.SelectedTabPageIndex = 1 Then
+                    print_raw(FormMasterPrice.GCHistDet, "")
+                ElseIf FormMasterPrice.XTCBrowse.SelectedTabPageIndex = 2 Then
+                    print_raw(FormMasterPrice.GCHistSummary, "")
+                End If
                 'print(FormMasterPrice.GCBrowsePrice, "MASTER PRODUCT" + System.Environment.NewLine + "SEASON : " + FormMasterPrice.SLESeason.Text.ToUpper + " / " + "DEL : " + FormMasterPrice.SLEDel.Text.ToUpper + " / " + "DATE : " + FormMasterPrice.DEFrom.Text.ToUpper)
             ElseIf FormMasterPrice.XTCPrice.SelectedTabPageIndex = 1 Then
                 print(FormMasterPrice.GCPrice, "IMPORT PRICE FROM EXCEL")
@@ -7522,17 +7619,21 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGTransList" Then
             Dim page As String = FormFGTransList.page_active
             If page = "rec" Then
-                print_raw(FormFGTransList.GCPL, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
+                print(FormFGTransList.GCPL, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
             ElseIf page = "del" Then
-                print_raw(FormFGTransList.GCSalesDelOrder, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
+                print(FormFGTransList.GCSalesDelOrder, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
             ElseIf page = "ret" Then
-                print_raw(FormFGTransList.GCSalesReturn, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
+                print(FormFGTransList.GCSalesReturn, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
             ElseIf page = "nsr" Then
-                print_raw(FormFGTransList.GCNonStock, "NON STOCK (" + FormFGTransList.DEFromNonStock.Text + " - " + FormFGTransList.DEUntilNonStock.Text + ")")
+                print(FormFGTransList.GCNonStock, "NON STOCK (" + FormFGTransList.DEFromNonStock.Text + " - " + FormFGTransList.DEUntilNonStock.Text + ")")
             ElseIf page = "ret_trf" Then
-                print_raw(FormFGTransList.GCSalesReturnQC, "RETURN TRANSFER (" + FormFGTransList.DEFromReturnQC.Text + " - " + FormFGTransList.DEUntilReturnQC.Text + ")")
+                print(FormFGTransList.GCSalesReturnQC, "RETURN TRANSFER (" + FormFGTransList.DEFromReturnQC.Text + " - " + FormFGTransList.DEUntilReturnQC.Text + ")")
             ElseIf page = "trf" Then
-                print_raw(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
+                print(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
+            ElseIf page = "sal" Then
+                print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+            ElseIf page = "order" Then
+                print(FormFGTransList.GCSO, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")
@@ -7545,7 +7646,44 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGAging" Then
             print_raw(FormFGAging.GCDesign, "")
         ElseIf formName = "FormFGTransSummary" Then
-            print_raw(FormFGTransSummary.GCData, "")
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                ReportFGTransSummaryReport.dt = FormFGTransSummary.GCData.DataSource
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                ReportFGTransSummaryReport.dt = FormFGTransSummary.GCDesign.DataSource
+            End If
+
+            Dim Report As New ReportFGTransSummaryReport()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                FormFGTransSummary.GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                FormFGTransSummary.GVDesign.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            End If
+
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
+
+            'Label
+            Report.LabelPeriod.Text = FormFGTransSummary.DEFrom.Text + " - " + FormFGTransSummary.DEUntil.Text
+
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                Report.XLTitle.Text = "TRANSACTION SUMMARY"
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                Report.XLTitle.Text = "TRANSACTION SUMMARY PER PRODUCT"
+            End If
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         ElseIf formName = "FormFGFirstDel" Then
             print_raw(FormFGFirstDel.GCData, "")
         ElseIf formName = "FormFGCompareStockCard" Then
@@ -7829,6 +7967,38 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormDelayPayment.GCData, "")
         ElseIf formName = "FormAccountingLedger" Then
             FormAccountingLedger.print_form()
+        ElseIf formName = "FormAREvaluation" Then
+            If FormAREvaluation.XTCData.SelectedTabPageIndex = 0 Then
+                If FormAREvaluation.XTCCreateNewEval.SelectedTabPageIndex = 0 Then
+                    print_raw(FormAREvaluation.GCActiveList, "")
+                ElseIf FormAREvaluation.XTCCreateNewEval.SelectedTabPageIndex = 1 Then
+                    print_raw(FormAREvaluation.GCGroupStoreList, "")
+                End If
+            ElseIf FormAREvaluation.XTCData.SelectedTabPageIndex = 1 Then
+                print_raw(FormAREvaluation.GCInvoiceDetail, "")
+            ElseIf FormAREvaluation.XTCData.SelectedTabPageIndex = 2 Then
+                print_raw(FormAREvaluation.GCGroup, "")
+            End If
+        ElseIf formName = "FormDelManifest" Then
+            print(FormDelManifest.GCList, FormDelManifest.Text)
+        ElseIf formName = "FormARCollectionAvg" Then
+            If FormARCollectionAvg.XTCData.SelectedTabPageIndex = 0 Then
+                print_raw(FormARCollectionAvg.GCSummary, "")
+            ElseIf FormARCollectionAvg.XTCData.SelectedTabPageIndex = 1 Then
+                print_raw(FormARCollectionAvg.GCDetail, "")
+            End If
+        ElseIf FormName = "FormFollowUpAR" Then
+            If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 Then
+                print_raw(FormFollowUpAR.GCData, "")
+            ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 Then
+                print_raw(FormFollowUpAR.GCActive, "")
+            End If
+        ElseIf formName = "FormAccountingWorksheet" Then
+            FormAccountingWorksheet.print_form()
+        ElseIf formName = "FormEmpUniCreditNote" Then
+            print(FormEmpUniCreditNote.GCData, "Credit Note Uniform")
+        ElseIf formName = "FormDocTracking" Then
+            print_raw(FormDocTracking.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8659,6 +8829,27 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAccountingLedger" Then
             FormAccountingLedger.Close()
             FormAccountingLedger.Dispose()
+        ElseIf formName = "FormAREvaluation" Then
+            FormAREvaluation.Close()
+            FormAREvaluation.Dispose()
+        ElseIf formName = "FormDelManifest" Then
+            FormDelManifest.Close()
+            FormDelManifest.Dispose()
+        ElseIf formName = "FormARCollectionAvg" Then
+            FormARCollectionAvg.Close()
+            FormARCollectionAvg.Dispose()
+        ElseIf FormName = "FormFollowUpAR" Then
+            FormFollowUpAR.Close()
+            FormFollowUpAR.Dispose()
+        ElseIf formName = "FormAccountingWorksheet" Then
+            FormAccountingWorksheet.Close()
+            FormAccountingWorksheet.Dispose()
+        ElseIf formName = "FormEmpUniCreditNote" Then
+            FormEmpUniCreditNote.Close()
+            FormEmpUniCreditNote.Dispose()
+        ElseIf formName = "FormDocTracking" Then
+            FormDocTracking.Close()
+            FormDocTracking.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9538,6 +9729,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpAttnAssign.load_attn()
         ElseIf formName = "FormDelayPayment" Then
             FormDelayPayment.viewData()
+        ElseIf formName = "FormDelManifest" Then
+            FormDelManifest.form_load()
+        ElseIf FormName = "FormFollowUpAR" Then
+            If FormFollowUpAR.XTCAR.SelectedTabPageIndex = 0 Then
+                FormFollowUpAR.viewList()
+            ElseIf FormFollowUpAR.XTCAR.SelectedTabPageIndex = 1 Then
+                FormFollowUpAR.viewActive()
+            End If
+        ElseIf formName = "FormAccountingLedger" Then
+            FormAccountingLedger.view_form()
+        ElseIf formName = "FormAccountingWorksheet" Then
+            FormAccountingWorksheet.view_form()
+        ElseIf formName = "FormEmpUniCreditNote" Then
+            FormEmpUniCreditNote.view_form()
         End If
     End Sub
     'Switch
@@ -13959,5 +14164,116 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Catch ex As Exception
             errorProcess()
         End Try
+    End Sub
+
+    Private Sub NBCollectionAvg_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCollectionAvg.LinkClicked
+        Try
+            FormARCollectionAvg.MdiParent = Me
+            FormARCollectionAvg.Show()
+            FormARCollectionAvg.WindowState = FormWindowState.Maximized
+            FormARCollectionAvg.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAPReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAPReport.LinkClicked
+        Try
+            FormAPReport.MdiParent = Me
+            FormAPReport.Show()
+            FormAPReport.WindowState = FormWindowState.Maximized
+            FormAPReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAccountingWorksheet_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAccountingWorksheet.LinkClicked
+        Try
+            FormAccountingWorksheet.MdiParent = Me
+            FormAccountingWorksheet.Show()
+            FormAccountingWorksheet.WindowState = FormWindowState.Maximized
+            FormAccountingWorksheet.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBReportBalanceSheet_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBReportBalanceSheet.LinkClicked
+        Try
+            FormReportBalanceSheet.MdiParent = Me
+            FormReportBalanceSheet.Show()
+            FormReportBalanceSheet.WindowState = FormWindowState.Maximized
+            FormReportBalanceSheet.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBPriceList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPriceList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterPrice.is_price_list = True
+            FormMasterPrice.MdiParent = Me
+            FormMasterPrice.Show()
+            FormMasterPrice.WindowState = FormWindowState.Maximized
+            FormMasterPrice.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDocTracking_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDocTracking.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDocTracking.MdiParent = Me
+            FormDocTracking.Show()
+            FormDocTracking.WindowState = FormWindowState.Maximized
+            FormDocTracking.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBListFixedAsset_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBListFixedAsset.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcAsset.is_view = "1"
+            FormPurcAsset.MdiParent = Me
+            FormPurcAsset.Show()
+            FormPurcAsset.WindowState = FormWindowState.Maximized
+            FormPurcAsset.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBUniformCreditNote_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBUniformCreditNote.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpUniCreditNote.MdiParent = Me
+            FormEmpUniCreditNote.Show()
+            FormEmpUniCreditNote.WindowState = FormWindowState.Maximized
+            FormEmpUniCreditNote.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSalInv_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesInv.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesInv.MdiParent = Me
+            FormSalesInv.Show()
+            FormSalesInv.WindowState = FormWindowState.Maximized
+            FormSalesInv.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

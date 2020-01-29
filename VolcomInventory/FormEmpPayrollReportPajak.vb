@@ -6,7 +6,17 @@
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-        BandedGridColumnTotal1.Caption = "Total I Gaji" + Environment.NewLine + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM") + Environment.NewLine + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+        If data.Rows(0)("is_thr").ToString = "1" Then
+            GBSalary.Visible = False
+            gridBand3.Visible = False
+            gridBand2.Visible = False
+
+            BandedGridColumnTHR.Caption = "Total" + Environment.NewLine + "THR " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+        Else
+            GBTHR.Visible = False
+
+            BandedGridColumnTotal1.Caption = "Total I Gaji" + Environment.NewLine + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM") + Environment.NewLine + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+        End If
 
         GCPajak.DataSource = data
 
@@ -64,7 +74,11 @@
         Report.id_pre = If(id_report_status = "6", "-1", "1")
         Report.id_payroll = id_payroll
 
-        Report.XLPeriod.Text = "GAJI BULAN " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
+        If data.Rows(0)("is_thr").ToString = "1" Then
+            Report.XLPeriod.Text = data.Rows(0)("payroll_type").ToString.ToUpper + " " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy").ToUpper
+        Else
+            Report.XLPeriod.Text = "GAJI BULAN " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
+        End If
 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
@@ -86,8 +100,14 @@
 
         If dialog.ShowDialog() = DialogResult.OK Then
             Dim type As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "DW ", "")
+            Dim month_date As String = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
 
-            TBFileAddress.Text = dialog.SelectedPath & "\Report Pajak " + type + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy") + ".xls"
+            If FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
+                type = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString + " "
+                month_date = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+            End If
+
+            TBFileAddress.Text = dialog.SelectedPath & "\Report Pajak " + type + month_date + ".xls"
         End If
 
         dialog.Dispose()

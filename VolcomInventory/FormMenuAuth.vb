@@ -43,6 +43,9 @@
                 FormSalesOrder.id_user_special = data.Rows(0)("id_user").ToString
                 FormSalesOrderPacking.id_pop_up = "6"
                 FormSalesOrderPacking.ShowDialog()
+            ElseIf type = "4" Then
+                FormMasterPrice.GVHistSummary.Columns("cost").VisibleIndex = 8
+                FormMasterPrice.GVHistSummary.Columns("cost").OptionsColumn.ShowInCustomizationForm = True
             End If
             Close()
         Else

@@ -1178,6 +1178,7 @@ Partial Class FormWHAWBillDet
         Me.GVDO.OptionsCustomization.AllowRowSizing = True
         Me.GVDO.OptionsCustomization.AllowSort = False
         Me.GVDO.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.GVDO.OptionsView.ShowFooter = True
         Me.GVDO.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -1197,8 +1198,11 @@ Partial Class FormWHAWBillDet
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Qty"
+        Me.GridColumn3.DisplayFormat.FormatString = "N0"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "qty"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         '

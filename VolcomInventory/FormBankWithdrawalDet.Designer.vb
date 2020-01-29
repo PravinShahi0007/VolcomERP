@@ -79,6 +79,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,6 +87,8 @@ Partial Class FormBankWithdrawalDet
         Me.XTCBBK = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPJournal = New DevExpress.XtraTab.XtraTabPage()
@@ -100,7 +103,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,6 +137,7 @@ Partial Class FormBankWithdrawalDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCBBK, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,10 +145,10 @@ Partial Class FormBankWithdrawalDet
         Me.XTPPayment.SuspendLayout()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -738,9 +741,18 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "value_view"
         Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_view", "{0:N2}")})
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 9
         Me.GridColumn18.Width = 138
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumnPayment
         '
@@ -810,6 +822,8 @@ Partial Class FormBankWithdrawalDet
         '
         'PCAddDel
         '
+        Me.PCAddDel.Controls.Add(Me.TEKurs)
+        Me.PCAddDel.Controls.Add(Me.LabelControl4)
         Me.PCAddDel.Controls.Add(Me.BtnDelete)
         Me.PCAddDel.Controls.Add(Me.BtnAdd)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
@@ -817,6 +831,29 @@ Partial Class FormBankWithdrawalDet
         Me.PCAddDel.Name = "PCAddDel"
         Me.PCAddDel.Size = New System.Drawing.Size(939, 47)
         Me.PCAddDel.TabIndex = 19
+        '
+        'TEKurs
+        '
+        Me.TEKurs.EditValue = ""
+        Me.TEKurs.Location = New System.Drawing.Point(40, 14)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.ReadOnly = True
+        Me.TEKurs.Size = New System.Drawing.Size(161, 20)
+        Me.TEKurs.TabIndex = 8908
+        Me.TEKurs.TabStop = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 17)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8907
+        Me.LabelControl4.Text = "Kurs"
         '
         'BtnDelete
         '
@@ -957,12 +994,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        '
         'FormBankWithdrawalDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1018,6 +1049,7 @@ Partial Class FormBankWithdrawalDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCBBK, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1025,10 +1057,11 @@ Partial Class FormBankWithdrawalDet
         Me.XTPPayment.ResumeLayout(False)
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
+        Me.PCAddDel.PerformLayout()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1113,4 +1146,6 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class

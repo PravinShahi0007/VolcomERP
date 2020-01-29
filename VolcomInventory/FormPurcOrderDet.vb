@@ -65,6 +65,7 @@
                     '
                     TEShipDestination.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_destination").ToString
                     MESHipAddress.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_address").ToString
+                    MENote.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "note").ToString
                     '
                 End If
                 'create summary
@@ -691,6 +692,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Report.LShipVia.Text = LEShipVia.Text.ToUpper
             Report.LDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
             Report.LTerbilang.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TEGrandTotal.EditValue.ToString))
+            Report.LSpecialInstruction.Text = MENote.Text
             '
             Report.LTotal.Text = TETotal.Text
             Report.LDiscount.Text = TEDiscTotal.Text
@@ -723,8 +725,11 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString & " (" & data.Rows(i)("departement").ToString & ")"
             Next
             '
-            Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
-            Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+            Report.LBillTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
+            Report.LBillAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+
+            Report.LShipTo.Text = TEShipDestination.Text
+            Report.LShipToAddress.Text = MESHipAddress.Text
 
             If Not LEReportStatus.EditValue = "6" Then
                 Report.id_pre = "2"

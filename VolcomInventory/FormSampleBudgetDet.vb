@@ -3,6 +3,16 @@
     Public is_rev As String = "2"
     Public is_view As String = "-1"
     Private Sub FormSampleBudgetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'load budget approved
+        TEBudgetApproved.EditValue = 0.00
+
+        Dim q_budget As String = "SELECT value_expense FROM `tb_b_expense_opex` WHERE `year`='" & FormSampleBudget.DEYearBudget.Text & "' AND is_active='1' AND id_item_cat_main=(SELECT id_item_cat_main_sample FROM tb_opt_accounting)"
+        Dim dt_budget As DataTable = execute_query(q_budget, -1, True, "", "", "", "")
+
+        If dt_budget.Rows.Count > 0 Then
+            TEBudgetApproved.EditValue = dt_budget.Rows(0)("value_expense")
+        End If
+
         If id_pps = "-1" Then 'new
             TENumber.Text = "[auto_generate]"
             TECreatedBy.Text = get_user_identify(id_user, "1")
@@ -86,7 +96,7 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
                 'get year
                 Dim year_str As String = FormSampleBudget.DEYearBudget.Text
 
-                Dim str_code_lokal As String = "SELECT * FROM tb_m_code_detail WHERE id_code='40'"
+                Dim str_code_lokal As String = "SELECT * FROM tb_m_code_detail WHERE id_code='40' AND is_active='1'"
                 Dim data_code_lokal As DataTable = execute_query(str_code_lokal, -1, True, "", "", "", "")
 
                 'Local development
@@ -104,32 +114,40 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
                     GVAfter.RefreshData()
                 Next
 
-                'Men youth kids
-                Dim newRow_after2 As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
-                newRow_after2("description_after") = "Budget Pembelian Sample Import Mens, Youth, Kids " & year_str
-                newRow_after2("year_after") = year_str
-                newRow_after2("value_usd_after") = 0.00
-                newRow_after2("value_rp_after") = 0.00
-                newRow_after2("kurs_after") = 1.0
-                newRow_after2("id_division_after") = "3697,3699,3700"
-                newRow_after2("division_after") = "Mens,Youth,Kids"
-                TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after2)
-                GCAfter.RefreshDataSource()
-                GVAfter.RefreshData()
+                Dim q_loop As String = "SELECT season FROM tb_sample_budget_season WHERE year='" & year_str & "'"
+                Dim dt_loop As DataTable = execute_query(q_loop, -1, True, "", "", "", "")
 
-                'Women
-                Dim newRow_after3 As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
-                newRow_after3("description_after") = "Budget Pembelian Sample Import Womens " & year_str
-                newRow_after3("year_after") = year_str
-                newRow_after3("value_usd_after") = 0.00
-                newRow_after3("value_rp_after") = 0.00
-                newRow_after3("kurs_after") = 1.0
-                newRow_after3("id_division_after") = "3698"
-                newRow_after3("division_after") = "Womens"
-                TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after3)
-                GCAfter.RefreshDataSource()
-                GVAfter.RefreshData()
-                GVAfter.FocusedRowHandle = GVAfter.RowCount - 1
+                For i = 0 To dt_loop.Rows.Count - 1
+                    'Men youth kids
+                    Dim newRow_after2 As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
+                    newRow_after2("description_after") = "Sample Import Mens, Youth, Kids " & dt_loop.Rows(i)("season").ToString
+                    newRow_after2("year_after") = year_str
+                    newRow_after2("value_usd_after") = 0.00
+                    newRow_after2("value_rp_after") = 0.00
+                    newRow_after2("kurs_after") = 1.0
+                    newRow_after2("id_division_after") = "3697,3699,3700"
+                    newRow_after2("division_after") = "Mens,Youth,Kids"
+                    TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after2)
+                    GCAfter.RefreshDataSource()
+                    GVAfter.RefreshData()
+                Next
+
+                For i = 0 To dt_loop.Rows.Count - 1
+                    'Women
+                    Dim newRow_after3 As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
+                    newRow_after3("description_after") = "Sample Import Womens " & dt_loop.Rows(i)("season").ToString
+                    newRow_after3("year_after") = year_str
+                    newRow_after3("value_usd_after") = 0.00
+                    newRow_after3("value_rp_after") = 0.00
+                    newRow_after3("kurs_after") = 1.0
+                    newRow_after3("id_division_after") = "3698"
+                    newRow_after3("division_after") = "Womens"
+                    TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after3)
+                    GCAfter.RefreshDataSource()
+                    GVAfter.RefreshData()
+                Next
+
+                GVAfter.FocusedRowHandle = 0
             End If
         End If
         '
@@ -193,6 +211,8 @@ GROUP BY ppd.id_sample_budget_pps_det"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If GVAfter.RowCount <= 0 Then
             warningCustom("Please input proposed budget")
+        ElseIf Not GVAfter.Columns("tot_amo").SummaryItem.SummaryValue = TEBudgetApproved.EditValue Then
+            warningCustom("Total budget is not same as budget approved by management.")
         Else
             If is_rev = "1" Then 'revision
                 'header
@@ -316,7 +336,7 @@ VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRow
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub GVAfter_DoubleClick(sender As Object, e As EventArgs) Handles GVAfter.DoubleClick
+    Private Sub GVAfter_DoubleClick_1(sender As Object, e As EventArgs) Handles GVAfter.DoubleClick
         If id_pps = "-1" Then
             FormSampleBudgetSingle.is_edit = "1"
             FormSampleBudgetSingle.ShowDialog()

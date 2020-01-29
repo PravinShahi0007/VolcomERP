@@ -56,11 +56,13 @@ WHERE id_prod_order_kp='" & id_kp & "'"
             BLock.Visible = False
             BUpdate.Visible = False
             BRevise.Visible = True
+            Bdel.Enabled = False
             PCDel.Visible = False
         Else
             BLock.Visible = True
             BUpdate.Visible = True
             BRevise.Visible = False
+            Bdel.Enabled = True
             PCDel.Visible = True
         End If
 
@@ -209,8 +211,8 @@ WHERE id_prod_order_kp='" & SLERevision.EditValue.ToString & "'"
         Dim check As String = "SELECT * FROM tb_prod_order_kp WHERE number='" & addSlashes(TEKPNumber.Text) & "' ORDER BY id_prod_order_kp DESC"
         Dim data_check As DataTable = execute_query(check, -1, True, "", "", "", "")
         If id_kp = data_check.Rows(0)("id_prod_order_kp").ToString Then
-            Dim query As String = "INSERT INTO tb_prod_order_kp(`id_prod_order_kp_reff`,`number`,`revision`,`id_comp_contact`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_asst_prod_mngr`,`is_purc_mat`)
-SELECT `id_prod_order_kp_reff`,`number`,(SELECT COUNT(id_prod_order_kp) FROM tb_prod_order_kp WHERE id_prod_order_kp_reff=(SELECT id_prod_order_kp_reff FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "')),`id_comp_contact`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_asst_prod_mngr`,`is_purc_mat` FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "'; SELECT LAST_INSERT_ID(); "
+            Dim query As String = "INSERT INTO tb_prod_order_kp(`id_prod_order_kp_reff`,`number`,`revision`,`id_comp_contact`,`date_created`,`created_by`,`id_user_purc_mngr`,`id_user_asst_prod_mngr`,`is_purc_mat`)
+SELECT `id_prod_order_kp_reff`,`number`,(SELECT COUNT(id_prod_order_kp) FROM tb_prod_order_kp WHERE id_prod_order_kp_reff=(SELECT id_prod_order_kp_reff FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "')),`id_comp_contact`,`date_created`,`created_by`,`id_user_purc_mngr`,`id_user_asst_prod_mngr`,`is_purc_mat` FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "'; SELECT LAST_INSERT_ID(); "
             Dim new_id_kp As String = execute_query(query, 0, True, "", "", "", "")
             'det
             'loop

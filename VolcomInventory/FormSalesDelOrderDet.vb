@@ -36,6 +36,7 @@ Public Class FormSalesDelOrderDet
     Dim id_store_type As String = "-1"
     Dim is_use_unique_code As String = "-1"
     Dim action_scan_btn As String = ""
+    Dim id_combine As String = "-1"
 
 
     Private Sub FormSalesDelOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -113,8 +114,10 @@ Public Class FormSalesDelOrderDet
             id_sales_order = data.Rows(0)("id_sales_order").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
             TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
+            id_combine = data.Rows(0)("id_combine").ToString
             is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
             id_comp_group = data.Rows(0)("id_comp_group").ToString
+            id_commerce_type = data.Rows(0)("id_commerce_type").ToString
 
             'uniform
             Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
@@ -145,7 +148,7 @@ Public Class FormSalesDelOrderDet
         'Dim query_c As New ClassSalesOrder()
         'Dim query As String = query_c.queryMain("AND a.id_sales_order=" + id_sales_order + " ", "2")
         Dim qso As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`,  
-        IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type, a.final_comment, a.final_date, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.id_prepare_status 
+        IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type, a.final_comment, a.final_date, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.id_prepare_status, a.customer_name
         FROM tb_sales_order a 
         INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
         INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
@@ -206,6 +209,8 @@ Public Class FormSalesDelOrderDet
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
         LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
         TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+        TxtCustomer.Text = data.Rows(0)("customer_name").ToString
+        MENote.Text += If(MENote.Text <> "", " ", "") + "" + data.Rows(0)("sales_order_ol_shop_number").ToString + " " + data.Rows(0)("customer_name").ToString + ""
 
         'uniform
         id_so_status = data.Rows(0)("id_so_status").ToString
@@ -839,6 +844,9 @@ Public Class FormSalesDelOrderDet
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
+        If id_combine <> "0" And (id_report_status = "1" Or id_report_status = "3") Then
+            FormReportMark.GCMark.Enabled = False
+        End If
         FormReportMark.id_report = id_pl_sales_order_del
         FormReportMark.report_mark_type = "43"
         FormReportMark.form_origin = Name
@@ -1253,7 +1261,7 @@ Public Class FormSalesDelOrderDet
         'cek boleh print ato tidak
         Dim del As New ClassSalesDelOrder()
         If is_block_del_store = "1" And del.checkUnpaidInvoice(id_comp_group) Then
-            stopCustom("Slips cannot be printed, because invoice has not been paid by group store")
+            stopCustom("Hold delivery")
             Cursor = Cursors.Default
             Exit Sub
         End If
@@ -1301,39 +1309,75 @@ Public Class FormSalesDelOrderDet
             GVItemList.ActiveFilterString = ""
             GridColumnNo.Visible = False
         Else
-            ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del
-            ReportSalesDelOrderOwnStore.rmt = "43"
-            ReportSalesDelOrderOwnStore.id_report_status = id_report_status
-            ReportSalesDelOrderOwnStore.id_store = id_store
-            ReportSalesDelOrderOwnStore.is_combine = "2"
-            ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
-            ReportSalesDelOrderOwnStore.is_no_print = "-1"
-            Dim Report As New ReportSalesDelOrderOwnStore()
+            If id_commerce_type = "2" Then
+                ReportSalesDelOrderOwnStore2.id = id_pl_sales_order_del
+                ReportSalesDelOrderOwnStore2.rmt = "43"
+                ReportSalesDelOrderOwnStore2.id_report_status = id_report_status
+                ReportSalesDelOrderOwnStore2.id_store = id_store
+                ReportSalesDelOrderOwnStore2.is_combine = "2"
+                ReportSalesDelOrderOwnStore2.is_use_unique_code = is_use_unique_code
+                ReportSalesDelOrderOwnStore2.is_no_print = "-1"
+                Dim Report As New ReportSalesDelOrderOwnStore2()
 
 
-            'Grid Detail
-            ReportStyleGridviewBlackLine(Report.GVItemList)
+                'Grid Detail
+                'ReportStyleGridviewBlackLine(Report.GVItemList)
 
-            'Parse val
-            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-            Report.LabelAddress.Text = MEAdrressCompTo.Text
-            Report.LRecDate.Text = DEForm.Text
-            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
-            Report.LabelNote.Text = MENote.Text
-            Report.LabelPrepare.Text = TxtSalesOrder.Text
-            Report.LabelCat.Text = LEStatusSO.Text
-            Report.LabelUni3.Text = TxtNIK.Text
-            Report.LabelUni6.Text = TxtEmployee.Text
-            If id_so_status = "7" Or id_so_status = "9" Then
-                Report.PanelUni.Visible = True
+                'Parse val
+                Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+                Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+                Report.LabelAddress.Text = MEAdrressCompTo.Text
+                Report.LRecDate.Text = DEForm.Text
+                Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+                Report.LabelNote.Text = MENote.Text
+                Report.LabelPrepare.Text = TxtSalesOrder.Text
+                Report.LabelCat.Text = LEStatusSO.Text
+                'Report.LabelUni3.Text = TxtNIK.Text
+                Report.LabelUni6.Text = TxtEmployee.Text
+                If id_so_status = "7" Or id_so_status = "9" Then
+                    Report.PanelUni.Visible = True
+                Else
+                    Report.PanelUni.Visible = False
+                End If
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
             Else
-                Report.PanelUni.Visible = False
-            End If
+                ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del
+                ReportSalesDelOrderOwnStore.rmt = "43"
+                ReportSalesDelOrderOwnStore.id_report_status = id_report_status
+                ReportSalesDelOrderOwnStore.id_store = id_store
+                ReportSalesDelOrderOwnStore.is_combine = "2"
+                ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
+                ReportSalesDelOrderOwnStore.is_no_print = "-1"
+                Dim Report As New ReportSalesDelOrderOwnStore()
 
-            'Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreview()
+
+                'Grid Detail
+                'ReportStyleGridviewBlackLine(Report.GVItemList)
+
+                'Parse val
+                Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+                Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+                Report.LabelAddress.Text = MEAdrressCompTo.Text
+                Report.LRecDate.Text = DEForm.Text
+                Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+                Report.LabelNote.Text = MENote.Text
+                Report.LabelPrepare.Text = TxtSalesOrder.Text
+                Report.LabelCat.Text = LEStatusSO.Text
+                'Report.LabelUni3.Text = TxtNIK.Text
+                Report.LabelUni6.Text = TxtEmployee.Text
+                If id_so_status = "7" Or id_so_status = "9" Then
+                    Report.PanelUni.Visible = True
+                Else
+                    Report.PanelUni.Visible = False
+                End If
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
+            End If
         End If
     End Sub
 
@@ -1396,7 +1440,11 @@ Public Class FormSalesDelOrderDet
         If is_use_unique_code = "-1" Then
             ReportSalesDelOrderDet.id_pre = "1"
         Else
-            ReportSalesDelOrderOwnStore.id_pre = "1"
+            If id_commerce_type = "2" Then
+                ReportSalesDelOrderOwnStore2.id_pre = "1"
+            Else
+                ReportSalesDelOrderOwnStore.id_pre = "1"
+            End If
         End If
         getReport()
         Cursor = Cursors.Default
@@ -1411,7 +1459,11 @@ Public Class FormSalesDelOrderDet
         If is_use_unique_code = "-1" Then
             ReportSalesDelOrderDet.id_pre = "-1"
         Else
-            ReportSalesDelOrderOwnStore.id_pre = "-1"
+            If id_commerce_type = "2" Then
+                ReportSalesDelOrderOwnStore2.id_pre = "-1"
+            Else
+                ReportSalesDelOrderOwnStore.id_pre = "-1"
+            End If
         End If
 
         getReport()

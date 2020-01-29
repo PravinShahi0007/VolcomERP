@@ -188,6 +188,9 @@ Partial Class FormFGStock
         Me.TxtCodeDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSStockCard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSReserved = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -569,6 +572,7 @@ Partial Class FormFGStock
         '
         Me.GroupControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.BtnExportToXLS)
         Me.GroupControl4.Controls.Add(Me.LabelControl8)
         Me.GroupControl4.Controls.Add(Me.CheckEdit1)
         Me.GroupControl4.Controls.Add(Me.TxtDesign)
@@ -594,7 +598,7 @@ Partial Class FormFGStock
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(867, 23)
+        Me.LabelControl8.Location = New System.Drawing.Point(963, 23)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(126, 13)
         Me.LabelControl8.TabIndex = 8904
@@ -1076,6 +1080,7 @@ Partial Class FormFGStock
         '
         'GroupControlFilter
         '
+        Me.GroupControlFilter.Controls.Add(Me.BtnExportToXLSStockCard)
         Me.GroupControlFilter.Controls.Add(Me.BtnBrowseDesign)
         Me.GroupControlFilter.Controls.Add(Me.TxtCodeDsgSC)
         Me.GroupControlFilter.Controls.Add(Me.SLEWH)
@@ -1881,6 +1886,7 @@ Partial Class FormFGStock
         '
         'GroupControl3
         '
+        Me.GroupControl3.Controls.Add(Me.BtnExportToXLSReserved)
         Me.GroupControl3.Controls.Add(Me.BtnViewRsv)
         Me.GroupControl3.Controls.Add(Me.CheckEditAllDsgRsv)
         Me.GroupControl3.Controls.Add(Me.TxtNameAccRsv)
@@ -1978,6 +1984,33 @@ Partial Class FormFGStock
         Me.GridColumn51.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:n2}")})
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 0
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(865, 18)
+        Me.BtnExportToXLS.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(92, 23)
+        Me.BtnExportToXLS.TabIndex = 8905
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        '
+        'BtnExportToXLSStockCard
+        '
+        Me.BtnExportToXLSStockCard.Location = New System.Drawing.Point(832, 30)
+        Me.BtnExportToXLSStockCard.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSStockCard.Name = "BtnExportToXLSStockCard"
+        Me.BtnExportToXLSStockCard.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSStockCard.TabIndex = 8906
+        Me.BtnExportToXLSStockCard.Text = "Export to XLS"
+        '
+        'BtnExportToXLSReserved
+        '
+        Me.BtnExportToXLSReserved.Location = New System.Drawing.Point(890, 29)
+        Me.BtnExportToXLSReserved.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSReserved.Name = "BtnExportToXLSReserved"
+        Me.BtnExportToXLSReserved.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSReserved.TabIndex = 8906
+        Me.BtnExportToXLSReserved.Text = "Export to XLS"
         '
         'FormFGStock
         '
@@ -2255,4 +2288,7 @@ Partial Class FormFGStock
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSStockCard As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSReserved As DevExpress.XtraEditors.SimpleButton
 End Class

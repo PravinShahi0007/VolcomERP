@@ -1,7 +1,7 @@
 ﻿Public Class FormWHAWBillDetDO
     Public store_number As String = "-1"
     Private Sub FormWHAWBillDetDO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        view_do()
+        'view_do()
 
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
@@ -59,14 +59,16 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number AS `do_no`, d.pl_sales_order_del_date AS `scan_date`, 
-        c.comp_number AS `store_number`, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`
+        Dim query As String = "SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
+        c.comp_number AS `store_number`, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`, stt.report_status
         FROM tb_pl_sales_order_del d
+        LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
         LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
         LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
-        WHERE d.id_report_status=6 AND c.comp_number='" + addSlashes(store_number.ToString) + "' AND ISNULL(awb.id_awbill) 
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
+        WHERE (d.id_report_status=3 OR d.id_report_status=6) AND c.comp_number='" + addSlashes(store_number.ToString) + "' AND ISNULL(awb.id_awbill) 
         AND (d.pl_sales_order_del_date>='" + date_from_selected + "' AND d.pl_sales_order_del_date<='" + date_until_selected + "')
         GROUP BY d.id_pl_sales_order_del "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -183,5 +185,9 @@
         If e.KeyCode = Keys.Enter Then
             BtnView.Focus()
         End If
+    End Sub
+
+    Private Sub BtnLoadDO_Click(sender As Object, e As EventArgs) Handles BtnLoadDO.Click
+        view_do()
     End Sub
 End Class
