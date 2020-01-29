@@ -7646,14 +7646,25 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGAging" Then
             print_raw(FormFGAging.GCDesign, "")
         ElseIf formName = "FormFGTransSummary" Then
-            ReportFGTransSummaryReport.dt = FormFGTransSummary.GCData.DataSource
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                ReportFGTransSummaryReport.dt = FormFGTransSummary.GCData.DataSource
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                ReportFGTransSummaryReport.dt = FormFGTransSummary.GCDesign.DataSource
+            End If
+
             Dim Report As New ReportFGTransSummaryReport()
 
             ' '... 
             ' ' creating and saving the view's layout to a new memory stream 
             Dim str As System.IO.Stream
             str = New System.IO.MemoryStream()
-            FormFGTransSummary.GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                FormFGTransSummary.GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                FormFGTransSummary.GVDesign.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            End If
+
             str.Seek(0, System.IO.SeekOrigin.Begin)
             Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
@@ -7663,6 +7674,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
             'Label
             Report.LabelPeriod.Text = FormFGTransSummary.DEFrom.Text + " - " + FormFGTransSummary.DEUntil.Text
+
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                Report.XLTitle.Text = "TRANSACTION SUMMARY"
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                Report.XLTitle.Text = "TRANSACTION SUMMARY PER PRODUCT"
+            End If
 
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
