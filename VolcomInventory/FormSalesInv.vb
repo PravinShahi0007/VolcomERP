@@ -104,4 +104,40 @@
         viewLookupQuery(LEDisplay, query, 0, "display", "id_display")
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+
+    End Sub
+
+    Sub viewByProduct()
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim id_comp As String = SLEComp.EditValue.ToString
+        Dim id_period_type As String = SLEPeriodType.EditValue.ToString
+        Dim is_with_sizetype_param As String = ""
+        If CESizetyp.EditValue = True Then
+            is_with_sizetype_param = "1"
+        Else
+            is_with_sizetype_param = "2"
+        End If
+        Dim opt_display_param As String = LEDisplay.EditValue.ToString
+
+
+        Dim query As String = "CALL view_sales_inv('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "', '" + id_period_type + "', '" + is_with_sizetype_param + "', '" + opt_display_param + "', where_param) "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCByProduct.DataSource = data
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
 End Class
