@@ -22,6 +22,9 @@ Partial Class FormSalesInv
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesInv))
         Me.XTCSalesInv = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPProduct = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCByProduct = New DevExpress.XtraGrid.GridControl()
+        Me.GVByProduct = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLSRec = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
@@ -30,20 +33,17 @@ Partial Class FormSalesInv
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPOutlet = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCByProduct = New DevExpress.XtraGrid.GridControl()
-        Me.GVByProduct = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.XTCSalesInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesInv.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
+        CType(Me.GCByProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVByProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCByProduct, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVByProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSalesInv
@@ -65,6 +65,35 @@ Partial Class FormSalesInv
         Me.XTPProduct.Size = New System.Drawing.Size(781, 457)
         Me.XTPProduct.Text = "View By Product"
         '
+        'GCByProduct
+        '
+        Me.GCByProduct.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCByProduct.Location = New System.Drawing.Point(0, 142)
+        Me.GCByProduct.MainView = Me.GVByProduct
+        Me.GCByProduct.Name = "GCByProduct"
+        Me.GCByProduct.Size = New System.Drawing.Size(781, 315)
+        Me.GCByProduct.TabIndex = 1
+        Me.GCByProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVByProduct})
+        '
+        'GVByProduct
+        '
+        Me.GVByProduct.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
+        Me.GVByProduct.GridControl = Me.GCByProduct
+        Me.GVByProduct.Name = "GVByProduct"
+        Me.GVByProduct.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVByProduct.OptionsBehavior.ReadOnly = True
+        Me.GVByProduct.OptionsFind.AlwaysVisible = True
+        Me.GVByProduct.OptionsView.ColumnAutoWidth = False
+        Me.GVByProduct.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVByProduct.OptionsView.ShowFooter = True
+        Me.GVByProduct.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "GridBand1"
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLSRec)
@@ -76,13 +105,13 @@ Partial Class FormSalesInv
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(781, 45)
+        Me.PanelControl1.Size = New System.Drawing.Size(781, 142)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnExportToXLSRec
         '
         Me.BtnExportToXLSRec.Image = CType(resources.GetObject("BtnExportToXLSRec.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(383, 13)
+        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(603, 102)
         Me.BtnExportToXLSRec.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSRec.Name = "BtnExportToXLSRec"
         Me.BtnExportToXLSRec.Size = New System.Drawing.Size(106, 20)
@@ -106,7 +135,7 @@ Partial Class FormSalesInv
         'BtnView
         '
         Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(304, 13)
+        Me.BtnView.Location = New System.Drawing.Point(524, 102)
         Me.BtnView.LookAndFeel.SkinName = "Blue"
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 20)
@@ -149,35 +178,6 @@ Partial Class FormSalesInv
         Me.XTPOutlet.Size = New System.Drawing.Size(781, 457)
         Me.XTPOutlet.Text = "View By Product && Account"
         '
-        'GCByProduct
-        '
-        Me.GCByProduct.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCByProduct.Location = New System.Drawing.Point(0, 45)
-        Me.GCByProduct.MainView = Me.GVByProduct
-        Me.GCByProduct.Name = "GCByProduct"
-        Me.GCByProduct.Size = New System.Drawing.Size(781, 412)
-        Me.GCByProduct.TabIndex = 1
-        Me.GCByProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVByProduct})
-        '
-        'GVByProduct
-        '
-        Me.GVByProduct.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
-        Me.GVByProduct.GridControl = Me.GCByProduct
-        Me.GVByProduct.Name = "GVByProduct"
-        Me.GVByProduct.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVByProduct.OptionsBehavior.ReadOnly = True
-        Me.GVByProduct.OptionsFind.AlwaysVisible = True
-        Me.GVByProduct.OptionsView.ColumnAutoWidth = False
-        Me.GVByProduct.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GVByProduct.OptionsView.ShowFooter = True
-        Me.GVByProduct.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "GridBand1"
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        '
         'FormSalesInv
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -189,6 +189,8 @@ Partial Class FormSalesInv
         CType(Me.XTCSalesInv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCSalesInv.ResumeLayout(False)
         Me.XTPProduct.ResumeLayout(False)
+        CType(Me.GCByProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVByProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -196,8 +198,6 @@ Partial Class FormSalesInv
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCByProduct, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVByProduct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
