@@ -213,7 +213,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
                     )used_opex ON used_opex.id_item_cat_main=cat.`id_item_cat_main`
                     WHERE it.is_active='1' AND cat.id_expense_type='" & SLEPurcType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
         If GVItemList.RowCount > 1 Then
-            query += " AND main.is_fixed_asset='" & GVItemList.GetRowCellValue(0, "is_fixed_asset").ToString & "'"
+            query += " AND main.is_fixed_asset='" & If(GVItemList.GetRowCellValue(0, "is_fixed_asset").ToString = "yes", "1", "2") & "'"
         End If
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")
         RISLEItem.View.BestFitColumns()
