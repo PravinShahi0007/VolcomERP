@@ -34,6 +34,8 @@ Partial Class FormItemCatMain
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEFixedAsset = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCat.SuspendLayout()
         Me.XTPItemCat.SuspendLayout()
@@ -42,6 +44,7 @@ Partial Class FormItemCatMain
         Me.XTPItemCatPropose.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEFixedAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCCat
@@ -68,13 +71,14 @@ Partial Class FormItemCatMain
         Me.GCItemCat.Location = New System.Drawing.Point(0, 0)
         Me.GCItemCat.MainView = Me.GVItemCat
         Me.GCItemCat.Name = "GCItemCat"
+        Me.GCItemCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEFixedAsset})
         Me.GCItemCat.Size = New System.Drawing.Size(1025, 525)
         Me.GCItemCat.TabIndex = 1
         Me.GCItemCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemCat})
         '
         'GVItemCat
         '
-        Me.GVItemCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn10})
+        Me.GVItemCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn10})
         Me.GVItemCat.GridControl = Me.GCItemCat
         Me.GVItemCat.Name = "GVItemCat"
         Me.GVItemCat.OptionsBehavior.Editable = False
@@ -169,6 +173,22 @@ Partial Class FormItemCatMain
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Fixed Asset"
+        Me.GridColumn8.ColumnEdit = Me.RICEFixedAsset
+        Me.GridColumn8.FieldName = "is_fixed_asset"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
+        '
+        'RICEFixedAsset
+        '
+        Me.RICEFixedAsset.AutoHeight = False
+        Me.RICEFixedAsset.Name = "RICEFixedAsset"
+        Me.RICEFixedAsset.ValueChecked = "yes"
+        Me.RICEFixedAsset.ValueUnchecked = "no"
+        '
         'FormItemCatMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -189,6 +209,7 @@ Partial Class FormItemCatMain
         Me.XTPItemCatPropose.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEFixedAsset, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -208,4 +229,6 @@ Partial Class FormItemCatMain
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEFixedAsset As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

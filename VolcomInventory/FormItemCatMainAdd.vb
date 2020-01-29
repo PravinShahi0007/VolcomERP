@@ -9,7 +9,15 @@
 
     Sub actionLoad()
         viewType()
+        view_fixed_asset()
         TxtCat.Text = ""
+    End Sub
+
+    Sub view_fixed_asset()
+        Dim query As String = "SELECT '2' AS is_fixed_asset,'Non Fixed Asset' AS description
+UNION ALL
+SELECT '1' AS is_fixed_asset,'Fixed Asset' AS description "
+        viewSearchLookupQuery(SLEFixedAsset, query, "is_fixed_asset", "description", "is_fixed_asset")
     End Sub
 
     Sub viewType()
@@ -31,6 +39,7 @@
         Else
             Dim item_cat_main As String = addSlashes(TxtCat.Text).Trim()
             Dim id_expense_type As String = LEExpenseType.EditValue.ToString
+            Dim is_fixed_asset As String = SLEFixedAsset.EditValue.ToString
 
             'cek kondisi master
             Dim cm As Boolean = False
@@ -54,8 +63,8 @@
                 stopCustom("Category already exist")
                 TxtCat.Focus()
             Else
-                Dim query As String = "INSERT INTO tb_item_cat_main_pps_det(id_item_cat_main_pps,  id_expense_type, item_cat_main)
-            VALUES('" + FormItemCatMaindet.id_propose + "', " + id_expense_type + ", '" + item_cat_main + "'); "
+                Dim query As String = "INSERT INTO tb_item_cat_main_pps_det(id_item_cat_main_pps,  id_expense_type, item_cat_main, is_fixed_asset)
+            VALUES('" + FormItemCatMainDet.id_propose + "', " + id_expense_type + ", '" + item_cat_main + "','" + is_fixed_asset + "'); "
                 execute_non_query(query, True, "", "", "", "")
                 FormItemCatMainDet.viewDetail()
                 actionLoad()
