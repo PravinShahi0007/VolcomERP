@@ -43,7 +43,7 @@
 
         'prepare query
         Dim query_c As ClassEmpUniExpense = New ClassEmpUniExpense()
-        Dim query As String = query_c.queryMain("AND (e.emp_uni_ex_date>='" + date_from_selected + "' AND e.emp_uni_ex_date<='" + date_until_selected + "') ", "2")
+        Dim query As String = query_c.queryMain("AND e.report_mark_type = 132 AND (e.emp_uni_ex_date>='" + date_from_selected + "' AND e.emp_uni_ex_date<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

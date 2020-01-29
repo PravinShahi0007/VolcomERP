@@ -46,6 +46,8 @@ Partial Class FormItemCatMainDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEFixedAsset = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +67,7 @@ Partial Class FormItemCatMainDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEFixedAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -236,13 +239,14 @@ Partial Class FormItemCatMainDet
         Me.GCData.Location = New System.Drawing.Point(0, 118)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEFixedAsset})
         Me.GCData.Size = New System.Drawing.Size(1013, 319)
         Me.GCData.TabIndex = 12
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumn1, Me.GridColumn2})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -261,6 +265,7 @@ Partial Class FormItemCatMainDet
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
+        Me.GridColumn1.Width = 719
         '
         'GridColumn2
         '
@@ -269,6 +274,7 @@ Partial Class FormItemCatMainDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 544
         '
         'GroupControl1
         '
@@ -339,6 +345,27 @@ Partial Class FormItemCatMainDet
         Me.LabelControl5.TabIndex = 6
         Me.LabelControl5.Text = "Remark"
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.Caption = "Fixed Asset"
+        Me.GridColumn3.ColumnEdit = Me.RICEFixedAsset
+        Me.GridColumn3.FieldName = "is_fixed_asset"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 369
+        '
+        'RICEFixedAsset
+        '
+        Me.RICEFixedAsset.AutoHeight = False
+        Me.RICEFixedAsset.Name = "RICEFixedAsset"
+        Me.RICEFixedAsset.ValueChecked = "yes"
+        Me.RICEFixedAsset.ValueUnchecked = "no"
+        '
         'FormItemCatMainDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -377,6 +404,7 @@ Partial Class FormItemCatMainDet
         Me.PanelControl2.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEFixedAsset, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -407,4 +435,6 @@ Partial Class FormItemCatMainDet
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEFixedAsset As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

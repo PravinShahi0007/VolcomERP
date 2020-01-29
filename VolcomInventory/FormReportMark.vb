@@ -420,8 +420,8 @@
         ElseIf report_mark_type = "129" Then
             'Asset Rec
             query = String.Format("SELECT id_report_status, asset_rec_no as report_number FROM tb_a_asset_rec WHERE id_asset_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "132" Then
-            'UNIFORM EXPENS
+        ElseIf report_mark_type = "132" Or report_mark_type = "236" Then
+            'UNIFORM EXPENS & CREDIT NOTE
             query = String.Format("SELECT id_report_status,emp_uni_ex_number as report_number FROM tb_emp_uni_ex WHERE id_emp_uni_ex = '{0}'", id_report)
         ElseIf report_mark_type = "133" Then
             'REVENUE BUDGET
@@ -4197,7 +4197,7 @@
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "132" Then
+        ElseIf report_mark_type = "132" Or report_mark_type = "236" Then
             'Uniform expense
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -4205,12 +4205,14 @@
 
             If id_status_reportx = "5" Then
                 'cancelled
-                Dim cancel_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
-                cancel_rsv_stock.cancelReservedStock(id_report, "132")
+                If report_mark_type = "132" Then
+                    Dim cancel_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
+                    cancel_rsv_stock.cancelReservedStock(id_report, report_mark_type)
+                End If
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
-                complete_rsv_stock.completedStock(id_report, "132")
+                complete_rsv_stock.completedStock(id_report, report_mark_type)
             End If
 
             'update status
@@ -4223,6 +4225,10 @@
                 FormEmpUniExpenseDet.actionLoad()
                 FormEmpUniExpense.viewData()
                 FormEmpUniExpense.GVData.FocusedRowHandle = find_row(FormEmpUniExpense.GVData, "id_emp_uni_ex", id_report)
+            ElseIf form_origin = "FormEmpUniCreditNoteDet" Then
+                FormEmpUniCreditNoteDet.load_form()
+                FormEmpUniCreditNote.view_form()
+                FormEmpUniCreditNote.GVData.FocusedRowHandle = find_row(FormEmpUniCreditNote.GVData, "id_emp_uni_ex", id_report)
             Else
                 'code here
             End If
@@ -4866,9 +4872,10 @@
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                INNER JOIN tb_item_cat_main main ON main.id_item_cat_main = cat.id_item_cat_main
                 INNER JOIN tb_lookup_expense_type et ON et.id_expense_type = cat.id_expense_type
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement=rq.id_departement
-                WHERE rd.id_purc_rec=" + id_report + " AND et.id_expense_type=2 "
+                WHERE rd.id_purc_rec=" + id_report + " AND et.id_expense_type=2 AND main.is_fixed_asset='1' "
                 Dim da As DataTable = execute_query(qa, -1, True, "", "", "", "")
                 If da.Rows.Count > 0 Then
                     Dim ix As Integer = 0
@@ -6598,14 +6605,15 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
             End If
 
             If id_status_reportx = "6" Then
-                query = "INSERT INTO tb_item_cat_main(`id_expense_type`,`item_cat_main`)
-		                SELECT d.id_expense_type, d.item_cat_main 
+                query = "INSERT INTO tb_item_cat_main(`id_expense_type`,`is_fixed_asset`,`item_cat_main`)
+		                SELECT d.id_expense_type, d.is_fixed_asset, d.item_cat_main 
 		                FROM tb_item_cat_main_pps_det d
 		                WHERE d.id_item_cat_main_pps = '" & id_report & "'"
                 execute_non_query(query, True, "", "", "", "")
             End If
 
             'jika cancel
+
 
             'update status
             query = String.Format("UPDATE tb_item_cat_main_pps SET id_report_status='{0}' WHERE id_item_cat_main_pps ='{1}'", id_status_reportx, id_report)

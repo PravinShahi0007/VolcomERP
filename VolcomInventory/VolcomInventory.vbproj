@@ -279,6 +279,12 @@
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
     <Compile Include="ClassValidEAN13.vb" />
+    <Compile Include="FormAccClosing.Designer.vb">
+      <DependentUpon>FormAccClosing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccClosing.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAccountingLedger.Designer.vb">
       <DependentUpon>FormAccountingLedger.vb</DependentUpon>
     </Compile>
@@ -1481,6 +1487,12 @@
       <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpUniCreditNoteDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniCreditNotePick.Designer.vb">
+      <DependentUpon>FormEmpUniCreditNotePick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniCreditNotePick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpUniExpense.Designer.vb">
@@ -2982,6 +2994,12 @@
     <Compile Include="FormPurcAssetDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcAssetHistory.Designer.vb">
+      <DependentUpon>FormPurcAssetHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcAssetValueAdded.Designer.vb">
       <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
     </Compile>
@@ -3190,6 +3208,12 @@
       <DependentUpon>FormSalesDelOrderSlip.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesDelOrderSlip.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesInv.Designer.vb">
+      <DependentUpon>FormSalesInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesInv.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesOrderCat.Designer.vb">
@@ -6903,6 +6927,18 @@
     <Compile Include="ReportFGStockSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGTransSummary.Designer.vb">
+      <DependentUpon>ReportFGTransSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGTransSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFGTransSummaryReport.Designer.vb">
+      <DependentUpon>ReportFGTransSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGTransSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGTrf.Designer.vb">
       <DependentUpon>ReportFGTrf.vb</DependentUpon>
     </Compile>
@@ -7725,6 +7761,9 @@
       <DependentUpon>barcodeaa.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAccClosing.resx">
+      <DependentUpon>FormAccClosing.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingLedger.resx">
       <DependentUpon>FormAccountingLedger.vb</DependentUpon>
     </EmbeddedResource>
@@ -8358,6 +8397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniCreditNoteDet.resx">
       <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniCreditNotePick.resx">
+      <DependentUpon>FormEmpUniCreditNotePick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniExpense.resx">
       <DependentUpon>FormEmpUniExpense.vb</DependentUpon>
@@ -9128,6 +9170,9 @@
     <EmbeddedResource Include="FormPurcAssetDet.resx">
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetHistory.resx">
+      <DependentUpon>FormPurcAssetHistory.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetValueAdded.resx">
       <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
     </EmbeddedResource>
@@ -9234,6 +9279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesDelOrderSlip.resx">
       <DependentUpon>FormSalesDelOrderSlip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesInv.resx">
+      <DependentUpon>FormSalesInv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderCat.resx">
       <DependentUpon>FormSalesOrderCat.vb</DependentUpon>
@@ -11523,6 +11571,9 @@
     <EmbeddedResource Include="ReportFGStockSum.resx">
       <DependentUpon>ReportFGStockSum.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGTransSummaryReport.resx">
+      <DependentUpon>ReportFGTransSummaryReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGTrf.resx">
       <DependentUpon>ReportFGTrf.vb</DependentUpon>

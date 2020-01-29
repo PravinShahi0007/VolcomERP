@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormEmpUniCreditNote
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormEmpUniCreditNotePick
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,23 +17,30 @@ Partial Class FormEmpUniCreditNote
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniCreditNotePick))
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPeriodFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPeriodUntil = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCAction = New DevExpress.XtraEditors.GroupControl()
+        Me.SBPick = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,6 +49,8 @@ Partial Class FormEmpUniCreditNote
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCAction, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCAction.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCData
@@ -50,16 +59,17 @@ Partial Class FormEmpUniCreditNote
         Me.GCData.Location = New System.Drawing.Point(0, 39)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(1008, 690)
-        Me.GCData.TabIndex = 7
+        Me.GCData.Size = New System.Drawing.Size(784, 483)
+        Me.GCData.TabIndex = 9
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumnItemCat, Me.GridColumnDept})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnPeriodFrom, Me.GridColumnPeriodUntil, Me.GridColumnItemCat, Me.GridColumnDept})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumn2
@@ -78,11 +88,19 @@ Partial Class FormEmpUniCreditNote
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Expense Number"
-        Me.GridColumn3.FieldName = "emp_uni_ex_number_ref"
+        Me.GridColumn3.Caption = "Delivery#"
+        Me.GridColumn3.FieldName = "pl_sales_order_del_number"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Account"
+        Me.GridColumn4.FieldName = "comp"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
         '
         'GridColumn5
         '
@@ -92,7 +110,7 @@ Partial Class FormEmpUniCreditNote
         Me.GridColumn5.FieldName = "emp_uni_ex_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 7
         '
         'GridColumn6
         '
@@ -100,7 +118,27 @@ Partial Class FormEmpUniCreditNote
         Me.GridColumn6.FieldName = "report_status"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 8
+        '
+        'GridColumnPeriodFrom
+        '
+        Me.GridColumnPeriodFrom.Caption = "Period From"
+        Me.GridColumnPeriodFrom.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnPeriodFrom.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnPeriodFrom.FieldName = "period_from"
+        Me.GridColumnPeriodFrom.Name = "GridColumnPeriodFrom"
+        Me.GridColumnPeriodFrom.Visible = True
+        Me.GridColumnPeriodFrom.VisibleIndex = 5
+        '
+        'GridColumnPeriodUntil
+        '
+        Me.GridColumnPeriodUntil.Caption = "Period Until"
+        Me.GridColumnPeriodUntil.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnPeriodUntil.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnPeriodUntil.FieldName = "period_until"
+        Me.GridColumnPeriodUntil.Name = "GridColumnPeriodUntil"
+        Me.GridColumnPeriodUntil.Visible = True
+        Me.GridColumnPeriodUntil.VisibleIndex = 6
         '
         'GridColumnItemCat
         '
@@ -108,7 +146,7 @@ Partial Class FormEmpUniCreditNote
         Me.GridColumnItemCat.FieldName = "item_cat"
         Me.GridColumnItemCat.Name = "GridColumnItemCat"
         Me.GridColumnItemCat.Visible = True
-        Me.GridColumnItemCat.VisibleIndex = 2
+        Me.GridColumnItemCat.VisibleIndex = 3
         '
         'GridColumnDept
         '
@@ -116,7 +154,7 @@ Partial Class FormEmpUniCreditNote
         Me.GridColumnDept.FieldName = "departement"
         Me.GridColumnDept.Name = "GridColumnDept"
         Me.GridColumnDept.Visible = True
-        Me.GridColumnDept.VisibleIndex = 3
+        Me.GridColumnDept.VisibleIndex = 4
         '
         'GCFilter
         '
@@ -129,17 +167,8 @@ Partial Class FormEmpUniCreditNote
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(1008, 39)
-        Me.GCFilter.TabIndex = 6
-        '
-        'BtnView
-        '
-        Me.BtnView.Location = New System.Drawing.Point(433, 9)
-        Me.BtnView.LookAndFeel.SkinName = "Blue"
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(63, 20)
-        Me.BtnView.TabIndex = 8896
-        Me.BtnView.Text = "View"
+        Me.GCFilter.Size = New System.Drawing.Size(784, 39)
+        Me.GCFilter.TabIndex = 8
         '
         'DEUntil
         '
@@ -181,18 +210,55 @@ Partial Class FormEmpUniCreditNote
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
         '
-        'FormEmpUniCreditNote
+        'GCAction
+        '
+        Me.GCAction.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCAction.Controls.Add(Me.SBClose)
+        Me.GCAction.Controls.Add(Me.SBPick)
+        Me.GCAction.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GCAction.Location = New System.Drawing.Point(0, 522)
+        Me.GCAction.Name = "GCAction"
+        Me.GCAction.Size = New System.Drawing.Size(784, 39)
+        Me.GCAction.TabIndex = 10
+        '
+        'SBPick
+        '
+        Me.SBPick.Image = CType(resources.GetObject("SBPick.Image"), System.Drawing.Image)
+        Me.SBPick.Location = New System.Drawing.Point(706, 8)
+        Me.SBPick.Name = "SBPick"
+        Me.SBPick.Size = New System.Drawing.Size(66, 23)
+        Me.SBPick.TabIndex = 0
+        Me.SBPick.Text = "Pick"
+        '
+        'SBClose
+        '
+        Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
+        Me.SBClose.Location = New System.Drawing.Point(634, 8)
+        Me.SBClose.Name = "SBClose"
+        Me.SBClose.Size = New System.Drawing.Size(66, 23)
+        Me.SBClose.TabIndex = 1
+        Me.SBClose.Text = "Close"
+        '
+        'BtnView
+        '
+        Me.BtnView.Location = New System.Drawing.Point(433, 9)
+        Me.BtnView.LookAndFeel.SkinName = "Blue"
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(63, 20)
+        Me.BtnView.TabIndex = 8896
+        Me.BtnView.Text = "View"
+        '
+        'FormEmpUniCreditNotePick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.GCData)
+        Me.Controls.Add(Me.GCAction)
         Me.Controls.Add(Me.GCFilter)
-        Me.MinimizeBox = False
-        Me.Name = "FormEmpUniCreditNote"
+        Me.Name = "FormEmpUniCreditNotePick"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Credit Note"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Text = "Credit Note Pick"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
@@ -202,6 +268,8 @@ Partial Class FormEmpUniCreditNote
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCAction, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GCAction.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -211,14 +279,20 @@ Partial Class FormEmpUniCreditNote
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPeriodFrom As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPeriodUntil As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnItemCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDept As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCFilter As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCAction As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPick As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
 End Class
