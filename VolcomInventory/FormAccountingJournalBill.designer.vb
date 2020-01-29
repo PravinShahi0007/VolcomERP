@@ -19,13 +19,12 @@ Partial Class FormAccountingJournalBill
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAccountingJournalBill))
-        Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.SMBalance = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.EPJournal = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.ImgBut = New DevExpress.Utils.ImageCollection()
+        Me.EPJournal = New System.Windows.Forms.ErrorProvider()
         Me.GCJournalDet = New DevExpress.XtraGrid.GridControl()
         Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -82,6 +81,8 @@ Partial Class FormAccountingJournalBill
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BalanceMenu.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -173,7 +174,7 @@ Partial Class FormAccountingJournalBill
         '
         'GVJournalDet
         '
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnStatus, Me.GridColumnIdReport, Me.GridColumnReportMarkType, Me.GridColumnReff, Me.GridColumnNumberReff, Me.GridColumnIdCompany, Me.GridColumnIdAccSrc, Me.GridColumn8})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnStatus, Me.GridColumnIdReport, Me.GridColumnReportMarkType, Me.GridColumnReff, Me.GridColumn14, Me.GridColumn9, Me.GridColumnNumberReff, Me.GridColumnIdCompany, Me.GridColumnIdAccSrc, Me.GridColumn8})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.Name = "GVJournalDet"
         Me.GVJournalDet.OptionsLayout.Columns.StoreAllOptions = True
@@ -721,6 +722,18 @@ Partial Class FormAccountingJournalBill
         Me.LTransNo.TabIndex = 0
         Me.LTransNo.Text = "Date"
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "GridColumn9"
+        Me.GridColumn9.FieldName = "id_report_ref"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.FieldName = "report_mark_type_ref"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
         'FormAccountingJournalBill
         '
         Me.AcceptButton = Me.BSave
@@ -840,4 +853,6 @@ Partial Class FormAccountingJournalBill
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNumberReff As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
