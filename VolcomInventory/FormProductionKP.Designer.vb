@@ -473,7 +473,6 @@ Partial Class FormProductionKP
         'Bdel
         '
         Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Bdel.Enabled = False
         Me.Bdel.ImageIndex = 1
         Me.Bdel.ImageList = Me.ImageCollection
         Me.Bdel.Location = New System.Drawing.Point(784, 0)
