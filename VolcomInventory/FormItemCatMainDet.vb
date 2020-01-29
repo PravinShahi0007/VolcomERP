@@ -49,7 +49,7 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "Select d.id_item_cat_main_pps_det, d.id_item_cat_main_pps, d.id_expense_type, ex.expense_type, d.item_cat_main 
+        Dim query As String = "Select d.id_item_cat_main_pps_det, d.id_item_cat_main_pps, d.id_expense_type, ex.expense_type, d.item_cat_main , IF(d.is_fixed_asset='1','yes','no') AS is_fixed_asset
         FROM tb_item_cat_main_pps_det d 
         INNER JOIN tb_lookup_expense_type ex ON ex.id_expense_type = d.id_expense_type
         WHERE d.id_item_cat_main_pps=" + id_propose + " ORDER BY d.id_item_cat_main_pps_det ASC "

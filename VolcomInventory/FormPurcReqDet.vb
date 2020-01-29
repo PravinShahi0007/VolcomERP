@@ -11,6 +11,9 @@
     Public is_submit As String = "-1"
     Public is_ic_ia As String = "-1"
     '
+    Public rmt As String = "-1"
+
+    '
     Sub load_approval_ic_ia()
         Dim query As String = "SELECT '1' AS id_approval,'No Action' AS approval
 UNION
@@ -60,7 +63,7 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             '
             GVItemList.OptionsBehavior.Editable = False
             '
-            Dim query As String = "SELECT req.id_user_created,req.is_submit,req.ic_approval,req.ia_approval,req.ic_note,req.ia_note,req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,req.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status,req.is_store_purchase
+            Dim query As String = "SELECT req.id_user_created,req.report_mark_type,req.is_submit,req.ic_approval,req.ia_approval,req.ic_note,req.ia_note,req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,req.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status,req.is_store_purchase
                                     FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -69,6 +72,7 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             If data.Rows.Count > 0 Then
+                rmt = data.Rows(0)("report_mark_type").ToString
                 id_user_created = data.Rows(0)("id_user_created").ToString
                 TEReqBy.Text = data.Rows(0)("employee_name").ToString
                 id_departement = data.Rows(0)("id_departement").ToString
@@ -106,7 +110,9 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             LStoreRequest.Visible = True
             PCIAIC.Visible = False
         Else
-            PCIAIC.Visible = True
+            If rmt = "201" Then
+                PCIAIC.Visible = True
+            End If
         End If
     End Sub
 
@@ -161,10 +167,11 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`,itm.item_desc,itm.`id_item_type`
+        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`,itm.item_desc,itm.`id_item_type`,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset
                                 FROM tb_purc_req_det reqd 
                                 INNER JOIN tb_item itm ON reqd.`id_item`=itm.`id_item`
                                 INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=itm.`id_item_cat`
+                                INNER JOIN tb_item_cat_main main ON main.id_item_cat_main=cat.id_item_cat_main
                                 INNER JOIN tb_m_uom uom ON uom.`id_uom`=itm.`id_uom`
                                 WHERE reqd.id_purc_req='" & id_req & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -173,10 +180,12 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
 
     Sub load_item_pil()
         Dim query As String = ""
-        query = "SELECT it.id_item,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
+
+        query = "SELECT it.id_item,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
                     FROM tb_item it
                     INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                     INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
+                    INNER JOIN tb_item_cat_main main ON main.id_item_cat_main=cat.id_item_cat_main
                     INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = '" & id_departement & "'
                     LEFT JOIN
                     (
@@ -203,7 +212,9 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
                         WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
                     )used_opex ON used_opex.id_item_cat_main=cat.`id_item_cat_main`
                     WHERE it.is_active='1' AND cat.id_expense_type='" & SLEPurcType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
-
+        If GVItemList.RowCount > 1 Then
+            query += " AND main.is_fixed_asset='" & GVItemList.GetRowCellValue(0, "is_fixed_asset").ToString & "'"
+        End If
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")
         RISLEItem.View.BestFitColumns()
     End Sub
@@ -220,10 +231,23 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        GVItemList.AddNewRow()
-        GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
-        GVItemList.SetFocusedRowCellValue("ship_destination", get_setup_field("id_own_company"))
-        check_but()
+        'check all value first
+        Dim is_ok As Boolean = True
+        If GVItemList.RowCount = 0 Then
+            is_ok = True
+        ElseIf GVItemList.GetFocusedRowCellValue("id_item").ToString = "" Or GVItemList.GetFocusedRowCellValue("qty").ToString = "" Or GVItemList.GetFocusedRowCellValue("ship_to").ToString = "" Then
+            stopCustom("Please fill item/qty/destination first")
+            is_ok = False
+        End If
+
+        If is_ok Then
+            GVItemList.AddNewRow()
+            GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+            GVItemList.SetFocusedRowCellValue("ship_destination", get_setup_field("id_own_company"))
+            load_item_pil()
+            check_but()
+        End If
+        '
     End Sub
 
     Private Sub RISLEItem_EditValueChanged(sender As Object, e As EventArgs) Handles RISLEItem.EditValueChanged
@@ -231,6 +255,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
             Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
             'budget
             GVItemList.SetFocusedRowCellValue("budget_remaining", sle.Properties.View.GetFocusedRowCellValue("budget_remaining").ToString())
+            GVItemList.SetFocusedRowCellValue("is_fixed_asset", sle.Properties.View.GetFocusedRowCellValue("is_fixed_asset").ToString())
             'If GVItemList.FocusedRowHandle = 0 Then
             '    GVItemList.SetFocusedRowCellValue("budget_remaining", sle.Properties.View.GetFocusedRowCellValue("budget_remaining").ToString())
             'ElseIf GVItemList.FocusedRowHandle = 1 Then
@@ -292,7 +317,9 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
         Dim is_exceed_budget As Boolean = False
         Dim is_no_shipping As Boolean = False
         Dim qty_is_0 As Boolean = False
-
+        '
+        Dim rmt_ins As String = ""
+        '
         If GVItemList.RowCount > 0 Then
             'check 
             For i As Integer = 0 To GVItemList.RowCount - 1
@@ -301,7 +328,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
                     is_exceed_budget = True
                 End If
                 'no shipping destination
-                If GVItemList.GetRowCellValue(i, "ship_destination").ToString = "" Then
+                If GVItemList.GetRowCellValue(i, "ship_to").ToString = "" Or GVItemList.GetRowCellValue(i, "ship_destination").ToString = "" Then
                     is_no_shipping = True
                 End If
                 'no qty
@@ -314,9 +341,11 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
             If is_exceed_budget = True Then
                 stopCustom("Please make sure you have budget.")
             ElseIf is_no_shipping = True Then
-                stopCustom("Please make sure fill the shipping destination.")
+                stopCustom("Please make sure choosing and fill the shipping destination.")
             ElseIf qty_is_0 = True Then
                 stopCustom("Please make sure Qty is not 0.")
+            ElseIf GVItemList.RowCount = 0 Then
+                stopCustom("Please choose item first")
             Else
                 Dim is_store_purchase As String = ""
 
@@ -326,9 +355,15 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
                     is_store_purchase = "2"
                 End If
 
+                If GVItemList.GetRowCellValue(0, "is_fixed_asset").ToString = "yes" Then 'fixed asset
+                    rmt_ins = "201"
+                Else
+                    rmt_ins = "137"
+                End If
+
                 If id_req = "-1" Then 'new
-                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,is_store_purchase,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date) VALUES('" & id_departement & "','" & is_store_purchase & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & addSlashes(MENote.Text) & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
-                    Dim id_req As String = execute_query(query, 0, True, "", "", "", "")
+                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,report_mark_type,is_fixed_asset,is_store_purchase,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date) VALUES('" & id_departement & "','" & rmt_ins & "','" & If(GVItemList.GetRowCellValue(0, "is_fixed_asset").ToString = "yes", "1", "2") & "','" & is_store_purchase & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & addSlashes(MENote.Text) & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
+                    id_req = execute_query(query, 0, True, "", "", "", "")
                     '
                     Dim query_det As String = ""
                     For i As Integer = 0 To GVItemList.RowCount - 1
@@ -343,17 +378,8 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
                     '
                     execute_non_query(query_det, True, "", "", "", "")
                     'generate number
-                    If SLEPurcType.EditValue.ToString = "1" Then
-                        query = "CALL gen_number('" & id_req & "','137')"
-                        execute_non_query(query, True, "", "", "", "")
-                        '
-                        'submit_who_prepared("137", id_req, id_user)
-                    Else
-                        query = "CALL gen_number('" & id_req & "','201')"
-                        execute_non_query(query, True, "", "", "", "")
-                        '
-                        'submit_who_prepared("201", id_req, id_user)
-                    End If
+                    query = "CALL gen_number('" & id_req & "','" & rmt_ins & "')"
+                    execute_non_query(query, True, "", "", "", "")
 
                     infoCustom("Purchase requested.")
                     load_form()
@@ -382,18 +408,14 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
-        GVItemList.DeleteSelectedRows()
-        check_but()
+        If GVItemList.RowCount > 0 Then
+            GVItemList.DeleteRow(GVItemList.RowCount - 1)
+            load_item_pil()
+            check_but()
+        End If
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        Dim rmt As String = "1"
-        If SLEPurcType.EditValue.ToString = "1" Then
-            rmt = "137"
-        Else
-            rmt = "201"
-        End If
-
         If is_submit = "1" Then
             FormReportMark.id_report = id_req
             FormReportMark.report_mark_type = rmt
@@ -404,32 +426,26 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
             FormReportMark.ShowDialog()
         Else
             'submit
-            If SLEPurcType.EditValue.ToString = "1" Then 'opex
-                Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_req & "'"
-                execute_non_query(query_upd, True, "", "", "", "")
-                submit_who_prepared(rmt, id_req, id_user_created)
-                load_form()
-            Else 'capex
+            If rmt = "201" Then 'fixed asset
                 If is_ic_ia = "1" Then
                     FormPurcReqICApproval.step_approve = FormPurcReqList.step_approve
                     FormPurcReqICApproval.id_report = id_req
                     FormPurcReqICApproval.ShowDialog()
                     load_form()
                 Else
-                    warningCustom("Only IA and IC can submit CAPEX request")
+                    warningCustom("Only IA and IC can submit Fixed Asset request")
                 End If
+            Else 'non fixed asset
+                Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_req & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+                submit_who_prepared(rmt, id_req, id_user_created)
+                load_form()
             End If
         End If
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        Dim rmt As String = "1"
-        If SLEPurcType.EditValue.ToString = "1" Then
-            rmt = "137"
-        Else
-            rmt = "201"
-        End If
 
         ReportPurcReq.id_req = id_req
         ReportPurcReq.dt = GCItemList.DataSource
@@ -547,11 +563,6 @@ GROUP BY req.`id_purc_req`"
         Cursor = Cursors.WaitCursor
 
         Dim rmt As String = "1"
-        If SLEPurcType.EditValue.ToString = "1" Then
-            rmt = "137"
-        Else
-            rmt = "201"
-        End If
 
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id_req
@@ -572,5 +583,13 @@ GROUP BY req.`id_purc_req`"
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+    End Sub
+
+    Private Sub GVItemList_ShownEditor(sender As Object, e As EventArgs) Handles GVItemList.ShownEditor
+        If GVItemList.RowCount > 1 And GVItemList.FocusedRowHandle = 0 Then
+            GVItemList.ActiveEditor.Properties.ReadOnly = True
+        Else
+            GVItemList.ActiveEditor.Properties.ReadOnly = False
+        End If
     End Sub
 End Class
