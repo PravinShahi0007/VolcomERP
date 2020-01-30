@@ -204,4 +204,12 @@
         PanelControlViewByProduct.Visible = True
         BtnShowFilter.Visible = False
     End Sub
+
+    Private Sub CESizetyp_CheckedChanged(sender As Object, e As EventArgs) Handles CESizetyp.CheckedChanged
+        If CESizetyp.EditValue = True Then
+            BandedGridColumnsize_type.VisibleIndex = BandedGridColumnage.VisibleIndex + 1
+        Else
+            BandedGridColumnsize_type.Visible = False
+        End If
+    End Sub
 End Class
