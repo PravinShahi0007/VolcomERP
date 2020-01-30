@@ -152,6 +152,7 @@ Partial Class FormSalesInv
         'GVByProduct
         '
         Me.GVByProduct.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand4, Me.GridBand1, Me.gridBandSales, Me.gridBandSOH})
+        Me.GVByProduct.ColumnPanelRowHeight = 35
         Me.GVByProduct.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_design, Me.BandedGridColumncode, Me.BandedGridColumnname, Me.BandedGridColumnid_design_cat, Me.BandedGridColumndesign_cat, Me.BandedGridColumnstt, Me.BandedGridColumnid_class, Me.BandedGridColumnclass, Me.BandedGridColumnid_subkat, Me.BandedGridColumnsubkat, Me.BandedGridColumn1, Me.BandedGridColumnkat, Me.BandedGridColumnsize_type, Me.BandedGridColumnage, Me.BandedGridColumnsal_qty1, Me.BandedGridColumnsal_qty2, Me.BandedGridColumnsal_qty3, Me.BandedGridColumnsal_qty4, Me.BandedGridColumnsal_qty5, Me.BandedGridColumnsal_qty6, Me.BandedGridColumnsal_qty7, Me.BandedGridColumnsal_qty8, Me.BandedGridColumnsal_qty9, Me.BandedGridColumnsal_qty0, Me.BandedGridColumnsal_qty_ttl, Me.BandedGridColumninv_qty1, Me.BandedGridColumninv_qty2, Me.BandedGridColumninv_qty3, Me.BandedGridColumninv_qty4, Me.BandedGridColumninv_qty5, Me.BandedGridColumninv_qty6, Me.BandedGridColumninv_qty7, Me.BandedGridColumninv_qty8, Me.BandedGridColumninv_qty9, Me.BandedGridColumninv_qty0, Me.BandedGridColumninv_qty_ttl})
         Me.GVByProduct.GridControl = Me.GCByProduct
         Me.GVByProduct.GroupCount = 1

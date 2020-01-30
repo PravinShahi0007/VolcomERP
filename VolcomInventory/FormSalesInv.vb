@@ -9,6 +9,7 @@
         loadFilterOpt()
         viewPeriodType()
         viewDisplay()
+        showCaptionSize()
     End Sub
 
     Private Sub FormSalesInv_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -18,6 +19,32 @@
 
     Private Sub FormSalesInv_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Sub showCaptionSize()
+        '-----by product
+        'sal
+        GVByProduct.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVByProduct.Columns("sal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVByProduct.Columns("sal_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVByProduct.Columns("sal_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVByProduct.Columns("sal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVByProduct.Columns("sal_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVByProduct.Columns("sal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVByProduct.Columns("sal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVByProduct.Columns("sal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVByProduct.Columns("sal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'soh
+        GVByProduct.Columns("inv_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVByProduct.Columns("inv_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVByProduct.Columns("inv_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVByProduct.Columns("inv_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVByProduct.Columns("inv_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVByProduct.Columns("inv_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVByProduct.Columns("inv_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVByProduct.Columns("inv_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVByProduct.Columns("inv_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVByProduct.Columns("inv_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     Sub loadComp()
