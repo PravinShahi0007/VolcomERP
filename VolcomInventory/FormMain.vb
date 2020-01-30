@@ -7999,6 +7999,31 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormEmpUniCreditNote.GCData, "Credit Note Uniform")
         ElseIf formName = "FormDocTracking" Then
             print_raw(FormDocTracking.GCData, "")
+        ElseIf formName = "FormSalesInv" Then
+            ReportSalesInvReport.dt = FormSalesInv.GCByProduct.DataSource
+
+            Dim Report As New ReportSalesInvReport()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            FormSalesInv.GVByProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVByProduct.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleBanded(Report.GVByProduct)
+
+            'Label
+            Report.LabelAccount.Text = FormSalesInv.SLEComp.Text
+            Report.LabelPeriod.Text = FormSalesInv.DEFrom.Text + " - " + FormSalesInv.DEUntil.Text
+            Report.XLTitle.Text = "SALES / INVENTORY"
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         Else
             RPSubMenu.Visible = False
         End If
