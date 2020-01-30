@@ -121,6 +121,7 @@
 
     Private Sub LEFilterOpt_EditValueChanged(sender As Object, e As EventArgs) Handles LEFilterOpt.EditValueChanged
         loadSubFilter()
+        GCByProduct.DataSource = Nothing
     End Sub
 
     Sub viewDisplay()
@@ -210,6 +211,49 @@
             BandedGridColumnsize_type.VisibleIndex = BandedGridColumnage.VisibleIndex + 1
         Else
             BandedGridColumnsize_type.Visible = False
+        End If
+    End Sub
+
+    Private Sub SLEComp_EditValueChanged(sender As Object, e As EventArgs) Handles SLEComp.EditValueChanged
+        GCByProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub SLESubFilter_EditValueChanged(sender As Object, e As EventArgs) Handles SLESubFilter.EditValueChanged
+        GCByProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub SLEPeriodType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPeriodType.EditValueChanged
+        GCByProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub DEFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEFrom.EditValueChanged
+        GCByProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        GCByProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub LEDisplay_EditValueChanged(sender As Object, e As EventArgs) Handles LEDisplay.EditValueChanged
+        GCByProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub CESizetyp_EditValueChanged(sender As Object, e As EventArgs) Handles CESizetyp.EditValueChanged
+        GCByProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub GVByProduct_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVByProduct.CustomColumnDisplayText
+        If (e.Column.FieldName.Contains("sal_qty") Or e.Column.FieldName.Contains("inv_qty") Or e.Column.FieldName.Contains("age")) Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
+        ElseIf e.Column.FieldName = "no" Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
+                Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
+                e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
+            End If
         End If
     End Sub
 End Class
