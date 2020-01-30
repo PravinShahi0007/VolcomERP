@@ -116,7 +116,56 @@
     End Sub
 
     Private Sub BtnExportToXLSRec_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSRec.Click
+        If GVByProduct.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVByProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To GVByProduct.Columns.Count - 1
+                If GVByProduct.Columns(i).OwnerBand.ToString = "SALES" Or GVByProduct.Columns(i).OwnerBand.ToString = "STOCK ON HAND" Then
+                    GVByProduct.Columns(i).Caption = GVByProduct.Columns(i).FieldName.ToString
+                End If
+            Next
 
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "sales_inv_by_product.xlsx"
+            exportToXLS(path, "sales inventory by product", GCByProduct)
+
+            'restore column opt
+            GVByProduct.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub LEFilterOpt_EditValueChanged(sender As Object, e As EventArgs) Handles LEFilterOpt.EditValueChanged

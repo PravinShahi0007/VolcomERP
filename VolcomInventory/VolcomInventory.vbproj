@@ -7429,6 +7429,12 @@
     <Compile Include="ReportSalesDelOrderSlip.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesInv.Designer.vb">
+      <DependentUpon>ReportSalesInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesInv.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportSalesInvoceDelSlip.Designer.vb">
       <DependentUpon>ReportSalesInvoceDelSlip.vb</DependentUpon>
     </Compile>
