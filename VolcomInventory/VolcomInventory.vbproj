@@ -7459,6 +7459,12 @@
     <Compile Include="ReportSalesInvoiceNew.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesInvReport.Designer.vb">
+      <DependentUpon>ReportSalesInvReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesInvReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesOrder.Designer.vb">
       <DependentUpon>ReportSalesOrder.vb</DependentUpon>
     </Compile>
@@ -11876,6 +11882,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesInvoiceNew.resx">
       <DependentUpon>ReportSalesInvoiceNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesInvReport.resx">
+      <DependentUpon>ReportSalesInvReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrder.resx">
       <DependentUpon>ReportSalesOrder.vb</DependentUpon>

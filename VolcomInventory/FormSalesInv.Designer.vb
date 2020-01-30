@@ -859,7 +859,7 @@ Partial Class FormSalesInv
         Me.ClientSize = New System.Drawing.Size(787, 485)
         Me.Controls.Add(Me.XTCSalesInv)
         Me.Name = "FormSalesInv"
-        Me.Text = "Sales & Inventory"
+        Me.Text = "Sales/Inventory Report"
         CType(Me.XTCSalesInv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCSalesInv.ResumeLayout(False)
         Me.XTPProduct.ResumeLayout(False)
