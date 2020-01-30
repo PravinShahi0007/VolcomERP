@@ -106,13 +106,14 @@
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
-
+        viewByProduct()
     End Sub
 
     Sub viewByProduct()
         Cursor = Cursors.WaitCursor
         FormMain.SplashScreenManager1.ShowWaitForm()
-        'Prepare paramater
+
+        'Prepare paramater date
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
         Try
@@ -123,6 +124,8 @@
             date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+
+        'other
         Dim id_comp As String = SLEComp.EditValue.ToString
         Dim id_period_type As String = SLEPeriodType.EditValue.ToString
         Dim is_with_sizetype_param As String = ""
@@ -131,13 +134,47 @@
         Else
             is_with_sizetype_param = "2"
         End If
+
+        'display
         Dim opt_display_param As String = LEDisplay.EditValue.ToString
+        If opt_display_param = "1" Then
+            gridBandSOH.Visible = True
+        Else
+            gridBandSOH.Visible = False
+        End If
 
+        'where string
+        Dim where_param As String = ""
+        Dim id_filter_opt As String = LEFilterOpt.EditValue.ToString
+        Dim id_sub_filter As String = SLESubFilter.EditValue.ToString
+        Select Case id_filter_opt
+            Case 1
+                where_param = "AND cls.id_class=" + id_sub_filter + " "
+            Case 2
+                where_param = "AND kat.kat=''" + SLESubFilter.Text.ToString + "'' "
+            Case 3
+                where_param = "AND subkat.id_subkat=" + id_sub_filter + " "
+            Case 4
+                where_param = "AND prc.id_design_cat=" + id_sub_filter + " "
+            Case Else
+                where_param = ""
+        End Select
 
-        Dim query As String = "CALL view_sales_inv('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "', '" + id_period_type + "', '" + is_with_sizetype_param + "', '" + opt_display_param + "', where_param) "
+        'excecute
+        Dim query As String = "CALL view_sales_inv('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "', '" + id_period_type + "', '" + is_with_sizetype_param + "', '" + opt_display_param + "', '" + where_param + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByProduct.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnHideFilter_Click(sender As Object, e As EventArgs) Handles BtnHideFilter.Click
+        PanelControlViewByProduct.Visible = False
+        BtnShowFilter.Visible = True
+    End Sub
+
+    Private Sub BtnShowFilter_Click(sender As Object, e As EventArgs) Handles BtnShowFilter.Click
+        PanelControlViewByProduct.Visible = True
+        BtnShowFilter.Visible = False
     End Sub
 End Class
