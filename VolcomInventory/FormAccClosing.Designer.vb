@@ -28,6 +28,8 @@ Partial Class FormAccClosing
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,7 +89,7 @@ Partial Class FormAccClosing
         '
         'GVClosing
         '
-        Me.GVClosing.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVClosing.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GVClosing.GridControl = Me.GCClosing
         Me.GVClosing.Name = "GVClosing"
         Me.GVClosing.OptionsView.ShowGroupPanel = False
@@ -95,23 +97,40 @@ Partial Class FormAccClosing
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Jurnal"
+        Me.GridColumn1.FieldName = "acc_trans_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.Caption = "Status"
+        Me.GridColumn2.FieldName = "sts"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 3
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.Caption = "Debit"
+        Me.GridColumn3.FieldName = "debit"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Credit"
+        Me.GridColumn4.FieldName = "credit"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID Acc Trans"
+        Me.GridColumn5.FieldName = "id_acc_trans"
+        Me.GridColumn5.Name = "GridColumn5"
         '
         'FormAccClosing
         '
@@ -145,4 +164,6 @@ Partial Class FormAccClosing
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
