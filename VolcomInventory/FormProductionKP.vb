@@ -56,11 +56,13 @@ WHERE id_prod_order_kp='" & id_kp & "'"
             BLock.Visible = False
             BUpdate.Visible = False
             BRevise.Visible = True
+            Bdel.Enabled = False
             PCDel.Visible = False
         Else
             BLock.Visible = True
             BUpdate.Visible = True
             BRevise.Visible = False
+            Bdel.Enabled = True
             PCDel.Visible = True
         End If
 

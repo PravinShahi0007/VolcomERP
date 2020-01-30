@@ -46,10 +46,12 @@
             GVJournalDet.Columns("debit").OptionsColumn.AllowEdit = True
             GVJournalDet.Columns("credit").OptionsColumn.AllowEdit = True
             GVJournalDet.Columns("report_number").OptionsColumn.AllowEdit = True
+            GVJournalDet.Columns("report_number_ref").OptionsColumn.AllowEdit = True
         Else
             GVJournalDet.Columns("debit").OptionsColumn.AllowEdit = False
             GVJournalDet.Columns("credit").OptionsColumn.AllowEdit = False
             GVJournalDet.Columns("report_number").OptionsColumn.AllowEdit = False
+            GVJournalDet.Columns("report_number_ref").OptionsColumn.AllowEdit = False
         End If
     End Sub
 
@@ -98,7 +100,7 @@
     End Sub
 
     Sub view_det()
-        Dim query As String = "SELECT a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_det_note as note,a.id_status_open,a.id_acc_src,IFNULL(a.id_comp, 0) AS id_comp,a.report_mark_type,a.id_report,a.report_number,a.report_number_ref FROM tb_a_acc_trans_det a INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc LEFT JOIN tb_a_acc_trans_det d ON a.id_acc_src=d.id_acc_trans_det WHERE a.id_acc_trans='" & id_trans & "'"
+        Dim query As String = "SELECT a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_det_note as note,a.id_status_open,a.id_acc_src,IFNULL(a.id_comp, 0) AS id_comp,a.report_mark_type,a.id_report,a.report_number,a.id_report_ref,a.report_number_ref,a.report_mark_type_ref FROM tb_a_acc_trans_det a INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc LEFT JOIN tb_a_acc_trans_det d ON a.id_acc_src=d.id_acc_trans_det WHERE a.id_acc_trans='" & id_trans & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCJournalDet.DataSource = data
         GVJournalDet.BestFitColumns()
@@ -178,18 +180,24 @@
                     'insert who prepared
                     insert_who_prepared("36", id_trans, id_user)
 
+                    Dim dt_trans As DataTable = execute_query("SELECT * FROM tb_a_acc_trans WHERE id_acc_trans = " + id_trans, -1, True, "", "", "", "")
+
                     'entry detail
                     Dim id_reportd As String = ""
+                    Dim rreport_number As String = ""
                     Dim report_mark_typed As String = ""
                     Dim id_acc_srcd As String = ""
                     Dim id_compd As String = ""
                     Dim vend As String = ""
+                    Dim id_report_ref As String = ""
                     Dim report_number_ref As String = ""
+                    Dim report_mark_type_ref As String = ""
                     Try
                         For i As Integer = 0 To GVJournalDet.RowCount - 1
                             If Not GVJournalDet.GetRowCellValue(i, "id_acc").ToString = "" Then
                                 If GVJournalDet.GetRowCellValue(i, "id_report").ToString = "" Then
-                                    id_reportd = "NULL"
+                                    'id_reportd = "NULL"
+                                    id_reportd = dt_trans.Rows(0)("id_acc_trans").ToString
                                 Else
                                     id_reportd = "'" + GVJournalDet.GetRowCellValue(i, "id_report").ToString + "'"
                                 End If
@@ -208,6 +216,11 @@
                                 Else
                                     id_acc_srcd = "'" + GVJournalDet.GetRowCellValue(i, "id_acc_src").ToString + "'"
                                 End If
+                                If GVJournalDet.GetRowCellValue(i, "id_report_ref").ToString = "" Then
+                                    id_report_ref = "NULL"
+                                Else
+                                    id_report_ref = "'" + GVJournalDet.GetRowCellValue(i, "id_report_ref").ToString + "'"
+                                End If
                                 If GVJournalDet.GetRowCellValue(i, "report_number_ref").ToString = "" Then
                                     report_number_ref = "NULL"
                                 Else
@@ -218,8 +231,18 @@
                                 Else
                                     vend = "'" + execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp = " + id_compd, 0, True, "", "", "", "") + "'"
                                 End If
+                                If GVJournalDet.GetRowCellValue(i, "report_number").ToString = "" Then
+                                    rreport_number = dt_trans.Rows(0)("acc_trans_number").ToString
+                                Else
+                                    rreport_number = GVJournalDet.GetRowCellValue(i, "report_number").ToString
+                                End If
+                                If GVJournalDet.GetRowCellValue(i, "report_mark_type_ref").ToString = "" Then
+                                    report_mark_type_ref = "NULL"
+                                Else
+                                    report_mark_type_ref = GVJournalDet.GetRowCellValue(i, "report_mark_type_ref").ToString
+                                End If
 
-                                query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open,report_mark_type,id_report,report_number,id_comp, id_acc_src, report_number_ref,vendor) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},'{8}',{9},{10},{11},{12})", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString, report_mark_typed, id_reportd, GVJournalDet.GetRowCellValue(i, "report_number").ToString, id_compd, id_acc_srcd, report_number_ref, vend)
+                                query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open,report_mark_type,id_report,report_number,id_comp, id_acc_src, id_report_ref, report_number_ref,report_mark_type_ref,vendor) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},'{8}',{9},{10},{11},{12},{13},{14})", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString, report_mark_typed, id_reportd, rreport_number, id_compd, id_acc_srcd, id_report_ref, report_number_ref, report_mark_type_ref, vend)
                                 execute_non_query(query, True, "", "", "", "")
                             End If
                         Next
