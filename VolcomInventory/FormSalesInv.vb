@@ -1,4 +1,6 @@
 ﻿Public Class FormSalesInv
+    Public id_design_per_outlet As String = "-1"
+
     Private Sub FormSalesInv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`, LAST_DAY(DATE(NOW())) AS `last_date` ", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
@@ -7,6 +9,7 @@
 
         loadComp()
         loadFilterOpt()
+        loadFilterOptAcc()
         viewPeriodType()
         viewDisplay()
         showCaptionSize()
@@ -23,28 +26,34 @@
 
     Sub showCaptionSize()
         '-----by product
+        setCaptionSize(GVByProduct)
+        '------ by account
+        setCaptionSize(GVByAccount)
+    End Sub
+
+    Sub setCaptionSize(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
         'sal
-        GVByProduct.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
-        GVByProduct.Columns("sal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
-        GVByProduct.Columns("sal_qty3").Caption = "3" + System.Environment.NewLine + "S"
-        GVByProduct.Columns("sal_qty4").Caption = "4" + System.Environment.NewLine + "M"
-        GVByProduct.Columns("sal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
-        GVByProduct.Columns("sal_qty6").Caption = "6" + System.Environment.NewLine + "L"
-        GVByProduct.Columns("sal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
-        GVByProduct.Columns("sal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
-        GVByProduct.Columns("sal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
-        GVByProduct.Columns("sal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        gv.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("sal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("sal_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("sal_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("sal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("sal_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("sal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("sal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("sal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("sal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
         'soh
-        GVByProduct.Columns("inv_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
-        GVByProduct.Columns("inv_qty2").Caption = "2" + System.Environment.NewLine + "XS"
-        GVByProduct.Columns("inv_qty3").Caption = "3" + System.Environment.NewLine + "S"
-        GVByProduct.Columns("inv_qty4").Caption = "4" + System.Environment.NewLine + "M"
-        GVByProduct.Columns("inv_qty5").Caption = "5" + System.Environment.NewLine + "ML"
-        GVByProduct.Columns("inv_qty6").Caption = "6" + System.Environment.NewLine + "L"
-        GVByProduct.Columns("inv_qty7").Caption = "7" + System.Environment.NewLine + "XL"
-        GVByProduct.Columns("inv_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
-        GVByProduct.Columns("inv_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
-        GVByProduct.Columns("inv_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        gv.Columns("inv_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("inv_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("inv_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("inv_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("inv_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("inv_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("inv_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("inv_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("inv_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("inv_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     Sub loadComp()
@@ -55,6 +64,7 @@
         FROM tb_m_comp c
         WHERE (c.id_comp_cat='5' OR c.id_comp_cat='6') "
         viewSearchLookupQuery(SLEComp, query, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -70,6 +80,23 @@
         UNION
         SELECT 4 AS `id_filter_opt`, 'Status Product' AS `filter_opt` "
         viewLookupQuery(LEFilterOpt, query, 0, "filter_opt", "id_filter_opt")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub loadFilterOptAcc()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `id_filter_opt`, 'No Filter' AS `filter_opt`
+        UNION
+        SELECT 1 AS `id_filter_opt`, 'Class' AS `filter_opt`
+        UNION
+        SELECT 2 AS `id_filter_opt`, 'Category' AS `filter_opt`
+        UNION
+        SELECT 3 AS `id_filter_opt`, 'Sub Category' AS `filter_opt`
+        UNION
+        SELECT 4 AS `id_filter_opt`, 'Status Product' AS `filter_opt` 
+        UNION
+        SELECT 5 AS `id_filter_opt`, 'Season' AS `filter_opt`"
+        viewLookupQuery(LEFilterOptAcc, query, 0, "filter_opt", "id_filter_opt")
         Cursor = Cursors.Default
     End Sub
 
@@ -112,6 +139,7 @@
         UNION
         SELECT '2' AS `id_period_type`,'Entry Date' AS `period_type` "
         viewSearchLookupQuery(SLEPeriodType, query, "id_period_type", "period_type", "id_period_type")
+        viewSearchLookupQuery(SLEPeriodTypeAcc, query, "id_period_type", "period_type", "id_period_type")
         Cursor = Cursors.Default
     End Sub
 
@@ -179,6 +207,8 @@
         UNION
         SELECT 2 AS `id_display`, 'Sales Only' AS `display` "
         viewLookupQuery(LEDisplay, query, 0, "display", "id_display")
+        viewLookupQuery(LEDisplayAcc, query, 0, "display", "id_display")
+        LEDisplayAcc.EditValue = "2"
         Cursor = Cursors.Default
     End Sub
 
@@ -304,5 +334,59 @@
                 e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
             End If
         End If
+    End Sub
+
+    Private Sub CEFindAllProduct_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProduct.EditValueChanged
+        resetViewByAccount()
+
+        If CEFindAllProduct.EditValue = True Then
+            BtnBrowseProduct.Enabled = False
+        Else
+            BtnBrowseProduct.Enabled = True
+        End If
+    End Sub
+
+    Private Sub BtnBrowseProduct_Click(sender As Object, e As EventArgs) Handles BtnBrowseProduct.Click
+        Cursor = Cursors.WaitCursor
+        FormSearchDesign.id_pop_up = "4"
+        FormSearchDesign.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+        resetViewByAccount()
+    End Sub
+
+    Sub resetViewByAccount()
+        id_design_per_outlet = "-1"
+        GCByAccount.DataSource = Nothing
+    End Sub
+
+    Private Sub TxtProduct_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProduct.EditValueChanged
+        resetViewByAccount()
+    End Sub
+
+    Private Sub LEFilterOptAcc_EditValueChanged(sender As Object, e As EventArgs) Handles LEFilterOptAcc.EditValueChanged
+        resetViewByAccount()
+    End Sub
+
+    Private Sub SLESubFilterAcc_EditValueChanged(sender As Object, e As EventArgs) Handles SLESubFilterAcc.EditValueChanged
+        resetViewByAccount()
+    End Sub
+
+    Private Sub SLEPeriodTypeAcc_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPeriodTypeAcc.EditValueChanged
+        resetViewByAccount()
+    End Sub
+
+    Private Sub DEFromAcc_EditValueChanged(sender As Object, e As EventArgs) Handles DEFromAcc.EditValueChanged
+        resetViewByAccount()
+    End Sub
+
+    Private Sub DEUntilAcc_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAcc.EditValueChanged
+        resetViewByAccount()
+    End Sub
+
+    Private Sub LEDisplayAcc_EditValueChanged(sender As Object, e As EventArgs) Handles LEDisplayAcc.EditValueChanged
+        resetViewByAccount()
     End Sub
 End Class
