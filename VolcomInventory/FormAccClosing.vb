@@ -32,8 +32,12 @@
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        Dim query As String = "SELECT trx.id_acc_trans,trx.`acc_trans_number`,SUM(trxd.`debit`) AS debit,SUM(trxd.credit) AS credit,IF(SUM(trxd.`debit`)!=SUM(trxd.credit),'Not Balance',IF(SUM(trxd.`debit`)<=0,'Value zero','Ok')) AS sts FROM tb_a_acc_trans_det trxd
+        Dim query As String = "SELECT trx.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,emp.`employee_name`,trx.`date_created`,trx.`date_reference`,bt.`bill_type`,trx.`acc_trans_number`,SUM(trxd.`debit`) AS debit,SUM(trxd.credit) AS credit,IF(SUM(trxd.`debit`)!=SUM(trxd.credit),'Not Balance',IF(SUM(trxd.`debit`)<=0,'Value zero','Ok')) AS sts 
+FROM tb_a_acc_trans_det trxd
 INNER JOIN tb_a_acc_trans trx ON trxd.`id_acc_trans`=trx.`id_acc_trans`
+INNER JOIN `tb_lookup_bill_type` bt ON bt.`id_bill_type`=trx.`id_bill_type`
+INNER JOIN tb_m_user usr ON usr.`id_user`=trx.`id_user`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE trx.`is_close`='2' AND trx.`date_reference`<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 GROUP BY trxd.`id_acc_trans`
 HAVING NOT sts='Ok'"
@@ -41,6 +45,24 @@ HAVING NOT sts='Ok'"
         If data.Rows.Count > 0 Then
             GCClosing.DataSource = data
             GVClosing.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        If GVClosing.RowCount > 0 Then
+            Dim p As ClassShowPopUp = New ClassShowPopUp()
+            p.id_report = GVClosing.GetFocusedRowCellValue("id_acc_trans").ToString
+            p.report_mark_type = "36"
+            p.show()
+        End If
+    End Sub
+
+    Private Sub ViewReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewReportToolStripMenuItem.Click
+        If GVClosing.RowCount > 0 Then
+            Dim p As ClassShowPopUp = New ClassShowPopUp()
+            p.id_report = GVClosing.GetFocusedRowCellValue("id_report").ToString
+            p.report_mark_type = GVClosing.GetFocusedRowCellValue("report_mark_type").ToString
+            p.show()
         End If
     End Sub
 End Class

@@ -7666,7 +7666,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
 
             str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            End If
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
             'Grid Detail
@@ -7676,8 +7680,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Report.LabelPeriod.Text = FormFGTransSummary.DEFrom.Text + " - " + FormFGTransSummary.DEUntil.Text
 
             If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                Report.WCDesign.Visible = False
+
                 Report.XLTitle.Text = "TRANSACTION SUMMARY"
             ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                Report.WCData.Visible = False
+
                 Report.XLTitle.Text = "TRANSACTION SUMMARY PER PRODUCT"
             End If
 
