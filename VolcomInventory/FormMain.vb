@@ -7646,16 +7646,31 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGAging" Then
             print_raw(FormFGAging.GCDesign, "")
         ElseIf formName = "FormFGTransSummary" Then
-            ReportFGTransSummaryReport.dt = FormFGTransSummary.GCData.DataSource
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                ReportFGTransSummaryReport.dt = FormFGTransSummary.GCData.DataSource
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                ReportFGTransSummaryReport.dt = FormFGTransSummary.GCDesign.DataSource
+            End If
+
             Dim Report As New ReportFGTransSummaryReport()
 
             ' '... 
             ' ' creating and saving the view's layout to a new memory stream 
             Dim str As System.IO.Stream
             str = New System.IO.MemoryStream()
-            FormFGTransSummary.GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                FormFGTransSummary.GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                FormFGTransSummary.GVDesign.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            End If
+
             str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            End If
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
             'Grid Detail
@@ -7663,6 +7678,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
             'Label
             Report.LabelPeriod.Text = FormFGTransSummary.DEFrom.Text + " - " + FormFGTransSummary.DEUntil.Text
+
+            If FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 0 Then
+                Report.WCDesign.Visible = False
+
+                Report.XLTitle.Text = "TRANSACTION SUMMARY"
+            ElseIf FormFGTransSummary.XtraTabControl.SelectedTabPageIndex = 1 Then
+                Report.WCData.Visible = False
+
+                Report.XLTitle.Text = "TRANSACTION SUMMARY PER PRODUCT"
+            End If
 
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -7982,6 +8007,31 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormEmpUniCreditNote.GCData, "Credit Note Uniform")
         ElseIf formName = "FormDocTracking" Then
             print_raw(FormDocTracking.GCData, "")
+        ElseIf formName = "FormSalesInv" Then
+            ReportSalesInvReport.dt = FormSalesInv.GCByProduct.DataSource
+
+            Dim Report As New ReportSalesInvReport()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            FormSalesInv.GVByProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVByProduct.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleBanded(Report.GVByProduct)
+
+            'Label
+            Report.LabelAccount.Text = FormSalesInv.SLEComp.Text
+            Report.LabelPeriod.Text = FormSalesInv.DEFrom.Text + " - " + FormSalesInv.DEUntil.Text
+            Report.XLTitle.Text = "SALES / INVENTORY"
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         Else
             RPSubMenu.Visible = False
         End If
@@ -14254,6 +14304,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesInv.Show()
             FormSalesInv.WindowState = FormWindowState.Maximized
             FormSalesInv.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAccClosing_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAccClosing.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormAccClosing.MdiParent = Me
+            FormAccClosing.Show()
+            FormAccClosing.WindowState = FormWindowState.Maximized
+            FormAccClosing.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
