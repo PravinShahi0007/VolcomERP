@@ -10025,6 +10025,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.WaitCursor
         Try
             FormSeason.MdiParent = Me
+            FormSeason.from_menu = "season"
             FormSeason.Show()
             FormSeason.WindowState = FormWindowState.Maximized
             FormSeason.Focus()
@@ -14317,6 +14318,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAccClosing.Show()
             FormAccClosing.WindowState = FormWindowState.Maximized
             FormAccClosing.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSeasonDelivery_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSeasonDelivery.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSeason.from_menu = "delivery"
+            FormSeason.MdiParent = Me
+            FormSeason.Show()
+            FormSeason.WindowState = FormWindowState.Maximized
+            FormSeason.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
