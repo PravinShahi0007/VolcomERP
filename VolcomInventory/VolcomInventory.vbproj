@@ -3138,6 +3138,12 @@
     <Compile Include="FormReportBudget.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReportBudgetList.Designer.vb">
+      <DependentUpon>FormReportBudgetList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBudgetList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormReportEstWHInQty.Designer.vb">
       <DependentUpon>FormReportEstWHInQty.vb</DependentUpon>
     </Compile>
@@ -9253,6 +9259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportBudget.resx">
       <DependentUpon>FormReportBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBudgetList.resx">
+      <DependentUpon>FormReportBudgetList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportEstWHInQty.resx">
       <DependentUpon>FormReportEstWHInQty.vb</DependentUpon>
