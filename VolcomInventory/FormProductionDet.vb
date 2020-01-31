@@ -831,6 +831,8 @@ GROUP BY m_ovh_p.id_ovh_price"
                 End If
             Next
             execute_non_query(query, True, "", "", "", "")
+            '
+            FormProduction.view_production_order()
         Else
             stopCustom("You need reset mark into prepare status to change this.")
         End If
