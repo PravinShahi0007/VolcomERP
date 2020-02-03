@@ -164,7 +164,7 @@
                 query = "SELECT cd.id_design_cat AS `id_sub_filter`, cd.design_cat AS `sub_filter`, cd.design_cat AS `sub_filter_display` 
                 FROM tb_lookup_design_cat cd "
             Case 5
-                query = "SELECT cd.id_season AS `id_sub_filter`, cd.season AS `sub_filter`, r.`range` AS `sub_filter_display` 
+                query = "SELECT cd.id_season AS `id_sub_filter`, cd.season AS `sub_filter`, CONCAT(r.`range`,' | ', cd.season_printed_name) AS `sub_filter_display` 
                 FROM tb_season cd 
                 INNER JOIN tb_range r ON r.id_range = cd.id_range "
             Case Else
@@ -379,7 +379,8 @@
 
     Private Sub CEFindAllProduct_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProduct.EditValueChanged
         resetViewByAccount()
-
+        id_design_per_outlet = "-1"
+        TxtProduct.Text = ""
         If CEFindAllProduct.EditValue = True Then
             BtnBrowseProduct.Enabled = False
         Else
@@ -399,7 +400,6 @@
     End Sub
 
     Sub resetViewByAccount()
-        id_design_per_outlet = "-1"
         GCByAccount.DataSource = Nothing
     End Sub
 
@@ -516,6 +516,7 @@
             Case Else
                 where_param = ""
         End Select
+        MsgBox(id_design_per_outlet)
         If id_design_per_outlet = "-1" Then
             id_design_per_outlet = "0"
         End If
