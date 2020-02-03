@@ -170,7 +170,7 @@
             SELECT d.id_emp_uni_ex_det, (d.qty - IFNULL(t_used.used, 0)) AS max_qty
             FROM tb_emp_uni_ex_det AS d
             LEFT JOIN (
-	            SELECT d.id_emp_uni_ex_det_ref, SUM(d.qty) AS used
+	            SELECT d.id_emp_uni_ex_det_ref, SUM(ABS(d.qty)) AS used
 	            FROM tb_emp_uni_ex_det AS d
 	            LEFT JOIN tb_emp_uni_ex AS a ON d.id_emp_uni_ex = a.id_emp_uni_ex
 	            WHERE a.id_report_status <> 5 AND d.id_emp_uni_ex_det_ref IN (" + q_in + ")
@@ -261,7 +261,7 @@
 
                 For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                     If GVData.GetRowCellValue(i, "qty") > 0 Then
-                        qd += "('" + id_emp_uni_ex + "', '" + GVData.GetRowCellValue(i, "id_emp_uni_ex_det").ToString + "', '" + GVData.GetRowCellValue(i, "id_pl_sales_order_del_det").ToString + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "qty").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "design_cop").ToString) + "', '" + GVData.GetRowCellValue(i, "remark").ToString + "'), "
+                        qd += "('" + id_emp_uni_ex + "', '" + GVData.GetRowCellValue(i, "id_emp_uni_ex_det").ToString + "', '" + GVData.GetRowCellValue(i, "id_pl_sales_order_del_det").ToString + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '-" + decimalSQL(GVData.GetRowCellValue(i, "qty").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "design_cop").ToString) + "', '" + GVData.GetRowCellValue(i, "remark").ToString + "'), "
                     End If
                 Next
 
