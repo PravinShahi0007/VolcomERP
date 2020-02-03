@@ -823,7 +823,6 @@ GROUP BY m_ovh_p.id_ovh_price"
                 id_payment = GVWO.GetRowCellValue(i, "id_payment").ToString
                 '
                 query += "UPDATE tb_prod_order_wo SET prod_order_wo_del_date='" & mat_sent_date & "',id_currency='" & id_curr & "',id_payment='" & id_payment & "',prod_order_wo_kurs='" & kurs & "',prod_order_wo_vat='" & vat & "',prod_order_wo_top='" & top & "',prod_order_wo_lead_time='" & lead_time & "',prod_order_wo_amount='" & gross_amount & "' WHERE id_prod_order_wo='" & id_wo & "';UPDATE tb_prod_order_wo_det SET prod_order_wo_det_price='" & price & "' WHERE id_prod_order_wo='" & id_wo & "';"
-
                 'Prod Order And KO
                 If GVWO.GetRowCellValue(i, "is_main_vendor").ToString = "1" Then
                     query += "UPDATE tb_prod_order SET prod_order_lead_time='" & lead_time & "' WHERE id_prod_order='" & id_prod_order & "';"
@@ -831,6 +830,8 @@ GROUP BY m_ovh_p.id_ovh_price"
                 End If
             Next
             execute_non_query(query, True, "", "", "", "")
+            '
+            FormProduction.view_production_order()
         Else
             stopCustom("You need reset mark into prepare status to change this.")
         End If

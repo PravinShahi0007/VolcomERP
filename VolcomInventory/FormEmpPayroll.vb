@@ -1173,6 +1173,33 @@
         End If
     End Sub
 
+    Sub insert_expense(ByVal id_payroll As String)
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+
+        If is_thr = "2" Then
+            Dim payroll_det As DataTable = execute_query("SELECT DATE_FORMAT(periode_end, '%Y') AS year FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
+
+            Dim data_sum As DataTable = execute_query("CALL view_payroll_sum(" + id_payroll + ")", -1, True, "", "", "", "")
+
+            Dim year As String = execute_query("SELECT IFNULL((SELECT id_b_expense_opex FROM tb_b_expense_opex WHERE `year` = '" + payroll_det.Rows(0)("year").ToString + "' AND id_item_cat_main = '9'), 0) AS `year`", 0, True, "", "", "", "")
+
+            If Not year = "0" Then
+                Dim query As String = "INSERT INTO tb_b_expense_opex_trans (id_b_expense_opex, is_po, id_departement, date_trans, value, id_item, id_report, report_mark_type, note) VALUES "
+
+                For i = 0 To data_sum.Rows.Count - 1
+                    Dim id_departement As String = data_sum.Rows(i)("id_departement").ToString
+                    Dim salary As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_other")
+
+                    query += "(" + year + ", 2, " + id_departement + ", NOW(), " + decimalSQL(salary) + ", NULL, " + id_payroll + ", 192, 'Biaya Gaji'), "
+                Next
+
+                query = query.Substring(0, query.Length - 2)
+
+                execute_non_query(query, True, "", "", "", "")
+            End If
+        End If
+    End Sub
+
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
         Cursor = Cursors.WaitCursor
         Dim id_acc_trans As String = ""

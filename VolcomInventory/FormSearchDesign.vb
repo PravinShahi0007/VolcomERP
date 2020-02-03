@@ -32,6 +32,10 @@
                 FormStockQC.id_dsg = data.Rows("0")("id_design").ToString
                 FormStockQC.TxtProduct.Text = data.Rows("0")("code").ToString + " - " + data.Rows("0")("name").ToString
                 Close()
+            ElseIf id_pop_up = "4" Then
+                FormSalesInv.id_design_per_outlet = data.Rows("0")("id_design").ToString
+                FormSalesInv.TxtProduct.Text = data.Rows("0")("code").ToString + " - " + data.Rows("0")("name").ToString
+                Close()
             End If
         Else
             stopCustom("Product not found")
