@@ -216,8 +216,10 @@ Public Class FormEmpUniExpenseDet
                 rsv_stock.reservedStock(id_emp_uni_ex, 132)
 
                 'draft journal
-                Dim acc As New ClassAccounting()
-                acc.generateJournalSalesDraft(id_emp_uni_ex, "132")
+                If Not GridColumn7.SummaryItem.SummaryValue = 0 Then
+                    Dim acc As New ClassAccounting()
+                    acc.generateJournalSalesDraft(id_emp_uni_ex, "132")
+                End If
 
                 'submit mark
                 submit_who_prepared("132", id_emp_uni_ex, id_user)
