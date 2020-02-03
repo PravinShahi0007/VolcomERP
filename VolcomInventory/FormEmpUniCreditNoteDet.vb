@@ -270,9 +270,11 @@
                 execute_non_query(qd, True, "", "", "", "")
 
                 'draft journal
-                Dim acc As New ClassAccounting()
+                If Not GridColumn7.SummaryItem.SummaryValue = 0 Then
+                    Dim acc As New ClassAccounting()
 
-                acc.generateJournalSalesDraft(id_emp_uni_ex, "236")
+                    acc.generateJournalSalesDraft(id_emp_uni_ex, "236")
+                End If
 
                 'submit mark
                 submit_who_prepared("236", id_emp_uni_ex, id_user)
