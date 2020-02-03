@@ -8008,7 +8008,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDocTracking" Then
             print_raw(FormDocTracking.GCData, "")
         ElseIf formName = "FormSalesInv" Then
-            ReportSalesInvReport.dt = FormSalesInv.GCByProduct.DataSource
+            If FormSalesInv.XTCSalesInv.SelectedTabPageIndex = 0 Then
+                ReportSalesInvReport.dt = FormSalesInv.GCByProduct.DataSource
+            ElseIf FormSalesInv.XTCSalesInv.SelectedTabPageIndex = 1 Then
+                ReportSalesInvReport.dt = FormSalesInv.GCByAccount.DataSource
+            End If
 
             Dim Report As New ReportSalesInvReport()
 
@@ -8016,7 +8020,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ' ' creating and saving the view's layout to a new memory stream 
             Dim str As System.IO.Stream
             str = New System.IO.MemoryStream()
-            FormSalesInv.GVByProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            If FormSalesInv.XTCSalesInv.SelectedTabPageIndex = 0 Then
+                FormSalesInv.GVByProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            ElseIf FormSalesInv.XTCSalesInv.SelectedTabPageIndex = 1 Then
+                FormSalesInv.GVByAccount.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            End If
             str.Seek(0, System.IO.SeekOrigin.Begin)
             Report.GVByProduct.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
@@ -8025,9 +8033,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ReportStyleBanded(Report.GVByProduct)
 
             'Label
-            Report.LabelAccount.Text = FormSalesInv.SLEComp.Text
-            Report.LabelPeriod.Text = FormSalesInv.DEFrom.Text + " - " + FormSalesInv.DEUntil.Text
-            Report.XLTitle.Text = "SALES / INVENTORY"
+            If FormSalesInv.XTCSalesInv.SelectedTabPageIndex = 0 Then
+                Report.LabelAccount.Text = FormSalesInv.SLEComp.Text
+                Report.LabelPeriod.Text = FormSalesInv.DEFrom.Text + " - " + FormSalesInv.DEUntil.Text
+                Report.XLTitle.Text = "SALES / INVENTORY"
+            ElseIf FormSalesInv.XTCSalesInv.SelectedTabPageIndex = 1 Then
+                Report.LabelAccount.Text = FormSalesInv.SLEAccount.Text
+                Report.LabelPeriod.Text = FormSalesInv.DEFromAcc.Text + " - " + FormSalesInv.DEUntilAcc.Text
+                Report.XLTitle.Text = "SALES / INVENTORY PER ACCOUNT"
+            End If
+
 
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
