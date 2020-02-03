@@ -246,6 +246,12 @@
             TENoRek.Text = datarow("employee_no_rek").ToString
             TERekeningName.Text = datarow("employee_rek_name").ToString
             TxtPhone.Text = datarow("phone").ToString
+            TEEmergencyName1.EditValue = datarow("employee_emergency_name1").ToString
+            TEEmergencyRelation1.EditValue = datarow("employee_emergency_relation1").ToString
+            TEEmergencyPhone1.EditValue = datarow("employee_emergency_phone1").ToString
+            TEEmergencyName2.EditValue = datarow("employee_emergency_name2").ToString
+            TEEmergencyRelation2.EditValue = datarow("employee_emergency_relation2").ToString
+            TEEmergencyPhone2.EditValue = datarow("employee_emergency_phone2").ToString
             TxtMobilePhone.Text = datarow("phone_mobile").ToString
             TxtPhoneExt.Text = datarow("phone_ext").ToString
             TxtEmailLocal.Text = datarow("email_lokal").ToString
