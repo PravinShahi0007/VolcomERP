@@ -556,9 +556,44 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         GVBPJSKesehatan.BestFitColumns()
     End Sub
 
+    Sub view_thr()
+        Dim query As String = "
+            SELECT 'no' AS is_check, p.id_payroll, p.report_number, DATE_FORMAT(p.periode_end, '%Y') AS payroll_periode, t.payroll_type, 0 AS amount
+            FROM tb_emp_payroll AS p
+            LEFT JOIN tb_emp_payroll_type AS t ON p.id_payroll_type = t.id_payroll_type
+            WHERE p.id_report_status = 6 AND t.is_thr = 1 AND p.is_close_pay = 2
+            ORDER BY p.periode_end DESC, p.id_payroll_type ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'amount
+        For i = 0 To data.Rows.Count - 1
+            Dim query_a As String = "CALL view_payroll_sum(" + data.Rows(i)("id_payroll").ToString + ")"
+
+            Dim data_a As DataTable = execute_query(query_a, -1, True, "", "", "", "")
+
+            Dim total As Integer = 0
+
+            For j = 0 To data_a.Rows.Count - 1
+                If data_a.Rows(j)("is_store").ToString = "2" Then
+                    total += data_a.Rows(j)("salary")
+                End If
+            Next
+
+            data.Rows(i)("amount") = total
+        Next
+
+        GCTHR.DataSource = data
+
+        GVTHR.BestFitColumns()
+    End Sub
+
     Private Sub XTCPO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPO.SelectedPageChanged
         If XTCPO.SelectedTabPage.Name = "XTPBPJSKesehatan" Then
             view_bpjskesehatan()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPTHR" Then
+            view_thr()
         End If
     End Sub
 
@@ -575,5 +610,20 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         End If
 
         GVBPJSKesehatan.ActiveFilterString = ""
+    End Sub
+
+    Private Sub SBPayTHR_Click(sender As Object, e As EventArgs) Handles SBPayTHR.Click
+        GVTHR.ActiveFilterString = ""
+        GVTHR.ActiveFilterString = "[is_check]='yes'"
+
+        If GVTHR.RowCount > 0 Then
+            FormBankWithdrawalDet.id_pay_type = "2"
+            FormBankWithdrawalDet.report_mark_type = "192"
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("Please select item first.")
+        End If
+
+        GVTHR.ActiveFilterString = ""
     End Sub
 End Class

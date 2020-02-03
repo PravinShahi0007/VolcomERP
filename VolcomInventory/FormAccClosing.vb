@@ -42,9 +42,14 @@ WHERE trx.`is_close`='2' AND trx.`date_reference`<='" & Date.Parse(DEUntil.EditV
 GROUP BY trxd.`id_acc_trans`
 HAVING NOT sts='Ok'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCClosing.DataSource = data
+        GVClosing.BestFitColumns()
+
         If data.Rows.Count > 0 Then
-            GCClosing.DataSource = data
-            GVClosing.BestFitColumns()
+            PCCloseAndGenerate.Visible = False
+        Else
+            PCCloseAndGenerate.Visible = True
         End If
     End Sub
 
@@ -64,5 +69,22 @@ HAVING NOT sts='Ok'"
             p.report_mark_type = GVClosing.GetFocusedRowCellValue("report_mark_type").ToString
             p.show()
         End If
+    End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        'log start
+        Dim query As String = "INSERT INTO `tb_closing_log`(date_until,date_closing,note) VALUES('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "',NOW(),'Closing Start')"
+        execute_non_query(query, True, "", "", "", "")
+
+        'pindah saldo profit and loss ke laba tahun berjalan, jika akhir tahun pindah ke laba ditahan
+
+
+
+        'closing
+        query = "UPDATE tb_a_acc_trans trx SET trx.is_close='1' WHERE trx.`is_close`='2' AND trx.`date_reference`<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & ""
+        execute_non_query(query, True, "", "", "", "")
+        'log end
+        query = "INSERT INTO `tb_closing_log`(date_until,date_closing,note) VALUES('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "',NOW(),'Closing End')"
+        execute_non_query(query, True, "", "", "", "")
     End Sub
 End Class
