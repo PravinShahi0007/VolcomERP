@@ -533,4 +533,19 @@
         PanelControlViewByAcc.Visible = True
         BtnShowFilterAcc.Visible = False
     End Sub
+
+    Private Sub GVByAccount_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVByAccount.CustomColumnDisplayText
+        If (e.Column.FieldName.Contains("sal_qty") Or e.Column.FieldName.Contains("inv_qty") Or e.Column.FieldName.Contains("age")) Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
+        ElseIf e.Column.FieldName = "no" Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
+                Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
+                e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
+            End If
+        End If
+    End Sub
 End Class

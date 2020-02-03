@@ -1067,7 +1067,7 @@ Partial Class FormSalesInv
         Me.GridBand3.Columns.Add(Me.BandedGridColumn16)
         Me.GridBand3.Name = "GridBand3"
         Me.GridBand3.VisibleIndex = 1
-        Me.GridBand3.Width = 219
+        Me.GridBand3.Width = 178
         '
         'BandedGridColumn5
         '
@@ -1140,7 +1140,6 @@ Partial Class FormSalesInv
         Me.BandedGridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn15.FieldName = "age"
         Me.BandedGridColumn15.Name = "BandedGridColumn15"
-        Me.BandedGridColumn15.Visible = True
         Me.BandedGridColumn15.Width = 41
         '
         'BandedGridColumn16
