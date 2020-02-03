@@ -5476,6 +5476,10 @@ WHERE pd.`id_pn`='" & id_report & "'"
                     'close bpjs
                     execute_non_query("UPDATE tb_pay_bpjs_kesehatan SET is_close_pay = 1 WHERE id_pay_bpjs_kesehatan IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                     FormBankWithdrawal.view_bpjskesehatan()
+                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "192" Then
+                    'close thr
+                    execute_non_query("UPDATE tb_emp_payroll SET is_close_pay = 1 WHERE id_payroll IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
+                    FormBankWithdrawal.view_thr()
                 End If
                 '
             End If
