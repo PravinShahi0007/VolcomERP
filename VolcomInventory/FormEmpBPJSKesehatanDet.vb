@@ -84,7 +84,7 @@
         data.Columns.Add("id_employee_status", GetType(String))
         data.Columns.Add("employee_status", GetType(String))
         data.Columns.Add("fixed_salary", GetType(Integer))
-        data.Columns.Add("bpjs_kesehatan_contribution", GetType(Integer))
+        data.Columns.Add("bpjs_kesehatan_contribution", GetType(Decimal))
 
         GCInput.DataSource = data
 
