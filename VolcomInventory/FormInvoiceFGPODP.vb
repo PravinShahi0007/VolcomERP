@@ -6,6 +6,7 @@
     Public id_po As String = "-1"
 
     Public doc_type As String = "2"
+    Public id_report_status As String = "1"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
@@ -169,6 +170,8 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 SLEPayType.EditValue = data.Rows(0)("type").ToString
                 '
                 MENote.Text = data.Rows(0)("note").ToString
+                '
+                id_report_status = data.Rows(0)("id_report_status").ToString
             End If
         End If
     End Sub
@@ -467,7 +470,51 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportFGPODP.id_pn_fgpo = id_invoice
+        ReportFGPODP.dt = GCList.DataSource
+        Dim Report As New ReportFGPODP()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        For i = 0 To GVList.RowCount - 1
+            GVList.SetRowCellValue(i, "currency", GVList.GetRowCellDisplayText(0, "id_currency").ToString)
+        Next
 
+        GCCur.VisibleIndex = -1
+        GCCurHide.VisibleIndex = 5
+        GridColumnAccPick.VisibleIndex = -1
+        GridColumnNote.VisibleIndex = -1
+
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVList)
+
+        GridColumnAccPick.VisibleIndex = 0
+        GCCur.VisibleIndex = 5
+        GCCurHide.VisibleIndex = -1
+        GridColumnNote.VisibleIndex = 10
+
+        'Parse val
+        Dim query As String = "SELECT '" & TENumber.Text & "' AS number,'" & SLEPayType.Text & "' AS type,'" & SLEVendor.Text & "' AS comp_name,'" & DERefDate.Text & "' AS ref_date,'" & DEDueDate.Text & "' AS due_date,'" & DEDueDateInv.Text & "' AS due_date_inv,'" & TETotal.Text & "' AS total_amount,'" & TEVat.Text & "' AS total_vat,'" & TEGrandTotal.Text & "' AS total_after_vat,'" & DEDateCreated.Text & "' AS date_created,DATE_FORMAT(NOW(),'%d %M %Y') AS printed_date"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = data
+
+        If Not id_report_status = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
