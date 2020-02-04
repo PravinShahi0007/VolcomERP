@@ -501,7 +501,7 @@
                 bpjs_kesehatan_contribution = GVInput.GetRowCellValue(e.RowHandle, "fixed_salary") * 0.01
             End If
 
-            GVInput.SetRowCellValue(e.RowHandle, "bpjs_kesehatan_contribution", bpjs_kesehatan_contribution)
+            GVInput.SetRowCellValue(e.RowHandle, "bpjs_kesehatan_contribution", Decimal.Round(bpjs_kesehatan_contribution))
         End If
     End Sub
 
