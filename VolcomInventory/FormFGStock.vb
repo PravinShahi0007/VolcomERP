@@ -125,12 +125,9 @@
     '=============== TAB STOCK CARD FG=================================
     Sub viewWHStockCard()
         Dim query As String = ""
-        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
-        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
-        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
-        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
-        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
-        query += "GROUP BY e.id_comp "
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
+        FROM tb_m_comp e 
+        WHERE e.is_active=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             If i = 0 Then
@@ -240,12 +237,9 @@
         Dim query As String = ""
         query += "SELECT ('-1') AS id_comp, ('-') AS comp_number, ('Normal Warehouse') AS comp_name, ('Normal Warehouse') AS comp_name_label UNION ALL "
         query += "SELECT ('-2') AS id_comp, ('-') AS comp_number, ('Sale Warehouse') AS comp_name, ('Sale Warehouse') AS comp_name_label UNION ALL "
-        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
-        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
-        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
-        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
-        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
-        query += "GROUP BY e.id_comp "
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
+        FROM tb_m_comp e 
+        WHERE e.is_active=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             If i = 0 Then
@@ -268,12 +262,9 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = ""
         query += "SELECT ('0') AS id_comp, ('All') AS comp_number, ('All Store') AS comp_name, ('All Store') AS comp_name_label UNION ALL "
-        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
-        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
-        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
-        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
-        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
-        query += "GROUP BY e.id_comp "
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
+        FROM tb_m_comp e 
+        WHERE e.is_active=1 "
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
         Cursor = Cursors.Default
     End Sub

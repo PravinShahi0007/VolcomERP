@@ -22,53 +22,6 @@ Partial Class FormFGStock
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGStock))
         Me.XTCFGStock = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPSOH12Digit = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTCStockOnHandNew = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPBySizeBarcode = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCSOH = New DevExpress.XtraGrid.GridControl()
-        Me.GVSOH = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncode_soh = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnmain_code = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsize_soh = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_class = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_design_cat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndesign_cat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnstt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumngroup_store = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumngroup_store_desc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnqty_avl = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnqty_rsv = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnqty_ttl = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnunit_price = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnunit_cost = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnamount_cost = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnShowFilter = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControlSOH = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.LEPriceType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEAccount = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnViewAcc = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnExportToXLSAcc = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnHideFilterAcc = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnBrowseProduct = New DevExpress.XtraEditors.SimpleButton()
-        Me.CEFindAllProduct = New DevExpress.XtraEditors.CheckEdit()
-        Me.TxtProduct = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEUntilAcc = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPFGStockWHSum = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCSOH = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPByCode = New DevExpress.XtraTab.XtraTabPage()
@@ -238,28 +191,56 @@ Partial Class FormFGStock
         Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCodeDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameDsgRsv = New DevExpress.XtraEditors.TextEdit()
+        Me.XTPSOH12Digit = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCStockOnHandNew = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPBySizeBarcode = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSOH = New DevExpress.XtraGrid.GridControl()
+        Me.GVSOH = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode_soh = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmain_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize_soh = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_class = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design_cat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_cat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumngroup_store = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumngroup_store_desc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_avl = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_rsv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_ttl = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnunit_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnunit_cost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount_cost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnShowFilter = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlSOH = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEPriceType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEAccount = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewAcc = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSAcc = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnHideFilterAcc = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnBrowseProduct = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEFindAllProduct = New DevExpress.XtraEditors.CheckEdit()
+        Me.TxtProduct = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntilAcc = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
-        Me.XTPSOH12Digit.SuspendLayout()
-        CType(Me.XTCStockOnHandNew, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCStockOnHandNew.SuspendLayout()
-        Me.XTPBySizeBarcode.SuspendLayout()
-        CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlSOH, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlSOH.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.CEFindAllProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPFGStockWHSum.SuspendLayout()
         CType(Me.XTCSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOH.SuspendLayout()
@@ -343,6 +324,25 @@ Partial Class FormFGStock
         CType(Me.TxtCodeAccRsv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeDsgRsv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameDsgRsv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPSOH12Digit.SuspendLayout()
+        CType(Me.XTCStockOnHandNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCStockOnHandNew.SuspendLayout()
+        Me.XTPBySizeBarcode.SuspendLayout()
+        CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlSOH, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlSOH.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.CEFindAllProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCFGStock
@@ -356,450 +356,6 @@ Partial Class FormFGStock
         Me.XTCFGStock.TabIndex = 0
         Me.XTCFGStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGStockWHSum, Me.XTPFGStockCardWH, Me.XTPFGStockStore, Me.XTPFGStockQC, Me.XTPFGReserved, Me.XTPSOH12Digit})
         '
-        'XTPSOH12Digit
-        '
-        Me.XTPSOH12Digit.Controls.Add(Me.XTCStockOnHandNew)
-        Me.XTPSOH12Digit.Controls.Add(Me.BtnShowFilter)
-        Me.XTPSOH12Digit.Controls.Add(Me.PanelControlSOH)
-        Me.XTPSOH12Digit.Name = "XTPSOH12Digit"
-        Me.XTPSOH12Digit.Size = New System.Drawing.Size(1164, 579)
-        Me.XTPSOH12Digit.Text = "SOH (Trial)"
-        '
-        'XTCStockOnHandNew
-        '
-        Me.XTCStockOnHandNew.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCStockOnHandNew.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCStockOnHandNew.Location = New System.Drawing.Point(0, 160)
-        Me.XTCStockOnHandNew.Name = "XTCStockOnHandNew"
-        Me.XTCStockOnHandNew.SelectedTabPage = Me.XTPBySizeBarcode
-        Me.XTCStockOnHandNew.Size = New System.Drawing.Size(1164, 419)
-        Me.XTCStockOnHandNew.TabIndex = 8929
-        Me.XTCStockOnHandNew.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySizeBarcode})
-        '
-        'XTPBySizeBarcode
-        '
-        Me.XTPBySizeBarcode.Controls.Add(Me.GCSOH)
-        Me.XTPBySizeBarcode.Name = "XTPBySizeBarcode"
-        Me.XTPBySizeBarcode.Size = New System.Drawing.Size(1135, 413)
-        Me.XTPBySizeBarcode.Text = "By Size Barcode"
-        '
-        'GCSOH
-        '
-        Me.GCSOH.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSOH.Location = New System.Drawing.Point(0, 0)
-        Me.GCSOH.MainView = Me.GVSOH
-        Me.GCSOH.Name = "GCSOH"
-        Me.GCSOH.Size = New System.Drawing.Size(1135, 413)
-        Me.GCSOH.TabIndex = 0
-        Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
-        '
-        'GVSOH
-        '
-        Me.GVSOH.ColumnPanelRowHeight = 30
-        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode_soh, Me.GridColumnname, Me.GridColumnmain_code, Me.GridColumnsize_soh, Me.GridColumnid_class, Me.GridColumnclass, Me.GridColumnid_design_cat, Me.GridColumndesign_cat, Me.GridColumnstt, Me.GridColumnid_comp, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumngroup_store, Me.GridColumngroup_store_desc, Me.GridColumnqty_avl, Me.GridColumnqty_rsv, Me.GridColumnqty_ttl, Me.GridColumnunit_price, Me.GridColumnunit_cost, Me.GridColumnamount, Me.GridColumnamount_cost})
-        Me.GVSOH.GridControl = Me.GCSOH
-        Me.GVSOH.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avl", Me.GridColumnqty_avl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rsv", Me.GridColumnqty_rsv, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ttl", Me.GridColumnqty_ttl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:N0}")})
-        Me.GVSOH.Name = "GVSOH"
-        Me.GVSOH.OptionsBehavior.ReadOnly = True
-        Me.GVSOH.OptionsFind.AlwaysVisible = True
-        Me.GVSOH.OptionsView.ColumnAutoWidth = False
-        Me.GVSOH.OptionsView.ShowFooter = True
-        Me.GVSOH.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnid_product
-        '
-        Me.GridColumnid_product.Caption = "id_product"
-        Me.GridColumnid_product.FieldName = "id_product"
-        Me.GridColumnid_product.Name = "GridColumnid_product"
-        '
-        'GridColumncode_soh
-        '
-        Me.GridColumncode_soh.Caption = "Code"
-        Me.GridColumncode_soh.FieldName = "code"
-        Me.GridColumncode_soh.Name = "GridColumncode_soh"
-        Me.GridColumncode_soh.Visible = True
-        Me.GridColumncode_soh.VisibleIndex = 0
-        Me.GridColumncode_soh.Width = 98
-        '
-        'GridColumnname
-        '
-        Me.GridColumnname.Caption = "Description"
-        Me.GridColumnname.FieldName = "name"
-        Me.GridColumnname.Name = "GridColumnname"
-        Me.GridColumnname.Visible = True
-        Me.GridColumnname.VisibleIndex = 2
-        Me.GridColumnname.Width = 157
-        '
-        'GridColumnmain_code
-        '
-        Me.GridColumnmain_code.Caption = "Main Code"
-        Me.GridColumnmain_code.FieldName = "main_code"
-        Me.GridColumnmain_code.Name = "GridColumnmain_code"
-        Me.GridColumnmain_code.Visible = True
-        Me.GridColumnmain_code.VisibleIndex = 1
-        Me.GridColumnmain_code.Width = 84
-        '
-        'GridColumnsize_soh
-        '
-        Me.GridColumnsize_soh.Caption = "Size"
-        Me.GridColumnsize_soh.FieldName = "size"
-        Me.GridColumnsize_soh.Name = "GridColumnsize_soh"
-        Me.GridColumnsize_soh.Visible = True
-        Me.GridColumnsize_soh.VisibleIndex = 3
-        Me.GridColumnsize_soh.Width = 48
-        '
-        'GridColumnid_class
-        '
-        Me.GridColumnid_class.Caption = "id class"
-        Me.GridColumnid_class.FieldName = "id_class"
-        Me.GridColumnid_class.Name = "GridColumnid_class"
-        '
-        'GridColumnclass
-        '
-        Me.GridColumnclass.Caption = "Class"
-        Me.GridColumnclass.FieldName = "class"
-        Me.GridColumnclass.Name = "GridColumnclass"
-        Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 4
-        Me.GridColumnclass.Width = 50
-        '
-        'GridColumnid_design_cat
-        '
-        Me.GridColumnid_design_cat.Caption = "id_design_cat"
-        Me.GridColumnid_design_cat.FieldName = "id_design_cat"
-        Me.GridColumnid_design_cat.Name = "GridColumnid_design_cat"
-        '
-        'GridColumndesign_cat
-        '
-        Me.GridColumndesign_cat.Caption = "design_cat"
-        Me.GridColumndesign_cat.FieldName = "design_cat"
-        Me.GridColumndesign_cat.Name = "GridColumndesign_cat"
-        '
-        'GridColumnstt
-        '
-        Me.GridColumnstt.Caption = "Status"
-        Me.GridColumnstt.FieldName = "stt"
-        Me.GridColumnstt.Name = "GridColumnstt"
-        Me.GridColumnstt.Visible = True
-        Me.GridColumnstt.VisibleIndex = 5
-        Me.GridColumnstt.Width = 46
-        '
-        'GridColumnid_comp
-        '
-        Me.GridColumnid_comp.Caption = "id_comp"
-        Me.GridColumnid_comp.FieldName = "id_comp"
-        Me.GridColumnid_comp.Name = "GridColumnid_comp"
-        '
-        'GridColumncomp_number
-        '
-        Me.GridColumncomp_number.Caption = "Account"
-        Me.GridColumncomp_number.FieldName = "comp_number"
-        Me.GridColumncomp_number.Name = "GridColumncomp_number"
-        Me.GridColumncomp_number.Visible = True
-        Me.GridColumncomp_number.VisibleIndex = 6
-        Me.GridColumncomp_number.Width = 50
-        '
-        'GridColumncomp_name
-        '
-        Me.GridColumncomp_name.Caption = "Acc Description"
-        Me.GridColumncomp_name.FieldName = "comp_name"
-        Me.GridColumncomp_name.Name = "GridColumncomp_name"
-        Me.GridColumncomp_name.Visible = True
-        Me.GridColumncomp_name.VisibleIndex = 7
-        Me.GridColumncomp_name.Width = 105
-        '
-        'GridColumngroup_store
-        '
-        Me.GridColumngroup_store.Caption = "Group"
-        Me.GridColumngroup_store.FieldName = "group_store"
-        Me.GridColumngroup_store.Name = "GridColumngroup_store"
-        Me.GridColumngroup_store.Visible = True
-        Me.GridColumngroup_store.VisibleIndex = 8
-        Me.GridColumngroup_store.Width = 55
-        '
-        'GridColumngroup_store_desc
-        '
-        Me.GridColumngroup_store_desc.Caption = "Group Desc"
-        Me.GridColumngroup_store_desc.FieldName = "group_store_desc"
-        Me.GridColumngroup_store_desc.Name = "GridColumngroup_store_desc"
-        '
-        'GridColumnqty_avl
-        '
-        Me.GridColumnqty_avl.Caption = "Available"
-        Me.GridColumnqty_avl.DisplayFormat.FormatString = "N0"
-        Me.GridColumnqty_avl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnqty_avl.FieldName = "qty_avl"
-        Me.GridColumnqty_avl.Name = "GridColumnqty_avl"
-        Me.GridColumnqty_avl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avl", "{0:N0}")})
-        Me.GridColumnqty_avl.Visible = True
-        Me.GridColumnqty_avl.VisibleIndex = 9
-        '
-        'GridColumnqty_rsv
-        '
-        Me.GridColumnqty_rsv.Caption = "Reserved"
-        Me.GridColumnqty_rsv.DisplayFormat.FormatString = "N0"
-        Me.GridColumnqty_rsv.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnqty_rsv.FieldName = "qty_rsv"
-        Me.GridColumnqty_rsv.Name = "GridColumnqty_rsv"
-        Me.GridColumnqty_rsv.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rsv", "{0:N0}")})
-        Me.GridColumnqty_rsv.Visible = True
-        Me.GridColumnqty_rsv.VisibleIndex = 10
-        '
-        'GridColumnqty_ttl
-        '
-        Me.GridColumnqty_ttl.Caption = "Total Qty"
-        Me.GridColumnqty_ttl.DisplayFormat.FormatString = "N0"
-        Me.GridColumnqty_ttl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnqty_ttl.FieldName = "qty_ttl"
-        Me.GridColumnqty_ttl.Name = "GridColumnqty_ttl"
-        Me.GridColumnqty_ttl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ttl", "{0:N0}")})
-        Me.GridColumnqty_ttl.Visible = True
-        Me.GridColumnqty_ttl.VisibleIndex = 11
-        '
-        'GridColumnunit_price
-        '
-        Me.GridColumnunit_price.Caption = "Unit Price"
-        Me.GridColumnunit_price.DisplayFormat.FormatString = "N0"
-        Me.GridColumnunit_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnunit_price.FieldName = "unit_price"
-        Me.GridColumnunit_price.Name = "GridColumnunit_price"
-        Me.GridColumnunit_price.Visible = True
-        Me.GridColumnunit_price.VisibleIndex = 12
-        Me.GridColumnunit_price.Width = 54
-        '
-        'GridColumnunit_cost
-        '
-        Me.GridColumnunit_cost.Caption = "Unit Cost"
-        Me.GridColumnunit_cost.DisplayFormat.FormatString = "N2"
-        Me.GridColumnunit_cost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnunit_cost.FieldName = "unit_cost"
-        Me.GridColumnunit_cost.Name = "GridColumnunit_cost"
-        Me.GridColumnunit_cost.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnamount
-        '
-        Me.GridColumnamount.Caption = "Amount"
-        Me.GridColumnamount.DisplayFormat.FormatString = "N0"
-        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnamount.FieldName = "amount"
-        Me.GridColumnamount.Name = "GridColumnamount"
-        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
-        Me.GridColumnamount.Visible = True
-        Me.GridColumnamount.VisibleIndex = 13
-        '
-        'GridColumnamount_cost
-        '
-        Me.GridColumnamount_cost.Caption = "Amount Cost"
-        Me.GridColumnamount_cost.DisplayFormat.FormatString = "N2"
-        Me.GridColumnamount_cost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnamount_cost.FieldName = "amount_cost"
-        Me.GridColumnamount_cost.Name = "GridColumnamount_cost"
-        Me.GridColumnamount_cost.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'BtnShowFilter
-        '
-        Me.BtnShowFilter.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnShowFilter.Appearance.Options.UseFont = True
-        Me.BtnShowFilter.Dock = System.Windows.Forms.DockStyle.Top
-        Me.BtnShowFilter.Image = CType(resources.GetObject("BtnShowFilter.Image"), System.Drawing.Image)
-        Me.BtnShowFilter.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BtnShowFilter.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftTop
-        Me.BtnShowFilter.Location = New System.Drawing.Point(0, 140)
-        Me.BtnShowFilter.LookAndFeel.SkinName = "Blue"
-        Me.BtnShowFilter.Name = "BtnShowFilter"
-        Me.BtnShowFilter.Size = New System.Drawing.Size(1164, 20)
-        Me.BtnShowFilter.TabIndex = 8928
-        Me.BtnShowFilter.Text = "Show Filter"
-        Me.BtnShowFilter.Visible = False
-        '
-        'PanelControlSOH
-        '
-        Me.PanelControlSOH.Controls.Add(Me.PanelControl3)
-        Me.PanelControlSOH.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlSOH.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlSOH.Name = "PanelControlSOH"
-        Me.PanelControlSOH.Size = New System.Drawing.Size(1164, 140)
-        Me.PanelControlSOH.TabIndex = 0
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.LEPriceType)
-        Me.PanelControl3.Controls.Add(Me.LabelControl10)
-        Me.PanelControl3.Controls.Add(Me.SLEAccount)
-        Me.PanelControl3.Controls.Add(Me.PanelControl4)
-        Me.PanelControl3.Controls.Add(Me.BtnBrowseProduct)
-        Me.PanelControl3.Controls.Add(Me.CEFindAllProduct)
-        Me.PanelControl3.Controls.Add(Me.TxtProduct)
-        Me.PanelControl3.Controls.Add(Me.LabelControl29)
-        Me.PanelControl3.Controls.Add(Me.DEUntilAcc)
-        Me.PanelControl3.Controls.Add(Me.LabelControl35)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(444, 136)
-        Me.PanelControl3.TabIndex = 8927
-        '
-        'LEPriceType
-        '
-        Me.LEPriceType.Location = New System.Drawing.Point(183, 172)
-        Me.LEPriceType.Name = "LEPriceType"
-        Me.LEPriceType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPriceType.Size = New System.Drawing.Size(185, 20)
-        Me.LEPriceType.TabIndex = 8930
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Location = New System.Drawing.Point(96, 175)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(50, 13)
-        Me.LabelControl10.TabIndex = 8929
-        Me.LabelControl10.Text = "Price Type"
-        '
-        'SLEAccount
-        '
-        Me.SLEAccount.Location = New System.Drawing.Point(96, 12)
-        Me.SLEAccount.Name = "SLEAccount"
-        Me.SLEAccount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEAccount.Properties.Appearance.Options.UseFont = True
-        Me.SLEAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEAccount.Properties.ShowClearButton = False
-        Me.SLEAccount.Properties.View = Me.GridView2
-        Me.SLEAccount.Size = New System.Drawing.Size(329, 20)
-        Me.SLEAccount.TabIndex = 8928
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn31, Me.GridColumn32, Me.GridColumn33})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn31
-        '
-        Me.GridColumn31.Caption = "Id Comp"
-        Me.GridColumn31.FieldName = "id_comp"
-        Me.GridColumn31.Name = "GridColumn31"
-        '
-        'GridColumn32
-        '
-        Me.GridColumn32.Caption = "Account"
-        Me.GridColumn32.FieldName = "comp_number"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 0
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "Description"
-        Me.GridColumn33.FieldName = "comp_name_label"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 1
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.Controls.Add(Me.BtnViewAcc)
-        Me.PanelControl4.Controls.Add(Me.BtnExportToXLSAcc)
-        Me.PanelControl4.Controls.Add(Me.BtnHideFilterAcc)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(2, 97)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(440, 37)
-        Me.PanelControl4.TabIndex = 8925
-        '
-        'BtnViewAcc
-        '
-        Me.BtnViewAcc.Image = CType(resources.GetObject("BtnViewAcc.Image"), System.Drawing.Image)
-        Me.BtnViewAcc.Location = New System.Drawing.Point(354, 9)
-        Me.BtnViewAcc.LookAndFeel.SkinName = "Blue"
-        Me.BtnViewAcc.Name = "BtnViewAcc"
-        Me.BtnViewAcc.Size = New System.Drawing.Size(69, 20)
-        Me.BtnViewAcc.TabIndex = 8906
-        Me.BtnViewAcc.Text = "View"
-        '
-        'BtnExportToXLSAcc
-        '
-        Me.BtnExportToXLSAcc.Image = CType(resources.GetObject("BtnExportToXLSAcc.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSAcc.Location = New System.Drawing.Point(257, 9)
-        Me.BtnExportToXLSAcc.LookAndFeel.SkinName = "Blue"
-        Me.BtnExportToXLSAcc.Name = "BtnExportToXLSAcc"
-        Me.BtnExportToXLSAcc.Size = New System.Drawing.Size(94, 20)
-        Me.BtnExportToXLSAcc.TabIndex = 8907
-        Me.BtnExportToXLSAcc.Text = "Export to XLS"
-        '
-        'BtnHideFilterAcc
-        '
-        Me.BtnHideFilterAcc.Image = CType(resources.GetObject("BtnHideFilterAcc.Image"), System.Drawing.Image)
-        Me.BtnHideFilterAcc.Location = New System.Drawing.Point(169, 9)
-        Me.BtnHideFilterAcc.LookAndFeel.SkinName = "Blue"
-        Me.BtnHideFilterAcc.Name = "BtnHideFilterAcc"
-        Me.BtnHideFilterAcc.Size = New System.Drawing.Size(84, 20)
-        Me.BtnHideFilterAcc.TabIndex = 8926
-        Me.BtnHideFilterAcc.Text = "Hide Filter"
-        '
-        'BtnBrowseProduct
-        '
-        Me.BtnBrowseProduct.Enabled = False
-        Me.BtnBrowseProduct.Image = CType(resources.GetObject("BtnBrowseProduct.Image"), System.Drawing.Image)
-        Me.BtnBrowseProduct.Location = New System.Drawing.Point(399, 38)
-        Me.BtnBrowseProduct.LookAndFeel.SkinName = "Blue"
-        Me.BtnBrowseProduct.Name = "BtnBrowseProduct"
-        Me.BtnBrowseProduct.Size = New System.Drawing.Size(26, 20)
-        Me.BtnBrowseProduct.TabIndex = 8904
-        Me.BtnBrowseProduct.Text = "..."
-        '
-        'CEFindAllProduct
-        '
-        Me.CEFindAllProduct.EditValue = True
-        Me.CEFindAllProduct.Location = New System.Drawing.Point(8, 38)
-        Me.CEFindAllProduct.Name = "CEFindAllProduct"
-        Me.CEFindAllProduct.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CEFindAllProduct.Properties.Appearance.Options.UseFont = True
-        Me.CEFindAllProduct.Properties.Caption = "All Product "
-        Me.CEFindAllProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.CEFindAllProduct.Size = New System.Drawing.Size(72, 19)
-        Me.CEFindAllProduct.TabIndex = 8907
-        '
-        'TxtProduct
-        '
-        Me.TxtProduct.EditValue = ""
-        Me.TxtProduct.Enabled = False
-        Me.TxtProduct.Location = New System.Drawing.Point(96, 38)
-        Me.TxtProduct.Name = "TxtProduct"
-        Me.TxtProduct.Size = New System.Drawing.Size(297, 20)
-        Me.TxtProduct.TabIndex = 8906
-        '
-        'LabelControl29
-        '
-        Me.LabelControl29.Location = New System.Drawing.Point(9, 67)
-        Me.LabelControl29.Name = "LabelControl29"
-        Me.LabelControl29.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl29.TabIndex = 8903
-        Me.LabelControl29.Text = "Until"
-        '
-        'DEUntilAcc
-        '
-        Me.DEUntilAcc.EditValue = Nothing
-        Me.DEUntilAcc.Location = New System.Drawing.Point(96, 64)
-        Me.DEUntilAcc.Name = "DEUntilAcc"
-        Me.DEUntilAcc.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEUntilAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEUntilAcc.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilAcc.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilAcc.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilAcc.Size = New System.Drawing.Size(111, 20)
-        Me.DEUntilAcc.TabIndex = 8905
-        '
-        'LabelControl35
-        '
-        Me.LabelControl35.Location = New System.Drawing.Point(9, 15)
-        Me.LabelControl35.Name = "LabelControl35"
-        Me.LabelControl35.Size = New System.Drawing.Size(39, 13)
-        Me.LabelControl35.TabIndex = 8915
-        Me.LabelControl35.Text = "Account"
-        '
         'XTPFGStockWHSum
         '
         Me.XTPFGStockWHSum.Controls.Add(Me.XTCSOH)
@@ -812,10 +368,10 @@ Partial Class FormFGStock
         '
         Me.XTCSOH.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCSOH.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCSOH.Location = New System.Drawing.Point(0, 56)
+        Me.XTCSOH.Location = New System.Drawing.Point(0, 60)
         Me.XTCSOH.Name = "XTCSOH"
         Me.XTCSOH.SelectedTabPage = Me.XTPByCode
-        Me.XTCSOH.Size = New System.Drawing.Size(1164, 523)
+        Me.XTCSOH.Size = New System.Drawing.Size(1164, 519)
         Me.XTCSOH.TabIndex = 20
         Me.XTCSOH.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPByCode, Me.XTPByBarCode})
         '
@@ -823,7 +379,7 @@ Partial Class FormFGStock
         '
         Me.XTPByCode.Controls.Add(Me.GroupControlStockSum)
         Me.XTPByCode.Name = "XTPByCode"
-        Me.XTPByCode.Size = New System.Drawing.Size(1135, 517)
+        Me.XTPByCode.Size = New System.Drawing.Size(1135, 513)
         Me.XTPByCode.Text = "By Code"
         '
         'GroupControlStockSum
@@ -834,7 +390,7 @@ Partial Class FormFGStock
         Me.GroupControlStockSum.Enabled = False
         Me.GroupControlStockSum.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlStockSum.Name = "GroupControlStockSum"
-        Me.GroupControlStockSum.Size = New System.Drawing.Size(1135, 517)
+        Me.GroupControlStockSum.Size = New System.Drawing.Size(1135, 513)
         Me.GroupControlStockSum.TabIndex = 19
         Me.GroupControlStockSum.Text = "Finished Goods"
         '
@@ -844,7 +400,7 @@ Partial Class FormFGStock
         Me.GCFGStock.Location = New System.Drawing.Point(20, 2)
         Me.GCFGStock.MainView = Me.BGVFGStock
         Me.GCFGStock.Name = "GCFGStock"
-        Me.GCFGStock.Size = New System.Drawing.Size(1113, 513)
+        Me.GCFGStock.Size = New System.Drawing.Size(1113, 509)
         Me.GCFGStock.TabIndex = 38
         Me.GCFGStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVFGStock})
         '
@@ -1103,7 +659,7 @@ Partial Class FormFGStock
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(1164, 56)
+        Me.GroupControl4.Size = New System.Drawing.Size(1164, 60)
         Me.GroupControl4.TabIndex = 18
         Me.GroupControl4.Text = "Filter"
         '
@@ -2512,6 +2068,450 @@ Partial Class FormFGStock
         Me.TxtNameDsgRsv.Size = New System.Drawing.Size(224, 20)
         Me.TxtNameDsgRsv.TabIndex = 8896
         '
+        'XTPSOH12Digit
+        '
+        Me.XTPSOH12Digit.Controls.Add(Me.XTCStockOnHandNew)
+        Me.XTPSOH12Digit.Controls.Add(Me.BtnShowFilter)
+        Me.XTPSOH12Digit.Controls.Add(Me.PanelControlSOH)
+        Me.XTPSOH12Digit.Name = "XTPSOH12Digit"
+        Me.XTPSOH12Digit.Size = New System.Drawing.Size(1164, 579)
+        Me.XTPSOH12Digit.Text = "SOH (Trial)"
+        '
+        'XTCStockOnHandNew
+        '
+        Me.XTCStockOnHandNew.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCStockOnHandNew.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCStockOnHandNew.Location = New System.Drawing.Point(0, 160)
+        Me.XTCStockOnHandNew.Name = "XTCStockOnHandNew"
+        Me.XTCStockOnHandNew.SelectedTabPage = Me.XTPBySizeBarcode
+        Me.XTCStockOnHandNew.Size = New System.Drawing.Size(1164, 419)
+        Me.XTCStockOnHandNew.TabIndex = 8929
+        Me.XTCStockOnHandNew.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySizeBarcode})
+        '
+        'XTPBySizeBarcode
+        '
+        Me.XTPBySizeBarcode.Controls.Add(Me.GCSOH)
+        Me.XTPBySizeBarcode.Name = "XTPBySizeBarcode"
+        Me.XTPBySizeBarcode.Size = New System.Drawing.Size(1135, 413)
+        Me.XTPBySizeBarcode.Text = "By Size Barcode"
+        '
+        'GCSOH
+        '
+        Me.GCSOH.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSOH.Location = New System.Drawing.Point(0, 0)
+        Me.GCSOH.MainView = Me.GVSOH
+        Me.GCSOH.Name = "GCSOH"
+        Me.GCSOH.Size = New System.Drawing.Size(1135, 413)
+        Me.GCSOH.TabIndex = 0
+        Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
+        '
+        'GVSOH
+        '
+        Me.GVSOH.ColumnPanelRowHeight = 30
+        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode_soh, Me.GridColumnname, Me.GridColumnmain_code, Me.GridColumnsize_soh, Me.GridColumnid_class, Me.GridColumnclass, Me.GridColumnid_design_cat, Me.GridColumndesign_cat, Me.GridColumnstt, Me.GridColumnid_comp, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumngroup_store, Me.GridColumngroup_store_desc, Me.GridColumnqty_avl, Me.GridColumnqty_rsv, Me.GridColumnqty_ttl, Me.GridColumnunit_price, Me.GridColumnunit_cost, Me.GridColumnamount, Me.GridColumnamount_cost})
+        Me.GVSOH.GridControl = Me.GCSOH
+        Me.GVSOH.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avl", Me.GridColumnqty_avl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rsv", Me.GridColumnqty_rsv, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ttl", Me.GridColumnqty_ttl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:N0}")})
+        Me.GVSOH.Name = "GVSOH"
+        Me.GVSOH.OptionsBehavior.ReadOnly = True
+        Me.GVSOH.OptionsFind.AlwaysVisible = True
+        Me.GVSOH.OptionsView.ColumnAutoWidth = False
+        Me.GVSOH.OptionsView.ShowFooter = True
+        Me.GVSOH.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumncode_soh
+        '
+        Me.GridColumncode_soh.Caption = "Code"
+        Me.GridColumncode_soh.FieldName = "code"
+        Me.GridColumncode_soh.Name = "GridColumncode_soh"
+        Me.GridColumncode_soh.Visible = True
+        Me.GridColumncode_soh.VisibleIndex = 0
+        Me.GridColumncode_soh.Width = 98
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 2
+        Me.GridColumnname.Width = 157
+        '
+        'GridColumnmain_code
+        '
+        Me.GridColumnmain_code.Caption = "Main Code"
+        Me.GridColumnmain_code.FieldName = "main_code"
+        Me.GridColumnmain_code.Name = "GridColumnmain_code"
+        Me.GridColumnmain_code.Visible = True
+        Me.GridColumnmain_code.VisibleIndex = 1
+        Me.GridColumnmain_code.Width = 84
+        '
+        'GridColumnsize_soh
+        '
+        Me.GridColumnsize_soh.Caption = "Size"
+        Me.GridColumnsize_soh.FieldName = "size"
+        Me.GridColumnsize_soh.Name = "GridColumnsize_soh"
+        Me.GridColumnsize_soh.Visible = True
+        Me.GridColumnsize_soh.VisibleIndex = 3
+        Me.GridColumnsize_soh.Width = 48
+        '
+        'GridColumnid_class
+        '
+        Me.GridColumnid_class.Caption = "id class"
+        Me.GridColumnid_class.FieldName = "id_class"
+        Me.GridColumnid_class.Name = "GridColumnid_class"
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 4
+        Me.GridColumnclass.Width = 50
+        '
+        'GridColumnid_design_cat
+        '
+        Me.GridColumnid_design_cat.Caption = "id_design_cat"
+        Me.GridColumnid_design_cat.FieldName = "id_design_cat"
+        Me.GridColumnid_design_cat.Name = "GridColumnid_design_cat"
+        '
+        'GridColumndesign_cat
+        '
+        Me.GridColumndesign_cat.Caption = "design_cat"
+        Me.GridColumndesign_cat.FieldName = "design_cat"
+        Me.GridColumndesign_cat.Name = "GridColumndesign_cat"
+        '
+        'GridColumnstt
+        '
+        Me.GridColumnstt.Caption = "Status"
+        Me.GridColumnstt.FieldName = "stt"
+        Me.GridColumnstt.Name = "GridColumnstt"
+        Me.GridColumnstt.Visible = True
+        Me.GridColumnstt.VisibleIndex = 5
+        Me.GridColumnstt.Width = 46
+        '
+        'GridColumnid_comp
+        '
+        Me.GridColumnid_comp.Caption = "id_comp"
+        Me.GridColumnid_comp.FieldName = "id_comp"
+        Me.GridColumnid_comp.Name = "GridColumnid_comp"
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Account"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 6
+        Me.GridColumncomp_number.Width = 50
+        '
+        'GridColumncomp_name
+        '
+        Me.GridColumncomp_name.Caption = "Acc Description"
+        Me.GridColumncomp_name.FieldName = "comp_name"
+        Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.Visible = True
+        Me.GridColumncomp_name.VisibleIndex = 7
+        Me.GridColumncomp_name.Width = 105
+        '
+        'GridColumngroup_store
+        '
+        Me.GridColumngroup_store.Caption = "Group"
+        Me.GridColumngroup_store.FieldName = "group_store"
+        Me.GridColumngroup_store.Name = "GridColumngroup_store"
+        Me.GridColumngroup_store.Visible = True
+        Me.GridColumngroup_store.VisibleIndex = 8
+        Me.GridColumngroup_store.Width = 55
+        '
+        'GridColumngroup_store_desc
+        '
+        Me.GridColumngroup_store_desc.Caption = "Group Desc"
+        Me.GridColumngroup_store_desc.FieldName = "group_store_desc"
+        Me.GridColumngroup_store_desc.Name = "GridColumngroup_store_desc"
+        '
+        'GridColumnqty_avl
+        '
+        Me.GridColumnqty_avl.Caption = "Available"
+        Me.GridColumnqty_avl.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_avl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_avl.FieldName = "qty_avl"
+        Me.GridColumnqty_avl.Name = "GridColumnqty_avl"
+        Me.GridColumnqty_avl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avl", "{0:N0}")})
+        Me.GridColumnqty_avl.Visible = True
+        Me.GridColumnqty_avl.VisibleIndex = 9
+        '
+        'GridColumnqty_rsv
+        '
+        Me.GridColumnqty_rsv.Caption = "Reserved"
+        Me.GridColumnqty_rsv.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_rsv.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_rsv.FieldName = "qty_rsv"
+        Me.GridColumnqty_rsv.Name = "GridColumnqty_rsv"
+        Me.GridColumnqty_rsv.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rsv", "{0:N0}")})
+        Me.GridColumnqty_rsv.Visible = True
+        Me.GridColumnqty_rsv.VisibleIndex = 10
+        '
+        'GridColumnqty_ttl
+        '
+        Me.GridColumnqty_ttl.Caption = "Total Qty"
+        Me.GridColumnqty_ttl.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_ttl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_ttl.FieldName = "qty_ttl"
+        Me.GridColumnqty_ttl.Name = "GridColumnqty_ttl"
+        Me.GridColumnqty_ttl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ttl", "{0:N0}")})
+        Me.GridColumnqty_ttl.Visible = True
+        Me.GridColumnqty_ttl.VisibleIndex = 11
+        '
+        'GridColumnunit_price
+        '
+        Me.GridColumnunit_price.Caption = "Unit Price"
+        Me.GridColumnunit_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnunit_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnunit_price.FieldName = "unit_price"
+        Me.GridColumnunit_price.Name = "GridColumnunit_price"
+        Me.GridColumnunit_price.Visible = True
+        Me.GridColumnunit_price.VisibleIndex = 12
+        Me.GridColumnunit_price.Width = 54
+        '
+        'GridColumnunit_cost
+        '
+        Me.GridColumnunit_cost.Caption = "Unit Cost"
+        Me.GridColumnunit_cost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnunit_cost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnunit_cost.FieldName = "unit_cost"
+        Me.GridColumnunit_cost.Name = "GridColumnunit_cost"
+        Me.GridColumnunit_cost.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 13
+        '
+        'GridColumnamount_cost
+        '
+        Me.GridColumnamount_cost.Caption = "Amount Cost"
+        Me.GridColumnamount_cost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamount_cost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount_cost.FieldName = "amount_cost"
+        Me.GridColumnamount_cost.Name = "GridColumnamount_cost"
+        Me.GridColumnamount_cost.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'BtnShowFilter
+        '
+        Me.BtnShowFilter.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnShowFilter.Appearance.Options.UseFont = True
+        Me.BtnShowFilter.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnShowFilter.Image = CType(resources.GetObject("BtnShowFilter.Image"), System.Drawing.Image)
+        Me.BtnShowFilter.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnShowFilter.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftTop
+        Me.BtnShowFilter.Location = New System.Drawing.Point(0, 140)
+        Me.BtnShowFilter.LookAndFeel.SkinName = "Blue"
+        Me.BtnShowFilter.Name = "BtnShowFilter"
+        Me.BtnShowFilter.Size = New System.Drawing.Size(1164, 20)
+        Me.BtnShowFilter.TabIndex = 8928
+        Me.BtnShowFilter.Text = "Show Filter"
+        Me.BtnShowFilter.Visible = False
+        '
+        'PanelControlSOH
+        '
+        Me.PanelControlSOH.Controls.Add(Me.PanelControl3)
+        Me.PanelControlSOH.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlSOH.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlSOH.Name = "PanelControlSOH"
+        Me.PanelControlSOH.Size = New System.Drawing.Size(1164, 140)
+        Me.PanelControlSOH.TabIndex = 0
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.LEPriceType)
+        Me.PanelControl3.Controls.Add(Me.LabelControl10)
+        Me.PanelControl3.Controls.Add(Me.SLEAccount)
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
+        Me.PanelControl3.Controls.Add(Me.BtnBrowseProduct)
+        Me.PanelControl3.Controls.Add(Me.CEFindAllProduct)
+        Me.PanelControl3.Controls.Add(Me.TxtProduct)
+        Me.PanelControl3.Controls.Add(Me.LabelControl29)
+        Me.PanelControl3.Controls.Add(Me.DEUntilAcc)
+        Me.PanelControl3.Controls.Add(Me.LabelControl35)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(444, 136)
+        Me.PanelControl3.TabIndex = 8927
+        '
+        'LEPriceType
+        '
+        Me.LEPriceType.Location = New System.Drawing.Point(183, 172)
+        Me.LEPriceType.Name = "LEPriceType"
+        Me.LEPriceType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPriceType.Size = New System.Drawing.Size(185, 20)
+        Me.LEPriceType.TabIndex = 8930
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(96, 175)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl10.TabIndex = 8929
+        Me.LabelControl10.Text = "Price Type"
+        '
+        'SLEAccount
+        '
+        Me.SLEAccount.Location = New System.Drawing.Point(96, 12)
+        Me.SLEAccount.Name = "SLEAccount"
+        Me.SLEAccount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEAccount.Properties.Appearance.Options.UseFont = True
+        Me.SLEAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAccount.Properties.ShowClearButton = False
+        Me.SLEAccount.Properties.View = Me.GridView2
+        Me.SLEAccount.Size = New System.Drawing.Size(329, 20)
+        Me.SLEAccount.TabIndex = 8928
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn31, Me.GridColumn32, Me.GridColumn33})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Id Comp"
+        Me.GridColumn31.FieldName = "id_comp"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Account"
+        Me.GridColumn32.FieldName = "comp_number"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 0
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Description"
+        Me.GridColumn33.FieldName = "comp_name_label"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 1
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.BtnViewAcc)
+        Me.PanelControl4.Controls.Add(Me.BtnExportToXLSAcc)
+        Me.PanelControl4.Controls.Add(Me.BtnHideFilterAcc)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 97)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(440, 37)
+        Me.PanelControl4.TabIndex = 8925
+        '
+        'BtnViewAcc
+        '
+        Me.BtnViewAcc.Image = CType(resources.GetObject("BtnViewAcc.Image"), System.Drawing.Image)
+        Me.BtnViewAcc.Location = New System.Drawing.Point(354, 9)
+        Me.BtnViewAcc.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewAcc.Name = "BtnViewAcc"
+        Me.BtnViewAcc.Size = New System.Drawing.Size(69, 20)
+        Me.BtnViewAcc.TabIndex = 8906
+        Me.BtnViewAcc.Text = "View"
+        '
+        'BtnExportToXLSAcc
+        '
+        Me.BtnExportToXLSAcc.Image = CType(resources.GetObject("BtnExportToXLSAcc.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSAcc.Location = New System.Drawing.Point(257, 9)
+        Me.BtnExportToXLSAcc.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSAcc.Name = "BtnExportToXLSAcc"
+        Me.BtnExportToXLSAcc.Size = New System.Drawing.Size(94, 20)
+        Me.BtnExportToXLSAcc.TabIndex = 8907
+        Me.BtnExportToXLSAcc.Text = "Export to XLS"
+        '
+        'BtnHideFilterAcc
+        '
+        Me.BtnHideFilterAcc.Image = CType(resources.GetObject("BtnHideFilterAcc.Image"), System.Drawing.Image)
+        Me.BtnHideFilterAcc.Location = New System.Drawing.Point(169, 9)
+        Me.BtnHideFilterAcc.LookAndFeel.SkinName = "Blue"
+        Me.BtnHideFilterAcc.Name = "BtnHideFilterAcc"
+        Me.BtnHideFilterAcc.Size = New System.Drawing.Size(84, 20)
+        Me.BtnHideFilterAcc.TabIndex = 8926
+        Me.BtnHideFilterAcc.Text = "Hide Filter"
+        '
+        'BtnBrowseProduct
+        '
+        Me.BtnBrowseProduct.Enabled = False
+        Me.BtnBrowseProduct.Image = CType(resources.GetObject("BtnBrowseProduct.Image"), System.Drawing.Image)
+        Me.BtnBrowseProduct.Location = New System.Drawing.Point(399, 38)
+        Me.BtnBrowseProduct.LookAndFeel.SkinName = "Blue"
+        Me.BtnBrowseProduct.Name = "BtnBrowseProduct"
+        Me.BtnBrowseProduct.Size = New System.Drawing.Size(26, 20)
+        Me.BtnBrowseProduct.TabIndex = 8904
+        Me.BtnBrowseProduct.Text = "..."
+        '
+        'CEFindAllProduct
+        '
+        Me.CEFindAllProduct.EditValue = True
+        Me.CEFindAllProduct.Location = New System.Drawing.Point(8, 38)
+        Me.CEFindAllProduct.Name = "CEFindAllProduct"
+        Me.CEFindAllProduct.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEFindAllProduct.Properties.Appearance.Options.UseFont = True
+        Me.CEFindAllProduct.Properties.Caption = "All Product "
+        Me.CEFindAllProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CEFindAllProduct.Size = New System.Drawing.Size(72, 19)
+        Me.CEFindAllProduct.TabIndex = 8907
+        '
+        'TxtProduct
+        '
+        Me.TxtProduct.EditValue = ""
+        Me.TxtProduct.Enabled = False
+        Me.TxtProduct.Location = New System.Drawing.Point(96, 38)
+        Me.TxtProduct.Name = "TxtProduct"
+        Me.TxtProduct.Size = New System.Drawing.Size(297, 20)
+        Me.TxtProduct.TabIndex = 8906
+        '
+        'LabelControl29
+        '
+        Me.LabelControl29.Location = New System.Drawing.Point(9, 67)
+        Me.LabelControl29.Name = "LabelControl29"
+        Me.LabelControl29.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl29.TabIndex = 8903
+        Me.LabelControl29.Text = "Until"
+        '
+        'DEUntilAcc
+        '
+        Me.DEUntilAcc.EditValue = Nothing
+        Me.DEUntilAcc.Location = New System.Drawing.Point(96, 64)
+        Me.DEUntilAcc.Name = "DEUntilAcc"
+        Me.DEUntilAcc.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntilAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilAcc.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilAcc.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilAcc.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilAcc.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilAcc.TabIndex = 8905
+        '
+        'LabelControl35
+        '
+        Me.LabelControl35.Location = New System.Drawing.Point(9, 15)
+        Me.LabelControl35.Name = "LabelControl35"
+        Me.LabelControl35.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl35.TabIndex = 8915
+        Me.LabelControl35.Text = "Account"
+        '
         'GridColumn51
         '
         Me.GridColumn51.Caption = "Total"
@@ -2539,26 +2539,6 @@ Partial Class FormFGStock
         Me.Text = "Stock"
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCFGStock.ResumeLayout(False)
-        Me.XTPSOH12Digit.ResumeLayout(False)
-        CType(Me.XTCStockOnHandNew, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCStockOnHandNew.ResumeLayout(False)
-        Me.XTPBySizeBarcode.ResumeLayout(False)
-        CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlSOH, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlSOH.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
-        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        CType(Me.CEFindAllProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPFGStockWHSum.ResumeLayout(False)
         CType(Me.XTCSOH, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCSOH.ResumeLayout(False)
@@ -2648,6 +2628,26 @@ Partial Class FormFGStock
         CType(Me.TxtCodeAccRsv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeDsgRsv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameDsgRsv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPSOH12Digit.ResumeLayout(False)
+        CType(Me.XTCStockOnHandNew, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCStockOnHandNew.ResumeLayout(False)
+        Me.XTPBySizeBarcode.ResumeLayout(False)
+        CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlSOH, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlSOH.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.CEFindAllProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
