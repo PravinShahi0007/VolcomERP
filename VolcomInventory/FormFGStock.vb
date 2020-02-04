@@ -97,11 +97,14 @@
     Dim first_load_sum As Boolean = True
     Dim first_load_card As Boolean = True
     Public show_cost As Boolean = False
+    Public id_design_soh As String = "-1"
 
     Private Sub FormFGStock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If id_pop_up = "-1" Then
             'viewWHStockCard()
             viewWHStockSum()
+            viewWH()
+            viewPriceType()
             XTPFGStockQC.PageVisible = False
         Else
             viewProductStockQC()
@@ -115,18 +118,16 @@
         DEUntil.EditValue = data_dt.Rows(0)("dt")
         DEUntilStockFG.EditValue = data_dt.Rows(0)("dt")
         DEUntilStockQC.EditValue = data_dt.Rows(0)("dt")
+        DEUntilAcc.EditValue = data_dt.Rows(0)("dt")
         ActiveControl = TxtDesignCode
     End Sub
 
     '=============== TAB STOCK CARD FG=================================
     Sub viewWHStockCard()
         Dim query As String = ""
-        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
-        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
-        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
-        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
-        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
-        query += "GROUP BY e.id_comp "
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
+        FROM tb_m_comp e 
+        WHERE e.is_active=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             If i = 0 Then
@@ -143,6 +144,15 @@
         Else
             SLEWH.EditValue = Nothing
         End If
+    End Sub
+
+    Sub viewPriceType()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 1 AS `id_price_type`, 'Update' AS `price_type`
+        UNION ALL
+        SELECT 2 AS `id_price_type`, 'Normal' AS `price_type` "
+        viewLookupQuery(LEPriceType, query, 0, "price_type", "id_price_type")
+        Cursor = Cursors.Default
     End Sub
 
 
@@ -227,12 +237,9 @@
         Dim query As String = ""
         query += "SELECT ('-1') AS id_comp, ('-') AS comp_number, ('Normal Warehouse') AS comp_name, ('Normal Warehouse') AS comp_name_label UNION ALL "
         query += "SELECT ('-2') AS id_comp, ('-') AS comp_number, ('Sale Warehouse') AS comp_name, ('Sale Warehouse') AS comp_name_label UNION ALL "
-        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
-        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
-        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
-        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
-        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
-        query += "GROUP BY e.id_comp "
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
+        FROM tb_m_comp e 
+        WHERE e.is_active=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             If i = 0 Then
@@ -249,6 +256,17 @@
         Else
             SLEWHStockSum.EditValue = Nothing
         End If
+    End Sub
+
+    Sub viewWH()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = ""
+        query += "SELECT ('0') AS id_comp, ('All') AS comp_number, ('All Store') AS comp_name, ('All Store') AS comp_name_label UNION ALL "
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
+        FROM tb_m_comp e 
+        WHERE e.is_active=1 "
+        viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SLEWHStockSum_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLEWHStockSum.EditValueChanged
@@ -1384,6 +1402,95 @@
             End If
             path = path + "stock_reserved.xlsx"
             exportToXLS(path, "stock_reserved", GCRsv)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub TxtProduct_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProduct.EditValueChanged
+        GCSOH.DataSource = Nothing
+    End Sub
+
+    Private Sub BtnHideFilterAcc_Click(sender As Object, e As EventArgs) Handles BtnHideFilterAcc.Click
+        PanelControlSOH.Visible = False
+        BtnShowFilter.Visible = True
+    End Sub
+
+    Private Sub BtnShowFilter_Click(sender As Object, e As EventArgs) Handles BtnShowFilter.Click
+        PanelControlSOH.Visible = True
+        BtnShowFilter.Visible = False
+    End Sub
+
+    Private Sub CEFindAllProduct_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProduct.EditValueChanged
+        id_design_soh = "-1"
+        TxtProduct.Text = ""
+        GCSOH.DataSource = Nothing
+        If CEFindAllProduct.EditValue = True Then
+            BtnBrowseProduct.Enabled = False
+        Else
+            BtnBrowseProduct.Enabled = True
+        End If
+    End Sub
+
+    Private Sub BtnBrowseProduct_Click(sender As Object, e As EventArgs) Handles BtnBrowseProduct.Click
+        Cursor = Cursors.WaitCursor
+        FormSearchDesign.id_pop_up = "5"
+        FormSearchDesign.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewAcc_Click(sender As Object, e As EventArgs) Handles BtnViewAcc.Click
+        viewSOHSizeBarcode()
+    End Sub
+
+    Sub viewSOHSizeBarcode()
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        'Prepare paramater date
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_until_selected = DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'other
+        Dim id_comp As String = SLEAccount.EditValue.ToString
+
+        'design
+        If id_design_soh = "-1" Then
+            id_design_soh = "0"
+        End If
+
+        'excecute
+        Dim query As String = "CALL view_stock_fg_barcode_size('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSOH.DataSource = data
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+        GCSOH.DataSource = Nothing
+    End Sub
+
+    Private Sub DEUntilAcc_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAcc.EditValueChanged
+        GCSOH.DataSource = Nothing
+    End Sub
+
+    Private Sub PanelControl3_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl3.Paint
+
+    End Sub
+
+    Private Sub BtnExportToXLSAcc_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSAcc.Click
+        If GVSOH.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "stock_soh_by_barcode.xlsx"
+            exportToXLS(path, "soh", GCSOH)
             Cursor = Cursors.Default
         End If
     End Sub
