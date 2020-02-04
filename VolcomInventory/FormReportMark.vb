@@ -5325,7 +5325,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY i.id_item_cat, dd.id_comp
                     UNION ALL
-                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, NULL AS `id_comp`
+                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1 AS `id_comp`
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     JOIN tb_opt_purchasing o
@@ -5333,8 +5333,8 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     GROUP BY dd.id_item_del "
                     execute_non_query(qjd, True, "", "", "", "")
                 ElseIf FormItemDelDetail.is_for_store = "2" Then
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, CONCAT('Expense : ',cat.item_cat) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_comp)
+                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, CONCAT('Expense : ',cat.item_cat) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
@@ -5344,7 +5344,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY i.id_item_cat
                     UNION ALL
-                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number
+                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     JOIN tb_opt_purchasing o
