@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormAccClosing
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,10 +17,11 @@ Partial Class FormAccClosing
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BClosing = New DevExpress.XtraEditors.SimpleButton()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -39,8 +40,6 @@ Partial Class FormAccClosing
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PCCloseAndGenerate = New DevExpress.XtraEditors.PanelControl()
-        Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,12 +47,11 @@ Partial Class FormAccClosing
         CType(Me.GCClosing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVClosing, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PCCloseAndGenerate, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCCloseAndGenerate.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BClosing)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.DEUntil)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -62,6 +60,15 @@ Partial Class FormAccClosing
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1194, 38)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BClosing
+        '
+        Me.BClosing.Location = New System.Drawing.Point(311, 7)
+        Me.BClosing.Name = "BClosing"
+        Me.BClosing.Size = New System.Drawing.Size(50, 23)
+        Me.BClosing.TabIndex = 4
+        Me.BClosing.Text = "closing"
+        Me.BClosing.Visible = False
         '
         'BView
         '
@@ -98,7 +105,7 @@ Partial Class FormAccClosing
         Me.GCClosing.Location = New System.Drawing.Point(0, 38)
         Me.GCClosing.MainView = Me.GVClosing
         Me.GCClosing.Name = "GCClosing"
-        Me.GCClosing.Size = New System.Drawing.Size(1194, 480)
+        Me.GCClosing.Size = New System.Drawing.Size(1194, 520)
         Me.GCClosing.TabIndex = 1
         Me.GCClosing.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVClosing})
         '
@@ -239,41 +246,12 @@ Partial Class FormAccClosing
         Me.GridColumn8.VisibleIndex = 3
         Me.GridColumn8.Width = 262
         '
-        'PCCloseAndGenerate
-        '
-        Me.PCCloseAndGenerate.Controls.Add(Me.BCreatePO)
-        Me.PCCloseAndGenerate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCCloseAndGenerate.Location = New System.Drawing.Point(0, 518)
-        Me.PCCloseAndGenerate.Name = "PCCloseAndGenerate"
-        Me.PCCloseAndGenerate.Size = New System.Drawing.Size(1194, 40)
-        Me.PCCloseAndGenerate.TabIndex = 2
-        '
-        'BCreatePO
-        '
-        Me.BCreatePO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreatePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreatePO.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreatePO.Appearance.Options.UseBackColor = True
-        Me.BCreatePO.Appearance.Options.UseFont = True
-        Me.BCreatePO.Appearance.Options.UseForeColor = True
-        Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BCreatePO.Location = New System.Drawing.Point(2, 2)
-        Me.BCreatePO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreatePO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(1190, 36)
-        Me.BCreatePO.TabIndex = 13
-        Me.BCreatePO.Text = "Close And Genreate Neraca"
-        '
         'FormAccClosing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1194, 558)
         Me.Controls.Add(Me.GCClosing)
-        Me.Controls.Add(Me.PCCloseAndGenerate)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -288,8 +266,6 @@ Partial Class FormAccClosing
         CType(Me.GCClosing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVClosing, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PCCloseAndGenerate, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCCloseAndGenerate.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -313,6 +289,5 @@ Partial Class FormAccClosing
     Friend WithEvents ViewReportToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PCCloseAndGenerate As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BCreatePO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BClosing As DevExpress.XtraEditors.SimpleButton
 End Class
