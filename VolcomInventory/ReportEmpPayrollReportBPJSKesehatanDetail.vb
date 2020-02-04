@@ -10,17 +10,20 @@
         Dim last_departement As String = ""
         Dim last_departement_sub As String = ""
 
-        Dim departement_total_company As Integer = 0
-        Dim departement_total_employee As Integer = 0
+        Dim departement_total_company As Decimal = 0
+        Dim departement_total_employee As Decimal = 0
+        Dim departement_total_all As Decimal = 0
 
-        Dim departement_sub_total_company As Integer = 0
-        Dim departement_sub_total_employee As Integer = 0
+        Dim departement_sub_total_company As Decimal = 0
+        Dim departement_sub_total_employee As Decimal = 0
+        Dim departement_sub_total_all As Decimal = 0
 
-        Dim total_company As Integer = 0
-        Dim total_employee As Integer = 0
+        Dim total_company As Decimal = 0
+        Dim total_employee As Decimal = 0
+        Dim total_all As Decimal = 0
 
-        Dim total_class1 As Integer = 0
-        Dim total_class2 As Integer = 0
+        Dim total_class1 As Decimal = 0
+        Dim total_class2 As Decimal = 0
 
         For i = 0 To data.Rows.Count - 1
             'last sogo
@@ -46,21 +49,21 @@
                     'departement company
                     Dim departement_company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
-                    departement_company.Text = Format(departement_sub_total_company, "##,##0")
+                    departement_company.Text = Format(departement_sub_total_company, "##,##0.00")
                     departement_company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                     departement_company.BackColor = Color.FromArgb(196, 215, 155)
 
                     'departement employee
                     Dim departement_employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
-                    departement_employee.Text = Format(departement_sub_total_employee, "##,##0")
+                    departement_employee.Text = Format(departement_sub_total_employee, "##,##0.00")
                     departement_employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                     departement_employee.BackColor = Color.FromArgb(196, 215, 155)
 
                     'departement total
                     Dim departement_total As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
-                    departement_total.Text = Format(departement_sub_total_company + departement_sub_total_employee, "##,##0")
+                    departement_total.Text = Format(departement_sub_total_all, "##,##0")
                     departement_total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                     departement_total.BackColor = Color.FromArgb(196, 215, 155)
                 End If
@@ -88,21 +91,21 @@
                 'departement company
                 Dim departement_company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
-                departement_company.Text = Format(departement_total_company, "##,##0")
+                departement_company.Text = Format(departement_total_company, "##,##0.00")
                 departement_company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                 departement_company.BackColor = Color.FromArgb(196, 215, 155)
 
                 'departement employee
                 Dim departement_employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
-                departement_employee.Text = Format(departement_total_employee, "##,##0")
+                departement_employee.Text = Format(departement_total_employee, "##,##0.00")
                 departement_employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                 departement_employee.BackColor = Color.FromArgb(196, 215, 155)
 
                 'departement total
                 Dim departement_total As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
-                departement_total.Text = Format(departement_total_company + departement_total_employee, "##,##0")
+                departement_total.Text = Format(departement_total_all, "##,##0")
                 departement_total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                 departement_total.BackColor = Color.FromArgb(196, 215, 155)
             End If
@@ -130,21 +133,21 @@
                     'departement company
                     Dim departement_company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
-                    departement_company.Text = Format(departement_sub_total_company, "##,##0")
+                    departement_company.Text = Format(departement_sub_total_company, "##,##0.00")
                     departement_company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                     departement_company.BackColor = Color.FromArgb(196, 215, 155)
 
                     'departement employee
                     Dim departement_employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
-                    departement_employee.Text = Format(departement_sub_total_employee, "##,##0")
+                    departement_employee.Text = Format(departement_sub_total_employee, "##,##0.00")
                     departement_employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                     departement_employee.BackColor = Color.FromArgb(196, 215, 155)
 
                     'departement total
                     Dim departement_total As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
-                    departement_total.Text = Format(departement_sub_total_company + departement_sub_total_employee, "##,##0")
+                    departement_total.Text = Format(departement_sub_total_all, "##,##0")
                     departement_total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                     departement_total.BackColor = Color.FromArgb(196, 215, 155)
                 End If
@@ -199,14 +202,14 @@
             'company
             Dim company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
-            company.Text = Format(data.Rows(i)("company_contribution"), "##,##0")
+            company.Text = Format(data.Rows(i)("company_contribution"), "##,##0.00")
             company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
             company.BackColor = Color.Transparent
 
             'employee
             Dim employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
-            employee.Text = Format(data.Rows(i)("employee_contribution"), "##,##0")
+            employee.Text = Format(data.Rows(i)("employee_contribution"), "##,##0.00")
             employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
             employee.BackColor = Color.Transparent
 
@@ -228,23 +231,28 @@
                 'reset total
                 departement_total_company = 0
                 departement_total_employee = 0
+                departement_total_all = 0
             End If
 
             departement_total_company += data.Rows(i)("company_contribution")
             departement_total_employee += data.Rows(i)("employee_contribution")
+            departement_total_all += data.Rows(i)("total_contribution")
 
             total_company += data.Rows(i)("company_contribution")
             total_employee += data.Rows(i)("employee_contribution")
+            total_all += data.Rows(i)("total_contribution")
 
             'sogo
             If data.Rows(i)("id_departement").ToString = "17" Then
                 If Not last_departement_sub = data.Rows(i)("departement_sub").ToString Then
                     departement_sub_total_company = 0
                     departement_sub_total_employee = 0
+                    departement_sub_total_all = 0
                 End If
 
                 departement_sub_total_company += data.Rows(i)("company_contribution")
                 departement_sub_total_employee += data.Rows(i)("employee_contribution")
+                departement_sub_total_all += data.Rows(i)("total_contribution")
             End If
 
 
@@ -276,21 +284,21 @@
                 'departement company
                 Dim departement_company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
-                departement_company.Text = Format(departement_total_company, "##,##0")
+                departement_company.Text = Format(departement_total_company, "##,##0.00")
                 departement_company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                 departement_company.BackColor = Color.FromArgb(196, 215, 155)
 
                 'departement employee
                 Dim departement_employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
-                departement_employee.Text = Format(departement_total_employee, "##,##0")
+                departement_employee.Text = Format(departement_total_employee, "##,##0.00")
                 departement_employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                 departement_employee.BackColor = Color.FromArgb(196, 215, 155)
 
                 'departement total
                 Dim departement_total As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
-                departement_total.Text = Format(departement_total_company + departement_total_employee, "##,##0")
+                departement_total.Text = Format(departement_total_all, "##,##0")
                 departement_total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
                 departement_total.BackColor = Color.FromArgb(196, 215, 155)
             End If
@@ -314,9 +322,9 @@
         'XrTableRow7.HeightF = 16
 
         XTRowTotal.Cells.Item(1).Text = data.Rows.Count
-        XTRowTotal.Cells.Item(4).Text = Format(total_company, "##,##0")
-        XTRowTotal.Cells.Item(5).Text = Format(total_employee, "##,##0")
-        XTRowTotal.Cells.Item(6).Text = Format(total_company + total_employee, "##,##0")
+        XTRowTotal.Cells.Item(4).Text = Format(total_company, "##,##0.00")
+        XTRowTotal.Cells.Item(5).Text = Format(total_employee, "##,##0.00")
+        XTRowTotal.Cells.Item(6).Text = Format(total_all, "##,##0")
 
         'XLClass1.Text = total_class1
         'XLClass2.Text = total_class2

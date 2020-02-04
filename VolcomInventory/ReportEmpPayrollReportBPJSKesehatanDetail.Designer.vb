@@ -133,7 +133,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "NAMA KARYAWAN"
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 2.15579389577971R
+        Me.XrTableCell6.Weight = 2.057803262301837R
         '
         'XrTableCell5
         '
@@ -169,7 +169,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "TOTAL  GAJI POKOK + TUNJ TETAP"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell2.Weight = 0.656537225965427R
+        Me.XrTableCell2.Weight = 0.63693909926985226R
         '
         'XrTableCell3
         '
@@ -181,7 +181,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell3.StylePriority.UseTextAlignment = False
         Me.XrTableCell3.Text = "IURAN PEMBERI KERJA (4%)"
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell3.Weight = 0.656537208600927R
+        Me.XrTableCell3.Weight = 0.7545278420788003R
         '
         'XrTableCell7
         '
@@ -193,7 +193,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "IURAN KARYAWAN (1%)"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell7.Weight = 0.656537208600926R
+        Me.XrTableCell7.Weight = 0.70553252533986266R
         '
         'XrTableCell8
         '
@@ -205,7 +205,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell8.StylePriority.UseTextAlignment = False
         Me.XrTableCell8.Text = "TOTAL IURAN"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell8.Weight = 0.597743565490997R
+        Me.XrTableCell8.Weight = 0.57814472856667942R
         '
         'XrTableCell9
         '
@@ -218,7 +218,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell9.StylePriority.UseTextAlignment = False
         Me.XrTableCell9.Text = "HAK KELAS RAWAT"
         Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell9.Weight = 0.401762174600784R
+        Me.XrTableCell9.Weight = 0.39196382148173969R
         '
         'XTRowSpace
         '
@@ -246,7 +246,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell11.StylePriority.UseBorders = False
         Me.XrTableCell11.StylePriority.UseTextAlignment = False
         Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell11.Weight = 2.15579376375407R
+        Me.XrTableCell11.Weight = 2.057803279798037R
         '
         'XrTableCell12
         '
@@ -257,7 +257,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell12.StylePriority.UseBorders = False
         Me.XrTableCell12.StylePriority.UseTextAlignment = False
         Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell12.Weight = 0.734930049015442R
+        Me.XrTableCell12.Weight = 0.7349293014062388R
         '
         'XrTableCell13
         '
@@ -268,7 +268,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell13.StylePriority.UseBorders = False
         Me.XrTableCell13.StylePriority.UseTextAlignment = False
         Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell13.Weight = 0.881915721626216R
+        Me.XrTableCell13.Weight = 0.88191602066989727R
         '
         'XrTableCell14
         '
@@ -279,7 +279,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell14.StylePriority.UseBorders = False
         Me.XrTableCell14.StylePriority.UseTextAlignment = False
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell14.Weight = 0.656536940177896R
+        Me.XrTableCell14.Weight = 0.63693941156968381R
         '
         'XrTableCell15
         '
@@ -290,7 +290,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell15.StylePriority.UseBorders = False
         Me.XrTableCell15.StylePriority.UseTextAlignment = False
         Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell15.Weight = 0.656536637025865R
+        Me.XrTableCell15.Weight = 0.75452727050373813R
         '
         'XrTableCell16
         '
@@ -301,7 +301,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell16.StylePriority.UseBorders = False
         Me.XrTableCell16.StylePriority.UseTextAlignment = False
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell16.Weight = 0.656537806688289R
+        Me.XrTableCell16.Weight = 0.7055325253398631R
         '
         'XrTableCell17
         '
@@ -312,7 +312,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell17.StylePriority.UseBorders = False
         Me.XrTableCell17.StylePriority.UseTextAlignment = False
         Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell17.Weight = 0.597742967403584R
+        Me.XrTableCell17.Weight = 0.57814502761031017R
         '
         'XrTableCell18
         '
@@ -324,7 +324,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell18.StylePriority.UseBorders = False
         Me.XrTableCell18.StylePriority.UseTextAlignment = False
         Me.XrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell18.Weight = 0.401762827564896R
+        Me.XrTableCell18.Weight = 0.39196387635848917R
         '
         'XTRowTotal
         '
@@ -359,7 +359,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell20.StylePriority.UseFont = False
         Me.XrTableCell20.StylePriority.UseTextAlignment = False
         Me.XrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.XrTableCell20.Weight = 2.15579414418675R
+        Me.XrTableCell20.Weight = 2.0578030621433547R
         '
         'XrTableCell22
         '
@@ -371,7 +371,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell22.StylePriority.UseBorders = False
         Me.XrTableCell22.StylePriority.UseTextAlignment = False
         Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell22.Weight = 1.61684546165586R
+        Me.XrTableCell22.Weight = 1.6168450130903382R
         '
         'XrTableCell23
         '
@@ -385,7 +385,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell23.StylePriority.UseFont = False
         Me.XrTableCell23.StylePriority.UseTextAlignment = False
         Me.XrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell23.Weight = 0.656536774816813R
+        Me.XrTableCell23.Weight = 0.63693939573044145R
         '
         'XrTableCell24
         '
@@ -399,7 +399,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell24.StylePriority.UseFont = False
         Me.XrTableCell24.StylePriority.UseTextAlignment = False
         Me.XrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell24.Weight = 0.656536412743179R
+        Me.XrTableCell24.Weight = 0.754527270503813R
         '
         'XrTableCell25
         '
@@ -413,7 +413,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell25.StylePriority.UseFont = False
         Me.XrTableCell25.StylePriority.UseTextAlignment = False
         Me.XrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell25.Weight = 0.656538207005142R
+        Me.XrTableCell25.Weight = 0.7055325518521145R
         '
         'XrTableCell26
         '
@@ -427,7 +427,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell26.StylePriority.UseFont = False
         Me.XrTableCell26.StylePriority.UseTextAlignment = False
         Me.XrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell26.Weight = 0.597742979928764R
+        Me.XrTableCell26.Weight = 0.57814504013549017R
         '
         'XrTableCell27
         '
@@ -440,7 +440,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell27.StylePriority.UseBorders = False
         Me.XrTableCell27.StylePriority.UseTextAlignment = False
         Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell27.Weight = 0.401762732919744R
+        Me.XrTableCell27.Weight = 0.3919643798006997R
         '
         'TopMargin
         '
