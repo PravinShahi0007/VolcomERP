@@ -516,7 +516,6 @@
             Case Else
                 where_param = ""
         End Select
-        MsgBox(id_design_per_outlet)
         If id_design_per_outlet = "-1" Then
             id_design_per_outlet = "0"
         End If
