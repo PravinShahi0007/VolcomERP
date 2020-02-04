@@ -11552,6 +11552,9 @@
       <DependentUpon>ReportFGMissingInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGPODP.resx">
+      <DependentUpon>ReportFGPODP.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportFGProposePrice.resx">
       <DependentUpon>ReportFGProposePrice.vb</DependentUpon>
       <SubType>Designer</SubType>
