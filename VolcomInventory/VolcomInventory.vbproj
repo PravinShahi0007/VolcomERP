@@ -6831,6 +6831,12 @@
     <Compile Include="ReportFGMissingInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGPODP.Designer.vb">
+      <DependentUpon>ReportFGPODP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGPODP.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGProposePrice.Designer.vb">
       <DependentUpon>ReportFGProposePrice.vb</DependentUpon>
     </Compile>
