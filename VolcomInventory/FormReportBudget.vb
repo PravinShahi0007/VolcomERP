@@ -76,6 +76,7 @@
     End Sub
 
     Sub setGaugeInfo()
+
         'isi gauge summary
         TEBudgetSum.EditValue = GVItemCat.Columns("budget").SummaryItem.SummaryValue
         TEActualSum.EditValue = GVItemCat.Columns("val_used").SummaryItem.SummaryValue
@@ -105,13 +106,17 @@
         TEBudgetOpex.EditValue = b_opex
         TEUsedOpex.EditValue = u_opex
 
-        'isi gauge capex
-        ASCapex.Value = u_capex / b_capex * 100
-        LCCapex.Text = Decimal.Parse((u_capex / b_capex) * 100).ToString("N2") + "%"
+        If Not b_capex = 0 Then
+            'isi gauge capex
+            ASCapex.Value = u_capex / b_capex * 100
+            LCCapex.Text = Decimal.Parse((u_capex / b_capex) * 100).ToString("N2") + "%"
+        End If
 
-        'isi gauge opex
-        ASOpex.Value = u_opex / b_opex * 100
-        LCOpex.Text = Decimal.Parse((u_opex / b_opex) * 100).ToString("N2") + "%"
+        If Not b_opex = 0 Then
+            'isi gauge opex
+            ASOpex.Value = u_opex / b_opex * 100
+            LCOpex.Text = Decimal.Parse((u_opex / b_opex) * 100).ToString("N2") + "%"
+        End If
     End Sub
 
     Sub viewMainCategory()
@@ -183,6 +188,12 @@ GROUP BY `year`"
     End Sub
 
     Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
-
+        If GVItemCat.RowCount > 0 Then
+            Dim id_cat_main As String = GVItemCat.GetFocusedRowCellValue("id_item_cat_main").ToString
+            FormReportBudgetList.id_cat_main = id_cat_main
+            FormReportBudgetList.date_time = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+            FormReportBudgetList.year = LEYear.Text
+            FormReportBudgetList.ShowDialog()
+        End If
     End Sub
 End Class

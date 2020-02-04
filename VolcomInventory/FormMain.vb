@@ -1800,6 +1800,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpUniCreditNote" Then
             FormEmpUniCreditNoteDet.id_emp_uni_ex = "0"
             FormEmpUniCreditNoteDet.ShowDialog()
+        ElseIf formName = "FormPaymentMissing" Then
+            FormPaymentMissingDet.id_missing_payment = "-1"
+            FormPaymentMissingDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2955,6 +2958,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormEmpUniCreditNoteDet.ShowDialog()
                 Catch ex As Exception
                 End Try
+            ElseIf Formname = "FormPaymentMissing" Then
+                FormPaymentMissingDet.id_missing_payment = FormPaymentMissing.GridViewMissing.GetFocusedRowCellValue("id_missing_payment").ToString
+                FormPaymentMissingDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8047,6 +8053,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreview()
+        ElseIf formName = "FormPaymentMissing" Then
+            FormPaymentMissing.form_print()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8898,6 +8906,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDocTracking" Then
             FormDocTracking.Close()
             FormDocTracking.Dispose()
+        ElseIf formName = "FormPaymentMissing" Then
+            FormPaymentMissing.Close()
+            FormPaymentMissing.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9791,6 +9802,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAccountingWorksheet.view_form()
         ElseIf formName = "FormEmpUniCreditNote" Then
             FormEmpUniCreditNote.view_form()
+        ElseIf formName = "FormPaymentMissing" Then
+            FormPaymentMissingDet.form_load()
         End If
     End Sub
     'Switch
@@ -14347,6 +14360,35 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSeason.Show()
             FormSeason.WindowState = FormWindowState.Maximized
             FormSeason.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLeavePerUser_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLeavePerUser.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpLeave.is_propose = "1"
+            FormEmpLeave.is_hrd = "-1"
+            FormEmpLeave.is_single_user = True
+            FormEmpLeave.MdiParent = Me
+            FormEmpLeave.Show()
+            FormEmpLeave.WindowState = FormWindowState.Maximized
+            FormEmpLeave.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPaymentMissing_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPaymentMissing.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPaymentMissing.MdiParent = Me
+            FormPaymentMissing.Show()
+            FormPaymentMissing.WindowState = FormWindowState.Maximized
+            FormPaymentMissing.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -24,6 +24,8 @@ Partial Class FormReportBudgetList
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -40,7 +42,7 @@ Partial Class FormReportBudgetList
         '
         'GVBudgetCard
         '
-        Me.GVBudgetCard.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVBudgetCard.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVBudgetCard.GridControl = Me.GCBudgetCard
         Me.GVBudgetCard.Name = "GVBudgetCard"
         Me.GVBudgetCard.OptionsView.ShowGroupPanel = False
@@ -48,6 +50,7 @@ Partial Class FormReportBudgetList
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Description"
+        Me.GridColumn1.FieldName = "note"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -55,6 +58,7 @@ Partial Class FormReportBudgetList
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Used Budget"
+        Me.GridColumn2.FieldName = "value"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
@@ -62,9 +66,22 @@ Partial Class FormReportBudgetList
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Remaining"
+        Me.GridColumn3.FieldName = "remaining_budget"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID Report"
+        Me.GridColumn4.FieldName = "id_report"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Report Mark Type"
+        Me.GridColumn5.FieldName = "report_mark_type"
+        Me.GridColumn5.Name = "GridColumn5"
         '
         'FormReportBudgetList
         '
@@ -89,4 +106,6 @@ Partial Class FormReportBudgetList
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -2622,6 +2622,18 @@
     <Compile Include="FormOutlet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPaymentMissing.Designer.vb">
+      <DependentUpon>FormPaymentMissing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPaymentMissing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPaymentMissingDet.Designer.vb">
+      <DependentUpon>FormPaymentMissingDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPaymentMissingDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpDept.Designer.vb">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </Compile>
@@ -9000,6 +9012,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutlet.resx">
       <DependentUpon>FormOutlet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPaymentMissing.resx">
+      <DependentUpon>FormPaymentMissing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPaymentMissingDet.resx">
+      <DependentUpon>FormPaymentMissingDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDept.resx">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
