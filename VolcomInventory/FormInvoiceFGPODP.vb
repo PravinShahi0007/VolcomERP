@@ -166,6 +166,7 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 DEDueDateInv.EditValue = data.Rows(0)("due_date_inv")
                 DERefDate.EditValue = data.Rows(0)("ref_date")
 
+                SLEVatAcc.EditValue = data.Rows(0)("id_acc_vat").ToString
                 SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
                 SLEPayType.EditValue = data.Rows(0)("type").ToString
                 '
