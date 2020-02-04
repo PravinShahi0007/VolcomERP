@@ -1442,8 +1442,35 @@
         If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
             viewSOHSizeBarcode()
         ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
-
+            viewSOHCode()
         End If
+    End Sub
+
+    Sub viewSOHCode()
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        'Prepare paramater date
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_until_selected = DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'other
+        Dim id_comp As String = SLEAccount.EditValue.ToString
+
+        'design
+        If id_design_soh = "-1" Then
+            id_design_soh = "0"
+        End If
+
+        'excecute
+        Dim query As String = "CALL view_stock_fg_code('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSOHCode.DataSource = data
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewSOHSizeBarcode()
@@ -1475,6 +1502,7 @@
 
     Sub resetViewSOH()
         GCSOH.DataSource = Nothing
+        GCSOHCode.DataSource = Nothing
     End Sub
 
     Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
@@ -1503,7 +1531,33 @@
                 Cursor = Cursors.Default
             End If
         ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+            If GVSOHCode.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSOHCode.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVSOHCode.Columns.Count - 1
+                    Try
+                        GVSOHCode.Columns(i).Caption = GVSOHCode.Columns(i).FieldName.ToString
+                    Catch ex As Exception
+                    End Try
+                Next
 
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "stock_soh_by_code.xlsx"
+                exportToXLS(path, "soh", GCSOHCode)
+
+                'restore column opt
+                GVSOHCode.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 End Class
