@@ -1407,7 +1407,7 @@
     End Sub
 
     Private Sub TxtProduct_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProduct.EditValueChanged
-        GCSOH.DataSource = Nothing
+        resetViewSOH()
     End Sub
 
     Private Sub BtnHideFilterAcc_Click(sender As Object, e As EventArgs) Handles BtnHideFilterAcc.Click
@@ -1423,7 +1423,7 @@
     Private Sub CEFindAllProduct_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProduct.EditValueChanged
         id_design_soh = "-1"
         TxtProduct.Text = ""
-        GCSOH.DataSource = Nothing
+        resetViewSOH()
         If CEFindAllProduct.EditValue = True Then
             BtnBrowseProduct.Enabled = False
         Else
@@ -1439,7 +1439,11 @@
     End Sub
 
     Private Sub BtnViewAcc_Click(sender As Object, e As EventArgs) Handles BtnViewAcc.Click
-        viewSOHSizeBarcode()
+        If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+            viewSOHSizeBarcode()
+        ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+
+        End If
     End Sub
 
     Sub viewSOHSizeBarcode()
@@ -1469,12 +1473,16 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+    Sub resetViewSOH()
         GCSOH.DataSource = Nothing
     End Sub
 
+    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+        resetViewSOH()
+    End Sub
+
     Private Sub DEUntilAcc_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAcc.EditValueChanged
-        GCSOH.DataSource = Nothing
+        resetViewSOH()
     End Sub
 
     Private Sub PanelControl3_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl3.Paint
@@ -1482,16 +1490,20 @@
     End Sub
 
     Private Sub BtnExportToXLSAcc_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSAcc.Click
-        If GVSOH.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+            If GVSOH.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "stock_soh_by_barcode.xlsx"
+                exportToXLS(path, "soh", GCSOH)
+                Cursor = Cursors.Default
             End If
-            path = path + "stock_soh_by_barcode.xlsx"
-            exportToXLS(path, "soh", GCSOH)
-            Cursor = Cursors.Default
+        ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+
         End If
     End Sub
 End Class

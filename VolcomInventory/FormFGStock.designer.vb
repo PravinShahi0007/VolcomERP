@@ -218,6 +218,8 @@ Partial Class FormFGStock
         Me.GridColumnunit_cost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount_cost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnormal_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount_normal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnShowFilter = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlSOH = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -239,8 +241,10 @@ Partial Class FormFGStock
         Me.DEUntilAcc = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnnormal_price = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnamount_normal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPByCodeSOH = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSOHCode = New DevExpress.XtraGrid.GridControl()
+        Me.GVSOHCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -345,6 +349,9 @@ Partial Class FormFGStock
         CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPByCodeSOH.SuspendLayout()
+        CType(Me.GCSOHCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSOHCode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCFGStock
@@ -2077,7 +2084,7 @@ Partial Class FormFGStock
         Me.XTPSOH12Digit.Controls.Add(Me.PanelControlSOH)
         Me.XTPSOH12Digit.Name = "XTPSOH12Digit"
         Me.XTPSOH12Digit.Size = New System.Drawing.Size(1164, 579)
-        Me.XTPSOH12Digit.Text = "SOH (Trial)"
+        Me.XTPSOH12Digit.Text = "Stock On Hand (Trial)"
         '
         'XTCStockOnHandNew
         '
@@ -2088,7 +2095,7 @@ Partial Class FormFGStock
         Me.XTCStockOnHandNew.SelectedTabPage = Me.XTPBySizeBarcode
         Me.XTCStockOnHandNew.Size = New System.Drawing.Size(1164, 419)
         Me.XTCStockOnHandNew.TabIndex = 8929
-        Me.XTCStockOnHandNew.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySizeBarcode})
+        Me.XTCStockOnHandNew.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySizeBarcode, Me.XTPByCodeSOH})
         '
         'XTPBySizeBarcode
         '
@@ -2310,6 +2317,23 @@ Partial Class FormFGStock
         Me.GridColumnamount_cost.Name = "GridColumnamount_cost"
         Me.GridColumnamount_cost.OptionsColumn.ShowInCustomizationForm = False
         '
+        'GridColumnnormal_price
+        '
+        Me.GridColumnnormal_price.Caption = "Normal Price"
+        Me.GridColumnnormal_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnnormal_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnnormal_price.FieldName = "normal_price"
+        Me.GridColumnnormal_price.Name = "GridColumnnormal_price"
+        '
+        'GridColumnamount_normal
+        '
+        Me.GridColumnamount_normal.Caption = "Amount Normal"
+        Me.GridColumnamount_normal.DisplayFormat.FormatString = "N0"
+        Me.GridColumnamount_normal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount_normal.FieldName = "amount_normal"
+        Me.GridColumnamount_normal.Name = "GridColumnamount_normal"
+        Me.GridColumnamount_normal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_normal", "{0:N0}")})
+        '
         'BtnShowFilter
         '
         Me.BtnShowFilter.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2525,22 +2549,41 @@ Partial Class FormFGStock
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 0
         '
-        'GridColumnnormal_price
+        'XTPByCodeSOH
         '
-        Me.GridColumnnormal_price.Caption = "Normal Price"
-        Me.GridColumnnormal_price.DisplayFormat.FormatString = "N0"
-        Me.GridColumnnormal_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnnormal_price.FieldName = "normal_price"
-        Me.GridColumnnormal_price.Name = "GridColumnnormal_price"
+        Me.XTPByCodeSOH.Controls.Add(Me.GCSOHCode)
+        Me.XTPByCodeSOH.Name = "XTPByCodeSOH"
+        Me.XTPByCodeSOH.Size = New System.Drawing.Size(1135, 413)
+        Me.XTPByCodeSOH.Text = "By Code"
         '
-        'GridColumnamount_normal
+        'GCSOHCode
         '
-        Me.GridColumnamount_normal.Caption = "Amount Normal"
-        Me.GridColumnamount_normal.DisplayFormat.FormatString = "N0"
-        Me.GridColumnamount_normal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnamount_normal.FieldName = "amount_normal"
-        Me.GridColumnamount_normal.Name = "GridColumnamount_normal"
-        Me.GridColumnamount_normal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_normal", "{0:N0}")})
+        Me.GCSOHCode.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSOHCode.Location = New System.Drawing.Point(0, 0)
+        Me.GCSOHCode.MainView = Me.GVSOHCode
+        Me.GCSOHCode.Name = "GCSOHCode"
+        Me.GCSOHCode.Size = New System.Drawing.Size(1135, 413)
+        Me.GCSOHCode.TabIndex = 0
+        Me.GCSOHCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOHCode})
+        '
+        'GVSOHCode
+        '
+        Me.GVSOHCode.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand5})
+        Me.GVSOHCode.ColumnPanelRowHeight = 35
+        Me.GVSOHCode.GridControl = Me.GCSOHCode
+        Me.GVSOHCode.Name = "GVSOHCode"
+        Me.GVSOHCode.OptionsBehavior.ReadOnly = True
+        Me.GVSOHCode.OptionsFind.AlwaysVisible = True
+        Me.GVSOHCode.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVSOHCode.OptionsView.ColumnAutoWidth = False
+        Me.GVSOHCode.OptionsView.ShowFooter = True
+        Me.GVSOHCode.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand5
+        '
+        Me.GridBand5.Caption = "GridBand5"
+        Me.GridBand5.Name = "GridBand5"
+        Me.GridBand5.VisibleIndex = 0
         '
         'FormFGStock
         '
@@ -2667,6 +2710,9 @@ Partial Class FormFGStock
         CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPByCodeSOH.ResumeLayout(False)
+        CType(Me.GCSOHCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSOHCode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2890,4 +2936,8 @@ Partial Class FormFGStock
     Friend WithEvents GridColumnamount_cost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnormal_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnamount_normal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPByCodeSOH As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSOHCode As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSOHCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
