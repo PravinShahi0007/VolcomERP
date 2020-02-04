@@ -35,7 +35,7 @@
         view_currency()
         view_coa()
         load_blank_draft()
-        'check 
+        'check
         DEDateCreated.EditValue = Now
         DERefDate.EditValue = Now
         DEDueDate.EditValue = Now
