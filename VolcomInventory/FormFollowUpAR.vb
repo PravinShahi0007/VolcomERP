@@ -150,7 +150,13 @@
 
                 For i = 0 To GVActive.RowCount - 1
                     If GVActive.IsValidRowHandle(i) Then
-                        query_det += "(" + id_follow_up_recap + ", " + GVActive.GetRowCellValue(i, "id_comp_group").ToString + ", '" + addSlashes(GVActive.GetRowCellValue(i, "group").ToString) + "', " + decimalSQL(GVActive.GetRowCellValue(i, "amount").ToString) + ", '" + Date.Parse(GVActive.GetRowCellValue(i, "sales_pos_due_date")).ToString("yyyy-MM-dd") + "', '" + Date.Parse(GVActive.GetRowCellValue(i, "follow_up_date")).ToString("yyyy-MM-dd") + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up").ToString) + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up_result").ToString) + "'), "
+                        Dim follow_up_date As String = "NULL"
+
+                        If Not GVActive.GetRowCellValue(i, "follow_up_date").ToString = "" Then
+                            follow_up_date = "'" + Date.Parse(GVActive.GetRowCellValue(i, "follow_up_date")).ToString("yyyy-MM-dd") + "'"
+                        End If
+
+                        query_det += "(" + id_follow_up_recap + ", " + GVActive.GetRowCellValue(i, "id_comp_group").ToString + ", '" + addSlashes(GVActive.GetRowCellValue(i, "group").ToString) + "', " + decimalSQL(GVActive.GetRowCellValue(i, "amount").ToString) + ", '" + Date.Parse(GVActive.GetRowCellValue(i, "sales_pos_due_date")).ToString("yyyy-MM-dd") + "', " + follow_up_date + ", '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up").ToString) + "', '" + addSlashes(GVActive.GetRowCellValue(i, "follow_up_result").ToString) + "'), "
                     End If
                 Next
 
