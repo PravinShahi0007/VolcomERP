@@ -33,39 +33,39 @@
 
                     row.Font = New Font(XTRow.Font.FontFamily, XTRow.Font.Size, FontStyle.Bold)
 
-                    row.Cells.Item(0).BackColor = Color.FromArgb(196, 215, 155)
-                    row.Cells.Item(2).BackColor = Color.FromArgb(196, 215, 155)
-                    row.Cells.Item(3).BackColor = Color.FromArgb(196, 215, 155)
-                    row.Cells.Item(4).BackColor = Color.FromArgb(196, 215, 155)
-                    row.Cells.Item(8).BackColor = Color.FromArgb(196, 215, 155)
+                    row.Cells.Item(0).BackColor = Color.LightGray
+                    row.Cells.Item(2).BackColor = Color.LightGray
+                    row.Cells.Item(3).BackColor = Color.LightGray
+                    row.Cells.Item(4).BackColor = Color.LightGray
+                    row.Cells.Item(8).BackColor = Color.LightGray
 
                     'departement name
                     Dim departement_name As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
                     departement_name.Text = "TOTAL " + data.Rows(i - 1)("departement_sub").ToString.ToUpper
                     departement_name.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-                    departement_name.BackColor = Color.FromArgb(196, 215, 155)
+                    departement_name.BackColor = Color.LightGray
 
                     'departement company
                     Dim departement_company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
                     departement_company.Text = Format(departement_sub_total_company, "##,##0.00")
                     departement_company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                    departement_company.BackColor = Color.FromArgb(196, 215, 155)
+                    departement_company.BackColor = Color.LightGray
 
                     'departement employee
                     Dim departement_employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
                     departement_employee.Text = Format(departement_sub_total_employee, "##,##0.00")
                     departement_employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                    departement_employee.BackColor = Color.FromArgb(196, 215, 155)
+                    departement_employee.BackColor = Color.LightGray
 
                     'departement total
                     Dim departement_total As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
                     departement_total.Text = Format(departement_sub_total_all, "##,##0")
                     departement_total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                    departement_total.BackColor = Color.FromArgb(196, 215, 155)
+                    departement_total.BackColor = Color.LightGray
                 End If
             End If
 
@@ -75,39 +75,39 @@
 
                 row.Font = New Font(XTRow.Font.FontFamily, XTRow.Font.Size, FontStyle.Bold)
 
-                row.Cells.Item(0).BackColor = Color.FromArgb(196, 215, 155)
-                row.Cells.Item(2).BackColor = Color.FromArgb(196, 215, 155)
-                row.Cells.Item(3).BackColor = Color.FromArgb(196, 215, 155)
-                row.Cells.Item(4).BackColor = Color.FromArgb(196, 215, 155)
-                row.Cells.Item(8).BackColor = Color.FromArgb(196, 215, 155)
+                row.Cells.Item(0).BackColor = Color.LightGray
+                row.Cells.Item(2).BackColor = Color.LightGray
+                row.Cells.Item(3).BackColor = Color.LightGray
+                row.Cells.Item(4).BackColor = Color.LightGray
+                row.Cells.Item(8).BackColor = Color.LightGray
 
                 'departement name
                 Dim departement_name As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
                 departement_name.Text = "TOTAL " + data.Rows(i - 1)("departement").ToString.ToUpper
                 departement_name.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-                departement_name.BackColor = Color.FromArgb(196, 215, 155)
+                departement_name.BackColor = Color.LightGray
 
                 'departement company
                 Dim departement_company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
                 departement_company.Text = Format(departement_total_company, "##,##0.00")
                 departement_company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                departement_company.BackColor = Color.FromArgb(196, 215, 155)
+                departement_company.BackColor = Color.LightGray
 
                 'departement employee
                 Dim departement_employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
                 departement_employee.Text = Format(departement_total_employee, "##,##0.00")
                 departement_employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                departement_employee.BackColor = Color.FromArgb(196, 215, 155)
+                departement_employee.BackColor = Color.LightGray
 
                 'departement total
                 Dim departement_total As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
                 departement_total.Text = Format(departement_total_all, "##,##0")
                 departement_total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                departement_total.BackColor = Color.FromArgb(196, 215, 155)
+                departement_total.BackColor = Color.LightGray
             End If
 
             'total sogo
@@ -117,39 +117,39 @@
 
                     row.Font = New Font(XTRow.Font.FontFamily, XTRow.Font.Size, FontStyle.Bold)
 
-                    row.Cells.Item(0).BackColor = Color.FromArgb(196, 215, 155)
-                    row.Cells.Item(2).BackColor = Color.FromArgb(196, 215, 155)
-                    row.Cells.Item(3).BackColor = Color.FromArgb(196, 215, 155)
-                    row.Cells.Item(4).BackColor = Color.FromArgb(196, 215, 155)
-                    row.Cells.Item(8).BackColor = Color.FromArgb(196, 215, 155)
+                    row.Cells.Item(0).BackColor = Color.LightGray
+                    row.Cells.Item(2).BackColor = Color.LightGray
+                    row.Cells.Item(3).BackColor = Color.LightGray
+                    row.Cells.Item(4).BackColor = Color.LightGray
+                    row.Cells.Item(8).BackColor = Color.LightGray
 
                     'departement name
                     Dim departement_name As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
                     departement_name.Text = "TOTAL " + data.Rows(i - 1)("departement_sub").ToString.ToUpper
                     departement_name.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-                    departement_name.BackColor = Color.FromArgb(196, 215, 155)
+                    departement_name.BackColor = Color.LightGray
 
                     'departement company
                     Dim departement_company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
                     departement_company.Text = Format(departement_sub_total_company, "##,##0.00")
                     departement_company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                    departement_company.BackColor = Color.FromArgb(196, 215, 155)
+                    departement_company.BackColor = Color.LightGray
 
                     'departement employee
                     Dim departement_employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
                     departement_employee.Text = Format(departement_sub_total_employee, "##,##0.00")
                     departement_employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                    departement_employee.BackColor = Color.FromArgb(196, 215, 155)
+                    departement_employee.BackColor = Color.LightGray
 
                     'departement total
                     Dim departement_total As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
                     departement_total.Text = Format(departement_sub_total_all, "##,##0")
                     departement_total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                    departement_total.BackColor = Color.FromArgb(196, 215, 155)
+                    departement_total.BackColor = Color.LightGray
                 End If
             End If
 
@@ -218,7 +218,7 @@
 
             total.Text = Format(data.Rows(i)("total_contribution"), "##,##0")
             total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-            total.BackColor = Color.Yellow
+            total.BackColor = Color.WhiteSmoke
 
             'bpjs class
             Dim bpjs_class As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
@@ -268,39 +268,39 @@
 
                 row.Font = New Font(XTRow.Font.FontFamily, XTRow.Font.Size, FontStyle.Bold)
 
-                row.Cells.Item(0).BackColor = Color.FromArgb(196, 215, 155)
-                row.Cells.Item(2).BackColor = Color.FromArgb(196, 215, 155)
-                row.Cells.Item(3).BackColor = Color.FromArgb(196, 215, 155)
-                row.Cells.Item(4).BackColor = Color.FromArgb(196, 215, 155)
-                row.Cells.Item(8).BackColor = Color.FromArgb(196, 215, 155)
+                row.Cells.Item(0).BackColor = Color.LightGray
+                row.Cells.Item(2).BackColor = Color.LightGray
+                row.Cells.Item(3).BackColor = Color.LightGray
+                row.Cells.Item(4).BackColor = Color.LightGray
+                row.Cells.Item(8).BackColor = Color.LightGray
 
                 'departement name
                 Dim departement_name As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
                 departement_name.Text = "TOTAL " + data.Rows(i)("departement").ToString.ToUpper
                 departement_name.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-                departement_name.BackColor = Color.FromArgb(196, 215, 155)
+                departement_name.BackColor = Color.LightGray
 
                 'departement company
                 Dim departement_company As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
                 departement_company.Text = Format(departement_total_company, "##,##0.00")
                 departement_company.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                departement_company.BackColor = Color.FromArgb(196, 215, 155)
+                departement_company.BackColor = Color.LightGray
 
                 'departement employee
                 Dim departement_employee As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
                 departement_employee.Text = Format(departement_total_employee, "##,##0.00")
                 departement_employee.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                departement_employee.BackColor = Color.FromArgb(196, 215, 155)
+                departement_employee.BackColor = Color.LightGray
 
                 'departement total
                 Dim departement_total As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
                 departement_total.Text = Format(departement_total_all, "##,##0")
                 departement_total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-                departement_total.BackColor = Color.FromArgb(196, 215, 155)
+                departement_total.BackColor = Color.LightGray
             End If
 
             last_departement = data.Rows(i)("departement").ToString
