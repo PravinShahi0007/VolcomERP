@@ -122,6 +122,31 @@
         ActiveControl = TxtDesignCode
     End Sub
 
+    Sub setCaptionSize(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        'sal
+        gv.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("sal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("sal_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("sal_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("sal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("sal_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("sal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("sal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("sal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("sal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'soh
+        gv.Columns("inv_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("inv_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("inv_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("inv_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("inv_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("inv_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("inv_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("inv_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("inv_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("inv_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+    End Sub
+
     '=============== TAB STOCK CARD FG=================================
     Sub viewWHStockCard()
         Dim query As String = ""
