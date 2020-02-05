@@ -128,7 +128,6 @@
                         FormInvoiceFGPODPPop.id_po = id_po
                         FormInvoiceFGPODPPop.ShowDialog()
                     End If
-
                     '
                     calculate()
 

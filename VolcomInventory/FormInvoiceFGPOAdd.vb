@@ -98,6 +98,7 @@ WHERE po.`id_report_status`='6'
 GROUP BY po.`id_prod_order`"
         ElseIf SLEReportType.EditValue.ToString = "13" Then 'material
             query = "SELECT po.`id_mat_purc` AS id_report,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
+,po.id_currency,po.mat_purc_kurs as kurs,po.mat_purc_vat as vat,SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty) as po_val
 FROM tb_mat_purc_det pod 
 INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
 INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
@@ -117,6 +118,20 @@ GROUP BY pod.id_mat_purc"
     End Sub
 
     Private Sub SLEFGPO_EditValueChanged(sender As Object, e As EventArgs) Handles SLEFGPO.EditValueChanged
+        Try
+            If SLEReportType.EditValue.ToString = "13" Then
+                Dim aft_kurs As Decimal = 0.00
+
+                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEFGPO.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
+                TEBeforeKurs.EditValue = SLEFGPO.Properties.View.GetFocusedRowCellValue("po_val").ToString
+                TEKurs.EditValue = SLEFGPO.Properties.View.GetFocusedRowCellValue("kurs").ToString
+                TEVATPercent.EditValue = SLEFGPO.Properties.View.GetFocusedRowCellValue("vat").ToString
+                aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
+                TEAfterKurs.EditValue = aft_kurs
+            End If
+        Catch ex As Exception
+        End Try
+        '
         If Not TEVATPercent.EditValue = 0 Then
             calculate_fgpo(True)
         Else
