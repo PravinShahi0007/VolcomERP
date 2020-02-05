@@ -106,6 +106,7 @@
             viewWH()
             viewPriceType()
             XTPFGStockQC.PageVisible = False
+            setCaptionSize(GVSOHCode)
         Else
             viewProductStockQC()
             XTPFGStockCardWH.PageVisible = False
@@ -123,28 +124,39 @@
     End Sub
 
     Sub setCaptionSize(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
-        'sal
-        gv.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
-        gv.Columns("sal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
-        gv.Columns("sal_qty3").Caption = "3" + System.Environment.NewLine + "S"
-        gv.Columns("sal_qty4").Caption = "4" + System.Environment.NewLine + "M"
-        gv.Columns("sal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
-        gv.Columns("sal_qty6").Caption = "6" + System.Environment.NewLine + "L"
-        gv.Columns("sal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
-        gv.Columns("sal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
-        gv.Columns("sal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
-        gv.Columns("sal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
-        'soh
-        gv.Columns("inv_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
-        gv.Columns("inv_qty2").Caption = "2" + System.Environment.NewLine + "XS"
-        gv.Columns("inv_qty3").Caption = "3" + System.Environment.NewLine + "S"
-        gv.Columns("inv_qty4").Caption = "4" + System.Environment.NewLine + "M"
-        gv.Columns("inv_qty5").Caption = "5" + System.Environment.NewLine + "ML"
-        gv.Columns("inv_qty6").Caption = "6" + System.Environment.NewLine + "L"
-        gv.Columns("inv_qty7").Caption = "7" + System.Environment.NewLine + "XL"
-        gv.Columns("inv_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
-        gv.Columns("inv_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
-        gv.Columns("inv_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'avl
+        gv.Columns("avl_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("avl_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("avl_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("avl_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("avl_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("avl_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("avl_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("avl_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("avl_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("avl_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'rsv
+        gv.Columns("rsv_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("rsv_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("rsv_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("rsv_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("rsv_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("rsv_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("rsv_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("rsv_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("rsv_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("rsv_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'ttl
+        gv.Columns("ttl_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("ttl_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("ttl_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("ttl_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("ttl_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("ttl_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("ttl_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("ttl_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("ttl_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("ttl_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     '=============== TAB STOCK CARD FG=================================
@@ -1464,6 +1476,11 @@
     End Sub
 
     Private Sub BtnViewAcc_Click(sender As Object, e As EventArgs) Handles BtnViewAcc.Click
+        If CEFindAllProduct.EditValue = False And id_design_soh = "-1" Then
+            warningCustom("Please input product code first")
+            Exit Sub
+        End If
+
         If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
             viewSOHSizeBarcode()
         ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
