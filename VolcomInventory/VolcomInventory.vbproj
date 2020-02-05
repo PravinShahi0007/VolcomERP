@@ -2628,6 +2628,12 @@
     <Compile Include="FormPaymentMissing.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPaymentMissingAdd.Designer.vb">
+      <DependentUpon>FormPaymentMissingAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPaymentMissingAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPaymentMissingDet.Designer.vb">
       <DependentUpon>FormPaymentMissingDet.vb</DependentUpon>
     </Compile>
@@ -9021,6 +9027,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPaymentMissing.resx">
       <DependentUpon>FormPaymentMissing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPaymentMissingAdd.resx">
+      <DependentUpon>FormPaymentMissingAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPaymentMissingDet.resx">
       <DependentUpon>FormPaymentMissingDet.vb</DependentUpon>
