@@ -46,8 +46,10 @@ Partial Class FormInvMatDet
         Me.SMEditCost = New System.Windows.Forms.ToolStripMenuItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlPreview = New DevExpress.XtraEditors.PanelControl()
+        Me.CEPrintPreview = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -75,8 +77,6 @@ Partial Class FormInvMatDet
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.PanelControlPreview = New DevExpress.XtraEditors.PanelControl()
-        Me.CEPrintPreview = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +98,9 @@ Partial Class FormInvMatDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
+        CType(Me.PanelControlPreview, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlPreview.SuspendLayout()
+        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,9 +116,6 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlPreview, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlPreview.SuspendLayout()
-        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -369,16 +369,25 @@ Partial Class FormInvMatDet
         Me.PanelControl7.Size = New System.Drawing.Size(951, 40)
         Me.PanelControl7.TabIndex = 8
         '
-        'BtnViewJournal
+        'PanelControlPreview
         '
-        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(694, 2)
-        Me.BtnViewJournal.Name = "BtnViewJournal"
-        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
-        Me.BtnViewJournal.TabIndex = 20
-        Me.BtnViewJournal.Text = "View Journal"
-        Me.BtnViewJournal.Visible = False
+        Me.PanelControlPreview.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlPreview.Controls.Add(Me.CEPrintPreview)
+        Me.PanelControlPreview.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlPreview.Location = New System.Drawing.Point(547, 2)
+        Me.PanelControlPreview.Name = "PanelControlPreview"
+        Me.PanelControlPreview.Size = New System.Drawing.Size(72, 36)
+        Me.PanelControlPreview.TabIndex = 27
+        Me.PanelControlPreview.Visible = False
+        '
+        'CEPrintPreview
+        '
+        Me.CEPrintPreview.EditValue = True
+        Me.CEPrintPreview.Location = New System.Drawing.Point(3, 8)
+        Me.CEPrintPreview.Name = "CEPrintPreview"
+        Me.CEPrintPreview.Properties.Caption = "Preview"
+        Me.CEPrintPreview.Size = New System.Drawing.Size(60, 19)
+        Me.CEPrintPreview.TabIndex = 145
         '
         'BtnPrint
         '
@@ -391,6 +400,17 @@ Partial Class FormInvMatDet
         Me.BtnPrint.TabIndex = 17
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(694, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
+        Me.BtnViewJournal.TabIndex = 20
+        Me.BtnViewJournal.Text = "View Journal"
+        Me.BtnViewJournal.Visible = False
         '
         'BMark
         '
@@ -687,26 +707,6 @@ Partial Class FormInvMatDet
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
-        'PanelControlPreview
-        '
-        Me.PanelControlPreview.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlPreview.Controls.Add(Me.CEPrintPreview)
-        Me.PanelControlPreview.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlPreview.Location = New System.Drawing.Point(547, 2)
-        Me.PanelControlPreview.Name = "PanelControlPreview"
-        Me.PanelControlPreview.Size = New System.Drawing.Size(72, 36)
-        Me.PanelControlPreview.TabIndex = 27
-        Me.PanelControlPreview.Visible = False
-        '
-        'CEPrintPreview
-        '
-        Me.CEPrintPreview.EditValue = True
-        Me.CEPrintPreview.Location = New System.Drawing.Point(3, 8)
-        Me.CEPrintPreview.Name = "CEPrintPreview"
-        Me.CEPrintPreview.Properties.Caption = "Preview"
-        Me.CEPrintPreview.Size = New System.Drawing.Size(60, 19)
-        Me.CEPrintPreview.TabIndex = 145
-        '
         'FormInvMatDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -743,6 +743,9 @@ Partial Class FormInvMatDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
+        CType(Me.PanelControlPreview, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlPreview.ResumeLayout(False)
+        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
@@ -760,9 +763,6 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlPreview, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlPreview.ResumeLayout(False)
-        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

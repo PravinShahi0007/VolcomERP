@@ -191,4 +191,16 @@ GROUP BY c.`id_comp`"
             FormInvMatDet.ShowDialog()
         End If
     End Sub
+
+    Private Sub BCreateBKM_Click(sender As Object, e As EventArgs) Handles BCreateBKM.Click
+        GVPL.ActiveFilterString = "[is_check]='yes'"
+
+        If GVPL.RowCount > 0 Then
+            FormInvMatDet.id_inv = "-1"
+            FormInvMatDet.is_deposit = "1"
+            FormInvMatDet.ShowDialog()
+        End If
+
+        GVPL.ActiveFilterString = ""
+    End Sub
 End Class

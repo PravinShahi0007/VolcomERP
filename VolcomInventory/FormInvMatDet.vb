@@ -4,6 +4,7 @@ Public Class FormInvMatDet
     Public id_inv As String = "-1"
     Public id_status As String = "1"
 
+    Public is_deposit As String = "-1"
     Public is_view As String = "-1"
     '
     Sub load_form()
@@ -68,6 +69,14 @@ Public Class FormInvMatDet
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                 End Try
+            End If
+            '
+            If is_deposit = "1" Then
+                GridColumnPayment.OptionsColumn.AllowEdit = True
+                GridColumnPayment.OptionsColumn.AllowFocus = True
+            Else
+                GridColumnPayment.OptionsColumn.AllowEdit = False
+                GridColumnPayment.OptionsColumn.AllowFocus = False
             End If
         Else 'edit
             BtnPrint.Visible = True

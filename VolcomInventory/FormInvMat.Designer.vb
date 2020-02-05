@@ -21,7 +21,6 @@ Partial Class FormInvMat
     Private Sub InitializeComponent()
         Me.XTCMatInv = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListPackingList = New DevExpress.XtraTab.XtraTabPage()
-        Me.BCreateBPB = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPL = New DevExpress.XtraGrid.GridControl()
         Me.GVPL = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -35,6 +34,7 @@ Partial Class FormInvMat
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BCreateBPB = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPListInvoice = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -69,6 +69,7 @@ Partial Class FormInvMat
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCreateBKM = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCMatInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMatInv.SuspendLayout()
         Me.XTPListPackingList.SuspendLayout()
@@ -103,30 +104,11 @@ Partial Class FormInvMat
         'XTPListPackingList
         '
         Me.XTPListPackingList.Controls.Add(Me.GCPL)
+        Me.XTPListPackingList.Controls.Add(Me.BCreateBKM)
         Me.XTPListPackingList.Controls.Add(Me.BCreateBPB)
         Me.XTPListPackingList.Name = "XTPListPackingList"
         Me.XTPListPackingList.Size = New System.Drawing.Size(1046, 421)
         Me.XTPListPackingList.Text = "List Packing List"
-        '
-        'BCreateBPB
-        '
-        Me.BCreateBPB.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreateBPB.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreateBPB.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreateBPB.Appearance.Options.UseBackColor = True
-        Me.BCreateBPB.Appearance.Options.UseFont = True
-        Me.BCreateBPB.Appearance.Options.UseForeColor = True
-        Me.BCreateBPB.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreateBPB.Location = New System.Drawing.Point(0, 380)
-        Me.BCreateBPB.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreateBPB.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreateBPB.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreateBPB.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreateBPB.Name = "BCreateBPB"
-        Me.BCreateBPB.Size = New System.Drawing.Size(1046, 41)
-        Me.BCreateBPB.TabIndex = 20
-        Me.BCreateBPB.Text = "Create BPB"
-        Me.BCreateBPB.Visible = False
         '
         'GCPL
         '
@@ -135,7 +117,7 @@ Partial Class FormInvMat
         Me.GCPL.MainView = Me.GVPL
         Me.GCPL.Name = "GCPL"
         Me.GCPL.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RICEList})
-        Me.GCPL.Size = New System.Drawing.Size(1046, 380)
+        Me.GCPL.Size = New System.Drawing.Size(1046, 339)
         Me.GCPL.TabIndex = 2
         Me.GCPL.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPL})
         '
@@ -254,6 +236,26 @@ Partial Class FormInvMat
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'BCreateBPB
+        '
+        Me.BCreateBPB.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateBPB.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateBPB.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateBPB.Appearance.Options.UseBackColor = True
+        Me.BCreateBPB.Appearance.Options.UseFont = True
+        Me.BCreateBPB.Appearance.Options.UseForeColor = True
+        Me.BCreateBPB.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateBPB.Location = New System.Drawing.Point(0, 380)
+        Me.BCreateBPB.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateBPB.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateBPB.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateBPB.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateBPB.Name = "BCreateBPB"
+        Me.BCreateBPB.Size = New System.Drawing.Size(1046, 41)
+        Me.BCreateBPB.TabIndex = 20
+        Me.BCreateBPB.Text = "Create BPB"
+        Me.BCreateBPB.Visible = False
         '
         'XTPListInvoice
         '
@@ -588,6 +590,27 @@ Partial Class FormInvMat
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
+        'BCreateBKM
+        '
+        Me.BCreateBKM.Appearance.BackColor = System.Drawing.Color.SteelBlue
+        Me.BCreateBKM.Appearance.BackColor2 = System.Drawing.Color.Transparent
+        Me.BCreateBKM.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateBKM.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateBKM.Appearance.Options.UseBackColor = True
+        Me.BCreateBKM.Appearance.Options.UseFont = True
+        Me.BCreateBKM.Appearance.Options.UseForeColor = True
+        Me.BCreateBKM.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateBKM.Location = New System.Drawing.Point(0, 339)
+        Me.BCreateBKM.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateBKM.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateBKM.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateBKM.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateBKM.Name = "BCreateBKM"
+        Me.BCreateBKM.Size = New System.Drawing.Size(1046, 41)
+        Me.BCreateBKM.TabIndex = 21
+        Me.BCreateBKM.Text = "Create Invoice"
+        Me.BCreateBKM.Visible = False
+        '
         'FormInvMat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -673,4 +696,5 @@ Partial Class FormInvMat
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BCreateBKM As DevExpress.XtraEditors.SimpleButton
 End Class
