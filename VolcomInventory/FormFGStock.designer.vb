@@ -302,6 +302,7 @@ Partial Class FormFGStock
         Me.DEUntilAcc = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -3012,6 +3013,7 @@ Partial Class FormFGStock
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.LabelControl32)
         Me.PanelControl3.Controls.Add(Me.LEPriceType)
         Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Controls.Add(Me.SLEAccount)
@@ -3199,6 +3201,14 @@ Partial Class FormFGStock
         Me.GridColumn51.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:n2}")})
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 0
+        '
+        'LabelControl32
+        '
+        Me.LabelControl32.Location = New System.Drawing.Point(299, 67)
+        Me.LabelControl32.Name = "LabelControl32"
+        Me.LabelControl32.Size = New System.Drawing.Size(126, 13)
+        Me.LabelControl32.TabIndex = 8928
+        Me.LabelControl32.Text = "Press F7 to show unit cost"
         '
         'FormFGStock
         '
@@ -3612,4 +3622,5 @@ Partial Class FormFGStock
     Friend WithEvents BandedGridColumnunit_cost As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnamount_normal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnamount_cost As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents LabelControl32 As DevExpress.XtraEditors.LabelControl
 End Class
