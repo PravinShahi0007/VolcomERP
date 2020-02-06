@@ -17,11 +17,7 @@
         Dim query As String = "SELECT * FROM tb_season a "
         query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
         query += "WHERE b.id_range >0 "
-        If id_pop_up = "3" Then 'non merch
-            query += "AND b.is_md='2' AND b.id_departement='" + id_departement_user + "' "
-        Else
-            query += "AND b.is_md='1' "
-        End If
+        query += "AND b.is_md='1' "
         query += "ORDER BY b.range DESC"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
