@@ -6914,6 +6914,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 Tool.ShowPreview()
             ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 4 Then 'RSV STOCK
                 print(FormFGStock.GCRsv, "RESERVED STOCK")
+            ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 5 Then 'SOH
+                If FormFGStock.XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+                    print_raw(FormFGStock.GCSOH, "STOCK ON HAND")
+                ElseIf FormFGStock.XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+                    print_raw(FormFGStock.GCSOHCode, "STOCK ON HAND")
+                End If
             End If
             Cursor = Cursors.Default
         ElseIf formName = "FormMatStock" Then
