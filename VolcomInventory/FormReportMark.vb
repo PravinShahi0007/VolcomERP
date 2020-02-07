@@ -6371,7 +6371,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', '" & pn_date & "', '" & ref_date & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', NOW(), '" & ref_date & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 increase_inc_acc("1")
 
@@ -6492,7 +6492,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
-            FormInvoiceFGPO.load_list("0")
+            'FormInvoiceFGPO.load_list("0")
         ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
