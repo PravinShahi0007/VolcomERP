@@ -1,6 +1,8 @@
 ﻿Public Class FormLineList
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
+
+        'fill col
     End Sub
 
     Private Sub FormLineList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
