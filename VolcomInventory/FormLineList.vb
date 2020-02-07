@@ -3,6 +3,12 @@
         viewSeason()
 
         'fill col
+        'For i As Integer = 0 To GVData.Columns.Count - 1
+        '    If GVData.Columns(i).Visible = True Then
+        '        Dim query As String = "INSERT INTO tb_col_line_list(fieldname, is_md, is_mkt) VALUES('" + addSlashes(GVData.Columns(i).FieldName.ToString) + "',1,2); "
+        '        execute_non_query(query, True, "", "", "", "")
+        '    End If
+        'Next
     End Sub
 
     Private Sub FormLineList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
