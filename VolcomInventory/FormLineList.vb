@@ -1,4 +1,6 @@
 ﻿Public Class FormLineList
+    Public show_spesific_col As Boolean = False
+
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
 
