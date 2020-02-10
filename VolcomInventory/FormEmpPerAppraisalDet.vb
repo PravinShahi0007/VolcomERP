@@ -374,9 +374,9 @@
             GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Perlu Perbaikan"
         ElseIf GVSummary.Columns("result").SummaryItem.SummaryValue <= 80 Then
             GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Baik"
-        ElseIf GVSummary.Columns("result").SummaryItem.SummaryValue <= 80 Then
-            GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Baik Sekali"
         ElseIf GVSummary.Columns("result").SummaryItem.SummaryValue <= 90 Then
+            GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Baik Sekali"
+        Else
             GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Memuaskan"
         End If
     End Sub
@@ -455,8 +455,6 @@
 
             BtnSave.Visible = False
             BtnPrint.Enabled = True
-
-            GVSummary.OptionsView.ShowFooter = False
 
             GCSummary.DataSource = CType(CType(GCSummary.DataSource, DataTable).Select("id_question_sum_group = 1"), DataRow()).CopyToDataTable()
         End If
@@ -824,19 +822,9 @@
         Report.XLPurpose.Text = TEPurpose.EditValue.ToString
         Report.XLNote.Text = LCAttNote.Text
 
-        Report.XLGrandTotal.Text = FormatNumber(GVSummary.Columns("result").SummaryItem.SummaryValue, 2).ToString + "%"
+        Report.XLGrandTotal.Text = FormatNumber(GVSummary.Columns("result").SummaryItem.SummaryValue, 2).ToString + GVSummary.Columns("result").SummaryItem.DisplayFormat.Replace("{0:N2}", "")
 
-        If GVSummary.Columns("result").SummaryItem.SummaryValue <= 40 Then
-            Report.XLKategori.Text = "Kurang"
-        ElseIf GVSummary.Columns("result").SummaryItem.SummaryValue <= 60 Then
-            Report.XLKategori.Text = "Perlu Perbaikan"
-        ElseIf GVSummary.Columns("result").SummaryItem.SummaryValue <= 80 Then
-            Report.XLKategori.Text = "Baik"
-        ElseIf GVSummary.Columns("result").SummaryItem.SummaryValue <= 80 Then
-            Report.XLKategori.Text = "Baik Sekali"
-        ElseIf GVSummary.Columns("result").SummaryItem.SummaryValue <= 90 Then
-            Report.XLKategori.Text = "Memuaskan"
-        End If
+        Report.XLKategori.Text = GVSummary.Columns("max_value").SummaryItem.DisplayFormat
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
@@ -1002,6 +990,47 @@
             ErrorProvider1.SetError(TEPriCon, "Mohon diisi.")
         Else
             ErrorProvider1.SetError(TEPriCon, String.Empty)
+        End If
+    End Sub
+
+    Dim max_absensi As Decimal = 0.00
+    Dim total_absensi As Decimal = 0.00
+
+    Private Sub GVSummary_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVSummary.CustomSummaryCalculate
+        If is_only_absensi Then
+            Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
+
+            If item.FieldName.ToString = "max_value" Then
+                Select Case e.SummaryProcess
+                    Case DevExpress.Data.CustomSummaryProcess.Start
+                        max_absensi = 0.00
+                        total_absensi = 0.00
+                    Case DevExpress.Data.CustomSummaryProcess.Calculate
+                        If GVSummary.GetRowCellValue(e.RowHandle, "id_question_sum_group").ToString = "1" Then
+                            max_absensi += GVSummary.GetRowCellValue(e.RowHandle, "max_value")
+                            total_absensi += GVSummary.GetRowCellValue(e.RowHandle, "result")
+                        End If
+                    Case DevExpress.Data.CustomSummaryProcess.Finalize
+                        If GVSummary.GetRowCellValue(e.RowHandle, "id_question_sum_group").ToString = "1" Then
+                            e.TotalValue = Decimal.Round(total_absensi / max_absensi * 100, 2).ToString + "%"
+
+                            GVSummary.Columns("result").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
+                            GVSummary.Columns("result").SummaryItem.DisplayFormat = e.TotalValue
+
+                            If Decimal.Round(total_absensi / max_absensi * 100, 2) <= 40 Then
+                                GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Kurang"
+                            ElseIf Decimal.Round(total_absensi / max_absensi * 100, 2) <= 60 Then
+                                GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Perlu Perbaikan"
+                            ElseIf Decimal.Round(total_absensi / max_absensi * 100, 2) <= 80 Then
+                                GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Baik"
+                            ElseIf Decimal.Round(total_absensi / max_absensi * 100, 2) <= 90 Then
+                                GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Baik Sekali"
+                            Else
+                                GVSummary.Columns("max_value").SummaryItem.DisplayFormat = "Memuaskan"
+                            End If
+                        End If
+                End Select
+            End If
         End If
     End Sub
 End Class

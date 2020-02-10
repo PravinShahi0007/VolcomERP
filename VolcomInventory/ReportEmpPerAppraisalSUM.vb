@@ -215,13 +215,6 @@
 
         If FormEmpPerAppraisalDet.is_only_absensi Then
             SubBandTitle.Visible = False
-
-            XrLabel23.Visible = False
-            XLGrandTotal.Visible = False
-            XrLabel24.Visible = False
-            XrLabel25.Visible = False
-            XLKategori.Visible = False
-            XrLabel27.Visible = False
         End If
     End Sub
 End Class
