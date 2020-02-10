@@ -6515,6 +6515,11 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
+            If id_status_reportx = "6" Then
+                FormEmpPayroll.insert_expense(id_report)
+                FormEmpPayroll.insert_jurnal(id_report)
+            End If
+
             FormEmpPayroll.load_payroll()
 
             FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
