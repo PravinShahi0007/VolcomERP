@@ -1,4 +1,6 @@
-﻿Public Class FormPaymentMissingDet
+﻿Imports DevExpress.XtraReports.UI
+
+Public Class FormPaymentMissingDet
     Public id_missing_payment As String = "-1"
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
@@ -246,10 +248,10 @@
                     execute_non_query(query, True, "", "", "", "")
 
                     'generate number
-                    query = "CALL gen_number('" & id_missing_payment & "','162')"
+                    query = "CALL gen_number('" & id_missing_payment & "','237')"
                     execute_non_query(query, True, "", "", "", "")
                     'add mark
-                    submit_who_prepared("162", id_missing_payment, id_user)
+                    submit_who_prepared("237", id_missing_payment, id_user)
                     'done
                     infoCustom("Receive Payment created. Waiting for approval")
                     'FormPaymentMissing.load_invoice()
@@ -355,5 +357,88 @@
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "237"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_missing_payment
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportPaymentMissing.id = id_missing_payment
+        ReportPaymentMissing.id_report_status = id_report_status
+        ReportPaymentMissing.rmt = "237"
+        Dim Report As New ReportPaymentMissing()
+
+        If CEPrintPreview.EditValue = True Then
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        Else
+            Dim instance As New Printing.PrinterSettings
+            Dim DefaultPrinter As String = instance.PrinterName
+
+            ' THIS IS TO PRINT THE REPORT
+            Report.PrinterName = DefaultPrinter
+            Report.CreateDocument()
+            Report.PrintingSystem.ShowMarginsWarning = False
+            Report.Print()
+        End If
+
+
+        '        ReportBankDeposit.id_deposit = id_deposit
+        '        ReportBankDeposit.dt = GCList.DataSource
+        '        Dim Report As New ReportBankDeposit()
+        '        ' '... 
+        '        ' ' creating and saving the view's layout to a new memory stream 
+        '        Dim str As System.IO.Stream
+        '        str = New System.IO.MemoryStream()
+        '        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '        str.Seek(0, System.IO.SeekOrigin.Begin)
+        '        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        '        'Grid Detail
+        '        ReportStyleGridview(Report.GVList)
+
+        '        'Parse val
+        '        Dim query As String = "SELECT rec_py.id_report_status,acc.`acc_description` AS acc_pay_rec,IFNULL(acc_pay.`acc_description`,'') AS acc_pay_to,rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, FORMAT(rec_py.val_need_pay,2,'id_ID') AS total_need_pay, rec_py.`id_rec_payment`,FORMAT(rec_py.`value`,2,'ID_id') AS total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
+        'FROM tb_rec_payment rec_py
+        'INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        'INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
+        'INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+        'INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
+        'INNER JOIN tb_a_acc acc ON acc.`id_acc`=rec_py.`id_acc_pay_rec`
+        'LEFT JOIN tb_a_acc acc_pay ON acc_pay.`id_acc`=rec_py.`id_acc_pay_to`
+        'WHERE rec_py.`id_rec_payment`='" & id_deposit & "'"
+        '        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '        '
+        '        If Not data.Rows(0)("acc_pay_to").ToString = "" Then
+        '            Report.LRecTo.Text = "[acc_pay_to]"
+        '            Report.LTotalAmount.Text = "[total_need_pay]"
+        '            '
+        '            Report.LRecToText.Text = "Pay From"
+        '            Report.LTotalAmountText.Text = "Amount"
+        '        End If
+        '        '
+        '        Report.DataSource = data
+
+        '        If Not data.Rows(0)("id_report_status").ToString = "6" Then
+        '            Report.id_pre = "2"
+        '        Else
+        '            Report.id_pre = "1"
+        '        End If
+
+        '        'Show the report's preview. 
+        '        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class

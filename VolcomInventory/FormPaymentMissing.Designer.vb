@@ -659,7 +659,7 @@ Partial Class FormPaymentMissing
         'GridColumn8
         '
         Me.GridColumn8.Caption = "ID"
-        Me.GridColumn8.FieldName = "id_rec_payment"
+        Me.GridColumn8.FieldName = "id_missing_payment"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         '

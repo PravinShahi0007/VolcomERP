@@ -67,7 +67,7 @@
 		            FROM tb_report_mark rm 
 		            INNER JOIN tb_m_user u ON u.id_user = rm.id_user
 		            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-		            WHERE (rm.report_mark_type=162) AND rm.id_report_status>1 AND rm.id_mark=2
+		            WHERE (rm.report_mark_type=237) AND rm.id_report_status>1 AND rm.id_mark=2
 		            ORDER BY rm.report_mark_datetime DESC
 	            ) a
 	            GROUP BY a.id_report
@@ -268,5 +268,12 @@ SELECT 4 AS id_status_payment,'Overdue H-7' AS status_payment"
             End If
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub GridViewMissing_DoubleClick(sender As Object, e As EventArgs) Handles GridViewMissing.DoubleClick
+        If GridViewMissing.RowCount > 0 And GridViewMissing.FocusedRowHandle >= 0 Then
+            FormPaymentMissingDet.id_missing_payment = GridViewMissing.GetFocusedRowCellValue("id_missing_payment")
+            FormPaymentMissingDet.ShowDialog()
+        End If
     End Sub
 End Class

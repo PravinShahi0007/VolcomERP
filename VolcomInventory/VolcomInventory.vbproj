@@ -7209,6 +7209,12 @@
     <Compile Include="ReportOutboundManifest.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPaymentMissing.Designer.vb">
+      <DependentUpon>ReportPaymentMissing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPaymentMissing.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPayrollAll.Designer.vb">
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>
     </Compile>
@@ -11779,6 +11785,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPaymentMissing.resx">
+      <DependentUpon>ReportPaymentMissing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayrollAll.resx">
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>
