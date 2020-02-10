@@ -18,7 +18,7 @@
         Dim id_dep As String = execute_query("SELECT id_departement FROM tb_m_employee WHERE id_employee = " + id_employee, 0, True, "", "", "", "")
 
         Dim tb_attn As String = "
-            (SELECT * FROM tb_emp_attn WHERE id_employee = " & id_employee & " AND `datetime` >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND `datetime` <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            (SELECT * FROM tb_emp_attn WHERE id_employee = " & id_employee & " AND DATE(`datetime`) >= DATE_ADD('" & date_start & "', INTERVAL -1 DAY) AND DATE(`datetime`) <= DATE_ADD('" & date_until & "', INTERVAL 1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_in AS `datetime`, 1 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d

@@ -1101,7 +1101,7 @@ GROUP BY rec.`id_prod_order`"
             FormInvoiceFGPODP.ShowDialog()
         ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
             'work order MTC/IT
-            FormWorkOrderDet.is_view = " Then1"
+            FormWorkOrderDet.is_view = "1"
             FormWorkOrderDet.id_wo = id_report
             FormWorkOrderDet.ShowDialog()
         ElseIf report_mark_type = "192" Then

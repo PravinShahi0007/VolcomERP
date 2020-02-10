@@ -30,7 +30,7 @@
         End If
 
         Dim tb_attn As String = "
-            (SELECT * FROM tb_emp_attn WHERE id_employee LIKE '" & employee & "' AND `datetime` >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND `datetime` <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            (SELECT * FROM tb_emp_attn WHERE id_employee LIKE '" & employee & "' AND DATE(`datetime`) >= DATE_ADD('" & date_start & "', INTERVAL -1 DAY) AND DATE(`datetime`) <= DATE_ADD('" & date_until & "', INTERVAL 1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_in AS `datetime`, 1 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d
@@ -126,7 +126,7 @@
         End If
 
         Dim tb_attn As String = "
-            (SELECT * FROM tb_emp_attn WHERE `datetime` >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND `datetime` <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            (SELECT * FROM tb_emp_attn WHERE DATE(`datetime`) >= DATE_ADD('" & date_start & "', INTERVAL -1 DAY) AND DATE(`datetime`) <= DATE_ADD('" & date_until & "', INTERVAL 1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_in AS `datetime`, 1 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d
@@ -225,7 +225,7 @@
         End If
 
         Dim tb_attn As String = "
-            (SELECT * FROM tb_emp_attn WHERE id_employee LIKE '" & employee & "' AND `datetime` >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND `datetime` <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            (SELECT * FROM tb_emp_attn WHERE id_employee LIKE '" & employee & "' AND DATE(`datetime`) >= DATE_ADD('" & date_start & "', INTERVAL -1 DAY) AND DATE(`datetime`) <= DATE_ADD('" & date_until & "', INTERVAL 1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_in AS `datetime`, 1 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d
@@ -311,7 +311,7 @@
         End If
 
         Dim tb_attn As String = "
-            (SELECT * FROM tb_emp_attn WHERE `datetime` >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND `datetime` <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            (SELECT * FROM tb_emp_attn WHERE DATE(`datetime`)>= DATE_ADD('" & date_start & "', INTERVAL -1 DAY) AND DATE(`datetime`)<= DATE_ADD('" & date_until & "', INTERVAL 1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_in AS `datetime`, 1 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d
@@ -683,7 +683,7 @@
         End If
 
         Dim tb_attn As String = "
-            (SELECT * FROM tb_emp_attn WHERE id_employee LIKE '" & employee & "' AND `datetime` >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND `datetime` <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            (SELECT * FROM tb_emp_attn WHERE id_employee LIKE '" & employee & "' AND DATE(`datetime`) >= DATE_ADD('" & date_start & "', INTERVAL -1 DAY) AND DATE(`datetime`) <= DATE_ADD('" & date_until & "', INTERVAL 1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_in AS `datetime`, 1 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d
@@ -785,7 +785,7 @@
         End If
 
         Dim tb_attn As String = "
-            (SELECT * FROM tb_emp_attn WHERE `datetime` >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND `datetime` <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            (SELECT * FROM tb_emp_attn WHERE DATE(`datetime`) >= DATE_ADD('" & date_start & "', INTERVAL -1 DAY) AND DATE(`datetime`) <= DATE_ADD('" & date_until & "', INTERVAL 1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_in AS `datetime`, 1 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d
@@ -887,7 +887,7 @@
         End If
 
         Dim tb_attn As String = "
-            (SELECT * FROM tb_emp_attn WHERE id_employee LIKE '" & employee & "' AND `datetime` >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND `datetime` <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            (SELECT * FROM tb_emp_attn WHERE id_employee LIKE '" & employee & "' AND DATE(`datetime`) >= DATE_ADD('" & date_start & "', INTERVAL -1 DAY) AND DATE(`datetime`) <= DATE_ADD('" & date_until & "', INTERVAL 1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_in AS `datetime`, 1 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d

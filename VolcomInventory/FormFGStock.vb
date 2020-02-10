@@ -106,6 +106,7 @@
             viewWH()
             viewPriceType()
             XTPFGStockQC.PageVisible = False
+            setCaptionSize(GVSOHCode)
         Else
             viewProductStockQC()
             XTPFGStockCardWH.PageVisible = False
@@ -120,6 +121,42 @@
         DEUntilStockQC.EditValue = data_dt.Rows(0)("dt")
         DEUntilAcc.EditValue = data_dt.Rows(0)("dt")
         ActiveControl = TxtDesignCode
+    End Sub
+
+    Sub setCaptionSize(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        'avl
+        gv.Columns("avl_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("avl_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("avl_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("avl_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("avl_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("avl_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("avl_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("avl_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("avl_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("avl_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'rsv
+        gv.Columns("rsv_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("rsv_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("rsv_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("rsv_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("rsv_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("rsv_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("rsv_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("rsv_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("rsv_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("rsv_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'ttl
+        gv.Columns("ttl_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("ttl_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("ttl_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("ttl_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("ttl_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("ttl_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("ttl_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("ttl_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("ttl_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("ttl_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     '=============== TAB STOCK CARD FG=================================
@@ -1407,7 +1444,7 @@
     End Sub
 
     Private Sub TxtProduct_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProduct.EditValueChanged
-        GCSOH.DataSource = Nothing
+        resetViewSOH()
     End Sub
 
     Private Sub BtnHideFilterAcc_Click(sender As Object, e As EventArgs) Handles BtnHideFilterAcc.Click
@@ -1423,7 +1460,7 @@
     Private Sub CEFindAllProduct_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProduct.EditValueChanged
         id_design_soh = "-1"
         TxtProduct.Text = ""
-        GCSOH.DataSource = Nothing
+        resetViewSOH()
         If CEFindAllProduct.EditValue = True Then
             BtnBrowseProduct.Enabled = False
         Else
@@ -1439,7 +1476,43 @@
     End Sub
 
     Private Sub BtnViewAcc_Click(sender As Object, e As EventArgs) Handles BtnViewAcc.Click
-        viewSOHSizeBarcode()
+        If CEFindAllProduct.EditValue = False And id_design_soh = "-1" Then
+            warningCustom("Please input product code first")
+            Exit Sub
+        End If
+
+        If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+            viewSOHSizeBarcode()
+        ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+            viewSOHCode()
+        End If
+    End Sub
+
+    Sub viewSOHCode()
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        'Prepare paramater date
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_until_selected = DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'other
+        Dim id_comp As String = SLEAccount.EditValue.ToString
+
+        'design
+        If id_design_soh = "-1" Then
+            id_design_soh = "0"
+        End If
+
+        'excecute
+        Dim query As String = "CALL view_stock_fg_code('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSOHCode.DataSource = data
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewSOHSizeBarcode()
@@ -1469,12 +1542,17 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+    Sub resetViewSOH()
         GCSOH.DataSource = Nothing
+        GCSOHCode.DataSource = Nothing
+    End Sub
+
+    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+        resetViewSOH()
     End Sub
 
     Private Sub DEUntilAcc_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAcc.EditValueChanged
-        GCSOH.DataSource = Nothing
+        resetViewSOH()
     End Sub
 
     Private Sub PanelControl3_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl3.Paint
@@ -1482,16 +1560,46 @@
     End Sub
 
     Private Sub BtnExportToXLSAcc_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSAcc.Click
-        If GVSOH.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+            If GVSOH.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "stock_soh_by_barcode.xlsx"
+                exportToXLS(path, "soh", GCSOH)
+                Cursor = Cursors.Default
             End If
-            path = path + "stock_soh_by_barcode.xlsx"
-            exportToXLS(path, "soh", GCSOH)
-            Cursor = Cursors.Default
+        ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+            If GVSOHCode.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSOHCode.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVSOHCode.Columns.Count - 1
+                    Try
+                        GVSOHCode.Columns(i).Caption = GVSOHCode.Columns(i).FieldName.ToString
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "stock_soh_by_code.xlsx"
+                exportToXLS(path, "soh", GCSOHCode)
+
+                'restore column opt
+                GVSOHCode.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 End Class

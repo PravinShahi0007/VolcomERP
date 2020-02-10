@@ -6914,6 +6914,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 Tool.ShowPreview()
             ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 4 Then 'RSV STOCK
                 print(FormFGStock.GCRsv, "RESERVED STOCK")
+            ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 5 Then 'SOH
+                If FormFGStock.XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+                    print_raw(FormFGStock.GCSOH, "STOCK ON HAND")
+                ElseIf FormFGStock.XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+                    print_raw(FormFGStock.GCSOHCode, "STOCK ON HAND")
+                End If
             End If
             Cursor = Cursors.Default
         ElseIf formName = "FormMatStock" Then
@@ -14389,6 +14395,34 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPaymentMissing.Show()
             FormPaymentMissing.WindowState = FormWindowState.Maximized
             FormPaymentMissing.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLineListMD_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLineListMD.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormLineList.MdiParent = Me
+            FormLineList.Show()
+            FormLineList.WindowState = FormWindowState.Maximized
+            FormLineList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpPerAppraisalAtt_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpPerAppraisalAtt.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPerAppraisal.MdiParent = Me
+            FormEmpPerAppraisal.is_hrd = "1"
+            FormEmpPerAppraisal.is_only_absensi = True
+            FormEmpPerAppraisal.Show()
+            FormEmpPerAppraisal.WindowState = FormWindowState.Maximized
+            FormEmpPerAppraisal.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
