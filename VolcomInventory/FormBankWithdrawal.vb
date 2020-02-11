@@ -191,7 +191,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
 ,po.close_rec_reason
 ,IFNULL(payment.value,0) AS val_pay
-,po.pph_total,po.pph_account,coa.acc_name AS pph_acc_name,coa.acc_description AS pph_acc_description
+,po.pph_total,IFNULL(po.pph_account,'') AS pph_account,coa.acc_name AS pph_acc_name,coa.acc_description AS pph_acc_description
 ,IF(po.is_close_rec=1,
 	IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value))
 	,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value))-IFNULL(payment.value,0)-po.pph_total AS total_due

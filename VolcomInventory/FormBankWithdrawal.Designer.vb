@@ -40,6 +40,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn98 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -225,7 +226,6 @@ Partial Class FormBankWithdrawal
         Me.GridColumn96 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn97 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SBPayTHR = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn98 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -484,6 +484,20 @@ Partial Class FormBankWithdrawal
         Me.GridColumn24.VisibleIndex = 7
         Me.GridColumn24.Width = 113
         '
+        'GridColumn98
+        '
+        Me.GridColumn98.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn98.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn98.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn98.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn98.Caption = "Total PPH"
+        Me.GridColumn98.DisplayFormat.FormatString = "N2"
+        Me.GridColumn98.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn98.FieldName = "pph_total"
+        Me.GridColumn98.Name = "GridColumn98"
+        Me.GridColumn98.Visible = True
+        Me.GridColumn98.VisibleIndex = 14
+        '
         'GridColumn23
         '
         Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
@@ -544,7 +558,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 14
+        Me.GridColumn28.VisibleIndex = 15
         '
         'GridColumnVendor
         '
@@ -2392,20 +2406,6 @@ Partial Class FormBankWithdrawal
         Me.SBPayTHR.Size = New System.Drawing.Size(1091, 32)
         Me.SBPayTHR.TabIndex = 23
         Me.SBPayTHR.Text = "Create Payment"
-        '
-        'GridColumn98
-        '
-        Me.GridColumn98.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn98.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn98.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn98.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn98.Caption = "Total PPH"
-        Me.GridColumn98.DisplayFormat.FormatString = "N2"
-        Me.GridColumn98.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn98.FieldName = "total_pph"
-        Me.GridColumn98.Name = "GridColumn98"
-        Me.GridColumn98.Visible = True
-        Me.GridColumn98.VisibleIndex = 15
         '
         'FormBankWithdrawal
         '
