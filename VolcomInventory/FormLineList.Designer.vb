@@ -32,12 +32,14 @@ Partial Class FormLineList
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBandFreeze = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnImg = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.BandedGridColumncode_import = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumncode_import = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndelivery = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnseason_orign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnstyle_country = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -56,7 +58,9 @@ Partial Class FormLineList
         Me.BandedGridColumncode_ret = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnestimate_wh_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmove_drop = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandPD = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnpd_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkProdDemand = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnseason_pd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndelivery_pd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpd_qty_mkt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -91,6 +95,7 @@ Partial Class FormLineList
         Me.BandedGridColumnorder_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnvendor_account = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnvendor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandActual = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnqty_ttl_rec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnqty_ttl_mkt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncop_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -127,10 +132,6 @@ Partial Class FormLineList
         Me.BandedGridColumnid_season_pd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_prod_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_cop_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBandFreeze = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandPD = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandActual = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CheckEditFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,6 +142,7 @@ Partial Class FormLineList
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -236,7 +238,7 @@ Partial Class FormLineList
         Me.GCData.Location = New System.Drawing.Point(0, 48)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPictureEdit1})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPictureEdit1, Me.RepoLinkProdDemand})
         Me.GCData.Size = New System.Drawing.Size(957, 492)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -265,6 +267,17 @@ Partial Class FormLineList
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.RowHeight = 30
         '
+        'GridBandFreeze
+        '
+        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnno)
+        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnImg)
+        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumncode_import)
+        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumncode)
+        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumndescription)
+        Me.GridBandFreeze.Name = "GridBandFreeze"
+        Me.GridBandFreeze.VisibleIndex = 0
+        Me.GridBandFreeze.Width = 379
+        '
         'BandedGridColumnno
         '
         Me.BandedGridColumnno.Caption = "NO"
@@ -288,6 +301,14 @@ Partial Class FormLineList
         Me.RepositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         Me.RepositoryItemPictureEdit1.ZoomPercent = 50.0R
         '
+        'BandedGridColumncode_import
+        '
+        Me.BandedGridColumncode_import.Caption = "CODE IMPORT"
+        Me.BandedGridColumncode_import.FieldName = "code_import"
+        Me.BandedGridColumncode_import.Name = "BandedGridColumncode_import"
+        Me.BandedGridColumncode_import.Visible = True
+        Me.BandedGridColumncode_import.Width = 67
+        '
         'BandedGridColumncode
         '
         Me.BandedGridColumncode.Caption = "CODE"
@@ -304,13 +325,28 @@ Partial Class FormLineList
         Me.BandedGridColumndescription.Visible = True
         Me.BandedGridColumndescription.Width = 188
         '
-        'BandedGridColumncode_import
+        'gridBandGeneral
         '
-        Me.BandedGridColumncode_import.Caption = "CODE IMPORT"
-        Me.BandedGridColumncode_import.FieldName = "code_import"
-        Me.BandedGridColumncode_import.Name = "BandedGridColumncode_import"
-        Me.BandedGridColumncode_import.Visible = True
-        Me.BandedGridColumncode_import.Width = 67
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumndelivery)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnseason_orign)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnstyle_country)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnproduct_origin)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnclass)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumndivision)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncolor)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnsize_chart)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnfabrication)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumndetail_description)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumneos)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnage)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnin_store_date)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnret_date)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncode_ret)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnestimate_wh_date)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnmove_drop)
+        Me.gridBandGeneral.Name = "gridBandGeneral"
+        Me.gridBandGeneral.VisibleIndex = 1
+        Me.gridBandGeneral.Width = 1151
         '
         'BandedGridColumndelivery
         '
@@ -459,13 +495,63 @@ Partial Class FormLineList
         Me.BandedGridColumnmove_drop.Name = "BandedGridColumnmove_drop"
         Me.BandedGridColumnmove_drop.Visible = True
         '
+        'gridBandPD
+        '
+        Me.gridBandPD.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandPD.AppearanceHeader.Options.UseFont = True
+        Me.gridBandPD.Caption = "ORDER"
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_number)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnseason_pd)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumndelivery_pd)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_mkt)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_buff)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_core)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_dev)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_act_order_sales)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_ttl)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnadditional_cost_estimate)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumncost_estimate_min_additional)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumncost_estimate)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnrate_cop_estimate)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnadditional_price_estimate)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnprice_estimate_min_additional)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnprice_estimate)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnmark_up_estimate)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_min_additional)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_min_additional)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_mkt)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_mkt)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_buff)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_buff)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_core)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_core)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_dev)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_dev)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_act_order_sales)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_act_order_sales)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnorder_number)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnorder_date)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnvendor_account)
+        Me.gridBandPD.Columns.Add(Me.BandedGridColumnvendor)
+        Me.gridBandPD.Name = "gridBandPD"
+        Me.gridBandPD.VisibleIndex = 2
+        Me.gridBandPD.Width = 2835
+        '
         'BandedGridColumnpd_number
         '
         Me.BandedGridColumnpd_number.Caption = "PD NUMBER"
+        Me.BandedGridColumnpd_number.ColumnEdit = Me.RepoLinkProdDemand
         Me.BandedGridColumnpd_number.FieldName = "pd_number"
         Me.BandedGridColumnpd_number.Name = "BandedGridColumnpd_number"
         Me.BandedGridColumnpd_number.Visible = True
         Me.BandedGridColumnpd_number.Width = 76
+        '
+        'RepoLinkProdDemand
+        '
+        Me.RepoLinkProdDemand.AutoHeight = False
+        Me.RepoLinkProdDemand.Name = "RepoLinkProdDemand"
         '
         'BandedGridColumnseason_pd
         '
@@ -817,6 +903,38 @@ Partial Class FormLineList
         Me.BandedGridColumnvendor.Visible = True
         Me.BandedGridColumnvendor.Width = 90
         '
+        'gridBandActual
+        '
+        Me.gridBandActual.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandActual.AppearanceHeader.Options.UseFont = True
+        Me.gridBandActual.Caption = "ACTUAL"
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnqty_ttl_rec)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnqty_ttl_mkt)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_status)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnrate_cop_pre_final)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_pre_final)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnadditional_cost_pre_final)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_pre_final_min_additional)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnrate_cop_final)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnadditional_cost_final)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_final_min_additional)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_final)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnpp_number)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnpp_date)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnadditional_price)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnprice_min_additional)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnprice)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumnmark_up)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_amount_min_additional)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_cost_min_additional)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_amount)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_cost)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_cost_mkt)
+        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_amount_mkt)
+        Me.gridBandActual.Name = "gridBandActual"
+        Me.gridBandActual.VisibleIndex = 3
+        Me.gridBandActual.Width = 1971
+        '
         'BandedGridColumnqty_ttl_rec
         '
         Me.BandedGridColumnqty_ttl_rec.Caption = "TOTAL QTY REC"
@@ -1118,116 +1236,6 @@ Partial Class FormLineList
         Me.BandedGridColumnid_cop_status.FieldName = "id_cop_status"
         Me.BandedGridColumnid_cop_status.Name = "BandedGridColumnid_cop_status"
         '
-        'GridBandFreeze
-        '
-        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnno)
-        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnImg)
-        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumncode_import)
-        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumncode)
-        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumndescription)
-        Me.GridBandFreeze.Name = "GridBandFreeze"
-        Me.GridBandFreeze.VisibleIndex = 0
-        Me.GridBandFreeze.Width = 379
-        '
-        'gridBandGeneral
-        '
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumndelivery)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnseason_orign)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnstyle_country)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnproduct_origin)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnclass)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumndivision)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncolor)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnsize_chart)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnfabrication)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumndetail_description)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumneos)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnage)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnin_store_date)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnret_date)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncode_ret)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnestimate_wh_date)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnmove_drop)
-        Me.gridBandGeneral.Name = "gridBandGeneral"
-        Me.gridBandGeneral.VisibleIndex = 1
-        Me.gridBandGeneral.Width = 1151
-        '
-        'gridBandPD
-        '
-        Me.gridBandPD.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandPD.AppearanceHeader.Options.UseFont = True
-        Me.gridBandPD.Caption = "ORDER"
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_number)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnseason_pd)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumndelivery_pd)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_mkt)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_buff)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_core)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_dev)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_act_order_sales)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnpd_qty_ttl)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnadditional_cost_estimate)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumncost_estimate_min_additional)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumncost_estimate)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnrate_cop_estimate)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnadditional_price_estimate)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnprice_estimate_min_additional)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnprice_estimate)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnmark_up_estimate)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_min_additional)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_min_additional)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_mkt)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_mkt)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_buff)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_buff)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_core)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_core)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_dev)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_dev)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_amount_estimate_act_order_sales)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumntotal_cost_estimate_act_order_sales)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnorder_number)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnorder_date)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnvendor_account)
-        Me.gridBandPD.Columns.Add(Me.BandedGridColumnvendor)
-        Me.gridBandPD.Name = "gridBandPD"
-        Me.gridBandPD.VisibleIndex = 2
-        Me.gridBandPD.Width = 2835
-        '
-        'gridBandActual
-        '
-        Me.gridBandActual.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandActual.AppearanceHeader.Options.UseFont = True
-        Me.gridBandActual.Caption = "ACTUAL"
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnqty_ttl_rec)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnqty_ttl_mkt)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_status)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnrate_cop_pre_final)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_pre_final)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnadditional_cost_pre_final)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_pre_final_min_additional)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnrate_cop_final)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnadditional_cost_final)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_final_min_additional)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumncop_final)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnpp_number)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnpp_date)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnadditional_price)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnprice_min_additional)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnprice)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumnmark_up)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_amount_min_additional)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_cost_min_additional)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_amount)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_cost)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_cost_mkt)
-        Me.gridBandActual.Columns.Add(Me.BandedGridColumntotal_amount_mkt)
-        Me.gridBandActual.Name = "gridBandActual"
-        Me.gridBandActual.VisibleIndex = 3
-        Me.gridBandActual.Width = 1971
-        '
         'FormLineList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1249,6 +1257,7 @@ Partial Class FormLineList
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1364,4 +1373,5 @@ Partial Class FormLineList
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPD As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandActual As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RepoLinkProdDemand As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

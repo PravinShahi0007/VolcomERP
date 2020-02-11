@@ -125,4 +125,23 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub RepoLinkProdDemand_Click(sender As Object, e As EventArgs) Handles RepoLinkProdDemand.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_prod_demand As String = "-1"
+            Try
+                id_prod_demand = GVData.GetFocusedRowCellValue("id_prod_demand").ToString
+            Catch ex As Exception
+            End Try
+            If id_prod_demand = "" Then
+                stopCustom("Document not found")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            FormViewProdDemand.id_prod_demand = id_prod_demand
+            FormViewProdDemand.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
