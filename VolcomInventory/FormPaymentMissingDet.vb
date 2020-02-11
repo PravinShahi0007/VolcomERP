@@ -367,7 +367,28 @@ Public Class FormPaymentMissingDet
     End Sub
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=237 AND ad.id_report=" + id_missing_payment + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
 
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            FormViewJournal.show_trans_number = True
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
@@ -440,5 +461,39 @@ Public Class FormPaymentMissingDet
         '        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         '        Tool.ShowPreview()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVList.CellValueChanged
+        If e.Column.FieldName.ToString = "value" Then
+            'set value
+            calculate_amount()
+        ElseIf e.Column.FieldName.ToString = "value_view" Then
+            Dim rh As Integer = e.RowHandle
+            Dim val As Decimal = 0
+            Dim id_dc As String = GVList.GetRowCellValue(rh, "id_dc").ToString
+            If id_dc = "1" Then 'debit
+                val = e.Value * -1
+            Else
+                val = e.Value
+            End If
+            GVList.SetRowCellValue(rh, "value", val)
+        End If
+    End Sub
+
+    Private Sub GVList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
+        If id_missing_payment = "-1" And GVList.FocusedRowHandle >= 0 Then
+            If GVList.GetFocusedRowCellValue("id_report") = "0" Then
+                Cursor = Cursors.WaitCursor
+                FormPaymentMissingAdd.action = "upd"
+                FormPaymentMissingAdd.ShowDialog()
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class

@@ -634,7 +634,7 @@ Partial Class FormPaymentMissing
         Me.XTPDeposit.Controls.Add(Me.PanelControl2)
         Me.XTPDeposit.Name = "XTPDeposit"
         Me.XTPDeposit.Size = New System.Drawing.Size(1002, 701)
-        Me.XTPDeposit.Text = "Deposit List"
+        Me.XTPDeposit.Text = "Tabungan Missing List"
         '
         'GridControlMissing
         '
