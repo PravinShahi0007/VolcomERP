@@ -56,6 +56,12 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEPPHAccount = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.RepositoryItemTextEditPph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +83,8 @@ Partial Class FormBankWithdrawalAttachement
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.SLEPPHAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEditPph
@@ -176,6 +184,8 @@ Partial Class FormBankWithdrawalAttachement
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LabelControl7)
+        Me.PanelControl2.Controls.Add(Me.SLEPPHAccount)
         Me.PanelControl2.Controls.Add(Me.TEPPH)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.TEVATValue)
@@ -193,7 +203,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 313)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(492, 153)
+        Me.PanelControl2.Size = New System.Drawing.Size(492, 179)
         Me.PanelControl2.TabIndex = 11
         '
         'TEPPH
@@ -319,7 +329,7 @@ Partial Class FormBankWithdrawalAttachement
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(142, 121)
+        Me.LabelControl9.Location = New System.Drawing.Point(142, 147)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl9.TabIndex = 148
@@ -336,7 +346,7 @@ Partial Class FormBankWithdrawalAttachement
         'TEGrandTotal
         '
         Me.TEGrandTotal.EditValue = ""
-        Me.TEGrandTotal.Location = New System.Drawing.Point(204, 118)
+        Me.TEGrandTotal.Location = New System.Drawing.Point(204, 144)
         Me.TEGrandTotal.Name = "TEGrandTotal"
         Me.TEGrandTotal.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TEGrandTotal.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -498,16 +508,63 @@ Partial Class FormBankWithdrawalAttachement
         '
         Me.PanelControl4.Controls.Add(Me.SimpleButtonSet)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 466)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 492)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(492, 38)
         Me.PanelControl4.TabIndex = 11
+        '
+        'SLEPPHAccount
+        '
+        Me.SLEPPHAccount.Location = New System.Drawing.Point(204, 118)
+        Me.SLEPPHAccount.Name = "SLEPPHAccount"
+        Me.SLEPPHAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPPHAccount.Properties.View = Me.GridView1
+        Me.SLEPPHAccount.Size = New System.Drawing.Size(274, 20)
+        Me.SLEPPHAccount.TabIndex = 8911
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID Acc"
+        Me.GridColumn3.FieldName = "id_acc"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Account"
+        Me.GridColumn5.FieldName = "acc_name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "acc_description"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(137, 121)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl7.TabIndex = 8912
+        Me.LabelControl7.Text = "PPH Account"
         '
         'FormBankWithdrawalAttachement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(492, 504)
+        Me.ClientSize = New System.Drawing.Size(492, 530)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl4)
@@ -539,6 +596,8 @@ Partial Class FormBankWithdrawalAttachement
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.SLEPPHAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -579,4 +638,10 @@ Partial Class FormBankWithdrawalAttachement
     Friend WithEvents TEPPH As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents RepositoryItemTextEditPph As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents SLEPPHAccount As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
 End Class
