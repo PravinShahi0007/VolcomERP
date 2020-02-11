@@ -191,9 +191,10 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
 ,po.close_rec_reason
 ,IFNULL(payment.value,0) AS val_pay
+,po.pph_total,po.pph_account,coa.acc_name AS pph_acc_name,coa.acc_description AS pph_acc_description
 ,IF(po.is_close_rec=1,
 	IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value))
-	,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value))-IFNULL(payment.value,0) AS total_due
+	,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value))-IFNULL(payment.value,0)-po.pph_total AS total_due
 ,IFNULL(payment_dp.value,0) as total_dp
 ,IFNULL(payment_pending.jml,0) as total_pending
 ,DATEDIFF(po.`due_date`,NOW()) AS due_days
@@ -201,6 +202,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 ,po.report_mark_type
 " & q_acc & "
 FROM tb_purc_order po
+LEFT JOIN tb_a_acc_coa coa ON coa.id_acc=po.pph_account
 INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
