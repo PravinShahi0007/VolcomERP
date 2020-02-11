@@ -133,6 +133,7 @@ Partial Class FormLineList
         Me.BandedGridColumnid_season_pd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_prod_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_cop_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BtnExportToXLSRec = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CheckEditFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,6 +150,7 @@ Partial Class FormLineList
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnExportToXLSRec)
         Me.PanelControl1.Controls.Add(Me.CheckEditFreeze)
         Me.PanelControl1.Controls.Add(Me.CheckImg)
         Me.PanelControl1.Controls.Add(Me.BtnView)
@@ -162,7 +164,7 @@ Partial Class FormLineList
         '
         'CheckEditFreeze
         '
-        Me.CheckEditFreeze.Location = New System.Drawing.Point(470, 14)
+        Me.CheckEditFreeze.Location = New System.Drawing.Point(577, 14)
         Me.CheckEditFreeze.Name = "CheckEditFreeze"
         Me.CheckEditFreeze.Properties.Caption = "Freeze Column"
         Me.CheckEditFreeze.Size = New System.Drawing.Size(93, 19)
@@ -170,7 +172,7 @@ Partial Class FormLineList
         '
         'CheckImg
         '
-        Me.CheckImg.Location = New System.Drawing.Point(379, 14)
+        Me.CheckImg.Location = New System.Drawing.Point(486, 14)
         Me.CheckImg.Name = "CheckImg"
         Me.CheckImg.Properties.Caption = "Show Images"
         Me.CheckImg.Size = New System.Drawing.Size(87, 19)
@@ -1246,6 +1248,16 @@ Partial Class FormLineList
         Me.BandedGridColumnid_cop_status.FieldName = "id_cop_status"
         Me.BandedGridColumnid_cop_status.Name = "BandedGridColumnid_cop_status"
         '
+        'BtnExportToXLSRec
+        '
+        Me.BtnExportToXLSRec.Image = CType(resources.GetObject("BtnExportToXLSRec.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(377, 12)
+        Me.BtnExportToXLSRec.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSRec.Name = "BtnExportToXLSRec"
+        Me.BtnExportToXLSRec.Size = New System.Drawing.Size(103, 23)
+        Me.BtnExportToXLSRec.TabIndex = 8908
+        Me.BtnExportToXLSRec.Text = "Export to XLS"
+        '
         'FormLineList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1386,4 +1398,5 @@ Partial Class FormLineList
     Friend WithEvents gridBandActual As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepoLinkProdDemand As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents RepoLinkPP As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents BtnExportToXLSRec As DevExpress.XtraEditors.SimpleButton
 End Class
