@@ -47,7 +47,10 @@
 
         TEVATPercent.EditValue = data.Rows(0)("vat_percent")
         TEVATValue.EditValue = data.Rows(0)("vat_value")
-        TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue + TEVATValue.EditValue
+
+        TEPPH.EditValue = 0.00
+
+        TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue + TEVATValue.EditValue + TEPPH.EditValue
     End Sub
 
     Private Sub SimpleButtonAttachment_Click(sender As Object, e As EventArgs) Handles SimpleButtonAttachment.Click
@@ -88,6 +91,8 @@
                     End If
                 Next
 
+                execute_non_query("UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + " WHERE id_purc_order =" + id_purc_order, True, "", "", "", "")
+
                 FormBankWithdrawal.buttonView_click()
 
                 Close()
@@ -97,5 +102,19 @@
 
     Private Sub FormBankWithdrawalAttachement_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub GVPurcReq_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVPurcReq.CellValueChanged
+        Dim pph As Decimal = 0.00
+
+        For i = 0 To GVPurcReq.RowCount - 1
+            If GVPurcReq.IsValidRowHandle(i) Then
+                pph += (GVPurcReq.GetRowCellValue(i, "pph_percent") * GVPurcReq.GetRowCellValue(i, "amount"))
+            End If
+        Next
+
+        TEPPH.EditValue = pph
+
+        TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue + TEVATValue.EditValue + TEPPH.EditValue
     End Sub
 End Class
