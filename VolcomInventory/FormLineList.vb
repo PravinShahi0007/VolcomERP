@@ -1,4 +1,6 @@
 ﻿Public Class FormLineList
+    Public show_spesific_col As Boolean = False
+
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
 
@@ -9,6 +11,18 @@
         '        execute_non_query(query, True, "", "", "", "")
         '    End If
         'Next
+        If show_spesific_col Then
+            Dim qry As String = "SELECT * FROM tb_col_line_list l "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            For j As Integer = 0 To dt.Rows.Count - 1
+                Dim col_name As String = dt.Rows(j)("fieldname").ToString
+                Dim is_mkt As String = dt.Rows(j)("is_mkt").ToString
+                If is_mkt = "2" Then
+                    GVData.Columns(col_name).Visible = False
+                    GVData.Columns(col_name).OptionsColumn.ShowInCustomizationForm = False
+                End If
+            Next
+        End If
     End Sub
 
     Private Sub FormLineList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated

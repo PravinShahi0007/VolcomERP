@@ -8059,10 +8059,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreview()
-        ElseIf formName = "FormPaymentMissing" Then
-            FormPaymentMissing.form_print()
         ElseIf formName = "FormLineList" Then
             print_raw(FormLineList.GCData, "")
+        ElseIf formName = "FormPaymentMissing" Then
+            FormPaymentMissing.form_print()
         Else
             RPSubMenu.Visible = False
         End If
@@ -14409,6 +14409,35 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBLineListMD_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLineListMD.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormLineList.MdiParent = Me
+            FormLineList.Show()
+            FormLineList.WindowState = FormWindowState.Maximized
+            FormLineList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpPerAppraisalAtt_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpPerAppraisalAtt.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPerAppraisal.MdiParent = Me
+            FormEmpPerAppraisal.is_hrd = "1"
+            FormEmpPerAppraisal.is_only_absensi = True
+            FormEmpPerAppraisal.Show()
+            FormEmpPerAppraisal.WindowState = FormWindowState.Maximized
+            FormEmpPerAppraisal.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLineListMKT_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLineListMKT.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormLineList.show_spesific_col = True
             FormLineList.MdiParent = Me
             FormLineList.Show()
             FormLineList.WindowState = FormWindowState.Maximized
