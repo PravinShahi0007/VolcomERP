@@ -25,6 +25,7 @@
         XrLabel4.Text = data.Rows(0)("missing_payment_to").ToString
         LabelAmount.Text = Decimal.Parse(data.Rows(0)("amount").ToString).ToString("N2")
         LabelSay.Text = "Say : " + ConvertCurrencyToEnglish(data.Rows(0)("amount"), get_setup_field("id_currency_default"))
+        LabelBillType.Text = execute_query("SELECT bill_type FROM tb_lookup_bill_type WHERE id_bill_type = 25", 0, True, "", "", "", "")
 
         'detail
         viewDetail()

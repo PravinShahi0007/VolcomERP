@@ -5743,7 +5743,7 @@ WHERE pd.`id_pn`='" & id_report & "'"
                     Dim date_reference As String = DateTime.Parse(FormPaymentMissingDet.DERecDate.EditValue.ToString).ToString("yyyy-MM-dd")
                     Dim date_created As String = DateTime.Parse(FormPaymentMissingDet.DEDateCreated.EditValue.ToString).ToString("yyyy-MM-dd")
                     Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','21','" + id_user_prepared + "', '" + date_created + "','" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','25','" + id_user_prepared + "', '" + date_created + "','" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                     Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                     increase_inc_acc("1")
 

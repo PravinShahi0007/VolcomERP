@@ -58,6 +58,9 @@ Partial Public Class ReportPaymentMissing
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelBillType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,7 +216,7 @@ Partial Public Class ReportPaymentMissing
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelTitleNumber, Me.LabelTitle, Me.XrLabel1, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.XrLabel2, Me.XrLabel3, Me.XrLabel4, Me.XrLabel5, Me.XrLabel6, Me.LabelAmount, Me.XrLabel8, Me.XrLabel9, Me.XrLabel10, Me.XrLabel7, Me.XrLabel11, Me.XrLabel12})
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelBillType, Me.XrLabel17, Me.XrLabel18, Me.LabelTitleNumber, Me.LabelTitle, Me.XrLabel1, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.XrLabel2, Me.XrLabel3, Me.XrLabel4, Me.XrLabel5, Me.XrLabel6, Me.LabelAmount, Me.XrLabel8, Me.XrLabel9, Me.XrLabel10, Me.XrLabel7, Me.XrLabel11, Me.XrLabel12})
         Me.TopMargin.HeightF = 126.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -530,6 +533,42 @@ Partial Public Class ReportPaymentMissing
         Me.XrLabel26.Text = "Printed : [printed_date]"
         Me.XrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'LabelBillType
+        '
+        Me.LabelBillType.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelBillType.LocationFloat = New DevExpress.Utils.PointFloat(128.1249!, 99.31261!)
+        Me.LabelBillType.Name = "LabelBillType"
+        Me.LabelBillType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelBillType.SizeF = New System.Drawing.SizeF(222.0!, 12.58334!)
+        Me.LabelBillType.StylePriority.UseFont = False
+        Me.LabelBillType.StylePriority.UseTextAlignment = False
+        Me.LabelBillType.Text = "[bill_type]"
+        Me.LabelBillType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel17
+        '
+        Me.XrLabel17.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(113.5416!, 99.31261!)
+        Me.XrLabel17.Name = "XrLabel17"
+        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(14.58331!, 12.58334!)
+        Me.XrLabel17.StylePriority.UseFont = False
+        Me.XrLabel17.StylePriority.UseTextAlignment = False
+        Me.XrLabel17.Text = ":"
+        Me.XrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0!, 99.31255!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(113.5416!, 12.58333!)
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.StylePriority.UseTextAlignment = False
+        Me.XrLabel18.Text = "Bill Type"
+        Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'ReportPaymentMissing
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
@@ -582,4 +621,7 @@ Partial Public Class ReportPaymentMissing
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrLabel27 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel26 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelBillType As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
 End Class

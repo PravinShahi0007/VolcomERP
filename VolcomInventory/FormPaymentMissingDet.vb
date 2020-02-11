@@ -58,6 +58,12 @@ Public Class FormPaymentMissingDet
                 newRow("value_view") = Math.Abs(FormPaymentMissing.GVInvoiceList.GetRowCellValue(i, "total_due"))
                 TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
             Next
+
+            'auto select receive payment to base on company
+            If GVList.RowCount > 0 Then
+                SLEPayRecTo.EditValue = execute_query("SELECT IFNULL((SELECT id_acc_tabungan_missing FROM tb_m_comp WHERE id_comp = (SELECT cc.`id_comp` FROM tb_sales_pos sp INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`) WHERE sp.id_sales_pos = " + GVList.GetRowCellValue(0, "id_report").ToString + ")), 6) AS id_comp", 0, True, "", "", "", "")
+            End If
+
             calculate_amount()
         Else
             PanelControlNav.Visible = False
