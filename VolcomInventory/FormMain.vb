@@ -8059,6 +8059,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreview()
+        ElseIf formName = "FormLineList" Then
+            print_raw(FormLineList.GCData, "")
         ElseIf formName = "FormPaymentMissing" Then
             FormPaymentMissing.form_print()
         Else
@@ -8915,6 +8917,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPaymentMissing" Then
             FormPaymentMissing.Close()
             FormPaymentMissing.Dispose()
+        ElseIf formName = "FormLineList" Then
+            FormLineList.Close()
+            FormLineList.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -14423,6 +14428,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpPerAppraisal.Show()
             FormEmpPerAppraisal.WindowState = FormWindowState.Maximized
             FormEmpPerAppraisal.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLineListMKT_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLineListMKT.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormLineList.show_spesific_col = True
+            FormLineList.MdiParent = Me
+            FormLineList.Show()
+            FormLineList.WindowState = FormWindowState.Maximized
+            FormLineList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
