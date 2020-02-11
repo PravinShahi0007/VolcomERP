@@ -202,7 +202,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 ,po.report_mark_type
 " & q_acc & "
 FROM tb_purc_order po
-LEFT JOIN tb_a_acc_coa coa ON coa.id_acc=po.pph_account
+LEFT JOIN tb_a_acc coa ON coa.id_acc=po.pph_account
 INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
