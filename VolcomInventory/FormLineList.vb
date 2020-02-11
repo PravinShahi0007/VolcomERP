@@ -125,4 +125,128 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub RepoLinkProdDemand_Click(sender As Object, e As EventArgs) Handles RepoLinkProdDemand.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_prod_demand As String = "-1"
+            Try
+                id_prod_demand = GVData.GetFocusedRowCellValue("id_prod_demand").ToString
+            Catch ex As Exception
+            End Try
+            If id_prod_demand = "" Or id_prod_demand = "0" Or id_prod_demand = "-1" Then
+                stopCustom("Document not found")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            FormViewProdDemand.id_prod_demand = id_prod_demand
+            FormViewProdDemand.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkPP_Click(sender As Object, e As EventArgs) Handles RepoLinkPP.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_pp As String = "-1"
+            Try
+                id_pp = GVData.GetFocusedRowCellValue("id_fg_propose_price").ToString
+            Catch ex As Exception
+            End Try
+            If id_pp = "" Or id_pp = "0" Or id_pp = "-1" Then
+                stopCustom("Document not found")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            Dim sm As New ClassShowPopUp()
+            sm.report_mark_type = "70"
+            sm.id_report = id_pp
+            sm.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    'for estimate
+    Dim tot_cost_est As Decimal
+    Dim tot_prc_est As Decimal
+    Dim tot_cost_grp_est As Decimal
+    Dim tot_prc_grp_est As Decimal
+    'for actual
+    Dim tot_cost_actual As Decimal
+    Dim tot_prc_actual As Decimal
+    Dim tot_cost_grp_actual As Decimal
+    Dim tot_prc_grp_actual As Decimal
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_cost_est = 0.0
+            tot_prc_est = 0.0
+            tot_cost_grp_est = 0.0
+            tot_prc_grp_est = 0.0
+            'act
+            tot_cost_actual = 0.0
+            tot_prc_actual = 0.0
+            tot_cost_grp_actual = 0.0
+            tot_prc_grp_actual = 0.0
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_cost_estimate_min_additional").ToString, "0.00"))
+            Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_amount_estimate_min_additional"), "0.00"))
+            Dim cost_actual As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_cost_min_additional").ToString, "0.00"))
+            Dim prc_actual As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_amount_min_additional"), "0.00"))
+            Select Case summaryID
+                Case 1
+                    tot_cost_est += cost
+                    tot_prc_est += prc
+                Case 2
+                    tot_cost_grp_est += cost
+                    tot_prc_grp_est += prc
+                Case 3
+                    tot_cost_actual += cost_actual
+                    tot_prc_actual += prc_actual
+                Case 4
+                    tot_cost_grp_actual += cost_actual
+                    tot_prc_grp_actual += prc_actual
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'total summary estimate
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_est / tot_cost_est
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case 2 'group summary estimate
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp_est / tot_cost_grp_est
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case 3 'total summary actual
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_actual / tot_cost_actual
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case 4 'group summary actual
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp_actual / tot_cost_grp_actual
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
+    End Sub
 End Class
