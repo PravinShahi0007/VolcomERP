@@ -165,4 +165,55 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Dim tot_cost_est As Decimal
+    Dim tot_prc_est As Decimal
+    Dim tot_cost_grp_est As Decimal
+    Dim tot_prc_grp_est As Decimal
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_cost_est = 0.0
+            tot_prc_est = 0.0
+            tot_cost_grp_est = 0.0
+            tot_prc_grp_est = 0.0
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_cost_estimate_min_additional").ToString, "0.00"))
+            Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_amount_estimate_min_additional"), "0.00"))
+            Select Case summaryID
+                Case 1
+                    tot_cost_est += cost
+                    tot_prc_est += prc
+                Case 2
+                    tot_cost_grp_est += cost
+                    tot_prc_grp_est += prc
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'total summary estimate
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_est / tot_cost_est
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case 2 'group summary estimate
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp_est / tot_cost_grp_est
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
+    End Sub
 End Class
