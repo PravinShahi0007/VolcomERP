@@ -108,6 +108,7 @@ Partial Class FormLineList
         Me.BandedGridColumncop_final_min_additional = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncop_final = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpp_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkPP = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnpp_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnadditional_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnprice_min_additional = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -143,6 +144,7 @@ Partial Class FormLineList
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkPP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -238,7 +240,7 @@ Partial Class FormLineList
         Me.GCData.Location = New System.Drawing.Point(0, 48)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPictureEdit1, Me.RepoLinkProdDemand})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPictureEdit1, Me.RepoLinkProdDemand, Me.RepoLinkPP})
         Me.GCData.Size = New System.Drawing.Size(957, 492)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -1044,9 +1046,15 @@ Partial Class FormLineList
         'BandedGridColumnpp_number
         '
         Me.BandedGridColumnpp_number.Caption = "PP NUMBER"
+        Me.BandedGridColumnpp_number.ColumnEdit = Me.RepoLinkPP
         Me.BandedGridColumnpp_number.FieldName = "pp_number"
         Me.BandedGridColumnpp_number.Name = "BandedGridColumnpp_number"
         Me.BandedGridColumnpp_number.Visible = True
+        '
+        'RepoLinkPP
+        '
+        Me.RepoLinkPP.AutoHeight = False
+        Me.RepoLinkPP.Name = "RepoLinkPP"
         '
         'BandedGridColumnpp_date
         '
@@ -1258,6 +1266,7 @@ Partial Class FormLineList
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkPP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1374,4 +1383,5 @@ Partial Class FormLineList
     Friend WithEvents gridBandPD As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandActual As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepoLinkProdDemand As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents RepoLinkPP As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

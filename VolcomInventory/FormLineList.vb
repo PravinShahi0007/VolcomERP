@@ -134,13 +134,34 @@
                 id_prod_demand = GVData.GetFocusedRowCellValue("id_prod_demand").ToString
             Catch ex As Exception
             End Try
-            If id_prod_demand = "" Then
+            If id_prod_demand = "" Or id_prod_demand = "0" Or id_prod_demand = "-1" Then
                 stopCustom("Document not found")
                 Cursor = Cursors.Default
                 Exit Sub
             End If
             FormViewProdDemand.id_prod_demand = id_prod_demand
             FormViewProdDemand.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkPP_Click(sender As Object, e As EventArgs) Handles RepoLinkPP.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_pp As String = "-1"
+            Try
+                id_pp = GVData.GetFocusedRowCellValue("id_fg_propose_price").ToString
+            Catch ex As Exception
+            End Try
+            If id_pp = "" Or id_pp = "0" Or id_pp = "-1" Then
+                stopCustom("Document not found")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            Dim sm As New ClassShowPopUp()
+            sm.report_mark_type = "70"
+            sm.id_report = id_pp
+            sm.show()
             Cursor = Cursors.Default
         End If
     End Sub
