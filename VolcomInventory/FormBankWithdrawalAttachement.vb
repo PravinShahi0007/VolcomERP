@@ -106,12 +106,19 @@
 
         For i = 0 To GVPurcReq.RowCount - 1
             If GVPurcReq.IsValidRowHandle(i) Then
-                pph += (GVPurcReq.GetRowCellValue(i, "pph_percent") * GVPurcReq.GetRowCellValue(i, "amount"))
+                pph += (GVPurcReq.GetRowCellValue(i, "pph_percent") * GVPurcReq.GetRowCellValue(i, "amount") / 100)
             End If
         Next
 
         TEPPH.EditValue = pph
 
         TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue + TEVATValue.EditValue + TEPPH.EditValue
+    End Sub
+
+    Private Sub TEPPH_EditValueChanged(sender As Object, e As EventArgs) Handles TEPPH.EditValueChanged
+        Try
+            TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue + TEVATValue.EditValue + TEPPH.EditValue
+        Catch ex As Exception
+        End Try
     End Sub
 End Class
