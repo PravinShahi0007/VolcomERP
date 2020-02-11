@@ -18,8 +18,11 @@
                 Dim col_name As String = dt.Rows(j)("fieldname").ToString
                 Dim is_mkt As String = dt.Rows(j)("is_mkt").ToString
                 If is_mkt = "2" Then
-                    GVData.Columns(col_name).Visible = False
-                    GVData.Columns(col_name).OptionsColumn.ShowInCustomizationForm = False
+                    Try
+                        GVData.Columns(col_name).Visible = False
+                        GVData.Columns(col_name).OptionsColumn.ShowInCustomizationForm = False
+                    Catch ex As Exception
+                    End Try
                 End If
             Next
         End If
