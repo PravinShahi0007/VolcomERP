@@ -648,13 +648,13 @@ Partial Class FormBankWithdrawal
         '
         Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemAdd})
         Me.ContextMenuStrip.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(227, 26)
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(254, 26)
         '
         'ToolStripMenuItemAdd
         '
         Me.ToolStripMenuItemAdd.Name = "ToolStripMenuItemAdd"
-        Me.ToolStripMenuItemAdd.Size = New System.Drawing.Size(226, 22)
-        Me.ToolStripMenuItemAdd.Text = "Add Attachment && Due Date"
+        Me.ToolStripMenuItemAdd.Size = New System.Drawing.Size(253, 22)
+        Me.ToolStripMenuItemAdd.Text = "Add Attachment, Due Date && Pph"
         '
         'GVPOListNonActive
         '

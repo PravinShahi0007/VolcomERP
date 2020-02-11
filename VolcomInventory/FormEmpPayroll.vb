@@ -7,8 +7,6 @@
     Public no_column As String = 16
     '
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        BtnViewJournal.Visible = False
-
         load_payroll()
     End Sub
     '
@@ -132,7 +130,7 @@
                 BReset.Visible = False
                 BSubmit.Visible = True
                 CMDelEmp.Enabled = True
-                BtnViewJournal.Enabled = False
+                BtnViewJournal.Visible = False
             Else
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
@@ -145,7 +143,7 @@
                 'BReport.Enabled = True
                 BPrintSlip.Enabled = False
                 SBSendSlip.Enabled = False
-                BtnViewJournal.Enabled = False
+                BtnViewJournal.Visible = False
                 BPrint.Enabled = True
                 BReset.Visible = True
                 BSubmit.Visible = False
@@ -155,7 +153,7 @@
             If id_report_status = "6" Then
                 BPrintSlip.Enabled = True
                 SBSendSlip.Enabled = True
-                BtnViewJournal.Enabled = True
+                BtnViewJournal.Visible = True
                 BReset.Visible = False
             End If
 
@@ -1014,7 +1012,7 @@
 
             Dim rmt As DataTable = execute_query("SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type = 192 AND rm.id_report = '" + id_payroll + "' AND rm.id_report_status = 1", -1, True, "", "", "", "")
 
-            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) VALUES ('" + header_number_acc("1") + "', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('" + header_number_acc("1") + "', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
 
             Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
 
