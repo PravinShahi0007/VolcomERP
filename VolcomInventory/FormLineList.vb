@@ -76,7 +76,7 @@
         GCData.DataSource = data
 
         ' show caption breakdown size
-
+        GVData.BeginUpdate()
         If CEBreakSize.EditValue = True Then
             'header heigt
             GVData.ColumnPanelRowHeight = 100
@@ -118,7 +118,8 @@
             dtsize = execute_query(query_caption, -1, True, "", "", "", "")
             GVData.ActiveFilterString = ""
 
-            'set caption
+            Dim last_ttl As String = ""
+            Dim ix As Integer = 0
             For j As Integer = 0 To GVData.Columns.Count - 1
                 Dim col_name As String = GVData.Columns(j).FieldName.ToString
 
@@ -138,15 +139,60 @@
                     Dim col_size As String = "qty" + col_arr(1).ToString
                     Dim dtsize_filter As DataRow() = dtsize.Select("[col]='" + col_size + "' ")
                     If dtsize_filter.Length > 0 Then
-                        'GVData.Columns(col_name).Caption = dtsize_filter(0)("caption").ToString
+                        ' GVData.Columns(col_name).Caption = dtsize_filter(0)("caption").ToString
                     End If
-                    'GVData.Columns(col_name).Visible = True
-                    GVData.Columns(col_name).VisibleIndex = GVData.Columns(col_ttl).VisibleIndex - 1
-                    Console.WriteLine("total:" + GVData.Columns(col_ttl).VisibleIndex.ToString)
-                    Console.WriteLine("size:" + GVData.Columns(col_name).VisibleIndex.ToString)
-                    GVData.Columns(col_name).OptionsColumn.ShowInCustomizationForm = True
+
+                    If last_ttl <> col_ttl Then
+                        If last_ttl <> "" Then
+                            gridBandPD.Columns.MoveTo(ix, GVData.Columns(last_ttl))
+                            ix += 1
+                        End If
+                        last_ttl = col_ttl
+                    End If
+
+                    gridBandPD.Columns.Add(GVData.Columns.AddVisible(col_name))
+                    gridBandPD.Columns.MoveTo(ix, GVData.Columns(col_name))
+                    ix += 1
                 End If
             Next
+            If last_ttl <> "" Then
+                gridBandPD.Columns.MoveTo(ix, GVData.Columns(last_ttl))
+            End If
+
+            'set caption
+            'For j As Integer = GVData.Columns.Count - 1 To 0 Step -1
+            '    Dim col_name As String = GVData.Columns(j).FieldName.ToString
+
+            '    'check  allow column
+            '    Dim is_dept As String = ""
+            '    If id_menu = "1" Then
+            '        is_dept = "is_mkt"
+            '    Else
+            '        is_dept = "is_md"
+            '    End If
+            '    Dim dtcol_filter As DataRow() = dt.Select("[fieldname]='" + col_name + "' AND [" + is_dept + "]=1 ")
+
+            '    'bz
+            '    If col_name.Contains("#bz#") And dtcol_filter.Length > 0 Then
+            '        Dim col_arr As String() = Split(col_name, "#bz#")
+            '        Dim col_ttl As String = col_arr(0)
+            '        Dim col_size As String = "qty" + col_arr(1).ToString
+            '        Dim dtsize_filter As DataRow() = dtsize.Select("[col]='" + col_size + "' ")
+            '        If dtsize_filter.Length > 0 Then
+            '            'GVData.Columns(col_name).Caption = dtsize_filter(0)("caption").ToString
+            '        End If
+            '        gridBandPD.Columns.Add(GVData.Columns.AddVisible(col_name))
+            '        'GVData.Columns(col_name).Visible = True
+            '        'Console.WriteLine("totalbefore(" + col_ttl + "):" + GVData.Columns("pd_qty_mkt").VisibleIndex.ToString)
+            '        Dim pos As Integer = GVData.Columns("pd_qty_mkt").VisibleIndex - 1
+            '        gridBandPD.Columns.MoveTo(pos, GVData.Columns(col_name))
+            '        'GVData.Columns(col_name).VisibleIndex = GVData.Columns("pd_qty_mkt").VisibleIndex - 1
+            '        'GVData.Columns("pd_qty_mkt").VisibleIndex = GVData.Columns(col_name).VisibleIndex + 1
+            '        'Console.WriteLine("totalafter(" + col_ttl + "):" + GVData.Columns("pd_qty_mkt").VisibleIndex.ToString)
+            '        'Console.WriteLine("size(" + col_name + "):" + GVData.Columns(col_name).VisibleIndex.ToString)
+            '        'GVData.Columns(col_name).OptionsColumn.ShowInCustomizationForm = True
+            '    End If
+            'Next
         Else
             'header heigt
             GVData.ColumnPanelRowHeight = 35
@@ -178,6 +224,7 @@
                 GVData.Columns(col_ttl).OptionsColumn.ShowInCustomizationForm = False
             Next
         End If
+        GVData.EndUpdate()
 
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
