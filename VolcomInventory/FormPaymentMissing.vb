@@ -81,6 +81,8 @@
     Sub load_invoice()
         Dim where_string As String = ""
 
+        where_string += " AND c.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp_group WHERE is_tabungan_missing = 1)"
+
         If Not SLEStoreGroup.EditValue.ToString = "0" Then
             where_string += " AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'"
         End If
@@ -147,7 +149,8 @@
         Dim query As String = "SELECT 0 AS id_comp_group, 'All' AS comp_group, 'All Group' AS description 
         UNION
         SELECT cg.id_comp_group, cg.comp_group, cg.description 
-        FROM tb_m_comp_group cg "
+        FROM tb_m_comp_group cg 
+        WHERE cg.is_tabungan_missing = 1"
         viewSearchLookupQuery(SLEStoreGroup, query, "id_comp_group", "comp_group", "id_comp_group")
         Cursor = Cursors.Default
     End Sub
