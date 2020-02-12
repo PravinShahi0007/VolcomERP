@@ -31,6 +31,9 @@ Partial Public Class ReportPaymentMissing
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.LabelBillType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTitleNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
@@ -58,9 +61,6 @@ Partial Public Class ReportPaymentMissing
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelBillType = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,6 +222,42 @@ Partial Public Class ReportPaymentMissing
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'LabelBillType
+        '
+        Me.LabelBillType.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelBillType.LocationFloat = New DevExpress.Utils.PointFloat(128.1249!, 99.31261!)
+        Me.LabelBillType.Name = "LabelBillType"
+        Me.LabelBillType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelBillType.SizeF = New System.Drawing.SizeF(222.0!, 12.58334!)
+        Me.LabelBillType.StylePriority.UseFont = False
+        Me.LabelBillType.StylePriority.UseTextAlignment = False
+        Me.LabelBillType.Text = "[bill_type]"
+        Me.LabelBillType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel17
+        '
+        Me.XrLabel17.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(113.5416!, 99.31261!)
+        Me.XrLabel17.Name = "XrLabel17"
+        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(14.58331!, 12.58334!)
+        Me.XrLabel17.StylePriority.UseFont = False
+        Me.XrLabel17.StylePriority.UseTextAlignment = False
+        Me.XrLabel17.Text = ":"
+        Me.XrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0!, 99.31255!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(113.5416!, 12.58333!)
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.StylePriority.UseTextAlignment = False
+        Me.XrLabel18.Text = "Bill Type"
+        Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'LabelTitleNumber
         '
         Me.LabelTitleNumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -243,7 +279,7 @@ Partial Public Class ReportPaymentMissing
         Me.LabelTitle.SizeF = New System.Drawing.SizeF(317.8333!, 23.0!)
         Me.LabelTitle.StylePriority.UseFont = False
         Me.LabelTitle.StylePriority.UseTextAlignment = False
-        Me.LabelTitle.Text = "BUKTI TABUNGAN MISSING"
+        Me.LabelTitle.Text = "PEMBAYARAN TABUNGAN MISSING"
         Me.LabelTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'XrLabel1
@@ -532,42 +568,6 @@ Partial Public Class ReportPaymentMissing
         Me.XrLabel26.StylePriority.UseTextAlignment = False
         Me.XrLabel26.Text = "Printed : [printed_date]"
         Me.XrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'LabelBillType
-        '
-        Me.LabelBillType.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelBillType.LocationFloat = New DevExpress.Utils.PointFloat(128.1249!, 99.31261!)
-        Me.LabelBillType.Name = "LabelBillType"
-        Me.LabelBillType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelBillType.SizeF = New System.Drawing.SizeF(222.0!, 12.58334!)
-        Me.LabelBillType.StylePriority.UseFont = False
-        Me.LabelBillType.StylePriority.UseTextAlignment = False
-        Me.LabelBillType.Text = "[bill_type]"
-        Me.LabelBillType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel17
-        '
-        Me.XrLabel17.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(113.5416!, 99.31261!)
-        Me.XrLabel17.Name = "XrLabel17"
-        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel17.SizeF = New System.Drawing.SizeF(14.58331!, 12.58334!)
-        Me.XrLabel17.StylePriority.UseFont = False
-        Me.XrLabel17.StylePriority.UseTextAlignment = False
-        Me.XrLabel17.Text = ":"
-        Me.XrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
-        'XrLabel18
-        '
-        Me.XrLabel18.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0!, 99.31255!)
-        Me.XrLabel18.Name = "XrLabel18"
-        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(113.5416!, 12.58333!)
-        Me.XrLabel18.StylePriority.UseFont = False
-        Me.XrLabel18.StylePriority.UseTextAlignment = False
-        Me.XrLabel18.Text = "Bill Type"
-        Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportPaymentMissing
         '
