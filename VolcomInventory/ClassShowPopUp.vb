@@ -240,6 +240,9 @@
         ElseIf report_mark_type = "162" Then
             'Rec Payment
             FormBankDepositDet.Close()
+        ElseIf report_mark_type = "237" Then
+            'Tabungan Missing
+            FormPaymentMissingDet.Close()
         ElseIf report_mark_type = "167" Then
             'Cash Advance
             FormCashAdvanceDet.Close()
@@ -989,6 +992,11 @@ GROUP BY rec.`id_prod_order`"
             FormBankDepositDet.id_deposit = id_report
             FormBankDepositDet.is_view = "1"
             FormBankDepositDet.ShowDialog()
+        ElseIf report_mark_type = "237" Then
+            'Tabungan Missing
+            FormPaymentMissingDet.id_missing_payment = id_report
+            FormPaymentMissingDet.is_view = "1"
+            FormPaymentMissingDet.ShowDialog()
         ElseIf report_mark_type = "164" Then
             'propose leave
             FormEmpLeaveDet.id_emp_leave = id_report
@@ -1984,6 +1992,12 @@ GROUP BY rec.`id_prod_order`"
             'item del
             table_name = "tb_rec_payment"
             field_id = "id_rec_payment"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "237" Then
+            'Tabungan Missing
+            table_name = "tb_missing_payment"
+            field_id = "id_missing_payment"
             field_number = "number"
             field_date = "date_created"
         ElseIf report_mark_type = "167" Then
