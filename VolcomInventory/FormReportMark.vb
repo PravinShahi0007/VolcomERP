@@ -5823,7 +5823,7 @@ WHERE pd.`id_pn`='" & id_report & "'"
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
                                     -- detail
                                     UNION ALL
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,car.id_acc AS `id_acc`, 1,  0 AS `qty`, car.value AS `debit`,0  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,car.id_acc AS `id_acc`, car.id_comp,  0 AS `qty`, car.value AS `debit`,0  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
                                     FROM tb_cash_advance ca
                                     INNER JOIN tb_cash_advance_report car ON ca.id_cash_advance = car.id_cash_advance
                                     WHERE ca.id_cash_advance=" & id_report & " AND car.`value` > 0
