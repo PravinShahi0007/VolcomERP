@@ -423,10 +423,17 @@ GROUP BY m_ovh_p.id_ovh_price"
             FormReportMark.report_mark_type = "22"
             FormReportMark.ShowDialog()
         ElseIf BMark.Text = "Submit" Then
-            submit_who_prepared("22", id_prod_order, id_user)
-            Dim query As String = "UPDATE tb_prod_order SET is_submit='1' WHERE id_prod_order='" & id_prod_order & "'"
-            execute_non_query(query, True, "", "", "", "")
-            load_form()
+            'check main vendor
+            Dim query As String = "SELECT id_prod_order_wo FROM tb_prod_order_wo WHERE id_prod_order='" & id_prod_order & "' AND is_main_vendor=1 AND id_report_status!=5"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                submit_who_prepared("22", id_prod_order, id_user)
+                Dim queryx As String = "UPDATE tb_prod_order SET is_submit='1' WHERE id_prod_order='" & id_prod_order & "'"
+                execute_non_query(queryx, True, "", "", "", "")
+                load_form()
+            Else
+                warningCustom("No main vendor selected !")
+            End If
         End If
     End Sub
 
@@ -678,20 +685,38 @@ GROUP BY m_ovh_p.id_ovh_price"
     End Sub
 
     Private Sub BarLargeButtonItem1_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarLargeButtonItem1.ItemClick
-        If Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
+        If Not is_submit = "1" Then
+            'check main vendor
+            Dim query As String = "SELECT id_prod_order_wo FROM tb_prod_order_wo WHERE id_prod_order='" & id_prod_order & "' AND is_main_vendor=1 AND id_report_status!=5"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                ReportProductionWO.id_po = id_prod_order
+                ReportProductionWO.is_po_print = "1"
+                ReportProductionWO.is_pre = "1"
+                Dim Report As New ReportProductionWO()
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                onlyPreview(Tool)
+
+                Tool.ShowRibbonPreviewDialog()
+            Else
+                warningCustom("No main vendor selected !")
+            End If
+        ElseIf Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
             ReportProductionWO.id_po = id_prod_order
             ReportProductionWO.is_po_print = "1"
-
+            '
             If check_print_report_status(id_report_status_g) Then
                 ReportProductionWO.is_pre = "-1"
             Else
                 ReportProductionWO.is_pre = "1"
             End If
-
+            '
             Dim Report As New ReportProductionWO()
-            ' Show the report's preview. 
+            'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreview()
         End If
