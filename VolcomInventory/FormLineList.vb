@@ -1,5 +1,6 @@
 ﻿Public Class FormLineList
     Public show_spesific_col As Boolean = False
+    Dim dtsize As New DataTable
 
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
@@ -53,8 +54,42 @@
 
     Sub viewData()
         FormMain.SplashScreenManager1.ShowWaitForm()
+
+        ' show breakdown size
+        Dim break_size As String = ""
+        If CEBreakSize.EditValue = True Then
+            'set size
+            break_size = "1"
+
+            'get caption
+            If dtsize.Rows.Count <= 0 Then
+                Dim query_caption As String = " SELECT cd.index_size,CONCAT('qty',cd.index_size) AS `col`,GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.code_detail_name ASC SEPARATOR '\n') AS `caption` FROM tb_m_code_detail cd
+                WHERE cd.id_code='33'
+                GROUP BY cd.index_size "
+                dtsize = execute_query(query_caption, -1, True, "", "", "", "")
+            End If
+
+            'set caption
+            For j As Integer = 0 To GVData.Columns.Count - 1
+                Dim col_name As String = GVData.Columns(j).FieldName.ToString
+                If col_name.Contains("#bz#") Then
+                    Dim col_arr As String() = Split(col_name, "#bz#")
+                    Dim col_ttl As String = col_arr(0)
+                    Dim col_size As String = col_arr(1)
+                    Dim dtsize_filter As DataRow() = dtsize.Select("[col]='" + col_size + "' ")
+                    If dtsize_filter.Length > 0 Then
+                        GVData.Columns(col_name).Caption = dtsize_filter(0)("caption").ToString
+                    End If
+                    GVData.Columns(col_name).VisibleIndex = GVData.Columns(col_ttl).VisibleIndex - 1
+                End If
+            Next
+        Else
+            'set size
+            break_size = "2"
+        End If
+
         Dim id_ss As String = SLESeason.EditValue.ToString
-        Dim query As String = "CALL view_line_list_all_new(" + id_ss + ")"
+        Dim query As String = "CALL view_line_list_all_new_bz(" + id_ss + "," + break_size + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
