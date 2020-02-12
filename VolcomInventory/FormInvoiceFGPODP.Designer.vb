@@ -87,6 +87,7 @@ Partial Class FormInvoiceFGPODP
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCurHide = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBeforeKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -114,7 +115,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCCurHide = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -192,6 +193,7 @@ Partial Class FormInvoiceFGPODP
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.BAttachment)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
         Me.PanelControl7.Controls.Add(Me.BMark)
@@ -819,6 +821,16 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 0
         '
+        'GCCurHide
+        '
+        Me.GCCurHide.AppearanceCell.Options.UseTextOptions = True
+        Me.GCCurHide.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCCurHide.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCCurHide.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCCurHide.Caption = "Currency"
+        Me.GCCurHide.FieldName = "currency"
+        Me.GCCurHide.Name = "GCCurHide"
+        '
         'GCKurs
         '
         Me.GCKurs.Caption = "Kurs"
@@ -1092,15 +1104,16 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumncc.VisibleIndex = 1
         Me.GridColumncc.Width = 39
         '
-        'GCCurHide
+        'BAttachment
         '
-        Me.GCCurHide.AppearanceCell.Options.UseTextOptions = True
-        Me.GCCurHide.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCCurHide.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCCurHide.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCCurHide.Caption = "Currency"
-        Me.GCCurHide.FieldName = "currency"
-        Me.GCCurHide.Name = "GCCurHide"
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.Image = CType(resources.GetObject("BAttachment.Image"), System.Drawing.Image)
+        Me.BAttachment.Location = New System.Drawing.Point(566, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(105, 36)
+        Me.BAttachment.TabIndex = 21
+        Me.BAttachment.Text = "Attachment"
+        Me.BAttachment.Visible = False
         '
         'FormInvoiceFGPODP
         '
@@ -1272,4 +1285,5 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents BPickDP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCurHide As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
 End Class
