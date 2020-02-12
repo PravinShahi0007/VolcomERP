@@ -11,11 +11,15 @@
         Try
             Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
             '
-            newRow("id_prod_order") = SLEFGPO.EditValue.ToString
-            newRow("id_report") = SLEFGPO.EditValue.ToString
+            If SLEReportType.EditValue.ToString = "22" Then
+                newRow("id_prod_order") = SLEReport.EditValue.ToString
+            Else
+                newRow("id_prod_order") = SLEReport.Properties.View.GetFocusedRowCellValue("id_prod_order").ToString
+            End If
+            newRow("id_report") = SLEReport.EditValue.ToString
 
             newRow("report_mark_type") = SLEReportType.EditValue.ToString
-            newRow("report_number") = SLEFGPO.Text
+            newRow("report_number") = SLEReport.Text
             newRow("info_design") = TEInfoDesign.Text
             '
             newRow("qty") = TEQty.EditValue
@@ -107,25 +111,47 @@ INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact_to
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 WHERE po.`id_report_status`='6'
 GROUP BY pod.id_mat_purc"
+        ElseIf SLEReportType.EditValue.ToString = "23" Then 'FG WO
+            query = "SELECT wo.`id_prod_order_wo` AS id_report,wo.`id_prod_order_wo` AS id_prod_order,wo.`prod_order_wo_number` AS report_number,CONCAT(ovh.`overhead`,' - ',dsg.`design_display_name`) AS description,dsg.`design_code` AS info
+,wo.id_currency,wo.prod_order_wo_kurs AS kurs,wo.prod_order_wo_vat AS vat,SUM(wod.prod_order_wo_det_price*wod.prod_order_wo_det_qty) AS wo_val,SUM(wod.prod_order_wo_det_qty) AS qty
+FROM tb_prod_order_wo_det wod 
+INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo_det`
+INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+INNER JOIN tb_m_ovh ovh ON ovh.`id_ovh`=ovhp.`id_ovh`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=wo.id_prod_Order
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+WHERE po.`id_report_status`='6'
+GROUP BY wo.`id_prod_order_wo`"
         End If
 
-        viewSearchLookupQuery(SLEFGPO, query, "id_report", "report_number", "id_report")
+        viewSearchLookupQuery(SLEReport, query, "id_report", "report_number", "id_report")
         Try
-            SLEFGPO.EditValue = Nothing
+            SLEReport.EditValue = Nothing
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
 
-    Private Sub SLEFGPO_EditValueChanged(sender As Object, e As EventArgs) Handles SLEFGPO.EditValueChanged
+    Private Sub SLEFGPO_EditValueChanged(sender As Object, e As EventArgs) Handles SLEReport.EditValueChanged
         Try
             If SLEReportType.EditValue.ToString = "13" Then
                 Dim aft_kurs As Decimal = 0.00
 
-                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEFGPO.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
-                TEBeforeKurs.EditValue = SLEFGPO.Properties.View.GetFocusedRowCellValue("po_val").ToString
-                TEKurs.EditValue = SLEFGPO.Properties.View.GetFocusedRowCellValue("kurs").ToString
-                TEVATPercent.EditValue = SLEFGPO.Properties.View.GetFocusedRowCellValue("vat").ToString
+                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
+                TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("po_val")
+                TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
+                TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
+                aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
+                TEAfterKurs.EditValue = aft_kurs
+            ElseIf SLEReportType.EditValue.ToString = "23" Then
+                Dim aft_kurs As Decimal = 0.00
+
+                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
+                TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("wo_val")
+                TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
+                TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty")
+                TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
                 aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
                 TEAfterKurs.EditValue = aft_kurs
             End If
@@ -148,7 +174,7 @@ GROUP BY pod.id_mat_purc"
         Dim vat As Decimal = 0.00
         '
         Try
-            TEInfoDesign.Text = SLEFGPO.Properties.View.GetFocusedRowCellValue("description").ToString
+            TEInfoDesign.Text = SLEReport.Properties.View.GetFocusedRowCellValue("description").ToString
 
             bef_kurs = TEBeforeKurs.EditValue
             kurs = TEKurs.EditValue
