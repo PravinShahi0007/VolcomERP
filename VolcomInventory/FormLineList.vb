@@ -3,6 +3,7 @@
     Dim dtsize As New DataTable
     Dim dt As New DataTable
     Public id_menu As String = "-1"
+    Dim is_dept As String = "-1"
 
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
@@ -10,13 +11,15 @@
         'col
         Dim qry As String = "SELECT * FROM tb_col_line_list l "
         dt = execute_query(qry, -1, True, "", "", "", "")
+        If id_menu = "1" Then
+            is_dept = "is_mkt"
+        Else
+            is_dept = "is_md"
+        End If
         If show_spesific_col Then
             For j As Integer = 0 To dt.Rows.Count - 1
                 Dim col_name As String = dt.Rows(j)("fieldname").ToString
-                Dim is_mkt As String = ""
-                If id_menu = "1" Then
-                    is_mkt = dt.Rows(j)("is_mkt").ToString
-                End If
+                Dim is_mkt As String = dt.Rows(j)(is_dept).ToString
                 If is_mkt = "2" Then
                     Try
                         GVData.Columns(col_name).Visible = False
@@ -76,7 +79,7 @@
         GCData.DataSource = data
 
         ' show caption breakdown size
-        GVData.BeginUpdate()
+        'GVData.BeginUpdate()
         If CEBreakSize.EditValue = True Then
             'header heigt
             GVData.ColumnPanelRowHeight = 100
@@ -124,24 +127,16 @@
                 Dim col_name As String = GVData.Columns(j).FieldName.ToString
 
                 'check  allow column
-                Dim is_dept As String = ""
-                If id_menu = "1" Then
-                    is_dept = "is_mkt"
-                Else
-                    is_dept = "is_md"
-                End If
                 Dim dtcol_filter As DataRow() = dt.Select("[fieldname]='" + col_name + "' AND [" + is_dept + "]=1 ")
 
                 'bz
                 If col_name.Contains("#bz#") And dtcol_filter.Length > 0 Then
+                    'explodde column
                     Dim col_arr As String() = Split(col_name, "#bz#")
                     Dim col_ttl As String = col_arr(0)
                     Dim col_size As String = "qty" + col_arr(1).ToString
-                    Dim dtsize_filter As DataRow() = dtsize.Select("[col]='" + col_size + "' ")
-                    If dtsize_filter.Length > 0 Then
-                        ' GVData.Columns(col_name).Caption = dtsize_filter(0)("caption").ToString
-                    End If
 
+                    'viisible index
                     If last_ttl <> col_ttl Then
                         If last_ttl <> "" Then
                             gridBandPD.Columns.MoveTo(ix, GVData.Columns(last_ttl))
@@ -149,9 +144,34 @@
                         End If
                         last_ttl = col_ttl
                     End If
-
                     gridBandPD.Columns.Add(GVData.Columns.AddVisible(col_name))
                     gridBandPD.Columns.MoveTo(ix, GVData.Columns(col_name))
+
+                    'caption
+                    Dim dtsize_filter As DataRow() = dtsize.Select("[col]='" + col_size + "' ")
+                    If dtsize_filter.Length > 0 Then
+                        GVData.Columns(col_name).Caption = dtsize_filter(0)("caption").ToString
+                    End If
+                    'display format
+                    GVData.Columns(col_name).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GVData.Columns(col_name).DisplayFormat.FormatString = "{0:N0}"
+                    'summary
+                    GVData.Columns(col_name).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                    GVData.Columns(col_name).SummaryItem.DisplayFormat = "{0:N0}"
+                    'grup summary
+                    Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                    item.FieldName = col_name
+                    item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                    item.DisplayFormat = "{0:n0}"
+                    item.ShowInGroupColumnFooter = GVData.Columns(col_name)
+                    GVData.GroupSummary.Add(item)
+                    'jika 0 divisible
+                    'If GVData.Columns(col_name).SummaryItem.SummaryValue = 0 Then
+                    'GVData.Columns(col_name).Visible = False
+                    'End If
+                    'custom
+                    GVData.Columns(col_name).OptionsColumn.ShowInCustomizationForm = True
+
                     ix += 1
                 End If
             Next
@@ -224,7 +244,7 @@
                 GVData.Columns(col_ttl).OptionsColumn.ShowInCustomizationForm = False
             Next
         End If
-        GVData.EndUpdate()
+        'GVData.EndUpdate()
 
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
