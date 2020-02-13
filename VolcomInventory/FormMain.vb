@@ -6564,7 +6564,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             If FormProduction.XTCTabProduction.SelectedTabPageIndex = 0 Then
                 print(FormProduction.GCProd, "Production Order")
             ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 1 Then
-
+                print(FormProduction.GCDesign, "List Production Demand")
             ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 2 Then
                 print(FormProduction.GCProdWO, "Production Order WO")
             ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 3 Then
