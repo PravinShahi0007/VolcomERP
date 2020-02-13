@@ -150,6 +150,8 @@
 
                 Dim last_ttl As String = ""
                 Dim ix As Integer = 0
+                Dim last_ttl_actual As String = ""
+                Dim ix_actual As Integer = 0
                 For j As Integer = 0 To GVData.Columns.Count - 1
                     Dim col_name As String = GVData.Columns(j).FieldName.ToString
 
@@ -187,10 +189,43 @@
                         End If
 
                         ix += 1
+                    ElseIf col_name.Contains("#abz#") And dtcol_filter.Length > 0 Then
+                        'explodde column
+                        Dim col_arr As String() = Split(col_name, "#abz#")
+                        Dim col_ttl_actual As String = col_arr(0)
+                        Dim col_size As String = "qty" + col_arr(1).ToString
+
+                        'viisible index
+                        If last_ttl_actual <> col_ttl_actual Then
+                            If last_ttl_actual <> "" Then
+                                gridBandActual.Columns.MoveTo(ix_actual, GVData.Columns(last_ttl_actual))
+                                ix_actual += 1
+                            End If
+                            last_ttl_actual = col_ttl_actual
+                        End If
+                        gridBandActual.Columns.Add(GVData.Columns.AddVisible(col_name))
+                        gridBandActual.Columns.MoveTo(ix_actual, GVData.Columns(col_name))
+
+                        'caption
+                        Dim dtsize_filter As DataRow() = dtsize.Select("[col]='" + col_size + "' ")
+                        If dtsize_filter.Length > 0 Then
+                            GVData.Columns(col_name).Caption = dtsize_filter(0)("caption").ToString
+                        End If
+                        'set properti
+                        setPropertiesBZColumn(col_name, GVData.Columns(col_name))
+                        'jika 0 divisible
+                        If GVData.Columns(col_name).SummaryItem.SummaryValue = 0 Then
+                            GVData.Columns(col_name).Visible = False
+                        End If
+
+                        ix_actual += 1
                     End If
                 Next
                 If last_ttl <> "" Then
                     gridBandPD.Columns.MoveTo(ix, GVData.Columns(last_ttl))
+                End If
+                If last_ttl_actual <> "" Then
+                    gridBandActual.Columns.MoveTo(ix_actual, GVData.Columns(last_ttl_actual))
                 End If
             End If
         Else
