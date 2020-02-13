@@ -6869,4 +6869,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Return True
         End If
     End Function
+    '
+    Public Sub onlyPreview(ByRef tool As ReportPrintTool)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.ExportFile, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.SendFile, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.Print, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.PrintDirect, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.Save, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.Open, CommandVisibility.None)
+    End Sub
 End Module

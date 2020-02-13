@@ -4299,7 +4299,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 End If
             End If
         ElseIf formName = "FormProduction" Then
-            'RETURN Mat
+            'FGPO
             If FormProduction.XTCTabProduction.SelectedTabPageIndex = 0 Then 'prod_order
                 If check_edit_report_status(FormProduction.GVProd.GetFocusedRowCellDisplayText("id_report_status"), "22", FormProduction.GVProd.GetFocusedRowCellDisplayText("id_prod_order")) Then
                     confirm = XtraMessageBox.Show("Are you sure want to delete this production order?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)

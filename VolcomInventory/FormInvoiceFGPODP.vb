@@ -52,6 +52,7 @@
         '
         If id_invoice = "-1" Then 'new
             BtnPrint.Visible = False
+            BAttachment.Visible = False
             BtnViewJournal.Visible = False
             BMark.Visible = False
             DEDueDate.Properties.ReadOnly = False
@@ -140,6 +141,7 @@
             End If
         Else
             SLEVatAcc.Properties.ReadOnly = True
+            BAttachment.Visible = True
             BtnPrint.Visible = True
             BtnViewJournal.Visible = True
             BMark.Visible = True
@@ -564,5 +566,17 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
 
     Private Sub BPickDP_Click(sender As Object, e As EventArgs) Handles BPickDP.Click
         FormInvoiceFGPODPPop.ShowDialog()
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_view = is_view
+        If Not id_report_status = "1" Or is_view = "1" Then
+            FormDocumentUpload.is_no_delete = "1"
+        End If
+        FormDocumentUpload.id_report = id_invoice
+        FormDocumentUpload.report_mark_type = "189"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

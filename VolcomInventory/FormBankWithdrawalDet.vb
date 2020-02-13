@@ -47,7 +47,7 @@
                     SLEReportType.EditValue = report_mark_type
                     'load detail
                     For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
-                        'id_report,number,total,balance due
+                        'due
                         Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                         newRow("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
                         newRow("report_mark_type") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "report_mark_type").ToString
@@ -69,6 +69,30 @@
                         newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
                         newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                        If FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total") > 0 Then
+                            'pph
+                            Dim newRow_pph As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                            newRow_pph("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
+                            newRow_pph("report_mark_type") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "report_mark_type").ToString
+                            newRow_pph("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_account").ToString
+                            newRow_pph("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_acc_name").ToString
+                            newRow_pph("acc_description") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_acc_description").ToString
+                            newRow_pph("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                            newRow_pph("id_dc") = "1"
+                            newRow_pph("dc_code") = "D"
+                            newRow_pph("id_comp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_comp_default").ToString
+                            newRow_pph("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
+                            newRow_pph("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
+                            newRow_pph("total_pay") = 0
+                            newRow_pph("kurs") = 0
+                            newRow_pph("id_currency") = "1"
+                            newRow_pph("val_bef_kurs") = 0
+                            newRow_pph("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
+                            newRow_pph("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
+                            newRow_pph("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
+                            newRow_pph("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow_pph)
+                        End If
                     Next
                     '
                     calculate_amount()
