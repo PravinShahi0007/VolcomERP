@@ -14437,6 +14437,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBLineListMKT_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLineListMKT.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormLineList.id_menu = "1"
             FormLineList.show_spesific_col = True
             FormLineList.MdiParent = Me
             FormLineList.Show()
