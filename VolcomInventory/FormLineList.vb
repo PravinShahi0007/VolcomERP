@@ -496,6 +496,7 @@
 
         ' Customize export options 
         CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.AllowMultilineHeaders = True
         Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
         advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
         advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
