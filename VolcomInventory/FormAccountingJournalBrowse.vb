@@ -112,6 +112,7 @@
                 Dim newRow As DataRow = (TryCast(FormAccountingJournalBill.GCJournalDet.DataSource, DataTable)).NewRow()
                 newRow("id_acc") = GVJournalDet.GetRowCellValue(i, "id_acc").ToString()
                 newRow("acc_name") = GVJournalDet.GetRowCellValue(i, "acc_name").ToString()
+                newRow("acc_description") = GVJournalDet.GetRowCellValue(i, "acc_description").ToString
                 newRow("note") = GVJournalDet.GetRowCellValue(i, "note").ToString()
 
 
@@ -128,8 +129,9 @@
 
                 newRow("id_comp") = SLEWHStockSum.EditValue.ToString
                 newRow("report_mark_type") = "36"
-                newRow("id_report") = GVJournalDet.GetRowCellValue(i, "id_acc_trans").ToString()
-                newRow("report_number") = GVJournalDet.GetRowCellValue(i, "acc_trans_number").ToString()
+                newRow("id_report_ref") = GVJournalDet.GetRowCellValue(i, "id_report").ToString()
+                newRow("report_number_ref") = GVJournalDet.GetRowCellValue(i, "report_number").ToString()
+                newRow("report_mark_type_ref") = GVJournalDet.GetRowCellValue(i, "report_mark_type").ToString()
                 newRow("id_acc_src") = GVJournalDet.GetRowCellValue(i, "id_acc_trans_det").ToString()
                 newRow("id_status_open") = 2
 

@@ -37,7 +37,7 @@
         a.acq_cost, IFNULL(apc.cost,0) AS `acq_cost_va`, a.is_non_depresiasi, a.useful_life, 
         IFNULL(a.id_acc_dep,0) AS id_acc_dep, dep.acc_name AS `dep_acc`, dep.acc_description AS `dep_acc_name`,
         rqd.ship_to,
-        IFNULL(a.id_acc_dep_accum,0) AS id_acc_dep_accum,adep.acc_name AS `accum_dep_acc`, adep.acc_description AS `accum_dep_acc_name`, a.accum_dep, a.is_active, IFNULL(a.is_active,0) AS `is_active_v`, IFNULL(a.id_report_status,0) AS `id_report_status`, stt.report_status, a.is_confirm
+        IFNULL(a.id_acc_dep_accum,0) AS id_acc_dep_accum,adep.acc_name AS `accum_dep_acc`, adep.acc_description AS `accum_dep_acc_name`, a.accum_dep, a.is_active, IFNULL(a.is_active,0) AS `is_active_v`, IFNULL(a.id_report_status,0) AS `id_report_status`, stt.report_status, a.is_confirm, a.id_employee_current, e_current.employee_name AS employee_name_current, a.id_departement_current, d_current.departement AS departement_current, a.location_current, a.location_date
         " + col_add + "
         FROM tb_purc_rec_asset a
         INNER JOIN tb_purc_rec_det rd ON rd.id_purc_rec_det = a.id_purc_rec_det
@@ -58,6 +58,8 @@
 	         WHERE a.is_value_added=1 AND a.id_report_status=6 AND a.is_active=1
             GROUP BY a.id_parent
         ) apc ON apc.id_parent = a.id_parent 
+        LEFT JOIN tb_m_employee e_current ON e_current.id_employee = a.id_employee_current
+        LEFT JOIN tb_m_departement d_current ON d_current.id_departement = a.id_departement_current
         " + query_add + "
         WHERE a.id_purc_rec_asset>0 "
         query += condition + " "

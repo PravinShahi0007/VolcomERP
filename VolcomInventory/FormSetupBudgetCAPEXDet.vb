@@ -20,6 +20,8 @@
             BtnSave.Visible = True
             BtnPrint.Visible = False
             BMark.Visible = False
+            '
+            BAttachment.Visible = False
         Else 'view
             Dim query As String = "SELECT pps.*,dep.`departement`,emp.employee_name,sts.report_status FROM `tb_b_expense_propose` pps
 INNER JOIN tb_m_departement dep ON dep.id_departement=pps.id_departement
@@ -49,6 +51,8 @@ WHERE pps.id_b_expense_propose = '" & id_pps & "'"
             BtnSave.Visible = False
             BtnPrint.Visible = True
             BMark.Visible = True
+            '
+            BAttachment.Visible = True
         End If
         '
         load_before_det()
@@ -261,6 +265,8 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
                 'submit_who_prepared("208", id_pps, id_user)
                 infoCustom("Budget proposed")
                 '
+                load_form()
+                '
                 FormSetupBudgetCAPEX.XTCSampleBudget.SelectedTabPageIndex = 1
                 FormSetupBudgetCAPEX.DEStart.EditValue = Now
                 FormSetupBudgetCAPEX.DEUntil.EditValue = Now
@@ -288,14 +294,18 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
     End Sub
 
     Private Sub GVAfter_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVAfter.RowStyle
-        If Not GVAfter.GetRowCellValue(e.RowHandle, "value_before") = GVAfter.GetRowCellValue(e.RowHandle, "value_after") Then
-            e.Appearance.BackColor = Color.Honeydew
-            e.Appearance.BackColor2 = Color.Honeydew
-            e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Bold)
-        Else
-            e.Appearance.BackColor = Color.White
-            e.Appearance.BackColor2 = Color.White
-            e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Regular)
-        End If
+        Try
+            If Not GVAfter.GetRowCellValue(e.RowHandle, "value_before") = GVAfter.GetRowCellValue(e.RowHandle, "value_after") Then
+                e.Appearance.BackColor = Color.Honeydew
+                e.Appearance.BackColor2 = Color.Honeydew
+                e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Bold)
+            Else
+                e.Appearance.BackColor = Color.White
+                e.Appearance.BackColor2 = Color.White
+                e.Appearance.Font = New Font(GVAfter.Appearance.Row.Font, FontStyle.Regular)
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

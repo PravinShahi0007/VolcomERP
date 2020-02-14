@@ -240,6 +240,9 @@
         ElseIf report_mark_type = "162" Then
             'Rec Payment
             FormBankDepositDet.Close()
+        ElseIf report_mark_type = "237" Then
+            'Tabungan Missing
+            FormPaymentMissingDet.Close()
         ElseIf report_mark_type = "167" Then
             'Cash Advance
             FormCashAdvanceDet.Close()
@@ -273,6 +276,9 @@
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             FormFGProposePriceRev.Close()
+        ElseIf report_mark_type = "189" Then
+            'Bukti Pembelian
+            FormInvoiceFGPODP.Close()
         ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
             'propose work order MTC/IT
             FormWorkOrderDet.Close()
@@ -332,6 +338,9 @@
         ElseIf report_mark_type = "234" Then
             'follow up ar
             FormFollowUpARHistory.Close()
+        ElseIf report_mark_type = "236" Then
+            'UNIFORM CREDIT NOTE
+            FormEmpUniCreditNoteDet.Close()
         End If
     End Sub
     Sub show()
@@ -983,6 +992,11 @@ GROUP BY rec.`id_prod_order`"
             FormBankDepositDet.id_deposit = id_report
             FormBankDepositDet.is_view = "1"
             FormBankDepositDet.ShowDialog()
+        ElseIf report_mark_type = "237" Then
+            'Tabungan Missing
+            FormPaymentMissingDet.id_missing_payment = id_report
+            FormPaymentMissingDet.is_view = "1"
+            FormPaymentMissingDet.ShowDialog()
         ElseIf report_mark_type = "164" Then
             'propose leave
             FormEmpLeaveDet.id_emp_leave = id_report
@@ -1087,9 +1101,15 @@ GROUP BY rec.`id_prod_order`"
             FormFGProposePriceRev.is_view = "1"
             FormFGProposePriceRev.id = id_report
             FormFGProposePriceRev.ShowDialog()
+        ElseIf report_mark_type = "189" Then
+            'Bukti Pembelian
+            FormInvoiceFGPODP.id_invoice = id_report
+            FormInvoiceFGPODP.is_view = "1"
+
+            FormInvoiceFGPODP.ShowDialog()
         ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
             'work order MTC/IT
-            FormWorkOrderDet.is_view = " Then1"
+            FormWorkOrderDet.is_view = "1"
             FormWorkOrderDet.id_wo = id_report
             FormWorkOrderDet.ShowDialog()
         ElseIf report_mark_type = "192" Then
@@ -1171,6 +1191,11 @@ GROUP BY rec.`id_prod_order`"
             FormFollowUpARHistory.id_follow_up_recap = id_report
             FormFollowUpARHistory.is_view = "1"
             FormFollowUpARHistory.ShowDialog()
+        ElseIf report_mark_type = "236" Then
+            'UNIFORM CREDIT NOTE
+            FormEmpUniCreditNoteDet.id_emp_uni_ex = id_report
+            FormEmpUniCreditNoteDet.is_view = "1"
+            FormEmpUniCreditNoteDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1837,7 +1862,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_asset_rec"
             field_number = "asset_rec_no"
             field_date = "asset_rec_date"
-        ElseIf report_mark_type = "132" Then
+        ElseIf report_mark_type = "132" Or report_mark_type = "236" Then
             'uniform expense
             table_name = "tb_emp_uni_ex"
             field_id = "id_emp_uni_ex"
@@ -1969,6 +1994,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_rec_payment"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "237" Then
+            'Tabungan Missing
+            table_name = "tb_missing_payment"
+            field_id = "id_missing_payment"
+            field_number = "number"
+            field_date = "date_created"
         ElseIf report_mark_type = "167" Then
             'item del
             table_name = "tb_cash_advance"
@@ -2010,6 +2041,12 @@ GROUP BY rec.`id_prod_order`"
             table_name = "tb_fg_propose_price_rev"
             field_id = "id_fg_propose_price_rev"
             field_number = "rev_count"
+            field_date = "created_date"
+        ElseIf report_mark_type = "189" Then
+            'bukti pembelian
+            table_name = "tb_pn_fgpo"
+            field_id = "id_pn_fgpo"
+            field_number = "number"
             field_date = "created_date"
         ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
             'work order MTC/IT
@@ -2721,7 +2758,7 @@ LEFT JOIN (
 LEFT JOIN (
 	SELECT id_prod_order FROM tb_prod_order_rec WHERE id_report_status!=5
 )rec ON rec.id_prod_order=det.`id_prod_order`
-WHERE tb.id_report_status='6' AND IF(ISNULL(pp.id_design),2,1)=2 AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
+WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If

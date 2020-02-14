@@ -29,6 +29,13 @@ Module Common
         emp_image_path = get_setup_field("pic_path_emp") & "\"
     End Sub
 
+    Sub set_min_date_reference(ByRef date_edit As DateEdit)
+        Dim q As String = "SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) AS min_date FROM `tb_closing_log` 
+WHERE note='Closing End'"
+        Dim min_date As Date = Date.Parse(execute_query(q, 0, True, "", "", "", "").ToString)
+        date_edit.Properties.MinValue = min_date
+    End Sub
+
     '============ = OPT CODE HEAD ======================================
     Function get_setup_field(ByVal field As String)
         'opt as var choose field
@@ -727,6 +734,8 @@ Module Common
         ElseIf opt = "39" Then
             header_number_x = combine_header_number(get_opt_sales_field("budget_expense_head"), Integer.Parse(get_opt_sales_field("budget_expense_inc")), Integer.Parse(get_opt_sales_field("budget_expense_digit")))
             increase_inc_sales("39")
+        ElseIf opt = "40" Then
+            header_number_x = combine_header_number(get_opt_sales_field("uni_ex_cn_code_head"), Integer.Parse(get_opt_sales_field("uni_ex_cn_code_inc")), Integer.Parse(get_opt_sales_field("uni_ex_cn_code_digit")))
         End If
         Return header_number_x
     End Function
@@ -880,6 +889,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "39" Then
             query = "UPDATE tb_opt_sales SET budget_expense_inc  = (tb_opt_sales.budget_expense_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "40" Then
+            query = "UPDATE tb_opt_sales SET uni_ex_cn_code_inc  = (tb_opt_sales.uni_ex_cn_code_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
@@ -2115,6 +2127,29 @@ Module Common
         componentLink.CreateDocument()
         componentLink.ShowPreview()
     End Sub
+
+    Sub print_treelist(ByVal treelist As DevExpress.XtraTreeList.TreeList, ByVal title_here As String)
+        title_print = ""
+        title_print = title_here
+        Dim componentLink As New PrintableComponentLink(New PrintingSystem())
+        componentLink.Component = treelist
+        componentLink.Landscape = True
+        AddHandler componentLink.CreateMarginalHeaderArea, AddressOf CreateMarginalHeaderArea
+        AddHandler componentLink.CreateReportHeaderArea, AddressOf CreateReportHeaderArea
+        Dim phf As PageHeaderFooter = TryCast(componentLink.PageHeaderFooter, PageHeaderFooter)
+
+        ' Clear the PageHeaderFooter's contents.
+        phf.Header.Content.Clear()
+
+        ' Add custom information to the link's header.
+        phf.Footer.Content.AddRange(New String() _
+            {"Printed By: " + name_user + "", "", "Date: [Date Printed]"})
+        phf.Footer.LineAlignment = BrickAlignment.Near
+
+        componentLink.CreateDocument()
+        componentLink.ShowPreview()
+    End Sub
+
     Sub print_no_footer(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
         title_print = ""
         title_print = title_here
@@ -5199,8 +5234,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
     Function getQueryVendorSimple() As String
         'no all vendor
         Dim query As String = ""
-        Dim id_comp_cat_store As String = execute_query("SELECT id_comp_cat_vendor FROM tb_opt", 0, True, "", "", "", "")
-        query += "SELECT a.id_comp, a.comp_number, a.comp_name,a.address_primary, CONCAT_WS(' - ', a.comp_number, a.comp_name) AS comp_name_label FROM tb_m_comp a WHERE a.id_comp_cat='" + id_comp_cat_store + "' "
+        query += "SELECT a.id_comp, a.comp_number, a.comp_name,a.address_primary, CONCAT_WS(' - ', a.comp_number, a.comp_name) AS comp_name_label FROM tb_m_comp a WHERE a.id_comp_cat='1' OR a.id_comp_cat='8' "
         query += "ORDER BY comp_number ASC "
         Return query
     End Function
@@ -6834,4 +6868,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Return True
         End If
     End Function
+    '
+    Public Sub onlyPreview(ByRef tool As ReportPrintTool)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.ExportFile, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.SendFile, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.Print, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.PrintDirect, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.Save, CommandVisibility.None)
+        tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.Open, CommandVisibility.None)
+    End Sub
 End Module

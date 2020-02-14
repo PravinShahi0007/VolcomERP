@@ -94,7 +94,7 @@
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
 ,po.close_rec_reason,rts.report_status
 ,IFNULL(payment.value,0) AS val_pay
-,IF(po.is_close_pay=1,'Closed',IF(DATE(NOW())>po.pay_due_date,'Overdue','Open')) as pay_status
+,IF(po.is_close_pay=1,'Closed',IF(DATE(NOW())>po.pay_due_date,'Overdue','Open')) as pay_status, po.is_close_rec, po.id_expense_type, po.id_report_status
 FROM tb_purc_order po
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
@@ -453,5 +453,88 @@ GROUP BY pod.id_purc_order_det"
             stopCustom("Pilih item terlebih dahulu, hanya status receiving 'Waiting' yang akan diproses.")
         End If
         GVPOItem.ActiveFilterString = ""
+    End Sub
+
+    Private Sub CloseReceivingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseReceivingToolStripMenuItem.Click
+        Dim selected_id As String = GVPO.GetFocusedRowCellValue("id_purc_order").ToString
+
+        Dim query As String = "SELECT IFNULL(SUM(IF(id_report_status NOT IN (5, 6), 1, 0)), 0) AS report_0, IFNULL(SUM(IF(id_report_status = 6, 1, 0)), 0) AS report_6, IFNULL(SUM(IF(id_report_status = 5, 1, 0)), 0) AS report_5 FROM tb_purc_rec WHERE id_purc_order = " + selected_id
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        If Not data.Rows(0)("report_0").ToString = "0" Then
+            stopCustom("Please complete all receiving.")
+        Else
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close receiving ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_pay As String = If(data.Rows(0)("report_6").ToString = "0", ", is_close_pay = 1", "")
+
+                Dim query_update As String = "UPDATE tb_purc_order SET is_close_rec = 1" + query_pay + " WHERE id_purc_order = " + selected_id
+
+                execute_non_query(query_update, True, "", "", "", "")
+
+                'reverse budget
+                Dim query_budget As String = ""
+
+                If GVPO.GetFocusedRowCellValue("id_expense_type").ToString = "1" Then
+                    'opex
+                    query_budget = "
+                        INSERT INTO tb_b_expense_opex_trans (id_b_expense_opex, id_departement, date_trans, `value`, id_item, id_report, report_mark_type, note)
+                        SELECT *
+                        FROM (
+	                        SELECT p_det.id_b_expense_opex, p.id_departement, NOW() AS date_trans, (IFNULL(r.qty, 0) * o_det.value) - (o_det.qty * o_det.value) AS `value`, p_det.id_item, o_det.id_purc_order AS id_report, 202 AS report_mark_type, 'Close Receiving Reverse' AS note
+	                        FROM tb_purc_order_det AS o_det
+	                        LEFT JOIN tb_purc_req_det AS p_det ON o_det.id_purc_req_det = p_det.id_purc_req_det
+	                        LEFT JOIN tb_purc_req AS p ON p_det.id_purc_req = p.id_purc_req
+	                        LEFT JOIN (
+		                        SELECT r_det.id_purc_order_det, r_det.qty
+		                        FROM tb_purc_rec_det AS r_det
+		                        LEFT JOIN tb_purc_rec AS r ON r_det.id_purc_rec = r.id_purc_rec
+		                        WHERE r.id_report_status = 6
+	                        ) AS r ON o_det.id_purc_order_det = r.id_purc_order_det
+	                        WHERE o_det.id_purc_order = " + selected_id + "
+                        ) AS tb
+                        WHERE `value` < 0
+                    "
+                Else
+                    'capex
+                    query_budget = "
+                        INSERT INTO tb_b_expense_trans (id_b_expense, id_departement, date_trans, `value`, id_item, id_report, report_mark_type, note)
+                        SELECT *
+                        FROM (
+	                        SELECT p_det.id_b_expense, p.id_departement, NOW() AS date_trans, (IFNULL(r.qty, 0) * o_det.value) - (o_det.qty * o_det.value) AS `value`, p_det.id_item, o_det.id_purc_order AS id_report, 139 AS report_mark_type, 'Close Receiving Reverse' AS note
+	                        FROM tb_purc_order_det AS o_det
+	                        LEFT JOIN tb_purc_req_det AS p_det ON o_det.id_purc_req_det = p_det.id_purc_req_det
+	                        LEFT JOIN tb_purc_req AS p ON p_det.id_purc_req = p.id_purc_req
+	                        LEFT JOIN (
+		                        SELECT r_det.id_purc_order_det, r_det.qty
+		                        FROM tb_purc_rec_det AS r_det
+		                        LEFT JOIN tb_purc_rec AS r ON r_det.id_purc_rec = r.id_purc_rec
+		                        WHERE r.id_report_status = 6
+	                        ) AS r ON o_det.id_purc_order_det = r.id_purc_order_det
+	                        WHERE o_det.id_purc_order = " + selected_id + "
+                        ) AS tb
+                        WHERE `value` < 0
+                    "
+                End If
+
+                execute_non_query(query_budget, True, "", "", "", "")
+
+                load_po()
+
+                GVPO.FocusedRowHandle = find_row(GVPO, "id_purc_order", selected_id)
+            End If
+        End If
+    End Sub
+
+    Private Sub GVPO_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVPO.PopupMenuShowing
+        If GVPO.GetFocusedRowCellValue("id_report_status").ToString = "6" And GVPO.GetFocusedRowCellValue("is_close_rec").ToString = "2" Then
+            CloseReceivingToolStripMenuItem.Visible = True
+        Else
+            CloseReceivingToolStripMenuItem.Visible = False
+        End If
     End Sub
 End Class

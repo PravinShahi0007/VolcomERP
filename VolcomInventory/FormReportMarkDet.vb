@@ -193,7 +193,7 @@
             'cancel dan email nolak
             Dim report_mark_type As String = FormReportMark.GVMark.GetFocusedRowCellDisplayText("report_mark_type").ToString
             Dim id_report As String = FormReportMark.GVMark.GetFocusedRowCellDisplayText("id_report").ToString
-            If report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Or report_mark_type = "108" Or report_mark_type = "109" Or report_mark_type = "110" Or report_mark_type = "124" Then
+            If report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Or report_mark_type = "108" Or report_mark_type = "109" Or report_mark_type = "110" Or report_mark_type = "124" Or report_mark_type = "164" Or report_mark_type = "165" Then
                 'set cancel
                 FormReportMark.report_mark_type = report_mark_type
                 FormReportMark.id_report = id_report
@@ -219,6 +219,10 @@
                 'cancell asset
                 Dim a As New ClassPurcAsset()
                 a.cancellPropose(id_report, FormPurcAssetDet.id_purc_rec)
+            ElseIf report_mark_type = "100" Then
+                'propose schedule
+                Dim qupd As String = "UPDATE tb_emp_assign_sch SET id_report_status=5 WHERE id_assign_sch=" + id_report + " "
+                execute_non_query(qupd, True, "", "", "", "")
             End If
             FormReportMark.sendNotif("2")
             close_form(FormReportMark.report_mark_type)

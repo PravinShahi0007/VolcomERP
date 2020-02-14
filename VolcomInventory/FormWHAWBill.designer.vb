@@ -26,14 +26,17 @@ Partial Class FormWHAWBill
         Me.GBNo = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn42 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICELock = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandDO = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnDONo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnDOCombineNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn35 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnReff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAmo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCargoCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDestination = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -82,7 +85,6 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnRemarkDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BAWBRec = New DevExpress.XtraEditors.SimpleButton()
@@ -234,9 +236,9 @@ Partial Class FormWHAWBill
         'GVAWBill
         '
         Me.GVAWBill.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandAWB, Me.gridBandCalcDetail, Me.gridBandAwbDetail})
-        Me.GVAWBill.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnDONo, Me.BandedGridColumnPBS, Me.BandedGridColumnQty, Me.BandedGridColumnReff, Me.GridColumnAccountCode, Me.BandedGridColumnZone, Me.BandedGridColumnCargoCode, Me.BandedGridColumnDestination, Me.GridColumnStoreName, Me.GridColumnID, Me.GridColumnNumber, Me.BandedGridColumnLaedTime, Me.GridColumnCargo, Me.GridColumnWeight, Me.GridColumnCargoRate, Me.GridColumnTotalAmount, Me.GridColumndate, Me.GridColumnAWBNumber, Me.BandedGridColumnAWBInvNo, Me.BandedGridColumnAirportWeight, Me.BandedGridColumnAirportAmount, Me.BandedGridColumnPickUpDate, Me.BandedGridColumnRecByStoreDate, Me.BandedGridColumnRecByStorePerson, Me.BandedGridColumnDiffweight, Me.BandedGridColumnDiffAmount, Me.BandedGridColumnETA, Me.BandedGridColumnDelTime, Me.BandedGridColumnDiff, Me.BandedGridColumnRemarkDiff, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumnVolume, Me.BandedGridColumnFWeight, Me.BandedGridColumn35, Me.BandedGridColumn36, Me.BandedGridColumn38, Me.BandedGridColumn39, Me.BandedGridColumn40, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn42})
+        Me.GVAWBill.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn39, Me.BandedGridColumnDONo, Me.BandedGridColumnDOCombineNo, Me.BandedGridColumnPBS, Me.BandedGridColumnQty, Me.BandedGridColumnReff, Me.GridColumnAccountCode, Me.BandedGridColumnZone, Me.BandedGridColumnCargoCode, Me.BandedGridColumnDestination, Me.GridColumnStoreName, Me.GridColumnID, Me.GridColumnNumber, Me.BandedGridColumnLaedTime, Me.GridColumnCargo, Me.GridColumnWeight, Me.GridColumnCargoRate, Me.GridColumnTotalAmount, Me.GridColumndate, Me.GridColumnAWBNumber, Me.BandedGridColumnAWBInvNo, Me.BandedGridColumnAirportWeight, Me.BandedGridColumnAirportAmount, Me.BandedGridColumnPickUpDate, Me.BandedGridColumnRecByStoreDate, Me.BandedGridColumnRecByStorePerson, Me.BandedGridColumnDiffweight, Me.BandedGridColumnDiffAmount, Me.BandedGridColumnETA, Me.BandedGridColumnDelTime, Me.BandedGridColumnDiff, Me.BandedGridColumnRemarkDiff, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumnVolume, Me.BandedGridColumnFWeight, Me.BandedGridColumn35, Me.BandedGridColumn36, Me.BandedGridColumn38, Me.BandedGridColumn40, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn42, Me.BandedGridColumnAmo})
         Me.GVAWBill.GridControl = Me.GCAWBill
-        Me.GVAWBill.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.BandedGridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "weight", Me.GridColumnWeight, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "c_tot_price", Me.GridColumnTotalAmount, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "a_weight", Me.BandedGridColumnAirportWeight, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "a_tot_price", Me.BandedGridColumnAirportAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "weight_diff", Me.BandedGridColumnDiffweight, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "amount_diff", Me.BandedGridColumnDiffAmount, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "volume", Me.BandedGridColumnVolume, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "c_weight", Me.BandedGridColumnFWeight, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "del_time", Me.BandedGridColumnDelTime, "{0:N2}")})
+        Me.GVAWBill.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.BandedGridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "weight", Me.GridColumnWeight, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "c_tot_price", Me.GridColumnTotalAmount, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "a_weight", Me.BandedGridColumnAirportWeight, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "a_tot_price", Me.BandedGridColumnAirportAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "weight_diff", Me.BandedGridColumnDiffweight, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "amount_diff", Me.BandedGridColumnDiffAmount, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "volume", Me.BandedGridColumnVolume, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "c_weight", Me.BandedGridColumnFWeight, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "del_time", Me.BandedGridColumnDelTime, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.BandedGridColumnAmo, "{0:N0}")})
         Me.GVAWBill.Name = "GVAWBill"
         Me.GVAWBill.OptionsView.AllowCellMerge = True
         Me.GVAWBill.OptionsView.ColumnAutoWidth = False
@@ -252,7 +254,7 @@ Partial Class FormWHAWBill
         Me.GridBandAWB.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBNo, Me.gridBandDO, Me.gridBand1, Me.GBResult})
         Me.GridBandAWB.Name = "GridBandAWB"
         Me.GridBandAWB.VisibleIndex = 0
-        Me.GridBandAWB.Width = 1328
+        Me.GridBandAWB.Width = 1528
         '
         'GBNo
         '
@@ -260,11 +262,12 @@ Partial Class FormWHAWBill
         Me.GBNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GBNo.Caption = "*"
         Me.GBNo.Columns.Add(Me.BandedGridColumn42)
+        Me.GBNo.Columns.Add(Me.BandedGridColumn39)
         Me.GBNo.Columns.Add(Me.BandedGridColumn29)
         Me.GBNo.Columns.Add(Me.GridColumnNumber)
         Me.GBNo.Name = "GBNo"
         Me.GBNo.VisibleIndex = 0
-        Me.GBNo.Width = 147
+        Me.GBNo.Width = 197
         '
         'BandedGridColumn42
         '
@@ -283,6 +286,19 @@ Partial Class FormWHAWBill
         Me.RICECheck.Name = "RICECheck"
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
+        '
+        'BandedGridColumn39
+        '
+        Me.BandedGridColumn39.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn39.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn39.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn39.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn39.Caption = "No"
+        Me.BandedGridColumn39.FieldName = "no"
+        Me.BandedGridColumn39.Name = "BandedGridColumn39"
+        Me.BandedGridColumn39.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn39.Visible = True
+        Me.BandedGridColumn39.Width = 50
         '
         'BandedGridColumn29
         '
@@ -319,12 +335,14 @@ Partial Class FormWHAWBill
         '
         Me.gridBandDO.Caption = "Delivery Order"
         Me.gridBandDO.Columns.Add(Me.BandedGridColumnDONo)
+        Me.gridBandDO.Columns.Add(Me.BandedGridColumnDOCombineNo)
         Me.gridBandDO.Columns.Add(Me.BandedGridColumn35)
         Me.gridBandDO.Columns.Add(Me.BandedGridColumnReff)
         Me.gridBandDO.Columns.Add(Me.BandedGridColumnQty)
+        Me.gridBandDO.Columns.Add(Me.BandedGridColumnAmo)
         Me.gridBandDO.Name = "gridBandDO"
         Me.gridBandDO.VisibleIndex = 1
-        Me.gridBandDO.Width = 133
+        Me.gridBandDO.Width = 283
         '
         'BandedGridColumnDONo
         '
@@ -334,6 +352,13 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDONo.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDONo.Visible = True
         Me.BandedGridColumnDONo.Width = 31
+        '
+        'BandedGridColumnDOCombineNo
+        '
+        Me.BandedGridColumnDOCombineNo.Caption = "DO Combine#"
+        Me.BandedGridColumnDOCombineNo.FieldName = "do_no_combine"
+        Me.BandedGridColumnDOCombineNo.Name = "BandedGridColumnDOCombineNo"
+        Me.BandedGridColumnDOCombineNo.Visible = True
         '
         'BandedGridColumn35
         '
@@ -365,6 +390,16 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnQty.Tag = ""
         Me.BandedGridColumnQty.Visible = True
         Me.BandedGridColumnQty.Width = 30
+        '
+        'BandedGridColumnAmo
+        '
+        Me.BandedGridColumnAmo.Caption = "Amount"
+        Me.BandedGridColumnAmo.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnAmo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAmo.FieldName = "amount"
+        Me.BandedGridColumnAmo.Name = "BandedGridColumnAmo"
+        Me.BandedGridColumnAmo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.BandedGridColumnAmo.Visible = True
         '
         'gridBand1
         '
@@ -881,17 +916,6 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn38.Caption = "REMARK"
         Me.BandedGridColumn38.FieldName = "rmk"
         Me.BandedGridColumn38.Name = "BandedGridColumn38"
-        '
-        'BandedGridColumn39
-        '
-        Me.BandedGridColumn39.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn39.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn39.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn39.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn39.Caption = "NO"
-        Me.BandedGridColumn39.FieldName = "no"
-        Me.BandedGridColumn39.Name = "BandedGridColumn39"
-        Me.BandedGridColumn39.Width = 50
         '
         'BandedGridColumn28
         '
@@ -2042,21 +2066,6 @@ Partial Class FormWHAWBill
     Friend WithEvents BLock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn42 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridBandAWB As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBNo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandDO As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBResult As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandCalcDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBCalcMinWeight As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBCalcCWeight As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBCalcRate As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBCalcAmount As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBCalcLeadTime As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandAwbDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandInvoice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gbAirport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gbETALT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BReportInvoice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BImportAwb As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn43 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -2083,4 +2092,21 @@ Partial Class FormWHAWBill
     Friend WithEvents GridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnDOCombineNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBandAWB As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBNo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandDO As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnAmo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBResult As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandCalcDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBCalcMinWeight As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBCalcCWeight As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBCalcRate As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBCalcAmount As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBCalcLeadTime As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandAwbDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandInvoice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gbAirport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gbETALT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

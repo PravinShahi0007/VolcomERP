@@ -20,7 +20,7 @@ Partial Class FormReportBalanceSheet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -32,10 +32,12 @@ Partial Class FormReportBalanceSheet
         Me.TCLAccount = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCLDescription = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.treeListBand4 = New DevExpress.XtraTreeList.Columns.TreeListBand()
-        Me.TCLCreadit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.TCLDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLPrevMonth = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLThisMonth = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCIDAcc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCIDAccParent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCLCredit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TCAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.treeListBand1 = New DevExpress.XtraTreeList.Columns.TreeListBand()
         Me.treeListBand2 = New DevExpress.XtraTreeList.Columns.TreeListBand()
@@ -55,36 +57,22 @@ Partial Class FormReportBalanceSheet
         Me.XTCBS = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBSLedger = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPBSReport = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPProfitAndLoss = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTCProfitAndLoss = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPPATreeView = New DevExpress.XtraTab.XtraTabPage()
-        Me.TLProfitAndLoss = New DevExpress.XtraTreeList.TreeList()
-        Me.treeListBand7 = New DevExpress.XtraTreeList.Columns.TreeListBand()
-        Me.TCPLAccount = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.TCPLDescription = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.treeListBand8 = New DevExpress.XtraTreeList.Columns.TreeListBand()
-        Me.TCPLPrevMonth = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.TCPLThisMonth = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.TCPLIdAcc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.TCPLIdAccParent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.TCPLIdAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn()
-        Me.XTPPLReportView = New DevExpress.XtraTab.XtraTabPage()
         Me.SplitterBS = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCAktiva = New DevExpress.XtraGrid.GridControl()
         Me.GVAktiva = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnThisMonth = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnPrevMonth = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnPrevMonth = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnThisMonth = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCPasiva = New DevExpress.XtraGrid.GridControl()
         Me.GVPasiva = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -98,10 +86,24 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.XTPProfitAndLoss = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCProfitAndLoss = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPPATreeView = New DevExpress.XtraTab.XtraTabPage()
+        Me.TLProfitAndLoss = New DevExpress.XtraTreeList.TreeList()
+        Me.treeListBand7 = New DevExpress.XtraTreeList.Columns.TreeListBand()
+        Me.TCPLAccount = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCPLDescription = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.treeListBand8 = New DevExpress.XtraTreeList.Columns.TreeListBand()
+        Me.TCPLPrevMonth = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCPLThisMonth = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCPLIdAcc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCPLIdAccParent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCPLDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCPLCredit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TCPLIdAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.XTPPLReportView = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProfitAndLoss = New DevExpress.XtraGrid.GridControl()
+        Me.GVProfitAndLoss = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -109,24 +111,17 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn25 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.BandedGridView2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn33 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,37 +138,29 @@ Partial Class FormReportBalanceSheet
         Me.XTCBS.SuspendLayout()
         Me.XTPBSLedger.SuspendLayout()
         Me.XTPBSReport.SuspendLayout()
+        CType(Me.SplitterBS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitterBS.SuspendLayout()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
+        CType(Me.GCAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.GCPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPProfitAndLoss.SuspendLayout()
         CType(Me.XTCProfitAndLoss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCProfitAndLoss.SuspendLayout()
         Me.XTPPATreeView.SuspendLayout()
         CType(Me.TLProfitAndLoss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPLReportView.SuspendLayout()
-        CType(Me.SplitterBS, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitterBS.SuspendLayout()
-        CType(Me.GCAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl1.SuspendLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
-        CType(Me.GCPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainerControl1.SuspendLayout()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl3.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl4.SuspendLayout()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BandedGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCProfitAndLoss, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProfitAndLoss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Controls.Add(Me.SLEUnit)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.BView)
@@ -185,13 +172,13 @@ Partial Class FormReportBalanceSheet
         Me.PanelControl1.Size = New System.Drawing.Size(900, 48)
         Me.PanelControl1.TabIndex = 0
         '
-        'SimpleButton1
+        'BPrint
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(500, 14)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(50, 23)
-        Me.SimpleButton1.TabIndex = 6
-        Me.SimpleButton1.Text = "print"
+        Me.BPrint.Location = New System.Drawing.Point(500, 14)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(50, 23)
+        Me.BPrint.TabIndex = 6
+        Me.BPrint.Text = "print"
         '
         'SLEUnit
         '
@@ -204,6 +191,7 @@ Partial Class FormReportBalanceSheet
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn2})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -248,7 +236,7 @@ Partial Class FormReportBalanceSheet
         'TLBalanceSheet
         '
         Me.TLBalanceSheet.Bands.AddRange(New DevExpress.XtraTreeList.Columns.TreeListBand() {Me.treeListBand3, Me.treeListBand4})
-        Me.TLBalanceSheet.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.TCIDAcc, Me.TCIDAccParent, Me.TCLAccount, Me.TCLDescription, Me.TCLCreadit, Me.TCLDebit, Me.TCAllChild})
+        Me.TLBalanceSheet.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.TCIDAcc, Me.TCIDAccParent, Me.TCLAccount, Me.TCLDescription, Me.TCLDebit, Me.TCLCredit, Me.TCAllChild, Me.TCLPrevMonth, Me.TCLThisMonth})
         Me.TLBalanceSheet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TLBalanceSheet.Location = New System.Drawing.Point(0, 0)
         Me.TLBalanceSheet.Name = "TLBalanceSheet"
@@ -290,32 +278,32 @@ Partial Class FormReportBalanceSheet
         'treeListBand4
         '
         Me.treeListBand4.Caption = "Amount"
-        Me.treeListBand4.Columns.Add(Me.TCLCreadit)
-        Me.treeListBand4.Columns.Add(Me.TCLDebit)
+        Me.treeListBand4.Columns.Add(Me.TCLPrevMonth)
+        Me.treeListBand4.Columns.Add(Me.TCLThisMonth)
         Me.treeListBand4.Name = "treeListBand4"
         Me.treeListBand4.Width = 453
         '
-        'TCLCreadit
+        'TCLPrevMonth
         '
-        Me.TCLCreadit.Caption = "This Month"
-        Me.TCLCreadit.FieldName = "credit"
-        Me.TCLCreadit.Format.FormatString = "N2"
-        Me.TCLCreadit.Format.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TCLCreadit.Name = "TCLCreadit"
-        Me.TCLCreadit.Visible = True
-        Me.TCLCreadit.VisibleIndex = 2
-        Me.TCLCreadit.Width = 226
+        Me.TCLPrevMonth.Caption = "Previous Month"
+        Me.TCLPrevMonth.FieldName = "prev_month"
+        Me.TCLPrevMonth.Format.FormatString = "N2"
+        Me.TCLPrevMonth.Format.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TCLPrevMonth.Name = "TCLPrevMonth"
+        Me.TCLPrevMonth.Visible = True
+        Me.TCLPrevMonth.VisibleIndex = 2
+        Me.TCLPrevMonth.Width = 227
         '
-        'TCLDebit
+        'TCLThisMonth
         '
-        Me.TCLDebit.Caption = "Previous Month"
-        Me.TCLDebit.FieldName = "debit"
-        Me.TCLDebit.Format.FormatString = "N2"
-        Me.TCLDebit.Format.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TCLDebit.Name = "TCLDebit"
-        Me.TCLDebit.Visible = True
-        Me.TCLDebit.VisibleIndex = 3
-        Me.TCLDebit.Width = 227
+        Me.TCLThisMonth.Caption = "This Month"
+        Me.TCLThisMonth.FieldName = "this_month"
+        Me.TCLThisMonth.Format.FormatString = "N2"
+        Me.TCLThisMonth.Format.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TCLThisMonth.Name = "TCLThisMonth"
+        Me.TCLThisMonth.Visible = True
+        Me.TCLThisMonth.VisibleIndex = 3
+        Me.TCLThisMonth.Width = 226
         '
         'TCIDAcc
         '
@@ -328,6 +316,18 @@ Partial Class FormReportBalanceSheet
         Me.TCIDAccParent.Caption = "ID Acc Parent"
         Me.TCIDAccParent.FieldName = "id_acc_parent"
         Me.TCIDAccParent.Name = "TCIDAccParent"
+        '
+        'TCLDebit
+        '
+        Me.TCLDebit.Caption = "Debit"
+        Me.TCLDebit.FieldName = "debit"
+        Me.TCLDebit.Name = "TCLDebit"
+        '
+        'TCLCredit
+        '
+        Me.TCLCredit.Caption = "Credit"
+        Me.TCLCredit.FieldName = "credit"
+        Me.TCLCredit.Name = "TCLCredit"
         '
         'TCAllChild
         '
@@ -481,118 +481,6 @@ Partial Class FormReportBalanceSheet
         Me.XTPBSReport.Size = New System.Drawing.Size(888, 416)
         Me.XTPBSReport.Text = "Report View"
         '
-        'XTPProfitAndLoss
-        '
-        Me.XTPProfitAndLoss.Controls.Add(Me.XTCProfitAndLoss)
-        Me.XTPProfitAndLoss.Name = "XTPProfitAndLoss"
-        Me.XTPProfitAndLoss.Size = New System.Drawing.Size(894, 444)
-        Me.XTPProfitAndLoss.Text = "Profit And Loss"
-        '
-        'XTCProfitAndLoss
-        '
-        Me.XTCProfitAndLoss.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCProfitAndLoss.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCProfitAndLoss.Location = New System.Drawing.Point(0, 0)
-        Me.XTCProfitAndLoss.Name = "XTCProfitAndLoss"
-        Me.XTCProfitAndLoss.SelectedTabPage = Me.XTPPATreeView
-        Me.XTCProfitAndLoss.Size = New System.Drawing.Size(894, 444)
-        Me.XTCProfitAndLoss.TabIndex = 0
-        Me.XTCProfitAndLoss.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPATreeView, Me.XTPPLReportView})
-        '
-        'XTPPATreeView
-        '
-        Me.XTPPATreeView.Controls.Add(Me.TLProfitAndLoss)
-        Me.XTPPATreeView.Name = "XTPPATreeView"
-        Me.XTPPATreeView.Size = New System.Drawing.Size(888, 416)
-        Me.XTPPATreeView.Text = "Tree View"
-        '
-        'TLProfitAndLoss
-        '
-        Me.TLProfitAndLoss.Bands.AddRange(New DevExpress.XtraTreeList.Columns.TreeListBand() {Me.treeListBand7, Me.treeListBand8})
-        Me.TLProfitAndLoss.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.TCPLIdAcc, Me.TCPLIdAccParent, Me.TCPLAccount, Me.TCPLDescription, Me.TCPLPrevMonth, Me.TCPLThisMonth, Me.TCPLIdAllChild})
-        Me.TLProfitAndLoss.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TLProfitAndLoss.Location = New System.Drawing.Point(0, 0)
-        Me.TLProfitAndLoss.Name = "TLProfitAndLoss"
-        Me.TLProfitAndLoss.Size = New System.Drawing.Size(888, 416)
-        Me.TLProfitAndLoss.TabIndex = 0
-        '
-        'treeListBand7
-        '
-        Me.treeListBand7.Caption = "Account"
-        Me.treeListBand7.Columns.Add(Me.TCPLAccount)
-        Me.treeListBand7.Columns.Add(Me.TCPLDescription)
-        Me.treeListBand7.Name = "treeListBand7"
-        '
-        'TCPLAccount
-        '
-        Me.TCPLAccount.Caption = "Account"
-        Me.TCPLAccount.FieldName = "coa_name"
-        Me.TCPLAccount.Name = "TCPLAccount"
-        Me.TCPLAccount.Visible = True
-        Me.TCPLAccount.VisibleIndex = 0
-        '
-        'TCPLDescription
-        '
-        Me.TCPLDescription.Caption = "Description"
-        Me.TCPLDescription.FieldName = "coa_description"
-        Me.TCPLDescription.Name = "TCPLDescription"
-        Me.TCPLDescription.Visible = True
-        Me.TCPLDescription.VisibleIndex = 1
-        '
-        'treeListBand8
-        '
-        Me.treeListBand8.Caption = "Amount"
-        Me.treeListBand8.Columns.Add(Me.TCPLPrevMonth)
-        Me.treeListBand8.Columns.Add(Me.TCPLThisMonth)
-        Me.treeListBand8.Name = "treeListBand8"
-        '
-        'TCPLPrevMonth
-        '
-        Me.TCPLPrevMonth.Caption = "Previous Month"
-        Me.TCPLPrevMonth.FieldName = "prev_month"
-        Me.TCPLPrevMonth.Name = "TCPLPrevMonth"
-        Me.TCPLPrevMonth.Visible = True
-        Me.TCPLPrevMonth.VisibleIndex = 2
-        '
-        'TCPLThisMonth
-        '
-        Me.TCPLThisMonth.Caption = "This Month"
-        Me.TCPLThisMonth.FieldName = "this_month"
-        Me.TCPLThisMonth.Name = "TCPLThisMonth"
-        Me.TCPLThisMonth.Visible = True
-        Me.TCPLThisMonth.VisibleIndex = 3
-        '
-        'TCPLIdAcc
-        '
-        Me.TCPLIdAcc.Caption = "ID Acc"
-        Me.TCPLIdAcc.FieldName = "id_acc"
-        Me.TCPLIdAcc.Name = "TCPLIdAcc"
-        Me.TCPLIdAcc.Visible = True
-        Me.TCPLIdAcc.VisibleIndex = 0
-        '
-        'TCPLIdAccParent
-        '
-        Me.TCPLIdAccParent.Caption = "ID Acc Parent"
-        Me.TCPLIdAccParent.FieldName = "id_acc_parent"
-        Me.TCPLIdAccParent.Name = "TCPLIdAccParent"
-        Me.TCPLIdAccParent.Visible = True
-        Me.TCPLIdAccParent.VisibleIndex = 1
-        '
-        'TCPLIdAllChild
-        '
-        Me.TCPLIdAllChild.Caption = "ID All Child"
-        Me.TCPLIdAllChild.FieldName = "id_all_child"
-        Me.TCPLIdAllChild.Name = "TCPLIdAllChild"
-        Me.TCPLIdAllChild.Visible = True
-        Me.TCPLIdAllChild.VisibleIndex = 6
-        '
-        'XTPPLReportView
-        '
-        Me.XTPPLReportView.Controls.Add(Me.SplitContainerControl1)
-        Me.XTPPLReportView.Name = "XTPPLReportView"
-        Me.XTPPLReportView.Size = New System.Drawing.Size(888, 416)
-        Me.XTPPLReportView.Text = "Report View"
-        '
         'SplitterBS
         '
         Me.SplitterBS.Dock = System.Windows.Forms.DockStyle.Fill
@@ -606,6 +494,16 @@ Partial Class FormReportBalanceSheet
         Me.SplitterBS.SplitterPosition = 422
         Me.SplitterBS.TabIndex = 0
         Me.SplitterBS.Text = "SplitContainerControl1"
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.Controls.Add(Me.GCAktiva)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(422, 416)
+        Me.GroupControl1.TabIndex = 1
+        Me.GroupControl1.Text = "Asset"
         '
         'GCAktiva
         '
@@ -629,11 +527,30 @@ Partial Class FormReportBalanceSheet
         Me.GVAktiva.OptionsView.ShowGroupPanel = False
         Me.GVAktiva.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn11, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn13, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'BandedGridColumn1
+        'GridBand1
         '
-        Me.BandedGridColumn1.Caption = "ID Acc"
-        Me.BandedGridColumn1.FieldName = "id_acc"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.GridBand1.Caption = "Account"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn11)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn13)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 150
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "Head"
+        Me.BandedGridColumn11.FieldName = "head_desc"
+        Me.BandedGridColumn11.FieldNameSortGroup = "head_name"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.Caption = "Sub"
+        Me.BandedGridColumn13.FieldName = "sub_desc"
+        Me.BandedGridColumn13.FieldNameSortGroup = "sub_name"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
         '
         'BandedGridColumn2
         '
@@ -649,19 +566,14 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.Visible = True
         '
-        'BandedGridColumnThisMonth
+        'gridBand3
         '
-        Me.BandedGridColumnThisMonth.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnThisMonth.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumnThisMonth.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnThisMonth.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumnThisMonth.Caption = "This Month"
-        Me.BandedGridColumnThisMonth.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumnThisMonth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnThisMonth.FieldName = "this_month"
-        Me.BandedGridColumnThisMonth.Name = "BandedGridColumnThisMonth"
-        Me.BandedGridColumnThisMonth.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", "{0:N2}")})
-        Me.BandedGridColumnThisMonth.Visible = True
+        Me.gridBand3.Caption = "Amount"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPrevMonth)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnThisMonth)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Width = 150
         '
         'BandedGridColumnPrevMonth
         '
@@ -677,15 +589,39 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumnPrevMonth.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", "{0:N2}")})
         Me.BandedGridColumnPrevMonth.Visible = True
         '
-        'GroupControl1
+        'BandedGridColumnThisMonth
         '
-        Me.GroupControl1.Controls.Add(Me.GCAktiva)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(422, 416)
-        Me.GroupControl1.TabIndex = 1
-        Me.GroupControl1.Text = "Asset"
+        Me.BandedGridColumnThisMonth.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnThisMonth.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumnThisMonth.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnThisMonth.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumnThisMonth.Caption = "This Month"
+        Me.BandedGridColumnThisMonth.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnThisMonth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnThisMonth.FieldName = "this_month"
+        Me.BandedGridColumnThisMonth.Name = "BandedGridColumnThisMonth"
+        Me.BandedGridColumnThisMonth.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", "{0:N2}")})
+        Me.BandedGridColumnThisMonth.Visible = True
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "Head Name"
+        Me.BandedGridColumn12.FieldName = "head_name"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.Visible = True
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.Caption = "Sub Name"
+        Me.BandedGridColumn14.FieldName = "sub_name"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.Visible = True
+        '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "ID Acc"
+        Me.BandedGridColumn1.FieldName = "id_acc"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
         '
         'GroupControl2
         '
@@ -696,54 +632,6 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl2.Size = New System.Drawing.Size(461, 416)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Liability And Equity"
-        '
-        'BandedGridColumn11
-        '
-        Me.BandedGridColumn11.Caption = "Head"
-        Me.BandedGridColumn11.FieldName = "head_desc"
-        Me.BandedGridColumn11.FieldNameSortGroup = "head_name"
-        Me.BandedGridColumn11.Name = "BandedGridColumn11"
-        '
-        'BandedGridColumn12
-        '
-        Me.BandedGridColumn12.Caption = "Head Name"
-        Me.BandedGridColumn12.FieldName = "head_name"
-        Me.BandedGridColumn12.Name = "BandedGridColumn12"
-        Me.BandedGridColumn12.Visible = True
-        '
-        'BandedGridColumn13
-        '
-        Me.BandedGridColumn13.Caption = "Sub"
-        Me.BandedGridColumn13.FieldName = "sub_desc"
-        Me.BandedGridColumn13.FieldNameSortGroup = "sub_name"
-        Me.BandedGridColumn13.Name = "BandedGridColumn13"
-        '
-        'BandedGridColumn14
-        '
-        Me.BandedGridColumn14.Caption = "Sub Name"
-        Me.BandedGridColumn14.FieldName = "sub_name"
-        Me.BandedGridColumn14.Name = "BandedGridColumn14"
-        Me.BandedGridColumn14.Visible = True
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Account"
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn11)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn13)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 150
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Amount"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPrevMonth)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnThisMonth)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 150
         '
         'GCPasiva
         '
@@ -863,51 +751,159 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn18.FieldName = "id_acc"
         Me.BandedGridColumn18.Name = "BandedGridColumn18"
         '
-        'SplitContainerControl1
+        'XTPProfitAndLoss
         '
-        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainerControl1.Name = "SplitContainerControl1"
-        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl3)
-        Me.SplitContainerControl1.Panel1.Text = "Panel1"
-        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl4)
-        Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(888, 416)
-        Me.SplitContainerControl1.SplitterPosition = 422
-        Me.SplitContainerControl1.TabIndex = 1
-        Me.SplitContainerControl1.Text = "SplitContainerControl1"
+        Me.XTPProfitAndLoss.Controls.Add(Me.XTCProfitAndLoss)
+        Me.XTPProfitAndLoss.Name = "XTPProfitAndLoss"
+        Me.XTPProfitAndLoss.Size = New System.Drawing.Size(894, 444)
+        Me.XTPProfitAndLoss.Text = "Profit And Loss"
         '
-        'GroupControl3
+        'XTCProfitAndLoss
         '
-        Me.GroupControl3.Controls.Add(Me.GridControl1)
-        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(422, 416)
-        Me.GroupControl3.TabIndex = 1
-        Me.GroupControl3.Text = "Asset"
+        Me.XTCProfitAndLoss.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCProfitAndLoss.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCProfitAndLoss.Location = New System.Drawing.Point(0, 0)
+        Me.XTCProfitAndLoss.Name = "XTCProfitAndLoss"
+        Me.XTCProfitAndLoss.SelectedTabPage = Me.XTPPATreeView
+        Me.XTCProfitAndLoss.Size = New System.Drawing.Size(894, 444)
+        Me.XTCProfitAndLoss.TabIndex = 0
+        Me.XTCProfitAndLoss.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPATreeView, Me.XTPPLReportView})
         '
-        'GridControl1
+        'XTPPATreeView
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(2, 20)
-        Me.GridControl1.MainView = Me.BandedGridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(418, 394)
-        Me.GridControl1.TabIndex = 0
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1})
+        Me.XTPPATreeView.Controls.Add(Me.TLProfitAndLoss)
+        Me.XTPPATreeView.Name = "XTPPATreeView"
+        Me.XTPPATreeView.Size = New System.Drawing.Size(888, 416)
+        Me.XTPPATreeView.Text = "Tree View"
         '
-        'BandedGridView1
+        'TLProfitAndLoss
         '
-        Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand5, Me.GridBand6})
-        Me.BandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn23, Me.BandedGridColumn4, Me.BandedGridColumn24, Me.BandedGridColumn5, Me.BandedGridColumn25, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn22, Me.BandedGridColumn21})
-        Me.BandedGridView1.GridControl = Me.GridControl1
-        Me.BandedGridView1.GroupCount = 2
-        Me.BandedGridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn22, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", Me.BandedGridColumn21, "{0:N2}")})
-        Me.BandedGridView1.Name = "BandedGridView1"
-        Me.BandedGridView1.OptionsView.ShowFooter = True
-        Me.BandedGridView1.OptionsView.ShowGroupPanel = False
-        Me.BandedGridView1.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn4, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn5, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.TLProfitAndLoss.Bands.AddRange(New DevExpress.XtraTreeList.Columns.TreeListBand() {Me.treeListBand7, Me.treeListBand8})
+        Me.TLProfitAndLoss.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.TCPLIdAcc, Me.TCPLIdAccParent, Me.TCPLAccount, Me.TCPLDescription, Me.TCPLDebit, Me.TCPLCredit, Me.TCPLIdAllChild, Me.TCPLPrevMonth, Me.TCPLThisMonth})
+        Me.TLProfitAndLoss.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TLProfitAndLoss.Location = New System.Drawing.Point(0, 0)
+        Me.TLProfitAndLoss.Name = "TLProfitAndLoss"
+        Me.TLProfitAndLoss.Size = New System.Drawing.Size(888, 416)
+        Me.TLProfitAndLoss.TabIndex = 0
+        '
+        'treeListBand7
+        '
+        Me.treeListBand7.Caption = "Account"
+        Me.treeListBand7.Columns.Add(Me.TCPLAccount)
+        Me.treeListBand7.Columns.Add(Me.TCPLDescription)
+        Me.treeListBand7.Name = "treeListBand7"
+        '
+        'TCPLAccount
+        '
+        Me.TCPLAccount.Caption = "Account"
+        Me.TCPLAccount.FieldName = "coa_name"
+        Me.TCPLAccount.Name = "TCPLAccount"
+        Me.TCPLAccount.Visible = True
+        Me.TCPLAccount.VisibleIndex = 0
+        '
+        'TCPLDescription
+        '
+        Me.TCPLDescription.Caption = "Description"
+        Me.TCPLDescription.FieldName = "coa_description"
+        Me.TCPLDescription.Name = "TCPLDescription"
+        Me.TCPLDescription.Visible = True
+        Me.TCPLDescription.VisibleIndex = 1
+        '
+        'treeListBand8
+        '
+        Me.treeListBand8.Caption = "Amount"
+        Me.treeListBand8.Columns.Add(Me.TCPLPrevMonth)
+        Me.treeListBand8.Columns.Add(Me.TCPLThisMonth)
+        Me.treeListBand8.Name = "treeListBand8"
+        '
+        'TCPLPrevMonth
+        '
+        Me.TCPLPrevMonth.Caption = "Previous Month"
+        Me.TCPLPrevMonth.FieldName = "prev_month"
+        Me.TCPLPrevMonth.Format.FormatString = "N2"
+        Me.TCPLPrevMonth.Format.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TCPLPrevMonth.Name = "TCPLPrevMonth"
+        Me.TCPLPrevMonth.Visible = True
+        Me.TCPLPrevMonth.VisibleIndex = 2
+        '
+        'TCPLThisMonth
+        '
+        Me.TCPLThisMonth.Caption = "This Month"
+        Me.TCPLThisMonth.FieldName = "this_month"
+        Me.TCPLThisMonth.Format.FormatString = "N2"
+        Me.TCPLThisMonth.Format.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TCPLThisMonth.Name = "TCPLThisMonth"
+        Me.TCPLThisMonth.Visible = True
+        Me.TCPLThisMonth.VisibleIndex = 3
+        '
+        'TCPLIdAcc
+        '
+        Me.TCPLIdAcc.Caption = "ID Acc"
+        Me.TCPLIdAcc.FieldName = "id_acc"
+        Me.TCPLIdAcc.Name = "TCPLIdAcc"
+        Me.TCPLIdAcc.Visible = True
+        Me.TCPLIdAcc.VisibleIndex = 0
+        '
+        'TCPLIdAccParent
+        '
+        Me.TCPLIdAccParent.Caption = "ID Acc Parent"
+        Me.TCPLIdAccParent.FieldName = "id_acc_parent"
+        Me.TCPLIdAccParent.Name = "TCPLIdAccParent"
+        Me.TCPLIdAccParent.Visible = True
+        Me.TCPLIdAccParent.VisibleIndex = 1
+        '
+        'TCPLDebit
+        '
+        Me.TCPLDebit.Caption = "Debit"
+        Me.TCPLDebit.FieldName = "debit"
+        Me.TCPLDebit.Name = "TCPLDebit"
+        Me.TCPLDebit.Visible = True
+        Me.TCPLDebit.VisibleIndex = 7
+        '
+        'TCPLCredit
+        '
+        Me.TCPLCredit.Caption = "Credit"
+        Me.TCPLCredit.FieldName = "credit"
+        Me.TCPLCredit.Name = "TCPLCredit"
+        Me.TCPLCredit.Visible = True
+        Me.TCPLCredit.VisibleIndex = 8
+        '
+        'TCPLIdAllChild
+        '
+        Me.TCPLIdAllChild.Caption = "ID All Child"
+        Me.TCPLIdAllChild.FieldName = "id_all_child"
+        Me.TCPLIdAllChild.Name = "TCPLIdAllChild"
+        Me.TCPLIdAllChild.Visible = True
+        Me.TCPLIdAllChild.VisibleIndex = 6
+        '
+        'XTPPLReportView
+        '
+        Me.XTPPLReportView.Controls.Add(Me.GCProfitAndLoss)
+        Me.XTPPLReportView.Name = "XTPPLReportView"
+        Me.XTPPLReportView.Size = New System.Drawing.Size(888, 416)
+        Me.XTPPLReportView.Text = "Report View"
+        '
+        'GCProfitAndLoss
+        '
+        Me.GCProfitAndLoss.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProfitAndLoss.Location = New System.Drawing.Point(0, 0)
+        Me.GCProfitAndLoss.MainView = Me.GVProfitAndLoss
+        Me.GCProfitAndLoss.Name = "GCProfitAndLoss"
+        Me.GCProfitAndLoss.Size = New System.Drawing.Size(888, 416)
+        Me.GCProfitAndLoss.TabIndex = 1
+        Me.GCProfitAndLoss.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProfitAndLoss})
+        '
+        'GVProfitAndLoss
+        '
+        Me.GVProfitAndLoss.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand5, Me.GridBand6})
+        Me.GVProfitAndLoss.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn23, Me.BandedGridColumn4, Me.BandedGridColumn24, Me.BandedGridColumn5, Me.BandedGridColumn25, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn22, Me.BandedGridColumn21, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29})
+        Me.GVProfitAndLoss.GridControl = Me.GCProfitAndLoss
+        Me.GVProfitAndLoss.GroupCount = 2
+        Me.GVProfitAndLoss.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn22, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", Me.BandedGridColumn21, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_year_to_date", Me.BandedGridColumn23, "{0:N2}")})
+        Me.GVProfitAndLoss.Name = "GVProfitAndLoss"
+        Me.GVProfitAndLoss.OptionsView.ShowFooter = True
+        Me.GVProfitAndLoss.OptionsView.ShowGroupPanel = False
+        Me.GVProfitAndLoss.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn4, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn5, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridBand5
         '
@@ -952,10 +948,14 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridBand6.Caption = "Amount"
         Me.GridBand6.Columns.Add(Me.BandedGridColumn21)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn28)
         Me.GridBand6.Columns.Add(Me.BandedGridColumn22)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn27)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn26)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn29)
         Me.GridBand6.Name = "GridBand6"
         Me.GridBand6.VisibleIndex = 1
-        Me.GridBand6.Width = 150
+        Me.GridBand6.Width = 450
         '
         'BandedGridColumn21
         '
@@ -971,6 +971,19 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", "{0:N2}")})
         Me.BandedGridColumn21.Visible = True
         '
+        'BandedGridColumn28
+        '
+        Me.BandedGridColumn28.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn28.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn28.Caption = "%"
+        Me.BandedGridColumn28.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn28.FieldName = "percent_prev_month"
+        Me.BandedGridColumn28.Name = "BandedGridColumn28"
+        Me.BandedGridColumn28.Visible = True
+        '
         'BandedGridColumn22
         '
         Me.BandedGridColumn22.AppearanceCell.Options.UseTextOptions = True
@@ -984,6 +997,46 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn22.Name = "BandedGridColumn22"
         Me.BandedGridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", "{0:N2}")})
         Me.BandedGridColumn22.Visible = True
+        '
+        'BandedGridColumn27
+        '
+        Me.BandedGridColumn27.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn27.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn27.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn27.Caption = "%"
+        Me.BandedGridColumn27.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn27.FieldName = "percent_this_month"
+        Me.BandedGridColumn27.Name = "BandedGridColumn27"
+        Me.BandedGridColumn27.Visible = True
+        '
+        'BandedGridColumn26
+        '
+        Me.BandedGridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn26.Caption = "Year to Date"
+        Me.BandedGridColumn26.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn26.FieldName = "this_year_to_date"
+        Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_year_to_date", "{0:N2}")})
+        Me.BandedGridColumn26.Visible = True
+        '
+        'BandedGridColumn29
+        '
+        Me.BandedGridColumn29.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn29.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn29.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn29.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn29.Caption = "%"
+        Me.BandedGridColumn29.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn29.FieldName = "percent_this_year_to_date"
+        Me.BandedGridColumn29.Name = "BandedGridColumn29"
+        Me.BandedGridColumn29.Visible = True
         '
         'BandedGridColumn23
         '
@@ -1005,133 +1058,33 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn25.FieldName = "id_acc"
         Me.BandedGridColumn25.Name = "BandedGridColumn25"
         '
-        'GroupControl4
+        'GridColumn1
         '
-        Me.GroupControl4.Controls.Add(Me.GridControl2)
-        Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(461, 416)
-        Me.GroupControl4.TabIndex = 2
-        Me.GroupControl4.Text = "Liability And Equity"
+        Me.GridColumn1.Caption = "id_comp"
+        Me.GridColumn1.FieldName = "id_comp"
+        Me.GridColumn1.Name = "GridColumn1"
         '
-        'GridControl2
+        'GridColumn2
         '
-        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(2, 20)
-        Me.GridControl2.MainView = Me.BandedGridView2
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(457, 394)
-        Me.GridControl2.TabIndex = 1
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView2})
+        Me.GridColumn2.Caption = "Unit"
+        Me.GridColumn2.FieldName = "comp_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 1351
         '
-        'BandedGridView2
+        'GridColumn3
         '
-        Me.BandedGridView2.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand7, Me.GridBand8})
-        Me.BandedGridView2.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn32, Me.BandedGridColumn26, Me.BandedGridColumn33, Me.BandedGridColumn27, Me.BandedGridColumn34, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn31, Me.BandedGridColumn30})
-        Me.BandedGridView2.GridControl = Me.GridControl2
-        Me.BandedGridView2.GroupCount = 2
-        Me.BandedGridView2.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn31, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", Me.BandedGridColumn30, "{0:N2}")})
-        Me.BandedGridView2.Name = "BandedGridView2"
-        Me.BandedGridView2.OptionsView.ShowFooter = True
-        Me.BandedGridView2.OptionsView.ShowGroupPanel = False
-        Me.BandedGridView2.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn26, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn27, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GridBand7
-        '
-        Me.GridBand7.Caption = "Account"
-        Me.GridBand7.Columns.Add(Me.BandedGridColumn26)
-        Me.GridBand7.Columns.Add(Me.BandedGridColumn27)
-        Me.GridBand7.Columns.Add(Me.BandedGridColumn28)
-        Me.GridBand7.Columns.Add(Me.BandedGridColumn29)
-        Me.GridBand7.Name = "GridBand7"
-        Me.GridBand7.VisibleIndex = 0
-        Me.GridBand7.Width = 150
-        '
-        'BandedGridColumn26
-        '
-        Me.BandedGridColumn26.Caption = "Head"
-        Me.BandedGridColumn26.FieldName = "head_desc"
-        Me.BandedGridColumn26.FieldNameSortGroup = "head_name"
-        Me.BandedGridColumn26.Name = "BandedGridColumn26"
-        '
-        'BandedGridColumn27
-        '
-        Me.BandedGridColumn27.Caption = "Sub"
-        Me.BandedGridColumn27.FieldName = "sub_desc"
-        Me.BandedGridColumn27.FieldNameSortGroup = "sub_name"
-        Me.BandedGridColumn27.Name = "BandedGridColumn27"
-        '
-        'BandedGridColumn28
-        '
-        Me.BandedGridColumn28.Caption = "No"
-        Me.BandedGridColumn28.FieldName = "acc_name"
-        Me.BandedGridColumn28.Name = "BandedGridColumn28"
-        Me.BandedGridColumn28.Visible = True
-        '
-        'BandedGridColumn29
-        '
-        Me.BandedGridColumn29.Caption = "Name"
-        Me.BandedGridColumn29.FieldName = "acc_description"
-        Me.BandedGridColumn29.Name = "BandedGridColumn29"
-        Me.BandedGridColumn29.Visible = True
-        '
-        'GridBand8
-        '
-        Me.GridBand8.Caption = "Amount"
-        Me.GridBand8.Columns.Add(Me.BandedGridColumn30)
-        Me.GridBand8.Columns.Add(Me.BandedGridColumn31)
-        Me.GridBand8.Name = "GridBand8"
-        Me.GridBand8.VisibleIndex = 1
-        Me.GridBand8.Width = 150
-        '
-        'BandedGridColumn30
-        '
-        Me.BandedGridColumn30.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn30.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn30.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn30.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn30.Caption = "Prev Month"
-        Me.BandedGridColumn30.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn30.FieldName = "prev_month"
-        Me.BandedGridColumn30.Name = "BandedGridColumn30"
-        Me.BandedGridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", "{0:N2}")})
-        Me.BandedGridColumn30.Visible = True
-        '
-        'BandedGridColumn31
-        '
-        Me.BandedGridColumn31.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn31.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn31.Caption = "This Month"
-        Me.BandedGridColumn31.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn31.FieldName = "this_month"
-        Me.BandedGridColumn31.Name = "BandedGridColumn31"
-        Me.BandedGridColumn31.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", "{0:N2}")})
-        Me.BandedGridColumn31.Visible = True
-        '
-        'BandedGridColumn32
-        '
-        Me.BandedGridColumn32.Caption = "Head Name"
-        Me.BandedGridColumn32.FieldName = "head_name"
-        Me.BandedGridColumn32.Name = "BandedGridColumn32"
-        Me.BandedGridColumn32.Visible = True
-        '
-        'BandedGridColumn33
-        '
-        Me.BandedGridColumn33.Caption = "Sub Name"
-        Me.BandedGridColumn33.FieldName = "sub_name"
-        Me.BandedGridColumn33.Name = "BandedGridColumn33"
-        Me.BandedGridColumn33.Visible = True
-        '
-        'BandedGridColumn34
-        '
-        Me.BandedGridColumn34.Caption = "ID Acc"
-        Me.BandedGridColumn34.FieldName = "id_acc"
-        Me.BandedGridColumn34.Name = "BandedGridColumn34"
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.Caption = "Number"
+        Me.GridColumn3.FieldName = "comp_number"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        Me.GridColumn3.Width = 281
         '
         'FormReportBalanceSheet
         '
@@ -1163,32 +1116,24 @@ Partial Class FormReportBalanceSheet
         Me.XTCBS.ResumeLayout(False)
         Me.XTPBSLedger.ResumeLayout(False)
         Me.XTPBSReport.ResumeLayout(False)
+        CType(Me.SplitterBS, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitterBS.ResumeLayout(False)
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        CType(Me.GCAktiva, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVAktiva, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.GCPasiva, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPasiva, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPProfitAndLoss.ResumeLayout(False)
         CType(Me.XTCProfitAndLoss, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCProfitAndLoss.ResumeLayout(False)
         Me.XTPPATreeView.ResumeLayout(False)
         CType(Me.TLProfitAndLoss, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPLReportView.ResumeLayout(False)
-        CType(Me.SplitterBS, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitterBS.ResumeLayout(False)
-        CType(Me.GCAktiva, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVAktiva, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl1.ResumeLayout(False)
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
-        CType(Me.GCPasiva, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPasiva, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainerControl1.ResumeLayout(False)
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl3.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl4.ResumeLayout(False)
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BandedGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCProfitAndLoss, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProfitAndLoss, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1202,8 +1147,8 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents TCLAccount As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents TCLDescription As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents treeListBand2 As DevExpress.XtraTreeList.Columns.TreeListBand
-    Friend WithEvents TCLDebit As DevExpress.XtraTreeList.Columns.TreeListColumn
-    Friend WithEvents TCLCreadit As DevExpress.XtraTreeList.Columns.TreeListColumn
+    Friend WithEvents TCLPrevMonth As DevExpress.XtraTreeList.Columns.TreeListColumn
+    Friend WithEvents TCLThisMonth As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents TCIDAcc As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents TCIDAccParent As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents TCAllChild As DevExpress.XtraTreeList.Columns.TreeListColumn
@@ -1229,7 +1174,7 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents XTCBS As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPBSLedger As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPBSReport As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCProfitAndLoss As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPATreeView As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPPLReportView As DevExpress.XtraTab.XtraTabPage
@@ -1272,10 +1217,12 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents BandedGridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
-    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents TCLDebit As DevExpress.XtraTreeList.Columns.TreeListColumn
+    Friend WithEvents TCLCredit As DevExpress.XtraTreeList.Columns.TreeListColumn
+    Friend WithEvents TCPLDebit As DevExpress.XtraTreeList.Columns.TreeListColumn
+    Friend WithEvents TCPLCredit As DevExpress.XtraTreeList.Columns.TreeListColumn
+    Friend WithEvents GCProfitAndLoss As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProfitAndLoss As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1283,22 +1230,15 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents BandedGridColumn20 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn21 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn28 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn22 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn27 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn29 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn23 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn24 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn25 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents BandedGridView2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn27 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn28 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn29 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn30 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn31 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn32 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn33 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn34 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

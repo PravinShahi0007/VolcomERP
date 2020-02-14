@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Public Class ReportAccountingWorksheet
     Inherits DevExpress.XtraReports.UI.XtraReport
 
     'XtraReport overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,90 +17,119 @@ Partial Public Class ReportAccountingWorksheet
     'NOTE: The following procedure is required by the Designer
     'It can be modified using the Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportAccountingWorksheet))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrTable = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCellNo = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellAccount = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellBeginning = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellDebit = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellCredit = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellEnding = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLAccount = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GCAccountingWorksheet = New DevExpress.XtraGrid.GridControl()
-        Me.GVAccountingWorksheet = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        CType(Me.GCAccountingWorksheet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVAccountingWorksheet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1, Me.XLPeriod, Me.XrLabel3, Me.XrLabel1, Me.XrLabel2, Me.XrLabel4, Me.XLAccount})
-        Me.Detail.HeightF = 153.625!
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable, Me.XLPeriod, Me.XrLabel3, Me.XrLabel1, Me.XrLabel2, Me.XrLabel4, Me.XLAccount})
+        Me.Detail.HeightF = 106.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'TopMargin
+        'XrTable
         '
-        Me.TopMargin.HeightF = 50.0!
-        Me.TopMargin.Name = "TopMargin"
-        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(0!, 66.00002!)
+        Me.XrTable.Name = "XrTable"
+        Me.XrTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow})
+        Me.XrTable.SizeF = New System.Drawing.SizeF(1075.0!, 40.0!)
         '
-        'BottomMargin
+        'XrTableRow
         '
-        Me.BottomMargin.HeightF = 50.0!
-        Me.BottomMargin.Name = "BottomMargin"
-        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.XrTableRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCellNo, Me.XrTableCellAccount, Me.XrTableCellBeginning, Me.XrTableCellDebit, Me.XrTableCellCredit, Me.XrTableCellEnding})
+        Me.XrTableRow.Font = New System.Drawing.Font("Tahoma", 8.75!, System.Drawing.FontStyle.Bold)
+        Me.XrTableRow.Name = "XrTableRow"
+        Me.XrTableRow.StylePriority.UseFont = False
+        Me.XrTableRow.StylePriority.UseTextAlignment = False
+        Me.XrTableRow.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableRow.Weight = 1.6R
         '
-        'ReportHeader
+        'XrTableCellNo
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XLTitle, Me.XrPictureBox1})
-        Me.ReportHeader.HeightF = 91.15003!
-        Me.ReportHeader.Name = "ReportHeader"
+        Me.XrTableCellNo.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellNo.Name = "XrTableCellNo"
+        Me.XrTableCellNo.StylePriority.UseBorders = False
+        Me.XrTableCellNo.StylePriority.UsePadding = False
+        Me.XrTableCellNo.Text = "No"
+        Me.XrTableCellNo.Weight = 0.106036363952854R
         '
-        'XrLine1
+        'XrTableCellAccount
         '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 71.15002!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(1075.0!, 20.00001!)
+        Me.XrTableCellAccount.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellAccount.Name = "XrTableCellAccount"
+        Me.XrTableCellAccount.StylePriority.UseBorders = False
+        Me.XrTableCellAccount.StylePriority.UsePadding = False
+        Me.XrTableCellAccount.Text = "Account"
+        Me.XrTableCellAccount.Weight = 2.4211634678153957R
         '
-        'XLTitle
+        'XrTableCellBeginning
         '
-        Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 15.00001!)
-        Me.XLTitle.Multiline = True
-        Me.XLTitle.Name = "XLTitle"
-        Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTitle.SizeF = New System.Drawing.SizeF(634.9997!, 41.15001!)
-        Me.XLTitle.StylePriority.UseFont = False
-        Me.XLTitle.StylePriority.UseTextAlignment = False
-        Me.XLTitle.Text = "Neraca Lajur"
-        Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCellBeginning.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellBeginning.Name = "XrTableCellBeginning"
+        Me.XrTableCellBeginning.StylePriority.UseBorders = False
+        Me.XrTableCellBeginning.StylePriority.UsePadding = False
+        Me.XrTableCellBeginning.Text = "Beginning"
+        Me.XrTableCellBeginning.Weight = 0.31810907483906109R
         '
-        'XrPictureBox1
+        'XrTableCellDebit
         '
-        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 15.00003!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        Me.XrTableCellDebit.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellDebit.Name = "XrTableCellDebit"
+        Me.XrTableCellDebit.StylePriority.UseBorders = False
+        Me.XrTableCellDebit.StylePriority.UsePadding = False
+        Me.XrTableCellDebit.Text = "Debit"
+        Me.XrTableCellDebit.Weight = 0.31810907941746946R
+        '
+        'XrTableCellCredit
+        '
+        Me.XrTableCellCredit.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellCredit.Name = "XrTableCellCredit"
+        Me.XrTableCellCredit.StylePriority.UseBorders = False
+        Me.XrTableCellCredit.StylePriority.UsePadding = False
+        Me.XrTableCellCredit.Text = "Credit"
+        Me.XrTableCellCredit.Weight = 0.31810908471233262R
+        '
+        'XrTableCellEnding
+        '
+        Me.XrTableCellEnding.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellEnding.Name = "XrTableCellEnding"
+        Me.XrTableCellEnding.StylePriority.UseBorders = False
+        Me.XrTableCellEnding.StylePriority.UsePadding = False
+        Me.XrTableCellEnding.Text = "Ending"
+        Me.XrTableCellEnding.Weight = 0.31810916098408215R
         '
         'XLPeriod
         '
@@ -172,125 +201,68 @@ Partial Public Class ReportAccountingWorksheet
         Me.XLAccount.StylePriority.UseTextAlignment = False
         Me.XLAccount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'GCAccountingWorksheet
+        'TopMargin
         '
-        Me.GCAccountingWorksheet.Location = New System.Drawing.Point(0, 44)
-        Me.GCAccountingWorksheet.MainView = Me.GVAccountingWorksheet
-        Me.GCAccountingWorksheet.Name = "GCAccountingWorksheet"
-        Me.GCAccountingWorksheet.Size = New System.Drawing.Size(1032, 85)
-        Me.GCAccountingWorksheet.TabIndex = 1
-        Me.GCAccountingWorksheet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccountingWorksheet})
+        Me.TopMargin.HeightF = 50.0!
+        Me.TopMargin.Name = "TopMargin"
+        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'GVAccountingWorksheet
+        'BottomMargin
         '
-        Me.GVAccountingWorksheet.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
-        Me.GVAccountingWorksheet.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingWorksheet.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVAccountingWorksheet.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.FooterPanel.Options.UseBorderColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.FooterPanel.Options.UseFont = True
-        Me.GVAccountingWorksheet.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
-        Me.GVAccountingWorksheet.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingWorksheet.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVAccountingWorksheet.AppearancePrint.GroupFooter.Options.UseBackColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.GroupFooter.Options.UseBorderColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.GroupFooter.Options.UseFont = True
-        Me.GVAccountingWorksheet.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
-        Me.GVAccountingWorksheet.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingWorksheet.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVAccountingWorksheet.AppearancePrint.GroupRow.Options.UseBackColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.GroupRow.Options.UseBorderColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.GroupRow.Options.UseFont = True
-        Me.GVAccountingWorksheet.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
-        Me.GVAccountingWorksheet.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingWorksheet.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVAccountingWorksheet.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVAccountingWorksheet.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
-        Me.GVAccountingWorksheet.AppearancePrint.Lines.Options.UseBackColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.Row.BackColor = System.Drawing.Color.White
-        Me.GVAccountingWorksheet.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
-        Me.GVAccountingWorksheet.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVAccountingWorksheet.AppearancePrint.Row.Options.UseBackColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVAccountingWorksheet.AppearancePrint.Row.Options.UseFont = True
-        Me.GVAccountingWorksheet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
-        Me.GVAccountingWorksheet.GridControl = Me.GCAccountingWorksheet
-        Me.GVAccountingWorksheet.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "number", Me.GridColumn16, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "beginning", Me.GridColumn2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ending", Me.GridColumn9, "{0:N0}")})
-        Me.GVAccountingWorksheet.LevelIndent = 0
-        Me.GVAccountingWorksheet.Name = "GVAccountingWorksheet"
-        Me.GVAccountingWorksheet.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVAccountingWorksheet.OptionsBehavior.Editable = False
-        Me.GVAccountingWorksheet.OptionsView.ShowFooter = True
-        Me.GVAccountingWorksheet.OptionsView.ShowGroupPanel = False
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
+        Me.BottomMargin.HeightF = 50.0!
+        Me.BottomMargin.Name = "BottomMargin"
+        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'GridColumn16
+        'XrPageInfo1
         '
-        Me.GridColumn16.Caption = "No"
-        Me.GridColumn16.FieldName = "number"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 0
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(924.9999!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'GridColumn1
+        'ReportHeader
         '
-        Me.GridColumn1.Caption = "Account"
-        Me.GridColumn1.FieldName = "acc_name"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XLTitle, Me.XrPictureBox1})
+        Me.ReportHeader.HeightF = 91.15003!
+        Me.ReportHeader.Name = "ReportHeader"
         '
-        'GridColumn2
+        'XrLine1
         '
-        Me.GridColumn2.Caption = "Beginning"
-        Me.GridColumn2.DisplayFormat.FormatString = "N0"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "beginning"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "beginning", "{0:N0}")})
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 71.15002!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(1075.0!, 20.00001!)
         '
-        'GridColumn7
+        'XLTitle
         '
-        Me.GridColumn7.Caption = "Debit"
-        Me.GridColumn7.DisplayFormat.FormatString = "N0"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "debit"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N0}")})
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 3
+        Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 15.00001!)
+        Me.XLTitle.Multiline = True
+        Me.XLTitle.Name = "XLTitle"
+        Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(634.9997!, 41.15001!)
+        Me.XLTitle.StylePriority.UseFont = False
+        Me.XLTitle.StylePriority.UseTextAlignment = False
+        Me.XLTitle.Text = "Neraca Lajur"
+        Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'GridColumn8
+        'XrPictureBox1
         '
-        Me.GridColumn8.Caption = "Credit"
-        Me.GridColumn8.DisplayFormat.FormatString = "N0"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "credit"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N0}")})
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 4
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Ending"
-        Me.GridColumn9.DisplayFormat.FormatString = "N0"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "ending"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ending", "{0:N0}")})
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
-        '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 64.62501!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1075.0!, 89.0!)
-        Me.WinControlContainer1.WinControl = Me.GCAccountingWorksheet
+        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 15.00003!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
         '
         'ReportAccountingWorksheet
         '
@@ -302,8 +274,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
-        CType(Me.GCAccountingWorksheet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVAccountingWorksheet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -320,13 +291,13 @@ Partial Public Class ReportAccountingWorksheet
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XLAccount As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCAccountingWorksheet As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVAccountingWorksheet As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XrTable As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCellNo As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellAccount As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellBeginning As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellDebit As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellCredit As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellEnding As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
 End Class

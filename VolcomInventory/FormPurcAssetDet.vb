@@ -7,10 +7,19 @@
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
     Public find_accum As Boolean = False
+    Public view_current As Boolean = False
+    Public move_location As Boolean = False
+    Public input_description As Boolean = False
+
+    Private loaded As Boolean = False
+
+    Private id_departement_current As String = "-1"
 
     Private Sub FormPurcAssetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCOA()
         viewComp()
+        viewEmp()
+        viewDepartement()
         actionLoad()
     End Sub
 
@@ -35,7 +44,29 @@
         viewSearchLookupQuery(SLEAccumDep, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
+    Sub viewEmp()
+        Dim query As String = "
+            (SELECT '' AS id_departement, '' AS departement, '' AS id_employee, '' AS employee_code, '' AS employee_name, '' AS id_employee_active, '' AS employee_active)
+            UNION
+            (SELECT e.id_departement, d.departement, e.id_employee, e.employee_code, e.employee_name, e.id_employee_active, a.employee_active
+            FROM tb_m_employee AS e
+            LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement
+            LEFT JOIN tb_lookup_employee_active AS a ON e.id_employee_active = a.id_employee_active
+            ORDER BY d.departement ASC, e.id_employee_level ASC, e.employee_code ASC)
+        "
+        viewSearchLookupQuery(SLUEEmployeeCurrent, query, "id_employee", "employee_name", "id_employee")
+    End Sub
+
+    Sub viewDepartement()
+        Dim query As String = "
+            SELECT id_departement, departement FROM tb_m_departement ORDER BY departement ASC
+        "
+        viewSearchLookupQuery(SLUEDepartmentCurrent, query, "id_departement", "departement", "id_departement")
+    End Sub
+
     Sub actionLoad()
+        loaded = False
+
         If action = "ins" Then
             MsgBox("3ins")
             SLEComp.EditValue = "-1"
@@ -105,12 +136,27 @@
             If find_accum Then
                 TxtAccumDep.EditValue = data.Rows(0)("accum_value") + data.Rows(0)("accum_value_va")
             End If
+
+            'current
+            id_departement_current = data.Rows(0)("id_departement_current").ToString
+
+            SLUEEmployeeCurrent.EditValue = data.Rows(0)("id_employee_current")
+            SLUEDepartmentCurrent.EditValue = data.Rows(0)("id_departement_current")
+            SLUELocationCurrent.EditValue = data.Rows(0)("location_current")
+            DELocationDate.EditValue = data.Rows(0)("location_date")
+
+            'description
+            MEDescription.EditValue = data.Rows(0)("asset_note").ToString
+
             allow_status()
         End If
+
+        loaded = True
     End Sub
 
     Sub allow_status()
         BtnCreate.Visible = False
+        SBSaveDescription.Visible = False
 
         If is_confirm = "2" Then
             BtnConfirm.Visible = True
@@ -144,6 +190,65 @@
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             PanelApp.Visible = False
+        End If
+
+        'current
+        SLUEEmployeeCurrent.ReadOnly = True
+        SLUEDepartmentCurrent.ReadOnly = True
+        SLUELocationCurrent.ReadOnly = True
+        DELocationDate.ReadOnly = True
+
+        SBSaveCurrent.Visible = False
+
+        DELocationDate.Size = New Size(300, DELocationDate.Height)
+
+        If view_current Then
+            SBSaveCurrent.Visible = True
+
+            If id_departement_current = "" Then
+                SLUEEmployeeCurrent.ReadOnly = False
+                SLUEDepartmentCurrent.ReadOnly = False
+                SLUELocationCurrent.ReadOnly = False
+                DELocationDate.ReadOnly = False
+
+                SBSaveCurrent.Enabled = True
+            Else
+                SLUEEmployeeCurrent.ReadOnly = True
+                SLUEDepartmentCurrent.ReadOnly = True
+                SLUELocationCurrent.ReadOnly = True
+                DELocationDate.ReadOnly = True
+
+                SBSaveCurrent.Enabled = False
+            End If
+
+            DELocationDate.Size = New Size(222, DELocationDate.Height)
+        End If
+
+        If move_location Then
+            view_current = True
+
+            SBSaveCurrent.Visible = True
+
+            SLUEEmployeeCurrent.ReadOnly = False
+            SLUEDepartmentCurrent.ReadOnly = False
+            SLUELocationCurrent.ReadOnly = False
+            DELocationDate.ReadOnly = False
+
+            SBSaveCurrent.Enabled = True
+
+            DELocationDate.Size = New Size(222, DELocationDate.Height)
+        End If
+
+        If input_description Then
+            SBSaveDescription.Visible = True
+
+            If MEDescription.Text = "" Then
+                SBSaveDescription.Enabled = True
+                MEDescription.Enabled = True
+            Else
+                SBSaveDescription.Enabled = False
+                MEDescription.Enabled = False
+            End If
         End If
     End Sub
 
@@ -258,5 +363,85 @@
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub SBSaveCurrent_Click(sender As Object, e As EventArgs) Handles SBSaveCurrent.Click
+        Dim err As String = ""
+
+        If SLUEDepartmentCurrent.EditValue.ToString = "" Then
+            err = "Please select department."
+        End If
+
+        If SLUELocationCurrent.EditValue.ToString = "" Then
+            err = "Please input location."
+        End If
+
+        If DELocationDate.Text = "" Then
+            err = "Please input date."
+        End If
+
+        If err = "" Then
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Data will be locked. Are you sure want to save ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = ""
+
+                If move_location Then
+                    query = "INSERT INTO tb_purc_rec_asset_history (id_purc_rec_asset, id_employee, id_departement, location, location_date, created_date) SELECT id_purc_rec_asset, id_employee_current, id_departement_current, location_current, location_date, NOW() FROM tb_purc_rec_asset WHERE id_purc_rec_asset = " + id
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
+                Dim employee As String = If(SLUEEmployeeCurrent.EditValue.ToString = "", "NULL", "'" + SLUEEmployeeCurrent.EditValue.ToString + "'")
+
+                query = "UPDATE tb_purc_rec_asset SET id_employee_current = " + employee + ", id_departement_current = '" + SLUEDepartmentCurrent.EditValue.ToString + "', location_current = '" + addSlashes(SLUELocationCurrent.EditValue.ToString) + "', location_date = '" + Date.Parse(DELocationDate.EditValue.ToString).ToString("yyyy-MM-dd") + "' WHERE id_purc_rec_asset = " + id
+
+                execute_non_query(query, True, "", "", "", "")
+
+                FormPurcAsset.viewActive()
+
+                FormPurcAsset.GVActive.FocusedRowHandle = find_row(FormPurcAsset.GVActive, "id_purc_rec_asset", id)
+
+                Close()
+            End If
+        Else
+            errorCustom(err)
+        End If
+    End Sub
+
+    Private Sub SLUEEmployeeCurrent_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEEmployeeCurrent.EditValueChanged
+        If loaded Then
+            SLUEDepartmentCurrent.EditValue = SLUEEmployeeCurrent.Properties.View.GetFocusedRowCellValue("id_departement")
+        End If
+    End Sub
+
+    Private Sub SBSaveDescription_Click(sender As Object, e As EventArgs) Handles SBSaveDescription.Click
+        Dim err As String = ""
+
+        If MEDescription.Text = "" Then
+            err = "Please input description."
+        End If
+
+        If err = "" Then
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Data will be locked. Are you sure want to save ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "UPDATE tb_purc_rec_asset SET asset_note = '" + addSlashes(MEDescription.EditValue.ToString) + "' WHERE id_purc_rec_asset = " + id
+
+                execute_non_query(query, True, "", "", "", "")
+
+                FormPurcAsset.viewActive()
+
+                FormPurcAsset.GVActive.FocusedRowHandle = find_row(FormPurcAsset.GVActive, "id_purc_rec_asset", id)
+
+                Close()
+            End If
+        Else
+            errorCustom(err)
+        End If
     End Sub
 End Class
