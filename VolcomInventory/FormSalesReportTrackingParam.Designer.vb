@@ -56,10 +56,10 @@ Partial Class FormSalesReportTrackingParam
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LEClass = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.LookUpEdit2 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LECat = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LESubCat = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,8 +86,8 @@ Partial Class FormSalesReportTrackingParam
         Me.GroupControl4.SuspendLayout()
         CType(Me.LEPRiceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LESubCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -455,10 +455,10 @@ Partial Class FormSalesReportTrackingParam
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl3.Controls.Add(Me.LookUpEdit2)
+        Me.GroupControl3.Controls.Add(Me.LESubCat)
+        Me.GroupControl3.Controls.Add(Me.LECat)
         Me.GroupControl3.Controls.Add(Me.LabelControl12)
         Me.GroupControl3.Controls.Add(Me.LabelControl11)
-        Me.GroupControl3.Controls.Add(Me.LookUpEdit1)
         Me.GroupControl3.Controls.Add(Me.LEClass)
         Me.GroupControl3.Controls.Add(Me.LabelControl10)
         Me.GroupControl3.Controls.Add(Me.LabelControl5)
@@ -535,21 +535,6 @@ Partial Class FormSalesReportTrackingParam
         Me.LEClass.Size = New System.Drawing.Size(147, 20)
         Me.LEClass.TabIndex = 8950
         '
-        'LookUpEdit1
-        '
-        Me.LookUpEdit1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LookUpEdit1.Location = New System.Drawing.Point(83, 68)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Appearance.Options.UseTextOptions = True
-        Me.LookUpEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_promo", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("promo", "Promo")})
-        Me.LookUpEdit1.Properties.NullText = ""
-        Me.LookUpEdit1.Properties.ShowFooter = False
-        Me.LookUpEdit1.Size = New System.Drawing.Size(147, 20)
-        Me.LookUpEdit1.TabIndex = 8951
-        '
         'LabelControl11
         '
         Me.LabelControl11.Location = New System.Drawing.Point(27, 71)
@@ -566,20 +551,35 @@ Partial Class FormSalesReportTrackingParam
         Me.LabelControl12.TabIndex = 8953
         Me.LabelControl12.Text = "Sub Cat."
         '
-        'LookUpEdit2
+        'LECat
         '
-        Me.LookUpEdit2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.LECat.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LookUpEdit2.Location = New System.Drawing.Point(286, 68)
-        Me.LookUpEdit2.Name = "LookUpEdit2"
-        Me.LookUpEdit2.Properties.Appearance.Options.UseTextOptions = True
-        Me.LookUpEdit2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit2.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_promo", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("promo", "Promo")})
-        Me.LookUpEdit2.Properties.NullText = ""
-        Me.LookUpEdit2.Properties.ShowFooter = False
-        Me.LookUpEdit2.Size = New System.Drawing.Size(147, 20)
-        Me.LookUpEdit2.TabIndex = 8954
+        Me.LECat.Location = New System.Drawing.Point(83, 68)
+        Me.LECat.Name = "LECat"
+        Me.LECat.Properties.Appearance.Options.UseTextOptions = True
+        Me.LECat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code_detail", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("display_name", "Class")})
+        Me.LECat.Properties.NullText = ""
+        Me.LECat.Properties.ShowFooter = False
+        Me.LECat.Size = New System.Drawing.Size(147, 20)
+        Me.LECat.TabIndex = 8954
+        '
+        'LESubCat
+        '
+        Me.LESubCat.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LESubCat.Location = New System.Drawing.Point(286, 68)
+        Me.LESubCat.Name = "LESubCat"
+        Me.LESubCat.Properties.Appearance.Options.UseTextOptions = True
+        Me.LESubCat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LESubCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LESubCat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code_detail", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("display_name", "Class")})
+        Me.LESubCat.Properties.NullText = ""
+        Me.LESubCat.Properties.ShowFooter = False
+        Me.LESubCat.Size = New System.Drawing.Size(147, 20)
+        Me.LESubCat.TabIndex = 8955
         '
         'FormSalesReportTrackingParam
         '
@@ -627,8 +627,8 @@ Partial Class FormSalesReportTrackingParam
         Me.GroupControl4.PerformLayout()
         CType(Me.LEPRiceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LESubCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -666,10 +666,10 @@ Partial Class FormSalesReportTrackingParam
     Friend WithEvents LEPRiceType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents LookUpEdit2 As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LEClass As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LESubCat As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LECat As DevExpress.XtraEditors.LookUpEdit
 End Class

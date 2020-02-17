@@ -36,9 +36,9 @@ Partial Class FormSalesReportTracking
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gbQty = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnDelQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnRTSQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -168,6 +168,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn15.Caption = "Division"
         Me.GridColumn15.FieldName = "division"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn15.Visible = True
         '
         'GridColumn14
@@ -179,6 +180,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn14.Caption = "Sub Category"
         Me.GridColumn14.FieldName = "sub_cat"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn14.Visible = True
         Me.GridColumn14.Width = 105
         '
@@ -199,6 +201,7 @@ Partial Class FormSalesReportTracking
         '
         Me.GridColumn12.Caption = "Group"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn12.Visible = True
         '
         'GridColumn7
@@ -206,6 +209,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn7.Caption = "Group Class"
         Me.GridColumn7.FieldName = "group_class"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn7.Visible = True
         '
         'GridColumn1
@@ -217,6 +221,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn1.Caption = "Class"
         Me.GridColumn1.FieldName = "class"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn1.Visible = True
         '
         'GridColumn2
@@ -228,6 +233,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn2.Caption = "Code"
         Me.GridColumn2.FieldName = "design_code"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn2.Visible = True
         '
         'GridColumn3
@@ -235,24 +241,28 @@ Partial Class FormSalesReportTracking
         Me.GridColumn3.Caption = "Description"
         Me.GridColumn3.FieldName = "design_display_name"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn3.Visible = True
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Price"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Delivery"
-        Me.GridColumn5.Name = "GridColumn5"
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Season"
         Me.GridColumn6.FieldName = "range"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn6.Visible = True
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Price"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Delivery"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'gbQty
         '
@@ -280,6 +290,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnDelQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDelQty.FieldName = "del_qty"
         Me.GridColumnDelQty.Name = "GridColumnDelQty"
+        Me.GridColumnDelQty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnDelQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", "{0:N0}")})
         Me.GridColumnDelQty.Visible = True
         Me.GridColumnDelQty.Width = 52
@@ -295,6 +306,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnRTSQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnRTSQty.FieldName = "ret_qty"
         Me.GridColumnRTSQty.Name = "GridColumnRTSQty"
+        Me.GridColumnRTSQty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnRTSQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_qty", "{0:N0}")})
         Me.GridColumnRTSQty.Visible = True
         Me.GridColumnRTSQty.Width = 55
@@ -310,6 +322,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnSalQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnSalQty.FieldName = "sal_qty"
         Me.GridColumnSalQty.Name = "GridColumnSalQty"
+        Me.GridColumnSalQty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnSalQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", "{0:N0}")})
         Me.GridColumnSalQty.Visible = True
         Me.GridColumnSalQty.Width = 49
@@ -325,6 +338,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnSOHQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnSOHQty.FieldName = "soh_qty"
         Me.GridColumnSOHQty.Name = "GridColumnSOHQty"
+        Me.GridColumnSOHQty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnSOHQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", "{0:N0}")})
         Me.GridColumnSOHQty.Visible = True
         Me.GridColumnSOHQty.Width = 50
@@ -340,6 +354,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnpercentSaas.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnpercentSaas.FieldName = "percent_sas"
         Me.GridColumnpercentSaas.Name = "GridColumnpercentSaas"
+        Me.GridColumnpercentSaas.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnpercentSaas.Visible = True
         Me.GridColumnpercentSaas.Width = 77
         '
@@ -354,6 +369,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnPercentSaasDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPercentSaasDel.FieldName = "percent_sas_sal_del"
         Me.GridColumnPercentSaasDel.Name = "GridColumnPercentSaasDel"
+        Me.GridColumnPercentSaasDel.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnPercentSaasDel.Visible = True
         Me.GridColumnPercentSaasDel.Width = 86
         '
@@ -383,6 +399,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValDel.FieldName = "del_val"
         Me.BandedGridColumnValDel.Name = "BandedGridColumnValDel"
+        Me.BandedGridColumnValDel.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnValDel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_val", "{0:N0}")})
         Me.BandedGridColumnValDel.Visible = True
         Me.BandedGridColumnValDel.Width = 67
@@ -398,6 +415,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValRTS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValRTS.FieldName = "ret_val"
         Me.BandedGridColumnValRTS.Name = "BandedGridColumnValRTS"
+        Me.BandedGridColumnValRTS.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnValRTS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_val", "{0:N0}")})
         Me.BandedGridColumnValRTS.Visible = True
         Me.BandedGridColumnValRTS.Width = 78
@@ -413,6 +431,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValSAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValSAL.FieldName = "sal_val"
         Me.BandedGridColumnValSAL.Name = "BandedGridColumnValSAL"
+        Me.BandedGridColumnValSAL.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnValSAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_val", "{0:N0}")})
         Me.BandedGridColumnValSAL.Visible = True
         Me.BandedGridColumnValSAL.Width = 78
@@ -428,6 +447,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValSOH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValSOH.FieldName = "soh_val"
         Me.BandedGridColumnValSOH.Name = "BandedGridColumnValSOH"
+        Me.BandedGridColumnValSOH.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnValSOH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_val", "{0:N0}")})
         Me.BandedGridColumnValSOH.Visible = True
         Me.BandedGridColumnValSOH.Width = 57
@@ -443,6 +463,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValSaas.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValSaas.FieldName = "percent_sas_val"
         Me.BandedGridColumnValSaas.Name = "BandedGridColumnValSaas"
+        Me.BandedGridColumnValSaas.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnValSaas.Visible = True
         Me.BandedGridColumnValSaas.Width = 48
         '
@@ -457,6 +478,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValSaasDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValSaasDel.FieldName = "percent_sas_sal_del_val"
         Me.BandedGridColumnValSaasDel.Name = "BandedGridColumnValSaasDel"
+        Me.BandedGridColumnValSaasDel.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnValSaasDel.Visible = True
         Me.BandedGridColumnValSaasDel.Width = 84
         '
