@@ -49,6 +49,7 @@
             load_price_cat()
             load_promo()
             load_division()
+            load_class()
             load_season()
 
             load_price_type()
@@ -112,6 +113,13 @@
         viewLookupQuery(LEDivision, query, 0, "display_name", "id_code_detail")
     End Sub
 
+    Sub load_class()
+        Dim query As String = "SELECT 0 AS id_code_detail,'All Class' AS display_name
+                                UNION
+                                SELECT cd.id_code_detail,cd.display_name FROM `tb_m_code_detail` cd WHERE cd.id_code='30'"
+        viewLookupQuery(LEClass, query, 0, "display_name", "id_code_detail")
+    End Sub
+
     Sub load_price_type()
         Dim query As String = "SELECT 1 AS id_price_type,'Normal' AS price_type
                                 UNION
@@ -125,7 +133,7 @@
         Cursor = Cursors.WaitCursor
         FormMain.SplashScreenManager1.ShowWaitForm()
 
-        Dim date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_season, id_division, id_price_type As String
+        Dim date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_season, id_division, id_class, id_price_type As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -152,6 +160,9 @@
         id_division = LEDivision.EditValue.ToString
         FormSalesReportTracking.var_division = LEDivision.Text.ToString
 
+        id_class = LEClass.EditValue.ToString
+        FormSalesReportTracking.var_class = LEClass.Text.ToString
+
         id_price_type = LEPRiceType.EditValue.ToString
         FormSalesReportTracking.var_prc_type = LEPRiceType.Text.ToString
         '
@@ -161,7 +172,7 @@
             FormSalesReportTracking.var_store = TxtCodeCompFrom.Text & " - " & TxtNameCompFrom.Text
         End If
         '
-        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_division, id_season, id_price_type)
+        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_division, id_class, id_season, id_price_type)
 
         Close()
 
