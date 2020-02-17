@@ -14,6 +14,10 @@
         dt = execute_query(qry, -1, True, "", "", "", "")
         If id_menu = "1" Then
             is_dept = "is_mkt"
+        ElseIf id_menu = "2" Then
+            is_dept = "is_retail"
+        ElseIf id_menu = "3" Then
+            is_dept = "is_vm"
         Else
             is_dept = "is_md"
         End If
