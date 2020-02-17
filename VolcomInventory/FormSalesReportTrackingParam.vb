@@ -68,9 +68,9 @@
     End Sub
 
     Sub load_season()
-        Dim query As String = "SELECT 0 AS id_code_detail,'All Division' AS display_name
-                                UNION
-                                SELECT cd.id_code_detail,cd.display_name FROM `tb_m_code_detail` cd WHERE cd.id_code='3'"
+        Dim query As String = "SELECT 0 AS id_code_detail,'All Season' AS display_name
+                               UNION
+                               SELECT ss.id_season AS `id_code_detail`, ss.season AS `display_name` FROM tb_season ss "
         viewLookupQuery(LESeason, query, 0, "display_name", "id_code_detail")
     End Sub
 
@@ -122,6 +122,9 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
         Dim date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_season, id_division, id_price_type As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -161,6 +164,9 @@
         FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_division, id_season, id_price_type)
 
         Close()
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormSalesReportTrackingParam_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
