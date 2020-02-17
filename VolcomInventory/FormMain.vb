@@ -14448,4 +14448,34 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBLineListRetail_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLineListRetail.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormLineList.id_menu = "2"
+            FormLineList.show_spesific_col = True
+            FormLineList.MdiParent = Me
+            FormLineList.Show()
+            FormLineList.WindowState = FormWindowState.Maximized
+            FormLineList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLineListVM_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLineListVM.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormLineList.id_menu = "3"
+            FormLineList.show_spesific_col = True
+            FormLineList.MdiParent = Me
+            FormLineList.Show()
+            FormLineList.WindowState = FormWindowState.Maximized
+            FormLineList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
