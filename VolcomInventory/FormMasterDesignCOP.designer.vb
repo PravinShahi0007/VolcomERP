@@ -103,6 +103,7 @@ Partial Class FormMasterDesignCOP
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMEditEcopFinal = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SetEstimateHandoverToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPCOP = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPCostPropose = New DevExpress.XtraTab.XtraTabPage()
@@ -118,7 +119,6 @@ Partial Class FormMasterDesignCOP
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BProposeCost = New DevExpress.XtraEditors.SimpleButton()
-        Me.SetEstimateHandoverToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RPImg, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -897,7 +897,7 @@ Partial Class FormMasterDesignCOP
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.SMEditEcopPD, Me.SMEditEcopFinal, Me.SetEstimateHandoverToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(235, 92)
+        Me.ViewMenu.Size = New System.Drawing.Size(235, 114)
         '
         'ViewDetailToolStripMenuItem
         '
@@ -916,6 +916,13 @@ Partial Class FormMasterDesignCOP
         Me.SMEditEcopFinal.Name = "SMEditEcopFinal"
         Me.SMEditEcopFinal.Size = New System.Drawing.Size(234, 22)
         Me.SMEditEcopFinal.Text = "Edit Pre-Final COP / Final COP"
+        '
+        'SetEstimateHandoverToolStripMenuItem
+        '
+        Me.SetEstimateHandoverToolStripMenuItem.Name = "SetEstimateHandoverToolStripMenuItem"
+        Me.SetEstimateHandoverToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.SetEstimateHandoverToolStripMenuItem.Text = "Set Estimate Handover"
+        Me.SetEstimateHandoverToolStripMenuItem.Visible = False
         '
         'XtraTabControl1
         '
@@ -1062,12 +1069,6 @@ Partial Class FormMasterDesignCOP
         Me.BProposeCost.Size = New System.Drawing.Size(97, 34)
         Me.BProposeCost.TabIndex = 0
         Me.BProposeCost.Text = "Add"
-        '
-        'SetEstimateHandoverToolStripMenuItem
-        '
-        Me.SetEstimateHandoverToolStripMenuItem.Name = "SetEstimateHandoverToolStripMenuItem"
-        Me.SetEstimateHandoverToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
-        Me.SetEstimateHandoverToolStripMenuItem.Text = "Set Estimate Handover"
         '
         'FormMasterDesignCOP
         '

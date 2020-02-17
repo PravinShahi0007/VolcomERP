@@ -41,12 +41,14 @@
             '
             BPrint.Visible = False
             BtnAttachment.Visible = False
+            BMark.Visible = False
             '
         Else
             load_po(id_po)
 
             BPrint.Visible = True
             BtnAttachment.Visible = True
+            BMark.Visible = True
 
             Dim query = "SELECT a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_payment, "
             query += "a.id_prod_order,g.payment,b.id_currency,a.prod_order_wo_note,a.prod_order_wo_kurs, "
