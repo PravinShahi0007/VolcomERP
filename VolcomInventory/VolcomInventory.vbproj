@@ -6789,6 +6789,12 @@
     <Compile Include="ReportEmpUniOrder.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpUniPeriod.Designer.vb">
+      <DependentUpon>ReportEmpUniPeriod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpUniPeriod.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
     </Compile>
@@ -11540,6 +11546,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUniOrder.resx">
       <DependentUpon>ReportEmpUniOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpUniPeriod.resx">
+      <DependentUpon>ReportEmpUniPeriod.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
