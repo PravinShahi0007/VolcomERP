@@ -498,7 +498,7 @@
         Catch ex As Exception
         End Try
 
-        Dim w_status As String = If(SLStatus7.EditValue.ToString = "0", "", "AND sp.id_report_status = " + SLStatus7.EditValue.ToString)
+        Dim w_status As String = If(SLStatus7.EditValue.ToString = "0", "", " AND sp.id_report_status = " + SLStatus7.EditValue.ToString)
 
         Dim query As String = "SELECT spd.id_sales_pos_det, spd.id_sales_pos, sp.sales_pos_number, rmt.report_mark_type_name, 
         c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`,
@@ -526,7 +526,7 @@
         ) prod ON prod.id_product = spd.id_product
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
         WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + cond_promo_trans + w_status
-        query += "ORDER BY spd.id_sales_pos ASC "
+        query += " ORDER BY sp.id_report_status DESC, spd.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSales.DataSource = data
         Cursor = Cursors.Default
