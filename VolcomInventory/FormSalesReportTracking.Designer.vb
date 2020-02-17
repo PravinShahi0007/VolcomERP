@@ -152,12 +152,12 @@ Partial Class FormSalesReportTracking
         Me.gbDetail.Columns.Add(Me.GridColumn1)
         Me.gbDetail.Columns.Add(Me.GridColumn2)
         Me.gbDetail.Columns.Add(Me.GridColumn3)
+        Me.gbDetail.Columns.Add(Me.GridColumn6)
         Me.gbDetail.Columns.Add(Me.GridColumn4)
         Me.gbDetail.Columns.Add(Me.GridColumn5)
-        Me.gbDetail.Columns.Add(Me.GridColumn6)
         Me.gbDetail.Name = "gbDetail"
         Me.gbDetail.VisibleIndex = 0
-        Me.gbDetail.Width = 825
+        Me.gbDetail.Width = 736
         '
         'GridColumn15
         '
@@ -180,6 +180,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn14.FieldName = "sub_cat"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
+        Me.GridColumn14.Width = 105
         '
         'GridColumn13
         '
@@ -192,6 +193,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumn13.Visible = True
+        Me.GridColumn13.Width = 106
         '
         'GridColumn12
         '
@@ -239,17 +241,16 @@ Partial Class FormSalesReportTracking
         '
         Me.GridColumn4.Caption = "Price"
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Delivery"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Season"
+        Me.GridColumn6.FieldName = "range"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         '
@@ -266,7 +267,7 @@ Partial Class FormSalesReportTracking
         Me.gbQty.Columns.Add(Me.GridColumnPercentSaasDel)
         Me.gbQty.Name = "gbQty"
         Me.gbQty.VisibleIndex = 1
-        Me.gbQty.Width = 471
+        Me.gbQty.Width = 369
         '
         'GridColumnDelQty
         '
@@ -281,7 +282,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnDelQty.Name = "GridColumnDelQty"
         Me.GridColumnDelQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", "{0:N0}")})
         Me.GridColumnDelQty.Visible = True
-        Me.GridColumnDelQty.Width = 77
+        Me.GridColumnDelQty.Width = 52
         '
         'GridColumnRTSQty
         '
@@ -296,7 +297,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnRTSQty.Name = "GridColumnRTSQty"
         Me.GridColumnRTSQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_qty", "{0:N0}")})
         Me.GridColumnRTSQty.Visible = True
-        Me.GridColumnRTSQty.Width = 77
+        Me.GridColumnRTSQty.Width = 55
         '
         'GridColumnSalQty
         '
@@ -311,7 +312,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnSalQty.Name = "GridColumnSalQty"
         Me.GridColumnSalQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", "{0:N0}")})
         Me.GridColumnSalQty.Visible = True
-        Me.GridColumnSalQty.Width = 77
+        Me.GridColumnSalQty.Width = 49
         '
         'GridColumnSOHQty
         '
@@ -326,7 +327,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnSOHQty.Name = "GridColumnSOHQty"
         Me.GridColumnSOHQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", "{0:N0}")})
         Me.GridColumnSOHQty.Visible = True
-        Me.GridColumnSOHQty.Width = 77
+        Me.GridColumnSOHQty.Width = 50
         '
         'GridColumnpercentSaas
         '

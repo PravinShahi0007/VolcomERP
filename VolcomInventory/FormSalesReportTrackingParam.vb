@@ -122,6 +122,9 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
         Dim date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_season, id_division, id_price_type As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -161,6 +164,9 @@
         FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_division, id_season, id_price_type)
 
         Close()
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormSalesReportTrackingParam_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
