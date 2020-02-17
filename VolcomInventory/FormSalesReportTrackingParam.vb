@@ -68,9 +68,9 @@
     End Sub
 
     Sub load_season()
-        Dim query As String = "SELECT 0 AS id_code_detail,'All Division' AS display_name
-                                UNION
-                                SELECT cd.id_code_detail,cd.display_name FROM `tb_m_code_detail` cd WHERE cd.id_code='3'"
+        Dim query As String = "SELECT 0 AS id_code_detail,'All Season' AS display_name
+                               UNION
+                               SELECT ss.id_season AS `id_code_detail`, ss.season AS `display_name` FROM tb_season ss "
         viewLookupQuery(LESeason, query, 0, "display_name", "id_code_detail")
     End Sub
 
