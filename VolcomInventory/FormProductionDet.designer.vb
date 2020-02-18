@@ -1959,7 +1959,6 @@ Partial Class FormProductionDet
         Me.XTPWorkOrder.Controls.Add(Me.GCProdWO)
         Me.XTPWorkOrder.Controls.Add(Me.PanelControl2)
         Me.XTPWorkOrder.Name = "XTPWorkOrder"
-        Me.XTPWorkOrder.PageVisible = False
         Me.XTPWorkOrder.Size = New System.Drawing.Size(971, 547)
         Me.XTPWorkOrder.Text = "Work Order"
         '

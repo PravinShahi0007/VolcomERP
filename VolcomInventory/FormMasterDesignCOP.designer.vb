@@ -921,7 +921,7 @@ Partial Class FormMasterDesignCOP
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.SMEditEcopPD, Me.SMEditEcopFinal, Me.SetEstimateHandoverToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(235, 92)
+        Me.ViewMenu.Size = New System.Drawing.Size(235, 114)
         '
         'ViewDetailToolStripMenuItem
         '
@@ -946,6 +946,9 @@ Partial Class FormMasterDesignCOP
         Me.SetEstimateHandoverToolStripMenuItem.Name = "SetEstimateHandoverToolStripMenuItem"
         Me.SetEstimateHandoverToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
         Me.SetEstimateHandoverToolStripMenuItem.Text = "Set Estimate Handover"
+
+        Me.SetEstimateHandoverToolStripMenuItem.Visible = False
+
         '
         'XtraTabControl1
         '
