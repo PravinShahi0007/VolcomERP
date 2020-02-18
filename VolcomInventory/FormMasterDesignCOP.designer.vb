@@ -23,12 +23,15 @@ Partial Class FormMasterDesignCOP
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterDesignCOP))
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.BGVDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.ColID = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColDisplayName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColSampleSeason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.Picture = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RPImg = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumnOrign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColSampleCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnClass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -41,6 +44,7 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnBreakSize = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnECOPPDIdVendor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnCompCECOPPD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnCompECOPPD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -50,21 +54,25 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnECOPPD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPDAddCost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnExcludeAdditional = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.CompCECOPBOM = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.CompECOPBOM = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.CurrECOPBOM = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.KursECOPBOM = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ECOPBOM = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.KursECOPPP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ECOPPP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCApprovePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEApp = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.COPFinal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCApproveFinal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -110,14 +118,7 @@ Partial Class FormMasterDesignCOP
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BProposeCost = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.SetEstimateHandoverToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RPImg, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,6 +177,32 @@ Partial Class FormMasterDesignCOP
         Me.BGVDesign.RowHeight = 10
         Me.BGVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSampleSeason, DevExpress.Data.ColumnSortOrder.Descending)})
         '
+        'GridBandDetail
+        '
+        Me.GridBandDetail.Caption = "Detail"
+        Me.GridBandDetail.Columns.Add(Me.ColID)
+        Me.GridBandDetail.Columns.Add(Me.ColDisplayName)
+        Me.GridBandDetail.Columns.Add(Me.ColSampleSeason)
+        Me.GridBandDetail.Columns.Add(Me.Picture)
+        Me.GridBandDetail.Columns.Add(Me.GridColumnOrign)
+        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn12)
+        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn13)
+        Me.GridBandDetail.Columns.Add(Me.ColSampleCode)
+        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBandDetail.Columns.Add(Me.GridColumnClass)
+        Me.GridBandDetail.Columns.Add(Me.ColName)
+        Me.GridBandDetail.Columns.Add(Me.ColUOM)
+        Me.GridBandDetail.Columns.Add(Me.GridColumnColor)
+        Me.GridBandDetail.Columns.Add(Me.Orign)
+        Me.GridBandDetail.Columns.Add(Me.ColIdSeason)
+        Me.GridBandDetail.Columns.Add(Me.GridColumnFabrication)
+        Me.GridBandDetail.Columns.Add(Me.GridColumnBreakSize)
+        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn11)
+        Me.GridBandDetail.Name = "GridBandDetail"
+        Me.GridBandDetail.VisibleIndex = 0
+        Me.GridBandDetail.Width = 945
+        '
         'ColID
         '
         Me.ColID.Caption = "Id Sample"
@@ -219,6 +246,26 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnOrign.Name = "GridColumnOrign"
         Me.GridColumnOrign.Visible = True
         Me.GridColumnOrign.Width = 70
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn12.Caption = "Delivery (Update)"
+        Me.BandedGridColumn12.FieldName = "delivery"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.Visible = True
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.Caption = "Est WH Date (Update)"
+        Me.BandedGridColumn13.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn13.FieldName = "est_wh_date"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.Visible = True
         '
         'ColSampleCode
         '
@@ -327,6 +374,22 @@ Partial Class FormMasterDesignCOP
         Me.BandedGridColumn11.Visible = True
         Me.BandedGridColumn11.Width = 79
         '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "ECOP PD"
+        Me.gridBand2.Columns.Add(Me.GridColumnECOPPDIdVendor)
+        Me.gridBand2.Columns.Add(Me.GridColumnCompCECOPPD)
+        Me.gridBand2.Columns.Add(Me.GridColumnCompECOPPD)
+        Me.gridBand2.Columns.Add(Me.GridColumnIdCurrECOPPD)
+        Me.gridBand2.Columns.Add(Me.GridColumnCurrECOPPD)
+        Me.gridBand2.Columns.Add(Me.GridColumnKursECOPPD)
+        Me.gridBand2.Columns.Add(Me.GridColumnECOPPD)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnPDAddCost)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnExcludeAdditional)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 531
+        '
         'GridColumnECOPPDIdVendor
         '
         Me.GridColumnECOPPDIdVendor.Caption = "Id Vendor "
@@ -420,6 +483,18 @@ Partial Class FormMasterDesignCOP
         Me.BandedGridColumnExcludeAdditional.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnExcludeAdditional.Visible = True
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "ECOP BOM"
+        Me.gridBand3.Columns.Add(Me.CompCECOPBOM)
+        Me.gridBand3.Columns.Add(Me.CompECOPBOM)
+        Me.gridBand3.Columns.Add(Me.CurrECOPBOM)
+        Me.gridBand3.Columns.Add(Me.KursECOPBOM)
+        Me.gridBand3.Columns.Add(Me.ECOPBOM)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 375
+        '
         'CompCECOPBOM
         '
         Me.CompCECOPBOM.Caption = "Vendor Account"
@@ -458,6 +533,18 @@ Partial Class FormMasterDesignCOP
         Me.ECOPBOM.FieldName = "prod_order_cop_bom"
         Me.ECOPBOM.Name = "ECOPBOM"
         Me.ECOPBOM.Visible = True
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "ECOP Propose Price"
+        Me.gridBand4.Columns.Add(Me.KursECOPPP)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand4.Columns.Add(Me.ECOPPP)
+        Me.gridBand4.Columns.Add(Me.GCApprovePre)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 375
         '
         'KursECOPPP
         '
@@ -512,6 +599,17 @@ Partial Class FormMasterDesignCOP
         Me.RICEApp.ValueChecked = "yes"
         Me.RICEApp.ValueUnchecked = "no"
         '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "COP Final"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand5.Columns.Add(Me.COPFinal)
+        Me.gridBand5.Columns.Add(Me.GCApproveFinal)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 4
+        Me.gridBand5.Width = 300
+        '
         'BandedGridColumn5
         '
         Me.BandedGridColumn5.Caption = "COP Final (Exclude Additional)"
@@ -549,6 +647,16 @@ Partial Class FormMasterDesignCOP
         Me.GCApproveFinal.FieldName = "is_approve_final"
         Me.GCApproveFinal.Name = "GCApproveFinal"
         Me.GCApproveFinal.Visible = True
+        '
+        'gridBand1
+        '
+        Me.gridBand1.Caption = "Actual COP"
+        Me.gridBand1.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumn10)
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.VisibleIndex = 5
+        Me.gridBand1.Width = 225
         '
         'BandedGridColumn8
         '
@@ -787,9 +895,9 @@ Partial Class FormMasterDesignCOP
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.SMEditEcopPD, Me.SMEditEcopFinal})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.SMEditEcopPD, Me.SMEditEcopFinal, Me.SetEstimateHandoverToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(235, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(235, 92)
         '
         'ViewDetailToolStripMenuItem
         '
@@ -955,112 +1063,11 @@ Partial Class FormMasterDesignCOP
         Me.BProposeCost.TabIndex = 0
         Me.BProposeCost.Text = "Add"
         '
-        'BandedGridColumn12
+        'SetEstimateHandoverToolStripMenuItem
         '
-        Me.BandedGridColumn12.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn12.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn12.Caption = "Delivery (Update)"
-        Me.BandedGridColumn12.FieldName = "delivery"
-        Me.BandedGridColumn12.Name = "BandedGridColumn12"
-        Me.BandedGridColumn12.Visible = True
-        '
-        'BandedGridColumn13
-        '
-        Me.BandedGridColumn13.Caption = "Est WH Date (Update)"
-        Me.BandedGridColumn13.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn13.FieldName = "est_wh_date"
-        Me.BandedGridColumn13.Name = "BandedGridColumn13"
-        Me.BandedGridColumn13.Visible = True
-        '
-        'GridBandDetail
-        '
-        Me.GridBandDetail.Caption = "Detail"
-        Me.GridBandDetail.Columns.Add(Me.ColID)
-        Me.GridBandDetail.Columns.Add(Me.ColDisplayName)
-        Me.GridBandDetail.Columns.Add(Me.ColSampleSeason)
-        Me.GridBandDetail.Columns.Add(Me.Picture)
-        Me.GridBandDetail.Columns.Add(Me.GridColumnOrign)
-        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn12)
-        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn13)
-        Me.GridBandDetail.Columns.Add(Me.ColSampleCode)
-        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBandDetail.Columns.Add(Me.GridColumnClass)
-        Me.GridBandDetail.Columns.Add(Me.ColName)
-        Me.GridBandDetail.Columns.Add(Me.ColUOM)
-        Me.GridBandDetail.Columns.Add(Me.GridColumnColor)
-        Me.GridBandDetail.Columns.Add(Me.Orign)
-        Me.GridBandDetail.Columns.Add(Me.ColIdSeason)
-        Me.GridBandDetail.Columns.Add(Me.GridColumnFabrication)
-        Me.GridBandDetail.Columns.Add(Me.GridColumnBreakSize)
-        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBandDetail.Columns.Add(Me.BandedGridColumn11)
-        Me.GridBandDetail.Name = "GridBandDetail"
-        Me.GridBandDetail.VisibleIndex = 0
-        Me.GridBandDetail.Width = 945
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "ECOP PD"
-        Me.gridBand2.Columns.Add(Me.GridColumnECOPPDIdVendor)
-        Me.gridBand2.Columns.Add(Me.GridColumnCompCECOPPD)
-        Me.gridBand2.Columns.Add(Me.GridColumnCompECOPPD)
-        Me.gridBand2.Columns.Add(Me.GridColumnIdCurrECOPPD)
-        Me.gridBand2.Columns.Add(Me.GridColumnCurrECOPPD)
-        Me.gridBand2.Columns.Add(Me.GridColumnKursECOPPD)
-        Me.gridBand2.Columns.Add(Me.GridColumnECOPPD)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnPDAddCost)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnExcludeAdditional)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 531
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "ECOP BOM"
-        Me.gridBand3.Columns.Add(Me.CompCECOPBOM)
-        Me.gridBand3.Columns.Add(Me.CompECOPBOM)
-        Me.gridBand3.Columns.Add(Me.CurrECOPBOM)
-        Me.gridBand3.Columns.Add(Me.KursECOPBOM)
-        Me.gridBand3.Columns.Add(Me.ECOPBOM)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 375
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "ECOP Propose Price"
-        Me.gridBand4.Columns.Add(Me.KursECOPPP)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand4.Columns.Add(Me.ECOPPP)
-        Me.gridBand4.Columns.Add(Me.GCApprovePre)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 375
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "COP Final"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn4)
-        Me.gridBand5.Columns.Add(Me.COPFinal)
-        Me.gridBand5.Columns.Add(Me.GCApproveFinal)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 4
-        Me.gridBand5.Width = 300
-        '
-        'gridBand1
-        '
-        Me.gridBand1.Caption = "Actual COP"
-        Me.gridBand1.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumn9)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumn10)
-        Me.gridBand1.Name = "gridBand1"
-        Me.gridBand1.VisibleIndex = 5
-        Me.gridBand1.Width = 225
+        Me.SetEstimateHandoverToolStripMenuItem.Name = "SetEstimateHandoverToolStripMenuItem"
+        Me.SetEstimateHandoverToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.SetEstimateHandoverToolStripMenuItem.Text = "Set Estimate Handover"
         '
         'FormMasterDesignCOP
         '
@@ -1203,4 +1210,5 @@ Partial Class FormMasterDesignCOP
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents SetEstimateHandoverToolStripMenuItem As ToolStripMenuItem
 End Class
