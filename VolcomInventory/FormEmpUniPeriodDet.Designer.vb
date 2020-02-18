@@ -67,6 +67,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnOrderPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDeptHead = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoDeptHead = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnOrderTotalPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnOrderDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
@@ -172,7 +173,6 @@ Partial Class FormEmpUniPeriodDet
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnOrderTotalPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -677,6 +677,18 @@ Partial Class FormEmpUniPeriodDet
         Me.RepoDeptHead.ValueChecked = "Yes"
         Me.RepoDeptHead.ValueUnchecked = "No"
         '
+        'GridColumnOrderTotalPrice
+        '
+        Me.GridColumnOrderTotalPrice.Caption = "Total Price"
+        Me.GridColumnOrderTotalPrice.DisplayFormat.FormatString = "N0"
+        Me.GridColumnOrderTotalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOrderTotalPrice.FieldName = "order_price_total"
+        Me.GridColumnOrderTotalPrice.Name = "GridColumnOrderTotalPrice"
+        Me.GridColumnOrderTotalPrice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_price_total", "{0:N0}")})
+        Me.GridColumnOrderTotalPrice.Visible = True
+        Me.GridColumnOrderTotalPrice.VisibleIndex = 9
+        Me.GridColumnOrderTotalPrice.Width = 86
+        '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -731,6 +743,7 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnPrintForm.Size = New System.Drawing.Size(110, 37)
         Me.BtnPrintForm.TabIndex = 10
         Me.BtnPrintForm.Text = "Print Form"
+        Me.BtnPrintForm.Visible = False
         '
         'BtnPrintBudget
         '
@@ -1695,18 +1708,6 @@ Partial Class FormEmpUniPeriodDet
         Me.EditSizeToolStripMenuItem.Name = "EditSizeToolStripMenuItem"
         Me.EditSizeToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
         Me.EditSizeToolStripMenuItem.Text = "Reset Size"
-        '
-        'GridColumnOrderTotalPrice
-        '
-        Me.GridColumnOrderTotalPrice.Caption = "Total Price"
-        Me.GridColumnOrderTotalPrice.DisplayFormat.FormatString = "N0"
-        Me.GridColumnOrderTotalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnOrderTotalPrice.FieldName = "order_price_total"
-        Me.GridColumnOrderTotalPrice.Name = "GridColumnOrderTotalPrice"
-        Me.GridColumnOrderTotalPrice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_price_total", "{0:N0}")})
-        Me.GridColumnOrderTotalPrice.Visible = True
-        Me.GridColumnOrderTotalPrice.VisibleIndex = 9
-        Me.GridColumnOrderTotalPrice.Width = 86
         '
         'FormEmpUniPeriodDet
         '
