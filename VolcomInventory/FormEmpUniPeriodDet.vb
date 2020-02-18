@@ -276,7 +276,7 @@
 
         'data
         Report.LabelPeriodName.Text = TxtPeriodName.Text.ToUpper
-        Report.LabelPeriodDate.Text = DEStart.Text + DEEnd.Text
+        Report.LabelPeriodDate.Text = DEStart.Text + " - " + DEEnd.Text
         Report.LabelBudget.Text = TxtBudget.Text
 
         ' Show the report's preview. 
