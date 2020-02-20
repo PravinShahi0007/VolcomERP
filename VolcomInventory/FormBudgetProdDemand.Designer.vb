@@ -45,6 +45,14 @@ Partial Class FormBudgetProdDemand
         Me.BtnViewProposeDate = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProposed = New DevExpress.XtraGrid.GridControl()
         Me.GVProposed = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_b_prod_demand_propose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnyear_proposed = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_confirm = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCBudget.SuspendLayout()
         Me.XTPApproved.SuspendLayout()
@@ -321,12 +329,71 @@ Partial Class FormBudgetProdDemand
         '
         'GVProposed
         '
+        Me.GVProposed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_b_prod_demand_propose, Me.GridColumnyear_proposed, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumnnote, Me.GridColumnis_confirm, Me.GridColumnid_report_status, Me.GridColumnreport_status})
         Me.GVProposed.GridControl = Me.GCProposed
         Me.GVProposed.Name = "GVProposed"
         Me.GVProposed.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVProposed.OptionsBehavior.Editable = False
         Me.GVProposed.OptionsView.ColumnAutoWidth = False
         Me.GVProposed.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_b_prod_demand_propose
+        '
+        Me.GridColumnid_b_prod_demand_propose.Caption = "id_b_prod_demand_propose"
+        Me.GridColumnid_b_prod_demand_propose.FieldName = "id_b_prod_demand_propose"
+        Me.GridColumnid_b_prod_demand_propose.Name = "GridColumnid_b_prod_demand_propose"
+        '
+        'GridColumnyear_proposed
+        '
+        Me.GridColumnyear_proposed.Caption = "Year Budget"
+        Me.GridColumnyear_proposed.FieldName = "year"
+        Me.GridColumnyear_proposed.Name = "GridColumnyear_proposed"
+        Me.GridColumnyear_proposed.Visible = True
+        Me.GridColumnyear_proposed.VisibleIndex = 0
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 1
+        '
+        'GridColumncreated_date
+        '
+        Me.GridColumncreated_date.Caption = "Created Date"
+        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumncreated_date.FieldName = "created_date"
+        Me.GridColumncreated_date.Name = "GridColumncreated_date"
+        Me.GridColumncreated_date.Visible = True
+        Me.GridColumncreated_date.VisibleIndex = 2
+        '
+        'GridColumnnote
+        '
+        Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.FieldName = "note"
+        Me.GridColumnnote.Name = "GridColumnnote"
+        '
+        'GridColumnis_confirm
+        '
+        Me.GridColumnis_confirm.Caption = "is_confirm"
+        Me.GridColumnis_confirm.FieldName = "is_confirm"
+        Me.GridColumnis_confirm.Name = "GridColumnis_confirm"
+        '
+        'GridColumnid_report_status
+        '
+        Me.GridColumnid_report_status.Caption = "id_report_status"
+        Me.GridColumnid_report_status.FieldName = "id_report_status"
+        Me.GridColumnid_report_status.Name = "GridColumnid_report_status"
+        '
+        'GridColumnreport_status
+        '
+        Me.GridColumnreport_status.Caption = "Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.Visible = True
+        Me.GridColumnreport_status.VisibleIndex = 3
         '
         'FormBudgetProdDemand
         '
@@ -388,4 +455,12 @@ Partial Class FormBudgetProdDemand
     Friend WithEvents BtnViewYearBudget As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCProposed As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProposed As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_b_prod_demand_propose As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnyear_proposed As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_confirm As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
 End Class

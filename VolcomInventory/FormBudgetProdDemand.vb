@@ -30,4 +30,35 @@
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewAppBudget()
     End Sub
+
+    Private Sub BtnViewProposeDate_Click(sender As Object, e As EventArgs) Handles BtnViewProposeDate.Click
+        'date
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim cond As String = "AND (b.created_date>='" + date_from_selected + "' AND b.created_date<='" + date_until_selected + "') "
+
+        viewPropose(cond)
+    End Sub
+
+    Private Sub BtnViewYearBudget_Click(sender As Object, e As EventArgs) Handles BtnViewYearBudget.Click
+        viewPropose("AND b.year='" + DEYearProposedBudget.Text + "' ")
+    End Sub
+
+    Sub viewPropose(ByVal cond_par As String)
+        Cursor = Cursors.WaitCursor
+        Dim b As New ClassBudgetProdDemand()
+        Dim query As String = b.queryMain(cond_par, "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProposed.DataSource = data
+        GVProposed.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
 End Class
