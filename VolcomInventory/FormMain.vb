@@ -1803,6 +1803,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPaymentMissing" Then
             FormPaymentMissingDet.id_missing_payment = "-1"
             FormPaymentMissingDet.ShowDialog()
+        ElseIf formName = "FormBudgetProdDemand" Then
+            FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1
+            FormBudgetProdDemandDet.action = "ins"
+            FormBudgetProdDemandDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2961,6 +2965,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf Formname = "FormPaymentMissing" Then
                 FormPaymentMissingDet.id_missing_payment = FormPaymentMissing.GridViewMissing.GetFocusedRowCellValue("id_missing_payment").ToString
                 FormPaymentMissingDet.ShowDialog()
+            ElseIf formName = "FormBudgetProdDemand" Then
+                If FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1 Then
+                    If FormBudgetProdDemand.GVProposed.RowCount > 0 And FormBudgetProdDemand.GVProposed.FocusedRowHandle >= 0 Then
+                        FormBudgetProdDemandDet.action = "upd"
+                        FormBudgetProdDemandDet.id = FormBudgetProdDemand.GVProposed.GetFocusedRowCellValue("id_b_prod_demand_propose").ToString
+                        FormBudgetProdDemandDet.ShowDialog()
+                    End If
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6286,6 +6298,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     errorDelete()
                 End Try
             End If
+        ElseIf formName = "FormBudgetProdDemand" Then
         Else
             RPSubMenu.Visible = False
         End If
@@ -8063,6 +8076,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormLineList.GCData, "")
         ElseIf formName = "FormPaymentMissing" Then
             FormPaymentMissing.form_print()
+        ElseIf formName = "FormBudgetProdDemand" Then
+            If FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 0 Then
+                print_raw(FormBudgetProdDemand.GCApprovedBudget, "")
+            ElseIf FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1 Then
+                print_raw(FormBudgetProdDemand.GCProposed, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8920,6 +8939,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormLineList" Then
             FormLineList.Close()
             FormLineList.Dispose()
+        ElseIf formName = "FormBudgetProdDemand" Then
+            FormBudgetProdDemand.Close()
+            FormBudgetProdDemand.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9815,6 +9837,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpUniCreditNote.view_form()
         ElseIf formName = "FormPaymentMissing" Then
             FormPaymentMissingDet.form_load()
+        ElseIf formName = "FormBudgetProdDemand" Then
+            If FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 0 Then
+                FormBudgetProdDemand.viewAppBudget()
+            ElseIf FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1 Then
+                FormBudgetProdDemand.viewPropose(FormBudgetProdDemand.last_cond)
+            End If
         End If
     End Sub
     'Switch

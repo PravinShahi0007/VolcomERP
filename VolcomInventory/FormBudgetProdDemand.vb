@@ -1,4 +1,5 @@
 ﻿Public Class FormBudgetProdDemand
+    Public last_cond As String = ""
     Private Sub FormBudgetProdDemand_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEYearBudget.EditValue = Now
         DEYearProposedBudget.EditValue = Now
@@ -52,6 +53,7 @@
         viewPropose("AND b.year='" + DEYearProposedBudget.Text + "' ")
     End Sub
 
+
     Sub viewPropose(ByVal cond_par As String)
         Cursor = Cursors.WaitCursor
         Dim b As New ClassBudgetProdDemand()
@@ -59,6 +61,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProposed.DataSource = data
         GVProposed.BestFitColumns()
+        last_cond = cond_par
         Cursor = Cursors.Default
     End Sub
 End Class
