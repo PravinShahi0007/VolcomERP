@@ -34,15 +34,37 @@ Partial Class FormBudgetProdDemand
         Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnseason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvalue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEYearProposedBudget = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnViewYearBudget = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.BtnViewProposeDate = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCProposed = New DevExpress.XtraGrid.GridControl()
+        Me.GVProposed = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.XTCBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCBudget.SuspendLayout()
         Me.XTPApproved.SuspendLayout()
+        Me.XTPProposedBudget.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCApprovedBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVApprovedBudget, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.DEYearProposedBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEYearProposedBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCProposed, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProposed, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCBudget
@@ -66,8 +88,10 @@ Partial Class FormBudgetProdDemand
         '
         'XTPProposedBudget
         '
+        Me.XTPProposedBudget.Controls.Add(Me.GCProposed)
+        Me.XTPProposedBudget.Controls.Add(Me.PanelControl2)
         Me.XTPProposedBudget.Name = "XTPProposedBudget"
-        Me.XTPProposedBudget.Size = New System.Drawing.Size(294, 272)
+        Me.XTPProposedBudget.Size = New System.Drawing.Size(826, 514)
         Me.XTPProposedBudget.Text = "Proposed Budget"
         '
         'PanelControl1
@@ -137,6 +161,7 @@ Partial Class FormBudgetProdDemand
         Me.GVApprovedBudget.OptionsBehavior.ReadOnly = True
         Me.GVApprovedBudget.OptionsFind.AlwaysVisible = True
         Me.GVApprovedBudget.OptionsView.ColumnAutoWidth = False
+        Me.GVApprovedBudget.OptionsView.ShowFooter = True
         Me.GVApprovedBudget.OptionsView.ShowGroupPanel = False
         '
         'GridColumnid_b_prod_demand
@@ -178,6 +203,131 @@ Partial Class FormBudgetProdDemand
         Me.GridColumnvalue.Visible = True
         Me.GridColumnvalue.VisibleIndex = 2
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BtnViewProposeDate)
+        Me.PanelControl2.Controls.Add(Me.DEFrom)
+        Me.PanelControl2.Controls.Add(Me.DEUntil)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
+        Me.PanelControl2.Controls.Add(Me.DEYearProposedBudget)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Controls.Add(Me.BtnViewYearBudget)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(826, 48)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'DEYearProposedBudget
+        '
+        Me.DEYearProposedBudget.EditValue = Nothing
+        Me.DEYearProposedBudget.Location = New System.Drawing.Point(94, 13)
+        Me.DEYearProposedBudget.Name = "DEYearProposedBudget"
+        Me.DEYearProposedBudget.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEYearProposedBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearProposedBudget.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearProposedBudget.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
+        Me.DEYearProposedBudget.Properties.DisplayFormat.FormatString = "yyyy"
+        Me.DEYearProposedBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEYearProposedBudget.Properties.Mask.EditMask = "yyyy"
+        Me.DEYearProposedBudget.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEYearProposedBudget.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
+        Me.DEYearProposedBudget.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
+        Me.DEYearProposedBudget.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEYearProposedBudget.Size = New System.Drawing.Size(77, 20)
+        Me.DEYearProposedBudget.TabIndex = 8908
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(14, 16)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl1.TabIndex = 8907
+        Me.LabelControl1.Text = "By Year Budget"
+        '
+        'BtnViewYearBudget
+        '
+        Me.BtnViewYearBudget.Image = CType(resources.GetObject("BtnViewYearBudget.Image"), System.Drawing.Image)
+        Me.BtnViewYearBudget.Location = New System.Drawing.Point(177, 13)
+        Me.BtnViewYearBudget.Name = "BtnViewYearBudget"
+        Me.BtnViewYearBudget.Size = New System.Drawing.Size(68, 20)
+        Me.BtnViewYearBudget.TabIndex = 8906
+        Me.BtnViewYearBudget.Text = "View"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(251, 16)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(86, 13)
+        Me.LabelControl2.TabIndex = 8909
+        Me.LabelControl2.Text = "By Proposed Date"
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(341, 13)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Size = New System.Drawing.Size(147, 20)
+        Me.DEFrom.TabIndex = 8910
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(491, 16)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl3.TabIndex = 8911
+        Me.LabelControl3.Text = "-"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(499, 13)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(147, 20)
+        Me.DEUntil.TabIndex = 8912
+        '
+        'BtnViewProposeDate
+        '
+        Me.BtnViewProposeDate.Image = CType(resources.GetObject("BtnViewProposeDate.Image"), System.Drawing.Image)
+        Me.BtnViewProposeDate.Location = New System.Drawing.Point(652, 13)
+        Me.BtnViewProposeDate.Name = "BtnViewProposeDate"
+        Me.BtnViewProposeDate.Size = New System.Drawing.Size(68, 20)
+        Me.BtnViewProposeDate.TabIndex = 8913
+        Me.BtnViewProposeDate.Text = "View"
+        '
+        'GCProposed
+        '
+        Me.GCProposed.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProposed.Location = New System.Drawing.Point(0, 48)
+        Me.GCProposed.MainView = Me.GVProposed
+        Me.GCProposed.Name = "GCProposed"
+        Me.GCProposed.Size = New System.Drawing.Size(826, 466)
+        Me.GCProposed.TabIndex = 1
+        Me.GCProposed.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProposed})
+        '
+        'GVProposed
+        '
+        Me.GVProposed.GridControl = Me.GCProposed
+        Me.GVProposed.Name = "GVProposed"
+        Me.GVProposed.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVProposed.OptionsBehavior.Editable = False
+        Me.GVProposed.OptionsView.ColumnAutoWidth = False
+        Me.GVProposed.OptionsView.ShowGroupPanel = False
+        '
         'FormBudgetProdDemand
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -190,6 +340,7 @@ Partial Class FormBudgetProdDemand
         CType(Me.XTCBudget, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCBudget.ResumeLayout(False)
         Me.XTPApproved.ResumeLayout(False)
+        Me.XTPProposedBudget.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -197,6 +348,17 @@ Partial Class FormBudgetProdDemand
         CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCApprovedBudget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVApprovedBudget, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.DEYearProposedBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEYearProposedBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCProposed, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProposed, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -215,4 +377,15 @@ Partial Class FormBudgetProdDemand
     Friend WithEvents GridColumnid_season As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnseason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnvalue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnViewProposeDate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEYearProposedBudget As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnViewYearBudget As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCProposed As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProposed As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

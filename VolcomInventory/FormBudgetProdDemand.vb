@@ -1,6 +1,9 @@
 ﻿Public Class FormBudgetProdDemand
     Private Sub FormBudgetProdDemand_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEYearBudget.EditValue = Now
+        DEYearProposedBudget.EditValue = Now
+        DEFrom.EditValue = Now
+        DEUntil.EditValue = Now
     End Sub
 
     Private Sub FormBudgetProdDemand_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
