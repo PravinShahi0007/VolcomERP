@@ -25,7 +25,7 @@ Partial Class FormBudgetProdDemandDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 261)
+        Me.ClientSize = New System.Drawing.Size(908, 547)
         Me.MinimizeBox = False
         Me.Name = "FormBudgetProdDemandDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
