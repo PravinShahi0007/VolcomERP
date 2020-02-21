@@ -23,7 +23,6 @@
         Dim query As String = query_c.queryMain("AND b.id_b_prod_demand_propose='" + id + "' ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         TxtNumber.Text = data.Rows(0)("number").ToString
-        Console.WriteLine(data.Rows(0)("year").ToString)
         DEYearBudget.EditValue = data.Rows(0)("year_input")
         MENote.Text = data.Rows(0)("note").ToString
         DECreated.EditValue = data.Rows(0)("created_date")
