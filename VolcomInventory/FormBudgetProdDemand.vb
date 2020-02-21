@@ -68,4 +68,10 @@
         last_cond = cond_par
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVProposed_DoubleClick(sender As Object, e As EventArgs) Handles GVProposed.DoubleClick
+        Cursor = Cursors.WaitCursor
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
 End Class
