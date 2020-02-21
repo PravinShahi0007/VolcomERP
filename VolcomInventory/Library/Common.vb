@@ -6877,4 +6877,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.Save, CommandVisibility.None)
         tool.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.Open, CommandVisibility.None)
     End Sub
+    '
+    Public Sub send_mail_app()
+
+    End Sub
 End Module
