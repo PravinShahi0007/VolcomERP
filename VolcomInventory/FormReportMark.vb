@@ -3795,6 +3795,8 @@
                 execute_non_query(query_cancel, True, "", "", "", "")
                 query_cancel = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
                 execute_non_query(query_cancel, True, "", "", "", "")
+                query_cancel = "UPDATE tb_report_mark SET id_mark = '3' WHERE id_mark = '1' AND report_mark_type = '" + report_mark_type + "' AND id_report = '" & id_report & "'"
+                execute_non_query(query_cancel, True, "", "", "", "")
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
