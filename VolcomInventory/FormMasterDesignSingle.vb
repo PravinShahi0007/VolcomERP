@@ -1528,6 +1528,7 @@
 
         'validate
         EP_TE_cant_blank(EPMasterDesign, TEName)
+        EP_TE_cant_blank(EPMasterDesign, TxtFabrication)
         If id_pop_up = "-1" Then
             EP_TE_cant_blank(EPMasterDesign, TECode)
         ElseIf id_pop_up = "3" Then
@@ -3130,5 +3131,9 @@
 
     Private Sub SLELinePlan_MouseDown(sender As Object, e As MouseEventArgs) Handles SLELinePlan.MouseDown
         SLELinePlan.Properties.View.BestFitColumns()
+    End Sub
+
+    Private Sub TxtFabrication_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtFabrication.Validating
+        EP_TE_cant_blank(EPMasterDesign, TxtFabrication)
     End Sub
 End Class
