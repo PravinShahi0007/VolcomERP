@@ -497,7 +497,7 @@
                 SELECT sch.date, IF(lvd.id_schedule IS NULL, 0, 1) AS is_leave
                 FROM tb_emp_schedule AS sch
                 LEFT JOIN tb_emp_leave_det AS lvd ON sch.id_schedule = lvd.id_schedule
-                WHERE sch.id_schedule_type = 1 AND (" + query_in.Substring(0, query_in.Length - 4) + ") AND sch.id_employee = " + id_employee + "
+                WHERE sch.id_schedule_type = 1 AND sch.id_leave_type = 1 AND (" + query_in.Substring(0, query_in.Length - 4) + ") AND sch.id_employee = " + id_employee + "
                 ORDER BY sch.date ASC
             "
 
