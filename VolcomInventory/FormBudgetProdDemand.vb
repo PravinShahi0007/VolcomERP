@@ -33,6 +33,10 @@
     End Sub
 
     Private Sub BtnViewProposeDate_Click(sender As Object, e As EventArgs) Handles BtnViewProposeDate.Click
+        viewProposeByDate()
+    End Sub
+
+    Sub viewProposeByDate()
         'date
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
