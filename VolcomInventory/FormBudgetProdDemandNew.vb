@@ -24,6 +24,27 @@
 
         If DEYearBudget.Text = "" Or MENote.Text = "" Then
             warningCustom("Please complete all data")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create propose budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                'insert
+                Dim query As String = "INSERT INTO tb_b_prod_demand_propose(year,created_date, note)
+                VALUES('" + DEYearBudget.Text + "', NOW(), '" + addSlashes(MENote.Text) + "'); SELECT LAST_INSERT_ID(); "
+                Dim id As String = execute_query(query, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ", 238); ", True, "", "", "", "")
+
+                'refresh
+                Dim dtnow As DateTime = getTimeDB()
+                FormBudgetProdDemand.DEFrom.EditValue = dtnow
+                FormBudgetProdDemand.DEUntil.EditValue = dtnow
+                FormBudgetProdDemand.viewProposeByDate()
+                FormBudgetProdDemand.GVProposed.FocusedRowHandle = find_row(FormBudgetProdDemand.GVProposed, "id_b_prod_demand_propose", id)
+                Close()
+
+                'detail
+                FormBudgetProdDemandDet.id = id
+                FormBudgetProdDemandDet.ShowDialog()
+            End If
         End If
     End Sub
 End Class

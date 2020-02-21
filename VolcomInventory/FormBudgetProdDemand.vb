@@ -33,6 +33,10 @@
     End Sub
 
     Private Sub BtnViewProposeDate_Click(sender As Object, e As EventArgs) Handles BtnViewProposeDate.Click
+        viewProposeByDate()
+    End Sub
+
+    Sub viewProposeByDate()
         'date
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
@@ -62,6 +66,12 @@
         GCProposed.DataSource = data
         GVProposed.BestFitColumns()
         last_cond = cond_par
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVProposed_DoubleClick(sender As Object, e As EventArgs) Handles GVProposed.DoubleClick
+        Cursor = Cursors.WaitCursor
+        FormMain.but_edit()
         Cursor = Cursors.Default
     End Sub
 End Class

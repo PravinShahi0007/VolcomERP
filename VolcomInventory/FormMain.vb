@@ -1805,8 +1805,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPaymentMissingDet.ShowDialog()
         ElseIf formName = "FormBudgetProdDemand" Then
             FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1
-            FormBudgetProdDemandDet.action = "ins"
-            FormBudgetProdDemandDet.ShowDialog()
+            FormBudgetProdDemandNew.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2968,7 +2967,6 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormBudgetProdDemand" Then
                 If FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1 Then
                     If FormBudgetProdDemand.GVProposed.RowCount > 0 And FormBudgetProdDemand.GVProposed.FocusedRowHandle >= 0 Then
-                        FormBudgetProdDemandDet.action = "upd"
                         FormBudgetProdDemandDet.id = FormBudgetProdDemand.GVProposed.GetFocusedRowCellValue("id_b_prod_demand_propose").ToString
                         FormBudgetProdDemandDet.ShowDialog()
                     End If
