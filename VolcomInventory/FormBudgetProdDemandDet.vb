@@ -42,6 +42,8 @@
     End Sub
 
     Sub allow_status()
+        BtnAttachment.Visible = True
+        BtnCancell.Visible = True
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
@@ -50,6 +52,7 @@
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
+            DEYearBudget.Enabled = True
             GVData.OptionsBehavior.ReadOnly = False
         Else
             BtnConfirm.Visible = False
@@ -59,6 +62,7 @@
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
+            DEYearBudget.Enabled = False
             GVData.OptionsBehavior.ReadOnly = True
         End If
 
@@ -77,6 +81,7 @@
             BtnResetPropose.Visible = False
             BtnConfirm.Visible = False
             MENote.Enabled = False
+            DEYearBudget.Enabled = False
             BtnPrint.Visible = False
             PanelControlNav.Visible = False
             BtnSaveChanges.Visible = False
