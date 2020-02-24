@@ -6924,12 +6924,68 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                 Tool.ShowPreview()
             ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 4 Then 'RSV STOCK
-                print(FormFGStock.GCRsv, "RESERVED STOCK")
+                '... 
+                ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                FormFGStock.GVRsv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                ReportFGStockRSV.dt = FormFGStock.GCRsv.DataSource
+                Dim Report As New ReportFGStockRSV()
+                Report.GVRsv.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.LabelDesign.Text = If(FormFGStock.CheckEditAllDsgRsv.EditValue, "ALL DESIGN", FormFGStock.TxtCodeDsgRsv.Text + " - " + FormFGStock.TxtNameDsgRsv.Text)
+                Report.LabelAccount.Text = FormFGStock.TxtCodeAccRsv.Text + " - " + FormFGStock.TxtNameAccRsv.Text
+                ReportStyleGridview(Report.GVRsv)
+
+                ' Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
             ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 5 Then 'SOH
                 If FormFGStock.XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
-                    print_raw(FormFGStock.GCSOH, "STOCK ON HAND")
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormFGStock.GVSOH.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportFGStockSOH.dt = FormFGStock.GCSOH.DataSource
+                    Dim Report As New ReportFGStockSOH()
+                    Report.XrLabeltitle.Text = "STOCK ON HAND (BY SIZE BARCODE)"
+                    Report.DetailReportSize.Visible = True
+                    Report.DetailReportCode.Visible = False
+                    Report.GVSOH.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    Report.LabelDesign.Text = If(FormFGStock.CEFindAllProduct.Checked, "ALL DESIGN", FormFGStock.TxtProduct.Text)
+                    Report.LabelAccount.Text = FormFGStock.SLEAccount.Text
+                    Report.LabelUnit.Text = FormFGStock.DEUntilAcc.Text
+                    ReportStyleGridview(Report.GVSOH)
+
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
                 ElseIf FormFGStock.XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
-                    print_raw(FormFGStock.GCSOHCode, "STOCK ON HAND")
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormFGStock.GVSOHCode.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportFGStockSOH.dt = FormFGStock.GCSOHCode.DataSource
+                    Dim Report As New ReportFGStockSOH()
+                    Report.XrLabeltitle.Text = "STOCK ON HAND (BY CODE)"
+                    Report.DetailReportSize.Visible = False
+                    Report.DetailReportCode.Visible = True
+                    Report.GVSOHCode.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    Report.LabelDesign.Text = If(FormFGStock.CEFindAllProduct.Checked, "ALL DESIGN", FormFGStock.TxtProduct.Text)
+                    Report.LabelAccount.Text = FormFGStock.SLEAccount.Text
+                    Report.LabelUnit.Text = FormFGStock.DEUntilAcc.Text
+                    ReportStyleBanded(Report.GVSOHCode)
+
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
                 End If
             End If
             Cursor = Cursors.Default
