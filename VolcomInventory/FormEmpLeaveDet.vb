@@ -30,6 +30,7 @@
             load_emp_detail()
 
             BPickEmployee.Enabled = False
+            TEEmployeeCode.Properties.ReadOnly = True
         End If
     End Sub
 
