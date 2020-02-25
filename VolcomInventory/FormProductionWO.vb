@@ -8,6 +8,7 @@
     Public date_created As Date
     Public id_report_status_g As String = "1"
     Public id_wo_type As String = "-1"
+    Public is_manual_add As String = "-1"
 
     Private Sub FormProductionWO_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_form()
@@ -55,7 +56,7 @@
             query += "d.comp_name AS comp_name_to, "
             query += "f.comp_name AS comp_name_ship_to,(SELECT id_own_company_contact FROM tb_opt) AS id_comp_contact_ship_to, "
             query += "a.prod_order_wo_number,a.id_ovh_price,j.overhead, "
-            query += "a.prod_order_wo_del_date, "
+            query += "a.prod_order_wo_del_date,a.is_manual_add, "
             query += "DATE_FORMAT(a.prod_order_wo_date,'%Y-%m-%d') as prod_order_wo_datex,a.prod_order_wo_date,a.prod_order_wo_lead_time,a.prod_order_wo_top,a.prod_order_wo_vat, a.is_main_vendor "
             query += "FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price "
             query += "INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact "
@@ -68,6 +69,7 @@
             query += "WHERE a.id_prod_order_wo='" & id_wo & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
+            is_manual_add = data.Rows(0)("is_manual_add").ToString
             id_ovh_price = data.Rows(0)("id_ovh_price").ToString
             '
             TEWONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
@@ -334,7 +336,7 @@
                         execute_non_query(query, True, "", "", "", "")
                     End If
                     '
-                    query = String.Format("INSERT INTO tb_prod_order_wo(id_prod_order,id_ovh_price,prod_order_wo_number,id_comp_contact_ship_to,id_payment,prod_order_wo_date,prod_order_wo_lead_time,prod_order_wo_top,prod_order_wo_note,prod_order_wo_vat,prod_order_wo_del_date,prod_order_wo_kurs,id_currency,is_main_vendor) VALUES('{0}','{1}','{2}','{3}','{4}',DATE(NOW()),'{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}'); SELECT LAST_INSERT_ID()", id_po, id_ovh_price, wo_number, id_comp_ship_to, payment_type, lead_time, top, notex, vat, del_date, decimalSQL(kurs.ToString), id_currency, is_main_vendor)
+                    query = String.Format("INSERT INTO tb_prod_order_wo(id_prod_order,id_ovh_price,prod_order_wo_number,id_comp_contact_ship_to,id_payment,prod_order_wo_date,prod_order_wo_lead_time,prod_order_wo_top,prod_order_wo_note,prod_order_wo_vat,prod_order_wo_del_date,prod_order_wo_kurs,id_currency,is_main_vendor,is_manual_add) VALUES('{0}','{1}','{2}','{3}','{4}',DATE(NOW()),'{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}'); SELECT LAST_INSERT_ID()", id_po, id_ovh_price, wo_number, id_comp_ship_to, payment_type, lead_time, top, notex, vat, del_date, decimalSQL(kurs.ToString), id_currency, is_main_vendor, "1")
                     id_wo_new = execute_query(query, 0, True, "", "", "", "")
                     '
                     'insert_who_prepared("23", id_wo_new, id_user)
@@ -472,6 +474,7 @@
         ReportProductionWO.id_prod_wo = id_wo
         ReportProductionWO.id_po = id_po
         ReportProductionWO.is_po_print = "-1"
+        ReportProductionWO.is_manual_add = is_manual_add
 
         If check_print_report_status(id_report_status_g) Then
             ReportProductionWO.is_pre = "-1"
@@ -594,8 +597,14 @@
     End Sub
 
     Private Sub BMark_Click_1(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.id_report = id_wo
-        FormReportMark.report_mark_type = "23"
-        FormReportMark.ShowDialog()
+        If is_manual_add = "1" Then
+            FormReportMark.id_report = id_wo
+            FormReportMark.report_mark_type = "23"
+            FormReportMark.ShowDialog()
+        Else
+            FormReportMark.id_report = id_po
+            FormReportMark.report_mark_type = "22"
+            FormReportMark.ShowDialog()
+        End If
     End Sub
 End Class
