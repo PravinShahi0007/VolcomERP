@@ -23,6 +23,18 @@ Module Common
     Public emp_image_path As String = ""
     Public is_change_pass_user As String = ""
     Public again_awb As String = ""
+    Public id_login_season As String = ""
+
+    Sub check_login_season()
+        Dim q As String = "SELECT is_season_over FROM tb_log_login WHERE id_season='" & id_login_season & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            If dt.Rows(0)("is_season_over").ToString = "1" Then
+                warningCustom("Multiple login detected, please login again.")
+                FormMain.logOutCmd()
+            End If
+        End If
+    End Sub
 
     Sub loadImgPath()
         product_image_path = get_setup_field("pic_path_design") & "\"
