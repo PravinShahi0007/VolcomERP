@@ -204,6 +204,31 @@
                 FormImportExcel.ShowDialog()
                 Close()
             End If
+        ElseIf id_pop_up = "8" Then 'adj out import
+            Dim val_cek As String = "-1"
+            Try
+                val_cek = SLEDrawer.EditValue.ToString
+                If val_cek = "" Or val_cek = "0" Then
+                    val_cek = "-1"
+                End If
+            Catch ex As Exception
+            End Try
+            If val_cek = "-1" Then
+                stopCustom("Please choose the drawer first.")
+            Else
+                FormFGAdjOutDet.comp_name = SLEWH.Text
+                FormFGAdjOutDet.id_comp = SLEWH.EditValue.ToString
+
+                FormFGAdjOutDet.id_drawer = SLEDrawer.EditValue.ToString
+                FormFGAdjOutDet.drawer_name = SLEDrawer.Text
+
+                FormFGAdjOutDet.id_locator = SLELocator.EditValue.ToString
+                FormFGAdjOutDet.locator_name = SLELocator.EditValue.ToString
+
+                FormFGAdjOutDet.id_rack = SLERack.EditValue.ToString
+                FormFGAdjOutDet.rack_name = SLELocator.EditValue.ToString
+                Close()
+            End If
         End If
     End Sub
 End Class

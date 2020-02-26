@@ -3,10 +3,14 @@
     Public action As String
     Public id_report_status As String
     Public total_amount As Double
-    Public id_wh As String = "-1"
-    Public id_locator As String = "-1"
-    Public id_rack As String = "-1"
-    Public id_drawer As String = "-1"
+    Public id_drawer As String = ""
+    Public drawer_name As String = ""
+    Public id_rack As String = ""
+    Public rack_name As String = ""
+    Public id_locator As String = ""
+    Public locator_name As String = ""
+    Public id_comp As String = ""
+    Public comp_name As String = ""
 
     Private Sub FormFGAdjOutDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
