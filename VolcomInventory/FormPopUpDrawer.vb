@@ -176,6 +176,34 @@
                 FormSamplePLToWHDet.codeAvailableIns()
                 Close()
             End If
+        ElseIf id_pop_up = "7" Then 'adj in import
+            Dim val_cek As String = "-1"
+            Try
+                val_cek = SLEDrawer.EditValue.ToString
+                If val_cek = "" Or val_cek = "0" Then
+                    val_cek = "-1"
+                End If
+            Catch ex As Exception
+            End Try
+            If val_cek = "-1" Then
+                stopCustom("Please choose the drawer first.")
+            Else
+                FormFGAdjInDet.comp_name = SLEWH.Text
+                FormFGAdjInDet.id_comp = SLEWH.EditValue.ToString
+
+                FormFGAdjInDet.id_drawer = SLEDrawer.EditValue.ToString
+                FormFGAdjInDet.drawer_name = SLEDrawer.Text
+
+                FormFGAdjInDet.id_locator = SLELocator.EditValue.ToString
+                FormFGAdjInDet.locator_name = SLELocator.EditValue.ToString
+
+                FormFGAdjInDet.id_rack = SLERack.EditValue.ToString
+                FormFGAdjInDet.rack_name = SLELocator.EditValue.ToString
+
+                FormImportExcel.id_pop_up = "47"
+                FormImportExcel.ShowDialog()
+                Close()
+            End If
         End If
     End Sub
 End Class
