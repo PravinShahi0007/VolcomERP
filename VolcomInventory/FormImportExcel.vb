@@ -2944,6 +2944,33 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "47" Then 'adj inn
+            'vendor code 
+            Dim queryx As String = "SELECT id_product,product_full_code,product_name FROM tb_m_product"
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("pr_code").ToString Equals table_tmp("product_full_code").ToString
+                            Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .IdProduct = If(y1 Is Nothing, "0", y1("id_product")),
+                                .Code = If(y1 Is Nothing, "0", y1("product_full_code")),
+                                .Description = If(y1 Is Nothing, "0", y1("product_name")),
+                                .Color = table1("pr_colnm"),
+                                .UPC = table1("pr_upc")
+                            }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("IdProduct").Visible = False
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -5035,24 +5062,24 @@ Public Class FormImportExcel
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "id_product").ToString = "0" Then
                             Dim R As DataRow = (TryCast(FormFGAdjInDet.GCDetail.DataSource, DataTable)).NewRow()
-                            R("id_product") = GVData.GetRowCellValue(i, "code").ToString
-                            R("name") = GVData.GetRowCellValue(i, "name").ToString
+                            R("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
+                            R("name") = GVData.GetRowCellValue(i, "design_display_name").ToString
                             R("size") = GVData.GetRowCellValue(i, "size").ToString
-                            R("uom") = GVData.GetRowCellValue(i, "color").ToString
-                            R("code") = Decimal.Parse(GVData.GetRowCellValue(i, "sales_pos_det_qty_credit_note").ToString)
-                            R("adj_in_fg_det_qty") = Decimal.Parse(GVData.GetRowCellValue(i, "sales_pos_det_qty_credit_note").ToString) * Decimal.Parse(GVData.GetRowCellValue(i, "design_price_retail").ToString)
-                            R("adj_in_fg_det_price") = Decimal.Parse(GVData.GetRowCellValue(i, "design_price_retail").ToString)
-                            R("adj_in_fg_det_amount") = GVData.GetRowCellValue(i, "design_price_type").ToString
-                            R("adj_in_fg_det_note") = Decimal.Parse(GVData.GetRowCellValue(i, "design_price").ToString)
-                            R("id_wh_drawer") = GVData.GetRowCellValue(i, "id_design").ToString
-                            R("id_wh_rack") = GVData.GetRowCellValue(i, "id_product").ToString
-                            R("id_wh_locator") = GVData.GetRowCellValue(i, "id_sample").ToString
-                            R("id_comp") = GVData.GetRowCellValue(i, "id_design_price").ToString
-                            R("comp") = GVData.GetRowCellValue(i, "id_design_price_retail").ToString
-                            R("wh_drawer") = GVData.GetRowCellValue(i, "id_sales_pos_det").ToString
-                            R("wh_rack") = "0"
-                            R("wh_locator") = "0"
-                            R("comp_name") = "0"
+                            R("uom") = GVData.GetRowCellValue(i, "uom").ToString
+                            R("code") = GVData.GetRowCellValue(i, "code").ToString
+                            R("adj_in_fg_det_qty") = Decimal.Parse(GVData.GetRowCellValue(i, "qty").ToString)
+                            R("adj_in_fg_det_price") = Decimal.Parse(GVData.GetRowCellValue(i, "design_cop").ToString)
+                            R("adj_in_fg_det_amount") = Decimal.Parse(GVData.GetRowCellValue(i, "qty").ToString) * Decimal.Parse(GVData.GetRowCellValue(i, "design_cop").ToString)
+                            R("adj_in_fg_det_note") = GVData.GetRowCellValue(i, "note").ToString
+                            R("id_wh_drawer") = GVData.GetRowCellValue(i, "id_wh_drawer").ToString
+                            R("id_wh_rack") = GVData.GetRowCellValue(i, "id_wh_rack").ToString
+                            R("id_wh_locator") = GVData.GetRowCellValue(i, "id_wh_locator").ToString
+                            R("id_comp") = GVData.GetRowCellValue(i, "id_comp").ToString
+                            R("comp") = GVData.GetRowCellValue(i, "comp").ToString
+                            R("wh_drawer") = GVData.GetRowCellValue(i, "wh_drawer").ToString
+                            R("wh_rack") = GVData.GetRowCellValue(i, "wh_rack").ToString
+                            R("wh_locator") = GVData.GetRowCellValue(i, "wh_locator").ToString
+                            R("comp_name") = GVData.GetRowCellValue(i, "comp_name").ToString
                             TryCast(FormFGAdjInDet.GCDetail.DataSource, DataTable).Rows.Add(R)
                             FormFGAdjInDet.GCDetail.RefreshDataSource()
                             FormFGAdjInDet.GVDetail.RefreshData()
