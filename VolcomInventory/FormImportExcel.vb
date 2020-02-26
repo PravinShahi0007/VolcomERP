@@ -2944,6 +2944,12 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "48" Then
+            Try
+                Dim queryx As String = ""
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()

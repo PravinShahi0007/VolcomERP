@@ -3,6 +3,10 @@
     Public action As String
     Public id_report_status As String
     Public total_amount As Double
+    Public id_wh As String = "-1"
+    Public id_locator As String = "-1"
+    Public id_rack As String = "-1"
+    Public id_drawer As String = "-1"
 
     Private Sub FormFGAdjOutDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -345,5 +349,14 @@
 
     Private Sub SimpleButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SimpleButton1.Click
         
+    End Sub
+
+    Private Sub BtnImportExcel_Click(sender As Object, e As EventArgs) Handles BtnImportExcel.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpDrawer.id_pop_up = "8"
+        FormPopUpDrawer.ShowDialog()
+        FormImportExcel.id_pop_up = "48"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
