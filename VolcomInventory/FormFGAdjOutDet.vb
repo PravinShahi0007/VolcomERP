@@ -357,10 +357,9 @@
 
     Private Sub BtnImportExcel_Click(sender As Object, e As EventArgs) Handles BtnImportExcel.Click
         Cursor = Cursors.WaitCursor
+        FormPopUpDrawer.include_all = False
         FormPopUpDrawer.id_pop_up = "8"
         FormPopUpDrawer.ShowDialog()
-        FormImportExcel.id_pop_up = "48"
-        FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
