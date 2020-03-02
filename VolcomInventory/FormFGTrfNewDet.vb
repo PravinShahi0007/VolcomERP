@@ -25,6 +25,7 @@ Public Class FormFGTrfNewDet
     Public bof_xls_so As String = get_setup_field("bof_xls_trf")
     Dim id_wh_type As String = "-1"
     Dim is_save_unreg_unique As String = "-1"
+    Dim is_use_unique_code_wh As String = "-1"
 
     Private Sub FormFGTrfNewDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'get default store category for pick company
@@ -131,7 +132,7 @@ Public Class FormFGTrfNewDet
         Dim query As String = "SELECT a.id_so_type, a.id_so_status, a.id_sales_order, a.id_store_contact_to, d.id_wh_type, (d.comp_name) AS store_name_to,a.id_report_status, f.report_status, "
         query += "a.sales_order_note,a.sales_order_date, a.sales_order_note, a.sales_order_number, "
         query += "DATE_FORMAT(a.sales_order_date,'%d %M %Y') AS sales_order_date, (SELECT COUNT(id_pl_sales_order_del) FROM tb_pl_sales_order_del WHERE tb_pl_sales_order_del.id_sales_order = a.id_sales_order) AS pl_created, "
-        query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name`, a.id_prepare_status "
+        query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name`, wh.is_use_unique_code, a.id_prepare_status "
         query += "FROM tb_sales_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -159,6 +160,7 @@ Public Class FormFGTrfNewDet
         TxtCodeCompTo.Text = get_company_x(id_comp_to, 2)
         TxtNameCompTo.Text = get_company_x(id_comp_to, 1)
         id_wh_type = data.Rows(0)("id_wh_type").ToString
+        is_use_unique_code_wh = data.Rows(0)("is_use_unique_code").ToString
 
         'wh
         Dim query_comp_from As String = "SELECT id_comp FROM tb_m_comp_contact WHERE id_comp_contact = '" + data.Rows(0)("id_warehouse_contact_to").ToString + "'"
@@ -409,6 +411,11 @@ Public Class FormFGTrfNewDet
         dt.Clear()
         Dim query As String = ""
         query = "CALL view_stock_fg_unique_del_less('" + id_product_param_comma + "')"
+        'If is_use_unique_code_wh = "1" Then
+        '    query = ""
+        'Else
+        '    query = "CALL view_stock_fg_unique_del_less('" + id_product_param_comma + "')"
+        'End If
         Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
         dt = datax
         'For k As Integer = 0 To (datax.Rows.Count - 1)
@@ -1144,6 +1151,9 @@ Public Class FormFGTrfNewDet
                     If GVBarcode.RowCount > 0 Then
                         execute_non_query(query_counting, True, "", "", "", "")
                     End If
+
+                    'reserved unique code
+
 
                     'submit who prepared
                     submit_who_prepared("57", id_fg_trf, id_user)
