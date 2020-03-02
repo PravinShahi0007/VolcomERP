@@ -18,18 +18,20 @@
             q_dep_capex = " AND et.id_departement='" & id_departement & "'"
         End If
 
-        Dim query As String = "SELECT o.id_b_expense_opex,ot.`value`,ot.is_po,ot.`note`,ot.id_report,ot.report_mark_type,IF(ISNULL(po.purc_order_number),IF(ISNULL(rec.purc_rec_number),'',rec.purc_rec_number),po.purc_order_number) AS report_number
+        Dim query As String = "SELECT it.item_desc,o.id_b_expense_opex,ot.`value`,ot.is_po,ot.`note`,ot.id_report,ot.report_mark_type,IF(ISNULL(po.purc_order_number),IF(ISNULL(rec.purc_rec_number),'',rec.purc_rec_number),po.purc_order_number) AS report_number
 FROM `tb_b_expense_opex_trans` ot
 INNER JOIN tb_b_expense_opex o ON ot.`id_b_expense_opex`=o.`id_b_expense_opex` AND o.id_item_cat_main='" & id_cat_main & "' " & q_dep_opex & "
 LEFT JOIN tb_purc_order po ON po.id_purc_order=ot.id_report AND (ot.report_mark_type='139' or ot.report_mark_type='202')
 LEFT JOIN tb_purc_rec rec ON rec.id_purc_rec=ot.id_report AND ot.report_mark_type='148'
+LEFT JOIN tb_item it ON it.id_item=ot.id_item
 WHERE o.`year`='" & year & "' AND DATE(ot.date_trans)<='" & date_time & "'
 UNION ALL
-SELECT et.id_b_expense,et.`value` AS val,et.is_po,et.`note`,et.id_report,et.report_mark_type,IF(ISNULL(po.purc_order_number),IF(ISNULL(rec.purc_rec_number),'',rec.purc_rec_number),po.purc_order_number) AS report_number
+SELECT it.item_desc,et.id_b_expense,et.`value` AS val,et.is_po,et.`note`,et.id_report,et.report_mark_type,IF(ISNULL(po.purc_order_number),IF(ISNULL(rec.purc_rec_number),'',rec.purc_rec_number),po.purc_order_number) AS report_number
 FROM `tb_b_expense_trans` et
 INNER JOIN tb_b_expense e ON e.`id_b_expense`=et.`id_b_expense` AND e.id_item_cat_main='" & id_cat_main & "' " & q_dep_capex & "
 LEFT JOIN tb_purc_order po ON po.id_purc_order=et.id_report AND (et.report_mark_type='139' or et.report_mark_type='202')
 LEFT JOIN tb_purc_rec rec ON rec.id_purc_rec=et.id_report AND et.report_mark_type='148'
+LEFT JOIN tb_item it ON it.id_item=et.id_item
 WHERE e.`year`='" & year & "' AND DATE(et.date_trans)<='" & date_time & "'"
         '
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
