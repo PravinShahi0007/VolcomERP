@@ -5821,6 +5821,12 @@
     <Compile Include="FormTrackingReturn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormUniqueCode.Designer.vb">
+      <DependentUpon>FormUniqueCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormUniqueDel.Designer.vb">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
     </Compile>
@@ -11019,6 +11025,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTrackingReturn.resx">
       <DependentUpon>FormTrackingReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueCode.resx">
+      <DependentUpon>FormUniqueCode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueDel.resx">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
