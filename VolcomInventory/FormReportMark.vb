@@ -5462,6 +5462,9 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     WHERE e.id_item_expense=" + id_report + " "
                     execute_non_query(qjd, True, "", "", "", "")
                 End If
+                'budget
+                Dim q_budget As String = "INSERT INTO tb"
+                execute_non_query(q_budget, True, "", "", "", "")
             End If
 
             'refresh view
