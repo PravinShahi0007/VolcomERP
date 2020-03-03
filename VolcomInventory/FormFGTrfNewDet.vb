@@ -19,6 +19,7 @@ Public Class FormFGTrfNewDet
     Public id_type As String = "-1"
     Dim is_new_rec As Boolean = False
     Public id_wh_drawer_to As String = "-1"
+    Public id_wh_drawer_from As String = "-1"
     Public is_only_for_alloc As String = "-1"
     Public id_pre As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
@@ -132,7 +133,7 @@ Public Class FormFGTrfNewDet
         Dim query As String = "SELECT a.id_so_type, a.id_so_status, a.id_sales_order, a.id_store_contact_to, d.id_wh_type, (d.comp_name) AS store_name_to,a.id_report_status, f.report_status, "
         query += "a.sales_order_note,a.sales_order_date, a.sales_order_note, a.sales_order_number, "
         query += "DATE_FORMAT(a.sales_order_date,'%d %M %Y') AS sales_order_date, (SELECT COUNT(id_pl_sales_order_del) FROM tb_pl_sales_order_del WHERE tb_pl_sales_order_del.id_sales_order = a.id_sales_order) AS pl_created, "
-        query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name`, wh.is_use_unique_code, a.id_prepare_status "
+        query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name`, wh.is_use_unique_code, wh.id_drawer_def AS `id_wh_drawer_from`, a.id_prepare_status "
         query += "FROM tb_sales_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -168,6 +169,7 @@ Public Class FormFGTrfNewDet
         id_comp_contact_from = data.Rows(0)("id_warehouse_contact_to").ToString
         TxtCodeCompFrom.Text = data.Rows(0)("wh_number").ToString
         TxtNameCompFrom.Text = data.Rows(0)("wh_name").ToString
+        id_wh_drawer_from = data.Rows(0)("id_wh_drawer_from").ToString
 
         'general
         viewSalesOrderDetail()
@@ -410,12 +412,12 @@ Public Class FormFGTrfNewDet
     Sub codeAvailableIns(ByVal id_product_param As String, ByVal id_product_param_comma As String)
         dt.Clear()
         Dim query As String = ""
-        query = "CALL view_stock_fg_unique_del_less('" + id_product_param_comma + "')"
-        'If is_use_unique_code_wh = "1" Then
-        '    query = ""
-        'Else
-        '    query = "CALL view_stock_fg_unique_del_less('" + id_product_param_comma + "')"
-        'End If
+        'query = "CALL view_stock_fg_unique_del_less('" + id_product_param_comma + "')"
+        If is_use_unique_code_wh = "1" Then
+            query = "CALL view_stock_fg_unique_with_table('" + id_product_param_comma + "', '" + id_comp_from + "', '" + id_wh_drawer_from + "')"
+        Else
+            query = "CALL view_stock_fg_unique_del_less('" + id_product_param_comma + "')"
+        End If
         Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
         dt = datax
         'For k As Integer = 0 To (datax.Rows.Count - 1)
@@ -1153,6 +1155,22 @@ Public Class FormFGTrfNewDet
                     End If
 
                     'reserved unique code
+                    If is_use_unique_code_wh = "1" Then
+                        Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_fg_trf_det_counting`,`id_pl_prod_order_rec_det_unique`,`id_type`,`unique_code`,
+                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                        SELECT cc.id_comp, '" + id_wh_drawer_from + "', td.id_product,  tc.id_fg_trf_det_counting,tc.id_pl_prod_order_rec_det_unique, '7', 
+                        CONCAT(p.product_full_code,tc.fg_trf_det_counting), sod.id_design_price, sod.design_price, -1, 1, NOW() 
+                        FROM tb_fg_trf_det td
+                        INNER JOIN tb_fg_trf t ON t.id_fg_trf = td.id_fg_trf
+                        INNER JOIN tb_fg_trf_det_counting tc ON tc.id_fg_trf_det = td.id_fg_trf_det
+                        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact =  t.id_comp_contact_from
+                        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                        INNER JOIN tb_m_product p ON p.id_product = td.id_product
+                        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = td.id_sales_order_det
+                        WHERE t.id_fg_trf=" + id_fg_trf + " AND d.is_old_design=2  AND c.is_use_unique_code=1 "
+                        execute_non_query(quniq, True, "", "", "", "")
+                    End If
 
 
                     'submit who prepared
