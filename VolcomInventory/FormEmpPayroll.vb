@@ -534,10 +534,16 @@
 
         If Not already_office Then
             report.DetailReportOffice.Visible = False
+
+            report.DetailReportStore.Level = 0
+            report.DetailReportStore.PageBreak = DevExpress.XtraReports.UI.PageBreak.None
         End If
 
         If Not already_store Then
             report.DetailReportStore.Visible = False
+
+            report.DetailReportOffice.Level = 0
+            report.DetailReportOffice.PageBreak = DevExpress.XtraReports.UI.PageBreak.None
         End If
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)

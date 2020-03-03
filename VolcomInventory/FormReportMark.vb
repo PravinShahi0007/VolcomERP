@@ -4870,7 +4870,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 'budget move to actual
                 Dim qb As String = "-- opex
                 INSERT INTO tb_b_expense_opex_trans(id_b_expense_opex,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
-                SELECT rqd.id_b_expense_opex,1,rq.id_departement,NOW(),-(pod.`value` * rd.qty),rd.id_item, pod.id_purc_order, 139 AS rmt, 'Receiving Reverse PO'
+                SELECT rqd.id_b_expense_opex,1,rq.id_departement,NOW(),-(pod.`value` * rd.qty),rd.id_item, pod.id_purc_order, 139 AS rmt, 'Adj Budget Booking PO'
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
@@ -4889,7 +4889,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1';
                 -- capex
                 INSERT INTO tb_b_expense_trans(id_b_expense,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
-                SELECT rqd.id_b_expense,1,rq.id_departement,NOW(),-(pod.`value` * rd.qty),rd.id_item, pod.id_purc_order, 202, 'Receiving Reverse PO'
+                SELECT rqd.id_b_expense,1,rq.id_departement,NOW(),-(pod.`value` * rd.qty),rd.id_item, pod.id_purc_order, 202, 'Adj Budget Booking PO'
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
