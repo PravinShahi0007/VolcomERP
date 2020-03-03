@@ -743,13 +743,12 @@ Partial Public Class ReportProductionKO
         'XrLabel42
         '
         Me.XrLabel42.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel42.CanGrow = False
         Me.XrLabel42.Font = New System.Drawing.Font("Calibri", 11.0!)
         Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(95.87523!, 229.8751!)
         Me.XrLabel42.Multiline = True
         Me.XrLabel42.Name = "XrLabel42"
         Me.XrLabel42.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel42.SizeF = New System.Drawing.SizeF(250.0!, 20.0!)
+        Me.XrLabel42.SizeF = New System.Drawing.SizeF(219.1248!, 20.0!)
         Me.XrLabel42.StylePriority.UseBorders = False
         Me.XrLabel42.StylePriority.UseFont = False
         Me.XrLabel42.StylePriority.UseTextAlignment = False
