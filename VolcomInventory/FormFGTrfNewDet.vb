@@ -1084,8 +1084,8 @@ Public Class FormFGTrfNewDet
                     'query main table
                     Dim fg_trf_number As String = header_number_sales("15")
 
-                    Dim query_main As String = "INSERT tb_fg_trf(id_sales_order, fg_trf_number, id_comp_contact_from, id_comp_contact_to, fg_trf_date, fg_trf_date_rec, fg_trf_note, id_report_status,id_report_status_rec,id_wh_drawer, last_update, last_update_by) "
-                    query_main += "VALUES('" + id_sales_order + "','" + fg_trf_number + "', '" + id_comp_contact_from + "', '" + id_comp_contact_to + "', NOW(), NOW(), '" + fg_trf_note + "', '1','1', '" + id_wh_drawer_to + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
+                    Dim query_main As String = "INSERT tb_fg_trf(id_sales_order, fg_trf_number, id_comp_contact_from, id_comp_contact_to, fg_trf_date, fg_trf_date_rec, fg_trf_note, id_report_status,id_report_status_rec,id_wh_drawer, last_update, last_update_by, is_use_unique_code) "
+                    query_main += "VALUES('" + id_sales_order + "','" + fg_trf_number + "', '" + id_comp_contact_from + "', '" + id_comp_contact_to + "', NOW(), NOW(), '" + fg_trf_note + "', '1','1', '" + id_wh_drawer_to + "', NOW(), " + id_user + ", '" + is_use_unique_code_wh + "'); SELECT LAST_INSERT_ID(); "
                     id_fg_trf = execute_query(query_main, 0, True, "", "", "", "")
                     increase_inc_sales("15")
 
@@ -1168,7 +1168,7 @@ Public Class FormFGTrfNewDet
                         INNER JOIN tb_m_product p ON p.id_product = td.id_product
                         INNER JOIN tb_m_design d ON d.id_design = p.id_design
                         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = td.id_sales_order_det
-                        WHERE t.id_fg_trf=" + id_fg_trf + " AND d.is_old_design=2  AND c.is_use_unique_code=1 "
+                        WHERE t.id_fg_trf=" + id_fg_trf + " AND d.is_old_design=2  AND t.is_use_unique_code=1 "
                         execute_non_query(quniq, True, "", "", "", "")
                     End If
 
