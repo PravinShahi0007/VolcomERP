@@ -4739,6 +4739,15 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                     Next
 
                 Next
+
+                'notif email
+                Try
+                    Dim mail As ClassSendEmail = New ClassSendEmail()
+                    mail.report_mark_type = report_mark_type
+                    mail.send_email_notif(report_mark_type, id_report)
+                Catch ex As Exception
+                    execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD REVISE;" + id_report + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                End Try
             End If
 
             'update status
