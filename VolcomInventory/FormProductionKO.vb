@@ -190,6 +190,7 @@ ORDER BY po.`id_prod_order` ASC"
 ,emp_purc_mngr.employee_name AS emp_name_purc_mngr,emp_purc_mngr.`employee_position` AS purc_mngr_pos
 ,emp_fc.employee_name AS emp_name_fc,emp_fc.`employee_position` AS fc_pos
 ,emp_director.employee_name AS emp_name_director,emp_director.`employee_position` AS director_pos
+,emp_vice.employee_name AS emp_name_vice_director
 FROM tb_prod_order_ko ko
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ko.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
@@ -200,6 +201,7 @@ INNER JOIN tb_m_employee emp_created ON emp_created.`id_employee`=usr_created.`i
 INNER JOIN tb_m_employee emp_purc_mngr ON emp_purc_mngr.`id_employee`=ko.`id_emp_purc_mngr`
 INNER JOIN tb_m_employee emp_fc ON emp_fc.`id_employee`=ko.`id_emp_fc`
 INNER JOIN tb_m_employee emp_director ON emp_director.`id_employee`=ko.`id_emp_director`
+INNER JOIN tb_m_employee emp_vice ON emp_vice.`id_employee`=ko.`id_emp_vice_director`
 WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         ReportProductionKO.dt_head = data
