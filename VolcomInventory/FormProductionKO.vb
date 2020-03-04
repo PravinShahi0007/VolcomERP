@@ -232,8 +232,8 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
         Dim check As String = "SELECT * FROM tb_prod_order_ko WHERE number='" & addSlashes(TEKONumber.Text) & "' ORDER BY id_prod_order_ko DESC"
         Dim data_check As DataTable = execute_query(check, -1, True, "", "", "", "")
         If id_ko = data_check.Rows(0)("id_prod_order_ko").ToString Then
-            Dim query As String = "INSERT INTO tb_prod_order_ko(`id_prod_order_ko_reff`,`number`,`revision`,`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`is_purc_mat`)
-SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "')),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`is_purc_mat` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "'; SELECT LAST_INSERT_ID(); "
+            Dim query As String = "INSERT INTO tb_prod_order_ko(`id_prod_order_ko_reff`,`number`,`revision`,`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`id_emp_vice_director`,`is_purc_mat`)
+SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "')),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`id_emp_vice_director`,`is_purc_mat` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "'; SELECT LAST_INSERT_ID(); "
             Dim new_id_ko As String = execute_query(query, 0, True, "", "", "", "")
             'det
             query = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment`)
