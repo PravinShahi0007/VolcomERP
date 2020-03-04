@@ -35,6 +35,7 @@ Public Class FormSalesDelOrderDet
     Public allow_sum As Decimal
     Dim id_store_type As String = "-1"
     Dim is_use_unique_code As String = "-1"
+    Dim is_use_unique_code_wh As String = "-1"
     Dim action_scan_btn As String = ""
     Dim id_combine As String = "-1"
 
@@ -147,7 +148,7 @@ Public Class FormSalesDelOrderDet
     Sub viewSalesOrder()
         'Dim query_c As New ClassSalesOrder()
         'Dim query As String = query_c.queryMain("AND a.id_sales_order=" + id_sales_order + " ", "2")
-        Dim qso As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`,  
+        Dim qso As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.is_use_unique_code AS `is_use_unique_code_wh`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`,  
         IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type, a.final_comment, a.final_date, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.id_prepare_status, a.customer_name
         FROM tb_sales_order a 
         INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
@@ -204,6 +205,7 @@ Public Class FormSalesDelOrderDet
         TxtDrawerCode.Text = data.Rows(0)("wh_drawer_code").ToString
         TxtDrawer.Text = data.Rows(0)("wh_drawer").ToString
         id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
+        is_use_unique_code_wh = data.Rows(0)("is_use_unique_code_wh").ToString
 
         'tipe & status SO
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -377,10 +379,15 @@ Public Class FormSalesDelOrderDet
     End Sub
 
 
-    Sub codeAvailableIns(ByVal id_product_param As String)
+    Sub codeAvailableIns(ByVal id_product_param As String, ByVal id_product_param_comma As String)
         'unique
         dt.Clear()
-        Dim query As String = "CALL view_stock_fg_unique_del('" + id_product_param + "') "
+        Dim query As String = ""
+        If is_use_unique_code_wh = "1" Then
+
+        Else
+            query = "CALL view_stock_fg_unique_del('" + id_product_param + "') "
+        End If
         Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
         dt = datax
 
@@ -926,13 +933,15 @@ Public Class FormSalesDelOrderDet
         GVItemList.ActiveFilterString = "[status]<>'0'"
         If GVItemList.RowCount > 0 Then
             Dim id_product_param As String = ""
+            Dim id_product_param_comma As String = ""
             For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                 id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
                 If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
                     id_product_param += ";"
+                    id_product_param_comma += ","
                 End If
             Next
-            codeAvailableIns(id_product_param)
+            codeAvailableIns(id_product_param, id_product_param_comma)
         End If
         GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
