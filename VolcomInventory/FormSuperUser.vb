@@ -34,7 +34,7 @@
 
         'send mail final
         'Dim nm As New ClassSendEmail
-        'nm.par1 = "5078"
+        'nm.par1 = "5288"
         'nm.report_mark_type = "185"
         'nm.send_email()
 
