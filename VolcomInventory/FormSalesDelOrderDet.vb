@@ -192,7 +192,7 @@ Public Class FormSalesDelOrderDet
         TxtNameCompTo.Text = data.Rows(0)("store").ToString
         MEAdrressCompTo.Text = data.Rows(0)("store_address").ToString
         id_store_type = data.Rows(0)("id_store_type").ToString
-        is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
+        is_use_unique_code = get_setup_field("is_use_unique_code_all")
         If id_store_type = "3" Then 'big sale
             id_store_type = "2"
         End If
@@ -206,7 +206,7 @@ Public Class FormSalesDelOrderDet
         TxtDrawerCode.Text = data.Rows(0)("wh_drawer_code").ToString
         TxtDrawer.Text = data.Rows(0)("wh_drawer").ToString
         id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
-        is_use_unique_code_wh = data.Rows(0)("is_use_unique_code_wh").ToString
+        is_use_unique_code_wh = get_setup_field("is_use_unique_code_all")
         id_wh = data.Rows(0)("id_wh").ToString
 
         'tipe & status SO
