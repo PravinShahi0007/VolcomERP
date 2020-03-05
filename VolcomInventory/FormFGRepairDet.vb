@@ -21,7 +21,7 @@ Public Class FormFGRepairDet
     Public bof_xls_repair As String = get_setup_field("bof_xls_repair")
     Dim rmt As String = ""
     '
-    Dim is_use_unique_code_wh As String = "-1"
+    Dim is_use_unique_code_wh As String = get_setup_field("is_use_unique_code_all")
     '
     Private Sub FormFGRepairDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If FormFGRepair.is_to_vendor = True Then
@@ -149,7 +149,6 @@ Public Class FormFGRepairDet
                 id_comp_from = data.Rows(0)("id_comp").ToString
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
-                is_use_unique_code_wh = data.Rows(0)("is_use_unique_code").ToString
                 setDefaultDrawerFrom()
                 viewDetail()
                 codeAvailableIns()
@@ -665,7 +664,7 @@ Public Class FormFGRepairDet
 
                     'reserved unique code
                     If is_use_unique_code_wh = "1" Then
-                        Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_fg_trf_det_counting`,`report_mark_type`,`unique_code`,
+                        Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_fg_repair_det`,`report_mark_type`,`unique_code`,
                         `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
                         SELECT c.id_comp, t.`id_wh_drawer_from`, td.id_product,  td.id_fg_repair_det, '8', 
                         CONCAT(p.product_full_code,td.fg_repair_det_counting), sod.id_design_price, sod.design_price, -1, 1, NOW() 
