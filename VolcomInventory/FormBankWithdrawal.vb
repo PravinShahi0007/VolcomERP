@@ -628,4 +628,10 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
         GVTHR.ActiveFilterString = ""
     End Sub
+
+    Private Sub ViewBPLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewBPLToolStripMenuItem.Click
+        FormPopUpListJournal.id_pop_up = "1"
+        FormPopUpListJournal.id_ref = GVPOList.GetFocusedRowCellValue("id_purc_order").ToString
+        FormPopUpListJournal.ShowDialog()
+    End Sub
 End Class
