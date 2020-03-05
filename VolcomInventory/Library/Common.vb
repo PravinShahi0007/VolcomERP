@@ -1884,6 +1884,10 @@ WHERE note='Closing End'"
             'email
             query = "SELECT email FROM tb_m_comp WHERE id_comp='" & id_comp & "'"
             result = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "11" Then
+            'id wh drawer def
+            query = "SELECT id_drawer_def FROM tb_m_comp WHERE id_comp='" & id_comp & "'"
+            result = execute_query(query, 0, True, "", "", "", "")
         End If
         Return result
     End Function
