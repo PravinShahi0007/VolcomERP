@@ -642,7 +642,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         Else
             FormPopUpListJournal.id_pop_up = "1"
             FormPopUpListJournal.id_ref = GVPOListNonActive.GetFocusedRowCellValue("id_purc_order").ToString
-            FormPopUpListJournal.title_for_print = "BPL List PO OG " & GVPOList.GetFocusedRowCellValue("purc_order_number").ToString
+            FormPopUpListJournal.title_for_print = "BPL List PO OG " & GVPOListNonActive.GetFocusedRowCellValue("purc_order_number").ToString
             FormPopUpListJournal.ShowDialog()
         End If
     End Sub
