@@ -161,7 +161,7 @@ Public Class FormFGTrfNewDet
         TxtCodeCompTo.Text = get_company_x(id_comp_to, 2)
         TxtNameCompTo.Text = get_company_x(id_comp_to, 1)
         id_wh_type = data.Rows(0)("id_wh_type").ToString
-        is_use_unique_code_wh = data.Rows(0)("is_use_unique_code").ToString
+        is_use_unique_code_wh = get_setup_field("is_use_unique_code_all")
 
         'wh
         Dim query_comp_from As String = "SELECT id_comp FROM tb_m_comp_contact WHERE id_comp_contact = '" + data.Rows(0)("id_warehouse_contact_to").ToString + "'"

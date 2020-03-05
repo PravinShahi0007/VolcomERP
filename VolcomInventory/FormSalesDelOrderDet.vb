@@ -192,7 +192,7 @@ Public Class FormSalesDelOrderDet
         TxtNameCompTo.Text = data.Rows(0)("store").ToString
         MEAdrressCompTo.Text = data.Rows(0)("store_address").ToString
         id_store_type = data.Rows(0)("id_store_type").ToString
-        is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
+        is_use_unique_code = get_setup_field("is_use_unique_code_all")
         If id_store_type = "3" Then 'big sale
             id_store_type = "2"
         End If
@@ -206,7 +206,7 @@ Public Class FormSalesDelOrderDet
         TxtDrawerCode.Text = data.Rows(0)("wh_drawer_code").ToString
         TxtDrawer.Text = data.Rows(0)("wh_drawer").ToString
         id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
-        is_use_unique_code_wh = data.Rows(0)("is_use_unique_code_wh").ToString
+        is_use_unique_code_wh = get_setup_field("is_use_unique_code_all")
         id_wh = data.Rows(0)("id_wh").ToString
 
         'tipe & status SO
@@ -742,9 +742,9 @@ Public Class FormSalesDelOrderDet
 
                     'reserved unique code
                     If is_use_unique_code_wh = "1" Then
-                        Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_sales_order_del_det_counting`,`id_pl_prod_order_rec_det_unique`,`id_type`,`unique_code`,
+                        Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
                         `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
-                        SELECT cc.id_comp, '" + id_wh_drawer + "', td.id_product,  tc.id_pl_sales_order_del_det_counting,tc.id_pl_prod_order_rec_det_unique, '1', 
+                        SELECT cc.id_comp, '" + id_wh_drawer + "', td.id_product,  tc.id_pl_sales_order_del_det_counting, '1', 
                         CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, -1, 1, NOW() 
                         FROM tb_pl_sales_order_del_det td
                         INNER JOIN tb_pl_sales_order_del t ON t.id_pl_sales_order_del = td.id_pl_sales_order_del
@@ -957,6 +957,7 @@ Public Class FormSalesDelOrderDet
             Dim id_product_param_comma As String = ""
             For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                 id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+                id_product_param_comma += GVItemList.GetRowCellValue(i, "id_product").ToString
                 If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
                     id_product_param += ";"
                     id_product_param_comma += ","
