@@ -320,9 +320,9 @@
             query_complete += "WHERE del.id_combine=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0 "
             execute_non_query(query_complete, True, "", "", "", "")
         ElseIf id_status_reportx_par = "5" Then
-            Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_sales_order_del_det_counting`,`id_pl_prod_order_rec_det_unique`,`id_type`,`unique_code`,
+            Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
             `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
-            SELECT cc.id_comp, t.id_wh_drawer, td.id_product,  tc.id_pl_sales_order_del_det_counting,tc.id_pl_prod_order_rec_det_unique, '1', 
+            SELECT cc.id_comp, t.id_wh_drawer, td.id_product,  tc.id_pl_sales_order_del_det_counting, '1', 
             CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, 1, NOW() 
             FROM tb_pl_sales_order_del_det td
             INNER JOIN tb_pl_sales_order_del t ON t.id_pl_sales_order_del = td.id_pl_sales_order_del
@@ -369,22 +369,22 @@
     End Sub
 
     Public Sub insertUniqueCodeHead(ByVal id_report_par As String, ByVal id_comp_par As String, ByVal is_use_unique_code_par As String)
-        Dim query As String = "INSERT INTO tb_m_unique_code(`id_comp` , `id_product` ,`id_pl_sales_order_del_det_counting`, `id_type`, `unique_code` , 
-        `id_design_price` , `design_price` , `qty` , `is_unique_report` , `input_date` )
-        SELECT " + id_comp_par + ",dd.id_product, ddu.id_pl_sales_order_del_det_counting,1, CONCAT(p.product_full_code,ddu.pl_sales_order_del_det_counting) AS `code`, dd.id_design_price, dd.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW()
-        FROM tb_pl_sales_order_del_det dd 
-        INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
-        INNER JOIN tb_pl_sales_order_del_det_counting ddu ON ddu.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
-        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
-        INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
-        LEFT JOIN (
-	        SELECT u.id_product, u.is_unique_report 
-	        FROM tb_m_unique_code u
-	        WHERE u.id_comp=" + id_comp_par + "
-	        GROUP BY u.id_product
-        ) u ON u.id_product = dd.id_product
-        WHERE d.id_combine=" + id_report_par + " AND d.is_use_unique_code=1 AND dsg.is_old_design=2 "
-        execute_non_query(query, True, "", "", "", "")
+        'Dim query As String = "INSERT INTO tb_m_unique_code(`id_comp` , `id_product` ,`id_pl_sales_order_del_det_counting`, `id_type`, `unique_code` , 
+        '`id_design_price` , `design_price` , `qty` , `is_unique_report` , `input_date` )
+        'SELECT " + id_comp_par + ",dd.id_product, ddu.id_pl_sales_order_del_det_counting,1, CONCAT(p.product_full_code,ddu.pl_sales_order_del_det_counting) AS `code`, dd.id_design_price, dd.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW()
+        'FROM tb_pl_sales_order_del_det dd 
+        'INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        'INNER JOIN tb_pl_sales_order_del_det_counting ddu ON ddu.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+        'INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+        'INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+        'LEFT JOIN (
+        ' SELECT u.id_product, u.is_unique_report 
+        ' FROM tb_m_unique_code u
+        ' WHERE u.id_comp=" + id_comp_par + "
+        ' GROUP BY u.id_product
+        ') u ON u.id_product = dd.id_product
+        'WHERE d.id_combine=" + id_report_par + " AND d.is_use_unique_code=1 AND dsg.is_old_design=2 "
+        'execute_non_query(query, True, "", "", "", "")
     End Sub
 
     Public Function getMasterDelivery(ByVal del As String) As DataTable
