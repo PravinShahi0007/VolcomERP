@@ -337,6 +337,7 @@ Partial Class FormBankWithdrawal
         '
         'GCPOList
         '
+        Me.GCPOList.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCPOList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCPOList.Location = New System.Drawing.Point(0, 0)
         Me.GCPOList.MainView = Me.GVPOList

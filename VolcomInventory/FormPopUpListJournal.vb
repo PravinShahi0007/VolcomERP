@@ -1,6 +1,7 @@
 ﻿Public Class FormPopUpListJournal
     Public id_ref As String = "-1"
     Public id_pop_up As String = "-1"
+    Public title_for_print As String = "-1"
     Private Sub FormPopUpListJournal_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -18,7 +19,13 @@ GROUP BY a.id_acc_trans"
     End Sub
 
     Private Sub VDItemList_Click(sender As Object, e As EventArgs) Handles VDItemList.Click
-        FormViewJournal.id_trans = GVList.GetFocusedRowCellValue("id_acc_trans").ToString
-        FormViewJournal.ShowDialog()
+        If GVList.RowCount > 0 Then
+            FormViewJournal.id_trans = GVList.GetFocusedRowCellValue("id_acc_trans").ToString
+            FormViewJournal.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        print(GCList, title_for_print)
     End Sub
 End Class

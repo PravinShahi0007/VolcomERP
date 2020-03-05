@@ -37,6 +37,7 @@ Partial Class FormPopUpListJournal
         '
         'GCList
         '
+        Me.GCList.ContextMenuStrip = Me.ViewBPL
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCList.Location = New System.Drawing.Point(0, 0)
         Me.GCList.MainView = Me.GVList
@@ -123,12 +124,12 @@ Partial Class FormPopUpListJournal
         '
         Me.ViewBPL.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VDItemList})
         Me.ViewBPL.Name = "ContextMenuStripYM"
-        Me.ViewBPL.Size = New System.Drawing.Size(153, 48)
+        Me.ViewBPL.Size = New System.Drawing.Size(100, 26)
         '
         'VDItemList
         '
         Me.VDItemList.Name = "VDItemList"
-        Me.VDItemList.Size = New System.Drawing.Size(152, 22)
+        Me.VDItemList.Size = New System.Drawing.Size(99, 22)
         Me.VDItemList.Text = "View"
         '
         'FormPopUpListJournal
