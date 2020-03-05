@@ -748,6 +748,10 @@ WHERE note='Closing End'"
             increase_inc_sales("39")
         ElseIf opt = "40" Then
             header_number_x = combine_header_number(get_opt_sales_field("uni_ex_cn_code_head"), Integer.Parse(get_opt_sales_field("uni_ex_cn_code_inc")), Integer.Parse(get_opt_sales_field("uni_ex_cn_code_digit")))
+        ElseIf opt = "41" Then
+            header_number_x = combine_header_number(get_opt_sales_field("sales_return_order_4_code_head"), Integer.Parse(get_opt_sales_field("sales_return_order_4_code_inc")), Integer.Parse(get_opt_sales_field("sales_return_order_4_code_digit")))
+        ElseIf opt = "42" Then
+            header_number_x = combine_header_number(get_opt_sales_field("sales_return_order_6_code_head"), Integer.Parse(get_opt_sales_field("sales_return_order_6_code_inc")), Integer.Parse(get_opt_sales_field("sales_return_order_6_code_digit")))
         End If
         Return header_number_x
     End Function
@@ -904,6 +908,12 @@ WHERE note='Closing End'"
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "40" Then
             query = "UPDATE tb_opt_sales SET uni_ex_cn_code_inc  = (tb_opt_sales.uni_ex_cn_code_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "41" Then
+            query = "UPDATE tb_opt_sales SET sales_return_order_4_code_inc=(tb_opt_sales.sales_return_order_4_code_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "42" Then
+            query = "UPDATE tb_opt_sales SET sales_return_order_6_code_inc=(tb_opt_sales.sales_return_order_6_code_inc+1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
