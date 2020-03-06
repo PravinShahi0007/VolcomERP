@@ -513,7 +513,7 @@ WHERE tb_m_ovh_price.id_ovh = '" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_p
     End Sub
 
     Private Sub BGetKurs_Click(sender As Object, e As EventArgs) Handles BGetKurs.Click
-        Dim query_kurs As String = "SELECT * FROM tb_kurs_trans WHERE DATE(created_date) = DATE(NOW()) ORDER BY id_kurs_trans DESC"
+        Dim query_kurs As String = "SELECT * FROM tb_kurs_trans ORDER BY id_kurs_trans DESC LIMIT 1"
         Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
 
         If Not data_kurs.Rows.Count > 0 Then

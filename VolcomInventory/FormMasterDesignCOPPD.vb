@@ -271,7 +271,7 @@ INNER JOIN tb_m_code_detail cd ON dsgc.`id_code_detail`=cd.`id_code_detail` AND 
     Private Sub XTCCOPPD_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCCOPPD.SelectedPageChanged
         If XTCCOPPD.SelectedTabPageIndex = 1 Then
             'check kurs first
-            Dim query_kurs As String = "SELECT * FROM tb_kurs_trans WHERE DATE(created_date) = DATE(NOW()) ORDER BY id_kurs_trans DESC"
+            Dim query_kurs As String = "SELECT * FROM tb_kurs_trans ORDER BY id_kurs_trans DESC LIMIT 1"
             Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
 
             If Not data_kurs.Rows.Count > 0 Then

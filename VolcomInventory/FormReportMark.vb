@@ -4966,7 +4966,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
                 /*total biaya jasa atau non inventory */
-                SELECT " + id_acc_trans + ",o.id_coa_out AS `id_acc`, dep.id_main_comp,  SUM(rd.qty) AS `qty`,
+                SELECT " + id_acc_trans + ",o.id_coa_out AS `id_acc`, IF(reqd.ship_to=0,1,reqd.ship_to) AS id_comp,  SUM(rd.qty) AS `qty`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
                 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
@@ -4988,7 +4988,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
                 INNER JOIN tb_item_coa o ON o.id_item_cat=i.id_item_cat AND o.id_departement=req.id_departement
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='2'
-                GROUP BY rd.id_purc_rec,dep.id_main_comp
+                GROUP BY rd.id_purc_rec,dep.id_main_comp,reqd.ship_to
                 UNION ALL
                 /*total value item inventory tanpa diskon*/
                 SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, dep.id_main_comp,  SUM(rd.qty) AS `qty`,
