@@ -3477,7 +3477,11 @@ GROUP BY pdp.`id_prod_demand_design`"
             Dim query As String = "CALL view_prod_demand_rev(" + id_report + ")"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-            number = execute_query("SELECT pd.prod_demand_number FROM tb_prod_demand pd WHERE pd.id_prod_demand=" & id_report, 0, True, "", "", "", "")
+            number = execute_query("
+                SELECT pd.prod_demand_number 
+                FROM tb_prod_demand_rev AS r 
+                INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = r.id_prod_demand
+                WHERE r.id_prod_demand_rev=" & id_report, 0, True, "", "", "", "")
 
             If data.Rows.Count > 0 Then
                 'content
