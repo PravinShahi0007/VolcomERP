@@ -311,11 +311,7 @@ Public Class FormSalesReturnQCDet
     Sub codeAvailableIns(ByVal id_product_param As String, ByVal id_product_param_comma As String, ByVal id_store_param As String, ByVal id_design_price_param As String)
         Dim query As String = ""
         If action = "ins" Then
-            If is_use_unique_code = "1" Then
-                query = "CALL view_stock_fg_unique_with_table('" + id_product_param_comma + "', '" + id_comp_to + "', '" + id_drawer_origin + "')"
-            Else
-                query = "CALL view_stock_fg_unique_ret_qc('" + id_product_param + "','" + id_store_param + "', '" + id_design_price_param + "', '" + id_sales_return + "','0')"
-            End If
+            query = "CALL view_stock_fg_unique_ret_qc('" + id_product_param + "','" + id_store_param + "', '" + id_design_price_param + "', '" + id_sales_return + "','0')"
         ElseIf action = "upd" Then
             query = "CALL view_stock_fg_unique_ret_qc('" + id_product_param + "','" + id_store_param + "', '" + id_design_price_param + "', '" + id_sales_return + "','0')"
         End If
@@ -776,7 +772,7 @@ Public Class FormSalesReturnQCDet
                         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
                         INNER JOIN tb_m_product p ON p.id_product = td.id_product
                         INNER JOIN tb_m_design d ON d.id_design = p.id_design
-                        WHERE t.id_sales_return_qc=" + id_sales_return_qc + "
+                        WHERE t.id_sales_return_qc="+id_sales_return_qc+"
                         AND d.is_old_design=2 
                         AND t.is_use_unique_code=1 "
                         execute_non_query(quniq, True, "", "", "", "")
