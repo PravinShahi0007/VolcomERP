@@ -100,4 +100,13 @@ UPDATE tb_opt SET rate_management='" & decimalSQL((TEKurs.EditValue + TEFixFloat
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub RepositoryItemCheckEdit_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = GVKursTrans.GetFocusedRowCellValue("id_kurs_trans").ToString
+        FormDocumentUpload.report_mark_type = "239"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
