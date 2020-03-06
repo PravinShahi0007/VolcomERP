@@ -3478,7 +3478,7 @@ GROUP BY pdp.`id_prod_demand_design`"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             number = execute_query("
-                SELECT pd.prod_demand_number 
+                SELECT CONCAT(pd.prod_demand_number, ' (Revision ', r.rev_count, ')')
                 FROM tb_prod_demand_rev AS r 
                 INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = r.id_prod_demand
                 WHERE r.id_prod_demand_rev=" & id_report, 0, True, "", "", "", "")
