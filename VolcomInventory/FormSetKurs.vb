@@ -28,7 +28,7 @@
     Private Sub FormSetKurs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEKurs.EditValue = 0.00
         'get today kurs
-        Dim query As String = "SELECT * FROM tb_kurs_trans ORDER BY id_kurs_trans DESC"
+        Dim query As String = "SELECT * FROM tb_kurs_trans ORDER BY id_kurs_trans DESC LIMIT 1"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If data.Rows.Count > 0 Then
