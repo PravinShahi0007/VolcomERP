@@ -108,7 +108,7 @@
               ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a 
               GROUP BY a.id_design 
             ) prc ON prc.id_design = d.id_design 
-            WHERE rd.id_pl_prod_order_rec=" + id_report_par + " AND d.is_old_design=2 AND c.is_use_unique_code=1 "
+            WHERE rd.id_pl_prod_order_rec=" + id_report_par + " AND d.is_old_design=2 AND r.is_use_unique_code=1 "
             execute_non_query(qun, True, "", "", "", "")
         End If
 
