@@ -504,6 +504,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
 
         'Grid Detail
         ReportStyleGridview(Report.GVList)
+        Report.GVList.OptionsPrint.PrintFooter = False
 
         GridColumnAccPick.VisibleIndex = 0
         GCCur.VisibleIndex = 5
