@@ -56,6 +56,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -74,7 +75,6 @@ Partial Class FormFGAdjOutDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.EPAdj = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,6 +214,24 @@ Partial Class FormFGAdjOutDet
         '
         'GVDetail
         '
+        Me.GVDetail.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVDetail.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVDetail.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVDetail.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVDetail.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVDetail.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVDetail.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVDetail.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVDetail.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVDetail.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVDetail.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVDetail.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVDetail.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVDetail.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVDetail.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVDetail.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVDetail.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVDetail.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdj, Me.GridColumnNo, Me.GridColumnIdWHDrawer, Me.GridColumnIdWHRack, Me.GridColumnIdWHLOcator, Me.GridColumnIdWH, Me.GridColumnIdSample, Me.GridColumnIdAdjSampleDet, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnCompName, Me.GridColumnWHLoactor, Me.GridColumnWHRack, Me.GridColumnWHDrawer, Me.GridColumnUOM, Me.GridColumnRemark, Me.GridColumnAdjPrice, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnAccount})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
@@ -471,6 +489,17 @@ Partial Class FormFGAdjOutDet
         Me.PCEdit.Size = New System.Drawing.Size(807, 38)
         Me.PCEdit.TabIndex = 18
         '
+        'BtnImportExcel
+        '
+        Me.BtnImportExcel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnImportExcel.Image = CType(resources.GetObject("BtnImportExcel.Image"), System.Drawing.Image)
+        Me.BtnImportExcel.ImageIndex = 1
+        Me.BtnImportExcel.Location = New System.Drawing.Point(0, 0)
+        Me.BtnImportExcel.Name = "BtnImportExcel"
+        Me.BtnImportExcel.Size = New System.Drawing.Size(127, 38)
+        Me.BtnImportExcel.TabIndex = 20
+        Me.BtnImportExcel.Text = "Import Excel"
+        '
         'BtnDel
         '
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
@@ -650,17 +679,6 @@ Partial Class FormFGAdjOutDet
         'EPAdj
         '
         Me.EPAdj.ContainerControl = Me
-        '
-        'BtnImportExcel
-        '
-        Me.BtnImportExcel.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnImportExcel.Image = CType(resources.GetObject("BtnImportExcel.Image"), System.Drawing.Image)
-        Me.BtnImportExcel.ImageIndex = 1
-        Me.BtnImportExcel.Location = New System.Drawing.Point(0, 0)
-        Me.BtnImportExcel.Name = "BtnImportExcel"
-        Me.BtnImportExcel.Size = New System.Drawing.Size(127, 38)
-        Me.BtnImportExcel.TabIndex = 20
-        Me.BtnImportExcel.Text = "Import Excel"
         '
         'FormFGAdjOutDet
         '
