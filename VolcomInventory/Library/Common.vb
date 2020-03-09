@@ -3596,7 +3596,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'insert row blank 3 times
         For i As Integer = 0 To 1
             Dim row_blank As New XRTableRow()
-            row_blank.HeightF = 10.0F
+            row_blank.HeightF = 15.0F
             For j As Integer = 0 To cellsInRow - 1
                 Dim cell_blank As New XRTableCell()
                 cell_blank.Text = " "
