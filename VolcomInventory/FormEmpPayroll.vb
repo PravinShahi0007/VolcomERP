@@ -153,7 +153,11 @@
             If id_report_status = "6" Then
                 BPrintSlip.Enabled = True
                 SBSendSlip.Enabled = True
-                BtnViewJournal.Visible = True
+                If is_thr = "2" Then
+                    BtnViewJournal.Visible = True
+                Else
+                    BtnViewJournal.Visible = False
+                End If
                 BReset.Visible = False
             End If
 
