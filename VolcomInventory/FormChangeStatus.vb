@@ -57,7 +57,7 @@
         'blocking cancel
         If id_pop_up = "2" And SLEStatusRec.EditValue.ToString = "5" Then
             Dim am As String = ""
-            For a As Integer = 0 To gv.RowCount - 1
+            For a As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
                 Dim id_del_manifest As String = gv.GetRowCellValue(a, "id_del_manifest").ToString
                 Dim del_number As String = gv.GetRowCellValue(a, "pl_sales_order_del_number").ToString
                 If id_del_manifest <> "0" Then
