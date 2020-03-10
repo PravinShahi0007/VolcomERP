@@ -34,6 +34,7 @@ Public Class FormProductionPLToWHRecDet
     Public id_comp_to As String = "-1"
     Public id_design As String = "-1"
     Public id_design_cat As String = "-1"
+    Dim is_use_unique_code As String = "-1"
 
     Private Sub FormProductionPLToWHRecDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         checkFormAccessSingle(Name)
@@ -336,6 +337,7 @@ Public Class FormProductionPLToWHRecDet
         TxtSeason.Text = data.Rows(0)("season").ToString
         TxtPONumber.Text = data.Rows(0)("prod_order_number").ToString
         id_order = data.Rows(0)("id_prod_order").ToString
+        is_use_unique_code = get_setup_field("is_use_unique_code_all")
         mainVendor()
         pre_viewImages("2", PEView, data.Rows(0)("id_design").ToString, False)
 
@@ -484,8 +486,8 @@ Public Class FormProductionPLToWHRecDet
                     Try
                         'Main tbale
                         pl_prod_order_rec_number = header_number_prod("8")
-                        query = "INSERT INTO tb_pl_prod_order_rec(id_pl_prod_order, pl_prod_order_rec_number, id_comp_contact_to, id_comp_contact_from, pl_prod_order_rec_date, pl_prod_order_rec_note, id_report_status, id_wh_drawer, last_update, last_update_by) "
-                        query += "VALUES('" + id_pl_prod_order + "', '" + pl_prod_order_rec_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + pl_prod_order_rec_note + "', '" + id_report_status + "', '" + id_wh_drawer + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_pl_prod_order_rec(id_pl_prod_order, pl_prod_order_rec_number, id_comp_contact_to, id_comp_contact_from, pl_prod_order_rec_date, pl_prod_order_rec_note, id_report_status, id_wh_drawer, last_update, last_update_by, is_use_unique_code) "
+                        query += "VALUES('" + id_pl_prod_order + "', '" + pl_prod_order_rec_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + pl_prod_order_rec_note + "', '" + id_report_status + "', '" + id_wh_drawer + "', NOW(), " + id_user + ", '" + is_use_unique_code + "'); SELECT LAST_INSERT_ID(); "
                         id_pl_prod_order_rec = execute_query(query, 0, True, "", "", "", "")
 
                         increase_inc_prod("8")
