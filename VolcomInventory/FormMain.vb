@@ -13235,6 +13235,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBItemRequest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemRequest.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormItemReq.Close()
+            FormItemReq.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
             FormItemReq.MdiParent = Me
             FormItemReq.Show()
             FormItemReq.WindowState = FormWindowState.Maximized
