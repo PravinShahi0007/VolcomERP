@@ -54,20 +54,16 @@ Partial Class FormEmpPerAppraisal
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCJoinDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCFrom = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCUntil = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCAppStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdPeriod = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.CDIdDeptHead = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -86,6 +82,13 @@ Partial Class FormEmpPerAppraisal
         Me.XTPPenilaian = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
         Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.GCCPeriodStart = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCCPeriodEnd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GVHistoryDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -368,8 +371,8 @@ Partial Class FormEmpPerAppraisal
         '
         Me.GVList.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVList.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand3, Me.gridBand2, Me.gridBand4})
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCId, Me.GCIdPeriod, Me.GCCode, Me.GCName, Me.CDIdDeptHead, Me.GCDeptHead, Me.GCDepartement, Me.GCPosition, Me.GCLevel, Me.GCGrupPenilaian, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCJoinDate, Me.GCFrom, Me.GCUntil, Me.GCFromEv, Me.GCEndEv, Me.GCAppCheck, Me.GCAppCheckDate, Me.GCHRDCheck, Me.GCHRDCheckDate, Me.GCIdAppStatus, Me.GCAppStatus})
+        Me.GVList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand3, Me.gridBand8, Me.gridBand2, Me.gridBand4})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCId, Me.GCIdPeriod, Me.GCCode, Me.GCName, Me.CDIdDeptHead, Me.GCDeptHead, Me.GCDepartement, Me.GCPosition, Me.GCLevel, Me.GCGrupPenilaian, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCJoinDate, Me.GCFrom, Me.GCUntil, Me.GCFromEv, Me.GCEndEv, Me.GCAppCheck, Me.GCAppCheckDate, Me.GCHRDCheck, Me.GCHRDCheckDate, Me.GCIdAppStatus, Me.GCAppStatus, Me.GCCPeriodStart, Me.GCCPeriodEnd})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
         Me.GVList.Name = "GVList"
@@ -377,20 +380,6 @@ Partial Class FormEmpPerAppraisal
         Me.GVList.OptionsBehavior.Editable = False
         Me.GVList.OptionsView.ShowGroupPanel = False
         Me.GVList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GridBand1
-        '
-        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridBand1.AppearanceHeader.Options.UseFont = True
-        Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBand1.Caption = "GENERAL"
-        Me.GridBand1.Columns.Add(Me.GCId)
-        Me.GridBand1.Columns.Add(Me.GCCode)
-        Me.GridBand1.Columns.Add(Me.GCName)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 295
         '
         'GCId
         '
@@ -414,22 +403,6 @@ Partial Class FormEmpPerAppraisal
         Me.GCName.Name = "GCName"
         Me.GCName.Visible = True
         Me.GCName.Width = 150
-        '
-        'gridBand3
-        '
-        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand3.AppearanceHeader.Options.UseFont = True
-        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand3.Caption = "DETAIL"
-        Me.gridBand3.Columns.Add(Me.GCDepartement)
-        Me.gridBand3.Columns.Add(Me.GCPosition)
-        Me.gridBand3.Columns.Add(Me.GCLevel)
-        Me.gridBand3.Columns.Add(Me.GCEmployeeStatus)
-        Me.gridBand3.Columns.Add(Me.GCJoinDate)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 421
         '
         'GCDepartement
         '
@@ -470,19 +443,6 @@ Partial Class FormEmpPerAppraisal
         Me.GCJoinDate.Name = "GCJoinDate"
         Me.GCJoinDate.Visible = True
         '
-        'gridBand2
-        '
-        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand2.AppearanceHeader.Options.UseFont = True
-        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand2.Caption = "PERIOD"
-        Me.gridBand2.Columns.Add(Me.GCFrom)
-        Me.gridBand2.Columns.Add(Me.GCUntil)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 2
-        Me.gridBand2.Width = 150
-        '
         'GCFrom
         '
         Me.GCFrom.Caption = "From"
@@ -496,16 +456,6 @@ Partial Class FormEmpPerAppraisal
         Me.GCUntil.FieldName = "end_period"
         Me.GCUntil.Name = "GCUntil"
         Me.GCUntil.Visible = True
-        '
-        'gridBand4
-        '
-        Me.gridBand4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand4.AppearanceHeader.Options.UseFont = True
-        Me.gridBand4.Caption = "STATUS"
-        Me.gridBand4.Columns.Add(Me.GCAppStatus)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 75
         '
         'GCAppStatus
         '
@@ -616,6 +566,84 @@ Partial Class FormEmpPerAppraisal
         Me.ImageCollection1.InsertGalleryImage("find_16x16.png", "images/find/find_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/find/find_16x16.png"), 0)
         Me.ImageCollection1.Images.SetKeyName(0, "find_16x16.png")
         '
+        'GCCPeriodStart
+        '
+        Me.GCCPeriodStart.Caption = "Start"
+        Me.GCCPeriodStart.FieldName = "c_start_period"
+        Me.GCCPeriodStart.Name = "GCCPeriodStart"
+        Me.GCCPeriodStart.Visible = True
+        '
+        'GCCPeriodEnd
+        '
+        Me.GCCPeriodEnd.Caption = "End"
+        Me.GCCPeriodEnd.FieldName = "c_end_period"
+        Me.GCCPeriodEnd.Name = "GCCPeriodEnd"
+        Me.GCCPeriodEnd.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridBand1.AppearanceHeader.Options.UseFont = True
+        Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand1.Caption = "GENERAL"
+        Me.GridBand1.Columns.Add(Me.GCId)
+        Me.GridBand1.Columns.Add(Me.GCCode)
+        Me.GridBand1.Columns.Add(Me.GCName)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 295
+        '
+        'gridBand3
+        '
+        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand3.AppearanceHeader.Options.UseFont = True
+        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand3.Caption = "DETAIL"
+        Me.gridBand3.Columns.Add(Me.GCDepartement)
+        Me.gridBand3.Columns.Add(Me.GCPosition)
+        Me.gridBand3.Columns.Add(Me.GCLevel)
+        Me.gridBand3.Columns.Add(Me.GCEmployeeStatus)
+        Me.gridBand3.Columns.Add(Me.GCJoinDate)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Width = 421
+        '
+        'gridBand8
+        '
+        Me.gridBand8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand8.AppearanceHeader.Options.UseFont = True
+        Me.gridBand8.Caption = "CONTRACT PERIOD"
+        Me.gridBand8.Columns.Add(Me.GCCPeriodStart)
+        Me.gridBand8.Columns.Add(Me.GCCPeriodEnd)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 2
+        Me.gridBand8.Width = 150
+        '
+        'gridBand2
+        '
+        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand2.AppearanceHeader.Options.UseFont = True
+        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand2.Caption = "APPRAISAL PERIOD"
+        Me.gridBand2.Columns.Add(Me.GCFrom)
+        Me.gridBand2.Columns.Add(Me.GCUntil)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 3
+        Me.gridBand2.Width = 150
+        '
+        'gridBand4
+        '
+        Me.gridBand4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand4.AppearanceHeader.Options.UseFont = True
+        Me.gridBand4.Caption = "STATUS"
+        Me.gridBand4.Columns.Add(Me.GCAppStatus)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 4
+        Me.gridBand4.Width = 75
+        '
         'FormEmpPerAppraisal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -654,10 +682,6 @@ Partial Class FormEmpPerAppraisal
     Friend WithEvents GCJoinDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCIdPeriod As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GCAppStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCAppCheck As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCAppCheckDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -705,4 +729,11 @@ Partial Class FormEmpPerAppraisal
     Friend WithEvents GVHistoryDetail As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCCPeriodStart As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCCPeriodEnd As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
