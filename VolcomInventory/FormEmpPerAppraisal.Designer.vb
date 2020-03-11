@@ -54,16 +54,23 @@ Partial Class FormEmpPerAppraisal
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCJoinDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCCPeriodStart = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCCPeriodEnd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCFrom = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCUntil = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCAppStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdPeriod = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.CDIdDeptHead = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -80,15 +87,10 @@ Partial Class FormEmpPerAppraisal
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.XTCEmp = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPenilaian = New DevExpress.XtraTab.XtraTabPage()
+        Me.PCPick = New DevExpress.XtraEditors.PanelControl()
+        Me.SBSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
         Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.GCCPeriodStart = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCCPeriodEnd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GVHistoryDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +101,8 @@ Partial Class FormEmpPerAppraisal
         CType(Me.XTCEmp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCEmp.SuspendLayout()
         Me.XTPPenilaian.SuspendLayout()
+        CType(Me.PCPick, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPick.SuspendLayout()
         Me.XTPHistory.SuspendLayout()
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -360,10 +364,10 @@ Partial Class FormEmpPerAppraisal
         'GCList
         '
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 0)
+        Me.GCList.Location = New System.Drawing.Point(0, 39)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(927, 511)
+        Me.GCList.Size = New System.Drawing.Size(927, 472)
         Me.GCList.TabIndex = 0
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -380,6 +384,20 @@ Partial Class FormEmpPerAppraisal
         Me.GVList.OptionsBehavior.Editable = False
         Me.GVList.OptionsView.ShowGroupPanel = False
         Me.GVList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridBand1
+        '
+        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridBand1.AppearanceHeader.Options.UseFont = True
+        Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand1.Caption = "GENERAL"
+        Me.GridBand1.Columns.Add(Me.GCId)
+        Me.GridBand1.Columns.Add(Me.GCCode)
+        Me.GridBand1.Columns.Add(Me.GCName)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 295
         '
         'GCId
         '
@@ -403,6 +421,22 @@ Partial Class FormEmpPerAppraisal
         Me.GCName.Name = "GCName"
         Me.GCName.Visible = True
         Me.GCName.Width = 150
+        '
+        'gridBand3
+        '
+        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand3.AppearanceHeader.Options.UseFont = True
+        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand3.Caption = "DETAIL"
+        Me.gridBand3.Columns.Add(Me.GCDepartement)
+        Me.gridBand3.Columns.Add(Me.GCPosition)
+        Me.gridBand3.Columns.Add(Me.GCLevel)
+        Me.gridBand3.Columns.Add(Me.GCEmployeeStatus)
+        Me.gridBand3.Columns.Add(Me.GCJoinDate)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Width = 421
         '
         'GCDepartement
         '
@@ -443,6 +477,44 @@ Partial Class FormEmpPerAppraisal
         Me.GCJoinDate.Name = "GCJoinDate"
         Me.GCJoinDate.Visible = True
         '
+        'gridBand8
+        '
+        Me.gridBand8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand8.AppearanceHeader.Options.UseFont = True
+        Me.gridBand8.Caption = "CONTRACT PERIOD"
+        Me.gridBand8.Columns.Add(Me.GCCPeriodStart)
+        Me.gridBand8.Columns.Add(Me.GCCPeriodEnd)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 2
+        Me.gridBand8.Width = 150
+        '
+        'GCCPeriodStart
+        '
+        Me.GCCPeriodStart.Caption = "Start"
+        Me.GCCPeriodStart.FieldName = "c_start_period"
+        Me.GCCPeriodStart.Name = "GCCPeriodStart"
+        Me.GCCPeriodStart.Visible = True
+        '
+        'GCCPeriodEnd
+        '
+        Me.GCCPeriodEnd.Caption = "End"
+        Me.GCCPeriodEnd.FieldName = "c_end_period"
+        Me.GCCPeriodEnd.Name = "GCCPeriodEnd"
+        Me.GCCPeriodEnd.Visible = True
+        '
+        'gridBand2
+        '
+        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand2.AppearanceHeader.Options.UseFont = True
+        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand2.Caption = "APPRAISAL PERIOD"
+        Me.gridBand2.Columns.Add(Me.GCFrom)
+        Me.gridBand2.Columns.Add(Me.GCUntil)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 3
+        Me.gridBand2.Width = 150
+        '
         'GCFrom
         '
         Me.GCFrom.Caption = "From"
@@ -456,6 +528,16 @@ Partial Class FormEmpPerAppraisal
         Me.GCUntil.FieldName = "end_period"
         Me.GCUntil.Name = "GCUntil"
         Me.GCUntil.Visible = True
+        '
+        'gridBand4
+        '
+        Me.gridBand4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand4.AppearanceHeader.Options.UseFont = True
+        Me.gridBand4.Caption = "STATUS"
+        Me.gridBand4.Columns.Add(Me.GCAppStatus)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 4
+        Me.gridBand4.Width = 75
         '
         'GCAppStatus
         '
@@ -549,9 +631,29 @@ Partial Class FormEmpPerAppraisal
         'XTPPenilaian
         '
         Me.XTPPenilaian.Controls.Add(Me.GCList)
+        Me.XTPPenilaian.Controls.Add(Me.PCPick)
         Me.XTPPenilaian.Name = "XTPPenilaian"
         Me.XTPPenilaian.Size = New System.Drawing.Size(927, 511)
         Me.XTPPenilaian.Text = "Penilaian"
+        '
+        'PCPick
+        '
+        Me.PCPick.Controls.Add(Me.SBSearch)
+        Me.PCPick.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCPick.Location = New System.Drawing.Point(0, 0)
+        Me.PCPick.Name = "PCPick"
+        Me.PCPick.Size = New System.Drawing.Size(927, 39)
+        Me.PCPick.TabIndex = 1
+        '
+        'SBSearch
+        '
+        Me.SBSearch.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSearch.Image = CType(resources.GetObject("SBSearch.Image"), System.Drawing.Image)
+        Me.SBSearch.Location = New System.Drawing.Point(798, 2)
+        Me.SBSearch.Name = "SBSearch"
+        Me.SBSearch.Size = New System.Drawing.Size(127, 35)
+        Me.SBSearch.TabIndex = 0
+        Me.SBSearch.Text = "Pick Employee"
         '
         'XTPHistory
         '
@@ -565,84 +667,6 @@ Partial Class FormEmpPerAppraisal
         Me.ImageCollection1.ImageStream = CType(resources.GetObject("ImageCollection1.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
         Me.ImageCollection1.InsertGalleryImage("find_16x16.png", "images/find/find_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/find/find_16x16.png"), 0)
         Me.ImageCollection1.Images.SetKeyName(0, "find_16x16.png")
-        '
-        'GCCPeriodStart
-        '
-        Me.GCCPeriodStart.Caption = "Start"
-        Me.GCCPeriodStart.FieldName = "c_start_period"
-        Me.GCCPeriodStart.Name = "GCCPeriodStart"
-        Me.GCCPeriodStart.Visible = True
-        '
-        'GCCPeriodEnd
-        '
-        Me.GCCPeriodEnd.Caption = "End"
-        Me.GCCPeriodEnd.FieldName = "c_end_period"
-        Me.GCCPeriodEnd.Name = "GCCPeriodEnd"
-        Me.GCCPeriodEnd.Visible = True
-        '
-        'GridBand1
-        '
-        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridBand1.AppearanceHeader.Options.UseFont = True
-        Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBand1.Caption = "GENERAL"
-        Me.GridBand1.Columns.Add(Me.GCId)
-        Me.GridBand1.Columns.Add(Me.GCCode)
-        Me.GridBand1.Columns.Add(Me.GCName)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 295
-        '
-        'gridBand3
-        '
-        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand3.AppearanceHeader.Options.UseFont = True
-        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand3.Caption = "DETAIL"
-        Me.gridBand3.Columns.Add(Me.GCDepartement)
-        Me.gridBand3.Columns.Add(Me.GCPosition)
-        Me.gridBand3.Columns.Add(Me.GCLevel)
-        Me.gridBand3.Columns.Add(Me.GCEmployeeStatus)
-        Me.gridBand3.Columns.Add(Me.GCJoinDate)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 421
-        '
-        'gridBand8
-        '
-        Me.gridBand8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand8.AppearanceHeader.Options.UseFont = True
-        Me.gridBand8.Caption = "CONTRACT PERIOD"
-        Me.gridBand8.Columns.Add(Me.GCCPeriodStart)
-        Me.gridBand8.Columns.Add(Me.GCCPeriodEnd)
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 2
-        Me.gridBand8.Width = 150
-        '
-        'gridBand2
-        '
-        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand2.AppearanceHeader.Options.UseFont = True
-        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand2.Caption = "APPRAISAL PERIOD"
-        Me.gridBand2.Columns.Add(Me.GCFrom)
-        Me.gridBand2.Columns.Add(Me.GCUntil)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 3
-        Me.gridBand2.Width = 150
-        '
-        'gridBand4
-        '
-        Me.gridBand4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand4.AppearanceHeader.Options.UseFont = True
-        Me.gridBand4.Caption = "STATUS"
-        Me.gridBand4.Columns.Add(Me.GCAppStatus)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 4
-        Me.gridBand4.Width = 75
         '
         'FormEmpPerAppraisal
         '
@@ -662,6 +686,8 @@ Partial Class FormEmpPerAppraisal
         CType(Me.XTCEmp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCEmp.ResumeLayout(False)
         Me.XTPPenilaian.ResumeLayout(False)
+        CType(Me.PCPick, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPick.ResumeLayout(False)
         Me.XTPHistory.ResumeLayout(False)
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -736,4 +762,6 @@ Partial Class FormEmpPerAppraisal
     Friend WithEvents GCCPeriodEnd As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PCPick As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBSearch As DevExpress.XtraEditors.SimpleButton
 End Class
