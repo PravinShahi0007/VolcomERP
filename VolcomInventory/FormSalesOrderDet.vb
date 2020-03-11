@@ -45,9 +45,11 @@ Public Class FormSalesOrderDet
     Sub viewWH()
         Cursor = Cursors.WaitCursor
         Dim query As String = ""
-        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
-        FROM tb_m_comp e WHERE e.is_only_for_alloc=1 
-        GROUP BY e.id_comp "
+        query += "SELECT er.id_comp, er.comp_number, er.comp_name, CONCAT_WS(' - ', er.comp_number, er.comp_name) AS comp_name_label 
+        FROM tb_m_comp e 
+        INNER JOIN tb_m_comp er ON er.id_comp = e.id_wh_group
+        WHERE e.is_only_for_alloc=1
+        GROUP BY e.id_wh_group  "
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
         Cursor = Cursors.Default
     End Sub
@@ -79,6 +81,10 @@ Public Class FormSalesOrderDet
             If is_transfer_data = "1" Then
                 GroupControlAlloc.Visible = True
                 viewWH()
+                LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", "3")
+                LEOrderType.Enabled = False
+                LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "5")
+                LEStatusSO.Enabled = False
             End If
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
