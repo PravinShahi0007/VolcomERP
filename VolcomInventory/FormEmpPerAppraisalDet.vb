@@ -416,22 +416,22 @@
         End If
 
         If is_hrd = "1" Or id_question_status >= 2 Then
-            GCValue.OptionsColumn.AllowEdit = False
-            GCInformation.OptionsColumn.AllowEdit = False
-            GCConclusionResult.OptionsColumn.AllowEdit = False
-            SLUERec.Properties.ReadOnly = True
-            TERec.Properties.ReadOnly = True
-            MEEmployeeNote.Properties.ReadOnly = True
-            MEHRDNote.Properties.ReadOnly = False
-            GCPConclusionResult.OptionsColumn.AllowEdit = False
-            SLUERecPri.Properties.ReadOnly = True
-            TERecPri.Properties.ReadOnly = True
-            MEHRDNotePri.Properties.ReadOnly = False
-            RILUEValue.ReadOnly = True
+            'GCValue.OptionsColumn.AllowEdit = False
+            'GCInformation.OptionsColumn.AllowEdit = False
+            'GCConclusionResult.OptionsColumn.AllowEdit = False
+            'SLUERec.Properties.ReadOnly = True
+            'TERec.Properties.ReadOnly = True
+            'MEEmployeeNote.Properties.ReadOnly = True
+            'MEHRDNote.Properties.ReadOnly = False
+            'GCPConclusionResult.OptionsColumn.AllowEdit = False
+            'SLUERecPri.Properties.ReadOnly = True
+            'TERecPri.Properties.ReadOnly = True
+            'MEHRDNotePri.Properties.ReadOnly = False
+            'RILUEValue.ReadOnly = True
 
-            If hrd_check <> 0 Then
-                BtnSave.Enabled = False
-            End If
+            'If hrd_check <> 0 Then
+            '    BtnSave.Enabled = False
+            'End If
         End If
 
         If is_dephead = "1" Or id_question_status = 3 Then
@@ -448,7 +448,7 @@
             BtnPrint.Enabled = False
 
             If is_hrd = "1" Then
-                BtnSave.Enabled = False
+                'BtnSave.Enabled = False
             End If
         End If
 
