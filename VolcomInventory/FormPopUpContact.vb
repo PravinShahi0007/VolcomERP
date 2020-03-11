@@ -146,6 +146,16 @@
             End If
         End If
 
+        If id_pop_up = "82" Then
+            query += "AND tb_m_comp.is_only_for_alloc=2 "
+        End If
+
+        If id_pop_up = "43" Then
+            query += "AND tb_m_comp.is_only_for_alloc=2 "
+        End If
+
+
+
         If id_pop_up = "40" Then 'ret order ofline
             If FormSalesReturnOrderDet.is_ro_only_offline = "1" Then
                 query += "AND tb_m_comp.id_commerce_type=1 "
