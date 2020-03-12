@@ -170,6 +170,10 @@
             query += "AND tb_m_comp.is_only_for_alloc=2 AND tb_m_comp.id_comp_cat!=6 "
         End If
 
+        If id_pop_up = "87" Then
+            query += "AND tb_m_comp.is_only_for_alloc=2 "
+        End If
+
 
 
         If id_pop_up = "40" Then 'ret order ofline
