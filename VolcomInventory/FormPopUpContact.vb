@@ -154,6 +154,14 @@
             query += "AND tb_m_comp.is_only_for_alloc=2 "
         End If
 
+        If id_pop_up = "69" Then
+            query += "AND tb_m_comp.is_only_for_alloc=2 "
+        End If
+
+        If id_pop_up = "70" Then
+            query += "AND tb_m_comp.is_only_for_alloc=2 "
+        End If
+
 
 
         If id_pop_up = "40" Then 'ret order ofline
