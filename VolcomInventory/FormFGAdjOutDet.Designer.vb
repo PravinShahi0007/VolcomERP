@@ -54,6 +54,8 @@ Partial Class FormFGAdjOutDet
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnretail_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnretail_price_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -75,8 +77,6 @@ Partial Class FormFGAdjOutDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.EPAdj = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnretail_price = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnretail_price_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -404,7 +404,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.VisibleIndex = 10
         '
         'GridColumnAdjPrice
         '
@@ -417,6 +417,8 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAdjPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAdjPrice.FieldName = "adj_out_fg_det_price"
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
+        Me.GridColumnAdjPrice.Visible = True
+        Me.GridColumnAdjPrice.VisibleIndex = 6
         Me.GridColumnAdjPrice.Width = 70
         '
         'GridColumnQty
@@ -457,6 +459,8 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAmount.FieldName = "adj_out_fg_det_amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_fg_det_amount", "{0:n2}")})
+        Me.GridColumnAmount.Visible = True
+        Me.GridColumnAmount.VisibleIndex = 7
         Me.GridColumnAmount.Width = 103
         '
         'GridColumnAccount
@@ -466,6 +470,27 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAccount.Name = "GridColumnAccount"
         Me.GridColumnAccount.Visible = True
         Me.GridColumnAccount.VisibleIndex = 4
+        '
+        'GridColumnretail_price
+        '
+        Me.GridColumnretail_price.Caption = "Retail Price"
+        Me.GridColumnretail_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnretail_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnretail_price.FieldName = "retail_price"
+        Me.GridColumnretail_price.Name = "GridColumnretail_price"
+        Me.GridColumnretail_price.Visible = True
+        Me.GridColumnretail_price.VisibleIndex = 8
+        '
+        'GridColumnretail_price_amount
+        '
+        Me.GridColumnretail_price_amount.Caption = "Amount Price"
+        Me.GridColumnretail_price_amount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnretail_price_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnretail_price_amount.FieldName = "retail_price_amount"
+        Me.GridColumnretail_price_amount.Name = "GridColumnretail_price_amount"
+        Me.GridColumnretail_price_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_amount", "{0:N0}")})
+        Me.GridColumnretail_price_amount.Visible = True
+        Me.GridColumnretail_price_amount.VisibleIndex = 9
         '
         'GridView1
         '
@@ -679,27 +704,6 @@ Partial Class FormFGAdjOutDet
         'EPAdj
         '
         Me.EPAdj.ContainerControl = Me
-        '
-        'GridColumnretail_price
-        '
-        Me.GridColumnretail_price.Caption = "Retail Price"
-        Me.GridColumnretail_price.DisplayFormat.FormatString = "N0"
-        Me.GridColumnretail_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnretail_price.FieldName = "retail_price"
-        Me.GridColumnretail_price.Name = "GridColumnretail_price"
-        Me.GridColumnretail_price.Visible = True
-        Me.GridColumnretail_price.VisibleIndex = 6
-        '
-        'GridColumnretail_price_amount
-        '
-        Me.GridColumnretail_price_amount.Caption = "Amount Price"
-        Me.GridColumnretail_price_amount.DisplayFormat.FormatString = "N0"
-        Me.GridColumnretail_price_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnretail_price_amount.FieldName = "retail_price_amount"
-        Me.GridColumnretail_price_amount.Name = "GridColumnretail_price_amount"
-        Me.GridColumnretail_price_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_amount", "{0:N0}")})
-        Me.GridColumnretail_price_amount.Visible = True
-        Me.GridColumnretail_price_amount.VisibleIndex = 7
         '
         'FormFGAdjOutDet
         '

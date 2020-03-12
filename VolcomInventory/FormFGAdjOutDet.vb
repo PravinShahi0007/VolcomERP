@@ -255,11 +255,12 @@
             Dim id_report_status As String = LEReportStatus.EditValue
             Dim succes As Boolean = False
             Dim adj_out_fg_total As String = decimalSQL(GVDetail.Columns("adj_out_fg_det_amount").SummaryItem.SummaryValue.ToString)
+            Dim retail_price_total As String = decimalSQL(GVDetail.Columns("retail_price_amount").SummaryItem.SummaryValue.ToString)
             Dim id_currency As String = LECurrency.EditValue.ToString
             If action = "ins" Then
                 'Main table
-                query = "INSERT INTO tb_adj_out_fg(adj_out_fg_number, adj_out_fg_date, adj_out_fg_note, id_report_status, adj_out_fg_total, id_currency) "
-                query += "VALUES('" + adj_out_fg_number + "', NOW(), '" + adj_out_fg_note + "', '" + id_report_status + "', '" + adj_out_fg_total + "', '" + id_currency + "'); SELECT LAST_INSERT_ID();"
+                query = "INSERT INTO tb_adj_out_fg(adj_out_fg_number, adj_out_fg_date, adj_out_fg_note, id_report_status, adj_out_fg_total, id_currency,retail_price_total ) "
+                query += "VALUES('" + adj_out_fg_number + "', NOW(), '" + adj_out_fg_note + "', '" + id_report_status + "', '" + adj_out_fg_total + "', '" + id_currency + "', '" + retail_price_total + "'); SELECT LAST_INSERT_ID();"
                 id_adj_out_fg = execute_query(query, 0, True, "", "", "", "")
                 'MsgBox(id_product_return)
 

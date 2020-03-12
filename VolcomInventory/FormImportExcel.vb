@@ -3061,6 +3061,8 @@ Public Class FormImportExcel
             GVData.Columns("qty").DisplayFormat.FormatString = "N0"
             GVData.Columns("design_cop").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("design_cop").DisplayFormat.FormatString = "N2"
+            GVData.Columns("retail_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("retail_price").DisplayFormat.FormatString = "N0"
         End If
         data_temp.Dispose()
         oledbconn.Close()
