@@ -212,13 +212,13 @@
         "
 
         Dim query_detail As String = "
-            SELECT SUM(tb.late) AS late, ABS(SUM(tb.minus_work)) AS minus_work
+            SELECT SUM(tb.late) AS late, ABS(SUM(tb.minus_work)) AS minus_work, SUM(tb.over) AS over
             FROM
             (
-	            SELECT tb.*, (tb.over_break + tb.late + tb.early_home) AS minus_work
+	            SELECT tb.*, IF(tb.balance < 0, tb.balance, 0) AS minus_work
 	            FROM 
 	            (
-	                SELECT tb.*, IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out), (tb.minutes_work - tb.over_break - tb.late + IF(tb.over < 0, tb.over, 0)), 0) AS work_hour
+	                SELECT tb.*, (tb.over - tb.late - tb.over_break) AS balance, IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out), (tb.minutes_work - tb.over_break - tb.late + IF(tb.over < 0, tb.over, 0)), 0) AS work_hour
 	                FROM 
 	                (   
 		            SELECT ket.id_leave_type, ket.leave_type, sch.id_employee, sch.date, sch.in, sch.in_tolerance, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS att_in, sch.out, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS att_out, sch.break_out, MIN(at_brout.datetime) AS start_break, sch.break_in, MAX(at_brin.datetime) AS end_break, sch.minutes_work, sch.out_tolerance, 
@@ -320,6 +320,8 @@
         GVSummary.BestFitColumns()
 
         GCSummary.Height = (GVSummary.RowCount * 25) + 118
+
+        GCSQuestion.SummaryItem.DisplayFormat = "Kelebihan jam kerja: " + FormatNumber(data_detail.Rows(0)("over").ToString, 0)
 
         Dim query_lookup As String = "SELECT point FROM tb_lookup_question_point"
 
@@ -836,6 +838,8 @@
         Report.XLGrandTotal.Text = FormatNumber(GVSummary.Columns("result").SummaryItem.SummaryValue, 2).ToString + GVSummary.Columns("result").SummaryItem.DisplayFormat.Replace("{0:N2}", "")
 
         Report.XLKategori.Text = GVSummary.Columns("max_value").SummaryItem.DisplayFormat
+
+        Report.XLOver.Text = GCSQuestion.SummaryItem.DisplayFormat
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
