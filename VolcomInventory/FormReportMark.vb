@@ -2307,6 +2307,10 @@
             End Try
         ElseIf report_mark_type = "41" Then
             'FG Adj In
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = 6 Then 'completed
                 'Dim query_cancel As String = "SELECT * FROM tb_adj_in_fg a "
                 'query_cancel += "INNER JOIN tb_adj_in_fg_det b ON a.id_adj_in_fg = b.id_adj_in_fg "
@@ -2356,6 +2360,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             End Try
         ElseIf report_mark_type = "42" Then
             'FG Adj Out
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             Cursor = Cursors.WaitCursor
             If id_status_reportx = 5 Then 'Cancel
                 'Dim query_cancel As String = "SELECT * FROM tb_adj_out_fg a "
