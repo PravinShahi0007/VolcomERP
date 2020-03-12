@@ -3595,7 +3595,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 FROM tb_sales_order so
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
                 INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-                WHERE so.id_sales_order_gen=" + id_report + " AND so.id_so_status=5 AND c.is_only_for_alloc=1 "
+                WHERE so.id_sales_order_gen=" + id_report + " AND so.id_so_status=5 AND so.is_transfer_data=1 "
                 Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
                 If dtv.Rows.Count > 0 Then
                     For m As Integer = 0 To dtv.Rows.Count - 1
