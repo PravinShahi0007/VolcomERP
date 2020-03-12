@@ -153,6 +153,12 @@ Public Class FormEmpPerAppraisal
     Private Sub FormEmpPerAppraisal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_employee()
         load_history()
+
+        If is_hrd = "1" Then
+            PCPick.Visible = True
+        Else
+            PCPick.Visible = False
+        End If
     End Sub
 
     Private Sub FormEmpPerAppraisal_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -167,6 +173,8 @@ Public Class FormEmpPerAppraisal
 
     Sub load_detail(GridView As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView)
         If GridView.GetFocusedRowCellValue("id_employee") IsNot Nothing Then
+            FormEmpPerAppraisalDet.is_pick = False
+
             FormEmpPerAppraisalDet.is_dephead = is_dephead
             FormEmpPerAppraisalDet.is_hrd = is_hrd
 
@@ -207,5 +215,9 @@ Public Class FormEmpPerAppraisal
 
     Private Sub GVHistory_DoubleClick(sender As Object, e As EventArgs) Handles GVHistory.DoubleClick
         load_detail(GVHistory)
+    End Sub
+
+    Private Sub SBSearch_Click(sender As Object, e As EventArgs) Handles SBSearch.Click
+        FormEmpPerAppraisalPick.ShowDialog()
     End Sub
 End Class
