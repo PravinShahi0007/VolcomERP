@@ -51,6 +51,7 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
@@ -60,7 +61,6 @@ Partial Public Class ReportBankWithdrawal
         Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
@@ -193,7 +193,7 @@ Partial Public Class ReportBankWithdrawal
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 22.4167!
+        Me.TopMargin.HeightF = 7.83337!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -226,7 +226,7 @@ Partial Public Class ReportBankWithdrawal
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 19.7596!
+        Me.BottomMargin.HeightF = 10.41667!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -251,7 +251,7 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 61.04165!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(52.08333!, 23.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(52.08333!, 16.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "Number"
@@ -260,10 +260,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 84.04164!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 77.04165!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(52.08333!, 23.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(52.08333!, 16.0!)
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.StylePriority.UseTextAlignment = False
         Me.XrLabel2.Text = "Vendor"
@@ -275,7 +275,7 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(52.08349!, 61.04165!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
         Me.XrLabel3.Text = ":"
@@ -284,10 +284,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(52.08349!, 84.04164!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(52.08349!, 77.04165!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
         Me.XrLabel4.Text = ":"
@@ -296,10 +296,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(66.66682!, 61.04165!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(66.66682!, 61.04164!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(171.875!, 23.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(269.7917!, 16.0!)
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.StylePriority.UseTextAlignment = False
         Me.XrLabel5.Text = "[number]"
@@ -308,10 +308,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(66.66682!, 84.04164!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(66.66682!, 77.04166!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(171.875!, 23.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(269.7917!, 16.0!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.StylePriority.UseTextAlignment = False
         Me.XrLabel6.Text = "[comp_name]"
@@ -320,10 +320,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel8
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(470.2494!, 84.04164!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(470.2494!, 77.04165!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(82.29169!, 23.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(82.29169!, 16.0!)
         Me.XrLabel8.StylePriority.UseFont = False
         Me.XrLabel8.StylePriority.UseTextAlignment = False
         Me.XrLabel8.Text = "Date Created"
@@ -335,7 +335,7 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(470.25!, 61.04164!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(82.29187!, 22.99999!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(82.29187!, 16.0!)
         Me.XrLabel9.StylePriority.UseFont = False
         Me.XrLabel9.StylePriority.UseTextAlignment = False
         Me.XrLabel9.Text = "Pay From"
@@ -344,10 +344,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel10
         '
         Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(552.5411!, 84.04164!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(552.5411!, 77.04165!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
         Me.XrLabel10.StylePriority.UseFont = False
         Me.XrLabel10.StylePriority.UseTextAlignment = False
         Me.XrLabel10.Text = ":"
@@ -359,7 +359,7 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(552.5419!, 61.04164!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
         Me.XrLabel11.StylePriority.UseFont = False
         Me.XrLabel11.StylePriority.UseTextAlignment = False
         Me.XrLabel11.Text = ":"
@@ -368,10 +368,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel12
         '
         Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(567.1246!, 84.04164!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(567.1246!, 77.04165!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(205.8748!, 23.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(205.8748!, 16.0!)
         Me.XrLabel12.StylePriority.UseFont = False
         Me.XrLabel12.StylePriority.UseTextAlignment = False
         Me.XrLabel12.Text = "[date_created]"
@@ -383,7 +383,7 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(567.1252!, 61.04164!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel13.SizeF = New System.Drawing.SizeF(205.8748!, 23.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(205.8748!, 16.0!)
         Me.XrLabel13.StylePriority.UseFont = False
         Me.XrLabel13.StylePriority.UseTextAlignment = False
         Me.XrLabel13.Text = "[acc_payfrom_name] - [acc_payfrom]"
@@ -392,15 +392,33 @@ Partial Public Class ReportBankWithdrawal
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel18, Me.XrLabel14, Me.XrLabel16, Me.XrLabel15, Me.XrTable1, Me.LNote})
-        Me.ReportFooter.HeightF = 174.718!
+        Me.ReportFooter.HeightF = 163.2596!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel18.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 21.83329!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(772.9995!, 21.83329!)
+        Me.XrLabel18.StylePriority.UseBorders = False
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.StylePriority.UsePadding = False
+        Me.XrLabel18.StylePriority.UseTextAlignment = False
+        Me.XrLabel18.Text = "Say : [tot_say]"
+        Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel14
         '
         Me.XrLabel14.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel14.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(40.54133!, 55.83329!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(40.54133!, 43.66658!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(732.4587!, 81.66672!)
@@ -444,7 +462,7 @@ Partial Public Class ReportBankWithdrawal
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 137.5!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 125.3333!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(772.9998!, 24.99999!)
@@ -470,7 +488,7 @@ Partial Public Class ReportBankWithdrawal
         Me.LNote.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LNote.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 55.83329!)
+        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.66658!)
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.LNote.SizeF = New System.Drawing.SizeF(40.54146!, 81.66672!)
@@ -490,31 +508,16 @@ Partial Public Class ReportBankWithdrawal
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel17, Me.XrLabel19, Me.XrLabel20, Me.XrLine1, Me.XrLabel7, Me.XrPictureBox1, Me.XrLabel1, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel13, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.XrLabel8, Me.XrLabel12})
-        Me.PageHeader.HeightF = 140.625!
+        Me.PageHeader.HeightF = 122.9167!
         Me.PageHeader.Name = "PageHeader"
-        '
-        'XrLabel18
-        '
-        Me.XrLabel18.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel18.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 21.83329!)
-        Me.XrLabel18.Name = "XrLabel18"
-        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(772.9995!, 21.83329!)
-        Me.XrLabel18.StylePriority.UseBorders = False
-        Me.XrLabel18.StylePriority.UseFont = False
-        Me.XrLabel18.StylePriority.UsePadding = False
-        Me.XrLabel18.StylePriority.UseTextAlignment = False
-        Me.XrLabel18.Text = "Say : [tot_say]"
-        Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel17
         '
         Me.XrLabel17.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(567.1249!, 107.0416!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(567.1249!, 93.04165!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel17.SizeF = New System.Drawing.SizeF(205.8748!, 23.0!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(205.8748!, 16.0!)
         Me.XrLabel17.StylePriority.UseFont = False
         Me.XrLabel17.StylePriority.UseTextAlignment = False
         Me.XrLabel17.Text = "[date_payment]"
@@ -523,10 +526,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel19
         '
         Me.XrLabel19.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(470.2497!, 107.0416!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(470.2497!, 93.04165!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel19.SizeF = New System.Drawing.SizeF(82.29169!, 23.0!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(82.29169!, 16.0!)
         Me.XrLabel19.StylePriority.UseFont = False
         Me.XrLabel19.StylePriority.UseTextAlignment = False
         Me.XrLabel19.Text = "Date Payment"
@@ -535,10 +538,10 @@ Partial Public Class ReportBankWithdrawal
         'XrLabel20
         '
         Me.XrLabel20.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(552.5415!, 107.0416!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(552.5415!, 93.04165!)
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
         Me.XrLabel20.StylePriority.UseFont = False
         Me.XrLabel20.StylePriority.UseTextAlignment = False
         Me.XrLabel20.Text = ":"
@@ -547,7 +550,7 @@ Partial Public Class ReportBankWithdrawal
         'ReportBankWithdrawal
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageFooter, Me.PageHeader})
-        Me.Margins = New System.Drawing.Printing.Margins(30, 47, 22, 20)
+        Me.Margins = New System.Drawing.Printing.Margins(30, 47, 8, 10)
         Me.PageHeight = 550
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
