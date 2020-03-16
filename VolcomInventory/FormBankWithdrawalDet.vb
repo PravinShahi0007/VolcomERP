@@ -63,13 +63,13 @@
                         newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
                         newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
                         newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp")
-                        newRow("kurs") = 0
+                        newRow("kurs") = 1
                         newRow("id_currency") = "1"
                         newRow("currency") = "Rp"
-                        newRow("val_bef_kurs") = 0
-                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
-                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
-                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("val_bef_kurs") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po")
+                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po")
+                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po")
+                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po")
                         newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_description").ToString
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                         If FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total") > 0 Then
@@ -87,10 +87,10 @@
                             newRow_pph("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
                             newRow_pph("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
                             newRow_pph("total_pay") = 0
-                            newRow_pph("kurs") = 0
+                            newRow_pph("kurs") = 1
                             newRow_pph("id_currency") = "1"
                             newRow_pph("currency") = "Rp"
-                            newRow_pph("val_bef_kurs") = 0
+                            newRow_pph("val_bef_kurs") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
                             newRow_pph("value") = -FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
                             newRow_pph("value_view") = -FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
                             newRow_pph("balance_due") = -FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
@@ -133,10 +133,10 @@
                     newRow("comp_number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "comp_number_default").ToString
                     newRow("number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "number").ToString
                     newRow("total_pay") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "total_dp")
-                    newRow("kurs") = 0
+                    newRow("kurs") = 1
                     newRow("id_currency") = "1"
                     newRow("currency") = "Rp"
-                    newRow("val_bef_kurs") = 0
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("value") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("value_view") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
@@ -206,10 +206,10 @@
                     newRow("id_comp") = FormBankWithdrawal.GVFGPO.GetRowCellValue(0, "id_comp_default").ToString
                     newRow("comp_number") = FormBankWithdrawal.GVFGPO.GetRowCellValue(0, "comp_number_default").ToString
                     newRow("total_pay") = 0
-                    newRow("kurs") = 0
+                    newRow("kurs") = 1
                     newRow("id_currency") = "1"
                     newRow("currency") = "Rp"
-                    newRow("val_bef_kurs") = 0
+                    newRow("val_bef_kurs") = selisih_kurs
                     newRow("value") = selisih_kurs
                     newRow("value_view") = selisih_kurs
                     If selisih_kurs > 0 Then 'kerugian kurs
@@ -331,10 +331,10 @@
                         newRow("number") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "number").ToString
                         newRow("total_pay") = 0
                         newRow("value") = balance
-                        newRow("kurs") = 0
+                        newRow("kurs") = 1
                         newRow("id_currency") = "1"
                         newRow("currency") = "Rp"
-                        newRow("val_bef_kurs") = 0
+                        newRow("val_bef_kurs") = balance
                         newRow("value_view") = balance
                         newRow("balance_due") = balance
                         newRow("note") = note
@@ -434,10 +434,10 @@
                                         newRow("number") = FormBankWithdrawal.GVTHR.GetRowCellValue(i, "report_number").ToString
                                         newRow("total_pay") = 0
                                         newRow("value") = balance
-                                        newRow("kurs") = 0
+                                        newRow("kurs") = 1
                                         newRow("id_currency") = "1"
                                         newRow("currency") = "Rp"
-                                        newRow("val_bef_kurs") = 0
+                                        newRow("val_bef_kurs") = balance
                                         newRow("value_view") = balance
                                         newRow("balance_due") = balance
                                         newRow("note") = note
