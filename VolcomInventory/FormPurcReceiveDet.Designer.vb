@@ -103,6 +103,9 @@ Partial Class FormPurcReceiveDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.CEAlreadyDeliver = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -420,7 +423,7 @@ Partial Class FormPurcReceiveDet
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdRecDetail, Me.GridColumnIDPODetail, Me.GridColumn1, Me.GridColumnDesc, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnQty, Me.GridColumnNote, Me.GridColumnStatus})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdRecDetail, Me.GridColumnIDPODetail, Me.GridColumn1, Me.GridColumnDesc, Me.GridColumnUOM, Me.GridColumn10, Me.GridColumn8, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnQty, Me.GridColumn11, Me.GridColumnNote, Me.GridColumnStatus})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:N2}")})
         Me.GVSummary.Name = "GVSummary"
@@ -436,7 +439,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnNo.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 95
+        Me.GridColumnNo.Width = 83
         '
         'GridColumnIdRecDetail
         '
@@ -463,7 +466,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 227
+        Me.GridColumn1.Width = 199
         '
         'GridColumnDesc
         '
@@ -474,10 +477,14 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDesc.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 2
-        Me.GridColumnDesc.Width = 260
+        Me.GridColumnDesc.Width = 228
         '
         'GridColumnUOM
         '
+        Me.GridColumnUOM.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnUOM.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnUOM.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnUOM.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnUOM.Caption = "UOM"
         Me.GridColumnUOM.FieldName = "uom"
         Me.GridColumnUOM.Name = "GridColumnUOM"
@@ -485,7 +492,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnUOM.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnUOM.Visible = True
         Me.GridColumnUOM.VisibleIndex = 3
-        Me.GridColumnUOM.Width = 93
+        Me.GridColumnUOM.Width = 81
         '
         'GridColumnPrice
         '
@@ -498,7 +505,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnPrice.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 4
-        Me.GridColumnPrice.Width = 315
+        Me.GridColumnPrice.Width = 276
         '
         'GridColumnAmount
         '
@@ -514,13 +521,13 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 6
-        Me.GridColumnAmount.Width = 327
+        Me.GridColumnAmount.Width = 236
         '
         'GridColumnQty
         '
         Me.GridColumnQty.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GridColumnQty.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.Caption = "Qty Receive"
         Me.GridColumnQty.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnQty.DisplayFormat.FormatString = "N2"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -529,7 +536,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 5
-        Me.GridColumnQty.Width = 315
+        Me.GridColumnQty.Width = 276
         '
         'RepositoryItemTextEdit1
         '
@@ -1008,6 +1015,46 @@ Partial Class FormPurcReceiveDet
         Me.CEAlreadyDeliver.Size = New System.Drawing.Size(271, 19)
         Me.CEAlreadyDeliver.TabIndex = 152
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "Stock Convert"
+        Me.GridColumn8.FieldName = "stock_convertion_view"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 65
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.Caption = "UOM Stock"
+        Me.GridColumn10.FieldName = "uom_stock"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 9
+        Me.GridColumn10.Width = 65
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Qty To Stock"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "qty_stock"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 8
+        Me.GridColumn11.Width = 123
+        '
         'FormPurcReceiveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1150,4 +1197,7 @@ Partial Class FormPurcReceiveDet
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEDelivered As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents CEAlreadyDeliver As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

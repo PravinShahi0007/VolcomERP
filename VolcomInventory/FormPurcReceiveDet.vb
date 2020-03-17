@@ -192,6 +192,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             query = "SELECT 0 AS `id_purc_rec_det`,0 AS `id_purc_rec`,
             pod.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
             pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, 0.00 AS qty,(SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_rem`, '' AS  `note`, '' AS `stt`
+            ,u_st.uom AS uom_stock,i.stock_convertion, CONCAT('1:',i.stock_convertion) AS stock_convertion_view, 0.00 AS `qty_stock`
             FROM tb_purc_order_det pod
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
@@ -210,17 +211,20 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
 	            GROUP BY retd.id_item
             ) retd ON retd.id_item = pod.id_item
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
+            INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             WHERE pod.is_drop='2' AND pod.id_purc_order=" + id_purc_order + "
             GROUP BY pod.id_item, BINARY reqd.item_detail "
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec,  
             rd.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
             rd.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, SUM(rd.qty) AS `qty`, rd.note,  '' AS `stt`
+            ,u_st.uom AS uom_stock,i.stock_convertion, CONCAT('1:',i.stock_convertion) AS stock_convertion_view, SUM(rd.qty*i.stock_convertion) AS `qty_stock`
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
             INNER JOIN tb_item i ON i.id_item = rd.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             WHERE rd.id_purc_rec=" + id + " 
             GROUP BY rd.id_item,BINARY reqd.item_detail "
         End If
@@ -420,6 +424,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             Else
                 GVSummary.SetRowCellValue(rh, "qty", 0)
             End If
+            GVSummary.SetRowCellValue(rh, "qty_stock", Decimal.Parse(GVSummary.GetRowCellValue(rh, "stock_convertion").ToString) * Decimal.Parse(GVSummary.GetRowCellValue(rh, "qty").ToString))
         End If
         Cursor = Cursors.Default
     End Sub
