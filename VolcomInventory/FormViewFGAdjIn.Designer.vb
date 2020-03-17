@@ -53,6 +53,7 @@ Partial Class FormViewFGAdjIn
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnretail_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnretail_price_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
@@ -63,7 +64,8 @@ Partial Class FormViewFGAdjIn
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.MEAccount = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,11 +86,14 @@ Partial Class FormViewFGAdjIn
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.MEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl1)
+        Me.GroupGeneralHeader.Controls.Add(Me.MEAccount)
         Me.GroupGeneralHeader.Controls.Add(Me.LECurrency)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl13)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtAdjDate)
@@ -98,13 +103,13 @@ Partial Class FormViewFGAdjIn
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(829, 75)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(829, 92)
         Me.GroupGeneralHeader.TabIndex = 33
         '
         'LECurrency
         '
         Me.LECurrency.Enabled = False
-        Me.LECurrency.Location = New System.Drawing.Point(163, 38)
+        Me.LECurrency.Location = New System.Drawing.Point(163, 101)
         Me.LECurrency.Name = "LECurrency"
         Me.LECurrency.Properties.Appearance.Options.UseTextOptions = True
         Me.LECurrency.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -117,7 +122,7 @@ Partial Class FormViewFGAdjIn
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(32, 41)
+        Me.LabelControl13.Location = New System.Drawing.Point(32, 104)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl13.TabIndex = 146
@@ -165,7 +170,7 @@ Partial Class FormViewFGAdjIn
         Me.GConListPurchase.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GConListPurchase.Controls.Add(Me.PanelControl1)
         Me.GConListPurchase.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GConListPurchase.Location = New System.Drawing.Point(0, 75)
+        Me.GConListPurchase.Location = New System.Drawing.Point(0, 92)
         Me.GConListPurchase.Name = "GConListPurchase"
         Me.GConListPurchase.Size = New System.Drawing.Size(829, 259)
         Me.GConListPurchase.TabIndex = 34
@@ -292,7 +297,7 @@ Partial Class FormViewFGAdjIn
         Me.GridColumnCode.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCode.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 2
+        Me.GridColumnCode.VisibleIndex = 1
         Me.GridColumnCode.Width = 93
         '
         'GridColumnName
@@ -304,7 +309,7 @@ Partial Class FormViewFGAdjIn
         Me.GridColumnName.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnName.OptionsColumn.AllowShowHide = False
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 4
+        Me.GridColumnName.VisibleIndex = 2
         Me.GridColumnName.Width = 165
         '
         'GridColumnSize
@@ -379,7 +384,7 @@ Partial Class FormViewFGAdjIn
         Me.GridColumnAdjPrice.FieldName = "adj_in_fg_det_price"
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
         Me.GridColumnAdjPrice.Visible = True
-        Me.GridColumnAdjPrice.VisibleIndex = 6
+        Me.GridColumnAdjPrice.VisibleIndex = 5
         Me.GridColumnAdjPrice.Width = 70
         '
         'GridColumnQty
@@ -397,7 +402,7 @@ Partial Class FormViewFGAdjIn
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_in_fg_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 56
         '
         'RepositoryItemSpinEdit1
@@ -421,7 +426,7 @@ Partial Class FormViewFGAdjIn
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_in_fg_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.VisibleIndex = 6
         Me.GridColumnAmount.Width = 103
         '
         'GridColumnretail_price
@@ -432,7 +437,7 @@ Partial Class FormViewFGAdjIn
         Me.GridColumnretail_price.FieldName = "retail_price"
         Me.GridColumnretail_price.Name = "GridColumnretail_price"
         Me.GridColumnretail_price.Visible = True
-        Me.GridColumnretail_price.VisibleIndex = 8
+        Me.GridColumnretail_price.VisibleIndex = 7
         '
         'GridColumnretail_price_amount
         '
@@ -443,7 +448,13 @@ Partial Class FormViewFGAdjIn
         Me.GridColumnretail_price_amount.Name = "GridColumnretail_price_amount"
         Me.GridColumnretail_price_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_amount", "{0:N0}")})
         Me.GridColumnretail_price_amount.Visible = True
-        Me.GridColumnretail_price_amount.VisibleIndex = 9
+        Me.GridColumnretail_price_amount.VisibleIndex = 8
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Account"
+        Me.GridColumn1.FieldName = "comp"
+        Me.GridColumn1.Name = "GridColumn1"
         '
         'GridView1
         '
@@ -460,9 +471,9 @@ Partial Class FormViewFGAdjIn
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl18)
         Me.GroupGeneralFooter.Controls.Add(Me.MENote)
         Me.GroupGeneralFooter.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 334)
+        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 351)
         Me.GroupGeneralFooter.Name = "GroupGeneralFooter"
-        Me.GroupGeneralFooter.Size = New System.Drawing.Size(829, 103)
+        Me.GroupGeneralFooter.Size = New System.Drawing.Size(829, 93)
         Me.GroupGeneralFooter.TabIndex = 35
         '
         'LEReportStatus
@@ -527,9 +538,9 @@ Partial Class FormViewFGAdjIn
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 437)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 444)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(829, 40)
+        Me.GroupControl3.Size = New System.Drawing.Size(829, 33)
         Me.GroupControl3.TabIndex = 189
         '
         'BMark
@@ -537,17 +548,25 @@ Partial Class FormViewFGAdjIn
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(807, 36)
+        Me.BMark.Size = New System.Drawing.Size(807, 29)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
-        'GridColumn1
+        'MEAccount
         '
-        Me.GridColumn1.Caption = "Account"
-        Me.GridColumn1.FieldName = "comp"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
+        Me.MEAccount.Location = New System.Drawing.Point(163, 38)
+        Me.MEAccount.Name = "MEAccount"
+        Me.MEAccount.Properties.ReadOnly = True
+        Me.MEAccount.Size = New System.Drawing.Size(250, 39)
+        Me.MEAccount.TabIndex = 149
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(32, 40)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl1.TabIndex = 150
+        Me.LabelControl1.Text = "Account"
         '
         'FormViewFGAdjIn
         '
@@ -587,6 +606,7 @@ Partial Class FormViewFGAdjIn
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
+        CType(Me.MEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -635,4 +655,6 @@ Partial Class FormViewFGAdjIn
     Friend WithEvents GridColumnretail_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnretail_price_amount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MEAccount As DevExpress.XtraEditors.MemoEdit
 End Class
