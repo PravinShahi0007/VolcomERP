@@ -98,6 +98,13 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             Dim query As String = r.queryMain("AND r.id_purc_rec='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            '
+            If data.Rows(0)("is_delivered").ToString = "1" Then
+                CEAlreadyDeliver.Checked = True
+            Else
+                CEAlreadyDeliver.Checked = False
+            End If
+            '
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
             TxtNumber.Text = data.Rows(0)("purc_rec_number").ToString
@@ -151,7 +158,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             makeSafeGV(GVDetail)
             GVDetail.BestFitColumns()
         ElseIf action = "upd" Then
-            query = "SELECT rd.id_purc_order_det,req.purc_req_number,d.departement, 
+            query = "SELECT rd.id_purc_order_det,reqd.ship_destination,reqd.ship_address,req.purc_req_number,d.departement, 
             rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty, reqd.item_detail
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -524,8 +531,14 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
                 Dim do_vendor_number As String = addSlashes(TxtDO.Text)
                 Dim date_arrived As String = DateTime.Parse(DEArrivalDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim note As String = addSlashes(MENote.Text.ToString)
-                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note,is_confirm, do_vendor_number,date_arrived) VALUES 
-                ('" + id_purc_order + "', '', NOW(),'" + id_user + "','" + note + "',1, '" + do_vendor_number + "', '" + date_arrived + "'); SELECT LAST_INSERT_ID(); "
+                Dim is_delivered As String = "2"
+                If CEAlreadyDeliver.Checked = True Then
+                    is_delivered = "1"
+                Else
+                    is_delivered = "2"
+                End If
+                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note,is_confirm, do_vendor_number,date_arrived,is_delivered) VALUES 
+                ('" + id_purc_order + "', '', NOW(),'" + id_user + "','" + note + "',1, '" + do_vendor_number + "', '" + date_arrived + "','" & is_delivered & "'); SELECT LAST_INSERT_ID(); "
                 id = execute_query(qm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + ",148); ", True, "", "", "", "")
 

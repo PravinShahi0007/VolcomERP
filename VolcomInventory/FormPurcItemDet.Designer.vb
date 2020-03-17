@@ -208,7 +208,6 @@ Partial Class FormPurcItemDet
         Me.TEConvertion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEConvertion.EditValue = ""
-        Me.TEConvertion.Enabled = False
         Me.TEConvertion.Location = New System.Drawing.Point(134, 174)
         Me.TEConvertion.Name = "TEConvertion"
         Me.TEConvertion.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -219,7 +218,6 @@ Partial Class FormPurcItemDet
         Me.TEConvertion.Properties.Mask.EditMask = "N0"
         Me.TEConvertion.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEConvertion.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEConvertion.Properties.ReadOnly = True
         Me.TEConvertion.Size = New System.Drawing.Size(143, 20)
         Me.TEConvertion.TabIndex = 8914
         Me.TEConvertion.TabStop = False
