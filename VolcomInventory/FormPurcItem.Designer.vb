@@ -21,6 +21,8 @@ Partial Class FormPurcItem
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GCItem = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItem = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPick = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -51,9 +53,10 @@ Partial Class FormPurcItem
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,7 +67,6 @@ Partial Class FormPurcItem
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCItem
@@ -79,9 +81,21 @@ Partial Class FormPurcItem
         Me.GCItem.TabIndex = 8
         Me.GCItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItem})
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VDItemList})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(113, 26)
+        '
+        'VDItemList
+        '
+        Me.VDItemList.Name = "VDItemList"
+        Me.VDItemList.Size = New System.Drawing.Size(112, 22)
+        Me.VDItemList.Text = "History"
+        '
         'GVItem
         '
-        Me.GVItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPick, Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn17, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPick, Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn17, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn6, Me.GridColumn18, Me.GridColumn9})
         Me.GVItem.GridControl = Me.GCItem
         Me.GVItem.Name = "GVItem"
         Me.GVItem.OptionsBehavior.Editable = False
@@ -132,7 +146,7 @@ Partial Class FormPurcItem
         Me.GridColumn17.FieldName = "expense_type"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 5
+        Me.GridColumn17.VisibleIndex = 7
         '
         'GridColumn10
         '
@@ -148,7 +162,7 @@ Partial Class FormPurcItem
         Me.GridColumn4.FieldName = "item_cat"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 6
         '
         'GridColumn5
         '
@@ -164,11 +178,15 @@ Partial Class FormPurcItem
         Me.GridColumn7.FieldName = "date_created"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.VisibleIndex = 8
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "UOM"
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "UOM Purchase"
         Me.GridColumn8.FieldName = "uom"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
@@ -180,7 +198,7 @@ Partial Class FormPurcItem
         Me.GridColumn9.FieldName = "emp_created"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.VisibleIndex = 9
         '
         'PanelControl1
         '
@@ -322,17 +340,29 @@ Partial Class FormPurcItem
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Category"
         '
-        'ViewMenu
+        'GridColumn6
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VDItemList})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.Caption = "Convertion Purchase : Stock"
+        Me.GridColumn6.FieldName = "stock_convertion"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
         '
-        'VDItemList
+        'GridColumn18
         '
-        Me.VDItemList.Name = "VDItemList"
-        Me.VDItemList.Size = New System.Drawing.Size(152, 22)
-        Me.VDItemList.Text = "History"
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.Caption = "UOM Stock"
+        Me.GridColumn18.FieldName = "uom_stock"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 4
         '
         'FormPurcItem
         '
@@ -348,6 +378,7 @@ Partial Class FormPurcItem
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Item List"
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -359,7 +390,6 @@ Partial Class FormPurcItem
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -397,4 +427,6 @@ Partial Class FormPurcItem
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents VDItemList As ToolStripMenuItem
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
