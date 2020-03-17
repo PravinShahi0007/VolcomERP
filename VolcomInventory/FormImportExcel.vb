@@ -2946,7 +2946,12 @@ Public Class FormImportExcel
             End Try
         ElseIf id_pop_up = "47" Then 'adj inn
             'vendor code 
-            Dim queryx As String = "SELECT p.id_product,p.product_full_code,p.product_name,dsg.design_cop FROM tb_m_product p INNER JOIN tb_m_design dsg ON dsg.id_design=p.id_design WHERE dsg.`id_lookup_status_order`!='2'"
+            Dim queryx As String = "SELECT p.id_product,p.product_full_code,p.product_name,dsg.design_cop, cd.code_detail_name AS `size`
+            FROM tb_m_product p 
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+            INNER JOIN tb_m_design dsg ON dsg.id_design=p.id_design 
+            WHERE dsg.`id_lookup_status_order`!='2'"
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             Dim tb1 = data_temp.AsEnumerable()
             Dim tb2 = dt.AsEnumerable()
@@ -2960,8 +2965,9 @@ Public Class FormImportExcel
                                 .id_product = If(y1 Is Nothing, "0", y1("id_product")),
                                 .code = If(y1 Is Nothing, "0", y1("product_full_code")),
                                 .name = If(y1 Is Nothing, "0", y1("product_name")),
+                                 .size = If(y1 Is Nothing, "0", y1("size")),
                                 .qty = table1("qty"),
-                            .retail_price = table1("retail_price"),
+                                .retail_price = table1("retail_price"),
                                 .design_cop = If(y1 Is Nothing, "0", y1("design_cop")),
                                 .id_comp = FormFGAdjInDet.id_comp,
                                 .comp = FormFGAdjInDet.comp_name,
@@ -3002,6 +3008,11 @@ Public Class FormImportExcel
             GVData.Columns("design_cop").DisplayFormat.FormatString = "N2"
             GVData.Columns("retail_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("retail_price").DisplayFormat.FormatString = "N0"
+
+            'summary
+            GVData.OptionsView.ShowFooter = True
+            GVData.Columns("qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("qty").SummaryItem.DisplayFormat = "{0:n0}"
         ElseIf id_pop_up = "48" Then
             'vendor code 
             Dim queryx As String = "SELECT p.id_product,p.product_full_code,p.product_name,dsg.design_cop, cd.code_detail_name AS `size`
@@ -3067,6 +3078,11 @@ Public Class FormImportExcel
             GVData.Columns("design_cop").DisplayFormat.FormatString = "N2"
             GVData.Columns("retail_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("retail_price").DisplayFormat.FormatString = "N0"
+
+            'summary
+            GVData.OptionsView.ShowFooter = True
+            GVData.Columns("qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("qty").SummaryItem.DisplayFormat = "{0:n0}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -5160,7 +5176,7 @@ Public Class FormImportExcel
                             Dim R As DataRow = (TryCast(FormFGAdjInDet.GCDetail.DataSource, DataTable)).NewRow()
                             R("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
                             R("name") = GVData.GetRowCellValue(i, "name").ToString
-                            R("size") = ""
+                            R("size") = GVData.GetRowCellValue(i, "size").ToString
                             R("uom") = "pcs"
                             R("code") = GVData.GetRowCellValue(i, "code").ToString
                             R("adj_in_fg_det_qty") = Decimal.Parse(GVData.GetRowCellValue(i, "qty").ToString)
