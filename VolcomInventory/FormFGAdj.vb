@@ -21,7 +21,7 @@
     Sub viewAdjIn()
         Dim query As String = ""
         query += "SELECT *, DATE_FORMAT(a.adj_in_fg_date, '%d %M %Y') AS adj_in_fg_datex, SUM(adj_in_fg_det_qty) AS `total_qty`, 
-        GROUP_CONCAT(DISTINCT CONCAT(comp.comp_number, ' - ', comp.comp_name)) AS `account` "
+        GROUP_CONCAT(DISTINCT comp.comp_number) AS `account` "
         query += "FROM tb_adj_in_fg a 
         INNER JOIN tb_adj_in_fg_det ad ON ad.id_adj_in_fg = a.id_adj_in_fg 
         INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = ad.id_wh_drawer
