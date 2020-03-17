@@ -65,7 +65,7 @@
                     FROM tb_emp_payroll_" + If(type = "adjustment", "adj", type) + " pyd
                     INNER JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_" + If(type = "adjustment", "adj", type) + "
                     INNER JOIN tb_lookup_salary_" + type + "_cat saldc ON saldc.id_salary_" + type + "_cat=sald.id_salary_" + type + "_cat
-                    WHERE pyd.id_payroll='" + id_payroll + "'
+                    WHERE pyd.id_payroll='" + id_payroll + "' AND pyd.id_employee IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" + id_payroll + "')
                     GROUP BY pyd.id_employee, sald.id_salary_" + type + "
                     ORDER BY sald.id_salary_" + type + "_cat ASC, sald.id_salary_" + type + " ASC
                 ) AS tb
@@ -187,11 +187,11 @@
 
                 'width
                 If salary_adjustment = "Missing Staff Toko" Or salary_adjustment = "Missing Staff Security" Or salary_adjustment = "Internal Sale" Or salary_adjustment = "Meditation" Or salary_adjustment = "Cash Receipt" Or salary_adjustment = "Tax Penalty" Or salary_adjustment = "Unpaid Leave" Or salary_adjustment = "Total" Then
-                    column.MinWidth = 50
-                    column.Width = 50
+                    column.MinWidth = 55
+                    column.Width = 55
                 Else
-                    column.MinWidth = 65
-                    column.Width = 65
+                    column.MinWidth = 55
+                    column.Width = 55
                 End If
 
                 band.Columns.Add(column)
@@ -304,7 +304,7 @@
             LEFT JOIN `tb_lookup_employee_status` sts_ori ON sts_ori.`id_employee_status`=emp.`id_employee_status`
             LEFT JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_" + If(type = "adjustment", "adj", type) + "
             LEFT JOIN tb_lookup_salary_" + type + "_cat saldc ON saldc.id_salary_" + type + "_cat=sald.id_salary_" + type + "_cat
-            WHERE pyd.id_payroll='" + id_payroll + "' AND IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '" + is_office_payroll_get + "'
+            WHERE pyd.id_payroll='" + id_payroll + "' AND IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '" + is_office_payroll_get + "' AND pyd.id_employee IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" + id_payroll + "')
             GROUP BY pyd.id_employee
             ORDER BY emp.id_employee_level ASC, emp.employee_code ASC 
         "
