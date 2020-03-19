@@ -483,4 +483,34 @@
     Private Sub BtnExpanseCollapse_Click(sender As Object, e As EventArgs)
 
     End Sub
+
+    Sub print()
+        Dim report As ReportFormInvoiceTracking = New ReportFormInvoiceTracking
+
+        report.data = GCUnpaid.DataSource
+
+        report.XLStoreGroup.Text = SLEStoreGroup.Text
+        report.XLStore.Text = SLEStoreInvoice.Text
+        report.XLStatus.Text = SLEStatusInvoice.Text
+        report.XLPeriod.Text = If(CEPeriod.Checked, "All Period", DEFrom.Text + " - " + DEUntil.Text)
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        Tool.ShowPreviewDialog()
+    End Sub
+
+    Sub summary_print()
+        Dim report As ReportFormInvoiceTrackingSummary = New ReportFormInvoiceTrackingSummary
+
+        report.data = GCSummary.DataSource
+
+        report.XLStoreGroup.Text = SLEStoreGroup.Text
+        report.XLStore.Text = SLEStoreInvoice.Text
+        report.XLStatus.Text = SLEStatusInvoice.Text
+        report.XLPeriod.Text = If(CEPeriod.Checked, "All Period", DEFrom.Text + " - " + DEUntil.Text)
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        Tool.ShowPreviewDialog()
+    End Sub
 End Class
