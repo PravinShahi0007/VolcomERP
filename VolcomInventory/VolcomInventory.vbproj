@@ -5875,6 +5875,12 @@
     <Compile Include="FormUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormValidateStock.Designer.vb">
+      <DependentUpon>FormValidateStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormValidateStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVerifyMaster.Designer.vb">
       <DependentUpon>FormVerifyMaster.vb</DependentUpon>
     </Compile>
@@ -11077,6 +11083,9 @@
     <EmbeddedResource Include="FormUpload.resx">
       <DependentUpon>FormUpload.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormValidateStock.resx">
+      <DependentUpon>FormValidateStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerifyMaster.resx">
       <DependentUpon>FormVerifyMaster.vb</DependentUpon>
