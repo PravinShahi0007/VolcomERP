@@ -50,6 +50,10 @@ Public Class FormSalesReturnDet
     Dim is_input_manual_ret_store As String = "2"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        view_type_scan()
+
+        LUETypeScan.EditValue = "2"
+
         'cek input mnual surat jalan
         is_input_manual_ret_store = get_setup_field("is_input_manual_ret_store")
         If is_input_manual_ret_store = "1" Then
@@ -417,12 +421,13 @@ Public Class FormSalesReturnDet
 
     Sub view_barcode_list_prob()
         Dim query As String = "SELECT '0' AS `no`,rp.id_sales_return_problem, rp.id_product, d.design_code, rp.scanned_code AS `code`,
-            d.design_display_name AS `name`, cd.code_detail_name AS `size`, rp.remark, rp.is_unique_not_found, rp.is_no_stock
+            d.design_display_name AS `name`, cd.code_detail_name AS `size`, rp.remark, rp.is_unique_not_found, rp.is_no_stock, rp.id_scan_type, ty.scan_type
             FROM tb_sales_return_problem rp
             INNER JOIN tb_m_product p ON p.id_product = rp.id_product
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            INNER JOIN tb_lookup_scan_type ty ON rp.id_scan_type = ty.id_scan_type
             WHERE rp.id_sales_return=" + id_sales_return + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBarcodeProb.DataSource = data
@@ -1161,7 +1166,7 @@ Public Class FormSalesReturnDet
                     Dim jum_ins_k As Integer = 0
                     Dim query_problem_stock As String = ""
                     If GVBarcodeProb.RowCount > 0 Then
-                        query_problem_stock = "INSERT INTO tb_sales_return_problem(id_sales_return, id_product, scanned_code, remark, is_unique_not_found, is_no_stock) VALUES "
+                        query_problem_stock = "INSERT INTO tb_sales_return_problem(id_sales_return, id_product, scanned_code, remark, is_unique_not_found, is_no_stock, id_scan_type) VALUES "
                     End If
                     For k As Integer = 0 To ((GVBarcodeProb.RowCount - 1) - GetGroupRowCount(GVBarcodeProb))
                         Dim id_product As String = GVBarcodeProb.GetRowCellValue(k, "id_product").ToString
@@ -1169,11 +1174,12 @@ Public Class FormSalesReturnDet
                         Dim remark As String = addSlashes(GVBarcodeProb.GetRowCellValue(k, "remark").ToString)
                         Dim is_unique_not_found As String = addSlashes(GVBarcodeProb.GetRowCellValue(k, "is_unique_not_found").ToString)
                         Dim is_no_stock As String = addSlashes(GVBarcodeProb.GetRowCellValue(k, "is_no_stock").ToString)
+                        Dim id_scan_type As String = addSlashes(GVBarcodeProb.GetRowCellValue(k, "id_scan_type").ToString)
 
                         If jum_ins_k > 0 Then
                             query_problem_stock += ", "
                         End If
-                        query_problem_stock += "('" + id_sales_return + "','" + id_product + "','" + scanned_code + "', '" + remark + "', " + is_unique_not_found + ", " + is_no_stock + ") "
+                        query_problem_stock += "('" + id_sales_return + "','" + id_product + "','" + scanned_code + "', '" + remark + "', " + is_unique_not_found + ", " + is_no_stock + ", " + id_scan_type + ") "
                         jum_ins_k = jum_ins_k + 1
                     Next
                     If jum_ins_k > 0 Then
@@ -1330,6 +1336,7 @@ Public Class FormSalesReturnDet
         BtnVerify.Enabled = False
         BScan.Enabled = False
         BScanProb.Enabled = False
+        LUETypeScan.Enabled = False
         BStop.Enabled = True
         BStopProb.Enabled = True
         BDelete.Enabled = False
@@ -1419,6 +1426,7 @@ Public Class FormSalesReturnDet
         BtnVerify.Enabled = True
         BScan.Enabled = True
         BScanProb.Enabled = True
+        LUETypeScan.Enabled = True
         BStop.Enabled = False
         BStopProb.Enabled = False
         BDelete.Enabled = True
@@ -2594,6 +2602,8 @@ Public Class FormSalesReturnDet
                     newRow("size") = data.Rows(0)("size").ToString
                     newRow("is_unique_not_found") = is_unique_not_found
                     newRow("is_no_stock") = is_no_stock
+                    newRow("id_scan_type") = LUETypeScan.EditValue
+                    newRow("scan_type") = LUETypeScan.Text
                     TryCast(GCBarcodeProb.DataSource, DataTable).Rows.Add(newRow)
                     FormSalesReturnDetProblem.TxtCode.Text = data.Rows(0)("design_code").ToString
                     FormSalesReturnDetProblem.TxtBarcode.Text = data.Rows(0)("code").ToString
@@ -2871,5 +2881,13 @@ Public Class FormSalesReturnDet
         Else
             stopCustom("Data not found")
         End If
+    End Sub
+
+    Sub view_type_scan()
+        Dim query As String = "
+            SELECT id_scan_type, scan_type FROM tb_lookup_scan_type WHERE id_scan_type <> 1
+        "
+
+        viewLookupQuery(LUETypeScan, query, 0, "scan_type", "id_scan_type")
     End Sub
 End Class
