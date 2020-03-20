@@ -5828,9 +5828,9 @@ WHERE pd.`id_pn`='" & id_report & "'"
 
             'refresh view
 
-            FormBankWithdrawal.load_payment()
+            'FormBankWithdrawal.load_payment()
             FormBankWithdrawalDet.form_load()
-            FormBankWithdrawal.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_pn", id_report)
+            'FormBankWithdrawal.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_pn", id_report)
         ElseIf report_mark_type = "160" Then
             'Asset management
             'auto completed
