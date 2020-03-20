@@ -22,7 +22,7 @@
     Sub actionLoad()
         If action = "ins" Then
             TxtAdjDate.Text = view_date(0)
-            TxtAdjNumber.Text = header_number_sales("14")
+            TxtAdjNumber.Text = ""
             BMark.Enabled = False
             BtnPrint.Enabled = False
             viewDetailReturn()
@@ -240,11 +240,12 @@
             If action = "ins" Then
                 'Main table
                 query = "INSERT INTO tb_adj_in_fg(adj_in_fg_number, adj_in_fg_date, adj_in_fg_note, id_report_status, adj_in_fg_total, id_currency, retail_price_total) "
-                query += "VALUES('" + adj_in_fg_number + "', NOW(), '" + adj_in_fg_note + "', '" + id_report_status + "', '" + adj_in_fg_total + "', '" + id_currency + "', '" + retail_price_total + "'); SELECT LAST_INSERT_ID(); "
+                query += "VALUES('', NOW(), '" + adj_in_fg_note + "', '" + id_report_status + "', '" + adj_in_fg_total + "', '" + id_currency + "', '" + retail_price_total + "'); SELECT LAST_INSERT_ID(); "
                 id_adj_in_fg = execute_query(query, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_adj_in_fg + ",41); ", True, "", "", "", "")
                 'MsgBox(id_product_return)
 
-                increase_inc_sales("14")
+                'increase_inc_sales("14")
 
                 'preapred default
                 submit_who_prepared("41", id_adj_in_fg, id_user)
