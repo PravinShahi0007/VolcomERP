@@ -159,11 +159,12 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             GVDetail.BestFitColumns()
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_order_det,reqd.ship_destination,reqd.ship_address,req.purc_req_number,d.departement, 
-            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty, reqd.item_detail
+            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty, reqd.item_detail,u_st.uom AS uom_stock
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
             INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
             INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
