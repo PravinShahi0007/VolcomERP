@@ -79,6 +79,9 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDetAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetailUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEDelivered = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOrderDetail = New DevExpress.XtraGrid.GridControl()
@@ -106,9 +109,6 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CEAlreadyDeliver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -677,7 +677,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 8
+        Me.GridColumn6.VisibleIndex = 11
         '
         'GridColumn7
         '
@@ -686,7 +686,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 9
+        Me.GridColumn7.VisibleIndex = 12
         '
         'GridColumnDetIdItem
         '
@@ -780,6 +780,30 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDetailUOM.Visible = True
         Me.GridColumnDetailUOM.VisibleIndex = 4
         Me.GridColumnDetailUOM.Width = 95
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Qty To Stock"
+        Me.GridColumn12.FieldName = "qty_stock"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 9
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Convertion Rate"
+        Me.GridColumn13.FieldName = "stock_convertion_view"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 8
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "UOM Stock"
+        Me.GridColumn14.FieldName = "uom_stock"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 10
         '
         'RICEDelivered
         '
@@ -1057,30 +1081,6 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl5.TabIndex = 144
         Me.LabelControl5.Text = "Status"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Qty To Stock"
-        Me.GridColumn12.FieldName = "qty_stock"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 10
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Convertion Rate"
-        Me.GridColumn13.FieldName = "stock_convertion_view"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 11
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "UOM Stock"
-        Me.GridColumn14.FieldName = "uom_stock"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 12
         '
         'FormPurcReceiveDet
         '
