@@ -20,8 +20,8 @@ Partial Class FormInvoiceTracking
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceTracking))
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -116,25 +116,18 @@ Partial Class FormInvoiceTracking
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
-        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepositoryItemHyperLinkEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepositoryItemHyperLinkEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepositoryItemHyperLinkEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepositoryItemHyperLinkEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -142,7 +135,14 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemHyperLinkEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepositoryItemHyperLinkEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepositoryItemHyperLinkEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepositoryItemHyperLinkEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,17 +179,17 @@ Partial Class FormInvoiceTracking
         Me.XTPDetail.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemHyperLinkEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemHyperLinkEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemHyperLinkEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -972,13 +972,13 @@ Partial Class FormInvoiceTracking
         'RepoBtnMoreBBM
         '
         Me.RepoBtnMoreBBM.AutoHeight = False
-        SerializableAppearanceObject3.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject3.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject3.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject3.Options.UseBackColor = True
-        SerializableAppearanceObject3.Options.UseFont = True
-        SerializableAppearanceObject3.Options.UseForeColor = True
-        Me.RepoBtnMoreBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.RepoBtnMoreBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.RepoBtnMoreBBM.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnMoreBBM.Name = "RepoBtnMoreBBM"
         Me.RepoBtnMoreBBM.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1068,71 +1068,6 @@ Partial Class FormInvoiceTracking
         Me.GCSummary.TabIndex = 21
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
-        'RepositoryItemCheckEdit4
-        '
-        Me.RepositoryItemCheckEdit4.AutoHeight = False
-        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
-        Me.RepositoryItemCheckEdit4.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit4.ValueUnchecked = "no"
-        '
-        'RepositoryItemHyperLinkEdit1
-        '
-        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
-        '
-        'RepositoryItemHyperLinkEdit2
-        '
-        Me.RepositoryItemHyperLinkEdit2.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit2.Name = "RepositoryItemHyperLinkEdit2"
-        '
-        'RepositoryItemHyperLinkEdit3
-        '
-        Me.RepositoryItemHyperLinkEdit3.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit3.Name = "RepositoryItemHyperLinkEdit3"
-        '
-        'RepositoryItemHyperLinkEdit4
-        '
-        Me.RepositoryItemHyperLinkEdit4.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit4.Name = "RepositoryItemHyperLinkEdit4"
-        '
-        'RepositoryItemHyperLinkEdit5
-        '
-        Me.RepositoryItemHyperLinkEdit5.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit5.Name = "RepositoryItemHyperLinkEdit5"
-        '
-        'RepositoryItemHyperLinkEdit6
-        '
-        Me.RepositoryItemHyperLinkEdit6.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit6.Name = "RepositoryItemHyperLinkEdit6"
-        '
-        'RepositoryItemButtonEdit1
-        '
-        Me.RepositoryItemButtonEdit1.AutoHeight = False
-        SerializableAppearanceObject4.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject4.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject4.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject4.Options.UseBackColor = True
-        SerializableAppearanceObject4.Options.UseFont = True
-        SerializableAppearanceObject4.Options.UseForeColor = True
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
-        Me.RepositoryItemButtonEdit1.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
-        Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
-        '
-        'RepositoryItemCheckEdit5
-        '
-        Me.RepositoryItemCheckEdit5.AutoHeight = False
-        Me.RepositoryItemCheckEdit5.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
-        Me.RepositoryItemCheckEdit5.Name = "RepositoryItemCheckEdit5"
-        Me.RepositoryItemCheckEdit5.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit5.PictureChecked"), System.Drawing.Image)
-        Me.RepositoryItemCheckEdit5.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit5.ValueUnchecked = "No"
-        '
-        'RepositoryItemCheckEdit6
-        '
-        Me.RepositoryItemCheckEdit6.AutoHeight = False
-        Me.RepositoryItemCheckEdit6.Name = "RepositoryItemCheckEdit6"
-        '
         'GVSummary
         '
         Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.BandedGridColumn5, Me.BandedGridColumn10, Me.BandedGridColumn6, Me.BandedGridColumn16, Me.BandedGridColumn11, Me.BandedGridColumn24, Me.BandedGridColumn19, Me.BandedGridColumn9, Me.GridColumn1, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn20, Me.BandedGridColumn23, Me.BandedGridColumn44})
@@ -1159,6 +1094,13 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.OptionsColumn.AllowEdit = False
         '
+        'RepositoryItemCheckEdit4
+        '
+        Me.RepositoryItemCheckEdit4.AutoHeight = False
+        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
+        Me.RepositoryItemCheckEdit4.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit4.ValueUnchecked = "no"
+        '
         'BandedGridColumn10
         '
         Me.BandedGridColumn10.Caption = "ID"
@@ -1174,6 +1116,11 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
         Me.BandedGridColumn6.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn6.Width = 165
+        '
+        'RepositoryItemHyperLinkEdit1
+        '
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
         '
         'BandedGridColumn16
         '
@@ -1230,6 +1177,15 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumn9.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn9.Visible = True
         Me.BandedGridColumn9.VisibleIndex = 0
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Group Store Desc."
+        Me.GridColumn1.FieldName = "comp_group_desc"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        Me.GridColumn1.Width = 110
         '
         'BandedGridColumn26
         '
@@ -1298,14 +1254,58 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumn44.FieldName = "btn_more_bbm"
         Me.BandedGridColumn44.Name = "BandedGridColumn44"
         '
-        'GridColumn1
+        'RepositoryItemButtonEdit1
         '
-        Me.GridColumn1.Caption = "Group Store Desc."
-        Me.GridColumn1.FieldName = "comp_group_desc"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 110
+        Me.RepositoryItemButtonEdit1.AutoHeight = False
+        SerializableAppearanceObject2.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject2.Options.UseBackColor = True
+        SerializableAppearanceObject2.Options.UseFont = True
+        SerializableAppearanceObject2.Options.UseForeColor = True
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEdit1.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
+        Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'RepositoryItemCheckEdit5
+        '
+        Me.RepositoryItemCheckEdit5.AutoHeight = False
+        Me.RepositoryItemCheckEdit5.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit5.Name = "RepositoryItemCheckEdit5"
+        Me.RepositoryItemCheckEdit5.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit5.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit5.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit5.ValueUnchecked = "No"
+        '
+        'RepositoryItemCheckEdit6
+        '
+        Me.RepositoryItemCheckEdit6.AutoHeight = False
+        Me.RepositoryItemCheckEdit6.Name = "RepositoryItemCheckEdit6"
+        '
+        'RepositoryItemHyperLinkEdit6
+        '
+        Me.RepositoryItemHyperLinkEdit6.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit6.Name = "RepositoryItemHyperLinkEdit6"
+        '
+        'RepositoryItemHyperLinkEdit4
+        '
+        Me.RepositoryItemHyperLinkEdit4.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit4.Name = "RepositoryItemHyperLinkEdit4"
+        '
+        'RepositoryItemHyperLinkEdit5
+        '
+        Me.RepositoryItemHyperLinkEdit5.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit5.Name = "RepositoryItemHyperLinkEdit5"
+        '
+        'RepositoryItemHyperLinkEdit3
+        '
+        Me.RepositoryItemHyperLinkEdit3.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit3.Name = "RepositoryItemHyperLinkEdit3"
+        '
+        'RepositoryItemHyperLinkEdit2
+        '
+        Me.RepositoryItemHyperLinkEdit2.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit2.Name = "RepositoryItemHyperLinkEdit2"
         '
         'FormInvoiceTracking
         '
@@ -1355,17 +1355,17 @@ Partial Class FormInvoiceTracking
         Me.XTPDetail.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemHyperLinkEdit4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemHyperLinkEdit5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemHyperLinkEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -7997,9 +7997,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormInvoiceTracking" Then
             If FormInvoiceTracking.XTCInvTrack.SelectedTabPageIndex = 0 Then
-                print_raw(FormInvoiceTracking.GCUnpaid, "")
+                FormInvoiceTracking.print()
             Else
-                print_raw(FormInvoiceTracking.GCSummary, "")
+                FormInvoiceTracking.summary_print()
             End If
         ElseIf formName = "FormInvMat" Then
             FormInvMat.print_list()
