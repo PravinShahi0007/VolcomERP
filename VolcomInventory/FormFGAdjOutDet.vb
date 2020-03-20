@@ -112,7 +112,7 @@
         query += "CALL view_fg_adj_out_less('" + id_adj_out_fg + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
-        GVDetail.BestFitColumns()
+        'GVDetail.BestFitColumns()
         'GVDetail.Columns("id_product").GroupIndex = 0
     End Sub
 
@@ -133,21 +133,23 @@
     End Sub
 
     Sub cantEdit()
-        Dim id_product_curr As String = ""
-        Dim id_drawer_curr As String = ""
-        Try
-            'id_product_curr = GVDetail.GetFocusedRowCellDisplayText("id_product").ToString()
-            id_drawer_curr = GVDetail.GetFocusedRowCellDisplayText("id_wh_drawer").ToString()
-        Catch ex As Exception
+        If action = "ins" Then
+            Dim id_product_curr As String = ""
+            Dim id_drawer_curr As String = ""
+            Try
+                'id_product_curr = GVDetail.GetFocusedRowCellDisplayText("id_product").ToString()
+                id_drawer_curr = GVDetail.GetFocusedRowCellDisplayText("id_wh_drawer").ToString()
+            Catch ex As Exception
 
-        End Try
-        If GVDetail.RowCount < 1 Or id_drawer_curr = "" Then
-            BtnEdit.Enabled = False
-            BtnDel.Enabled = False
-        Else
-            If check_edit_report_status(id_report_status, "42", id_adj_out_fg) Or action = "ins" Then
-                BtnEdit.Enabled = True
-                BtnDel.Enabled = True
+            End Try
+            If GVDetail.RowCount < 1 Or id_drawer_curr = "" Then
+                BtnEdit.Enabled = False
+                BtnDel.Enabled = False
+            Else
+                If action = "ins" Then
+                    BtnEdit.Enabled = True
+                    BtnDel.Enabled = True
+                End If
             End If
         End If
     End Sub
@@ -336,6 +338,7 @@
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
+        GVDetail.BestFitColumns()
         ReportFGAdjOut.id_adj_out_fg = id_adj_out_fg
         Dim Report As New ReportFGAdjOut()
         '
