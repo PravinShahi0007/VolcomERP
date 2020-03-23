@@ -1246,6 +1246,7 @@
                 FROM tb_m_employee_salary AS sal
                 LEFT JOIN tb_m_employee AS emp ON sal.id_employee = emp.id_employee
                 LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
+                WHERE sal.effective_date <= IF(dep.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "))
                 ORDER BY sal.id_employee_salary DESC, sal.effective_date DESC
             ) AS tb
             GROUP BY id_employee
@@ -1378,5 +1379,11 @@
                 Next
             End If
         Next
+    End Sub
+
+    Private Sub GVPayroll_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVPayroll.RowCellStyle
+        If GVPayroll.GetRowCellValue(e.RowHandle, "is_resign").ToString = "1" Then
+            e.Appearance.BackColor = Color.Yellow
+        End If
     End Sub
 End Class

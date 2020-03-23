@@ -109,10 +109,10 @@
 
     Sub viewDetailReturn()
         Dim query As String = ""
-        query += "CALL view_fg_adj_out('" + id_adj_out_fg + "')"
+        query += "CALL view_fg_adj_out_less('" + id_adj_out_fg + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
-        GVDetail.BestFitColumns()
+        'GVDetail.BestFitColumns()
         'GVDetail.Columns("id_product").GroupIndex = 0
     End Sub
 
@@ -133,21 +133,23 @@
     End Sub
 
     Sub cantEdit()
-        Dim id_product_curr As String = ""
-        Dim id_drawer_curr As String = ""
-        Try
-            'id_product_curr = GVDetail.GetFocusedRowCellDisplayText("id_product").ToString()
-            id_drawer_curr = GVDetail.GetFocusedRowCellDisplayText("id_wh_drawer").ToString()
-        Catch ex As Exception
+        If action = "ins" Then
+            Dim id_product_curr As String = ""
+            Dim id_drawer_curr As String = ""
+            Try
+                'id_product_curr = GVDetail.GetFocusedRowCellDisplayText("id_product").ToString()
+                id_drawer_curr = GVDetail.GetFocusedRowCellDisplayText("id_wh_drawer").ToString()
+            Catch ex As Exception
 
-        End Try
-        If GVDetail.RowCount < 1 Or id_drawer_curr = "" Then
-            BtnEdit.Enabled = False
-            BtnDel.Enabled = False
-        Else
-            If check_edit_report_status(id_report_status, "42", id_adj_out_fg) Or action = "ins" Then
-                BtnEdit.Enabled = True
-                BtnDel.Enabled = True
+            End Try
+            If GVDetail.RowCount < 1 Or id_drawer_curr = "" Then
+                BtnEdit.Enabled = False
+                BtnDel.Enabled = False
+            Else
+                If action = "ins" Then
+                    BtnEdit.Enabled = True
+                    BtnDel.Enabled = True
+                End If
             End If
         End If
     End Sub
@@ -255,11 +257,12 @@
             Dim id_report_status As String = LEReportStatus.EditValue
             Dim succes As Boolean = False
             Dim adj_out_fg_total As String = decimalSQL(GVDetail.Columns("adj_out_fg_det_amount").SummaryItem.SummaryValue.ToString)
+            Dim retail_price_total As String = decimalSQL(GVDetail.Columns("retail_price_amount").SummaryItem.SummaryValue.ToString)
             Dim id_currency As String = LECurrency.EditValue.ToString
             If action = "ins" Then
                 'Main table
-                query = "INSERT INTO tb_adj_out_fg(adj_out_fg_number, adj_out_fg_date, adj_out_fg_note, id_report_status, adj_out_fg_total, id_currency) "
-                query += "VALUES('" + adj_out_fg_number + "', NOW(), '" + adj_out_fg_note + "', '" + id_report_status + "', '" + adj_out_fg_total + "', '" + id_currency + "'); SELECT LAST_INSERT_ID();"
+                query = "INSERT INTO tb_adj_out_fg(adj_out_fg_number, adj_out_fg_date, adj_out_fg_note, id_report_status, adj_out_fg_total, id_currency,retail_price_total ) "
+                query += "VALUES('" + adj_out_fg_number + "', NOW(), '" + adj_out_fg_note + "', '" + id_report_status + "', '" + adj_out_fg_total + "', '" + id_currency + "', '" + retail_price_total + "'); SELECT LAST_INSERT_ID();"
                 id_adj_out_fg = execute_query(query, 0, True, "", "", "", "")
                 'MsgBox(id_product_return)
 
@@ -270,7 +273,7 @@
 
                 'detail table
                 'INSERT TB DETAIL
-                query = "INSERT tb_adj_out_fg_det(id_adj_out_fg, adj_out_fg_det_note, adj_out_fg_det_qty, id_wh_drawer, id_product, adj_out_fg_det_price) VALUES "
+                query = "INSERT tb_adj_out_fg_det(id_adj_out_fg, adj_out_fg_det_note, adj_out_fg_det_qty, id_wh_drawer, id_product, adj_out_fg_det_price, retail_price) VALUES "
                 'INSERT TB PL STORAGE
                 Dim query_upd_storage As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, storage_product_qty, storage_product_datetime, storage_product_notes,id_stock_status, report_mark_type, id_report) VALUES "
                 For i As Integer = 0 To GVDetail.RowCount - 1
@@ -279,13 +282,14 @@
                     Dim id_wh_drawer As String = GVDetail.GetRowCellValue(i, "id_wh_drawer").ToString
                     Dim id_product As String = GVDetail.GetRowCellValue(i, "id_product").ToString
                     Dim adj_out_fg_det_price As String = decimalSQL(GVDetail.GetRowCellValue(i, "adj_out_fg_det_price").ToString)
+                    Dim retail_price As String = decimalSQL(GVDetail.GetRowCellValue(i, "retail_price").ToString)
 
 
                     If Not i = 0 Then
                         query += ","
                         query_upd_storage += ","
                     End If
-                    query += "('" + id_adj_out_fg + "','" + adj_out_fg_det_note + "', '" + adj_out_fg_det_qty + "', '" + id_wh_drawer + "', '" + id_product + "', '" + adj_out_fg_det_price + "') "
+                    query += "('" + id_adj_out_fg + "','" + adj_out_fg_det_note + "', '" + adj_out_fg_det_qty + "', '" + id_wh_drawer + "', '" + id_product + "', '" + adj_out_fg_det_price + "', '" + retail_price + "') "
                     query_upd_storage += "('" + id_wh_drawer + "', '2', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_price.ToString) + "', '" + decimalSQL(adj_out_fg_det_qty) + "', NOW(), 'Adjustment Out : " + adj_out_fg_number + "','2','42','" + id_adj_out_fg + "') "
                 Next
                 If GVDetail.RowCount > 0 Then
@@ -334,6 +338,7 @@
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
+        GVDetail.BestFitColumns()
         ReportFGAdjOut.id_adj_out_fg = id_adj_out_fg
         Dim Report As New ReportFGAdjOut()
         '
@@ -363,6 +368,48 @@
         FormPopUpDrawer.include_all = False
         FormPopUpDrawer.id_pop_up = "8"
         FormPopUpDrawer.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBExportToXLS_Click(sender As Object, e As EventArgs) Handles SBExportToXLS.Click
+        Cursor = Cursors.WaitCursor
+        If GVDetail.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'Dim dt_from As String = DEFromRec.Text.Replace(" ", "")
+            'Dim dt_until As String = DEUntilRec.Text.Replace(" ", "")
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "adj_out.xlsx"
+            exportToXLS(path, "adj_out", GCDetail)
+            Cursor = Cursors.Default
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
         Cursor = Cursors.Default
     End Sub
 End Class

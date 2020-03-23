@@ -54,6 +54,8 @@ Partial Class FormFGAdjOutDet
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnretail_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnretail_price_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -75,6 +77,7 @@ Partial Class FormFGAdjOutDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.EPAdj = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.SBExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -232,7 +235,7 @@ Partial Class FormFGAdjOutDet
         Me.GVDetail.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
         Me.GVDetail.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVDetail.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdj, Me.GridColumnNo, Me.GridColumnIdWHDrawer, Me.GridColumnIdWHRack, Me.GridColumnIdWHLOcator, Me.GridColumnIdWH, Me.GridColumnIdSample, Me.GridColumnIdAdjSampleDet, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnCompName, Me.GridColumnWHLoactor, Me.GridColumnWHRack, Me.GridColumnWHDrawer, Me.GridColumnUOM, Me.GridColumnRemark, Me.GridColumnAdjPrice, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnAccount})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdj, Me.GridColumnNo, Me.GridColumnIdWHDrawer, Me.GridColumnIdWHRack, Me.GridColumnIdWHLOcator, Me.GridColumnIdWH, Me.GridColumnIdSample, Me.GridColumnIdAdjSampleDet, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnCompName, Me.GridColumnWHLoactor, Me.GridColumnWHRack, Me.GridColumnWHDrawer, Me.GridColumnUOM, Me.GridColumnRemark, Me.GridColumnAdjPrice, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnAccount, Me.GridColumnretail_price, Me.GridColumnretail_price_amount})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -327,7 +330,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnCode.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCode.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 1
+        Me.GridColumnCode.VisibleIndex = 2
         Me.GridColumnCode.Width = 93
         '
         'GridColumnName
@@ -351,7 +354,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnSize.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnSize.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 2
+        Me.GridColumnSize.VisibleIndex = 4
         Me.GridColumnSize.Width = 46
         '
         'GridColumnCompName
@@ -402,7 +405,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.VisibleIndex = 10
         '
         'GridColumnAdjPrice
         '
@@ -416,7 +419,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAdjPrice.FieldName = "adj_out_fg_det_price"
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
         Me.GridColumnAdjPrice.Visible = True
-        Me.GridColumnAdjPrice.VisibleIndex = 5
+        Me.GridColumnAdjPrice.VisibleIndex = 6
         Me.GridColumnAdjPrice.Width = 70
         '
         'GridColumnQty
@@ -434,7 +437,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_fg_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.VisibleIndex = 5
         Me.GridColumnQty.Width = 56
         '
         'RepositoryItemSpinEdit1
@@ -467,7 +470,28 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAccount.FieldName = "comp"
         Me.GridColumnAccount.Name = "GridColumnAccount"
         Me.GridColumnAccount.Visible = True
-        Me.GridColumnAccount.VisibleIndex = 4
+        Me.GridColumnAccount.VisibleIndex = 1
+        '
+        'GridColumnretail_price
+        '
+        Me.GridColumnretail_price.Caption = "Retail Price"
+        Me.GridColumnretail_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnretail_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnretail_price.FieldName = "retail_price"
+        Me.GridColumnretail_price.Name = "GridColumnretail_price"
+        Me.GridColumnretail_price.Visible = True
+        Me.GridColumnretail_price.VisibleIndex = 8
+        '
+        'GridColumnretail_price_amount
+        '
+        Me.GridColumnretail_price_amount.Caption = "Amount Price"
+        Me.GridColumnretail_price_amount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnretail_price_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnretail_price_amount.FieldName = "retail_price_amount"
+        Me.GridColumnretail_price_amount.Name = "GridColumnretail_price_amount"
+        Me.GridColumnretail_price_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_amount", "{0:N0}")})
+        Me.GridColumnretail_price_amount.Visible = True
+        Me.GridColumnretail_price_amount.VisibleIndex = 9
         '
         'GridView1
         '
@@ -586,6 +610,7 @@ Partial Class FormFGAdjOutDet
         Me.LabelControl19.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl19.TabIndex = 140
         Me.LabelControl19.Text = "Say"
+        Me.LabelControl19.Visible = False
         '
         'METotSay
         '
@@ -595,6 +620,7 @@ Partial Class FormFGAdjOutDet
         Me.METotSay.Properties.ReadOnly = True
         Me.METotSay.Size = New System.Drawing.Size(317, 63)
         Me.METotSay.TabIndex = 139
+        Me.METotSay.Visible = False
         '
         'LabelControl18
         '
@@ -614,6 +640,7 @@ Partial Class FormFGAdjOutDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SBExportToXLS)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
@@ -679,6 +706,16 @@ Partial Class FormFGAdjOutDet
         'EPAdj
         '
         Me.EPAdj.ContainerControl = Me
+        '
+        'SBExportToXLS
+        '
+        Me.SBExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBExportToXLS.Image = CType(resources.GetObject("SBExportToXLS.Image"), System.Drawing.Image)
+        Me.SBExportToXLS.Location = New System.Drawing.Point(429, 2)
+        Me.SBExportToXLS.Name = "SBExportToXLS"
+        Me.SBExportToXLS.Size = New System.Drawing.Size(121, 38)
+        Me.SBExportToXLS.TabIndex = 18
+        Me.SBExportToXLS.Text = "Export to XLS"
         '
         'FormFGAdjOutDet
         '
@@ -779,4 +816,7 @@ Partial Class FormFGAdjOutDet
     Friend WithEvents EPAdj As System.Windows.Forms.ErrorProvider
     Friend WithEvents GridColumnAccount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnImportExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnretail_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnretail_price_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBExportToXLS As DevExpress.XtraEditors.SimpleButton
 End Class

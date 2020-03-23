@@ -5875,6 +5875,12 @@
     <Compile Include="FormUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormValidateStock.Designer.vb">
+      <DependentUpon>FormValidateStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormValidateStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVerifyMaster.Designer.vb">
       <DependentUpon>FormVerifyMaster.vb</DependentUpon>
     </Compile>
@@ -7064,6 +7070,18 @@
       <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportFollowUpAR.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFormInvoiceTracking.Designer.vb">
+      <DependentUpon>ReportFormInvoiceTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormInvoiceTracking.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFormInvoiceTrackingSummary.Designer.vb">
+      <DependentUpon>ReportFormInvoiceTrackingSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormInvoiceTrackingSummary.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportInvMat.Designer.vb">
@@ -11066,6 +11084,9 @@
       <DependentUpon>FormUpload.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormValidateStock.resx">
+      <DependentUpon>FormValidateStock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormVerifyMaster.resx">
       <DependentUpon>FormVerifyMaster.vb</DependentUpon>
     </EmbeddedResource>
@@ -11749,6 +11770,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFollowUpAR.resx">
       <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormInvoiceTracking.resx">
+      <DependentUpon>ReportFormInvoiceTracking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormInvoiceTrackingSummary.resx">
+      <DependentUpon>ReportFormInvoiceTrackingSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
