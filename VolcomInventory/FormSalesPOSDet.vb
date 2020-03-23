@@ -602,7 +602,7 @@ Public Class FormSalesPOSDet
                             Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
                             INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
                             Dim id_prod As String = ""
-                            For s As Integer = 0 To GVCode.RowCount - 1
+                            For s As Integer = 0 To GVItemList.RowCount - 1
                                 If s > 0 Then
                                     qs += ","
                                     id_prod += ","
