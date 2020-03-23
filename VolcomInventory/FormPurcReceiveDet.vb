@@ -149,6 +149,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
                             qty_input = qty_total
                         End If
                         GVDetail.SetRowCellValue(j, "qty", qty_input)
+                        GVDetail.SetRowCellValue(j, "qty_stock", qty_input * GVDetail.GetRowCellValue(j, "stock_convertion"))
                         qty_total = qty_total - qty_input
                     Else
                         Exit For
@@ -550,17 +551,18 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
                 execute_non_query("CALL gen_number(" + id + ",148); ", True, "", "", "", "")
 
                 'query det
-                Dim qd As String = "INSERT INTO tb_purc_rec_det(id_purc_rec, id_item, id_purc_order_det, qty, note) VALUES "
+                Dim qd As String = "INSERT INTO tb_purc_rec_det(id_purc_rec, id_item, id_purc_order_det, qty, qty_stock, note) VALUES "
                 For d As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
                     Dim id_item As String = GVDetail.GetRowCellValue(d, "id_item").ToString
                     Dim id_purc_order_det As String = GVDetail.GetRowCellValue(d, "id_purc_order_det").ToString
                     Dim qty As String = decimalSQL(GVDetail.GetRowCellValue(d, "qty").ToString)
+                    Dim qty_stock As String = decimalSQL(GVDetail.GetRowCellValue(d, "qty_stock").ToString)
                     Dim note_detail As String = ""
 
                     If d > 0 Then
                         qd += ", "
                     End If
-                    qd += "('" + id + "', '" + id_item + "', '" + id_purc_order_det + "', '" + qty + "','" + note_detail + "') "
+                    qd += "('" + id + "', '" + id_item + "', '" + id_purc_order_det + "', '" + qty + "', '" + qty_stock + "','" + note_detail + "') "
                 Next
                 If GVDetail.RowCount > 0 Then
                     execute_non_query(qd, True, "", "", "", "")
