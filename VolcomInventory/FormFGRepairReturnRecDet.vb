@@ -622,7 +622,7 @@ Public Class FormFGRepairReturnRecDet
 
     Private Sub checkAvailable(ByVal code_par As String)
         GVScan.ActiveFilterString = ""
-        Dim dt_filter As DataRow() = dt.Select("[code]='" + code_par + "' ")
+        Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_par + "' ")
         If dt_filter.Length > 0 Then
             If dt_filter(0)("is_old_design").ToString = "2" Then
                 GVScan.ActiveFilterString = "[code]='" + code_par + "'"
@@ -655,7 +655,7 @@ Public Class FormFGRepairReturnRecDet
             newRow("id_fg_repair_return_det") = dt_filter(0)("id_fg_repair_return_det").ToString
             newRow("id_fg_repair_return_rec") = 0
             newRow("id_product") = dt_filter(0)("id_product").ToString
-            newRow("code") = dt_filter(0)("code").ToString
+            newRow("code") = dt_filter(0)("product_full_code").ToString
             newRow("product_code") = dt_filter(0)("product_code").ToString
             newRow("name") = dt_filter(0)("name").ToString
             newRow("size") = dt_filter(0)("size").ToString
