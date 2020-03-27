@@ -81,6 +81,7 @@ Partial Class FormSalesOrder
         Me.XTPInfo = New DevExpress.XtraTab.XtraTabPage()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnCreateNewAlloc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
         Me.BExpand = New DevExpress.XtraEditors.SimpleButton()
@@ -88,7 +89,7 @@ Partial Class FormSalesOrder
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnCreateNewAlloc = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAllocHist = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesOrder.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -582,7 +583,7 @@ Partial Class FormSalesOrder
         '
         Me.XTPPrepareGenerate.Controls.Add(Me.GCGen)
         Me.XTPPrepareGenerate.Name = "XTPPrepareGenerate"
-        Me.XTPPrepareGenerate.Size = New System.Drawing.Size(712, 410)
+        Me.XTPPrepareGenerate.Size = New System.Drawing.Size(774, 410)
         Me.XTPPrepareGenerate.Text = "Generate Prepare Order"
         '
         'GCGen
@@ -591,7 +592,7 @@ Partial Class FormSalesOrder
         Me.GCGen.Location = New System.Drawing.Point(0, 0)
         Me.GCGen.MainView = Me.GVGen
         Me.GCGen.Name = "GCGen"
-        Me.GCGen.Size = New System.Drawing.Size(712, 410)
+        Me.GCGen.Size = New System.Drawing.Size(774, 410)
         Me.GCGen.TabIndex = 0
         Me.GCGen.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVGen})
         '
@@ -652,7 +653,7 @@ Partial Class FormSalesOrder
         'XTPInfo
         '
         Me.XTPInfo.Name = "XTPInfo"
-        Me.XTPInfo.Size = New System.Drawing.Size(718, 438)
+        Me.XTPInfo.Size = New System.Drawing.Size(780, 438)
         Me.XTPInfo.Text = "Info"
         '
         'LargeImageCollection
@@ -664,6 +665,7 @@ Partial Class FormSalesOrder
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.BtnAllocHist)
         Me.GCFilter.Controls.Add(Me.BtnCreateNewAlloc)
         Me.GCFilter.Controls.Add(Me.BtnView)
         Me.GCFilter.Controls.Add(Me.BHide)
@@ -677,6 +679,17 @@ Partial Class FormSalesOrder
         Me.GCFilter.Name = "GCFilter"
         Me.GCFilter.Size = New System.Drawing.Size(786, 39)
         Me.GCFilter.TabIndex = 5
+        '
+        'BtnCreateNewAlloc
+        '
+        Me.BtnCreateNewAlloc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCreateNewAlloc.Image = CType(resources.GetObject("BtnCreateNewAlloc.Image"), System.Drawing.Image)
+        Me.BtnCreateNewAlloc.Location = New System.Drawing.Point(630, 2)
+        Me.BtnCreateNewAlloc.LookAndFeel.SkinName = "Blue"
+        Me.BtnCreateNewAlloc.Name = "BtnCreateNewAlloc"
+        Me.BtnCreateNewAlloc.Size = New System.Drawing.Size(154, 35)
+        Me.BtnCreateNewAlloc.TabIndex = 8899
+        Me.BtnCreateNewAlloc.Text = "Create New Allocation"
         '
         'BtnView
         '
@@ -749,16 +762,16 @@ Partial Class FormSalesOrder
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
         '
-        'BtnCreateNewAlloc
+        'BtnAllocHist
         '
-        Me.BtnCreateNewAlloc.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCreateNewAlloc.Image = CType(resources.GetObject("BtnCreateNewAlloc.Image"), System.Drawing.Image)
-        Me.BtnCreateNewAlloc.Location = New System.Drawing.Point(626, 2)
-        Me.BtnCreateNewAlloc.LookAndFeel.SkinName = "Blue"
-        Me.BtnCreateNewAlloc.Name = "BtnCreateNewAlloc"
-        Me.BtnCreateNewAlloc.Size = New System.Drawing.Size(158, 35)
-        Me.BtnCreateNewAlloc.TabIndex = 8899
-        Me.BtnCreateNewAlloc.Text = "Create New Allocation"
+        Me.BtnAllocHist.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAllocHist.Image = CType(resources.GetObject("BtnAllocHist.Image"), System.Drawing.Image)
+        Me.BtnAllocHist.Location = New System.Drawing.Point(498, 2)
+        Me.BtnAllocHist.LookAndFeel.SkinName = "Blue"
+        Me.BtnAllocHist.Name = "BtnAllocHist"
+        Me.BtnAllocHist.Size = New System.Drawing.Size(132, 35)
+        Me.BtnAllocHist.TabIndex = 8900
+        Me.BtnAllocHist.Text = "Allocation History"
         '
         'FormSalesOrder
         '
@@ -877,4 +890,5 @@ Partial Class FormSalesOrder
     Friend WithEvents CancellOrderToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnCreateNewAlloc As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAllocHist As DevExpress.XtraEditors.SimpleButton
 End Class
