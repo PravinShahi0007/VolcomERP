@@ -1861,17 +1861,17 @@ Public Class FormSalesReturnDet
         ReportSalesReturn.id_sales_return = id_sales_return
         Dim Report As New ReportSalesReturn()
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+        '' '... 
+        '' ' creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GridView1)
+        ''Grid Detail
+        'ReportStyleGridview(Report.GridView1)
 
         'Parse val
         Report.LRecNumber.Text = TxtSalesReturnNumber.Text
@@ -1879,12 +1879,22 @@ Public Class FormSalesReturnDet
         Report.LabelReturnOrder.Text = TxtSalesReturnOrderNumber.Text
         Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
         Report.LabelAddressFrom.Text = MEAdrressCompFrom.Text
-        Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
-        Report.LLocator.Text = locator_sel
-        Report.LRack.Text = rack_sel
-        Report.LDrawer.Text = drawer_sel
+        'Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+        'Report.LLocator.Text = locator_sel
+        'Report.LRack.Text = rack_sel
+        'Report.LDrawer.Text = drawer_sel
         Report.LabelNote.Text = MENote.Text
+        Report.LType.Text = TxtReturnType.Text
 
+        If id_ret_type = "1" Then
+            Report.report_mark_type = "46"
+        ElseIf id_ret_type = "3" Then
+            Report.report_mark_type = "113"
+        ElseIf id_ret_type = "4" Then
+            Report.report_mark_type = "120"
+        Else
+            Report.report_mark_type = "111"
+        End If
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
