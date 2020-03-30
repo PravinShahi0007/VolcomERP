@@ -2290,6 +2290,7 @@ Partial Class FormSalesReturnDet
         Me.XTPCombine.Controls.Add(Me.PanelControlInfoCombine)
         Me.XTPCombine.Controls.Add(Me.BtnCombineReturn)
         Me.XTPCombine.Name = "XTPCombine"
+        Me.XTPCombine.PageVisible = False
         Me.XTPCombine.Size = New System.Drawing.Size(1168, 344)
         Me.XTPCombine.Text = "Combine Return"
         '

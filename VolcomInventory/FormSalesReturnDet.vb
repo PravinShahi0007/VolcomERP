@@ -326,7 +326,7 @@ Public Class FormSalesReturnDet
 
         'referensi surat jalan
         Dim dtr As DataTable = getRefStoreRetNumber(id_store)
-        If dtr.Rows.Count > 0 Then
+        If dtr.Rows.Count > 0 And TxtStoreReturnNumber.Text = "" Then
             FormSalesReturnStoreReturn.dt = dtr
             FormSalesReturnStoreReturn.ShowDialog()
         End If
