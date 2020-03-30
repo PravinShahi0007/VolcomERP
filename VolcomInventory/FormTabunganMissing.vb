@@ -3,11 +3,12 @@
         Dim query As String = "
             (SELECT d.id_employee, e.id_departement, p.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, s.employee_status, e.id_employee_active, a.employee_active, SUM(d.deduction) AS total
             FROM tb_emp_payroll_deduction AS d
+            LEFT JOIN tb_emp_payroll AS l ON d.id_payroll = l.id_payroll
             LEFT JOIN tb_m_employee AS e ON d.id_employee = e.id_employee
             LEFT JOIN tb_m_departement AS p ON e.id_departement = p.id_departement
             LEFT JOIN tb_lookup_employee_status AS s ON e.id_employee_status = s.id_employee_status
             LEFT JOIN tb_lookup_employee_active AS a ON e.id_employee_active = a.id_employee_active
-            WHERE d.id_salary_deduction IN (6, 13)
+            WHERE l.id_report_status = 6 AND d.id_salary_deduction IN (6, 13)
             GROUP BY d.id_employee)
             UNION ALL
             (SELECT t.id_employee, e.id_departement, p.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, s.employee_status, e.id_employee_active, a.employee_active, SUM(t.amount) AS total
@@ -53,7 +54,7 @@
                         LEFT JOIN tb_emp_payroll AS p ON d.id_payroll = p.id_payroll
                         LEFT JOIN tb_m_employee AS e ON d.id_employee = e.id_employee
 		                LEFT JOIN tb_m_departement AS m ON e.id_departement = m.id_departement
-                        WHERE d.id_salary_deduction IN (6, 13) AND d.id_employee = " + id_employee + "
+                        WHERE p.id_report_status = 6 AND d.id_salary_deduction IN (6, 13) AND d.id_employee = " + id_employee + "
                     )
                     UNION ALL
                     (
