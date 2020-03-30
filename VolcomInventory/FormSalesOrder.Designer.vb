@@ -81,6 +81,7 @@ Partial Class FormSalesOrder
         Me.XTPInfo = New DevExpress.XtraTab.XtraTabPage()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnAllocHist = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNewAlloc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -89,7 +90,6 @@ Partial Class FormSalesOrder
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnAllocHist = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesOrder.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -680,6 +680,17 @@ Partial Class FormSalesOrder
         Me.GCFilter.Size = New System.Drawing.Size(786, 39)
         Me.GCFilter.TabIndex = 5
         '
+        'BtnAllocHist
+        '
+        Me.BtnAllocHist.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAllocHist.Image = CType(resources.GetObject("BtnAllocHist.Image"), System.Drawing.Image)
+        Me.BtnAllocHist.Location = New System.Drawing.Point(498, 2)
+        Me.BtnAllocHist.LookAndFeel.SkinName = "Blue"
+        Me.BtnAllocHist.Name = "BtnAllocHist"
+        Me.BtnAllocHist.Size = New System.Drawing.Size(132, 35)
+        Me.BtnAllocHist.TabIndex = 8900
+        Me.BtnAllocHist.Text = "Allocation History"
+        '
         'BtnCreateNewAlloc
         '
         Me.BtnCreateNewAlloc.Dock = System.Windows.Forms.DockStyle.Right
@@ -761,17 +772,6 @@ Partial Class FormSalesOrder
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
-        '
-        'BtnAllocHist
-        '
-        Me.BtnAllocHist.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAllocHist.Image = CType(resources.GetObject("BtnAllocHist.Image"), System.Drawing.Image)
-        Me.BtnAllocHist.Location = New System.Drawing.Point(498, 2)
-        Me.BtnAllocHist.LookAndFeel.SkinName = "Blue"
-        Me.BtnAllocHist.Name = "BtnAllocHist"
-        Me.BtnAllocHist.Size = New System.Drawing.Size(132, 35)
-        Me.BtnAllocHist.TabIndex = 8900
-        Me.BtnAllocHist.Text = "Allocation History"
         '
         'FormSalesOrder
         '

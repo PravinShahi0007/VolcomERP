@@ -358,4 +358,9 @@
         FormSalesOrderDet.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnAllocHist_Click(sender As Object, e As EventArgs) Handles BtnAllocHist.Click
+        Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
+    End Sub
 End Class
