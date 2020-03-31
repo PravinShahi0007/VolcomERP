@@ -82,7 +82,6 @@ Partial Class FormSalesOrder
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnAllocHist = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCreateNewAlloc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
         Me.BExpand = New DevExpress.XtraEditors.SimpleButton()
@@ -90,6 +89,8 @@ Partial Class FormSalesOrder
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControlAlloc = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCreateNewAlloc = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesOrder.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -121,6 +122,8 @@ Partial Class FormSalesOrder
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlAlloc, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlAlloc.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCSalesOrder
@@ -133,7 +136,7 @@ Partial Class FormSalesOrder
         Me.XTCSalesOrder.Name = "XTCSalesOrder"
         Me.XTCSalesOrder.SelectedTabPage = Me.XTPList
         Me.XTCSalesOrder.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XTCSalesOrder.Size = New System.Drawing.Size(786, 444)
+        Me.XTCSalesOrder.Size = New System.Drawing.Size(1065, 444)
         Me.XTCSalesOrder.TabIndex = 0
         Me.XTCSalesOrder.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPInfo})
         '
@@ -141,7 +144,7 @@ Partial Class FormSalesOrder
         '
         Me.XTPList.Controls.Add(Me.XTCSOGeneral)
         Me.XTPList.Name = "XTPList"
-        Me.XTPList.Size = New System.Drawing.Size(780, 438)
+        Me.XTPList.Size = New System.Drawing.Size(1059, 438)
         Me.XTPList.Text = "Order List"
         '
         'XTCSOGeneral
@@ -151,7 +154,7 @@ Partial Class FormSalesOrder
         Me.XTCSOGeneral.Location = New System.Drawing.Point(0, 0)
         Me.XTCSOGeneral.Name = "XTCSOGeneral"
         Me.XTCSOGeneral.SelectedTabPage = Me.XTPPrepareList
-        Me.XTCSOGeneral.Size = New System.Drawing.Size(780, 438)
+        Me.XTCSOGeneral.Size = New System.Drawing.Size(1059, 438)
         Me.XTCSOGeneral.TabIndex = 3
         Me.XTCSOGeneral.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareList, Me.XTPPrepareGenerate})
         '
@@ -159,7 +162,7 @@ Partial Class FormSalesOrder
         '
         Me.XTPPrepareList.Controls.Add(Me.SCCSalesOrder)
         Me.XTPPrepareList.Name = "XTPPrepareList"
-        Me.XTPPrepareList.Size = New System.Drawing.Size(774, 410)
+        Me.XTPPrepareList.Size = New System.Drawing.Size(1053, 410)
         Me.XTPPrepareList.Text = "Order List"
         '
         'SCCSalesOrder
@@ -172,7 +175,7 @@ Partial Class FormSalesOrder
         Me.SCCSalesOrder.Panel1.Text = "Panel1"
         Me.SCCSalesOrder.Panel2.Controls.Add(Me.GroupControlProgressDO)
         Me.SCCSalesOrder.Panel2.Text = "Panel2"
-        Me.SCCSalesOrder.Size = New System.Drawing.Size(774, 410)
+        Me.SCCSalesOrder.Size = New System.Drawing.Size(1053, 410)
         Me.SCCSalesOrder.SplitterPosition = 241
         Me.SCCSalesOrder.TabIndex = 2
         Me.SCCSalesOrder.Text = "SplitContainerControl1"
@@ -183,7 +186,7 @@ Partial Class FormSalesOrder
         Me.GroupControlSSalesOrderList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlSSalesOrderList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlSSalesOrderList.Name = "GroupControlSSalesOrderList"
-        Me.GroupControlSSalesOrderList.Size = New System.Drawing.Size(774, 241)
+        Me.GroupControlSSalesOrderList.Size = New System.Drawing.Size(1053, 241)
         Me.GroupControlSSalesOrderList.TabIndex = 0
         Me.GroupControlSSalesOrderList.Text = "Order List"
         '
@@ -195,7 +198,7 @@ Partial Class FormSalesOrder
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
         Me.GCSalesOrder.Name = "GCSalesOrder"
         Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesOrder.Size = New System.Drawing.Size(770, 219)
+        Me.GCSalesOrder.Size = New System.Drawing.Size(1049, 219)
         Me.GCSalesOrder.TabIndex = 1
         Me.GCSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesOrder, Me.GridView2})
         '
@@ -378,7 +381,7 @@ Partial Class FormSalesOrder
         Me.GroupControlProgressDO.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlProgressDO.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlProgressDO.Name = "GroupControlProgressDO"
-        Me.GroupControlProgressDO.Size = New System.Drawing.Size(774, 164)
+        Me.GroupControlProgressDO.Size = New System.Drawing.Size(1053, 164)
         Me.GroupControlProgressDO.TabIndex = 0
         Me.GroupControlProgressDO.Text = "Progress Order"
         '
@@ -391,7 +394,7 @@ Partial Class FormSalesOrder
         Me.GCDetailSO.MainView = Me.GVDetailSO
         Me.GCDetailSO.Name = "GCDetailSO"
         Me.GCDetailSO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCDetailSO.Size = New System.Drawing.Size(770, 119)
+        Me.GCDetailSO.Size = New System.Drawing.Size(1049, 119)
         Me.GCDetailSO.TabIndex = 4
         Me.GCDetailSO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetailSO})
         '
@@ -575,7 +578,7 @@ Partial Class FormSalesOrder
         Me.BtnViewProgress.Dock = System.Windows.Forms.DockStyle.Top
         Me.BtnViewProgress.Location = New System.Drawing.Point(2, 20)
         Me.BtnViewProgress.Name = "BtnViewProgress"
-        Me.BtnViewProgress.Size = New System.Drawing.Size(770, 23)
+        Me.BtnViewProgress.Size = New System.Drawing.Size(1049, 23)
         Me.BtnViewProgress.TabIndex = 5
         Me.BtnViewProgress.Text = "View Progress"
         '
@@ -665,8 +668,7 @@ Partial Class FormSalesOrder
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GCFilter.Controls.Add(Me.BtnAllocHist)
-        Me.GCFilter.Controls.Add(Me.BtnCreateNewAlloc)
+        Me.GCFilter.Controls.Add(Me.PanelControlAlloc)
         Me.GCFilter.Controls.Add(Me.BtnView)
         Me.GCFilter.Controls.Add(Me.BHide)
         Me.GCFilter.Controls.Add(Me.BExpand)
@@ -677,30 +679,19 @@ Partial Class FormSalesOrder
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(786, 39)
+        Me.GCFilter.Size = New System.Drawing.Size(1065, 39)
         Me.GCFilter.TabIndex = 5
         '
         'BtnAllocHist
         '
         Me.BtnAllocHist.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAllocHist.Image = CType(resources.GetObject("BtnAllocHist.Image"), System.Drawing.Image)
-        Me.BtnAllocHist.Location = New System.Drawing.Point(498, 2)
+        Me.BtnAllocHist.Location = New System.Drawing.Point(40, 0)
         Me.BtnAllocHist.LookAndFeel.SkinName = "Blue"
         Me.BtnAllocHist.Name = "BtnAllocHist"
         Me.BtnAllocHist.Size = New System.Drawing.Size(132, 35)
         Me.BtnAllocHist.TabIndex = 8900
         Me.BtnAllocHist.Text = "Allocation History"
-        '
-        'BtnCreateNewAlloc
-        '
-        Me.BtnCreateNewAlloc.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCreateNewAlloc.Image = CType(resources.GetObject("BtnCreateNewAlloc.Image"), System.Drawing.Image)
-        Me.BtnCreateNewAlloc.Location = New System.Drawing.Point(630, 2)
-        Me.BtnCreateNewAlloc.LookAndFeel.SkinName = "Blue"
-        Me.BtnCreateNewAlloc.Name = "BtnCreateNewAlloc"
-        Me.BtnCreateNewAlloc.Size = New System.Drawing.Size(154, 35)
-        Me.BtnCreateNewAlloc.TabIndex = 8899
-        Me.BtnCreateNewAlloc.Text = "Create New Allocation"
         '
         'BtnView
         '
@@ -773,11 +764,33 @@ Partial Class FormSalesOrder
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
         '
+        'PanelControlAlloc
+        '
+        Me.PanelControlAlloc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlAlloc.Controls.Add(Me.BtnAllocHist)
+        Me.PanelControlAlloc.Controls.Add(Me.BtnCreateNewAlloc)
+        Me.PanelControlAlloc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlAlloc.Location = New System.Drawing.Point(740, 2)
+        Me.PanelControlAlloc.Name = "PanelControlAlloc"
+        Me.PanelControlAlloc.Size = New System.Drawing.Size(323, 35)
+        Me.PanelControlAlloc.TabIndex = 8901
+        '
+        'BtnCreateNewAlloc
+        '
+        Me.BtnCreateNewAlloc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCreateNewAlloc.Image = CType(resources.GetObject("BtnCreateNewAlloc.Image"), System.Drawing.Image)
+        Me.BtnCreateNewAlloc.Location = New System.Drawing.Point(172, 0)
+        Me.BtnCreateNewAlloc.LookAndFeel.SkinName = "Blue"
+        Me.BtnCreateNewAlloc.Name = "BtnCreateNewAlloc"
+        Me.BtnCreateNewAlloc.Size = New System.Drawing.Size(151, 35)
+        Me.BtnCreateNewAlloc.TabIndex = 8899
+        Me.BtnCreateNewAlloc.Text = "Create New Allocation"
+        '
         'FormSalesOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(786, 483)
+        Me.ClientSize = New System.Drawing.Size(1065, 483)
         Me.Controls.Add(Me.XTCSalesOrder)
         Me.Controls.Add(Me.GCFilter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -819,6 +832,8 @@ Partial Class FormSalesOrder
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlAlloc, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlAlloc.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -889,6 +904,7 @@ Partial Class FormSalesOrder
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents CancellOrderToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnCreateNewAlloc As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAllocHist As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControlAlloc As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnCreateNewAlloc As DevExpress.XtraEditors.SimpleButton
 End Class
