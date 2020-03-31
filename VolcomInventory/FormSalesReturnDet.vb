@@ -1885,6 +1885,7 @@ Public Class FormSalesReturnDet
         'Report.LDrawer.Text = drawer_sel
         Report.LabelNote.Text = MENote.Text
         Report.LType.Text = TxtReturnType.Text
+        Report.LReffNo.Text = TxtStoreReturnNumber.Text
 
         If id_ret_type = "1" Then
             Report.report_mark_type = "46"
