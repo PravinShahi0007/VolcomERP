@@ -5797,6 +5797,12 @@
     <Compile Include="FormSuperUserSubDept.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormTabunganMissing.Designer.vb">
+      <DependentUpon>FormTabunganMissing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTabunganMissing.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTemplateCode.Designer.vb">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
     </Compile>
@@ -11048,6 +11054,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSuperUserSubDept.resx">
       <DependentUpon>FormSuperUserSubDept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTabunganMissing.resx">
+      <DependentUpon>FormTabunganMissing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTemplateCode.resx">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
