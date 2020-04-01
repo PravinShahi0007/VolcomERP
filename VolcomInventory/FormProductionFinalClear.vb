@@ -290,4 +290,18 @@
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub GVProd_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProd.FocusedRowChanged
+        If GVProd.RowCount > 0 Then
+            Dim q As String = "SELECT rec.`id_prod_order_rec`,rec.`prod_order_rec_number`,cat.`pl_category`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec
+FROM tb_prod_order_rec_det recd
+INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`
+INNER JOIN `tb_lookup_pl_category` cat ON cat.id_pl_category=rec.id_pl_category
+WHERE rec.id_report_status='6' AND rec.id_prod_order='" & GVProd.GetFocusedRowCellValue("id_prod_order").ToString & "'
+GROUP BY recd.`id_prod_order_rec`"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCRecQc.DataSource = dt
+            GVRecQc.BestFitColumns()
+        End If
+    End Sub
 End Class

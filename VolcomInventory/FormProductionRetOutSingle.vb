@@ -3,6 +3,7 @@ Public Class FormProductionRetOutSingle
     Public action As String
     Public id_prod_order_ret_out As String = "0"
     Public id_prod_order As String = "-1"
+    Public id_prod_order_rec As String = "-1"
     Public id_comp_contact_to As String
     Public id_comp_contact_from As String
     Public id_prod_order_det_list, id_prod_order_ret_out_det_list As New List(Of String)
@@ -457,8 +458,10 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
         If LERetType.EditValue.ToString = "2" And SLEOvh.Text = "" Then
             warningCustom("Please select overhead first")
         Else
-            FormPopUpProd.id_pop_up = "2"
-            FormPopUpProd.ShowDialog()
+            'FormPopUpProd.id_pop_up = "2"
+            'FormPopUpProd.ShowDialog()
+            FormPopUpRecQC.id_pop_up = "3"
+            FormPopUpRecQC.ShowDialog()
         End If
     End Sub
     Private Sub BtnBrowseContactFrom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowseContactFrom.Click
@@ -787,9 +790,14 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
         cond_check = True
         qty_pl = Decimal.Parse(qty_plx.ToString)
         sample_check = sample_name
-        Dim query_check As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0') "
-        Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        allow_sum = Decimal.Parse(data.Rows(0)("qty"))
+
+        'Dim query_check As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0') "
+        'Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+
+        Dim q_check As String = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0')"
+        Dim data As DataTable = execute_query(q_check, -1, True, "", "", "", "")
+        Console.WriteLine(q_check)
+        allow_sum = Decimal.Parse(Data.Rows(0)("qty"))
         If qty_pl > allow_sum Then
             cond_check = False
         End If
@@ -798,6 +806,7 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
     Sub infoQty()
         FormPopUpProdDet.id_pop_up = "1"
         FormPopUpProdDet.action = "ins"
+        FormPopUpProdDet.id_prod_order_rec = id_prod_order_rec
         FormPopUpProdDet.id_prod_order = id_prod_order
         FormPopUpProdDet.id_ret_out = id_prod_order_ret_out
         FormPopUpProdDet.BtnSave.Visible = False

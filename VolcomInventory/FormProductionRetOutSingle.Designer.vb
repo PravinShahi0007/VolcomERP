@@ -88,6 +88,7 @@ Partial Class FormProductionRetOutSingle
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceOVH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -109,7 +110,7 @@ Partial Class FormProductionRetOutSingle
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +160,7 @@ Partial Class FormProductionRetOutSingle
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
+        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -176,6 +178,7 @@ Partial Class FormProductionRetOutSingle
         'PanelControlTopMiddle
         '
         Me.PanelControlTopMiddle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopMiddle.Controls.Add(Me.TERecNumber)
         Me.PanelControlTopMiddle.Controls.Add(Me.LERetType)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl10)
         Me.PanelControlTopMiddle.Controls.Add(Me.MEAdrressCompTo)
@@ -200,7 +203,7 @@ Partial Class FormProductionRetOutSingle
         '
         'LERetType
         '
-        Me.LERetType.Location = New System.Drawing.Point(74, 7)
+        Me.LERetType.Location = New System.Drawing.Point(78, 7)
         Me.LERetType.Name = "LERetType"
         Me.LERetType.Properties.Appearance.Options.UseTextOptions = True
         Me.LERetType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -208,7 +211,7 @@ Partial Class FormProductionRetOutSingle
         Me.LERetType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_return_qc_type", "ID Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("return_qc_type", "Type")})
         Me.LERetType.Properties.NullText = ""
         Me.LERetType.Properties.ShowFooter = False
-        Me.LERetType.Size = New System.Drawing.Size(301, 20)
+        Me.LERetType.Size = New System.Drawing.Size(297, 20)
         Me.LERetType.TabIndex = 10000
         '
         'LabelControl10
@@ -224,12 +227,12 @@ Partial Class FormProductionRetOutSingle
         '
         Me.MEAdrressCompTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MEAdrressCompTo.Location = New System.Drawing.Point(74, 109)
+        Me.MEAdrressCompTo.Location = New System.Drawing.Point(78, 109)
         Me.MEAdrressCompTo.Name = "MEAdrressCompTo"
         Me.MEAdrressCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompTo.Properties.Appearance.Options.UseFont = True
         Me.MEAdrressCompTo.Properties.ReadOnly = True
-        Me.MEAdrressCompTo.Size = New System.Drawing.Size(301, 46)
+        Me.MEAdrressCompTo.Size = New System.Drawing.Size(297, 46)
         Me.MEAdrressCompTo.TabIndex = 4444
         Me.MEAdrressCompTo.TabStop = False
         '
@@ -245,13 +248,13 @@ Partial Class FormProductionRetOutSingle
         'TxtCodeCompFrom
         '
         Me.TxtCodeCompFrom.EditValue = ""
-        Me.TxtCodeCompFrom.Location = New System.Drawing.Point(74, 58)
+        Me.TxtCodeCompFrom.Location = New System.Drawing.Point(78, 58)
         Me.TxtCodeCompFrom.Name = "TxtCodeCompFrom"
         Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeCompFrom.Properties.Appearance.Options.UseFont = True
         Me.TxtCodeCompFrom.Properties.EditValueChangedDelay = 1
         Me.TxtCodeCompFrom.Properties.ReadOnly = True
-        Me.TxtCodeCompFrom.Size = New System.Drawing.Size(67, 20)
+        Me.TxtCodeCompFrom.Size = New System.Drawing.Size(63, 20)
         Me.TxtCodeCompFrom.TabIndex = 7777
         Me.TxtCodeCompFrom.TabStop = False
         '
@@ -310,24 +313,24 @@ Partial Class FormProductionRetOutSingle
         Me.TxtOrderNumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtOrderNumber.EditValue = ""
-        Me.TxtOrderNumber.Location = New System.Drawing.Point(74, 33)
+        Me.TxtOrderNumber.Location = New System.Drawing.Point(186, 33)
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtOrderNumber.Properties.ReadOnly = True
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(243, 20)
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(131, 20)
         Me.TxtOrderNumber.TabIndex = 9999
         Me.TxtOrderNumber.TabStop = False
         '
         'TxtCodeCompTo
         '
         Me.TxtCodeCompTo.EditValue = ""
-        Me.TxtCodeCompTo.Location = New System.Drawing.Point(74, 84)
+        Me.TxtCodeCompTo.Location = New System.Drawing.Point(78, 84)
         Me.TxtCodeCompTo.Name = "TxtCodeCompTo"
         Me.TxtCodeCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeCompTo.Properties.Appearance.Options.UseFont = True
         Me.TxtCodeCompTo.Properties.EditValueChangedDelay = 1
         Me.TxtCodeCompTo.Properties.ReadOnly = True
-        Me.TxtCodeCompTo.Size = New System.Drawing.Size(67, 20)
+        Me.TxtCodeCompTo.Size = New System.Drawing.Size(63, 20)
         Me.TxtCodeCompTo.TabIndex = 6666
         Me.TxtCodeCompTo.TabStop = False
         '
@@ -362,9 +365,9 @@ Partial Class FormProductionRetOutSingle
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Location = New System.Drawing.Point(9, 36)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl4.TabIndex = 88
-        Me.LabelControl4.Text = "Prod No."
+        Me.LabelControl4.Text = "Rec Prod No."
         '
         'BtnBrowseContactFrom
         '
@@ -928,6 +931,19 @@ Partial Class FormProductionRetOutSingle
         Me.GridColumnPriceOVH.Visible = True
         Me.GridColumnPriceOVH.VisibleIndex = 6
         '
+        'GridColumnAmount
+        '
+        Me.GridColumnAmount.Caption = "Amount"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmount.FieldName = "amount"
+        Me.GridColumnAmount.Name = "GridColumnAmount"
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnAmount.UnboundExpression = "[prod_order_ret_out_det_qty] * [ovh_price]"
+        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmount.Visible = True
+        Me.GridColumnAmount.VisibleIndex = 7
+        '
         'GridColumnNox
         '
         Me.GridColumnNox.Caption = "No"
@@ -1148,18 +1164,18 @@ Partial Class FormProductionRetOutSingle
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
         '
-        'GridColumnAmount
+        'TERecNumber
         '
-        Me.GridColumnAmount.Caption = "Amount"
-        Me.GridColumnAmount.DisplayFormat.FormatString = "N2"
-        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAmount.FieldName = "amount"
-        Me.GridColumnAmount.Name = "GridColumnAmount"
-        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
-        Me.GridColumnAmount.UnboundExpression = "[prod_order_ret_out_det_qty] * [ovh_price]"
-        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
+        Me.TERecNumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TERecNumber.EditValue = ""
+        Me.TERecNumber.Location = New System.Drawing.Point(78, 33)
+        Me.TERecNumber.Name = "TERecNumber"
+        Me.TERecNumber.Properties.EditValueChangedDelay = 1
+        Me.TERecNumber.Properties.ReadOnly = True
+        Me.TERecNumber.Size = New System.Drawing.Size(102, 20)
+        Me.TERecNumber.TabIndex = 10002
+        Me.TERecNumber.TabStop = False
         '
         'FormProductionRetOutSingle
         '
@@ -1229,6 +1245,7 @@ Partial Class FormProductionRetOutSingle
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
+        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1321,4 +1338,5 @@ Partial Class FormProductionRetOutSingle
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TERecNumber As DevExpress.XtraEditors.TextEdit
 End Class
