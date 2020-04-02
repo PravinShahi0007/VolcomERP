@@ -491,6 +491,9 @@ Partial Class FormFGTransList
         Me.DEFromAdjOut = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTCSO = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPSOBarcode = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPSOCode = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -632,6 +635,9 @@ Partial Class FormFGTransList
         CType(Me.DEUntilAdjOut.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAdjOut.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAdjOut.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCSO, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCSO.SuspendLayout()
+        Me.XTPSOBarcode.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCSvcLevel
@@ -4133,7 +4139,7 @@ Partial Class FormFGTransList
         '
         'XTPOrder
         '
-        Me.XTPOrder.Controls.Add(Me.GCSO)
+        Me.XTPOrder.Controls.Add(Me.XTCSO)
         Me.XTPOrder.Controls.Add(Me.GroupControl7)
         Me.XTPOrder.Name = "XTPOrder"
         Me.XTPOrder.Size = New System.Drawing.Size(1165, 494)
@@ -4142,10 +4148,10 @@ Partial Class FormFGTransList
         'GCSO
         '
         Me.GCSO.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSO.Location = New System.Drawing.Point(0, 39)
+        Me.GCSO.Location = New System.Drawing.Point(0, 0)
         Me.GCSO.MainView = Me.GVSO
         Me.GCSO.Name = "GCSO"
-        Me.GCSO.Size = New System.Drawing.Size(1165, 455)
+        Me.GCSO.Size = New System.Drawing.Size(1136, 449)
         Me.GCSO.TabIndex = 10
         Me.GCSO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSO})
         '
@@ -5154,6 +5160,30 @@ Partial Class FormFGTransList
         Me.LabelControl28.TabIndex = 8892
         Me.LabelControl28.Text = "From"
         '
+        'XTCSO
+        '
+        Me.XTCSO.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCSO.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCSO.Location = New System.Drawing.Point(0, 39)
+        Me.XTCSO.Name = "XTCSO"
+        Me.XTCSO.SelectedTabPage = Me.XTPSOBarcode
+        Me.XTCSO.Size = New System.Drawing.Size(1165, 455)
+        Me.XTCSO.TabIndex = 11
+        Me.XTCSO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSOBarcode, Me.XTPSOCode})
+        '
+        'XTPSOBarcode
+        '
+        Me.XTPSOBarcode.Controls.Add(Me.GCSO)
+        Me.XTPSOBarcode.Name = "XTPSOBarcode"
+        Me.XTPSOBarcode.Size = New System.Drawing.Size(1136, 449)
+        Me.XTPSOBarcode.Text = "By Barcode"
+        '
+        'XTPSOCode
+        '
+        Me.XTPSOCode.Name = "XTPSOCode"
+        Me.XTPSOCode.Size = New System.Drawing.Size(1136, 449)
+        Me.XTPSOCode.Text = "By Main Code"
+        '
         'FormFGTransList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -5314,6 +5344,9 @@ Partial Class FormFGTransList
         CType(Me.DEUntilAdjOut.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAdjOut.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAdjOut.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCSO, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCSO.ResumeLayout(False)
+        Me.XTPSOBarcode.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -5789,4 +5822,7 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnqty9_del As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnqty0_del As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsizetype_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCSO As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPSOBarcode As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPSOCode As DevExpress.XtraTab.XtraTabPage
 End Class
