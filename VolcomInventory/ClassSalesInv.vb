@@ -91,11 +91,17 @@
         Dim report_number As String = du.Rows(0)("report_number").ToString
 
         'select created date
-        Dim trans_date As String = execute_query("SELECT DATE_FORMAT(p.sales_pos_date,'%Y-%m-%d') AS `trans_date` FROM tb_sales_pos p WHERE p.id_sales_pos='" + id_report_param + "' AND p.report_mark_type='" + report_mark_type_param + "' ", 0, True, "", "", "", "")
+        Dim qry_inv As String = "SELECT DATE_FORMAT(p.sales_pos_date,'%Y-%m-%d') AS `trans_date`,
+        DATE_FORMAT(p.sales_pos_end_period,'%Y-%m-%d') AS `period_date`
+        FROM tb_sales_pos p 
+        WHERE p.id_sales_pos='" + id_report_param + "' AND p.report_mark_type='" + report_mark_type_param + "' "
+        Dim dt_inv As DataTable = execute_query(qry_inv, -1, True, "", "", "", "")
+        Dim trans_date As String = dt_inv.Rows(0)("trans_date").ToString
+        Dim reff_date As String = dt_inv.Rows(0)("period_date").ToString
 
         'main journal
         Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) 
-        VALUES ('" + header_number_acc("1") + "','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', '" + trans_date + "','" + trans_date + "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+        VALUES ('" + header_number_acc("1") + "','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', '" + trans_date + "','" + reff_date + "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
         Dim id As String = execute_query(query, 0, True, "", "", "", "")
         increase_inc_acc("1")
 
