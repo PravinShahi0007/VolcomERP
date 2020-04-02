@@ -38,6 +38,7 @@
 
         'set size
         setCaptionSize(GVPLMain)
+        setCaptionSize(GVSalesDelOrderMain)
 
         ActiveControl = DEFromRec
         page_active = "rec"
@@ -150,13 +151,41 @@
         Dim w_status As String = If(SLStatus2.EditValue.ToString = "0", "", "AND a.id_report_status = " + SLStatus2.EditValue.ToString)
 
         Dim query_c As ClassSalesDelOrder = New ClassSalesDelOrder()
-        Dim data As DataTable = query_c.transactionList("AND (a.pl_sales_order_del_date>='" + date_from_selected + "' AND a.pl_sales_order_del_date<='" + date_until_selected + "') " + w_status, "1")
+        Dim data As DataTable = query_c.transactionList("AND (a.pl_sales_order_del_date>='" + date_from_selected + "' AND a.pl_sales_order_del_date<='" + date_until_selected + "') " + w_status, "1", True)
         GCSalesDelOrder.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewDOMain()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromDO.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilDO.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim w_status As String = If(SLStatus2.EditValue.ToString = "0", "", "AND a.id_report_status = " + SLStatus2.EditValue.ToString)
+
+        Dim query_c As ClassSalesDelOrder = New ClassSalesDelOrder()
+        Dim data As DataTable = query_c.transactionList("AND (a.pl_sales_order_del_date>='" + date_from_selected + "' AND a.pl_sales_order_del_date<='" + date_until_selected + "') " + w_status, "1", False)
+        GCSalesDelOrderMain.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnViewDO_Click(sender As Object, e As EventArgs) Handles BtnViewDO.Click
-        viewDO()
+        If XTCDel.SelectedTabPageIndex = 0 Then
+            viewDO()
+        Else
+            viewDOMain()
+        End If
     End Sub
 
     Sub viewReturn()
@@ -394,19 +423,49 @@
     End Sub
 
     Private Sub BtnExportToXLS_Click(sender As Object, e As EventArgs) Handles BtnExportToXLS.Click
-        If GVSalesDelOrder.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim dt_from As String = DEFromDO.Text.Replace(" ", "")
-            Dim dt_until As String = DEUntilDO.Text.Replace(" ", "")
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCDel.SelectedTabPageIndex = 0 Then
+            If GVSalesDelOrder.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim dt_from As String = DEFromDO.Text.Replace(" ", "")
+                Dim dt_until As String = DEUntilDO.Text.Replace(" ", "")
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                'path = path + "del_" + dt_from + "_" + dt_until + ".xlsx"
+                path = path + "tl_del.xlsx"
+                exportToXLS(path, "del", GCSalesDelOrder)
+                Cursor = Cursors.Default
             End If
-            'path = path + "del_" + dt_from + "_" + dt_until + ".xlsx"
-            path = path + "tl_del.xlsx"
-            exportToXLS(path, "del", GCSalesDelOrder)
-            Cursor = Cursors.Default
+        Else
+            If GVSalesDelOrderMain.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSalesDelOrderMain.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVSalesDelOrderMain.Columns.Count - 1
+                    If GVSalesDelOrderMain.Columns(i).FieldName.Contains("qty") And GVSalesDelOrderMain.Columns(i).FieldName <> "pl_sales_order_del_det_qty" Then
+                        GVSalesDelOrderMain.Columns(i).Caption = GVSalesDelOrderMain.Columns(i).FieldName.ToString
+                    End If
+                Next
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                'path = path + "del_" + dt_from + "_" + dt_until + ".xlsx"
+                path = path + "tl_del_by_code.xlsx"
+                exportToXLS(path, "del", GCSalesDelOrderMain)
+
+                'restore column opt
+                GVSalesDelOrderMain.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
