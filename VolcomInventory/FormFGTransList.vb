@@ -36,6 +36,9 @@
         SLStatus9.EditValue = "6"
         SLStatus10.EditValue = "6"
 
+        'set size
+        setCaptionSize(GVPLMain)
+
         ActiveControl = DEFromRec
         page_active = "rec"
     End Sub
@@ -86,9 +89,46 @@
         Dim w_status As String = If(SLStatus1.EditValue.ToString = "0", "", "AND a0.id_report_status = " + SLStatus1.EditValue.ToString)
 
         Dim query_c As ClassProductionPLToWHRec = New ClassProductionPLToWHRec()
-        Dim data As DataTable = query_c.transactionList("AND (a0.pl_prod_order_rec_date>='" + date_from_selected + "' AND a0.pl_prod_order_rec_date<='" + date_until_selected + "') " + w_status, "1")
+        Dim data As DataTable = query_c.transactionList("AND (a0.pl_prod_order_rec_date>='" + date_from_selected + "' AND a0.pl_prod_order_rec_date<='" + date_until_selected + "') " + w_status, "1", True)
         GCPL.DataSource = data
         Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRecMainCode()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim w_status As String = If(SLStatus1.EditValue.ToString = "0", "", "AND a0.id_report_status = " + SLStatus1.EditValue.ToString)
+
+        Dim query_c As ClassProductionPLToWHRec = New ClassProductionPLToWHRec()
+        Dim data As DataTable = query_c.transactionList("AND (a0.pl_prod_order_rec_date>='" + date_from_selected + "' AND a0.pl_prod_order_rec_date<='" + date_until_selected + "') " + w_status, "1", False)
+        GCPLMain.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub setCaptionSize(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        gv.Columns("qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        gv.Columns("qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        gv.Columns("qty3").Caption = "3" + System.Environment.NewLine + "S"
+        gv.Columns("qty4").Caption = "4" + System.Environment.NewLine + "M"
+        gv.Columns("qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        gv.Columns("qty6").Caption = "6" + System.Environment.NewLine + "L"
+        gv.Columns("qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        gv.Columns("qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        gv.Columns("qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        gv.Columns("qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     Sub viewDO()
@@ -176,7 +216,11 @@
     End Sub
 
     Private Sub BtnViewRec_Click(sender As Object, e As EventArgs) Handles BtnViewRec.Click
-        viewRec()
+        If XTCRec.SelectedTabPageIndex = 0 Then
+            viewRec()
+        Else
+            viewRecMainCode()
+        End If
     End Sub
 
     Sub viewTrf()
@@ -391,18 +435,47 @@
     End Sub
 
     Private Sub BtnExportToXLSRec_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSRec.Click
-        If GVPL.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim dt_from As String = DEFromRec.Text.Replace(" ", "")
-            Dim dt_until As String = DEUntilRec.Text.Replace(" ", "")
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCRec.SelectedTabPageIndex = 0 Then
+            If GVPL.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim dt_from As String = DEFromRec.Text.Replace(" ", "")
+                Dim dt_until As String = DEUntilRec.Text.Replace(" ", "")
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_rec.xlsx"
+                exportToXLS(path, "rec", GCPL)
+                Cursor = Cursors.Default
             End If
-            path = path + "tl_rec.xlsx"
-            exportToXLS(path, "rec", GCPL)
-            Cursor = Cursors.Default
+        Else
+            If GVPLMain.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVPLMain.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVPLMain.Columns.Count - 1
+                    If GVPLMain.Columns(i).FieldName.Contains("qty") And GVPLMain.Columns(i).FieldName <> "qty" Then
+                        GVPLMain.Columns(i).Caption = GVPLMain.Columns(i).FieldName.ToString
+                    End If
+                Next
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_rec_main_code.xlsx"
+                exportToXLS(path, "rec", GCPLMain)
+
+                'restore column opt
+                GVPLMain.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
