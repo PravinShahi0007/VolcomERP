@@ -53,8 +53,13 @@
         Return query
     End Function
 
-    Public Function transactionList(ByVal condition As String, ByVal order_type As String) As DataTable
-        Dim query As String = "CALL view_pl_prod_rec_main(""" + condition + """, " + order_type + ")"
+    Public Function transactionList(ByVal condition As String, ByVal order_type As String, ByVal by_barcode As Boolean) As DataTable
+        Dim query As String = ""
+        If by_barcode Then
+            query = "CALL view_pl_prod_rec_main(""" + condition + """, " + order_type + ")"
+        Else
+            query = "CALL view_pl_prod_rec_main_code(""" + condition + """, " + order_type + ")"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
