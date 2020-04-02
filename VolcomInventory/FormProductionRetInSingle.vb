@@ -2,6 +2,8 @@
 Public Class FormProductionRetInSingle
     Public action As String
     Public id_prod_order_ret_in As String = "0"
+    Public id_ret_out As String = "-1"
+    Public id_rec As String = "-1"
     Public id_prod_order As String = "-1"
     Public id_comp_contact_to As String
     Public id_comp_contact_from As String
@@ -66,11 +68,12 @@ Public Class FormProductionRetInSingle
 
             'View data
             Try
-                Dim query As String = "SELECT a.id_return_qc_type,(h.design_display_name) AS `design_name`, h.id_sample, DATE_FORMAT(a.prod_order_ret_in_date,'%Y-%m-%d') as prod_order_ret_in_datex, a.id_report_status, a.id_prod_order, a.id_prod_order_ret_in, a.prod_order_ret_in_date, "
+                Dim query As String = "SELECT reto.prod_order_ret_out_number,a.id_prod_order_rec,a.id_prod_order_ret_out,a.id_return_qc_type,(h.design_display_name) AS `design_name`, h.id_sample, DATE_FORMAT(a.prod_order_ret_in_date,'%Y-%m-%d') as prod_order_ret_in_datex, a.id_report_status, a.id_prod_order, a.id_prod_order_ret_in, a.prod_order_ret_in_date, "
                 query += "g.id_design,a.prod_order_ret_in_note, a.prod_order_ret_in_number,  "
                 query += "b.prod_order_number, (c.id_comp_contact) AS id_comp_contact_from, (d.comp_name) AS comp_name_contact_from, (d.comp_number) AS comp_code_contact_from, (d.address_primary) AS comp_address_contact_from, "
                 query += "(e.id_comp_contact) AS id_comp_contact_to, (f.comp_name) AS comp_name_contact_to, (f.comp_number) AS comp_code_contact_to,(f.address_primary) AS comp_address_contact_to, ss.season "
                 query += "FROM tb_prod_order_ret_in a "
+                query += "LEFT JOIN tb_prod_order_ret_out reto ON reto.id_prod_order_ret_out=a.id_prod_order_ret_out"
                 query += "INNER JOIN tb_prod_order b ON a.id_prod_order = b.id_prod_order "
                 query += "INNER JOIN tb_season_delivery del ON del.id_delivery = b.id_delivery "
                 query += "INNER JOIN tb_season ss ON ss.id_season = del.id_season "
@@ -82,7 +85,10 @@ Public Class FormProductionRetInSingle
                 query += "INNER JOIN tb_m_design h ON g.id_design = h.id_design "
                 query += "WHERE a.id_prod_order_ret_in='" + id_prod_order_ret_in + "' "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                id_ret_out = data.Rows(0)("id_prod_order_ret_out").ToString
+                id_rec = data.Rows(0)("id_prod_order_rec").ToString
                 TxtOrderNumber.Text = data.Rows(0)("prod_order_number").ToString
+                TERetOutNo.Text = data.Rows(0)("prod_order_ret_out_number").ToString
                 id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_code_contact_from").ToString
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name_contact_from").ToString
@@ -285,8 +291,8 @@ Public Class FormProductionRetInSingle
                         prod_order_ret_in_number = header_number_prod("5")
 
                         'Main tbale
-                        query = "INSERT INTO tb_prod_order_ret_in(id_prod_order, prod_order_ret_in_number, id_comp_contact_to, id_comp_contact_from, prod_order_ret_in_date, prod_order_ret_in_note, id_report_status,id_return_qc_type) "
-                        query += "VALUES('" + id_prod_order + "', '" + prod_order_ret_in_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + prod_order_ret_in_note + "', '" + id_report_status + "','" + id_return_qc_type + "'); SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_prod_order_ret_in(id_prod_order, prod_order_ret_in_number, id_comp_contact_to, id_comp_contact_from, prod_order_ret_in_date, prod_order_ret_in_note, id_report_status,id_return_qc_type,id_prod_order_rec,id_prod_order_ret_out) "
+                        query += "VALUES('" + id_prod_order + "', '" + prod_order_ret_in_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + prod_order_ret_in_note + "', '" + id_report_status + "','" + id_return_qc_type + "','" & id_rec & "','" & id_ret_out & "'); SELECT LAST_INSERT_ID(); "
                         id_prod_order_ret_in = execute_query(query, 0, True, "", "", "", "")
                         increase_inc_prod("5")
 
@@ -332,7 +338,7 @@ Public Class FormProductionRetInSingle
                         prod_order_ret_in_number = TxtRetOutNumber.Text
 
                         'edit main table
-                        query = "UPDATE tb_prod_order_ret_in SET id_prod_order = '" + id_prod_order + "', prod_order_ret_in_number = '" + prod_order_ret_in_number + "', id_comp_contact_to = '" + id_comp_contact_to + "', id_comp_contact_from = '" + id_comp_contact_from + "', id_report_status = '" + id_report_status + "', prod_order_ret_in_note = '" + prod_order_ret_in_note + "',id_return_qc_type='" + id_return_qc_type + "' WHERE id_prod_order_ret_in = '" + id_prod_order_ret_in + "' "
+                        query = "UPDATE tb_prod_order_ret_in SET id_prod_order = '" + id_prod_order + "',id_prod_order_ret_out = '" + id_ret_out + "',id_prod_order_rec = '" + id_rec + "', prod_order_ret_in_number = '" + prod_order_ret_in_number + "', id_comp_contact_to = '" + id_comp_contact_to + "', id_comp_contact_from = '" + id_comp_contact_from + "', id_report_status = '" + id_report_status + "', prod_order_ret_in_note = '" + prod_order_ret_in_note + "',id_return_qc_type='" + id_return_qc_type + "' WHERE id_prod_order_ret_in = '" + id_prod_order_ret_in + "' "
                         execute_non_query(query, True, "", "", "", "")
 
                         'edit detail table
@@ -389,8 +395,10 @@ Public Class FormProductionRetInSingle
         Close()
     End Sub
     Private Sub BtnBrowsePO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowsePO.Click
-        FormPopUpProd.id_pop_up = "3"
-        FormPopUpProd.ShowDialog()
+        'FormPopUpProd.id_pop_up = "3"
+        'FormPopUpProd.ShowDialog()
+        FormPopUpRetOut.id_pop_up = "1"
+        FormPopUpRetOut.ShowDialog()
     End Sub
     Private Sub BtnBrowseContactFrom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowseContactFrom.Click
         If TxtOrderNumber.Text = "" Then

@@ -23,6 +23,7 @@ Partial Class FormProductionRetOutSingle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionRetOutSingle))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
+        Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LERetType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.MEAdrressCompTo = New DevExpress.XtraEditors.MemoEdit()
@@ -110,11 +111,11 @@ Partial Class FormProductionRetOutSingle
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
+        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LERetType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,7 +161,6 @@ Partial Class FormProductionRetOutSingle
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
-        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -200,6 +200,19 @@ Partial Class FormProductionRetOutSingle
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(410, 162)
         Me.PanelControlTopMiddle.TabIndex = 10003
+        '
+        'TERecNumber
+        '
+        Me.TERecNumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TERecNumber.EditValue = ""
+        Me.TERecNumber.Location = New System.Drawing.Point(78, 33)
+        Me.TERecNumber.Name = "TERecNumber"
+        Me.TERecNumber.Properties.EditValueChangedDelay = 1
+        Me.TERecNumber.Properties.ReadOnly = True
+        Me.TERecNumber.Size = New System.Drawing.Size(102, 20)
+        Me.TERecNumber.TabIndex = 10002
+        Me.TERecNumber.TabStop = False
         '
         'LERetType
         '
@@ -365,9 +378,9 @@ Partial Class FormProductionRetOutSingle
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Location = New System.Drawing.Point(9, 36)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(38, 13)
         Me.LabelControl4.TabIndex = 88
-        Me.LabelControl4.Text = "Rec Prod No."
+        Me.LabelControl4.Text = "Rec No."
         '
         'BtnBrowseContactFrom
         '
@@ -1164,19 +1177,6 @@ Partial Class FormProductionRetOutSingle
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
         '
-        'TERecNumber
-        '
-        Me.TERecNumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TERecNumber.EditValue = ""
-        Me.TERecNumber.Location = New System.Drawing.Point(78, 33)
-        Me.TERecNumber.Name = "TERecNumber"
-        Me.TERecNumber.Properties.EditValueChangedDelay = 1
-        Me.TERecNumber.Properties.ReadOnly = True
-        Me.TERecNumber.Size = New System.Drawing.Size(102, 20)
-        Me.TERecNumber.TabIndex = 10002
-        Me.TERecNumber.TabStop = False
-        '
         'FormProductionRetOutSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1197,6 +1197,7 @@ Partial Class FormProductionRetOutSingle
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
+        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LERetType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1245,7 +1246,6 @@ Partial Class FormProductionRetOutSingle
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
-        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
