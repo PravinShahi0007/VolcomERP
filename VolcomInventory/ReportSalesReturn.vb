@@ -91,7 +91,7 @@
                 WHERE a.report_mark_type='" & report_mark_type & "' AND a.id_report='" & id_sales_return & "' " + If(id_pre = "-1", "AND a.is_use = 1 AND a.id_mark = 2", "AND (a.level IS NULL OR a.level = 1)") + " AND a.id_report_status = 1
                 ORDER BY a.id_report_status, a.id_mark_asg)
                 UNION
-                (SELECT 4 AS `order`, 'Approved By,' AS report_status_display, '' AS employee_name, 'Inbound Staff' AS role, '' AS date_time)
+                (SELECT 4 AS `order`, 'Approved By,' AS report_status_display, '' AS employee_name, 'WH Team Leader' AS role, '' AS date_time)
                 UNION
                 (SELECT 5 AS `order`, 'Completed By,' AS report_status_display, '' AS employee_name, 'Dept. Head' AS role, '' AS date_time)
                 UNION 
