@@ -94,16 +94,12 @@
                 FROM tb_report_mark a
                 INNER JOIN tb_lookup_report_status b ON a.id_report_status = b.id_report_status
                 LEFT JOIN tb_m_employee d ON d.id_employee = a.id_employee
-                WHERE a.report_mark_type='" & rmt & "' AND a.id_report='" & id_sales_return_qc & "' " + If(id_pre = "-1", "AND a.is_use = 1 AND a.id_mark = 2", "AND (a.level IS NULL OR a.level = 1)") + "
+                WHERE a.report_mark_type='" & rmt & "' AND a.id_report='" & id_sales_return_qc & "' " + If(id_pre = "-1", "AND a.is_use = 1 AND a.id_mark = 2", "AND (a.level IS NULL OR a.level = 1)") + " AND a.id_report_status = 1
                 ORDER BY a.id_report_status, a.id_mark_asg)
                 UNION
-                (SELECT 5 AS `order`, 'Completed By,' AS report_status_display, employee_name, employee_position AS role, (SELECT DATE_FORMAT(final_comment_date, '%d-%m-%Y %H:%i') FROM tb_report_mark_final_comment WHERE report_mark_type = " & rmt & " AND id_report = " + id_sales_return_qc + " LIMIT 1) AS date_time
-                FROM tb_m_employee
-                WHERE id_employee = (SELECT id_emp_wh_manager FROM tb_opt LIMIT 1))
-                UNION 
-                (SELECT 3 AS `order`, 'Checked By,' AS report_status_display, '' AS employee_name, 'Security' AS role, '' AS date_time)
+                (SELECT 4 AS `order`, 'Approved By,' AS report_status_display, '' AS employee_name, 'Warehouse Staff' AS role, '' AS date_time)
                 UNION
-                (SELECT 2 AS `order`, 'Dispatched By,' AS report_status_display, '' AS employee_name, 'Outbound Staff' AS role, '' AS date_time)
+                (SELECT 5 AS `order`, 'Completed By,' AS report_status_display, '' AS employee_name, 'Dept. Head' AS role, '' AS date_time)
             ) AS tb
             ORDER BY `order`
         "
