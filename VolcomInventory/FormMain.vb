@@ -7649,11 +7649,23 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGTransList" Then
             Dim page As String = FormFGTransList.page_active
             If page = "rec" Then
-                print(FormFGTransList.GCPL, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
+                If FormFGTransList.XTCRec.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCPL, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
+                Else
+                    print(FormFGTransList.GCPLMain, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
+                End If
             ElseIf page = "del" Then
-                print(FormFGTransList.GCSalesDelOrder, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
+                If FormFGTransList.XTCDel.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSalesDelOrder, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
+                Else
+                    print(FormFGTransList.GCSalesDelOrderMain, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
+                End If
             ElseIf page = "ret" Then
-                print(FormFGTransList.GCSalesReturn, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
+                If FormFGTransList.XTCReturn.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSalesReturn, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
+                Else
+                    print(FormFGTransList.GCSalesReturnMain, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
+                End If
             ElseIf page = "nsr" Then
                 print(FormFGTransList.GCNonStock, "NON STOCK (" + FormFGTransList.DEFromNonStock.Text + " - " + FormFGTransList.DEUntilNonStock.Text + ")")
             ElseIf page = "ret_trf" Then
@@ -7661,9 +7673,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf page = "trf" Then
                 print(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
             ElseIf page = "sal" Then
-                print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                If FormFGTransList.XTCSales.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                Else
+                    print(FormFGTransList.GCSalesMain, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                End If
             ElseIf page = "order" Then
-                print(FormFGTransList.GCSO, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
+                If FormFGTransList.XTCSO.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSO, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
+                Else
+                    print(FormFGTransList.GCSOMain, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
+                End If
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")

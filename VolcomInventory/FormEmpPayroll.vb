@@ -229,6 +229,8 @@
             If id_report_status = "0" Then
                 check_diff()
             End If
+
+            LCTitle.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString + " - " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end")).ToString("MMMM yyyy")
         End If
 
         GVPayroll.TopRowIndex = 0
@@ -1392,5 +1394,17 @@
         If GVPayroll.GetRowCellValue(e.RowHandle, "is_resign").ToString = "1" Then
             e.Appearance.BackColor = Color.Yellow
         End If
+    End Sub
+
+    Private Sub GVPayroll_RowCountChanged(sender As Object, e As EventArgs) Handles GVPayroll.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVPayroll.RowCount - 1
+            If GVPayroll.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVPayroll.SetRowCellValue(i, "no", j)
+            End If
+        Next
     End Sub
 End Class

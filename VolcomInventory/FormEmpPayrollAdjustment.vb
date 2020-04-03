@@ -14,7 +14,7 @@
         load_adjustment()
     End Sub
     Sub load_adjustment()
-        Dim query As String = "SELECT 'no' AS is_check, pya.id_payroll_adj,IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,IF(adj.use_days = 2, '-', pya.total_days) AS total_days,pya.value,pya.increase,pya.note,emp.`employee_name`,emp.`employee_code`,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,adj.`salary_adjustment`,adjc.salary_adjustment_cat,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status FROM tb_emp_payroll_adj pya
+        Dim query As String = "SELECT 0 as no, 'no' AS is_check, pya.id_payroll_adj,IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,IF(adj.use_days = 2, '-', pya.total_days) AS total_days,pya.value,pya.increase,pya.note,emp.`employee_name`,emp.`employee_code`,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,adj.`salary_adjustment`,adjc.salary_adjustment_cat,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status FROM tb_emp_payroll_adj pya
             LEFT JOIN tb_m_employee emp ON pya.id_employee=emp.`id_employee`
             LEFT JOIN (
                 SELECT * FROM (
@@ -209,5 +209,17 @@
         If info.Column.Caption = "Sub Departement" And Not info.EditValue.ToString.Contains("SOGO") Then
             info.GroupText = " "
         End If
+    End Sub
+
+    Private Sub GVDeduction_RowCountChanged(sender As Object, e As EventArgs) Handles GVDeduction.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVDeduction.RowCount - 1
+            If GVDeduction.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVDeduction.SetRowCellValue(i, "no", j)
+            End If
+        Next
     End Sub
 End Class

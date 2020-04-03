@@ -5775,7 +5775,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                     SELECT * FROM
                                     (
 	                                    /* Pay from */
-	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`, 1, 0, 0, 0,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
+	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
 	                                    FROM tb_pn py
 	                                    WHERE py.id_pn=" & id_report & "
 	                                    UNION ALL
