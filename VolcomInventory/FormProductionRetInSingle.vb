@@ -712,6 +712,7 @@ Public Class FormProductionRetInSingle
         FormPopUpProdDet.id_pop_up = "2"
         FormPopUpProdDet.action = "ins"
         FormPopUpProdDet.id_prod_order = id_prod_order
+        FormPopUpProdDet.id_ret_out = id_ret_out
         FormPopUpProdDet.id_ret_in = id_prod_order_ret_in
         FormPopUpProdDet.BtnSave.Visible = False
         FormPopUpProdDet.is_info_form = True

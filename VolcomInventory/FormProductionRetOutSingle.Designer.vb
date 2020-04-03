@@ -729,7 +729,7 @@ Partial Class FormProductionRetOutSingle
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(145, 5)
+        Me.LEReportStatus.Location = New System.Drawing.Point(61, 5)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -737,12 +737,12 @@ Partial Class FormProductionRetOutSingle
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(237, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(321, 20)
         Me.LEReportStatus.TabIndex = 12
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(108, 8)
+        Me.LabelControl21.Location = New System.Drawing.Point(16, 8)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
