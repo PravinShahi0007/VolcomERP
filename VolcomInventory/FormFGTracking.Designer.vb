@@ -23,7 +23,7 @@ Partial Class FormFGTracking
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGTracking))
         Me.GroupControlFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewLess = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlList = New DevExpress.XtraEditors.PanelControl()
         Me.BtnUniqueAll = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
@@ -80,8 +80,8 @@ Partial Class FormFGTracking
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlFilter.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControlList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlList.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,7 +102,7 @@ Partial Class FormFGTracking
         'GroupControlFilter
         '
         Me.GroupControlFilter.Controls.Add(Me.BtnViewLess)
-        Me.GroupControlFilter.Controls.Add(Me.PanelControl1)
+        Me.GroupControlFilter.Controls.Add(Me.PanelControlList)
         Me.GroupControlFilter.Controls.Add(Me.DEUntil)
         Me.GroupControlFilter.Controls.Add(Me.DEFrom)
         Me.GroupControlFilter.Controls.Add(Me.BtnTracking)
@@ -125,15 +125,16 @@ Partial Class FormFGTracking
         Me.BtnViewLess.TabIndex = 8893
         Me.BtnViewLess.Text = "View (Trial)"
         '
-        'PanelControl1
+        'PanelControlList
         '
-        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl1.Controls.Add(Me.BtnUniqueAll)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(977, 21)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(135, 37)
-        Me.PanelControl1.TabIndex = 8892
+        Me.PanelControlList.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlList.Controls.Add(Me.BtnUniqueAll)
+        Me.PanelControlList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlList.Location = New System.Drawing.Point(977, 21)
+        Me.PanelControlList.Name = "PanelControlList"
+        Me.PanelControlList.Size = New System.Drawing.Size(135, 37)
+        Me.PanelControlList.TabIndex = 8892
+        Me.PanelControlList.Visible = False
         '
         'BtnUniqueAll
         '
@@ -675,8 +676,8 @@ Partial Class FormFGTracking
         CType(Me.GroupControlFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlFilter.ResumeLayout(False)
         Me.GroupControlFilter.PerformLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControlList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlList.ResumeLayout(False)
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -750,7 +751,7 @@ Partial Class FormFGTracking
     Friend WithEvents LabelPrice As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlList As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnUniqueAll As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnViewLess As DevExpress.XtraEditors.SimpleButton
 End Class

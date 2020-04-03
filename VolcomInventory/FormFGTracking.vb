@@ -4,6 +4,11 @@
     Private Sub FormFGTracking_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         check_menu()
+
+        Dim id_super_admin As String = get_setup_field("id_role_super_admin")
+        If id_role_login = id_super_admin Then
+            PanelControlList.Visible = True
+        End If
     End Sub
 
     Private Sub FormFGTracking_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
