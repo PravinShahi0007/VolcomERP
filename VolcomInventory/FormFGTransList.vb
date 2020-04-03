@@ -41,6 +41,7 @@
         setCaptionSize(GVSalesDelOrderMain)
         setCaptionSize(GVSOMain)
         setCaptionSize(GVSalesMain)
+        setCaptionSize(GVSalesReturnMain)
 
         ActiveControl = DEFromRec
         page_active = "rec"
@@ -209,13 +210,41 @@
         Dim w_status As String = If(SLStatus3.EditValue.ToString = "0", "", "AND a.id_report_status = " + SLStatus3.EditValue.ToString)
 
         Dim query_c As ClassSalesReturn = New ClassSalesReturn()
-        Dim data As DataTable = query_c.transactionList("AND (a.id_ret_type!=2) AND (a.sales_return_date>='" + date_from_selected + "' AND a.sales_return_date<='" + date_until_selected + "') " + w_status, "1")
+        Dim data As DataTable = query_c.transactionList("AND (a.id_ret_type!=2) AND (a.sales_return_date>='" + date_from_selected + "' AND a.sales_return_date<='" + date_until_selected + "') " + w_status, "1", True)
         GCSalesReturn.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewReturnMain()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromReturn.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilReturn.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim w_status As String = If(SLStatus3.EditValue.ToString = "0", "", "AND a.id_report_status = " + SLStatus3.EditValue.ToString)
+
+        Dim query_c As ClassSalesReturn = New ClassSalesReturn()
+        Dim data As DataTable = query_c.transactionList("AND (a.id_ret_type!=2) AND (a.sales_return_date>='" + date_from_selected + "' AND a.sales_return_date<='" + date_until_selected + "') " + w_status, "1", False)
+        GCSalesReturnMain.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnViewReturn_Click(sender As Object, e As EventArgs) Handles BtnViewReturn.Click
-        viewReturn()
+        If XTCReturn.SelectedTabPageIndex = 0 Then
+            viewReturn()
+        Else
+            viewReturnMain
+        End If
     End Sub
 
     Sub viewNonStock()
@@ -541,18 +570,47 @@
     End Sub
 
     Private Sub BtnExportToXLSRet_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSRet.Click
-        If GVSalesReturn.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim dt_from As String = DEFromReturn.Text.Replace(" ", "")
-            Dim dt_until As String = DEUntilReturn.Text.Replace(" ", "")
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCReturn.SelectedTabPageIndex = 0 Then
+            If GVSalesReturn.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim dt_from As String = DEFromReturn.Text.Replace(" ", "")
+                Dim dt_until As String = DEUntilReturn.Text.Replace(" ", "")
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_ret.xlsx"
+                exportToXLS(path, "ret", GCSalesReturn)
+                Cursor = Cursors.Default
             End If
-            path = path + "tl_ret.xlsx"
-            exportToXLS(path, "ret", GCSalesReturn)
-            Cursor = Cursors.Default
+        Else
+            If GVSalesReturnMain.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSalesReturnMain.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVSalesReturnMain.Columns.Count - 1
+                    If GVSalesReturnMain.Columns(i).FieldName.Contains("qty") And GVSalesReturnMain.Columns(i).FieldName <> "qty" Then
+                        GVSalesReturnMain.Columns(i).Caption = GVSalesReturnMain.Columns(i).FieldName.ToString
+                    End If
+                Next
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_ret_main.xlsx"
+                exportToXLS(path, "ret", GCSalesReturnMain)
+
+                'restore column opt
+                GVSalesReturnMain.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
