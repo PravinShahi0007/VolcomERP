@@ -39,6 +39,7 @@
         'set size
         setCaptionSize(GVPLMain)
         setCaptionSize(GVSalesDelOrderMain)
+        setCaptionSize(GVSOMain)
 
         ActiveControl = DEFromRec
         page_active = "rec"
@@ -683,7 +684,11 @@
     End Sub
 
     Private Sub BtnViewSO_Click(sender As Object, e As EventArgs) Handles BtnViewSO.Click
-        viewPrepareOrder()
+        If XTCSO.SelectedTabPageIndex = 0 Then
+            viewPrepareOrder()
+        Else
+            viewPrepareOrderMain()
+        End If
     End Sub
 
     Sub viewPrepareOrder()
@@ -742,17 +747,117 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewPrepareOrderMain()
+        Cursor = Cursors.WaitCursor
+        'date paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromSO.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilSO.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim w_status As String = If(SLStatus8.EditValue.ToString = "0", "", "AND so.id_report_status = " + SLStatus8.EditValue.ToString)
+
+        Dim query As String = "SELECT so.id_sales_order, so.sales_order_number, ot.order_type, so.id_so_status, cat.so_status, gen.sales_order_gen_reff, so.sales_order_date,
+        rs.id_report_status, rs.report_status,
+        wh.comp_number AS `wh_account`, wh.comp_name AS `wh`, 
+        store.comp_number AS `store_account`, store.comp_name AS `store`, cg.comp_group, cg.description AS `comp_group_name`,
+        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`, 
+        SUBSTRING(prod.product_full_code, 10, 1) AS `sizetype`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='1' THEN so_det.sales_order_det_qty END),0) AS `qty1`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='2' THEN so_det.sales_order_det_qty END),0) AS `qty2`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='3' THEN so_det.sales_order_det_qty END),0) AS `qty3`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='4' THEN so_det.sales_order_det_qty END),0) AS `qty4`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='5' THEN so_det.sales_order_det_qty END),0) AS `qty5`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='6' THEN so_det.sales_order_det_qty END),0) AS `qty6`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='7' THEN so_det.sales_order_det_qty END),0) AS `qty7`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='8' THEN so_det.sales_order_det_qty END),0) AS `qty8`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='9' THEN so_det.sales_order_det_qty END),0) AS `qty9`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='0' THEN so_det.sales_order_det_qty END),0) AS `qty0`,
+        SUM(so_det.sales_order_det_qty) AS `sales_order_det_qty`, 
+        so_det.design_price, SUM(so_det.sales_order_det_qty * so_det.design_price) AS `amount`, 
+        so.id_prepare_status, stt.prepare_status,so.final_comment
+        FROM tb_sales_order_det so_det 
+        INNER JOIN tb_sales_order so ON so.id_sales_order = so_det.id_sales_order
+        INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = so.id_so_status
+        INNER JOIN tb_lookup_order_type ot ON ot.id_order_type = cat.id_order_type
+        INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
+        LEFT JOIN tb_sales_order_gen gen ON gen.id_sales_order_gen = so.id_sales_order_gen
+        INNER JOIN tb_m_comp_contact wh_cont ON wh_cont.id_comp_contact = so.id_warehouse_contact_to 
+        INNER JOIN tb_m_comp wh ON wh.id_comp = wh_cont.id_comp 
+        INNER JOIN tb_m_comp_contact store_cont ON store_cont.id_comp_contact = so.id_store_contact_to 
+        INNER JOIN tb_m_comp store ON store.id_comp = store_cont.id_comp 
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = store.id_comp_group
+        LEFT JOIN (
+            SELECT  a.id_product,f.product_full_code, f.product_ean_code,f.product_name, f.product_display_name,e.id_season,e.season,d.id_design, d.design_code, d.id_sample,d.design_name, e.id_range, d.design_display_name,
+            (del.delivery_date) AS `design_del_date`, (del.est_wh_date) AS `design_wh_date`, b.code_detail_name AS `size`, b.code AS `code_size`,
+            d2.display_name AS `class`
+            FROM tb_m_product f  
+            INNER JOIN tb_m_product_code a ON a.id_product = f.id_product 
+            INNER JOIN tb_m_code_detail b ON a.id_code_detail = b.id_code_detail 
+            INNER JOIN tb_m_design d ON f.id_design = d.id_design 
+            INNER JOIN tb_m_design_code d1 ON d.id_design = d1.id_design 
+            INNER JOIN tb_m_code_detail d2 ON d1.id_code_detail = d2.id_code_detail AND d2.id_code=30
+            INNER JOIN tb_season e ON d.id_season=e.id_season
+            INNER JOIN tb_season_delivery del ON d.id_delivery = del.id_delivery
+            GROUP BY f.id_product
+        ) prod ON prod.id_product = so_det.id_product
+        INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = so.id_report_status
+        WHERE 1=1 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') " + w_status + "
+        GROUP BY so.id_sales_order, prod.id_design, SUBSTRING(prod.product_full_code, 10, 1)
+        ORDER BY so.id_sales_order ASC , prod.`class` ASC, product_full_code ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSOMain.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnExportToXLSSO_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSSO.Click
-        If GVSO.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCSO.SelectedTabPageIndex = 0 Then
+            If GVSO.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_order.xlsx"
+                exportToXLS(path, "order", GCSO)
+                Cursor = Cursors.Default
             End If
-            path = path + "tl_order.xlsx"
-            exportToXLS(path, "order", GCSO)
-            Cursor = Cursors.Default
+        Else
+            If GVSOMain.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSOMain.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVSOMain.Columns.Count - 1
+                    If GVSOMain.Columns(i).FieldName.Contains("qty") And GVSOMain.Columns(i).FieldName <> "sales_order_det_qty" Then
+                        GVSOMain.Columns(i).Caption = GVSOMain.Columns(i).FieldName.ToString
+                    End If
+                Next
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_order_main.xlsx"
+                exportToXLS(path, "order", GCSOMain)
+
+                'restore column opt
+                GVSOMain.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
