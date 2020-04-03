@@ -4,7 +4,7 @@
 
     Private Sub ReportEmpPayrollOvertime_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim query As String = "
-            SELECT * 
+            SELECT 0 AS No, overtime.*
             FROM (
                 SELECT IFNULL(dep.departement, dep_ori.departement) AS `Departement`, IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS `Sub Departement`, emp.`employee_code` AS `NIP`, emp.`employee_name` AS `Employee`, emp.`employee_position` AS `Employee Position`, sts.`employee_status` AS `Employee Status`, ot.reg_total_point AS `Point Reguler`, ot.reg_total_wages AS `Overtime Reguler`, (ot.mkt_total_point + ot.ia_total_point + ot.sales_total_point + ot.prod_total_point + ot.hrd_total_point + ot.general_total_point) AS `Point Event`, (IFNULL(ot.mkt_total_wages, 0) + IFNULL(ot.ia_total_wages, 0) + IFNULL(ot.sales_total_wages, 0) + IFNULL(ot.prod_total_wages, 0) + IFNULL(ot.hrd_total_wages, 0)) AS `Overtime Event`, ((SELECT IFNULL(`Overtime Reguler`, 0)) + (SELECT IFNULL(`Overtime Event`, 0))) AS `Total Overtime`, IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll
                 FROM tb_emp_payroll_det pyd
@@ -399,5 +399,29 @@
                     End Try
             End Select
         End If
+    End Sub
+
+    Private Sub GVOvertimeOffice_RowCountChanged(sender As Object, e As EventArgs) Handles GVOvertimeOffice.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVOvertimeOffice.RowCount - 1
+            If GVOvertimeOffice.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVOvertimeOffice.SetRowCellValue(i, "No", j)
+            End If
+        Next
+    End Sub
+
+    Private Sub GVOvertimeStore_RowCountChanged(sender As Object, e As EventArgs) Handles GVOvertimeStore.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVOvertimeStore.RowCount - 1
+            If GVOvertimeStore.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVOvertimeStore.SetRowCellValue(i, "No", j)
+            End If
+        Next
     End Sub
 End Class

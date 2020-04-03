@@ -26,6 +26,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GVDeductionOffice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeePosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -67,6 +68,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GCEmployeePositionStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeStatusStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCSubDepartementStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCNoStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEPending = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RITEActWorkdaysDW = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -150,7 +152,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GVDeductionOffice.BandPanelRowHeight = 16
         Me.GVDeductionOffice.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee})
         Me.GVDeductionOffice.ColumnPanelRowHeight = 48
-        Me.GVDeductionOffice.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCEmployee, Me.GCEmployeePosition, Me.GCEmployeeStatus})
+        Me.GVDeductionOffice.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCEmployee, Me.GCEmployeePosition, Me.GCEmployeeStatus, Me.GCNo})
         Me.GVDeductionOffice.GridControl = Me.GCDeductionOffice
         Me.GVDeductionOffice.GroupCount = 2
         Me.GVDeductionOffice.GroupFormat = "{1} {2}"
@@ -169,19 +171,27 @@ Partial Public Class ReportEmpPayrollDeduction
         '
         Me.GBEmployee.Caption = "Employee"
         Me.GBEmployee.Columns.Add(Me.GCDepartement)
+        Me.GBEmployee.Columns.Add(Me.GCNo)
         Me.GBEmployee.Columns.Add(Me.GCNIP)
         Me.GBEmployee.Columns.Add(Me.GCEmployee)
         Me.GBEmployee.Columns.Add(Me.GCEmployeePosition)
         Me.GBEmployee.Columns.Add(Me.GCEmployeeStatus)
         Me.GBEmployee.Name = "GBEmployee"
         Me.GBEmployee.VisibleIndex = 0
-        Me.GBEmployee.Width = 997
+        Me.GBEmployee.Width = 1072
         '
         'GCDepartement
         '
         Me.GCDepartement.Caption = "Departement"
         Me.GCDepartement.FieldName = "Departement"
         Me.GCDepartement.Name = "GCDepartement"
+        '
+        'GCNo
+        '
+        Me.GCNo.Caption = "No"
+        Me.GCNo.FieldName = "No"
+        Me.GCNo.Name = "GCNo"
+        Me.GCNo.Visible = True
         '
         'GCNIP
         '
@@ -534,7 +544,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GVDeductionStore.BandPanelRowHeight = 16
         Me.GVDeductionStore.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
         Me.GVDeductionStore.ColumnPanelRowHeight = 48
-        Me.GVDeductionStore.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartementStore, Me.GCSubDepartementStore, Me.GCNIPStore, Me.GCEmployeeStore, Me.GCEmployeePositionStore, Me.GCEmployeeStatusStore})
+        Me.GVDeductionStore.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartementStore, Me.GCSubDepartementStore, Me.GCNIPStore, Me.GCEmployeeStore, Me.GCEmployeePositionStore, Me.GCEmployeeStatusStore, Me.GCNoStore})
         Me.GVDeductionStore.GridControl = Me.GCDeductionStore
         Me.GVDeductionStore.GroupCount = 2
         Me.GVDeductionStore.GroupFormat = "{1} {2}"
@@ -553,13 +563,14 @@ Partial Public Class ReportEmpPayrollDeduction
         '
         Me.GridBand1.Caption = "Employee"
         Me.GridBand1.Columns.Add(Me.GCDepartementStore)
+        Me.GridBand1.Columns.Add(Me.GCNoStore)
         Me.GridBand1.Columns.Add(Me.GCNIPStore)
         Me.GridBand1.Columns.Add(Me.GCEmployeeStore)
         Me.GridBand1.Columns.Add(Me.GCEmployeePositionStore)
         Me.GridBand1.Columns.Add(Me.GCEmployeeStatusStore)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 997
+        Me.GridBand1.Width = 1072
         '
         'GCDepartementStore
         '
@@ -613,6 +624,13 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GCSubDepartementStore.Caption = "Sub Departement"
         Me.GCSubDepartementStore.FieldName = "Sub Departement"
         Me.GCSubDepartementStore.Name = "GCSubDepartementStore"
+        '
+        'GCNoStore
+        '
+        Me.GCNoStore.Caption = "No"
+        Me.GCNoStore.FieldName = "No"
+        Me.GCNoStore.Name = "GCNoStore"
+        Me.GCNoStore.Visible = True
         '
         'RICEPending
         '
@@ -726,4 +744,6 @@ Partial Public Class ReportEmpPayrollDeduction
     Friend WithEvents GCEmployeePositionStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEmployeeStatusStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCSubDepartementStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCNoStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

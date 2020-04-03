@@ -485,4 +485,28 @@
             e.Appearance.BackColor = Color.Yellow
         End If
     End Sub
+
+    Private Sub GVPayrollOffice_RowCountChanged(sender As Object, e As EventArgs) Handles GVPayrollOffice.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVPayrollOffice.RowCount - 1
+            If GVPayrollOffice.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVPayrollOffice.SetRowCellValue(i, "no", j)
+            End If
+        Next
+    End Sub
+
+    Private Sub GVPayrollStore_RowCountChanged(sender As Object, e As EventArgs) Handles GVPayrollStore.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVPayrollStore.RowCount - 1
+            If GVPayrollStore.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVPayrollStore.SetRowCellValue(i, "no", j)
+            End If
+        Next
+    End Sub
 End Class

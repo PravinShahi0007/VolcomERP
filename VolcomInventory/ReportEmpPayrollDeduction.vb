@@ -93,6 +93,7 @@
         data.Columns.Add("Employee", GetType(String))
         data.Columns.Add("Employee Position", GetType(String))
         data.Columns.Add("Employee Status", GetType(String))
+        data.Columns.Add("No", GetType(String))
 
         For i = 0 To data_column.Rows.Count - 1
             Dim salary_adjustment As String = data_column.Rows(i)("salary_" + type + "").ToString
@@ -118,6 +119,7 @@
             row("Employee") = data_employee.Rows(i)("employee_name").ToString
             row("Employee Position") = data_employee.Rows(i)("employee_position").ToString
             row("Employee Status") = data_employee.Rows(i)("employee_status").ToString
+            row("No") = 0
 
             Dim column As String() = Split(data_employee.Rows(i)("salary_" + type + "_c").ToString, ",")
             Dim value As String() = Split(data_employee.Rows(i)("salary_" + type + "_v").ToString, ",")
@@ -417,5 +419,29 @@
                     End If
             End Select
         End If
+    End Sub
+
+    Private Sub GVDeductionOffice_RowCountChanged(sender As Object, e As EventArgs) Handles GVDeductionOffice.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVDeductionOffice.RowCount - 1
+            If GVDeductionOffice.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVDeductionOffice.SetRowCellValue(i, "No", j)
+            End If
+        Next
+    End Sub
+
+    Private Sub GVDeductionStore_RowCountChanged(sender As Object, e As EventArgs) Handles GVDeductionStore.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVDeductionStore.RowCount - 1
+            If GVDeductionStore.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVDeductionStore.SetRowCellValue(i, "No", j)
+            End If
+        Next
     End Sub
 End Class
