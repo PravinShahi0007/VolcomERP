@@ -7669,7 +7669,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf page = "trf" Then
                 print(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
             ElseIf page = "sal" Then
-                print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                If FormFGTransList.XTCSales.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                Else
+                    print(FormFGTransList.GCSalesMain, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                End If
             ElseIf page = "order" Then
                 If FormFGTransList.XTCSO.SelectedTabPageIndex = 0 Then
                     print(FormFGTransList.GCSO, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")

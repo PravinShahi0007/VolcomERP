@@ -40,6 +40,7 @@
         setCaptionSize(GVPLMain)
         setCaptionSize(GVSalesDelOrderMain)
         setCaptionSize(GVSOMain)
+        setCaptionSize(GVSalesMain)
 
         ActiveControl = DEFromRec
         page_active = "rec"
@@ -598,7 +599,11 @@
     End Sub
 
     Private Sub BtnViewSal_Click(sender As Object, e As EventArgs) Handles BtnViewSal.Click
-        viewSal()
+        If XTCSales.SelectedTabPageIndex = 0 Then
+            viewSal()
+        Else
+            viewSalMain()
+        End If
     End Sub
 
     Sub viewSal()
@@ -669,17 +674,127 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewSalMain()
+        Cursor = Cursors.WaitCursor
+        'class
+        Dim id_code_class As String = get_setup_field("id_code_fg_class")
+        'period type
+        Dim col_date As String = ""
+        If SLEPeriodType.EditValue.ToString = "1" Then
+            col_date = "sp.sales_pos_end_period"
+        Else
+            col_date = "sp.sales_pos_date"
+        End If
+        'filter promo
+        Dim cond_promo As String = ""
+        Dim cond_promo_trans As String = ""
+        If CEPromo.EditValue = True Then
+            cond_promo = ""
+            cond_promo_trans = ""
+        Else
+            cond_promo = "AND sp.sales_pos_total>0 "
+            cond_promo_trans = "AND sp.report_mark_type!=116 "
+        End If
+        'date paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromSal.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilSal.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim w_status As String = If(SLStatus7.EditValue.ToString = "0", "", " AND sp.id_report_status = " + SLStatus7.EditValue.ToString)
+
+        Dim query As String = "SELECT spd.id_sales_pos_det, spd.id_sales_pos, sp.sales_pos_number, rmt.report_mark_type_name, 
+        c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`,
+        sp.sales_pos_date, sp.sales_pos_due_date,
+        sp.sales_pos_start_period, sp.sales_pos_end_period,
+        prod.id_product, prod.id_design, prod.`code`,
+        prod.`name`, SUBSTRING(prod.product_full_code, 10, 1) AS `sizetype`, prod.`class`, 
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='1' THEN spd.sales_pos_det_qty END),0) AS `qty1`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='2' THEN spd.sales_pos_det_qty END),0) AS `qty2`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='3' THEN spd.sales_pos_det_qty END),0) AS `qty3`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='4' THEN spd.sales_pos_det_qty END),0) AS `qty4`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='5' THEN spd.sales_pos_det_qty END),0) AS `qty5`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='6' THEN spd.sales_pos_det_qty END),0) AS `qty6`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='7' THEN spd.sales_pos_det_qty END),0) AS `qty7`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='8' THEN spd.sales_pos_det_qty END),0) AS `qty8`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='9' THEN spd.sales_pos_det_qty END),0) AS `qty9`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='0' THEN spd.sales_pos_det_qty END),0) AS `qty0`,
+        SUM(spd.sales_pos_det_qty) AS `sales_pos_det_qty`, spd.design_price_retail, 
+        SUM(spd.sales_pos_det_qty * spd.design_price_retail) AS `amount`,
+        stt.report_status
+        FROM tb_sales_pos_det spd
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN (
+	        SELECT prod.id_product, prod.id_design, prod.product_full_code, dsg.design_code AS `code`,
+	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, sz.code AS `code_size`
+	        FROM tb_m_product prod
+	        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+	        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prod_code.id_code_detail
+	        INNER JOIN tb_m_design_code dsg_code ON dsg_code.id_design = dsg.id_design
+	        INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dsg_code.id_code_detail AND cls.id_code=" + id_code_class + "
+	        WHERE dsg.id_lookup_status_order!=2
+        ) prod ON prod.id_product = spd.id_product
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
+        WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + cond_promo_trans + w_status
+        query += " GROUP BY sp.id_sales_pos, prod.id_design, SUBSTRING(prod.product_full_code, 10, 1)
+        ORDER BY sp.id_report_status DESC, spd.id_sales_pos ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesMain.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnExportToXLSSal_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSSal.Click
-        If GVSales.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCSales.SelectedTabPageIndex = 0 Then
+            If GVSales.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_sal.xlsx"
+                exportToXLS(path, "sal", GCSales)
+                Cursor = Cursors.Default
             End If
-            path = path + "tl_sal.xlsx"
-            exportToXLS(path, "sal", GCSales)
-            Cursor = Cursors.Default
+        Else
+            If GVSalesMain.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSalesMain.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVSalesMain.Columns.Count - 1
+                    If GVSalesMain.Columns(i).FieldName.Contains("qty") And GVSalesMain.Columns(i).FieldName <> "sales_pos_det_qty" Then
+                        GVSalesMain.Columns(i).Caption = GVSalesMain.Columns(i).FieldName.ToString
+                    End If
+                Next
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_sal_main.xlsx"
+                exportToXLS(path, "sal", GCSalesMain)
+
+                'restore column opt
+                GVSalesMain.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
