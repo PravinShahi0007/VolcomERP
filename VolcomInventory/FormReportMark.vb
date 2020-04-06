@@ -5775,7 +5775,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                     SELECT * FROM
                                     (
 	                                    /* Pay from */
-	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`, 1, 0, 0, 0,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
+	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
 	                                    FROM tb_pn py
 	                                    WHERE py.id_pn=" & id_report & "
 	                                    UNION ALL
@@ -5793,14 +5793,14 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                                 INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.`id_pn`=" & id_report & "
                                                 SET po.is_close_pay='1'"
                     execute_non_query(qc, True, "", "", "", "")
-                    FormBankWithdrawal.load_po()
+                    'FormBankWithdrawal.load_po()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
                     'close expense
                     Dim qc As String = "UPDATE tb_item_expense e
                                                 INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.`id_pn`=" & id_report & "
                                                 SET e.is_open='2'"
                     execute_non_query(qc, True, "", "", "", "")
-                    FormBankWithdrawal.load_expense()
+                    'FormBankWithdrawal.load_expense()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "189" Then
                     'Close FGPO
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
@@ -5827,15 +5827,15 @@ WHERE pd.`id_pn`='" & id_report & "'"
                         End If
                     Next
                     '
-                    FormBankWithdrawal.load_fgpo()
+                    'FormBankWithdrawal.load_fgpo()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "223" Then
                     'close bpjs
                     execute_non_query("UPDATE tb_pay_bpjs_kesehatan SET is_close_pay = 1 WHERE id_pay_bpjs_kesehatan IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
-                    FormBankWithdrawal.view_bpjskesehatan()
+                    'FormBankWithdrawal.view_bpjskesehatan()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "192" Then
                     'close thr
                     execute_non_query("UPDATE tb_emp_payroll SET is_close_pay = 1 WHERE id_payroll IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
-                    FormBankWithdrawal.view_thr()
+                    'FormBankWithdrawal.view_thr()
                 End If
                 '
             End If
