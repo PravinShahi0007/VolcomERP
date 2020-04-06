@@ -5,6 +5,7 @@
 
     Public is_all As String = "-1"
     Public is_user_mapping As String = "-1"
+    Public is_departement As String = "-1"
 
     Private Sub FormEmpAttnAssign_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
