@@ -73,7 +73,7 @@ Public Class FormProductionRetInSingle
                 query += "b.prod_order_number, (c.id_comp_contact) AS id_comp_contact_from, (d.comp_name) AS comp_name_contact_from, (d.comp_number) AS comp_code_contact_from, (d.address_primary) AS comp_address_contact_from, "
                 query += "(e.id_comp_contact) AS id_comp_contact_to, (f.comp_name) AS comp_name_contact_to, (f.comp_number) AS comp_code_contact_to,(f.address_primary) AS comp_address_contact_to, ss.season "
                 query += "FROM tb_prod_order_ret_in a "
-                query += "LEFT JOIN tb_prod_order_ret_out reto ON reto.id_prod_order_ret_out=a.id_prod_order_ret_out"
+                query += "LEFT JOIN tb_prod_order_ret_out reto ON reto.id_prod_order_ret_out=a.id_prod_order_ret_out "
                 query += "INNER JOIN tb_prod_order b ON a.id_prod_order = b.id_prod_order "
                 query += "INNER JOIN tb_season_delivery del ON del.id_delivery = b.id_delivery "
                 query += "INNER JOIN tb_season ss ON ss.id_season = del.id_season "
@@ -110,7 +110,7 @@ Public Class FormProductionRetInSingle
                 TxtSeason.Text = data.Rows(0)("season").ToString
                 PEView.Enabled = True
             Catch ex As Exception
-                errorConnection()
+                MsgBox(ex.ToString)
             End Try
             view_barcode_list()
             viewDetailReturn()
@@ -257,6 +257,7 @@ Public Class FormProductionRetInSingle
             Dim id_prod_order_det_cekya As String = GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString
             Dim qty_plya As String = GVRetDetail.GetRowCellValue(i, "prod_order_ret_in_det_qty").ToString
             Dim sample_checkya As String = GVRetDetail.GetRowCellValue(i, "name").ToString + " / Size : " + GVRetDetail.GetRowCellValue(i, "size").ToString
+            'isAllowRequisition(sample_checkya, id_prod_order_det_cekya, qty_plya)
             isAllowRequisition(sample_checkya, id_prod_order_det_cekya, qty_plya)
             If Not cond_check Then
                 Exit For
@@ -700,7 +701,8 @@ Public Class FormProductionRetInSingle
         qty_pl = Decimal.Parse(qty_plx.ToString)
         sample_check = sample_name
         'MsgBox(id_prod_order_det_cek)
-        Dim query_check As String = "CALL view_stock_prod_ret_in_remain('" + id_prod_order + "', '" + id_prod_order_det_cek + "', '0', '" + id_prod_order_ret_in + "', '0') "
+        'Dim query_check As String = "CALL view_stock_prod_ret_in_remain('" + id_prod_order + "', '" + id_prod_order_det_cek + "', '0', '" + id_prod_order_ret_in + "', '0') "
+        Dim query_check As String = "CALL view_limit_ret_out('" + id_ret_out + "','" + id_prod_order_ret_in + "', '1')"
         Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
         allow_sum = Decimal.Parse(data.Rows(0)("qty"))
         If qty_pl > allow_sum Then

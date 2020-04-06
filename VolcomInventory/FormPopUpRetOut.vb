@@ -8,6 +8,7 @@
     Sub load_ret_out()
         Dim q As String = "SELECT reto.id_prod_order_ret_out,reto.id_prod_order_rec,g.season,po.prod_order_number,po.id_prod_order,reto.prod_order_ret_out_number,c.comp_name,prod_order_ret_out_date,dsg.id_design,dsg.design_code,dsg.design_display_name
 FROM tb_prod_order_ret_out reto
+INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec = reto.id_prod_order_rec AND rec.id_report_status='6'
 INNER JOIN tb_prod_order po ON reto.id_prod_order=po.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
