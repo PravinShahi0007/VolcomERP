@@ -337,6 +337,8 @@ Partial Class FormFGTransList
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPTrf = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCTrf = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPTrfBarcode = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGTrf = New DevExpress.XtraGrid.GridControl()
         Me.GVFGTrf = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnFGTrfNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -356,6 +358,36 @@ Partial Class FormFGTransList
         Me.GridColumnSizeTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnClassTrf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPTrfMainCode = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCFGTrfMain = New DevExpress.XtraGrid.GridControl()
+        Me.GVFGTrfMain = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn206 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn214 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn215 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn216 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn217 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn218 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn219 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn220 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn221 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn222 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit11 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn223 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn224 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn225 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn226 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn227 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty1_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty2_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty3_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty4_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty5_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty6_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty7_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty8_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty9_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty0_trf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.SLStatus6 = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -695,10 +727,18 @@ Partial Class FormFGTransList
         CType(Me.DEFromReturnQC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromReturnQC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPTrf.SuspendLayout()
+        CType(Me.XTCTrf, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCTrf.SuspendLayout()
+        Me.XTPTrfBarcode.SuspendLayout()
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoTxtPrepOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPTrfMainCode.SuspendLayout()
+        CType(Me.GCFGTrfMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVFGTrfMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
         CType(Me.SLStatus6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3928,20 +3968,38 @@ Partial Class FormFGTransList
         '
         'XTPTrf
         '
-        Me.XTPTrf.Controls.Add(Me.GCFGTrf)
+        Me.XTPTrf.Controls.Add(Me.XTCTrf)
         Me.XTPTrf.Controls.Add(Me.GroupControl4)
         Me.XTPTrf.Name = "XTPTrf"
         Me.XTPTrf.Size = New System.Drawing.Size(1165, 494)
         Me.XTPTrf.Text = "Transfer"
         '
+        'XTCTrf
+        '
+        Me.XTCTrf.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCTrf.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCTrf.Location = New System.Drawing.Point(0, 39)
+        Me.XTCTrf.Name = "XTCTrf"
+        Me.XTCTrf.SelectedTabPage = Me.XTPTrfBarcode
+        Me.XTCTrf.Size = New System.Drawing.Size(1165, 455)
+        Me.XTCTrf.TabIndex = 9
+        Me.XTCTrf.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPTrfBarcode, Me.XTPTrfMainCode})
+        '
+        'XTPTrfBarcode
+        '
+        Me.XTPTrfBarcode.Controls.Add(Me.GCFGTrf)
+        Me.XTPTrfBarcode.Name = "XTPTrfBarcode"
+        Me.XTPTrfBarcode.Size = New System.Drawing.Size(1136, 449)
+        Me.XTPTrfBarcode.Text = "By Barcode"
+        '
         'GCFGTrf
         '
         Me.GCFGTrf.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCFGTrf.Location = New System.Drawing.Point(0, 39)
+        Me.GCFGTrf.Location = New System.Drawing.Point(0, 0)
         Me.GCFGTrf.MainView = Me.GVFGTrf
         Me.GCFGTrf.Name = "GCFGTrf"
         Me.GCFGTrf.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoTxtPrepOrder, Me.RepositoryItemCheckEdit5})
-        Me.GCFGTrf.Size = New System.Drawing.Size(1165, 455)
+        Me.GCFGTrf.Size = New System.Drawing.Size(1136, 449)
         Me.GCFGTrf.TabIndex = 8
         Me.GCFGTrf.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGTrf})
         '
@@ -3953,6 +4011,7 @@ Partial Class FormFGTransList
         Me.GVFGTrf.Name = "GVFGTrf"
         Me.GVFGTrf.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVFGTrf.OptionsBehavior.ReadOnly = True
+        Me.GVFGTrf.OptionsFind.AlwaysVisible = True
         Me.GVFGTrf.OptionsView.ColumnAutoWidth = False
         Me.GVFGTrf.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVFGTrf.OptionsView.ShowFooter = True
@@ -4123,6 +4182,316 @@ Partial Class FormFGTransList
         Me.GridColumnClassTrf.Visible = True
         Me.GridColumnClassTrf.VisibleIndex = 5
         Me.GridColumnClassTrf.Width = 63
+        '
+        'XTPTrfMainCode
+        '
+        Me.XTPTrfMainCode.Controls.Add(Me.GCFGTrfMain)
+        Me.XTPTrfMainCode.Name = "XTPTrfMainCode"
+        Me.XTPTrfMainCode.Size = New System.Drawing.Size(1136, 449)
+        Me.XTPTrfMainCode.Text = "By Main Code"
+        '
+        'GCFGTrfMain
+        '
+        Me.GCFGTrfMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCFGTrfMain.Location = New System.Drawing.Point(0, 0)
+        Me.GCFGTrfMain.MainView = Me.GVFGTrfMain
+        Me.GCFGTrfMain.Name = "GCFGTrfMain"
+        Me.GCFGTrfMain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemCheckEdit11})
+        Me.GCFGTrfMain.Size = New System.Drawing.Size(1136, 449)
+        Me.GCFGTrfMain.TabIndex = 9
+        Me.GCFGTrfMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGTrfMain})
+        '
+        'GVFGTrfMain
+        '
+        Me.GVFGTrfMain.ColumnPanelRowHeight = 35
+        Me.GVFGTrfMain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn206, Me.GridColumn214, Me.GridColumn215, Me.GridColumn216, Me.GridColumn217, Me.GridColumn218, Me.GridColumn219, Me.GridColumn220, Me.GridColumn221, Me.GridColumn222, Me.GridColumn223, Me.GridColumn224, Me.GridColumn225, Me.GridColumn226, Me.GridColumn227, Me.GridColumnqty1_trf, Me.GridColumnqty2_trf, Me.GridColumnqty3_trf, Me.GridColumnqty4_trf, Me.GridColumnqty5_trf, Me.GridColumnqty6_trf, Me.GridColumnqty7_trf, Me.GridColumnqty8_trf, Me.GridColumnqty9_trf, Me.GridColumnqty0_trf})
+        Me.GVFGTrfMain.GridControl = Me.GCFGTrfMain
+        Me.GVFGTrfMain.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn226, "{0:n0}")})
+        Me.GVFGTrfMain.Name = "GVFGTrfMain"
+        Me.GVFGTrfMain.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVFGTrfMain.OptionsBehavior.ReadOnly = True
+        Me.GVFGTrfMain.OptionsFind.AlwaysVisible = True
+        Me.GVFGTrfMain.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVFGTrfMain.OptionsView.ColumnAutoWidth = False
+        Me.GVFGTrfMain.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVFGTrfMain.OptionsView.ShowFooter = True
+        Me.GVFGTrfMain.OptionsView.ShowGroupedColumns = True
+        Me.GVFGTrfMain.OptionsView.ShowGroupPanel = False
+        Me.GVFGTrfMain.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn219, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn206
+        '
+        Me.GridColumn206.Caption = "Number"
+        Me.GridColumn206.FieldName = "fg_trf_number"
+        Me.GridColumn206.Name = "GridColumn206"
+        Me.GridColumn206.OptionsColumn.AllowEdit = False
+        Me.GridColumn206.Visible = True
+        Me.GridColumn206.VisibleIndex = 0
+        Me.GridColumn206.Width = 89
+        '
+        'GridColumn214
+        '
+        Me.GridColumn214.Caption = "From"
+        Me.GridColumn214.FieldName = "from"
+        Me.GridColumn214.Name = "GridColumn214"
+        Me.GridColumn214.OptionsColumn.AllowEdit = False
+        Me.GridColumn214.Visible = True
+        Me.GridColumn214.VisibleIndex = 2
+        Me.GridColumn214.Width = 140
+        '
+        'GridColumn215
+        '
+        Me.GridColumn215.Caption = "To"
+        Me.GridColumn215.FieldName = "to"
+        Me.GridColumn215.Name = "GridColumn215"
+        Me.GridColumn215.OptionsColumn.AllowEdit = False
+        Me.GridColumn215.Visible = True
+        Me.GridColumn215.VisibleIndex = 3
+        Me.GridColumn215.Width = 143
+        '
+        'GridColumn216
+        '
+        Me.GridColumn216.Caption = "Created Date"
+        Me.GridColumn216.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn216.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn216.FieldName = "fg_trf_date"
+        Me.GridColumn216.Name = "GridColumn216"
+        Me.GridColumn216.OptionsColumn.AllowEdit = False
+        Me.GridColumn216.Visible = True
+        Me.GridColumn216.VisibleIndex = 4
+        Me.GridColumn216.Width = 79
+        '
+        'GridColumn217
+        '
+        Me.GridColumn217.Caption = "Status"
+        Me.GridColumn217.FieldName = "report_status"
+        Me.GridColumn217.Name = "GridColumn217"
+        Me.GridColumn217.OptionsColumn.AllowEdit = False
+        Me.GridColumn217.Visible = True
+        Me.GridColumn217.VisibleIndex = 7
+        Me.GridColumn217.Width = 79
+        '
+        'GridColumn218
+        '
+        Me.GridColumn218.Caption = "Prepare Order"
+        Me.GridColumn218.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn218.FieldName = "sales_order_number"
+        Me.GridColumn218.Name = "GridColumn218"
+        Me.GridColumn218.OptionsColumn.AllowEdit = False
+        Me.GridColumn218.Visible = True
+        Me.GridColumn218.VisibleIndex = 1
+        Me.GridColumn218.Width = 89
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
+        '
+        'GridColumn219
+        '
+        Me.GridColumn219.Caption = "Id FG Tef"
+        Me.GridColumn219.FieldName = "id_fg_trf"
+        Me.GridColumn219.Name = "GridColumn219"
+        Me.GridColumn219.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn220
+        '
+        Me.GridColumn220.Caption = "Last Updated"
+        Me.GridColumn220.DisplayFormat.FormatString = "dd MMMM yyyy'/'hh:mm tt"
+        Me.GridColumn220.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn220.FieldName = "last_update"
+        Me.GridColumn220.Name = "GridColumn220"
+        Me.GridColumn220.OptionsColumn.AllowEdit = False
+        Me.GridColumn220.Visible = True
+        Me.GridColumn220.VisibleIndex = 5
+        Me.GridColumn220.Width = 79
+        '
+        'GridColumn221
+        '
+        Me.GridColumn221.Caption = "Updated By"
+        Me.GridColumn221.FieldName = "last_user"
+        Me.GridColumn221.Name = "GridColumn221"
+        Me.GridColumn221.OptionsColumn.AllowEdit = False
+        Me.GridColumn221.Visible = True
+        Me.GridColumn221.VisibleIndex = 6
+        Me.GridColumn221.Width = 89
+        '
+        'GridColumn222
+        '
+        Me.GridColumn222.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn222.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn222.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn222.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn222.Caption = "Select"
+        Me.GridColumn222.ColumnEdit = Me.RepositoryItemCheckEdit11
+        Me.GridColumn222.FieldName = "is_select"
+        Me.GridColumn222.Name = "GridColumn222"
+        '
+        'RepositoryItemCheckEdit11
+        '
+        Me.RepositoryItemCheckEdit11.AutoHeight = False
+        Me.RepositoryItemCheckEdit11.Name = "RepositoryItemCheckEdit11"
+        Me.RepositoryItemCheckEdit11.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit11.ValueUnchecked = "No"
+        '
+        'GridColumn223
+        '
+        Me.GridColumn223.Caption = "Code"
+        Me.GridColumn223.FieldName = "code"
+        Me.GridColumn223.Name = "GridColumn223"
+        Me.GridColumn223.Visible = True
+        Me.GridColumn223.VisibleIndex = 9
+        Me.GridColumn223.Width = 79
+        '
+        'GridColumn224
+        '
+        Me.GridColumn224.Caption = "Description"
+        Me.GridColumn224.FieldName = "name"
+        Me.GridColumn224.Name = "GridColumn224"
+        Me.GridColumn224.Visible = True
+        Me.GridColumn224.VisibleIndex = 10
+        Me.GridColumn224.Width = 126
+        '
+        'GridColumn225
+        '
+        Me.GridColumn225.Caption = "Size Type"
+        Me.GridColumn225.FieldName = "sizetype"
+        Me.GridColumn225.Name = "GridColumn225"
+        Me.GridColumn225.Visible = True
+        Me.GridColumn225.VisibleIndex = 11
+        Me.GridColumn225.Width = 66
+        '
+        'GridColumn226
+        '
+        Me.GridColumn226.Caption = "Total Qty"
+        Me.GridColumn226.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumn226.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn226.FieldName = "qty"
+        Me.GridColumn226.Name = "GridColumn226"
+        Me.GridColumn226.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
+        Me.GridColumn226.Visible = True
+        Me.GridColumn226.VisibleIndex = 22
+        Me.GridColumn226.Width = 54
+        '
+        'GridColumn227
+        '
+        Me.GridColumn227.Caption = "Class"
+        Me.GridColumn227.FieldName = "class"
+        Me.GridColumn227.Name = "GridColumn227"
+        Me.GridColumn227.Visible = True
+        Me.GridColumn227.VisibleIndex = 8
+        Me.GridColumn227.Width = 63
+        '
+        'GridColumnqty1_trf
+        '
+        Me.GridColumnqty1_trf.Caption = "qty1"
+        Me.GridColumnqty1_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty1_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty1_trf.FieldName = "qty1"
+        Me.GridColumnqty1_trf.Name = "GridColumnqty1_trf"
+        Me.GridColumnqty1_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty1", "{0:N0}")})
+        Me.GridColumnqty1_trf.Visible = True
+        Me.GridColumnqty1_trf.VisibleIndex = 12
+        '
+        'GridColumnqty2_trf
+        '
+        Me.GridColumnqty2_trf.Caption = "qty2"
+        Me.GridColumnqty2_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty2_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty2_trf.FieldName = "qty2"
+        Me.GridColumnqty2_trf.Name = "GridColumnqty2_trf"
+        Me.GridColumnqty2_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty2", "{0:N0}")})
+        Me.GridColumnqty2_trf.Visible = True
+        Me.GridColumnqty2_trf.VisibleIndex = 13
+        '
+        'GridColumnqty3_trf
+        '
+        Me.GridColumnqty3_trf.Caption = "qty3"
+        Me.GridColumnqty3_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty3_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty3_trf.FieldName = "qty3"
+        Me.GridColumnqty3_trf.Name = "GridColumnqty3_trf"
+        Me.GridColumnqty3_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", "{0:N0}")})
+        Me.GridColumnqty3_trf.Visible = True
+        Me.GridColumnqty3_trf.VisibleIndex = 14
+        '
+        'GridColumnqty4_trf
+        '
+        Me.GridColumnqty4_trf.Caption = "qty4"
+        Me.GridColumnqty4_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty4_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty4_trf.FieldName = "qty4"
+        Me.GridColumnqty4_trf.Name = "GridColumnqty4_trf"
+        Me.GridColumnqty4_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty4", "{0:N0}")})
+        Me.GridColumnqty4_trf.Visible = True
+        Me.GridColumnqty4_trf.VisibleIndex = 15
+        '
+        'GridColumnqty5_trf
+        '
+        Me.GridColumnqty5_trf.Caption = "qty5"
+        Me.GridColumnqty5_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty5_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty5_trf.FieldName = "qty5"
+        Me.GridColumnqty5_trf.Name = "GridColumnqty5_trf"
+        Me.GridColumnqty5_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty5", "{0:N0}")})
+        Me.GridColumnqty5_trf.Visible = True
+        Me.GridColumnqty5_trf.VisibleIndex = 16
+        '
+        'GridColumnqty6_trf
+        '
+        Me.GridColumnqty6_trf.Caption = "qty6"
+        Me.GridColumnqty6_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty6_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty6_trf.FieldName = "qty6"
+        Me.GridColumnqty6_trf.Name = "GridColumnqty6_trf"
+        Me.GridColumnqty6_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", "{0:N0}")})
+        Me.GridColumnqty6_trf.Visible = True
+        Me.GridColumnqty6_trf.VisibleIndex = 17
+        '
+        'GridColumnqty7_trf
+        '
+        Me.GridColumnqty7_trf.Caption = "qty7"
+        Me.GridColumnqty7_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty7_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty7_trf.FieldName = "qty7"
+        Me.GridColumnqty7_trf.Name = "GridColumnqty7_trf"
+        Me.GridColumnqty7_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", "{0:N0}")})
+        Me.GridColumnqty7_trf.Visible = True
+        Me.GridColumnqty7_trf.VisibleIndex = 18
+        '
+        'GridColumnqty8_trf
+        '
+        Me.GridColumnqty8_trf.Caption = "qty8"
+        Me.GridColumnqty8_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty8_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty8_trf.FieldName = "qty8"
+        Me.GridColumnqty8_trf.Name = "GridColumnqty8_trf"
+        Me.GridColumnqty8_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", "{0:N0}")})
+        Me.GridColumnqty8_trf.Visible = True
+        Me.GridColumnqty8_trf.VisibleIndex = 19
+        '
+        'GridColumnqty9_trf
+        '
+        Me.GridColumnqty9_trf.Caption = "qty9"
+        Me.GridColumnqty9_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty9_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty9_trf.FieldName = "qty9"
+        Me.GridColumnqty9_trf.Name = "GridColumnqty9_trf"
+        Me.GridColumnqty9_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty9", "{0:N0}")})
+        Me.GridColumnqty9_trf.Visible = True
+        Me.GridColumnqty9_trf.VisibleIndex = 20
+        '
+        'GridColumnqty0_trf
+        '
+        Me.GridColumnqty0_trf.Caption = "qty0"
+        Me.GridColumnqty0_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty0_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty0_trf.FieldName = "qty0"
+        Me.GridColumnqty0_trf.Name = "GridColumnqty0_trf"
+        Me.GridColumnqty0_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty0", "{0:N0}")})
+        Me.GridColumnqty0_trf.Visible = True
+        Me.GridColumnqty0_trf.VisibleIndex = 21
         '
         'GroupControl4
         '
@@ -6496,10 +6865,18 @@ Partial Class FormFGTransList
         CType(Me.DEFromReturnQC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromReturnQC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPTrf.ResumeLayout(False)
+        CType(Me.XTCTrf, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCTrf.ResumeLayout(False)
+        Me.XTPTrfBarcode.ResumeLayout(False)
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVFGTrf, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoTxtPrepOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPTrfMainCode.ResumeLayout(False)
+        CType(Me.GCFGTrfMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVFGTrfMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.GroupControl4.PerformLayout()
@@ -7165,4 +7542,36 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnqty8_ret As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnqty9_ret As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnqty0_ret As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCTrf As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPTrfBarcode As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPTrfMainCode As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCFGTrfMain As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVFGTrfMain As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn206 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn214 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn215 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn216 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn217 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn218 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn219 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn220 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn221 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn222 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit11 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn223 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn224 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn225 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn226 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn227 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty1_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty2_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty3_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty4_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty5_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty6_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty7_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty8_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty9_trf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty0_trf As DevExpress.XtraGrid.Columns.GridColumn
 End Class

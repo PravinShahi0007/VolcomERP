@@ -42,6 +42,7 @@
         setCaptionSize(GVSOMain)
         setCaptionSize(GVSalesMain)
         setCaptionSize(GVSalesReturnMain)
+        setCaptionSize(GVFGTrfMain)
 
         ActiveControl = DEFromRec
         page_active = "rec"
@@ -302,13 +303,41 @@
         Dim w_status As String = If(SLStatus6.EditValue.ToString = "0", "", "AND trf.id_report_status = " + SLStatus6.EditValue.ToString)
 
         Dim query_c As ClassFGTrf = New ClassFGTrf()
-        Dim data As DataTable = query_c.transactionList("AND (trf.fg_trf_date>='" + date_from_selected + "' AND trf.fg_trf_date<='" + date_until_selected + "') " + w_status, "1")
+        Dim data As DataTable = query_c.transactionList("AND (trf.fg_trf_date>='" + date_from_selected + "' AND trf.fg_trf_date<='" + date_until_selected + "') " + w_status, "1", True)
         GCFGTrf.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewTrfMain()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromTrf.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilTrf.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim w_status As String = If(SLStatus6.EditValue.ToString = "0", "", "AND trf.id_report_status = " + SLStatus6.EditValue.ToString)
+
+        Dim query_c As ClassFGTrf = New ClassFGTrf()
+        Dim data As DataTable = query_c.transactionList("AND (trf.fg_trf_date>='" + date_from_selected + "' AND trf.fg_trf_date<='" + date_until_selected + "') " + w_status, "1", False)
+        GCFGTrfMain.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnViewTrf_Click(sender As Object, e As EventArgs) Handles BtnViewTrf.Click
-        viewTrf()
+        If XTCTrf.SelectedTabPageIndex = 0 Then
+            viewTrf()
+        Else
+            viewTrfMain()
+        End If
     End Sub
 
     Sub viewRQC()
@@ -643,16 +672,45 @@
     End Sub
 
     Private Sub BtnExportToXLSTrf_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSTrf.Click
-        If GVFGTrf.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCTrf.SelectedTabPageIndex = 0 Then
+            If GVFGTrf.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_trf.xlsx"
+                exportToXLS(path, "trf", GCFGTrf)
+                Cursor = Cursors.Default
             End If
-            path = path + "tl_trf.xlsx"
-            exportToXLS(path, "trf", GCFGTrf)
-            Cursor = Cursors.Default
+        Else
+            If GVFGTrfMain.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVFGTrfMain.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVFGTrfMain.Columns.Count - 1
+                    If GVFGTrfMain.Columns(i).FieldName.Contains("qty") And GVFGTrfMain.Columns(i).FieldName <> "qty" Then
+                        GVFGTrfMain.Columns(i).Caption = GVFGTrfMain.Columns(i).FieldName.ToString
+                    End If
+                Next
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "tl_trf_main.xlsx"
+                exportToXLS(path, "trf", GCFGTrfMain)
+
+                'restore column opt
+                GVFGTrfMain.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
