@@ -27,9 +27,9 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
     End Sub
     Sub view_prod_order_rec()
         Dim query = "SELECT a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,b.id_prod_order ,a.prod_order_rec_number,a.prod_order_rec_note,
-                    DATE_ADD(wo.prod_order_wo_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date,
+                    DATE_ADD(wo.prod_order_wo_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date, i.delivery,
                     delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, rec_qty.sum_qty,wo.price_pc,dsg.id_design,
-                    prod_order_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to,dsg.design_code,CONCAT(LEFT(dsg.design_display_name,3),' ',dsg.design_name) AS design_display_name, RIGHT(dsg.design_display_name,3) AS color 
+                    prod_order_rec_date, f.comp_name AS comp_from,f.comp_number AS comp_from_code,d.comp_name AS comp_to,dsg.design_code,CONCAT(LEFT(dsg.design_display_name,3),' ',dsg.design_name) AS design_display_name, RIGHT(dsg.design_display_name,3) AS color 
                     FROM tb_prod_order_rec a  
                     INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order 
                     LEFT JOIN 
@@ -204,6 +204,25 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     Close()
                 Else
                     stopCustom("Data is empty.")
+                End If
+            ElseIf id_pop_up = "4" Then 'final clearance
+                If GVProdRec.RowCount > 0 Then
+                    FormProductionFinalClearDet.id_prod_order = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionFinalClearDet.id_prod_order_rec = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+                    FormProductionFinalClearDet.id_design = GVProdRec.GetFocusedRowCellValue("id_design").ToString
+                    FormProductionFinalClearDet.TxtOrder.Text = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
+                    FormProductionFinalClearDet.TERec.Text = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
+                    FormProductionFinalClearDet.TxtSeason.Text = GVProdRec.GetFocusedRowCellValue("season").ToString
+                    FormProductionFinalClearDet.TxtDel.Text = GVProdRec.GetFocusedRowCellValue("delivery").ToString
+                    FormProductionFinalClearDet.TxtVendorCode.Text = GVProdRec.GetFocusedRowCellValue("comp_from_code").ToString
+                    FormProductionFinalClearDet.TxtVendorName.Text = GVProdRec.GetFocusedRowCellValue("comp_from").ToString
+                    FormProductionFinalClearDet.TxtStyleCode.Text = GVProdRec.GetFocusedRowCellValue("design_code").ToString
+                    FormProductionFinalClearDet.TxtStyle.Text = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
+                    FormProductionFinalClearDet.viewDetail()
+                    pre_viewImages("2", FormProductionFinalClearDet.PEView, FormProductionFinalClearDet.id_design, False)
+                    Close()
+                Else
+                    warningCustom("No data selected.")
                 End If
             End If
 

@@ -14,6 +14,7 @@ Public Class FormProductionFinalClearDet
     Public dt As New DataTable
     Dim dt_exist As New DataTable
     Dim is_use_qc_report As String = "-1"
+    Public id_prod_order_rec As String = "-1"
 
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -720,11 +721,14 @@ Public Class FormProductionFinalClearDet
 
     Private Sub BtnBrowsePO_Click(sender As Object, e As EventArgs) Handles BtnBrowsePO.Click
         Cursor = Cursors.WaitCursor
-        FormPopUpProd.id_pop_up = "9"
-        FormPopUpProd.ShowDialog()
-        If id_prod_order <> "-1" Then
-            LEPLCategory.Focus()
-        End If
+        'FormPopUpProd.id_pop_up = "9"
+        'FormPopUpProd.ShowDialog()
+        'If id_prod_order <> "-1" Then
+        'LEPLCategory.Focus()
+        'End If
+        FormPopUpRecQC.id_pop_up = "3"
+        FormPopUpRecQC.ShowDialog()
+
         Cursor = Cursors.Default
     End Sub
 
