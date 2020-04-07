@@ -3785,7 +3785,7 @@ Public Class FormImportExcel
 
                     'kondisi jika tujuan normal/sale
                     Dim cond_acc As String = ""
-                    If FormSalesOrderDet.id_account_type = "1" Or FormSalesOrderDet.id_account_type = "2" Then
+                    If (FormSalesOrderDet.id_account_type = "1" Or FormSalesOrderDet.id_account_type = "2") And FormSalesOrderDet.is_transfer_data = 2 Then
                         cond_acc = "AND [id_design_cat]='" + FormSalesOrderDet.id_account_type + "' "
                     End If
 
