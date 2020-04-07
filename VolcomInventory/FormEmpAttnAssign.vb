@@ -5,6 +5,7 @@
 
     Public is_all As String = "-1"
     Public is_user_mapping As String = "-1"
+    Public is_departement As String = "-1"
 
     Private Sub FormEmpAttnAssign_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -27,7 +28,7 @@
     Sub load_dept()
         Dim query As String = "SELECT id_departement,departement FROM tb_m_departement a "
         If Not is_all = "1" Then
-            If is_user_mapping = "1" Then
+            If is_user_mapping = "1" Or is_departement Then
                 query += "WHERE id_departement IN (SELECT id_departement FROM tb_assign_sch_map WHERE id_user = " + id_user + ") ORDER BY a.departement ASC "
             Else
                 query += "WHERE id_departement='" + id_departement_user + "' ORDER BY a.departement ASC "

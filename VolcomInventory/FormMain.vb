@@ -7649,21 +7649,45 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGTransList" Then
             Dim page As String = FormFGTransList.page_active
             If page = "rec" Then
-                print(FormFGTransList.GCPL, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
+                If FormFGTransList.XTCRec.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCPL, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
+                Else
+                    print(FormFGTransList.GCPLMain, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
+                End If
             ElseIf page = "del" Then
-                print(FormFGTransList.GCSalesDelOrder, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
+                If FormFGTransList.XTCDel.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSalesDelOrder, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
+                Else
+                    print(FormFGTransList.GCSalesDelOrderMain, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
+                End If
             ElseIf page = "ret" Then
-                print(FormFGTransList.GCSalesReturn, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
+                If FormFGTransList.XTCReturn.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSalesReturn, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
+                Else
+                    print(FormFGTransList.GCSalesReturnMain, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
+                End If
             ElseIf page = "nsr" Then
                 print(FormFGTransList.GCNonStock, "NON STOCK (" + FormFGTransList.DEFromNonStock.Text + " - " + FormFGTransList.DEUntilNonStock.Text + ")")
             ElseIf page = "ret_trf" Then
                 print(FormFGTransList.GCSalesReturnQC, "RETURN TRANSFER (" + FormFGTransList.DEFromReturnQC.Text + " - " + FormFGTransList.DEUntilReturnQC.Text + ")")
             ElseIf page = "trf" Then
-                print(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
+                If FormFGTransList.XTCTrf.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
+                Else
+                    print(FormFGTransList.GCFGTrfMain, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
+                End If
             ElseIf page = "sal" Then
-                print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                If FormFGTransList.XTCSales.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSales, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                Else
+                    print(FormFGTransList.GCSalesMain, "SALES (" + FormFGTransList.DEFromSal.Text + " - " + FormFGTransList.DEUntilSal.Text + ")")
+                End If
             ElseIf page = "order" Then
-                print(FormFGTransList.GCSO, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
+                If FormFGTransList.XTCSO.SelectedTabPageIndex = 0 Then
+                    print(FormFGTransList.GCSO, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
+                Else
+                    print(FormFGTransList.GCSOMain, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
+                End If
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")
@@ -8091,6 +8115,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1 Then
                 print_raw(FormBudgetProdDemand.GCProposed, "")
             End If
+        ElseIf formName = "FormTabunganMissing" Then
+            FormTabunganMissing.print()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8951,6 +8977,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormBudgetProdDemand" Then
             FormBudgetProdDemand.Close()
             FormBudgetProdDemand.Dispose()
+        ElseIf formName = "FormTabunganMissing" Then
+            FormTabunganMissing.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -14559,6 +14587,33 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpLeave.Show()
             FormEmpLeave.WindowState = FormWindowState.Maximized
             FormEmpLeave.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBTabunganMissing_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBTabunganMissing.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormTabunganMissing.MdiParent = Me
+            FormTabunganMissing.Show()
+            FormTabunganMissing.WindowState = FormWindowState.Maximized
+            FormTabunganMissing.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBScheduleProposeDepartement_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBScheduleProposeDepartement.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnAssign.MdiParent = Me
+            FormEmpAttnAssign.is_departement = "1"
+            FormEmpAttnAssign.Show()
+            FormEmpAttnAssign.WindowState = FormWindowState.Maximized
+            FormEmpAttnAssign.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

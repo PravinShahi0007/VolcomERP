@@ -744,7 +744,7 @@ GROUP BY rec.`id_prod_order`"
             FormEmpLeaveDet.report_mark_type = "99"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
-        ElseIf report_mark_type = "100" Then
+        ElseIf report_mark_type = "100" Or report_mark_type = "240" Then
             'propose schedule with approval
             FormEmpAttnAssignDet.id_emp_assign_sch = id_report
             FormEmpAttnAssignDet.is_view = "1"
@@ -1742,7 +1742,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
-        ElseIf report_mark_type = "100" Then
+        ElseIf report_mark_type = "100" Or report_mark_type = "240" Then
             'Propose schedule with approval
             table_name = "tb_emp_assign_sch"
             field_id = "id_assign_sch"
@@ -2443,7 +2443,7 @@ GROUP BY rec.`id_prod_order`"
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("employee_name").ToString
                     End If
-                ElseIf report_mark_type = "100" Then
+                ElseIf report_mark_type = "100" Or report_mark_type = "240" Then
                     query = "SELECT sch.id_departement, dep.`departement`, dep_sub.departement_sub FROM `tb_emp_assign_sch` sch
                          LEFT JOIN tb_m_departement dep ON dep.`id_departement`=sch.`id_departement`
                          LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.`id_departement_sub`=sch.`id_departement_sub`
