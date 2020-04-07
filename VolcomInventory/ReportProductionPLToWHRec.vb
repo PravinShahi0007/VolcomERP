@@ -19,7 +19,7 @@
                 FROM tb_report_mark a
                 INNER JOIN tb_lookup_report_status b ON a.id_report_status = b.id_report_status
                 LEFT JOIN tb_m_employee d ON d.id_employee = a.id_employee
-                WHERE a.report_mark_type='37' AND a.id_report='37' " + If(id_pre = "-1", "AND a.is_use = 1 AND a.id_mark = 2", "AND (a.level IS NULL OR a.level = 1)") + " AND a.id_report_status = 1
+                WHERE a.report_mark_type='37' AND a.id_report='" + id_pl_prod_order_rec + "' " + If(id_pre = "-1", "AND a.is_use = 1 AND a.id_mark = 2", "AND (a.level IS NULL OR a.level = 1)") + " AND a.id_report_status = 1
                 ORDER BY a.id_report_status, a.id_mark_asg)
                 UNION
                 (SELECT 4 AS `order`, 'Approved By,' AS report_status_display, '' AS employee_name, 'WH Team Leader' AS role, '' AS date_time)
