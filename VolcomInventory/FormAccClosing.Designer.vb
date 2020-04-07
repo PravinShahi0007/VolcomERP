@@ -40,6 +40,10 @@ Partial Class FormAccClosing
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,6 +51,12 @@ Partial Class FormAccClosing
         CType(Me.GCClosing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVClosing, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerControl1.SuspendLayout()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -102,10 +112,10 @@ Partial Class FormAccClosing
         '
         Me.GCClosing.ContextMenuStrip = Me.ViewMenu
         Me.GCClosing.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCClosing.Location = New System.Drawing.Point(0, 38)
+        Me.GCClosing.Location = New System.Drawing.Point(2, 20)
         Me.GCClosing.MainView = Me.GVClosing
         Me.GCClosing.Name = "GCClosing"
-        Me.GCClosing.Size = New System.Drawing.Size(1194, 520)
+        Me.GCClosing.Size = New System.Drawing.Size(1190, 224)
         Me.GCClosing.TabIndex = 1
         Me.GCClosing.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVClosing})
         '
@@ -246,12 +256,59 @@ Partial Class FormAccClosing
         Me.GridColumn8.VisibleIndex = 3
         Me.GridColumn8.Width = 262
         '
+        'SplitContainerControl1
+        '
+        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerControl1.Horizontal = False
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 38)
+        Me.SplitContainerControl1.Name = "SplitContainerControl1"
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl2)
+        Me.SplitContainerControl1.Panel1.Text = "Panel1"
+        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl1)
+        Me.SplitContainerControl1.Panel2.Text = "Panel2"
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1194, 520)
+        Me.SplitContainerControl1.SplitterPosition = 246
+        Me.SplitContainerControl1.TabIndex = 2
+        Me.SplitContainerControl1.Text = "SplitContainerControl1"
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.Controls.Add(Me.GCClosing)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(1194, 246)
+        Me.GroupControl2.TabIndex = 2
+        Me.GroupControl2.Text = "Journal"
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(1194, 269)
+        Me.GroupControl1.TabIndex = 0
+        Me.GroupControl1.Text = "Transaction"
+        '
+        '
+        '
+        '
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID Acc Trans"
+        Me.GridColumn11.FieldName = "id_report"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        '
+        '
+        '
         'FormAccClosing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1194, 558)
-        Me.Controls.Add(Me.GCClosing)
+        Me.Controls.Add(Me.SplitContainerControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -266,6 +323,12 @@ Partial Class FormAccClosing
         CType(Me.GCClosing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVClosing, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.ResumeLayout(False)
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -290,4 +353,14 @@ Partial Class FormAccClosing
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BClosing As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
