@@ -70,12 +70,13 @@ Public Class FormProductionFinalClearDet
             DEForm.Text = view_date(0)
             TxtCodeCompFrom.Focus()
 
-            If id_prod_order <> "-1" Then
+            If id_prod_order_rec <> "-1" Then
                 Dim query As String = "SELECT po.id_prod_order, po.prod_order_number, po.prod_order_date, 
                 comp.comp_number AS `vendor_number`, comp.comp_name AS `vendor_name`, 
                 d.id_design, d.design_code, d.design_display_name, ss.season, del.delivery, po.id_report_status,
                 cfr.id_comp AS `id_comp_from`,cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`, po.is_use_qc_report
-                FROM tb_prod_order po
+                FROM tb_prod_order_rec rec 
+                INNER JOIN tb_prod_order po ON po.id_prod_order=rec.id_prod_order
                 INNER JOIN tb_prod_order_wo wo On wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor='1' AND wo.id_report_status!=5
                 INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price = wo.id_ovh_price
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
@@ -85,7 +86,7 @@ Public Class FormProductionFinalClearDet
                 INNER JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
                 INNER JOIN tb_season ss ON ss.id_season = del.id_season
                 INNER JOIN tb_m_comp cfr ON cfr.id_comp = 74
-                WHERE po.id_prod_order='" + id_prod_order + "' "
+                WHERE rec.id_prod_order_rec='" + id_prod_order_rec + "' "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 is_use_qc_report = data.Rows(0)("is_use_qc_report").ToString
                 id_design = data.Rows(0)("id_design").ToString
@@ -93,6 +94,7 @@ Public Class FormProductionFinalClearDet
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_number_from").ToString
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
                 TxtOrder.Text = data.Rows(0)("prod_order_number").ToString
+                TERec.Text = data.Rows(0)("prod_order_rec_number").ToString
                 TxtSeason.Text = data.Rows(0)("season").ToString
                 TxtDel.Text = data.Rows(0)("delivery").ToString
                 TxtVendorCode.Text = data.Rows(0)("vendor_number").ToString
