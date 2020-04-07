@@ -349,7 +349,7 @@ Partial Class FormAccClosing
         Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn13.Caption = "Type"
-        Me.GridColumn13.FieldName = "report_mark_type_name"
+        Me.GridColumn13.FieldName = "type"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 0
