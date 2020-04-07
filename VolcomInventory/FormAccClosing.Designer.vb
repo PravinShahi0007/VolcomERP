@@ -43,7 +43,15 @@ Partial Class FormAccClosing
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCReport = New DevExpress.XtraGrid.GridControl()
+        Me.GVReport = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +65,8 @@ Partial Class FormAccClosing
         Me.GroupControl2.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.GCReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -283,6 +293,7 @@ Partial Class FormAccClosing
         '
         'GroupControl1
         '
+        Me.GroupControl1.Controls.Add(Me.GCReport)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
@@ -290,9 +301,23 @@ Partial Class FormAccClosing
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Transaction"
         '
+        'GCReport
         '
+        Me.GCReport.ContextMenuStrip = Me.ViewMenu
+        Me.GCReport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReport.Location = New System.Drawing.Point(2, 20)
+        Me.GCReport.MainView = Me.GVReport
+        Me.GCReport.Name = "GCReport"
+        Me.GCReport.Size = New System.Drawing.Size(1190, 247)
+        Me.GCReport.TabIndex = 2
+        Me.GCReport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReport})
         '
+        'GVReport
         '
+        Me.GVReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn20, Me.GridColumn21, Me.GridColumn13, Me.GridColumn14, Me.GridColumn17, Me.GridColumn19})
+        Me.GVReport.GridControl = Me.GCReport
+        Me.GVReport.Name = "GVReport"
+        Me.GVReport.OptionsView.ShowGroupPanel = False
         '
         'GridColumn11
         '
@@ -300,8 +325,72 @@ Partial Class FormAccClosing
         Me.GridColumn11.FieldName = "id_report"
         Me.GridColumn11.Name = "GridColumn11"
         '
+        'GridColumn20
         '
+        Me.GridColumn20.Caption = "Date Refference"
+        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn20.FieldName = "date_reference"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        Me.GridColumn20.Width = 262
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Report Mark Type"
+        Me.GridColumn21.FieldName = "report_mark_type"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.Caption = "Type"
+        Me.GridColumn13.FieldName = "report_mark_type_name"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        Me.GridColumn13.Width = 111
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn14.Caption = "Status"
+        Me.GridColumn14.FieldName = "report_status"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 170
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Created Date"
+        Me.GridColumn17.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn17.FieldName = "date_created"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        Me.GridColumn17.Width = 260
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn19.Caption = "Report Number"
+        Me.GridColumn19.FieldName = "report_number"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        Me.GridColumn19.Width = 324
         '
         'FormAccClosing
         '
@@ -329,6 +418,8 @@ Partial Class FormAccClosing
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
+        CType(Me.GCReport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReport, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -356,6 +447,8 @@ Partial Class FormAccClosing
     Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCReport As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVReport As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
