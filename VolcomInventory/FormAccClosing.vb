@@ -70,6 +70,14 @@ FROM tb_pl_prod_order_rec r
 INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
 INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = 37
 WHERE r.pl_prod_order_rec_date<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND r.id_report_status !=5 AND r.id_report_status !=6"
+        'DEL
+        query += " UNION
+SELECT r.id_pl_sales_order_del AS id_report,rmt.report_mark_type AS report_mark_type,r.pl_sales_order_del_date AS date_reference,rmt.report_mark_type_name AS `type`
+,rs.report_status AS report_status,r.pl_sales_order_del_date AS date_created, r.pl_sales_order_del_number AS report_number 
+FROM tb_pl_sales_order_del r
+INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
+INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = 43
+WHERE r.pl_sales_order_del_date<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND r.id_report_status !=5 AND r.id_report_status !=6"
 
 
         Dim data_report As DataTable = execute_query(query, -1, True, "", "", "", "")
