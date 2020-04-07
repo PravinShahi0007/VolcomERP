@@ -1674,6 +1674,17 @@ Public Class FormSalesPOSDet
                 id_acc_sales = data.Rows(0)("id_acc_sales").ToString
                 id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
                 id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+
+                'prm
+                If LEInvType.EditValue.ToString = "4" Then
+                    If id_acc_ar = "0" Then
+                        id_acc_ar = "52"
+                    End If
+                    If id_acc_sales_return = "0" Then
+                        id_acc_sales_return = "1554"
+                    End If
+                End If
+
                 viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
                 If cond_coa = False Then
                     Cursor = Cursors.Default
@@ -1803,6 +1814,17 @@ Public Class FormSalesPOSDet
                     id_acc_sales = data.Rows(0)("id_acc_sales").ToString
                     id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
                     id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+
+                    'prm
+                    If typ = "4" Then
+                        If id_acc_ar = "0" Then
+                            id_acc_ar = "52"
+                        End If
+                        If id_acc_sales_return = "0" Then
+                            id_acc_sales_return = "1554"
+                        End If
+                    End If
+
                     viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
                     If cond_coa = False Then
                         Cursor = Cursors.Default
