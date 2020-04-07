@@ -62,6 +62,23 @@ SELECT pn.id_pn AS id_report,'159' AS report_mark_type,pn.date_payment AS date_r
 FROM `tb_pn` pn 
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
 WHERE DATE(pn.date_payment) <= '" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND pn.id_report_status !=5 AND pn.id_report_status !=6"
+        'REC FG
+        query += " UNION
+SELECT r.id_pl_prod_order_rec AS id_report,rmt.report_mark_type AS report_mark_type,r.pl_prod_order_rec_date AS date_reference,rmt.report_mark_type_name AS `type`
+,rs.report_status AS report_status,r.pl_prod_order_rec_date AS date_created, r.pl_prod_order_rec_number AS report_number 
+FROM tb_pl_prod_order_rec r
+INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
+INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = 37
+WHERE r.pl_prod_order_rec_date<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND r.id_report_status !=5 AND r.id_report_status !=6"
+        'DEL
+        query += " UNION
+SELECT r.id_pl_sales_order_del AS id_report,rmt.report_mark_type AS report_mark_type,r.pl_sales_order_del_date AS date_reference,rmt.report_mark_type_name AS `type`
+,rs.report_status AS report_status,r.pl_sales_order_del_date AS date_created, r.pl_sales_order_del_number AS report_number 
+FROM tb_pl_sales_order_del r
+INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
+INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = 43
+WHERE r.pl_sales_order_del_date<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND r.id_report_status !=5 AND r.id_report_status !=6"
+
 
         Dim data_report As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCReport.DataSource = data_report
