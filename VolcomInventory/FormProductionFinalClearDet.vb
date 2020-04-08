@@ -71,7 +71,7 @@ Public Class FormProductionFinalClearDet
             TxtCodeCompFrom.Focus()
 
             If id_prod_order_rec <> "-1" Then
-                Dim query As String = "SELECT po.id_prod_order, po.prod_order_number, po.prod_order_date, 
+                Dim query As String = "SELECT po.id_prod_order, po.prod_order_number,rec.prod_order_rec_number, po.prod_order_date, 
                 comp.comp_number AS `vendor_number`, comp.comp_name AS `vendor_name`, 
                 d.id_design, d.design_code, d.design_display_name, ss.season, del.delivery, po.id_report_status,
                 cfr.id_comp AS `id_comp_from`,cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`, po.is_use_qc_report
@@ -915,6 +915,60 @@ Public Class FormProductionFinalClearDet
 
     Sub getLimitQty()
         Cursor = Cursors.WaitCursor
+        'Dim query As String = "SELECT pod.id_prod_order_det, pod.id_prod_order,pd_prod.id_product,
+        '    IFNULL(rec.prod_order_rec_det_qty,0) AS `total_rec`,
+        '    IFNULL(ro.tot_ret_out,0) AS `total_ret_out`, 
+        '    IFNULL(ri.tot_ret_in,0) AS `total_ret_in`, 
+        '    IFNULL(adj_in.tot_adj_in,0) AS `total_adj_in`,
+        '    IFNULL(adj_out.tot_adj_out,0) AS `total_adj_out`,
+        '    IFNULL(qcr.tot_qc_report,0) AS `total_qc_report`,
+        '    ((SELECT total_rec) - (SELECT total_ret_out) + (SELECT total_ret_in)  + (SELECT total_adj_in) - (SELECT total_adj_out) - (SELECT total_qc_report)) AS `qty_limit`
+        '    FROM tb_prod_order_det pod
+        '    INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pod.id_prod_demand_product
+        '    LEFT JOIN (
+        '     SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS  prod_order_rec_det_qty
+        '     FROM tb_prod_order_rec_det b1
+        '     INNER JOIN tb_prod_order_rec b2 ON b1.id_prod_order_rec = b2.id_prod_order_rec
+        '     WHERE b2.id_report_status =6 AND b2.id_prod_order=" + id_prod_order + "
+        '     GROUP BY b1.id_prod_order_det
+        '    ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
+        '    LEFT JOIN (
+        '     SELECT d1.id_prod_order_det, d2.id_prod_order_ret_out, 
+        '     SUM(d1.prod_order_ret_out_det_qty) AS tot_ret_out 
+        '     FROM tb_prod_order_ret_out_det d1 
+        '     INNER JOIN tb_prod_order_ret_out d2 ON d1.id_prod_order_ret_out = d2.id_prod_order_ret_out 
+        '     WHERE d2.id_report_status !=5 AND d2.id_prod_order=" + id_prod_order + "
+        '     GROUP BY d1.id_prod_order_det
+        '    ) ro ON ro.id_prod_order_det = pod.id_prod_order_det 
+        '    LEFT JOIN(
+        '     SELECT e1.id_prod_order_det, e2.id_prod_order_ret_in,SUM(e1.prod_order_ret_in_det_qty) AS tot_ret_in 
+        '     FROM tb_prod_order_ret_in_det e1 
+        '     INNER JOIN tb_prod_order_ret_in e2 ON e1.id_prod_order_ret_in = e2.id_prod_order_ret_in 
+        '     WHERE e2.id_report_status =6 AND e2.id_prod_order=" + id_prod_order + "
+        '     GROUP BY e1.id_prod_order_det
+        '    ) ri ON ri.id_prod_order_det = pod.id_prod_order_det
+        '    LEFT JOIN(
+        '     SELECT adj_in_d.id_prod_order_det, adj_in_d.id_prod_order_qc_adj_in_det,SUM(adj_in_d.prod_order_qc_adj_in_det_qty) AS tot_adj_in
+        '     FROM tb_prod_order_qc_adj_in_det adj_in_d
+        '     INNER JOIN tb_prod_order_qc_adj_in adj_in ON adj_in_d.id_prod_order_qc_adj_in = adj_in.id_prod_order_qc_adj_in 
+        '     WHERE adj_in.id_report_status =6 AND adj_in.id_prod_order=" + id_prod_order + "
+        '     GROUP BY adj_in_d.id_prod_order_det
+        '    ) adj_in ON pod.id_prod_order_det = adj_in.id_prod_order_det
+        '    LEFT JOIN (
+        '     SELECT adj_out_d.id_prod_order_det, adj_out_d.id_prod_order_qc_adj_out_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
+        '     FROM tb_prod_order_qc_adj_out_det adj_out_d
+        '     INNER JOIN tb_prod_order_qc_adj_out adj_out ON adj_out_d.id_prod_order_qc_adj_out = adj_out.id_prod_order_qc_adj_out 
+        '     WHERE adj_out.id_report_status !=5 AND adj_out.id_prod_order=" + id_prod_order + "
+        '     GROUP BY adj_out_d.id_prod_order_det
+        '    ) adj_out ON pod.id_prod_order_det = adj_out.id_prod_order_det
+        '    LEFT JOIN (
+        '     SELECT fd.id_prod_order_det, SUM(fd.prod_fc_det_qty) AS `tot_qc_report` 
+        '     FROM tb_prod_fc f
+        '     INNER JOIN tb_prod_fc_det fd ON fd.id_prod_fc = f.id_prod_fc
+        '     WHERE f.id_report_status!=5 AND f.id_prod_order=" + id_prod_order + "
+        '     GROUP BY fd.id_prod_order_det
+        '    ) qcr ON qcr.id_prod_order_det = pod.id_prod_order_det
+        '    WHERE pod.id_prod_order=" + id_prod_order + " "
         Dim query As String = "SELECT pod.id_prod_order_det, pod.id_prod_order,pd_prod.id_product,
             IFNULL(rec.prod_order_rec_det_qty,0) AS `total_rec`,
             IFNULL(ro.tot_ret_out,0) AS `total_ret_out`, 
@@ -926,47 +980,47 @@ Public Class FormProductionFinalClearDet
             FROM tb_prod_order_det pod
             INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pod.id_prod_demand_product
             LEFT JOIN (
-	            SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS  prod_order_rec_det_qty
-	            FROM tb_prod_order_rec_det b1
-	            INNER JOIN tb_prod_order_rec b2 ON b1.id_prod_order_rec = b2.id_prod_order_rec
-	            WHERE b2.id_report_status =6 AND b2.id_prod_order=" + id_prod_order + "
-	            GROUP BY b1.id_prod_order_det
+             SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS  prod_order_rec_det_qty
+             FROM tb_prod_order_rec_det b1
+             INNER JOIN tb_prod_order_rec b2 ON b1.id_prod_order_rec = b2.id_prod_order_rec
+             WHERE b2.id_report_status =6 AND b2.id_prod_order=" + id_prod_order + " AND b2.id_prod_order_rec='" + id_prod_order_rec + "'
+             GROUP BY b1.id_prod_order_det
             ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
             LEFT JOIN (
-	            SELECT d1.id_prod_order_det, d2.id_prod_order_ret_out, 
-	            SUM(d1.prod_order_ret_out_det_qty) AS tot_ret_out 
-	            FROM tb_prod_order_ret_out_det d1 
-	            INNER JOIN tb_prod_order_ret_out d2 ON d1.id_prod_order_ret_out = d2.id_prod_order_ret_out 
-	            WHERE d2.id_report_status !=5 AND d2.id_prod_order=" + id_prod_order + "
-	            GROUP BY d1.id_prod_order_det
+             SELECT d1.id_prod_order_det, d2.id_prod_order_ret_out, 
+             SUM(d1.prod_order_ret_out_det_qty) AS tot_ret_out 
+             FROM tb_prod_order_ret_out_det d1 
+             INNER JOIN tb_prod_order_ret_out d2 ON d1.id_prod_order_ret_out = d2.id_prod_order_ret_out 
+             WHERE d2.id_report_status !=5 AND d2.id_prod_order=" + id_prod_order + " AND d2.id_prod_order_rec='" + id_prod_order_rec + "'
+             GROUP BY d1.id_prod_order_det
             ) ro ON ro.id_prod_order_det = pod.id_prod_order_det 
             LEFT JOIN(
-	            SELECT e1.id_prod_order_det, e2.id_prod_order_ret_in,SUM(e1.prod_order_ret_in_det_qty) AS tot_ret_in 
-	            FROM tb_prod_order_ret_in_det e1 
-	            INNER JOIN tb_prod_order_ret_in e2 ON e1.id_prod_order_ret_in = e2.id_prod_order_ret_in 
-	            WHERE e2.id_report_status =6 AND e2.id_prod_order=" + id_prod_order + "
-	            GROUP BY e1.id_prod_order_det
+             SELECT e1.id_prod_order_det, e2.id_prod_order_ret_in,SUM(e1.prod_order_ret_in_det_qty) AS tot_ret_in 
+             FROM tb_prod_order_ret_in_det e1 
+             INNER JOIN tb_prod_order_ret_in e2 ON e1.id_prod_order_ret_in = e2.id_prod_order_ret_in 
+             WHERE e2.id_report_status =6 AND e2.id_prod_order=" + id_prod_order + " AND e2.id_prod_order_rec='" + id_prod_order_rec + "'
+             GROUP BY e1.id_prod_order_det
             ) ri ON ri.id_prod_order_det = pod.id_prod_order_det
             LEFT JOIN(
-	            SELECT adj_in_d.id_prod_order_det, adj_in_d.id_prod_order_qc_adj_in_det,SUM(adj_in_d.prod_order_qc_adj_in_det_qty) AS tot_adj_in
-	            FROM tb_prod_order_qc_adj_in_det adj_in_d
-	            INNER JOIN tb_prod_order_qc_adj_in adj_in ON adj_in_d.id_prod_order_qc_adj_in = adj_in.id_prod_order_qc_adj_in 
-	            WHERE adj_in.id_report_status =6 AND adj_in.id_prod_order=" + id_prod_order + "
-	            GROUP BY adj_in_d.id_prod_order_det
+             SELECT adj_in_d.id_prod_order_det, adj_in_d.id_prod_order_qc_adj_in_det,SUM(adj_in_d.prod_order_qc_adj_in_det_qty) AS tot_adj_in
+             FROM tb_prod_order_qc_adj_in_det adj_in_d
+             INNER JOIN tb_prod_order_qc_adj_in adj_in ON adj_in_d.id_prod_order_qc_adj_in = adj_in.id_prod_order_qc_adj_in 
+             WHERE adj_in.id_report_status =6 AND adj_in.id_prod_order=" + id_prod_order + "
+             GROUP BY adj_in_d.id_prod_order_det
             ) adj_in ON pod.id_prod_order_det = adj_in.id_prod_order_det
             LEFT JOIN (
-	            SELECT adj_out_d.id_prod_order_det, adj_out_d.id_prod_order_qc_adj_out_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
-	            FROM tb_prod_order_qc_adj_out_det adj_out_d
-	            INNER JOIN tb_prod_order_qc_adj_out adj_out ON adj_out_d.id_prod_order_qc_adj_out = adj_out.id_prod_order_qc_adj_out 
-	            WHERE adj_out.id_report_status !=5 AND adj_out.id_prod_order=" + id_prod_order + "
-	            GROUP BY adj_out_d.id_prod_order_det
+             SELECT adj_out_d.id_prod_order_det, adj_out_d.id_prod_order_qc_adj_out_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
+             FROM tb_prod_order_qc_adj_out_det adj_out_d
+             INNER JOIN tb_prod_order_qc_adj_out adj_out ON adj_out_d.id_prod_order_qc_adj_out = adj_out.id_prod_order_qc_adj_out 
+             WHERE adj_out.id_report_status !=5 AND adj_out.id_prod_order=" + id_prod_order + "
+             GROUP BY adj_out_d.id_prod_order_det
             ) adj_out ON pod.id_prod_order_det = adj_out.id_prod_order_det
             LEFT JOIN (
-	            SELECT fd.id_prod_order_det, SUM(fd.prod_fc_det_qty) AS `tot_qc_report` 
-	            FROM tb_prod_fc f
-	            INNER JOIN tb_prod_fc_det fd ON fd.id_prod_fc = f.id_prod_fc
-	            WHERE f.id_report_status!=5 AND f.id_prod_order=" + id_prod_order + "
-	            GROUP BY fd.id_prod_order_det
+             SELECT fd.id_prod_order_det, SUM(fd.prod_fc_det_qty) AS `tot_qc_report` 
+             FROM tb_prod_fc f
+             INNER JOIN tb_prod_fc_det fd ON fd.id_prod_fc = f.id_prod_fc
+             WHERE f.id_report_status!=5 AND f.id_prod_order=" + id_prod_order + "
+             GROUP BY fd.id_prod_order_det
             ) qcr ON qcr.id_prod_order_det = pod.id_prod_order_det
             WHERE pod.id_prod_order=" + id_prod_order + " "
         Dim dt_cek As DataTable = execute_query(query, -1, True, "", "", "", "")
