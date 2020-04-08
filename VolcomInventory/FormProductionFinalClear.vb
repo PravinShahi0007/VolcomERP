@@ -291,7 +291,7 @@
         End Try
     End Sub
 
-    Private Sub GVProd_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProd.FocusedRowChanged
+    Private Sub GVProd_FocusedRowObjectChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs) Handles GVProd.FocusedRowObjectChanged
         If GVProd.RowCount > 0 Then
             Dim q As String = "SELECT rec.`id_prod_order_rec`,rec.`prod_order_rec_number`,cat.`pl_category`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec
 FROM tb_prod_order_rec_det recd

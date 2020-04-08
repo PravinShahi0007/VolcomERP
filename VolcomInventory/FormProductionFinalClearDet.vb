@@ -980,7 +980,7 @@ Public Class FormProductionFinalClearDet
             FROM tb_prod_order_det pod
             INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pod.id_prod_demand_product
             LEFT JOIN (
-             SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS  prod_order_rec_det_qty
+             SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS prod_order_rec_det_qty
              FROM tb_prod_order_rec_det b1
              INNER JOIN tb_prod_order_rec b2 ON b1.id_prod_order_rec = b2.id_prod_order_rec
              WHERE b2.id_report_status =6 AND b2.id_prod_order=" + id_prod_order + " AND b2.id_prod_order_rec='" + id_prod_order_rec + "'

@@ -22,6 +22,8 @@ Partial Class FormProductionFinalClearDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionFinalClearDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TERec = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowsePO = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseTo = New DevExpress.XtraEditors.SimpleButton()
         Me.PEView = New DevExpress.XtraEditors.PictureEdit()
@@ -45,6 +47,7 @@ Partial Class FormProductionFinalClearDet
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LECLaim = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
@@ -104,10 +107,9 @@ Partial Class FormProductionFinalClearDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.TERec = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStyleCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,7 +154,6 @@ Partial Class FormProductionFinalClearDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -188,6 +189,29 @@ Partial Class FormProductionFinalClearDet
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(926, 169)
         Me.GroupGeneralHeader.TabIndex = 201
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(152, 61)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl12.TabIndex = 10012
+        Me.LabelControl12.Text = "Pre Rec#"
+        '
+        'TERec
+        '
+        Me.TERec.EditValue = ""
+        Me.TERec.Enabled = False
+        Me.TERec.Location = New System.Drawing.Point(203, 58)
+        Me.TERec.Name = "TERec"
+        Me.TERec.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TERec.Properties.Appearance.Options.UseFont = True
+        Me.TERec.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TERec.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TERec.Properties.EditValueChangedDelay = 1
+        Me.TERec.Size = New System.Drawing.Size(177, 20)
+        Me.TERec.TabIndex = 10011
         '
         'BtnBrowsePO
         '
@@ -456,6 +480,7 @@ Partial Class FormProductionFinalClearDet
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelHeaderLeft.Controls.Add(Me.LabelControl13)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl11)
         Me.PanelHeaderLeft.Controls.Add(Me.LECLaim)
         Me.PanelHeaderLeft.Controls.Add(Me.LEPLCategory)
@@ -465,15 +490,24 @@ Partial Class FormProductionFinalClearDet
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
         Me.PanelHeaderLeft.Controls.Add(Me.DEForm)
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelHeaderLeft.Location = New System.Drawing.Point(716, 2)
+        Me.PanelHeaderLeft.Location = New System.Drawing.Point(673, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(208, 165)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 165)
         Me.PanelHeaderLeft.TabIndex = 8899
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(7, 75)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(85, 13)
+        Me.LabelControl13.TabIndex = 10011
+        Me.LabelControl13.Text = "Pre Rec Category"
         '
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(7, 85)
+        Me.LabelControl11.Location = New System.Drawing.Point(7, 137)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl11.TabIndex = 10009
@@ -481,7 +515,7 @@ Partial Class FormProductionFinalClearDet
         '
         'LECLaim
         '
-        Me.LECLaim.Location = New System.Drawing.Point(59, 82)
+        Me.LECLaim.Location = New System.Drawing.Point(98, 134)
         Me.LECLaim.Name = "LECLaim"
         Me.LECLaim.Properties.Appearance.Options.UseTextOptions = True
         Me.LECLaim.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -496,7 +530,7 @@ Partial Class FormProductionFinalClearDet
         '
         'LEPLCategory
         '
-        Me.LEPLCategory.Location = New System.Drawing.Point(59, 56)
+        Me.LEPLCategory.Location = New System.Drawing.Point(98, 108)
         Me.LEPLCategory.Name = "LEPLCategory"
         Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
         Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -512,7 +546,7 @@ Partial Class FormProductionFinalClearDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(7, 59)
+        Me.LabelControl2.Location = New System.Drawing.Point(7, 111)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl2.TabIndex = 10007
@@ -522,7 +556,7 @@ Partial Class FormProductionFinalClearDet
         '
         Me.TxtNumber.EditValue = ""
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(59, 31)
+        Me.TxtNumber.Location = New System.Drawing.Point(98, 31)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.BackColor = System.Drawing.Color.White
         Me.TxtNumber.Properties.Appearance.Options.UseBackColor = True
@@ -555,7 +589,7 @@ Partial Class FormProductionFinalClearDet
         '
         Me.DEForm.EditValue = ""
         Me.DEForm.Enabled = False
-        Me.DEForm.Location = New System.Drawing.Point(59, 7)
+        Me.DEForm.Location = New System.Drawing.Point(98, 7)
         Me.DEForm.Name = "DEForm"
         Me.DEForm.Properties.Appearance.BackColor = System.Drawing.Color.White
         Me.DEForm.Properties.Appearance.Options.UseBackColor = True
@@ -1090,29 +1124,6 @@ Partial Class FormProductionFinalClearDet
         Me.BScan.TabIndex = 6
         Me.BScan.Text = "Start Scan"
         '
-        'TERec
-        '
-        Me.TERec.EditValue = ""
-        Me.TERec.Enabled = False
-        Me.TERec.Location = New System.Drawing.Point(203, 58)
-        Me.TERec.Name = "TERec"
-        Me.TERec.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TERec.Properties.Appearance.Options.UseFont = True
-        Me.TERec.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TERec.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TERec.Properties.EditValueChangedDelay = 1
-        Me.TERec.Size = New System.Drawing.Size(177, 20)
-        Me.TERec.TabIndex = 10011
-        '
-        'LabelControl12
-        '
-        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(152, 61)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl12.TabIndex = 10012
-        Me.LabelControl12.Text = "Pre Rec#"
-        '
         'FormProductionFinalClearDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1130,6 +1141,7 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStyleCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1178,7 +1190,6 @@ Partial Class FormProductionFinalClearDet
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1268,4 +1279,5 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TERec As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
 End Class
