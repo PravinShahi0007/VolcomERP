@@ -1136,6 +1136,7 @@ Partial Class FormProductionFinalClearDet
         Me.SLERecType.Location = New System.Drawing.Point(98, 72)
         Me.SLERecType.Name = "SLERecType"
         Me.SLERecType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLERecType.Properties.ReadOnly = True
         Me.SLERecType.Properties.View = Me.SearchLookUpEdit1View
         Me.SLERecType.Size = New System.Drawing.Size(142, 20)
         Me.SLERecType.TabIndex = 10012

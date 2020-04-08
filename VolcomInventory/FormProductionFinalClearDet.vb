@@ -81,7 +81,7 @@ Public Class FormProductionFinalClearDet
                 Dim query As String = "SELECT po.id_prod_order, po.prod_order_number,rec.prod_order_rec_number, po.prod_order_date, 
                 comp.comp_number AS `vendor_number`, comp.comp_name AS `vendor_name`, 
                 d.id_design, d.design_code, d.design_display_name, ss.season, del.delivery, po.id_report_status,
-                cfr.id_comp AS `id_comp_from`,cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`, po.is_use_qc_report
+                cfr.id_comp AS `id_comp_from`,cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`, po.is_use_qc_report, rec.id_pl_category
                 FROM tb_prod_order_rec rec 
                 INNER JOIN tb_prod_order po ON po.id_prod_order=rec.id_prod_order
                 INNER JOIN tb_prod_order_wo wo On wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor='1' AND wo.id_report_status!=5
@@ -108,6 +108,7 @@ Public Class FormProductionFinalClearDet
                 TxtVendorName.Text = data.Rows(0)("vendor_name").ToString
                 TxtStyleCode.Text = data.Rows(0)("design_code").ToString
                 TxtStyle.Text = data.Rows(0)("design_display_name").ToString
+                LEPLCategory.EditValue = data.Rows(0)("id_pl_category").ToString
                 viewDetail()
                 view_barcode_list()
                 pre_viewImages("2", PEView, id_design, False)
