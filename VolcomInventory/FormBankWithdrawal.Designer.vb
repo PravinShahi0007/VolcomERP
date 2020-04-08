@@ -114,6 +114,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BCreatePay = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -1128,7 +1129,7 @@ Partial Class FormBankWithdrawal
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn100})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -1161,7 +1162,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 5
         Me.GridColumn11.Width = 107
         '
         'GridColumn15
@@ -1171,7 +1172,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 5
+        Me.GridColumn15.VisibleIndex = 6
         Me.GridColumn15.Width = 109
         '
         'GridColumn20
@@ -1187,7 +1188,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 6
+        Me.GridColumn20.VisibleIndex = 7
         '
         'GridColumn22
         '
@@ -1196,7 +1197,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 8
+        Me.GridColumn22.VisibleIndex = 9
+        Me.GridColumn22.Width = 87
         '
         'GridColumn18
         '
@@ -1205,7 +1207,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 7
+        Me.GridColumn18.VisibleIndex = 8
         '
         'GridColumn21
         '
@@ -1235,6 +1237,18 @@ Partial Class FormBankWithdrawal
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 2
+        '
+        'GridColumn100
+        '
+        Me.GridColumn100.Caption = "Payment Date"
+        Me.GridColumn100.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumn100.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn100.FieldName = "date_payment"
+        Me.GridColumn100.Name = "GridColumn100"
+        Me.GridColumn100.OptionsColumn.AllowEdit = False
+        Me.GridColumn100.Visible = True
+        Me.GridColumn100.VisibleIndex = 4
+        Me.GridColumn100.Width = 78
         '
         'RepositoryItemCheckEdit1
         '
@@ -2725,4 +2739,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents ViewBPLToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewBPL As ContextMenuStrip
     Friend WithEvents VDItemList As ToolStripMenuItem
+    Friend WithEvents GridColumn100 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
