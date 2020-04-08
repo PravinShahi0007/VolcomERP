@@ -23,6 +23,11 @@ Public Class FormProductionFinalClearDet
         actionLoad()
     End Sub
 
+    Sub load_cat_rec()
+        Dim q As String = "SELECT id_pl_category,pl_category FROM tb_lookup_pl_category"
+        viewSearchLookupQuery(SLERecType, q, "id_pl_category", "pl_category", "id_pl_category")
+    End Sub
+
     'View Data
     Sub viewReportStatus()
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
@@ -50,6 +55,8 @@ Public Class FormProductionFinalClearDet
     End Sub
 
     Sub actionLoad()
+        load_cat_rec()
+
         Cursor = Cursors.WaitCursor
         If action = "ins" Then
             Try
