@@ -356,7 +356,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 225.0!
+        Me.TopMargin.HeightF = 215.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -371,7 +371,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'ReportMasterEmployeeSuratKeteranganPenangguhanBank
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 225, 100)
+        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 215, 100)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleJustify
         Me.Version = "15.1"
