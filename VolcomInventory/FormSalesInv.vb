@@ -547,4 +547,15 @@
             End If
         End If
     End Sub
+
+    Private Sub PanelControl5_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl5.Paint
+
+    End Sub
+
+    Private Sub FormSalesInv_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F7 Then
+            FormMenuAuth.type = "5"
+            FormMenuAuth.ShowDialog()
+        End If
+    End Sub
 End Class
