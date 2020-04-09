@@ -1241,7 +1241,7 @@ Partial Class FormBankWithdrawal
         'GridColumn100
         '
         Me.GridColumn100.Caption = "Payment Date"
-        Me.GridColumn100.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumn100.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn100.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn100.FieldName = "date_payment"
         Me.GridColumn100.Name = "GridColumn100"
