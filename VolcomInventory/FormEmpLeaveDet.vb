@@ -174,7 +174,7 @@
     End Sub
 
     Sub load_form_dc()
-        Dim query As String = "SELECT id_form_dc,form_dc FROM tb_lookup_form_dc"
+        Dim query As String = "SELECT id_form_dc,form_dc FROM tb_lookup_form_dc WHERE is_active = 1"
         viewLookupQuery(LEFormDC, query, 0, "form_dc", "id_form_dc")
     End Sub
 
