@@ -58,6 +58,10 @@
             ElseIf type = "4" Then
                 FormMasterPrice.GVHistSummary.Columns("cost").VisibleIndex = 8
                 FormMasterPrice.GVHistSummary.Columns("cost").OptionsColumn.ShowInCustomizationForm = True
+            ElseIf type = "5" Then
+                FormSalesInv.GridBand1.Columns.Add(FormSalesInv.BandedGridColumndesign_cop_by_prod)
+                FormSalesInv.GVByProduct.Columns("design_cop").VisibleIndex = FormSalesInv.GVByProduct.Columns("design_price").VisibleIndex + 1
+                FormSalesInv.GVByProduct.Columns("design_cop").OptionsColumn.ShowInCustomizationForm = True
             End If
             Close()
         Else
