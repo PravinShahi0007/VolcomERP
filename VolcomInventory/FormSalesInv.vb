@@ -193,9 +193,12 @@
             GVByProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
             For i As Integer = 0 To GVByProduct.Columns.Count - 1
-                If GVByProduct.Columns(i).OwnerBand.ToString = "SALES" Or GVByProduct.Columns(i).OwnerBand.ToString = "STOCK ON HAND" Then
-                    GVByProduct.Columns(i).Caption = GVByProduct.Columns(i).FieldName.ToString
-                End If
+                Try
+                    If GVByProduct.Columns(i).OwnerBand.ToString = "SALES" Or GVByProduct.Columns(i).OwnerBand.ToString = "STOCK ON HAND" Then
+                        GVByProduct.Columns(i).Caption = GVByProduct.Columns(i).FieldName.ToString
+                    End If
+                Catch ex As Exception
+                End Try
             Next
 
             Dim path As String = Application.StartupPath & "\download\"
@@ -446,9 +449,13 @@
             GVByAccount.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
             For i As Integer = 0 To GVByAccount.Columns.Count - 1
-                If GVByAccount.Columns(i).OwnerBand.ToString = "SALES" Or GVByAccount.Columns(i).OwnerBand.ToString = "STOCK ON HAND" Then
-                    GVByAccount.Columns(i).Caption = GVByAccount.Columns(i).FieldName.ToString
-                End If
+                Try
+                    If GVByAccount.Columns(i).OwnerBand.ToString = "SALES" Or GVByAccount.Columns(i).OwnerBand.ToString = "STOCK ON HAND" Then
+                        GVByAccount.Columns(i).Caption = GVByAccount.Columns(i).FieldName.ToString
+                    End If
+                Catch ex As Exception
+
+                End Try
             Next
 
             Dim path As String = Application.StartupPath & "\download\"
