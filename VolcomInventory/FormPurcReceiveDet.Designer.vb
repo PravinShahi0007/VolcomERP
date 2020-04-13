@@ -606,7 +606,7 @@ Partial Class FormPurcReceiveDet
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Item"
-        Me.GridColumn2.FieldName = "item_detail"
+        Me.GridColumn2.FieldName = "item_desc"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 2
