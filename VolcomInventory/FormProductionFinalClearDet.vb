@@ -636,8 +636,8 @@ Public Class FormProductionFinalClearDet
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     Dim report_mark_type As String = If(id_pl_category = "1", "224", "105")
-                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, report_mark_type) "
-                    query += "VALUES('" + id_prod_order + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1', '" + report_mark_type + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order,id_prod_order_rec, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, report_mark_type) "
+                    query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1', '" + report_mark_type + "'); SELECT LAST_INSERT_ID(); "
                     id_prod_fc = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_prod("12")
 
