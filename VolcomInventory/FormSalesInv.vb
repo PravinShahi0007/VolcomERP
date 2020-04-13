@@ -558,4 +558,8 @@
             FormMenuAuth.ShowDialog()
         End If
     End Sub
+
+    Private Sub LabelControl15_Click(sender As Object, e As EventArgs) Handles LabelControl15.Click
+
+    End Sub
 End Class
