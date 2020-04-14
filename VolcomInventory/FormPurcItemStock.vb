@@ -201,7 +201,7 @@
 ,IFNULL(used.qty_used,0) AS qty_used,IFNULL(used.harga_satuan_used,0) AS harga_satuan_used,IFNULL(used.amount_used,0) AS amount_used
 ,IFNULL(rem.qty_rem,0) AS qty_rem,IFNULL(rem.harga_satuan_rem,0) AS harga_satuan_rem,IFNULL(rem.amount_rem,0) AS amount_rem
 FROM tb_item it
-INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom " & cat & "
+INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom_stock " & cat & "
 LEFT JOIN (
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_beg
 	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_beg
