@@ -16,7 +16,7 @@
         po.id_comp_contact, c.id_comp AS `id_vendor`, c.comp_number AS `vendor_code`, c.comp_name AS `vendor_name`, CONCAT(c.comp_number,' - ', c.comp_name) AS `vendor`,
         r.date_created, date_arrived, r.created_by, ec.employee_name AS `created_by_name`,
         r.last_update, r.last_update_by, eu.employee_name AS `last_update_by_name`,
-        r.note, r.id_report_status, rs.report_status, r.is_confirm
+        r.note, r.id_report_status, rs.report_status, r.is_confirm,r.is_delivered
         FROM tb_purc_rec r
         INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact

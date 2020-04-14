@@ -76,7 +76,7 @@
                             FROM tb_item_req_det rd
                             INNER JOIN tb_item_req r ON r.`id_item_req`=rd.`id_item_req`
                             INNER JOIN tb_item i ON i.id_item = rd.id_item
-                            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+                            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom_stock
                             LEFT JOIN (
 	                            SELECT dd.id_item_req_det, SUM(dd.qty) AS `qty_del`
 	                            FROM tb_item_del_det dd
@@ -101,7 +101,7 @@
         '' AS remark, '' AS `stt`
         FROM tb_item_req_det_alloc rd
         INNER JOIN tb_item i ON i.id_item = rd.id_item
-        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom_stock
         LEFT JOIN (
           SELECT dd.id_item_req_det_alloc, SUM(dd.qty) AS `qty_del`
           FROM tb_item_del_det_alloc dd
@@ -123,7 +123,7 @@
             Dim query As String = "SELECT dd.id_item_del_det, IF(rd.is_store_request=1,'yes','no') as is_store_request,dd.id_item_del, dd.id_item_req_det, dd.id_item, i.item_desc, u.uom, dd.qty, dd.remark 
             FROM tb_item_del_det dd
             INNER JOIN tb_item i ON i.id_item = dd.id_item
-            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom_stock
             INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.id_item_req_det
             WHERE dd.id_item_del=" + id + " "
             data = execute_query(query, -1, True, "", "", "", "")
@@ -140,10 +140,10 @@
         If action = "ins" Then
             data = getRmgForStore("")
         ElseIf action = "upd" Then
-            Dim query As String = "SELECT dd.id_item_del_det_alloc, dd.id_item_del, dd.id_item_req_det_alloc, dd.id_item, i.item_desc, i.id_uom, u.uom, dd.id_comp, c.comp_number, c.comp_name,dd.qty, dd.remark
+            Dim query As String = "SELECT dd.id_item_del_det_alloc, dd.id_item_del, dd.id_item_req_det_alloc, dd.id_item, i.item_desc, i.id_uom_stock, u.uom, dd.id_comp, c.comp_number, c.comp_name,dd.qty, dd.remark
             FROM tb_item_del_det_alloc dd
             INNER JOIN tb_item i ON i.id_item = dd.id_item
-            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom_stock
             INNER JOIN tb_m_comp c ON c.id_comp = dd.id_comp
             WHERE dd.id_item_del=" + id + " "
             data = execute_query(query, -1, True, "", "", "", "")
