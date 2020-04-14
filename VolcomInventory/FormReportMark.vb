@@ -5104,7 +5104,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 
             'completed
             If id_status_reportx = "6" Then
-                'stock only OPEX
+                'stock only OPEX and Not delivered yet
                 Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
 
                 Dim qs As String = "INSERT INTO tb_storage_item (
@@ -5119,14 +5119,15 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 	                `storage_item_notes`,
 	                `id_stock_status`
                 )
-                SELECT IF(rq.is_store_purchase=1,'" & id_purc_store & "',rq.id_departement) AS id_departement, 1, rd.id_item, pod.`value`, 148, " + id_report + ", rd.qty, NOW(),'', 1
+                SELECT IF(rq.is_store_purchase=1,'" & id_purc_store & "',rq.id_departement) AS id_departement, 1, rd.id_item, (pod.`value`/i.stock_convertion) AS value, 148, " + id_report + ", rd.qty_stock, NOW(),'', 1
                 FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_rec r ON r.id_purc_rec=rd.id_purc_rec
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1'; "
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1' AND r.is_delivered='2'; "
                 execute_non_query(qs, True, "", "", "", "")
 
                 'budget move to actual
@@ -5218,7 +5219,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
-                /*total biaya jasa atau non inventory */
+                /* total biaya jasa atau non inventory */
                 SELECT " + id_acc_trans + ",o.id_coa_out AS `id_acc`, IF(reqd.ship_to=0,1,reqd.ship_to) AS id_comp,  SUM(rd.qty) AS `qty`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
                 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
@@ -5240,7 +5241,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
                 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
                 INNER JOIN tb_item_coa o ON o.id_item_cat=i.id_item_cat AND o.id_departement=req.id_departement
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='2'
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND (i.id_item_type='2' OR r.is_delivered='1')
                 GROUP BY rd.id_purc_rec,dep.id_main_comp,reqd.ship_to
                 HAVING debit>0 OR credit>0
                 UNION ALL
@@ -5266,8 +5267,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 JOIN tb_opt_purchasing o
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1'
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1' AND r.is_delivered='2'
                 GROUP BY rd.id_purc_rec,dep.id_main_comp
+                HAVING debit>0 OR credit>0
                 UNION ALL
                 /*total value item asset tanpa diskon*/
                 SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, dep.id_main_comp,  

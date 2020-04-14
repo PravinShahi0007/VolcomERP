@@ -7,6 +7,8 @@
     End Sub
 
     Sub load_form()
+        TEConvertion.EditValue = 1
+        '
         load_vendor_type()
         load_uom()
         load_item_type()
@@ -32,8 +34,10 @@ WHERE it.id_item='" & id_item & "'"
 
             TECode.Text = data.Rows(0)("id_item").ToString
             TEDesc.Text = data.Rows(0)("item_desc").ToString
+            TEConvertion.EditValue = data.Rows(0)("stock_convertion").ToString
 
             SLEUOM.EditValue = data.Rows(0)("id_uom").ToString
+            SLEUOMStock.EditValue = data.Rows(0)("id_uom_stock").ToString
             SLEItemType.EditValue = data.Rows(0)("id_item_type").ToString
             '
             SLEPurchaseCategory.EditValue = data.Rows(0)("id_item_cat_detail").ToString
@@ -110,6 +114,7 @@ WHERE itp.`id_item`='" & id_item & "' ORDER BY itp.id_item_price DESC"
     Sub load_uom()
         Dim query As String = "SELECT id_uom,uom FROM tb_m_uom WHERE is_active='1'"
         viewSearchLookupQuery(SLEUOM, query, "id_uom", "uom", "id_uom")
+        viewSearchLookupQuery(SLEUOMStock, query, "id_uom", "uom", "id_uom")
     End Sub
 
     Sub load_cat()
@@ -157,7 +162,7 @@ WHERE id_status='2'"
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If Not SLEPurchaseCategory.EditValue = Nothing Then
             If id_item = "-1" Then 'new
-                Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,date_created,id_user_created,is_active) VALUES('" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,id_uom_stock,stock_convertion,date_created,id_user_created,is_active) VALUES('" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "','" & SLEUOMStock.EditValue.ToString & "','" & decimalSQL(TEConvertion.EditValue.ToString) & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
                 id_item = execute_query(query, 0, True, "", "", "", "")
                 'insert price
                 query = "INSERT INTO tb_item_price(id_item,create_by,create_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),0.00)"
@@ -167,7 +172,7 @@ WHERE id_status='2'"
                 FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
                 Close()
             Else 'edit
-                Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_item_type='" & SLEItemType.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "' WHERE id_item='" & id_item & "'"
+                Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_item_type='" & SLEItemType.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',id_uom_stock='" & SLEUOMStock.EditValue.ToString & "',stock_convertion='" & decimalSQL(TEConvertion.EditValue.ToString) & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "' WHERE id_item='" & id_item & "'"
                 execute_non_query(query, True, "", "", "", "")
                 FormPurcItem.load_item()
                 FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
@@ -234,5 +239,9 @@ WHERE id_status='2'"
             FormPurcOrderDet.is_view = "1"
             FormPurcOrderDet.ShowDialog()
         End If
+    End Sub
+
+    Private Sub SLEUOM_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUOM.EditValueChanged
+        SLEUOMStock.EditValue = SLEUOM.EditValue
     End Sub
 End Class

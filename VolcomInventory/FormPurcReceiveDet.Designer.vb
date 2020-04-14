@@ -21,6 +21,7 @@ Partial Class FormPurcReceiveDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcReceiveDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEAlreadyDeliver = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.DEArrivalDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -52,10 +53,13 @@ Partial Class FormPurcReceiveDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
@@ -63,6 +67,9 @@ Partial Class FormPurcReceiveDet
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnDetailNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetailDept = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetIdItem = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetDescription = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +79,10 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDetAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetailUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEDelivered = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOrderDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVOrderDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -100,6 +111,7 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CEAlreadyDeliver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEArrivalDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,6 +134,7 @@ Partial Class FormPurcReceiveDet
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEDelivered, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrder.SuspendLayout()
         CType(Me.GCOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,6 +150,7 @@ Partial Class FormPurcReceiveDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CEAlreadyDeliver)
         Me.PanelControl1.Controls.Add(Me.LabelControl8)
         Me.PanelControl1.Controls.Add(Me.DEArrivalDate)
         Me.PanelControl1.Controls.Add(Me.LabelControl7)
@@ -151,6 +165,14 @@ Partial Class FormPurcReceiveDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(910, 129)
         Me.PanelControl1.TabIndex = 8
+        '
+        'CEAlreadyDeliver
+        '
+        Me.CEAlreadyDeliver.Location = New System.Drawing.Point(264, 92)
+        Me.CEAlreadyDeliver.Name = "CEAlreadyDeliver"
+        Me.CEAlreadyDeliver.Properties.Caption = "Already Delivered (Based on PR Shipping Address)"
+        Me.CEAlreadyDeliver.Size = New System.Drawing.Size(271, 19)
+        Me.CEAlreadyDeliver.TabIndex = 152
         '
         'LabelControl8
         '
@@ -172,7 +194,7 @@ Partial Class FormPurcReceiveDet
         Me.DEArrivalDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEArrivalDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEArrivalDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEArrivalDate.Size = New System.Drawing.Size(297, 20)
+        Me.DEArrivalDate.Size = New System.Drawing.Size(163, 20)
         Me.DEArrivalDate.TabIndex = 8
         '
         'LabelControl7
@@ -188,7 +210,7 @@ Partial Class FormPurcReceiveDet
         '
         Me.TxtDO.Location = New System.Drawing.Point(95, 66)
         Me.TxtDO.Name = "TxtDO"
-        Me.TxtDO.Size = New System.Drawing.Size(297, 20)
+        Me.TxtDO.Size = New System.Drawing.Size(428, 20)
         Me.TxtDO.TabIndex = 148
         '
         'LabelControl2
@@ -207,7 +229,7 @@ Partial Class FormPurcReceiveDet
         Me.TxtVendor.Name = "TxtVendor"
         Me.TxtVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtVendor.Properties.Appearance.Options.UseFont = True
-        Me.TxtVendor.Size = New System.Drawing.Size(297, 20)
+        Me.TxtVendor.Size = New System.Drawing.Size(428, 20)
         Me.TxtVendor.TabIndex = 146
         '
         'TxtOrderNumber
@@ -217,7 +239,7 @@ Partial Class FormPurcReceiveDet
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtOrderNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(297, 20)
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(428, 20)
         Me.TxtOrderNumber.TabIndex = 145
         '
         'LabelControl1
@@ -412,7 +434,7 @@ Partial Class FormPurcReceiveDet
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdRecDetail, Me.GridColumnIDPODetail, Me.GridColumn1, Me.GridColumnDesc, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnQty, Me.GridColumnNote, Me.GridColumnStatus})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdRecDetail, Me.GridColumnIDPODetail, Me.GridColumn1, Me.GridColumnDesc, Me.GridColumnUOM, Me.GridColumn10, Me.GridColumn8, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnQty, Me.GridColumn11, Me.GridColumnNote, Me.GridColumnStatus})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:N2}")})
         Me.GVSummary.Name = "GVSummary"
@@ -428,7 +450,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnNo.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 95
+        Me.GridColumnNo.Width = 83
         '
         'GridColumnIdRecDetail
         '
@@ -455,7 +477,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 227
+        Me.GridColumn1.Width = 199
         '
         'GridColumnDesc
         '
@@ -466,10 +488,14 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDesc.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 2
-        Me.GridColumnDesc.Width = 260
+        Me.GridColumnDesc.Width = 228
         '
         'GridColumnUOM
         '
+        Me.GridColumnUOM.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnUOM.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnUOM.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnUOM.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnUOM.Caption = "UOM"
         Me.GridColumnUOM.FieldName = "uom"
         Me.GridColumnUOM.Name = "GridColumnUOM"
@@ -477,7 +503,35 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnUOM.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnUOM.Visible = True
         Me.GridColumnUOM.VisibleIndex = 3
-        Me.GridColumnUOM.Width = 93
+        Me.GridColumnUOM.Width = 81
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.Caption = "UOM Stock"
+        Me.GridColumn10.FieldName = "uom_stock"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 9
+        Me.GridColumn10.Width = 65
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "Convertion Rate"
+        Me.GridColumn8.FieldName = "stock_convertion_view"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 65
         '
         'GridColumnPrice
         '
@@ -490,7 +544,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnPrice.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 4
-        Me.GridColumnPrice.Width = 315
+        Me.GridColumnPrice.Width = 276
         '
         'GridColumnAmount
         '
@@ -506,13 +560,13 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 6
-        Me.GridColumnAmount.Width = 327
+        Me.GridColumnAmount.Width = 236
         '
         'GridColumnQty
         '
         Me.GridColumnQty.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GridColumnQty.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.Caption = "Qty Receive"
         Me.GridColumnQty.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnQty.DisplayFormat.FormatString = "N2"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -521,7 +575,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 5
-        Me.GridColumnQty.Width = 315
+        Me.GridColumnQty.Width = 276
         '
         'RepositoryItemTextEdit1
         '
@@ -529,6 +583,18 @@ Partial Class FormPurcReceiveDet
         Me.RepositoryItemTextEdit1.Mask.EditMask = "n2"
         Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Qty To Stock"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "qty_stock"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 8
+        Me.GridColumn11.Width = 123
         '
         'GridColumnNote
         '
@@ -559,20 +625,21 @@ Partial Class FormPurcReceiveDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDelivered})
         Me.GCDetail.Size = New System.Drawing.Size(904, 301)
         Me.GCDetail.TabIndex = 0
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnDetailNo, Me.GridColumnDetailDept, Me.GridColumnDetIdItem, Me.GridColumn2, Me.GridColumnDetDescription, Me.GridColumnDetValue, Me.GridColumnDetQty, Me.GridColumnDetQtyRemaining, Me.GridColumnDetAmount, Me.GridColumnDetNote, Me.GridColumnDetailUOM})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnDetailNo, Me.GridColumnDetailDept, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumnDetIdItem, Me.GridColumn2, Me.GridColumnDetDescription, Me.GridColumnDetValue, Me.GridColumnDetQty, Me.GridColumnDetQtyRemaining, Me.GridColumnDetAmount, Me.GridColumnDetNote, Me.GridColumnDetailUOM, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnDetQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnDetAmount, "{0:N2}")})
         Me.GVDetail.Name = "GVDetail"
-        Me.GVDetail.OptionsCustomization.AllowFilter = False
         Me.GVDetail.OptionsCustomization.AllowGroup = False
         Me.GVDetail.OptionsCustomization.AllowSort = False
         Me.GVDetail.OptionsFind.AllowFindPanel = False
+        Me.GVDetail.OptionsView.ColumnAutoWidth = False
         Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
@@ -596,6 +663,30 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDetailDept.VisibleIndex = 1
         Me.GridColumnDetailDept.Width = 242
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID Purc Order Det"
+        Me.GridColumn5.FieldName = "id_purc_order_det"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "PR Ship To"
+        Me.GridColumn6.FieldName = "ship_destination"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 11
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "PR Ship Address"
+        Me.GridColumn7.FieldName = "ship_address"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 12
+        '
         'GridColumnDetIdItem
         '
         Me.GridColumnDetIdItem.Caption = "Id Item"
@@ -606,7 +697,7 @@ Partial Class FormPurcReceiveDet
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Item"
-        Me.GridColumn2.FieldName = "item_detail"
+        Me.GridColumn2.FieldName = "item_desc"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 2
@@ -688,6 +779,37 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDetailUOM.Visible = True
         Me.GridColumnDetailUOM.VisibleIndex = 4
         Me.GridColumnDetailUOM.Width = 95
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Qty To Stock"
+        Me.GridColumn12.FieldName = "qty_stock"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 9
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Convertion Rate"
+        Me.GridColumn13.FieldName = "stock_convertion_view"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 8
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "UOM Stock"
+        Me.GridColumn14.FieldName = "uom_stock"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 10
+        '
+        'RICEDelivered
+        '
+        Me.RICEDelivered.AutoHeight = False
+        Me.RICEDelivered.Name = "RICEDelivered"
+        Me.RICEDelivered.ValueChecked = "yes"
+        Me.RICEDelivered.ValueUnchecked = "no"
         '
         'XTPOrder
         '
@@ -976,6 +1098,7 @@ Partial Class FormPurcReceiveDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.CEAlreadyDeliver.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEArrivalDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -999,6 +1122,7 @@ Partial Class FormPurcReceiveDet
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEDelivered, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrder.ResumeLayout(False)
         CType(Me.GCOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1094,4 +1218,15 @@ Partial Class FormPurcReceiveDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEDelivered As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents CEAlreadyDeliver As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
