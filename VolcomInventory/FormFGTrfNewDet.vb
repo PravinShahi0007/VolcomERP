@@ -1291,6 +1291,12 @@ Public Class FormFGTrfNewDet
 
     Sub getReport()
         Cursor = Cursors.WaitCursor
+        GVItemList.ActiveFilterString = "[fg_trf_det_qty]>0"
+        'numbering
+        For i As Integer = 0 To GVItemList.RowCount - 1
+            GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
+        Next
+
         ReportFGTrf.id_fg_trf = id_fg_trf
         ReportFGTrf.id_type = id_type
         ReportFGTrf.dt = GCItemList.DataSource
@@ -1321,6 +1327,7 @@ Public Class FormFGTrfNewDet
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+        GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 

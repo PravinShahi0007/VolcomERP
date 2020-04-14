@@ -19,6 +19,7 @@ Partial Class FormMasterEmployee
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterEmployee))
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -35,6 +36,7 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnSogoNIK = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPIC = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDegree = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnKoperasiMember = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -133,7 +135,9 @@ Partial Class FormMasterEmployee
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.BClone = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SuratKeteranganToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PenangguhanBankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,10 +149,12 @@ Partial Class FormMasterEmployee
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelOpt.SuspendLayout()
         CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCEmployee
         '
+        Me.GCEmployee.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCEmployee.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCEmployee.Location = New System.Drawing.Point(0, 35)
         Me.GCEmployee.MainView = Me.GVEmployee
@@ -305,6 +311,14 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnLevel.Name = "BandedGridColumnLevel"
         Me.BandedGridColumnLevel.Visible = True
         Me.BandedGridColumnLevel.Width = 52
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "Jabatan TKDN"
+        Me.BandedGridColumn11.FieldName = "jabatan_tkdn"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.Visible = True
+        Me.BandedGridColumn11.Width = 90
         '
         'BandedGridColumnPIC
         '
@@ -1258,13 +1272,24 @@ Partial Class FormMasterEmployee
         Me.BClone.Text = "Clone"
         Me.BClone.Visible = False
         '
-        'BandedGridColumn11
+        'ContextMenuStrip
         '
-        Me.BandedGridColumn11.Caption = "Jabatan TKDN"
-        Me.BandedGridColumn11.FieldName = "jabatan_tkdn"
-        Me.BandedGridColumn11.Name = "BandedGridColumn11"
-        Me.BandedGridColumn11.Visible = True
-        Me.BandedGridColumn11.Width = 90
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SuratKeteranganToolStripMenuItem})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(165, 26)
+        '
+        'SuratKeteranganToolStripMenuItem
+        '
+        Me.SuratKeteranganToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PenangguhanBankToolStripMenuItem})
+        Me.SuratKeteranganToolStripMenuItem.Name = "SuratKeteranganToolStripMenuItem"
+        Me.SuratKeteranganToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.SuratKeteranganToolStripMenuItem.Text = "Surat Keterangan"
+        '
+        'PenangguhanBankToolStripMenuItem
+        '
+        Me.PenangguhanBankToolStripMenuItem.Name = "PenangguhanBankToolStripMenuItem"
+        Me.PenangguhanBankToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.PenangguhanBankToolStripMenuItem.Text = "Penangguhan Bank"
         '
         'FormMasterEmployee
         '
@@ -1293,6 +1318,7 @@ Partial Class FormMasterEmployee
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelOpt.ResumeLayout(False)
         CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1410,4 +1436,7 @@ Partial Class FormMasterEmployee
     Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents ContextMenuStrip As ContextMenuStrip
+    Friend WithEvents SuratKeteranganToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PenangguhanBankToolStripMenuItem As ToolStripMenuItem
 End Class

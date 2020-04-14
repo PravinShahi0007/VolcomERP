@@ -227,8 +227,19 @@
             End If
 
             If id_report_status = "0" Then
-                check_diff()
+                autogenerate()
+
+                Dim query_l As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
+
+                Dim data_l As DataTable = execute_query(query_l, -1, True, "", "", "", "")
+
+                GCPayroll.DataSource = data_l
+
+                adjustment_deduction_column("adjustment")
+                adjustment_deduction_column("deduction")
             End If
+
+            LCTitle.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString + " - " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end")).ToString("MMMM yyyy")
         End If
 
         GVPayroll.TopRowIndex = 0
@@ -245,6 +256,9 @@
             SBSendSlip.Visible = False
             CheckEditViewSend.Visible = False
         End If
+
+        BGetEmployee.Visible = False
+        BRemoveEmployee.Visible = False
 
         Cursor = Cursors.Default
     End Sub
@@ -568,22 +582,29 @@
 
         Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
 
-        Dim confirm As DialogResult
+        'check propose salary
+        Dim total_propose As String = execute_query("SELECT COUNT(*) AS total FROM tb_employee_sal_pps WHERE effective_date BETWEEN (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND id_report_status NOT IN (5, 6)", 0, True, "", "", "", "")
 
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit payroll ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If total_propose = "0" Then
+            Dim confirm As DialogResult
 
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            execute_non_query("UPDATE tb_emp_payroll SET id_report_status = 1 WHERE id_payroll = '" + id_payroll + "'", True, "", "", "", "")
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit payroll ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            execute_non_query("CALL gen_number(" + id_payroll + ", '192')", True, "", "", "", "")
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                execute_non_query("UPDATE tb_emp_payroll SET id_report_status = 1 WHERE id_payroll = '" + id_payroll + "'", True, "", "", "", "")
 
-            submit_who_prepared("192", GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, id_user)
+                execute_non_query("CALL gen_number(" + id_payroll + ", '192')", True, "", "", "", "")
 
-            load_payroll()
+                submit_who_prepared("192", GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, id_user)
 
-            GVPayrollPeriode.FocusedRowHandle = find_row(GVPayrollPeriode, "id_payroll", id_payroll)
+                load_payroll()
 
-            load_payroll_detail()
+                GVPayrollPeriode.FocusedRowHandle = find_row(GVPayrollPeriode, "id_payroll", id_payroll)
+
+                load_payroll_detail()
+            End If
+        Else
+            stopCustom("Please complete all propose salary.")
         End If
 
         Cursor = Cursors.Default
@@ -1236,154 +1257,307 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub check_diff()
-        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ")", 0, True, "", "", "", "")
-
-        Dim dataNew As DataTable = execute_query("
-            SELECT *
-            FROM (
-                SELECT sal.id_employee_salary, sal.id_employee, IF(emp.id_employee_status = 3, (sal.basic_salary * dep.total_workdays), (sal.basic_salary + sal.allow_job + sal.allow_meal + sal.allow_trans)) AS sal
-                FROM tb_m_employee_salary AS sal
-                LEFT JOIN tb_m_employee AS emp ON sal.id_employee = emp.id_employee
-                LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
-                WHERE sal.effective_date <= IF(dep.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "))
-                ORDER BY sal.id_employee_salary DESC, sal.effective_date DESC
-            ) AS tb
-            GROUP BY id_employee
-        ", -1, True, "", "", "", "")
-
-        For i = 0 To GVPayroll.RowCount - 1
-            If GVPayroll.IsValidRowHandle(i) Then
-                For j = 0 To dataNew.Rows.Count - 1
-                    If GVPayroll.GetRowCellValue(i, "id_employee").ToString = dataNew.Rows(j)("id_employee").ToString Then
-                        If Not GVPayroll.GetRowCellValue(i, "id_salary").ToString = dataNew.Rows(j)("id_employee_salary").ToString Then
-                            warningCustom(GVPayroll.GetRowCellValue(i, "employee_name").ToString + " Will Updated.")
-
-                            'update id_salary
-                            Dim q_salary As String = "
-                                UPDATE tb_emp_payroll_det SET id_salary = " + dataNew.Rows(j)("id_employee_salary").ToString + " WHERE id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString + " AND id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString +
-                            ""
-
-                            execute_non_query(q_salary, True, "", "", "", "")
-
-                            If is_thr = "2" Then
-                                'update koprasi
-                                Dim q_koprasi As String = "
-	                                DELETE FROM tb_emp_payroll_deduction
-	                                WHERE id_salary_deduction='4' AND id_payroll=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString + ";
-	
-	                                INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction)
-	                                SELECT py.id_payroll,4 AS `id_salary_deduction`,emp.`id_employee`,py.`koperasi_iuran` AS deduction
-	                                FROM `tb_emp_payroll_det` pyd
-	                                INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
-	                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
-	                                WHERE emp.`is_koperasi`='1' AND py.id_payroll=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString + ";
-                                "
-
-                                execute_non_query(q_koprasi, True, "", "", "", "")
-
-                                'update jamsostek
-                                Dim q_jamsostek As String = "
-                                    DELETE pd.* FROM tb_emp_payroll_deduction pd
-	                                INNER JOIN tb_lookup_salary_deduction sd ON sd.id_salary_deduction=pd.id_salary_deduction
-	                                WHERE sd.is_jamsostek='1' AND pd.id_payroll=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pd.id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString + ";
-	                                INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction)
-	                                SELECT " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AS id_payroll,id_salary_deduction,id_employee,deduction FROM
-	                                (SELECT emp.`id_employee`
-	                                ,IF(emp.`id_employee_status` = 3, (sal.`basic_salary` * dep.total_workdays), (sal.`basic_salary`+sal.`allow_job`+sal.`allow_meal`+sal.`allow_trans`)) AS gp
-	                                ,CAST(IF((SELECT gp)<=py.`jp_max`,(SELECT gp)*0.01,py.`jp_max`*0.01) AS DECIMAL(13,2)) AS deduction
-	                                ,lsal.`id_salary_deduction`
-	                                FROM `tb_emp_payroll_det` pyd
-	                                INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
-	                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
-                                    INNER JOIN tb_m_departement dep ON emp.`id_departement`=dep.`id_departement`
-	                                INNER JOIN `tb_m_employee_salary` sal ON sal.`id_employee_salary`=pyd.`id_salary`
-	                                INNER JOIN `tb_lookup_salary_deduction` lsal ON lsal.`id_salary_deduction`=2
-	                                WHERE emp.`is_jp`='1' AND pyd.`id_payroll`=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString + "
-	                                UNION
-	                                SELECT emp.`id_employee`
-	                                ,IF(emp.`id_employee_status` = 3, (sal.`basic_salary` * dep.total_workdays), (sal.`basic_salary`+sal.`allow_job`+sal.`allow_meal`+sal.`allow_trans`)) AS gp
-	                                ,CAST((SELECT gp)*0.02 AS DECIMAL(13,2)) AS deduction
-	                                ,lsal.`id_salary_deduction`
-	                                FROM `tb_emp_payroll_det` pyd
-	                                INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
-	                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
-                                    INNER JOIN tb_m_departement dep ON emp.`id_departement`=dep.`id_departement`
-	                                INNER JOIN `tb_m_employee_salary` sal ON sal.`id_employee_salary`=pyd.`id_salary`
-	                                INNER JOIN `tb_lookup_salary_deduction` lsal ON lsal.`id_salary_deduction`=3
-	                                WHERE emp.`is_jht`='1' AND pyd.`id_payroll`=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString + ") a;
-                                "
-
-                                execute_non_query(q_jamsostek, True, "", "", "", "")
-
-                                'update adjustment
-                                Dim q_adj As String = "
-                                    SELECT adj.*, dep.total_workdays
-                                    FROM tb_emp_payroll_adj AS adj
-                                    LEFT JOIN tb_m_employee AS emp ON adj.id_employee = emp.id_employee
-                                    LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
-                                    WHERE adj.id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString + " AND adj.id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND adj.total_days <> 0
-                                "
-
-                                Dim d_adj As DataTable = execute_query(q_adj, -1, True, "", "", "", "")
-
-                                For k = 0 To d_adj.Rows.Count - 1
-                                    Dim total_days As Decimal = d_adj.Rows(k)("total_days")
-                                    Dim workdays As Decimal = d_adj.Rows(k)("total_workdays")
-                                    Dim total_salary As Decimal = dataNew.Rows(j)("sal")
-
-                                    Dim value As Decimal = 0
-
-                                    If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
-                                        value = total_days * total_salary
-                                    Else
-                                        value = (total_days / workdays) * total_salary
-                                    End If
-
-                                    Dim q_uadj As String = "UPDATE tb_emp_payroll_adj SET increase = '" + decimalSQL(total_salary) + "', value = '" + decimalSQL(value) + "' WHERE id_payroll_adj = " + d_adj.Rows(k)("id_payroll_adj").ToString
-
-                                    execute_non_query(q_uadj, True, "", "", "", "")
-                                Next
-
-                                'update deduction
-                                Dim q_ded As String = "
-                                    SELECT ded.*, dep.total_workdays
-                                    FROM tb_emp_payroll_deduction AS ded
-                                    LEFT JOIN tb_m_employee AS emp ON ded.id_employee = emp.id_employee
-                                    LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
-                                    WHERE ded.id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString + " AND ded.id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND ded.total_days <> 0 AND ded.total_days IS NOT NULL
-                                "
-
-                                Dim d_ded As DataTable = execute_query(q_ded, -1, True, "", "", "", "")
-
-                                For k = 0 To d_ded.Rows.Count - 1
-                                    Dim total_days As Decimal = d_ded.Rows(k)("total_days")
-                                    Dim workdays As Decimal = d_ded.Rows(k)("total_workdays")
-                                    Dim total_salary As Decimal = dataNew.Rows(j)("sal")
-
-                                    Dim value As Decimal = 0
-
-                                    If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
-                                        value = total_days * total_salary
-                                    Else
-                                        value = (total_days / workdays) * total_salary
-                                    End If
-
-                                    Dim q_uded As String = "UPDATE tb_emp_payroll_deduction SET increase = '" + decimalSQL(total_salary) + "', deduction = '" + decimalSQL(value) + "' WHERE id_payroll_deduction = " + d_ded.Rows(k)("id_payroll_deduction").ToString
-
-                                    execute_non_query(q_uded, True, "", "", "", "")
-                                Next
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-        Next
-    End Sub
-
     Private Sub GVPayroll_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVPayroll.RowCellStyle
         If GVPayroll.GetRowCellValue(e.RowHandle, "is_resign").ToString = "1" Then
             e.Appearance.BackColor = Color.Yellow
         End If
+    End Sub
+
+    Private Sub GVPayroll_RowCountChanged(sender As Object, e As EventArgs) Handles GVPayroll.RowCountChanged
+        Dim j As Integer = 0
+
+        For i = 0 To GVPayroll.RowCount - 1
+            If GVPayroll.IsValidRowHandle(i) Then
+                j = j + 1
+
+                GVPayroll.SetRowCellValue(i, "no", j)
+            End If
+        Next
+    End Sub
+
+    Sub autogenerate()
+        Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        Dim id_payroll_type As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+        Dim is_thr As String = GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString
+
+        Dim where_dw As String = If(id_payroll_type = "4", "=", "<>")
+
+        Dim query As String = "
+            SELECT " + id_payroll + " AS id_payroll, employee.id_employee, employee.employee_name, salary.id_employee_salary AS id_salary,
+                departement.total_workdays AS workdays, schedule.actual_workdays
+            FROM (
+                -- employee active & join date before payroll period
+                SELECT e.id_employee, e.employee_name
+                FROM tb_m_employee AS e
+                LEFT JOIN tb_m_departement AS d
+                    ON e.id_departement = d.id_departement
+                WHERE e.id_employee_active = 1
+                    AND e.id_departement NOT IN (22, 30, 31, 32)
+                    AND e.employee_actual_join_date <= IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+                UNION
+                -- employee not active & join date between payroll period
+                SELECT e.id_employee, e.employee_name
+                FROM tb_m_employee AS e
+                LEFT JOIN tb_m_departement AS d
+                    ON e.id_departement = d.id_departement
+                WHERE e.id_employee_active <> 1
+                    AND e.id_departement NOT IN (22, 30, 31, 32)
+                    AND e.employee_last_date BETWEEN
+                        IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+                        AND
+                        IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+                UNION
+                -- employee not active & payroll period between join date & last date
+                SELECT e.id_employee, e.employee_name
+                FROM tb_m_employee AS e
+                LEFT JOIN tb_m_departement AS d
+                    ON e.id_departement = d.id_departement
+                WHERE e.id_employee_active <> 1
+                    AND e.id_departement NOT IN (22, 30, 31, 32)
+                    AND IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) BETWEEN employee_actual_join_date AND employee_last_date
+                    AND IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) BETWEEN employee_actual_join_date AND employee_last_date
+            ) AS employee
+            LEFT JOIN (
+                -- employee status by payroll period
+                SELECT *
+                FROM (
+                    SELECT s.id_employee, s.id_employee_status
+                    FROM tb_m_employee_status_det AS s
+                    LEFT JOIN tb_m_employee AS e
+                        ON s.id_employee = e.id_employee
+                    LEFT JOIN tb_m_departement AS d
+                        ON e.id_departement = d.id_departement
+                    WHERE s.start_period <= IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+                    ORDER BY s.start_period DESC, s.id_employee_status_det DESC
+                ) AS status
+                GROUP BY id_employee
+            ) AS status
+                ON employee.id_employee = status.id_employee
+            LEFT JOIN (
+                -- employee salary by payroll period
+                SELECT *
+                FROM (
+                    SELECT s.id_employee, s.id_employee_salary
+                    FROM tb_m_employee_salary AS s
+                    LEFT JOIN tb_m_employee AS e
+                        ON s.id_employee = e.id_employee
+                    LEFT JOIN tb_m_departement AS d
+                        ON e.id_departement = d.id_departement
+                    WHERE s.effective_date <= IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+                    ORDER BY s.effective_date DESC, s.id_employee_salary DESC
+                ) AS s
+                GROUP BY s.id_employee
+            ) AS salary
+                ON employee.id_employee = salary.id_employee
+            LEFT JOIN (
+                -- departement by payroll period
+                SELECT *
+                FROM (
+                    SELECT p.id_employee, p.id_departement, d.total_workdays
+                    FROM tb_m_employee_position AS p
+                    LEFT JOIN tb_m_departement AS d
+                        ON p.id_departement = d.id_departement
+                    WHERE p.employee_position_date <= IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+                    ORDER BY p.employee_position_date DESC, p.id_employee_position DESC
+                ) AS p
+                GROUP BY p.id_employee
+            ) AS departement
+                ON employee.id_employee = departement.id_employee
+            LEFT JOIN (
+                -- actual workdays
+                SELECT s.id_employee, COUNT(*) AS actual_workdays
+                FROM tb_emp_schedule AS s
+                INNER JOIN tb_emp_shift AS f 
+                    ON s.shift_code = f.shift_code
+                LEFT JOIN tb_m_employee AS e
+                    ON s.id_employee = e.id_employee
+                LEFT JOIN tb_m_departement AS d 
+                    ON e.id_departement = d.id_departement
+                WHERE s.date BETWEEN 
+                        IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
+                        IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) 
+                    AND s.id_schedule_type IN (1, 3)
+                GROUP BY s.id_employee
+            ) AS schedule
+                ON employee.id_employee = schedule.id_employee
+            WHERE status.id_employee_status " + where_dw + " 3
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim messages As String = ""
+
+        'insert
+        For i = 0 To data.Rows.Count - 1
+            Dim already As Boolean = False
+
+            For j = 0 To GVPayroll.RowCount - 1
+                If GVPayroll.IsValidRowHandle(j) Then
+                    If data.Rows(i)("id_employee").ToString = GVPayroll.GetRowCellValue(j, "id_employee").ToString Then
+                        If data.Rows(i)("id_salary").ToString <> GVPayroll.GetRowCellValue(j, "id_salary").ToString Then
+                            If Not data.Rows(i)("id_salary").ToString = "" Then
+                                messages += "- " + data.Rows(i)("employee_name").ToString + " Will Updated." + Environment.NewLine
+
+                                update_salary(data.Rows(i)("id_salary").ToString, data.Rows(i)("id_employee").ToString)
+                            End If
+                        End If
+
+                        already = True
+                    End If
+                End If
+            Next
+
+            If Not already Then
+                If Not data.Rows(i)("id_salary").ToString = "" Then
+                    messages += "- " + data.Rows(i)("employee_name").ToString + " Will Inserted." + Environment.NewLine
+
+                    Dim q_insert As String = "
+                    INSERT INTO tb_emp_payroll_det (id_payroll, id_employee, id_salary, workdays, actual_workdays) VALUES (" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ", " + data.Rows(i)("id_employee").ToString + ", " + data.Rows(i)("id_salary").ToString + ", " + data.Rows(i)("workdays").ToString + ", " + data.Rows(i)("actual_workdays").ToString + ")
+                "
+
+                    execute_non_query(q_insert, True, "", "", "", "")
+                End If
+            End If
+        Next
+
+        'delete
+        For i = 0 To GVPayroll.RowCount - 1
+            If GVPayroll.IsValidRowHandle(i) Then
+                Dim already As Boolean = False
+
+                For j = 0 To data.Rows.Count - 1
+                    If GVPayroll.GetRowCellValue(i, "id_employee").ToString = data.Rows(j)("id_employee").ToString Then
+                        already = True
+                    End If
+                Next
+
+                If Not already Then
+                    messages += "- " + GVPayroll.GetRowCellValue(i, "employee_name").ToString + " Will Deleted." + Environment.NewLine
+
+                    'delete adjustment
+                    Dim q_delete_adj As String = "DELETE FROM tb_emp_payroll_adj WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+
+                    execute_non_query(q_delete_adj, True, "", "", "", "")
+
+                    'delete deduction
+                    Dim q_delete_ded As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+
+                    execute_non_query(q_delete_ded, True, "", "", "", "")
+
+                    'delete detail
+                    Dim q_delete_det As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+
+                    execute_non_query(q_delete_det, True, "", "", "", "")
+                End If
+            End If
+        Next
+
+        If Not messages = "" Then
+            warningCustom(messages)
+        End If
+    End Sub
+
+    Sub update_salary(ByVal id_salary As String, ByVal id_employee As String)
+        'update salary
+        Dim q_salary As String = "
+            UPDATE tb_emp_payroll_det SET id_salary = " + id_salary + " WHERE id_employee = " + id_employee + " AND id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString +
+        ""
+
+        execute_non_query(q_salary, True, "", "", "", "")
+
+        'get salary
+        Dim d_salary As DataTable = execute_query("SELECT (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary FROM tb_m_employee_salary WHERE id_employee_salary = " + id_salary, -1, True, "", "", "", "")
+
+        'update jamsostek
+        Dim q_jamsostek As String = "
+            DELETE pd.* FROM tb_emp_payroll_deduction pd
+	        INNER JOIN tb_lookup_salary_deduction sd ON sd.id_salary_deduction=pd.id_salary_deduction
+	        WHERE sd.is_jamsostek='1' AND pd.id_payroll=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pd.id_employee = " + id_employee + ";
+	        INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction)
+	        SELECT " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AS id_payroll,id_salary_deduction,id_employee,deduction FROM
+	        (SELECT emp.`id_employee`
+	        ,IF(emp.`id_employee_status` = 3, (sal.`basic_salary` * dep.total_workdays), (sal.`basic_salary`+sal.`allow_job`+sal.`allow_meal`+sal.`allow_trans`)) AS gp
+	        ,CAST(IF((SELECT gp)<=py.`jp_max`,(SELECT gp)*0.01,py.`jp_max`*0.01) AS DECIMAL(13,2)) AS deduction
+	        ,lsal.`id_salary_deduction`
+	        FROM `tb_emp_payroll_det` pyd
+	        INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
+	        INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
+            INNER JOIN tb_m_departement dep ON emp.`id_departement`=dep.`id_departement`
+	        INNER JOIN `tb_m_employee_salary` sal ON sal.`id_employee_salary`=pyd.`id_salary`
+	        INNER JOIN `tb_lookup_salary_deduction` lsal ON lsal.`id_salary_deduction`=2
+	        WHERE emp.`is_jp`='1' AND pyd.`id_payroll`=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + id_employee + "
+	        UNION
+	        SELECT emp.`id_employee`
+	        ,IF(emp.`id_employee_status` = 3, (sal.`basic_salary` * dep.total_workdays), (sal.`basic_salary`+sal.`allow_job`+sal.`allow_meal`+sal.`allow_trans`)) AS gp
+	        ,CAST((SELECT gp)*0.02 AS DECIMAL(13,2)) AS deduction
+	        ,lsal.`id_salary_deduction`
+	        FROM `tb_emp_payroll_det` pyd
+	        INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
+	        INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
+            INNER JOIN tb_m_departement dep ON emp.`id_departement`=dep.`id_departement`
+	        INNER JOIN `tb_m_employee_salary` sal ON sal.`id_employee_salary`=pyd.`id_salary`
+	        INNER JOIN `tb_lookup_salary_deduction` lsal ON lsal.`id_salary_deduction`=3
+	        WHERE emp.`is_jht`='1' AND pyd.`id_payroll`=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + id_employee + ") a;
+        "
+
+        execute_non_query(q_jamsostek, True, "", "", "", "")
+
+        'update adjustment
+        Dim q_adj As String = "
+            SELECT adj.*, dep.total_workdays
+            FROM tb_emp_payroll_adj AS adj
+            LEFT JOIN tb_m_employee AS emp ON adj.id_employee = emp.id_employee
+            LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
+            WHERE adj.id_employee = " + id_employee + " AND adj.id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND adj.total_days <> 0
+        "
+
+        Dim d_adj As DataTable = execute_query(q_adj, -1, True, "", "", "", "")
+
+        For k = 0 To d_adj.Rows.Count - 1
+            Dim total_days As Decimal = d_adj.Rows(k)("total_days")
+            Dim workdays As Decimal = d_adj.Rows(k)("total_workdays")
+            Dim total_salary As Decimal = d_salary.Rows(0)("salary")
+
+            Dim value As Decimal = 0
+
+            If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
+                value = total_days * total_salary
+            Else
+                value = (total_days / workdays) * total_salary
+            End If
+
+            Dim q_uadj As String = "UPDATE tb_emp_payroll_adj SET increase = '" + decimalSQL(total_salary) + "', value = '" + decimalSQL(value) + "' WHERE id_payroll_adj = " + d_adj.Rows(k)("id_payroll_adj").ToString
+
+            execute_non_query(q_uadj, True, "", "", "", "")
+        Next
+
+        'update deduction
+        Dim q_ded As String = "
+            SELECT ded.*, dep.total_workdays
+            FROM tb_emp_payroll_deduction AS ded
+            LEFT JOIN tb_m_employee AS emp ON ded.id_employee = emp.id_employee
+            LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
+            WHERE ded.id_employee = " + id_employee + " AND ded.id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND ded.total_days <> 0 AND ded.total_days IS NOT NULL
+        "
+
+        Dim d_ded As DataTable = execute_query(q_ded, -1, True, "", "", "", "")
+
+        For k = 0 To d_ded.Rows.Count - 1
+            Dim total_days As Decimal = d_ded.Rows(k)("total_days")
+            Dim workdays As Decimal = d_ded.Rows(k)("total_workdays")
+            Dim total_salary As Decimal = d_salary.Rows(0)("salary")
+
+            Dim value As Decimal = 0
+
+            If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
+                value = total_days * total_salary
+            Else
+                value = (total_days / workdays) * total_salary
+            End If
+
+            Dim q_uded As String = "UPDATE tb_emp_payroll_deduction SET increase = '" + decimalSQL(total_salary) + "', deduction = '" + decimalSQL(value) + "' WHERE id_payroll_deduction = " + d_ded.Rows(k)("id_payroll_deduction").ToString
+
+            execute_non_query(q_uded, True, "", "", "", "")
+        Next
     End Sub
 End Class

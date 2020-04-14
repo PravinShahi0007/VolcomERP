@@ -136,9 +136,11 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             For i As Integer = 0 To ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary))
                 Dim id_item As String = GVSummary.GetRowCellValue(i, "id_item").ToString
                 Dim item_detail As String = GVSummary.GetRowCellValue(i, "item_detail").ToString
+                Dim item_desc As String = GVSummary.GetRowCellValue(i, "item_desc").ToString
                 Dim qty_total As Decimal = GVSummary.GetRowCellValue(i, "qty")
                 makeSafeGV(GVDetail)
-                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "' AND [item_detail]='" + item_detail + "'"
+                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "' AND [item_detail]='" + addSlashes(item_detail) + "' AND [item_desc]='" + addSlashes(item_desc) + "'"
+
                 For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
                     If qty_total > 0 Then
                         Dim qty As Decimal = GVDetail.GetRowCellValue(j, "qty_remaining")

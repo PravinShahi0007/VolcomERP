@@ -178,7 +178,7 @@
 
         data_code = execute_query("
             SELECT shift_code
-            FROM tb_emp_shift WHERE is_store = '1'
+            FROM tb_emp_shift
             UNION
             SELECT 'OFF' AS shift_code
         ", -1, True, "", "", "", "")
@@ -236,8 +236,8 @@
                 Dim date_fromp As String = Date.Parse(date_from.ToString).ToString("yyyy-MM-dd")
                 Dim date_untilp As String = Date.Parse(date_until.ToString).ToString("yyyy-MM-dd")
                 'add header
-                query = "INSERT INTO tb_emp_assign_sch(assign_sch_number,assign_sch_date,id_departement,id_departement_sub,date_from,date_until,id_user_propose,id_report_status,note) 
-                    VALUES('" & header_number_emp("4") & "',NOW(),'" & FormEmpAttnAssign.LEDeptSum.EditValue.ToString & "'," + If(FormEmpAttnAssign.LEDeptSum.EditValue.ToString = "17", "'" + FormEmpAttnAssign.LESubDeptSum.EditValue.ToString + "'", "NULL") + ",'" & date_fromp & "','" & date_untilp & "','" & id_user & "',1,'" & MENote.Text & "'); SELECT LAST_INSERT_ID(); "
+                query = "INSERT INTO tb_emp_assign_sch(assign_sch_number,assign_sch_date,id_departement,id_departement_sub,date_from,date_until,id_user_propose,id_report_status,note,is_departement) 
+                    VALUES('" & header_number_emp("4") & "',NOW(),'" & FormEmpAttnAssign.LEDeptSum.EditValue.ToString & "'," + If(FormEmpAttnAssign.LEDeptSum.EditValue.ToString = "17", "'" + FormEmpAttnAssign.LESubDeptSum.EditValue.ToString + "'", "NULL") + ",'" & date_fromp & "','" & date_untilp & "','" & id_user & "',1,'" & MENote.Text & "'," + FormEmpAttnAssign.is_departement + "); SELECT LAST_INSERT_ID(); "
                 id_emp_assign_sch = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_emp("4")
                 'detail
@@ -283,7 +283,12 @@
                     Next
                 Next
                 execute_non_query(query, True, "", "", "", "")
-                submit_who_prepared("100", id_emp_assign_sch, id_user)
+                If FormEmpAttnAssign.is_departement = "1" Then
+                    submit_who_prepared("240", id_emp_assign_sch, id_user)
+                Else
+                    submit_who_prepared("100", id_emp_assign_sch, id_user)
+                End If
+
                 infoCustom("Change schedule proposed. Waiting approval.")
                 FormEmpAttnAssign.load_attn()
                 Close()
@@ -317,8 +322,10 @@
         If data.Rows.Count > 0 Then
             infoCustom("Please process proposed schdule before this.")
         Else
+            Dim is_departement As String = execute_query("SELECT is_departement FROM tb_emp_assign_sch WHERE id_assign_sch='" & id_emp_assign_sch & "'", 0, True, "", "", "", "")
+
             FormReportMark.id_report = id_emp_assign_sch
-            FormReportMark.report_mark_type = "100"
+            FormReportMark.report_mark_type = If(is_departement = "1", "240", "100")
             FormReportMark.is_view = is_view
             FormReportMark.ShowDialog()
         End If

@@ -363,7 +363,7 @@
         ElseIf report_mark_type = "99" Then
             'Leave Propose Admin Management
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
-        ElseIf report_mark_type = "100" Then
+        ElseIf report_mark_type = "100" Or report_mark_type = "240" Then
             'Schedule Propose With Approval
             query = String.Format("SELECT id_report_status, assign_sch_number as report_number FROM tb_emp_assign_sch WHERE id_assign_sch = '{0}'", id_report)
         ElseIf report_mark_type = "101" Then
@@ -2227,6 +2227,15 @@
                         FROM tb_sales_order_det sd
                         WHERE sd.id_sales_order=" + dtv.Rows(m)("id_sales_order").ToString + " "
                         execute_non_query(qd, -1, True, "", "", "")
+
+                        'completed
+                        Dim stt As ClassFGTrf = New ClassFGTrf()
+                        stt.changeStatus(id_so, "6")
+
+                        'final comment
+                        Dim query_comment As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date, ip_user) VALUES "
+                        query_comment += "('57', '" + id_so + "', '6', '" + id_user + "', '', NOW(), '" + GetIPv4AddressPublic() + "') "
+                        execute_non_query(query_comment, True, "", "", "", "")
                     Next
                 End If
             End If
@@ -3619,6 +3628,15 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         FROM tb_sales_order_det sd
                         WHERE sd.id_sales_order=" + dtv.Rows(m)("id_sales_order").ToString + " "
                         execute_non_query(qd, -1, True, "", "", "")
+
+                        'completed
+                        Dim stt As ClassFGTrf = New ClassFGTrf()
+                        stt.changeStatus(id_so, "6")
+
+                        'final comment
+                        Dim query_comment As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date, ip_user) VALUES "
+                        query_comment += "('57', '" + id_so + "', '6', '" + id_user + "', '', NOW(), '" + GetIPv4AddressPublic() + "') "
+                        execute_non_query(query_comment, True, "", "", "", "")
                     Next
                 End If
             End If
@@ -4143,7 +4161,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             End If
             query = String.Format("UPDATE tb_emp_ch_schedule SET id_report_status='{0}' WHERE id_emp_ch_schedule ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "100" Then
+        ElseIf report_mark_type = "100" Or report_mark_type = "240" Then
             'Schedule PROPOSE with approval
             If id_status_reportx = "3" Then
                 'update schedule
@@ -5737,7 +5755,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             'completed
             If id_status_reportx = "6" Then
                 'select header
-                Dim qu_payment As String = "SELECT id_pay_type,report_mark_type,date_created FROM tb_pn py WHERE py.id_pn='" & id_report & "'"
+                Dim qu_payment As String = "SELECT id_pay_type,report_mark_type,date_created,date_payment FROM tb_pn py WHERE py.id_pn='" & id_report & "'"
                 Dim data_payment As DataTable = execute_query(qu_payment, -1, True, "", "", "", "")
 
                 'auto journal
@@ -5746,7 +5764,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                Dim date_created As String = Date.Parse(data_payment.Rows(0)("date_created").ToString).ToString("yyyy-MM-dd")
+                Dim date_created As String = Date.Parse(data_payment.Rows(0)("date_payment").ToString).ToString("yyyy-MM-dd")
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
@@ -5759,7 +5777,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                     SELECT * FROM
                                     (
 	                                    /* Pay from */
-	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`, 1, 0, 0, 0,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
+	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
 	                                    FROM tb_pn py
 	                                    WHERE py.id_pn=" & id_report & "
 	                                    UNION ALL
@@ -5777,14 +5795,14 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                                 INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.`id_pn`=" & id_report & "
                                                 SET po.is_close_pay='1'"
                     execute_non_query(qc, True, "", "", "", "")
-                    FormBankWithdrawal.load_po()
+                    'FormBankWithdrawal.load_po()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
                     'close expense
                     Dim qc As String = "UPDATE tb_item_expense e
                                                 INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.`id_pn`=" & id_report & "
                                                 SET e.is_open='2'"
                     execute_non_query(qc, True, "", "", "", "")
-                    FormBankWithdrawal.load_expense()
+                    'FormBankWithdrawal.load_expense()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "189" Then
                     'Close FGPO
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
@@ -5811,15 +5829,15 @@ WHERE pd.`id_pn`='" & id_report & "'"
                         End If
                     Next
                     '
-                    FormBankWithdrawal.load_fgpo()
+                    'FormBankWithdrawal.load_fgpo()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "223" Then
                     'close bpjs
                     execute_non_query("UPDATE tb_pay_bpjs_kesehatan SET is_close_pay = 1 WHERE id_pay_bpjs_kesehatan IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
-                    FormBankWithdrawal.view_bpjskesehatan()
+                    'FormBankWithdrawal.view_bpjskesehatan()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "192" Then
                     'close thr
                     execute_non_query("UPDATE tb_emp_payroll SET is_close_pay = 1 WHERE id_payroll IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
-                    FormBankWithdrawal.view_thr()
+                    'FormBankWithdrawal.view_thr()
                 End If
                 '
             End If

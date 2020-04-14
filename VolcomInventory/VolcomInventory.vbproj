@@ -298,6 +298,12 @@
     <Compile Include="FormAccountingWorksheet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAllocationHist.Designer.vb">
+      <DependentUpon>FormAllocationHist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAllocationHist.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAPReport.Designer.vb">
       <DependentUpon>FormAPReport.vb</DependentUpon>
     </Compile>
@@ -2453,6 +2459,12 @@
       <DependentUpon>FormMasterEmployeeNewDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterEmployeeNewDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterEmployeeNomorSurat.Designer.vb">
+      <DependentUpon>FormMasterEmployeeNomorSurat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeeNomorSurat.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterEmployeePosition.Designer.vb">
@@ -5791,6 +5803,12 @@
     <Compile Include="FormSuperUserSubDept.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormTabunganMissing.Designer.vb">
+      <DependentUpon>FormTabunganMissing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTabunganMissing.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTemplateCode.Designer.vb">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
     </Compile>
@@ -7132,6 +7150,12 @@
     <Compile Include="ReportMasterCompanySingle.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.Designer.vb">
+      <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterPrice.Designer.vb">
       <DependentUpon>ReportMasterPrice.vb</DependentUpon>
     </Compile>
@@ -7896,6 +7920,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingWorksheet.resx">
       <DependentUpon>FormAccountingWorksheet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAllocationHist.resx">
+      <DependentUpon>FormAllocationHist.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAPReport.resx">
       <DependentUpon>FormAPReport.vb</DependentUpon>
@@ -9025,6 +9052,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeNewDet.resx">
       <DependentUpon>FormMasterEmployeeNewDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeeNomorSurat.resx">
+      <DependentUpon>FormMasterEmployeeNomorSurat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeePosition.resx">
       <DependentUpon>FormMasterEmployeePosition.vb</DependentUpon>
@@ -11040,6 +11070,9 @@
     <EmbeddedResource Include="FormSuperUserSubDept.resx">
       <DependentUpon>FormSuperUserSubDept.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTabunganMissing.resx">
+      <DependentUpon>FormTabunganMissing.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTemplateCode.resx">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -11800,6 +11833,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterCompanySingle.resx">
       <DependentUpon>ReportMasterCompanySingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.resx">
+      <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterPrice.resx">
       <DependentUpon>ReportMasterPrice.vb</DependentUpon>

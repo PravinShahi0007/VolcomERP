@@ -158,6 +158,12 @@ Public Class FormSalesPOSDet
             If is_use_inv_mapping = "1" Then
                 SPDiscount.Enabled = False
             End If
+
+            'minimum date
+            Dim query_closing As String = "SELECT DATE_ADD(l.date_until,INTERVAL 1 DAY) AS `first_date` FROM tb_closing_log l WHERE l.note='Closing End' ORDER BY l.id DESC LIMIT 1 "
+            Dim data_closing As DataTable = execute_query(query_closing, -1, True, "", "", "", "")
+            DEStart.Properties.MinValue = data_closing(0)("first_date")
+            DEEnd.Properties.MinValue = data_closing(0)("first_date")
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
@@ -1423,7 +1429,7 @@ Public Class FormSalesPOSDet
 
         'get del
         Dim query_del As String = "SELECT dd.id_pl_sales_order_del_det, d.pl_sales_order_del_number AS `del`, so.sales_order_ol_shop_number AS `ol_store_order`,p.id_product, p.id_design, p.product_full_code AS `code`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`,
-        dd.pl_sales_order_del_det_qty AS `sales_pos_det_qty`, dd.id_design_price, dd.design_price, dd.id_design_price AS `id_design_price_retail`, dd.design_price AS `design_price_retail`, prct.design_price_type, '' AS `note`,'0' AS `id_sales_pos_det`
+        dd.pl_sales_order_del_det_qty AS `sales_pos_det_qty`, dd.id_design_price, dd.design_price, dd.id_design_price AS `id_design_price_retail`, dd.design_price AS `design_price_retail`, prct.design_price_type, 'OK' AS `note`,'0' AS `id_sales_pos_det`
         FROM tb_pl_sales_order_del_det dd
         INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
@@ -1668,6 +1674,17 @@ Public Class FormSalesPOSDet
                 id_acc_sales = data.Rows(0)("id_acc_sales").ToString
                 id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
                 id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+
+                'prm
+                If LEInvType.EditValue.ToString = "4" Then
+                    If id_acc_ar = "0" Then
+                        id_acc_ar = "52"
+                    End If
+                    If id_acc_sales_return = "0" Then
+                        id_acc_sales_return = "1554"
+                    End If
+                End If
+
                 viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
                 If cond_coa = False Then
                     Cursor = Cursors.Default
@@ -1797,6 +1814,17 @@ Public Class FormSalesPOSDet
                     id_acc_sales = data.Rows(0)("id_acc_sales").ToString
                     id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
                     id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+
+                    'prm
+                    If typ = "4" Then
+                        If id_acc_ar = "0" Then
+                            id_acc_ar = "52"
+                        End If
+                        If id_acc_sales_return = "0" Then
+                            id_acc_sales_return = "1554"
+                        End If
+                    End If
+
                     viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
                     If cond_coa = False Then
                         Cursor = Cursors.Default
