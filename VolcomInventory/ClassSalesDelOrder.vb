@@ -270,9 +270,26 @@
                 'INVOCIE
                 'main
                 Dim query_inv As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date) 
-                SELECT ; SELECT LAST_INSERT_ID(); "
+                SELECT del.id_store_contact_to AS id_store_contact_from,NULL AS id_comp_contact_bill , '" + header_number_sales("6") + "' AS sales_pos_number, 
+                del.pl_sales_order_del_date AS sales_pos_date, 
+                '' AS sales_pos_note, 6 AS id_report_status, 0 AS id_so_type, 0 AS sales_pos_total, del.pl_sales_order_del_date AS sales_pos_due_date, 
+                del.pl_sales_order_del_date AS sales_pos_start_period,del.pl_sales_order_del_date AS sales_pos_end_period,
+                c.comp_commission AS sales_pos_discount, 0 AS sales_pos_potongan, o.vat_inv_default AS sales_pos_vat, del.id_pl_sales_order_del, 1 AS id_memo_type,0 AS id_inv_type, NULL AS id_sales_pos_ref, 48 AS report_mark_type,o.is_use_unique_code_all AS is_use_unique_code, 
+                c.id_acc_ar, c.id_acc_sales, c.id_acc_sales_return 
+                FROM tb_pl_sales_order_del del 
+                JOIN tb_opt o
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                WHERE del.id_pl_sales_order_del=" + id_report_par + "; SELECT LAST_INSERT_ID(); "
                 Dim id_sales_pos As String = execute_query(query_inv, 0, True, "", "", "", "")
+                'increase number
                 increase_inc_sales("6")
+                'detail
+                Dim query_detail As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) 
+                "
+
+
+
                 submit_only_prepared("48", id_sales_pos, id_user)
             End If
 
