@@ -201,38 +201,81 @@
     Public Sub changeStatus(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
         'rollback stock if cancelled and complerted
         If id_status_reportx_par = "6" Then
-            Dim id_so As String = execute_query("SELECT id_sales_order FROM tb_pl_sales_order_del WHERE id_pl_sales_order_del='" + id_report_par + "' ", 0, True, "", "", "", "")
+            Dim qso As String = "SELECT d.id_sales_order, so.id_so_status 
+            FROM tb_pl_sales_order_del d 
+            INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order
+            WHERE d.id_pl_sales_order_del='" + id_report_par + "' "
+            Dim dso As DataTable = execute_query(qso, -1, True, "", "", "", "")
+            Dim id_so As String = dso.Rows(0)("id_sales_order").ToString
+            Dim id_so_status As String = dso.Rows(0)("id_so_status").ToString
 
-            Dim query_complete As String = "
-            -- delete so first (strage)
-            DELETE FROM tb_storage_fg 
-            WHERE report_mark_type=39 AND id_report=" + id_so + " AND report_mark_type_ref=43 AND id_report_ref=" + id_report_par + " AND id_storage_category=1 AND id_stock_status=2 ;
-            -- delete del first (strage)
-            DELETE FROM tb_storage_fg 
-            WHERE report_mark_type=43 AND id_report=" + id_report_par + ";
-            -- insert storage
-            INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status, report_mark_type_ref, id_report_ref) "
-            query_complete += "SELECT del.id_wh_drawer AS `drawer`, '1', del_det.id_product, dsg.design_cop, '39' AS `report_mark_type`, del.id_sales_order AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '', '2', 43, '" + id_report_par + "' "
-            query_complete += "FROM tb_pl_sales_order_del del "
-            query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
-            query_complete += "INNER JOIN tb_m_product prod ON prod.id_product = del_det.id_product  "
-            query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
-            query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0 "
-            query_complete += "UNION ALL "
-            query_complete += "SELECT del.id_wh_drawer AS `drawer`, '2', del_det.id_product, dsg.design_cop, '43' AS `report_mark_type`, del.id_pl_sales_order_del AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '','1', NULL,NULL "
-            query_complete += "FROM tb_pl_sales_order_del del "
-            query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
-            query_complete += "INNER JOIN tb_m_product prod ON prod.id_product = del_det.id_product  "
-            query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
-            query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0 "
-            query_complete += "UNION ALL "
-            query_complete += "SELECT getCompByContact(del.id_store_contact_to, 4) AS `drawer`, '1', del_det.id_product, dsg.design_cop, '43' AS `report_mark_type`, del.id_pl_sales_order_del AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '','1', NULL,NULL "
-            query_complete += "FROM tb_pl_sales_order_del del "
-            query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
-            query_complete += "INNER JOIN tb_m_product prod ON prod.id_product = del_det.id_product  "
-            query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
-            query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0; "
-            execute_non_query(query_complete, True, "", "", "", "")
+            If id_so_status <> "14" Then
+                'reguler
+                Dim query_complete As String = "
+                -- delete so first (strage)
+                DELETE FROM tb_storage_fg 
+                WHERE report_mark_type=39 AND id_report=" + id_so + " AND report_mark_type_ref=43 AND id_report_ref=" + id_report_par + " AND id_storage_category=1 AND id_stock_status=2 ;
+                -- delete del first (strage)
+                DELETE FROM tb_storage_fg 
+                WHERE report_mark_type=43 AND id_report=" + id_report_par + ";
+                -- insert storage
+                INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status, report_mark_type_ref, id_report_ref) "
+                query_complete += "SELECT del.id_wh_drawer AS `drawer`, '1', del_det.id_product, dsg.design_cop, '39' AS `report_mark_type`, del.id_sales_order AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '', '2', 43, '" + id_report_par + "' "
+                query_complete += "FROM tb_pl_sales_order_del del "
+                query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
+                query_complete += "INNER JOIN tb_m_product prod ON prod.id_product = del_det.id_product  "
+                query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
+                query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0 "
+                query_complete += "UNION ALL "
+                query_complete += "SELECT del.id_wh_drawer AS `drawer`, '2', del_det.id_product, dsg.design_cop, '43' AS `report_mark_type`, del.id_pl_sales_order_del AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '','1', NULL,NULL "
+                query_complete += "FROM tb_pl_sales_order_del del "
+                query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
+                query_complete += "INNER JOIN tb_m_product prod ON prod.id_product = del_det.id_product  "
+                query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
+                query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0 "
+                query_complete += "UNION ALL "
+                query_complete += "SELECT getCompByContact(del.id_store_contact_to, 4) AS `drawer`, '1', del_det.id_product, dsg.design_cop, '43' AS `report_mark_type`, del.id_pl_sales_order_del AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '','1', NULL,NULL "
+                query_complete += "FROM tb_pl_sales_order_del del "
+                query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
+                query_complete += "INNER JOIN tb_m_product prod ON prod.id_product = del_det.id_product  "
+                query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
+                query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0; "
+                execute_non_query(query_complete, True, "", "", "", "")
+            Else
+                'pure wholesale
+                Dim query_complete As String = "
+                -- delete so first (strage)
+                DELETE FROM tb_storage_fg 
+                WHERE report_mark_type=39 AND id_report=" + id_so + " AND report_mark_type_ref=43 AND id_report_ref=" + id_report_par + " AND id_storage_category=1 AND id_stock_status=2 ;
+                -- delete del first (strage)
+                DELETE FROM tb_storage_fg 
+                WHERE report_mark_type=43 AND id_report=" + id_report_par + ";
+                -- insert storage
+                INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status, report_mark_type_ref, id_report_ref) "
+                query_complete += "SELECT del.id_wh_drawer AS `drawer`, '1', del_det.id_product, dsg.design_cop, '39' AS `report_mark_type`, del.id_sales_order AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '', '2', 43, '" + id_report_par + "' "
+                query_complete += "FROM tb_pl_sales_order_del del "
+                query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
+                query_complete += "INNER JOIN tb_m_product prod ON prod.id_product = del_det.id_product  "
+                query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
+                query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0 "
+                query_complete += "UNION ALL "
+                query_complete += "SELECT del.id_wh_drawer AS `drawer`, '2', del_det.id_product, dsg.design_cop, '43' AS `report_mark_type`, del.id_pl_sales_order_del AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '','1', NULL,NULL "
+                query_complete += "FROM tb_pl_sales_order_del del "
+                query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
+                query_complete += "INNER JOIN tb_m_product prod ON prod.id_product = del_det.id_product  "
+                query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
+                query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0 "
+                execute_non_query(query_complete, True, "", "", "", "")
+
+                'INVOCIE
+                'main
+                Dim query_inv As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date) 
+                SELECT ; SELECT LAST_INSERT_ID(); "
+                Dim id_sales_pos As String = execute_query(query_inv, 0, True, "", "", "", "")
+                increase_inc_sales("6")
+                submit_only_prepared("48", id_sales_pos, id_user)
+            End If
+
 
             'unique
             Try
