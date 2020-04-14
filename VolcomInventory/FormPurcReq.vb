@@ -89,7 +89,7 @@
                                 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
                                 INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
                                 INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='3'
-                                INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom_stock
+                                INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
                                 LEFT JOIN 
                                 (

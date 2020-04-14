@@ -134,29 +134,29 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
 
             'isi qty
             For i As Integer = 0 To ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary))
-                Dim id_item As String = GVSummary.GetRowCellValue(i, "id_item").ToString
-                Dim item_detail As String = GVSummary.GetRowCellValue(i, "item_detail").ToString
-                Dim item_desc As String = GVSummary.GetRowCellValue(i, "item_desc").ToString
-                Dim qty_total As Decimal = GVSummary.GetRowCellValue(i, "qty")
-                makeSafeGV(GVDetail)
-                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "' AND [item_detail]='" + addSlashes(item_detail) + "' AND [item_desc]='" + addSlashes(item_desc) + "'"
-
-                For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
-                    If qty_total > 0 Then
-                        Dim qty As Decimal = GVDetail.GetRowCellValue(j, "qty_remaining")
-                        Dim qty_input As Decimal = 0.00
-                        If qty <= qty_total Then
-                            qty_input = qty
+                If GVSummary.GetRowCellValue(i, "qty") > 0 Then
+                    Dim id_item As String = GVSummary.GetRowCellValue(i, "id_item").ToString
+                    Dim item_detail As String = GVSummary.GetRowCellValue(i, "item_detail").ToString
+                    Dim qty_total As Decimal = GVSummary.GetRowCellValue(i, "qty")
+                    makeSafeGV(GVDetail)
+                    GVDetail.ActiveFilterString = String.Format("[id_item]='{0}' AND [item_detail]='{1}'", id_item, item_detail.Replace("'", "''"))
+                    For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
+                        If qty_total > 0 Then
+                            Dim qty As Decimal = GVDetail.GetRowCellValue(j, "qty_remaining")
+                            Dim qty_input As Decimal = 0.00
+                            If qty <= qty_total Then
+                                qty_input = qty
+                            Else
+                                qty_input = qty_total
+                            End If
+                            GVDetail.SetRowCellValue(j, "qty", qty_input)
+                            GVDetail.SetRowCellValue(j, "qty_stock", qty_input * GVDetail.GetRowCellValue(j, "stock_convertion"))
+                            qty_total = qty_total - qty_input
                         Else
-                            qty_input = qty_total
+                            Exit For
                         End If
-                        GVDetail.SetRowCellValue(j, "qty", qty_input)
-                        GVDetail.SetRowCellValue(j, "qty_stock", qty_input * GVDetail.GetRowCellValue(j, "stock_convertion"))
-                        qty_total = qty_total - qty_input
-                    Else
-                        Exit For
-                    End If
-                Next
+                    Next
+                End If
             Next
             makeSafeGV(GVDetail)
             GVDetail.BestFitColumns()
