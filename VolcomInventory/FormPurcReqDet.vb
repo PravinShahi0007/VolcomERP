@@ -174,7 +174,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
                                 INNER JOIN tb_item itm ON reqd.`id_item`=itm.`id_item`
                                 INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=itm.`id_item_cat`
                                 INNER JOIN tb_item_cat_main main ON main.id_item_cat_main=cat.id_item_cat_main
-                                INNER JOIN tb_m_uom uom ON uom.`id_uom`=itm.`id_uom`
+                                INNER JOIN tb_m_uom uom ON uom.`id_uom`=itm.`id_uom_stock`
                                 WHERE reqd.id_purc_req='" & id_req & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
@@ -185,7 +185,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
 
         query = "SELECT it.id_item,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
                     FROM tb_item it
-                    INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
+                    INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom_stock
                     INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
                     INNER JOIN tb_item_cat_main main ON main.id_item_cat_main=cat.id_item_cat_main
                     INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = '" & id_departement & "'

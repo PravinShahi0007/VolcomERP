@@ -98,6 +98,13 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             Dim query As String = r.queryMain("AND r.id_purc_rec='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            '
+            If data.Rows(0)("is_delivered").ToString = "1" Then
+                CEAlreadyDeliver.Checked = True
+            Else
+                CEAlreadyDeliver.Checked = False
+            End If
+            '
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
             TxtNumber.Text = data.Rows(0)("purc_rec_number").ToString
@@ -129,9 +136,11 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             For i As Integer = 0 To ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary))
                 Dim id_item As String = GVSummary.GetRowCellValue(i, "id_item").ToString
                 Dim item_detail As String = GVSummary.GetRowCellValue(i, "item_detail").ToString
+                Dim item_desc As String = GVSummary.GetRowCellValue(i, "item_desc").ToString
                 Dim qty_total As Decimal = GVSummary.GetRowCellValue(i, "qty")
                 makeSafeGV(GVDetail)
-                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "' AND [item_detail]='" + item_detail + "'"
+                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "' AND [item_detail]='" + addSlashes(item_detail) + "' AND [item_desc]='" + addSlashes(item_desc) + "'"
+
                 For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
                     If qty_total > 0 Then
                         Dim qty As Decimal = GVDetail.GetRowCellValue(j, "qty_remaining")
@@ -142,6 +151,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
                             qty_input = qty_total
                         End If
                         GVDetail.SetRowCellValue(j, "qty", qty_input)
+                        GVDetail.SetRowCellValue(j, "qty_stock", qty_input * GVDetail.GetRowCellValue(j, "stock_convertion"))
                         qty_total = qty_total - qty_input
                     Else
                         Exit For
@@ -151,12 +161,14 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             makeSafeGV(GVDetail)
             GVDetail.BestFitColumns()
         ElseIf action = "upd" Then
-            query = "SELECT rd.id_purc_order_det,req.purc_req_number,d.departement, 
+            query = "SELECT rd.id_purc_order_det,reqd.ship_destination,reqd.ship_address,req.purc_req_number,d.departement, 
             rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty, reqd.item_detail
+            ,CONCAT('1:',i.stock_convertion) AS stock_convertion_view, (rd.qty*i.stock_convertion) AS `qty_stock`,u_st.uom AS uom_stock
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
             INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
             INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
@@ -185,6 +197,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             query = "SELECT 0 AS `id_purc_rec_det`,0 AS `id_purc_rec`,
             pod.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
             pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, 0.00 AS qty,(SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_rem`, '' AS  `note`, '' AS `stt`
+            ,u_st.uom AS uom_stock,i.stock_convertion, CONCAT('1:',i.stock_convertion) AS stock_convertion_view, 0.00 AS `qty_stock`
             FROM tb_purc_order_det pod
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
@@ -203,17 +216,20 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
 	            GROUP BY retd.id_item
             ) retd ON retd.id_item = pod.id_item
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
+            INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             WHERE pod.is_drop='2' AND pod.id_purc_order=" + id_purc_order + "
             GROUP BY pod.id_item, BINARY reqd.item_detail "
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec,  
             rd.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
             rd.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, SUM(rd.qty) AS `qty`, rd.note,  '' AS `stt`
+            ,u_st.uom AS uom_stock,i.stock_convertion, CONCAT('1:',i.stock_convertion) AS stock_convertion_view, SUM(rd.qty*i.stock_convertion) AS `qty_stock`
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
             INNER JOIN tb_item i ON i.id_item = rd.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             WHERE rd.id_purc_rec=" + id + " 
             GROUP BY rd.id_item,BINARY reqd.item_detail "
         End If
@@ -413,6 +429,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             Else
                 GVSummary.SetRowCellValue(rh, "qty", 0)
             End If
+            GVSummary.SetRowCellValue(rh, "qty_stock", Decimal.Parse(GVSummary.GetRowCellValue(rh, "stock_convertion").ToString) * Decimal.Parse(GVSummary.GetRowCellValue(rh, "qty").ToString))
         End If
         Cursor = Cursors.Default
     End Sub
@@ -524,23 +541,30 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
                 Dim do_vendor_number As String = addSlashes(TxtDO.Text)
                 Dim date_arrived As String = DateTime.Parse(DEArrivalDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim note As String = addSlashes(MENote.Text.ToString)
-                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note,is_confirm, do_vendor_number,date_arrived) VALUES 
-                ('" + id_purc_order + "', '', NOW(),'" + id_user + "','" + note + "',1, '" + do_vendor_number + "', '" + date_arrived + "'); SELECT LAST_INSERT_ID(); "
+                Dim is_delivered As String = "2"
+                If CEAlreadyDeliver.Checked = True Then
+                    is_delivered = "1"
+                Else
+                    is_delivered = "2"
+                End If
+                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note,is_confirm, do_vendor_number,date_arrived,is_delivered) VALUES 
+                ('" + id_purc_order + "', '', NOW(),'" + id_user + "','" + note + "',1, '" + do_vendor_number + "', '" + date_arrived + "','" & is_delivered & "'); SELECT LAST_INSERT_ID(); "
                 id = execute_query(qm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + ",148); ", True, "", "", "", "")
 
                 'query det
-                Dim qd As String = "INSERT INTO tb_purc_rec_det(id_purc_rec, id_item, id_purc_order_det, qty, note) VALUES "
+                Dim qd As String = "INSERT INTO tb_purc_rec_det(id_purc_rec, id_item, id_purc_order_det, qty, qty_stock, note) VALUES "
                 For d As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
                     Dim id_item As String = GVDetail.GetRowCellValue(d, "id_item").ToString
                     Dim id_purc_order_det As String = GVDetail.GetRowCellValue(d, "id_purc_order_det").ToString
                     Dim qty As String = decimalSQL(GVDetail.GetRowCellValue(d, "qty").ToString)
+                    Dim qty_stock As String = decimalSQL(GVDetail.GetRowCellValue(d, "qty_stock").ToString)
                     Dim note_detail As String = ""
 
                     If d > 0 Then
                         qd += ", "
                     End If
-                    qd += "('" + id + "', '" + id_item + "', '" + id_purc_order_det + "', '" + qty + "','" + note_detail + "') "
+                    qd += "('" + id + "', '" + id_item + "', '" + id_purc_order_det + "', '" + qty + "', '" + qty_stock + "','" + note_detail + "') "
                 Next
                 If GVDetail.RowCount > 0 Then
                     execute_non_query(qd, True, "", "", "", "")

@@ -23,6 +23,13 @@ Partial Class FormPurcItemDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcItemDet))
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEConvertion = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEUOMStock = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LStatus = New DevExpress.XtraEditors.LabelControl()
         Me.TEStatus = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -95,6 +102,8 @@ Partial Class FormPurcItemDet
         Me.BUploadDoc = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
         Me.GCHistory = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,11 +111,12 @@ Partial Class FormPurcItemDet
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
+        CType(Me.TEConvertion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEUOMStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,8 +152,8 @@ Partial Class FormPurcItemDet
         Me.PanelControl2.SuspendLayout()
         Me.XTPHistory.SuspendLayout()
         CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCDetail
@@ -153,12 +163,16 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCDetail.Size = New System.Drawing.Size(519, 296)
+        Me.XTCDetail.Size = New System.Drawing.Size(519, 335)
         Me.XTCDetail.TabIndex = 0
         Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPPriceList, Me.XTPAttachment, Me.XTPHistory})
         '
         'XtraTabPage1
         '
+        Me.XtraTabPage1.Controls.Add(Me.LabelControl10)
+        Me.XtraTabPage1.Controls.Add(Me.TEConvertion)
+        Me.XtraTabPage1.Controls.Add(Me.SLEUOMStock)
+        Me.XtraTabPage1.Controls.Add(Me.LabelControl9)
         Me.XtraTabPage1.Controls.Add(Me.LStatus)
         Me.XtraTabPage1.Controls.Add(Me.TEStatus)
         Me.XtraTabPage1.Controls.Add(Me.LabelControl7)
@@ -177,13 +191,81 @@ Partial Class FormPurcItemDet
         Me.XtraTabPage1.Controls.Add(Me.LabelControl11)
         Me.XtraTabPage1.Controls.Add(Me.TECode)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(513, 268)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(513, 307)
         Me.XtraTabPage1.Text = "Detail"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(109, 177)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl10.TabIndex = 8915
+        Me.LabelControl10.Text = "1 to"
+        '
+        'TEConvertion
+        '
+        Me.TEConvertion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEConvertion.EditValue = ""
+        Me.TEConvertion.Location = New System.Drawing.Point(134, 174)
+        Me.TEConvertion.Name = "TEConvertion"
+        Me.TEConvertion.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEConvertion.Properties.Appearance.Options.UseFont = True
+        Me.TEConvertion.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TEConvertion.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TEConvertion.Properties.EditValueChangedDelay = 1
+        Me.TEConvertion.Properties.Mask.EditMask = "N0"
+        Me.TEConvertion.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEConvertion.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEConvertion.Size = New System.Drawing.Size(143, 20)
+        Me.TEConvertion.TabIndex = 8914
+        Me.TEConvertion.TabStop = False
+        '
+        'SLEUOMStock
+        '
+        Me.SLEUOMStock.Location = New System.Drawing.Point(287, 174)
+        Me.SLEUOMStock.Name = "SLEUOMStock"
+        Me.SLEUOMStock.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEUOMStock.Properties.View = Me.GridView7
+        Me.SLEUOMStock.Size = New System.Drawing.Size(189, 20)
+        Me.SLEUOMStock.TabIndex = 8913
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26})
+        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "ID UOM"
+        Me.GridColumn25.FieldName = "id_uom"
+        Me.GridColumn25.Name = "GridColumn25"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "UOM"
+        Me.GridColumn26.FieldName = "uom"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 0
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(11, 177)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl9.TabIndex = 8912
+        Me.LabelControl9.Text = "Convert Stock"
         '
         'LStatus
         '
         Me.LStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LStatus.Location = New System.Drawing.Point(11, 203)
+        Me.LStatus.Location = New System.Drawing.Point(11, 235)
         Me.LStatus.Name = "LStatus"
         Me.LStatus.Size = New System.Drawing.Size(31, 13)
         Me.LStatus.TabIndex = 8910
@@ -196,7 +278,7 @@ Partial Class FormPurcItemDet
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEStatus.EditValue = ""
         Me.TEStatus.Enabled = False
-        Me.TEStatus.Location = New System.Drawing.Point(109, 200)
+        Me.TEStatus.Location = New System.Drawing.Point(109, 232)
         Me.TEStatus.Name = "TEStatus"
         Me.TEStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEStatus.Properties.Appearance.Options.UseFont = True
@@ -321,7 +403,7 @@ Partial Class FormPurcItemDet
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(11, 177)
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 209)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl5.TabIndex = 8904
@@ -329,7 +411,7 @@ Partial Class FormPurcItemDet
         '
         'SLEItemType
         '
-        Me.SLEItemType.Location = New System.Drawing.Point(109, 174)
+        Me.SLEItemType.Location = New System.Drawing.Point(109, 206)
         Me.SLEItemType.Name = "SLEItemType"
         Me.SLEItemType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItemType.Properties.View = Me.GridView3
@@ -364,7 +446,7 @@ Partial Class FormPurcItemDet
         Me.PanelControl1.Controls.Add(Me.BClose)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 228)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 267)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(513, 40)
         Me.PanelControl1.TabIndex = 8902
@@ -405,9 +487,9 @@ Partial Class FormPurcItemDet
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Location = New System.Drawing.Point(11, 151)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(70, 13)
         Me.LabelControl4.TabIndex = 8900
-        Me.LabelControl4.Text = "UOM"
+        Me.LabelControl4.Text = "UOM Purchase"
         '
         'SLEUOM
         '
@@ -415,7 +497,7 @@ Partial Class FormPurcItemDet
         Me.SLEUOM.Name = "SLEUOM"
         Me.SLEUOM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUOM.Properties.View = Me.GridView1
-        Me.SLEUOM.Size = New System.Drawing.Size(156, 20)
+        Me.SLEUOM.Size = New System.Drawing.Size(249, 20)
         Me.SLEUOM.TabIndex = 8899
         '
         'GridView1
@@ -493,7 +575,7 @@ Partial Class FormPurcItemDet
         Me.TEDesc.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEDesc.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
-        Me.TEDesc.Size = New System.Drawing.Size(369, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(367, 20)
         Me.TEDesc.TabIndex = 8895
         Me.TEDesc.TabStop = False
         '
@@ -529,7 +611,7 @@ Partial Class FormPurcItemDet
         Me.TECode.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TECode.Properties.EditValueChangedDelay = 1
         Me.TECode.Properties.ReadOnly = True
-        Me.TECode.Size = New System.Drawing.Size(369, 20)
+        Me.TECode.Size = New System.Drawing.Size(367, 20)
         Me.TECode.TabIndex = 8892
         Me.TECode.TabStop = False
         '
@@ -539,7 +621,7 @@ Partial Class FormPurcItemDet
         Me.XTPPriceList.Controls.Add(Me.PanelControl3)
         Me.XTPPriceList.Controls.Add(Me.PCSetPrice)
         Me.XTPPriceList.Name = "XTPPriceList"
-        Me.XTPPriceList.Size = New System.Drawing.Size(513, 268)
+        Me.XTPPriceList.Size = New System.Drawing.Size(513, 307)
         Me.XTPPriceList.Text = "Price List"
         '
         'GCPriceList
@@ -549,7 +631,7 @@ Partial Class FormPurcItemDet
         Me.GCPriceList.MainView = Me.GVPriceList
         Me.GCPriceList.Name = "GCPriceList"
         Me.GCPriceList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCPriceList.Size = New System.Drawing.Size(513, 188)
+        Me.GCPriceList.Size = New System.Drawing.Size(513, 227)
         Me.GCPriceList.TabIndex = 8905
         Me.GCPriceList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPriceList, Me.GridView4})
         '
@@ -661,7 +743,7 @@ Partial Class FormPurcItemDet
         Me.PCSetPrice.Controls.Add(Me.BSetSameItemPrice)
         Me.PCSetPrice.Controls.Add(Me.BSetSameSpecPrice)
         Me.PCSetPrice.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCSetPrice.Location = New System.Drawing.Point(0, 228)
+        Me.PCSetPrice.Location = New System.Drawing.Point(0, 267)
         Me.PCSetPrice.Name = "PCSetPrice"
         Me.PCSetPrice.Size = New System.Drawing.Size(513, 40)
         Me.PCSetPrice.TabIndex = 8906
@@ -692,7 +774,7 @@ Partial Class FormPurcItemDet
         Me.XTPAttachment.Controls.Add(Me.GCFileList)
         Me.XTPAttachment.Controls.Add(Me.PanelControl2)
         Me.XTPAttachment.Name = "XTPAttachment"
-        Me.XTPAttachment.Size = New System.Drawing.Size(513, 268)
+        Me.XTPAttachment.Size = New System.Drawing.Size(513, 307)
         Me.XTPAttachment.Text = "Supporting Document"
         '
         'GCFileList
@@ -702,7 +784,7 @@ Partial Class FormPurcItemDet
         Me.GCFileList.MainView = Me.GVFileList
         Me.GCFileList.Name = "GCFileList"
         Me.GCFileList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICE})
-        Me.GCFileList.Size = New System.Drawing.Size(513, 228)
+        Me.GCFileList.Size = New System.Drawing.Size(513, 267)
         Me.GCFileList.TabIndex = 8904
         Me.GCFileList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFileList, Me.GridView2})
         '
@@ -811,7 +893,7 @@ Partial Class FormPurcItemDet
         '
         Me.PanelControl2.Controls.Add(Me.BUploadDoc)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 228)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 267)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(513, 40)
         Me.PanelControl2.TabIndex = 8903
@@ -830,7 +912,7 @@ Partial Class FormPurcItemDet
         '
         Me.XTPHistory.Controls.Add(Me.GCHistory)
         Me.XTPHistory.Name = "XTPHistory"
-        Me.XTPHistory.Size = New System.Drawing.Size(513, 268)
+        Me.XTPHistory.Size = New System.Drawing.Size(513, 307)
         Me.XTPHistory.Text = "History"
         '
         'GCHistory
@@ -840,9 +922,21 @@ Partial Class FormPurcItemDet
         Me.GCHistory.Location = New System.Drawing.Point(0, 0)
         Me.GCHistory.MainView = Me.GVHistory
         Me.GCHistory.Name = "GCHistory"
-        Me.GCHistory.Size = New System.Drawing.Size(513, 268)
+        Me.GCHistory.Size = New System.Drawing.Size(513, 307)
         Me.GCHistory.TabIndex = 0
         Me.GCHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHistory})
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VDItemList})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(100, 26)
+        '
+        'VDItemList
+        '
+        Me.VDItemList.Name = "VDItemList"
+        Me.VDItemList.Size = New System.Drawing.Size(99, 22)
+        Me.VDItemList.Text = "View"
         '
         'GVHistory
         '
@@ -916,23 +1010,11 @@ Partial Class FormPurcItemDet
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 5
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VDItemList})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
-        '
-        'VDItemList
-        '
-        Me.VDItemList.Name = "VDItemList"
-        Me.VDItemList.Size = New System.Drawing.Size(152, 22)
-        Me.VDItemList.Text = "View"
-        '
         'FormPurcItemDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(519, 296)
+        Me.ClientSize = New System.Drawing.Size(519, 335)
         Me.Controls.Add(Me.XTCDetail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -944,6 +1026,9 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
         Me.XtraTabPage1.PerformLayout()
+        CType(Me.TEConvertion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEUOMStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -980,8 +1065,8 @@ Partial Class FormPurcItemDet
         Me.PanelControl2.ResumeLayout(False)
         Me.XTPHistory.ResumeLayout(False)
         CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1069,4 +1154,11 @@ Partial Class FormPurcItemDet
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents VDItemList As ToolStripMenuItem
+    Friend WithEvents SLEUOMStock As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEConvertion As DevExpress.XtraEditors.TextEdit
 End Class

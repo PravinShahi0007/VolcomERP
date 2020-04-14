@@ -23,7 +23,13 @@ Public Class FormProductionRecDet
         BShowOrder.Focus()
         allowDelete()
         view_report_status(LEReportStatus)
+        load_rec_type()
         actionLoad()
+    End Sub
+
+    Sub load_rec_type()
+        Dim q As String = "SELECT id_pl_category,pl_category FROM tb_lookup_pl_category"
+        viewSearchLookupQuery(SLERecType, q, "id_pl_category", "pl_category", "id_pl_category")
     End Sub
 
     Sub actionLoad()
