@@ -2461,6 +2461,12 @@
     <Compile Include="FormMasterEmployeeNewDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterEmployeeNomorSurat.Designer.vb">
+      <DependentUpon>FormMasterEmployeeNomorSurat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeeNomorSurat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterEmployeePosition.Designer.vb">
       <DependentUpon>FormMasterEmployeePosition.vb</DependentUpon>
     </Compile>
@@ -7150,6 +7156,12 @@
     <Compile Include="ReportMasterCompanySingle.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.Designer.vb">
+      <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterPrice.Designer.vb">
       <DependentUpon>ReportMasterPrice.vb</DependentUpon>
     </Compile>
@@ -9046,6 +9058,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeNewDet.resx">
       <DependentUpon>FormMasterEmployeeNewDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeeNomorSurat.resx">
+      <DependentUpon>FormMasterEmployeeNomorSurat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeePosition.resx">
       <DependentUpon>FormMasterEmployeePosition.vb</DependentUpon>
@@ -11827,6 +11842,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterCompanySingle.resx">
       <DependentUpon>ReportMasterCompanySingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.resx">
+      <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterPrice.resx">
       <DependentUpon>ReportMasterPrice.vb</DependentUpon>

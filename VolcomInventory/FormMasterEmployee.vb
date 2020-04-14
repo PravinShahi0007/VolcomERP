@@ -185,4 +185,8 @@
         FormImportExcel.id_pop_up = "34"
         FormImportExcel.ShowDialog()
     End Sub
+
+    Private Sub PenangguhanBankToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PenangguhanBankToolStripMenuItem.Click
+        FormMasterEmployeeNomorSurat.ShowDialog()
+    End Sub
 End Class

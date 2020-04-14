@@ -58,6 +58,15 @@
             ElseIf type = "4" Then
                 FormMasterPrice.GVHistSummary.Columns("cost").VisibleIndex = 8
                 FormMasterPrice.GVHistSummary.Columns("cost").OptionsColumn.ShowInCustomizationForm = True
+            ElseIf type = "5" Then
+                'by prod
+                FormSalesInv.GridBand1.Columns.Add(FormSalesInv.BandedGridColumndesign_cop_by_prod)
+                FormSalesInv.GVByProduct.Columns("design_cop").VisibleIndex = FormSalesInv.GVByProduct.Columns("design_price").VisibleIndex + 1
+                FormSalesInv.GVByProduct.Columns("design_cop").OptionsColumn.ShowInCustomizationForm = True
+                'by acc
+                FormSalesInv.GridBand3.Columns.Add(FormSalesInv.BandedGridColumndesign_cop_per_acc_per_prod)
+                FormSalesInv.GVByAccount.Columns("design_cop").VisibleIndex = FormSalesInv.GVByAccount.Columns("design_price").VisibleIndex + 1
+                FormSalesInv.GVByAccount.Columns("design_cop").OptionsColumn.ShowInCustomizationForm = True
             End If
             Close()
         Else

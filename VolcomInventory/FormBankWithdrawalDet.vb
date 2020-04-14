@@ -240,10 +240,13 @@
                     WHERE type = 3
                 ", -1, True, "", "", "", "")
 
+                Dim total_actual As Decimal = 0.00
+                Dim total_before As Decimal = 0.00
+
                 For i As Integer = 0 To FormBankWithdrawal.GVBPJSKesehatan.RowCount - 1
                     'id_report,number,total,balance due
                     Dim query As String = "
-                        SELECT id_departement, id_departement_sub, is_store, SUM(ROUND(bpjs_kesehatan_contribution)) AS contribution_karyawan, SUM(ROUND(bpjs_kesehatan_contribution * 100 * 0.04)) AS contribution_perusahaan, periode, departement_display
+                        SELECT id_departement, id_departement_sub, is_store, SUM(bpjs_kesehatan_contribution) AS contribution_karyawan, SUM(bpjs_kesehatan_contribution * 100 * 0.04) AS contribution_perusahaan, periode, departement_display, SUM(ROUND(bpjs_kesehatan_contribution + (bpjs_kesehatan_contribution * 100 * 0.04))) AS total_bpjs
 	                    FROM (
 	                        SELECT id_departement, IF(id_departement = 17, id_departement_sub, id_departement) AS id_departement_sub, (SELECT is_store FROM tb_m_departement WHERE id_departement = tb_pay_bpjs_kesehatan_det.id_departement) AS is_store, bpjs_kesehatan_contribution, (SELECT DATE_FORMAT(periode_end, '%M %Y') FROM tb_emp_payroll WHERE id_payroll = (SELECT id_payroll FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = tb_pay_bpjs_kesehatan_det.id_pay_bpjs_kesehatan)) AS periode, (SELECT departement_display FROM tb_m_departement WHERE id_departement = tb_pay_bpjs_kesehatan_det.id_departement) AS departement_display
 	                        FROM tb_pay_bpjs_kesehatan_det
@@ -308,7 +311,7 @@
                                         vendor = data_map.Rows(k)("vendor").ToString
                                         id_comp = data_map.Rows(k)("id_comp")
                                         comp_number = data_map.Rows(k)("comp_number").ToString
-                                        balance = data.Rows(j)("contribution_karyawan") + data.Rows(j)("contribution_perusahaan")
+                                        balance = data.Rows(j)("total_bpjs")
                                         note = "BPJS " + data.Rows(j)("periode").ToString + " " + data.Rows(j)("departement_display").ToString
 
                                         Exit For
@@ -339,6 +342,8 @@
                         newRow("balance_due") = balance
                         newRow("note") = note
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                        total_before += balance
 
                         If j = data.Rows.Count - 1 Then
                             If total_office > 0 Then
@@ -373,10 +378,52 @@
                                 newRow2("balance_due") = total_office
                                 newRow2("note") = "BPJS " + data.Rows(j)("periode").ToString + " (dibayar karyawan)"
                                 TryCast(GCList.DataSource, DataTable).Rows.Add(newRow2)
+
+                                total_before += total_office
                             End If
                         End If
+
+                        total_actual += data.Rows(j)("total_bpjs")
                     Next
                 Next
+
+                'selisih kerugian
+                Dim selisih As Decimal = total_actual - total_before
+
+                If selisih > 0 Then
+                    Dim query_s As String = "
+                        SELECT acc.id_acc, acc.acc_name, acc.acc_description, comp.id_comp, comp.comp_number, comp.comp_name AS vendor
+                        FROM tb_a_acc AS acc
+                        LEFT JOIN tb_m_comp AS comp ON comp.id_comp = 1
+                        WHERE acc.id_acc = 2968
+                    "
+
+                    Dim data_s As DataTable = execute_query(query_s, -1, True, "", "", "", "")
+
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(0, "id_pay_bpjs_kesehatan").ToString
+                    newRow("report_mark_type") = "223"
+                    newRow("id_acc") = data_s.Rows(0)("id_acc")
+                    newRow("acc_name") = data_s.Rows(0)("acc_name").ToString
+                    newRow("acc_description") = data_s.Rows(0)("acc_description").ToString
+                    newRow("vendor") = data_s.Rows(0)("vendor").ToString
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = data_s.Rows(0)("id_comp")
+                    newRow("comp_number") = data_s.Rows(0)("comp_number").ToString
+                    newRow("number") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(0, "number").ToString
+                    newRow("total_pay") = 0
+                    newRow("value") = selisih
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = selisih
+                    newRow("value_view") = selisih
+                    newRow("balance_due") = selisih
+                    newRow("note") = "Pembulatan"
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                End If
+
                 calculate_amount()
             ElseIf report_mark_type = "192" Then 'payroll
                 'load header
