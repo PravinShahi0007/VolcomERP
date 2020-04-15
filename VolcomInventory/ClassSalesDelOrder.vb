@@ -241,6 +241,36 @@
                 query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
                 query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0; "
                 execute_non_query(query_complete, True, "", "", "", "")
+
+                'unique
+                Try
+                    Dim query_store As String = "SELECT getCompByContact(id_store_contact_to, 1) AS `id_store`,  getCompByContact(id_store_contact_to, 4) AS `id_drawer_store` FROM tb_pl_sales_order_del WHERE id_pl_sales_order_del='" + id_report_par + "' "
+                    Dim data_store As DataTable = execute_query(query_store, -1, True, "", "", "", "")
+                    Dim id_store As String = data_store.Rows(0)("id_store").ToString
+                    Dim id_drawer_store As String = data_store.Rows(0)("id_drawer_store").ToString
+                    Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
+                    `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                    SELECT cc.id_comp, c.id_drawer_def, td.id_product, tc.id_pl_prod_order_rec_det_unique,  tc.id_pl_sales_order_del_det_counting, '1', 
+                    CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW() 
+                    FROM tb_pl_sales_order_del_det td
+                    INNER JOIN tb_pl_sales_order_del t ON t.id_pl_sales_order_del = td.id_pl_sales_order_del
+                    INNER JOIN tb_pl_sales_order_del_det_counting tc ON tc.id_pl_sales_order_del_det = td.id_pl_sales_order_del_det
+                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact =  t.id_store_contact_to
+                    INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                    INNER JOIN tb_m_product p ON p.id_product = td.id_product
+                    INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                    LEFT JOIN (
+                        SELECT u.id_product, u.is_unique_report 
+                        FROM tb_m_unique_code u
+                        WHERE u.id_comp=" + id_store + " AND u.id_wh_drawer = " + id_drawer_store + "
+                        GROUP BY u.id_product
+                    ) u ON u.id_product = p.id_product
+                    WHERE t.id_pl_sales_order_del=" + id_report_par + "
+                    AND d.is_old_design=2 AND t.is_use_unique_code=1 "
+                    execute_non_query(quniq, True, "", "", "", "")
+                Catch ex As Exception
+                    stopCustom("failed insert unique :" + ex.ToString)
+                End Try
             Else
                 'pure wholesale
                 Dim query_complete As String = "
@@ -269,10 +299,10 @@
 
                 'INVOCIE
                 'main
-                Dim query_inv As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date) 
+                Dim query_inv As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return) 
                 SELECT del.id_store_contact_to AS id_store_contact_from,NULL AS id_comp_contact_bill , '" + header_number_sales("6") + "' AS sales_pos_number, 
-                del.pl_sales_order_del_date AS sales_pos_date, 
-                '' AS sales_pos_note, 6 AS id_report_status, 0 AS id_so_type, 0 AS sales_pos_total, del.pl_sales_order_del_date AS sales_pos_due_date, 
+                DATE(NOW()) AS sales_pos_date, 
+                '' AS sales_pos_note, 6 AS id_report_status, 0 AS id_so_type, 0 AS sales_pos_total, DATE_ADD(del.pl_sales_order_del_date,INTERVAL IFNULL(sd.due,0) DAY) AS sales_pos_due_date, 
                 del.pl_sales_order_del_date AS sales_pos_start_period,del.pl_sales_order_del_date AS sales_pos_end_period,
                 c.comp_commission AS sales_pos_discount, 0 AS sales_pos_potongan, o.vat_inv_default AS sales_pos_vat, del.id_pl_sales_order_del, 1 AS id_memo_type,0 AS id_inv_type, NULL AS id_sales_pos_ref, 48 AS report_mark_type,o.is_use_unique_code_all AS is_use_unique_code, 
                 c.id_acc_ar, c.id_acc_sales, c.id_acc_sales_return 
@@ -280,50 +310,45 @@
                 JOIN tb_opt o
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
                 INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                LEFT JOIN tb_store_due sd ON sd.id_comp = c.id_comp
                 WHERE del.id_pl_sales_order_del=" + id_report_par + "; SELECT LAST_INSERT_ID(); "
                 Dim id_sales_pos As String = execute_query(query_inv, 0, True, "", "", "", "")
                 'increase number
                 increase_inc_sales("6")
                 'detail
-                Dim query_detail As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) 
-                "
-
-
-
+                Dim query_detail_inv As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) 
+                SELECT " + id_sales_pos + ", id_product, id_design_price, design_price, dd.pl_sales_order_del_det_qty AS sales_pos_det_qty, 
+                dd.id_design_price AS id_design_price_retail, dd.design_price AS design_price_retail, '' AS note, NULL AS id_sales_pos_det_ref, 
+                dd.id_pl_sales_order_del_det AS id_pl_sales_order_del_det, NULL AS id_pos_combine_summary 
+                FROM tb_pl_sales_order_del_det dd
+                WHERE dd.id_pl_sales_order_del=" + id_report_par + "; 
+                -- update total qty
+                UPDATE tb_sales_pos main
+                INNER JOIN (
+                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`
+                    FROM tb_sales_pos_det pd
+                    WHERE pd.id_sales_pos=" + id_sales_pos + "
+                    GROUP BY pd.id_sales_pos
+                ) src ON src.id_sales_pos = main.id_sales_pos
+                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount; "
+                execute_non_query(query_detail_inv, True, "", "", "", "")
+                'submit prepared
                 submit_only_prepared("48", id_sales_pos, id_user)
+                'journal draft
+                Dim acc As New ClassAccounting()
+                Try
+                    acc.generateJournalSalesDraftWithMapping(id_sales_pos, "48")
+                Catch ex As Exception
+                    stopCustom("Automatic draft journal failed. Please contact administrator. " + System.Environment.NewLine + ex.ToString)
+                End Try
+                'journal
+                Dim gl As New ClassSalesInv()
+                Try
+                    gl.postingJournal(id_sales_pos, "48")
+                Catch ex As Exception
+                    stopCustom("Automatic journal failed. Please contact administrator. " + System.Environment.NewLine + ex.ToString)
+                End Try
             End If
-
-
-            'unique
-            Try
-                Dim query_store As String = "SELECT getCompByContact(id_store_contact_to, 1) AS `id_store`,  getCompByContact(id_store_contact_to, 4) AS `id_drawer_store` FROM tb_pl_sales_order_del WHERE id_pl_sales_order_del='" + id_report_par + "' "
-                Dim data_store As DataTable = execute_query(query_store, -1, True, "", "", "", "")
-                Dim id_store As String = data_store.Rows(0)("id_store").ToString
-                Dim id_drawer_store As String = data_store.Rows(0)("id_drawer_store").ToString
-                Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
-                `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
-                SELECT cc.id_comp, c.id_drawer_def, td.id_product, tc.id_pl_prod_order_rec_det_unique,  tc.id_pl_sales_order_del_det_counting, '1', 
-                CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW() 
-                FROM tb_pl_sales_order_del_det td
-                INNER JOIN tb_pl_sales_order_del t ON t.id_pl_sales_order_del = td.id_pl_sales_order_del
-                INNER JOIN tb_pl_sales_order_del_det_counting tc ON tc.id_pl_sales_order_del_det = td.id_pl_sales_order_del_det
-                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact =  t.id_store_contact_to
-                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-                INNER JOIN tb_m_product p ON p.id_product = td.id_product
-                INNER JOIN tb_m_design d ON d.id_design = p.id_design
-                LEFT JOIN (
-                    SELECT u.id_product, u.is_unique_report 
-                    FROM tb_m_unique_code u
-                    WHERE u.id_comp=" + id_store + " AND u.id_wh_drawer = " + id_drawer_store + "
-                    GROUP BY u.id_product
-                ) u ON u.id_product = p.id_product
-                WHERE t.id_pl_sales_order_del=" + id_report_par + "
-                AND d.is_old_design=2 AND t.is_use_unique_code=1 "
-                execute_non_query(quniq, True, "", "", "", "")
-            Catch ex As Exception
-                stopCustom("failed insert unique :" + ex.ToString)
-            End Try
-
 
             'save unreg unique
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",1)", True, "", "", "", "")
