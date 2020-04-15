@@ -851,7 +851,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn20.Caption = "Qty QC Report"
         Me.GridColumn20.DisplayFormat.FormatString = "N0"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "qty_qcr"
+        Me.GridColumn20.FieldName = "qty_qr"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 5
