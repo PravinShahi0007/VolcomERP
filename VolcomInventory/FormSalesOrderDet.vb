@@ -1461,4 +1461,11 @@ Public Class FormSalesOrderDet
         TxtOrderType.Text = value
         viewSoStatus()
     End Sub
+
+    Function viewCheckCoa() As Boolean
+        Dim query As String = "SELECT *
+        FROM tb_m_comp c 
+        WHERE c.id_comp=" + id_store + " AND !ISNULL(c.id_acc_sales) AND !ISNULL(c.id_acc_sales_return) AND !ISNULL(c.id_acc_ar) "
+
+    End Function
 End Class
