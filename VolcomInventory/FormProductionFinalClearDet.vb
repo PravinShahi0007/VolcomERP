@@ -153,6 +153,7 @@ Public Class FormProductionFinalClearDet
             TxtCodeCompTo.Text = data.Rows(0)("comp_to_number").ToString
             TxtNameCompTo.Text = data.Rows(0)("comp_to_name").ToString
             TxtOrder.Text = data.Rows(0)("prod_order_number").ToString
+            TERec.Text = data.Rows(0)("prod_order_rec_number").ToString
             TxtSeason.Text = data.Rows(0)("season").ToString
             TxtDel.Text = data.Rows(0)("delivery").ToString
             TxtVendorCode.Text = data.Rows(0)("vendor_number").ToString
@@ -196,7 +197,6 @@ Public Class FormProductionFinalClearDet
             GCItemList.DataSource = data
             GVItemList.BestFitColumns()
         End If
-
     End Sub
 
     Sub view_barcode_list()
@@ -790,12 +790,15 @@ Public Class FormProductionFinalClearDet
         If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
             Dim row_foc As Integer = e.RowHandle
             If e.Column.FieldName = "prod_fc_det_qty" Then
-                If e.Value > GVItemList.GetRowCellValue(row_foc, "qty_limit") Then
-                    stopCustom("Can't exceed " + GVItemList.GetRowCellValue(row_foc, "qty_limit").ToString)
-                    GVItemList.SetRowCellValue(row_foc, "prod_fc_det_qty", GVItemList.ActiveEditor.OldEditValue)
-                    GVItemList.BestFitColumns()
-                Else
-                    GVItemList.BestFitColumns()
+                If Not e.Value = 0 Then
+                    If e.Value > GVItemList.GetRowCellValue(row_foc, "qty_limit") Then
+                        stopCustom("Can't exceed " + GVItemList.GetRowCellValue(row_foc, "qty_limit").ToString)
+                        GVItemList.SetRowCellValue(row_foc, "prod_fc_det_qty", GVItemList.ActiveEditor.OldEditValue)
+                        GVItemList.BestFitColumns()
+                    Else
+                        GVItemList.BestFitColumns()
+                    End If
+
                 End If
             End If
         End If

@@ -93,6 +93,10 @@ Partial Class FormProductionFinalClear
         Me.DEFromSum = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -535,7 +539,7 @@ Partial Class FormProductionFinalClear
         '
         'GVRecQc
         '
-        Me.GVRecQc.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn17, Me.GridColumn27, Me.GridColumn28})
+        Me.GVRecQc.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn17, Me.GridColumn27, Me.GridColumn28, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
         Me.GVRecQc.GridControl = Me.GCRecQc
         Me.GVRecQc.Name = "GVRecQc"
         Me.GVRecQc.OptionsBehavior.AutoExpandAllGroups = True
@@ -556,7 +560,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 0
-        Me.GridColumn17.Width = 616
+        Me.GridColumn17.Width = 515
         '
         'GridColumn27
         '
@@ -565,7 +569,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 1
-        Me.GridColumn27.Width = 284
+        Me.GridColumn27.Width = 237
         '
         'GridColumn28
         '
@@ -580,7 +584,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
         Me.GridColumn28.VisibleIndex = 2
-        Me.GridColumn28.Width = 732
+        Me.GridColumn28.Width = 239
         '
         'RepositoryItemPictureEdit1
         '
@@ -808,6 +812,66 @@ Partial Class FormProductionFinalClear
         Me.LabelControl5.TabIndex = 8892
         Me.LabelControl5.Text = "From"
         '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.Caption = "Qty Return Out"
+        Me.GridColumn18.DisplayFormat.FormatString = "N0"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn18.FieldName = "qty_ret_out"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 3
+        Me.GridColumn18.Width = 153
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Qty Return In"
+        Me.GridColumn19.DisplayFormat.FormatString = "N0"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "qty_ret_in"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 4
+        Me.GridColumn19.Width = 153
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Qty QC Report"
+        Me.GridColumn20.DisplayFormat.FormatString = "N0"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "qty_qcr"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 5
+        Me.GridColumn20.Width = 153
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "Remaining"
+        Me.GridColumn21.DisplayFormat.FormatString = "N0"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "qty_remaining"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.Width = 166
+        '
         'FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -933,4 +997,8 @@ Partial Class FormProductionFinalClear
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemPictureEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

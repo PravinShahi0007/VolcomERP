@@ -203,7 +203,6 @@ Partial Class FormProductionRecDet
         Me.LabelControl12.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl12.TabIndex = 169
         Me.LabelControl12.Text = "Rec Type"
-        Me.LabelControl12.Visible = False
         '
         'SLERecType
         '
@@ -213,7 +212,6 @@ Partial Class FormProductionRecDet
         Me.SLERecType.Properties.View = Me.SearchLookUpEdit1View
         Me.SLERecType.Size = New System.Drawing.Size(130, 20)
         Me.SLERecType.TabIndex = 168
-        Me.SLERecType.Visible = False
         '
         'SearchLookUpEdit1View
         '
