@@ -29,9 +29,6 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         Me.L_address_primary = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.L_employee_pob_dob = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
@@ -54,7 +51,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.L_date, Me.L_hrd_employee_position2, Me.L_hrd_employee_name2, Me.XrLabel23, Me.XrLabel19, Me.XrLabel20, Me.L_address_primary, Me.XrLabel16, Me.XrLabel17, Me.L_employee_pob_dob, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.L_employee_name, Me.L_employee_code, Me.XrLabel14, Me.XrLabel15, Me.XrLabel6, Me.XrLabel7, Me.L_hrd_employee_position1, Me.L_hrd_employee_name1, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XLNumber, Me.XrLabel1})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.L_date, Me.L_hrd_employee_position2, Me.L_hrd_employee_name2, Me.XrLabel23, Me.XrLabel19, Me.XrLabel20, Me.L_address_primary, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.L_employee_name, Me.L_employee_code, Me.XrLabel14, Me.XrLabel15, Me.XrLabel6, Me.XrLabel7, Me.L_hrd_employee_position1, Me.L_hrd_employee_name1, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XLNumber, Me.XrLabel1})
         Me.Detail.HeightF = 717.5687!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -63,7 +60,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'XrLabel12
         '
         Me.XrLabel12.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(0!, 561.7941!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(0.000111262!, 538.7941!)
         Me.XrLabel12.Multiline = True
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -74,7 +71,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'L_date
         '
         Me.L_date.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.L_date.LocationFloat = New DevExpress.Utils.PointFloat(0!, 538.7941!)
+        Me.L_date.LocationFloat = New DevExpress.Utils.PointFloat(0.000111262!, 515.7941!)
         Me.L_date.Multiline = True
         Me.L_date.Name = "L_date"
         Me.L_date.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -84,7 +81,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'L_hrd_employee_position2
         '
         Me.L_hrd_employee_position2.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.L_hrd_employee_position2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 694.5687!)
+        Me.L_hrd_employee_position2.LocationFloat = New DevExpress.Utils.PointFloat(0.000111262!, 671.5686!)
         Me.L_hrd_employee_position2.Multiline = True
         Me.L_hrd_employee_position2.Name = "L_hrd_employee_position2"
         Me.L_hrd_employee_position2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -94,7 +91,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'L_hrd_employee_name2
         '
         Me.L_hrd_employee_name2.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.L_hrd_employee_name2.LocationFloat = New DevExpress.Utils.PointFloat(0.000149596!, 671.5687!)
+        Me.L_hrd_employee_name2.LocationFloat = New DevExpress.Utils.PointFloat(0.0002702077!, 648.5687!)
         Me.L_hrd_employee_name2.Multiline = True
         Me.L_hrd_employee_name2.Name = "L_hrd_employee_name2"
         Me.L_hrd_employee_name2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -104,7 +101,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'XrLabel23
         '
         Me.XrLabel23.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(0.0001308965!, 320.0001!)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(0.0002384186!, 297.0!)
         Me.XrLabel23.Multiline = True
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -117,7 +114,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'XrLabel19
         '
         Me.XrLabel19.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(0!, 274.0001!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(0.000111262!, 251.0!)
         Me.XrLabel19.Multiline = True
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -128,7 +125,7 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'XrLabel20
         '
         Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(151.2254!, 274.0001!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(151.2255!, 251.0!)
         Me.XrLabel20.Multiline = True
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -139,44 +136,12 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
         'L_address_primary
         '
         Me.L_address_primary.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.L_address_primary.LocationFloat = New DevExpress.Utils.PointFloat(170.0979!, 274.0001!)
+        Me.L_address_primary.LocationFloat = New DevExpress.Utils.PointFloat(170.098!, 251.0!)
         Me.L_address_primary.Multiline = True
         Me.L_address_primary.Name = "L_address_primary"
         Me.L_address_primary.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.L_address_primary.SizeF = New System.Drawing.SizeF(479.9021!, 23.00002!)
         Me.L_address_primary.StylePriority.UseFont = False
-        '
-        'XrLabel16
-        '
-        Me.XrLabel16.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0!, 251.0001!)
-        Me.XrLabel16.Multiline = True
-        Me.XrLabel16.Name = "XrLabel16"
-        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel16.SizeF = New System.Drawing.SizeF(151.2254!, 23.00002!)
-        Me.XrLabel16.StylePriority.UseFont = False
-        Me.XrLabel16.Text = "Tempat, Tgl. Lahir"
-        '
-        'XrLabel17
-        '
-        Me.XrLabel17.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(151.2254!, 251.0001!)
-        Me.XrLabel17.Multiline = True
-        Me.XrLabel17.Name = "XrLabel17"
-        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel17.SizeF = New System.Drawing.SizeF(18.8725!, 23.00002!)
-        Me.XrLabel17.StylePriority.UseFont = False
-        Me.XrLabel17.Text = ":"
-        '
-        'L_employee_pob_dob
-        '
-        Me.L_employee_pob_dob.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.L_employee_pob_dob.LocationFloat = New DevExpress.Utils.PointFloat(170.0979!, 251.0001!)
-        Me.L_employee_pob_dob.Multiline = True
-        Me.L_employee_pob_dob.Name = "L_employee_pob_dob"
-        Me.L_employee_pob_dob.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.L_employee_pob_dob.SizeF = New System.Drawing.SizeF(479.9021!, 23.00002!)
-        Me.L_employee_pob_dob.StylePriority.UseFont = False
         '
         'XrLabel9
         '
@@ -387,9 +352,6 @@ Partial Public Class ReportMasterEmployeeSuratKeteranganPenangguhanBank
     Friend WithEvents XrLabel19 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents L_address_primary As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents L_employee_pob_dob As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
