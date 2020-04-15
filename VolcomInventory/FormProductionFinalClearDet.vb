@@ -109,6 +109,9 @@ Public Class FormProductionFinalClearDet
                 TxtStyleCode.Text = data.Rows(0)("design_code").ToString
                 TxtStyle.Text = data.Rows(0)("design_display_name").ToString
                 LEPLCategory.EditValue = data.Rows(0)("id_pl_category").ToString
+
+                SLERecType.EditValue = data.Rows(0)("id_pl_category").ToString
+
                 viewDetail()
                 view_barcode_list()
                 pre_viewImages("2", PEView, id_design, False)
