@@ -25,7 +25,6 @@
         End If
         Report.L_employee_name.Text = FormMasterEmployee.GVEmployee.GetFocusedRowCellDisplayText("employee_name")
         Report.L_employee_code.Text = FormMasterEmployee.GVEmployee.GetFocusedRowCellDisplayText("employee_code")
-        Report.L_employee_pob_dob.Text = FormMasterEmployee.GVEmployee.GetFocusedRowCellDisplayText("employee_pob") + ", " + FormMasterEmployee.GVEmployee.GetFocusedRowCellDisplayText("employee_dob")
         Report.L_address_primary.Text = FormMasterEmployee.GVEmployee.GetFocusedRowCellDisplayText("address_primary")
         Report.L_date.Text = "Kuta, " + Date.Now.ToString("dd MMMM yyyy")
 
