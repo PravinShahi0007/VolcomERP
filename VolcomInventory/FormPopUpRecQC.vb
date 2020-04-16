@@ -219,7 +219,9 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     FormProductionFinalClearDet.TxtStyleCode.Text = GVProdRec.GetFocusedRowCellValue("design_code").ToString
                     FormProductionFinalClearDet.TxtStyle.Text = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
                     FormProductionFinalClearDet.viewDetail()
+                    FormProductionFinalClearDet.BtnInfoSrs.Enabled = True
                     pre_viewImages("2", FormProductionFinalClearDet.PEView, FormProductionFinalClearDet.id_design, False)
+
                     Close()
                 Else
                     warningCustom("No data selected.")

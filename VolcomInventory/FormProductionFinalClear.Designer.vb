@@ -68,6 +68,10 @@ Partial Class FormProductionFinalClear
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.PanelControlOrder = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -93,10 +97,6 @@ Partial Class FormProductionFinalClear
         Me.DEFromSum = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -586,6 +586,66 @@ Partial Class FormProductionFinalClear
         Me.GridColumn28.VisibleIndex = 2
         Me.GridColumn28.Width = 239
         '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.Caption = "Qty Return Out"
+        Me.GridColumn18.DisplayFormat.FormatString = "N0"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn18.FieldName = "qty_ret_out"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 3
+        Me.GridColumn18.Width = 153
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Qty Return In"
+        Me.GridColumn19.DisplayFormat.FormatString = "N0"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "qty_ret_in"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 4
+        Me.GridColumn19.Width = 153
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Qty QC Report"
+        Me.GridColumn20.DisplayFormat.FormatString = "N0"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "qty_qr"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 5
+        Me.GridColumn20.Width = 153
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "Remaining"
+        Me.GridColumn21.DisplayFormat.FormatString = "N0"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "qty_remaining"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.Width = 166
+        '
         'RepositoryItemPictureEdit1
         '
         Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
@@ -811,66 +871,6 @@ Partial Class FormProductionFinalClear
         Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl5.TabIndex = 8892
         Me.LabelControl5.Text = "From"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn18.Caption = "Qty Return Out"
-        Me.GridColumn18.DisplayFormat.FormatString = "N0"
-        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn18.FieldName = "qty_ret_out"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 3
-        Me.GridColumn18.Width = 153
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn19.Caption = "Qty Return In"
-        Me.GridColumn19.DisplayFormat.FormatString = "N0"
-        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn19.FieldName = "qty_ret_in"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 4
-        Me.GridColumn19.Width = 153
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.Caption = "Qty QC Report"
-        Me.GridColumn20.DisplayFormat.FormatString = "N0"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "qty_qr"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 5
-        Me.GridColumn20.Width = 153
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn21.Caption = "Remaining"
-        Me.GridColumn21.DisplayFormat.FormatString = "N0"
-        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn21.FieldName = "qty_remaining"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 6
-        Me.GridColumn21.Width = 166
         '
         'FormProductionFinalClear
         '

@@ -126,6 +126,8 @@ Public Class FormProductionFinalClearDet
                     getLimitQty()
                     GridColumnQtySum.OptionsColumn.AllowEdit = True
                 End If
+                '
+                BtnInfoSrs.Enabled = True
             End If
         ElseIf action = "upd" Then
             GroupControlItemList.Enabled = True
@@ -146,6 +148,7 @@ Public Class FormProductionFinalClearDet
             Else
                 LECLaim.EditValue = Nothing
             End If
+            SLERecType.EditValue = data.Rows(0)("id_pl_category_rec").ToString
             TxtNumber.Text = data.Rows(0)("prod_fc_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("prod_fc_datex").ToString, 0)
             MENote.Text = data.Rows(0)("prod_fc_note").ToString
@@ -1195,5 +1198,14 @@ Public Class FormProductionFinalClearDet
         WHERE q.id_prod_order=" + id_prod_order + " AND q.id_report_status!=5 AND d.is_old_design=2 "
         dt_exist = execute_query(query, -1, True, "", "", "", "")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnInfoSrs_Click(sender As Object, e As EventArgs) Handles BtnInfoSrs.Click
+        FormPopUpProdDet.id_pop_up = "3"
+        FormPopUpProdDet.id_prod_order_rec = id_prod_order_rec
+        FormPopUpProdDet.id_prod_order = id_prod_order
+        FormPopUpProdDet.BtnSave.Visible = False
+        FormPopUpProdDet.is_info_form = True
+        FormPopUpProdDet.ShowDialog()
     End Sub
 End Class

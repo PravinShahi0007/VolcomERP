@@ -293,7 +293,7 @@
 
     Private Sub GVProd_FocusedRowObjectChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs) Handles GVProd.FocusedRowObjectChanged
         If GVProd.RowCount > 0 Then
-            Dim q As String = "SELECT rec.`id_prod_order_rec`,rec.`prod_order_rec_number`,cat.`pl_category`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec,IFNULL(retout.qty,0) AS qty_ret_out,IFNULL(retin.qty,0) AS qty_ret_in
+            Dim q As String = "SELECT rec.`id_prod_order_rec`,rec.id_prod_order,rec.`prod_order_rec_number`,cat.`pl_category`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec,IFNULL(retout.qty,0) AS qty_ret_out,IFNULL(retin.qty,0) AS qty_ret_in
 ,IFNULL(qcr.qty,0) AS qty_qr
 ,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(retout.qty,0)+IFNULL(retin.qty,0)-IFNULL(qcr.qty,0) AS qty_remaining
 FROM tb_prod_order_rec_det recd
@@ -329,5 +329,14 @@ GROUP BY recd.`id_prod_order_rec`"
             GCRecQc.DataSource = dt
             GVRecQc.BestFitColumns()
         End If
+    End Sub
+
+    Private Sub GVRecQc_DoubleClick(sender As Object, e As EventArgs) Handles GVRecQc.DoubleClick
+        FormPopUpProdDet.id_pop_up = "3"
+        FormPopUpProdDet.id_prod_order_rec = GVRecQc.GetFocusedRowCellValue("id_prod_order_rec").ToString
+        FormPopUpProdDet.id_prod_order = GVRecQc.GetFocusedRowCellValue("id_prod_order").ToString
+        FormPopUpProdDet.BtnSave.Visible = False
+        FormPopUpProdDet.is_info_form = True
+        FormPopUpProdDet.ShowDialog()
     End Sub
 End Class
