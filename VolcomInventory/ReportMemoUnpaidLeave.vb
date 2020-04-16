@@ -5,10 +5,16 @@
     Private data_sign As DataTable = New DataTable
 
     Private Sub ReportMemoUnpaidLeave_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        Dim query_round As String = ""
+
+        If get_opt_emp_field("is_leave_hour") = "2" Then
+            query_round = ",1"
+        End If
+
         Dim query As String = "SELECT formdc.form_dc,empl.id_emp,empl.emp_leave_number,empl.leave_purpose,lt.leave_type,empl.report_mark_type, empl.id_leave_type,
                                 emp.employee_name, empl.emp_leave_date,emp.employee_code, emp.employee_position, emp.id_departement, dep.departement, 
                                 emp_ch.employee_name AS name_ch, emp_ch.employee_code AS code_ch,emp.employee_join_date,
-                                ROUND(empl.leave_remaining/60) AS leave_remaining,ROUND(empl.leave_total/60) AS leave_total,
+                                ROUND(empl.leave_remaining/60" + query_round + ") AS leave_remaining,ROUND(empl.leave_total/60" + query_round + ") AS leave_total,
                                 periode.start_periode,periode.end_periode
                                 FROM tb_emp_leave empl
                                 INNER JOIN tb_lookup_leave_type lt ON lt.id_leave_type=empl.id_leave_type

@@ -360,6 +360,15 @@ Public Class FormSalesOrderDet
             End If
         End If
 
+        'cek coa jika Wholesale Online Store
+        If LEStatusSO.EditValue.ToString = "14" Then
+            If Not viewCheckCoa() Then
+                stopCustom("Account COA for this store is not found, please contact Accounting Dept.")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+        End If
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
         ElseIf Not cond_data Then
@@ -859,6 +868,16 @@ Public Class FormSalesOrderDet
             GridColumnItemId.VisibleIndex = 1
             GridColumnOLStoreId.VisibleIndex = 2
             GridColumnCode.VisibleIndex = 3
+
+            'get own ol store comp
+            Dim qol As String = "SELECT o.own_ol_store_normal, o.own_ol_store_sale FROM tb_opt o "
+            Dim dol As DataTable = execute_query(qol, -1, True, "", "", "", "")
+            Dim own_ol_store_normal As String = dol.Rows(0)("own_ol_store_normal").ToString
+            Dim own_ol_store_sale As String = dol.Rows(0)("own_ol_store_sale").ToString
+            If id_store = own_ol_store_normal Or id_store = own_ol_store_sale Then
+                LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "14")
+                LEStatusSO.Enabled = False
+            End If
         End If
     End Sub
 
@@ -1406,6 +1425,15 @@ Public Class FormSalesOrderDet
                     LEStatusSO.EditValue = LEStatusSO.OldEditValue
                 End If
             End If
+
+            'check coa for wholesale ol store
+            If id_store <> "-1" And LEStatusSO.EditValue.ToString = "14" Then
+                If Not viewCheckCoa() Then
+                    stopCustom("Account COA for this store is not found, please contact Accounting Dept.")
+                    LEStatusSO.EditValue = LEStatusSO.OldEditValue
+                    Close()
+                End If
+            End If
         End If
     End Sub
 
@@ -1461,4 +1489,16 @@ Public Class FormSalesOrderDet
         TxtOrderType.Text = value
         viewSoStatus()
     End Sub
+
+    Function viewCheckCoa() As Boolean
+        Dim query As String = "SELECT *
+        FROM tb_m_comp c 
+        WHERE c.id_comp=" + id_store + " AND !ISNULL(c.id_acc_sales) AND !ISNULL(c.id_acc_sales_return) AND !ISNULL(c.id_acc_ar) "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class
