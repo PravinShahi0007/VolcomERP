@@ -868,6 +868,16 @@ Public Class FormSalesOrderDet
             GridColumnItemId.VisibleIndex = 1
             GridColumnOLStoreId.VisibleIndex = 2
             GridColumnCode.VisibleIndex = 3
+
+            'get own ol store comp
+            Dim qol As String = "SELECT o.own_ol_store_normal, o.own_ol_store_sale FROM tb_opt o "
+            Dim dol As DataTable = execute_query(qol, -1, True, "", "", "", "")
+            Dim own_ol_store_normal As String = dol.Rows(0)("own_ol_store_normal").ToString
+            Dim own_ol_store_sale As String = dol.Rows(0)("own_ol_store_sale").ToString
+            If id_store = own_ol_store_normal Or id_store = own_ol_store_sale Then
+                LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "14")
+                LEStatusSO.Enabled = False
+            End If
         End If
     End Sub
 
@@ -1421,6 +1431,7 @@ Public Class FormSalesOrderDet
                 If Not viewCheckCoa() Then
                     stopCustom("Account COA for this store is not found, please contact Accounting Dept.")
                     LEStatusSO.EditValue = LEStatusSO.OldEditValue
+                    Close()
                 End If
             End If
         End If
