@@ -360,6 +360,15 @@ Public Class FormSalesOrderDet
             End If
         End If
 
+        'cek coa jika Wholesale Online Store
+        If LEStatusSO.EditValue.ToString = "14" Then
+            If Not viewCheckCoa() Then
+                stopCustom("Account COA for this store is not found, please contact Accounting Dept.")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+        End If
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
         ElseIf Not cond_data Then
@@ -1406,6 +1415,14 @@ Public Class FormSalesOrderDet
                     LEStatusSO.EditValue = LEStatusSO.OldEditValue
                 End If
             End If
+
+            'check coa for wholesale ol store
+            If id_store <> "-1" And LEStatusSO.EditValue.ToString = "14" Then
+                If Not viewCheckCoa() Then
+                    stopCustom("Account COA for this store is not found, please contact Accounting Dept.")
+                    LEStatusSO.EditValue = LEStatusSO.OldEditValue
+                End If
+            End If
         End If
     End Sub
 
@@ -1466,6 +1483,11 @@ Public Class FormSalesOrderDet
         Dim query As String = "SELECT *
         FROM tb_m_comp c 
         WHERE c.id_comp=" + id_store + " AND !ISNULL(c.id_acc_sales) AND !ISNULL(c.id_acc_sales_return) AND !ISNULL(c.id_acc_ar) "
-
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
     End Function
 End Class
