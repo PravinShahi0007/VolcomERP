@@ -142,9 +142,9 @@ GROUP BY rd.`id_prod_order_rec`"
         GCClaimLate.DataSource = data
         GVClaimLate.BestFitColumns()
         If SLEVendor.EditValue.ToString = "0" Then
-            PCDebitNote.Visible = False
+            BCreateDNLate.Visible = False
         Else
-            PCDebitNote.Visible = True
+            BCreateDNLate.Visible = True
         End If
     End Sub
 
@@ -225,7 +225,7 @@ GROUP BY rd.`id_prod_order_rec`"
                                 LEFT JOIN (
                                     SELECT id_reff FROM tb_debit_note_det dnd
                                     INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dnd.`report_mark_type`=22 AND dn.`id_report_status`!=5
-                                    GROUP BY dnd.id_report
+                                    GROUP BY dnd.id_reff
                                 ) dn ON dn.id_reff=fc.id_prod_fc
                                 WHERE fc.id_report_status = '6' AND ISNULL(dn.id_reff) " & q_where & "
                                 GROUP BY fc.`id_prod_fc`"
@@ -233,9 +233,9 @@ GROUP BY rd.`id_prod_order_rec`"
         GCSumClaimReject.DataSource = data
         GVSumClaimReject.BestFitColumns()
         If SLEVendor.EditValue.ToString = "0" Then
-            BCreateDNReject.Visible = False
+            PCDebitNote.Visible = False
         Else
-            BCreateDNReject.Visible = True
+            PCDebitNote.Visible = True
         End If
     End Sub
 
