@@ -39,6 +39,7 @@ Partial Class FormDebitNote
         Me.RICECheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -81,7 +82,10 @@ Partial Class FormDebitNote
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEDN = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PCDebitNote = New DevExpress.XtraEditors.PanelControl()
         Me.BCreateDNReject = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.XTPFGPOLate = New DevExpress.XtraTab.XtraTabPage()
         Me.GCClaimLate = New DevExpress.XtraGrid.GridControl()
         Me.GVClaimLate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -142,6 +146,11 @@ Partial Class FormDebitNote
         CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEDN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCDebitNote, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCDebitNote.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPFGPOLate.SuspendLayout()
         CType(Me.GCClaimLate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVClaimLate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -264,7 +273,7 @@ Partial Class FormDebitNote
         'XTPFGPOReject
         '
         Me.XTPFGPOReject.Controls.Add(Me.GCSumClaimReject)
-        Me.XTPFGPOReject.Controls.Add(Me.BCreateDNReject)
+        Me.XTPFGPOReject.Controls.Add(Me.PCDebitNote)
         Me.XTPFGPOReject.Name = "XTPFGPOReject"
         Me.XTPFGPOReject.Size = New System.Drawing.Size(1160, 484)
         Me.XTPFGPOReject.Text = "FGPO Reject"
@@ -276,19 +285,18 @@ Partial Class FormDebitNote
         Me.GCSumClaimReject.MainView = Me.GVSumClaimReject
         Me.GCSumClaimReject.Name = "GCSumClaimReject"
         Me.GCSumClaimReject.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit1, Me.RepositoryItemCheckEdit1, Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemSearchLookUpEdit2, Me.RICEDN, Me.RICECheckEdit})
-        Me.GCSumClaimReject.Size = New System.Drawing.Size(1160, 452)
+        Me.GCSumClaimReject.Size = New System.Drawing.Size(1160, 444)
         Me.GCSumClaimReject.TabIndex = 7
         Me.GCSumClaimReject.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSumClaimReject})
         '
         'GVSumClaimReject
         '
         Me.GVSumClaimReject.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand8, Me.GridBand1, Me.gridBand7, Me.gridBand2, Me.gridBand3})
-        Me.GVSumClaimReject.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn30, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn29, Me.GridColumn9, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn23, Me.BandedGridColumn28, Me.GridColumn15, Me.GridColumn31, Me.GridColumn16, Me.GridColumn34, Me.GridColumn17, Me.GridColumn35, Me.GridColumn18, Me.GridColumn36, Me.GridColumn19, Me.GridColumn37, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn24})
+        Me.GVSumClaimReject.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn30, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn31, Me.BandedGridColumn29, Me.GridColumn9, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn23, Me.BandedGridColumn28, Me.GridColumn15, Me.GridColumn31, Me.GridColumn16, Me.GridColumn34, Me.GridColumn17, Me.GridColumn35, Me.GridColumn18, Me.GridColumn36, Me.GridColumn19, Me.GridColumn37, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn24})
         Me.GVSumClaimReject.GridControl = Me.GCSumClaimReject
         Me.GVSumClaimReject.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumn12, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn13, "{0:N0}")})
         Me.GVSumClaimReject.Name = "GVSumClaimReject"
         Me.GVSumClaimReject.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVSumClaimReject.OptionsBehavior.ReadOnly = True
         Me.GVSumClaimReject.OptionsFind.AlwaysVisible = True
         Me.GVSumClaimReject.OptionsView.ColumnAutoWidth = False
         Me.GVSumClaimReject.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
@@ -330,6 +338,7 @@ Partial Class FormDebitNote
         '
         Me.GridBand1.Caption = "Detail"
         Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn31)
         Me.GridBand1.Columns.Add(Me.BandedGridColumn29)
         Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
         Me.GridBand1.Columns.Add(Me.GridColumn9)
@@ -341,19 +350,31 @@ Partial Class FormDebitNote
         Me.GridBand1.Columns.Add(Me.GridColumn35)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 634
+        Me.GridBand1.Width = 814
         '
         'BandedGridColumn1
         '
         Me.BandedGridColumn1.Caption = "ID PO"
         Me.BandedGridColumn1.FieldName = "id_prod_order"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn1.OptionsColumn.ReadOnly = True
+        '
+        'BandedGridColumn31
+        '
+        Me.BandedGridColumn31.Caption = "Summary Number"
+        Me.BandedGridColumn31.FieldName = "sum_number"
+        Me.BandedGridColumn31.Name = "BandedGridColumn31"
+        Me.BandedGridColumn31.Visible = True
+        Me.BandedGridColumn31.Width = 180
         '
         'BandedGridColumn29
         '
         Me.BandedGridColumn29.Caption = "QC Report Number"
         Me.BandedGridColumn29.FieldName = "prod_fc_number"
         Me.BandedGridColumn29.Name = "BandedGridColumn29"
+        Me.BandedGridColumn29.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn29.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn29.Visible = True
         Me.BandedGridColumn29.Width = 118
         '
@@ -363,6 +384,7 @@ Partial Class FormDebitNote
         Me.BandedGridColumn2.FieldName = "comp_name"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         Me.BandedGridColumn2.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn2.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn2.Visible = True
         Me.BandedGridColumn2.Width = 79
         '
@@ -372,6 +394,7 @@ Partial Class FormDebitNote
         Me.GridColumn9.FieldName = "prod_order_number"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
         Me.GridColumn9.Width = 74
         '
@@ -382,6 +405,8 @@ Partial Class FormDebitNote
         Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn4.FieldName = "prod_order_wo_det_price"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn4.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn4.Visible = True
         '
         'GridColumn10
@@ -390,6 +415,7 @@ Partial Class FormDebitNote
         Me.GridColumn10.FieldName = "design_display_name"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.Width = 121
         '
@@ -399,6 +425,7 @@ Partial Class FormDebitNote
         Me.GridColumn11.FieldName = "design_code"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
         Me.GridColumn11.Width = 78
         '
@@ -414,6 +441,7 @@ Partial Class FormDebitNote
         Me.GridColumn12.FieldName = "qty_order"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumn12.Visible = True
         Me.GridColumn12.Width = 89
@@ -429,6 +457,8 @@ Partial Class FormDebitNote
         Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn31.FieldName = "p_normal_minor"
         Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.OptionsColumn.ReadOnly = True
         '
         'GridColumn35
         '
@@ -441,6 +471,8 @@ Partial Class FormDebitNote
         Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn35.FieldName = "p_minor_major"
         Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.OptionsColumn.AllowEdit = False
+        Me.GridColumn35.OptionsColumn.ReadOnly = True
         '
         'gridBand7
         '
@@ -460,6 +492,8 @@ Partial Class FormDebitNote
         Me.BandedGridColumn3.Caption = "Pre Receiving Number"
         Me.BandedGridColumn3.FieldName = "prod_order_rec_number"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn3.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn3.Visible = True
         Me.BandedGridColumn3.Width = 126
         '
@@ -468,6 +502,8 @@ Partial Class FormDebitNote
         Me.BandedGridColumn25.Caption = "Category"
         Me.BandedGridColumn25.FieldName = "rec_pl_category"
         Me.BandedGridColumn25.Name = "BandedGridColumn25"
+        Me.BandedGridColumn25.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn25.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn25.Visible = True
         Me.BandedGridColumn25.Width = 76
         '
@@ -483,6 +519,7 @@ Partial Class FormDebitNote
         Me.GridColumn13.FieldName = "qty_rec"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
         Me.GridColumn13.Visible = True
         Me.GridColumn13.Width = 97
@@ -490,24 +527,36 @@ Partial Class FormDebitNote
         'BandedGridColumn27
         '
         Me.BandedGridColumn27.Caption = "Unit Price"
+        Me.BandedGridColumn27.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn27.FieldName = "unit_price"
         Me.BandedGridColumn27.Name = "BandedGridColumn27"
+        Me.BandedGridColumn27.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn27.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn27.Visible = True
         Me.BandedGridColumn27.Width = 76
         '
         'BandedGridColumn26
         '
         Me.BandedGridColumn26.Caption = "Discount"
+        Me.BandedGridColumn26.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn26.FieldName = "rec_discount"
         Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn26.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn26.Visible = True
         Me.BandedGridColumn26.Width = 76
         '
         'BandedGridColumn23
         '
         Me.BandedGridColumn23.Caption = "Unit Price After Discount"
+        Me.BandedGridColumn23.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn23.FieldName = "rec_amount_disc"
         Me.BandedGridColumn23.Name = "BandedGridColumn23"
+        Me.BandedGridColumn23.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn23.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn23.Visible = True
         Me.BandedGridColumn23.Width = 78
         '
@@ -535,6 +584,8 @@ Partial Class FormDebitNote
         Me.BandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn28.FieldName = "qc_normal"
         Me.BandedGridColumn28.Name = "BandedGridColumn28"
+        Me.BandedGridColumn28.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn28.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_normal", "{0:N0}")})
         Me.BandedGridColumn28.Visible = True
         '
@@ -549,6 +600,8 @@ Partial Class FormDebitNote
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn15.FieldName = "qc_normal_minor"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.ReadOnly = True
         Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_normal_minor", "{0:N0}")})
         Me.GridColumn15.Visible = True
         '
@@ -563,6 +616,8 @@ Partial Class FormDebitNote
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn16.FieldName = "qc_minor"
         Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_minor", "{0:N0}")})
         Me.GridColumn16.Visible = True
         '
@@ -577,6 +632,8 @@ Partial Class FormDebitNote
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "qc_minor_major"
         Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_minor_major", "{0:N0}")})
         Me.GridColumn17.Visible = True
         '
@@ -591,6 +648,8 @@ Partial Class FormDebitNote
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "qc_major"
         Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_major", "{0:N0}")})
         Me.GridColumn18.Visible = True
         '
@@ -605,6 +664,8 @@ Partial Class FormDebitNote
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "qc_afkir"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.ReadOnly = True
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_afkir", "{0:N0}")})
         Me.GridColumn19.Visible = True
         '
@@ -633,6 +694,8 @@ Partial Class FormDebitNote
         Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn34.FieldName = "p_minor"
         Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.AllowEdit = False
+        Me.GridColumn34.OptionsColumn.ReadOnly = True
         Me.GridColumn34.Visible = True
         '
         'GridColumn36
@@ -646,6 +709,8 @@ Partial Class FormDebitNote
         Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn36.FieldName = "p_major"
         Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.OptionsColumn.AllowEdit = False
+        Me.GridColumn36.OptionsColumn.ReadOnly = True
         Me.GridColumn36.Visible = True
         '
         'GridColumn37
@@ -659,6 +724,8 @@ Partial Class FormDebitNote
         Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn37.FieldName = "p_afkir"
         Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
+        Me.GridColumn37.OptionsColumn.ReadOnly = True
         Me.GridColumn37.Visible = True
         '
         'GridColumn20
@@ -672,6 +739,8 @@ Partial Class FormDebitNote
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "amo_claim_minor"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo_claim_minor", "{0:N2}")})
         Me.GridColumn20.Visible = True
         '
@@ -686,6 +755,8 @@ Partial Class FormDebitNote
         Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn21.FieldName = "amo_claim_major"
         Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.OptionsColumn.AllowEdit = False
+        Me.GridColumn21.OptionsColumn.ReadOnly = True
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo_claim_major", "{0:N2}")})
         Me.GridColumn21.Visible = True
         '
@@ -700,6 +771,8 @@ Partial Class FormDebitNote
         Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn22.FieldName = "amo_claim_afkir"
         Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.AllowEdit = False
+        Me.GridColumn22.OptionsColumn.ReadOnly = True
         Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo_claim_afkir", "{0:N2}")})
         Me.GridColumn22.Visible = True
         '
@@ -714,6 +787,8 @@ Partial Class FormDebitNote
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "total_claim"
         Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.OptionsColumn.AllowEdit = False
+        Me.GridColumn24.OptionsColumn.ReadOnly = True
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_claim", "{0:N2}")})
         Me.GridColumn24.UnboundExpression = "[amo_claim_minor] + [amo_claim_major] + [amo_claim_afkir]"
         Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
@@ -796,6 +871,17 @@ Partial Class FormDebitNote
         Me.RICEDN.ValueChecked = "yes"
         Me.RICEDN.ValueUnchecked = "no"
         '
+        'PCDebitNote
+        '
+        Me.PCDebitNote.Controls.Add(Me.BCreateDNReject)
+        Me.PCDebitNote.Controls.Add(Me.PanelControl3)
+        Me.PCDebitNote.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCDebitNote.Location = New System.Drawing.Point(0, 444)
+        Me.PCDebitNote.Name = "PCDebitNote"
+        Me.PCDebitNote.Size = New System.Drawing.Size(1160, 40)
+        Me.PCDebitNote.TabIndex = 14
+        Me.PCDebitNote.Visible = False
+        '
         'BCreateDNReject
         '
         Me.BCreateDNReject.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
@@ -804,16 +890,33 @@ Partial Class FormDebitNote
         Me.BCreateDNReject.Appearance.Options.UseBackColor = True
         Me.BCreateDNReject.Appearance.Options.UseFont = True
         Me.BCreateDNReject.Appearance.Options.UseForeColor = True
-        Me.BCreateDNReject.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreateDNReject.Location = New System.Drawing.Point(0, 452)
+        Me.BCreateDNReject.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BCreateDNReject.Location = New System.Drawing.Point(107, 2)
         Me.BCreateDNReject.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BCreateDNReject.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BCreateDNReject.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreateDNReject.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreateDNReject.Name = "BCreateDNReject"
-        Me.BCreateDNReject.Size = New System.Drawing.Size(1160, 32)
+        Me.BCreateDNReject.Size = New System.Drawing.Size(1051, 36)
         Me.BCreateDNReject.TabIndex = 13
         Me.BCreateDNReject.Text = "Create Debit Note"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.CESelectAll)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(105, 36)
+        Me.PanelControl3.TabIndex = 14
+        '
+        'CESelectAll
+        '
+        Me.CESelectAll.Location = New System.Drawing.Point(9, 8)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.TabIndex = 0
         '
         'XTPFGPOLate
         '
@@ -1294,6 +1397,11 @@ Partial Class FormDebitNote
         CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEDN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCDebitNote, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCDebitNote.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPFGPOLate.ResumeLayout(False)
         CType(Me.GCClaimLate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVClaimLate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1413,10 +1521,14 @@ Partial Class FormDebitNote
     Friend WithEvents BandedGridColumn27 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn28 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn30 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RICECheckEdit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PCDebitNote As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn31 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand

@@ -142,9 +142,9 @@ GROUP BY rd.`id_prod_order_rec`"
         GCClaimLate.DataSource = data
         GVClaimLate.BestFitColumns()
         If SLEVendor.EditValue.ToString = "0" Then
-            BCreateDNLate.Visible = False
+            PCDebitNote.Visible = False
         Else
-            BCreateDNLate.Visible = True
+            PCDebitNote.Visible = True
         End If
     End Sub
 
@@ -169,19 +169,27 @@ GROUP BY rd.`id_prod_order_rec`"
                                 SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0)) AS qc_afkir, 
                                 get_claim_reject_percent(ko.`id_claim_reject`,6) AS p_afkir,
                                 wo_price.prod_order_wo_det_price AS unit_price,
-                                ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
-                                ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,5)/100)))) AS amo_claim_major,
-                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,6)/100))) AS amo_claim_afkir
-                                ,rec.qty_rec AS qty_rec,wo_price.qty_order AS qty_order
+                                ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
+                                ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,5)/100)))) AS amo_claim_major,
+                                ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,6)/100))) AS amo_claim_afkir
+                                ,IFNULL(recfc.qty_rec,rec.qty_rec) AS qty_rec,wo_price.qty_order AS qty_order
                                 ,wo_price.comp_name
                                 ,dsg.design_display_name
-                                ,wo_price.prod_order_wo_det_price
+                                ,(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100)) AS prod_order_wo_det_price -- real price rec
                                 ,recfc.prod_order_rec_number,IFNULL(recfc.claim_percent,0) AS rec_discount
                                 ,IFNULL(pl_rec.pl_category,'Normal') AS rec_pl_category
-                                ,IFNULL(wo_price.prod_order_wo_det_price*(100-IFNULL(recfc.claim_percent,0))) AS rec_amount_disc
-                                FROM tb_prod_fc fc 
-                                LEFT JOIN tb_prod_order_rec recfc ON recfc.`id_prod_order_rec`=fc.`id_prod_order_rec`
-                                LEFT JOIN tb_lookup_pl_category pl_rec ON pl_rec.`id_pl_category`=fc.`id_pl_category`
+                                ,(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100)) AS rec_amount_disc
+                                ,fc.id_prod_fc AS id_reff,fcs.number AS sum_number
+                                FROM tb_prod_fc_sum_det fcsd
+                                INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`=fcsd.`id_prod_fc_sum` AND fcs.`id_report_status`='6'
+                                INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcsd.`id_prod_fc` 
+                                LEFT JOIN (
+                                    SELECT rec.`id_prod_order_rec`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec,rec.claim_percent,rec.prod_order_rec_number,rec.id_pl_category
+                                    FROM tb_prod_order_rec_det recd
+                                    INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
+                                    GROUP BY rec.`id_prod_order_rec`
+                                ) recfc ON recfc.`id_prod_order_rec`=fc.`id_prod_order_rec`
+                                LEFT JOIN tb_lookup_pl_category pl_rec ON pl_rec.`id_pl_category`=recfc.`id_pl_category`
                                 INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc` AND fc.id_report_status='6'
                                 INNER JOIN tb_prod_order po ON po.`id_prod_order`=fc.`id_prod_order` AND po.is_claimed_reject=2
                                 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
@@ -215,11 +223,11 @@ GROUP BY rd.`id_prod_order_rec`"
 	                                GROUP BY rec.id_prod_order
                                 ) rec ON rec.`id_prod_order`=fc.`id_prod_order`
                                 LEFT JOIN (
-                                    SELECT id_report FROM tb_debit_note_det dnd
+                                    SELECT id_reff FROM tb_debit_note_det dnd
                                     INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dnd.`report_mark_type`=22 AND dn.`id_report_status`!=5
                                     GROUP BY dnd.id_report
-                                ) dn ON dn.id_report=po.id_prod_order
-                                WHERE fc.id_report_status = '6' AND ISNULL(dn.id_report) " & q_where & "
+                                ) dn ON dn.id_reff=fc.id_prod_fc
+                                WHERE fc.id_report_status = '6' AND ISNULL(dn.id_reff) " & q_where & "
                                 GROUP BY fc.`id_prod_fc`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSumClaimReject.DataSource = data
@@ -261,6 +269,19 @@ GROUP BY rd.`id_prod_order_rec`"
         If GVDebitNote.RowCount > 0 Then
             FormDebitNoteDet.id_dn = GVDebitNote.GetFocusedRowCellValue("id_debit_note").ToString
             FormDebitNoteDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub CESelectAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAll.CheckedChanged
+        If GVSumClaimReject.RowCount > 0 Then
+            Dim cek As String = CESelectAll.EditValue.ToString
+            For i As Integer = 0 To ((GVSumClaimReject.RowCount - 1) - GetGroupRowCount(GVSumClaimReject))
+                If cek Then
+                    GVSumClaimReject.SetRowCellValue(i, "is_check", "yes")
+                Else
+                    GVSumClaimReject.SetRowCellValue(i, "is_check", "no")
+                End If
+            Next
         End If
     End Sub
 End Class
