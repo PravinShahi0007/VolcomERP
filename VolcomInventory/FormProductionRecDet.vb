@@ -205,6 +205,10 @@ Public Class FormProductionRecDet
         If dm.Rows.Count > 0 Then
             expired_date = dm.Rows(0)("expired_date")
             id_prod_over_memo = dm.Rows(0)("id_prod_over_memo").ToString
+            '
+            SLERecType.EditValue = "6"
+            SLERecType.Properties.ReadOnly = True
+            '
             qty_limit = dm.Rows(0)("qty")
         End If
     End Sub
@@ -454,7 +458,7 @@ GROUP BY rec.`id_prod_order`"
         ValidateChildren()
         Dim query As String = ""
         Dim err_txt As String = ""
-        Dim rec_number, rec_date, do_number, do_date, arrive_date, rec_note, rec_stats, id_pl_cat As String
+        Dim rec_number, rec_date, do_number, do_date, arrive_date, rec_note, rec_stats, id_pl_cat, claim_percent As String
         Dim id_rec_new As String
 
         rec_number = ""
@@ -465,6 +469,7 @@ GROUP BY rec.`id_prod_order`"
         rec_stats = ""
         arrive_date = ""
         id_pl_cat = ""
+        claim_percent = "0.00"
 
         makeSafeGV(GVListPurchase)
         makeSafeGV(GVBarcode)
@@ -497,6 +502,21 @@ GROUP BY rec.`id_prod_order`"
         rec_stats = LEReportStatus.EditValue
         id_pl_cat = SLERecType.EditValue.ToString
 
+        Try
+            If id_pl_cat = "6" Then 'memo
+                Dim qclaim As String = "SELECT discount FROM tb_prod_over_memo_det WHERE id_prod_over_memo='" & id_prod_over_memo & "' AND id_prod_order='" & id_order & "'"
+                Dim dtclaim As DataTable = execute_query(qclaim, -1, True, "", "", "", "")
+                claim_percent = decimalSQL(Decimal.Parse(dtclaim.Rows(0)("discount").ToString).ToString)
+            Else
+                Dim qclaim As String = "SELECT claim_percent FROM tb_lookup_pl_category WHERE id_pl_category='" & id_pl_cat & "'"
+                Dim dtclaim As DataTable = execute_query(qclaim, -1, True, "", "", "", "")
+                claim_percent = decimalSQL(Decimal.Parse(dtclaim.Rows(0)("claim_percent").ToString).ToString)
+            End If
+        Catch ex As Exception
+            MsgBox("Claim not found." & ex.ToString)
+        End Try
+
+        'search claim percent
         For i As Integer = 0 To GVListPurchase.RowCount - 1
             Try
                 If GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString = "" Then
@@ -535,10 +555,10 @@ GROUP BY rec.`id_prod_order`"
                     Try
                         'insert rec
                         If do_date = "0000-00-00" Then
-                            query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category) VALUES('{0}','{1}','{2}',NULL, '{3}',DATE(NOW()),'{4}','{5}','{6}', '{7}','{8}',{9},'{10}'); SELECT LAST_INSERT_ID(); ", id_order, rec_number, do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat)
+                            query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) VALUES('{0}','{1}','{2}',NULL, '{3}',DATE(NOW()),'{4}','{5}','{6}', '{7}','{8}',{9},'{10}'); SELECT LAST_INSERT_ID(); ", id_order, rec_number, do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
                             id_rec_new = execute_query(query, 0, True, "", "", "", "")
                         Else
-                            query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category) VALUES('{0}','{1}','{2}','{3}', '{4}',DATE(NOW()),'{5}','{6}','{7}', '{8}', '{9}', {10}, '{11}'); SELECT LAST_INSERT_ID(); ", id_order, rec_number, do_number, do_date, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat)
+                            query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) VALUES('{0}','{1}','{2}','{3}', '{4}',DATE(NOW()),'{5}','{6}','{7}', '{8}', '{9}', {10}, '{11}'); SELECT LAST_INSERT_ID(); ", id_order, rec_number, do_number, do_date, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
                             id_rec_new = execute_query(query, 0, True, "", "", "", "")
                         End If
 
@@ -597,10 +617,10 @@ GROUP BY rec.`id_prod_order`"
                     Try
                         'UPDATE rec
                         If do_date = "0000-00-00" Then
-                            query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date=null, arrive_date='{1}',prod_order_rec_note='{2}',id_report_status='{3}',id_comp_contact_to='{4}', id_comp_contact_from = '{5}',id_pl_category='{7}' WHERE id_prod_order_rec='{6}'", do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, id_receive, id_pl_cat)
+                            query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date=null, arrive_date='{1}',prod_order_rec_note='{2}',id_report_status='{3}',id_comp_contact_to='{4}', id_comp_contact_from = '{5}',id_pl_category='{7}',claim_percent='{8}' WHERE id_prod_order_rec='{6}'", do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, id_receive, id_pl_cat, claim_percent)
                             execute_non_query(query, True, "", "", "", "")
                         Else
-                            query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date='{1}', arrive_date='{2}',prod_order_rec_note='{3}',id_report_status='{4}',id_comp_contact_to='{5}', id_comp_contact_from = '{6}',id_pl_category='{8}' WHERE id_prod_order_rec='{7}'", do_number, do_date, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, id_receive, id_pl_cat)
+                            query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date='{1}', arrive_date='{2}',prod_order_rec_note='{3}',id_report_status='{4}',id_comp_contact_to='{5}', id_comp_contact_from = '{6}',id_pl_category='{8}',claim_percent='{9}' WHERE id_prod_order_rec='{7}'", do_number, do_date, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, id_receive, id_pl_cat, claim_percent)
                             execute_non_query(query, True, "", "", "", "")
                         End If
 
