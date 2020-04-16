@@ -2933,6 +2933,21 @@ WHERE note='Closing End'"
         Next
     End Sub
 
+    Sub submit_only_prepared(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_userx As String)
+        'report mark type = tb_lookup_report_mark_type ->
+        Dim report_detail As ClassShowPopUp = New ClassShowPopUp()
+        report_detail.id_report = id_report
+        report_detail.report_mark_type = report_mark_type
+        report_detail.load_detail()
+        'get id_employee
+        Dim query_emp As String = "SELECT id_employee FROM tb_m_user WHERE id_user='" & id_userx & "' LIMIT 1"
+        Dim id_empx As String = execute_query(query_emp, 0, True, "", "", "", "")
+
+        Dim query As String = ""
+        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,is_use,report_number,report_date) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','1','" & report_mark_type & "','" & id_report & "','" & id_userx & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_userx & "' LIMIT 1),'2',NOW(),'1','" & addSlashes(report_detail.report_number) & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
     Sub submit_who_prepared(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_userx As String)
         'report mark type = tb_lookup_report_mark_type ->
         Dim report_detail As ClassShowPopUp = New ClassShowPopUp()
