@@ -16,6 +16,51 @@
     Public adv_leave As Integer = 0
 
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If get_opt_emp_field("is_leave_hour") = "2" Then
+            TERemainingLeave.Properties.DisplayFormat.FormatString = "N1"
+            TERemainingLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            TERemainingLeave.Properties.EditFormat.FormatString = "N1"
+            TERemainingLeave.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            TERemainingLeave.Properties.Mask.EditMask = "N1"
+            TERemainingLeave.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
+            TETotLeave.Properties.DisplayFormat.FormatString = "N1"
+            TETotLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            TETotLeave.Properties.EditFormat.FormatString = "N1"
+            TETotLeave.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            TETotLeave.Properties.Mask.EditMask = "N1"
+            TETotLeave.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
+            TERemainingLeaveAfter.Properties.DisplayFormat.FormatString = "N1"
+            TERemainingLeaveAfter.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            TERemainingLeaveAfter.Properties.EditFormat.FormatString = "N1"
+            TERemainingLeaveAfter.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            TERemainingLeaveAfter.Properties.Mask.EditMask = "N1"
+            TERemainingLeaveAfter.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
+            TEAdvLeaveTot.Properties.DisplayFormat.FormatString = "N1"
+            TEAdvLeaveTot.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            TEAdvLeaveTot.Properties.EditFormat.FormatString = "N1"
+            TEAdvLeaveTot.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            TEAdvLeaveTot.Properties.Mask.EditMask = "N1"
+            TEAdvLeaveTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
+            GVLeaveDet.Columns("hours_total").DisplayFormat.FormatString = "N1"
+            GVLeaveDet.Columns("hours_total").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+
+            GVLeaveRemaining.Columns("qty").DisplayFormat.FormatString = "N1"
+            GVLeaveRemaining.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+
+            GVLeaveUsage.Columns("qty").DisplayFormat.FormatString = "N1"
+            GVLeaveUsage.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+
+            GVMutasi.Columns("qty_hr").DisplayFormat.FormatString = "N1"
+            GVMutasi.Columns("qty_hr").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+
+            GVMutasi.Columns("bal_hr").DisplayFormat.FormatString = "N1"
+            GVMutasi.Columns("bal_hr").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        End If
+
         load_form()
 
         If FormEmpLeave.is_single_user And id_emp_leave = "-1" Then
@@ -560,7 +605,7 @@
             End If
         End If
 
-        If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
+        If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Or MELeavePurpose.Text = "" Then
             stopCustom("Lengkapi isian dengan lengkap !")
 
             check_input = False

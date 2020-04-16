@@ -1282,18 +1282,11 @@
 
         Dim where_dw As String = If(id_payroll_type = "4", "=", "<>")
 
-        Dim query As String = "
-            SELECT " + id_payroll + " AS id_payroll, employee.id_employee, employee.employee_name, salary.id_employee_salary AS id_salary,
-                departement.total_workdays AS workdays, schedule.actual_workdays
-            FROM (
-                -- employee active & join date before payroll period
-                SELECT e.id_employee, e.employee_name
-                FROM tb_m_employee AS e
-                LEFT JOIN tb_m_departement AS d
-                    ON e.id_departement = d.id_departement
-                WHERE e.id_employee_active = 1
-                    AND e.id_departement NOT IN (22, 30, 31, 32)
-                    AND e.employee_actual_join_date <= IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+        'not active
+        Dim where_employee_not_active As String = ""
+
+        If is_thr = "2" Then
+            where_employee_not_active = "
                 UNION
                 -- employee not active & join date between payroll period
                 SELECT e.id_employee, e.employee_name
@@ -1316,6 +1309,66 @@
                     AND e.id_departement NOT IN (22, 30, 31, 32)
                     AND IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) BETWEEN employee_actual_join_date AND employee_last_date
                     AND IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) BETWEEN employee_actual_join_date AND employee_last_date
+            "
+        End If
+
+        'religion
+        Dim where_employee_religion As String = ""
+
+        If is_thr = "1" Then
+            Dim in_religion As String = execute_query("SELECT id_religion FROM tb_emp_payroll_type WHERE id_payroll_type = " + id_payroll_type, 0, True, "", "", "", "")
+
+            where_employee_religion = "AND e.id_religion IN (" + in_religion + ")"
+        End If
+
+        'actual workdays
+        Dim where_actual_workdays As String = "
+            -- actual workdays
+            SELECT s.id_employee, COUNT(*) AS actual_workdays
+            FROM tb_emp_schedule AS s
+            INNER JOIN tb_emp_shift AS f 
+                ON s.shift_code = f.shift_code
+            LEFT JOIN tb_m_employee AS e
+                ON s.id_employee = e.id_employee
+            LEFT JOIN tb_m_departement AS d 
+                ON e.id_departement = d.id_departement
+            WHERE s.date BETWEEN 
+                    IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
+                    IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) 
+                AND s.id_schedule_type IN (1, 3)
+            GROUP BY s.id_employee
+        "
+
+        If is_thr = "1" Then
+            where_actual_workdays = "
+                -- actual workdays
+                SELECT id_employee, ROUND(DATEDIFF((SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), employee_actual_join_date) / 365, 2) AS actual_workdays
+                FROM tb_m_employee
+            "
+        End If
+
+        'min month
+        Dim where_min_month As String = ""
+
+        If is_thr = "1" Then
+            where_min_month = "AND TIMESTAMPDIFF(MONTH, e.employee_actual_join_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) >= (SELECT min_month_thr FROM tb_opt_emp LIMIT 1)"
+        End If
+
+        'query
+        Dim query As String = "
+            SELECT " + id_payroll + " AS id_payroll, employee.id_employee, employee.employee_name, salary.id_employee_salary AS id_salary,
+                departement.total_workdays AS workdays, IFNULL(schedule.actual_workdays, 0) AS actual_workdays
+            FROM (
+                -- employee active & join date before payroll period
+                SELECT e.id_employee, e.employee_name
+                FROM tb_m_employee AS e
+                LEFT JOIN tb_m_departement AS d
+                    ON e.id_departement = d.id_departement
+                WHERE e.id_employee_active = 1
+                    AND e.id_departement NOT IN (22, 30, 31, 32)
+                    AND e.employee_actual_join_date <= IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+                    " + where_employee_religion + " " + where_min_month + "
+                " + where_employee_not_active + "
             ) AS employee
             LEFT JOIN (
                 -- employee status by payroll period
@@ -1364,20 +1417,7 @@
             ) AS departement
                 ON employee.id_employee = departement.id_employee
             LEFT JOIN (
-                -- actual workdays
-                SELECT s.id_employee, COUNT(*) AS actual_workdays
-                FROM tb_emp_schedule AS s
-                INNER JOIN tb_emp_shift AS f 
-                    ON s.shift_code = f.shift_code
-                LEFT JOIN tb_m_employee AS e
-                    ON s.id_employee = e.id_employee
-                LEFT JOIN tb_m_departement AS d 
-                    ON e.id_departement = d.id_departement
-                WHERE s.date BETWEEN 
-                        IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
-                        IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) 
-                    AND s.id_schedule_type IN (1, 3)
-                GROUP BY s.id_employee
+                " + where_actual_workdays + "
             ) AS schedule
                 ON employee.id_employee = schedule.id_employee
             WHERE status.id_employee_status " + where_dw + " 3
@@ -1412,8 +1452,8 @@
                     messages += "- " + data.Rows(i)("employee_name").ToString + " Will Inserted." + Environment.NewLine
 
                     Dim q_insert As String = "
-                    INSERT INTO tb_emp_payroll_det (id_payroll, id_employee, id_salary, workdays, actual_workdays) VALUES (" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ", " + data.Rows(i)("id_employee").ToString + ", " + data.Rows(i)("id_salary").ToString + ", " + data.Rows(i)("workdays").ToString + ", " + data.Rows(i)("actual_workdays").ToString + ")
-                "
+                        INSERT INTO tb_emp_payroll_det (id_payroll, id_employee, id_salary, workdays, actual_workdays) VALUES (" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ", " + data.Rows(i)("id_employee").ToString + ", " + data.Rows(i)("id_salary").ToString + ", " + data.Rows(i)("workdays").ToString + ", " + decimalSQL(data.Rows(i)("actual_workdays").ToString) + ")
+                    "
 
                     execute_non_query(q_insert, True, "", "", "", "")
                 End If
