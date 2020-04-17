@@ -306,7 +306,11 @@
                 SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount; "
                 execute_non_query(query_detail_inv, True, "", "", "", "")
                 'submit prepared
-                submit_only_prepared("48", id_sales_pos, id_user)
+                Dim id_user_prepared_inv As String = get_opt_acc_field("invoice_prepared_by")
+                submit_who_prepared("48", id_sales_pos, id_user_prepared_inv)
+                'nonaktif mark
+                Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "48", id_sales_pos)
+                execute_non_query(queryrm, True, "", "", "", "")
                 'journal draft
                 Dim acc As New ClassAccounting()
                 Try

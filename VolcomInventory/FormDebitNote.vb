@@ -91,9 +91,7 @@ GROUP BY dnd.`id_debit_note`"
 ,r.id_prod_order
 FROM tb_prod_order_rec_det rd
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6' AND r.is_claimed_late=2
-INNER JOIN `tb_prod_order_close_det` cd ON cd.`id_prod_order`=r.`id_prod_order`
-INNER JOIN `tb_prod_order_close` cl ON cl.`id_prod_order_close`=cd.`id_prod_order_close`
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=cd.`id_prod_order`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=r.`id_prod_order`
 LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.id_prod_order AND wo.is_main_vendor='1' 
 LEFT JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo=wo.id_prod_order_wo
 LEFT JOIN tb_m_ovh_price prc ON prc.id_ovh_price=wo.id_ovh_price
@@ -120,7 +118,7 @@ LEFT JOIN
     INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=pod.`id_prod_order`
     INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close AND poc.id_report_status='6'
     GROUP BY pod.`id_prod_order`
-) pod ON pod.id_prod_order=cd.`id_prod_order`
+) pod ON pod.id_prod_order=r.`id_prod_order`
 LEFT JOIN (
     SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
 	    SELECT kod.* FROM tb_prod_order_ko_det kod
