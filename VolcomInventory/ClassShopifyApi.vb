@@ -38,34 +38,48 @@
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
 
-        Dim request As Net.WebRequest = Net.WebRequest.Create("https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products.json")
-
-        request.Method = "GET"
-
-        request.Credentials = New Net.NetworkCredential(username, password)
-
         Dim data As DataTable = New DataTable
 
         data.Columns.Add("sku", GetType(String))
         data.Columns.Add("inventory_item_id", GetType(String))
 
-        Dim response As Net.WebResponse = request.GetResponse()
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products.json"
 
-        Using dataStream As IO.Stream = response.GetResponseStream()
-            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+        Dim since_id As String = ""
 
-            Dim responseFromServer As String = reader.ReadToEnd()
+        For i = 0 To 1000
+            Dim url_since_id As String = url + (If(Not since_id = "", "?since_id=" + since_id, ""))
 
-            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+            Dim request As Net.WebRequest = Net.WebRequest.Create(url_since_id)
 
-            For Each row In json("products").ToList
-                For Each row2 In row("variants").ToList
-                    data.Rows.Add(row2("sku"), row2("inventory_item_id"))
-                Next
-            Next
-        End Using
+            request.Method = "GET"
 
-        response.Close()
+            request.Credentials = New Net.NetworkCredential(username, password)
+
+            Dim response As Net.WebResponse = request.GetResponse()
+
+            Using dataStream As IO.Stream = response.GetResponseStream()
+                Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+
+                Dim responseFromServer As String = reader.ReadToEnd()
+
+                Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+
+                If json("products").Count > 0 Then
+                    For Each row In json("products").ToList
+                        since_id = row("id")
+
+                        For Each row2 In row("variants").ToList
+                            data.Rows.Add(row2("sku"), row2("inventory_item_id"))
+                        Next
+                    Next
+                Else
+                    Exit For
+                End If
+            End Using
+
+            response.Close()
+        Next
 
         Return data
     End Function

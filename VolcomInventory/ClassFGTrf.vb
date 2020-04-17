@@ -75,6 +75,43 @@
 
             'save unreg unique
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",2)", True, "", "", "", "")
+
+            'update to shopify
+            Dim is_volcom_online_store As String = execute_query("
+                SELECT IFNULL((SELECT id_comp FROM tb_m_comp_volcom_ol WHERE id_comp IN (
+	                SELECT k.id_comp
+	                FROM tb_fg_trf AS f
+	                LEFT JOIN tb_m_comp_contact AS k ON f.id_comp_contact_to = k.id_comp_contact
+	                WHERE f.id_fg_trf = " + id_report_par + "
+                )), 0) AS is_volcom_online_store
+            ", 0, True, "", "", "", "")
+
+            If Not is_volcom_online_store = "0" Then
+                Dim cls As ClassShopifyApi = New ClassShopifyApi
+
+                Dim location_id As String = cls.get_location_id()
+
+                Dim shopify_product As DataTable = cls.get_product()
+
+                Dim erp_product As DataTable = execute_query("
+                    SELECT prod.product_full_code, trf_det.fg_trf_det_qty
+                    FROM tb_fg_trf trf
+                    INNER JOIN tb_fg_trf_det trf_det ON trf_det.id_fg_trf = trf.id_fg_trf
+                    INNER JOIN tb_m_product prod ON prod.id_product = trf_det.id_product
+                    INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+                    WHERE trf.id_fg_trf = " + id_report_par + " AND trf_det.fg_trf_det_qty > 0
+                ", -1, True, "", "", "", "")
+
+                For j = 0 To erp_product.Rows.Count - 1
+                    For i = 0 To shopify_product.Rows.Count - 1
+                        If shopify_product.Rows(i)("sku").ToString = erp_product.Rows(j)("product_full_code").ToString Then
+                            cls.add_product(location_id, shopify_product.Rows(i)("inventory_item_id").ToString, Decimal.Round(erp_product.Rows(j)("fg_trf_det_qty"), 0).ToString)
+
+                            Exit For
+                        End If
+                    Next
+                Next
+            End If
         ElseIf id_status_reportx_par = "5" Then
             'cancel unique
             Dim query_cancel As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_fg_trf_det_counting`,`id_pl_prod_order_rec_det_unique`,`id_type`,`unique_code`,
