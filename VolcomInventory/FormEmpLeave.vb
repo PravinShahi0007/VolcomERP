@@ -44,6 +44,12 @@
         load_sum()
     End Sub
     Sub load_sum()
+        Dim query_round As String = ""
+
+        If get_opt_emp_field("is_leave_hour") = "2" Then
+            query_round = ",1"
+        End If
+
         Dim date_from As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_end As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim query As String = "SELECT empl.*,lvl.`employee_level`,dep_sub.departement_sub,dep.departement,empx.employee_name as who_create,empld.min_date,empld.max_date,IF(empl.id_report_status=0,'Waiting',status.report_status) AS report_status,emp.employee_name,emp.employee_code,empld.hours_total FROM tb_emp_leave empl
@@ -55,7 +61,7 @@
                                 LEFT JOIN tb_m_user usrx ON usrx.id_user=empl.id_user_who_create
                                 LEFT JOIN tb_m_employee empx ON empx.id_employee=usrx.id_employee
                                 INNER JOIN 
-                                (SELECT id_emp_leave,MIN(datetime_start) AS min_date,MAX(datetime_until) AS max_date,ROUND(SUM(minutes_total)/60) AS hours_total FROM tb_emp_leave_det GROUP BY id_emp_leave) empld ON empld.id_emp_leave=empl.id_emp_leave
+                                (SELECT id_emp_leave,MIN(datetime_start) AS min_date,MAX(datetime_until) AS max_date,ROUND(SUM(minutes_total)/60" + query_round + ") AS hours_total FROM tb_emp_leave_det GROUP BY id_emp_leave) empld ON empld.id_emp_leave=empl.id_emp_leave
                                 WHERE DATE(empl.emp_leave_date) >= DATE('" & date_from & "') AND DATE(empl.emp_leave_date) <= DATE('" & date_end & "')"
         If is_propose = "1" Then
             query += " AND empl.id_leave_type!=5 AND empl.id_leave_type!=6"
@@ -79,6 +85,12 @@
         GVLeave.BestFitColumns()
     End Sub
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BViewOnLeave.Click
+        Dim query_round As String = ""
+
+        If get_opt_emp_field("is_leave_hour") = "2" Then
+            query_round = ",1"
+        End If
+
         Dim date_from As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_end As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim query As String = "SELECT empl.*,lvl.`employee_level`,dep_sub.departement_sub,dep.departement,empld.min_date,empld.max_date,IF(empl.id_report_status=0,'Waiting',status.report_status) AS report_status,emp.employee_name,emp.employee_code,empld.hours_total  FROM tb_emp_leave empl
@@ -88,7 +100,7 @@
                                 LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.id_departement_sub=emp.id_departement_sub
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level  
                                 INNER JOIN (SELECT * FROM (SELECT * FROM tb_emp_leave_det empld_wh WHERE (DATE(empld_wh.datetime_start) >= DATE('" & date_from & "') AND DATE(empld_wh.datetime_start) <= DATE('" & date_end & "'))) empx GROUP BY empx.id_emp_leave) empldwh ON empldwh.id_emp_leave=empl.id_emp_leave 
-                                INNER JOIN (SELECT id_emp_leave,MIN(datetime_start) AS min_date,MAX(datetime_until) AS max_date,ROUND(SUM(minutes_total)/60) AS hours_total FROM tb_emp_leave_det GROUP BY id_emp_leave) empld ON empld.id_emp_leave=empldwh.id_emp_leave WHERE 1"
+                                INNER JOIN (SELECT id_emp_leave,MIN(datetime_start) AS min_date,MAX(datetime_until) AS max_date,ROUND(SUM(minutes_total)/60" + query_round + ") AS hours_total FROM tb_emp_leave_det GROUP BY id_emp_leave) empld ON empld.id_emp_leave=empldwh.id_emp_leave WHERE 1"
         If is_propose = "1" Then
             query += " AND empl.id_leave_type!=5"
             'Dim id_user_admin_management As String = get_opt_emp_field("id_user_admin_mng").ToString
