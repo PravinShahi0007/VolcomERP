@@ -601,14 +601,14 @@ Public Class FormSalesPOSDet
                     Cursor = Cursors.WaitCursor
 
                     'cek duplicat number
-                    Dim qnum As String = "SELECT * FROM tb_sales_pos WHERE sales_pos_number='" + sales_pos_number + "' AND id_report_status!=5 "
-                    Dim dnum As DataTable = execute_query(qnum, -1, True, "", "", "", "")
-                    If dnum.Rows.Count > 0 Then
-                        'jika nomer sudah ada
-                        Cursor = Cursors.Default
-                        stopCustom("Invoice number : " + sales_pos_number + " already exist. Please save again to get new register number")
-                        Exit Sub
-                    End If
+                    'Dim qnum As String = "SELECT * FROM tb_sales_pos WHERE sales_pos_number='" + sales_pos_number + "' AND id_report_status!=5 "
+                    'Dim dnum As DataTable = execute_query(qnum, -1, True, "", "", "", "")
+                    'If dnum.Rows.Count > 0 Then
+                    '    'jika nomer sudah ada
+                    '    Cursor = Cursors.Default
+                    '    stopCustom("Invoice number : " + sales_pos_number + " already exist. Please save again to get new register number")
+                    '    Exit Sub
+                    'End If
 
                     'cek stok
                     If (id_menu = "1" Or id_menu = "4") And is_block_no_stock = "1" And cond_no_stock = False Then
