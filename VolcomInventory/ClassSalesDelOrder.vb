@@ -284,8 +284,10 @@
                 LEFT JOIN tb_store_due sd ON sd.id_comp = c.id_comp
                 WHERE del.id_pl_sales_order_del=" + id_report_par + "; SELECT LAST_INSERT_ID(); "
                 Dim id_sales_pos As String = execute_query(query_inv, 0, True, "", "", "", "")
+                'gen number
+                execute_non_query("CALL gen_number(" + id_sales_pos + ", 48);", True, "", "", "", "")
                 'increase number
-                increase_inc_sales("6")
+                'increase_inc_sales("6")
                 'detail
                 Dim query_detail_inv As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) 
                 SELECT " + id_sales_pos + ", id_product, id_design_price, design_price, dd.pl_sales_order_del_det_qty AS sales_pos_det_qty, 
