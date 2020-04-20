@@ -1531,7 +1531,12 @@
         End If
 
         'excecute
-        Dim query As String = "CALL view_stock_fg_code('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Dim query As String = ""
+        If LEGroupBy.EditValue.ToString = "1" Then
+            query = "CALL view_stock_fg_code('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Else
+            query = "CALL view_stock_fg_code_by_product('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOHCode.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -1630,5 +1635,9 @@
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub LEGroupBy_EditValueChanged(sender As Object, e As EventArgs) Handles LEGroupBy.EditValueChanged
+        resetViewSOH()
     End Sub
 End Class
