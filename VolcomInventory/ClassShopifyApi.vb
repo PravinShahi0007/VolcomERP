@@ -40,6 +40,8 @@
 
         Dim data As DataTable = New DataTable
 
+        data.Columns.Add("variant_id", GetType(String))
+        data.Columns.Add("product_id", GetType(String))
         data.Columns.Add("sku", GetType(String))
         data.Columns.Add("inventory_item_id", GetType(String))
 
@@ -70,7 +72,7 @@
                         since_id = row("id")
 
                         For Each row2 In row("variants").ToList
-                            data.Rows.Add(row2("sku"), row2("inventory_item_id"))
+                            data.Rows.Add(row2("id"), row2("product_id"), row2("sku"), row2("inventory_item_id"))
                         Next
                     Next
                 Else
@@ -123,7 +125,7 @@
         Dim product As DataTable = get_product()
 
         For i = 0 To product.Rows.Count - 1
-            Dim query As String = "INSERT IGNORE INTO tb_m_product_shopify (sku, inventory_item_id) VALUES ('" + product.Rows(i)("sku").ToString + "', " + product.Rows(i)("inventory_item_id").ToString + ")"
+            Dim query As String = "INSERT IGNORE INTO tb_m_product_shopify (variant_id, sku, product_id, inventory_item_id) VALUES ('" + product.Rows(i)("variant_id").ToString + "', '" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("product_id").ToString + "', '" + product.Rows(i)("inventory_item_id").ToString + "')"
 
             execute_non_query(query, True, "", "", "", "")
         Next
