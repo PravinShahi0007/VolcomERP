@@ -118,4 +118,14 @@
 
         response.Close()
     End Sub
+
+    Sub sync_sku()
+        Dim product As DataTable = get_product()
+
+        For i = 0 To product.Rows.Count - 1
+            Dim query As String = "INSERT IGNORE INTO tb_m_product_shopify (sku, inventory_item_id) VALUES ('" + product.Rows(i)("sku").ToString + "', " + product.Rows(i)("inventory_item_id").ToString + ")"
+
+            execute_non_query(query, True, "", "", "", "")
+        Next
+    End Sub
 End Class
