@@ -40,6 +40,8 @@
 
         Dim data As DataTable = New DataTable
 
+        data.Columns.Add("variant_id", GetType(String))
+        data.Columns.Add("product_id", GetType(String))
         data.Columns.Add("sku", GetType(String))
         data.Columns.Add("inventory_item_id", GetType(String))
 
@@ -70,7 +72,7 @@
                         since_id = row("id")
 
                         For Each row2 In row("variants").ToList
-                            data.Rows.Add(row2("sku"), row2("inventory_item_id"))
+                            data.Rows.Add(row2("id"), row2("product_id"), row2("sku"), row2("inventory_item_id"))
                         Next
                     Next
                 Else
@@ -123,11 +125,12 @@
         Dim product As DataTable = get_product()
 
         For i = 0 To product.Rows.Count - 1
-            Dim query As String = "INSERT IGNORE INTO tb_m_product_shopify (sku, inventory_item_id) VALUES ('" + product.Rows(i)("sku").ToString + "', " + product.Rows(i)("inventory_item_id").ToString + ")"
+            Dim query As String = "INSERT IGNORE INTO tb_m_product_shopify (variant_id, sku, product_id, inventory_item_id) VALUES ('" + product.Rows(i)("variant_id").ToString + "', '" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("product_id").ToString + "', '" + product.Rows(i)("inventory_item_id").ToString + "')"
 
             execute_non_query(query, True, "", "", "", "")
         Next
     End Sub
+
 
     Sub get_order_erp()
         Net.ServicePointManager.Expect100Continue = True
@@ -243,5 +246,70 @@
         End Using
 
         response.Close()
+    End Sub
+
+    Private Function SendRequest(str_url As String, jsonDataBytes As Byte(), contentType As String, method As String, ByVal username As String, ByVal pass As String) As String
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
+        Dim response As String
+        Dim request As Net.WebRequest
+
+
+        Dim url As Uri = New Uri(str_url)
+
+        request = Net.WebRequest.Create(url)
+        request.ContentLength = jsonDataBytes.Length
+        request.ContentType = contentType
+        request.Method = method
+        request.Credentials = New Net.NetworkCredential(username, password)
+
+
+        Using requestStream = request.GetRequestStream
+            requestStream.Write(jsonDataBytes, 0, jsonDataBytes.Length)
+            requestStream.Close()
+
+            Using responseStream = request.GetResponse.GetResponseStream
+                Using reader As New IO.StreamReader(responseStream)
+                    response = reader.ReadToEnd()
+                End Using
+            End Using
+        End Using
+
+        Return response
+    End Function
+
+    Sub upd_price(ByVal design_code As String, ByVal price As String) 'kode 9digit, bukan variant id
+        '        Dim data = Text.Encoding.UTF8.GetBytes("{
+        '  ""product"": {
+        '    ""variants"": [
+        '      {
+        '        ""id"": 31852294832164,
+        '        ""price"": ""1""
+        '      }
+        '    ]
+        '  }
+        '}")
+
+        Dim q As String = "SELECT variant_id,sku
+FROM 
+(
+	SELECT * FROM `tb_m_product_shopify` 
+	WHERE sku LIKE '" & design_code & "___'
+	ORDER BY variant_id DESC
+) p 
+GROUP BY p.sku"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        For i = 0 To dt.Rows.Count - 1
+            Dim data = Text.Encoding.UTF8.GetBytes("{
+  ""variant"": {
+    ""id"": " & dt.Rows(i)("variant_id").ToString & ",
+    ""price"": """ & price & """
+  }
+}")
+            Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/variants/" & dt.Rows(i)("variant_id").ToString & ".json", data, "application/json", "PUT", username, password)
+            'Console.WriteLine(result_post.ToString)
+        Next
     End Sub
 End Class
