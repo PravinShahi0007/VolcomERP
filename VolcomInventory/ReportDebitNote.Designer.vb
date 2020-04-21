@@ -80,7 +80,7 @@ Partial Public Class ReportDebitNote
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(711.9999!, 155.2083!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1054.0!, 155.2083!)
         Me.WinControlContainer1.WinControl = Me.GCItemList
         '
         'GCItemList
@@ -90,7 +90,7 @@ Partial Public Class ReportDebitNote
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RIMDescription})
-        Me.GCItemList.Size = New System.Drawing.Size(684, 149)
+        Me.GCItemList.Size = New System.Drawing.Size(1012, 149)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -274,7 +274,7 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel7
         '
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(468.1342!, 125.0001!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(799.0925!, 125.0001!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(71.02411!, 18.0!)
@@ -282,7 +282,7 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel8
         '
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(551.9035!, 125.0!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(882.8618!, 125.0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(160.0965!, 18.00003!)
@@ -290,7 +290,7 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel9
         '
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(539.1583!, 125.0!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(870.1167!, 125.0!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(12.74515!, 18.00002!)
@@ -298,7 +298,7 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel6
         '
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(539.1583!, 107.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(870.1167!, 107.0!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(12.74515!, 18.00002!)
@@ -306,7 +306,7 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel5
         '
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(551.9035!, 107.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(882.8618!, 107.0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(160.0965!, 18.00001!)
@@ -314,7 +314,7 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel4
         '
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(468.1342!, 107.0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(799.0925!, 107.0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(71.02411!, 18.0!)
@@ -323,7 +323,7 @@ Partial Public Class ReportDebitNote
         'XrPictureBox1
         '
         Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(289.618!, 0!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(491.0508!, 0!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(146.3542!, 99.89584!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
@@ -358,6 +358,7 @@ Partial Public Class ReportDebitNote
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel10, Me.LSay, Me.XrLabel12, Me.XrLabel13, Me.XrLabel14, Me.XrLabel15, Me.XrTable1})
         Me.ReportFooter.HeightF = 116.125!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrLabel10
@@ -370,10 +371,10 @@ Partial Public Class ReportDebitNote
         '
         'LSay
         '
-        Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 28.12498!)
+        Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 28.125!)
         Me.LSay.Name = "LSay"
         Me.LSay.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LSay.SizeF = New System.Drawing.SizeF(611.7375!, 18.00001!)
+        Me.LSay.SizeF = New System.Drawing.SizeF(953.7374!, 18.00001!)
         '
         'XrLabel12
         '
@@ -393,10 +394,10 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel14
         '
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 46.125!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 46.12503!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(611.7377!, 18.00003!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(953.7375!, 18.00003!)
         Me.XrLabel14.Text = "Dengan Pemotongan Invoice"
         '
         'XrLabel15
@@ -413,7 +414,7 @@ Partial Public Class ReportDebitNote
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 91.12498!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(711.9999!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(1054.0!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
@@ -434,9 +435,10 @@ Partial Public Class ReportDebitNote
         'ReportDebitNote
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
+        Me.Landscape = True
         Me.Margins = New System.Drawing.Printing.Margins(49, 66, 26, 21)
-        Me.PageHeight = 1169
-        Me.PageWidth = 827
+        Me.PageHeight = 827
+        Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"

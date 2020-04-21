@@ -301,6 +301,7 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
         Cursor = Cursors.WaitCursor
 
         ReportDebitNote.id_report = id_dn
+        ReportDebitNote.vendor = TEVendor.Text
         'add datasource
         Dim q As String = "SELECT dnd.`report_number`,dnd.`info_design`,dnd.`description`,dnd.`claim_percent`,dnd.`unit_price`,dnd.`qty`,dnd.`id_report`,dnd.`report_mark_type`,((dnd.`claim_percent`/100)*dnd.`unit_price`) AS claim_pcs, ((dnd.`claim_percent`/100)*dnd.`unit_price`) * dnd.`qty` AS claim_amo
 ,@curRow := @curRow + 1 AS `number`
@@ -328,9 +329,10 @@ JOIN (SELECT @curRow := 0) r"
 
         'Grid Detail
         ReportStyleGridview(Report.GVItemList)
-
+        Report.GVItemList.RowHeight = 15
+        Report.GVItemList.ColumnPanelRowHeight = 30
         '
-        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,dn.id_report_status,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
+        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,DATE_FORMAT(dn.`created_date`,'%d %M %Y') as created_date,dn.id_report_status,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
 INNER JOIN tb_m_comp comp ON comp.`id_comp`=dn.`id_comp`
 INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
