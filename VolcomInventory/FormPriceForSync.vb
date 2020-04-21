@@ -60,7 +60,15 @@
                         compare_price = ""
                     End If
 
-                    cls.upd_price(GVBrowsePrice.GetRowCellValue(i, "product_full_code").ToString, compare_price, design_price)
+                    Dim msg As String = "OK"
+
+                    Try
+                        cls.upd_price(GVBrowsePrice.GetRowCellValue(i, "product_full_code").ToString, compare_price, design_price)
+                    Catch ex As Exception
+                        msg = ex.ToString
+                    End Try
+
+                    execute_non_query("INSERT INTO tb_shopify_api_log (report_mark_type, sku, price, message, date) VALUES (70, '" + GVBrowsePrice.GetRowCellValue(i, "product_full_code").ToString + "', '" + design_price + "', '" + addSlashes(msg) + "', NOW())", True, "", "", "", "")
                 End If
             End If
         Next
