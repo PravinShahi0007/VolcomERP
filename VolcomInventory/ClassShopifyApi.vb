@@ -281,7 +281,7 @@
         Return response
     End Function
 
-    Sub upd_price(ByVal design_code As String, ByVal price As String) 'kode 9digit, bukan variant id
+    Sub upd_price(ByVal product_code As String, ByVal price As String)
         '        Dim data = Text.Encoding.UTF8.GetBytes("{
         '  ""product"": {
         '    ""variants"": [
@@ -297,7 +297,7 @@
 FROM 
 (
 	SELECT * FROM `tb_m_product_shopify` 
-	WHERE sku LIKE '" & design_code & "___'
+	WHERE sku = '" & product_code & "'
 	ORDER BY variant_id DESC
 ) p 
 GROUP BY p.sku"
