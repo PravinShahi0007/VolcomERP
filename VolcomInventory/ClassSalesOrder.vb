@@ -406,4 +406,74 @@ Public Class ClassSalesOrder
         End Try
     End Sub
 
+    Sub setProceccedWebOrder(ByVal opt As String)
+        Dim query As String = "UPDATE tb_opt SET is_processed_order=" + opt + " "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
+    Sub insertLogWebOrder(ByVal id_order As String, ByVal note As String)
+        If id_order = "0" Then
+            id_order = "NULL"
+        End If
+        Dim query As String = "INSERT INTO tb_ol_store_order_log(id, log_date, log_note) VALUES(" + id_order + ", NOW(), '" + addSlashes(note) + "') "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
+    Sub createVolcomWebOrder()
+        'activate processed
+        setProceccedWebOrder("1")
+        insertLogWebOrder("0", "Start")
+
+        'get order yg belum diproses
+        Dim qord As String = "SELECT o.id  FROM tb_ol_store_order o
+        WHERE o.is_process=2
+        GROUP BY o.id "
+        Dim dord As DataTable = execute_query(qord, -1, True, "", "", "", "")
+        If dord.Rows.Count > 0 Then
+            For i As Integer = 0 To dord.Rows.Count - 1
+                '>>> cek price
+                Dim query_cek_price As String = "UPDATE tb_ol_store_order main
+                INNER JOIN (
+	                SELECT o.id,o.sku, o.design_price, IF(o.design_price=IFNULL(prc.price,0) AND !ISNULL(prc.id_product), 'OK', 'Not Valid') AS `note_price`,  IFNULL(prc.id_design_cat,1) AS `id_design_cat`
+	                FROM tb_ol_store_order o 
+	                LEFT JOIN (
+		                SELECT p.id_product,p.product_full_code AS `barcode`, IFNULL(prc.design_price,0) AS `price`, IFNULL(prc.id_design_cat,1) AS `id_design_cat`
+		                FROM tb_m_product p
+		                INNER JOIN tb_m_design d ON d.id_design = p.id_design
+		                LEFT JOIN( 
+		                  Select * FROM ( 
+		                  Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+		                  price.id_design_price_type, price_type.design_price_type,
+		                  cat.id_design_cat, cat.design_cat
+		                  From tb_m_design_price price 
+		                  INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+		                  INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
+		                  WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                  ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a 
+		                  GROUP BY a.id_design 
+		                ) prc ON prc.id_design = d.id_design 
+		                WHERE d.id_lookup_status_order!=2
+	                ) prc ON prc.`barcode` = o.sku
+	                WHERE o.id=" + dord.Rows(i)("id").ToString + "
+	                GROUP BY o.sku
+                ) src ON src.id = main.id AND src.sku = main.sku
+                SET main.note_price=src.note_price, main.id_design_cat = src.id_design_cat "
+                execute_non_query(query_cek_price, True, "", "", "", "")
+                Dim data_prc As DataTable = execute_query("SELECT * FROM tb_ol_store_order o WHERE o.id=" + dord.Rows(i)("id").ToString + " AND o.note_price!='OK'", -1, True, "", "", "", "")
+
+                '>> cek stock
+                If data_prc.Rows.Count <= 0 Then
+                    'jika OK lanjut cek stok
+                    insertLogWebOrder(dord.Rows(i)("id").ToString, "Price OK")
+
+                Else
+                    'jika ada price gak ok
+                    insertLogWebOrder(dord.Rows(i)("id").ToString, "Price Not Valid")
+                End If
+            Next
+        Else
+            setProceccedWebOrder("2")
+            insertLogWebOrder("0", "End")
+        End If
+    End Sub
 End Class
