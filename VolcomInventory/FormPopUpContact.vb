@@ -539,7 +539,7 @@
                     FormSalesOrderDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
                     FormSalesOrderDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
                     FormSalesOrderDet.MEAdrressCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
-                    FormSalesOrderDet.check_sync(GVCompany.GetFocusedRowCellValue("id_comp").ToString)
+                    FormSalesOrderDet.check_sync()
                     Close()
                     Cursor = Cursors.Default
                 End If
@@ -905,7 +905,7 @@
                     FormSalesOrderDet.id_comp_contact_par = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
                     FormSalesOrderDet.TxtWHNameTo.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
                     FormSalesOrderDet.TxtWHCodeTo.Text = get_company_x(GVCompany.GetFocusedRowCellValue("id_comp").ToString, "2")
-                    FormSalesOrderDet.check_sync(GVCompany.GetFocusedRowCellValue("id_comp").ToString)
+                    FormSalesOrderDet.check_sync()
                     Close()
                     Cursor = Cursors.Default
                 End If
@@ -915,7 +915,7 @@
                 FormSalesOrderDet.id_comp_contact_par = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
                 FormSalesOrderDet.TxtWHNameTo.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
                 FormSalesOrderDet.TxtWHCodeTo.Text = get_company_x(GVCompany.GetFocusedRowCellValue("id_comp").ToString, "2")
-                FormSalesOrderDet.check_sync(GVCompany.GetFocusedRowCellValue("id_comp").ToString)
+                FormSalesOrderDet.check_sync()
                 Close()
                 Cursor = Cursors.Default
             End If

@@ -854,7 +854,7 @@ Public Class FormSalesOrderDet
                     MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
                     TxtWHCodeTo.Focus()
                     'check sync
-                    check_sync(id_store)
+                    check_sync()
                 End If
                 Cursor = Cursors.Default
             End If
@@ -864,10 +864,10 @@ Public Class FormSalesOrderDet
         End If
     End Sub
 
-    Sub check_sync(ByVal id_comp As String)
+    Sub check_sync()
         'cek sync
         Dim q_sync As String = "SELECT * FROM tb_m_comp_volcom_ol
-WHERE id_comp='" & id_comp & "'"
+WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
         Dim dt_sync As DataTable = execute_query(q_sync, -1, True, "", "", "", "")
         If dt_sync.Rows.Count > 0 Then
             'ol shop
@@ -955,7 +955,7 @@ WHERE id_comp='" & id_comp & "'"
                     LEStatusSO.Focus()
                 End If
                 'check sync
-                check_sync(id_comp_par)
+                check_sync()
                 Cursor = Cursors.Default
             End If
         End If
