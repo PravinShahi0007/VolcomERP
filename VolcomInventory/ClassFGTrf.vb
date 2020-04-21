@@ -123,8 +123,6 @@
                         End Try
 
                         execute_non_query("INSERT INTO tb_shopify_api_log (report_mark_type, id_report, message, date) VALUES (57, " + id_report_par + ", '" + addSlashes(msg) + "', NOW())", True, "", "", "", "")
-
-                        Exit For
                     Next
                 End If
             End If
