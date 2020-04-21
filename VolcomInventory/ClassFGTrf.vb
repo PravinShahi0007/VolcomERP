@@ -122,7 +122,7 @@
                             msg = ex.ToString
                         End Try
 
-                        execute_non_query("INSERT INTO tb_shopify_api_log (report_mark_type, id_report, message, date) VALUES (57, " + id_report_par + ", '" + addSlashes(msg) + "', NOW())", True, "", "", "", "")
+                        execute_non_query("INSERT INTO tb_shopify_api_log (report_mark_type, id_report, sku, message, date) VALUES (57, " + id_report_par + ", '" + erp_product.Rows(j)("product_full_code").ToString + "', '" + addSlashes(msg) + "', NOW())", True, "", "", "", "")
                     Next
                 End If
             End If
