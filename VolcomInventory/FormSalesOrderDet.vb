@@ -853,12 +853,28 @@ Public Class FormSalesOrderDet
                     TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
                     MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
                     TxtWHCodeTo.Focus()
+                    'check sync
+                    check_sync(id_store)
                 End If
                 Cursor = Cursors.Default
             End If
         Else
             'selain enter informasi store di reset
             resetStore()
+        End If
+    End Sub
+
+    Sub check_sync(ByVal id_comp As String)
+        'cek sync
+        Dim q_sync As String = "SELECT * FROM tb_m_comp_volcom_ol
+WHERE id_comp='" & id_comp & "'"
+        Dim dt_sync As DataTable = execute_query(q_sync, -1, True, "", "", "", "")
+        If dt_sync.Rows.Count > 0 Then
+            'ol shop
+            CESync.Checked = True
+        Else
+            'bukan ol shop
+            CESync.Checked = False
         End If
     End Sub
 
@@ -938,6 +954,8 @@ Public Class FormSalesOrderDet
                 Else
                     LEStatusSO.Focus()
                 End If
+                'check sync
+                check_sync(id_comp_par)
                 Cursor = Cursors.Default
             End If
         End If

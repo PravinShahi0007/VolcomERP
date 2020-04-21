@@ -38,6 +38,8 @@ Partial Class FormSalesOrderDet
         Me.BtnBrowseContactTo = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMain = New DevExpress.XtraEditors.PanelControl()
+        Me.SBSyncShopify = New DevExpress.XtraEditors.SimpleButton()
+        Me.CESync = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.DEOLShop = New DevExpress.XtraEditors.DateEdit()
         Me.TxtOLShopNumber = New DevExpress.XtraEditors.TextEdit()
@@ -120,8 +122,6 @@ Partial Class FormSalesOrderDet
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.CESync = New DevExpress.XtraEditors.CheckEdit()
-        Me.SBSyncShopify = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,6 +136,7 @@ Partial Class FormSalesOrderDet
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMain.SuspendLayout()
+        CType(Me.CESync.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEOLShop.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEOLShop.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,7 +172,6 @@ Partial Class FormSalesOrderDet
         Me.GroupControlAlloc.SuspendLayout()
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CESync.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -397,6 +397,23 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
         Me.PanelControlTopMain.Size = New System.Drawing.Size(254, 134)
         Me.PanelControlTopMain.TabIndex = 8897
+        '
+        'SBSyncShopify
+        '
+        Me.SBSyncShopify.Location = New System.Drawing.Point(161, 98)
+        Me.SBSyncShopify.Name = "SBSyncShopify"
+        Me.SBSyncShopify.Size = New System.Drawing.Size(77, 23)
+        Me.SBSyncShopify.TabIndex = 8899
+        Me.SBSyncShopify.Text = "Sync Product"
+        '
+        'CESync
+        '
+        Me.CESync.Enabled = False
+        Me.CESync.Location = New System.Drawing.Point(13, 100)
+        Me.CESync.Name = "CESync"
+        Me.CESync.Properties.Caption = "Update Stock to Website"
+        Me.CESync.Size = New System.Drawing.Size(142, 19)
+        Me.CESync.TabIndex = 8898
         '
         'LabelControl11
         '
@@ -1251,22 +1268,6 @@ Partial Class FormSalesOrderDet
         Me.LabelControl12.TabIndex = 8895
         Me.LabelControl12.Text = "Parent Account"
         '
-        'CESync
-        '
-        Me.CESync.Location = New System.Drawing.Point(13, 105)
-        Me.CESync.Name = "CESync"
-        Me.CESync.Properties.Caption = "Sync to Website"
-        Me.CESync.Size = New System.Drawing.Size(116, 19)
-        Me.CESync.TabIndex = 8898
-        '
-        'SBSyncShopify
-        '
-        Me.SBSyncShopify.Location = New System.Drawing.Point(172, 103)
-        Me.SBSyncShopify.Name = "SBSyncShopify"
-        Me.SBSyncShopify.Size = New System.Drawing.Size(66, 23)
-        Me.SBSyncShopify.TabIndex = 8899
-        Me.SBSyncShopify.Text = "Sync"
-        '
         'FormSalesOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1299,6 +1300,7 @@ Partial Class FormSalesOrderDet
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMain.ResumeLayout(False)
         Me.PanelControlTopMain.PerformLayout()
+        CType(Me.CESync.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEOLShop.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEOLShop.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1339,7 +1341,6 @@ Partial Class FormSalesOrderDet
         Me.GroupControlAlloc.PerformLayout()
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CESync.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
