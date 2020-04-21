@@ -112,7 +112,7 @@
                             qty = "-" + qty
                         End If
 
-                        If is_vsol_from = "1" And is_vsol_from = "1" Then
+                        If is_vsol_from = "1" And is_vsol_to = "1" Then
                             qty = "0"
                         End If
 
