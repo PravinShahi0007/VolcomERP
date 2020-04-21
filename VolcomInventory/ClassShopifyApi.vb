@@ -281,7 +281,7 @@
         Return response
     End Function
 
-    Sub upd_price(ByVal product_code As String, ByVal price As String)
+    Sub upd_price(ByVal product_code As String, ByVal normal_price As String, ByVal current_price As String)
         '        Dim data = Text.Encoding.UTF8.GetBytes("{
         '  ""product"": {
         '    ""variants"": [
@@ -307,7 +307,8 @@ GROUP BY p.sku"
             Dim data = Text.Encoding.UTF8.GetBytes("{
   ""variant"": {
     ""id"": " & dt.Rows(i)("variant_id").ToString & ",
-    ""price"": """ & price & """
+    ""price"": """ & current_price & """,
+    ""compare_at_price"": """ & normal_price & """
   }
 }")
             Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/variants/" & dt.Rows(i)("variant_id").ToString & ".json", data, "application/json", "PUT", username, password)
