@@ -196,11 +196,13 @@ Partial Class FormOLStore
         Me.LinkTrf = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumnsales_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LinkSalesOrder = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPendingOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirmedOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPendingOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAllOrder = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1541,7 +1543,7 @@ Partial Class FormOLStore
         '
         'GVVolcom
         '
-        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number})
+        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39})
         Me.GVVolcom.GridControl = Me.GCVolcom
         Me.GVVolcom.Name = "GVVolcom"
         Me.GVVolcom.OptionsBehavior.AutoExpandAllGroups = True
@@ -1697,8 +1699,6 @@ Partial Class FormOLStore
         Me.GridColumnis_process.Caption = "Processed"
         Me.GridColumnis_process.FieldName = "is_process"
         Me.GridColumnis_process.Name = "GridColumnis_process"
-        Me.GridColumnis_process.Visible = True
-        Me.GridColumnis_process.VisibleIndex = 16
         '
         'GridColumnnote_price
         '
@@ -1706,7 +1706,7 @@ Partial Class FormOLStore
         Me.GridColumnnote_price.FieldName = "note_price"
         Me.GridColumnnote_price.Name = "GridColumnnote_price"
         Me.GridColumnnote_price.Visible = True
-        Me.GridColumnnote_price.VisibleIndex = 17
+        Me.GridColumnnote_price.VisibleIndex = 16
         '
         'GridColumnid_design_cat
         '
@@ -1732,7 +1732,7 @@ Partial Class FormOLStore
         Me.GridColumnnote_stock.FieldName = "note_stock"
         Me.GridColumnnote_stock.Name = "GridColumnnote_stock"
         Me.GridColumnnote_stock.Visible = True
-        Me.GridColumnnote_stock.VisibleIndex = 18
+        Me.GridColumnnote_stock.VisibleIndex = 17
         '
         'GridColumnid_report_trf_order
         '
@@ -1777,7 +1777,7 @@ Partial Class FormOLStore
         Me.GridColumntrf_order_number.FieldName = "trf_order_number"
         Me.GridColumntrf_order_number.Name = "GridColumntrf_order_number"
         Me.GridColumntrf_order_number.Visible = True
-        Me.GridColumntrf_order_number.VisibleIndex = 19
+        Me.GridColumntrf_order_number.VisibleIndex = 18
         '
         'LinkTrfNumber
         '
@@ -1791,7 +1791,7 @@ Partial Class FormOLStore
         Me.GridColumntrf_number.FieldName = "trf_number"
         Me.GridColumntrf_number.Name = "GridColumntrf_number"
         Me.GridColumntrf_number.Visible = True
-        Me.GridColumntrf_number.VisibleIndex = 20
+        Me.GridColumntrf_number.VisibleIndex = 19
         '
         'LinkTrf
         '
@@ -1805,12 +1805,20 @@ Partial Class FormOLStore
         Me.GridColumnsales_order_number.FieldName = "sales_order_number"
         Me.GridColumnsales_order_number.Name = "GridColumnsales_order_number"
         Me.GridColumnsales_order_number.Visible = True
-        Me.GridColumnsales_order_number.VisibleIndex = 21
+        Me.GridColumnsales_order_number.VisibleIndex = 20
         '
         'LinkSalesOrder
         '
         Me.LinkSalesOrder.AutoHeight = False
         Me.LinkSalesOrder.Name = "LinkSalesOrder"
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Confirmed Order"
+        Me.GridColumn39.FieldName = "is_process_view"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 21
         '
         'PanelControl3
         '
@@ -1818,6 +1826,7 @@ Partial Class FormOLStore
         Me.PanelControl3.Controls.Add(Me.BtnSyncOrder)
         Me.PanelControl3.Controls.Add(Me.BtnConfirmedOrder)
         Me.PanelControl3.Controls.Add(Me.BtnPendingOrder)
+        Me.PanelControl3.Controls.Add(Me.BtnAllOrder)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
@@ -1828,7 +1837,7 @@ Partial Class FormOLStore
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(660, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(548, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(85, 39)
         Me.BtnPrint.TabIndex = 1
@@ -1844,25 +1853,35 @@ Partial Class FormOLStore
         Me.BtnSyncOrder.TabIndex = 0
         Me.BtnSyncOrder.Text = "Sync Order"
         '
-        'BtnPendingOrder
-        '
-        Me.BtnPendingOrder.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPendingOrder.Image = CType(resources.GetObject("BtnPendingOrder.Image"), System.Drawing.Image)
-        Me.BtnPendingOrder.Location = New System.Drawing.Point(871, 2)
-        Me.BtnPendingOrder.Name = "BtnPendingOrder"
-        Me.BtnPendingOrder.Size = New System.Drawing.Size(121, 39)
-        Me.BtnPendingOrder.TabIndex = 2
-        Me.BtnPendingOrder.Text = "Pending Order"
-        '
         'BtnConfirmedOrder
         '
         Me.BtnConfirmedOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirmedOrder.Image = CType(resources.GetObject("BtnConfirmedOrder.Image"), System.Drawing.Image)
-        Me.BtnConfirmedOrder.Location = New System.Drawing.Point(745, 2)
+        Me.BtnConfirmedOrder.Location = New System.Drawing.Point(633, 2)
         Me.BtnConfirmedOrder.Name = "BtnConfirmedOrder"
-        Me.BtnConfirmedOrder.Size = New System.Drawing.Size(126, 39)
+        Me.BtnConfirmedOrder.Size = New System.Drawing.Size(139, 39)
         Me.BtnConfirmedOrder.TabIndex = 3
-        Me.BtnConfirmedOrder.Text = "Confirmed Order"
+        Me.BtnConfirmedOrder.Text = "Confirmed Orders"
+        '
+        'BtnPendingOrder
+        '
+        Me.BtnPendingOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPendingOrder.Image = CType(resources.GetObject("BtnPendingOrder.Image"), System.Drawing.Image)
+        Me.BtnPendingOrder.Location = New System.Drawing.Point(772, 2)
+        Me.BtnPendingOrder.Name = "BtnPendingOrder"
+        Me.BtnPendingOrder.Size = New System.Drawing.Size(121, 39)
+        Me.BtnPendingOrder.TabIndex = 2
+        Me.BtnPendingOrder.Text = "Pending Orders"
+        '
+        'BtnAllOrder
+        '
+        Me.BtnAllOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAllOrder.Image = CType(resources.GetObject("BtnAllOrder.Image"), System.Drawing.Image)
+        Me.BtnAllOrder.Location = New System.Drawing.Point(893, 2)
+        Me.BtnAllOrder.Name = "BtnAllOrder"
+        Me.BtnAllOrder.Size = New System.Drawing.Size(99, 39)
+        Me.BtnAllOrder.TabIndex = 4
+        Me.BtnAllOrder.Text = "All Orders"
         '
         'FormOLStore
         '
@@ -2117,4 +2136,6 @@ Partial Class FormOLStore
     Friend WithEvents LinkSalesOrder As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BtnConfirmedOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPendingOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAllOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
