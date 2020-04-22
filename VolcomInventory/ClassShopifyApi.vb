@@ -170,12 +170,14 @@
                     Dim sales_order_ol_shop_date As String = ""
                     Dim payment_method As String = ""
                     Dim tracking_code As String = ""
+                    Dim financial_status As String = ""
 
                     id = row("id").ToString
                     sales_order_ol_shop_number = row("order_number").ToString
                     sales_order_ol_shop_date = DateTime.Parse(row("created_at").ToString).ToString("yyyy-MM-dd HH:mm:ss")
                     payment_method = row("gateway").ToString
                     tracking_code = ""
+                    financial_status = row("financial_status").ToString
 
                     'data customer
                     Dim customer_name As String = ""
@@ -223,7 +225,7 @@
 
                     'detail line item
                     Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address, shipping_phone, 
-                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, sales_order_det_qty) VALUES "
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, sales_order_det_qty, financial_status) VALUES "
                     Dim ol_store_sku As String = ""
                     Dim ol_store_id As String = ""
                     Dim sku As String = ""
@@ -241,7 +243,7 @@
                             qins += ","
                         End If
                         qins += "('" + id + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + customer_name + "', '" + shipping_name + "', '" + shipping_address + "', '" + shipping_phone + "', 
-                        '" + shipping_city + "', '" + shipping_post_code + "', '" + shipping_region + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "') "
+                        '" + shipping_city + "', '" + shipping_post_code + "', '" + shipping_region + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "', '" + addSlashes(financial_status) + "') "
                         i += 1
                     Next
 

@@ -443,6 +443,16 @@
             ord.setProceccedWebOrder("1")
             ord.insertLogWebOrder("0", "Start")
 
+            'get order from web
+            Dim err As String = ""
+            Try
+                Dim shop As New ClassShopifyApi()
+                shop.get_order_erp()
+            Catch ex As Exception
+                err = ex.ToString
+            End Try
+            ord.insertLogWebOrder("0", "Get order from website. " + err)
+
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
             WHERE o.is_process=2
@@ -459,10 +469,15 @@
                 End Try
                 ord.setProceccedWebOrder("2")
                 ord.insertLogWebOrder("0", "End")
-                infoCustom("Sync completed")
             Else
                 ord.setProceccedWebOrder("2")
                 ord.insertLogWebOrder("0", "End")
+            End If
+
+            If err = "" Then
+                infoCustom("Sync completed.")
+            Else
+                infoCustom("Problem get order from web. " + err)
             End If
             SplashScreenManager1.CloseWaitForm()
         End If

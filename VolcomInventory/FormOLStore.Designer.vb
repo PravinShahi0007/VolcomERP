@@ -203,6 +203,7 @@ Partial Class FormOLStore
         Me.BtnConfirmedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPendingOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1543,7 +1544,7 @@ Partial Class FormOLStore
         '
         'GVVolcom
         '
-        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39})
+        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39, Me.GridColumn})
         Me.GVVolcom.GridControl = Me.GCVolcom
         Me.GVVolcom.Name = "GVVolcom"
         Me.GVVolcom.OptionsBehavior.AutoExpandAllGroups = True
@@ -1883,6 +1884,13 @@ Partial Class FormOLStore
         Me.BtnAllOrder.TabIndex = 4
         Me.BtnAllOrder.Text = "All Orders"
         '
+        'GridColumn
+        '
+        Me.GridColumn.Caption = "Financial Status"
+        Me.GridColumn.Name = "GridColumn"
+        Me.GridColumn.Visible = True
+        Me.GridColumn.VisibleIndex = 22
+        '
         'FormOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2138,4 +2146,5 @@ Partial Class FormOLStore
     Friend WithEvents BtnPendingOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAllOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn As DevExpress.XtraGrid.Columns.GridColumn
 End Class
