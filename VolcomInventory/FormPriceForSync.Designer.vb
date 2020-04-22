@@ -32,6 +32,7 @@ Partial Class FormPriceForSync
         Me.GridColumnPriceWeb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNormalPriceWeb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMatch = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCBrowsePrice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +81,7 @@ Partial Class FormPriceForSync
         '
         'GVBrowsePrice
         '
-        Me.GVBrowsePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFullCode, Me.GridColumnDescription, Me.GridColumnPrice, Me.GridColumnNormalPrice, Me.GridColumnPriceWeb, Me.GridColumnNormalPriceWeb, Me.GridColumnMatch})
+        Me.GVBrowsePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFullCode, Me.GridColumnDescription, Me.GridColumnPrice, Me.GridColumnNormalPrice, Me.GridColumnPriceWeb, Me.GridColumnNormalPriceWeb, Me.GridColumnMatch, Me.GridColumnsize})
         Me.GVBrowsePrice.GridControl = Me.GCBrowsePrice
         Me.GVBrowsePrice.Name = "GVBrowsePrice"
         Me.GVBrowsePrice.OptionsBehavior.AutoExpandAllGroups = True
@@ -96,6 +97,7 @@ Partial Class FormPriceForSync
         Me.GridColumnFullCode.Name = "GridColumnFullCode"
         Me.GridColumnFullCode.Visible = True
         Me.GridColumnFullCode.VisibleIndex = 1
+        Me.GridColumnFullCode.Width = 125
         '
         'GridColumnDescription
         '
@@ -104,6 +106,7 @@ Partial Class FormPriceForSync
         Me.GridColumnDescription.Name = "GridColumnDescription"
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 2
+        Me.GridColumnDescription.Width = 125
         '
         'GridColumnPrice
         '
@@ -113,7 +116,8 @@ Partial Class FormPriceForSync
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 3
+        Me.GridColumnPrice.VisibleIndex = 4
+        Me.GridColumnPrice.Width = 138
         '
         'GridColumnNormalPrice
         '
@@ -123,8 +127,8 @@ Partial Class FormPriceForSync
         Me.GridColumnNormalPrice.FieldName = "compare_price"
         Me.GridColumnNormalPrice.Name = "GridColumnNormalPrice"
         Me.GridColumnNormalPrice.Visible = True
-        Me.GridColumnNormalPrice.VisibleIndex = 4
-        Me.GridColumnNormalPrice.Width = 99
+        Me.GridColumnNormalPrice.VisibleIndex = 5
+        Me.GridColumnNormalPrice.Width = 183
         '
         'GridColumnPriceWeb
         '
@@ -134,7 +138,8 @@ Partial Class FormPriceForSync
         Me.GridColumnPriceWeb.FieldName = "design_price_web"
         Me.GridColumnPriceWeb.Name = "GridColumnPriceWeb"
         Me.GridColumnPriceWeb.Visible = True
-        Me.GridColumnPriceWeb.VisibleIndex = 5
+        Me.GridColumnPriceWeb.VisibleIndex = 6
+        Me.GridColumnPriceWeb.Width = 138
         '
         'GridColumnNormalPriceWeb
         '
@@ -151,7 +156,17 @@ Partial Class FormPriceForSync
         Me.GridColumnMatch.FieldName = "match"
         Me.GridColumnMatch.Name = "GridColumnMatch"
         Me.GridColumnMatch.Visible = True
-        Me.GridColumnMatch.VisibleIndex = 6
+        Me.GridColumnMatch.VisibleIndex = 7
+        Me.GridColumnMatch.Width = 145
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 3
+        Me.GridColumnsize.Width = 65
         '
         'FormPriceForSync
         '
@@ -183,4 +198,5 @@ Partial Class FormPriceForSync
     Friend WithEvents GridColumnPriceWeb As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNormalPriceWeb As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMatch As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
 End Class

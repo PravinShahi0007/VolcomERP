@@ -1,8 +1,10 @@
 ﻿Public Class FormPriceForSync
     Private Sub FormPriceForSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim query As String = "
-            SELECT p.product_full_code, p.product_display_name, IFNULL(prc.design_price, 0) AS design_price, IFNULL(prn.design_price, 0) AS compare_price, IFNULL(prw.design_price, 0) AS design_price_web, IFNULL(prw.compare_price, 0) AS compare_price_web, IF((IFNULL(prc.design_price, 0)) = (IFNULL(prw.design_price, 0)), 'Yes', 'No') AS `match`
+            SELECT p.product_full_code, p.product_display_name, cd.code_detail_name AS `size`, IFNULL(prc.design_price, 0) AS design_price, IFNULL(prn.design_price, 0) AS compare_price, IFNULL(prw.design_price, 0) AS design_price_web, IFNULL(prw.compare_price, 0) AS compare_price_web, IF((IFNULL(prc.design_price, 0)) = (IFNULL(prw.design_price, 0)), 'Yes', 'No') AS `match`
             FROM tb_m_product p
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design d ON p.id_design = d.id_design
             INNER JOIN (
                 SELECT * FROM (
@@ -35,6 +37,7 @@
             ) prw ON prw.sku = p.product_full_code
             INNER JOIN tb_m_product_shopify s ON p.product_full_code = s.sku
             WHERE p.id_product > 0 AND s.variant_id IS NOT NULL
+            ORDER BY p.product_display_name ASC, p.product_full_code ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
