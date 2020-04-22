@@ -19,14 +19,19 @@ Partial Class FormPriceForSync
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPriceForSync))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.GCBrowsePrice = New DevExpress.XtraGrid.GridControl()
         Me.GVBrowsePrice = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnFullCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNormalPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceWeb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNormalPriceWeb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMatch = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCBrowsePrice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -36,6 +41,7 @@ Partial Class FormPriceForSync
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SBSync)
+        Me.PanelControl1.Controls.Add(Me.SBUpdate)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -44,12 +50,22 @@ Partial Class FormPriceForSync
         '
         'SBSync
         '
-        Me.SBSync.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBSync.Location = New System.Drawing.Point(689, 5)
+        Me.SBSync.Image = CType(resources.GetObject("SBSync.Image"), System.Drawing.Image)
+        Me.SBSync.Location = New System.Drawing.Point(5, 5)
         Me.SBSync.Name = "SBSync"
-        Me.SBSync.Size = New System.Drawing.Size(90, 41)
-        Me.SBSync.TabIndex = 0
-        Me.SBSync.Text = "Sync to Web"
+        Me.SBSync.Size = New System.Drawing.Size(85, 41)
+        Me.SBSync.TabIndex = 1
+        Me.SBSync.Text = "Sync"
+        '
+        'SBUpdate
+        '
+        Me.SBUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBUpdate.Image = CType(resources.GetObject("SBUpdate.Image"), System.Drawing.Image)
+        Me.SBUpdate.Location = New System.Drawing.Point(645, 5)
+        Me.SBUpdate.Name = "SBUpdate"
+        Me.SBUpdate.Size = New System.Drawing.Size(134, 41)
+        Me.SBUpdate.TabIndex = 0
+        Me.SBUpdate.Text = "Update to Web"
         '
         'GCBrowsePrice
         '
@@ -64,7 +80,7 @@ Partial Class FormPriceForSync
         '
         'GVBrowsePrice
         '
-        Me.GVBrowsePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFullCode, Me.GridColumnDescription, Me.GridColumnPrice, Me.GridColumnNormalPrice})
+        Me.GVBrowsePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFullCode, Me.GridColumnDescription, Me.GridColumnPrice, Me.GridColumnNormalPrice, Me.GridColumnPriceWeb, Me.GridColumnNormalPriceWeb, Me.GridColumnMatch})
         Me.GVBrowsePrice.GridControl = Me.GCBrowsePrice
         Me.GVBrowsePrice.Name = "GVBrowsePrice"
         Me.GVBrowsePrice.OptionsBehavior.AutoExpandAllGroups = True
@@ -79,7 +95,7 @@ Partial Class FormPriceForSync
         Me.GridColumnFullCode.FieldName = "product_full_code"
         Me.GridColumnFullCode.Name = "GridColumnFullCode"
         Me.GridColumnFullCode.Visible = True
-        Me.GridColumnFullCode.VisibleIndex = 0
+        Me.GridColumnFullCode.VisibleIndex = 1
         '
         'GridColumnDescription
         '
@@ -87,25 +103,55 @@ Partial Class FormPriceForSync
         Me.GridColumnDescription.FieldName = "product_display_name"
         Me.GridColumnDescription.Name = "GridColumnDescription"
         Me.GridColumnDescription.Visible = True
-        Me.GridColumnDescription.VisibleIndex = 1
+        Me.GridColumnDescription.VisibleIndex = 2
         '
         'GridColumnPrice
         '
-        Me.GridColumnPrice.Caption = "Price"
+        Me.GridColumnPrice.Caption = "Price (ERP)"
         Me.GridColumnPrice.DisplayFormat.FormatString = "{0:n2}"
         Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 2
+        Me.GridColumnPrice.VisibleIndex = 3
         '
         'GridColumnNormalPrice
         '
-        Me.GridColumnNormalPrice.Caption = "Normal Price"
+        Me.GridColumnNormalPrice.Caption = "Normal Price (ERP)"
+        Me.GridColumnNormalPrice.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnNormalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnNormalPrice.FieldName = "compare_price"
         Me.GridColumnNormalPrice.Name = "GridColumnNormalPrice"
         Me.GridColumnNormalPrice.Visible = True
-        Me.GridColumnNormalPrice.VisibleIndex = 3
+        Me.GridColumnNormalPrice.VisibleIndex = 4
+        Me.GridColumnNormalPrice.Width = 99
+        '
+        'GridColumnPriceWeb
+        '
+        Me.GridColumnPriceWeb.Caption = "Price (Web)"
+        Me.GridColumnPriceWeb.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnPriceWeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPriceWeb.FieldName = "design_price_web"
+        Me.GridColumnPriceWeb.Name = "GridColumnPriceWeb"
+        Me.GridColumnPriceWeb.Visible = True
+        Me.GridColumnPriceWeb.VisibleIndex = 5
+        '
+        'GridColumnNormalPriceWeb
+        '
+        Me.GridColumnNormalPriceWeb.Caption = "Normal Price (Web)"
+        Me.GridColumnNormalPriceWeb.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnNormalPriceWeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnNormalPriceWeb.FieldName = "compare_price_web"
+        Me.GridColumnNormalPriceWeb.Name = "GridColumnNormalPriceWeb"
+        Me.GridColumnNormalPriceWeb.Width = 102
+        '
+        'GridColumnMatch
+        '
+        Me.GridColumnMatch.Caption = "Match"
+        Me.GridColumnMatch.FieldName = "match"
+        Me.GridColumnMatch.Name = "GridColumnMatch"
+        Me.GridColumnMatch.Visible = True
+        Me.GridColumnMatch.VisibleIndex = 6
         '
         'FormPriceForSync
         '
@@ -130,7 +176,11 @@ Partial Class FormPriceForSync
     Friend WithEvents GVBrowsePrice As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnFullCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SBSync As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBUpdate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnDescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNormalPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBSync As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnPriceWeb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNormalPriceWeb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMatch As DevExpress.XtraGrid.Columns.GridColumn
 End Class

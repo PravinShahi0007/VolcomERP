@@ -1,7 +1,7 @@
 ﻿Public Class FormPriceForSync
     Private Sub FormPriceForSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim query As String = "
-            SELECT p.product_full_code, p.product_display_name, IFNULL(prc.design_price, 0) AS design_price, IFNULL(prn.design_price, 0) AS compare_price
+            SELECT p.product_full_code, p.product_display_name, IFNULL(prc.design_price, 0) AS design_price, IFNULL(prn.design_price, 0) AS compare_price, IFNULL(prw.design_price, 0) AS design_price_web, IFNULL(prw.compare_price, 0) AS compare_price_web, IF((IFNULL(prc.design_price, 0)) = (IFNULL(prw.design_price, 0)), 'Yes', 'No') AS `match`
             FROM tb_m_product p
             INNER JOIN tb_m_design d ON p.id_design = d.id_design
             INNER JOIN (
@@ -24,6 +24,15 @@
                  ) a 
                 GROUP BY a.id_design
             ) prn ON prn.id_design = d.id_design
+            INNER JOIN (
+                SELECT *
+                FROM (
+                    SELECT sku, compare_price, design_price
+                    FROM tb_m_price_shopify
+                    ORDER BY `date` DESC
+                ) AS t
+                GROUP BY sku
+            ) prw ON prw.sku = p.product_full_code
             INNER JOIN tb_m_product_shopify s ON p.product_full_code = s.sku
             WHERE p.id_product > 0 AND s.variant_id IS NOT NULL
         "
@@ -45,7 +54,7 @@
         FormMain.hide_rb()
     End Sub
 
-    Private Sub SBSync_Click(sender As Object, e As EventArgs) Handles SBSync.Click
+    Private Sub SBUpdate_Click(sender As Object, e As EventArgs) Handles SBUpdate.Click
         Cursor = Cursors.WaitCursor
 
         Dim cls As New ClassShopifyApi()
@@ -75,6 +84,22 @@
 
         Cursor = Cursors.Default
 
+        infoCustom("Update to Web Complete.")
+    End Sub
+
+    Private Sub SBSync_Click(sender As Object, e As EventArgs) Handles SBSync.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim cls As New ClassShopifyApi()
+
+        cls.sync_sku()
+
+        Cursor = Cursors.Default
+
+        FormPriceForSync_Load(Me, New EventArgs)
+
         infoCustom("Sync Complete.")
+
+        GVBrowsePrice.ActiveFilterString = ""
     End Sub
 End Class

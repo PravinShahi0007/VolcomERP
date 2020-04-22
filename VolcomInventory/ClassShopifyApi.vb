@@ -44,6 +44,8 @@
         data.Columns.Add("product_id", GetType(String))
         data.Columns.Add("sku", GetType(String))
         data.Columns.Add("inventory_item_id", GetType(String))
+        data.Columns.Add("compare_price", GetType(String))
+        data.Columns.Add("design_price", GetType(String))
 
         Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products.json"
 
@@ -72,7 +74,7 @@
                         since_id = row("id")
 
                         For Each row2 In row("variants").ToList
-                            data.Rows.Add(row2("id"), row2("product_id"), row2("sku"), row2("inventory_item_id"))
+                            data.Rows.Add(row2("id"), row2("product_id"), row2("sku"), row2("inventory_item_id"), row2("compare_at_price"), row2("price"))
                         Next
                     Next
                 Else
@@ -128,6 +130,10 @@
             Dim query As String = "INSERT IGNORE INTO tb_m_product_shopify (variant_id, sku, product_id, inventory_item_id) VALUES ('" + product.Rows(i)("variant_id").ToString + "', '" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("product_id").ToString + "', '" + product.Rows(i)("inventory_item_id").ToString + "')"
 
             execute_non_query(query, True, "", "", "", "")
+
+            Dim q_price As String = "INSERT INTO tb_m_price_shopify (sku, compare_price, design_price, date) VALUES ('" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("compare_price").ToString + "', '" + product.Rows(i)("design_price").ToString + "', NOW())"
+
+            execute_non_query(q_price, True, "", "", "", "")
         Next
     End Sub
 
