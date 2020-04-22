@@ -161,9 +161,6 @@ Partial Class FormOLStore
         Me.XTPVolcomOLStore = New DevExpress.XtraTab.XtraTabPage()
         Me.GCVolcom = New DevExpress.XtraGrid.GridControl()
         Me.GVVolcom = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_ol_shop_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_ol_shop_date = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -199,6 +196,11 @@ Partial Class FormOLStore
         Me.LinkTrf = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumnsales_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LinkSalesOrder = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPendingOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnConfirmedOrder = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -253,11 +255,11 @@ Partial Class FormOLStore
         Me.XTPVolcomOLStore.SuspendLayout()
         CType(Me.GCVolcom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVVolcom, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         CType(Me.LinkTrfNumber, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LinkTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -1549,36 +1551,6 @@ Partial Class FormOLStore
         Me.GVVolcom.OptionsView.ShowFooter = True
         Me.GVVolcom.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.BtnPrint)
-        Me.PanelControl3.Controls.Add(Me.BtnSyncOrder)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(994, 43)
-        Me.PanelControl3.TabIndex = 0
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(803, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(85, 39)
-        Me.BtnPrint.TabIndex = 1
-        Me.BtnPrint.Text = "Print"
-        '
-        'BtnSyncOrder
-        '
-        Me.BtnSyncOrder.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSyncOrder.Image = CType(resources.GetObject("BtnSyncOrder.Image"), System.Drawing.Image)
-        Me.BtnSyncOrder.Location = New System.Drawing.Point(888, 2)
-        Me.BtnSyncOrder.Name = "BtnSyncOrder"
-        Me.BtnSyncOrder.Size = New System.Drawing.Size(104, 39)
-        Me.BtnSyncOrder.TabIndex = 0
-        Me.BtnSyncOrder.Text = "Sync Order"
-        '
         'GridColumnid
         '
         Me.GridColumnid.Caption = "id"
@@ -1840,6 +1812,58 @@ Partial Class FormOLStore
         Me.LinkSalesOrder.AutoHeight = False
         Me.LinkSalesOrder.Name = "LinkSalesOrder"
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BtnPrint)
+        Me.PanelControl3.Controls.Add(Me.BtnSyncOrder)
+        Me.PanelControl3.Controls.Add(Me.BtnConfirmedOrder)
+        Me.PanelControl3.Controls.Add(Me.BtnPendingOrder)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(994, 43)
+        Me.PanelControl3.TabIndex = 0
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(660, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(85, 39)
+        Me.BtnPrint.TabIndex = 1
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnSyncOrder
+        '
+        Me.BtnSyncOrder.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnSyncOrder.Image = CType(resources.GetObject("BtnSyncOrder.Image"), System.Drawing.Image)
+        Me.BtnSyncOrder.Location = New System.Drawing.Point(2, 2)
+        Me.BtnSyncOrder.Name = "BtnSyncOrder"
+        Me.BtnSyncOrder.Size = New System.Drawing.Size(104, 39)
+        Me.BtnSyncOrder.TabIndex = 0
+        Me.BtnSyncOrder.Text = "Sync Order"
+        '
+        'BtnPendingOrder
+        '
+        Me.BtnPendingOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPendingOrder.Image = CType(resources.GetObject("BtnPendingOrder.Image"), System.Drawing.Image)
+        Me.BtnPendingOrder.Location = New System.Drawing.Point(871, 2)
+        Me.BtnPendingOrder.Name = "BtnPendingOrder"
+        Me.BtnPendingOrder.Size = New System.Drawing.Size(121, 39)
+        Me.BtnPendingOrder.TabIndex = 2
+        Me.BtnPendingOrder.Text = "Pending Order"
+        '
+        'BtnConfirmedOrder
+        '
+        Me.BtnConfirmedOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnConfirmedOrder.Image = CType(resources.GetObject("BtnConfirmedOrder.Image"), System.Drawing.Image)
+        Me.BtnConfirmedOrder.Location = New System.Drawing.Point(745, 2)
+        Me.BtnConfirmedOrder.Name = "BtnConfirmedOrder"
+        Me.BtnConfirmedOrder.Size = New System.Drawing.Size(126, 39)
+        Me.BtnConfirmedOrder.TabIndex = 3
+        Me.BtnConfirmedOrder.Text = "Confirmed Order"
+        '
         'FormOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1904,11 +1928,11 @@ Partial Class FormOLStore
         Me.XTPVolcomOLStore.ResumeLayout(False)
         CType(Me.GCVolcom, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVVolcom, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         CType(Me.LinkTrfNumber, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LinkTrf, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2091,4 +2115,6 @@ Partial Class FormOLStore
     Friend WithEvents LinkTrf As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumnsales_order_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LinkSalesOrder As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents BtnConfirmedOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPendingOrder As DevExpress.XtraEditors.SimpleButton
 End Class
