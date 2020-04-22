@@ -100,6 +100,10 @@
     Public id_design_soh As String = "-1"
 
     Private Sub FormFGStock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCFGStock.TabPages
+            XTCFGStock.SelectedTabPage = t
+        Next t
+        XTCFGStock.SelectedTabPage = XTCFGStock.TabPages(0)
         If id_pop_up = "-1" Then
             'viewWHStockCard()
             viewWHStockSum()
@@ -107,6 +111,7 @@
             viewPriceType()
             XTPFGStockQC.PageVisible = False
             setCaptionSize(GVSOHCode)
+            viewGroupType()
         Else
             viewProductStockQC()
             XTPFGStockCardWH.PageVisible = False
@@ -121,6 +126,13 @@
         DEUntilStockQC.EditValue = data_dt.Rows(0)("dt")
         DEUntilAcc.EditValue = data_dt.Rows(0)("dt")
         ActiveControl = TxtDesignCode
+    End Sub
+
+    Sub viewGroupType()
+        Dim query As String = "SELECT '1' AS `id_group_type`, 'Product & Account' AS `group_type`
+        UNION
+        SELECT '2' AS `id_group_type`, 'Product' AS `group_type` "
+        viewLookupQuery(LEGroupBy, query, 0, "group_type", "id_group_type")
     End Sub
 
     Sub setCaptionSize(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
@@ -1519,7 +1531,12 @@
         End If
 
         'excecute
-        Dim query As String = "CALL view_stock_fg_code('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Dim query As String = ""
+        If LEGroupBy.EditValue.ToString = "1" Then
+            query = "CALL view_stock_fg_code('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Else
+            query = "CALL view_stock_fg_code_by_product('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOHCode.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -1546,7 +1563,13 @@
         End If
 
         'excecute
-        Dim query As String = "CALL view_stock_fg_barcode_size('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Dim query As String = ""
+        If LEGroupBy.EditValue.ToString = "1" Then
+            query = "CALL view_stock_fg_barcode_size('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        Else
+            query = "CALL view_stock_fg_barcode_size_by_product('" + date_until_selected + "', '" + id_comp + "', '" + id_design_soh + "') "
+        End If
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOH.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -1612,5 +1635,9 @@
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub LEGroupBy_EditValueChanged(sender As Object, e As EventArgs) Handles LEGroupBy.EditValueChanged
+        resetViewSOH()
     End Sub
 End Class

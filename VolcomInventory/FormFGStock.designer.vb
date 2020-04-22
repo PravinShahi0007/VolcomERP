@@ -287,7 +287,9 @@ Partial Class FormFGStock
         Me.BtnShowFilter = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlSOH = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEGroupBy = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
         Me.LEPriceType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEAccount = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -404,6 +406,7 @@ Partial Class FormFGStock
         Me.PanelControlSOH.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LEGroupBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2151,10 +2154,10 @@ Partial Class FormFGStock
         '
         Me.XTCStockOnHandNew.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCStockOnHandNew.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCStockOnHandNew.Location = New System.Drawing.Point(0, 160)
+        Me.XTCStockOnHandNew.Location = New System.Drawing.Point(0, 174)
         Me.XTCStockOnHandNew.Name = "XTCStockOnHandNew"
         Me.XTCStockOnHandNew.SelectedTabPage = Me.XTPBySizeBarcode
-        Me.XTCStockOnHandNew.Size = New System.Drawing.Size(1164, 419)
+        Me.XTCStockOnHandNew.Size = New System.Drawing.Size(1164, 405)
         Me.XTCStockOnHandNew.TabIndex = 8929
         Me.XTCStockOnHandNew.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySizeBarcode, Me.XTPByCodeSOH})
         '
@@ -2162,7 +2165,7 @@ Partial Class FormFGStock
         '
         Me.XTPBySizeBarcode.Controls.Add(Me.GCSOH)
         Me.XTPBySizeBarcode.Name = "XTPBySizeBarcode"
-        Me.XTPBySizeBarcode.Size = New System.Drawing.Size(1135, 413)
+        Me.XTPBySizeBarcode.Size = New System.Drawing.Size(1135, 399)
         Me.XTPBySizeBarcode.Text = "By Size Barcode"
         '
         'GCSOH
@@ -2171,7 +2174,7 @@ Partial Class FormFGStock
         Me.GCSOH.Location = New System.Drawing.Point(0, 0)
         Me.GCSOH.MainView = Me.GVSOH
         Me.GCSOH.Name = "GCSOH"
-        Me.GCSOH.Size = New System.Drawing.Size(1135, 413)
+        Me.GCSOH.Size = New System.Drawing.Size(1135, 399)
         Me.GCSOH.TabIndex = 0
         Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
         '
@@ -2416,7 +2419,7 @@ Partial Class FormFGStock
         '
         Me.XTPByCodeSOH.Controls.Add(Me.GCSOHCode)
         Me.XTPByCodeSOH.Name = "XTPByCodeSOH"
-        Me.XTPByCodeSOH.Size = New System.Drawing.Size(1135, 413)
+        Me.XTPByCodeSOH.Size = New System.Drawing.Size(1135, 399)
         Me.XTPByCodeSOH.Text = "By Code"
         '
         'GCSOHCode
@@ -2425,7 +2428,7 @@ Partial Class FormFGStock
         Me.GCSOHCode.Location = New System.Drawing.Point(0, 0)
         Me.GCSOHCode.MainView = Me.GVSOHCode
         Me.GCSOHCode.Name = "GCSOHCode"
-        Me.GCSOHCode.Size = New System.Drawing.Size(1135, 413)
+        Me.GCSOHCode.Size = New System.Drawing.Size(1135, 399)
         Me.GCSOHCode.TabIndex = 0
         Me.GCSOHCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOHCode})
         '
@@ -3022,7 +3025,7 @@ Partial Class FormFGStock
         Me.BtnShowFilter.Image = CType(resources.GetObject("BtnShowFilter.Image"), System.Drawing.Image)
         Me.BtnShowFilter.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
         Me.BtnShowFilter.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftTop
-        Me.BtnShowFilter.Location = New System.Drawing.Point(0, 140)
+        Me.BtnShowFilter.Location = New System.Drawing.Point(0, 154)
         Me.BtnShowFilter.LookAndFeel.SkinName = "Blue"
         Me.BtnShowFilter.Name = "BtnShowFilter"
         Me.BtnShowFilter.Size = New System.Drawing.Size(1164, 20)
@@ -3036,12 +3039,14 @@ Partial Class FormFGStock
         Me.PanelControlSOH.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlSOH.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlSOH.Name = "PanelControlSOH"
-        Me.PanelControlSOH.Size = New System.Drawing.Size(1164, 140)
+        Me.PanelControlSOH.Size = New System.Drawing.Size(1164, 154)
         Me.PanelControlSOH.TabIndex = 0
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.LEGroupBy)
         Me.PanelControl3.Controls.Add(Me.LabelControl32)
+        Me.PanelControl3.Controls.Add(Me.LabelControl33)
         Me.PanelControl3.Controls.Add(Me.LEPriceType)
         Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Controls.Add(Me.SLEAccount)
@@ -3055,16 +3060,32 @@ Partial Class FormFGStock
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(444, 136)
+        Me.PanelControl3.Size = New System.Drawing.Size(444, 150)
         Me.PanelControl3.TabIndex = 8927
+        '
+        'LEGroupBy
+        '
+        Me.LEGroupBy.Location = New System.Drawing.Point(263, 64)
+        Me.LEGroupBy.Name = "LEGroupBy"
+        Me.LEGroupBy.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEGroupBy.Size = New System.Drawing.Size(162, 20)
+        Me.LEGroupBy.TabIndex = 8932
         '
         'LabelControl32
         '
-        Me.LabelControl32.Location = New System.Drawing.Point(299, 67)
+        Me.LabelControl32.Location = New System.Drawing.Point(299, 90)
         Me.LabelControl32.Name = "LabelControl32"
         Me.LabelControl32.Size = New System.Drawing.Size(126, 13)
         Me.LabelControl32.TabIndex = 8928
         Me.LabelControl32.Text = "Press F7 to show unit cost"
+        '
+        'LabelControl33
+        '
+        Me.LabelControl33.Location = New System.Drawing.Point(213, 67)
+        Me.LabelControl33.Name = "LabelControl33"
+        Me.LabelControl33.Size = New System.Drawing.Size(44, 13)
+        Me.LabelControl33.TabIndex = 8931
+        Me.LabelControl33.Text = "Group By"
         '
         'LEPriceType
         '
@@ -3130,7 +3151,7 @@ Partial Class FormFGStock
         Me.PanelControl4.Controls.Add(Me.BtnExportToXLSAcc)
         Me.PanelControl4.Controls.Add(Me.BtnHideFilterAcc)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(2, 97)
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 111)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(440, 37)
         Me.PanelControl4.TabIndex = 8925
@@ -3357,6 +3378,7 @@ Partial Class FormFGStock
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.LEGroupBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3654,4 +3676,6 @@ Partial Class FormFGStock
     Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnprice_type As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents LEGroupBy As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl33 As DevExpress.XtraEditors.LabelControl
 End Class
