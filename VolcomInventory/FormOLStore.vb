@@ -391,4 +391,10 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCVolcom, "")
+        Cursor = Cursors.Default
+    End Sub
 End Class
