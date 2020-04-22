@@ -1472,7 +1472,7 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
             End If
 
             'check coa for wholesale ol store
-            If id_store <> "-1" And LEStatusSO.EditValue.ToString = "14" Then
+            If id_store <> "-1" And LEStatusSO.EditValue.ToString = "14" And action = "ins" Then
                 If Not viewCheckCoa() Then
                     stopCustom("Account COA for this store is not found, please contact Accounting Dept.")
                     LEStatusSO.EditValue = LEStatusSO.OldEditValue
