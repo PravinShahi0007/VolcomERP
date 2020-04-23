@@ -21,6 +21,8 @@ Partial Class FormPriceForSync
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPriceForSync))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelLastSync = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
         Me.SBUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.GCBrowsePrice = New DevExpress.XtraGrid.GridControl()
@@ -41,6 +43,8 @@ Partial Class FormPriceForSync
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelLastSync)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SBSync)
         Me.PanelControl1.Controls.Add(Me.SBUpdate)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -48,6 +52,24 @@ Partial Class FormPriceForSync
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 52)
         Me.PanelControl1.TabIndex = 0
+        '
+        'LabelLastSync
+        '
+        Me.LabelLastSync.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLastSync.Location = New System.Drawing.Point(158, 19)
+        Me.LabelLastSync.Name = "LabelLastSync"
+        Me.LabelLastSync.Size = New System.Drawing.Size(105, 13)
+        Me.LabelLastSync.TabIndex = 3
+        Me.LabelLastSync.Text = "23/04/2020 10:19:53"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(96, 19)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl1.TabIndex = 2
+        Me.LabelControl1.Text = "Last Sync : "
         '
         'SBSync
         '
@@ -126,8 +148,6 @@ Partial Class FormPriceForSync
         Me.GridColumnNormalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnNormalPrice.FieldName = "compare_price"
         Me.GridColumnNormalPrice.Name = "GridColumnNormalPrice"
-        Me.GridColumnNormalPrice.Visible = True
-        Me.GridColumnNormalPrice.VisibleIndex = 5
         Me.GridColumnNormalPrice.Width = 183
         '
         'GridColumnPriceWeb
@@ -138,7 +158,7 @@ Partial Class FormPriceForSync
         Me.GridColumnPriceWeb.FieldName = "design_price_web"
         Me.GridColumnPriceWeb.Name = "GridColumnPriceWeb"
         Me.GridColumnPriceWeb.Visible = True
-        Me.GridColumnPriceWeb.VisibleIndex = 6
+        Me.GridColumnPriceWeb.VisibleIndex = 5
         Me.GridColumnPriceWeb.Width = 138
         '
         'GridColumnNormalPriceWeb
@@ -156,7 +176,7 @@ Partial Class FormPriceForSync
         Me.GridColumnMatch.FieldName = "match"
         Me.GridColumnMatch.Name = "GridColumnMatch"
         Me.GridColumnMatch.Visible = True
-        Me.GridColumnMatch.VisibleIndex = 7
+        Me.GridColumnMatch.VisibleIndex = 6
         Me.GridColumnMatch.Width = 145
         '
         'GridColumnsize
@@ -180,6 +200,7 @@ Partial Class FormPriceForSync
         Me.Text = "Price for Sync"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.GCBrowsePrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBrowsePrice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -199,4 +220,6 @@ Partial Class FormPriceForSync
     Friend WithEvents GridColumnNormalPriceWeb As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMatch As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelLastSync As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class
