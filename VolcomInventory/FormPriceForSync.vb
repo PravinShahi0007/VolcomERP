@@ -1,4 +1,10 @@
 ﻿Public Class FormPriceForSync
+    Sub getLastSync()
+        Cursor = Cursors.WaitCursor
+        LabelLastSync.Text = execute_query("SELECT DATE_FORMAT(p.date,'%d/%m/%Y %H:%i:%s') AS `last_sync` FROM tb_m_price_shopify p ORDER BY p.date DESC LIMIT 1", 0, True, "", "", "", "")
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub FormPriceForSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim query As String = "
             SELECT p.product_full_code, p.product_display_name, cd.code_detail_name AS `size`, IFNULL(prc.design_price, 0) AS design_price, IFNULL(prn.design_price, 0) AS compare_price, IFNULL(prw.design_price, 0) AS design_price_web, IFNULL(prw.compare_price, 0) AS compare_price_web, IF((IFNULL(prc.design_price, 0)) = (IFNULL(prw.design_price, 0)), 'Yes', 'No') AS `match`
@@ -45,6 +51,7 @@
         GCBrowsePrice.DataSource = data
 
         GVBrowsePrice.BestFitColumns()
+        getLastSync
     End Sub
 
     Private Sub FormPriceForSync_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
