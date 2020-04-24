@@ -6450,6 +6450,12 @@
     <Compile Include="FormWHAWBillInDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWHAwbillTrackCollection.Designer.vb">
+      <DependentUpon>FormWHAwbillTrackCollection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHAwbillTrackCollection.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHCargoRate.designer.vb">
       <DependentUpon>FormWHCargoRate.vb</DependentUpon>
     </Compile>
@@ -11501,6 +11507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHAWBillInDet.resx">
       <DependentUpon>FormWHAWBillInDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWHAwbillTrackCollection.resx">
+      <DependentUpon>FormWHAwbillTrackCollection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHCargoRate.resx">
       <DependentUpon>FormWHCargoRate.vb</DependentUpon>
