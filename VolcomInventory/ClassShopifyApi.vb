@@ -123,11 +123,11 @@
         response.Close()
     End Sub
 
-    Sub sync_sku()
+    Function sync_sku() As Boolean
         Dim product As DataTable = get_product()
 
         For i = 0 To product.Rows.Count - 1
-            Dim query As String = "INSERT IGNORE INTO tb_m_product_shopify (variant_id, sku, product_id, inventory_item_id) VALUES ('" + product.Rows(i)("variant_id").ToString + "', '" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("product_id").ToString + "', '" + product.Rows(i)("inventory_item_id").ToString + "')"
+            Dim query As String = "INSERT IGNORE INTO tb_m_product_shopify (variant_id, sku, product_id, inventory_item_id, date) VALUES ('" + product.Rows(i)("variant_id").ToString + "', '" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("product_id").ToString + "', '" + product.Rows(i)("inventory_item_id").ToString + "', NOW())"
 
             execute_non_query(query, True, "", "", "", "")
 
@@ -135,7 +135,31 @@
 
             execute_non_query(q_price, True, "", "", "", "")
         Next
-    End Sub
+
+        'check duplicate
+        Dim query_d As String = "SELECT sku, COUNT(*) AS total FROM tb_m_product_shopify GROUP BY sku HAVING total > 1"
+
+        Dim data_d As DataTable = execute_query(query_d, -1, True, "", "", "", "")
+
+        Dim sku As String = ""
+
+        For i = 0 To data_d.Rows.Count - 1
+            sku += data_d.Rows(i)("sku").ToString + ", "
+
+            execute_non_query("
+                INSERT INTO tb_m_product_shopify_duplicate (variant_id, sku, product_id, inventory_item_id, `date`)
+                SELECT variant_id, sku, product_id, inventory_item_id, NOW() AS `date` FROM tb_m_product_shopify WHERE sku = '" + data_d.Rows(i)("sku").ToString + "';
+                
+                DELETE FROM tb_m_product_shopify WHERE sku = '" + data_d.Rows(i)("sku").ToString + "';
+            ", True, "", "", "", "")
+        Next
+
+        If Not sku = "" Then
+            warningCustom("Duplicate SKU: " + sku.Substring(0, sku.Length - 2) + ". Please make sure there are no duplicate sku on the website and Sync again.")
+        End If
+
+        Return If(sku = "", True, False)
+    End Function
 
 
     Sub get_order_erp()
