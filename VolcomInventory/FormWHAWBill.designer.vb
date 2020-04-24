@@ -103,6 +103,7 @@ Partial Class FormWHAWBill
         Me.XTCAwb = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
         Me.PCLock = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BReportInvoice = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BLock = New DevExpress.XtraEditors.SimpleButton()
@@ -179,7 +180,6 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1096,6 +1096,16 @@ Partial Class FormWHAWBill
         Me.PCLock.Size = New System.Drawing.Size(1273, 39)
         Me.PCLock.TabIndex = 3
         '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(949, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(182, 35)
+        Me.SimpleButton1.TabIndex = 110
+        Me.SimpleButton1.Text = "Tracking Number Collection"
+        '
         'BReportInvoice
         '
         Me.BReportInvoice.Dock = System.Windows.Forms.DockStyle.Right
@@ -1891,16 +1901,6 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(949, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(182, 35)
-        Me.SimpleButton1.TabIndex = 110
-        Me.SimpleButton1.Text = "Tracking Number Collection"
         '
         'FormWHAWBill
         '
