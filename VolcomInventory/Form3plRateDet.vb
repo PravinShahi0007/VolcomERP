@@ -17,12 +17,16 @@
                 Dim q As String = "INSERT INTO tb_3pl_rate(`id_type`,`id_city`,`id_comp`,`cargo_code`,`cargo_rate`,`cargo_lead_time`,`cargo_min_weight`,`input_datetime`,`created_by`)
 VALUES('" & SLEInboundOutbound.EditValue.ToString & "','" & SLECity.EditValue.ToString & "','" & SLECargo.EditValue.ToString & "','" & addSlashes(TECargoCode.Text) & "','" & decimalSQL(TERate.EditValue.ToString) & "','" & decimalSQL(TELeadTime.EditValue.ToString) & "','" & decimalSQL(TEMinWeight.EditValue.ToString) & "',NOW(),'" & id_user & "')"
                 execute_non_query(q, True, "", "", "", "")
+                Form3plRate.SLECargo.EditValue = SLECargo.EditValue
+                Form3plRate.SLEInboundOutbound.EditValue = SLEInboundOutbound.EditValue
                 Form3plRate.load_list()
                 Close()
             Else
                 Dim q As String = "UPDATE tb_3pl_rate SET `id_type`='" & SLEInboundOutbound.EditValue.ToString & "',`id_city`='" & SLECity.EditValue.ToString & "',`id_comp`='" & SLECargo.EditValue.ToString & "',`cargo_code`='" & addSlashes(TECargoCode.Text) & "',`cargo_rate`='" & decimalSQL(TERate.EditValue.ToString) & "',`cargo_lead_time`='" & decimalSQL(TELeadTime.EditValue.ToString) & "',`cargo_min_weight`='" & decimalSQL(TEMinWeight.EditValue.ToString) & "',`input_datetime`=NOW(),`created_by`='" & id_user & "'
 WHERE id_3pl_rate='" & id_rate & "'"
                 execute_non_query(q, True, "", "", "", "")
+                Form3plRate.SLECargo.EditValue = SLECargo.EditValue
+                Form3plRate.SLEInboundOutbound.EditValue = SLEInboundOutbound.EditValue
                 Form3plRate.load_list()
                 Close()
             End If

@@ -33,6 +33,10 @@ Partial Class Form3plRateDet
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEInboundOutbound = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,10 +52,6 @@ Partial Class Form3plRateDet
         Me.TEMinWeight = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,7 +71,7 @@ Partial Class Form3plRateDet
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 221)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 206)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(466, 44)
         Me.PanelControl1.TabIndex = 0
@@ -123,7 +123,7 @@ Partial Class Form3plRateDet
         Me.SLECargo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECargo.Properties.NullText = "-"
         Me.SLECargo.Properties.View = Me.SLVCargo
-        Me.SLECargo.Size = New System.Drawing.Size(325, 20)
+        Me.SLECargo.Size = New System.Drawing.Size(359, 20)
         Me.SLECargo.TabIndex = 11
         '
         'SLVCargo
@@ -137,14 +137,14 @@ Partial Class Form3plRateDet
         '
         'GridColumnIdSeason
         '
-        Me.GridColumnIdSeason.Caption = "ID Cargo"
-        Me.GridColumnIdSeason.FieldName = "id_cargo"
+        Me.GridColumnIdSeason.Caption = "ID Comp"
+        Me.GridColumnIdSeason.FieldName = "id_comp"
         Me.GridColumnIdSeason.Name = "GridColumnIdSeason"
         '
         'GridColumnRange
         '
-        Me.GridColumnRange.Caption = "Cargo Name"
-        Me.GridColumnRange.FieldName = "cargo"
+        Me.GridColumnRange.Caption = "Vendor"
+        Me.GridColumnRange.FieldName = "comp_name"
         Me.GridColumnRange.Name = "GridColumnRange"
         Me.GridColumnRange.Visible = True
         Me.GridColumnRange.VisibleIndex = 0
@@ -181,10 +181,42 @@ Partial Class Form3plRateDet
         'GridColumn11
         '
         Me.GridColumn11.Caption = "City"
-        Me.GridColumn11.FieldName = "cargo"
+        Me.GridColumn11.FieldName = "city"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "State"
+        Me.GridColumn3.FieldName = "state"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Island"
+        Me.GridColumn4.FieldName = "island"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Region"
+        Me.GridColumn5.FieldName = "region"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Country"
+        Me.GridColumn6.FieldName = "country"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
         '
         'SLEInboundOutbound
         '
@@ -316,39 +348,11 @@ Partial Class Form3plRateDet
         Me.LabelControl9.TabIndex = 24
         Me.LabelControl9.Text = "Kg(s)"
         '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "State"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Island"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Region"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Country"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
-        '
         'Form3plRateDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(466, 265)
+        Me.ClientSize = New System.Drawing.Size(466, 250)
         Me.Controls.Add(Me.LabelControl9)
         Me.Controls.Add(Me.LabelControl8)
         Me.Controls.Add(Me.TEMinWeight)

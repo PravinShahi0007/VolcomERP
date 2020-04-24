@@ -21,6 +21,10 @@ Partial Class Form3plRate
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form3plRate))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEInboundOutbound = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECargo = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -41,18 +45,14 @@ Partial Class Form3plRate
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEInboundOutbound = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEInboundOutbound.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListRate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEInboundOutbound.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -69,6 +69,41 @@ Partial Class Form3plRate
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1121, 45)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SLEInboundOutbound
+        '
+        Me.SLEInboundOutbound.Location = New System.Drawing.Point(257, 13)
+        Me.SLEInboundOutbound.Name = "SLEInboundOutbound"
+        Me.SLEInboundOutbound.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEInboundOutbound.Properties.Appearance.Options.UseFont = True
+        Me.SLEInboundOutbound.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEInboundOutbound.Properties.NullText = "-"
+        Me.SLEInboundOutbound.Properties.View = Me.GridView2
+        Me.SLEInboundOutbound.Size = New System.Drawing.Size(172, 20)
+        Me.SLEInboundOutbound.TabIndex = 14
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.ReadOnly = True
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ID Out iN"
+        Me.GridColumn10.FieldName = "id_type"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Type"
+        Me.GridColumn11.FieldName = "type"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
         '
         'BView
         '
@@ -88,8 +123,6 @@ Partial Class Form3plRate
         '
         'SLECargo
         '
-        Me.SLECargo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SLECargo.Location = New System.Drawing.Point(52, 13)
         Me.SLECargo.Name = "SLECargo"
         Me.SLECargo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -112,13 +145,13 @@ Partial Class Form3plRate
         'GridColumnIdSeason
         '
         Me.GridColumnIdSeason.Caption = "ID Cargo"
-        Me.GridColumnIdSeason.FieldName = "id_cargo"
+        Me.GridColumnIdSeason.FieldName = "id_comp"
         Me.GridColumnIdSeason.Name = "GridColumnIdSeason"
         '
         'GridColumnRange
         '
-        Me.GridColumnRange.Caption = "Cargo Name"
-        Me.GridColumnRange.FieldName = "cargo"
+        Me.GridColumnRange.Caption = "Vendor Name"
+        Me.GridColumnRange.FieldName = "comp_name"
         Me.GridColumnRange.Name = "GridColumnRange"
         Me.GridColumnRange.Visible = True
         Me.GridColumnRange.VisibleIndex = 0
@@ -159,7 +192,7 @@ Partial Class Form3plRate
         Me.GCListRate.Location = New System.Drawing.Point(0, 45)
         Me.GCListRate.MainView = Me.GVListRate
         Me.GCListRate.Name = "GCListRate"
-        Me.GCListRate.Size = New System.Drawing.Size(1121, 599)
+        Me.GCListRate.Size = New System.Drawing.Size(1121, 578)
         Me.GCListRate.TabIndex = 1
         Me.GCListRate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListRate})
         '
@@ -242,53 +275,16 @@ Partial Class Form3plRate
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Update By"
-        Me.GridColumn9.FieldName = "created_by"
+        Me.GridColumn9.FieldName = "employee_name"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 6
-        '
-        'SLEInboundOutbound
-        '
-        Me.SLEInboundOutbound.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLEInboundOutbound.Location = New System.Drawing.Point(257, 13)
-        Me.SLEInboundOutbound.Name = "SLEInboundOutbound"
-        Me.SLEInboundOutbound.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEInboundOutbound.Properties.Appearance.Options.UseFont = True
-        Me.SLEInboundOutbound.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEInboundOutbound.Properties.NullText = "-"
-        Me.SLEInboundOutbound.Properties.View = Me.GridView2
-        Me.SLEInboundOutbound.Size = New System.Drawing.Size(172, 20)
-        Me.SLEInboundOutbound.TabIndex = 14
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.ReadOnly = True
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "ID Out iN"
-        Me.GridColumn10.FieldName = "id_type"
-        Me.GridColumn10.Name = "GridColumn10"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Type"
-        Me.GridColumn11.FieldName = "type"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
         '
         'Form3plRate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1121, 644)
+        Me.ClientSize = New System.Drawing.Size(1121, 623)
         Me.Controls.Add(Me.GCListRate)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -300,12 +296,12 @@ Partial Class Form3plRate
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEInboundOutbound.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCListRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListRate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEInboundOutbound.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
