@@ -173,7 +173,6 @@
         Dim since_id As String = execute_query("SELECT IFNULL(MAX(id),0) AS `since_id` FROM tb_ol_store_order ", 0, True, "", "", "", "")
 
         Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?since_id=" + since_id + cond_order
-        Console.WriteLine(url)
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
         request.Credentials = New Net.NetworkCredential(username, password)
@@ -220,7 +219,13 @@
                         shipping_name = ""
                     End Try
                     Try
-                        shipping_address = If(row("shipping_address")("address1") Is Nothing, "", row("shipping_address")("address1").ToString)
+                        shipping_address = row("shipping_address")("address1").ToString + " "
+                        shipping_address += row("shipping_address")("address2").ToString + " "
+                        shipping_address += row("shipping_address")("city").ToString + " "
+                        shipping_address += row("shipping_address")("province").ToString + " "
+                        shipping_address += row("shipping_address")("zip").ToString + " "
+                        shipping_address += row("shipping_address")("country").ToString + " "
+                        shipping_address += "Phone : " + row("shipping_address")("phone").ToString
                     Catch ex As Exception
                         shipping_address = ""
                     End Try
