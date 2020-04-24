@@ -285,6 +285,18 @@
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
     <Compile Include="ClassValidEAN13.vb" />
+    <Compile Include="Form3plRate.Designer.vb">
+      <DependentUpon>Form3plRate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form3plRate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3plRateDet.Designer.vb">
+      <DependentUpon>Form3plRateDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form3plRateDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAccClosing.Designer.vb">
       <DependentUpon>FormAccClosing.vb</DependentUpon>
     </Compile>
@@ -7922,6 +7934,12 @@
     <EmbeddedResource Include="barcodeaa.resx">
       <DependentUpon>barcodeaa.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3plRate.resx">
+      <DependentUpon>Form3plRate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3plRateDet.resx">
+      <DependentUpon>Form3plRateDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccClosing.resx">
       <DependentUpon>FormAccClosing.vb</DependentUpon>
