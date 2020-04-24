@@ -46,6 +46,7 @@
         data.Columns.Add("inventory_item_id", GetType(String))
         data.Columns.Add("compare_price", GetType(String))
         data.Columns.Add("design_price", GetType(String))
+        data.Columns.Add("inventory_quantity", GetType(String))
 
         Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products.json"
 
@@ -74,7 +75,7 @@
                         since_id = row("id")
 
                         For Each row2 In row("variants").ToList
-                            data.Rows.Add(row2("id"), row2("product_id"), row2("sku"), row2("inventory_item_id"), row2("compare_at_price"), row2("price"))
+                            data.Rows.Add(row2("id"), row2("product_id"), row2("sku"), row2("inventory_item_id"), row2("compare_at_price"), row2("price"), row2("inventory_quantity"))
                         Next
                     Next
                 Else
@@ -350,6 +351,16 @@ GROUP BY p.sku"
 }")
             Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/variants/" & dt.Rows(i)("variant_id").ToString & ".json", data, "application/json", "PUT", username, password)
             'Console.WriteLine(result_post.ToString)
+        Next
+    End Sub
+
+    Sub sync_stock()
+        Dim product As DataTable = get_product()
+
+        For i = 0 To product.Rows.Count - 1
+            Dim q_price As String = "INSERT INTO tb_m_stock_shopify (sku, stock, date) VALUES ('" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("inventory_quantity").ToString + "', NOW())"
+
+            execute_non_query(q_price, True, "", "", "", "")
         Next
     End Sub
 End Class
