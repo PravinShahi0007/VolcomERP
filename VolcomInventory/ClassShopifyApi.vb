@@ -149,7 +149,6 @@
         Dim since_id As String = execute_query("SELECT IFNULL(MAX(id),0) AS `since_id` FROM tb_ol_store_order ", 0, True, "", "", "", "")
 
         Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?since_id=" + since_id + cond_order
-        Console.WriteLine(url)
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
         request.Credentials = New Net.NetworkCredential(username, password)
