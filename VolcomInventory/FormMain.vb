@@ -1757,6 +1757,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormBudgetProdDemand" Then
             FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1
             FormBudgetProdDemandNew.ShowDialog()
+        ElseIf formName = "FormLetterOfStatement" Then
+            FormLetterOfStatementDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8979,6 +8981,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBudgetProdDemand.Dispose()
         ElseIf formName = "FormTabunganMissing" Then
             FormTabunganMissing.Close()
+        ElseIf formName = "FormLetterOfStatement" Then
+            FormLetterOfStatement.Close()
+            FormLetterOfStatement.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9880,6 +9885,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormBudgetProdDemand.XTCBudget.SelectedTabPageIndex = 1 Then
                 FormBudgetProdDemand.viewPropose(FormBudgetProdDemand.last_cond)
             End If
+        ElseIf formName = "FormLetterOfStatement" Then
+            FormLetterOfStatement.form_load()
         End If
     End Sub
     'Switch
@@ -14640,6 +14647,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Form3plRate.Show()
             Form3plRate.WindowState = FormWindowState.Maximized
             Form3plRate.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLetterOfStatement_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLetterOfStatement.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormLetterOfStatement.MdiParent = Me
+            FormLetterOfStatement.Show()
+            FormLetterOfStatement.WindowState = FormWindowState.Maximized
+            FormLetterOfStatement.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
