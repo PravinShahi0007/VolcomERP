@@ -363,4 +363,17 @@ GROUP BY p.sku"
             execute_non_query(q_price, True, "", "", "", "")
         Next
     End Sub
+
+    Sub set_fullfill(ByVal id_order As String, ByVal location_id As String, ByVal tracking_number As String, ByVal val As String)
+        Dim data = Text.Encoding.UTF8.GetBytes("{
+  ""fulfillment"": {
+    ""location_id"": " + location_id + ",
+    ""tracking_number"": " + tracking_number + ",
+    ""line_items"": [
+      " + val + "
+    ]
+  }
+}")
+        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/orders/" & id_order & "/fulfillments.json", data, "application/json", "POST", username, password)
+    End Sub
 End Class
