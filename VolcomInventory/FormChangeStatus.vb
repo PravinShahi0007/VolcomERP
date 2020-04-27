@@ -449,7 +449,7 @@
     End Sub
 
     Sub updateStatusOnlineStore(ByVal id_commerce_type As String, ByVal id_store As String, ByVal id_report As String, ByVal id_web_order As String)
-        If id_pop_up = "2" And id_commerce_type = "2" Then
+        If id_pop_up = "2" And id_commerce_type = "2" And (id_store = id_volcomstore_normal Or id_store = id_volcomstore_sale) Then
             Dim so As New ClassSalesOrder
             Try
                 Dim track_number As String = execute_query("SELECT m.awbill_no FROM tb_wh_awbill_det d INNER JOIN tb_wh_awbill m ON m.id_awbill = d.id_awbill WHERE d.id_pl_sales_order_del=" + id_report + "", 0, True, "", "", "", "")
