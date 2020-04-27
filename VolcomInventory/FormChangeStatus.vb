@@ -180,6 +180,7 @@
                                 insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx, note)
                                 sendEmailConfirmation(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_commerce_type").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
                                 sendEmailConfirmationforConceptStore(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "is_use_unique_code").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "43")
+                                updateStatusOnlineStore(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_commerce_type").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_store").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_web_order").ToString)
                             Else
                                 'jika delivery combine
                                 Dim id_del As String = FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString
@@ -447,9 +448,52 @@
         End If
     End Sub
 
-    Sub updateStatusOnlineStore(ByVal id_commerce_type As String, ByVal id_report As String)
-        If id_pop_up = "2" Then
+    Sub updateStatusOnlineStore(ByVal id_commerce_type As String, ByVal id_store As String, ByVal id_report As String, ByVal id_web_order As String)
+        If id_pop_up = "2" And id_commerce_type = "2" Then
+            Dim so As New ClassSalesOrder
+            Try
+                Dim track_number As String = execute_query("SELECT m.awbill_no FROM tb_wh_awbill_det d INNER JOIN tb_wh_awbill m ON m.id_awbill = d.id_awbill WHERE d.id_pl_sales_order_del=" + id_report + "", 0, True, "", "", "", "")
+                Dim query As String = "SELECT sod.ol_store_id, CAST(SUM(sod.sales_order_det_qty) AS DECIMAL(10,0)) AS `qty`, so.id_sales_order_ol_shop AS `id_web_order`, o.shopify_location_id AS `location_id`
+                FROM tb_pl_sales_order_del_det d
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                JOIN tb_opt o 
+                WHERE d.id_pl_sales_order_del=" + id_report + "
+                GROUP BY sod.ol_store_id "
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                Dim val As String = ""
+                Dim location_id As String = ""
+                For i As Integer = 0 To data.Rows.Count - 1
+                    location_id = data.Rows(i)("location_id").ToString
+                    If i > 0 Then
+                        val += ","
+                    End If
+                    val += "{
+        ""id"": " + data.Rows(i)("ol_store_id").ToString + ",
+""quantity"": " + data.Rows(i)("qty").ToString + "
+      }"
+                Next
+                If val <> "" Then
+                    Dim shop As New ClassShopifyApi()
+                    shop.set_fullfill(id_web_order, location_id, track_number, val)
+                End If
+            Catch ex As Exception
+                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString)
+            End Try
 
+            Try
+                'insert status 
+                Dim qstt As String = "INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, status_date, input_status_date)
+                SELECT sod.id_sales_order_det, 'shipped', NOW(), NOW()
+                FROM tb_pl_sales_order_del_det d
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                JOIN tb_opt o 
+                WHERE d.id_pl_sales_order_del=" + id_report + " "
+                execute_non_query(qstt, True, "", "", "", "")
+            Catch ex As Exception
+                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString)
+            End Try
         End If
     End Sub
 End Class
