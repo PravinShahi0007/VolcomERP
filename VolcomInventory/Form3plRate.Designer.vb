@@ -45,6 +45,8 @@ Partial Class Form3plRate
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEInboundOutbound.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -198,9 +200,11 @@ Partial Class Form3plRate
         '
         'GVListRate
         '
-        Me.GVListRate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVListRate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn13, Me.GridColumn12, Me.GridColumn6, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.GVListRate.GridControl = Me.GCListRate
         Me.GVListRate.Name = "GVListRate"
+        Me.GVListRate.OptionsBehavior.Editable = False
+        Me.GVListRate.OptionsBehavior.ReadOnly = True
         Me.GVListRate.OptionsFind.AlwaysVisible = True
         Me.GVListRate.OptionsView.ShowGroupPanel = False
         '
@@ -218,8 +222,8 @@ Partial Class Form3plRate
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "City"
-        Me.GridColumn3.FieldName = "city"
+        Me.GridColumn3.Caption = "Sub District"
+        Me.GridColumn3.FieldName = "sub_district"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -240,7 +244,7 @@ Partial Class Form3plRate
         Me.GridColumn4.FieldName = "cargo_rate"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 4
         '
         'GridColumn5
         '
@@ -250,7 +254,7 @@ Partial Class Form3plRate
         Me.GridColumn5.FieldName = "cargo_lead_time"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.VisibleIndex = 5
         '
         'GridColumn7
         '
@@ -260,7 +264,7 @@ Partial Class Form3plRate
         Me.GridColumn7.FieldName = "cargo_min_weight"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.VisibleIndex = 6
         '
         'GridColumn8
         '
@@ -270,7 +274,7 @@ Partial Class Form3plRate
         Me.GridColumn8.FieldName = "input_datetime"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 5
+        Me.GridColumn8.VisibleIndex = 7
         '
         'GridColumn9
         '
@@ -278,7 +282,23 @@ Partial Class Form3plRate
         Me.GridColumn9.FieldName = "employee_name"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
+        Me.GridColumn9.VisibleIndex = 8
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "State"
+        Me.GridColumn12.FieldName = "state"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 3
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "City"
+        Me.GridColumn13.FieldName = "city"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 2
         '
         'Form3plRate
         '
@@ -331,4 +351,6 @@ Partial Class Form3plRate
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

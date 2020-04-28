@@ -118,18 +118,19 @@ Partial Class FormWHAWBillDet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDelERP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.SLECity = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLESubDistrict = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRemoveDO = New DevExpress.XtraEditors.SimpleButton()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -190,7 +191,7 @@ Partial Class FormWHAWBillDet
         CType(Me.GVDO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
-        CType(Me.SLECity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
@@ -1225,7 +1226,7 @@ Partial Class FormWHAWBillDet
         '
         'GroupControl3
         '
-        Me.GroupControl3.Controls.Add(Me.SLECity)
+        Me.GroupControl3.Controls.Add(Me.SLESubDistrict)
         Me.GroupControl3.Controls.Add(Me.BRemoveDO)
         Me.GroupControl3.Controls.Add(Me.Label8)
         Me.GroupControl3.Controls.Add(Me.TECompCode)
@@ -1239,29 +1240,51 @@ Partial Class FormWHAWBillDet
         Me.GroupControl3.TabIndex = 1
         Me.GroupControl3.Text = "Destination"
         '
-        'SLECity
+        'SLESubDistrict
         '
-        Me.SLECity.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.SLESubDistrict.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLECity.Enabled = False
-        Me.SLECity.Location = New System.Drawing.Point(318, 9)
-        Me.SLECity.Name = "SLECity"
-        Me.SLECity.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLECity.Properties.Appearance.Options.UseFont = True
-        Me.SLECity.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLECity.Properties.NullText = "-"
-        Me.SLECity.Properties.View = Me.GridView1
-        Me.SLECity.Size = New System.Drawing.Size(157, 20)
-        Me.SLECity.TabIndex = 93
+        Me.SLESubDistrict.Enabled = False
+        Me.SLESubDistrict.Location = New System.Drawing.Point(318, 9)
+        Me.SLESubDistrict.Name = "SLESubDistrict"
+        Me.SLESubDistrict.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLESubDistrict.Properties.Appearance.Options.UseFont = True
+        Me.SLESubDistrict.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESubDistrict.Properties.NullText = "-"
+        Me.SLESubDistrict.Properties.View = Me.GridView1
+        Me.SLESubDistrict.Size = New System.Drawing.Size(157, 20)
+        Me.SLESubDistrict.TabIndex = 93
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn8, Me.GridColumn11, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.ReadOnly = True
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ID Sub District"
+        Me.GridColumn10.FieldName = "id_sub_district"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "City"
+        Me.GridColumn11.FieldName = "city"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "State"
+        Me.GridColumn7.FieldName = "state"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
         '
         'GridColumn4
         '
@@ -1286,12 +1309,6 @@ Partial Class FormWHAWBillDet
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "ID City"
-        Me.GridColumn10.FieldName = "id_cargo"
-        Me.GridColumn10.Name = "GridColumn10"
         '
         'BRemoveDO
         '
@@ -1334,21 +1351,13 @@ Partial Class FormWHAWBillDet
         Me.PanelControl4.Size = New System.Drawing.Size(807, 282)
         Me.PanelControl4.TabIndex = 2
         '
-        'GridColumn11
+        'GridColumn8
         '
-        Me.GridColumn11.Caption = "City"
-        Me.GridColumn11.FieldName = "city"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "State"
-        Me.GridColumn7.FieldName = "state"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn8.Caption = "Sub District"
+        Me.GridColumn8.FieldName = "sub_district"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
         '
         'FormWHAWBillDet
         '
@@ -1429,7 +1438,7 @@ Partial Class FormWHAWBillDet
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
-        CType(Me.SLECity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
@@ -1541,7 +1550,7 @@ Partial Class FormWHAWBillDet
     Friend WithEvents Label22 As Label
     Friend WithEvents TEInvNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnIdDelERP As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SLECity As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLESubDistrict As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1549,4 +1558,5 @@ Partial Class FormWHAWBillDet
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

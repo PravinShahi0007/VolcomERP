@@ -272,9 +272,9 @@
             FormWHAWBillDet.TECompCode.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
             FormWHAWBillDet.TECompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
             If GVCompany.GetFocusedRowCellValue("id_commerce_type").ToString = "1" Then
-                FormWHAWBillDet.SLECity.Enabled = False
+                FormWHAWBillDet.SLESubDistrict.Enabled = False
             Else
-                FormWHAWBillDet.SLECity.Enabled = True
+                FormWHAWBillDet.SLESubDistrict.Enabled = True
             End If
             FormWHAWBillDet.clear_do()
             FormWHAWBillDet.rate_table()
