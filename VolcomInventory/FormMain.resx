@@ -3430,7 +3430,7 @@
   <data name="NBTabunganMissing.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EgAACxIB0t1+/AAAAA90RVh0VGl0bGUAQm9vaztSZWFky8MmvQAAAGZJREFUOE+lkkEOgDAIBPsn3uFr
+        EQAACxEBf2RfkQAAAA90RVh0VGl0bGUAQm9vaztSZWFky8MmvQAAAGZJREFUOE+lkkEOgDAIBPsn3uFr
         fSAqkYN1Nummh6HJAsOlIzO3wNChSkSk4Hih3r36FTzvTA9jjwTnRA9TjgIHFNAllaPAAQV0SeUocEAB
         XVI5Chx+AmL5Jyp6mHq1W2UHDNfJcQFkR7DWidF8nwAAAABJRU5ErkJggg==
 </value>
@@ -5991,6 +5991,22 @@
         WMIE9o3bHagQiaEaMYaq/akQYSqNtYZhrGUWbSgGqwQYIt5pt6FespYJljKBbQV/OTT8FdDwGHQm1D6U
         hNpnmRmuOcspy73NSbumf2BB2Du6BcHBJYC9dCKcCVfCjXCfTRfCadUaT6xc7TH7+fMsfwNh/Rt+5YDo
         KQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="NBFabricType.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABR0RVh0VGl0
+        bGUATXVsdGlwbGU7UGFnZTvaOfa1AAACUElEQVQ4T42Q3UuTYRjGB8vKdJoa0Ul/TWdhHwdFdNAw+zTF
+        MhK1ZbKiZWnTaiJhyTYV68DSbVgkmW2YhZUVRH6Qxeba5r6d7959wdVzP77vQes96IILHu7nd1033CoA
+        Kia11bYwNehYwoB9EZaxBZhH59H/7Dt6hr9ETUOfcX9wDnetn9Bt+QCjeRbtfdNOliuQCwrMY/Ps+a+6
+        rR+l198yPJihYKFcsLlv5Bv/EMQc1pM5JMhCDh2P3vP5mpBFfD2LGDmRhd7komCRXLDFNPyVg3ECOZxh
+        YAY3eqf5PLKWQZgcTyMUS0NnfE3BYrlg6x3rHAejDOIwA8PxDK7ec/J5MJrGKnMgkoI/nMal9gkKauSC
+        wpt9sxwMsWCQbVgls0BzxySf+8IifodS8IZEeIMizl8fp2CJXLBN3/OOg4FImm/wh2lTChcNL/l8ZVWE
+        OyDCE0jC7U/iXKuDgqVyQbHO6Izquly4bHSiufMNmm5PovHWK9Rfe56tbXOgptWOs1dsOKOz4VTLKLQX
+        hly0WC7QNHVO8U35qtO/IGA3c1mei5jVckFJg2GCBzYOmGG3YI5lcFpnJ6CcIEVJBdtr28Z5Ab8Bv4MI
+        HztYVeNTAioIUpRUUHaixcYL6MIrzBvHEnG0/gkBOwhSlFRQfqxhhBf88gv46Uti2Sdg2SvgUM0AATsJ
+        UpRUUHGk7jEv+LEiYNEjYMmTwKI7gQPVlv8q0FRqe98ePGnB/moz9h3vR2VVP/ZqH2LP4a4Z9l9KkKKk
+        AjVzCTNt2pVnCm9iVpBK9QdudDl/5enaYAAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="MenuImages.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
