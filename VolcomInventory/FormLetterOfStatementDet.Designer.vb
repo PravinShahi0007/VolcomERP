@@ -120,7 +120,7 @@ Partial Class FormLetterOfStatementDet
         '
         'DEDate
         '
-        Me.DEDate.EditValue = Nothing
+        Me.DEDate.EditValue = New Date(2020, 4, 28, 11, 19, 16, 0)
         Me.DEDate.Location = New System.Drawing.Point(359, 65)
         Me.DEDate.Name = "DEDate"
         Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})

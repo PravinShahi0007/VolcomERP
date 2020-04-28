@@ -7215,6 +7215,12 @@
     <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterEmployeeSuratReferensi.Designer.vb">
+      <DependentUpon>ReportMasterEmployeeSuratReferensi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterEmployeeSuratReferensi.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterEmployeeSuratTugas.Designer.vb">
       <DependentUpon>ReportMasterEmployeeSuratTugas.vb</DependentUpon>
     </Compile>
@@ -11928,6 +11934,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.resx">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterEmployeeSuratReferensi.resx">
+      <DependentUpon>ReportMasterEmployeeSuratReferensi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterEmployeeSuratTugas.resx">
       <DependentUpon>ReportMasterEmployeeSuratTugas.vb</DependentUpon>
