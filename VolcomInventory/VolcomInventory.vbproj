@@ -889,6 +889,12 @@
     <Compile Include="FormCompanyEmailMappingDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCompareStockWebsite.Designer.vb">
+      <DependentUpon>FormCompareStockWebsite.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompareStockWebsite.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCustomDialog.Designer.vb">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>
     </Compile>
@@ -8318,6 +8324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCompanyEmailMappingDet.resx">
       <DependentUpon>FormCompanyEmailMappingDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCompareStockWebsite.resx">
+      <DependentUpon>FormCompareStockWebsite.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCustomDialog.resx">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>

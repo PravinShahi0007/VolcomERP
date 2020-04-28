@@ -8119,6 +8119,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormTabunganMissing" Then
             FormTabunganMissing.print()
+        ElseIf formName = "FormCompareStockWebsite" Then
+            FormCompareStockWebsite.print()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8984,6 +8986,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormLetterOfStatement" Then
             FormLetterOfStatement.Close()
             FormLetterOfStatement.Dispose()
+        ElseIf formName = "FormCompareStockWebsite" Then
+            FormCompareStockWebsite.Close()
+            FormCompareStockWebsite.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -14670,6 +14675,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormLetterOfStatement.Show()
             FormLetterOfStatement.WindowState = FormWindowState.Maximized
             FormLetterOfStatement.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCompareStockWebsite_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompareStockWebsite.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormCompareStockWebsite.MdiParent = Me
+            FormCompareStockWebsite.Show()
+            FormCompareStockWebsite.WindowState = FormWindowState.Maximized
+            FormCompareStockWebsite.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
