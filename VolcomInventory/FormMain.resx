@@ -3430,7 +3430,7 @@
   <data name="NBTabunganMissing.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EgAACxIB0t1+/AAAAA90RVh0VGl0bGUAQm9vaztSZWFky8MmvQAAAGZJREFUOE+lkkEOgDAIBPsn3uFr
+        EQAACxEBf2RfkQAAAA90RVh0VGl0bGUAQm9vaztSZWFky8MmvQAAAGZJREFUOE+lkkEOgDAIBPsn3uFr
         fSAqkYN1Nummh6HJAsOlIzO3wNChSkSk4Hih3r36FTzvTA9jjwTnRA9TjgIHFNAllaPAAQV0SeUocEAB
         XVI5Chx+AmL5Jyp6mHq1W2UHDNfJcQFkR7DWidF8nwAAAABJRU5ErkJggg==
 </value>
@@ -5044,6 +5044,22 @@
         EjVLxNx8rDUcDTIHJljCBPaN2x2oEImhGjGGqv2pEGEqjbWGYaxlFm0oBqsEGCLeabehXrKWCZYygW0F
         fzk0/BXQ8Bh0JtQ+lITaZ5kZrjnLKcu9zUm7pn9gQdg7ugXBwSWAvXQinAlXwo1wn00XwmnVGk+sXO0x
         +/nzLH8DYf0bfuWA6CkAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="NBFabricType.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAUdEVYdFRpdGxlAE11bHRpcGxlO1BhZ2U72jn2tQAAAlBJREFUOE+NkN1Lk2EYxgfLynSaGtFJ
+        f01nYR8HRXTQMPs0xTIStWWyomVp02oiYck2FevA0m1YJJltmIWVFUR+kMXm2ua+ne/efcHVcz++70Hr
+        PeiCCx7u53ddN9wqAComtdW2MDXoWMKAfRGWsQWYR+fR/+w7eoa/RE1Dn3F/cA53rZ/QbfkAo3kW7X3T
+        TpYrkAsKzGPz7Pmvuq0fpdffMjyYoWChXLC5b+Qb/xDEHNaTOSTIQg4dj97z+ZqQRXw9ixg5kYXe5KJg
+        kVywxTT8lYNxAjmcYWAGN3qn+TyylkGYHE8jFEtDZ3xNwWK5YOsd6xwHowziMAPD8Qyu3nPyeTCaxipz
+        IJKCP5zGpfYJCmrkgsKbfbMcDLFgkG1YJbNAc8ckn/vCIn6HUvCGRHiDIs5fH6dgiVywTd/zjoOBSJpv
+        8IdpUwoXDS/5fGVVhDsgwhNIwu1P4lyrg4KlckGxzuiM6rpcuGx0ornzDZpuT6Lx1ivUX3uerW1zoKbV
+        jrNXbDijs+FUyyi0F4ZctFgu0DR1TvFN+arTvyBgN3NZnouY1XJBSYNhggc2Dphht2COZXBaZyegnCBF
+        SQXba9vGeQG/Ab+DCB87WFXjUwIqCFKUVFB2osXGC+jCK8wbxxJxtP4JATsIUpRUUH6sYYQX/PIL+OlL
+        YtknYNkr4FDNAAE7CVKUVFBxpO4xL/ixImDRI2DJk8CiO4ED1Zb/KtBUanvfHjxpwf5qM/Yd70dlVT/2
+        ah9iz+GuGfZfSpCipAI1cwkzbdqVZwpvYlaQSvUHbnQ5f+Xp2mAAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="NBSetupBudgetProdDemand.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
