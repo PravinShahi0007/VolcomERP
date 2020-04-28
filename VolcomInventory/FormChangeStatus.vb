@@ -458,7 +458,7 @@
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
                 INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
                 JOIN tb_opt o 
-                WHERE d.id_pl_sales_order_del=" + id_report + "
+                WHERE d.id_pl_sales_order_del=" + id_report + " AND sod.is_additional=2
                 GROUP BY sod.ol_store_id "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 Dim val As String = ""
@@ -489,7 +489,7 @@
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
                 INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
                 JOIN tb_opt o 
-                WHERE d.id_pl_sales_order_del=" + id_report + " "
+                WHERE d.id_pl_sales_order_del=" + id_report + " AND sod.is_additional=2 "
                 execute_non_query(qstt, True, "", "", "", "")
             Catch ex As Exception
                 so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString)
