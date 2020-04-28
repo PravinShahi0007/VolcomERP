@@ -2316,6 +2316,18 @@
     <Compile Include="FormItemSubCatDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormLetterOfStatement.Designer.vb">
+      <DependentUpon>FormLetterOfStatement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormLetterOfStatement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLetterOfStatementDet.Designer.vb">
+      <DependentUpon>FormLetterOfStatementDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormLetterOfStatementDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormLineList.Designer.vb">
       <DependentUpon>FormLineList.vb</DependentUpon>
     </Compile>
@@ -9030,6 +9042,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemSubCatDet.resx">
       <DependentUpon>FormItemSubCatDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLetterOfStatement.resx">
+      <DependentUpon>FormLetterOfStatement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLetterOfStatementDet.resx">
+      <DependentUpon>FormLetterOfStatementDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLineList.resx">
       <DependentUpon>FormLineList.vb</DependentUpon>
