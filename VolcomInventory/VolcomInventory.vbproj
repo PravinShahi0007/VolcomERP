@@ -2322,6 +2322,12 @@
     <Compile Include="FormItemSubCatDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormKecamatanSingle.Designer.vb">
+      <DependentUpon>FormKecamatanSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormKecamatanSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormLetterOfStatement.Designer.vb">
       <DependentUpon>FormLetterOfStatement.vb</DependentUpon>
     </Compile>
@@ -9057,6 +9063,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemSubCatDet.resx">
       <DependentUpon>FormItemSubCatDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKecamatanSingle.resx">
+      <DependentUpon>FormKecamatanSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLetterOfStatement.resx">
       <DependentUpon>FormLetterOfStatement.vb</DependentUpon>
