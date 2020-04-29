@@ -9021,6 +9021,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormCompareStockWebsite" Then
             FormCompareStockWebsite.Close()
             FormCompareStockWebsite.Dispose()
+        ElseIf formName = "FormItemTrf" Then
+            FormItemTrf.Close()
+            FormItemTrf.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -14720,6 +14723,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompareStockWebsite.Show()
             FormCompareStockWebsite.WindowState = FormWindowState.Maximized
             FormCompareStockWebsite.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBItemTrf_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemTrf.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemTrf.MdiParent = Me
+            FormItemTrf.Show()
+            FormItemTrf.WindowState = FormWindowState.Maximized
+            FormItemTrf.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
