@@ -227,16 +227,26 @@
             End If
 
             If id_report_status = "0" Then
-                autogenerate()
-
                 Dim query_l As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
 
-                Dim data_l As DataTable = execute_query(query_l, -1, True, "", "", "", "")
+                'autogenerate
+                autogenerate()
 
-                GCPayroll.DataSource = data_l
+                GCPayroll.DataSource = execute_query(query_l, -1, True, "", "", "", "")
 
                 adjustment_deduction_column("adjustment")
                 adjustment_deduction_column("deduction")
+
+                'autoadjustment
+                autoadjustment()
+
+                GCPayroll.DataSource = execute_query(query_l, -1, True, "", "", "", "")
+
+                adjustment_deduction_column("adjustment")
+                adjustment_deduction_column("deduction")
+
+                'check salary
+                checksalary()
             End If
 
             LCTitle.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString + " - " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end")).ToString("MMMM yyyy")
@@ -1600,5 +1610,61 @@
 
             execute_non_query(q_uded, True, "", "", "", "")
         Next
+    End Sub
+
+    Sub autoadjustment()
+        'thr
+        If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
+            For i = 0 To GVPayroll.RowCount - 1
+                If GVPayroll.IsValidRowHandle(i) Then
+                    If GVPayroll.GetRowCellValue(i, "actual_workdays") < 1 Then
+                        Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+                        Dim id_employee As String = GVPayroll.GetRowCellValue(i, "id_employee").ToString
+                        Dim total_days As String = (1 - GVPayroll.GetRowCellValue(i, "actual_workdays")).ToString
+                        Dim increase As String = GVPayroll.GetRowCellValue(i, "total_salary_thr").ToString
+                        Dim value As String = (GVPayroll.GetRowCellValue(i, "total_salary_thr") * (1 - GVPayroll.GetRowCellValue(i, "actual_workdays")))
+
+                        Dim query As String = "
+                            DELETE FROM tb_emp_payroll_adj WHERE id_salary_adj = 2 AND id_employee = " + id_employee + " AND id_payroll = " + id_payroll + ";
+                            INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, `value`) VALUES (" + id_payroll + ", 2, " + id_employee + ", '-" + decimalSQL(total_days) + "', '" + increase + "', '-" + value + "');
+                        "
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                End If
+            Next
+
+            infoCustom("Adjustment updated.")
+        End If
+    End Sub
+
+    Sub checksalary()
+        Dim query As String = "
+            SELECT em.employee_name, es.basic_salary, es.allow_job, es.allow_meal, es.allow_trans, es.allow_house, es.allow_car
+            FROM tb_emp_payroll_det AS pd
+            LEFT JOIN tb_m_employee_salary AS es ON pd.id_salary = es.id_employee_salary
+            LEFT JOIN tb_m_employee AS em ON pd.id_employee = em.id_employee
+            WHERE pd.id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim message As String = ""
+
+        For i = 0 To data.Rows.Count - 1
+            If GVPayrollPeriode.GetFocusedRowCellValue("is_dw").ToString = "1" Then
+                If data.Rows(i)("allow_job") <> 0 Or data.Rows(i)("allow_meal") <> 0 Or data.Rows(i)("allow_trans") <> 0 Or data.Rows(i)("allow_house") <> 0 Or data.Rows(i)("allow_car") <> 0 Then
+                    message += "- " + data.Rows(i)("employee_name") + " salary need update." + Environment.NewLine
+                End If
+            Else
+                If data.Rows(i)("allow_job") = 0 And data.Rows(i)("allow_meal") = 0 And data.Rows(i)("allow_trans") = 0 And data.Rows(i)("allow_house") = 0 And data.Rows(i)("allow_car") = 0 Then
+                    message += "- " + data.Rows(i)("employee_name") + " salary need update." + Environment.NewLine
+                End If
+            End If
+        Next
+
+        If message <> "" Then
+            infoCustom(message)
+        End If
     End Sub
 End Class
