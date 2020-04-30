@@ -222,7 +222,7 @@
                 'BBIPajak.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
 
                 BBonusAdjustment.Text = "Adjustment"
-                BandedGridColumnTotalAdjustment.Caption = "Adjustment"
+                BandedGridColumnTotalAdjustment.Caption = "Total Adjustment"
                 GBBonusAdjustment.Caption = "Adjustment"
             End If
 
