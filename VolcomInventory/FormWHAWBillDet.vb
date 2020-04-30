@@ -240,14 +240,14 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
             Dim query As String = ""
 
             If FormWHAWBill.is_lock = "1" Then
-                query = "SELECT rate.id_cargo,rate.id_store,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate"
-                query += " ,IF(" + berat_terpakai.ToString + " < Rate.cargo_min_weight, Rate.cargo_min_weight, " + berat_terpakai.ToString + ") As weight"
-                query += " ,(If(" + berat_terpakai.ToString + "<rate.cargo_min_weight,rate.cargo_min_weight," + berat_terpakai.ToString + ") * cargo_rate) As amount"
-                query += " ,rate.cargo_lead_time"
-                query += " ,comp.awb_rank"
-                query += " FROM tb_wh_cargo_rate As rate"
-                query += " INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_cargo"
-                query += " WHERE rate.id_store='" + id_comp + "' AND rate.id_rate_type='" + id_awb_type + "'"
+                query = "SELECT rate.id_comp AS id_cargo,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate
+, IF(" + berat_terpakai.ToString + " < Rate.cargo_min_weight, Rate.cargo_min_weight, " + berat_terpakai.ToString + ") AS weight
+,(IF(" + berat_terpakai.ToString + "<rate.cargo_min_weight,rate.cargo_min_weight," + berat_terpakai.ToString + ") * cargo_rate) AS amount
+,rate.cargo_lead_time
+,comp.awb_rank
+FROM `tb_3pl_rate` AS rate
+INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_comp
+WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.id_type='" + id_awb_type + "'"
                 query += " ORDER BY amount ASC,awb_rank ASC"
             Else
                 query = "SELECT awb.id_cargo,awb.id_store,comp_c.comp_name AS cargo,awb.cargo_min_weight,awb.cargo_rate
