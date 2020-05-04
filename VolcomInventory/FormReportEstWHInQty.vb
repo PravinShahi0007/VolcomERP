@@ -118,7 +118,7 @@ SELECT '3' AS opt,'Estimate in Store Date' AS type"
     Sub view_report()
         Dim query_where As String = ""
         If Not SLEReport.EditValue.ToString = "0" Then
-            query_where += " WHERE del.id_season='" & SLEReport.EditValue.ToString & "'"
+            query_where += " AND del.id_season='" & SLEReport.EditValue.ToString & "'"
         End If
 
         Dim query As String = "SELECT pd.*,dsg.`design_code`,dsg.`design_display_name`,listt.`id_mat_purc_list`
@@ -169,8 +169,8 @@ LEFT JOIN
 	GROUP BY mpd.`id_mat_purc`,mc.`id_mat_cat`
 ) po_det ON po_det.id_mat_purc=mp.`id_mat_purc`
 LEFT JOIN tb_lookup_report_status sts ON sts.`id_report_status`=mp.`id_report_status`
-" & query_where & "
-GROUP BY pd.id_prod_demand_design,mp.id_mat_purc"
+WHERE IF(ISNULL(listt.id_mat_purc_list),TRUE,IF(ISNULL(mp.id_mat_purc),FALSE,TRUE)) " & query_where & "
+GROUP BY pd.id_prod_demand_design,mp.id_mat_purc "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPD.DataSource = data
         GVPD.BestFitColumns()
