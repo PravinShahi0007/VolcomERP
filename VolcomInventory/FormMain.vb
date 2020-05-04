@@ -1503,6 +1503,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'list order
                 If FormProductionFinalClear.GVProd.RowCount > 0 And FormProductionFinalClear.GVProd.FocusedRowHandle >= 0 Then
                     FormProductionFinalClearDet.id_prod_order = FormProductionFinalClear.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionFinalClearDet.id_prod_order_rec = FormProductionFinalClear.GVRecQc.GetFocusedRowCellValue("id_prod_order_rec").ToString
                     FormProductionFinalClearDet.action = "ins"
                     FormProductionFinalClearDet.ShowDialog()
                 End If
