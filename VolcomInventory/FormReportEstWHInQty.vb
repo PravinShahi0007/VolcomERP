@@ -122,7 +122,7 @@ SELECT '3' AS opt,'Estimate in Store Date' AS type"
         End If
 
         Dim query As String = "SELECT pd.*,dsg.`design_code`,dsg.`design_display_name`,listt.`id_mat_purc_list`
-,mp.`id_mat_purc`,mp.mat_purc_number,mp.`mat_purc_date`,sts.`report_status`
+,mp.`id_mat_purc`,mp.mat_purc_number,mp.`mat_purc_date`,sts.`report_status`,po_det.mat_cat
 FROM
 (
 	SELECT IFNULL(pdpo.id_prod_demand,newest_pd.id_prod_demand) AS id_prod_demand,
@@ -159,6 +159,15 @@ INNER JOIN `tb_season_delivery` del ON pd.`id_delivery`=del.`id_delivery`
 LEFT JOIN `tb_mat_purc_list_pd` listpd ON listpd.`id_prod_demand_design`=pd.id_prod_demand_design
 LEFT JOIN tb_mat_purc_list listt ON listt.`id_mat_purc_list`=listpd.`id_mat_purc_list` AND listt.`is_cancel`!=1
 LEFT JOIN `tb_mat_purc` mp ON mp.`id_mat_purc`=listt.`id_mat_purc` AND mp.`id_report_status`!=5
+LEFT JOIN 
+(
+	SELECT mpd.`id_mat_purc`,GROUP_CONCAT(DISTINCT(mc.`mat_cat`)) AS mat_cat FROM tb_mat_purc_det mpd
+	INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=mpd.`id_mat_det_price`
+	INNER JOIN tb_m_mat_det md ON md.id_mat_det=prc.`id_mat_det`
+	INNER JOIN tb_m_mat m ON m.id_mat=md.`id_mat`
+	INNER JOIN tb_m_mat_cat mc ON m.id_mat_cat=mc.`id_mat_cat`
+	GROUP BY mpd.`id_mat_purc`,mc.`id_mat_cat`
+) po_det ON po_det.id_mat_purc=mp.`id_mat_purc`
 LEFT JOIN tb_lookup_report_status sts ON sts.`id_report_status`=mp.`id_report_status`
 " & query_where & "
 GROUP BY pd.id_prod_demand_design,mp.id_mat_purc"
