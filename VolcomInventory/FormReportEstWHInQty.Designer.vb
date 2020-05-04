@@ -484,7 +484,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn30.OptionsColumn.ReadOnly = True
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 0
-        Me.GridColumn30.Width = 241
+        Me.GridColumn30.Width = 271
         '
         'GridColumn31
         '
@@ -495,7 +495,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn31.OptionsColumn.ReadOnly = True
         Me.GridColumn31.Visible = True
         Me.GridColumn31.VisibleIndex = 1
-        Me.GridColumn31.Width = 254
+        Me.GridColumn31.Width = 285
         '
         'GridColumn32
         '
@@ -506,15 +506,16 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn32.OptionsColumn.ReadOnly = True
         Me.GridColumn32.Visible = True
         Me.GridColumn32.VisibleIndex = 2
-        Me.GridColumn32.Width = 731
+        Me.GridColumn32.Width = 368
         '
         'GridColumn40
         '
         Me.GridColumn40.Caption = "PO Number"
-        Me.GridColumn40.FieldName = "po_group"
+        Me.GridColumn40.FieldName = "mat_purc_number"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 6
+        Me.GridColumn40.VisibleIndex = 3
+        Me.GridColumn40.Width = 233
         '
         'GridColumn33
         '
@@ -535,15 +536,19 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 4
+        Me.GridColumn8.VisibleIndex = 5
+        Me.GridColumn8.Width = 233
         '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "PO Created"
+        Me.GridColumn11.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn11.FieldName = "mat_purc_date"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 5
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 242
         '
         'FormReportEstWHInQty
         '
