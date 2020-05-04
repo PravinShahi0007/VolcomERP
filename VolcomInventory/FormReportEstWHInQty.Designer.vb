@@ -382,7 +382,7 @@ Partial Class FormReportEstWHInQty
         Me.XTPPOMat.Controls.Add(Me.PanelControl3)
         Me.XTPPOMat.Name = "XTPPOMat"
         Me.XTPPOMat.Size = New System.Drawing.Size(1143, 580)
-        Me.XTPPOMat.Text = "PD Vs PO Material"
+        Me.XTPPOMat.Text = "Design Vs PO Material"
         '
         'GCPD
         '
@@ -419,8 +419,6 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.OptionsColumn.ReadOnly = True
-        Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 0
         Me.GridColumn30.Width = 259
         '
         'GridColumn31
@@ -431,7 +429,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn31.OptionsColumn.AllowEdit = False
         Me.GridColumn31.OptionsColumn.ReadOnly = True
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 1
+        Me.GridColumn31.VisibleIndex = 0
         Me.GridColumn31.Width = 272
         '
         'GridColumn32
@@ -442,7 +440,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn32.OptionsColumn.AllowEdit = False
         Me.GridColumn32.OptionsColumn.ReadOnly = True
         Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 2
+        Me.GridColumn32.VisibleIndex = 1
         Me.GridColumn32.Width = 351
         '
         'GridColumn40
@@ -451,7 +449,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn40.FieldName = "mat_purc_number"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 3
+        Me.GridColumn40.VisibleIndex = 2
         Me.GridColumn40.Width = 222
         '
         'GridColumn11
@@ -462,7 +460,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn11.FieldName = "mat_purc_date"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 5
+        Me.GridColumn11.VisibleIndex = 4
         Me.GridColumn11.Width = 200
         '
         'GridColumn8
@@ -471,7 +469,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 5
         Me.GridColumn8.Width = 196
         '
         'GridColumn12
@@ -480,7 +478,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn12.FieldName = "mat_cat"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
+        Me.GridColumn12.VisibleIndex = 3
         Me.GridColumn12.Width = 132
         '
         'GridColumn33
