@@ -387,7 +387,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
                 For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                     Dim id_acc As String = GVData.GetRowCellValue(d, "id_acc").ToString
                     Dim cc As String = GVData.GetRowCellValue(d, "cc").ToString
-                    Dim description As String = GVData.GetRowCellValue(d, "description").ToString
+                    Dim description As String = addSlashes(GVData.GetRowCellValue(d, "description").ToString)
                     Dim tax_percent As String = decimalSQL(GVData.GetRowCellValue(d, "tax_percent").ToString)
                     Dim tax_value As String = decimalSQL(GVData.GetRowCellValue(d, "tax_value").ToString)
                     Dim amount As String = decimalSQL(GVData.GetRowCellValue(d, "amount").ToString)
