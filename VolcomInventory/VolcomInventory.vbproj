@@ -7963,6 +7963,12 @@
     <Compile Include="ReportSummaryInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportWHAWBillShipmentLabel.Designer.vb">
+      <DependentUpon>ReportWHAWBillShipmentLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWHAWBillShipmentLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportWHDelEmpty.Designer.vb">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
     </Compile>
@@ -12411,6 +12417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSummaryInvoice.resx">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportWHAWBillShipmentLabel.resx">
+      <DependentUpon>ReportWHAWBillShipmentLabel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHDelEmpty.resx">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>

@@ -87,6 +87,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BShipmentLabel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAWBRec = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnManifest = New DevExpress.XtraEditors.SimpleButton()
         Me.CEDO = New DevExpress.XtraEditors.CheckEdit()
@@ -926,6 +927,7 @@ Partial Class FormWHAWBill
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BShipmentLabel)
         Me.PanelControl1.Controls.Add(Me.BAWBRec)
         Me.PanelControl1.Controls.Add(Me.BtnManifest)
         Me.PanelControl1.Controls.Add(Me.CEDO)
@@ -945,12 +947,21 @@ Partial Class FormWHAWBill
         Me.PanelControl1.Size = New System.Drawing.Size(1273, 39)
         Me.PanelControl1.TabIndex = 1
         '
+        'BShipmentLabel
+        '
+        Me.BShipmentLabel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BShipmentLabel.Location = New System.Drawing.Point(1040, 2)
+        Me.BShipmentLabel.Name = "BShipmentLabel"
+        Me.BShipmentLabel.Size = New System.Drawing.Size(124, 35)
+        Me.BShipmentLabel.TabIndex = 109
+        Me.BShipmentLabel.Text = "Print Shipment Label"
+        '
         'BAWBRec
         '
         Me.BAWBRec.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAWBRec.Location = New System.Drawing.Point(1131, 2)
+        Me.BAWBRec.Location = New System.Drawing.Point(1164, 2)
         Me.BAWBRec.Name = "BAWBRec"
-        Me.BAWBRec.Size = New System.Drawing.Size(140, 35)
+        Me.BAWBRec.Size = New System.Drawing.Size(107, 35)
         Me.BAWBRec.TabIndex = 108
         Me.BAWBRec.Text = "Import AWB Data"
         '
@@ -2122,4 +2133,5 @@ Partial Class FormWHAWBill
     Friend WithEvents gbAirport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gbETALT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BShipmentLabel As DevExpress.XtraEditors.SimpleButton
 End Class
