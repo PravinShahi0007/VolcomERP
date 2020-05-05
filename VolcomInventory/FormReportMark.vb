@@ -5743,7 +5743,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 FROM tb_item_expense_det ied 
                 INNER JOIN tb_item_expense ie ON ie.id_item_expense=ied.id_item_expense
                 WHERE ied.id_expense_type='1' AND ied.id_item_expense='" + id_report + "';
-                INSERT INTO tb_b_expense_opex(id_b_expense,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
+                INSERT INTO tb_b_expense_trans(id_b_expense,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
                 SELECT ied.id_b_expense,'2' AS is_po, be.id_departement AS id_departement,NOW() AS date_trans,amount,NULL AS id_item,ie.id_item_expense,'157','Expense'
                 FROM tb_item_expense_det ied 
                 INNER JOIN tb_item_expense ie ON ie.id_item_expense=ied.id_item_expense
