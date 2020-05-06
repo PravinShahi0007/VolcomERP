@@ -14774,4 +14774,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub NBRetOlStoreList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRetOlStoreList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOlStoreReturnList.MdiParent = Me
+            FormOlStoreReturnList.Show()
+            FormOlStoreReturnList.WindowState = FormWindowState.Maximized
+            FormOlStoreReturnList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

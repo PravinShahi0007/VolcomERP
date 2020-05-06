@@ -157,16 +157,18 @@
         Dim sku_copy As String = ""
 
         For i = 0 To data_d.Rows.Count - 1
-            sku += data_d.Rows(i)("sku").ToString + ", "
+            If Not data_d.Rows(i)("sku").ToString = "" Then
+                sku += data_d.Rows(i)("sku").ToString + ", "
 
-            sku_copy += data_d.Rows(i)("sku").ToString + Environment.NewLine
+                sku_copy += data_d.Rows(i)("sku").ToString + Environment.NewLine
 
-            execute_non_query("
-                INSERT INTO tb_m_product_shopify_duplicate (variant_id, sku, product_id, inventory_item_id, `date`)
-                SELECT variant_id, sku, product_id, inventory_item_id, NOW() AS `date` FROM tb_m_product_shopify WHERE sku = '" + data_d.Rows(i)("sku").ToString + "';
+                execute_non_query("
+                    INSERT INTO tb_m_product_shopify_duplicate (variant_id, sku, product_id, inventory_item_id, `date`)
+                    SELECT variant_id, sku, product_id, inventory_item_id, NOW() AS `date` FROM tb_m_product_shopify WHERE sku = '" + data_d.Rows(i)("sku").ToString + "';
                 
-                DELETE FROM tb_m_product_shopify WHERE sku = '" + data_d.Rows(i)("sku").ToString + "';
-            ", True, "", "", "", "")
+                    DELETE FROM tb_m_product_shopify WHERE sku = '" + data_d.Rows(i)("sku").ToString + "';
+                ", True, "", "", "", "")
+            End If
         Next
 
         If Not sku = "" Then
