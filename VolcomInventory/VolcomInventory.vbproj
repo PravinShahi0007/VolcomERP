@@ -262,6 +262,7 @@
     <Compile Include="ClassPurcOrder.vb" />
     <Compile Include="ClassPurcReceive.vb" />
     <Compile Include="ClassPurcReturn.vb" />
+    <Compile Include="ClassRetOLStore.vb" />
     <Compile Include="ClassReturn.vb" />
     <Compile Include="ClassSalesDelOrder.vb" />
     <Compile Include="ClassSalesInv.vb" />
@@ -3340,6 +3341,12 @@
       <DependentUpon>FormRetOlStore.vb</DependentUpon>
     </Compile>
     <Compile Include="FormRetOlStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRetOLStoreDet.Designer.vb">
+      <DependentUpon>FormRetOLStoreDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRetOLStoreDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRevenue.Designer.vb">
@@ -9622,6 +9629,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOlStore.resx">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRetOLStoreDet.resx">
+      <DependentUpon>FormRetOLStoreDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>
