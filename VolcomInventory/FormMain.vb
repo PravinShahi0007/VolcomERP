@@ -2941,7 +2941,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormRetOlStore" Then
                 FormRetOLStoreDet.id = FormRetOlStore.GVData.GetFocusedRowCellValue("id_ol_store_ret").ToString
                 FormRetOLStoreDet.action = "upd"
-                FormRetOlStore.ShowDialog()
+                FormRetOLStoreDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
