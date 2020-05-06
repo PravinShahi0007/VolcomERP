@@ -341,6 +341,9 @@
         ElseIf report_mark_type = "236" Then
             'UNIFORM CREDIT NOTE
             FormEmpUniCreditNoteDet.Close()
+        ElseIf report_mark_type = "242" Then
+            'cash advance cancel
+            FormCashAdvanceReconcile.Close()
         End If
     End Sub
     Sub show()
@@ -1196,6 +1199,10 @@ GROUP BY rec.`id_prod_order`"
             FormEmpUniCreditNoteDet.id_emp_uni_ex = id_report
             FormEmpUniCreditNoteDet.is_view = "1"
             FormEmpUniCreditNoteDet.ShowDialog()
+        ElseIf report_mark_type = "242" Then
+            'cash advance cancel
+            FormCashAdvanceReconcile.id_ca = id_report
+            FormCashAdvanceReconcile.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2161,6 +2168,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_follow_up_recap"
             field_number = "''"
             field_date = "created_date"
+        ElseIf report_mark_type = "242" Then
+            'cash advance cancel
+            table_name = "tb_cash_advance_cancel"
+            field_id = "id_cash_advance"
+            field_number = "(SELECT number FROM tb_cash_advance WHERE id_cash_advance = " + id_report + ")"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

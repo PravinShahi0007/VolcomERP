@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormWHAWBill
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormWHAWBill
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormWHAWBill))
         Me.GCAWBill = New DevExpress.XtraGrid.GridControl()
@@ -87,6 +87,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.BShipmentLabel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAWBRec = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnManifest = New DevExpress.XtraEditors.SimpleButton()
@@ -181,6 +182,7 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,6 +192,7 @@ Partial Class FormWHAWBill
         CType(Me.RIDERecStoreDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.CEDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CECompare.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,11 +230,11 @@ Partial Class FormWHAWBill
         'GCAWBill
         '
         Me.GCAWBill.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAWBill.Location = New System.Drawing.Point(0, 39)
+        Me.GCAWBill.Location = New System.Drawing.Point(0, 69)
         Me.GCAWBill.MainView = Me.GVAWBill
         Me.GCAWBill.Name = "GCAWBill"
         Me.GCAWBill.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCICOD, Me.RIDERecStoreDate, Me.RICELock, Me.RICECheck})
-        Me.GCAWBill.Size = New System.Drawing.Size(1273, 437)
+        Me.GCAWBill.Size = New System.Drawing.Size(1273, 407)
         Me.GCAWBill.TabIndex = 0
         Me.GCAWBill.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAWBill})
         '
@@ -927,47 +930,55 @@ Partial Class FormWHAWBill
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BShipmentLabel)
-        Me.PanelControl1.Controls.Add(Me.BAWBRec)
-        Me.PanelControl1.Controls.Add(Me.BtnManifest)
-        Me.PanelControl1.Controls.Add(Me.CEDO)
-        Me.PanelControl1.Controls.Add(Me.BView)
-        Me.PanelControl1.Controls.Add(Me.CECompare)
-        Me.PanelControl1.Controls.Add(Me.DEEnd)
-        Me.PanelControl1.Controls.Add(Me.Label3)
-        Me.PanelControl1.Controls.Add(Me.DEStart)
-        Me.PanelControl1.Controls.Add(Me.Label16)
-        Me.PanelControl1.Controls.Add(Me.TENoEnd)
-        Me.PanelControl1.Controls.Add(Me.Label2)
-        Me.PanelControl1.Controls.Add(Me.Label1)
-        Me.PanelControl1.Controls.Add(Me.TENoStart)
+        Me.PanelControl1.Controls.Add(Me.XtraScrollableControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1273, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(1273, 69)
         Me.PanelControl1.TabIndex = 1
+        '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.Panel1)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label1)
+        Me.XtraScrollableControl1.Controls.Add(Me.BShipmentLabel)
+        Me.XtraScrollableControl1.Controls.Add(Me.BAWBRec)
+        Me.XtraScrollableControl1.Controls.Add(Me.TENoStart)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label2)
+        Me.XtraScrollableControl1.Controls.Add(Me.BtnManifest)
+        Me.XtraScrollableControl1.Controls.Add(Me.TENoEnd)
+        Me.XtraScrollableControl1.Controls.Add(Me.CEDO)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label16)
+        Me.XtraScrollableControl1.Controls.Add(Me.BView)
+        Me.XtraScrollableControl1.Controls.Add(Me.DEStart)
+        Me.XtraScrollableControl1.Controls.Add(Me.CECompare)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label3)
+        Me.XtraScrollableControl1.Controls.Add(Me.DEEnd)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1269, 65)
+        Me.XtraScrollableControl1.TabIndex = 110
         '
         'BShipmentLabel
         '
-        Me.BShipmentLabel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BShipmentLabel.Location = New System.Drawing.Point(1040, 2)
+        Me.BShipmentLabel.Location = New System.Drawing.Point(1010, 12)
         Me.BShipmentLabel.Name = "BShipmentLabel"
-        Me.BShipmentLabel.Size = New System.Drawing.Size(124, 35)
+        Me.BShipmentLabel.Size = New System.Drawing.Size(124, 23)
         Me.BShipmentLabel.TabIndex = 109
         Me.BShipmentLabel.Text = "Print Shipment Label"
         '
         'BAWBRec
         '
-        Me.BAWBRec.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAWBRec.Location = New System.Drawing.Point(1164, 2)
+        Me.BAWBRec.Location = New System.Drawing.Point(1140, 12)
         Me.BAWBRec.Name = "BAWBRec"
-        Me.BAWBRec.Size = New System.Drawing.Size(107, 35)
+        Me.BAWBRec.Size = New System.Drawing.Size(107, 23)
         Me.BAWBRec.TabIndex = 108
         Me.BAWBRec.Text = "Import AWB Data"
         '
         'BtnManifest
         '
-        Me.BtnManifest.Location = New System.Drawing.Point(903, 8)
+        Me.BtnManifest.Location = New System.Drawing.Point(907, 12)
         Me.BtnManifest.Name = "BtnManifest"
         Me.BtnManifest.Size = New System.Drawing.Size(97, 23)
         Me.BtnManifest.TabIndex = 107
@@ -976,7 +987,7 @@ Partial Class FormWHAWBill
         '
         'CEDO
         '
-        Me.CEDO.Location = New System.Drawing.Point(733, 10)
+        Me.CEDO.Location = New System.Drawing.Point(737, 14)
         Me.CEDO.Name = "CEDO"
         Me.CEDO.Properties.Caption = "Show DO"
         Me.CEDO.Size = New System.Drawing.Size(79, 19)
@@ -984,7 +995,7 @@ Partial Class FormWHAWBill
         '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(822, 8)
+        Me.BView.Location = New System.Drawing.Point(826, 12)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(75, 23)
         Me.BView.TabIndex = 105
@@ -992,7 +1003,7 @@ Partial Class FormWHAWBill
         '
         'CECompare
         '
-        Me.CECompare.Location = New System.Drawing.Point(572, 10)
+        Me.CECompare.Location = New System.Drawing.Point(576, 14)
         Me.CECompare.Name = "CECompare"
         Me.CECompare.Properties.Caption = "Show Calculation All Cargo"
         Me.CECompare.Size = New System.Drawing.Size(155, 19)
@@ -1001,7 +1012,7 @@ Partial Class FormWHAWBill
         'DEEnd
         '
         Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(440, 10)
+        Me.DEEnd.Location = New System.Drawing.Point(444, 14)
         Me.DEEnd.Name = "DEEnd"
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1013,7 +1024,7 @@ Partial Class FormWHAWBill
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(423, 13)
+        Me.Label3.Location = New System.Drawing.Point(427, 17)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(11, 13)
         Me.Label3.TabIndex = 102
@@ -1022,7 +1033,7 @@ Partial Class FormWHAWBill
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(301, 10)
+        Me.DEStart.Location = New System.Drawing.Point(305, 14)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1034,7 +1045,7 @@ Partial Class FormWHAWBill
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(265, 13)
+        Me.Label16.Location = New System.Drawing.Point(269, 17)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(30, 13)
         Me.Label16.TabIndex = 100
@@ -1043,7 +1054,7 @@ Partial Class FormWHAWBill
         '
         'TENoEnd
         '
-        Me.TENoEnd.Location = New System.Drawing.Point(166, 10)
+        Me.TENoEnd.Location = New System.Drawing.Point(170, 14)
         Me.TENoEnd.Name = "TENoEnd"
         Me.TENoEnd.Size = New System.Drawing.Size(81, 20)
         Me.TENoEnd.TabIndex = 5
@@ -1051,7 +1062,7 @@ Partial Class FormWHAWBill
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(149, 13)
+        Me.Label2.Location = New System.Drawing.Point(153, 17)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(11, 13)
         Me.Label2.TabIndex = 4
@@ -1060,7 +1071,7 @@ Partial Class FormWHAWBill
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 15)
+        Me.Label1.Location = New System.Drawing.Point(16, 17)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(44, 13)
         Me.Label1.TabIndex = 3
@@ -1068,7 +1079,7 @@ Partial Class FormWHAWBill
         '
         'TENoStart
         '
-        Me.TENoStart.Location = New System.Drawing.Point(62, 12)
+        Me.TENoStart.Location = New System.Drawing.Point(66, 14)
         Me.TENoStart.Name = "TENoStart"
         Me.TENoStart.Properties.Appearance.Options.UseTextOptions = True
         Me.TENoStart.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1913,6 +1924,13 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
         '
+        'Panel1
+        '
+        Me.Panel1.Location = New System.Drawing.Point(1247, 18)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(17, 17)
+        Me.Panel1.TabIndex = 110
+        '
         'FormWHAWBill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1935,7 +1953,8 @@ Partial Class FormWHAWBill
         CType(Me.RIDERecStoreDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
+        Me.XtraScrollableControl1.ResumeLayout(False)
+        Me.XtraScrollableControl1.PerformLayout()
         CType(Me.CEDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CECompare.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2134,4 +2153,6 @@ Partial Class FormWHAWBill
     Friend WithEvents gbETALT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BShipmentLabel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
+    Friend WithEvents Panel1 As Panel
 End Class

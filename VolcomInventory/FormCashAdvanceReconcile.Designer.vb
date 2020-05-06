@@ -56,6 +56,7 @@ Partial Class FormCashAdvanceReconcile
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -133,6 +134,24 @@ Partial Class FormCashAdvanceReconcile
         Me.PCBBM = New DevExpress.XtraEditors.PanelControl()
         Me.BDelBBM = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddBBM = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPCancel = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCancel = New DevExpress.XtraGrid.GridControl()
+        Me.GVCancel = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RSLECOABCFROM = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RSLECOABCTO = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,6 +208,15 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCBBM.SuspendLayout()
+        Me.XTPCancel.SuspendLayout()
+        CType(Me.GCCancel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCancel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RSLECOABCFROM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RSLECOABCTO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl4
@@ -536,6 +564,7 @@ Partial Class FormCashAdvanceReconcile
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnViewJournal)
+        Me.PanelControl3.Controls.Add(Me.SBCancel)
         Me.PanelControl3.Controls.Add(Me.SBReset)
         Me.PanelControl3.Controls.Add(Me.SBAttachment)
         Me.PanelControl3.Controls.Add(Me.BPrint)
@@ -553,11 +582,22 @@ Partial Class FormCashAdvanceReconcile
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Enabled = False
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(485, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(396, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 33)
         Me.BtnViewJournal.TabIndex = 21
         Me.BtnViewJournal.Text = "View Journal"
+        '
+        'SBCancel
+        '
+        Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBCancel.Enabled = False
+        Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
+        Me.SBCancel.Location = New System.Drawing.Point(501, 2)
+        Me.SBCancel.Name = "SBCancel"
+        Me.SBCancel.Size = New System.Drawing.Size(89, 33)
+        Me.SBCancel.TabIndex = 24
+        Me.SBCancel.Text = "Cancel"
         '
         'SBReset
         '
@@ -861,7 +901,7 @@ Partial Class FormCashAdvanceReconcile
         Me.XTCCA.SelectedTabPage = Me.XTPListExpense
         Me.XTCCA.Size = New System.Drawing.Size(1008, 571)
         Me.XTCCA.TabIndex = 18
-        Me.XTCCA.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListExpense, Me.XTPWithdrawal, Me.XTPDeposit})
+        Me.XTCCA.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListExpense, Me.XTPWithdrawal, Me.XTPDeposit, Me.XTPCancel})
         '
         'XTPListExpense
         '
@@ -1262,6 +1302,170 @@ Partial Class FormCashAdvanceReconcile
         Me.BAddBBM.TabIndex = 2
         Me.BAddBBM.Text = "Add"
         '
+        'XTPCancel
+        '
+        Me.XTPCancel.Controls.Add(Me.GCCancel)
+        Me.XTPCancel.Name = "XTPCancel"
+        Me.XTPCancel.Size = New System.Drawing.Size(1002, 543)
+        Me.XTPCancel.Text = "Cancel"
+        '
+        'GCCancel
+        '
+        Me.GCCancel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCancel.Location = New System.Drawing.Point(0, 0)
+        Me.GCCancel.MainView = Me.GVCancel
+        Me.GCCancel.Name = "GCCancel"
+        Me.GCCancel.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit7, Me.RepositoryItemTextEdit8, Me.RSLECOABCFROM, Me.RSLECOABCTO})
+        Me.GCCancel.Size = New System.Drawing.Size(1002, 543)
+        Me.GCCancel.TabIndex = 19
+        Me.GCCancel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCancel})
+        '
+        'GVCancel
+        '
+        Me.GVCancel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn52, Me.GridColumn47, Me.GridColumn46, Me.GridColumn45, Me.GridColumn51, Me.GridColumn53})
+        Me.GVCancel.GridControl = Me.GCCancel
+        Me.GVCancel.Name = "GVCancel"
+        Me.GVCancel.OptionsView.ShowFooter = True
+        Me.GVCancel.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.FieldName = "id_cash_advance_report"
+        Me.GridColumn52.Name = "GridColumn52"
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "Account From"
+        Me.GridColumn47.ColumnEdit = Me.RSLECOABCFROM
+        Me.GridColumn47.FieldName = "id_acc_from"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.OptionsColumn.AllowEdit = False
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 0
+        Me.GridColumn47.Width = 150
+        '
+        'RSLECOABCFROM
+        '
+        Me.RSLECOABCFROM.AutoHeight = False
+        Me.RSLECOABCFROM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RSLECOABCFROM.Name = "RSLECOABCFROM"
+        Me.RSLECOABCFROM.View = Me.GridView9
+        '
+        'GridView9
+        '
+        Me.GridView9.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn48, Me.GridColumn49, Me.GridColumn50})
+        Me.GridView9.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView9.Name = "GridView9"
+        Me.GridView9.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView9.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "ID Acc"
+        Me.GridColumn48.FieldName = "id_acc"
+        Me.GridColumn48.Name = "GridColumn48"
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "COA"
+        Me.GridColumn49.FieldName = "acc_name"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 0
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "Description"
+        Me.GridColumn50.FieldName = "acc_description"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 1
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Description"
+        Me.GridColumn46.FieldName = "description_from"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.OptionsColumn.AllowEdit = False
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 1
+        Me.GridColumn46.Width = 150
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Account To"
+        Me.GridColumn45.ColumnEdit = Me.RSLECOABCTO
+        Me.GridColumn45.FieldName = "id_acc_to"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 2
+        Me.GridColumn45.Width = 150
+        '
+        'RSLECOABCTO
+        '
+        Me.RSLECOABCTO.AutoHeight = False
+        Me.RSLECOABCTO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RSLECOABCTO.Name = "RSLECOABCTO"
+        Me.RSLECOABCTO.View = Me.GridView4
+        '
+        'GridView4
+        '
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "Description"
+        Me.GridColumn51.FieldName = "description_to"
+        Me.GridColumn51.Name = "GridColumn51"
+        Me.GridColumn51.Visible = True
+        Me.GridColumn51.VisibleIndex = 3
+        Me.GridColumn51.Width = 150
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.Caption = "Value"
+        Me.GridColumn53.ColumnEdit = Me.RepositoryItemTextEdit7
+        Me.GridColumn53.DisplayFormat.FormatString = "N2"
+        Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn53.FieldName = "value"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.OptionsColumn.AllowEdit = False
+        Me.GridColumn53.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 4
+        Me.GridColumn53.Width = 384
+        '
+        'RepositoryItemTextEdit7
+        '
+        Me.RepositoryItemTextEdit7.AutoHeight = False
+        Me.RepositoryItemTextEdit7.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit7.EditFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit7.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit7.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit7.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit7.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit7.Name = "RepositoryItemTextEdit7"
+        '
+        'RepositoryItemTextEdit8
+        '
+        Me.RepositoryItemTextEdit8.AutoHeight = False
+        Me.RepositoryItemTextEdit8.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit8.EditFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit8.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit8.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit8.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit8.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit8.Name = "RepositoryItemTextEdit8"
+        '
         'FormCashAdvanceReconcile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1334,6 +1538,15 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCBBM, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCBBM.ResumeLayout(False)
+        Me.XTPCancel.ResumeLayout(False)
+        CType(Me.GCCancel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCancel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RSLECOABCFROM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RSLECOABCTO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1450,4 +1663,23 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RSLECOA As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents SBCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPCancel As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCCancel As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCancel As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RSLECOABCFROM As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit7 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemTextEdit8 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RSLECOABCTO As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
