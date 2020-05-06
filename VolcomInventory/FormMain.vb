@@ -1765,6 +1765,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBudgetProdDemandNew.ShowDialog()
         ElseIf formName = "FormLetterOfStatement" Then
             FormLetterOfStatementDet.ShowDialog()
+        ElseIf formName = "FormRetOlStore" Then
+            FormRetOlStoreDet.action = "ins"
+            FormRetOLStoreDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2935,6 +2938,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                         FormBudgetProdDemandDet.ShowDialog()
                     End If
                 End If
+            ElseIf formName = "FormRetOlStore" Then
+                FormRetOLStoreDet.id = FormRetOlStore.GVData.GetFocusedRowCellValue("id_ol_store_ret").ToString
+                FormRetOLStoreDet.action = "upd"
+                FormRetOlStore.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8158,6 +8165,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormTabunganMissing.print()
         ElseIf formName = "FormCompareStockWebsite" Then
             FormCompareStockWebsite.print()
+        ElseIf formName = "FormRetOlStore" Then
+            print(FormRetOlStore.GCData, "Pre Return List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9029,6 +9038,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormItemTrf" Then
             FormItemTrf.Close()
             FormItemTrf.Dispose()
+        ElseIf formName = "FormRetOlStore" Then
+            FormRetOlStore.Close()
+            FormRetOlStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9932,6 +9944,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormLetterOfStatement" Then
             FormLetterOfStatement.form_load()
+        ElseIf formName = "FormRetOlStore" Then
+            FormRetOlStore.viewData()
         End If
     End Sub
     'Switch

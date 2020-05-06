@@ -21,21 +21,13 @@ Partial Class FormRetOlStore
     Private Sub InitializeComponent()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPReturnList = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPReturnList.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -47,79 +39,32 @@ Partial Class FormRetOlStore
         Me.XtraTabControl1.SelectedTabPage = Me.XTPReturnList
         Me.XtraTabControl1.Size = New System.Drawing.Size(1155, 579)
         Me.XtraTabControl1.TabIndex = 1
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturnList, Me.XtraTabPage2})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturnList})
         '
         'XTPReturnList
         '
-        Me.XTPReturnList.Controls.Add(Me.GridControl1)
-        Me.XTPReturnList.Controls.Add(Me.PanelControl1)
+        Me.XTPReturnList.Controls.Add(Me.GCData)
         Me.XTPReturnList.Name = "XTPReturnList"
         Me.XTPReturnList.Size = New System.Drawing.Size(1149, 551)
-        Me.XTPReturnList.Text = "Return List"
+        Me.XTPReturnList.Text = "List"
         '
-        'GridControl1
+        'GCData
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 55)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1149, 496)
-        Me.GridControl1.TabIndex = 1
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCData.Location = New System.Drawing.Point(0, 0)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(1149, 551)
+        Me.GCData.TabIndex = 1
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
-        'GridView1
+        'GVData
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Return Number"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Order#"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1149, 55)
-        Me.PanelControl1.TabIndex = 0
-        '
-        'XtraTabPage2
-        '
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1149, 551)
-        Me.XtraTabPage2.Text = "XtraTabPage2"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Date Created"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Created By"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'FormRetOlStore
         '
@@ -132,27 +77,19 @@ Partial Class FormRetOlStore
         Me.MinimizeBox = False
         Me.Name = "FormRetOlStore"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Return Online Shop"
+        Me.Text = "Pre Return Online Store"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPReturnList.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPReturnList As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
