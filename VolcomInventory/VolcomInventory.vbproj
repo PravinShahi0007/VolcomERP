@@ -2694,6 +2694,12 @@
     <Compile Include="FormOlStoreReturnList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOlStoreReturnListUpdate.Designer.vb">
+      <DependentUpon>FormOlStoreReturnListUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOlStoreReturnListUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreSummary.Designer.vb">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
     </Compile>
@@ -9291,6 +9297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOlStoreReturnList.resx">
       <DependentUpon>FormOlStoreReturnList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOlStoreReturnListUpdate.resx">
+      <DependentUpon>FormOlStoreReturnListUpdate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreSummary.resx">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
