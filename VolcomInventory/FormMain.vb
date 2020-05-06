@@ -1766,8 +1766,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormLetterOfStatement" Then
             FormLetterOfStatementDet.ShowDialog()
         ElseIf formName = "FormRetOlStore" Then
-            FormRetOlStoreDet.action = "ins"
-            FormRetOLStoreDet.ShowDialog()
+            If FormRetOlStore.XTCData.SelectedTabPageIndex = 1 Then
+                FormRetOLStoreDet.action = "ins"
+                FormRetOLStoreDet.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2939,9 +2941,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     End If
                 End If
             ElseIf formName = "FormRetOlStore" Then
-                FormRetOLStoreDet.id = FormRetOlStore.GVData.GetFocusedRowCellValue("id_ol_store_ret").ToString
-                FormRetOLStoreDet.action = "upd"
-                FormRetOLStoreDet.ShowDialog()
+                If FormRetOlStore.XTCData.SelectedTabPageIndex = 0 Then
+                    FormRetOLStoreDet.id = FormRetOlStore.GVData.GetFocusedRowCellValue("id_ol_store_ret").ToString
+                    FormRetOLStoreDet.action = "upd"
+                    FormRetOLStoreDet.ShowDialog()
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
