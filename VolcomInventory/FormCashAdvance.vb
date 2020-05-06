@@ -124,7 +124,7 @@ SELECT id_employee,employee_name FROM tb_m_employee"
         Dim query As String = "SELECT 'no' AS is_check,ca.act_report_back_date,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
 ,ca.`id_employee`,emp.`employee_name`,ca.`id_departement`,dep.`departement`,ca.`val_ca`,ca.`note`,ca.`id_report_status`,sts.`report_status`,sts_rb.report_status AS report_back_status
 ,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml,IFNULL(recon.recon_value,ca.`val_ca`) AS recon_value
-,IF(ca.id_report_status=5, 'Cancelled', IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,IF(DATE(ca.report_back_due_date)<DATE(NOW()),'Overdue','Open'),IF(ca.rb_id_report_status =6,'Closed','On Process'))) AS rb_status
+,IF(cl.id_report_status IS NULL, IF(ca.id_report_status = 5, 'Cancelled', IF(ca.rb_id_report_status != 6 AND IFNULL(recon.jml, 0) <= 0,IF(DATE(ca.report_back_due_date) < DATE(NOW()),'Overdue', 'Open'), IF(ca.rb_id_report_status = 6, 'Closed', 'On Process'))), IF(cl.id_report_status = 1, 'On Process Cancel', IF(cl.id_report_status = 6, 'Cancelled', ''))) AS rb_status
 ,IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0 AND ca.id_report_status!=5,DATEDIFF(NOW(),ca.report_back_due_date),0) AS overdue
 FROM tb_cash_advance ca
 INNER JOIN tb_lookup_cash_advance_type cat ON cat.`id_cash_advance_type`=ca.`id_cash_advance_type`
@@ -144,6 +144,7 @@ LEFT JOIN
     ) AS tb
     GROUP BY id_cash_advance
 ) recon ON recon.id_cash_advance=ca.id_cash_advance
+LEFT JOIN tb_cash_advance_cancel AS cl ON ca.id_cash_advance = cl.id_cash_advance
 WHERE 1=1 " & where_string & " ORDER BY ca.`date_created` DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListOpen.DataSource = data
