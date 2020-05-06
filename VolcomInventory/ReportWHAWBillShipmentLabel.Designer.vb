@@ -38,13 +38,14 @@ Partial Public Class ReportWHAWBillShipmentLabel
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1, Me.XrLabel5, Me.XrLabel6, Me.XrLabel4, Me.XrLabel3})
         Me.Detail.HeightF = 285.9167!
+        Me.Detail.KeepTogether = True
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.PageBreak = DevExpress.XtraReports.UI.PageBreak.AfterBand
@@ -249,20 +250,21 @@ Partial Public Class ReportWHAWBillShipmentLabel
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 100.0!
+        Me.BottomMargin.HeightF = 50.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'ReportHeader
+        'PageHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.XrLabel2, Me.XrLine1, Me.XrLabel1})
-        Me.ReportHeader.HeightF = 93.99999!
-        Me.ReportHeader.Name = "ReportHeader"
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XrLine1, Me.XrLabel1, Me.XrLabel14})
+        Me.PageHeader.HeightF = 93.99999!
+        Me.PageHeader.Name = "PageHeader"
         '
         'ReportWHAWBillShipmentLabel
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader})
+        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 100, 50)
         Me.PageHeight = 583
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
@@ -290,5 +292,5 @@ Partial Public Class ReportWHAWBillShipmentLabel
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
+    Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
 End Class
