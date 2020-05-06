@@ -545,4 +545,8 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub CEAllow_CheckedChanged(sender As Object, e As EventArgs) Handles CEAllow.CheckedChanged
+
+    End Sub
 End Class
