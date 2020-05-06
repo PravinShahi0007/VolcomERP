@@ -24,10 +24,14 @@ Partial Class FormOlStoreReturnList
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -43,10 +47,6 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,6 +97,28 @@ Partial Class FormOlStoreReturnList
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID"
+        Me.GridColumn12.FieldName = "id_comp_group"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Group"
+        Me.GridColumn13.FieldName = "comp_group"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Description"
+        Me.GridColumn14.FieldName = "description"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        '
         'BUpdateStatus
         '
         Me.BUpdateStatus.Image = CType(resources.GetObject("BUpdateStatus.Image"), System.Drawing.Image)
@@ -130,6 +152,14 @@ Partial Class FormOlStoreReturnList
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Order Number"
+        Me.GridColumn15.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
         '
         'BSearch
         '
@@ -187,7 +217,7 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn8.FieldName = "ret_req_number"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 2
         '
         'GridColumn7
         '
@@ -195,7 +225,7 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn7.FieldName = "number"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.VisibleIndex = 3
         '
         'GridColumn10
         '
@@ -203,15 +233,15 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn10.FieldName = "sales_order_ol_shop_number"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.VisibleIndex = 4
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Order Id"
-        Me.GridColumn2.FieldName = "id_sales_order_ol_shop"
+        Me.GridColumn2.Caption = "Group Store"
+        Me.GridColumn2.FieldName = "comp_group"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -252,36 +282,6 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 9
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "ID"
-        Me.GridColumn12.FieldName = "id_comp_group"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Group"
-        Me.GridColumn13.FieldName = "comp_group"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 0
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Description"
-        Me.GridColumn14.FieldName = "description"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 1
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Order Number"
-        Me.GridColumn15.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 0
         '
         'FormOlStoreReturnList
         '

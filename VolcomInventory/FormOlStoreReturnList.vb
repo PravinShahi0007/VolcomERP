@@ -61,7 +61,7 @@ GROUP BY sales_order_ol_shop_number"
             q_where += " AND r.id_comp_group='" & SLEOrder.EditValue.ToString & "'"
         End If
 
-        Dim q As String = "SELECT 'no' AS is_check,r.`number`,r.`ret_req_number`,sd.`item_id`,`sales_order_ol_shop_number`,r.`ret_req_number`,p.`product_display_name`,cd.`code_detail_name` AS size,stt.`ol_store_ret_stt`,emp.`employee_name`,rl.`update_date`,CONCAT(p.`product_full_code`,plc.`pl_sales_order_del_det_counting`) AS full_code
+        Dim q As String = "SELECT 'no' AS is_check,cg.comp_group,rl.id_ol_store_ret_list,r.`number`,r.`ret_req_number`,sd.`item_id`,`sales_order_ol_shop_number`,r.`ret_req_number`,p.`product_display_name`,cd.`code_detail_name` AS size,stt.`ol_store_ret_stt`,emp.`employee_name`,rl.`update_date`,CONCAT(p.`product_full_code`,plc.`pl_sales_order_del_det_counting`) AS full_code
 FROM tb_ol_store_ret_list rl
 INNER JOIN tb_ol_store_ret_det rd ON rd.`id_ol_store_ret_det`=rl.id_ol_store_ret_det
 INNER JOIN `tb_pl_sales_order_del_det_counting` plc ON rd.`id_pl_sales_order_del_det_counting`=plc.id_pl_sales_order_del_det_counting
@@ -71,6 +71,7 @@ INNER JOIN tb_m_product p ON p.`id_product`=sd.`id_product`
 INNER JOIN tb_m_product_code pc ON pc.`id_product`=p.`id_product`
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=pc.`id_code_detail` AND cd.`id_code`='33'
 INNER JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=rl.id_ol_store_ret_stt
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=r.id_comp_group
 LEFT JOIN tb_m_user usr ON usr.id_user=rl.`update_by`
 LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee` " & q_where
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
