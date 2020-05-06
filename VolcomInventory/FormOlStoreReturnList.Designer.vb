@@ -21,36 +21,43 @@ Partial Class FormOlStoreReturnList
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOlStoreReturnList))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
         Me.PanelControl1.Controls.Add(Me.BUpdateStatus)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SLEOrder)
@@ -60,6 +67,47 @@ Partial Class FormOlStoreReturnList
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1164, 46)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BUpdateStatus
+        '
+        Me.BUpdateStatus.Image = CType(resources.GetObject("BUpdateStatus.Image"), System.Drawing.Image)
+        Me.BUpdateStatus.Location = New System.Drawing.Point(569, 10)
+        Me.BUpdateStatus.Name = "BUpdateStatus"
+        Me.BUpdateStatus.Size = New System.Drawing.Size(113, 23)
+        Me.BUpdateStatus.TabIndex = 3
+        Me.BUpdateStatus.Text = "Update Status"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(236, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl1.TabIndex = 2
+        Me.LabelControl1.Text = "Order Number"
+        '
+        'SLEOrder
+        '
+        Me.SLEOrder.Location = New System.Drawing.Point(310, 12)
+        Me.SLEOrder.Name = "SLEOrder"
+        Me.SLEOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEOrder.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEOrder.Size = New System.Drawing.Size(185, 20)
+        Me.SLEOrder.TabIndex = 1
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'BSearch
+        '
+        Me.BSearch.Location = New System.Drawing.Point(501, 10)
+        Me.BSearch.Name = "BSearch"
+        Me.BSearch.Size = New System.Drawing.Size(62, 23)
+        Me.BSearch.TabIndex = 0
+        Me.BSearch.Text = "Search"
         '
         'GCList
         '
@@ -79,10 +127,53 @@ Partial Class FormOlStoreReturnList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.Caption = "*"
+        Me.GridColumn11.ColumnEdit = Me.RICECheck
+        Me.GridColumn11.FieldName = "is_check"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 59
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
+        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Request Return Number"
+        Me.GridColumn8.FieldName = "ret_req_number"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Pre Return Number"
+        Me.GridColumn7.FieldName = "number"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Order#"
+        Me.GridColumn10.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
         '
         'GridColumn2
         '
@@ -108,6 +199,14 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 6
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Size"
+        Me.GridColumn9.FieldName = "size"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 7
+        '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Unique Code"
@@ -124,97 +223,29 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 9
         '
-        'GridColumn7
+        'LabelControl2
         '
-        Me.GridColumn7.Caption = "Pre Return Number"
-        Me.GridColumn7.FieldName = "number"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(29, 13)
+        Me.LabelControl2.TabIndex = 5
+        Me.LabelControl2.Text = "Group"
         '
-        'GridColumn8
+        'SearchLookUpEdit1
         '
-        Me.GridColumn8.Caption = "Request Return Number"
-        Me.GridColumn8.FieldName = "ret_req_number"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(45, 12)
+        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
+        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit1.Properties.View = Me.GridView1
+        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(185, 20)
+        Me.SearchLookUpEdit1.TabIndex = 4
         '
-        'GridColumn9
+        'GridView1
         '
-        Me.GridColumn9.Caption = "Size"
-        Me.GridColumn9.FieldName = "size"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
-        '
-        'BSearch
-        '
-        Me.BSearch.Location = New System.Drawing.Point(278, 10)
-        Me.BSearch.Name = "BSearch"
-        Me.BSearch.Size = New System.Drawing.Size(62, 23)
-        Me.BSearch.TabIndex = 0
-        Me.BSearch.Text = "Search"
-        '
-        'SLEOrder
-        '
-        Me.SLEOrder.Location = New System.Drawing.Point(87, 12)
-        Me.SLEOrder.Name = "SLEOrder"
-        Me.SLEOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEOrder.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEOrder.Size = New System.Drawing.Size(185, 20)
-        Me.SLEOrder.TabIndex = 1
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(13, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(68, 13)
-        Me.LabelControl1.TabIndex = 2
-        Me.LabelControl1.Text = "Order Number"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Order#"
-        Me.GridColumn10.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
-        '
-        'BUpdateStatus
-        '
-        Me.BUpdateStatus.Image = CType(resources.GetObject("BUpdateStatus.Image"), System.Drawing.Image)
-        Me.BUpdateStatus.Location = New System.Drawing.Point(346, 10)
-        Me.BUpdateStatus.Name = "BUpdateStatus"
-        Me.BUpdateStatus.Size = New System.Drawing.Size(113, 23)
-        Me.BUpdateStatus.TabIndex = 3
-        Me.BUpdateStatus.Text = "Update Status"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.Caption = "*"
-        Me.GridColumn11.ColumnEdit = Me.RICECheck
-        Me.GridColumn11.FieldName = "is_check"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 59
-        '
-        'RICECheck
-        '
-        Me.RICECheck.AutoHeight = False
-        Me.RICECheck.Name = "RICECheck"
-        Me.RICECheck.ValueChecked = "yes"
-        Me.RICECheck.ValueUnchecked = "no"
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'FormOlStoreReturnList
         '
@@ -228,15 +259,17 @@ Partial Class FormOlStoreReturnList
         Me.MinimizeBox = False
         Me.Name = "FormOlStoreReturnList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Request Return List"
+        Me.Text = "Return Centre"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -261,4 +294,7 @@ Partial Class FormOlStoreReturnList
     Friend WithEvents BUpdateStatus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
