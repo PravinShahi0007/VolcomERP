@@ -654,28 +654,36 @@
     Private Sub BShipmentLabel_Click(sender As Object, e As EventArgs) Handles BShipmentLabel.Click
         GVAWBill.ActiveFilterString = "[is_check] = 'yes'"
 
-        For i = 0 To GVAWBill.RowCount - 1
-            If GVAWBill.IsValidRowHandle(i) Then
-                Dim query As String = "
-                    SELECT aw.awbill_no, so.sales_order_ol_shop_number, so.customer_name, so.shipping_address, so.shipping_city, CONCAT(so.shipping_region, ', ', so.shipping_post_code) AS shipping_region_post_code, CONCAT(0, so.shipping_phone) AS shipping_phone
-                    FROM tb_wh_awbill_det AS aw_det
-                    LEFT JOIN tb_pl_sales_order_del AS pl_del ON aw_det.id_pl_sales_order_del = pl_del.id_pl_sales_order_del
-                    LEFT JOIN tb_sales_order AS so ON pl_del.id_sales_order = so.id_sales_order
-                    LEFT JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
-                    WHERE aw_det.id_awbill = " + GVAWBill.GetRowCellValue(i, "id_awbill").ToString + "
-                "
+        If GVAWBill.RowCount > 0 Then
+            Dim q_in As String = ""
 
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            For i = 0 To GVAWBill.RowCount - 1
+                If GVAWBill.IsValidRowHandle(i) Then
+                    q_in += GVAWBill.GetRowCellValue(i, "id_awbill").ToString + ", "
+                End If
+            Next
 
-                Dim report As ReportWHAWBillShipmentLabel = New ReportWHAWBillShipmentLabel
+            Dim query As String = "
+                SELECT aw.awbill_no, so.sales_order_ol_shop_number, so.customer_name, so.shipping_address, so.shipping_city, CONCAT(so.shipping_region, ', ', so.shipping_post_code) AS shipping_region_post_code, so.shipping_phone
+                FROM tb_wh_awbill_det AS aw_det
+                LEFT JOIN tb_pl_sales_order_del AS pl_del ON aw_det.id_pl_sales_order_del = pl_del.id_pl_sales_order_del
+                LEFT JOIN tb_sales_order AS so ON pl_del.id_sales_order = so.id_sales_order
+                LEFT JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
+                WHERE aw_det.id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")
+            "
 
-                report.DataSource = data
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-                Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+            Dim report As ReportWHAWBillShipmentLabel = New ReportWHAWBillShipmentLabel
 
-                tool.ShowPreview()
-            End If
-        Next
+            report.DataSource = data
+
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+            tool.ShowPreview()
+        Else
+            errorCustom("No AWB selected.")
+        End If
 
         GVAWBill.ActiveFilterString = ""
     End Sub
