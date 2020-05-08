@@ -396,11 +396,13 @@ GROUP BY p.sku"
         Next
     End Sub
 
-    Sub set_fullfill(ByVal id_order As String, ByVal location_id As String, ByVal tracking_number As String, ByVal val As String)
+    Sub set_fullfill(ByVal id_order As String, ByVal location_id As String, ByVal tracking_number As String, ByVal val As String, ByVal tracking_comp As String, ByVal tracking_url As String)
         Dim data = Text.Encoding.UTF8.GetBytes("{
   ""fulfillment"": {
     ""location_id"": " + location_id + ",
     ""tracking_number"": " + tracking_number + ",
+    ""tracking_company"": " + tracking_comp + ",
+    ""tracking_url"": " + tracking_url + tracking_number + ",
     ""line_items"": [
       " + val + "
     ]
