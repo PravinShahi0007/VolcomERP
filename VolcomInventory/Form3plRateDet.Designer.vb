@@ -284,7 +284,6 @@ Partial Class Form3plRateDet
         '
         Me.SLESubDistrict.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLESubDistrict.Enabled = False
         Me.SLESubDistrict.Location = New System.Drawing.Point(95, 43)
         Me.SLESubDistrict.Name = "SLESubDistrict"
         Me.SLESubDistrict.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
