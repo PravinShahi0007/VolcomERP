@@ -370,4 +370,64 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnSyncOrder.Click
+        Cursor = Cursors.WaitCursor
+        Dim is_processed_order As String = get_setup_field("is_processed_order")
+        If is_processed_order = "1" Then
+            stopCustom("Sync still running")
+        Else
+            FormMain.SplashScreenManager1.ShowWaitForm()
+
+            'cek allow
+            Dim is_must_ok_stock As String = "2"
+            is_must_ok_stock = "1"
+
+            Dim ord As New ClassSalesOrder()
+            ord.setProceccedWebOrder("1")
+            ord.insertLogWebOrder("0", "Start")
+
+            'get order from web
+            Dim err As String = ""
+            Try
+                Dim shop As New ClassShopifyApi()
+                shop.get_order_erp()
+            Catch ex As Exception
+                err = ex.ToString
+            End Try
+            ord.insertLogWebOrder("0", "Get order from website. " + err)
+
+            'get order yg belum diproses
+            Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
+            WHERE o.is_process=2
+            GROUP BY o.id "
+            Dim dord As DataTable = execute_query(qord, -1, True, "", "", "", "")
+            If dord.Rows.Count > 0 Then
+                Try
+                    For i As Integer = 0 To dord.Rows.Count - 1
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Checking order #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
+                        execute_non_query_long("CALL create_web_order(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ");", True, "", "", "", "")
+                    Next
+                Catch ex As Exception
+                    ord.insertLogWebOrder("0", ex.ToString)
+                    stopCustom(ex.ToString)
+                End Try
+                ord.setProceccedWebOrder("2")
+                ord.insertLogWebOrder("0", "End")
+            Else
+                ord.setProceccedWebOrder("2")
+                ord.insertLogWebOrder("0", "End")
+            End If
+
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Loading order")
+            viewSalesOrder()
+            FormMain.SplashScreenManager1.CloseWaitForm()
+            If err = "" Then
+                infoCustom("Sync completed.")
+            Else
+                infoCustom("Problem get order from web. " + err)
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

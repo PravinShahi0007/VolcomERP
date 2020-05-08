@@ -19,8 +19,15 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        Dim a As New ClassShopifyApi()
-        a.get_product()
+        'Dim a As New ClassShopifyApi()
+        'a.get_product()
+        Dim a As String = "888820117991-GWP"
+
+        Console.WriteLine(a.Replace("-GWP", ""))
+
+        Dim b As String = "888820117991"
+
+        Console.WriteLine(b.Replace("-GWP", ""))
         'FormUniqueCode.Show()
         'FormStockUniS78New.ShowDialog()
         'FormTestCheckvb.ShowDialog()

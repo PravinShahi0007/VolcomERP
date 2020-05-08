@@ -9045,6 +9045,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormRetOlStore" Then
             FormRetOlStore.Close()
             FormRetOlStore.Dispose()
+        ElseIf formName = "FormOlStoreReturnList" Then
+            FormOlStoreReturnList.Close()
+            FormOlStoreReturnList.Dispose()
+        ElseIf formName = "FormOlStoreRetCust" Then
+            FormOlStoreRetCust.Close()
+            FormOlStoreRetCust.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -14785,6 +14791,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOlStoreReturnList.Show()
             FormOlStoreReturnList.WindowState = FormWindowState.Maximized
             FormOlStoreReturnList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRetOlStoreCust_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRetOlStoreCust.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOlStoreRetCust.MdiParent = Me
+            FormOlStoreRetCust.Show()
+            FormOlStoreRetCust.WindowState = FormWindowState.Maximized
+            FormOlStoreRetCust.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

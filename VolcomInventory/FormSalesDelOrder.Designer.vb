@@ -41,6 +41,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCombineNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntracking_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -81,6 +83,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnShowUniform = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnShowAll = New DevExpress.XtraEditors.SimpleButton()
@@ -95,8 +98,6 @@ Partial Class FormSalesDelOrder
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
-        Me.GridColumntracking_code = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -332,6 +333,24 @@ Partial Class FormSalesDelOrder
         Me.GridColumnPreparedBy.Visible = True
         Me.GridColumnPreparedBy.VisibleIndex = 11
         Me.GridColumnPreparedBy.Width = 87
+        '
+        'GridColumntracking_code
+        '
+        Me.GridColumntracking_code.Caption = "Tracking Code"
+        Me.GridColumntracking_code.FieldName = "tracking_code"
+        Me.GridColumntracking_code.Name = "GridColumntracking_code"
+        Me.GridColumntracking_code.Visible = True
+        Me.GridColumntracking_code.VisibleIndex = 7
+        Me.GridColumntracking_code.Width = 102
+        '
+        'GridColumncustomer_name
+        '
+        Me.GridColumncustomer_name.Caption = "Customer Name"
+        Me.GridColumncustomer_name.FieldName = "customer_name"
+        Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
+        Me.GridColumncustomer_name.Visible = True
+        Me.GridColumncustomer_name.VisibleIndex = 6
+        Me.GridColumncustomer_name.Width = 109
         '
         'GridView3
         '
@@ -674,6 +693,7 @@ Partial Class FormSalesDelOrder
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnSyncOrder)
         Me.PanelControl1.Controls.Add(Me.BtnCombineDel)
         Me.PanelControl1.Controls.Add(Me.BtnShowUniform)
         Me.PanelControl1.Controls.Add(Me.BtnShowAll)
@@ -682,6 +702,25 @@ Partial Class FormSalesDelOrder
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(793, 31)
         Me.PanelControl1.TabIndex = 141
+        '
+        'BtnSyncOrder
+        '
+        Me.BtnSyncOrder.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BtnSyncOrder.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSyncOrder.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnSyncOrder.Appearance.Options.UseBackColor = True
+        Me.BtnSyncOrder.Appearance.Options.UseFont = True
+        Me.BtnSyncOrder.Appearance.Options.UseForeColor = True
+        Me.BtnSyncOrder.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnSyncOrder.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnSyncOrder.Location = New System.Drawing.Point(2, 2)
+        Me.BtnSyncOrder.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnSyncOrder.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnSyncOrder.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnSyncOrder.Name = "BtnSyncOrder"
+        Me.BtnSyncOrder.Size = New System.Drawing.Size(93, 27)
+        Me.BtnSyncOrder.TabIndex = 142
+        Me.BtnSyncOrder.Text = "Sync Order"
         '
         'BtnCombineDel
         '
@@ -825,24 +864,6 @@ Partial Class FormSalesDelOrder
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
         '
-        'GridColumntracking_code
-        '
-        Me.GridColumntracking_code.Caption = "Tracking Code"
-        Me.GridColumntracking_code.FieldName = "tracking_code"
-        Me.GridColumntracking_code.Name = "GridColumntracking_code"
-        Me.GridColumntracking_code.Visible = True
-        Me.GridColumntracking_code.VisibleIndex = 7
-        Me.GridColumntracking_code.Width = 102
-        '
-        'GridColumncustomer_name
-        '
-        Me.GridColumncustomer_name.Caption = "Customer Name"
-        Me.GridColumncustomer_name.FieldName = "customer_name"
-        Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
-        Me.GridColumncustomer_name.Visible = True
-        Me.GridColumncustomer_name.VisibleIndex = 6
-        Me.GridColumncustomer_name.Width = 109
-        '
         'FormSalesDelOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -970,4 +991,5 @@ Partial Class FormSalesDelOrder
     Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntracking_code As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSyncOrder As DevExpress.XtraEditors.SimpleButton
 End Class
