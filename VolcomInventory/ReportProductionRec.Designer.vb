@@ -65,6 +65,9 @@ Partial Public Class ReportProductionRec
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelRecType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -250,7 +253,7 @@ Partial Public Class ReportProductionRec
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelArriveDate, Me.XrLabel20, Me.XrLabel19, Me.XrLabel16, Me.XrLabel15, Me.LDONumber, Me.XrLabel8, Me.XrLabel7, Me.LPOType, Me.LPONumber, Me.XrLabel5, Me.XrLabel21, Me.XrLabel13, Me.LDODate, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LFromName, Me.LToName, Me.XrLabel2, Me.XrLabel3})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelRecType, Me.XrLabel18, Me.XrLabel22, Me.LabelArriveDate, Me.XrLabel20, Me.XrLabel19, Me.XrLabel16, Me.XrLabel15, Me.LDONumber, Me.XrLabel8, Me.XrLabel7, Me.LPOType, Me.LPONumber, Me.XrLabel5, Me.XrLabel21, Me.XrLabel13, Me.LDODate, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LFromName, Me.LToName, Me.XrLabel2, Me.XrLabel3})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0.00009536743!, 49.45833!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(787.1248!, 115.0817!)
@@ -617,6 +620,37 @@ Partial Public Class ReportProductionRec
         Me.XrLabel14.Text = "Receive Before :"
         Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
+        'LabelRecType
+        '
+        Me.LabelRecType.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelRecType.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.LabelRecType.LocationFloat = New DevExpress.Utils.PointFloat(622.5417!, 42.75012!)
+        Me.LabelRecType.Name = "LabelRecType"
+        Me.LabelRecType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelRecType.SizeF = New System.Drawing.SizeF(154.5832!, 13.58337!)
+        Me.LabelRecType.StylePriority.UseBorders = False
+        Me.LabelRecType.StylePriority.UseFont = False
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(611.0834!, 42.75006!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
+        Me.XrLabel18.StylePriority.UseBorders = False
+        Me.XrLabel18.Text = ":"
+        '
+        'XrLabel22
+        '
+        Me.XrLabel22.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(525.6667!, 42.75006!)
+        Me.XrLabel22.Name = "XrLabel22"
+        Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel22.SizeF = New System.Drawing.SizeF(85.41647!, 13.58337!)
+        Me.XrLabel22.StylePriority.UseBorders = False
+        Me.XrLabel22.Text = "Rec Type"
+        '
         'ReportProductionRec
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
@@ -678,4 +712,7 @@ Partial Public Class ReportProductionRec
     Friend WithEvents XrLabel19 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LRecBefore As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelRecType As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel22 As DevExpress.XtraReports.UI.XRLabel
 End Class
