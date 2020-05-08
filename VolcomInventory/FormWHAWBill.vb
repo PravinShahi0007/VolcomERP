@@ -666,7 +666,7 @@
             Next
 
             Dim query As String = "
-                SELECT aw.awbill_no, so.sales_order_ol_shop_number, so.customer_name, so.shipping_address, so.shipping_city, CONCAT(so.shipping_region, ', ', so.shipping_post_code) AS shipping_region_post_code, so.shipping_phone
+                SELECT aw.awbill_no, so.sales_order_ol_shop_number, so.customer_name, so.shipping_address, so.shipping_address1, so.shipping_address2, so.shipping_city, CONCAT(so.shipping_region, ', ', so.shipping_post_code) AS shipping_region_post_code, so.shipping_phone
                 FROM tb_wh_awbill_det AS aw_det
                 LEFT JOIN tb_pl_sales_order_del AS pl_del ON aw_det.id_pl_sales_order_del = pl_del.id_pl_sales_order_del
                 LEFT JOIN tb_sales_order AS so ON pl_del.id_sales_order = so.id_sales_order
