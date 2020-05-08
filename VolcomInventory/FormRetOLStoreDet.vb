@@ -39,6 +39,7 @@
             TxtOrderNumber.Text = FormRetOlStore.GVOrderList.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
             TxtRetRequest.Focus()
             viewDetail()
+            viewCollectionCode()
         ElseIf action = "upd" Then
             'main
             Dim query_c As ClassRetOLStore = New ClassRetOLStore()
@@ -77,6 +78,12 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = Data
         GVData.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewCollectionCode()
+        Cursor = Cursors.WaitCursor
+
         Cursor = Cursors.Default
     End Sub
 

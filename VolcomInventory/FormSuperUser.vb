@@ -21,13 +21,41 @@
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
         'Dim a As New ClassShopifyApi()
         'a.get_product()
-        Dim a As String = "888820117991-GWP"
 
-        Console.WriteLine(a.Replace("-GWP", ""))
+        'fulfill
+        '        Dim so As New ClassSalesOrder
+        '        Try
+        '            Dim shopify_tracking_comp As String = get_setup_field("shopify_tracking_comp")
+        '            Dim shopify_tracking_url As String = get_setup_field("shopify_tracking_url")
+        '            Dim track_number As String = execute_query("SELECT m.awbill_no FROM tb_wh_awbill_det d INNER JOIN tb_wh_awbill m ON m.id_awbill = d.id_awbill WHERE d.id_pl_sales_order_del=72192", 0, True, "", "", "", "")
+        '            Dim query As String = "SELECT sod.ol_store_id, CAST(SUM(sod.sales_order_det_qty) AS DECIMAL(10,0)) AS `qty`, so.id_sales_order_ol_shop AS `id_web_order`, o.shopify_location_id AS `location_id`
+        '                FROM tb_pl_sales_order_del_det d
+        '                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+        '                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+        '                JOIN tb_opt o 
+        '                WHERE d.id_pl_sales_order_del=72192 AND sod.is_additional=2
+        '                GROUP BY sod.ol_store_id "
+        '            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '            Dim val As String = ""
+        '            Dim location_id As String = ""
+        '            For i As Integer = 0 To data.Rows.Count - 1
+        '                location_id = data.Rows(i)("location_id").ToString
+        '                If i > 0 Then
+        '                    val += ","
+        '                End If
+        '                val += "{
+        '        ""id"": " + data.Rows(i)("ol_store_id").ToString + ",
+        '""quantity"": " + data.Rows(i)("qty").ToString + "
+        '      }"
+        '            Next
+        '            If val <> "" Then
+        '                Dim shop As New ClassShopifyApi()
+        '                shop.set_fullfill("2121944924196", location_id, track_number, val, shopify_tracking_comp, shopify_tracking_url)
+        '            End If
+        '        Catch ex As Exception
+        '            so.insertLogWebOrder("2121944924196", "ID DEL:72192; Error Set Fullfillment:" + ex.ToString)
+        '        End Try
 
-        Dim b As String = "888820117991"
-
-        Console.WriteLine(b.Replace("-GWP", ""))
         'FormUniqueCode.Show()
         'FormStockUniS78New.ShowDialog()
         'FormTestCheckvb.ShowDialog()
