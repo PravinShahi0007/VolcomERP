@@ -295,9 +295,9 @@
                     Dim sales_order_det_qty As String = ""
                     Dim i As Integer = 0
                     For Each row_item In row("line_items").ToList
-                        ol_store_sku = row_item("sku").ToString
+                        ol_store_sku = row_item("sku").ToString.Replace("-GWP", "").Trim
                         ol_store_id = row_item("id").ToString
-                        sku = row_item("sku").ToString
+                        sku = row_item("sku").ToString.Replace("-GWP", "").Trim
                         design_price = decimalSQL(row_item("price").ToString)
                         sales_order_det_qty = decimalSQL(row_item("quantity").ToString)
 
