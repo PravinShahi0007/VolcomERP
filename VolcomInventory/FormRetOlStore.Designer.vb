@@ -19,8 +19,8 @@ Partial Class FormRetOlStore
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPReturnList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPPreReturnList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_ol_store_ret = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,30 +34,51 @@ Partial Class FormRetOlStore
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrec_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
-        Me.XTPReturnList.SuspendLayout()
+        Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCOrderList = New DevExpress.XtraGrid.GridControl()
+        Me.GVOrderList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_comp_group_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_ol_shop_number_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCData.SuspendLayout()
+        Me.XTPPreReturnList.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPOrderList.SuspendLayout()
+        CType(Me.GCOrderList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVOrderList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'XtraTabControl1
+        'XTCData
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPReturnList
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1155, 579)
-        Me.XtraTabControl1.TabIndex = 1
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturnList})
+        Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCData.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCData.Location = New System.Drawing.Point(0, 0)
+        Me.XTCData.Name = "XTCData"
+        Me.XTCData.SelectedTabPage = Me.XTPPreReturnList
+        Me.XTCData.Size = New System.Drawing.Size(1155, 579)
+        Me.XTCData.TabIndex = 1
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPreReturnList, Me.XTPOrderList})
         '
-        'XTPReturnList
+        'XTPPreReturnList
         '
-        Me.XTPReturnList.Controls.Add(Me.GCData)
-        Me.XTPReturnList.Name = "XTPReturnList"
-        Me.XTPReturnList.Size = New System.Drawing.Size(1149, 551)
-        Me.XTPReturnList.Text = "List"
+        Me.XTPPreReturnList.Controls.Add(Me.GCData)
+        Me.XTPPreReturnList.Name = "XTPPreReturnList"
+        Me.XTPPreReturnList.Size = New System.Drawing.Size(1149, 551)
+        Me.XTPPreReturnList.Text = "Pre Return List"
         '
         'GCData
         '
@@ -163,12 +184,131 @@ Partial Class FormRetOlStore
         Me.GridColumnrec_date.Visible = True
         Me.GridColumnrec_date.VisibleIndex = 3
         '
+        'XTPOrderList
+        '
+        Me.XTPOrderList.Controls.Add(Me.GCOrderList)
+        Me.XTPOrderList.Controls.Add(Me.PanelControl1)
+        Me.XTPOrderList.Name = "XTPOrderList"
+        Me.XTPOrderList.Size = New System.Drawing.Size(1149, 551)
+        Me.XTPOrderList.Text = "Order List"
+        '
+        'GCOrderList
+        '
+        Me.GCOrderList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCOrderList.Location = New System.Drawing.Point(0, 43)
+        Me.GCOrderList.MainView = Me.GVOrderList
+        Me.GCOrderList.Name = "GCOrderList"
+        Me.GCOrderList.Size = New System.Drawing.Size(1149, 508)
+        Me.GCOrderList.TabIndex = 1
+        Me.GCOrderList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOrderList})
+        '
+        'GVOrderList
+        '
+        Me.GVOrderList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group_order, Me.GridColumnsales_order_ol_shop_number_order, Me.GridColumnorder_date, Me.GridColumncustomer_name})
+        Me.GVOrderList.GridControl = Me.GCOrderList
+        Me.GVOrderList.Name = "GVOrderList"
+        Me.GVOrderList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVOrderList.OptionsBehavior.Editable = False
+        Me.GVOrderList.OptionsFind.AlwaysVisible = True
+        Me.GVOrderList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_comp_group_order
+        '
+        Me.GridColumnid_comp_group_order.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group_order.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group_order.Name = "GridColumnid_comp_group_order"
+        '
+        'GridColumnsales_order_ol_shop_number_order
+        '
+        Me.GridColumnsales_order_ol_shop_number_order.Caption = "Order Number"
+        Me.GridColumnsales_order_ol_shop_number_order.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnsales_order_ol_shop_number_order.Name = "GridColumnsales_order_ol_shop_number_order"
+        Me.GridColumnsales_order_ol_shop_number_order.Visible = True
+        Me.GridColumnsales_order_ol_shop_number_order.VisibleIndex = 0
+        '
+        'GridColumnorder_date
+        '
+        Me.GridColumnorder_date.Caption = "Order Date"
+        Me.GridColumnorder_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnorder_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnorder_date.FieldName = "order_date"
+        Me.GridColumnorder_date.Name = "GridColumnorder_date"
+        Me.GridColumnorder_date.Visible = True
+        Me.GridColumnorder_date.VisibleIndex = 1
+        '
+        'GridColumncustomer_name
+        '
+        Me.GridColumncustomer_name.Caption = "Customer"
+        Me.GridColumncustomer_name.FieldName = "customer_name"
+        Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
+        Me.GridColumncustomer_name.Visible = True
+        Me.GridColumncustomer_name.VisibleIndex = 2
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnViewOrder)
+        Me.PanelControl1.Controls.Add(Me.SLECompGroup)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1149, 43)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'BtnViewOrder
+        '
+        Me.BtnViewOrder.Location = New System.Drawing.Point(307, 10)
+        Me.BtnViewOrder.Name = "BtnViewOrder"
+        Me.BtnViewOrder.Size = New System.Drawing.Size(75, 23)
+        Me.BtnViewOrder.TabIndex = 8
+        Me.BtnViewOrder.Text = "View"
+        '
+        'SLECompGroup
+        '
+        Me.SLECompGroup.Location = New System.Drawing.Point(86, 12)
+        Me.SLECompGroup.Name = "SLECompGroup"
+        Me.SLECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECompGroup.Properties.ShowClearButton = False
+        Me.SLECompGroup.Properties.View = Me.GridView2
+        Me.SLECompGroup.Size = New System.Drawing.Size(215, 20)
+        Me.SLECompGroup.TabIndex = 7
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumn10})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_comp_group
+        '
+        Me.GridColumnid_comp_group.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Group Description"
+        Me.GridColumn10.FieldName = "description"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(13, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Store Group"
+        '
         'FormRetOlStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1155, 579)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCData)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -176,17 +316,25 @@ Partial Class FormRetOlStore
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Pre Return Online Store"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
-        Me.XTPReturnList.ResumeLayout(False)
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCData.ResumeLayout(False)
+        Me.XTPPreReturnList.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPOrderList.ResumeLayout(False)
+        CType(Me.GCOrderList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVOrderList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPReturnList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPPreReturnList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnid_ol_store_ret As DevExpress.XtraGrid.Columns.GridColumn
@@ -200,4 +348,18 @@ Partial Class FormRetOlStore
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrec_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPOrderList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCOrderList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVOrderList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnViewOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_comp_group_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_order_ol_shop_number_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

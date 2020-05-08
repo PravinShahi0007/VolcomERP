@@ -284,7 +284,6 @@ Partial Class Form3plRateDet
         '
         Me.SLESubDistrict.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLESubDistrict.Enabled = False
         Me.SLESubDistrict.Location = New System.Drawing.Point(95, 43)
         Me.SLESubDistrict.Name = "SLESubDistrict"
         Me.SLESubDistrict.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -316,7 +315,7 @@ Partial Class Form3plRateDet
         Me.GridColumn8.FieldName = "sub_district"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 0
         '
         'GridColumn11
         '
@@ -324,7 +323,7 @@ Partial Class Form3plRateDet
         Me.GridColumn11.FieldName = "city"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.VisibleIndex = 1
         '
         'GridColumn7
         '

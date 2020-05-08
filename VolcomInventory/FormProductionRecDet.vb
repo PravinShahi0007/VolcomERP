@@ -358,6 +358,8 @@ Public Class FormProductionRecDet
             GridColumnExtra.Visible = True
 
             BPrint.Enabled = True
+
+            SLERecType.Properties.ReadOnly = True
         Else
             GridColumnPOQty.OptionsColumn.AllowShowHide = True
             GridColumnRemainingQty.OptionsColumn.AllowShowHide = True
@@ -368,6 +370,8 @@ Public Class FormProductionRecDet
             GridColumnExtra.Visible = False
 
             BPrint.Enabled = False
+
+            SLERecType.Properties.ReadOnly = True
         End If
 
         GVListPurchase.BestFitColumns()
@@ -430,6 +434,7 @@ Public Class FormProductionRecDet
             Report.LRecDate.Text = TERecDate.Text.ToString
             Report.LDODate.Text = TEDODate.Text.ToString
             Report.LabelArriveDate.Text = DEArrive.Text.ToString
+            Report.LabelRecType.Text = SLERecType.Text.ToString
 
             Report.LNote.Text = MENote.Text.ToString
             Report.GVListPurchase.OptionsPrint.PrintFooter = False

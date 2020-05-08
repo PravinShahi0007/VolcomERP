@@ -230,6 +230,8 @@
                     'data shipping
                     Dim shipping_name As String = ""
                     Dim shipping_address As String = ""
+                    Dim shipping_address1 As String = ""
+                    Dim shipping_address2 As String = ""
                     Dim shipping_phone As String = ""
                     Dim shipping_city As String = ""
                     Dim shipping_post_code As String = ""
@@ -249,6 +251,16 @@
                         shipping_address += "Phone : " + row("shipping_address")("phone").ToString
                     Catch ex As Exception
                         shipping_address = ""
+                    End Try
+                    Try
+                        shipping_address1 = If(row("shipping_address")("address1") Is Nothing, "", row("shipping_address")("address1").ToString)
+                    Catch ex As Exception
+                        shipping_address1 = ""
+                    End Try
+                    Try
+                        shipping_address2 = If(row("shipping_address")("address2") Is Nothing, "", row("shipping_address")("address2").ToString)
+                    Catch ex As Exception
+                        shipping_address2 = ""
                     End Try
                     Try
                         shipping_phone = If(row("shipping_address")("phone") Is Nothing, "", row("shipping_address")("phone").ToString)
@@ -274,7 +286,7 @@
 
 
                     'detail line item
-                    Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address, shipping_phone, 
+                    Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
                     shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, sales_order_det_qty, financial_status) VALUES "
                     Dim ol_store_sku As String = ""
                     Dim ol_store_id As String = ""
@@ -292,7 +304,7 @@
                         If i > 0 Then
                             qins += ","
                         End If
-                        qins += "('" + id + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + customer_name + "', '" + shipping_name + "', '" + shipping_address + "', '" + shipping_phone + "', 
+                        qins += "('" + id + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + customer_name + "', '" + shipping_name + "', '" + shipping_address + "','" + shipping_address1 + "','" + shipping_address2 + "', '" + shipping_phone + "', 
                         '" + shipping_city + "', '" + shipping_post_code + "', '" + shipping_region + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "', '" + addSlashes(financial_status) + "') "
                         i += 1
                     Next
@@ -384,11 +396,13 @@ GROUP BY p.sku"
         Next
     End Sub
 
-    Sub set_fullfill(ByVal id_order As String, ByVal location_id As String, ByVal tracking_number As String, ByVal val As String)
+    Sub set_fullfill(ByVal id_order As String, ByVal location_id As String, ByVal tracking_number As String, ByVal val As String, ByVal tracking_comp As String, ByVal tracking_url As String)
         Dim data = Text.Encoding.UTF8.GetBytes("{
   ""fulfillment"": {
     ""location_id"": " + location_id + ",
     ""tracking_number"": " + tracking_number + ",
+    ""tracking_company"": " + tracking_comp + ",
+    ""tracking_url"": " + tracking_url + tracking_number + ",
     ""line_items"": [
       " + val + "
     ]
