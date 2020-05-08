@@ -2665,6 +2665,12 @@
     <Compile Include="FormOLStoreAlertConfirm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreCloseConfirm.Designer.vb">
+      <DependentUpon>FormOLStoreCloseConfirm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreCloseConfirm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreDet.Designer.vb">
       <DependentUpon>FormOLStoreDet.vb</DependentUpon>
     </Compile>
@@ -9301,6 +9307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreAlertConfirm.resx">
       <DependentUpon>FormOLStoreAlertConfirm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreCloseConfirm.resx">
+      <DependentUpon>FormOLStoreCloseConfirm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreDet.resx">
       <DependentUpon>FormOLStoreDet.vb</DependentUpon>
