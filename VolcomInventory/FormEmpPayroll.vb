@@ -222,7 +222,7 @@
                 'BBIPajak.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
 
                 BBonusAdjustment.Text = "Adjustment"
-                BandedGridColumnTotalAdjustment.Caption = "Adjustment"
+                BandedGridColumnTotalAdjustment.Caption = "Total Adjustment"
                 GBBonusAdjustment.Caption = "Adjustment"
             End If
 
@@ -1519,39 +1519,41 @@
         'get salary
         Dim d_salary As DataTable = execute_query("SELECT (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary FROM tb_m_employee_salary WHERE id_employee_salary = " + id_salary, -1, True, "", "", "", "")
 
-        'update jamsostek
-        Dim q_jamsostek As String = "
-            DELETE pd.* FROM tb_emp_payroll_deduction pd
-	        INNER JOIN tb_lookup_salary_deduction sd ON sd.id_salary_deduction=pd.id_salary_deduction
-	        WHERE sd.is_jamsostek='1' AND pd.id_payroll=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pd.id_employee = " + id_employee + ";
-	        INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction)
-	        SELECT " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AS id_payroll,id_salary_deduction,id_employee,deduction FROM
-	        (SELECT emp.`id_employee`
-	        ,IF(emp.`id_employee_status` = 3, (sal.`basic_salary` * dep.total_workdays), (sal.`basic_salary`+sal.`allow_job`+sal.`allow_meal`+sal.`allow_trans`)) AS gp
-	        ,CAST(IF((SELECT gp)<=py.`jp_max`,(SELECT gp)*0.01,py.`jp_max`*0.01) AS DECIMAL(13,2)) AS deduction
-	        ,lsal.`id_salary_deduction`
-	        FROM `tb_emp_payroll_det` pyd
-	        INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
-	        INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
-            INNER JOIN tb_m_departement dep ON emp.`id_departement`=dep.`id_departement`
-	        INNER JOIN `tb_m_employee_salary` sal ON sal.`id_employee_salary`=pyd.`id_salary`
-	        INNER JOIN `tb_lookup_salary_deduction` lsal ON lsal.`id_salary_deduction`=2
-	        WHERE emp.`is_jp`='1' AND pyd.`id_payroll`=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + id_employee + "
-	        UNION
-	        SELECT emp.`id_employee`
-	        ,IF(emp.`id_employee_status` = 3, (sal.`basic_salary` * dep.total_workdays), (sal.`basic_salary`+sal.`allow_job`+sal.`allow_meal`+sal.`allow_trans`)) AS gp
-	        ,CAST((SELECT gp)*0.02 AS DECIMAL(13,2)) AS deduction
-	        ,lsal.`id_salary_deduction`
-	        FROM `tb_emp_payroll_det` pyd
-	        INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
-	        INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
-            INNER JOIN tb_m_departement dep ON emp.`id_departement`=dep.`id_departement`
-	        INNER JOIN `tb_m_employee_salary` sal ON sal.`id_employee_salary`=pyd.`id_salary`
-	        INNER JOIN `tb_lookup_salary_deduction` lsal ON lsal.`id_salary_deduction`=3
-	        WHERE emp.`is_jht`='1' AND pyd.`id_payroll`=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + id_employee + ") a;
-        "
+        If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "2" Then
+            'update jamsostek
+            Dim q_jamsostek As String = "
+                DELETE pd.* FROM tb_emp_payroll_deduction pd
+	            INNER JOIN tb_lookup_salary_deduction sd ON sd.id_salary_deduction=pd.id_salary_deduction
+	            WHERE sd.is_jamsostek='1' AND pd.id_payroll=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pd.id_employee = " + id_employee + ";
+	            INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction)
+	            SELECT " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AS id_payroll,id_salary_deduction,id_employee,deduction FROM
+	            (SELECT emp.`id_employee`
+	            ,IF(emp.`id_employee_status` = 3, (sal.`basic_salary` * dep.total_workdays), (sal.`basic_salary`+sal.`allow_job`+sal.`allow_meal`+sal.`allow_trans`)) AS gp
+	            ,CAST(IF((SELECT gp)<=py.`jp_max`,(SELECT gp)*0.01,py.`jp_max`*0.01) AS DECIMAL(13,2)) AS deduction
+	            ,lsal.`id_salary_deduction`
+	            FROM `tb_emp_payroll_det` pyd
+	            INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
+	            INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
+                INNER JOIN tb_m_departement dep ON emp.`id_departement`=dep.`id_departement`
+	            INNER JOIN `tb_m_employee_salary` sal ON sal.`id_employee_salary`=pyd.`id_salary`
+	            INNER JOIN `tb_lookup_salary_deduction` lsal ON lsal.`id_salary_deduction`=2
+	            WHERE emp.`is_jp`='1' AND pyd.`id_payroll`=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + id_employee + "
+	            UNION
+	            SELECT emp.`id_employee`
+	            ,IF(emp.`id_employee_status` = 3, (sal.`basic_salary` * dep.total_workdays), (sal.`basic_salary`+sal.`allow_job`+sal.`allow_meal`+sal.`allow_trans`)) AS gp
+	            ,CAST((SELECT gp)*0.02 AS DECIMAL(13,2)) AS deduction
+	            ,lsal.`id_salary_deduction`
+	            FROM `tb_emp_payroll_det` pyd
+	            INNER JOIN `tb_emp_payroll` py ON py.`id_payroll`=pyd.`id_payroll`
+	            INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
+                INNER JOIN tb_m_departement dep ON emp.`id_departement`=dep.`id_departement`
+	            INNER JOIN `tb_m_employee_salary` sal ON sal.`id_employee_salary`=pyd.`id_salary`
+	            INNER JOIN `tb_lookup_salary_deduction` lsal ON lsal.`id_salary_deduction`=3
+	            WHERE emp.`is_jht`='1' AND pyd.`id_payroll`=" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND pyd.id_employee = " + id_employee + ") a;
+            "
 
-        execute_non_query(q_jamsostek, True, "", "", "", "")
+            execute_non_query(q_jamsostek, True, "", "", "", "")
+        End If
 
         'update adjustment
         Dim q_adj As String = "

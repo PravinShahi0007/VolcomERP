@@ -1503,6 +1503,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'list order
                 If FormProductionFinalClear.GVProd.RowCount > 0 And FormProductionFinalClear.GVProd.FocusedRowHandle >= 0 Then
                     FormProductionFinalClearDet.id_prod_order = FormProductionFinalClear.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionFinalClearDet.id_prod_order_rec = FormProductionFinalClear.GVRecQc.GetFocusedRowCellValue("id_prod_order_rec").ToString
                     FormProductionFinalClearDet.action = "ins"
                     FormProductionFinalClearDet.ShowDialog()
                 End If
@@ -1764,6 +1765,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBudgetProdDemandNew.ShowDialog()
         ElseIf formName = "FormLetterOfStatement" Then
             FormLetterOfStatementDet.ShowDialog()
+        ElseIf formName = "FormRetOlStore" Then
+            If FormRetOlStore.XTCData.SelectedTabPageIndex = 1 Then
+                FormRetOLStoreDet.action = "ins"
+                FormRetOLStoreDet.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2933,6 +2939,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                         FormBudgetProdDemandDet.id = FormBudgetProdDemand.GVProposed.GetFocusedRowCellValue("id_b_prod_demand_propose").ToString
                         FormBudgetProdDemandDet.ShowDialog()
                     End If
+                End If
+            ElseIf formName = "FormRetOlStore" Then
+                If FormRetOlStore.XTCData.SelectedTabPageIndex = 0 Then
+                    FormRetOLStoreDet.id = FormRetOlStore.GVData.GetFocusedRowCellValue("id_ol_store_ret").ToString
+                    FormRetOLStoreDet.action = "upd"
+                    FormRetOLStoreDet.ShowDialog()
                 End If
             Else
                 RPSubMenu.Visible = False
@@ -7984,7 +7996,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
             End If
         ElseIf formName = "FormReportEstWHInQty" Then
-            print(FormReportEstWHInQty.GCWorkOrder, "Estimate Qty to WH (" & Date.Parse(FormReportEstWHInQty.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormReportEstWHInQty.DEEnd.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+            If FormReportEstWHInQty.XTCTimeline.SelectedTabPageIndex = 0 Then
+                print(FormReportEstWHInQty.GCWorkOrder, "Estimate Qty to WH (" & Date.Parse(FormReportEstWHInQty.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormReportEstWHInQty.DEEnd.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+            ElseIf FormReportEstWHInQty.XTCTimeline.SelectedTabPageIndex = 1 Then
+                print(FormReportEstWHInQty.GCPD, "PD vs PO Material " & FormReportEstWHInQty.SLEReport.Text)
+            End If
         ElseIf formName = "FormProductionHO" Then
             If FormProductionHO.XTCHO.SelectedTabPageIndex = 0 Then
                 print_raw(FormProductionHO.GCList, "")
@@ -8153,6 +8169,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormTabunganMissing.print()
         ElseIf formName = "FormCompareStockWebsite" Then
             FormCompareStockWebsite.print()
+        ElseIf formName = "FormRetOlStore" Then
+            print(FormRetOlStore.GCData, "Pre Return List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9024,6 +9042,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormItemTrf" Then
             FormItemTrf.Close()
             FormItemTrf.Dispose()
+        ElseIf formName = "FormRetOlStore" Then
+            FormRetOlStore.Close()
+            FormRetOlStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9927,6 +9948,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormLetterOfStatement" Then
             FormLetterOfStatement.form_load()
+        ElseIf formName = "FormRetOlStore" Then
+            FormRetOlStore.viewData()
         End If
     End Sub
     'Switch
@@ -14736,6 +14759,32 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemTrf.Show()
             FormItemTrf.WindowState = FormWindowState.Maximized
             FormItemTrf.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRetOlShop_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRetOlShop.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormRetOlStore.MdiParent = Me
+            FormRetOlStore.Show()
+            FormRetOlStore.WindowState = FormWindowState.Maximized
+            FormRetOlStore.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRetOlStoreList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRetOlStoreList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOlStoreReturnList.MdiParent = Me
+            FormOlStoreReturnList.Show()
+            FormOlStoreReturnList.WindowState = FormWindowState.Maximized
+            FormOlStoreReturnList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -25,6 +25,25 @@
 
             Dim query As String = "CALL view_cash_advance_report_coa('" & date_from & "','" & date_to & "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            'set cancel
+            Dim q_cancel As String = "SELECT id_cash_advance FROM tb_cash_advance_cancel WHERE id_report_status = 6"
+            Dim d_cancel As DataTable = execute_query(q_cancel, -1, True, "", "", "", "")
+
+            For i = 0 To data.Rows.Count - 1
+                For j = 0 To d_cancel.Rows.Count - 1
+                    If data.Rows(i)("id_cash_advance").ToString = d_cancel.Rows(j)("id_cash_advance").ToString Then
+                        data.Rows(i)("report_status") = "Cancelled"
+                        data.Rows(i)("coa") = ""
+                        data.Rows(i)("coa_desc") = ""
+                        data.Rows(i)("coa_expense") = ""
+                        data.Rows(i)("expense") = 0
+                        data.Rows(i)("advance") = 0
+                        data.Rows(i)("cash_out") = 0
+                    End If
+                Next
+            Next
+
             GCReport.DataSource = data
             GVReport.BestFitColumns()
         Catch ex As Exception

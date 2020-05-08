@@ -11,6 +11,19 @@
     End Sub
 
     Private Sub FormCashAdvanceReconcile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        XTPCancel.PageVisible = False
+
+        Dim dt As DataTable = New DataTable
+
+        dt.Columns.Add("id_cash_advance_report", GetType(String))
+        dt.Columns.Add("id_acc_from", GetType(String))
+        dt.Columns.Add("description_from", GetType(String))
+        dt.Columns.Add("id_acc_to", GetType(String))
+        dt.Columns.Add("description_to", GetType(String))
+        dt.Columns.Add("value", GetType(Decimal))
+
+        GCCancel.DataSource = dt
+
         load_form()
     End Sub
 
@@ -24,6 +37,7 @@
         '
         load_det()
         load_ca()
+        load_cancel()
     End Sub
 
     Sub load_acc()
@@ -31,6 +45,8 @@
         viewSearchLookupRepositoryQuery(RSLECOA, query, 0, "acc_name", "id_acc")
         viewSearchLookupRepositoryQuery(RSLECOABW, query, 0, "acc_name", "id_acc")
         viewSearchLookupRepositoryQuery(RSLECOABD, query, 0, "acc_name", "id_acc")
+        viewSearchLookupRepositoryQuery(RSLECOABCFROM, query, 0, "acc_name", "id_acc")
+        viewSearchLookupRepositoryQuery(RSLECOABCTO, query, 0, "acc_name", "id_acc")
     End Sub
 
     Sub load_comp()
@@ -53,6 +69,7 @@
         BMark.Enabled = False
         BPrint.Enabled = False
         SBReset.Enabled = False
+        SBCancel.Enabled = False
 
         'check status
         query = "
@@ -114,6 +131,39 @@
         If dataCash.Rows(0)("rb_id_report_status").ToString = "6" Then
             BtnViewJournal.Enabled = True
             SBReset.Enabled = False
+            SBCancel.Enabled = True
+        End If
+    End Sub
+
+    Sub load_cancel()
+        Dim query As String = "SELECT * FROM tb_cash_advance_cancel WHERE id_cash_advance = " + id_ca
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        If data.Rows.Count > 0 Then
+            'view
+            XTPCancel.PageVisible = True
+            XTCCA.SelectedTabPage = XTPCancel
+
+            SBCancel.Enabled = False
+
+            'status
+            If data.Rows(0)("id_report_status").ToString = "1" Then
+                TEStatus.Text = "On Process Cancel"
+            Else
+                TEStatus.Text = "Cancelled"
+            End If
+
+            Dim q_detail As String = "
+                SELECT d.id_cash_advance_report, r.id_acc AS id_acc_from, r.description AS description_from, d.id_acc_to, d.description_to, d.value
+                FROM tb_cash_advance_cancel_det AS d
+                LEFT JOIN tb_cash_advance_report AS r ON d.id_cash_advance_report = r.id_cash_advance_report
+                WHERE d.id_cash_advance_cancel = " + data.Rows(0)("id_cash_advance_cancel").ToString + "
+            "
+
+            Dim d_detail As DataTable = execute_query(q_detail, -1, True, "", "", "", "")
+
+            GCCancel.DataSource = d_detail
         End If
     End Sub
 
@@ -423,18 +473,31 @@
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.report_mark_type = "174"
-        FormReportMark.is_view = is_view
-        FormReportMark.id_report = id_ca
-        FormReportMark.ShowDialog()
+        If XTCCA.SelectedTabPage.Name = "XTPCancel" Then
+            FormReportMark.report_mark_type = "242"
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_ca
+            FormReportMark.ShowDialog()
+        Else
+            FormReportMark.report_mark_type = "174"
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_ca
+            FormReportMark.ShowDialog()
+        End If
     End Sub
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
         Cursor = Cursors.WaitCursor
+        Dim rmt As String = "174"
+
+        If XTCCA.SelectedTabPage.Name = "XTPCancel" Then
+            rmt = "242"
+        End If
+
         Dim id_acc_trans As String = ""
         Try
             id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
-            WHERE ad.report_mark_type=174 AND ad.id_report=" + id_ca + "
+            WHERE ad.report_mark_type=" + rmt + " AND ad.id_report=" + id_ca + "
             GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
         Catch ex As Exception
             id_acc_trans = ""
@@ -450,6 +513,7 @@
         Else
             warningCustom("Auto journal not found.")
         End If
+
         Cursor = Cursors.Default
     End Sub
 
@@ -574,5 +638,62 @@
 
     Private Sub XTCCA_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCCA.SelectedPageChanged
         check_but()
+    End Sub
+
+    Private Sub SBCancel_Click(sender As Object, e As EventArgs) Handles SBCancel.Click
+        If XTPCancel.PageVisible Then
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "INSERT INTO tb_cash_advance_cancel (id_cash_advance, id_report_status, created_at) VALUES (" + id_ca + ", 1, NOW()); SELECT LAST_INSERT_ID();"
+
+                Dim id_cl As String = execute_query(query, 0, True, "", "", "", "")
+
+                'detail
+                For i = 0 To GVCancel.RowCount - 1
+                    query = "INSERT INTO tb_cash_advance_cancel_det (id_cash_advance_cancel, id_cash_advance_report, id_acc_to, description_to, value) VALUES (" + id_cl + ", " + GVCancel.GetRowCellValue(i, "id_cash_advance_report").ToString + ", " + GVCancel.GetRowCellValue(i, "id_acc_to").ToString + ", '" + GVCancel.GetRowCellValue(i, "description_to").ToString + "', " + decimalSQL(GVCancel.GetRowCellValue(i, "value").ToString) + ")"
+
+                    execute_non_query(query, True, "", "", "", "")
+                Next
+
+                submit_who_prepared("242", id_ca, id_user)
+
+                Close()
+            End If
+        Else
+            XTPCancel.PageVisible = True
+
+            Dim dt As DataTable = GCCancel.DataSource
+
+            For i = 0 To GVJournalDet.RowCount - 1
+                If GVJournalDet.IsValidRowHandle(i) Then
+                    dt.Rows.Add(GVJournalDet.GetRowCellValue(i, "id_cash_advance_report"), GVJournalDet.GetRowCellValue(i, "id_acc"), GVJournalDet.GetRowCellValue(i, "description"), "", "", GVJournalDet.GetRowCellValue(i, "value"))
+                End If
+            Next
+
+            GCCancel.DataSource = dt
+
+            XTCCA.SelectedTabPage = XTPCancel
+        End If
+    End Sub
+
+    Private Sub RSLECOABCFROM_EditValueChanged(sender As Object, e As EventArgs) Handles RSLECOABCFROM.EditValueChanged
+        Try
+            Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
+            GVCancel.SetFocusedRowCellValue("description_from", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
+            GVCancel.SetFocusedRowCellValue("acc_description_from", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub RSLECOABCTO_EditValueChanged(sender As Object, e As EventArgs) Handles RSLECOABCTO.EditValueChanged
+        Try
+            Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
+            GVCancel.SetFocusedRowCellValue("description_to", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
+            GVCancel.SetFocusedRowCellValue("acc_description_to", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

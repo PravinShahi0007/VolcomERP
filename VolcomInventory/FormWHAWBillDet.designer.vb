@@ -121,6 +121,7 @@ Partial Class FormWHAWBillDet
         Me.SLESubDistrict = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -130,7 +131,6 @@ Partial Class FormWHAWBillDet
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -1270,13 +1270,21 @@ Partial Class FormWHAWBillDet
         Me.GridColumn10.FieldName = "id_sub_district"
         Me.GridColumn10.Name = "GridColumn10"
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Sub District"
+        Me.GridColumn8.FieldName = "sub_district"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "City"
         Me.GridColumn11.FieldName = "city"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.VisibleIndex = 1
         '
         'GridColumn7
         '
@@ -1284,7 +1292,7 @@ Partial Class FormWHAWBillDet
         Me.GridColumn7.FieldName = "state"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -1292,7 +1300,7 @@ Partial Class FormWHAWBillDet
         Me.GridColumn4.FieldName = "island"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         '
         'GridColumn5
         '
@@ -1300,7 +1308,7 @@ Partial Class FormWHAWBillDet
         Me.GridColumn5.FieldName = "region"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.VisibleIndex = 4
         '
         'GridColumn6
         '
@@ -1308,7 +1316,7 @@ Partial Class FormWHAWBillDet
         Me.GridColumn6.FieldName = "country"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 5
         '
         'BRemoveDO
         '
@@ -1350,14 +1358,6 @@ Partial Class FormWHAWBillDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(807, 282)
         Me.PanelControl4.TabIndex = 2
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Sub District"
-        Me.GridColumn8.FieldName = "sub_district"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
         '
         'FormWHAWBillDet
         '

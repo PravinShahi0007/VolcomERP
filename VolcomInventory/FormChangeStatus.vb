@@ -452,6 +452,8 @@
         If id_pop_up = "2" And id_commerce_type = "2" And (id_store = id_volcomstore_normal Or id_store = id_volcomstore_sale) Then
             Dim so As New ClassSalesOrder
             Try
+                Dim shopify_tracking_comp As String = get_setup_field("shopify_tracking_comp")
+                Dim shopify_tracking_url As String = get_setup_field("shopify_tracking_url")
                 Dim track_number As String = execute_query("SELECT m.awbill_no FROM tb_wh_awbill_det d INNER JOIN tb_wh_awbill m ON m.id_awbill = d.id_awbill WHERE d.id_pl_sales_order_del=" + id_report + "", 0, True, "", "", "", "")
                 Dim query As String = "SELECT sod.ol_store_id, CAST(SUM(sod.sales_order_det_qty) AS DECIMAL(10,0)) AS `qty`, so.id_sales_order_ol_shop AS `id_web_order`, o.shopify_location_id AS `location_id`
                 FROM tb_pl_sales_order_del_det d
@@ -475,7 +477,7 @@
                 Next
                 If val <> "" Then
                     Dim shop As New ClassShopifyApi()
-                    shop.set_fullfill(id_web_order, location_id, track_number, val)
+                    shop.set_fullfill(id_web_order, location_id, track_number, val, shopify_tracking_comp, shopify_tracking_url)
                 End If
             Catch ex As Exception
                 so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString)

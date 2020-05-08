@@ -19,7 +19,6 @@ Partial Class FormOLStore
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStore))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnUpdateStt = New DevExpress.XtraEditors.SimpleButton()
@@ -37,7 +36,7 @@ Partial Class FormOLStore
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportToBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,7 +77,7 @@ Partial Class FormOLStore
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOrderSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStripSum = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStripSum = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -205,6 +204,8 @@ Partial Class FormOLStore
         Me.BtnConfirmedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPendingOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip()
+        Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,6 +266,7 @@ Partial Class FormOLStore
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStripOwnOlStore.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -1855,6 +1857,7 @@ Partial Class FormOLStore
         Me.CEAllow.Properties.Caption = "Lewati item yang tidak memiliki stok"
         Me.CEAllow.Size = New System.Drawing.Size(232, 19)
         Me.CEAllow.TabIndex = 5
+        Me.CEAllow.Visible = False
         '
         'BtnPrint
         '
@@ -1906,11 +1909,24 @@ Partial Class FormOLStore
         Me.BtnAllOrder.TabIndex = 4
         Me.BtnAllOrder.Text = "All Orders"
         '
+        'ContextMenuStripOwnOlStore
+        '
+        Me.ContextMenuStripOwnOlStore.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CantProceedToolStripMenuItem})
+        Me.ContextMenuStripOwnOlStore.Name = "ContextMenuStripOwnOlStore"
+        Me.ContextMenuStripOwnOlStore.Size = New System.Drawing.Size(153, 48)
+        '
+        'CantProceedToolStripMenuItem
+        '
+        Me.CantProceedToolStripMenuItem.Name = "CantProceedToolStripMenuItem"
+        Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
+        '
         'FormOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1028, 511)
+        Me.ContextMenuStrip = Me.ContextMenuStripOwnOlStore
         Me.Controls.Add(Me.XTCWorkplace)
         Me.Name = "FormOLStore"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -1976,6 +1992,7 @@ Partial Class FormOLStore
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStripOwnOlStore.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2164,4 +2181,6 @@ Partial Class FormOLStore
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CEAllow As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents ContextMenuStripOwnOlStore As ContextMenuStrip
+    Friend WithEvents CantProceedToolStripMenuItem As ToolStripMenuItem
 End Class

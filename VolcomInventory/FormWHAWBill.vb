@@ -156,13 +156,15 @@
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff, ('') AS `rmk`, ('') AS `no`"
-                query += " ,IF(ISNULL(head.id_wh_awb_det),1,2) AS penanda"
+                query += " ,IF(ISNULL(head.id_wh_awb_det),1,2) AS penanda, so.sales_order_ol_shop_number"
                 query += " FROM tb_wh_awbill awb"
                 query += " inner join tb_m_comp comp_store On comp_store.id_comp=awb.id_store"
                 query += " inner join tb_m_comp comp_cargo On comp_cargo.id_comp=awb.id_cargo"
                 query += " left join tb_m_comp_group grp ON grp.id_comp_group = comp_store.id_comp_group"
                 query += " inner join tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill"
                 query += " inner join tb_wh_awb_do do ON do.do_no=awbd.do_no"
+                query += " LEFT JOIN tb_pl_sales_order_del dod ON dod.id_pl_sales_order_del =awbd.id_pl_sales_order_del"
+                query += " LEFT JOIN tb_sales_order so ON so.id_sales_order = dod.id_sales_order"
                 query += " LEFT JOIN
                             (
 	                            SELECT id_wh_awb_det
@@ -180,7 +182,7 @@
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff, ('') AS `rmk`, ('') AS `no`"
-                query += " ,IF(ISNULL(head.id_wh_awb_det),1,2) AS penanda"
+                query += " ,IF(ISNULL(head.id_wh_awb_det),1,2) AS penanda, so.sales_order_ol_shop_number"
                 query += " FROM tb_wh_awbill awb"
                 query += " inner join tb_m_comp comp_store On comp_store.id_comp=awb.id_store"
                 query += " inner join tb_m_comp comp_cargo On comp_cargo.id_comp=awb.id_cargo"
@@ -649,5 +651,42 @@
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         FormWHAwbillTrackCollection.ShowDialog()
+    End Sub
+
+    Private Sub BShipmentLabel_Click(sender As Object, e As EventArgs) Handles BShipmentLabel.Click
+        GVAWBill.ActiveFilterString = "[is_check] = 'yes'"
+
+        If GVAWBill.RowCount > 0 Then
+            Dim q_in As String = ""
+
+            For i = 0 To GVAWBill.RowCount - 1
+                If GVAWBill.IsValidRowHandle(i) Then
+                    q_in += GVAWBill.GetRowCellValue(i, "id_awbill").ToString + ", "
+                End If
+            Next
+
+            Dim query As String = "
+                SELECT aw.awbill_no, so.sales_order_ol_shop_number, so.customer_name, so.shipping_address, so.shipping_address1, so.shipping_address2, so.shipping_city, CONCAT(so.shipping_region, ', ', so.shipping_post_code) AS shipping_region_post_code, so.shipping_phone
+                FROM tb_wh_awbill_det AS aw_det
+                LEFT JOIN tb_pl_sales_order_del AS pl_del ON aw_det.id_pl_sales_order_del = pl_del.id_pl_sales_order_del
+                LEFT JOIN tb_sales_order AS so ON pl_del.id_sales_order = so.id_sales_order
+                LEFT JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
+                WHERE aw_det.id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")
+            "
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            Dim report As ReportWHAWBillShipmentLabel = New ReportWHAWBillShipmentLabel
+
+            report.DataSource = data
+
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+            tool.ShowPreview()
+        Else
+            errorCustom("No AWB selected.")
+        End If
+
+        GVAWBill.ActiveFilterString = ""
     End Sub
 End Class
