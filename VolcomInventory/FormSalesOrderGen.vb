@@ -323,7 +323,7 @@
                         Cursor = Cursors.WaitCursor
 
                         'created so
-                        Dim query_main_view As String = "SELECT a.id_comp_contact_from, a.id_comp_contact_to, IFNULL(comp.id_so_type,0) AS `id_so_type`, IF(comp.id_comp_cat=6,'1', '5') `id_so_status` "
+                        Dim query_main_view As String = "SELECT a.id_comp_contact_from, a.id_comp_contact_to, IFNULL(comp.id_so_type,0) AS `id_so_type`, IF(comp.id_comp_cat=6,'1', '5') `id_so_status`, comp.id_comp "
                         query_main_view += "FROM tb_sales_order_gen_det a "
                         query_main_view += "INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = a.id_comp_contact_to "
                         query_main_view += "INNER JOIN tb_m_comp comp ON comp.id_comp = cc.id_comp "
@@ -349,8 +349,17 @@
                                 is_transfer_data = "2"
                             End If
 
-                            Dim query_so_main As String = "INSERT INTO tb_sales_order(id_sales_order_gen, id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_so_status, id_report_status, id_prepare_status, id_user_created, is_transfer_data) "
-                            query_so_main += "VALUES('" + id_sales_order_gen + "', '" + data_main_view.Rows(i)("id_comp_contact_to").ToString + "', '" + data_main_view.Rows(i)("id_comp_contact_from").ToString + "', '', NOW(), '', '" + data_main_view.Rows(i)("id_so_type").ToString + "', '" + data_main_view.Rows(i)("id_so_status").ToString + "', '1','1', '" + id_user + "', '" + is_transfer_data + "'); SELECT LAST_INSERT_ID(); "
+                            Dim is_sync_stock As String = ""
+                            Dim qryol As String = "SELECT * FROM tb_m_comp_volcom_ol c WHERE c.id_comp='" + data_main_view.Rows(i)("id_comp").ToString + "' "
+                            Dim dol As DataTable = execute_query(qryol, -1, True, "", "", "", "")
+                            If dol.Rows.Count > 0 Then
+                                is_sync_stock = "1"
+                            Else
+                                is_sync_stock = "2"
+                            End If
+
+                            Dim query_so_main As String = "INSERT INTO tb_sales_order(id_sales_order_gen, id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_so_status, id_report_status, id_prepare_status, id_user_created, is_transfer_data, is_sync_stock) "
+                            query_so_main += "VALUES('" + id_sales_order_gen + "', '" + data_main_view.Rows(i)("id_comp_contact_to").ToString + "', '" + data_main_view.Rows(i)("id_comp_contact_from").ToString + "', '', NOW(), '', '" + data_main_view.Rows(i)("id_so_type").ToString + "', '" + data_main_view.Rows(i)("id_so_status").ToString + "', '1','1', '" + id_user + "', '" + is_transfer_data + "', '" + is_sync_stock + "'); SELECT LAST_INSERT_ID(); "
                             Dim id_so_created As String = execute_query(query_so_main, 0, True, "", "", "", "")
 
                             'insert detail

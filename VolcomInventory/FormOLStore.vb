@@ -399,12 +399,12 @@
     End Sub
 
     Sub viewVolcomOrder(ByVal cond As String)
-        Dim query As String = "SELECT vo.id, vo.sales_order_ol_shop_number, vo.sales_order_ol_shop_date, vo.customer_name, vo.shipping_name, vo.shipping_address, vo.shipping_phone, vo.shipping_city, vo.shipping_post_code,
+        Dim query As String = "SELECT 'no' AS is_checked, vo.id, vo.sales_order_ol_shop_number, vo.sales_order_ol_shop_date, vo.customer_name, vo.shipping_name, vo.shipping_address, vo.shipping_phone, vo.shipping_city, vo.shipping_post_code,
         vo.shipping_region, vo.payment_method, vo.tracking_code, vo.ol_store_sku, vo.ol_store_id, vo.sku, vo.design_price, vo.sales_order_det_qty, vo.is_process, IF(vo.is_process=1,'Yes', 'No') AS `is_process_view`,
         vo.note_price, vo.id_design_cat, vo.id_design_price, vo.id_product, vo.note_stock, 
         vo.id_report_trf_order, vo.rmt_trf_order, trf_order.sales_order_number AS `trf_order_number`,
         vo.id_report_trf, vo.rmt_trf, trf.fg_trf_number AS `trf_number`,
-        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number
+        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number, vo.fail_reason
         FROM tb_ol_store_order vo
         LEFT JOIN tb_sales_order trf_order ON trf_order.id_sales_order = vo.id_report_trf_order
         LEFT JOIN tb_sales_order actual_order ON actual_order.id_sales_order = vo.id_report_order
@@ -548,5 +548,23 @@
 
     Private Sub CEAllow_CheckedChanged(sender As Object, e As EventArgs) Handles CEAllow.CheckedChanged
 
+    End Sub
+
+    Private Sub RICEIsCheck_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles RICEIsCheck.EditValueChanging
+        If Not GVVolcom.GetFocusedRowCellValue("is_process").ToString = "2" Then
+            e.Cancel = True
+        End If
+    End Sub
+
+    Private Sub SBCloseOrder_Click(sender As Object, e As EventArgs) Handles SBCloseOrder.Click
+        GVVolcom.ActiveFilterString = "[is_checked] = 'yes'"
+
+        If GVVolcom.RowCount > 0 Then
+            FormOLStoreCloseConfirm.ShowDialog()
+        Else
+            stopCustom("No order selected.")
+        End If
+
+        GVVolcom.ActiveFilterString = ""
     End Sub
 End Class
