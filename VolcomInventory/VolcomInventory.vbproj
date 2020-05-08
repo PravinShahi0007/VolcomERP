@@ -2689,6 +2689,18 @@
     <Compile Include="FormOLStorePeriod.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOlStoreRetCust.Designer.vb">
+      <DependentUpon>FormOlStoreRetCust.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOlStoreRetCust.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOlStoreRetCustDet.Designer.vb">
+      <DependentUpon>FormOlStoreRetCustDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOlStoreRetCustDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOlStoreReturnList.Designer.vb">
       <DependentUpon>FormOlStoreReturnList.vb</DependentUpon>
     </Compile>
@@ -9301,6 +9313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStorePeriod.resx">
       <DependentUpon>FormOLStorePeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOlStoreRetCust.resx">
+      <DependentUpon>FormOlStoreRetCust.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOlStoreRetCustDet.resx">
+      <DependentUpon>FormOlStoreRetCustDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOlStoreReturnList.resx">
       <DependentUpon>FormOlStoreReturnList.vb</DependentUpon>
