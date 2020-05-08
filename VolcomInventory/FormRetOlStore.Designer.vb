@@ -48,6 +48,7 @@ Partial Class FormRetOlStore
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPPreReturnList.SuspendLayout()
@@ -92,7 +93,7 @@ Partial Class FormRetOlStore
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_ret, Me.GridColumnid_sales_order_ol_shop, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnret_req_number, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnrec_date})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_ret, Me.GridColumnid_sales_order_ol_shop, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnret_req_number, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnrec_date, Me.GridColumncomp_group_name})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -118,7 +119,7 @@ Partial Class FormRetOlStore
         Me.GridColumnsales_order_ol_shop_number.FieldName = "sales_order_ol_shop_number"
         Me.GridColumnsales_order_ol_shop_number.Name = "GridColumnsales_order_ol_shop_number"
         Me.GridColumnsales_order_ol_shop_number.Visible = True
-        Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 1
+        Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 2
         '
         'GridColumnret_req_number
         '
@@ -126,7 +127,7 @@ Partial Class FormRetOlStore
         Me.GridColumnret_req_number.FieldName = "ret_req_number"
         Me.GridColumnret_req_number.Name = "GridColumnret_req_number"
         Me.GridColumnret_req_number.Visible = True
-        Me.GridColumnret_req_number.VisibleIndex = 2
+        Me.GridColumnret_req_number.VisibleIndex = 3
         '
         'GridColumnnumber
         '
@@ -144,7 +145,7 @@ Partial Class FormRetOlStore
         Me.GridColumncreated_date.FieldName = "created_date"
         Me.GridColumncreated_date.Name = "GridColumncreated_date"
         Me.GridColumncreated_date.Visible = True
-        Me.GridColumncreated_date.VisibleIndex = 4
+        Me.GridColumncreated_date.VisibleIndex = 5
         '
         'GridColumncreated_by_name
         '
@@ -152,7 +153,7 @@ Partial Class FormRetOlStore
         Me.GridColumncreated_by_name.FieldName = "created_by_name"
         Me.GridColumncreated_by_name.Name = "GridColumncreated_by_name"
         Me.GridColumncreated_by_name.Visible = True
-        Me.GridColumncreated_by_name.VisibleIndex = 5
+        Me.GridColumncreated_by_name.VisibleIndex = 6
         '
         'GridColumnnote
         '
@@ -172,7 +173,7 @@ Partial Class FormRetOlStore
         Me.GridColumnreport_status.FieldName = "report_status"
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
-        Me.GridColumnreport_status.VisibleIndex = 6
+        Me.GridColumnreport_status.VisibleIndex = 7
         '
         'GridColumnrec_date
         '
@@ -182,7 +183,7 @@ Partial Class FormRetOlStore
         Me.GridColumnrec_date.FieldName = "rec_date"
         Me.GridColumnrec_date.Name = "GridColumnrec_date"
         Me.GridColumnrec_date.Visible = True
-        Me.GridColumnrec_date.VisibleIndex = 3
+        Me.GridColumnrec_date.VisibleIndex = 4
         '
         'XTPOrderList
         '
@@ -303,6 +304,14 @@ Partial Class FormRetOlStore
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Store Group"
         '
+        'GridColumncomp_group_name
+        '
+        Me.GridColumncomp_group_name.Caption = "Store Group"
+        Me.GridColumncomp_group_name.FieldName = "comp_group_name"
+        Me.GridColumncomp_group_name.Name = "GridColumncomp_group_name"
+        Me.GridColumncomp_group_name.Visible = True
+        Me.GridColumncomp_group_name.VisibleIndex = 1
+        '
         'FormRetOlStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -362,4 +371,5 @@ Partial Class FormRetOlStore
     Friend WithEvents GridColumnsales_order_ol_shop_number_order As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnorder_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class
