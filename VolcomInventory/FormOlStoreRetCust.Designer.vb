@@ -34,14 +34,7 @@ Partial Class FormOlStoreRetCust
         Me.GVRetReq = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -50,6 +43,11 @@ Partial Class FormOlStoreRetCust
         Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRetCust, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRetCust.SuspendLayout()
         Me.XTPRetList.SuspendLayout()
@@ -168,7 +166,7 @@ Partial Class FormOlStoreRetCust
         '
         'GVRetReq
         '
-        Me.GVRetReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVRetReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3})
         Me.GVRetReq.GridControl = Me.GCRetReq
         Me.GVRetReq.Name = "GVRetReq"
         Me.GVRetReq.OptionsView.ShowGroupPanel = False
@@ -185,41 +183,7 @@ Partial Class FormOlStoreRetCust
         Me.GridColumn6.FieldName = "store_group"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Created Date"
-        Me.GridColumn2.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn2.FieldName = "created_date"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Created By"
-        Me.GridColumn3.FieldName = "employee_name"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Number"
-        Me.GridColumn4.FieldName = "number"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Report Status"
-        Me.GridColumn5.FieldName = "report_status"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 0
         '
         'PanelControl1
         '
@@ -233,30 +197,6 @@ Partial Class FormOlStoreRetCust
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1026, 46)
         Me.PanelControl1.TabIndex = 1
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(29, 13)
-        Me.LabelControl2.TabIndex = 5
-        Me.LabelControl2.Text = "Group"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(236, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(68, 13)
-        Me.LabelControl1.TabIndex = 2
-        Me.LabelControl1.Text = "Order Number"
-        '
-        'BSearch
-        '
-        Me.BSearch.Location = New System.Drawing.Point(501, 10)
-        Me.BSearch.Name = "BSearch"
-        Me.BSearch.Size = New System.Drawing.Size(62, 23)
-        Me.BSearch.TabIndex = 0
-        Me.BSearch.Text = "Search"
         '
         'SLECompGroup
         '
@@ -322,6 +262,44 @@ Partial Class FormOlStoreRetCust
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 0
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(29, 13)
+        Me.LabelControl2.TabIndex = 5
+        Me.LabelControl2.Text = "Group"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(236, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl1.TabIndex = 2
+        Me.LabelControl1.Text = "Order Number"
+        '
+        'BSearch
+        '
+        Me.BSearch.Location = New System.Drawing.Point(501, 10)
+        Me.BSearch.Name = "BSearch"
+        Me.BSearch.Size = New System.Drawing.Size(62, 23)
+        Me.BSearch.TabIndex = 0
+        Me.BSearch.Text = "Search"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
         'FormOlStoreRetCust
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -367,10 +345,6 @@ Partial Class FormOlStoreRetCust
     Friend WithEvents GVRetReq As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
@@ -385,4 +359,6 @@ Partial Class FormOlStoreRetCust
     Friend WithEvents SLEOrder As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

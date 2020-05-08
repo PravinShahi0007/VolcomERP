@@ -22,22 +22,27 @@ Partial Class FormOlStoreRetCustDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOlStoreRetCustDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.TxtSalesDelOrderNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
+        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
         Me.MEAddress = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtSalesDelOrderNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
@@ -48,6 +53,8 @@ Partial Class FormOlStoreRetCustDet
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,33 +83,31 @@ Partial Class FormOlStoreRetCustDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
-        CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtSalesDelOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
+        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
-        CType(Me.TxtSalesDelOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SCCSalesOrderDel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,11 +129,10 @@ Partial Class FormOlStoreRetCustDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -146,12 +150,12 @@ Partial Class FormOlStoreRetCustDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopLeft.Controls.Add(Me.TxtSalesDelOrderNumber)
         Me.PanelControlTopLeft.Controls.Add(Me.SLEOrder)
+        Me.PanelControlTopLeft.Controls.Add(Me.SLECompGroup)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtSalesDelOrderNumber)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl7)
-        Me.PanelControlTopLeft.Controls.Add(Me.SearchLookUpEdit1)
         Me.PanelControlTopLeft.Controls.Add(Me.DEForm)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl13)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
@@ -160,21 +164,24 @@ Partial Class FormOlStoreRetCustDet
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(334, 124)
         Me.PanelControlTopLeft.TabIndex = 10002
         '
-        'SLEOrder
+        'TxtSalesDelOrderNumber
         '
-        Me.SLEOrder.Location = New System.Drawing.Point(57, 38)
-        Me.SLEOrder.Name = "SLEOrder"
-        Me.SLEOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEOrder.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEOrder.Size = New System.Drawing.Size(247, 20)
-        Me.SLEOrder.TabIndex = 8905
+        Me.TxtSalesDelOrderNumber.EditValue = ""
+        Me.TxtSalesDelOrderNumber.Location = New System.Drawing.Point(57, 90)
+        Me.TxtSalesDelOrderNumber.Name = "TxtSalesDelOrderNumber"
+        Me.TxtSalesDelOrderNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtSalesDelOrderNumber.Properties.ReadOnly = True
+        Me.TxtSalesDelOrderNumber.Size = New System.Drawing.Size(247, 20)
+        Me.TxtSalesDelOrderNumber.TabIndex = 8
         '
-        'SearchLookUpEdit1View
+        'LabelControl5
         '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 93)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl5.TabIndex = 155
+        Me.LabelControl5.Text = "Number"
         '
         'LabelControl2
         '
@@ -184,21 +191,24 @@ Partial Class FormOlStoreRetCustDet
         Me.LabelControl2.TabIndex = 8904
         Me.LabelControl2.Text = "Group"
         '
-        'SearchLookUpEdit1
+        'LabelControl7
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(57, 12)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView1
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(247, 20)
-        Me.SearchLookUpEdit1.TabIndex = 8903
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 67)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl7.TabIndex = 159
+        Me.LabelControl7.Text = "Date"
         '
-        'GridView1
+        'DEForm
         '
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.DEForm.EditValue = ""
+        Me.DEForm.Location = New System.Drawing.Point(57, 64)
+        Me.DEForm.Name = "DEForm"
+        Me.DEForm.Properties.EditValueChangedDelay = 1
+        Me.DEForm.Properties.ReadOnly = True
+        Me.DEForm.Size = New System.Drawing.Size(247, 20)
+        Me.DEForm.TabIndex = 162
         '
         'LabelControl13
         '
@@ -222,6 +232,14 @@ Partial Class FormOlStoreRetCustDet
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(374, 124)
         Me.PanelControlTopMiddle.TabIndex = 10003
+        '
+        'MemoEdit1
+        '
+        Me.MemoEdit1.Location = New System.Drawing.Point(96, 90)
+        Me.MemoEdit1.Name = "MemoEdit1"
+        Me.MemoEdit1.Properties.ReadOnly = True
+        Me.MemoEdit1.Size = New System.Drawing.Size(251, 20)
+        Me.MemoEdit1.TabIndex = 8908
         '
         'MEAddress
         '
@@ -276,43 +294,81 @@ Partial Class FormOlStoreRetCustDet
         Me.PanelControlTopRight.Size = New System.Drawing.Size(297, 124)
         Me.PanelControlTopRight.TabIndex = 10004
         '
-        'TxtSalesDelOrderNumber
+        'TextEdit4
         '
-        Me.TxtSalesDelOrderNumber.EditValue = ""
-        Me.TxtSalesDelOrderNumber.Location = New System.Drawing.Point(57, 90)
-        Me.TxtSalesDelOrderNumber.Name = "TxtSalesDelOrderNumber"
-        Me.TxtSalesDelOrderNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtSalesDelOrderNumber.Properties.ReadOnly = True
-        Me.TxtSalesDelOrderNumber.Size = New System.Drawing.Size(247, 20)
-        Me.TxtSalesDelOrderNumber.TabIndex = 8
+        Me.TextEdit4.EditValue = ""
+        Me.TextEdit4.Location = New System.Drawing.Point(95, 38)
+        Me.TextEdit4.Name = "TextEdit4"
+        Me.TextEdit4.Properties.EditValueChangedDelay = 1
+        Me.TextEdit4.Properties.ReadOnly = True
+        Me.TextEdit4.Size = New System.Drawing.Size(197, 20)
+        Me.TextEdit4.TabIndex = 162
         '
-        'LabelControl5
+        'LabelControl8
         '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 93)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl5.TabIndex = 155
-        Me.LabelControl5.Text = "Number"
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(17, 41)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(62, 13)
+        Me.LabelControl8.TabIndex = 163
+        Me.LabelControl8.Text = "Shipping City"
         '
-        'LabelControl7
+        'TextEdit3
         '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(12, 67)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl7.TabIndex = 159
-        Me.LabelControl7.Text = "Date"
+        Me.TextEdit3.EditValue = ""
+        Me.TextEdit3.Location = New System.Drawing.Point(95, 64)
+        Me.TextEdit3.Name = "TextEdit3"
+        Me.TextEdit3.Properties.EditValueChangedDelay = 1
+        Me.TextEdit3.Properties.ReadOnly = True
+        Me.TextEdit3.Size = New System.Drawing.Size(197, 20)
+        Me.TextEdit3.TabIndex = 160
         '
-        'DEForm
+        'LabelControl6
         '
-        Me.DEForm.EditValue = ""
-        Me.DEForm.Location = New System.Drawing.Point(57, 64)
-        Me.DEForm.Name = "DEForm"
-        Me.DEForm.Properties.EditValueChangedDelay = 1
-        Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(247, 20)
-        Me.DEForm.TabIndex = 162
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(17, 67)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl6.TabIndex = 161
+        Me.LabelControl6.Text = "Postal Code"
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.EditValue = ""
+        Me.TextEdit2.Location = New System.Drawing.Point(95, 90)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.EditValueChangedDelay = 1
+        Me.TextEdit2.Properties.ReadOnly = True
+        Me.TextEdit2.Size = New System.Drawing.Size(197, 20)
+        Me.TextEdit2.TabIndex = 158
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(17, 93)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(33, 13)
+        Me.LabelControl4.TabIndex = 159
+        Me.LabelControl4.Text = "Region"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Location = New System.Drawing.Point(95, 12)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.EditValueChangedDelay = 1
+        Me.TextEdit1.Properties.ReadOnly = True
+        Me.TextEdit1.Size = New System.Drawing.Size(197, 20)
+        Me.TextEdit1.TabIndex = 156
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(17, 15)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(73, 13)
+        Me.LabelControl3.TabIndex = 157
+        Me.LabelControl3.Text = "Shipping Phone"
         '
         'PanelControl3
         '
@@ -437,6 +493,18 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnNo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnNo.Width = 47
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID List"
+        Me.GridColumn2.FieldName = "id_ol_store_ret_list"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Det"
+        Me.GridColumn1.FieldName = "id_ol_store_cust_ret_det"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
         'GridColumnCode
         '
         Me.GridColumnCode.Caption = "Full Code"
@@ -455,7 +523,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.VisibleIndex = 1
         Me.GridColumnName.Width = 161
         '
         'GridColumnSize
@@ -469,7 +537,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.VisibleIndex = 2
         Me.GridColumnSize.Width = 50
         '
         'GridColumnQty
@@ -488,7 +556,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 67
         '
         'GridColumnQtyLimit
@@ -512,7 +580,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnQtyLimit.Name = "GridColumnQtyLimit"
         Me.GridColumnQtyLimit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty_limit", "{0:n0}")})
         Me.GridColumnQtyLimit.Visible = True
-        Me.GridColumnQtyLimit.VisibleIndex = 4
+        Me.GridColumnQtyLimit.VisibleIndex = 3
         Me.GridColumnQtyLimit.Width = 57
         '
         'RepositoryItemSpinEdit1
@@ -741,101 +809,69 @@ Partial Class FormOlStoreRetCustDet
         Me.BScan.TabIndex = 15
         Me.BScan.Text = "Start Scan"
         '
-        'TextEdit1
+        'SLECompGroup
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(95, 12)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit1.TabIndex = 156
+        Me.SLECompGroup.Location = New System.Drawing.Point(57, 12)
+        Me.SLECompGroup.Name = "SLECompGroup"
+        Me.SLECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECompGroup.Properties.View = Me.GridView1
+        Me.SLECompGroup.Size = New System.Drawing.Size(247, 20)
+        Me.SLECompGroup.TabIndex = 8905
         '
-        'LabelControl3
+        'GridView1
         '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(17, 15)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(73, 13)
-        Me.LabelControl3.TabIndex = 157
-        Me.LabelControl3.Text = "Shipping Phone"
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'MemoEdit1
+        'GridColumn13
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(96, 90)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Properties.ReadOnly = True
-        Me.MemoEdit1.Size = New System.Drawing.Size(251, 20)
-        Me.MemoEdit1.TabIndex = 8908
+        Me.GridColumn13.Caption = "ID"
+        Me.GridColumn13.FieldName = "id_comp_group"
+        Me.GridColumn13.Name = "GridColumn13"
         '
-        'TextEdit2
+        'GridColumn14
         '
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(95, 90)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.EditValueChangedDelay = 1
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit2.TabIndex = 158
+        Me.GridColumn14.Caption = "Group"
+        Me.GridColumn14.FieldName = "comp_group"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
         '
-        'LabelControl4
+        'GridColumn15
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(17, 93)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(33, 13)
-        Me.LabelControl4.TabIndex = 159
-        Me.LabelControl4.Text = "Region"
+        Me.GridColumn15.Caption = "Description"
+        Me.GridColumn15.FieldName = "description"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
         '
-        'TextEdit3
+        'SLEOrder
         '
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Location = New System.Drawing.Point(95, 64)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.EditValueChangedDelay = 1
-        Me.TextEdit3.Properties.ReadOnly = True
-        Me.TextEdit3.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit3.TabIndex = 160
+        Me.SLEOrder.Location = New System.Drawing.Point(54, 38)
+        Me.SLEOrder.Name = "SLEOrder"
+        Me.SLEOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEOrder.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEOrder.Size = New System.Drawing.Size(250, 20)
+        Me.SLEOrder.TabIndex = 8906
         '
-        'LabelControl6
+        'SearchLookUpEdit1View
         '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(17, 67)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl6.TabIndex = 161
-        Me.LabelControl6.Text = "Postal Code"
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
-        'TextEdit4
+        'GridColumn16
         '
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Location = New System.Drawing.Point(95, 38)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.EditValueChangedDelay = 1
-        Me.TextEdit4.Properties.ReadOnly = True
-        Me.TextEdit4.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit4.TabIndex = 162
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(17, 41)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(62, 13)
-        Me.LabelControl8.TabIndex = 163
-        Me.LabelControl8.Text = "Shipping City"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Det"
-        Me.GridColumn1.FieldName = "id_ol_store_cust_ret_det"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "ID List"
-        Me.GridColumn2.FieldName = "id_ol_store_ret_list"
-        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn16.Caption = "Order Number"
+        Me.GridColumn16.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
         '
         'FormOlStoreRetCustDet
         '
@@ -856,20 +892,21 @@ Partial Class FormOlStoreRetCustDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
-        CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtSalesDelOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
+        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
-        CType(Me.TxtSalesDelOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.SCCSalesOrderDel, System.ComponentModel.ISupportInitialize).EndInit()
@@ -892,11 +929,10 @@ Partial Class FormOlStoreRetCustDet
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -953,10 +989,6 @@ Partial Class FormOlStoreRetCustDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEAddress As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents SLEOrder As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
@@ -968,4 +1000,12 @@ Partial Class FormOlStoreRetCustDet
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEOrder As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
