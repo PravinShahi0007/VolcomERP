@@ -315,7 +315,7 @@ Partial Class Form3plRateDet
         Me.GridColumn8.FieldName = "sub_district"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 0
         '
         'GridColumn11
         '
@@ -323,7 +323,7 @@ Partial Class Form3plRateDet
         Me.GridColumn11.FieldName = "city"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.VisibleIndex = 1
         '
         'GridColumn7
         '
