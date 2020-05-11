@@ -38,6 +38,7 @@
         GROUP BY so.sales_order_ol_shop_number "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOrderList.DataSource = data
+        check_menu()
         Cursor = Cursors.Default
     End Sub
 

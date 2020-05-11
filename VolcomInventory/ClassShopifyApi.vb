@@ -400,14 +400,15 @@ GROUP BY p.sku"
         Dim data = Text.Encoding.UTF8.GetBytes("{
   ""fulfillment"": {
     ""location_id"": " + location_id + ",
-    ""tracking_number"": " + tracking_number + ",
-    ""tracking_company"": " + tracking_comp + ",
-    ""tracking_url"": " + tracking_url + tracking_number + ",
+    ""tracking_number"": """ + tracking_number + """,
+    ""tracking_company"": """ + tracking_comp + """,
+    ""tracking_url"": """ + tracking_url + tracking_number + """,
     ""line_items"": [
       " + val + "
     ]
   }
 }")
+        'Console.WriteLine(tracking_url + tracking_number)
         Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/orders/" & id_order & "/fulfillments.json", data, "application/json", "POST", username, password)
     End Sub
 End Class
