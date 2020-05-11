@@ -7813,18 +7813,16 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
             If id_status_reportx = "6" Then
                 'action completed
+                Dim query_ins As String = "INSERT INTO tb_ol_store_ret_list(id_ol_store_ret_det, id_ol_store_ret_stt) 
+                SELECT d.id_ol_store_ret_det, 1 
+                FROM tb_ol_store_ret_det d
+                WHERE d.id_ol_store_ret=" + id_report + " "
+                execute_non_query(query_ins, True, "", "", "", "")
             End If
 
             'update status
             query = String.Format("UPDATE tb_ol_store_ret SET id_report_status='{0}' WHERE id_ol_store_ret ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
-
-            'refresh view
-            FormRetOLStoreDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-            FormRetOLStoreDet.actionLoad()
-            FormRetOlStore.viewData()
-            FormRetOlStore.GVData.FocusedRowHandle = find_row(FormRetOlStore.GVData, "id_ol_store_ret", id_report)
         End If
 
         'adding lead time
