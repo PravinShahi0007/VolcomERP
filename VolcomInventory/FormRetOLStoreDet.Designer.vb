@@ -399,7 +399,6 @@ Partial Class FormRetOLStoreDet
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
         Me.BtnSaveChanges.Text = "Save Changes"
-        Me.BtnSaveChanges.Visible = False
         '
         'MENote
         '
