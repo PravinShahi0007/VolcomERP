@@ -99,13 +99,16 @@
 
             Report.XLNumber.Text = Report.XLNumber.Text.Replace("[number]", data.Rows(0)("number").ToString)
 
-            If FormMasterEmployee.GVEmployee.GetFocusedRowCellValue("id_employee").ToString = "132" Then
+            'future update : jadikan opt
+
+            If data.Rows(0)("id_employee").ToString = "132" Then
                 Report.L_hrd_employee_name2.Text = "Marissa Bridgitt Kasih"
                 Report.L_hrd_employee_position2.Text = "Director"
             Else
                 Report.L_hrd_employee_name2.Text = "Johannes Paulus Lazarus Handoko"
                 Report.L_hrd_employee_position2.Text = "HR & Compliance Manager"
             End If
+
             Report.L_employee_name.Text = data.Rows(0)("employee_name").ToString
             Report.L_employee_code.Text = data.Rows(0)("employee_code").ToString
             Report.L_employee_position.Text = data.Rows(0)("employee_position").ToString
