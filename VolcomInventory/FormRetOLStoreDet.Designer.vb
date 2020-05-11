@@ -163,6 +163,7 @@ Partial Class FormRetOLStoreDet
         Me.DERecDate.EditValue = Nothing
         Me.DERecDate.Location = New System.Drawing.Point(122, 92)
         Me.DERecDate.Name = "DERecDate"
+        Me.DERecDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DERecDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DERecDate.Properties.Appearance.Options.UseFont = True
         Me.DERecDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -356,6 +357,7 @@ Partial Class FormRetOLStoreDet
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
         Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BtnAttachment
         '

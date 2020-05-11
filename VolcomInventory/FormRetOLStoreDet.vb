@@ -208,9 +208,53 @@
     End Sub
 
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            BtnSaveChanges.Enabled = False
+        makeSafeGV(GVData)
+        If TxtRetRequest.Text = "" Or GVData.RowCount <= 0 Then
+            warningCustom("Please complete all data")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                BtnSaveChanges.Enabled = False
+                Dim id_comp_group As String = SLECompGroup.EditValue.ToString
+                Dim sales_order_ol_shop_number As String = addSlashes(TxtOrderNumber.Text)
+                Dim ret_req_number As String = addSlashes(TxtRetRequest.Text)
+                Dim rec_date As String = DateTime.Parse(DERecDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim note As String = addSlashes(MENote.Text)
+
+                'main 
+                Dim query As String = "INSERT INTO tb_ol_store_ret(id_comp_group, sales_order_ol_shop_number, ret_req_number, rec_date, number, created_date, created_by, note, id_report_status) VALUES 
+                ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "', '" + ret_req_number + "', '" + rec_date + "', '', NOW(), '" + id_user + "', '" + note + "',1);SELECT LAST_INSERT_ID(); "
+                id = execute_query(query, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ", 243); ", True, "", "", "", "")
+
+                'detail
+                Dim query_det As String = "INSERT INTO tb_ol_store_ret_det(id_ol_store_ret, id_sales_order_det, id_pl_sales_order_del_det_counting, product_full_code) VALUES "
+                For i As Integer = 0 To GVData.RowCount - 1
+                    Dim id_sales_order_det As String = GVData.GetRowCellValue(i, "id_sales_order_det").ToString
+                    Dim id_pl_sales_order_del_det_counting As String = GVData.GetRowCellValue(i, "id_pl_sales_order_del_det_counting").ToString
+                    Dim product_full_code As String = GVData.GetRowCellValue(i, "product_full_code").ToString
+
+                    If i > 0 Then
+                        query_det += ","
+                    End If
+                    query_det += "('" + id + "', '" + id_sales_order_det + "', '" + id_pl_sales_order_del_det_counting + "', '" + product_full_code + "') "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(query_det, True, "", "", "", "")
+                End If
+
+                'submit
+                submit_who_prepared(rmt, id, id_user)
+
+                'refresh
+                FormRetOlStore.viewData()
+                FormRetOlStore.GVData.FocusedRowHandle = find_row(FormRetOlStore.GVData, "id_ol_store_ret", id)
+                action = "upd"
+                actionLoad()
+                infoCustom("Pre return saved. Waiting for approval")
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -228,7 +272,7 @@
                 ' add scan
                 Dim dtf As DataRow() = dt.Select("[code_list]='" + code + "' ")
                 If dtf.Length <= 0 Then
-                    stopCustom("Code : " + code + " not found. ")
+                    stopCustomDialog("Code : " + code + " not found. ")
                     GVData.FocusedRowHandle = GVData.RowCount - 1
                     TxtScannedCode.Text = ""
                     TxtScannedCode.Focus()
@@ -259,7 +303,7 @@
                         TxtScannedCode.Text = ""
                         TxtScannedCode.Focus()
                     Else
-                        stopCustom("Maximum scan : " + dtf(0)("qty_limit").ToString)
+                        stopCustomDialog("Maximum scan : " + dtf(0)("qty_limit").ToString)
                         TxtScannedCode.Text = ""
                         TxtScannedCode.Focus()
                     End If
@@ -275,7 +319,7 @@
                     TxtScannedCode.Text = ""
                     TxtScannedCode.Focus()
                 Else
-                    stopCustom("Code : " + code + " not found. ")
+                    stopCustomDialog("Code : " + code + " not found. ")
                     GVData.FocusedRowHandle = GVData.RowCount - 1
                     TxtScannedCode.Text = ""
                     TxtScannedCode.Focus()
