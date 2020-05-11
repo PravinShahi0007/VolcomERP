@@ -23,17 +23,15 @@ Partial Class FormRefundOLStore
         Me.XTPAcceptedList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_ol_store_ret = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_ol_store_refund = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_order_ol_shop = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_ol_shop_number = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnret_req_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncreated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrec_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOrderList = New DevExpress.XtraGrid.GridControl()
@@ -49,6 +47,8 @@ Partial Class FormRefundOLStore
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnwh_normal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnwh_sale = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPAcceptedList.SuspendLayout()
@@ -93,7 +93,7 @@ Partial Class FormRefundOLStore
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_ret, Me.GridColumnid_sales_order_ol_shop, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnret_req_number, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnrec_date, Me.GridColumncomp_group_name})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_refund, Me.GridColumnid_sales_order_ol_shop, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumncomp_group_name, Me.GridColumnwh_normal, Me.GridColumnwh_sale})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -101,11 +101,11 @@ Partial Class FormRefundOLStore
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnid_ol_store_ret
+        'GridColumnid_ol_store_refund
         '
-        Me.GridColumnid_ol_store_ret.Caption = "id_ol_store_ret"
-        Me.GridColumnid_ol_store_ret.FieldName = "id_ol_store_ret"
-        Me.GridColumnid_ol_store_ret.Name = "GridColumnid_ol_store_ret"
+        Me.GridColumnid_ol_store_refund.Caption = "id_ol_store_refund"
+        Me.GridColumnid_ol_store_refund.FieldName = "id_ol_store_refund"
+        Me.GridColumnid_ol_store_refund.Name = "GridColumnid_ol_store_refund"
         '
         'GridColumnid_sales_order_ol_shop
         '
@@ -120,14 +120,6 @@ Partial Class FormRefundOLStore
         Me.GridColumnsales_order_ol_shop_number.Name = "GridColumnsales_order_ol_shop_number"
         Me.GridColumnsales_order_ol_shop_number.Visible = True
         Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 2
-        '
-        'GridColumnret_req_number
-        '
-        Me.GridColumnret_req_number.Caption = "Ret. Request Number"
-        Me.GridColumnret_req_number.FieldName = "ret_req_number"
-        Me.GridColumnret_req_number.Name = "GridColumnret_req_number"
-        Me.GridColumnret_req_number.Visible = True
-        Me.GridColumnret_req_number.VisibleIndex = 3
         '
         'GridColumnnumber
         '
@@ -174,16 +166,6 @@ Partial Class FormRefundOLStore
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 7
-        '
-        'GridColumnrec_date
-        '
-        Me.GridColumnrec_date.Caption = "Received Date"
-        Me.GridColumnrec_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumnrec_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnrec_date.FieldName = "rec_date"
-        Me.GridColumnrec_date.Name = "GridColumnrec_date"
-        Me.GridColumnrec_date.Visible = True
-        Me.GridColumnrec_date.VisibleIndex = 4
         '
         'GridColumncomp_group_name
         '
@@ -242,16 +224,12 @@ Partial Class FormRefundOLStore
         Me.GridColumnorder_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnorder_date.FieldName = "order_date"
         Me.GridColumnorder_date.Name = "GridColumnorder_date"
-        Me.GridColumnorder_date.Visible = True
-        Me.GridColumnorder_date.VisibleIndex = 1
         '
         'GridColumncustomer_name
         '
         Me.GridColumncustomer_name.Caption = "Customer"
         Me.GridColumncustomer_name.FieldName = "customer_name"
         Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
-        Me.GridColumncustomer_name.Visible = True
-        Me.GridColumncustomer_name.VisibleIndex = 2
         '
         'PanelControl1
         '
@@ -312,6 +290,22 @@ Partial Class FormRefundOLStore
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Store Group"
         '
+        'GridColumnwh_normal
+        '
+        Me.GridColumnwh_normal.Caption = "Normal Account"
+        Me.GridColumnwh_normal.FieldName = "wh_normal"
+        Me.GridColumnwh_normal.Name = "GridColumnwh_normal"
+        Me.GridColumnwh_normal.Visible = True
+        Me.GridColumnwh_normal.VisibleIndex = 3
+        '
+        'GridColumnwh_sale
+        '
+        Me.GridColumnwh_sale.Caption = "Sale Account"
+        Me.GridColumnwh_sale.FieldName = "wh_sale"
+        Me.GridColumnwh_sale.Name = "GridColumnwh_sale"
+        Me.GridColumnwh_sale.Visible = True
+        Me.GridColumnwh_sale.VisibleIndex = 4
+        '
         'FormRefundOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -342,17 +336,15 @@ Partial Class FormRefundOLStore
     Friend WithEvents XTPAcceptedList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnid_ol_store_ret As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_ol_store_refund As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_sales_order_ol_shop As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsales_order_ol_shop_number As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnret_req_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncreated_by_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnrec_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_group_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPOrderList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCOrderList As DevExpress.XtraGrid.GridControl
@@ -368,4 +360,6 @@ Partial Class FormRefundOLStore
     Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnwh_normal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnwh_sale As DevExpress.XtraGrid.Columns.GridColumn
 End Class

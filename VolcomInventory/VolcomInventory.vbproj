@@ -3296,6 +3296,12 @@
     <Compile Include="FormRefundOLStore.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRefundOLStoreDet.Designer.vb">
+      <DependentUpon>FormRefundOLStoreDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRefundOLStoreDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRejectType.Designer.vb">
       <DependentUpon>FormRejectType.vb</DependentUpon>
     </Compile>
@@ -9630,6 +9636,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRefundOLStore.resx">
       <DependentUpon>FormRefundOLStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRefundOLStoreDet.resx">
+      <DependentUpon>FormRefundOLStoreDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejectType.resx">
       <DependentUpon>FormRejectType.vb</DependentUpon>
