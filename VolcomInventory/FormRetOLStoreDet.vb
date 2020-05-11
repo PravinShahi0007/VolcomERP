@@ -109,6 +109,7 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
+        TxtScannedCode.Enabled = True
         Try
             dt.Clear()
         Catch ex As Exception
@@ -143,6 +144,8 @@
         HAVING qty_limit>0 "
         dt = execute_query(query, -1, True, "", "", "", "")
         scan_mode = "add"
+        LabelScannedCode.Appearance.ForeColor = Color.Green
+        TxtScannedCode.Properties.Appearance.ForeColor = Color.Green
         TxtScannedCode.Focus()
         Cursor = Cursors.Default
     End Sub
@@ -150,6 +153,8 @@
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
         Cursor = Cursors.WaitCursor
         scan_mode = "delete"
+        LabelScannedCode.Appearance.ForeColor = Color.Red
+        TxtScannedCode.Properties.Appearance.ForeColor = Color.Red
         TxtScannedCode.Focus()
         Cursor = Cursors.Default
     End Sub
@@ -224,6 +229,7 @@
                 Dim dtf As DataRow() = dt.Select("[code_list]='" + code + "' ")
                 If dtf.Length <= 0 Then
                     stopCustom("Code : " + code + " not found. ")
+                    GVData.FocusedRowHandle = GVData.RowCount - 1
                     TxtScannedCode.Text = ""
                     TxtScannedCode.Focus()
                 Else
@@ -259,7 +265,22 @@
                     End If
                 End If
             Else
-
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[product_full_code]='" + code + "'"
+                If GVData.RowCount > 0 Then
+                    GVData.DeleteSelectedRows()
+                    GCData.RefreshDataSource()
+                    GVData.RefreshData()
+                    GVData.FocusedRowHandle = GVData.RowCount - 1
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                Else
+                    stopCustom("Code : " + code + " not found. ")
+                    GVData.FocusedRowHandle = GVData.RowCount - 1
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                End If
+                GVData.ActiveFilterString = ""
             End If
         End If
         Cursor = Cursors.Default

@@ -54,7 +54,7 @@ Partial Class FormRetOLStoreDet
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelScannedCode = New DevExpress.XtraEditors.LabelControl()
         Me.TxtScannedCode = New DevExpress.XtraEditors.TextEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -435,7 +435,7 @@ Partial Class FormRetOLStoreDet
         '
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
-        Me.PanelControlNav.Controls.Add(Me.LabelControl1)
+        Me.PanelControlNav.Controls.Add(Me.LabelScannedCode)
         Me.PanelControlNav.Controls.Add(Me.TxtScannedCode)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 133)
@@ -463,17 +463,18 @@ Partial Class FormRetOLStoreDet
         Me.BtnAdd.TabIndex = 156
         Me.BtnAdd.Text = "Add"
         '
-        'LabelControl1
+        'LabelScannedCode
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(17, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(69, 13)
-        Me.LabelControl1.TabIndex = 153
-        Me.LabelControl1.Text = "Scanned Code"
+        Me.LabelScannedCode.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelScannedCode.Location = New System.Drawing.Point(17, 15)
+        Me.LabelScannedCode.Name = "LabelScannedCode"
+        Me.LabelScannedCode.Size = New System.Drawing.Size(69, 13)
+        Me.LabelScannedCode.TabIndex = 153
+        Me.LabelScannedCode.Text = "Scanned Code"
         '
         'TxtScannedCode
         '
+        Me.TxtScannedCode.Enabled = False
         Me.TxtScannedCode.Location = New System.Drawing.Point(92, 12)
         Me.TxtScannedCode.Name = "TxtScannedCode"
         Me.TxtScannedCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -663,7 +664,7 @@ Partial Class FormRetOLStoreDet
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelScannedCode As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtScannedCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
