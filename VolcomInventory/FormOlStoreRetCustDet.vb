@@ -40,7 +40,30 @@ GROUP BY ret.sales_order_ol_shop_number"
         view_order()
 
         If id_ret = "-1" Then 'new
-
+            SLECompGroup.EditValue = FormOlStoreRetCust.SLECompGroup.EditValue
+            SLEOrder.EditValue = FormOlStoreRetCust.SLEOrder.EditValue
+            '
+            DEDateCreated.EditValue = Now
+            TENumberRetCust.Text = "[auto generate]"
+            '
+            If FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "is_ret_to_cust").ToString = "1" Or FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "is_ret_to_cust").ToString = "True" Then
+                '
+                TERetTo.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "cust_name").ToString
+                MEAddress1.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "cust_address").ToString
+                '
+                TEShipPhone.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "cust_phone").ToString
+                TEShipCity.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "cust_city").ToString
+                TEPostalCode.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "cust_postal_code").ToString
+                TERegion.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "cust_region").ToString
+            Else
+                TERetTo.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "group_name").ToString
+                MEAddress1.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "group_address").ToString
+                '
+                TEShipPhone.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "group_phone").ToString
+                TEShipCity.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "group_city").ToString
+                TEPostalCode.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "group_postal_code").ToString
+                TERegion.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "group_region").ToString
+            End If
         End If
     End Sub
 End Class

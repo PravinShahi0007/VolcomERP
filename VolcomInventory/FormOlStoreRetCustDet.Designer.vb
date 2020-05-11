@@ -22,6 +22,7 @@ Partial Class FormOlStoreRetCustDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOlStoreRetCustDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -30,26 +31,24 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtSalesDelOrderNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumberRetCust = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
-        Me.MEAddress = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEAddress1 = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
+        Me.TERetTo = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEShipCity = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEPostalCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TERegion = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEShipPhone = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -95,23 +94,23 @@ Partial Class FormOlStoreRetCustDet
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtSalesDelOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumberRetCust.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEAddress1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TERetTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEShipCity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPostalCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TERegion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEShipPhone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SCCSalesOrderDel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,19 +149,32 @@ Partial Class FormOlStoreRetCustDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopLeft.Controls.Add(Me.DEDateCreated)
         Me.PanelControlTopLeft.Controls.Add(Me.SLEOrder)
         Me.PanelControlTopLeft.Controls.Add(Me.SLECompGroup)
-        Me.PanelControlTopLeft.Controls.Add(Me.TxtSalesDelOrderNumber)
+        Me.PanelControlTopLeft.Controls.Add(Me.TENumberRetCust)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl7)
-        Me.PanelControlTopLeft.Controls.Add(Me.DEForm)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl13)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(334, 124)
         Me.PanelControlTopLeft.TabIndex = 10002
+        '
+        'DEDateCreated
+        '
+        Me.DEDateCreated.EditValue = Nothing
+        Me.DEDateCreated.Location = New System.Drawing.Point(57, 64)
+        Me.DEDateCreated.Name = "DEDateCreated"
+        Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEDateCreated.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEDateCreated.Properties.ReadOnly = True
+        Me.DEDateCreated.Size = New System.Drawing.Size(247, 20)
+        Me.DEDateCreated.TabIndex = 8907
         '
         'SLEOrder
         '
@@ -228,15 +240,15 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 1
         '
-        'TxtSalesDelOrderNumber
+        'TENumberRetCust
         '
-        Me.TxtSalesDelOrderNumber.EditValue = ""
-        Me.TxtSalesDelOrderNumber.Location = New System.Drawing.Point(57, 90)
-        Me.TxtSalesDelOrderNumber.Name = "TxtSalesDelOrderNumber"
-        Me.TxtSalesDelOrderNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtSalesDelOrderNumber.Properties.ReadOnly = True
-        Me.TxtSalesDelOrderNumber.Size = New System.Drawing.Size(247, 20)
-        Me.TxtSalesDelOrderNumber.TabIndex = 8
+        Me.TENumberRetCust.EditValue = ""
+        Me.TENumberRetCust.Location = New System.Drawing.Point(57, 90)
+        Me.TENumberRetCust.Name = "TENumberRetCust"
+        Me.TENumberRetCust.Properties.EditValueChangedDelay = 1
+        Me.TENumberRetCust.Properties.ReadOnly = True
+        Me.TENumberRetCust.Size = New System.Drawing.Size(247, 20)
+        Me.TENumberRetCust.TabIndex = 8
         '
         'LabelControl5
         '
@@ -264,16 +276,6 @@ Partial Class FormOlStoreRetCustDet
         Me.LabelControl7.TabIndex = 159
         Me.LabelControl7.Text = "Date"
         '
-        'DEForm
-        '
-        Me.DEForm.EditValue = ""
-        Me.DEForm.Location = New System.Drawing.Point(57, 64)
-        Me.DEForm.Name = "DEForm"
-        Me.DEForm.Properties.EditValueChangedDelay = 1
-        Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(247, 20)
-        Me.DEForm.TabIndex = 162
-        '
         'LabelControl13
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -286,32 +288,23 @@ Partial Class FormOlStoreRetCustDet
         'PanelControlTopMiddle
         '
         Me.PanelControlTopMiddle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopMiddle.Controls.Add(Me.MemoEdit1)
-        Me.PanelControlTopMiddle.Controls.Add(Me.MEAddress)
+        Me.PanelControlTopMiddle.Controls.Add(Me.MEAddress1)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl1)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl14)
-        Me.PanelControlTopMiddle.Controls.Add(Me.TxtCustomer)
+        Me.PanelControlTopMiddle.Controls.Add(Me.TERetTo)
         Me.PanelControlTopMiddle.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopMiddle.Location = New System.Drawing.Point(354, 2)
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(374, 124)
         Me.PanelControlTopMiddle.TabIndex = 10003
         '
-        'MemoEdit1
+        'MEAddress1
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(96, 90)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Properties.ReadOnly = True
-        Me.MemoEdit1.Size = New System.Drawing.Size(251, 20)
-        Me.MemoEdit1.TabIndex = 8908
-        '
-        'MEAddress
-        '
-        Me.MEAddress.Location = New System.Drawing.Point(96, 40)
-        Me.MEAddress.Name = "MEAddress"
-        Me.MEAddress.Properties.ReadOnly = True
-        Me.MEAddress.Size = New System.Drawing.Size(251, 44)
-        Me.MEAddress.TabIndex = 8907
+        Me.MEAddress1.Location = New System.Drawing.Point(96, 40)
+        Me.MEAddress1.Name = "MEAddress1"
+        Me.MEAddress1.Properties.ReadOnly = True
+        Me.MEAddress1.Size = New System.Drawing.Size(251, 66)
+        Me.MEAddress1.TabIndex = 8907
         '
         'LabelControl1
         '
@@ -331,26 +324,26 @@ Partial Class FormOlStoreRetCustDet
         Me.LabelControl14.TabIndex = 8904
         Me.LabelControl14.Text = "Return To"
         '
-        'TxtCustomer
+        'TERetTo
         '
-        Me.TxtCustomer.EditValue = ""
-        Me.TxtCustomer.Location = New System.Drawing.Point(96, 12)
-        Me.TxtCustomer.Name = "TxtCustomer"
-        Me.TxtCustomer.Properties.EditValueChangedDelay = 1
-        Me.TxtCustomer.Properties.ReadOnly = True
-        Me.TxtCustomer.Size = New System.Drawing.Size(251, 20)
-        Me.TxtCustomer.TabIndex = 8903
+        Me.TERetTo.EditValue = ""
+        Me.TERetTo.Location = New System.Drawing.Point(96, 12)
+        Me.TERetTo.Name = "TERetTo"
+        Me.TERetTo.Properties.EditValueChangedDelay = 1
+        Me.TERetTo.Properties.ReadOnly = True
+        Me.TERetTo.Size = New System.Drawing.Size(251, 20)
+        Me.TERetTo.TabIndex = 8903
         '
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopRight.Controls.Add(Me.TextEdit4)
+        Me.PanelControlTopRight.Controls.Add(Me.TEShipCity)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl8)
-        Me.PanelControlTopRight.Controls.Add(Me.TextEdit3)
+        Me.PanelControlTopRight.Controls.Add(Me.TEPostalCode)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl6)
-        Me.PanelControlTopRight.Controls.Add(Me.TextEdit2)
+        Me.PanelControlTopRight.Controls.Add(Me.TERegion)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl4)
-        Me.PanelControlTopRight.Controls.Add(Me.TextEdit1)
+        Me.PanelControlTopRight.Controls.Add(Me.TEShipPhone)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(728, 2)
@@ -358,15 +351,15 @@ Partial Class FormOlStoreRetCustDet
         Me.PanelControlTopRight.Size = New System.Drawing.Size(297, 124)
         Me.PanelControlTopRight.TabIndex = 10004
         '
-        'TextEdit4
+        'TEShipCity
         '
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Location = New System.Drawing.Point(95, 38)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.EditValueChangedDelay = 1
-        Me.TextEdit4.Properties.ReadOnly = True
-        Me.TextEdit4.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit4.TabIndex = 162
+        Me.TEShipCity.EditValue = ""
+        Me.TEShipCity.Location = New System.Drawing.Point(95, 38)
+        Me.TEShipCity.Name = "TEShipCity"
+        Me.TEShipCity.Properties.EditValueChangedDelay = 1
+        Me.TEShipCity.Properties.ReadOnly = True
+        Me.TEShipCity.Size = New System.Drawing.Size(197, 20)
+        Me.TEShipCity.TabIndex = 162
         '
         'LabelControl8
         '
@@ -377,15 +370,15 @@ Partial Class FormOlStoreRetCustDet
         Me.LabelControl8.TabIndex = 163
         Me.LabelControl8.Text = "Shipping City"
         '
-        'TextEdit3
+        'TEPostalCode
         '
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Location = New System.Drawing.Point(95, 64)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.EditValueChangedDelay = 1
-        Me.TextEdit3.Properties.ReadOnly = True
-        Me.TextEdit3.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit3.TabIndex = 160
+        Me.TEPostalCode.EditValue = ""
+        Me.TEPostalCode.Location = New System.Drawing.Point(95, 64)
+        Me.TEPostalCode.Name = "TEPostalCode"
+        Me.TEPostalCode.Properties.EditValueChangedDelay = 1
+        Me.TEPostalCode.Properties.ReadOnly = True
+        Me.TEPostalCode.Size = New System.Drawing.Size(197, 20)
+        Me.TEPostalCode.TabIndex = 160
         '
         'LabelControl6
         '
@@ -396,15 +389,15 @@ Partial Class FormOlStoreRetCustDet
         Me.LabelControl6.TabIndex = 161
         Me.LabelControl6.Text = "Postal Code"
         '
-        'TextEdit2
+        'TERegion
         '
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(95, 90)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.EditValueChangedDelay = 1
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit2.TabIndex = 158
+        Me.TERegion.EditValue = ""
+        Me.TERegion.Location = New System.Drawing.Point(95, 90)
+        Me.TERegion.Name = "TERegion"
+        Me.TERegion.Properties.EditValueChangedDelay = 1
+        Me.TERegion.Properties.ReadOnly = True
+        Me.TERegion.Size = New System.Drawing.Size(197, 20)
+        Me.TERegion.TabIndex = 158
         '
         'LabelControl4
         '
@@ -415,15 +408,15 @@ Partial Class FormOlStoreRetCustDet
         Me.LabelControl4.TabIndex = 159
         Me.LabelControl4.Text = "Region"
         '
-        'TextEdit1
+        'TEShipPhone
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(95, 12)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit1.TabIndex = 156
+        Me.TEShipPhone.EditValue = ""
+        Me.TEShipPhone.Location = New System.Drawing.Point(95, 12)
+        Me.TEShipPhone.Name = "TEShipPhone"
+        Me.TEShipPhone.Properties.EditValueChangedDelay = 1
+        Me.TEShipPhone.Properties.ReadOnly = True
+        Me.TEShipPhone.Size = New System.Drawing.Size(197, 20)
+        Me.TEShipPhone.TabIndex = 156
         '
         'LabelControl3
         '
@@ -892,25 +885,25 @@ Partial Class FormOlStoreRetCustDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtSalesDelOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumberRetCust.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEAddress1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TERetTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEShipCity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPostalCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TERegion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEShipPhone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.SCCSalesOrderDel, System.ComponentModel.ISupportInitialize).EndInit()
@@ -941,13 +934,12 @@ Partial Class FormOlStoreRetCustDet
     Friend WithEvents PanelControlTopLeft As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControlTopMiddle As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtCustomer As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TERetTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlTopRight As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TxtSalesDelOrderNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TENumberRetCust As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEForm As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DDBPrint As DevExpress.XtraEditors.DropDownButton
@@ -987,16 +979,15 @@ Partial Class FormOlStoreRetCustDet
     Friend WithEvents BStop As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BScan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MEAddress As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEAddress1 As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEShipPhone As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEShipCity As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEPostalCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TERegion As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1008,4 +999,5 @@ Partial Class FormOlStoreRetCustDet
     Friend WithEvents SLEOrder As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
 End Class
