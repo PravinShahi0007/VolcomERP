@@ -163,9 +163,9 @@
     End Sub
 
     Sub view_barcode_list()
-        Dim id_productx As String = "-1"
+        Dim id_pl_sales_order_del_detx As String = "-1"
         Try
-            id_productx = GVItemList.GetFocusedRowCellValue("id_product").ToString
+            id_pl_sales_order_del_detx = GVItemList.GetFocusedRowCellValue("id_pl_sales_order_del_det").ToString
         Catch ex As Exception
         End Try
 
@@ -177,7 +177,7 @@
         query += "FROM tb_pl_sales_order_del_det_counting a "
         query += "INNER JOIN tb_pl_sales_order_del_det b ON a.id_pl_sales_order_del_det = b.id_pl_sales_order_del_det "
         query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
-        query += "WHERE b.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' AND b.id_product='" + id_productx + "' "
+        query += "WHERE b.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' AND a.id_pl_sales_order_del_det='" + id_pl_sales_order_del_detx + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To (data.Rows.Count - 1)
             id_pl_sales_order_del_det_counting_list.Add(data.Rows(i)("id_pl_sales_order_del_det_counting").ToString)
