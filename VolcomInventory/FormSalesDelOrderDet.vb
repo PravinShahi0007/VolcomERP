@@ -279,7 +279,7 @@ Public Class FormSalesDelOrderDet
 
     Sub view_barcode_list()
         If action = "ins" Then
-            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS `name`, ('') AS `size`,('0') AS id_pl_sales_order_del_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_pl_sales_order_del_det_counting "
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS `name`, ('') AS `size`,('0') AS id_pl_sales_order_del_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_pl_sales_order_del_det_counting, '' AS `ol_store_id`, '' AS `item_id` "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBarcode.DataSource = data
             deleteRowsBc()
@@ -540,7 +540,7 @@ Public Class FormSalesDelOrderDet
         End Try
     End Sub
 
-    Sub countQty(ByVal id_product_param As String)
+    Sub countQty(ByVal id_product_param As String, ByVal ol_store_id_param As String, ByVal item_id_param As String)
         If id_commerce_type = "2" Then
             'onine store
 
@@ -549,7 +549,7 @@ Public Class FormSalesDelOrderDet
             If action_scan_btn = "start" Then
                 GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [diff]>0 "
             ElseIf action_scan_btn = "delete" Then
-                GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [pl_sales_order_del_det_qty]>0 "
+                GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [ol_store_id]='" + ol_store_id_param + "' AND [item_id]='" + item_id_param + "' AND [pl_sales_order_del_det_qty]>0 "
             End If
             GVItemList.FocusedRowHandle = 0
             makeSafeGV(GVItemList)
@@ -707,8 +707,9 @@ Public Class FormSalesDelOrderDet
                     End If
 
                     'get all detail id
-                    Dim query_get_detail_id As String = "SELECT a.id_pl_sales_order_del_det, a.id_product "
+                    Dim query_get_detail_id As String = "SELECT a.id_pl_sales_order_del_det, a.id_product, sod.ol_store_id, sod.item_id "
                     query_get_detail_id += "FROM tb_pl_sales_order_del_det a "
+                    query_get_detail_id += "INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = a.id_sales_order_det "
                     query_get_detail_id += "WHERE a.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' "
                     Dim data_get_detail_id As DataTable = execute_query(query_get_detail_id, -1, True, "", "", "", "")
 
@@ -725,8 +726,10 @@ Public Class FormSalesDelOrderDet
                             id_pl_prod_order_rec_det_unique = "NULL "
                         End If
                         Dim pl_sales_order_del_det_counting As String = GVBarcode.GetRowCellValue(p, "counting_code").ToString
+                        Dim ol_store_id_counting As String = GVBarcode.GetRowCellValue(p, "ol_store_id").ToString
+                        Dim item_id_counting As String = GVBarcode.GetRowCellValue(p, "item_id").ToString
                         For p1 As Integer = 0 To (data_get_detail_id.Rows.Count - 1)
-                            If id_product_counting = data_get_detail_id.Rows(p1)("id_product").ToString Then
+                            If id_product_counting = data_get_detail_id.Rows(p1)("id_product").ToString And ol_store_id_counting = data_get_detail_id.Rows(p1)("ol_store_id").ToString And item_id_counting = data_get_detail_id.Rows(p1)("item_id").ToString Then
                                 If jum_ins_p > 0 Then
                                     query_counting += ", "
                                 End If
@@ -1088,6 +1091,8 @@ Public Class FormSalesDelOrderDet
         Dim size As String = ""
         Dim jum_scan As Integer = 0
         Dim jum_limit As Integer = 0
+        Dim ol_store_id As String = ""
+        Dim item_id As String = ""
         Dim is_old As String = "0"
         Dim prc As Decimal = 0
 
@@ -1119,6 +1124,14 @@ Public Class FormSalesDelOrderDet
         End Try
         Try
             jum_scan = GVItemList.GetFocusedRowCellValue("pl_sales_order_del_det_qty")
+        Catch ex As Exception
+        End Try
+        Try
+            ol_store_id = GVItemList.GetFocusedRowCellValue("ol_store_id").ToString
+        Catch ex As Exception
+        End Try
+        Try
+            item_id = GVItemList.GetFocusedRowCellValue("item_id").ToString
         Catch ex As Exception
         End Try
         makeSafeGV(GVItemList)
@@ -1160,7 +1173,9 @@ Public Class FormSalesDelOrderDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
-                    countQty(id_product)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "ol_store_id", ol_store_id)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "item_id", item_id)
+                    countQty(id_product, ol_store_id, item_id)
                     newRowsBc()
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
@@ -1198,7 +1213,9 @@ Public Class FormSalesDelOrderDet
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
-                        countQty(id_product)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "ol_store_id", ol_store_id)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "item_id", item_id)
+                        countQty(id_product, ol_store_id, item_id)
                         newRowsBc()
                         GCItemList.RefreshDataSource()
                         GVItemList.RefreshData()
@@ -1544,10 +1561,12 @@ Public Class FormSalesDelOrderDet
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+                        Dim ol_store_id As String = GVBarcode.GetFocusedRowCellValue("ol_store_id").ToString
+                        Dim item_id As String = GVBarcode.GetFocusedRowCellValue("item_id").ToString
                         deleteRowsBc()
                         If id_product <> "" Or id_product <> Nothing Then
                             GVBarcode.ActiveFilterString = ""
-                            countQty(id_product)
+                            countQty(id_product, ol_store_id, item_id)
                         End If
                         GCItemList.RefreshDataSource()
                         GVItemList.RefreshData()
@@ -1558,27 +1577,7 @@ Public Class FormSalesDelOrderDet
                     TxtDeleteScan.Text = ""
                     TxtDeleteScan.Focus()
                 ElseIf action = "upd" Then
-                    If id_pl_sales_order_del_det_counting = "0" Then
-                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                        If confirm = Windows.Forms.DialogResult.Yes Then
-                            Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
-                            deleteRowsBc()
-                            If id_product <> "" Or id_product <> Nothing Then
-                                GVBarcode.ActiveFilterString = ""
-                                countQty(id_product)
-                            End If
-                            GCItemList.RefreshDataSource()
-                            GVItemList.RefreshData()
-                            allowDelete()
-                        Else
-                            GVBarcode.ActiveFilterString = ""
-                        End If
-                    Else
-                        errorCustom("This data already locked and can't delete.")
-                        GVBarcode.ActiveFilterString = ""
-                    End If
-                    TxtDeleteScan.Text = ""
-                    TxtDeleteScan.Focus()
+
                 End If
             End If
             Cursor = Cursors.Default
