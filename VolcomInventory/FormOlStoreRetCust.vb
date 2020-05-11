@@ -61,11 +61,11 @@ GROUP BY ret.sales_order_ol_shop_number"
         Dim q_where As String = ""
 
         If Not SLECompGroup.EditValue.ToString = "0" Then
-            q_where += " AND g.id_comp_group='" & SLECompGroup.EditValue.ToString & "' "
+            q_where += " AND cg.id_comp_group='" & SLECompGroup.EditValue.ToString & "' "
         End If
 
         If Not SLEOrder.EditValue.ToString = "ALL" Then
-            q_where += " AND retc.sales_order_ol_shop_number='" & SLEOrder.EditValue.ToString & "' "
+            q_where += " AND r.sales_order_ol_shop_number='" & SLEOrder.EditValue.ToString & "' "
         End If
 
         Dim q As String = "SELECT rl.`id_ol_store_ret_list`,cg.`description` AS store_group,r.`number`,r.`ret_req_number`,sd.`item_id`,`sales_order_ol_shop_number`,r.`ret_req_number`,p.`product_display_name`,cd.`code_detail_name` AS size,stt.`ol_store_ret_stt`,emp.`employee_name`,rl.`update_date`,CONCAT(p.`product_full_code`,plc.`pl_sales_order_del_det_counting`) AS full_code
