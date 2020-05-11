@@ -60,28 +60,38 @@ GROUP BY ret.sales_order_ol_shop_number"
     Sub view_ret_req()
         Dim q_where As String = ""
 
-        If SLECompGroup.EditValue.ToString = "0" Then
-            q_where += " WHERE 1=1 "
-        Else
-            q_where += " WHERE g.id_comp_group='" & SLECompGroup.EditValue.ToString & "' "
+        If Not SLECompGroup.EditValue.ToString = "0" Then
+            q_where += " AND g.id_comp_group='" & SLECompGroup.EditValue.ToString & "' "
         End If
 
-        If SLEOrder.EditValue.ToString = "ALL" Then
-            q_where += " AND 1=1 "
-        Else
+        If Not SLEOrder.EditValue.ToString = "ALL" Then
             q_where += " AND retc.sales_order_ol_shop_number='" & SLEOrder.EditValue.ToString & "' "
         End If
 
-        Dim q As String = "SELECT retc.`id_ol_store_cust_ret`,retc.`created_date`,retc.`number`,g.`description` AS store_group,emp.`employee_name`,retc.`sales_order_ol_shop_number`,sts.`report_status`
-FROM `tb_ol_store_cust_ret` retc
-INNER JOIN tb_m_comp_group g ON g.`id_comp_group`=retc.`id_comp_group`
-INNER JOIN tb_m_user usr ON usr.`id_user`=retc.`created_by`
-INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=retc.`id_report_status`
+        Dim q As String = "SELECT rl.`id_ol_store_ret_list`,cg.`description` AS store_group,r.`number`,r.`ret_req_number`,sd.`item_id`,`sales_order_ol_shop_number`,r.`ret_req_number`,p.`product_display_name`,cd.`code_detail_name` AS size,stt.`ol_store_ret_stt`,emp.`employee_name`,rl.`update_date`,CONCAT(p.`product_full_code`,plc.`pl_sales_order_del_det_counting`) AS full_code
+FROM tb_ol_store_ret_list rl
+INNER JOIN tb_ol_store_ret_det rd ON rd.`id_ol_store_ret_det`=rl.id_ol_store_ret_det
+INNER JOIN `tb_pl_sales_order_del_det_counting` plc ON rd.`id_pl_sales_order_del_det_counting`=plc.id_pl_sales_order_del_det_counting
+INNER JOIN tb_ol_store_ret r ON r.`id_ol_store_ret`=rd.`id_ol_store_ret`
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=r.`id_comp_group`
+INNER JOIN tb_sales_order_det sd ON sd.`id_sales_order_det`=rd.id_sales_order_det
+INNER JOIN tb_m_product p ON p.`id_product`=sd.`id_product`
+INNER JOIN tb_m_product_code pc ON pc.`id_product`=p.`id_product`
+INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=pc.`id_code_detail` AND cd.`id_code`='33'
+INNER JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=rl.id_ol_store_ret_stt
+LEFT JOIN tb_m_user usr ON usr.id_user=rl.`update_by`
+LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE rl.id_ol_store_ret_stt='4'
 " & q_where
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCRetReq.DataSource = dt
         GVRetReq.BestFitColumns()
+        '
+        If GVRetReq.RowCount > 0 And Not SLECompGroup.EditValue.ToString = "0" And Not SLEOrder.EditValue.ToString = "" Then
+            BRetCust.Visible = True
+        Else
+            BRetCust.Visible = False
+        End If
     End Sub
 
     Sub view_list_ret()
@@ -109,5 +119,13 @@ INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=retc.`id_report
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCRetCust.DataSource = dt
         GVRetCust.BestFitColumns()
+    End Sub
+
+    Private Sub BRetCust_Click(sender As Object, e As EventArgs) Handles BRetCust.Click
+        If GVRetReq.RowCount > 0 And Not SLECompGroup.EditValue.ToString = "0" And Not SLEOrder.EditValue.ToString = "" Then
+            FormOlStoreRetCustDet.ShowDialog()
+        Else
+            stopCustom("Please select order want to return first.")
+        End If
     End Sub
 End Class

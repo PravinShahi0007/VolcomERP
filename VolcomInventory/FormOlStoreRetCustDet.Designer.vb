@@ -22,6 +22,14 @@ Partial Class FormOlStoreRetCustDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOlStoreRetCustDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtSalesDelOrderNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -83,18 +91,14 @@ Partial Class FormOlStoreRetCustDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSalesDelOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,10 +133,6 @@ Partial Class FormOlStoreRetCustDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -163,6 +163,70 @@ Partial Class FormOlStoreRetCustDet
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(334, 124)
         Me.PanelControlTopLeft.TabIndex = 10002
+        '
+        'SLEOrder
+        '
+        Me.SLEOrder.Location = New System.Drawing.Point(57, 38)
+        Me.SLEOrder.Name = "SLEOrder"
+        Me.SLEOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEOrder.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEOrder.Size = New System.Drawing.Size(247, 20)
+        Me.SLEOrder.TabIndex = 8906
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Order Number"
+        Me.GridColumn16.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'SLECompGroup
+        '
+        Me.SLECompGroup.Location = New System.Drawing.Point(57, 12)
+        Me.SLECompGroup.Name = "SLECompGroup"
+        Me.SLECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECompGroup.Properties.View = Me.GridView1
+        Me.SLECompGroup.Size = New System.Drawing.Size(247, 20)
+        Me.SLECompGroup.TabIndex = 8905
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID"
+        Me.GridColumn13.FieldName = "id_comp_group"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Group"
+        Me.GridColumn14.FieldName = "comp_group"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Description"
+        Me.GridColumn15.FieldName = "description"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
         '
         'TxtSalesDelOrderNumber
         '
@@ -507,7 +571,7 @@ Partial Class FormOlStoreRetCustDet
         '
         'GridColumnCode
         '
-        Me.GridColumnCode.Caption = "Full Code"
+        Me.GridColumnCode.Caption = "Code"
         Me.GridColumnCode.FieldName = "code"
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
@@ -809,70 +873,6 @@ Partial Class FormOlStoreRetCustDet
         Me.BScan.TabIndex = 15
         Me.BScan.Text = "Start Scan"
         '
-        'SLECompGroup
-        '
-        Me.SLECompGroup.Location = New System.Drawing.Point(57, 12)
-        Me.SLECompGroup.Name = "SLECompGroup"
-        Me.SLECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLECompGroup.Properties.View = Me.GridView1
-        Me.SLECompGroup.Size = New System.Drawing.Size(247, 20)
-        Me.SLECompGroup.TabIndex = 8905
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "ID"
-        Me.GridColumn13.FieldName = "id_comp_group"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Group"
-        Me.GridColumn14.FieldName = "comp_group"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Description"
-        Me.GridColumn15.FieldName = "description"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 1
-        '
-        'SLEOrder
-        '
-        Me.SLEOrder.Location = New System.Drawing.Point(54, 38)
-        Me.SLEOrder.Name = "SLEOrder"
-        Me.SLEOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEOrder.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEOrder.Size = New System.Drawing.Size(250, 20)
-        Me.SLEOrder.TabIndex = 8906
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Order Number"
-        Me.GridColumn16.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 0
-        '
         'FormOlStoreRetCustDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -892,6 +892,10 @@ Partial Class FormOlStoreRetCustDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSalesDelOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
@@ -929,10 +933,6 @@ Partial Class FormOlStoreRetCustDet
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

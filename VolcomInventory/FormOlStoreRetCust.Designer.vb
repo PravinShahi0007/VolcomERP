@@ -34,6 +34,8 @@ Partial Class FormOlStoreRetCust
         Me.GVRetReq = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -46,8 +48,11 @@ Partial Class FormOlStoreRetCust
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BRetCust = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRetCust, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRetCust.SuspendLayout()
         Me.XTPRetList.SuspendLayout()
@@ -150,6 +155,7 @@ Partial Class FormOlStoreRetCust
         'XTPRetReq
         '
         Me.XTPRetReq.Controls.Add(Me.GCRetReq)
+        Me.XTPRetReq.Controls.Add(Me.BRetCust)
         Me.XTPRetReq.Name = "XTPRetReq"
         Me.XTPRetReq.Size = New System.Drawing.Size(1020, 474)
         Me.XTPRetReq.Text = "Return Request"
@@ -160,13 +166,13 @@ Partial Class FormOlStoreRetCust
         Me.GCRetReq.Location = New System.Drawing.Point(0, 0)
         Me.GCRetReq.MainView = Me.GVRetReq
         Me.GCRetReq.Name = "GCRetReq"
-        Me.GCRetReq.Size = New System.Drawing.Size(1020, 474)
+        Me.GCRetReq.Size = New System.Drawing.Size(1020, 442)
         Me.GCRetReq.TabIndex = 1
         Me.GCRetReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetReq})
         '
         'GVRetReq
         '
-        Me.GVRetReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3})
+        Me.GVRetReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn18, Me.GridColumn5, Me.GridColumn3, Me.GridColumn4, Me.GridColumn17})
         Me.GVRetReq.GridControl = Me.GCRetReq
         Me.GVRetReq.Name = "GVRetReq"
         Me.GVRetReq.OptionsView.ShowGroupPanel = False
@@ -174,7 +180,7 @@ Partial Class FormOlStoreRetCust
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_ol_store_cust_ret"
+        Me.GridColumn1.FieldName = "id_ol_store_ret_list"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn6
@@ -184,6 +190,25 @@ Partial Class FormOlStoreRetCust
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.Width = 233
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Order#"
+        Me.GridColumn2.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 233
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Code"
+        Me.GridColumn3.FieldName = "full_code"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 233
         '
         'PanelControl1
         '
@@ -286,19 +311,55 @@ Partial Class FormOlStoreRetCust
         Me.BSearch.TabIndex = 0
         Me.BSearch.Text = "Search"
         '
-        'GridColumn2
+        'BRetCust
         '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.BRetCust.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BRetCust.Location = New System.Drawing.Point(0, 442)
+        Me.BRetCust.Name = "BRetCust"
+        Me.BRetCust.Size = New System.Drawing.Size(1020, 32)
+        Me.BRetCust.TabIndex = 2
+        Me.BRetCust.Text = "Create Return to Customer"
+        Me.BRetCust.Visible = False
         '
-        'GridColumn3
+        'GridColumn4
         '
-        Me.GridColumn3.Caption = "GridColumn3"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn4.Caption = "Description"
+        Me.GridColumn4.FieldName = "product_display_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.Width = 327
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Return Request Number"
+        Me.GridColumn5.FieldName = "ret_req_number"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.Width = 233
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.Caption = "Size"
+        Me.GridColumn17.FieldName = "size"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 6
+        Me.GridColumn17.Width = 140
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Pre Return Number"
+        Me.GridColumn18.FieldName = "number"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 3
+        Me.GridColumn18.Width = 233
         '
         'FormOlStoreRetCust
         '
@@ -361,4 +422,9 @@ Partial Class FormOlStoreRetCust
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BRetCust As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
