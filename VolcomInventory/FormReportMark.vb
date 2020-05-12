@@ -7826,7 +7826,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             'update status
             query = String.Format("UPDATE tb_ol_store_ret SET id_report_status='{0}' WHERE id_ol_store_ret ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "243" Then
+        ElseIf report_mark_type = "245" Then
             'return cust
             'auto completed
             If id_status_reportx = "3" Then
