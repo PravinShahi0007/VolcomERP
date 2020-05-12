@@ -48,6 +48,12 @@
         DEFrom.DateTime = Now
         DEUntil.DateTime = Now
         viewSalesPOS()
+
+        'pending online store return
+        If id_menu = "5" Then
+            XTPCNOnlineStore.PageVisible = True
+            viewPendingCNOLStore()
+        End If
     End Sub
 
     '========= TAB DAILY TRANSACTION==========================================
@@ -118,6 +124,12 @@
         End If
         Return dtm
     End Function
+
+    Sub viewPendingCNOLStore()
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
+    End Sub
 
     Sub check_menu()
         If XTCPOS.SelectedTabPageIndex = 0 Then

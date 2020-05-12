@@ -58,6 +58,7 @@ Partial Class FormSalesPOS
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastMark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsSubmit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBOFNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnNoStock = New DevExpress.XtraEditors.SimpleButton()
         Me.LEOptionView = New DevExpress.XtraEditors.LookUpEdit()
@@ -111,7 +112,9 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnBOFNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPCNOnlineStore = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPendingCN = New DevExpress.XtraGrid.GridControl()
+        Me.GVPendingCN = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +154,9 @@ Partial Class FormSalesPOS
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPCNOnlineStore.SuspendLayout()
+        CType(Me.GCPendingCN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPendingCN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -538,6 +544,14 @@ Partial Class FormSalesPOS
         Me.GridColumnIsSubmit.Visible = True
         Me.GridColumnIsSubmit.VisibleIndex = 14
         '
+        'GridColumnBOFNo
+        '
+        Me.GridColumnBOFNo.Caption = "BOF#"
+        Me.GridColumnBOFNo.FieldName = "bof_number"
+        Me.GridColumnBOFNo.Name = "GridColumnBOFNo"
+        Me.GridColumnBOFNo.Visible = True
+        Me.GridColumnBOFNo.VisibleIndex = 1
+        '
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -731,7 +745,7 @@ Partial Class FormSalesPOS
         Me.XTCInvoice.SelectedTabPage = Me.XTPListInv
         Me.XTCInvoice.Size = New System.Drawing.Size(1240, 533)
         Me.XTCInvoice.TabIndex = 3
-        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale})
+        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale, Me.XTPCNOnlineStore})
         '
         'XTPListInv
         '
@@ -746,6 +760,7 @@ Partial Class FormSalesPOS
         Me.XTPListWholesale.Controls.Add(Me.GroupControl1)
         Me.XTPListWholesale.Controls.Add(Me.GroupControl2)
         Me.XTPListWholesale.Name = "XTPListWholesale"
+        Me.XTPListWholesale.PageVisible = False
         Me.XTPListWholesale.Size = New System.Drawing.Size(1234, 505)
         Me.XTPListWholesale.Text = "Waiting List Wholesale"
         '
@@ -1042,13 +1057,31 @@ Partial Class FormSalesPOS
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
         '
-        'GridColumnBOFNo
+        'XTPCNOnlineStore
         '
-        Me.GridColumnBOFNo.Caption = "BOF#"
-        Me.GridColumnBOFNo.FieldName = "bof_number"
-        Me.GridColumnBOFNo.Name = "GridColumnBOFNo"
-        Me.GridColumnBOFNo.Visible = True
-        Me.GridColumnBOFNo.VisibleIndex = 1
+        Me.XTPCNOnlineStore.Controls.Add(Me.GCPendingCN)
+        Me.XTPCNOnlineStore.Name = "XTPCNOnlineStore"
+        Me.XTPCNOnlineStore.Size = New System.Drawing.Size(1234, 505)
+        Me.XTPCNOnlineStore.Text = "CN Online Store (Pending)"
+        '
+        'GCPendingCN
+        '
+        Me.GCPendingCN.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPendingCN.Location = New System.Drawing.Point(0, 0)
+        Me.GCPendingCN.MainView = Me.GVPendingCN
+        Me.GCPendingCN.Name = "GCPendingCN"
+        Me.GCPendingCN.Size = New System.Drawing.Size(1234, 505)
+        Me.GCPendingCN.TabIndex = 0
+        Me.GCPendingCN.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPendingCN})
+        '
+        'GVPendingCN
+        '
+        Me.GVPendingCN.GridControl = Me.GCPendingCN
+        Me.GVPendingCN.Name = "GVPendingCN"
+        Me.GVPendingCN.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPendingCN.OptionsBehavior.ReadOnly = True
+        Me.GVPendingCN.OptionsFind.AlwaysVisible = True
+        Me.GVPendingCN.OptionsView.ShowGroupPanel = False
         '
         'FormSalesPOS
         '
@@ -1104,6 +1137,9 @@ Partial Class FormSalesPOS
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPCNOnlineStore.ResumeLayout(False)
+        CType(Me.GCPendingCN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPendingCN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1199,4 +1235,7 @@ Partial Class FormSalesPOS
     Friend WithEvents GridColumnIsSubmit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnNoStock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnBOFNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPCNOnlineStore As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPendingCN As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPendingCN As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
