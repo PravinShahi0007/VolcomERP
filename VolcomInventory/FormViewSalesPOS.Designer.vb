@@ -236,9 +236,9 @@ Partial Class FormViewSalesPOS
         Me.LabelName.AutoSize = True
         Me.LabelName.Location = New System.Drawing.Point(29, 173)
         Me.LabelName.Name = "LabelName"
-        Me.LabelName.Size = New System.Drawing.Size(34, 13)
+        Me.LabelName.Size = New System.Drawing.Size(63, 13)
         Me.LabelName.TabIndex = 8957
-        Me.LabelName.Text = "Name"
+        Me.LabelName.Text = "Cust. Name"
         '
         'LabelControl16
         '

@@ -23,6 +23,8 @@ Partial Class FormSalesPOSDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOSDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.TXTName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelName = New System.Windows.Forms.Label()
         Me.LabelBillTo = New DevExpress.XtraEditors.LabelControl()
         Me.BtnBrowseBillTo = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtNameBillTo = New DevExpress.XtraEditors.TextEdit()
@@ -172,12 +174,11 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.TXTName = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelName = New System.Windows.Forms.Label()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameBillTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeBillTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEInvType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -248,7 +249,6 @@ Partial Class FormSalesPOSDet
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -288,6 +288,32 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(505, 205)
         Me.PanelControlTopLeft.TabIndex = 8933
+        '
+        'TXTName
+        '
+        Me.TXTName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TXTName.EditValue = ""
+        Me.TXTName.Location = New System.Drawing.Point(78, 166)
+        Me.TXTName.Name = "TXTName"
+        Me.TXTName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTName.Properties.Appearance.Options.UseFont = True
+        Me.TXTName.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TXTName.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TXTName.Properties.EditValueChangedDelay = 1
+        Me.TXTName.Properties.ReadOnly = True
+        Me.TXTName.Size = New System.Drawing.Size(405, 20)
+        Me.TXTName.TabIndex = 8960
+        Me.TXTName.TabStop = False
+        '
+        'LabelName
+        '
+        Me.LabelName.AutoSize = True
+        Me.LabelName.Location = New System.Drawing.Point(6, 169)
+        Me.LabelName.Name = "LabelName"
+        Me.LabelName.Size = New System.Drawing.Size(63, 13)
+        Me.LabelName.TabIndex = 8959
+        Me.LabelName.Text = "Cust. Name"
         '
         'LabelBillTo
         '
@@ -1807,7 +1833,7 @@ Partial Class FormSalesPOSDet
         '
         Me.XTPDetail.Controls.Add(Me.GCCode)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1063, 206)
+        Me.XTPDetail.Size = New System.Drawing.Size(1063, 217)
         Me.XTPDetail.Text = "Detail Unique Code"
         '
         'GCCode
@@ -1816,7 +1842,7 @@ Partial Class FormSalesPOSDet
         Me.GCCode.Location = New System.Drawing.Point(0, 0)
         Me.GCCode.MainView = Me.GVCode
         Me.GCCode.Name = "GCCode"
-        Me.GCCode.Size = New System.Drawing.Size(1063, 206)
+        Me.GCCode.Size = New System.Drawing.Size(1063, 217)
         Me.GCCode.TabIndex = 0
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
         '
@@ -1915,32 +1941,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
-        'TXTName
-        '
-        Me.TXTName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TXTName.EditValue = ""
-        Me.TXTName.Location = New System.Drawing.Point(78, 166)
-        Me.TXTName.Name = "TXTName"
-        Me.TXTName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTName.Properties.Appearance.Options.UseFont = True
-        Me.TXTName.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
-        Me.TXTName.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.TXTName.Properties.EditValueChangedDelay = 1
-        Me.TXTName.Properties.ReadOnly = True
-        Me.TXTName.Size = New System.Drawing.Size(405, 20)
-        Me.TXTName.TabIndex = 8960
-        Me.TXTName.TabStop = False
-        '
-        'LabelName
-        '
-        Me.LabelName.AutoSize = True
-        Me.LabelName.Location = New System.Drawing.Point(6, 169)
-        Me.LabelName.Name = "LabelName"
-        Me.LabelName.Size = New System.Drawing.Size(34, 13)
-        Me.LabelName.TabIndex = 8959
-        Me.LabelName.Text = "Name"
-        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1961,6 +1961,7 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameBillTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeBillTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEInvType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2038,7 +2039,6 @@ Partial Class FormSalesPOSDet
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
