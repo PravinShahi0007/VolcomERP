@@ -64,6 +64,22 @@
         End If
 
         actionLoad()
+
+        'if volcom online store
+        Dim is_volcom_online As String = execute_query("SELECT COUNT(*) AS total FROM tb_m_comp_volcom_ol WHERE id_store = " + id_comp, 0, True, "", "", "", "")
+
+        If Not is_volcom_online = "0" Then
+            LabelName.Visible = True
+            TXTName.Visible = True
+
+            If Not LabelBillTo.Visible Then
+                LabelName.Location = New Point(29, 147)
+                TXTName.Location = New Point(102, 144)
+            End If
+        Else
+            LabelName.Visible = False
+            TXTName.Visible = False
+        End If
     End Sub
 
     Sub actionLoad()
@@ -83,8 +99,9 @@
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
         query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
         If id_menu = "5" Then
-            query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
+            query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`"
         End If
+        query += ", so.customer_name "
         query += "FROM tb_sales_pos a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -133,6 +150,7 @@
         Else
             TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
         End If
+        TXTName.Text = data.Rows(0)("customer_name").ToString
         MENote.Text = data.Rows(0)("sales_pos_note").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
