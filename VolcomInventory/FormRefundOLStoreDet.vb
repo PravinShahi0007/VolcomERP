@@ -10,7 +10,7 @@
     Private Sub FormRefundOLStoreDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
         viewReportStatus()
-        actionLoad()
+        'actionLoad()
     End Sub
 
     Sub viewReportStatus()
@@ -30,12 +30,12 @@
     End Sub
 
     Sub viewWH()
-        Cursor = Cursors.WaitCursor
-        Dim query As String = ""
-        query += "SELECT ('0') AS id_comp, ('All') AS comp_number, ('All Store') AS comp_name, ('All Store') AS comp_name_label UNION ALL "
-        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
-        FROM tb_m_comp e "
-        viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
-        Cursor = Cursors.Default
+        'Cursor = Cursors.WaitCursor
+        'Dim query As String = ""
+        'query += "SELECT ('0') AS id_comp, ('All') AS comp_number, ('All Store') AS comp_name, ('All Store') AS comp_name_label UNION ALL "
+        'query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
+        'FROM tb_m_comp e "
+        'viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        'Cursor = Cursors.Default
     End Sub
 End Class
