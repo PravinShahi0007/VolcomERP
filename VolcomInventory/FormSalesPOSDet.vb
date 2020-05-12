@@ -2611,6 +2611,9 @@ Public Class FormSalesPOSDet
         WHERE l.id_ol_store_ret_stt=6 AND c.id_comp=" + id_comp + " AND  r.sales_order_ol_shop_number='" + order_number + "' AND i.id_sales_pos=" + id_sales_pos_ref + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+        calculate()
         Cursor = Cursors.Default
     End Sub
 End Class
