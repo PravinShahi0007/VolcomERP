@@ -115,6 +115,10 @@ Partial Class FormSalesPOS
         Me.XTPCNOnlineStore = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPendingCN = New DevExpress.XtraGrid.GridControl()
         Me.GVPendingCN = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnsales_order_ol_shop_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1076,12 +1080,45 @@ Partial Class FormSalesPOS
         '
         'GVPendingCN
         '
+        Me.GVPendingCN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnsales_order_ol_shop_number, Me.GridColumncustomer_name, Me.GridColumncomp_number, Me.GridColumncomp_name})
         Me.GVPendingCN.GridControl = Me.GCPendingCN
         Me.GVPendingCN.Name = "GVPendingCN"
         Me.GVPendingCN.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVPendingCN.OptionsBehavior.ReadOnly = True
         Me.GVPendingCN.OptionsFind.AlwaysVisible = True
         Me.GVPendingCN.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnsales_order_ol_shop_number
+        '
+        Me.GridColumnsales_order_ol_shop_number.Caption = "Order Number"
+        Me.GridColumnsales_order_ol_shop_number.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnsales_order_ol_shop_number.Name = "GridColumnsales_order_ol_shop_number"
+        Me.GridColumnsales_order_ol_shop_number.Visible = True
+        Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 0
+        '
+        'GridColumncustomer_name
+        '
+        Me.GridColumncustomer_name.Caption = "Customer"
+        Me.GridColumncustomer_name.FieldName = "customer_name"
+        Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
+        Me.GridColumncustomer_name.Visible = True
+        Me.GridColumncustomer_name.VisibleIndex = 1
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Account"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 2
+        '
+        'GridColumncomp_name
+        '
+        Me.GridColumncomp_name.Caption = "Account Description"
+        Me.GridColumncomp_name.FieldName = "comp_name"
+        Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.Visible = True
+        Me.GridColumncomp_name.VisibleIndex = 3
         '
         'FormSalesPOS
         '
@@ -1238,4 +1275,8 @@ Partial Class FormSalesPOS
     Friend WithEvents XTPCNOnlineStore As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCPendingCN As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPendingCN As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnsales_order_ol_shop_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class
