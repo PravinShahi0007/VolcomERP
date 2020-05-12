@@ -164,6 +164,10 @@ Public Class FormSalesPOSDet
             Dim data_closing As DataTable = execute_query(query_closing, -1, True, "", "", "", "")
             DEStart.Properties.MinValue = data_closing(0)("first_date")
             DEEnd.Properties.MinValue = data_closing(0)("first_date")
+
+            If id_menu = "5" Then
+
+            End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
