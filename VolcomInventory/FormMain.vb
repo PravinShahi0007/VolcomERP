@@ -1181,10 +1181,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSalesReturnDetNew.ShowDialog()
             End If
         ElseIf formName = "FormSalesPOS" Then
-            'SALES POS
-            FormSalesPOSDet.action = "ins"
-            FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
-            FormSalesPOSDet.ShowDialog()
+            If FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 0 Then
+                'SALES POS
+                FormSalesPOSDet.action = "ins"
+                FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
+                FormSalesPOSDet.ShowDialog()
+            ElseIf FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 2 Then
+                FormSalesPOSDet.action = "ins"
+                FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
+                FormSalesPOSDet.comp_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("comp_number").ToString
+                FormSalesPOSDet.order_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("order_number").ToString
+                FormSalesPOSDet.ShowDialog()
+            End If
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then

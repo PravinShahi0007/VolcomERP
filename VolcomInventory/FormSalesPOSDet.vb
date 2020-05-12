@@ -50,6 +50,8 @@ Public Class FormSalesPOSDet
     Dim is_use_inv_mapping As String = get_setup_field("is_use_inv_mapping")
     Dim is_for_gwp As String = "2"
     Public discard_transaction As Boolean = False
+    Public comp_number As String = ""
+    Public order_number As String = ""
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -128,6 +130,12 @@ Public Class FormSalesPOSDet
             GridColumnOrder.Visible = False
             GridColumnDel.Visible = False
             print_title = "CREDIT NOTE SLIP"
+            BtnLoadFromReturnCentre.Visible = True
+            BtnImport.Visible = False
+            BtnImportOLStore.Visible = False
+            BtnImportOLStoreNew.Visible = False
+            BtnLoadPOS.Visible = False
+            BtnLoadFromBOF.Visible = False
         End If
 
         'print opt
@@ -165,8 +173,43 @@ Public Class FormSalesPOSDet
             DEStart.Properties.MinValue = data_closing(0)("first_date")
             DEEnd.Properties.MinValue = data_closing(0)("first_date")
 
+            'credit note ol store base on return centre
             If id_menu = "5" Then
-
+                If comp_number <> "" And order_number <> "" Then
+                    Cursor = Cursors.WaitCursor
+                    BtnListProduct.Visible = False
+                    TxtOLStoreNumber.Properties.ReadOnly = True
+                    TxtCodeCompFrom.Text = comp_number
+                    actionCompFrom()
+                    TxtOLStoreNumber.Text = order_number
+                    'view inv
+                    Dim qinv As String = "SELECT i.id_sales_pos, i.sales_pos_number, r.sales_order_ol_shop_number, i.sales_pos_discount, i.sales_pos_vat
+                    FROM tb_ol_store_ret_list l
+                    INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
+                    INNER JOIN tb_ol_store_ret r ON r.id_ol_store_ret = rd.id_ol_store_ret
+                    INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = rd.id_sales_order_det
+                    INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+                    INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                    INNER JOIN tb_sales_pos_det id ON id.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+                    INNER JOIN tb_sales_pos i ON i.id_sales_pos = id.id_sales_pos
+                    WHERE l.id_ol_store_ret_stt=6 AND c.id_comp=" + id_comp + " AND  r.sales_order_ol_shop_number='" + order_number + "' AND i.report_mark_type=48
+                    GROUP BY i.id_sales_pos "
+                    Dim dinv As DataTable = execute_query(qinv, -1, True, "", "", "", "")
+                    id_sales_pos_ref = dinv.Rows(0)("id_sales_pos").ToString
+                    TxtInvoice.Text = dinv.Rows(0)("sales_pos_number").ToString
+                    TxtOLStoreNumber.Text = dinv.Rows(0)("sales_order_ol_shop_number").ToString
+                    SPDiscount.EditValue = dinv.Rows(0)("sales_pos_discount")
+                    SPVat.EditValue = dinv.Rows(0)("sales_pos_vat")
+                    calculate()
+                    viewDetail()
+                    viewDetailCode()
+                    BtnLoadFromReturnCentre.Focus()
+                    Cursor = Cursors.Default
+                Else
+                    stopCustom("Order number not found")
+                    Close()
+                End If
             End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
@@ -685,7 +728,7 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
@@ -722,11 +765,20 @@ Public Class FormSalesPOSDet
                             End If
                         Catch ex As Exception
                         End Try
+                        Dim id_ol_store_ret_list As String = "NULL"
+                        Try
+                            id_ol_store_ret_list = GVItemList.GetRowCellValue(i, "id_ol_store_ret_list").ToString
+                            If id_ol_store_ret_list = "0" Or id_ol_store_ret_list = "" Then
+                                id_ol_store_ret_list = "NULL "
+                            End If
+                        Catch ex As Exception
+                        End Try
+
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ") "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + ") "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
@@ -2534,6 +2586,31 @@ Public Class FormSalesPOSDet
         MyCommand.Dispose()
         checkSOH(data_temp)
         calculate()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnLoadFromReturnCentre_Click(sender As Object, e As EventArgs) Handles BtnLoadFromReturnCentre.Click
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT p.id_product,p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+        '' AS `color`, 1 AS `sales_pos_det_qty`, id.id_design_price_retail, pt.design_price_type, id.design_price_retail,
+        id.id_design_price, id.design_price, p.id_design, 0 AS `id_sample`, id.id_sales_pos_det AS `id_sales_pos_det_ref`, l. id_ol_store_ret_list, 'OK' AS `note`
+        FROM tb_ol_store_ret_list l
+        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
+        INNER JOIN tb_ol_store_ret r ON r.id_ol_store_ret = rd.id_ol_store_ret
+        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = rd.id_sales_order_det
+        INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_sales_pos_det id ON id.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+        INNER JOIN tb_sales_pos i ON i.id_sales_pos = id.id_sales_pos
+        INNER JOIN tb_m_product p ON p.id_product = id.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = id.id_design_price_retail
+        INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+        WHERE l.id_ol_store_ret_stt=6 AND c.id_comp=" + id_comp + " AND  r.sales_order_ol_shop_number='" + order_number + "' AND i.id_sales_pos=" + id_sales_pos_ref + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCItemList.DataSource = data
         Cursor = Cursors.Default
     End Sub
 End Class

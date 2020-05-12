@@ -137,8 +137,8 @@
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
-        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
-        WHERE l.id_ol_store_ret_stt=6
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order  
+        WHERE l.id_ol_store_ret_stt=6 
         GROUP BY c.id_comp, so.sales_order_ol_shop_number "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPendingCN.DataSource = data
