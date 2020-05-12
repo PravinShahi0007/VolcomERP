@@ -5,6 +5,7 @@
     Dim rmt As String = "243"
     Public action As String = "-1"
     Dim scan_mode As String = ""
+    Dim dt As DataTable
 
 
     Private Sub FormRetOLStoreDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -108,7 +109,43 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
+        TxtScannedCode.Enabled = True
+        Try
+            dt.Clear()
+        Catch ex As Exception
+        End Try
+        Dim order_number As String = addSlashes(TxtOrderNumber.Text)
+        Dim id_comp_group As String = SLECompGroup.EditValue.ToString
+        Dim query As String = "SELECT a.*, (a.qty-IFNULL(s.qty_save,0)) AS `qty_limit`
+        FROM (
+	        SELECT sod.id_sales_order_det, dc.id_pl_sales_order_del_det_counting,  
+	        sod.id_product,CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `code_list`, 
+	        p.product_display_name AS `name`, cd.code_detail_name AS `size`, sod.item_id, sod.ol_store_id, 
+	        COUNT(CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting)) AS `qty`
+	        FROM tb_sales_order so
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
+	        INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+	        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+	        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+	        WHERE so.sales_order_ol_shop_number='" + order_number + "' AND c.id_comp_group=" + id_comp_group + " 
+	        GROUP BY code_list
+        ) a
+        LEFT JOIN (
+	        SELECT rd.product_full_code, COUNT(rd.product_full_code) AS `qty_save` 
+	        FROM tb_ol_store_ret r
+	        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret = r.id_ol_store_ret
+	        WHERE r.sales_order_ol_shop_number='" + order_number + "' AND r.id_comp_group=" + id_comp_group + " AND r.id_report_status!=5
+	        GROUP BY rd.product_full_code
+        ) s ON s.product_full_code = a.code_list
+        HAVING qty_limit>0 "
+        dt = execute_query(query, -1, True, "", "", "", "")
         scan_mode = "add"
+        LabelScannedCode.Appearance.ForeColor = Color.Green
+        TxtScannedCode.Properties.Appearance.ForeColor = Color.Green
         TxtScannedCode.Focus()
         Cursor = Cursors.Default
     End Sub
@@ -116,6 +153,8 @@
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
         Cursor = Cursors.WaitCursor
         scan_mode = "delete"
+        LabelScannedCode.Appearance.ForeColor = Color.Red
+        TxtScannedCode.Properties.Appearance.ForeColor = Color.Red
         TxtScannedCode.Focus()
         Cursor = Cursors.Default
     End Sub
@@ -169,9 +208,53 @@
     End Sub
 
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            BtnSaveChanges.Enabled = False
+        makeSafeGV(GVData)
+        If TxtRetRequest.Text = "" Or GVData.RowCount <= 0 Then
+            warningCustom("Please complete all data")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                BtnSaveChanges.Enabled = False
+                Dim id_comp_group As String = SLECompGroup.EditValue.ToString
+                Dim sales_order_ol_shop_number As String = addSlashes(TxtOrderNumber.Text)
+                Dim ret_req_number As String = addSlashes(TxtRetRequest.Text)
+                Dim rec_date As String = DateTime.Parse(DERecDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim note As String = addSlashes(MENote.Text)
+
+                'main 
+                Dim query As String = "INSERT INTO tb_ol_store_ret(id_comp_group, sales_order_ol_shop_number, ret_req_number, rec_date, number, created_date, created_by, note, id_report_status) VALUES 
+                ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "', '" + ret_req_number + "', '" + rec_date + "', '', NOW(), '" + id_user + "', '" + note + "',1);SELECT LAST_INSERT_ID(); "
+                id = execute_query(query, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ", 243); ", True, "", "", "", "")
+
+                'detail
+                Dim query_det As String = "INSERT INTO tb_ol_store_ret_det(id_ol_store_ret, id_sales_order_det, id_pl_sales_order_del_det_counting, product_full_code) VALUES "
+                For i As Integer = 0 To GVData.RowCount - 1
+                    Dim id_sales_order_det As String = GVData.GetRowCellValue(i, "id_sales_order_det").ToString
+                    Dim id_pl_sales_order_del_det_counting As String = GVData.GetRowCellValue(i, "id_pl_sales_order_del_det_counting").ToString
+                    Dim product_full_code As String = GVData.GetRowCellValue(i, "product_full_code").ToString
+
+                    If i > 0 Then
+                        query_det += ","
+                    End If
+                    query_det += "('" + id + "', '" + id_sales_order_det + "', '" + id_pl_sales_order_del_det_counting + "', '" + product_full_code + "') "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(query_det, True, "", "", "", "")
+                End If
+
+                'submit
+                submit_who_prepared(rmt, id, id_user)
+
+                'refresh
+                FormRetOlStore.viewData()
+                FormRetOlStore.GVData.FocusedRowHandle = find_row(FormRetOlStore.GVData, "id_ol_store_ret", id)
+                action = "upd"
+                actionLoad()
+                infoCustom("Pre return saved. Waiting for approval")
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -179,5 +262,71 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub TxtScannedCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScannedCode.KeyDown
+        Cursor = Cursors.WaitCursor
+        If e.KeyData = Keys.Enter Then
+            Dim code As String = addSlashes(TxtScannedCode.Text)
+            If scan_mode = "add" Then
+                ' add scan
+                Dim dtf As DataRow() = dt.Select("[code_list]='" + code + "' ")
+                If dtf.Length <= 0 Then
+                    stopCustomDialog("Code : " + code + " not found. ")
+                    GVData.FocusedRowHandle = GVData.RowCount - 1
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                Else
+                    makeSafeGV(GVData)
+                    Dim tot_qty As Integer = 0
+                    GVData.ActiveFilterString = "[product_full_code]='" + code + "'"
+                    If GVData.RowCount > 0 Then
+                        tot_qty = GVData.RowCount
+                    End If
+                    GVData.ActiveFilterString = ""
+                    If tot_qty < dtf(0)("qty_limit") Then
+                        Dim newRow As DataRow = (TryCast(GCData.DataSource, DataTable)).NewRow()
+                        newRow("id_ol_store_ret_det") = "0"
+                        newRow("id_ol_store_ret") = "0"
+                        newRow("id_sales_order_det") = dtf(0)("id_sales_order_det").ToString
+                        newRow("id_product") = dtf(0)("id_product").ToString
+                        newRow("product_full_code") = dtf(0)("code_list").ToString
+                        newRow("name") = dtf(0)("name").ToString
+                        newRow("size") = dtf(0)("size").ToString
+                        newRow("item_id") = dtf(0)("item_id").ToString
+                        newRow("ol_store_id") = dtf(0)("ol_store_id").ToString
+                        newRow("id_pl_sales_order_del_det_counting") = dtf(0)("id_pl_sales_order_del_det_counting").ToString
+                        TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
+                        GCData.RefreshDataSource()
+                        GVData.RefreshData()
+                        GVData.FocusedRowHandle = GVData.RowCount - 1
+                        TxtScannedCode.Text = ""
+                        TxtScannedCode.Focus()
+                    Else
+                        stopCustomDialog("Maximum scan : " + dtf(0)("qty_limit").ToString)
+                        TxtScannedCode.Text = ""
+                        TxtScannedCode.Focus()
+                    End If
+                End If
+            Else
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[product_full_code]='" + code + "'"
+                If GVData.RowCount > 0 Then
+                    GVData.DeleteSelectedRows()
+                    GCData.RefreshDataSource()
+                    GVData.RefreshData()
+                    GVData.FocusedRowHandle = GVData.RowCount - 1
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                Else
+                    stopCustomDialog("Code : " + code + " not found. ")
+                    GVData.FocusedRowHandle = GVData.RowCount - 1
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                End If
+                GVData.ActiveFilterString = ""
+            End If
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
