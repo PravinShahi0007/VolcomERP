@@ -185,6 +185,7 @@ Public Class FormSalesPOSDet
             If id_menu = "5" Then
                 query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
             End If
+            query += ", so.customer_name "
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
             query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -232,6 +233,7 @@ Public Class FormSalesPOSDet
             Else
                 TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
             End If
+            TXTName.Text = data.Rows(0)("customer_name").ToString
             MENote.Text = data.Rows(0)("sales_pos_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -288,6 +290,22 @@ Public Class FormSalesPOSDet
             check_but()
             calculate()
             allow_status()
+        End If
+
+        'if volcom online store
+        Dim is_volcom_online As String = execute_query("SELECT COUNT(*) AS total FROM tb_m_comp_volcom_ol WHERE id_store = " + id_comp, 0, True, "", "", "", "")
+
+        If Not is_volcom_online = "0" Then
+            LabelName.Visible = True
+            TXTName.Visible = True
+
+            If Not LabelBillTo.Visible Then
+                LabelName.Location = New Point(6, 143)
+                TXTName.Location = New Point(78, 140)
+            End If
+        Else
+            LabelName.Visible = False
+            TXTName.Visible = False
         End If
     End Sub
 
@@ -1100,6 +1118,25 @@ Public Class FormSalesPOSDet
             ReportSalesInvoiceNew.rmt = report_mark_type
             Dim Report As New ReportSalesInvoiceNew()
             Report.LabelTitle.Text = print_title
+
+            'if volcom online store
+            Dim is_volcom_online As String = execute_query("SELECT COUNT(*) AS total FROM tb_m_comp_volcom_ol WHERE id_store = " + id_comp, 0, True, "", "", "", "")
+
+            If Not is_volcom_online = "0" Then
+                Report.XLName1.Visible = True
+                Report.XLName2.Visible = True
+                Report.XLName3.Visible = True
+                Report.XLOLStoreNumber1.Visible = True
+                Report.XLOLStoreNumber2.Visible = True
+                Report.XLOLStoreNumber3.Visible = True
+            Else
+                Report.XLName1.Visible = False
+                Report.XLName2.Visible = False
+                Report.XLName3.Visible = False
+                Report.XLOLStoreNumber1.Visible = False
+                Report.XLOLStoreNumber2.Visible = False
+                Report.XLOLStoreNumber3.Visible = False
+            End If
 
             If CEPrintPreview.EditValue = True Then
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

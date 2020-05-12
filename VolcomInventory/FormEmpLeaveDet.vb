@@ -448,12 +448,18 @@
         Dim leave_type As String = LELeaveType.EditValue.ToString
 
         'propose max
-        Dim max_propose As Integer = CType(execute_query("
+        Dim max_propose As Integer = 99
+        Try
+            max_propose = CType(execute_query("
             SELECT sub.max_leave
             FROM tb_m_employee AS emp
             LEFT JOIN tb_m_departement_sub AS sub ON emp.id_departement_sub = sub.id_departement_sub
             WHERE emp.id_employee = " + id_employee + "
         ", 0, True, "", "", "", ""), Integer)
+        Catch ex As Exception
+
+        End Try
+
         Dim check_max_propose As String = ""
 
         If leave_type = "1" And Not is_hrd = "1" And TETotLeave.EditValue > 0 Then
@@ -646,21 +652,30 @@
         End If
 
         If check_input Then
-            If leave_type = "2" And LEFormDC.EditValue.ToString = "2" And GVLeaveDet.RowCount > 1 Then
-                'lebih dari 1 hari sakit pakai form
-                stopCustom("Hanya dapat mengajukan sakit dengan form satu hari dalam satu bulan." & vbNewLine & "Ajukan surat keterangan sakit dari dokter (DC) untuk pengajuan sakit.")
-                problem = True
-            ElseIf leave_type = "2" And LEFormDC.EditValue.ToString = "2" Then
-                'check if sudah form sekali dalam sebulan.
-                Dim date_sick As String = Date.Parse(GVLeaveDet.GetRowCellValue(0, "datetime_start")).ToString("yyyy-MM-dd")
-                '
-                Dim query_cek As String = "SELECT COUNT(lvd.id_emp_leave) FROM tb_emp_leave_det lvd
+            If leave_type = "2" Then 'sick
+                If get_setup_field("is_sick_must_dc") = "1" Then
+                    If Not LEFormDC.EditValue.ToString = "3" Then
+                        stopCustom("Hanya dapat mengajukan sakit dengan surat keterangan sakit dari dokter (DC).")
+                        problem = True
+                    End If
+                Else
+                    If leave_type = "2" And LEFormDC.EditValue.ToString = "2" And GVLeaveDet.RowCount > 1 Then
+                        'lebih dari 1 hari sakit pakai form
+                        stopCustom("Hanya dapat mengajukan sakit dengan form satu hari dalam satu bulan." & vbNewLine & "Ajukan surat keterangan sakit dari dokter (DC) untuk pengajuan sakit.")
+                        problem = True
+                    ElseIf leave_type = "2" And LEFormDC.EditValue.ToString = "2" Then
+                        'check if sudah form sekali dalam sebulan.
+                        Dim date_sick As String = Date.Parse(GVLeaveDet.GetRowCellValue(0, "datetime_start")).ToString("yyyy-MM-dd")
+                        '
+                        Dim query_cek As String = "SELECT COUNT(lvd.id_emp_leave) FROM tb_emp_leave_det lvd
                                         INNER JOIN tb_emp_leave lv ON lv.id_emp_leave=lvd.id_emp_leave
                                         WHERE DATE_FORMAT(lvd.datetime_start, '%Y-%m') = DATE_FORMAT('" & date_sick & "', '%Y-%m') AND lv.id_emp='" & id_employee & "' AND lv.id_form_dc='2' AND lv.id_leave_type='2' AND lv.id_report_status!='5' "
-                Dim cek As String = execute_query(query_cek, 0, True, "", "", "", "")
-                If Not cek.ToString = "0" Then
-                    stopCustom("Hanya dapat mengajukan sakit dengan form satu hari dalam satu bulan." & vbNewLine & "Ajukan surat keterangan sakit dari dokter (DC) untuk pengajuan sakit.")
-                    problem = True
+                        Dim cek As String = execute_query(query_cek, 0, True, "", "", "", "")
+                        If Not cek.ToString = "0" Then
+                            stopCustom("Hanya dapat mengajukan sakit dengan form satu hari dalam satu bulan." & vbNewLine & "Ajukan surat keterangan sakit dari dokter (DC) untuk pengajuan sakit.")
+                            problem = True
+                        End If
+                    End If
                 End If
             End If
 
