@@ -140,6 +140,8 @@
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_qty", qty_input_grid)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_price", TxtRealCost.EditValue)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_amount", TxtAmount.EditValue)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("retail_price", TxtUnitPrice.EditValue)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("retail_price_amount", TxtUnitPrice.EditValue * qty_input_grid)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_note", MENote.Text)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_drawer", SLEDrawer.EditValue.ToString)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_rack", SLERack.EditValue.ToString)
@@ -167,6 +169,8 @@
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_qty", qty_input_grid)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_price", TxtRealCost.EditValue)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_amount", TxtAmount.EditValue)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("retail_price", TxtUnitPrice.EditValue)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("retail_price_amount", TxtUnitPrice.EditValue * qty_input_grid)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_note", MENote.Text)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_drawer", SLEDrawer.EditValue.ToString)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_rack", SLERack.EditValue.ToString)
@@ -207,6 +211,8 @@
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("code", GVFG.GetFocusedRowCellValue("code").ToString)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_qty", qty_input_grid)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_price", TxtRealCost.EditValue)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("retail_price", TxtUnitPrice.EditValue)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("retail_price_amount", TxtUnitPrice.EditValue * qty_input_grid)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_amount", TxtAmount.EditValue)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_note", MENote.Text)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_drawer", SLEDrawer.EditValue.ToString)
@@ -233,6 +239,8 @@
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_qty", qty_input_grid)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_price", TxtRealCost.EditValue)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_amount", TxtAmount.EditValue)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("retail_price", TxtUnitPrice.EditValue)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("retail_price_amount", TxtUnitPrice.EditValue * qty_input_grid)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("adj_in_fg_det_note", MENote.Text)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_drawer", SLEDrawer.EditValue.ToString)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_rack", SLERack.EditValue.ToString)
@@ -373,6 +381,7 @@
         Catch ex As Exception
         End Try
         TxtRealCost.EditValue = cost
+        TxtUnitPrice.EditValue = GVFG.GetFocusedRowCellValue("design_price")
 
         If action = "ins" Then
             Dim qty_input As Decimal = SPQtyPL.EditValue
