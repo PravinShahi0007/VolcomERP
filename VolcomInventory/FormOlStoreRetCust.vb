@@ -46,6 +46,10 @@ GROUP BY ret.sales_order_ol_shop_number"
     End Sub
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        load_view()
+    End Sub
+
+    Sub load_view()
         If XTCRetCust.SelectedTabPageIndex = 0 Then
             view_list_ret()
         Else
@@ -69,7 +73,7 @@ GROUP BY ret.sales_order_ol_shop_number"
         End If
 
         Dim q As String = "SELECT rl.`id_ol_store_ret_list`,c.comp_name AS group_name,c.address_primary AS group_address,c.phone AS group_phone,ct.`city` AS group_city,c.postal_code AS group_postal_code,state.state AS group_region,cg.is_ret_to_cust,cg.`description` AS store_group,r.`number`,r.`ret_req_number`,sod.`item_id`,r.`sales_order_ol_shop_number`,r.`ret_req_number`,p.`product_display_name`,cd.`code_detail_name` AS size,stt.`ol_store_ret_stt`,emp.`employee_name`,rl.`update_date`,CONCAT(p.`product_full_code`,plc.`pl_sales_order_del_det_counting`) AS full_code
-,IF(so.shipping_address1='',so.shipping_address,CONCAT(so.shipping_address1,' ',so.shipping_address2)) AS cust_address,so.shipping_city AS cust_city,so.shipping_phone AS cust_phone,so.shipping_post_code AS cust_postal_code,so.shipping_region AS cust_region,so.`shipping_name` AS cust_name
+,IF(so.shipping_address1='' OR ISNULL(so.shipping_address1),so.shipping_address,CONCAT(so.shipping_address1,' ',so.shipping_address2)) AS cust_address,so.shipping_city AS cust_city,so.shipping_phone AS cust_phone,so.shipping_post_code AS cust_postal_code,so.shipping_region AS cust_region,so.`shipping_name` AS cust_name
 FROM tb_ol_store_ret_list rl
 INNER JOIN tb_ol_store_ret_det rd ON rd.`id_ol_store_ret_det`=rl.id_ol_store_ret_det
 INNER JOIN `tb_pl_sales_order_del_det_counting` plc ON rd.`id_pl_sales_order_del_det_counting`=plc.id_pl_sales_order_del_det_counting
@@ -133,6 +137,13 @@ INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=retc.`id_report
             FormOlStoreRetCustDet.ShowDialog()
         Else
             stopCustom("Please select order want to return first.")
+        End If
+    End Sub
+
+    Private Sub GVRetCust_DoubleClick(sender As Object, e As EventArgs) Handles GVRetCust.DoubleClick
+        If GVRetCust.RowCount > 0 Then
+            FormOlStoreRetCustDet.id_ret = GVRetCust.GetFocusedRowCellValue("id_ol_store_cust_ret")
+            FormOlStoreRetCustDet.ShowDialog()
         End If
     End Sub
 End Class
