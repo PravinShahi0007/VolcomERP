@@ -111,6 +111,9 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCustomer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNoteDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnol_store_id = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnitem_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTCDONew = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutboundScanNew = New DevExpress.XtraTab.XtraTabPage()
@@ -148,7 +151,8 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTest = New DevExpress.XtraGrid.GridControl()
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnNoteDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnol_store_id_bar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnitem_id_bar = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -922,7 +926,7 @@ Partial Class FormSalesDelOrderDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnQtyLimit, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnEanCode, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnStatus, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPriceType, Me.GridColumn1, Me.GridColumnOrderNumber, Me.GridColumnCustomer, Me.GridColumnNoteDel})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnQtyLimit, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnEanCode, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnStatus, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPriceType, Me.GridColumn1, Me.GridColumnOrderNumber, Me.GridColumnCustomer, Me.GridColumnNoteDel, Me.GridColumnol_store_id, Me.GridColumnitem_id})
         Me.GVItemList.CustomizationFormBounds = New System.Drawing.Rectangle(958, 136, 216, 180)
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_from_wh", Me.GridColumnQtyWH, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_amount", Me.GridColumnAmount, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty_limit", Me.GridColumnQtyLimit, "{0:n0}")})
@@ -1209,6 +1213,25 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumnCustomer.Caption = "Customer Name"
         Me.GridColumnCustomer.Name = "GridColumnCustomer"
         '
+        'GridColumnNoteDel
+        '
+        Me.GridColumnNoteDel.Caption = "Note Del"
+        Me.GridColumnNoteDel.Name = "GridColumnNoteDel"
+        '
+        'GridColumnol_store_id
+        '
+        Me.GridColumnol_store_id.Caption = "OL Store ID"
+        Me.GridColumnol_store_id.FieldName = "ol_store_id"
+        Me.GridColumnol_store_id.Name = "GridColumnol_store_id"
+        Me.GridColumnol_store_id.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnitem_id
+        '
+        Me.GridColumnitem_id.Caption = "Item ID"
+        Me.GridColumnitem_id.FieldName = "item_id"
+        Me.GridColumnitem_id.Name = "GridColumnitem_id"
+        Me.GridColumnitem_id.OptionsColumn.AllowEdit = False
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -1259,7 +1282,7 @@ Partial Class FormSalesDelOrderDet
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumnBarcodeName, Me.GridColumnBarcodeSize})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumnBarcodeName, Me.GridColumnBarcodeSize, Me.GridColumnol_store_id_bar, Me.GridColumnitem_id_bar})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.Name = "GVBarcode"
         Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -1573,10 +1596,19 @@ Partial Class FormSalesDelOrderDet
         Me.GVTest.GridControl = Me.GCTest
         Me.GVTest.Name = "GVTest"
         '
-        'GridColumnNoteDel
+        'GridColumnol_store_id_bar
         '
-        Me.GridColumnNoteDel.Caption = "Note Del"
-        Me.GridColumnNoteDel.Name = "GridColumnNoteDel"
+        Me.GridColumnol_store_id_bar.Caption = "OL Store Id"
+        Me.GridColumnol_store_id_bar.FieldName = "ol_store_id"
+        Me.GridColumnol_store_id_bar.Name = "GridColumnol_store_id_bar"
+        Me.GridColumnol_store_id_bar.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnitem_id_bar
+        '
+        Me.GridColumnitem_id_bar.Caption = "Item Id"
+        Me.GridColumnitem_id_bar.FieldName = "item_id"
+        Me.GridColumnitem_id_bar.Name = "GridColumnitem_id_bar"
+        Me.GridColumnitem_id_bar.OptionsColumn.AllowEdit = False
         '
         'FormSalesDelOrderDet
         '
@@ -1803,4 +1835,8 @@ Partial Class FormSalesDelOrderDet
     Friend WithEvents GridColumnOrderNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCustomer As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNoteDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnol_store_id As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnitem_id As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnol_store_id_bar As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnitem_id_bar As DevExpress.XtraGrid.Columns.GridColumn
 End Class

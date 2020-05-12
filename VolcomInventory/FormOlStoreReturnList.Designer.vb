@@ -47,6 +47,7 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,7 +183,7 @@ Partial Class FormOlStoreReturnList
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.GridColumn6})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.GridColumn6, Me.GridColumnid_comp_group})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -283,6 +284,13 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 9
         '
+        'GridColumnid_comp_group
+        '
+        Me.GridColumnid_comp_group.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
+        Me.GridColumnid_comp_group.OptionsColumn.AllowEdit = False
+        '
         'FormOlStoreReturnList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -337,4 +345,5 @@ Partial Class FormOlStoreReturnList
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
 End Class

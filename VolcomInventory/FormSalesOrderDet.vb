@@ -343,7 +343,7 @@ Public Class FormSalesOrderDet
         'blok order jika sudah pernah dibuat khiusus new wholesale
         Dim dt_existing_order As DataTable = Nothing
         Dim cond_no_exist As Boolean = True
-        If LEStatusSO.EditValue.ToString = "6" And is_block_same_nw = "1" Then
+        If LEStatusSO.EditValue.ToString = "6" And is_block_same_nw = "1" And id_commerce_type = "1" Then
             Dim qry As String = ""
             For f As Integer = 0 To GVItemList.RowCount - 1
                 If f > 0 Then

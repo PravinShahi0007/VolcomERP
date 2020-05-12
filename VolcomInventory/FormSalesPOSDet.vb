@@ -164,6 +164,10 @@ Public Class FormSalesPOSDet
             Dim data_closing As DataTable = execute_query(query_closing, -1, True, "", "", "", "")
             DEStart.Properties.MinValue = data_closing(0)("first_date")
             DEEnd.Properties.MinValue = data_closing(0)("first_date")
+
+            If id_menu = "5" Then
+
+            End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
@@ -185,6 +189,7 @@ Public Class FormSalesPOSDet
             If id_menu = "5" Then
                 query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
             End If
+            query += ", so.customer_name "
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
             query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -232,6 +237,7 @@ Public Class FormSalesPOSDet
             Else
                 TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
             End If
+            TXTName.Text = data.Rows(0)("customer_name").ToString
             MENote.Text = data.Rows(0)("sales_pos_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -288,6 +294,22 @@ Public Class FormSalesPOSDet
             check_but()
             calculate()
             allow_status()
+        End If
+
+        'if volcom online store
+        Dim is_volcom_online As String = execute_query("SELECT COUNT(*) AS total FROM tb_m_comp_volcom_ol WHERE id_store = " + id_comp, 0, True, "", "", "", "")
+
+        If Not is_volcom_online = "0" Then
+            LabelName.Visible = True
+            TXTName.Visible = True
+
+            If Not LabelBillTo.Visible Then
+                LabelName.Location = New Point(6, 143)
+                TXTName.Location = New Point(78, 140)
+            End If
+        Else
+            LabelName.Visible = False
+            TXTName.Visible = False
         End If
     End Sub
 
@@ -1101,6 +1123,25 @@ Public Class FormSalesPOSDet
             Dim Report As New ReportSalesInvoiceNew()
             Report.LabelTitle.Text = print_title
 
+            'if volcom online store
+            Dim is_volcom_online As String = execute_query("SELECT COUNT(*) AS total FROM tb_m_comp_volcom_ol WHERE id_store = " + id_comp, 0, True, "", "", "", "")
+
+            If Not is_volcom_online = "0" Then
+                Report.XLName1.Visible = True
+                Report.XLName2.Visible = True
+                Report.XLName3.Visible = True
+                Report.XLOLStoreNumber1.Visible = True
+                Report.XLOLStoreNumber2.Visible = True
+                Report.XLOLStoreNumber3.Visible = True
+            Else
+                Report.XLName1.Visible = False
+                Report.XLName2.Visible = False
+                Report.XLName3.Visible = False
+                Report.XLOLStoreNumber1.Visible = False
+                Report.XLOLStoreNumber2.Visible = False
+                Report.XLOLStoreNumber3.Visible = False
+            End If
+
             If CEPrintPreview.EditValue = True Then
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                 Tool.ShowPreviewDialog()
@@ -1404,7 +1445,7 @@ Public Class FormSalesPOSDet
         Dim data As New DataTable
         Dim query_check_order As String = "SELECT o.`order`, so.id_sales_order,so.sales_order_number, so.sales_order_ol_shop_number, del.id_pl_sales_order_del,(del.pl_sales_order_del_number) AS `del_number`, sal.sales_pos_number, ro.sales_return_order_number,
         IFNULL(deld.pl_sales_order_del_det_qty,0) AS `qty`, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
-        CONCAT(IF(ISNULL(so.id_sales_order),'ERP order not found; ',''), IF(ISNULL(del.id_pl_sales_order_del),'Delivery not found;',''), IF(!ISNULL(sal.id_sales_pos),'Invoice already created;',''), IF(!ISNULL(ro.id_sales_return_order),'Return Order already created;','')) AS `status`
+        CONCAT(IF(ISNULL(so.id_sales_order),'ERP order not found; ',''), IF(ISNULL(del.id_pl_sales_order_del),'Delivery not found;',''), IF(!ISNULL(sal.id_sales_pos),'Invoice already created;',''), IF(!ISNULL(ro.id_sales_return_order),'Return Order already created;',''), IF(!ISNULL(rl.id_ol_store_ret_list),'On process in return centre; ','')) AS `status`
         FROM tb_ol_order_temp o
         LEFT JOIN tb_sales_order so ON so.sales_order_ol_shop_number = o.`order` AND so.id_store_contact_to=" + id_store_contact_from + " AND so.id_report_status=6
         LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order AND del.id_report_status=6
@@ -1416,7 +1457,12 @@ Public Class FormSalesPOSDet
         LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         LEFT JOIN tb_sales_return_order_det rod ON rod.id_sales_order_det = deld.id_sales_order_det
         LEFT JOIN tb_sales_return_order ro ON ro.id_sales_return_order = rod.id_sales_return_order AND ro.id_report_status!=5
-        WHERE ISNULL(so.id_sales_order) OR ISNULL(del.id_pl_sales_order_del) OR !ISNULL(sal.id_sales_pos) OR !ISNULL(ro.id_sales_return_order) "
+        LEFT JOIN (
+            SELECT l.id_ol_store_ret_list, rd.id_sales_order_det
+            FROM tb_ol_store_ret_list l
+            INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
+        ) rl ON rl.id_sales_order_det = deld.id_sales_order_det
+        WHERE ISNULL(so.id_sales_order) OR ISNULL(del.id_pl_sales_order_del) OR !ISNULL(sal.id_sales_pos) OR !ISNULL(ro.id_sales_return_order) OR !ISNULL(rl.id_ol_store_ret_list) "
         'Console.WriteLine(query_check_order)
         Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(query_check_order, connection)
         adapter.SelectCommand.CommandTimeout = 300
@@ -1456,13 +1502,18 @@ Public Class FormSalesPOSDet
             INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = rod.id_sales_return_order
             WHERE ro.id_report_status!=5
         ) rod ON rod.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+            SELECT l.id_ol_store_ret_list, rd.id_sales_order_det
+            FROM tb_ol_store_ret_list l
+            INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
+        ) ret_list ON ret_list.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_m_product p ON p.id_product = dd.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product 
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail AND cd.id_code=33
         INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
         INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
         INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
-        WHERE d.id_store_contact_to='" + id_store_contact_from + "' AND d.id_report_status=6 AND !ISNULL(so.sales_order_ol_shop_number) AND so.sales_order_ol_shop_number!='' AND ISNULL(ind.id_sales_pos_det) AND ISNULL(rod.id_sales_return_order_det) "
+        WHERE d.id_store_contact_to='" + id_store_contact_from + "' AND d.id_report_status=6 AND !ISNULL(so.sales_order_ol_shop_number) AND so.sales_order_ol_shop_number!='' AND ISNULL(ind.id_sales_pos_det) AND ISNULL(rod.id_sales_return_order_det) AND ISNULL(ret_list.id_ol_store_ret_list) "
         If LEInvType.EditValue.ToString = "4" Then
             query_del += "HAVING design_price_retail=0 "
         Else

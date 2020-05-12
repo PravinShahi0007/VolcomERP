@@ -1770,6 +1770,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormRetOLStoreDet.action = "ins"
                 FormRetOLStoreDet.ShowDialog()
             End If
+        ElseIf formName = "FormRefundOLStore" Then
+            If FormRefundOLStore.XTCData.SelectedTabPageIndex = 1 Then
+                FormRefundOLStoreDet.action = "ins"
+                FormRefundOLStoreDet.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2945,6 +2950,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormRetOLStoreDet.id = FormRetOlStore.GVData.GetFocusedRowCellValue("id_ol_store_ret").ToString
                     FormRetOLStoreDet.action = "upd"
                     FormRetOLStoreDet.ShowDialog()
+                End If
+            ElseIf formName = "FormRefundOLStore" Then
+                If FormRefundOLStore.XTCData.SelectedTabPageIndex = 0 Then
+                    FormRefundOLStoreDet.id = FormRefundOLStore.GVData.GetFocusedRowCellValue("id_ol_store_refund").ToString
+                    FormRefundOLStoreDet.action = "upd"
+                    FormRefundOLStoreDet.ShowDialog()
                 End If
             Else
                 RPSubMenu.Visible = False
@@ -8171,6 +8182,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompareStockWebsite.print()
         ElseIf formName = "FormRetOlStore" Then
             print(FormRetOlStore.GCData, "Pre Return List")
+        ElseIf formName = "FormRefundOLStore" Then
+            print(FormRefundOLStore.GCData, "Accepted Refund List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9051,6 +9064,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormOlStoreRetCust" Then
             FormOlStoreRetCust.Close()
             FormOlStoreRetCust.Dispose()
+        ElseIf formName = "FormRefundOLStore" Then
+            FormRefundOLStore.Close()
+            FormRefundOLStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9956,6 +9972,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormLetterOfStatement.form_load()
         ElseIf formName = "FormRetOlStore" Then
             FormRetOlStore.viewData()
+        ElseIf formName = "FormRefundOLStore" Then
+            FormRefundOLStore.viewData()
         End If
     End Sub
     'Switch
@@ -14804,6 +14822,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOlStoreRetCust.Show()
             FormOlStoreRetCust.WindowState = FormWindowState.Maximized
             FormOlStoreRetCust.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAcceptRefundOLStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAcceptRefundOLStore.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormRefundOLStore.MdiParent = Me
+            FormRefundOLStore.Show()
+            FormRefundOLStore.WindowState = FormWindowState.Maximized
+            FormRefundOLStore.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

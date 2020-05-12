@@ -19,7 +19,6 @@ Partial Class FormOLStore
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStore))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnUpdateStt = New DevExpress.XtraEditors.SimpleButton()
@@ -37,7 +36,7 @@ Partial Class FormOLStore
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportToBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,7 +77,7 @@ Partial Class FormOLStore
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOrderSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStripSum = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStripSum = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -200,6 +199,8 @@ Partial Class FormOLStore
         Me.LinkSalesOrder = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBCloseOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.CEAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -207,10 +208,9 @@ Partial Class FormOLStore
         Me.BtnConfirmedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPendingOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip()
         Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBCloseOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnFailReason = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,12 +269,12 @@ Partial Class FormOLStore
         CType(Me.LinkTrfOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LinkTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripOwnOlStore.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -1557,7 +1557,7 @@ Partial Class FormOLStore
         '
         'GVVolcom
         '
-        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsCheck, Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39, Me.GridColumn})
+        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsCheck, Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39, Me.GridColumn, Me.GridColumnFailReason})
         Me.GVVolcom.GridControl = Me.GCVolcom
         Me.GVVolcom.Name = "GVVolcom"
         Me.GVVolcom.OptionsBehavior.AutoExpandAllGroups = True
@@ -1890,6 +1890,25 @@ Partial Class FormOLStore
         Me.GridColumn.Visible = True
         Me.GridColumn.VisibleIndex = 17
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.SBCloseOrder)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 433)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(994, 48)
+        Me.PanelControl4.TabIndex = 2
+        '
+        'SBCloseOrder
+        '
+        Me.SBCloseOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBCloseOrder.Image = CType(resources.GetObject("SBCloseOrder.Image"), System.Drawing.Image)
+        Me.SBCloseOrder.Location = New System.Drawing.Point(882, 2)
+        Me.SBCloseOrder.Name = "SBCloseOrder"
+        Me.SBCloseOrder.Size = New System.Drawing.Size(110, 44)
+        Me.SBCloseOrder.TabIndex = 5
+        Me.SBCloseOrder.Text = "Close Order"
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.CEAllow)
@@ -1979,24 +1998,14 @@ Partial Class FormOLStore
         Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
         '
-        'PanelControl4
+        'GridColumnFailReason
         '
-        Me.PanelControl4.Controls.Add(Me.SBCloseOrder)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 433)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(994, 48)
-        Me.PanelControl4.TabIndex = 2
-        '
-        'SBCloseOrder
-        '
-        Me.SBCloseOrder.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBCloseOrder.Image = CType(resources.GetObject("SBCloseOrder.Image"), System.Drawing.Image)
-        Me.SBCloseOrder.Location = New System.Drawing.Point(882, 2)
-        Me.SBCloseOrder.Name = "SBCloseOrder"
-        Me.SBCloseOrder.Size = New System.Drawing.Size(110, 44)
-        Me.SBCloseOrder.TabIndex = 5
-        Me.SBCloseOrder.Text = "Close Order"
+        Me.GridColumnFailReason.Caption = "Fail Reason"
+        Me.GridColumnFailReason.FieldName = "fail_reason"
+        Me.GridColumnFailReason.Name = "GridColumnFailReason"
+        Me.GridColumnFailReason.OptionsColumn.ReadOnly = True
+        Me.GridColumnFailReason.Visible = True
+        Me.GridColumnFailReason.VisibleIndex = 24
         '
         'FormOLStore
         '
@@ -2067,12 +2076,12 @@ Partial Class FormOLStore
         CType(Me.LinkTrfOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LinkTrf, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripOwnOlStore.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2267,4 +2276,5 @@ Partial Class FormOLStore
     Friend WithEvents RICEIsCheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBCloseOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnFailReason As DevExpress.XtraGrid.Columns.GridColumn
 End Class

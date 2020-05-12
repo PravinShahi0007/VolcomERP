@@ -58,6 +58,7 @@ Partial Class FormSalesPOS
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastMark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsSubmit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBOFNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnNoStock = New DevExpress.XtraEditors.SimpleButton()
         Me.LEOptionView = New DevExpress.XtraEditors.LookUpEdit()
@@ -104,6 +105,13 @@ Partial Class FormSalesPOS
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPCNOnlineStore = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPendingCN = New DevExpress.XtraGrid.GridControl()
+        Me.GVPendingCN = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnsales_order_ol_shop_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -111,7 +119,6 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnBOFNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,6 +153,9 @@ Partial Class FormSalesPOS
         CType(Me.DEFromWholesale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreWholesale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPCNOnlineStore.SuspendLayout()
+        CType(Me.GCPendingCN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPendingCN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -538,6 +548,14 @@ Partial Class FormSalesPOS
         Me.GridColumnIsSubmit.Visible = True
         Me.GridColumnIsSubmit.VisibleIndex = 14
         '
+        'GridColumnBOFNo
+        '
+        Me.GridColumnBOFNo.Caption = "BOF#"
+        Me.GridColumnBOFNo.FieldName = "bof_number"
+        Me.GridColumnBOFNo.Name = "GridColumnBOFNo"
+        Me.GridColumnBOFNo.Visible = True
+        Me.GridColumnBOFNo.VisibleIndex = 1
+        '
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -731,7 +749,7 @@ Partial Class FormSalesPOS
         Me.XTCInvoice.SelectedTabPage = Me.XTPListInv
         Me.XTCInvoice.Size = New System.Drawing.Size(1240, 533)
         Me.XTCInvoice.TabIndex = 3
-        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale})
+        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale, Me.XTPCNOnlineStore})
         '
         'XTPListInv
         '
@@ -746,6 +764,7 @@ Partial Class FormSalesPOS
         Me.XTPListWholesale.Controls.Add(Me.GroupControl1)
         Me.XTPListWholesale.Controls.Add(Me.GroupControl2)
         Me.XTPListWholesale.Name = "XTPListWholesale"
+        Me.XTPListWholesale.PageVisible = False
         Me.XTPListWholesale.Size = New System.Drawing.Size(1234, 505)
         Me.XTPListWholesale.Text = "Waiting List Wholesale"
         '
@@ -976,6 +995,65 @@ Partial Class FormSalesPOS
         Me.LabelControl11.TabIndex = 0
         Me.LabelControl11.Text = "Store"
         '
+        'XTPCNOnlineStore
+        '
+        Me.XTPCNOnlineStore.Controls.Add(Me.GCPendingCN)
+        Me.XTPCNOnlineStore.Name = "XTPCNOnlineStore"
+        Me.XTPCNOnlineStore.Size = New System.Drawing.Size(1234, 505)
+        Me.XTPCNOnlineStore.Text = "CN Online Store (Pending)"
+        '
+        'GCPendingCN
+        '
+        Me.GCPendingCN.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPendingCN.Location = New System.Drawing.Point(0, 0)
+        Me.GCPendingCN.MainView = Me.GVPendingCN
+        Me.GCPendingCN.Name = "GCPendingCN"
+        Me.GCPendingCN.Size = New System.Drawing.Size(1234, 505)
+        Me.GCPendingCN.TabIndex = 0
+        Me.GCPendingCN.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPendingCN})
+        '
+        'GVPendingCN
+        '
+        Me.GVPendingCN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnsales_order_ol_shop_number, Me.GridColumncustomer_name, Me.GridColumncomp_number, Me.GridColumncomp_name})
+        Me.GVPendingCN.GridControl = Me.GCPendingCN
+        Me.GVPendingCN.Name = "GVPendingCN"
+        Me.GVPendingCN.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPendingCN.OptionsBehavior.ReadOnly = True
+        Me.GVPendingCN.OptionsFind.AlwaysVisible = True
+        Me.GVPendingCN.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnsales_order_ol_shop_number
+        '
+        Me.GridColumnsales_order_ol_shop_number.Caption = "Order Number"
+        Me.GridColumnsales_order_ol_shop_number.FieldName = "order_number"
+        Me.GridColumnsales_order_ol_shop_number.Name = "GridColumnsales_order_ol_shop_number"
+        Me.GridColumnsales_order_ol_shop_number.Visible = True
+        Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 0
+        '
+        'GridColumncustomer_name
+        '
+        Me.GridColumncustomer_name.Caption = "Customer"
+        Me.GridColumncustomer_name.FieldName = "customer_name"
+        Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
+        Me.GridColumncustomer_name.Visible = True
+        Me.GridColumncustomer_name.VisibleIndex = 1
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Account"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 2
+        '
+        'GridColumncomp_name
+        '
+        Me.GridColumncomp_name.Caption = "Account Description"
+        Me.GridColumncomp_name.FieldName = "comp_name"
+        Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.Visible = True
+        Me.GridColumncomp_name.VisibleIndex = 3
+        '
         'LookUpEdit1
         '
         Me.LookUpEdit1.Location = New System.Drawing.Point(391, 14)
@@ -1042,14 +1120,6 @@ Partial Class FormSalesPOS
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
         '
-        'GridColumnBOFNo
-        '
-        Me.GridColumnBOFNo.Caption = "BOF#"
-        Me.GridColumnBOFNo.FieldName = "bof_number"
-        Me.GridColumnBOFNo.Name = "GridColumnBOFNo"
-        Me.GridColumnBOFNo.Visible = True
-        Me.GridColumnBOFNo.VisibleIndex = 1
-        '
         'FormSalesPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1099,6 +1169,9 @@ Partial Class FormSalesPOS
         CType(Me.DEFromWholesale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreWholesale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPCNOnlineStore.ResumeLayout(False)
+        CType(Me.GCPendingCN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPendingCN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1199,4 +1272,11 @@ Partial Class FormSalesPOS
     Friend WithEvents GridColumnIsSubmit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnNoStock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnBOFNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPCNOnlineStore As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPendingCN As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPendingCN As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnsales_order_ol_shop_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

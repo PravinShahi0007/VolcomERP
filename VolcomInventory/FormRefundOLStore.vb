@@ -1,16 +1,16 @@
-﻿Public Class FormRetOlStore
+﻿Public Class FormRefundOLStore
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
 
-    Private Sub FormRetOlStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormRefundOLStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
         viewData()
     End Sub
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim pre As New ClassRetOLStore()
+        Dim pre As New ClassRefundOLStore()
         Dim query As String = pre.queryMain("-1", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -30,24 +30,24 @@
 
     Sub viewOrderList()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT c.id_comp_group,so.sales_order_ol_shop_number, so.sales_order_ol_shop_date AS `order_date`, so.customer_name
-        FROM tb_sales_order so
-        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
-        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-        WHERE so.id_report_status=6 AND c.id_commerce_type=2 AND c.id_comp_group='" + SLECompGroup.EditValue.ToString + "'
-        GROUP BY so.sales_order_ol_shop_number "
+        Dim query As String = "SELECT r.id_comp_group, r.sales_order_ol_shop_number
+        FROM tb_ol_store_ret_list l
+        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
+        INNER JOIN tb_ol_store_ret r ON r.id_ol_store_ret = rd.id_ol_store_ret
+        WHERE l.id_ol_store_ret_stt=2 AND r.id_comp_group=" + SLECompGroup.EditValue.ToString + "
+        GROUP BY r.sales_order_ol_shop_number, r.id_comp_group "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOrderList.DataSource = data
         check_menu()
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub FormRetOlStore_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+    Private Sub FormRefundOLStore_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         check_menu()
     End Sub
 
-    Private Sub FormRetOlStore_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+    Private Sub FormRefundOLStore_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
 

@@ -69,6 +69,7 @@ Partial Class FormFGAdjInSingle
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWHCompName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWHLocatorSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWHRackSample = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -83,7 +84,9 @@ Partial Class FormFGAdjInSingle
         Me.PanelControlImg = New DevExpress.XtraEditors.PanelControl()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.BtnViewImg = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TxtUnitPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlInput, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlInput.SuspendLayout()
         CType(Me.TxtRealCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,10 +116,13 @@ Partial Class FormFGAdjInSingle
         CType(Me.PanelControlImg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlImg.SuspendLayout()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlInput
         '
+        Me.GroupControlInput.Controls.Add(Me.LabelControl12)
+        Me.GroupControlInput.Controls.Add(Me.TxtUnitPrice)
         Me.GroupControlInput.Controls.Add(Me.TxtRealCost)
         Me.GroupControlInput.Controls.Add(Me.TxtAmount)
         Me.GroupControlInput.Controls.Add(Me.LabelControl7)
@@ -135,9 +141,9 @@ Partial Class FormFGAdjInSingle
         Me.GroupControlInput.Controls.Add(Me.LabelControl9)
         Me.GroupControlInput.Controls.Add(Me.PanelControlNav)
         Me.GroupControlInput.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControlInput.Location = New System.Drawing.Point(0, 293)
+        Me.GroupControlInput.Location = New System.Drawing.Point(0, 305)
         Me.GroupControlInput.Name = "GroupControlInput"
-        Me.GroupControlInput.Size = New System.Drawing.Size(916, 192)
+        Me.GroupControlInput.Size = New System.Drawing.Size(916, 235)
         Me.GroupControlInput.TabIndex = 6
         Me.GroupControlInput.Text = "Set Quantity"
         '
@@ -181,7 +187,7 @@ Partial Class FormFGAdjInSingle
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(452, 84)
+        Me.LabelControl1.Location = New System.Drawing.Point(452, 112)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl1.TabIndex = 21
@@ -189,7 +195,7 @@ Partial Class FormFGAdjInSingle
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(513, 81)
+        Me.MENote.Location = New System.Drawing.Point(513, 109)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(391, 46)
         Me.MENote.TabIndex = 22
@@ -440,7 +446,7 @@ Partial Class FormFGAdjInSingle
         Me.PanelControlNav.Controls.Add(Me.LabelControl4)
         Me.PanelControlNav.Controls.Add(Me.LabelControl5)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlNav.Location = New System.Drawing.Point(2, 143)
+        Me.PanelControlNav.Location = New System.Drawing.Point(2, 186)
         Me.PanelControlNav.LookAndFeel.SkinName = "Blue"
         Me.PanelControlNav.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControlNav.Name = "PanelControlNav"
@@ -540,7 +546,7 @@ Partial Class FormFGAdjInSingle
         Me.GroupControlSample.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlSample.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlSample.Name = "GroupControlSample"
-        Me.GroupControlSample.Size = New System.Drawing.Size(916, 293)
+        Me.GroupControlSample.Size = New System.Drawing.Size(916, 305)
         Me.GroupControlSample.TabIndex = 7
         Me.GroupControlSample.Text = "Double click to see drawer information"
         '
@@ -551,13 +557,13 @@ Partial Class FormFGAdjInSingle
         Me.GCFG.MainView = Me.GVFG
         Me.GCFG.Name = "GCFG"
         Me.GCFG.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCFG.Size = New System.Drawing.Size(727, 232)
+        Me.GCFG.Size = New System.Drawing.Size(727, 244)
         Me.GCFG.TabIndex = 7
         Me.GCFG.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFG})
         '
         'GVFG
         '
-        Me.GVFG.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn18, Me.GridColumn16, Me.GridColumn19, Me.GridColumn25, Me.GridColumn1, Me.GridColumnWHCompName, Me.GridColumnWHLocatorSample, Me.GridColumnWHRackSample, Me.GridColumnWHDrawerSample, Me.GridColumnIdWHDrawerSample, Me.GridColumnIdDesign})
+        Me.GVFG.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn18, Me.GridColumn16, Me.GridColumn19, Me.GridColumn25, Me.GridColumn1, Me.GridColumnWHCompName, Me.GridColumnWHLocatorSample, Me.GridColumnWHRackSample, Me.GridColumnWHDrawerSample, Me.GridColumnIdWHDrawerSample, Me.GridColumnIdDesign, Me.GridColumn2})
         Me.GVFG.GridControl = Me.GCFG
         Me.GVFG.Name = "GVFG"
         Me.GVFG.OptionsBehavior.AutoExpandAllGroups = True
@@ -613,6 +619,14 @@ Partial Class FormFGAdjInSingle
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 3
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "UOM"
+        Me.GridColumn1.FieldName = "uom"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 4
         '
         'GridColumnWHCompName
         '
@@ -704,7 +718,7 @@ Partial Class FormFGAdjInSingle
         Me.PanelControlImg.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlImg.Location = New System.Drawing.Point(2, 2)
         Me.PanelControlImg.Name = "PanelControlImg"
-        Me.PanelControlImg.Size = New System.Drawing.Size(185, 271)
+        Me.PanelControlImg.Size = New System.Drawing.Size(185, 283)
         Me.PanelControlImg.TabIndex = 0
         '
         'PictureEdit1
@@ -715,31 +729,54 @@ Partial Class FormFGAdjInSingle
         Me.PictureEdit1.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PictureEdit1.Properties.ShowMenu = False
         Me.PictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PictureEdit1.Size = New System.Drawing.Size(185, 248)
+        Me.PictureEdit1.Size = New System.Drawing.Size(185, 260)
         Me.PictureEdit1.TabIndex = 3
         '
         'BtnViewImg
         '
         Me.BtnViewImg.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnViewImg.Location = New System.Drawing.Point(0, 248)
+        Me.BtnViewImg.Location = New System.Drawing.Point(0, 260)
         Me.BtnViewImg.Name = "BtnViewImg"
         Me.BtnViewImg.Size = New System.Drawing.Size(185, 23)
         Me.BtnViewImg.TabIndex = 0
         Me.BtnViewImg.Text = "View Image"
         '
-        'GridColumn1
+        'GridColumn2
         '
-        Me.GridColumn1.Caption = "UOM"
-        Me.GridColumn1.FieldName = "uom"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn2.Caption = "Unit Price"
+        Me.GridColumn2.DisplayFormat.FormatString = "N0"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "design_price"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
+        '
+        'TxtUnitPrice
+        '
+        Me.TxtUnitPrice.Location = New System.Drawing.Point(513, 81)
+        Me.TxtUnitPrice.Name = "TxtUnitPrice"
+        Me.TxtUnitPrice.Properties.Mask.EditMask = "n2"
+        Me.TxtUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtUnitPrice.Properties.Mask.SaveLiteral = False
+        Me.TxtUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtUnitPrice.Properties.ReadOnly = True
+        Me.TxtUnitPrice.Size = New System.Drawing.Size(391, 20)
+        Me.TxtUnitPrice.TabIndex = 139
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(452, 84)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl12.TabIndex = 140
+        Me.LabelControl12.Text = "Unit Price"
         '
         'FormFGAdjInSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(916, 485)
+        Me.ClientSize = New System.Drawing.Size(916, 540)
         Me.Controls.Add(Me.GroupControlSample)
         Me.Controls.Add(Me.GroupControlInput)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -781,6 +818,7 @@ Partial Class FormFGAdjInSingle
         CType(Me.PanelControlImg, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlImg.ResumeLayout(False)
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -849,4 +887,7 @@ Partial Class FormFGAdjInSingle
     Friend WithEvents TxtDesignCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnViewStockSum As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtUnitPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -404,7 +404,7 @@
         vo.note_price, vo.id_design_cat, vo.id_design_price, vo.id_product, vo.note_stock, 
         vo.id_report_trf_order, vo.rmt_trf_order, trf_order.sales_order_number AS `trf_order_number`,
         vo.id_report_trf, vo.rmt_trf, trf.fg_trf_number AS `trf_number`,
-        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number
+        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number, vo.fail_reason
         FROM tb_ol_store_order vo
         LEFT JOIN tb_sales_order trf_order ON trf_order.id_sales_order = vo.id_report_trf_order
         LEFT JOIN tb_sales_order actual_order ON actual_order.id_sales_order = vo.id_report_order

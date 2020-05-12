@@ -582,6 +582,9 @@
         ElseIf report_mark_type = "242" Then
             'cash advance cancel
             query = String.Format("SELECT id_report_status,(SELECT number FROM tb_cash_advance WHERE id_cash_advance = {0}) as report_number FROM tb_cash_advance_cancel WHERE id_cash_advance = '{1}'", id_report, id_report)
+        ElseIf report_mark_type = "243" Then
+            'pre return
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_store_ret WHERE id_ol_store_ret = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -7800,6 +7803,25 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
             'update
             query = String.Format("UPDATE tb_cash_advance_cancel SET id_report_status='{0}' WHERE id_cash_advance ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "243" Then
+            'pre return
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'action completed
+                Dim query_ins As String = "INSERT INTO tb_ol_store_ret_list(id_ol_store_ret_det, id_ol_store_ret_stt) 
+                SELECT d.id_ol_store_ret_det, 1 
+                FROM tb_ol_store_ret_det d
+                WHERE d.id_ol_store_ret=" + id_report + " "
+                execute_non_query(query_ins, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_ol_store_ret SET id_report_status='{0}' WHERE id_ol_store_ret ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormRetOlStore
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormRefundOLStore
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,23 +17,22 @@ Partial Class FormRetOlStore
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPPreReturnList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPAcceptedList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_ol_store_ret = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_ol_store_refund = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_order_ol_shop = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_ol_shop_number = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnret_req_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncreated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrec_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOrderList = New DevExpress.XtraGrid.GridControl()
         Me.GVOrderList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -48,10 +47,11 @@ Partial Class FormRetOlStore
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnwh_normal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnwh_sale = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
-        Me.XTPPreReturnList.SuspendLayout()
+        Me.XTPAcceptedList.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrderList.SuspendLayout()
@@ -69,17 +69,17 @@ Partial Class FormRetOlStore
         Me.XTCData.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCData.Location = New System.Drawing.Point(0, 0)
         Me.XTCData.Name = "XTCData"
-        Me.XTCData.SelectedTabPage = Me.XTPPreReturnList
-        Me.XTCData.Size = New System.Drawing.Size(1155, 579)
-        Me.XTCData.TabIndex = 1
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPreReturnList, Me.XTPOrderList})
+        Me.XTCData.SelectedTabPage = Me.XTPAcceptedList
+        Me.XTCData.Size = New System.Drawing.Size(754, 504)
+        Me.XTCData.TabIndex = 2
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPAcceptedList, Me.XTPOrderList})
         '
-        'XTPPreReturnList
+        'XTPAcceptedList
         '
-        Me.XTPPreReturnList.Controls.Add(Me.GCData)
-        Me.XTPPreReturnList.Name = "XTPPreReturnList"
-        Me.XTPPreReturnList.Size = New System.Drawing.Size(1149, 551)
-        Me.XTPPreReturnList.Text = "Pre Return List"
+        Me.XTPAcceptedList.Controls.Add(Me.GCData)
+        Me.XTPAcceptedList.Name = "XTPAcceptedList"
+        Me.XTPAcceptedList.Size = New System.Drawing.Size(748, 476)
+        Me.XTPAcceptedList.Text = "Accepted List"
         '
         'GCData
         '
@@ -87,13 +87,13 @@ Partial Class FormRetOlStore
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(1149, 551)
+        Me.GCData.Size = New System.Drawing.Size(748, 476)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_ret, Me.GridColumnid_sales_order_ol_shop, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnret_req_number, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnrec_date, Me.GridColumncomp_group_name})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_refund, Me.GridColumnid_sales_order_ol_shop, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumncomp_group_name, Me.GridColumnwh_normal, Me.GridColumnwh_sale})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -101,11 +101,11 @@ Partial Class FormRetOlStore
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnid_ol_store_ret
+        'GridColumnid_ol_store_refund
         '
-        Me.GridColumnid_ol_store_ret.Caption = "id_ol_store_ret"
-        Me.GridColumnid_ol_store_ret.FieldName = "id_ol_store_ret"
-        Me.GridColumnid_ol_store_ret.Name = "GridColumnid_ol_store_ret"
+        Me.GridColumnid_ol_store_refund.Caption = "id_ol_store_refund"
+        Me.GridColumnid_ol_store_refund.FieldName = "id_ol_store_refund"
+        Me.GridColumnid_ol_store_refund.Name = "GridColumnid_ol_store_refund"
         '
         'GridColumnid_sales_order_ol_shop
         '
@@ -120,14 +120,6 @@ Partial Class FormRetOlStore
         Me.GridColumnsales_order_ol_shop_number.Name = "GridColumnsales_order_ol_shop_number"
         Me.GridColumnsales_order_ol_shop_number.Visible = True
         Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 2
-        '
-        'GridColumnret_req_number
-        '
-        Me.GridColumnret_req_number.Caption = "Ret. Request Number"
-        Me.GridColumnret_req_number.FieldName = "ret_req_number"
-        Me.GridColumnret_req_number.Name = "GridColumnret_req_number"
-        Me.GridColumnret_req_number.Visible = True
-        Me.GridColumnret_req_number.VisibleIndex = 3
         '
         'GridColumnnumber
         '
@@ -175,22 +167,20 @@ Partial Class FormRetOlStore
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 7
         '
-        'GridColumnrec_date
+        'GridColumncomp_group_name
         '
-        Me.GridColumnrec_date.Caption = "Received Date"
-        Me.GridColumnrec_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumnrec_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnrec_date.FieldName = "rec_date"
-        Me.GridColumnrec_date.Name = "GridColumnrec_date"
-        Me.GridColumnrec_date.Visible = True
-        Me.GridColumnrec_date.VisibleIndex = 4
+        Me.GridColumncomp_group_name.Caption = "Store Group"
+        Me.GridColumncomp_group_name.FieldName = "comp_group_name"
+        Me.GridColumncomp_group_name.Name = "GridColumncomp_group_name"
+        Me.GridColumncomp_group_name.Visible = True
+        Me.GridColumncomp_group_name.VisibleIndex = 1
         '
         'XTPOrderList
         '
         Me.XTPOrderList.Controls.Add(Me.GCOrderList)
         Me.XTPOrderList.Controls.Add(Me.PanelControl1)
         Me.XTPOrderList.Name = "XTPOrderList"
-        Me.XTPOrderList.Size = New System.Drawing.Size(1149, 551)
+        Me.XTPOrderList.Size = New System.Drawing.Size(748, 476)
         Me.XTPOrderList.Text = "Order List"
         '
         'GCOrderList
@@ -199,7 +189,7 @@ Partial Class FormRetOlStore
         Me.GCOrderList.Location = New System.Drawing.Point(0, 43)
         Me.GCOrderList.MainView = Me.GVOrderList
         Me.GCOrderList.Name = "GCOrderList"
-        Me.GCOrderList.Size = New System.Drawing.Size(1149, 508)
+        Me.GCOrderList.Size = New System.Drawing.Size(748, 433)
         Me.GCOrderList.TabIndex = 1
         Me.GCOrderList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOrderList})
         '
@@ -234,16 +224,12 @@ Partial Class FormRetOlStore
         Me.GridColumnorder_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnorder_date.FieldName = "order_date"
         Me.GridColumnorder_date.Name = "GridColumnorder_date"
-        Me.GridColumnorder_date.Visible = True
-        Me.GridColumnorder_date.VisibleIndex = 1
         '
         'GridColumncustomer_name
         '
         Me.GridColumncustomer_name.Caption = "Customer"
         Me.GridColumncustomer_name.FieldName = "customer_name"
         Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
-        Me.GridColumncustomer_name.Visible = True
-        Me.GridColumncustomer_name.VisibleIndex = 2
         '
         'PanelControl1
         '
@@ -253,7 +239,7 @@ Partial Class FormRetOlStore
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1149, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(748, 43)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnViewOrder
@@ -304,30 +290,34 @@ Partial Class FormRetOlStore
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Store Group"
         '
-        'GridColumncomp_group_name
+        'GridColumnwh_normal
         '
-        Me.GridColumncomp_group_name.Caption = "Store Group"
-        Me.GridColumncomp_group_name.FieldName = "comp_group_name"
-        Me.GridColumncomp_group_name.Name = "GridColumncomp_group_name"
-        Me.GridColumncomp_group_name.Visible = True
-        Me.GridColumncomp_group_name.VisibleIndex = 1
+        Me.GridColumnwh_normal.Caption = "Normal Account"
+        Me.GridColumnwh_normal.FieldName = "wh_normal"
+        Me.GridColumnwh_normal.Name = "GridColumnwh_normal"
+        Me.GridColumnwh_normal.Visible = True
+        Me.GridColumnwh_normal.VisibleIndex = 3
         '
-        'FormRetOlStore
+        'GridColumnwh_sale
+        '
+        Me.GridColumnwh_sale.Caption = "Sale Account"
+        Me.GridColumnwh_sale.FieldName = "wh_sale"
+        Me.GridColumnwh_sale.Name = "GridColumnwh_sale"
+        Me.GridColumnwh_sale.Visible = True
+        Me.GridColumnwh_sale.VisibleIndex = 4
+        '
+        'FormRefundOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1155, 579)
+        Me.ClientSize = New System.Drawing.Size(754, 504)
         Me.Controls.Add(Me.XTCData)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
-        Me.Name = "FormRetOlStore"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Pre Return Online Store"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Name = "FormRefundOLStore"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Accept Refund"
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
-        Me.XTPPreReturnList.ResumeLayout(False)
+        Me.XTPAcceptedList.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrderList.ResumeLayout(False)
@@ -343,33 +333,33 @@ Partial Class FormRetOlStore
     End Sub
 
     Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPPreReturnList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPAcceptedList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnid_ol_store_ret As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_ol_store_refund As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_sales_order_ol_shop As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsales_order_ol_shop_number As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnret_req_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncreated_by_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnrec_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPOrderList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCOrderList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVOrderList As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SLECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnViewOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnid_comp_group_order As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsales_order_ol_shop_number_order As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnorder_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumncomp_group_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnViewOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnwh_normal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnwh_sale As DevExpress.XtraGrid.Columns.GridColumn
 End Class

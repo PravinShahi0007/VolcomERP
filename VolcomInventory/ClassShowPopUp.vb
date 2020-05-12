@@ -344,6 +344,9 @@
         ElseIf report_mark_type = "242" Then
             'cash advance cancel
             FormCashAdvanceReconcile.Close()
+        ElseIf report_mark_type = "243" Then
+            'pre return
+            FormRetOLStoreDet.Close()
         End If
     End Sub
     Sub show()
@@ -1203,6 +1206,12 @@ GROUP BY rec.`id_prod_order`"
             'cash advance cancel
             FormCashAdvanceReconcile.id_ca = id_report
             FormCashAdvanceReconcile.ShowDialog()
+        ElseIf report_mark_type = "243" Then
+            'pre return
+            FormRetOLStoreDet.id = id_report
+            FormRetOLStoreDet.action = "upd"
+            FormRetOLStoreDet.is_view = "1"
+            FormRetOLStoreDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2174,6 +2183,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_cash_advance"
             field_number = "(SELECT number FROM tb_cash_advance WHERE id_cash_advance = " + id_report + ")"
             field_date = "created_at"
+        ElseIf report_mark_type = "243" Then
+            'pre return
+            table_name = "tb_ol_store_ret"
+            field_id = "id_ol_store_ret"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
