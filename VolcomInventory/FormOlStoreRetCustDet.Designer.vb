@@ -51,17 +51,18 @@ Partial Class FormOlStoreRetCustDet
         Me.TEShipPhone = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
+        Me.BtnVerify = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SCCSalesOrderDel = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControlListItem = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,11 +76,8 @@ Partial Class FormOlStoreRetCustDet
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdUniqueReceiving = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdProductScan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBarcodeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBarcodeSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -429,8 +427,10 @@ Partial Class FormOlStoreRetCustDet
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.DDBPrint)
+        Me.PanelControl3.Controls.Add(Me.BtnVerify)
+        Me.PanelControl3.Controls.Add(Me.BtnAttachment)
+        Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -440,6 +440,40 @@ Partial Class FormOlStoreRetCustDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1027, 40)
         Me.PanelControl3.TabIndex = 186
+        '
+        'DDBPrint
+        '
+        Me.DDBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.DDBPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show
+        Me.DDBPrint.Image = CType(resources.GetObject("DDBPrint.Image"), System.Drawing.Image)
+        Me.DDBPrint.ImageIndex = 6
+        Me.DDBPrint.Location = New System.Drawing.Point(546, 2)
+        Me.DDBPrint.Name = "DDBPrint"
+        Me.DDBPrint.Size = New System.Drawing.Size(110, 36)
+        Me.DDBPrint.TabIndex = 21
+        Me.DDBPrint.Text = "Print"
+        '
+        'BtnVerify
+        '
+        Me.BtnVerify.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnVerify.Image = CType(resources.GetObject("BtnVerify.Image"), System.Drawing.Image)
+        Me.BtnVerify.ImageIndex = 5
+        Me.BtnVerify.Location = New System.Drawing.Point(656, 2)
+        Me.BtnVerify.Name = "BtnVerify"
+        Me.BtnVerify.Size = New System.Drawing.Size(82, 36)
+        Me.BtnVerify.TabIndex = 27
+        Me.BtnVerify.Text = "Verify"
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.ImageIndex = 13
+        Me.BtnAttachment.Location = New System.Drawing.Point(738, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(100, 36)
+        Me.BtnAttachment.TabIndex = 25
+        Me.BtnAttachment.Text = "Attachment"
         '
         'BMark
         '
@@ -451,18 +485,6 @@ Partial Class FormOlStoreRetCustDet
         Me.BMark.Size = New System.Drawing.Size(102, 36)
         Me.BMark.TabIndex = 24
         Me.BMark.Text = "Mark"
-        '
-        'DDBPrint
-        '
-        Me.DDBPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.DDBPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show
-        Me.DDBPrint.Image = CType(resources.GetObject("DDBPrint.Image"), System.Drawing.Image)
-        Me.DDBPrint.ImageIndex = 6
-        Me.DDBPrint.Location = New System.Drawing.Point(728, 2)
-        Me.DDBPrint.Name = "DDBPrint"
-        Me.DDBPrint.Size = New System.Drawing.Size(110, 36)
-        Me.DDBPrint.TabIndex = 21
-        Me.DDBPrint.Text = "Print"
         '
         'BtnCancel
         '
@@ -527,7 +549,7 @@ Partial Class FormOlStoreRetCustDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn2, Me.GridColumn1, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnQtyLimit})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnQtyLimit})
         Me.GVItemList.CustomizationFormBounds = New System.Drawing.Rectangle(958, 136, 216, 180)
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty_limit", Me.GridColumnQtyLimit, "{0:n0}")})
@@ -541,26 +563,17 @@ Partial Class FormOlStoreRetCustDet
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnNo
+        'GridColumn1
         '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.OptionsColumn.ReadOnly = True
-        Me.GridColumnNo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumnNo.Width = 47
+        Me.GridColumn1.Caption = "ID Det"
+        Me.GridColumn1.FieldName = "id_ol_store_cust_ret_det"
+        Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "ID List"
         Me.GridColumn2.FieldName = "id_ol_store_ret_list"
         Me.GridColumn2.Name = "GridColumn2"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Det"
-        Me.GridColumn1.FieldName = "id_ol_store_cust_ret_det"
-        Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumnCode
         '
@@ -576,7 +589,6 @@ Partial Class FormOlStoreRetCustDet
         '
         Me.GridColumnName.Caption = "Description"
         Me.GridColumnName.FieldName = "name"
-        Me.GridColumnName.FieldNameSortGroup = "id_design"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
@@ -606,7 +618,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnQty.Caption = "Qty"
         Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQty.FieldName = "pl_sales_order_del_det_qty"
+        Me.GridColumnQty.FieldName = "qty_scan"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.OptionsColumn.AllowShowHide = False
@@ -633,7 +645,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnQtyLimit.Caption = "Limit Qty"
         Me.GridColumnQtyLimit.DisplayFormat.FormatString = "N0"
         Me.GridColumnQtyLimit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyLimit.FieldName = "sales_order_det_qty_limit"
+        Me.GridColumnQtyLimit.FieldName = "qty_limit"
         Me.GridColumnQtyLimit.Name = "GridColumnQtyLimit"
         Me.GridColumnQtyLimit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty_limit", "{0:n0}")})
         Me.GridColumnQtyLimit.Visible = True
@@ -690,7 +702,7 @@ Partial Class FormOlStoreRetCustDet
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumnBarcodeName, Me.GridColumnBarcodeSize})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumn3, Me.GridColumnIdPLCounting, Me.GridColumnBarcodeName, Me.GridColumnBarcodeSize})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.Name = "GVBarcode"
         Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -723,46 +735,18 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnBarcode.VisibleIndex = 1
         Me.GridColumnBarcode.Width = 268
         '
-        'GridColumnCountingCode
+        'GridColumn3
         '
-        Me.GridColumnCountingCode.Caption = "Counting Code"
-        Me.GridColumnCountingCode.FieldName = "counting_code"
-        Me.GridColumnCountingCode.Name = "GridColumnCountingCode"
-        Me.GridColumnCountingCode.OptionsColumn.AllowEdit = False
-        Me.GridColumnCountingCode.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn3.Caption = "ID Det"
+        Me.GridColumn3.FieldName = "id_ol_store_cust_ret_det"
+        Me.GridColumn3.Name = "GridColumn3"
         '
         'GridColumnIdPLCounting
         '
-        Me.GridColumnIdPLCounting.Caption = "Id PL Counting"
-        Me.GridColumnIdPLCounting.FieldName = "id_pl_sales_order_del_det_counting"
+        Me.GridColumnIdPLCounting.Caption = "ID Ret List"
+        Me.GridColumnIdPLCounting.FieldName = "id_ol_store_ret_list"
         Me.GridColumnIdPLCounting.Name = "GridColumnIdPLCounting"
         Me.GridColumnIdPLCounting.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnIsFix
-        '
-        Me.GridColumnIsFix.Caption = "Is Fix"
-        Me.GridColumnIsFix.FieldName = "is_fix"
-        Me.GridColumnIsFix.Name = "GridColumnIsFix"
-        Me.GridColumnIsFix.OptionsColumn.AllowEdit = False
-        Me.GridColumnIsFix.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnIsFix.OptionsColumn.AllowMove = False
-        Me.GridColumnIsFix.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnIdUniqueReceiving
-        '
-        Me.GridColumnIdUniqueReceiving.Caption = "Id Unique Receiving"
-        Me.GridColumnIdUniqueReceiving.FieldName = "id_pl_prod_order_rec_det_unique"
-        Me.GridColumnIdUniqueReceiving.Name = "GridColumnIdUniqueReceiving"
-        Me.GridColumnIdUniqueReceiving.OptionsColumn.AllowEdit = False
-        Me.GridColumnIdUniqueReceiving.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnIdUniqueReceiving.OptionsColumn.AllowMove = False
-        Me.GridColumnIdUniqueReceiving.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnIdProductScan
-        '
-        Me.GridColumnIdProductScan.Caption = "Id Product"
-        Me.GridColumnIdProductScan.FieldName = "id_product"
-        Me.GridColumnIdProductScan.Name = "GridColumnIdProductScan"
         '
         'GridColumnBarcodeName
         '
@@ -949,7 +933,6 @@ Partial Class FormOlStoreRetCustDet
     Friend WithEvents GroupControlListItem As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVItemList As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
@@ -963,11 +946,7 @@ Partial Class FormOlStoreRetCustDet
     Friend WithEvents GVBarcode As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBarcode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCountingCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdPLCounting As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIsFix As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdUniqueReceiving As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdProductScan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBarcodeName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBarcodeSize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
@@ -1000,4 +979,7 @@ Partial Class FormOlStoreRetCustDet
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnVerify As DevExpress.XtraEditors.SimpleButton
 End Class
