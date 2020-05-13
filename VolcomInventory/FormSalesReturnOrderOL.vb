@@ -28,9 +28,9 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewPendingCNOLStore()
+    Sub viewPending()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT so.sales_order_ol_shop_number AS `order_number`, so.customer_name, c.comp_number, c.comp_name
+        Dim query As String = "SELECT so.id_sales_order,so.sales_order_ol_shop_number AS `order_number`, so.customer_name, c.comp_number, c.comp_name, c.id_comp
         FROM tb_ol_store_ret_list l
         INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
         INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = rd.id_sales_order_det
@@ -41,13 +41,13 @@
         INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order 
         LEFT JOIN (
 	        SELECT spd.id_ol_store_ret_list 
-            FROM tb_sales_pos_det spd
-	        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+            FROM tb_sales_return_order_det spd
+	        INNER JOIN tb_sales_return_order sp ON sp.id_sales_return_order = spd.id_sales_return_order
 	        WHERE sp.id_report_status!=5 AND !ISNULL(spd.id_ol_store_ret_list)
 	        GROUP BY spd.id_ol_store_ret_list
         ) e ON e.id_ol_store_ret_list = l.id_ol_store_ret_list 
-        WHERE l.id_ol_store_ret_stt=6 AND ISNULL(e.id_ol_store_ret_list)
-        GROUP BY c.id_comp, so.sales_order_ol_shop_number "
+        WHERE l.id_ol_store_ret_stt=7 AND ISNULL(e.id_ol_store_ret_list)
+        GROUP BY c.id_comp, so.id_sales_order "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPending.DataSource = data
         check_menu()
@@ -108,6 +108,7 @@
         Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`", -1, True, "", "", "", "")
         DEFrom.EditValue = data.Rows(0)("tgl")
         DEUntil.EditValue = data.Rows(0)("tgl")
+        viewPending()
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
@@ -118,5 +119,9 @@
         If GVSalesReturnOrder.RowCount > 0 And GVSalesReturnOrder.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
         End If
+    End Sub
+
+    Private Sub XTCROR_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCROR.SelectedPageChanged
+        check_menu()
     End Sub
 End Class

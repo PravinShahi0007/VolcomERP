@@ -4366,6 +4366,28 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             If id_status_reportx = "5" Then
                 Dim ro As New ClassSalesReturnOrder()
                 ro.cancelReservedStock(id_report)
+            ElseIf id_status_reportx = "6" Then
+                'update stt in return centre
+                Try
+                    Dim qstt As String = "UPDATE tb_ol_store_ret_list main
+                    INNER JOIN (
+                       SELECT d.id_ol_store_ret_list 
+                       FROM tb_sales_return_order_det d
+                       WHERE d.id_sales_return_order=" + id_report + "
+                       GROUP BY d.id_ol_store_ret_list
+                    ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                    SET main.id_ol_store_ret_stt=8 "
+                    execute_non_query(qstt, True, "", "", "", "")
+                Catch ex As Exception
+                    stopCustom("Error updating status in return centre. " + ex.ToString)
+                End Try
+
+                'send mail for process return
+                Try
+
+                Catch ex As Exception
+
+                End Try
             End If
 
             query = String.Format("UPDATE tb_sales_return_order SET id_report_status='{0}' WHERE id_sales_return_order ='{1}'", id_status_reportx, id_report)

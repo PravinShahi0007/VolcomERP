@@ -1169,9 +1169,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesReturnOrderDet.ShowDialog()
         ElseIf formName = "FormSalesReturnOrderOL" Then
             'SALES RETURN ORDER OL
-            FormSalesReturnOrderOLDet.action = "ins"
-            FormSalesReturnOrderOLDet.id_sales_return_order = "-1"
-            FormSalesReturnOrderOLDet.ShowDialog()
+            If FormSalesReturnOrderOL.XTCROR.SelectedTabPageIndex = 0 Then
+                FormSalesReturnOrderOLDet.action = "ins"
+                FormSalesReturnOrderOLDet.id_sales_return_order = "-1"
+                FormSalesReturnOrderOLDet.ShowDialog()
+            Else
+                FormSalesReturnOrderOLDet.action = "ins"
+                FormSalesReturnOrderOLDet.id_sales_return_order = "-1"
+                FormSalesReturnOrderOLDet.comp_number = FormSalesReturnOrderOL.GVPending.GetFocusedRowCellValue("comp_number").ToString
+                FormSalesReturnOrderOLDet.order_number = FormSalesReturnOrderOL.GVPending.GetFocusedRowCellValue("order_number").ToString
+                FormSalesReturnOrderOLDet.is_proceed_from_return_centre = "1"
+                FormSalesReturnOrderOLDet.ShowDialog()
+            End If
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
@@ -9462,7 +9471,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesReturnOrder.viewSalesReturnOrder()
         ElseIf formName = "FormSalesReturnOrderOL" Then
             'SALES RETURN Order OL
-            FormSalesReturnOrderOL.viewSalesReturnOrder()
+            If FormSalesReturnOrderOL.XTCROR.SelectedTabPageIndex = 0 Then
+                FormSalesReturnOrderOL.viewSalesReturnOrder()
+            ElseIf FormSalesReturnOrderOL.XTCROR.SelectedTabPageIndex = 1 Then
+                FormSalesReturnOrderOL.viewPending()
+            End If
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
