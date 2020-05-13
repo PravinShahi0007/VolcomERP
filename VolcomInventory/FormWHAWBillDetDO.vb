@@ -61,7 +61,7 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "SELECT cr.*,cg.`comp_group`,so.comp_number,so.comp_name,so.qty
+        Dim query As String = "SELECT cr.*,cg.`comp_group`,so.comp_number,so.comp_name,so.qty,'no' AS is_check
         FROM `tb_ol_store_cust_ret` cr
         INNER JOIN (
             SELECT rd.`id_ol_store_cust_ret`,c.`comp_number`,c.comp_name,COUNT(DISTINCT(rd.`id_ol_store_ret_list`)) AS qty  FROM tb_ol_store_cust_ret_det rd
@@ -83,7 +83,7 @@
 
         Dim data_par As DataTable = FormWHAWBillDet.GCDO.DataSource
         If data_par.Rows.Count = 0 Then
-            GCDOERP.DataSource = data
+            GCRet.DataSource = data
         Else
             If data.Rows.Count > 0 Then
                 Dim t1 = data.AsEnumerable()
@@ -96,12 +96,12 @@
                              Select _t1
                 If result.Count > 0 Then
                     Dim except As DataTable = result.CopyToDataTable
-                    GCDOERP.DataSource = except
+                    GCRet.DataSource = except
                 Else
-                    GCDOERP.DataSource = Nothing
+                    GCRet.DataSource = Nothing
                 End If
             Else
-                GCDOERP.DataSource = Nothing
+                GCRet.DataSource = Nothing
             End If
         End If
         Cursor = Cursors.Default
@@ -202,7 +202,7 @@
                     For i As Integer = 0 To GVRet.RowCount - 1
                         Dim newRow As DataRow = (TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable)).NewRow()
                         newRow("id_ol_store_cust_ret") = GVRet.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
-                        newRow("do_no") = GVRet.GetRowCellValue(i, "do_no").ToString
+                        newRow("do_no") = GVRet.GetRowCellValue(i, "number").ToString
                         newRow("qty") = GVRet.GetRowCellValue(i, "qty")
 
                         TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable).Rows.Add(newRow)

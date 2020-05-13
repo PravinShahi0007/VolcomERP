@@ -208,7 +208,37 @@
                         LEFT JOIN tb_pl_sales_order_del_combine doc ON doc.id_combine = do.id_combine
 				        INNER JOIN tb_sales_order so ON so.id_sales_order = do.id_sales_order
 				        INNER JOIN tb_lookup_so_status sos ON sos.id_so_status = so.id_so_status"
-                query += " WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + ""
+                query += " WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + " "
+                query += " UNION ALL 
+                            SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,awbd.do_no, '' AS `do_no_combine`,awbd.qty,  dod.amount, 'Return Customer' AS `reff`,do.created_date AS `scan_date`, grp.id_comp_group, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
+                            DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,
+                            DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,
+                            (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,
+                            (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,
+                            (awb.c_weight-awb.a_weight) AS weight_diff,(awb.c_tot_price-awb.a_tot_price) AS amount_diff, ('') AS `rmk`, ('') AS `no`
+                            ,IF(ISNULL(head.id_wh_awb_det),1,2) AS penanda, do.sales_order_ol_shop_number
+                            FROM tb_wh_awbill awb
+                            INNER JOIN tb_m_comp comp_store ON comp_store.id_comp=awb.id_store
+                            INNER JOIN tb_m_comp comp_cargo ON comp_cargo.id_comp=awb.id_cargo
+                            LEFT JOIN tb_m_comp_group grp ON grp.id_comp_group = comp_store.id_comp_group
+                            INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
+                            LEFT JOIN
+                            (
+                                SELECT id_wh_awb_det
+                                FROM tb_wh_awbill_det awbd
+                                INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill`
+                                WHERE 1=1 " + number_start + " " + number_end + " " + date_start + " " + date_end + " 
+                                GROUP BY awbd.id_awbill
+                            ) head ON head.id_wh_awb_det=awbd.id_wh_awb_det
+                            INNER JOIN `tb_ol_store_cust_ret` `do` ON do.`id_ol_store_cust_ret` =awbd.id_ol_store_cust_ret
+                            INNER JOIN (
+	                            SELECT crd.id_ol_store_cust_ret,SUM(sod.design_price) AS amount FROM tb_ol_store_cust_ret_det crd
+	                            INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list=crd.id_ol_store_ret_list
+	                            INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det=rl.id_ol_store_ret_det
+	                            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det=rd.id_sales_order_det
+	                            GROUP BY crd.id_ol_store_cust_ret
+                            ) dod ON dod.id_ol_store_cust_ret = do.id_ol_store_cust_ret
+                            WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + ""
                 query += " ORDER BY id_awbill,do_no ASC "
             Else
                 gridBandDO.Visible = False
