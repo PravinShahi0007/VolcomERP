@@ -427,7 +427,7 @@ Partial Class FormOlStoreRetCustDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(586, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(613, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 36)
         Me.BtnPrint.TabIndex = 25
@@ -438,7 +438,7 @@ Partial Class FormOlStoreRetCustDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(673, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(700, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 36)
         Me.BtnAttachment.TabIndex = 26
@@ -449,11 +449,11 @@ Partial Class FormOlStoreRetCustDet
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(779, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(806, 2)
         Me.BtnCancell.Name = "BtnCancell"
-        Me.BtnCancell.Size = New System.Drawing.Size(126, 36)
+        Me.BtnCancell.Size = New System.Drawing.Size(99, 36)
         Me.BtnCancell.TabIndex = 27
-        Me.BtnCancell.Text = "Cancell Propose"
+        Me.BtnCancell.Text = "Close"
         Me.BtnCancell.Visible = False
         '
         'BtnSaveChanges
@@ -662,6 +662,10 @@ Partial Class FormOlStoreRetCustDet
         '
         'GridColumnsize
         '
+        Me.GridColumnsize.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnsize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnsize.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnsize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnsize.Caption = "Size"
         Me.GridColumnsize.FieldName = "size"
         Me.GridColumnsize.Name = "GridColumnsize"
@@ -677,6 +681,10 @@ Partial Class FormOlStoreRetCustDet
         '
         'GridColumnno
         '
+        Me.GridColumnno.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnno.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnno.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnno.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnno.Caption = "No"
         Me.GridColumnno.FieldName = "no"
         Me.GridColumnno.Name = "GridColumnno"
@@ -699,7 +707,7 @@ Partial Class FormOlStoreRetCustDet
         Me.MinimizeBox = False
         Me.Name = "FormOlStoreRetCustDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Return Customer Detail"
+        Me.Text = "Return Item Detail"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()

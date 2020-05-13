@@ -347,6 +347,39 @@ INNER JOIN tb_pl_sales_order_del_det_counting c ON c.id_pl_sales_order_del_det_c
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
+        ReportOlStoreRetCust.id_ret = id_ret
+        ReportOlStoreRetCust.dt = GCData.DataSource
+        Dim Report As New ReportOlStoreRetCust()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVData)
+
+        'Parse val
+        Dim query As String = "SELECT cr.*,cg.`comp_group`
+FROM `tb_ol_store_cust_ret` cr
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=cr.`id_comp_group`
+WHERE cr.id_ol_store_cust_ret='" & id_ret & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = data
+
+        If Not data.Rows(0)("id_report_status").ToString = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
         Cursor = Cursors.Default
     End Sub
 

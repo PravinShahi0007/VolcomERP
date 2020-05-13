@@ -12187,6 +12187,9 @@
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportOlStoreRetCust.resx">
+      <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </EmbeddedResource>
