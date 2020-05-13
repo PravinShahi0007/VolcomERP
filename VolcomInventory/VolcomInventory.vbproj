@@ -7450,6 +7450,12 @@
     <Compile Include="ReportMemoUnpaidLeave.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportOlStoreRetCust.Designer.vb">
+      <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOlStoreRetCust.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportOutboundManifest.Designer.vb">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </Compile>
