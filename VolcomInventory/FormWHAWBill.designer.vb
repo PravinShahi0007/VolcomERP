@@ -263,11 +263,11 @@ Partial Class FormWHAWBill
         'GCAWBill
         '
         Me.GCAWBill.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAWBill.Location = New System.Drawing.Point(0, 87)
+        Me.GCAWBill.Location = New System.Drawing.Point(0, 101)
         Me.GCAWBill.MainView = Me.GVAWBill
         Me.GCAWBill.Name = "GCAWBill"
         Me.GCAWBill.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCICOD, Me.RIDERecStoreDate, Me.RICELock, Me.RICECheck})
-        Me.GCAWBill.Size = New System.Drawing.Size(1273, 389)
+        Me.GCAWBill.Size = New System.Drawing.Size(1273, 372)
         Me.GCAWBill.TabIndex = 0
         Me.GCAWBill.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAWBill})
         '
@@ -976,7 +976,7 @@ Partial Class FormWHAWBill
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1273, 48)
+        Me.PanelControl1.Size = New System.Drawing.Size(1273, 62)
         Me.PanelControl1.TabIndex = 1
         '
         'XtraScrollableControl1
@@ -999,7 +999,7 @@ Partial Class FormWHAWBill
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1269, 44)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1269, 58)
         Me.XtraScrollableControl1.TabIndex = 110
         '
         'Panel1
@@ -1142,7 +1142,7 @@ Partial Class FormWHAWBill
         Me.XTCAwb.Location = New System.Drawing.Point(0, 0)
         Me.XTCAwb.Name = "XTCAwb"
         Me.XTCAwb.SelectedTabPage = Me.XTPOutbound
-        Me.XTCAwb.Size = New System.Drawing.Size(1279, 543)
+        Me.XTCAwb.Size = New System.Drawing.Size(1279, 540)
         Me.XTCAwb.TabIndex = 2
         Me.XTCAwb.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutbound, Me.XTPInbound})
         '
@@ -1154,7 +1154,7 @@ Partial Class FormWHAWBill
         Me.XTPOutbound.Controls.Add(Me.PCLock)
         Me.XTPOutbound.Controls.Add(Me.PanelControl1)
         Me.XTPOutbound.Name = "XTPOutbound"
-        Me.XTPOutbound.Size = New System.Drawing.Size(1273, 515)
+        Me.XTPOutbound.Size = New System.Drawing.Size(1273, 512)
         Me.XTPOutbound.Text = "Outbound"
         '
         'GCExportExcel
@@ -1363,7 +1363,7 @@ Partial Class FormWHAWBill
         Me.PanelControl3.Controls.Add(Me.SBImportCsss)
         Me.PanelControl3.Controls.Add(Me.SBExportCsss)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 48)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 62)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1273, 39)
         Me.PanelControl3.TabIndex = 111
@@ -1391,7 +1391,7 @@ Partial Class FormWHAWBill
         Me.PCLock.Controls.Add(Me.CESelectAll)
         Me.PCLock.Controls.Add(Me.BLock)
         Me.PCLock.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCLock.Location = New System.Drawing.Point(0, 476)
+        Me.PCLock.Location = New System.Drawing.Point(0, 473)
         Me.PCLock.Name = "PCLock"
         Me.PCLock.Size = New System.Drawing.Size(1273, 39)
         Me.PCLock.TabIndex = 3
@@ -2206,7 +2206,7 @@ Partial Class FormWHAWBill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1279, 543)
+        Me.ClientSize = New System.Drawing.Size(1279, 540)
         Me.Controls.Add(Me.XTCAwb)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
