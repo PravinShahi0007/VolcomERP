@@ -255,6 +255,8 @@
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("id_comp", GVFG.GetFocusedRowCellValue("id_comp").ToString)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("adj_out_fg_det_price", TEUnitPrice.EditValue)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("adj_out_fg_det_amount", (TEUnitPrice.EditValue * qty_input_grid))
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("retail_price", TxtUnitPrice.EditValue)
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("retail_price_amount", (TxtUnitPrice.EditValue * qty_input_grid))
 
                             'Save in Gridview
                             FormFGAdjOutDet.GVDetail.CloseEditor()
@@ -303,6 +305,8 @@
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("uom", GVFG.GetFocusedRowCellValue("uom").ToString)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("adj_out_fg_det_price", TEUnitPrice.EditValue)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("adj_out_fg_det_amount", (TEUnitPrice.EditValue * qty_input_grid))
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("retail_price", TxtUnitPrice.EditValue)
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("retail_price_amount", (TxtUnitPrice.EditValue * qty_input_grid))
 
                             'Save in Gridview
                             FormFGAdjOutDet.GVDetail.CloseEditor()
@@ -350,6 +354,7 @@
             TxtQtyLimit.EditValue = GVFG.GetFocusedRowCellValue("qty_all_product").ToString
             TECurrency.Text = GVFG.GetFocusedRowCellValue("currency").ToString
             TEUnitPrice.EditValue = Decimal.Parse(GVFG.GetFocusedRowCellValue("bom_unit_price").ToString)
+            TxtUnitPrice.EditValue = Decimal.Parse(GVFG.GetFocusedRowCellValue("design_price_retail").ToString)
             BtnChoose.Enabled = True
             'MsgBox(id_product)
             'MsgBox(GVFG.GetFocusedRowCellValue("bom_unit_price").ToString)

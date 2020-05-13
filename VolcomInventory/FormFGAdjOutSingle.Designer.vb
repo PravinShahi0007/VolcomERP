@@ -19,70 +19,73 @@ Partial Class FormFGAdjOutSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupControlNavStore = New DevExpress.XtraEditors.GroupControl
-        Me.SLELocator = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdWHLocator = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHLOcatorCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnLocatroCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.SLEWH = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl
-        Me.SLEDrawer = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHDrawerCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.BtnViewStock = New DevExpress.XtraEditors.SimpleButton
-        Me.SLERack = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdWhRack = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHRackCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHRack = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl
-        Me.GroupControlInput = New DevExpress.XtraEditors.GroupControl
-        Me.TEUnitPrice = New DevExpress.XtraEditors.TextEdit
-        Me.TECurrency = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.SPQtyPL = New DevExpress.XtraEditors.SpinEdit
-        Me.MERemark = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtQtyLimit = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.GroupControlInfo = New DevExpress.XtraEditors.GroupControl
-        Me.GCFG = New DevExpress.XtraGrid.GridControl
-        Me.GVFG = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHX = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHLOcatorx = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHRackx = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWhDrawerx = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.GridColumnIdWhDrawerx = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHRackx = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHLOcatorx = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHx = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControlImg = New DevExpress.XtraEditors.PanelControl
-        Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit
-        Me.BtnImg = New DevExpress.XtraEditors.SimpleButton
+        Me.components = New System.ComponentModel.Container()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControlNavStore = New DevExpress.XtraEditors.GroupControl()
+        Me.SLELocator = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdWHLocator = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHLOcatorCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLocatroCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEWH = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEDrawer = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHDrawerCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnViewStock = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLERack = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdWhRack = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHRackCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHRack = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControlInput = New DevExpress.XtraEditors.GroupControl()
+        Me.TEUnitPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.TECurrency = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.SPQtyPL = New DevExpress.XtraEditors.SpinEdit()
+        Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtQtyLimit = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControlInfo = New DevExpress.XtraEditors.GroupControl()
+        Me.GCFG = New DevExpress.XtraGrid.GridControl()
+        Me.GVFG = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHX = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHLOcatorx = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHRackx = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWhDrawerx = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWhDrawerx = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHRackx = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHLOcatorx = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHx = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PanelControlImg = New DevExpress.XtraEditors.PanelControl()
+        Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
+        Me.BtnImg = New DevExpress.XtraEditors.SimpleButton()
         Me.EPStorageFG = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumndesign_price_retail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtUnitPrice = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControlNavStore, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +114,7 @@ Partial Class FormFGAdjOutSingle
         Me.PanelControlImg.SuspendLayout()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPStorageFG, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -376,6 +380,8 @@ Partial Class FormFGAdjOutSingle
         '
         'GroupControlInput
         '
+        Me.GroupControlInput.Controls.Add(Me.TxtUnitPrice)
+        Me.GroupControlInput.Controls.Add(Me.LabelControl7)
         Me.GroupControlInput.Controls.Add(Me.TEUnitPrice)
         Me.GroupControlInput.Controls.Add(Me.TECurrency)
         Me.GroupControlInput.Controls.Add(Me.LabelControl5)
@@ -419,22 +425,22 @@ Partial Class FormFGAdjOutSingle
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Location = New System.Drawing.Point(12, 64)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl5.TabIndex = 18
-        Me.LabelControl5.Text = "Unit Price"
+        Me.LabelControl5.Text = "Unit Cost"
         '
         'SPQtyPL
         '
         Me.SPQtyPL.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.SPQtyPL.Location = New System.Drawing.Point(396, 31)
+        Me.SPQtyPL.Location = New System.Drawing.Point(413, 31)
         Me.SPQtyPL.Name = "SPQtyPL"
-        Me.SPQtyPL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.SPQtyPL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.SPQtyPL.Properties.EditValueChangedDelay = 50
         Me.SPQtyPL.Properties.IsFloatValue = False
         Me.SPQtyPL.Properties.Mask.EditMask = "N2"
         Me.SPQtyPL.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.SPQtyPL.Properties.MaxValue = New Decimal(New Integer() {1215752191, 23, 0, 131072})
-        Me.SPQtyPL.Size = New System.Drawing.Size(168, 20)
+        Me.SPQtyPL.Size = New System.Drawing.Size(151, 20)
         Me.SPQtyPL.TabIndex = 17
         '
         'MERemark
@@ -494,17 +500,17 @@ Partial Class FormFGAdjOutSingle
         'GCFG
         '
         Me.GCFG.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCFG.Location = New System.Drawing.Point(200, 2)
+        Me.GCFG.Location = New System.Drawing.Point(198, 2)
         Me.GCFG.MainView = Me.GVFG
         Me.GCFG.Name = "GCFG"
         Me.GCFG.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCFG.Size = New System.Drawing.Size(859, 219)
+        Me.GCFG.Size = New System.Drawing.Size(861, 219)
         Me.GCFG.TabIndex = 6
         Me.GCFG.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFG})
         '
         'GVFG
         '
-        Me.GVFG.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn18, Me.GridColumn19, Me.GridColumn25, Me.GridColumnWHX, Me.GridColumnWHLOcatorx, Me.GridColumnWHRackx, Me.GridColumnWhDrawerx, Me.GridColumn26, Me.GridColumnQty, Me.GridColumnIdWhDrawerx, Me.GridColumnIdWHRackx, Me.GridColumnIdWHLOcatorx, Me.GridColumnIdWHx, Me.GridColumnPrice})
+        Me.GVFG.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn18, Me.GridColumn19, Me.GridColumn25, Me.GridColumnWHX, Me.GridColumnWHLOcatorx, Me.GridColumnWHRackx, Me.GridColumnWhDrawerx, Me.GridColumn26, Me.GridColumnQty, Me.GridColumnIdWhDrawerx, Me.GridColumnIdWHRackx, Me.GridColumnIdWHLOcatorx, Me.GridColumnIdWHx, Me.GridColumnPrice, Me.GridColumndesign_price_retail})
         Me.GVFG.GridControl = Me.GCFG
         Me.GVFG.GroupCount = 1
         Me.GVFG.Name = "GVFG"
@@ -649,15 +655,6 @@ Partial Class FormFGAdjOutSingle
         Me.GridColumnQty.VisibleIndex = 7
         Me.GridColumnQty.Width = 100
         '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
-        Me.RepositoryItemSpinEdit1.IsFloatValue = False
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f2"
-        Me.RepositoryItemSpinEdit1.MaxLength = 999999999
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
         'GridColumnIdWhDrawerx
         '
         Me.GridColumnIdWhDrawerx.Caption = "Id Wh Drawer"
@@ -697,13 +694,22 @@ Partial Class FormFGAdjOutSingle
         Me.GridColumnPrice.VisibleIndex = 9
         Me.GridColumnPrice.Width = 122
         '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f2"
+        Me.RepositoryItemSpinEdit1.MaxLength = 999999999
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
         'PanelControlImg
         '
         Me.PanelControlImg.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlImg.Controls.Add(Me.PictureEdit1)
         Me.PanelControlImg.Controls.Add(Me.BtnImg)
         Me.PanelControlImg.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlImg.Location = New System.Drawing.Point(22, 2)
+        Me.PanelControlImg.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlImg.Name = "PanelControlImg"
         Me.PanelControlImg.Size = New System.Drawing.Size(178, 219)
         Me.PanelControlImg.TabIndex = 2
@@ -732,6 +738,38 @@ Partial Class FormFGAdjOutSingle
         'EPStorageFG
         '
         Me.EPStorageFG.ContainerControl = Me
+        '
+        'GridColumndesign_price_retail
+        '
+        Me.GridColumndesign_price_retail.Caption = "Unit Price"
+        Me.GridColumndesign_price_retail.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price_retail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price_retail.FieldName = "design_price_retail"
+        Me.GridColumndesign_price_retail.Name = "GridColumndesign_price_retail"
+        Me.GridColumndesign_price_retail.Visible = True
+        Me.GridColumndesign_price_retail.VisibleIndex = 10
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(351, 64)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl7.TabIndex = 21
+        Me.LabelControl7.Text = "Unit Price"
+        '
+        'TxtUnitPrice
+        '
+        Me.TxtUnitPrice.Location = New System.Drawing.Point(413, 61)
+        Me.TxtUnitPrice.Name = "TxtUnitPrice"
+        Me.TxtUnitPrice.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtUnitPrice.Properties.Mask.EditMask = "N2"
+        Me.TxtUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtUnitPrice.Properties.ReadOnly = True
+        Me.TxtUnitPrice.Size = New System.Drawing.Size(151, 20)
+        Me.TxtUnitPrice.TabIndex = 22
         '
         'FormFGAdjOutSingle
         '
@@ -779,6 +817,7 @@ Partial Class FormFGAdjOutSingle
         Me.PanelControlImg.ResumeLayout(False)
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPStorageFG, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -845,4 +884,7 @@ Partial Class FormFGAdjOutSingle
     Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents BtnImg As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents EPStorageFG As System.Windows.Forms.ErrorProvider
+    Friend WithEvents TxtUnitPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumndesign_price_retail As DevExpress.XtraGrid.Columns.GridColumn
 End Class
