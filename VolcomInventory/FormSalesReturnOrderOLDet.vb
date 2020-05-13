@@ -45,6 +45,7 @@
                     Cursor = Cursors.WaitCursor
                     BtnBrowseStore.Enabled = False
                     BtnBrowseOrder.Enabled = False
+                    BtnAdd.Visible = False
                     TxtStoreCode.Enabled = False
                     TxtOLStoreNumber.Enabled = False
 
