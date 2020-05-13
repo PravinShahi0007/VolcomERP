@@ -202,14 +202,14 @@
         report.data = GCData.DataSource
         report.report_mark_type = rmt
 
-        report.LabelNumber.Text = "NO. " + TxtNumber.Text
-        report.LabelStoreGroup.Text = SLECompGroup.Text
-        report.LabelOrderNumber.Text = TxtOrderNumber.Text
-        report.LabelRetRequest.Text = TxtRetRequest.Text
-        report.LabelReceivedDate.Text = DERecDate.Text
-        report.LabelCreatedDate.Text = DECreated.Text
-        report.LabelCreatedBy.Text = TxtCreatedBy.Text
-        report.LabelStatus.Text = LEReportStatus.Text
+        report.LabelNumber.Text = "NO. " + TxtNumber.Text.ToUpper
+        report.LabelStoreGroup.Text = SLECompGroup.Text.ToUpper
+        report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
+        report.LabelRetRequest.Text = TxtRetRequest.Text.ToUpper
+        report.LabelReceivedDate.Text = DERecDate.Text.ToUpper
+        report.LabelCreatedDate.Text = DECreated.Text.ToUpper
+        report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+
         report.LabelRemark.Text = MENote.Text
 
         'Show the report's preview. 
