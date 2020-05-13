@@ -2522,28 +2522,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 stt.changeStatusOLStore(id_report, id_status_reportx)
 
                 If id_status_reportx = "6" Then
-                    'update stt in return centre
-                    Try
-                        Dim qstt As String = "UPDATE tb_ol_store_ret_list main
-                        INNER JOIN (
-                            SELECT rod.id_ol_store_ret_list 
-                            FROM tb_sales_return_det d
-                            INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order_det = d.id_sales_return_order_det
-                            WHERE d.id_sales_return=" + id_report + "
-                            GROUP BY rod.id_ol_store_ret_list
-                        ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
-                        SET main.id_ol_store_ret_stt=9 "
-                        execute_non_query(qstt, True, "", "", "", "")
-                    Catch ex As Exception
-                        stopCustom("Error updating status in return centre. " + ex.ToString)
-                    End Try
 
-                    'send mail returned to WH
-                    Try
-
-                    Catch ex As Exception
-
-                    End Try
                 End If
             Else
                 Dim stt As ClassSalesReturn = New ClassSalesReturn()

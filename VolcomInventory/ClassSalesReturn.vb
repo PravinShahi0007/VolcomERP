@@ -140,6 +140,28 @@
             'complete unique
             completeUnique(id_report_par)
 
+            'update stt in return centre
+            Try
+                Dim qstt As String = "UPDATE tb_ol_store_ret_list main
+                        INNER JOIN (
+                            SELECT rod.id_ol_store_ret_list 
+                            FROM tb_sales_return_det d
+                            INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order_det = d.id_sales_return_order_det
+                            WHERE d.id_sales_return=" + id_report_par + "
+                            GROUP BY rod.id_ol_store_ret_list
+                        ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                        SET main.id_ol_store_ret_stt=9 "
+                execute_non_query(qstt, True, "", "", "", "")
+            Catch ex As Exception
+                stopCustom("Error updating status in return centre. " + ex.ToString)
+            End Try
+            'send mail returned to WH
+            Try
+
+            Catch ex As Exception
+
+            End Try
+
             'save unreg unique
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")
         ElseIf id_status_reportx_par = "5" Then
