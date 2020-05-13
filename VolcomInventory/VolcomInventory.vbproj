@@ -7450,6 +7450,12 @@
     <Compile Include="ReportMemoUnpaidLeave.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportOlStoreRetCust.Designer.vb">
+      <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOlStoreRetCust.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportOutboundManifest.Designer.vb">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </Compile>
@@ -7682,6 +7688,12 @@
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPurcReturn.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportRetOLStoreDet.Designer.vb">
+      <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRetOLStoreDet.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalarySlip.Designer.vb">
@@ -12288,6 +12300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReturn.resx">
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRetOLStoreDet.resx">
+      <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>

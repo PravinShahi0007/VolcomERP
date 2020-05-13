@@ -194,6 +194,28 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
+
+        Dim report As ReportRetOLStoreDet = New ReportRetOLStoreDet
+
+        report.id = id
+        report.id_pre = If(id_report_status = "6", "-1", "1")
+        report.data = GCData.DataSource
+        report.report_mark_type = rmt
+
+        report.LabelNumber.Text = "NO. " + TxtNumber.Text.ToUpper
+        report.LabelStoreGroup.Text = SLECompGroup.Text.ToUpper
+        report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
+        report.LabelRetRequest.Text = TxtRetRequest.Text.ToUpper
+        report.LabelReceivedDate.Text = DERecDate.Text.ToUpper
+        report.LabelCreatedDate.Text = DECreated.Text.ToUpper
+        report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+
+        report.LabelRemark.Text = MENote.Text
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        Tool.ShowPreview()
+
         Cursor = Cursors.Default
     End Sub
 
