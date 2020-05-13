@@ -937,12 +937,14 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
             DEOLShop.Enabled = False
             GridColumnItemId.Visible = False
             GridColumnOLStoreId.Visible = False
+            RepositoryItemSpinEdit1.ReadOnly = False
         ElseIf id_commerce_type = "2" Then
             TxtOLShopNumber.Enabled = True
             DEOLShop.Enabled = True
             GridColumnItemId.VisibleIndex = 1
             GridColumnOLStoreId.VisibleIndex = 2
             GridColumnCode.VisibleIndex = 3
+            RepositoryItemSpinEdit1.ReadOnly = True
 
             'get own ol store comp
             Dim qol As String = "SELECT o.own_ol_store_normal, o.own_ol_store_sale FROM tb_opt o "
@@ -1194,6 +1196,9 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
                             GVItemList.SetRowCellValue(rh, "error_status", "")
                             GVItemList.FocusedColumn = GridColumnQty
                             CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                            If id_commerce_type = "2" Then
+                                GVItemList.SetRowCellValue(rh, "sales_order_det_qty", 1)
+                            End If
                         Else
                             GVItemList.SetFocusedRowCellValue("code", "")
                             GVItemList.ActiveFilterString = "[code]='" + code_pas + "'"
