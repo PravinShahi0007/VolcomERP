@@ -5836,14 +5836,14 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 If data_payment.Rows(0)("report_mark_type").ToString = "139" Or report_mark_type = "202" Then
                     'close pay in tb_purc_order
                     Dim qc As String = "UPDATE tb_purc_order po
-                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.`id_pn`=" & id_report & "
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
                                                 SET po.is_close_pay='1'"
                     execute_non_query(qc, True, "", "", "", "")
                     'FormBankWithdrawal.load_po()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
                     'close expense
                     Dim qc As String = "UPDATE tb_item_expense e
-                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.`id_pn`=" & id_report & "
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
                                                 SET e.is_open='2'"
                     execute_non_query(qc, True, "", "", "", "")
                     'FormBankWithdrawal.load_expense()
@@ -5851,7 +5851,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     'Close FGPO
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
 FROM tb_pn_det pd
-WHERE pd.`id_pn`='" & id_report & "'"
+WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
                     '
                     For i As Integer = 0 To dt.Rows.Count - 1
