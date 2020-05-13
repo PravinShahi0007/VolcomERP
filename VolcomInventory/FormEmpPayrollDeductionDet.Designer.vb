@@ -66,10 +66,10 @@ Partial Class FormEmpPayrollDeductionDet
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SLUEApplyText = New DevExpress.XtraEditors.TextEdit()
+        Me.SBApply = New DevExpress.XtraEditors.SimpleButton()
         Me.SLUEApplyOption = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SBApply = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLUEApplyText = New DevExpress.XtraEditors.TextEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -89,9 +89,9 @@ Partial Class FormEmpPayrollDeductionDet
         CType(Me.BMSalary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.SLUEApplyText.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEApplyOption.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEApplyText.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -269,7 +269,6 @@ Partial Class FormEmpPayrollDeductionDet
         Me.GCTotalSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCTotalSalary.FieldName = "total_salary"
         Me.GCTotalSalary.Name = "GCTotalSalary"
-        Me.GCTotalSalary.OptionsColumn.AllowEdit = False
         Me.GCTotalSalary.Visible = True
         Me.GCTotalSalary.VisibleIndex = 6
         '
@@ -500,20 +499,13 @@ Partial Class FormEmpPayrollDeductionDet
         Me.PanelControl2.Size = New System.Drawing.Size(1008, 37)
         Me.PanelControl2.TabIndex = 157
         '
-        'SLUEApplyText
+        'SBApply
         '
-        Me.SLUEApplyText.Location = New System.Drawing.Point(738, 9)
-        Me.SLUEApplyText.MenuManager = Me.BMSalary
-        Me.SLUEApplyText.Name = "SLUEApplyText"
-        Me.SLUEApplyText.Properties.DisplayFormat.FormatString = "N2"
-        Me.SLUEApplyText.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.SLUEApplyText.Properties.EditFormat.FormatString = "N2"
-        Me.SLUEApplyText.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.SLUEApplyText.Properties.Mask.EditMask = "N2"
-        Me.SLUEApplyText.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.SLUEApplyText.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.SLUEApplyText.Size = New System.Drawing.Size(178, 20)
-        Me.SLUEApplyText.TabIndex = 0
+        Me.SBApply.Location = New System.Drawing.Point(922, 7)
+        Me.SBApply.Name = "SBApply"
+        Me.SBApply.Size = New System.Drawing.Size(75, 23)
+        Me.SBApply.TabIndex = 2
+        Me.SBApply.Text = "Apply"
         '
         'SLUEApplyOption
         '
@@ -532,13 +524,20 @@ Partial Class FormEmpPayrollDeductionDet
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
-        'SBApply
+        'SLUEApplyText
         '
-        Me.SBApply.Location = New System.Drawing.Point(922, 7)
-        Me.SBApply.Name = "SBApply"
-        Me.SBApply.Size = New System.Drawing.Size(75, 23)
-        Me.SBApply.TabIndex = 2
-        Me.SBApply.Text = "Apply"
+        Me.SLUEApplyText.Location = New System.Drawing.Point(738, 9)
+        Me.SLUEApplyText.MenuManager = Me.BMSalary
+        Me.SLUEApplyText.Name = "SLUEApplyText"
+        Me.SLUEApplyText.Properties.DisplayFormat.FormatString = "N2"
+        Me.SLUEApplyText.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.SLUEApplyText.Properties.EditFormat.FormatString = "N2"
+        Me.SLUEApplyText.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.SLUEApplyText.Properties.Mask.EditMask = "N2"
+        Me.SLUEApplyText.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.SLUEApplyText.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.SLUEApplyText.Size = New System.Drawing.Size(178, 20)
+        Me.SLUEApplyText.TabIndex = 0
         '
         'FormEmpPayrollDeductionDet
         '
@@ -580,9 +579,9 @@ Partial Class FormEmpPayrollDeductionDet
         CType(Me.BMSalary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.SLUEApplyText.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEApplyOption.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEApplyText.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
