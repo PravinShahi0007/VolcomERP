@@ -36,9 +36,6 @@ Partial Public Class ReportRetOLStoreDet
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelCreatedBy = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelCreatedDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelReceivedDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
@@ -77,7 +74,7 @@ Partial Public Class ReportRetOLStoreDet
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XrLabel8, Me.LabelStatus, Me.LabelReceivedDate, Me.XrLabel12, Me.XrLabel15, Me.LTitle, Me.LabelNumber, Me.XRCompany, Me.LabelOrderNumber, Me.XrLabel7, Me.XrLabel6, Me.XrLabel11, Me.XrLabel10, Me.LabelStoreGroup, Me.LabelRetRequest, Me.XrLabel2, Me.XrLabel3, Me.XrLabel17, Me.XrLabel16, Me.LabelCreatedBy, Me.XrLabel5, Me.XrLabel4, Me.LabelCreatedDate})
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XrLabel8, Me.LabelStatus, Me.LabelReceivedDate, Me.XrLabel12, Me.XrLabel15, Me.LTitle, Me.LabelNumber, Me.XRCompany, Me.LabelOrderNumber, Me.XrLabel7, Me.XrLabel6, Me.XrLabel11, Me.XrLabel10, Me.LabelStoreGroup, Me.LabelRetRequest, Me.XrLabel2, Me.XrLabel3, Me.XrLabel17, Me.XrLabel16, Me.LabelCreatedDate})
         Me.TopMargin.HeightF = 168.0001!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -280,47 +277,6 @@ Partial Public Class ReportRetOLStoreDet
         Me.XrLabel16.StylePriority.UseTextAlignment = False
         Me.XrLabel16.Text = "CREATED DATE"
         Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'LabelCreatedBy
-        '
-        Me.LabelCreatedBy.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LabelCreatedBy.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCreatedBy.LocationFloat = New DevExpress.Utils.PointFloat(628.9821!, 112.2498!)
-        Me.LabelCreatedBy.Name = "LabelCreatedBy"
-        Me.LabelCreatedBy.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelCreatedBy.SizeF = New System.Drawing.SizeF(144.0178!, 13.58337!)
-        Me.LabelCreatedBy.StylePriority.UseBorders = False
-        Me.LabelCreatedBy.StylePriority.UseFont = False
-        Me.LabelCreatedBy.StylePriority.UseTextAlignment = False
-        Me.LabelCreatedBy.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'XrLabel5
-        '
-        Me.XrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(617.5236!, 112.2498!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
-        Me.XrLabel5.StylePriority.UseBorders = False
-        Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.StylePriority.UseTextAlignment = False
-        Me.XrLabel5.Text = ":"
-        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel4
-        '
-        Me.XrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(525.5414!, 112.2498!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(91.98218!, 13.58337!)
-        Me.XrLabel4.StylePriority.UseBorders = False
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = "CREATED BY"
-        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LabelCreatedDate
         '
@@ -544,7 +500,7 @@ Partial Public Class ReportRetOLStoreDet
         '
         Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(525.5416!, 125.8333!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(525.5414!, 112.2499!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(91.98218!, 13.58337!)
@@ -558,7 +514,7 @@ Partial Public Class ReportRetOLStoreDet
         '
         Me.XrLabel8.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(617.5237!, 125.8333!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(617.5236!, 112.2499!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
@@ -572,7 +528,7 @@ Partial Public Class ReportRetOLStoreDet
         '
         Me.LabelStatus.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LabelStatus.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStatus.LocationFloat = New DevExpress.Utils.PointFloat(628.9822!, 125.8333!)
+        Me.LabelStatus.LocationFloat = New DevExpress.Utils.PointFloat(628.9821!, 112.2499!)
         Me.LabelStatus.Name = "LabelStatus"
         Me.LabelStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelStatus.SizeF = New System.Drawing.SizeF(144.0178!, 13.58337!)
@@ -631,7 +587,7 @@ Partial Public Class ReportRetOLStoreDet
         Me.LabelCompleted.StylePriority.UseBorders = False
         Me.LabelCompleted.StylePriority.UseFont = False
         Me.LabelCompleted.StylePriority.UseTextAlignment = False
-        Me.LabelCompleted.Text = "* This is computer generated Invoice Slip. Signature not required."
+        Me.LabelCompleted.Text = "* This is computer generated Pre Return. Signature not required."
         Me.LabelCompleted.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LabelRemark
@@ -677,9 +633,6 @@ Partial Public Class ReportRetOLStoreDet
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelCreatedBy As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelCreatedDate As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelReceivedDate As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel

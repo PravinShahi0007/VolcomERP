@@ -1803,6 +1803,7 @@ Partial Class FormBankWithdrawal
         Me.GVFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn52, Me.GridColumn40, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn59, Me.GridColumn58, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn60, Me.GridColumn49, Me.GridColumn53, Me.GridColumn41, Me.GridColumn54, Me.GridColumn50, Me.GridColumn51})
         Me.GVFGPO.GridControl = Me.GCFGPO
         Me.GVFGPO.Name = "GVFGPO"
+        Me.GVFGPO.OptionsView.ColumnAutoWidth = False
         Me.GVFGPO.OptionsView.ShowFooter = True
         Me.GVFGPO.OptionsView.ShowGroupPanel = False
         '
@@ -2013,6 +2014,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn53.OptionsColumn.AllowEdit = False
         Me.GridColumn53.OptionsColumn.AllowFocus = False
         Me.GridColumn53.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 12
         Me.GridColumn53.Width = 134
         '
         'GridColumn41
@@ -2029,6 +2032,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn41.OptionsColumn.AllowEdit = False
         Me.GridColumn41.OptionsColumn.AllowFocus = False
         Me.GridColumn41.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 11
         Me.GridColumn41.Width = 141
         '
         'GridColumn54
