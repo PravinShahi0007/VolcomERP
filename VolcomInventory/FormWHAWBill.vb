@@ -744,15 +744,15 @@
             Dim query As String = "
                 SELECT so.shipping_name, CONCAT(so.shipping_address1, ' ', so.shipping_address2) AS shipping_address, so.shipping_city, so.shipping_post_code, so.shipping_region, so.shipping_phone, sod.qty, aw.c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(aw_det.id_awbill, '#', so.sales_order_ol_shop_number) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
                 FROM tb_wh_awbill_det AS aw_det
-                LEFT JOIN tb_pl_sales_order_del AS pl_del ON aw_det.id_pl_sales_order_del = pl_del.id_pl_sales_order_del
-                LEFT JOIN tb_sales_order AS so ON pl_del.id_sales_order = so.id_sales_order
-                LEFT JOIN (
+                INNER JOIN tb_pl_sales_order_del AS pl_del ON aw_det.id_pl_sales_order_del = pl_del.id_pl_sales_order_del
+                INNER JOIN tb_sales_order AS so ON pl_del.id_sales_order = so.id_sales_order
+                INNER JOIN (
                     SELECT id_sales_order, SUM(sales_order_det_qty) AS qty
                     FROM tb_sales_order_det
                     GROUP BY id_sales_order
                 ) AS sod ON so.id_sales_order = sod.id_sales_order
-                LEFT JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
-                LEFT JOIN tb_opt AS opt ON aw_det.id_awbill = aw_det.id_awbill
+                INNER JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
+                INNER JOIN tb_opt AS opt ON aw_det.id_awbill = aw_det.id_awbill
                 WHERE aw_det.id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")
                 
                 UNION ALL
@@ -760,8 +760,8 @@
                 SELECT cust_ret.shipping_name, cust_ret.shipping_address, cust_ret.shipping_city, cust_ret.shipping_post_code, cust_ret.shipping_region, cust_ret.shipping_phone, aw_det.qty, aw.c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(aw_det.id_awbill, '#', cust_ret.sales_order_ol_shop_number) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
                 FROM tb_wh_awbill_det AS aw_det
                 INNER JOIN tb_ol_store_cust_ret AS cust_ret ON aw_det.id_ol_store_cust_ret = cust_ret.id_ol_store_cust_ret
-                LEFT JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
-                LEFT JOIN tb_opt AS opt ON aw_det.id_awbill = aw_det.id_awbill
+                INNER JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
+                INNER JOIN tb_opt AS opt ON aw_det.id_awbill = aw_det.id_awbill
                 WHERE aw_det.id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")
             "
 
