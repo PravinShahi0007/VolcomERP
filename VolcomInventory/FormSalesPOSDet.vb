@@ -123,7 +123,6 @@ Public Class FormSalesPOSDet
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
             PanelCN.Visible = True
-            BtnDel.Visible = True
             BtnListProduct.Visible = True
             BtnImport.Visible = False
             BtnImportOLStore.Visible = False

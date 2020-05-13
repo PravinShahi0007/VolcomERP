@@ -3071,6 +3071,31 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
                 stc_in.insertUnique(id_report, report_mark_type)
                 stc_in.completeInStock(id_report, report_mark_type)
+
+                'return centre online store
+                If report_mark_type = "118" Then
+                    'update stt in return centre
+                    Try
+                        Dim qstt As String = "UPDATE tb_ol_store_ret_list main
+                        INNER JOIN (
+	                        SELECT d.id_ol_store_ret_list 
+	                        FROM tb_sales_pos_det d
+	                        WHERE d.id_sales_pos=" + id_report + "
+	                        GROUP BY d.id_ol_store_ret_list
+                        ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                        SET main.id_ol_store_ret_stt=7 "
+                        execute_non_query(qstt, True, "", "", "", "")
+                    Catch ex As Exception
+                        stopCustom("Error updating status in return centre. " + ex.ToString)
+                    End Try
+
+                    'send mail for ROR
+                    Try
+
+                    Catch ex As Exception
+
+                    End Try
+                End If
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
