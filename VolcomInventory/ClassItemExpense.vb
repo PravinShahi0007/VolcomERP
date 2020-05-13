@@ -26,7 +26,7 @@
                 SELECT pd.id_report, SUM(pd.`value`) AS total 
                 FROM tb_pn p
                 INNER JOIN tb_pn_det pd ON pd.id_pn = p.id_pn
-                WHERE p.report_mark_type=157 AND p.id_report_status!=5 AND p.id_pay_type=1
+                WHERE p.report_mark_type=157 AND p.id_report_status!=5 
                 GROUP BY pd.id_report
             ) edp ON edp.id_report = e.id_item_expense AND e.is_pay_later=1 "
 
@@ -63,7 +63,7 @@
         " + join_pay_pending + "
         LEFT JOIN tb_m_comp c ON c.id_comp = e.id_comp 
         " + q_join + "
-        WHERE e.id_item_expense>0 "
+        WHERE e.id_item_expense>0 AND e.id_report_status!=5  "
         query += condition + " "
         query += "ORDER BY e.id_item_expense " + order_type
         Return query
