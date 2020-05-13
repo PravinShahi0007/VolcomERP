@@ -41,6 +41,7 @@ Public Class FormSalesPOSDet
     Public is_block_same_invoice As String = get_setup_field("is_block_same_invoice")
     Public is_use_unique_code As String = "2"
     Dim print_title As String = ""
+    Public is_use_return_centre As String = get_setup_field("is_use_return_centre")
 
     'accounting coa
     Public cond_coa As Boolean = True
@@ -52,6 +53,7 @@ Public Class FormSalesPOSDet
     Public discard_transaction As Boolean = False
     Public comp_number As String = ""
     Public order_number As String = ""
+    Public cust_name As String = ""
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -174,7 +176,8 @@ Public Class FormSalesPOSDet
             DEEnd.Properties.MinValue = data_closing(0)("first_date")
 
             'credit note ol store base on return centre
-            If id_menu = "5" Then
+
+            If id_menu = "5" And is_use_return_centre = "1" Then
                 If comp_number <> "" And order_number <> "" Then
                     Cursor = Cursors.WaitCursor
                     BtnListProduct.Visible = False
@@ -182,6 +185,7 @@ Public Class FormSalesPOSDet
                     TxtCodeCompFrom.Text = comp_number
                     actionCompFrom()
                     TxtOLStoreNumber.Text = order_number
+                    TXTName.Text = cust_name
                     'view inv
                     Dim qinv As String = "SELECT i.id_sales_pos, i.sales_pos_number, r.sales_order_ol_shop_number, i.sales_pos_discount, i.sales_pos_vat
                     FROM tb_ol_store_ret_list l
@@ -196,15 +200,42 @@ Public Class FormSalesPOSDet
                     WHERE l.id_ol_store_ret_stt=6 AND c.id_comp=" + id_comp + " AND  r.sales_order_ol_shop_number='" + order_number + "' AND i.report_mark_type=48
                     GROUP BY i.id_sales_pos "
                     Dim dinv As DataTable = execute_query(qinv, -1, True, "", "", "", "")
-                    id_sales_pos_ref = dinv.Rows(0)("id_sales_pos").ToString
-                    TxtInvoice.Text = dinv.Rows(0)("sales_pos_number").ToString
-                    TxtOLStoreNumber.Text = dinv.Rows(0)("sales_order_ol_shop_number").ToString
-                    SPDiscount.EditValue = dinv.Rows(0)("sales_pos_discount")
-                    SPVat.EditValue = dinv.Rows(0)("sales_pos_vat")
-                    calculate()
-                    viewDetail()
-                    viewDetailCode()
-                    BtnLoadFromReturnCentre.Focus()
+                    If dinv.Rows.Count = "1" Then
+                        id_sales_pos_ref = dinv.Rows(0)("id_sales_pos").ToString
+                        TxtInvoice.Text = dinv.Rows(0)("sales_pos_number").ToString
+                        TxtOLStoreNumber.Text = dinv.Rows(0)("sales_order_ol_shop_number").ToString
+                        SPDiscount.EditValue = dinv.Rows(0)("sales_pos_discount")
+                        SPVat.EditValue = dinv.Rows(0)("sales_pos_vat")
+                        calculate()
+                        viewDetail()
+                        viewDetailCode()
+                        BtnLoadFromReturnCentre.Focus()
+                    ElseIf dinv.Rows.Count > 1 Then
+                        Dim cond As String = ""
+                        For i As Integer = 0 To dinv.Rows.Count - 1
+                            If i > 0 Then
+                                cond += "OR "
+                            ElseIf i = 0 Then
+                                cond += "AND ( "
+                            End If
+                            cond += "i.id_sales_pos=" + dinv.Rows(i)("id_sales_pos").ToString + " "
+                        Next
+                        If cond <> "" Then
+                            cond += ") "
+                        End If
+                        FormSalesCreditNotePopInv.cond = cond
+                        showInv()
+                    Else
+                        stopCustom("Invoice order not found.")
+                        id_sales_pos_ref = "-1"
+                        TxtInvoice.Text = ""
+                        TxtOLStoreNumber.Text = ""
+                        SPDiscount.EditValue = 0
+                        SPVat.EditValue = vat_def
+                        calculate()
+                        viewDetail()
+                        viewDetailCode()
+                    End If
                     Cursor = Cursors.Default
                 Else
                     stopCustom("Order number not found")
@@ -228,11 +259,10 @@ Public Class FormSalesPOSDet
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name "
             If id_menu = "5" Then
-                query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
+                query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`, sor.customer_name AS `customer_name_ref` "
             End If
-            query += ", so.customer_name "
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
             query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -243,7 +273,7 @@ Public Class FormSalesPOSDet
             query += "INNER JOIN tb_lookup_report_status d ON d.id_report_status = a.id_report_status "
             If id_menu = "5" Then
                 query += "LEFT JOIN (
-                    SELECT pd.id_sales_pos, pr.sales_pos_number, so.sales_order_ol_shop_number 
+                    SELECT pd.id_sales_pos, pr.sales_pos_number, so.sales_order_ol_shop_number, so.customer_name 
                     FROM tb_sales_pos_det pd
                     INNER JOIN tb_sales_pos_det pdr ON pdr.id_sales_pos_det = pd.id_sales_pos_det_ref
                     INNER JOIN tb_sales_pos pr ON pr.id_sales_pos = pdr.id_sales_pos
@@ -277,10 +307,11 @@ Public Class FormSalesPOSDet
             If id_menu = "5" Then
                 TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number_ref").ToString
                 TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
+                TXTName.Text = data.Rows(0)("customer_name_ref").ToString
             Else
                 TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+                TXTName.Text = data.Rows(0)("customer_name").ToString
             End If
-            TXTName.Text = data.Rows(0)("customer_name").ToString
             MENote.Text = data.Rows(0)("sales_pos_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -866,6 +897,10 @@ Public Class FormSalesPOSDet
 
                     FormSalesPOS.viewSalesPOS()
                     FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
+                    'custom refresh
+                    If id_menu = "5" And is_use_return_centre = "1" Then
+                        FormSalesPOS.viewPendingCNOLStore()
+                    End If
                     action = "upd"
                     actionLoad()
                     'exportToBOF(False)
@@ -1174,6 +1209,8 @@ Public Class FormSalesPOSDet
             ReportSalesInvoiceNew.rmt = report_mark_type
             Dim Report As New ReportSalesInvoiceNew()
             Report.LabelTitle.Text = print_title
+            Report.XLOLStoreNumber3.Text = TxtOLStoreNumber.Text
+            Report.XLName3.Text = TXTName.Text
 
             'if volcom online store
             Dim is_volcom_online As String = execute_query("SELECT COUNT(*) AS total FROM tb_m_comp_volcom_ol WHERE id_store = " + id_comp, 0, True, "", "", "", "")
@@ -1193,6 +1230,7 @@ Public Class FormSalesPOSDet
                 Report.XLOLStoreNumber2.Visible = False
                 Report.XLOLStoreNumber3.Visible = False
             End If
+
 
             If CEPrintPreview.EditValue = True Then
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

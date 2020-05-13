@@ -1191,6 +1191,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
                 FormSalesPOSDet.comp_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("comp_number").ToString
                 FormSalesPOSDet.order_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("order_number").ToString
+                FormSalesPOSDet.cust_name = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("customer_name").ToString
                 FormSalesPOSDet.ShowDialog()
             End If
         ElseIf formName = "FormSalesReturnQC" Then
@@ -9471,7 +9472,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormSalesPOS" Then
             'SALES VRTUAL POS
-            FormSalesPOS.viewSalesPOS()
+            If FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 0 Then
+                FormSalesPOS.viewSalesPOS()
+            ElseIf FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 2 Then
+                FormSalesPOS.viewPendingCNOLStore()
+            End If
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
