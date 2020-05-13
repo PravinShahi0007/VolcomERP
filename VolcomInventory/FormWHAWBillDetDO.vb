@@ -6,6 +6,8 @@
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromRet.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRet.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
     Sub view_do()
@@ -41,6 +43,65 @@
                 End If
             Else
                 GCDO.DataSource = Nothing
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRetERP()
+        Cursor = Cursors.WaitCursor
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromRet.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRet.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query As String = "SELECT cr.*,cg.`comp_group`,so.comp_number,so.comp_name,so.qty
+        FROM `tb_ol_store_cust_ret` cr
+        INNER JOIN (
+            SELECT rd.`id_ol_store_cust_ret`,c.`comp_number`,c.comp_name,COUNT(DISTINCT(rd.`id_ol_store_ret_list`)) AS qty  FROM tb_ol_store_cust_ret_det rd
+            INNER JOIN tb_ol_store_ret_list rl ON rl.`id_ol_store_ret_list`=rd.`id_ol_store_ret_list`
+            INNER JOIN tb_ol_store_ret_det retd ON retd.`id_ol_store_ret_det`=rl.`id_ol_store_ret_det`
+            INNER JOIN tb_sales_order_det sod ON sod.`id_sales_order_det`=retd.`id_sales_order_det`
+            INNER JOIN tb_sales_order so ON so.`id_sales_order`=sod.`id_sales_order`
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            WHERE c.`comp_number`='" & store_number.ToString & "'
+            GROUP BY rd.`id_ol_store_cust_ret`
+        )so ON so.id_ol_store_cust_ret=cr.id_ol_store_cust_ret
+        INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=cr.`id_comp_group`
+        LEFT JOIN tb_wh_awbill_det awb ON awb.id_ol_store_cust_ret = cr.id_ol_store_cust_ret
+        WHERE cr.id_report_status=6 AND ISNULL(awb.id_awbill) 
+        AND (DATE(cr.created_date)>='" + date_from_selected + "' AND DATE(cr.created_date)<='" + date_until_selected + "')
+        GROUP BY cr.id_ol_store_cust_ret  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim data_par As DataTable = FormWHAWBillDet.GCDO.DataSource
+        If data_par.Rows.Count = 0 Then
+            GCDOERP.DataSource = data
+        Else
+            If data.Rows.Count > 0 Then
+                Dim t1 = data.AsEnumerable()
+                Dim t2 = data_par.AsEnumerable()
+                Dim result = From _t1 In t1
+                             Group Join _t2 In t2
+                                            On _t1("do_no") Equals _t2("do_no") Into Group
+                             From _t3 In Group.DefaultIfEmpty()
+                             Where _t3 Is Nothing
+                             Select _t1
+                If result.Count > 0 Then
+                    Dim except As DataTable = result.CopyToDataTable
+                    GCDOERP.DataSource = except
+                Else
+                    GCDOERP.DataSource = Nothing
+                End If
+            Else
+                GCDOERP.DataSource = Nothing
             End If
         End If
         Cursor = Cursors.Default
@@ -119,7 +180,7 @@
                     Next
                 End If
             End If
-        Else
+        ElseIf XTCDel.SelectedTabPageIndex = 1 Then
             If GVDOERP.RowCount > 0 Then
                 GVDOERP.ActiveFilterString = "[is_check]='yes'"
                 If GVDOERP.RowCount > 0 Then
@@ -128,6 +189,21 @@
                         newRow("id_pl_sales_order_del") = GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
                         newRow("do_no") = GVDOERP.GetRowCellValue(i, "do_no").ToString
                         newRow("qty") = GVDOERP.GetRowCellValue(i, "qty")
+
+                        TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable).Rows.Add(newRow)
+                        FormWHAWBillDet.GCDO.RefreshDataSource()
+                    Next
+                End If
+            End If
+        ElseIf XTCDel.SelectedTabPageIndex = 2 Then
+            If GVRet.RowCount > 0 Then
+                GVRet.ActiveFilterString = "[is_check]='yes'"
+                If GVRet.RowCount > 0 Then
+                    For i As Integer = 0 To GVRet.RowCount - 1
+                        Dim newRow As DataRow = (TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable)).NewRow()
+                        newRow("id_ol_store_cust_ret") = GVRet.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
+                        newRow("do_no") = GVRet.GetRowCellValue(i, "do_no").ToString
+                        newRow("qty") = GVRet.GetRowCellValue(i, "qty")
 
                         TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable).Rows.Add(newRow)
                         FormWHAWBillDet.GCDO.RefreshDataSource()
@@ -151,7 +227,7 @@
                     End If
                 Next
             End If
-        Else
+        ElseIf XTCDel.SelectedTabPageIndex = 1 Then
             If GVDOERP.RowCount > 0 Then
                 Dim cek As String = CheckEditSelAll.EditValue.ToString
                 For i As Integer = 0 To ((GVDOERP.RowCount - 1) - GetGroupRowCount(GVDOERP))
@@ -159,6 +235,17 @@
                         GVDOERP.SetRowCellValue(i, "is_check", "yes")
                     Else
                         GVDOERP.SetRowCellValue(i, "is_check", "no")
+                    End If
+                Next
+            End If
+        ElseIf XTCDel.SelectedTabPageIndex = 2 Then
+            If GVRet.RowCount > 0 Then
+                Dim cek As String = CheckEditSelAll.EditValue.ToString
+                For i As Integer = 0 To ((GVRet.RowCount - 1) - GetGroupRowCount(GVRet))
+                    If cek Then
+                        GVRet.SetRowCellValue(i, "is_check", "yes")
+                    Else
+                        GVRet.SetRowCellValue(i, "is_check", "no")
                     End If
                 Next
             End If
@@ -190,4 +277,9 @@
     Private Sub BtnLoadDO_Click(sender As Object, e As EventArgs) Handles BtnLoadDO.Click
         view_do()
     End Sub
+
+    Private Sub BViewRet_Click(sender As Object, e As EventArgs) Handles BViewRet.Click
+        viewRetERP()
+    End Sub
+
 End Class

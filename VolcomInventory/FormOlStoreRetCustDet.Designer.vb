@@ -649,7 +649,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnproduct_full_code.Name = "GridColumnproduct_full_code"
         Me.GridColumnproduct_full_code.Visible = True
         Me.GridColumnproduct_full_code.VisibleIndex = 1
-        Me.GridColumnproduct_full_code.Width = 188
+        Me.GridColumnproduct_full_code.Width = 310
         '
         'GridColumnname
         '
@@ -658,7 +658,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnname.Name = "GridColumnname"
         Me.GridColumnname.Visible = True
         Me.GridColumnname.VisibleIndex = 2
-        Me.GridColumnname.Width = 188
+        Me.GridColumnname.Width = 455
         '
         'GridColumnsize
         '
@@ -671,7 +671,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnsize.Name = "GridColumnsize"
         Me.GridColumnsize.Visible = True
         Me.GridColumnsize.VisibleIndex = 3
-        Me.GridColumnsize.Width = 188
+        Me.GridColumnsize.Width = 167
         '
         'GridColumnid_pl_sales_order_del_det_counting
         '
@@ -690,7 +690,7 @@ Partial Class FormOlStoreRetCustDet
         Me.GridColumnno.Name = "GridColumnno"
         Me.GridColumnno.Visible = True
         Me.GridColumnno.VisibleIndex = 0
-        Me.GridColumnno.Width = 47
+        Me.GridColumnno.Width = 77
         '
         'FormOlStoreRetCustDet
         '
