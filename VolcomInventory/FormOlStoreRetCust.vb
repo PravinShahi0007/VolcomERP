@@ -38,7 +38,7 @@ SELECT id_comp_group,comp_group,description FROM tb_m_comp_group"
 UNION
 SELECT sales_order_ol_shop_number
 FROM `tb_ol_store_ret_list` rl
-INNER JOIN `tb_ol_store_ret_det` retd ON retd.`id_ol_store_ret`=rl.id_ol_store_ret_det
+INNER JOIN `tb_ol_store_ret_det` retd ON retd.`id_ol_store_ret_det`=rl.id_ol_store_ret_det
 INNER JOIN tb_ol_store_ret ret ON retd.id_ol_store_ret=ret.id_ol_store_ret
 WHERE ret.id_report_status=6 AND (rl.`id_ol_store_ret_stt`=4 OR rl.id_ol_store_ret_stt=5)
 GROUP BY ret.sales_order_ol_shop_number"
