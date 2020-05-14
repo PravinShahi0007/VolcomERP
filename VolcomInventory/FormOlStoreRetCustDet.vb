@@ -30,7 +30,7 @@ SELECT id_comp_group,comp_group,description FROM tb_m_comp_group"
 UNION
 SELECT sales_order_ol_shop_number
 FROM `tb_ol_store_ret_list` rl
-INNER JOIN `tb_ol_store_ret_det` retd ON retd.`id_ol_store_ret`=rl.id_ol_store_ret_det
+INNER JOIN `tb_ol_store_ret_det` retd ON retd.`id_ol_store_ret_det`=rl.id_ol_store_ret_det
 INNER JOIN tb_ol_store_ret ret ON retd.id_ol_store_ret=ret.id_ol_store_ret
 WHERE ret.id_report_status=6 AND (rl.`id_ol_store_ret_stt`=4 OR rl.id_ol_store_ret_stt=5)
 GROUP BY ret.sales_order_ol_shop_number"
@@ -67,6 +67,7 @@ GROUP BY ret.sales_order_ol_shop_number"
                 TEPostalCode.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "group_postal_code").ToString
                 TERegion.Text = FormOlStoreRetCust.GVRetReq.GetRowCellValue(0, "group_region").ToString
             End If
+            BMark.Visible = False
         Else
             Dim q As String = "SELECT * FROM `tb_ol_store_cust_ret` WHERE id_ol_store_cust_ret='" & id_ret & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")

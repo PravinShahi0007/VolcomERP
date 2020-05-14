@@ -162,6 +162,7 @@ Partial Class FormOlStoreRetCustDet
         Me.SLEOrder.Location = New System.Drawing.Point(57, 38)
         Me.SLEOrder.Name = "SLEOrder"
         Me.SLEOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEOrder.Properties.ReadOnly = True
         Me.SLEOrder.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEOrder.Size = New System.Drawing.Size(247, 20)
         Me.SLEOrder.TabIndex = 8906
@@ -187,6 +188,7 @@ Partial Class FormOlStoreRetCustDet
         Me.SLECompGroup.Location = New System.Drawing.Point(57, 12)
         Me.SLECompGroup.Name = "SLECompGroup"
         Me.SLECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECompGroup.Properties.ReadOnly = True
         Me.SLECompGroup.Properties.View = Me.GridView1
         Me.SLECompGroup.Size = New System.Drawing.Size(247, 20)
         Me.SLECompGroup.TabIndex = 8905
