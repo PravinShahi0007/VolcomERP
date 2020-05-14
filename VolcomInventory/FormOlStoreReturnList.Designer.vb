@@ -20,7 +20,7 @@ Partial Class FormOlStoreReturnList
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOlStoreReturnList))
-        Dim RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -51,13 +51,8 @@ Partial Class FormOlStoreReturnList
         Me.GridColumnid_sales_order_det = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPRequest = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPReceived = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCRequest = New DevExpress.XtraGrid.GridControl()
         Me.GVRequest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnid_ol_store_ret_req = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_comp_group_req = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +67,12 @@ Partial Class FormOlStoreReturnList
         Me.GridColumnawb_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPReceived = New DevExpress.XtraTab.XtraTabPage()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,16 +81,22 @@ Partial Class FormOlStoreReturnList
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
-        Me.XTPReceived.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         CType(Me.GCRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRequest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        Me.XTPReceived.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
         '
         'PanelControl1
         '
@@ -226,11 +233,7 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn11.Caption = "*"
-        RepositoryItemCheckEdit2.AutoHeight = False
-        RepositoryItemCheckEdit2.Name = "RICECheck"
-        RepositoryItemCheckEdit2.ValueChecked = "yes"
-        RepositoryItemCheckEdit2.ValueUnchecked = "no"
-        Me.GridColumn11.ColumnEdit = RepositoryItemCheckEdit2
+        Me.GridColumn11.ColumnEdit = Me.RICECheck
         Me.GridColumn11.FieldName = "is_check"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
@@ -347,45 +350,6 @@ Partial Class FormOlStoreReturnList
         Me.XTPRequest.Size = New System.Drawing.Size(1158, 531)
         Me.XTPRequest.Text = "Requested List"
         '
-        'XTPReceived
-        '
-        Me.XTPReceived.Controls.Add(Me.GCList)
-        Me.XTPReceived.Controls.Add(Me.PanelControl1)
-        Me.XTPReceived.Name = "XTPReceived"
-        Me.XTPReceived.Size = New System.Drawing.Size(1158, 531)
-        Me.XTPReceived.Text = "Received List"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.BtnRefresh)
-        Me.PanelControl2.Controls.Add(Me.BtnPrint)
-        Me.PanelControl2.Controls.Add(Me.BtnNew)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1158, 49)
-        Me.PanelControl2.TabIndex = 0
-        '
-        'BtnNew
-        '
-        Me.BtnNew.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
-        Me.BtnNew.Location = New System.Drawing.Point(1012, 2)
-        Me.BtnNew.Name = "BtnNew"
-        Me.BtnNew.Size = New System.Drawing.Size(144, 45)
-        Me.BtnNew.TabIndex = 0
-        Me.BtnNew.Text = "Create New Request"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(920, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(92, 45)
-        Me.BtnPrint.TabIndex = 1
-        Me.BtnPrint.Text = "Print"
-        '
         'GCRequest
         '
         Me.GCRequest.Dock = System.Windows.Forms.DockStyle.Fill
@@ -404,16 +368,6 @@ Partial Class FormOlStoreReturnList
         Me.GVRequest.OptionsBehavior.ReadOnly = True
         Me.GVRequest.OptionsFind.AlwaysVisible = True
         Me.GVRequest.OptionsView.ShowGroupPanel = False
-        '
-        'BtnRefresh
-        '
-        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(828, 2)
-        Me.BtnRefresh.Name = "BtnRefresh"
-        Me.BtnRefresh.Size = New System.Drawing.Size(92, 45)
-        Me.BtnRefresh.TabIndex = 2
-        Me.BtnRefresh.Text = "Refresh"
         '
         'GridColumnid_ol_store_ret_req
         '
@@ -527,6 +481,55 @@ Partial Class FormOlStoreReturnList
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 11
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BtnRefresh)
+        Me.PanelControl2.Controls.Add(Me.BtnPrint)
+        Me.PanelControl2.Controls.Add(Me.BtnNew)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1158, 49)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'BtnRefresh
+        '
+        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
+        Me.BtnRefresh.Location = New System.Drawing.Point(828, 2)
+        Me.BtnRefresh.Name = "BtnRefresh"
+        Me.BtnRefresh.Size = New System.Drawing.Size(92, 45)
+        Me.BtnRefresh.TabIndex = 2
+        Me.BtnRefresh.Text = "Refresh"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(920, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(92, 45)
+        Me.BtnPrint.TabIndex = 1
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnNew
+        '
+        Me.BtnNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
+        Me.BtnNew.Location = New System.Drawing.Point(1012, 2)
+        Me.BtnNew.Name = "BtnNew"
+        Me.BtnNew.Size = New System.Drawing.Size(144, 45)
+        Me.BtnNew.TabIndex = 0
+        Me.BtnNew.Text = "Create New Request"
+        '
+        'XTPReceived
+        '
+        Me.XTPReceived.Controls.Add(Me.GCList)
+        Me.XTPReceived.Controls.Add(Me.PanelControl1)
+        Me.XTPReceived.Name = "XTPReceived"
+        Me.XTPReceived.Size = New System.Drawing.Size(1158, 531)
+        Me.XTPReceived.Text = "Received List"
+        '
         'FormOlStoreReturnList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -539,6 +542,7 @@ Partial Class FormOlStoreReturnList
         Me.Name = "FormOlStoreReturnList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Return Centre"
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -548,15 +552,14 @@ Partial Class FormOlStoreReturnList
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
         Me.XTPRequest.ResumeLayout(False)
-        Me.XTPReceived.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCRequest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRequest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.XTPReceived.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -612,4 +615,5 @@ Partial Class FormOlStoreReturnList
     Friend WithEvents GridColumnawb_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

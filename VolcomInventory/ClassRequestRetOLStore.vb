@@ -12,7 +12,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT r.id_ol_store_ret_req, r.id_comp_group, cg.description AS `comp_group_name`, r.sales_order_ol_shop_number, r.`number`, 
+        Dim query As String = "SELECT r.id_ol_store_ret_req, r.id_comp_group, cg.description AS `comp_group_name`, r.sales_order_ol_shop_number, r.`number`, r.receive_cust_date,
         r.ret_req_number, r.ret_req_date, r.created_date, r.created_by, e.employee_name AS `created_by_name`, r.updated_date, r.updated_by, eu.employee_name AS `updated_by_name`,
         r.awb_number, r.note, r.id_report_status, stt.report_status
         FROM tb_ol_store_ret_req r

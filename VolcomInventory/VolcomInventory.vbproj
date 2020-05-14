@@ -2667,6 +2667,12 @@
     <Compile Include="FormOLStoreAlertConfirm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreBrowseOrder.Designer.vb">
+      <DependentUpon>FormOLStoreBrowseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreBrowseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreCloseConfirm.Designer.vb">
       <DependentUpon>FormOLStoreCloseConfirm.vb</DependentUpon>
     </Compile>
@@ -3367,6 +3373,18 @@
       <DependentUpon>FormReportPaymentFGPO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormReportPaymentFGPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRequestRetOLStore.Designer.vb">
+      <DependentUpon>FormRequestRetOLStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRequestRetOLStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRequestRetOLStoreBrowseOrdervb.Designer.vb">
+      <DependentUpon>FormRequestRetOLStoreBrowseOrdervb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRequestRetOLStoreBrowseOrdervb.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRetOlStore.Designer.vb">
@@ -9334,6 +9352,9 @@
     <EmbeddedResource Include="FormOLStoreAlertConfirm.resx">
       <DependentUpon>FormOLStoreAlertConfirm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreBrowseOrder.resx">
+      <DependentUpon>FormOLStoreBrowseOrder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreCloseConfirm.resx">
       <DependentUpon>FormOLStoreCloseConfirm.vb</DependentUpon>
     </EmbeddedResource>
@@ -9685,6 +9706,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportPaymentFGPO.resx">
       <DependentUpon>FormReportPaymentFGPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequestRetOLStore.resx">
+      <DependentUpon>FormRequestRetOLStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequestRetOLStoreBrowseOrdervb.resx">
+      <DependentUpon>FormRequestRetOLStoreBrowseOrdervb.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOlStore.resx">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>

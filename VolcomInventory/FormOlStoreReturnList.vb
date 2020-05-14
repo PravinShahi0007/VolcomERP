@@ -123,4 +123,11 @@ LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee` " & q_where
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
         viewRequest()
     End Sub
+
+    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
+        Cursor = Cursors.WaitCursor
+        FormRequestRetOLStore.action = "ins"
+        FormRequestRetOLStore.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
