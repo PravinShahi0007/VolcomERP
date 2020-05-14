@@ -336,7 +336,11 @@
                 WHERE sal.id_report_status = 6 AND sal_det.id_employee = " + GVDeduction.GetFocusedRowCellValue("id_employee").ToString + "
                 ORDER BY sal.id_employee_sal_pps DESC
                 LIMIT 1) AS tb)
-                    
+                
+                UNION ALL
+                
+                (SELECT 2930093 AS salary, 'UMR' AS effective_date)
+
                 UNION ALL
                 
                 (SELECT 1930093 AS salary, 'Dirumahkan' AS effective_date)
