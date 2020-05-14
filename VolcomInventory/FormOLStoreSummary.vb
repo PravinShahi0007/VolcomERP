@@ -320,6 +320,7 @@
         IFNULL(inv.id_sales_pos,0) AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv.report_status AS `inv_status`,
         IFNULL(cn.id_sales_pos,0) AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn.report_status AS `cn_status`,
         IFNULL(rec_pay.id_rec_payment,0) AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
+        prt.`id_pre_return`, prt.`pre_return_number`, prt.`pre_return_date`, prt.`pre_return_status`,
         '0' AS `report_mark_type`, 
         IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
@@ -410,6 +411,15 @@
           ) a
           GROUP BY a.id_report
         ) rec_pay ON rec_pay.id_report = inv.id_sales_pos
+        LEFT JOIN (
+            SELECT rd.id_sales_order_det, r.id_ol_store_ret AS `id_pre_return`, 
+            r.number AS `pre_return_number`, r.rec_date AS `pre_return_date`, stt.id_report_status, stt.report_status AS `pre_return_status`
+            FROM tb_ol_store_ret_det rd
+            INNER JOIN tb_ol_store_ret r ON r.id_ol_store_ret = rd.id_ol_store_ret
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
+            WHERE r.id_report_status!=5
+            GROUP BY rd.id_sales_order_det
+        ) prt ON prt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
@@ -603,5 +613,16 @@
 
     Private Sub SLECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLECompGroup.EditValueChanged
         viewCompDetail()
+    End Sub
+
+    Private Sub RepoBtnDetailPreReturn_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnDetailPreReturn.ButtonClick
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_pre_return").ToString > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.report_mark_type = "243"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_pre_return").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
