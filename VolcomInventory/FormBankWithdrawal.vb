@@ -736,4 +736,40 @@ GROUP BY sr.`id_sales_return`"
         GVRefund.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BloadWaiting_Click(sender As Object, e As EventArgs) Handles BloadWaiting.Click
+        Dim q As String = "CALL view_waiting_bbk()"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCwaitingList.DataSource = dt
+        GVWaitingList.BestFitColumns()
+    End Sub
+
+    Private Sub GVWaitingList_DoubleClick(sender As Object, e As EventArgs) Handles GVWaitingList.DoubleClick
+        If GVWaitingList.RowCount > 0 Then
+            If GVWaitingList.GetFocusedRowCellValue("type").ToString = "PO Operational Goods" Then
+                XTCPO.SelectedTabPageIndex = 1
+                If GVWaitingList.GetFocusedRowCellValue("remark").ToString = "Active" Then
+                    XTPPOList.SelectedTabPageIndex = 0
+                Else
+                    XTPPOList.SelectedTabPageIndex = 1
+                End If
+                SLEPayType.EditValue = "2"
+                SLEVendor.EditValue = GVWaitingList.GetFocusedRowCellValue("id_comp").ToString
+                buttonView_click()
+            ElseIf GVWaitingList.GetFocusedRowCellValue("type").ToString = "Expense" Then
+                XTCPO.SelectedTabPageIndex = 2
+                SLEPayTypeExpense.EditValue = "2"
+                SLEVendorExpense.EditValue = GVWaitingList.GetFocusedRowCellValue("id_comp").ToString
+                load_expense()
+            ElseIf GVWaitingList.GetFocusedRowCellValue("type").ToString = "BPL FGPO" Then
+                XTCPO.SelectedTabPageIndex = 3
+                SLEFGPOVendor.EditValue = GVWaitingList.GetFocusedRowCellValue("id_comp").ToString
+                load_fgpo()
+            ElseIf GVWaitingList.GetFocusedRowCellValue("type").ToString = "Refund" Then
+                XTCPO.SelectedTabPageIndex = 6
+                SLEVendorRefund.EditValue = GVWaitingList.GetFocusedRowCellValue("id_comp").ToString
+                load_refund()
+            End If
+        End If
+    End Sub
 End Class
