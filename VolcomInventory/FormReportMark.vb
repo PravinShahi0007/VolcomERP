@@ -4388,7 +4388,15 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                        WHERE d.id_sales_return_order=" + id_report + "
                        GROUP BY d.id_ol_store_ret_list
                     ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
-                    SET main.id_ol_store_ret_stt=8 "
+                    SET main.id_ol_store_ret_stt=8;
+                    INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                    SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                    FROM tb_sales_return_order_det d
+                    INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                    INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                    JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=8
+                    WHERE d.id_sales_return_order=" + id_report + "
+                    GROUP BY rd.id_sales_order_det; "
                     execute_non_query(qstt, True, "", "", "", "")
                 Catch ex As Exception
                     stopCustom("Error updating status in return centre. " + ex.ToString)
