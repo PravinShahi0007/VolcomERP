@@ -33,6 +33,15 @@ GROUP BY sales_order_ol_shop_number"
         viewSearchLookupQuery(SLEOrder, q, "sales_order_ol_shop_number", "sales_order_ol_shop_number", "sales_order_ol_shop_number")
     End Sub
 
+    Sub viewRequest()
+        Cursor = Cursors.WaitCursor
+        Dim r As New ClassRequestRetOLStore()
+        Dim query As String = r.queryMain("-1", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRequest.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Sub check_menu()
         'hide all except new
         bnew_active = "0"
@@ -103,5 +112,15 @@ LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee` " & q_where
         End If
         GVList.ActiveFilterString = ""
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCRequest, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
+        viewRequest()
     End Sub
 End Class

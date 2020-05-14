@@ -263,6 +263,7 @@
     <Compile Include="ClassPurcReceive.vb" />
     <Compile Include="ClassPurcReturn.vb" />
     <Compile Include="ClassRefundOLStore.vb" />
+    <Compile Include="ClassRequestRetOLStore.vb" />
     <Compile Include="ClassRetOLStore.vb" />
     <Compile Include="ClassReturn.vb" />
     <Compile Include="ClassSalesDelOrder.vb" />
