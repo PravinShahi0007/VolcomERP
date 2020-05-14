@@ -824,6 +824,10 @@
 
             Dim awb As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(fdlg.FileName)
 
+            Dim aws As Microsoft.Office.Interop.Excel.Worksheet = awb.Worksheets(1)
+
+            aws.Name = "Sheet1"
+
             awb.SaveAs(awb_tmp, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook)
 
             awb.Close()
@@ -836,7 +840,7 @@
 
             MyConnection = New System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0; Data Source='" + awb_tmp + "'; Extended Properties=""Excel 12.0 XML; IMEX=1; HDR=YES; TypeGuessRows=0; ImportMixedTypes=Text;""")
 
-            MyCommand = New System.Data.OleDb.OleDbDataAdapter("select * from [Outbound Transaction$]", MyConnection)
+            MyCommand = New System.Data.OleDb.OleDbDataAdapter("select * from [Sheet1$]", MyConnection)
 
             DtSet = New System.Data.DataSet
 
