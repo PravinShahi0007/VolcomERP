@@ -5924,6 +5924,21 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     'close thr
                     execute_non_query("UPDATE tb_emp_payroll SET is_close_pay = 1 WHERE id_payroll IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                     'FormBankWithdrawal.view_thr()
+                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "118" Then
+                    'close CN
+                    Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
+FROM tb_pn_det pd
+WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
+                    Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+                    '
+                    For i As Integer = 0 To dt.Rows.Count - 1
+                        If dt.Rows(i)("report_mark_type").ToString = "118" Then 'payment
+                            Dim qc As String = "UPDATE tb_sales_pos 
+                                                SET is_close_rec_payment='2'
+                                                WHERE id_sales_pos='" & dt.Rows(i)("id_report").ToString & "'"
+                            execute_non_query(qc, True, "", "", "", "")
+                        End If
+                    Next
                 End If
                 '
             End If
