@@ -324,6 +324,7 @@
         ret_cust.`id_ret_cust`,ret_cust.`ret_cust_number`, ret_cust.`ret_cust_date`, ret_cust.`ret_cust_status`,
         '0' AS `report_mark_type`, 
         IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
+        IFNULL(stt_internal.`status`, '-') AS `ol_store_status_internal`, IFNULL(stt_internal.status_date, sales_order_ol_shop_date) AS `ol_store_date_internal`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
         so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`
         FROM tb_sales_order so
@@ -332,10 +333,20 @@
             SELECT * FROM (
 	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
 	            FROM tb_sales_order_det_status stt
+                WHERE stt.is_internal=2
 	            ORDER BY stt.status_date DESC
             ) a
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+            SELECT * FROM (
+	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+	            FROM tb_sales_order_det_status stt
+                WHERE stt.is_internal=1
+	            ORDER BY stt.status_date DESC
+            ) a
+            GROUP BY a.id_sales_order_det
+        ) stt_internal ON stt_internal.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
             SELECT so.id_sales_order, so.sales_order_date, del.id_pl_sales_order_del, so.sales_order_number
             FROM tb_sales_order so

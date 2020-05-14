@@ -48,6 +48,7 @@ Partial Class FormOlStoreReturnList
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_order_det = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,7 +184,7 @@ Partial Class FormOlStoreReturnList
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.GridColumn6, Me.GridColumnid_comp_group})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.GridColumn6, Me.GridColumnid_comp_group, Me.GridColumnid_sales_order_det})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -291,6 +292,13 @@ Partial Class FormOlStoreReturnList
         Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
         Me.GridColumnid_comp_group.OptionsColumn.AllowEdit = False
         '
+        'GridColumnid_sales_order_det
+        '
+        Me.GridColumnid_sales_order_det.Caption = "id_sales_order_det"
+        Me.GridColumnid_sales_order_det.FieldName = "id_sales_order_det"
+        Me.GridColumnid_sales_order_det.Name = "GridColumnid_sales_order_det"
+        Me.GridColumnid_sales_order_det.OptionsColumn.AllowEdit = False
+        '
         'FormOlStoreReturnList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -346,4 +354,5 @@ Partial Class FormOlStoreReturnList
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_sales_order_det As DevExpress.XtraGrid.Columns.GridColumn
 End Class
