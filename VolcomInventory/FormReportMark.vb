@@ -3078,7 +3078,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 
                 'return centre online store
                 If report_mark_type = "118" Then
-                    'update stt in return centre
+                    'update stt in return centre & order status
                     Try
                         Dim qstt As String = "UPDATE tb_ol_store_ret_list main
                         INNER JOIN (
@@ -3087,7 +3087,15 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 	                        WHERE d.id_sales_pos=" + id_report + "
 	                        GROUP BY d.id_ol_store_ret_list
                         ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
-                        SET main.id_ol_store_ret_stt=7 "
+                        SET main.id_ol_store_ret_stt=7;
+                        INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                        SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                        FROM tb_sales_pos_det d
+                        INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                        JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=7
+                        WHERE d.id_sales_pos=" + id_report + "
+                        GROUP BY rd.id_sales_order_det;"
                         execute_non_query(qstt, True, "", "", "", "")
                     Catch ex As Exception
                         stopCustom("Error updating status in return centre. " + ex.ToString)
