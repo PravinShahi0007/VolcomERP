@@ -59,11 +59,15 @@
             BEdit.Enabled = True
             BDel.Enabled = True
             SBPrint.Enabled = False
+
+            BtnDropQuickMenu.Enabled = True
         Else
             BAdd.Enabled = False
             BEdit.Enabled = False
             BDel.Enabled = False
             SBPrint.Enabled = True
+
+            BtnDropQuickMenu.Enabled = False
         End If
 
         'view
@@ -221,5 +225,16 @@
                 GVDeduction.SetRowCellValue(i, "no", j)
             End If
         Next
+    End Sub
+
+    Private Sub BarButtonItemRemainingLeave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItemRemainingLeave.ItemClick
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to generate all Remaining Leave ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim query As String = "CALL generate_remaining_leave(" & id_payroll & ");"
+            execute_non_query(query, True, "", "", "", "")
+            '
+            load_adjustment()
+        End If
     End Sub
 End Class
