@@ -90,7 +90,7 @@
                 Dim t2 = data_par.AsEnumerable()
                 Dim result = From _t1 In t1
                              Group Join _t2 In t2
-                                            On _t1("do_no") Equals _t2("do_no") Into Group
+                                            On _t1("number") Equals _t2("do_no") Into Group
                              From _t3 In Group.DefaultIfEmpty()
                              Where _t3 Is Nothing
                              Select _t1
@@ -121,8 +121,9 @@
         End Try
 
         Dim query As String = "SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
-        c.comp_number AS `store_number`, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`, stt.report_status
+        c.comp_number AS `store_number`, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
         FROM tb_pl_sales_order_del d
+        INNER JOIN tb_sales_order so On so.id_sales_order=d.id_sales_order
         LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
@@ -184,6 +185,9 @@
             If GVDOERP.RowCount > 0 Then
                 GVDOERP.ActiveFilterString = "[is_check]='yes'"
                 If GVDOERP.RowCount > 0 Then
+                    If GVDOERP.GetRowCellValue(0, "id_commerce_type").ToString = "2" Then
+                        FormWHAWBillDet.load_sub_dsitrict_filter(" WHERE ct.city='" & GVDOERP.GetRowCellValue(0, "shipping_city").ToString & "' ")
+                    End If
                     For i As Integer = 0 To GVDOERP.RowCount - 1
                         Dim newRow As DataRow = (TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable)).NewRow()
                         newRow("id_pl_sales_order_del") = GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
@@ -199,6 +203,7 @@
             If GVRet.RowCount > 0 Then
                 GVRet.ActiveFilterString = "[is_check]='yes'"
                 If GVRet.RowCount > 0 Then
+                    FormWHAWBillDet.load_sub_dsitrict_filter(" WHERE ct.city='" & GVRet.GetRowCellValue(0, "shipping_city").ToString & "' ")
                     For i As Integer = 0 To GVRet.RowCount - 1
                         Dim newRow As DataRow = (TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable)).NewRow()
                         newRow("id_ol_store_cust_ret") = GVRet.GetRowCellValue(i, "id_ol_store_cust_ret").ToString

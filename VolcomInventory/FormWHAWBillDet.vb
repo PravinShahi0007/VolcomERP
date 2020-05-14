@@ -21,6 +21,22 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
         viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
     End Sub
 
+    Sub load_sub_dsitrict_filter(ByVal filter As String)
+        Dim q As String = "SELECT dis.id_sub_district,dis.`sub_district`,ct.city,ct.`island`,reg.`region`,st.`state`,c.`country`
+FROM tb_m_sub_district dis
+INNER JOIN tb_m_city ct ON dis.id_city=ct.id_city
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
+        Else
+            warningCustom("Shipping district not found, please choose shipping district correctly !")
+            load_sub_dsitrict()
+        End If
+    End Sub
+
     Sub load_awb()
         TELength.EditValue = 0.00
         TEWidth.EditValue = 0.00
@@ -747,7 +763,7 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
     End Sub
 
     Private Sub SLECity_EditValueChanged(sender As Object, e As EventArgs) Handles SLESubDistrict.EditValueChanged
-        clear_do()
+        'clear_do()
         '
         'TEWeight.Focus() ---三
         rate_table()
