@@ -7872,6 +7872,18 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 FROM tb_ol_store_ret_det d
                 WHERE d.id_ol_store_ret=" + id_report + " "
                 execute_non_query(query_ins, True, "", "", "", "")
+
+                'update status order
+                Try
+                    Dim query_upd_stt_order As String = "INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`)
+                    SELECT d.id_sales_order_det, 'pre return', NOW(), NOW()
+                    FROM tb_ol_store_ret_det d
+                    WHERE d.id_ol_store_ret=" + id_report + "
+                    GROUP BY d.id_sales_order_det "
+                    execute_non_query(query_upd_stt_order, True, "", "", "", "")
+                Catch ex As Exception
+                    warningCustom("Error updating status order. " + ex.ToString)
+                End Try
             End If
 
             'update status
