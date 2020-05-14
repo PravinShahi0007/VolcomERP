@@ -21,7 +21,11 @@
     Sub view_comp_group()
         Dim q As String = "SELECT 0 AS id_comp_group,'ALL' AS comp_group,'ALL' AS description
 UNION
-SELECT id_comp_group,comp_group,description FROM tb_m_comp_group"
+SELECT cg.id_comp_group,cg.comp_group,cg.description
+FROM tb_m_comp c
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
+WHERE c.id_commerce_type='2' 
+GROUP BY cg.`id_comp_group`"
         viewSearchLookupQuery(SLECompGroup, q, "id_comp_group", "description", "id_comp_group")
     End Sub
 
