@@ -2715,6 +2715,12 @@
     <Compile Include="FormOlStoreRetCustDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOlStoreReturnInputAWB.Designer.vb">
+      <DependentUpon>FormOlStoreReturnInputAWB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOlStoreReturnInputAWB.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOlStoreReturnList.Designer.vb">
       <DependentUpon>FormOlStoreReturnList.vb</DependentUpon>
     </Compile>
@@ -9381,6 +9387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOlStoreRetCustDet.resx">
       <DependentUpon>FormOlStoreRetCustDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOlStoreReturnInputAWB.resx">
+      <DependentUpon>FormOlStoreReturnInputAWB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOlStoreReturnList.resx">
       <DependentUpon>FormOlStoreReturnList.vb</DependentUpon>
