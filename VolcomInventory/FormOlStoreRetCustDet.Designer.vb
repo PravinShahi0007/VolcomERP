@@ -622,8 +622,8 @@ Partial Class FormOlStoreRetCustDet
         '
         'GridColumnid_ol_store_ret_det
         '
-        Me.GridColumnid_ol_store_ret_det.Caption = "id_ol_store_ret_det"
-        Me.GridColumnid_ol_store_ret_det.FieldName = "id_ol_store_ret_det"
+        Me.GridColumnid_ol_store_ret_det.Caption = "id_ol_store_ret_list"
+        Me.GridColumnid_ol_store_ret_det.FieldName = "id_ol_store_ret_list"
         Me.GridColumnid_ol_store_ret_det.Name = "GridColumnid_ol_store_ret_det"
         '
         'GridColumnid_ol_store_ret

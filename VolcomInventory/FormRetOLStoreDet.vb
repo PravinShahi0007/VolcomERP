@@ -6,7 +6,7 @@
     Public action As String = "-1"
     Dim scan_mode As String = ""
     Dim dt As DataTable
-
+    Public id_ret_req As String = ""
 
     Private Sub FormRetOLStoreDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
@@ -38,7 +38,8 @@
             DERecDate.EditValue = dt_now
             SLECompGroup.EditValue = FormRetOlStore.SLECompGroup.EditValue.ToString
             TxtOrderNumber.Text = FormRetOlStore.GVOrderList.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
-            TxtRetRequest.Focus()
+            id_ret_req = FormRetOlStore.GVOrderList.GetFocusedRowCellValue("id_ol_store_ret_req").ToString
+            TxtRetRequest.Text = FormRetOlStore.GVOrderList.GetFocusedRowCellValue("ret_req_number").ToString
             viewDetail()
             viewCollectionCode()
         ElseIf action = "upd" Then
@@ -51,6 +52,7 @@
             TxtCreatedBy.Text = data.Rows(0)("created_by_name").ToString
             SLECompGroup.EditValue = data.Rows(0)("id_comp_group").ToString
             TxtOrderNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+            id_ret_req = data.Rows(0)("id_ol_store_ret_req").ToString
             TxtRetRequest.Text = data.Rows(0)("ret_req_number").ToString
             DERecDate.EditValue = data.Rows(0)("rec_date")
             MENote.Text = data.Rows(0)("note").ToString
@@ -84,7 +86,40 @@
 
     Sub viewCollectionCode()
         Cursor = Cursors.WaitCursor
-
+        Try
+            dt.Clear()
+        Catch ex As Exception
+        End Try
+        Dim order_number As String = addSlashes(TxtOrderNumber.Text)
+        Dim id_comp_group As String = SLECompGroup.EditValue.ToString
+        Dim query As String = "SELECT a.*, (a.qty-IFNULL(s.qty_save,0)) AS `qty_limit`, '2' AS is_used
+        FROM (
+	        SELECT sod.id_sales_order_det, dc.id_pl_sales_order_del_det_counting,  
+	        sod.id_product,CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `code_list`, 
+	        p.product_display_name AS `name`, cd.code_detail_name AS `size`, sod.item_id, sod.ol_store_id, 
+	        COUNT(CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting)) AS `qty`
+	        FROM tb_sales_order so
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+            INNER JOIN tb_ol_store_ret_req_det reqd ON reqd.id_sales_order_det=sod.id_sales_order_det
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
+	        INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+	        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+	        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+	        WHERE so.sales_order_ol_shop_number='" + order_number + "' AND c.id_comp_group=" + id_comp_group + " 
+	        GROUP BY code_list,sod.id_sales_order_det
+        ) a
+        LEFT JOIN (
+	        SELECT rd.product_full_code,rd.id_sales_order_det, COUNT(rd.product_full_code) AS `qty_save` 
+	        FROM tb_ol_store_ret r
+	        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret = r.id_ol_store_ret
+	        WHERE r.sales_order_ol_shop_number='" + order_number + "' AND r.id_comp_group=" + id_comp_group + " AND r.id_report_status!=5
+	        GROUP BY rd.product_full_code,rd.id_sales_order_det
+        ) s ON s.product_full_code = a.code_list AND s.id_sales_order_det=a.id_sales_order_det
+        HAVING qty_limit>0 "
+        dt = execute_query(query, -1, True, "", "", "", "")
         Cursor = Cursors.Default
     End Sub
 
@@ -110,39 +145,6 @@
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
         TxtScannedCode.Enabled = True
-        Try
-            dt.Clear()
-        Catch ex As Exception
-        End Try
-        Dim order_number As String = addSlashes(TxtOrderNumber.Text)
-        Dim id_comp_group As String = SLECompGroup.EditValue.ToString
-        Dim query As String = "SELECT a.*, (a.qty-IFNULL(s.qty_save,0)) AS `qty_limit`
-        FROM (
-	        SELECT sod.id_sales_order_det, dc.id_pl_sales_order_del_det_counting,  
-	        sod.id_product,CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `code_list`, 
-	        p.product_display_name AS `name`, cd.code_detail_name AS `size`, sod.item_id, sod.ol_store_id, 
-	        COUNT(CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting)) AS `qty`
-	        FROM tb_sales_order so
-	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
-	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
-	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
-	        INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
-	        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
-	        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-	        WHERE so.sales_order_ol_shop_number='" + order_number + "' AND c.id_comp_group=" + id_comp_group + " 
-	        GROUP BY code_list
-        ) a
-        LEFT JOIN (
-	        SELECT rd.product_full_code, COUNT(rd.product_full_code) AS `qty_save` 
-	        FROM tb_ol_store_ret r
-	        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret = r.id_ol_store_ret
-	        WHERE r.sales_order_ol_shop_number='" + order_number + "' AND r.id_comp_group=" + id_comp_group + " AND r.id_report_status!=5
-	        GROUP BY rd.product_full_code
-        ) s ON s.product_full_code = a.code_list
-        HAVING qty_limit>0 "
-        dt = execute_query(query, -1, True, "", "", "", "")
         scan_mode = "add"
         LabelScannedCode.Appearance.ForeColor = Color.Green
         TxtScannedCode.Properties.Appearance.ForeColor = Color.Green
@@ -245,8 +247,8 @@
                 Dim note As String = addSlashes(MENote.Text)
 
                 'main 
-                Dim query As String = "INSERT INTO tb_ol_store_ret(id_comp_group, sales_order_ol_shop_number, ret_req_number, rec_date, number, created_date, created_by, note, id_report_status) VALUES 
-                ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "', '" + ret_req_number + "', '" + rec_date + "', '', NOW(), '" + id_user + "', '" + note + "',1);SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_ol_store_ret(id_comp_group, sales_order_ol_shop_number, id_ol_store_ret_req, ret_req_number, rec_date, number, created_date, created_by, note, id_report_status) VALUES 
+                ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "','" + id_ret_req + "', '" + ret_req_number + "', '" + rec_date + "', '', NOW(), '" + id_user + "', '" + note + "',1);SELECT LAST_INSERT_ID(); "
                 id = execute_query(query, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + ", 243); ", True, "", "", "", "")
 
@@ -292,49 +294,77 @@
             Dim code As String = addSlashes(TxtScannedCode.Text)
             If scan_mode = "add" Then
                 ' add scan
-                Dim dtf As DataRow() = dt.Select("[code_list]='" + code + "' ")
+                Dim dtf As DataRow() = dt.Select("[code_list]='" + code + "' AND [is_used]='2'")
                 If dtf.Length <= 0 Then
-                    stopCustomDialog("Code : " + code + " not found. ")
+                    stopCustomDialog("Code : " + code + " not found or already scanned.")
                     GVData.FocusedRowHandle = GVData.RowCount - 1
                     TxtScannedCode.Text = ""
                     TxtScannedCode.Focus()
                 Else
                     makeSafeGV(GVData)
-                    Dim tot_qty As Integer = 0
-                    GVData.ActiveFilterString = "[product_full_code]='" + code + "'"
-                    If GVData.RowCount > 0 Then
-                        tot_qty = GVData.RowCount
-                    End If
-                    GVData.ActiveFilterString = ""
-                    If tot_qty < dtf(0)("qty_limit") Then
-                        Dim newRow As DataRow = (TryCast(GCData.DataSource, DataTable)).NewRow()
-                        newRow("id_ol_store_ret_det") = "0"
-                        newRow("id_ol_store_ret") = "0"
-                        newRow("id_sales_order_det") = dtf(0)("id_sales_order_det").ToString
-                        newRow("id_product") = dtf(0)("id_product").ToString
-                        newRow("product_full_code") = dtf(0)("code_list").ToString
-                        newRow("name") = dtf(0)("name").ToString
-                        newRow("size") = dtf(0)("size").ToString
-                        newRow("item_id") = dtf(0)("item_id").ToString
-                        newRow("ol_store_id") = dtf(0)("ol_store_id").ToString
-                        newRow("id_pl_sales_order_del_det_counting") = dtf(0)("id_pl_sales_order_del_det_counting").ToString
-                        TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
-                        GCData.RefreshDataSource()
-                        GVData.RefreshData()
-                        GVData.FocusedRowHandle = GVData.RowCount - 1
-                        TxtScannedCode.Text = ""
-                        TxtScannedCode.Focus()
-                    Else
-                        stopCustomDialog("Maximum scan : " + dtf(0)("qty_limit").ToString)
-                        TxtScannedCode.Text = ""
-                        TxtScannedCode.Focus()
-                    End If
+                    Dim newRow As DataRow = (TryCast(GCData.DataSource, DataTable)).NewRow()
+                    newRow("id_ol_store_ret_det") = "0"
+                    newRow("id_ol_store_ret") = "0"
+                    newRow("id_sales_order_det") = dtf(0)("id_sales_order_det").ToString
+                    newRow("id_product") = dtf(0)("id_product").ToString
+                    newRow("product_full_code") = dtf(0)("code_list").ToString
+                    newRow("name") = dtf(0)("name").ToString
+                    newRow("size") = dtf(0)("size").ToString
+                    newRow("item_id") = dtf(0)("item_id").ToString
+                    newRow("ol_store_id") = dtf(0)("ol_store_id").ToString
+                    newRow("id_pl_sales_order_del_det_counting") = dtf(0)("id_pl_sales_order_del_det_counting").ToString
+                    TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
+                    GCData.RefreshDataSource()
+                    GVData.RefreshData()
+                    GVData.FocusedRowHandle = GVData.RowCount - 1
+                    '
+                    dtf(0)("is_used") = "1"
+                    '
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                    'Dim tot_qty As Integer = 0
+                    'GVData.ActiveFilterString = "[product_full_code]='" + code + "'"
+                    'If GVData.RowCount > 0 Then
+                    '    tot_qty = GVData.RowCount
+                    'End If
+                    'GVData.ActiveFilterString = ""
+                    'If tot_qty < dtf(0)("qty_limit") Then
+                    '    Dim newRow As DataRow = (TryCast(GCData.DataSource, DataTable)).NewRow()
+                    '    newRow("id_ol_store_ret_det") = "0"
+                    '    newRow("id_ol_store_ret") = "0"
+                    '    newRow("id_sales_order_det") = dtf(0)("id_sales_order_det").ToString
+                    '    newRow("id_product") = dtf(0)("id_product").ToString
+                    '    newRow("product_full_code") = dtf(0)("code_list").ToString
+                    '    newRow("name") = dtf(0)("name").ToString
+                    '    newRow("size") = dtf(0)("size").ToString
+                    '    newRow("item_id") = dtf(0)("item_id").ToString
+                    '    newRow("ol_store_id") = dtf(0)("ol_store_id").ToString
+                    '    newRow("id_pl_sales_order_del_det_counting") = dtf(0)("id_pl_sales_order_del_det_counting").ToString
+                    '    TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
+                    '    GCData.RefreshDataSource()
+                    '    GVData.RefreshData()
+                    '    GVData.FocusedRowHandle = GVData.RowCount - 1
+                    '    '
+                    '    dtf(0)("is_used") = "1"
+                    '    '
+                    '    TxtScannedCode.Text = ""
+                    '    TxtScannedCode.Focus()
+                    'Else
+                    '    'stopCustomDialog("Maximum scan : " + dtf(0)("qty_limit").ToString)
+                    '    stopCustomDialog("Code untuk transaksi sudah terscan")
+                    '    TxtScannedCode.Text = ""
+                    '    TxtScannedCode.Focus()
+                    'End If
                 End If
             Else
                 makeSafeGV(GVData)
                 GVData.ActiveFilterString = "[product_full_code]='" + code + "'"
                 If GVData.RowCount > 0 Then
+                    Dim dtf As DataRow() = dt.Select("[code_list]='" + GVData.GetFocusedRowCellValue("product_full_code").ToString + "' AND [id_sales_order_det]='" + GVData.GetFocusedRowCellValue("id_sales_order_det").ToString + "'")
+                    dtf(0)("is_used") = "2"
+
                     GVData.DeleteSelectedRows()
+                    '
                     GCData.RefreshDataSource()
                     GVData.RefreshData()
                     GVData.FocusedRowHandle = GVData.RowCount - 1

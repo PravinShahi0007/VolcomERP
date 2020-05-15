@@ -200,6 +200,7 @@ Partial Class FormRetOLStoreDet
         Me.TxtRetRequest.Properties.Appearance.Options.UseFont = True
         Me.TxtRetRequest.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtRetRequest.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtRetRequest.Properties.ReadOnly = True
         Me.TxtRetRequest.Size = New System.Drawing.Size(259, 20)
         Me.TxtRetRequest.TabIndex = 8919
         '
@@ -210,6 +211,7 @@ Partial Class FormRetOLStoreDet
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtOrderNumber.Properties.Appearance.Options.UseFont = True
+        Me.TxtOrderNumber.Properties.ReadOnly = True
         Me.TxtOrderNumber.Size = New System.Drawing.Size(259, 20)
         Me.TxtOrderNumber.TabIndex = 147
         '
