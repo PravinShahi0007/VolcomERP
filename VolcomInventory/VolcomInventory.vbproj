@@ -250,6 +250,7 @@
     </Compile>
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
+    <Compile Include="ClassOLStoreRefund.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
     <Compile Include="ClassProdOverMemo.vb" />
