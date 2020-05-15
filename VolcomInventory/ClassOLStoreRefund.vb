@@ -9,6 +9,7 @@
         INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
         INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_sales_pos_det spd ON spd.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
         WHERE l.id_ol_store_ret_stt=6
         GROUP BY spd.id_sales_pos,so.sales_order_ol_shop_number "
         Dim dcn As DataTable = execute_query(qcn, -1, True, "", "", "", "")
@@ -21,7 +22,7 @@
                 Dim id_memo_type As String = "2"
                 Dim qm As String = "INSERT INTO tb_sales_pos(id_store_contact_from, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_memo_type, id_inv_type, id_sales_pos_ref, report_mark_type, id_acc_ar, id_acc_sales, id_acc_sales_return) 
                 VALUES('" + dcn.Rows(c)("id_store_contact_from").ToString + "', NOW(), '', 1, '" + id_so_type + "',0, NOW(), NOW(), NOW(), '" + decimalSQL(dcn.Rows(c)("sales_pos_discount").ToString) + "', 0, '" + dcn.Rows(c)("sales_pos_vat").ToString + "', '" + id_memo_type + "', '" + id_inv_type + "', '" + dcn.Rows(c)("id_sales_pos").ToString + "', '118', '" + dcn.Rows(c)("id_acc_ar").ToString + "', '" + dcn.Rows(c)("id_acc_sales").ToString + "', '" + dcn.Rows(c)("id_acc_sales_return").ToString + "'); SELECT LAST_INSERT_ID(); "
-                Dim id_cn As String = execute_query(qm, -1, True, "", "", "", "")
+                Dim id_cn As String = execute_query(qm, 0, True, "", "", "", "")
                 'gen number
                 execute_non_query("CALL gen_number(" + id_cn + ", " + report_mark_type + ");", True, "", "", "", "")
                 'detail
@@ -42,7 +43,7 @@
                 INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
                 INNER JOIN tb_m_design_price prc ON prc.id_design_price = id.id_design_price_retail
                 INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
-                WHERE l.id_ol_store_ret_stt=6 AND  r.sales_order_ol_shop_number='" + dcn.Rows(c)("order_number").ToString + "' AND i.id_sales_pos=" + id_cn + " ;
+                WHERE l.id_ol_store_ret_stt=6 AND  r.sales_order_ol_shop_number='" + dcn.Rows(c)("order_number").ToString + "' AND i.id_sales_pos=" + dcn.Rows(c)("id_sales_pos").ToString + " ;
                 -- update total qty
                 UPDATE tb_sales_pos main
                 INNER JOIN (
