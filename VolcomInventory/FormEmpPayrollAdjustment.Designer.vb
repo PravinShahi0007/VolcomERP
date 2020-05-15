@@ -47,12 +47,22 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
+        Me.PopupMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BarManager = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BarButtonItemRemainingLeave = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCDeduction, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDeduction, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -82,6 +92,7 @@ Partial Class FormEmpPayrollAdjustment
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnDropQuickMenu)
         Me.PanelControl1.Controls.Add(Me.SBPrint)
         Me.PanelControl1.Controls.Add(Me.BDel)
         Me.PanelControl1.Controls.Add(Me.BEdit)
@@ -337,6 +348,68 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 1
         '
+        'BtnDropQuickMenu
+        '
+        Me.BtnDropQuickMenu.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDropQuickMenu.DropDownControl = Me.PopupMenu
+        Me.BtnDropQuickMenu.ImageIndex = 14
+        Me.BtnDropQuickMenu.ImageList = Me.LargeImageCollection
+        Me.BtnDropQuickMenu.Location = New System.Drawing.Point(2, 2)
+        Me.BtnDropQuickMenu.Name = "BtnDropQuickMenu"
+        Me.BtnDropQuickMenu.Size = New System.Drawing.Size(144, 34)
+        Me.BtnDropQuickMenu.TabIndex = 114
+        Me.BtnDropQuickMenu.Text = "Auto Generate"
+        '
+        'PopupMenu
+        '
+        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItemRemainingLeave)})
+        Me.PopupMenu.Manager = Me.BarManager
+        Me.PopupMenu.Name = "PopupMenu"
+        '
+        'BarManager
+        '
+        Me.BarManager.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager.Form = Me
+        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItemRemainingLeave})
+        Me.BarManager.MaxItemId = 1
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1052, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 479)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1052, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 479)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1052, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 479)
+        '
+        'BarButtonItemRemainingLeave
+        '
+        Me.BarButtonItemRemainingLeave.Caption = "Remaining Leave"
+        Me.BarButtonItemRemainingLeave.Id = 0
+        Me.BarButtonItemRemainingLeave.Name = "BarButtonItemRemainingLeave"
+        '
         'FormEmpPayrollAdjustment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -344,6 +417,10 @@ Partial Class FormEmpPayrollAdjustment
         Me.ClientSize = New System.Drawing.Size(1052, 479)
         Me.Controls.Add(Me.GCDeduction)
         Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormEmpPayrollAdjustment"
@@ -356,7 +433,10 @@ Partial Class FormEmpPayrollAdjustment
         CType(Me.GCDeduction, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDeduction, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -386,4 +466,12 @@ Partial Class FormEmpPayrollAdjustment
     Friend WithEvents GCSelect As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnDropQuickMenu As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents PopupMenu As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BarButtonItemRemainingLeave As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
 End Class
