@@ -84,11 +84,13 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
 
             rate_table()
 
-            If data.Rows(0)("id_track_no").ToString = "0" Then
-                TEAwbNo.Enabled = True
-            Else
-                TEAwbNo.Enabled = False
-            End If
+            'If data.Rows(0)("id_track_no").ToString = "0" Then
+            '    TEAwbNo.Enabled = True
+            'Else
+            '    TEAwbNo.Enabled = False
+            'End If
+
+            TEAwbNo.Enabled = False
 
             SLESubDistrict.EditValue = data.Rows(0)("id_sub_district").ToString
             SLECargo.EditValue = data.Rows(0)("id_cargo").ToString
