@@ -244,7 +244,7 @@ LEFT JOIN
 	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report
 )payment_pending ON payment_pending.id_report=po.id_purc_order
-WHERE 1=1 " & where_string & " {query_active} GROUP BY po.id_purc_order " & having_string
+WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY po.id_purc_order " & having_string
         If XTPPOList.SelectedTabPageIndex = 0 Then
             'active
             query = query.Replace("{query_active}", "AND po.is_active_payment = 1")
