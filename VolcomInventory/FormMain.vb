@@ -1169,9 +1169,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesReturnOrderDet.ShowDialog()
         ElseIf formName = "FormSalesReturnOrderOL" Then
             'SALES RETURN ORDER OL
-            FormSalesReturnOrderOLDet.action = "ins"
-            FormSalesReturnOrderOLDet.id_sales_return_order = "-1"
-            FormSalesReturnOrderOLDet.ShowDialog()
+            If FormSalesReturnOrderOL.XTCROR.SelectedTabPageIndex = 0 Then
+                FormSalesReturnOrderOLDet.action = "ins"
+                FormSalesReturnOrderOLDet.id_sales_return_order = "-1"
+                FormSalesReturnOrderOLDet.ShowDialog()
+            Else
+                FormSalesReturnOrderOLDet.action = "ins"
+                FormSalesReturnOrderOLDet.id_sales_return_order = "-1"
+                FormSalesReturnOrderOLDet.comp_number = FormSalesReturnOrderOL.GVPending.GetFocusedRowCellValue("comp_number").ToString
+                FormSalesReturnOrderOLDet.order_number = FormSalesReturnOrderOL.GVPending.GetFocusedRowCellValue("order_number").ToString
+                FormSalesReturnOrderOLDet.is_proceed_from_return_centre = "1"
+                FormSalesReturnOrderOLDet.ShowDialog()
+            End If
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
@@ -1181,10 +1190,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSalesReturnDetNew.ShowDialog()
             End If
         ElseIf formName = "FormSalesPOS" Then
-            'SALES POS
-            FormSalesPOSDet.action = "ins"
-            FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
-            FormSalesPOSDet.ShowDialog()
+            If FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 0 Then
+                'SALES POS
+                FormSalesPOSDet.action = "ins"
+                FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
+                FormSalesPOSDet.ShowDialog()
+            ElseIf FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 2 Then
+                FormSalesPOSDet.action = "ins"
+                FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
+                FormSalesPOSDet.comp_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("comp_number").ToString
+                FormSalesPOSDet.order_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("order_number").ToString
+                FormSalesPOSDet.cust_name = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("customer_name").ToString
+                FormSalesPOSDet.ShowDialog()
+            End If
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
@@ -1769,6 +1787,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             If FormRetOlStore.XTCData.SelectedTabPageIndex = 1 Then
                 FormRetOLStoreDet.action = "ins"
                 FormRetOLStoreDet.ShowDialog()
+            End If
+        ElseIf formName = "FormRefundOLStore" Then
+            If FormRefundOLStore.XTCData.SelectedTabPageIndex = 1 Then
+                FormRefundOLStoreDet.action = "ins"
+                FormRefundOLStoreDet.ShowDialog()
             End If
         Else
             RPSubMenu.Visible = False
@@ -2945,6 +2968,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormRetOLStoreDet.id = FormRetOlStore.GVData.GetFocusedRowCellValue("id_ol_store_ret").ToString
                     FormRetOLStoreDet.action = "upd"
                     FormRetOLStoreDet.ShowDialog()
+                End If
+            ElseIf formName = "FormRefundOLStore" Then
+                If FormRefundOLStore.XTCData.SelectedTabPageIndex = 0 Then
+                    FormRefundOLStoreDet.id = FormRefundOLStore.GVData.GetFocusedRowCellValue("id_ol_store_refund").ToString
+                    FormRefundOLStoreDet.action = "upd"
+                    FormRefundOLStoreDet.ShowDialog()
                 End If
             Else
                 RPSubMenu.Visible = False
@@ -8171,6 +8200,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompareStockWebsite.print()
         ElseIf formName = "FormRetOlStore" Then
             print(FormRetOlStore.GCData, "Pre Return List")
+        ElseIf formName = "FormRefundOLStore" Then
+            print(FormRefundOLStore.GCData, "Accepted Refund List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9051,6 +9082,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormOlStoreRetCust" Then
             FormOlStoreRetCust.Close()
             FormOlStoreRetCust.Dispose()
+        ElseIf formName = "FormRefundOLStore" Then
+            FormRefundOLStore.Close()
+            FormRefundOLStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9437,7 +9471,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesReturnOrder.viewSalesReturnOrder()
         ElseIf formName = "FormSalesReturnOrderOL" Then
             'SALES RETURN Order OL
-            FormSalesReturnOrderOL.viewSalesReturnOrder()
+            If FormSalesReturnOrderOL.XTCROR.SelectedTabPageIndex = 0 Then
+                FormSalesReturnOrderOL.viewSalesReturnOrder()
+            ElseIf FormSalesReturnOrderOL.XTCROR.SelectedTabPageIndex = 1 Then
+                FormSalesReturnOrderOL.viewPending()
+            End If
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
@@ -9447,7 +9485,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormSalesPOS" Then
             'SALES VRTUAL POS
-            FormSalesPOS.viewSalesPOS()
+            If FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 0 Then
+                FormSalesPOS.viewSalesPOS()
+            ElseIf FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 2 Then
+                FormSalesPOS.viewPendingCNOLStore()
+            End If
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
@@ -9956,6 +9998,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormLetterOfStatement.form_load()
         ElseIf formName = "FormRetOlStore" Then
             FormRetOlStore.viewData()
+        ElseIf formName = "FormRefundOLStore" Then
+            FormRefundOLStore.viewData()
         End If
     End Sub
     'Switch
@@ -14804,6 +14848,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOlStoreRetCust.Show()
             FormOlStoreRetCust.WindowState = FormWindowState.Maximized
             FormOlStoreRetCust.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAcceptRefundOLStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAcceptRefundOLStore.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormRefundOLStore.MdiParent = Me
+            FormRefundOLStore.Show()
+            FormRefundOLStore.WindowState = FormWindowState.Maximized
+            FormRefundOLStore.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

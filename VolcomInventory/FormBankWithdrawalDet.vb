@@ -501,6 +501,46 @@
 
                     calculate_amount()
                 End If
+            ElseIf report_mark_type = "118" Then 'refund
+                'load header
+                Dim id_comp As String = FormBankWithdrawal.SLEVendorRefund.EditValue
+                Dim id_comp_contact As String = get_company_x(id_comp, 6)
+                SLEVendor.EditValue = id_comp_contact
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+
+                If id_pay_type = "2" Then 'Payment
+                    GridColumnPayment.OptionsColumn.AllowEdit = False
+                Else
+                    GridColumnPayment.OptionsColumn.AllowEdit = True
+                End If
+                'load detail
+                For i As Integer = 0 To FormBankWithdrawal.GVRefund.RowCount - 1
+                    'id_report,number,total,balance due
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "id_sales_pos").ToString
+                    newRow("report_mark_type") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "report_mark_type").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "acc_description").ToString
+                    newRow("vendor") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "comp_number").ToString
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "id_comp").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "comp_number").ToString
+                    newRow("number") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "sales_pos_number").ToString
+                    newRow("total_pay") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "total_paid")
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "diff")
+                    newRow("value") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "diff")
+                    newRow("value_view") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "diff")
+                    newRow("balance_due") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "diff")
+                    newRow("note") = ""
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate_amount()
             End If
         Else
             PCAddDel.Visible = False
@@ -736,6 +776,9 @@ WHERE py.`id_pn`='" & id_payment & "'"
         If e.Column.FieldName.ToString = "value" Then
             'set value
             calculate_amount()
+        ElseIf e.Column.FieldName.ToString = "val_bef_kurs" Or e.Column.FieldName.ToString = "kurs" Then
+            Dim rh As Integer = e.RowHandle
+            GVList.SetRowCellValue(rh, "value_view", GVList.GetRowCellValue(rh, "kurs") * GVList.GetRowCellValue(rh, "val_bef_kurs"))
         ElseIf e.Column.FieldName.ToString = "value_view" Then
             Dim rh As Integer = e.RowHandle
             Dim val As Decimal = 0

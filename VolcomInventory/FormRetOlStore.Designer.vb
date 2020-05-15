@@ -34,6 +34,7 @@ Partial Class FormRetOlStore
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrec_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOrderList = New DevExpress.XtraGrid.GridControl()
         Me.GVOrderList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -48,7 +49,8 @@ Partial Class FormRetOlStore
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRetReqNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRetReqDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPPreReturnList.SuspendLayout()
@@ -185,6 +187,14 @@ Partial Class FormRetOlStore
         Me.GridColumnrec_date.Visible = True
         Me.GridColumnrec_date.VisibleIndex = 4
         '
+        'GridColumncomp_group_name
+        '
+        Me.GridColumncomp_group_name.Caption = "Store Group"
+        Me.GridColumncomp_group_name.FieldName = "comp_group_name"
+        Me.GridColumncomp_group_name.Name = "GridColumncomp_group_name"
+        Me.GridColumncomp_group_name.Visible = True
+        Me.GridColumncomp_group_name.VisibleIndex = 1
+        '
         'XTPOrderList
         '
         Me.XTPOrderList.Controls.Add(Me.GCOrderList)
@@ -205,7 +215,7 @@ Partial Class FormRetOlStore
         '
         'GVOrderList
         '
-        Me.GVOrderList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group_order, Me.GridColumnsales_order_ol_shop_number_order, Me.GridColumnorder_date, Me.GridColumncustomer_name})
+        Me.GVOrderList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group_order, Me.GridColumnsales_order_ol_shop_number_order, Me.GridColumnRetReqNumber, Me.GridColumnRetReqDate, Me.GridColumnorder_date, Me.GridColumncustomer_name})
         Me.GVOrderList.GridControl = Me.GCOrderList
         Me.GVOrderList.Name = "GVOrderList"
         Me.GVOrderList.OptionsBehavior.AutoExpandAllGroups = True
@@ -243,7 +253,7 @@ Partial Class FormRetOlStore
         Me.GridColumncustomer_name.FieldName = "customer_name"
         Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
         Me.GridColumncustomer_name.Visible = True
-        Me.GridColumncustomer_name.VisibleIndex = 2
+        Me.GridColumncustomer_name.VisibleIndex = 4
         '
         'PanelControl1
         '
@@ -304,13 +314,23 @@ Partial Class FormRetOlStore
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Store Group"
         '
-        'GridColumncomp_group_name
+        'GridColumnRetReqNumber
         '
-        Me.GridColumncomp_group_name.Caption = "Store Group"
-        Me.GridColumncomp_group_name.FieldName = "comp_group_name"
-        Me.GridColumncomp_group_name.Name = "GridColumncomp_group_name"
-        Me.GridColumncomp_group_name.Visible = True
-        Me.GridColumncomp_group_name.VisibleIndex = 1
+        Me.GridColumnRetReqNumber.Caption = "Return Request Number"
+        Me.GridColumnRetReqNumber.FieldName = "ret_req_number"
+        Me.GridColumnRetReqNumber.Name = "GridColumnRetReqNumber"
+        Me.GridColumnRetReqNumber.Visible = True
+        Me.GridColumnRetReqNumber.VisibleIndex = 2
+        '
+        'GridColumnRetReqDate
+        '
+        Me.GridColumnRetReqDate.Caption = "Return Request Date"
+        Me.GridColumnRetReqDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnRetReqDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnRetReqDate.FieldName = "ret_req_date"
+        Me.GridColumnRetReqDate.Name = "GridColumnRetReqDate"
+        Me.GridColumnRetReqDate.Visible = True
+        Me.GridColumnRetReqDate.VisibleIndex = 3
         '
         'FormRetOlStore
         '
@@ -372,4 +392,6 @@ Partial Class FormRetOlStore
     Friend WithEvents GridColumnorder_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_group_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRetReqNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRetReqDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class

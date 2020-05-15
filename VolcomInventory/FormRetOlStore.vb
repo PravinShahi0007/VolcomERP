@@ -30,12 +30,13 @@
 
     Sub viewOrderList()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT c.id_comp_group,so.sales_order_ol_shop_number, so.sales_order_ol_shop_date AS `order_date`, so.customer_name
-        FROM tb_sales_order so
-        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
-        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-        WHERE so.id_report_status=6 AND c.id_commerce_type=2 AND c.id_comp_group='" + SLECompGroup.EditValue.ToString + "'
-        GROUP BY so.sales_order_ol_shop_number "
+        Dim query As String = "SELECT c.id_comp_group,so.sales_order_ol_shop_number,req.`id_ol_store_ret_req`,req.`ret_req_number`,req.`ret_req_date`,so.sales_order_ol_shop_date AS `order_date`, so.customer_name
+FROM tb_sales_order so
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+INNER JOIN `tb_ol_store_ret_req` req ON req.sales_order_ol_shop_number=so.sales_order_ol_shop_number
+WHERE so.id_report_status=6 AND c.id_commerce_type=2 AND c.id_comp_group='" + SLECompGroup.EditValue.ToString + "'
+GROUP BY so.sales_order_ol_shop_number "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOrderList.DataSource = data
         check_menu()

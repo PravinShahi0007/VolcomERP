@@ -21,6 +21,22 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
         viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
     End Sub
 
+    Sub load_sub_dsitrict_filter(ByVal filter As String)
+        Dim q As String = "SELECT dis.id_sub_district,dis.`sub_district`,ct.city,ct.`island`,reg.`region`,st.`state`,c.`country`
+FROM tb_m_sub_district dis
+INNER JOIN tb_m_city ct ON dis.id_city=ct.id_city
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
+        Else
+            warningCustom("Shipping district not found, please choose shipping district correctly !")
+            load_sub_dsitrict()
+        End If
+    End Sub
+
     Sub load_awb()
         TELength.EditValue = 0.00
         TEWidth.EditValue = 0.00
@@ -68,11 +84,13 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
 
             rate_table()
 
-            If data.Rows(0)("id_track_no").ToString = "0" Then
-                TEAwbNo.Enabled = True
-            Else
-                TEAwbNo.Enabled = False
-            End If
+            'If data.Rows(0)("id_track_no").ToString = "0" Then
+            '    TEAwbNo.Enabled = True
+            'Else
+            '    TEAwbNo.Enabled = False
+            'End If
+
+            TEAwbNo.Enabled = False
 
             SLESubDistrict.EditValue = data.Rows(0)("id_sub_district").ToString
             SLECargo.EditValue = data.Rows(0)("id_cargo").ToString
@@ -438,21 +456,29 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
                 execute_non_query("CALL upd_track_no('" & id_awb & "')", True, "", "", "", "")
                 'detail do
                 If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,do_no,qty) VALUES"
+                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,id_ol_store_cust_ret,do_no,qty) VALUES"
                     For i As Integer = 0 To GVDO.RowCount - 1
                         Dim id_pl_sales_order_del As String = "NULL"
+                        Dim id_ol_store_cust_ret As String = "NULL"
                         Try
                             id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                        Catch ex As Exception
+                        End Try
+                        Try
+                            id_ol_store_cust_ret = GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
                         Catch ex As Exception
                         End Try
                         If id_pl_sales_order_del = "" Then
                             id_pl_sales_order_del = "NULL"
                         End If
+                        If id_ol_store_cust_ret = "" Then
+                            id_ol_store_cust_ret = "NULL"
+                        End If
 
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
+                        query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If
@@ -739,7 +765,7 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
     End Sub
 
     Private Sub SLECity_EditValueChanged(sender As Object, e As EventArgs) Handles SLESubDistrict.EditValueChanged
-        clear_do()
+        'clear_do()
         '
         'TEWeight.Focus() ---三
         rate_table()
