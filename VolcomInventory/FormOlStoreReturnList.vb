@@ -15,6 +15,7 @@
     Private Sub FormOlStoreReturnList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_comp_group()
         view_order()
+        viewRequest()
     End Sub
 
     Sub view_comp_group()
@@ -129,5 +130,15 @@ LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee` " & q_where
         FormRequestRetOLStore.action = "ins"
         FormRequestRetOLStore.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVRequest_DoubleClick(sender As Object, e As EventArgs) Handles GVRequest.DoubleClick
+        If GVRequest.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormRequestRetOLStore.id = GVRequest.GetFocusedRowCellValue("id_ol_store_ret_req").ToString
+            FormRequestRetOLStore.action = "upd"
+            FormRequestRetOLStore.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

@@ -348,8 +348,11 @@
             'pre return
             FormRetOLStoreDet.Close()
         ElseIf report_mark_type = "245" Then
-            'pre return
+            'return cust
             FormOlStoreRetCustDet.Close()
+        ElseIf report_mark_type = "246" Then
+            'return request
+            FormRequestRetOLStore.Close()
         End If
     End Sub
     Sub show()
@@ -1220,6 +1223,11 @@ GROUP BY rec.`id_prod_order`"
             FormOlStoreRetCustDet.id_ret = id_report
             FormOlStoreRetCustDet.is_view = "1"
             FormOlStoreRetCustDet.ShowDialog()
+        ElseIf report_mark_type = "246" Then
+            'request return
+            FormRequestRetOLStore.id = id_report
+            FormRequestRetOLStore.is_view = "1"
+            FormRequestRetOLStore.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2198,9 +2206,15 @@ GROUP BY rec.`id_prod_order`"
             field_number = "number"
             field_date = "created_date"
         ElseIf report_mark_type = "245" Then
-            'pre return
+            'ret cust
             table_name = "tb_ol_store_cust_ret"
             field_id = "id_ol_store_cust_ret"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "246" Then
+            'return request
+            table_name = "tb_ol_store_ret_req"
+            field_id = "id_ol_store_ret_req"
             field_number = "number"
             field_date = "created_date"
         Else

@@ -3387,6 +3387,12 @@
     <Compile Include="FormRequestRetOLStoreBrowseOrdervb.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRequestRetOLStoreSingle.Designer.vb">
+      <DependentUpon>FormRequestRetOLStoreSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRequestRetOLStoreSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRetOlStore.Designer.vb">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>
     </Compile>
@@ -9712,6 +9718,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRequestRetOLStoreBrowseOrdervb.resx">
       <DependentUpon>FormRequestRetOLStoreBrowseOrdervb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequestRetOLStoreSingle.resx">
+      <DependentUpon>FormRequestRetOLStoreSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOlStore.resx">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>

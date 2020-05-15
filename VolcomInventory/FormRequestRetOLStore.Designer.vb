@@ -21,6 +21,7 @@ Partial Class FormRequestRetOLStore
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormRequestRetOLStore))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelValidDate = New DevExpress.XtraEditors.LabelControl()
         Me.BtnBrowseOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DERecByCust = New DevExpress.XtraEditors.DateEdit()
@@ -69,7 +70,7 @@ Partial Class FormRequestRetOLStore
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelValidDate = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DERecByCust.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,6 +122,15 @@ Partial Class FormRequestRetOLStore
         Me.GroupControlHead.Name = "GroupControlHead"
         Me.GroupControlHead.Size = New System.Drawing.Size(844, 155)
         Me.GroupControlHead.TabIndex = 11
+        '
+        'LabelValidDate
+        '
+        Me.LabelValidDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelValidDate.Location = New System.Drawing.Point(420, 121)
+        Me.LabelValidDate.Name = "LabelValidDate"
+        Me.LabelValidDate.Size = New System.Drawing.Size(16, 13)
+        Me.LabelValidDate.TabIndex = 8931
+        Me.LabelValidDate.Text = "OK"
         '
         'BtnBrowseOrder
         '
@@ -484,7 +494,7 @@ Partial Class FormRequestRetOLStore
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_ret_req_det, Me.GridColumnid_ol_store_ret_req, Me.GridColumnid_sales_order_det, Me.GridColumnid_product, Me.GridColumnproduct_full_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnitem_id, Me.GridColumnol_store_id, Me.GridColumnno})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_ret_req_det, Me.GridColumnid_ol_store_ret_req, Me.GridColumnid_sales_order_det, Me.GridColumnid_product, Me.GridColumnproduct_full_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnitem_id, Me.GridColumnol_store_id, Me.GridColumnno, Me.GridColumncode})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -517,11 +527,11 @@ Partial Class FormRequestRetOLStore
         '
         'GridColumnproduct_full_code
         '
-        Me.GridColumnproduct_full_code.Caption = "Code"
+        Me.GridColumnproduct_full_code.Caption = "Scanned Code"
         Me.GridColumnproduct_full_code.FieldName = "product_full_code"
         Me.GridColumnproduct_full_code.Name = "GridColumnproduct_full_code"
         Me.GridColumnproduct_full_code.Visible = True
-        Me.GridColumnproduct_full_code.VisibleIndex = 1
+        Me.GridColumnproduct_full_code.VisibleIndex = 2
         Me.GridColumnproduct_full_code.Width = 188
         '
         'GridColumnname
@@ -530,7 +540,7 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnname.FieldName = "name"
         Me.GridColumnname.Name = "GridColumnname"
         Me.GridColumnname.Visible = True
-        Me.GridColumnname.VisibleIndex = 2
+        Me.GridColumnname.VisibleIndex = 3
         Me.GridColumnname.Width = 188
         '
         'GridColumnsize
@@ -539,7 +549,7 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnsize.FieldName = "size"
         Me.GridColumnsize.Name = "GridColumnsize"
         Me.GridColumnsize.Visible = True
-        Me.GridColumnsize.VisibleIndex = 3
+        Me.GridColumnsize.VisibleIndex = 4
         Me.GridColumnsize.Width = 188
         '
         'GridColumnitem_id
@@ -548,7 +558,7 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnitem_id.FieldName = "item_id"
         Me.GridColumnitem_id.Name = "GridColumnitem_id"
         Me.GridColumnitem_id.Visible = True
-        Me.GridColumnitem_id.VisibleIndex = 4
+        Me.GridColumnitem_id.VisibleIndex = 5
         Me.GridColumnitem_id.Width = 188
         '
         'GridColumnol_store_id
@@ -557,7 +567,7 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnol_store_id.FieldName = "ol_store_id"
         Me.GridColumnol_store_id.Name = "GridColumnol_store_id"
         Me.GridColumnol_store_id.Visible = True
-        Me.GridColumnol_store_id.VisibleIndex = 5
+        Me.GridColumnol_store_id.VisibleIndex = 6
         Me.GridColumnol_store_id.Width = 195
         '
         'GridColumnno
@@ -599,14 +609,13 @@ Partial Class FormRequestRetOLStore
         Me.BtnAdd.TabIndex = 158
         Me.BtnAdd.Text = "Add"
         '
-        'LabelValidDate
+        'GridColumncode
         '
-        Me.LabelValidDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelValidDate.Location = New System.Drawing.Point(420, 121)
-        Me.LabelValidDate.Name = "LabelValidDate"
-        Me.LabelValidDate.Size = New System.Drawing.Size(16, 13)
-        Me.LabelValidDate.TabIndex = 8931
-        Me.LabelValidDate.Text = "OK"
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 1
         '
         'FormRequestRetOLStore
         '
@@ -709,4 +718,5 @@ Partial Class FormRequestRetOLStore
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelValidDate As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
 End Class

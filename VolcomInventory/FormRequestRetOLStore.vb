@@ -93,7 +93,7 @@
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT d.id_ol_store_ret_req_det, d.id_ol_store_ret_req, 
-        d.id_sales_order_det, sod.id_product, d.product_full_code, p.product_display_name AS `name`, cd.code_detail_name AS `size`, sod.item_id, sod.ol_store_id
+        d.id_sales_order_det, sod.id_product, p.product_full_code AS `code`,d.product_full_code, p.product_display_name AS `name`, cd.code_detail_name AS `size`, sod.item_id, sod.ol_store_id
         FROM tb_ol_store_ret_req_det d 
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
         INNER JOIN tb_m_product p ON p.id_product = sod.id_product
@@ -177,7 +177,60 @@
     End Sub
 
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        makeSafeGV(GVData)
+        checkDate()
 
+        If TxtOrderNumber.Text = "" Or TxtRetRequest.Text = "" Or GVData.RowCount <= 0 Then
+            stopCustom("Please complete all data")
+        ElseIf LabelValidDate.Text <> "OK" Then
+            stopCustom("Request date not valid")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                BtnSaveChanges.Visible = False
+                Cursor = Cursors.WaitCursor
+                BtnSaveChanges.Enabled = False
+
+                Dim id_comp_group As String = SLECompGroup.EditValue.ToString
+                Dim sales_order_ol_shop_number As String = addSlashes(TxtOrderNumber.Text)
+                Dim receive_cust_date As String = DateTime.Parse(DERecByCust.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim ret_req_number As String = addSlashes(TxtRetRequest.Text)
+                Dim ret_req_date As String = DateTime.Parse(DEReqDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim note As String = addSlashes(MENote.Text)
+
+                'main 
+                Dim query As String = "INSERT INTO tb_ol_store_ret_req(id_comp_group, sales_order_ol_shop_number, receive_cust_date, ret_req_number, ret_req_date, created_date, created_by, updated_date, updated_by, note, id_report_status) VALUES 
+                ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "', '" + receive_cust_date + "', '" + ret_req_number + "', '" + ret_req_date + "', NOW(), " + id_user + ", NOW(), " + id_user + ", '" + note + "', 1);SELECT LAST_INSERT_ID(); "
+                id = execute_query(query, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + "," + rmt + "); ", True, "", "", "", "")
+
+                'detail
+                Dim query_det As String = "INSERT INTO tb_ol_store_ret_req_det(id_ol_store_ret_req, id_sales_order_det, product_full_code) VALUES "
+                For i As Integer = 0 To GVData.RowCount - 1
+                    Dim id_sales_order_det As String = GVData.GetRowCellValue(i, "id_sales_order_det").ToString
+                    Dim product_full_code As String = GVData.GetRowCellValue(i, "product_full_code").ToString
+
+                    If i > 0 Then
+                        query_det += ","
+                    End If
+                    query_det += "('" + id + "', '" + id_sales_order_det + "', '" + product_full_code + "') "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(query_det, True, "", "", "", "")
+                End If
+
+                'submit
+                submit_who_prepared(rmt, id, id_user)
+
+                ''refresh
+                FormOlStoreReturnList.viewRequest()
+                FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id)
+                action = "upd"
+                actionLoad()
+                infoCustom("Request return submitted.")
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
@@ -202,5 +255,20 @@
 
     Private Sub DEReqDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEReqDate.EditValueChanged
         checkDate()
+    End Sub
+
+    Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            GVData.DeleteRow(GVData.FocusedRowHandle)
+            CType(GVData.DataSource, DataTable).AcceptChanges()
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+        End If
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        FormRequestRetOLStoreSingle.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

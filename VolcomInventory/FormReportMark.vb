@@ -588,6 +588,9 @@
         ElseIf report_mark_type = "245" Then
             'return customer
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_store_cust_ret WHERE id_ol_store_cust_ret = '{0}'", id_report)
+        ElseIf report_mark_type = "246" Then
+            'return request
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_store_ret_req WHERE id_ol_store_ret_req = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -7939,6 +7942,32 @@ WHERE rd.`id_ol_store_cust_ret`='" & id_report & "'"
             'update status
             query = String.Format("UPDATE tb_ol_store_cust_ret SET id_report_status='{0}' WHERE id_ol_store_cust_ret ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "246" Then
+            'request return
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'action completed
+                'send mail
+                Try
+                Catch ex As Exception
+
+                End Try
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_ol_store_ret_req SET id_report_status='{0}' WHERE id_ol_store_ret_req ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            Try
+                FormOlStoreReturnList.viewRequest()
+                FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id_report)
+                FormRequestRetOLStore.actionLoad()
+            Catch ex As Exception
+
+            End Try
         End If
 
         'adding lead time
