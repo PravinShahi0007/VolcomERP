@@ -6,6 +6,7 @@
     Public action As String = "-1"
     Dim scan_mode As String = ""
     Dim dt As DataTable
+    Dim lead_time_return As Integer = 0
 
     Private Sub FormRequestRetOLStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
@@ -27,6 +28,33 @@
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
+    End Sub
+
+    Sub checkDate()
+        Cursor = Cursors.WaitCursor
+        Dim id_group As String = "-1"
+        Try
+            id_group = SLECompGroup.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT lead_time_return FROM tb_m_comp_group WHERE id_comp_group='" + id_group + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            lead_time_return = data.Rows(0)("lead_time_return")
+        Else
+            lead_time_return = 0
+        End If
+        Dim diff As Integer = DateDiff("d", DERecByCust.EditValue, DEReqDate.EditValue).ToString
+        If diff <= lead_time_return Then
+            LabelValidDate.Text = "OK"
+            LabelValidDate.ForeColor = Color.Green
+        Else
+            LabelValidDate.Text = "NOT VALID"
+            LabelValidDate.ForeColor = Color.Red
+        End If
+        'Console.WriteLine(diff.ToString)
+        'Console.WriteLine("Lead time :" + lead_time_return.ToString)
+        Cursor = Cursors.Default
     End Sub
 
     Sub actionLoad()
@@ -86,24 +114,18 @@
         BtnBrowseOrder.Enabled = False
         BtnPrint.Visible = True
         PanelControlNav.Visible = False
+        TxtRetRequest.Enabled = False
+        DEReqDate.Enabled = False
+        BtnSaveChanges.Visible = False
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
-            TxtRetRequest.Enabled = False
-            DEReqDate.Enabled = False
             MENote.Enabled = False
-            BtnSaveChanges.Visible = False
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
-            TxtRetRequest.Enabled = False
-            DEReqDate.Enabled = False
             MENote.Enabled = False
-            BtnSaveChanges.Visible = False
         ElseIf id_report_status = "1" Then
-            TxtRetRequest.Enabled = True
-            DEReqDate.Enabled = True
             MENote.Enabled = True
-            BtnSaveChanges.Visible = True
         End If
     End Sub
 
@@ -168,5 +190,17 @@
         Cursor = Cursors.WaitCursor
         FormOLStoreBrowseOrder.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLECompGroup.EditValueChanged
+        checkDate()
+    End Sub
+
+    Private Sub DERecByCust_EditValueChanged(sender As Object, e As EventArgs) Handles DERecByCust.EditValueChanged
+        checkDate()
+    End Sub
+
+    Private Sub DEReqDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEReqDate.EditValueChanged
+        checkDate()
     End Sub
 End Class

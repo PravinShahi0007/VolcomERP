@@ -69,6 +69,7 @@ Partial Class FormRequestRetOLStore
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelValidDate = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DERecByCust.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,6 +103,7 @@ Partial Class FormRequestRetOLStore
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.LabelValidDate)
         Me.GroupControlHead.Controls.Add(Me.BtnBrowseOrder)
         Me.GroupControlHead.Controls.Add(Me.LabelControl1)
         Me.GroupControlHead.Controls.Add(Me.DERecByCust)
@@ -117,7 +119,7 @@ Partial Class FormRequestRetOLStore
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(844, 160)
+        Me.GroupControlHead.Size = New System.Drawing.Size(844, 155)
         Me.GroupControlHead.TabIndex = 11
         '
         'BtnBrowseOrder
@@ -206,6 +208,7 @@ Partial Class FormRequestRetOLStore
         Me.DEReqDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEReqDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEReqDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReqDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEReqDate.Size = New System.Drawing.Size(259, 20)
         Me.DEReqDate.TabIndex = 8926
         '
@@ -270,7 +273,7 @@ Partial Class FormRequestRetOLStore
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(536, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(306, 156)
+        Me.PanelControl1.Size = New System.Drawing.Size(306, 151)
         Me.PanelControl1.TabIndex = 4
         '
         'TxtCreatedBy
@@ -472,10 +475,10 @@ Partial Class FormRequestRetOLStore
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 203)
+        Me.GCData.Location = New System.Drawing.Point(0, 198)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(844, 257)
+        Me.GCData.Size = New System.Drawing.Size(844, 262)
         Me.GCData.TabIndex = 156
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -571,7 +574,7 @@ Partial Class FormRequestRetOLStore
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 160)
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 155)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(844, 43)
         Me.PanelControlNav.TabIndex = 157
@@ -596,6 +599,15 @@ Partial Class FormRequestRetOLStore
         Me.BtnAdd.TabIndex = 158
         Me.BtnAdd.Text = "Add"
         '
+        'LabelValidDate
+        '
+        Me.LabelValidDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelValidDate.Location = New System.Drawing.Point(420, 121)
+        Me.LabelValidDate.Name = "LabelValidDate"
+        Me.LabelValidDate.Size = New System.Drawing.Size(16, 13)
+        Me.LabelValidDate.TabIndex = 8931
+        Me.LabelValidDate.Text = "OK"
+        '
         'FormRequestRetOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -608,7 +620,9 @@ Partial Class FormRequestRetOLStore
         Me.Controls.Add(Me.GroupControlHead)
         Me.MinimizeBox = False
         Me.Name = "FormRequestRetOLStore"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Return Request"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
@@ -694,4 +708,5 @@ Partial Class FormRequestRetOLStore
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelValidDate As DevExpress.XtraEditors.LabelControl
 End Class

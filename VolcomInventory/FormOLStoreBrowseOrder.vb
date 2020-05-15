@@ -24,6 +24,24 @@
     End Sub
 
     Private Sub BtnChoose_Click(sender As Object, e As EventArgs) Handles BtnChoose.Click
-        MsgBox(GVData.GetFocusedRowCellValue("rec_by_store_date").ToString)
+        choose()
+    End Sub
+
+    Sub choose()
+        Cursor = Cursors.WaitCursor
+        If GVData.GetFocusedRowCellValue("rec_by_store_date").ToString <> "" Then
+            FormRequestRetOLStore.TxtOrderNumber.Text = GVData.GetFocusedRowCellValue("order_number").ToString
+            FormRequestRetOLStore.DERecByCust.EditValue = GVData.GetFocusedRowCellValue("rec_by_store_date")
+            Close()
+        Else
+            stopCustom("Received date not found")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            choose()
+        End If
     End Sub
 End Class
