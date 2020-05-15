@@ -890,33 +890,48 @@
                 Next
 
                 'import
-                Dim total As Integer = 0
+                Dim total_imported As Integer = 0
+                Dim total_already_imported As Integer = 0
+                Dim total_not_imported As Integer = 0
 
-                If Not already_imported Then
-                    For i = 2 To dt.Rows.Count - 1
-                        Try
-                            Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
-                            Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
+                For i = 2 To dt.Rows.Count - 1
+                    Try
+                        Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
+                        Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
 
-                            Dim already_awb As String = execute_query("SELECT COUNT(*) AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+                        '
+                        Dim already_awb As String = execute_query("SELECT COUNT(*) AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
 
-                            If Not already_awb = "0" Then
+                        If Not already_awb = "0" Then
+                            '
+                            Dim select_awbill_no As String = execute_query("SELECT awbill_no AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+
+                            If select_awbill_no = "" Then
+                                'update
                                 Dim que As String = "UPDATE tb_wh_awbill SET awbill_no = '" + awbill_no + "' WHERE id_awbill = '" + id_awbill + "'"
 
                                 execute_non_query(que, True, "", "", "", "")
 
-                                total = total + 1
+                                total_imported = total_imported + 1
+                            Else
+                                total_already_imported = total_already_imported + 1
                             End If
-                        Catch ex As Exception
-                        End Try
-                    Next
-                Else
-                    errorCustom("Some AWB already imported.")
-                End If
+                        Else
+                            total_not_imported = total_not_imported + 1
+                        End If
+                    Catch ex As Exception
+                    End Try
+                Next
 
                 MyConnection.Close()
 
-                infoCustom(total.ToString + " data imported.")
+                My.Computer.FileSystem.DeleteFile(awb_tmp)
+
+                Dim msg As String = total_imported.ToString + " data successfully imported."
+                msg += Environment.NewLine + total_already_imported.ToString + " data already imported."
+                msg += Environment.NewLine + total_not_imported.ToString + " data failed to imported."
+
+                infoCustom(msg)
             End If
         End If
     End Sub
