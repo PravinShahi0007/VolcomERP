@@ -48,6 +48,14 @@
         DEFrom.DateTime = Now
         DEUntil.DateTime = Now
         viewSalesPOS()
+
+        'pending online store return
+        If id_menu = "5" Then
+            XTPCNOnlineStore.PageVisible = True
+            viewPendingCNOLStore()
+        Else
+            XTPCNOnlineStore.PageVisible = False
+        End If
     End Sub
 
     '========= TAB DAILY TRANSACTION==========================================
@@ -118,6 +126,30 @@
         End If
         Return dtm
     End Function
+
+    Sub viewPendingCNOLStore()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT so.sales_order_ol_shop_number AS `order_number`, so.customer_name, c.comp_number, c.comp_name
+        FROM tb_ol_store_ret_list l
+        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
+        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = rd.id_sales_order_det
+        INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order 
+        LEFT JOIN (
+	        SELECT spd.id_ol_store_ret_list FROM tb_sales_pos_det spd
+	        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+	        WHERE sp.id_report_status!=5 AND !ISNULL(spd.id_ol_store_ret_list)
+	        GROUP BY spd.id_ol_store_ret_list
+        ) e ON e.id_ol_store_ret_list = l.id_ol_store_ret_list 
+        WHERE l.id_ol_store_ret_stt=6 AND ISNULL(e.id_ol_store_ret_list)
+        GROUP BY c.id_comp, so.sales_order_ol_shop_number "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPendingCN.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
 
     Sub check_menu()
         If XTCPOS.SelectedTabPageIndex = 0 Then

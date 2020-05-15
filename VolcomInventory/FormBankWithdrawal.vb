@@ -34,6 +34,7 @@
         load_vendor_po()
         load_vendor_expense()
         load_vendor_fgpo()
+        load_vendor_refund()
     End Sub
 
     Sub load_status_payment()
@@ -71,6 +72,13 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
                                 FROM tb_m_comp c
                                 WHERE c.id_comp_cat='1'"
         viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub load_vendor_refund()
+        Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                WHERE c.id_commerce_type='2'"
+        viewSearchLookupQuery(SLEVendorRefund, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_vendor_expense()
@@ -236,7 +244,7 @@ LEFT JOIN
 	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report
 )payment_pending ON payment_pending.id_report=po.id_purc_order
-WHERE 1=1 " & where_string & " {query_active} GROUP BY po.id_purc_order " & having_string
+WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY po.id_purc_order " & having_string
         If XTPPOList.SelectedTabPageIndex = 0 Then
             'active
             query = query.Replace("{query_active}", "AND po.is_active_payment = 1")
@@ -643,6 +651,125 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             FormPopUpListJournal.id_ref = GVPOListNonActive.GetFocusedRowCellValue("id_purc_order").ToString
             FormPopUpListJournal.title_for_print = "BPL List PO OG " & GVPOListNonActive.GetFocusedRowCellValue("purc_order_number").ToString
             FormPopUpListJournal.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BCreateRefund_Click(sender As Object, e As EventArgs) Handles BCreateRefund.Click
+        Cursor = Cursors.WaitCursor
+
+        GVRefund.ActiveFilterString = ""
+        GVRefund.ActiveFilterString = "[is_check]='yes'"
+
+        If GVRefund.RowCount > 0 Then
+            Dim is_pending As Boolean = False
+            'check
+            For i As Integer = 0 To ((GVRefund.RowCount - 1) - GetGroupRowCount(GVRefund))
+                If GVRefund.GetRowCellValue(i, "total_pending") > 0 Then
+                    is_pending = True
+                    Exit For
+                End If
+            Next
+            If is_pending = True Then
+                warningCustom("Please process all pending payment for selected expense")
+            Else
+                FormBankWithdrawalDet.report_mark_type = "118"
+                FormBankWithdrawalDet.id_pay_type = "2"
+                FormBankWithdrawalDet.ShowDialog()
+            End If
+        Else
+            warningCustom("No data selected")
+        End If
+        GVExpense.ActiveFilterString = ""
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BViewRefund_Click(sender As Object, e As EventArgs) Handles BViewRefund.Click
+        load_refund()
+    End Sub
+
+    Sub load_refund()
+        Cursor = Cursors.WaitCursor
+
+        Dim where_string As String = ""
+
+        If Not SLEVendorRefund.EditValue.ToString = "0" Then
+            where_string = "AND c.id_comp='" & SLEVendorRefund.EditValue.ToString & "' "
+        End If
+
+        Dim q As String = "SELECT 'no' AS is_check,pos.id_sales_pos,1 AS is_dc,'118' AS report_mark_type,acc.id_acc,acc.acc_name,acc.acc_description,pos.sales_pos_number,pos.`sales_pos_date`,pos.`sales_pos_due_date`,r.`sales_order_ol_shop_number`,
+sr.`id_sales_return`,c.`id_comp`,c.`comp_number`,c.`comp_name`,r.`rec_date`,sr.`sales_return_number`,r.`ret_req_number`,r.`sales_order_ol_shop_number`,SUM(-1*posd.`sales_pos_det_qty`) AS qty
+,SUM(posd.`design_price`) AS total
+,IFNULL(payment.value,0) AS total_paid
+,IFNULL(payment_pending.jml,0) AS total_pending
+,(SUM(posd.`design_price`) - IFNULL(payment.value,0)) AS diff
+FROM tb_sales_return_det srd
+INNER JOIN tb_sales_return sr ON sr.`id_sales_return`=srd.`id_sales_return` AND sr.`id_report_status`=6
+INNER JOIN tb_sales_return_order_det rord ON rord.`id_sales_return_order_det`=srd.`id_sales_return_order_det`
+INNER JOIN `tb_ol_store_ret_list` rl ON rl.`id_ol_store_ret_list`=rord.`id_ol_store_ret_list`
+INNER JOIN tb_sales_pos_det posd ON posd.`id_ol_store_ret_list`=rl.`id_ol_store_ret_list`
+INNER JOIN tb_sales_pos pos ON pos.`id_sales_pos`=posd.id_sales_pos AND pos.`id_report_status`=6
+INNER JOIN tb_a_acc acc ON acc.id_acc=pos.`id_acc_ar`
+INNER JOIN tb_ol_store_ret_det rd ON rd.`id_ol_store_ret_det`=rl.`id_ol_store_ret_det`
+INNER JOIN tb_ol_store_ret r ON r.`id_ol_store_ret`=rd.`id_ol_store_ret`
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=r.`id_comp_group` AND cg.is_refund=1
+INNER JOIN tb_sales_order_det sod ON sod.`id_sales_order_det`=rd.`id_sales_order_det`
+INNER JOIN tb_sales_order so ON so.`id_sales_order`=sod.`id_sales_order`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+LEFT JOIN
+(
+	SELECT COUNT(pyd.id_report) AS jml,pyd.id_report FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='118'
+	GROUP BY pyd.id_report
+)payment_pending ON payment_pending.id_report=pos.`id_sales_pos` 
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND py.report_mark_type='118'
+	GROUP BY pyd.id_report,pyd.`report_mark_type`
+)payment ON payment.id_report=pos.`id_sales_pos` 
+WHERE pos.`is_close_rec_payment`='2' " & where_string & "
+GROUP BY sr.`id_sales_return`"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRefund.DataSource = dt
+        GVRefund.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BloadWaiting_Click(sender As Object, e As EventArgs) Handles BloadWaiting.Click
+        Dim q As String = "CALL view_waiting_bbk()"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCwaitingList.DataSource = dt
+        GVWaitingList.BestFitColumns()
+    End Sub
+
+    Private Sub GVWaitingList_DoubleClick(sender As Object, e As EventArgs) Handles GVWaitingList.DoubleClick
+        If GVWaitingList.RowCount > 0 Then
+            If GVWaitingList.GetFocusedRowCellValue("type").ToString = "PO Operational Goods" Then
+                XTCPO.SelectedTabPageIndex = 1
+                If GVWaitingList.GetFocusedRowCellValue("remark").ToString = "Active" Then
+                    XTPPOList.SelectedTabPageIndex = 0
+                Else
+                    XTPPOList.SelectedTabPageIndex = 1
+                End If
+                SLEPayType.EditValue = "2"
+                SLEVendor.EditValue = GVWaitingList.GetFocusedRowCellValue("id_comp").ToString
+                buttonView_click()
+            ElseIf GVWaitingList.GetFocusedRowCellValue("type").ToString = "Expense" Then
+                XTCPO.SelectedTabPageIndex = 2
+                SLEPayTypeExpense.EditValue = "2"
+                SLEVendorExpense.EditValue = GVWaitingList.GetFocusedRowCellValue("id_comp").ToString
+                load_expense()
+            ElseIf GVWaitingList.GetFocusedRowCellValue("type").ToString = "BPL FGPO" Then
+                XTCPO.SelectedTabPageIndex = 3
+                SLEFGPOVendor.EditValue = GVWaitingList.GetFocusedRowCellValue("id_comp").ToString
+                load_fgpo()
+            ElseIf GVWaitingList.GetFocusedRowCellValue("type").ToString = "Refund" Then
+                XTCPO.SelectedTabPageIndex = 6
+                SLEVendorRefund.EditValue = GVWaitingList.GetFocusedRowCellValue("id_comp").ToString
+                load_refund()
+            End If
         End If
     End Sub
 End Class

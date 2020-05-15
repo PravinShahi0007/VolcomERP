@@ -15,6 +15,7 @@
     Private Sub FormOlStoreReturnList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_comp_group()
         view_order()
+        viewRequest()
     End Sub
 
     Sub view_comp_group()
@@ -31,6 +32,15 @@ SELECT sales_order_ol_shop_number
 FROM tb_ol_store_ret WHERE id_report_status=6
 GROUP BY sales_order_ol_shop_number"
         viewSearchLookupQuery(SLEOrder, q, "sales_order_ol_shop_number", "sales_order_ol_shop_number", "sales_order_ol_shop_number")
+    End Sub
+
+    Sub viewRequest()
+        Cursor = Cursors.WaitCursor
+        Dim r As New ClassRequestRetOLStore()
+        Dim query As String = r.queryMain("-1", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRequest.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub check_menu()
@@ -61,7 +71,7 @@ GROUP BY sales_order_ol_shop_number"
             q_where += " AND r.id_comp_group='" & SLEOrder.EditValue.ToString & "'"
         End If
 
-        Dim q As String = "SELECT 'no' AS is_check,cg.comp_group,rl.id_ol_store_ret_list,r.`number`,r.`ret_req_number`,sd.`item_id`,`sales_order_ol_shop_number`,r.`ret_req_number`,p.`product_display_name`,cd.`code_detail_name` AS size,stt.`ol_store_ret_stt`,emp.`employee_name`,rl.`update_date`,CONCAT(p.`product_full_code`,plc.`pl_sales_order_del_det_counting`) AS full_code
+        Dim q As String = "SELECT 'no' AS is_check,r.id_comp_group,cg.comp_group,rl.id_ol_store_ret_list,r.`number`,r.`ret_req_number`,sd.`item_id`,`sales_order_ol_shop_number`,r.`ret_req_number`,p.`product_display_name`,cd.`code_detail_name` AS size,stt.`ol_store_ret_stt`,emp.`employee_name`,rl.`update_date`,CONCAT(p.`product_full_code`,plc.`pl_sales_order_del_det_counting`) AS full_code, rd.id_sales_order_det
 FROM tb_ol_store_ret_list rl
 INNER JOIN tb_ol_store_ret_det rd ON rd.`id_ol_store_ret_det`=rl.id_ol_store_ret_det
 INNER JOIN `tb_pl_sales_order_del_det_counting` plc ON rd.`id_pl_sales_order_del_det_counting`=plc.id_pl_sales_order_del_det_counting
@@ -82,12 +92,53 @@ LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee` " & q_where
     Private Sub BUpdateStatus_Click(sender As Object, e As EventArgs) Handles BUpdateStatus.Click
         Cursor = Cursors.WaitCursor
         GVList.ActiveFilterString = "[is_check]='yes' "
-        If GVList.RowCount > 0 Then
-            FormOlStoreReturnListUpdate.ShowDialog()
-        Else
+        Dim problem As Boolean = False
+        Dim str_problem As String = ""
+        'check first
+        For i As Integer = 0 To GVList.RowCount - 1
+            Dim q As String = "SELECT * FROM tb_ol_store_ret_list rl INNER JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=rl.id_ol_store_ret_stt WHERE stt.is_only_cs=1 AND rl.id_ol_store_ret_list='" & GVList.GetRowCellValue(i, "id_ol_store_ret_list").ToString & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count = 0 Then
+                problem = True
+                str_problem += GVList.GetRowCellValue(i, "full_code").ToString & ";"
+            End If
+        Next
+
+        If GVList.RowCount <= 0 Then
             warningCustom("Please select item first.")
+        ElseIf problem Then
+            warningCustom("Status already locked for unique code : " & str_problem)
+        Else
+            FormOlStoreReturnListUpdate.ShowDialog()
         End If
         GVList.ActiveFilterString = ""
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCRequest, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
+        viewRequest()
+    End Sub
+
+    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
+        Cursor = Cursors.WaitCursor
+        FormRequestRetOLStore.action = "ins"
+        FormRequestRetOLStore.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVRequest_DoubleClick(sender As Object, e As EventArgs) Handles GVRequest.DoubleClick
+        If GVRequest.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormRequestRetOLStore.id = GVRequest.GetFocusedRowCellValue("id_ol_store_ret_req").ToString
+            FormRequestRetOLStore.action = "upd"
+            FormRequestRetOLStore.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

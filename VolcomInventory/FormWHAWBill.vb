@@ -208,7 +208,37 @@
                         LEFT JOIN tb_pl_sales_order_del_combine doc ON doc.id_combine = do.id_combine
 				        INNER JOIN tb_sales_order so ON so.id_sales_order = do.id_sales_order
 				        INNER JOIN tb_lookup_so_status sos ON sos.id_so_status = so.id_so_status"
-                query += " WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + ""
+                query += " WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + " "
+                query += " UNION ALL 
+                            SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,awbd.do_no, '' AS `do_no_combine`,awbd.qty,  dod.amount, 'Return Customer' AS `reff`,do.created_date AS `scan_date`, grp.id_comp_group, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
+                            DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,
+                            DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,
+                            (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,
+                            (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,
+                            (awb.c_weight-awb.a_weight) AS weight_diff,(awb.c_tot_price-awb.a_tot_price) AS amount_diff, ('') AS `rmk`, ('') AS `no`
+                            ,IF(ISNULL(head.id_wh_awb_det),1,2) AS penanda, do.sales_order_ol_shop_number
+                            FROM tb_wh_awbill awb
+                            INNER JOIN tb_m_comp comp_store ON comp_store.id_comp=awb.id_store
+                            INNER JOIN tb_m_comp comp_cargo ON comp_cargo.id_comp=awb.id_cargo
+                            LEFT JOIN tb_m_comp_group grp ON grp.id_comp_group = comp_store.id_comp_group
+                            INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
+                            LEFT JOIN
+                            (
+                                SELECT id_wh_awb_det
+                                FROM tb_wh_awbill_det awbd
+                                INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill`
+                                WHERE 1=1 " + number_start + " " + number_end + " " + date_start + " " + date_end + " 
+                                GROUP BY awbd.id_awbill
+                            ) head ON head.id_wh_awb_det=awbd.id_wh_awb_det
+                            INNER JOIN `tb_ol_store_cust_ret` `do` ON do.`id_ol_store_cust_ret` =awbd.id_ol_store_cust_ret
+                            INNER JOIN (
+	                            SELECT crd.id_ol_store_cust_ret,SUM(sod.design_price) AS amount FROM tb_ol_store_cust_ret_det crd
+	                            INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list=crd.id_ol_store_ret_list
+	                            INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det=rl.id_ol_store_ret_det
+	                            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det=rd.id_sales_order_det
+	                            GROUP BY crd.id_ol_store_cust_ret
+                            ) dod ON dod.id_ol_store_cust_ret = do.id_ol_store_cust_ret
+                            WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + ""
                 query += " ORDER BY id_awbill,do_no ASC "
             Else
                 gridBandDO.Visible = False
@@ -711,58 +741,73 @@
                 End If
             Next
 
-            Dim query As String = "
-                SELECT so.shipping_name, CONCAT(so.shipping_address1, ' ', so.shipping_address2) AS shipping_address, so.shipping_city, so.shipping_post_code, so.shipping_region, so.shipping_phone, sod.qty, aw.c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(aw_det.id_awbill, '#', so.sales_order_ol_shop_number) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
-                FROM tb_wh_awbill_det AS aw_det
-                LEFT JOIN tb_pl_sales_order_del AS pl_del ON aw_det.id_pl_sales_order_del = pl_del.id_pl_sales_order_del
-                LEFT JOIN tb_sales_order AS so ON pl_del.id_sales_order = so.id_sales_order
-                LEFT JOIN (
-                    SELECT id_sales_order, SUM(sales_order_det_qty) AS qty
-                    FROM tb_sales_order_det
-                    GROUP BY id_sales_order
-                ) AS sod ON so.id_sales_order = sod.id_sales_order
-                LEFT JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
-                LEFT JOIN tb_opt AS opt ON aw_det.id_awbill = aw_det.id_awbill
-                WHERE aw_det.id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")
+            Dim is_exported As String = execute_query("SELECT MAX(is_exported) AS is_exported FROM tb_wh_awbill WHERE id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")", 0, True, "", "", "", "")
+
+            If is_exported = "0" Then
+                Dim confirm As DialogResult
+
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Selected awb can only be exported once, are you sure want to export?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = DialogResult.Yes Then
+                    Dim query As String = "
+                        SELECT so.shipping_name, CONCAT(so.shipping_address1, ' ', so.shipping_address2) AS shipping_address, so.shipping_city, so.shipping_post_code, so.shipping_region, so.shipping_phone, sod.qty, aw.c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(aw_det.id_awbill, '#', so.sales_order_ol_shop_number) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
+                        FROM tb_wh_awbill_det AS aw_det
+                        INNER JOIN tb_pl_sales_order_del AS pl_del ON aw_det.id_pl_sales_order_del = pl_del.id_pl_sales_order_del
+                        INNER JOIN tb_sales_order AS so ON pl_del.id_sales_order = so.id_sales_order
+                        INNER JOIN (
+                            SELECT id_sales_order, SUM(sales_order_det_qty) AS qty
+                            FROM tb_sales_order_det
+                            GROUP BY id_sales_order
+                        ) AS sod ON so.id_sales_order = sod.id_sales_order
+                        INNER JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
+                        INNER JOIN tb_opt AS opt ON aw_det.id_awbill = aw_det.id_awbill
+                        WHERE aw_det.id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")
                 
-                UNION ALL
+                        UNION ALL
 
-                SELECT cust_ret.shipping_name, cust_ret.shipping_address, cust_ret.shipping_city, cust_ret.shipping_post_code, cust_ret.shipping_region, cust_ret.shipping_phone, aw_det.qty, aw.c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(aw_det.id_awbill, '#', cust_ret.sales_order_ol_shop_number) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
-                FROM tb_wh_awbill_det AS aw_det
-                INNER JOIN tb_ol_store_cust_ret AS cust_ret ON aw_det.id_ol_store_cust_ret = cust_ret.id_ol_store_cust_ret
-                LEFT JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
-                LEFT JOIN tb_opt AS opt ON aw_det.id_awbill = aw_det.id_awbill
-                WHERE aw_det.id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")
-            "
+                        SELECT cust_ret.shipping_name, cust_ret.shipping_address, cust_ret.shipping_city, cust_ret.shipping_post_code, cust_ret.shipping_region, cust_ret.shipping_phone, aw_det.qty, aw.c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(aw_det.id_awbill, '#', cust_ret.sales_order_ol_shop_number) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
+                        FROM tb_wh_awbill_det AS aw_det
+                        INNER JOIN tb_ol_store_cust_ret AS cust_ret ON aw_det.id_ol_store_cust_ret = cust_ret.id_ol_store_cust_ret
+                        INNER JOIN tb_wh_awbill AS aw ON aw_det.id_awbill = aw.id_awbill    
+                        INNER JOIN tb_opt AS opt ON aw_det.id_awbill = aw_det.id_awbill
+                        WHERE aw_det.id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ")
+                    "
 
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-            GCExportExcel.DataSource = data
+                    GCExportExcel.DataSource = data
 
-            Dim save As SaveFileDialog = New SaveFileDialog
+                    Dim save As SaveFileDialog = New SaveFileDialog
 
-            save.Filter = "Excel File | *.xls"
-            save.ShowDialog()
+                    save.Filter = "Excel File | *.xls"
+                    save.ShowDialog()
 
-            If Not save.FileName = "" Then
-                Dim op As DevExpress.XtraPrinting.XlsExportOptionsEx = New DevExpress.XtraPrinting.XlsExportOptionsEx
+                    If Not save.FileName = "" Then
+                        Dim op As DevExpress.XtraPrinting.XlsExportOptionsEx = New DevExpress.XtraPrinting.XlsExportOptionsEx
 
-                op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+                        op.ExportType = DevExpress.Export.ExportType.WYSIWYG
 
-                GVExportExcel.ExportToXls(save.FileName, op)
+                        GVExportExcel.ExportToXls(save.FileName, op)
 
-                'resave
-                Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
+                        'resave
+                        Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
 
-                Dim awb As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(save.FileName)
+                        Dim awb As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(save.FileName)
 
-                awb.Save()
+                        awb.Save()
 
-                awb.Close()
+                        awb.Close()
 
-                app.Quit()
+                        app.Quit()
 
-                infoCustom("File saved.")
+                        'update is exported
+                        execute_non_query("UPDATE tb_wh_awbill SET is_exported = 1 WHERE id_awbill IN (" + q_in.Substring(0, q_in.Length - 2) + ") ", True, "", "", "", "")
+
+                        infoCustom("File saved.")
+                    End If
+                End If
+            Else
+                errorCustom("Some data already exported.")
             End If
         Else
             errorCustom("No AWB selected.")
@@ -787,61 +832,111 @@
         fdlg.Dispose()
 
         If Not fdlg.FileName = "" Then
-            'resave
-            Dim awb_tmp As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\awb_tmp.xls"
+            Dim confirm As DialogResult
 
-            Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("AWB can only be imported once, are you sure want to import?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            Dim awb As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(fdlg.FileName)
+            If confirm = DialogResult.Yes Then
+                'resave
+                Dim awb_tmp As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\awb_tmp.xls"
 
-            awb.SaveAs(awb_tmp, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook)
+                Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
 
-            awb.Close()
+                Dim awb As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(fdlg.FileName)
 
-            app.Quit()
+                Dim aws As Microsoft.Office.Interop.Excel.Worksheet = awb.Worksheets(1)
 
-            Dim MyConnection As System.Data.OleDb.OleDbConnection
-            Dim DtSet As System.Data.DataSet
-            Dim MyCommand As System.Data.OleDb.OleDbDataAdapter
+                aws.Name = "Sheet1"
 
-            MyConnection = New System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0; Data Source='" + awb_tmp + "'; Extended Properties=""Excel 12.0 XML; IMEX=1; HDR=YES; TypeGuessRows=0; ImportMixedTypes=Text;""")
+                awb.SaveAs(awb_tmp, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook)
 
-            MyCommand = New System.Data.OleDb.OleDbDataAdapter("select * from [Outbound Transaction$]", MyConnection)
+                awb.Close()
 
-            DtSet = New System.Data.DataSet
+                app.Quit()
 
-            MyCommand.Fill(DtSet)
+                Dim MyConnection As System.Data.OleDb.OleDbConnection
+                Dim DtSet As System.Data.DataSet
+                Dim MyCommand As System.Data.OleDb.OleDbDataAdapter
 
-            Dim dt As DataTable = DtSet.Tables(0)
+                MyConnection = New System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0; Data Source='" + awb_tmp + "'; Extended Properties=""Excel 12.0 XML; IMEX=1; HDR=YES; TypeGuessRows=0; ImportMixedTypes=Text;""")
 
-            Dim data As DataTable = New DataTable
+                MyCommand = New System.Data.OleDb.OleDbDataAdapter("select * from [Sheet1$]", MyConnection)
 
-            data.Columns.Add("id_awbill", GetType(String))
-            data.Columns.Add("awbill", GetType(String))
+                DtSet = New System.Data.DataSet
 
-            Dim total As Integer = 0
+                MyCommand.Fill(DtSet)
 
-            For i = 2 To dt.Rows.Count - 1
-                Try
-                    Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
-                    Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
+                Dim dt As DataTable = DtSet.Tables(0)
 
-                    Dim already_awb As String = execute_query("SELECT COUNT(*) AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+                Dim data As DataTable = New DataTable
 
-                    If Not already_awb = "0" Then
-                        Dim que As String = "UPDATE tb_wh_awbill SET awbill_no = '" + awbill_no + "' WHERE id_awbill = '" + id_awbill + "'"
+                data.Columns.Add("id_awbill", GetType(String))
+                data.Columns.Add("awbill", GetType(String))
 
-                        execute_non_query(que, True, "", "", "", "")
+                'check already imported
+                Dim already_imported As Boolean = False
 
-                        total = total + 1
-                    End If
-                Catch ex As Exception
-                End Try
-            Next
+                For i = 2 To dt.Rows.Count - 1
+                    Try
+                        Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
 
-            MyConnection.Close()
+                        Dim awbill_no As String = execute_query("SELECT awbill_no AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
 
-            infoCustom(total.ToString + " data imported.")
+                        If Not awbill_no = "" Then
+                            already_imported = True
+                        End If
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                'import
+                Dim total_imported As Integer = 0
+                Dim total_already_imported As Integer = 0
+                Dim total_not_imported As Integer = 0
+
+                For i = 2 To dt.Rows.Count - 1
+                    Try
+                        Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
+                        Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
+
+                        '
+                        Dim already_awb As String = execute_query("SELECT COUNT(*) AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+
+                        If Not already_awb = "0" Then
+                            '
+                            Dim select_awbill_no As String = execute_query("SELECT awbill_no AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+
+                            If select_awbill_no = "" Then
+                                'update
+                                Dim que As String = "UPDATE tb_wh_awbill SET awbill_no = '" + awbill_no + "' WHERE id_awbill = '" + id_awbill + "'"
+
+                                execute_non_query(que, True, "", "", "", "")
+
+                                total_imported = total_imported + 1
+                            Else
+                                total_already_imported = total_already_imported + 1
+                            End If
+                        Else
+                            total_not_imported = total_not_imported + 1
+                        End If
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                MyConnection.Close()
+
+                My.Computer.FileSystem.DeleteFile(awb_tmp)
+
+                Dim msg As String = total_imported.ToString + " data successfully imported."
+                msg += Environment.NewLine + total_already_imported.ToString + " data already imported."
+                msg += Environment.NewLine + total_not_imported.ToString + " data failed to imported."
+
+                infoCustom(msg)
+            End If
         End If
+    End Sub
+
+    Private Sub SBReturnList_Click(sender As Object, e As EventArgs) Handles SBReturnList.Click
+        FormOlStoreReturnInputAWB.ShowDialog()
     End Sub
 End Class

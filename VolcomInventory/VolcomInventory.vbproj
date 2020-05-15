@@ -262,6 +262,8 @@
     <Compile Include="ClassPurcOrder.vb" />
     <Compile Include="ClassPurcReceive.vb" />
     <Compile Include="ClassPurcReturn.vb" />
+    <Compile Include="ClassRefundOLStore.vb" />
+    <Compile Include="ClassRequestRetOLStore.vb" />
     <Compile Include="ClassRetOLStore.vb" />
     <Compile Include="ClassReturn.vb" />
     <Compile Include="ClassSalesDelOrder.vb" />
@@ -2665,6 +2667,12 @@
     <Compile Include="FormOLStoreAlertConfirm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreBrowseOrder.Designer.vb">
+      <DependentUpon>FormOLStoreBrowseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreBrowseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreCloseConfirm.Designer.vb">
       <DependentUpon>FormOLStoreCloseConfirm.vb</DependentUpon>
     </Compile>
@@ -2705,6 +2713,12 @@
       <DependentUpon>FormOlStoreRetCustDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOlStoreRetCustDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOlStoreReturnInputAWB.Designer.vb">
+      <DependentUpon>FormOlStoreReturnInputAWB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOlStoreReturnInputAWB.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOlStoreReturnList.Designer.vb">
@@ -3289,6 +3303,18 @@
     <Compile Include="FormPurcReturn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRefundOLStore.Designer.vb">
+      <DependentUpon>FormRefundOLStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRefundOLStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRefundOLStoreDet.Designer.vb">
+      <DependentUpon>FormRefundOLStoreDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRefundOLStoreDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRejectType.Designer.vb">
       <DependentUpon>FormRejectType.vb</DependentUpon>
     </Compile>
@@ -3353,6 +3379,24 @@
       <DependentUpon>FormReportPaymentFGPO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormReportPaymentFGPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRequestRetOLStore.Designer.vb">
+      <DependentUpon>FormRequestRetOLStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRequestRetOLStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRequestRetOLStoreBrowseOrdervb.Designer.vb">
+      <DependentUpon>FormRequestRetOLStoreBrowseOrdervb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRequestRetOLStoreBrowseOrdervb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRequestRetOLStoreSingle.Designer.vb">
+      <DependentUpon>FormRequestRetOLStoreSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRequestRetOLStoreSingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRetOlStore.Designer.vb">
@@ -9320,6 +9364,9 @@
     <EmbeddedResource Include="FormOLStoreAlertConfirm.resx">
       <DependentUpon>FormOLStoreAlertConfirm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreBrowseOrder.resx">
+      <DependentUpon>FormOLStoreBrowseOrder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreCloseConfirm.resx">
       <DependentUpon>FormOLStoreCloseConfirm.vb</DependentUpon>
     </EmbeddedResource>
@@ -9340,6 +9387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOlStoreRetCustDet.resx">
       <DependentUpon>FormOlStoreRetCustDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOlStoreReturnInputAWB.resx">
+      <DependentUpon>FormOlStoreReturnInputAWB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOlStoreReturnList.resx">
       <DependentUpon>FormOlStoreReturnList.vb</DependentUpon>
@@ -9633,6 +9683,12 @@
     <EmbeddedResource Include="FormPurcReturn.resx">
       <DependentUpon>FormPurcReturn.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRefundOLStore.resx">
+      <DependentUpon>FormRefundOLStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRefundOLStoreDet.resx">
+      <DependentUpon>FormRefundOLStoreDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRejectType.resx">
       <DependentUpon>FormRejectType.vb</DependentUpon>
     </EmbeddedResource>
@@ -9665,6 +9721,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportPaymentFGPO.resx">
       <DependentUpon>FormReportPaymentFGPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequestRetOLStore.resx">
+      <DependentUpon>FormRequestRetOLStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequestRetOLStoreBrowseOrdervb.resx">
+      <DependentUpon>FormRequestRetOLStoreBrowseOrdervb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequestRetOLStoreSingle.resx">
+      <DependentUpon>FormRequestRetOLStoreSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOlStore.resx">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>
@@ -12167,6 +12232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOlStoreRetCust.resx">
+      <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>

@@ -212,6 +212,7 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
+        Me.SBReturnList = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1438,7 +1439,7 @@ Partial Class FormWHAWBill
         Me.XTPInbound.Controls.Add(Me.PCLockIn)
         Me.XTPInbound.Controls.Add(Me.PanelControl2)
         Me.XTPInbound.Name = "XTPInbound"
-        Me.XTPInbound.Size = New System.Drawing.Size(1273, 515)
+        Me.XTPInbound.Size = New System.Drawing.Size(1273, 512)
         Me.XTPInbound.Text = "Inbound"
         '
         'GCAwbillIn
@@ -1448,7 +1449,7 @@ Partial Class FormWHAWBill
         Me.GCAwbillIn.MainView = Me.GVAwbillIn
         Me.GCAwbillIn.Name = "GCAwbillIn"
         Me.GCAwbillIn.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICESelectInbound, Me.RICELockInbound})
-        Me.GCAwbillIn.Size = New System.Drawing.Size(1273, 437)
+        Me.GCAwbillIn.Size = New System.Drawing.Size(1273, 434)
         Me.GCAwbillIn.TabIndex = 2
         Me.GCAwbillIn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAwbillIn})
         '
@@ -2045,7 +2046,7 @@ Partial Class FormWHAWBill
         Me.PCLockIn.Controls.Add(Me.CESelAllInboud)
         Me.PCLockIn.Controls.Add(Me.BLockInbound)
         Me.PCLockIn.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCLockIn.Location = New System.Drawing.Point(0, 476)
+        Me.PCLockIn.Location = New System.Drawing.Point(0, 473)
         Me.PCLockIn.Name = "PCLockIn"
         Me.PCLockIn.Size = New System.Drawing.Size(1273, 39)
         Me.PCLockIn.TabIndex = 4
@@ -2068,6 +2069,7 @@ Partial Class FormWHAWBill
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SBReturnList)
         Me.PanelControl2.Controls.Add(Me.BImportAwb)
         Me.PanelControl2.Controls.Add(Me.CERO)
         Me.PanelControl2.Controls.Add(Me.BInView)
@@ -2201,6 +2203,15 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
+        '
+        'SBReturnList
+        '
+        Me.SBReturnList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBReturnList.Location = New System.Drawing.Point(1041, 2)
+        Me.SBReturnList.Name = "SBReturnList"
+        Me.SBReturnList.Size = New System.Drawing.Size(90, 35)
+        Me.SBReturnList.TabIndex = 110
+        Me.SBReturnList.Text = "Online Store " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Return List"
         '
         'FormWHAWBill
         '
@@ -2459,4 +2470,5 @@ Partial Class FormWHAWBill
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBReturnList As DevExpress.XtraEditors.SimpleButton
 End Class

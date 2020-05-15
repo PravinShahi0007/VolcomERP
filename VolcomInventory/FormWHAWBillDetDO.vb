@@ -6,6 +6,8 @@
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromRet.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRet.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
     Sub view_do()
@@ -46,6 +48,65 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewRetERP()
+        Cursor = Cursors.WaitCursor
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromRet.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRet.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query As String = "SELECT cr.*,cg.`comp_group`,so.comp_number,so.comp_name,so.qty,'no' AS is_check
+        FROM `tb_ol_store_cust_ret` cr
+        INNER JOIN (
+            SELECT rd.`id_ol_store_cust_ret`,c.`comp_number`,c.comp_name,COUNT(DISTINCT(rd.`id_ol_store_ret_list`)) AS qty  FROM tb_ol_store_cust_ret_det rd
+            INNER JOIN tb_ol_store_ret_list rl ON rl.`id_ol_store_ret_list`=rd.`id_ol_store_ret_list`
+            INNER JOIN tb_ol_store_ret_det retd ON retd.`id_ol_store_ret_det`=rl.`id_ol_store_ret_det`
+            INNER JOIN tb_sales_order_det sod ON sod.`id_sales_order_det`=retd.`id_sales_order_det`
+            INNER JOIN tb_sales_order so ON so.`id_sales_order`=sod.`id_sales_order`
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            WHERE c.`comp_number`='" & store_number.ToString & "'
+            GROUP BY rd.`id_ol_store_cust_ret`
+        )so ON so.id_ol_store_cust_ret=cr.id_ol_store_cust_ret
+        INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=cr.`id_comp_group`
+        LEFT JOIN tb_wh_awbill_det awb ON awb.id_ol_store_cust_ret = cr.id_ol_store_cust_ret
+        WHERE cr.id_report_status=6 AND ISNULL(awb.id_awbill) 
+        AND (DATE(cr.created_date)>='" + date_from_selected + "' AND DATE(cr.created_date)<='" + date_until_selected + "')
+        GROUP BY cr.id_ol_store_cust_ret  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim data_par As DataTable = FormWHAWBillDet.GCDO.DataSource
+        If data_par.Rows.Count = 0 Then
+            GCRet.DataSource = data
+        Else
+            If data.Rows.Count > 0 Then
+                Dim t1 = data.AsEnumerable()
+                Dim t2 = data_par.AsEnumerable()
+                Dim result = From _t1 In t1
+                             Group Join _t2 In t2
+                                            On _t1("number") Equals _t2("do_no") Into Group
+                             From _t3 In Group.DefaultIfEmpty()
+                             Where _t3 Is Nothing
+                             Select _t1
+                If result.Count > 0 Then
+                    Dim except As DataTable = result.CopyToDataTable
+                    GCRet.DataSource = except
+                Else
+                    GCRet.DataSource = Nothing
+                End If
+            Else
+                GCRet.DataSource = Nothing
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewDOERP()
         Cursor = Cursors.WaitCursor
         Dim date_from_selected As String = "0000-01-01"
@@ -60,8 +121,9 @@
         End Try
 
         Dim query As String = "SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
-        c.comp_number AS `store_number`, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`, stt.report_status
+        c.comp_number AS `store_number`, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
         FROM tb_pl_sales_order_del d
+        INNER JOIN tb_sales_order so On so.id_sales_order=d.id_sales_order
         LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
@@ -119,15 +181,34 @@
                     Next
                 End If
             End If
-        Else
+        ElseIf XTCDel.SelectedTabPageIndex = 1 Then
             If GVDOERP.RowCount > 0 Then
                 GVDOERP.ActiveFilterString = "[is_check]='yes'"
                 If GVDOERP.RowCount > 0 Then
+                    If GVDOERP.GetRowCellValue(0, "id_commerce_type").ToString = "2" Then
+                        FormWHAWBillDet.load_sub_dsitrict_filter(" WHERE ct.city='" & GVDOERP.GetRowCellValue(0, "shipping_city").ToString & "' ")
+                    End If
                     For i As Integer = 0 To GVDOERP.RowCount - 1
                         Dim newRow As DataRow = (TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable)).NewRow()
                         newRow("id_pl_sales_order_del") = GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
                         newRow("do_no") = GVDOERP.GetRowCellValue(i, "do_no").ToString
                         newRow("qty") = GVDOERP.GetRowCellValue(i, "qty")
+
+                        TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable).Rows.Add(newRow)
+                        FormWHAWBillDet.GCDO.RefreshDataSource()
+                    Next
+                End If
+            End If
+        ElseIf XTCDel.SelectedTabPageIndex = 2 Then
+            If GVRet.RowCount > 0 Then
+                GVRet.ActiveFilterString = "[is_check]='yes'"
+                If GVRet.RowCount > 0 Then
+                    FormWHAWBillDet.load_sub_dsitrict_filter(" WHERE ct.city='" & GVRet.GetRowCellValue(0, "shipping_city").ToString & "' ")
+                    For i As Integer = 0 To GVRet.RowCount - 1
+                        Dim newRow As DataRow = (TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable)).NewRow()
+                        newRow("id_ol_store_cust_ret") = GVRet.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
+                        newRow("do_no") = GVRet.GetRowCellValue(i, "number").ToString
+                        newRow("qty") = GVRet.GetRowCellValue(i, "qty")
 
                         TryCast(FormWHAWBillDet.GCDO.DataSource, DataTable).Rows.Add(newRow)
                         FormWHAWBillDet.GCDO.RefreshDataSource()
@@ -151,7 +232,7 @@
                     End If
                 Next
             End If
-        Else
+        ElseIf XTCDel.SelectedTabPageIndex = 1 Then
             If GVDOERP.RowCount > 0 Then
                 Dim cek As String = CheckEditSelAll.EditValue.ToString
                 For i As Integer = 0 To ((GVDOERP.RowCount - 1) - GetGroupRowCount(GVDOERP))
@@ -159,6 +240,17 @@
                         GVDOERP.SetRowCellValue(i, "is_check", "yes")
                     Else
                         GVDOERP.SetRowCellValue(i, "is_check", "no")
+                    End If
+                Next
+            End If
+        ElseIf XTCDel.SelectedTabPageIndex = 2 Then
+            If GVRet.RowCount > 0 Then
+                Dim cek As String = CheckEditSelAll.EditValue.ToString
+                For i As Integer = 0 To ((GVRet.RowCount - 1) - GetGroupRowCount(GVRet))
+                    If cek Then
+                        GVRet.SetRowCellValue(i, "is_check", "yes")
+                    Else
+                        GVRet.SetRowCellValue(i, "is_check", "no")
                     End If
                 Next
             End If
@@ -190,4 +282,9 @@
     Private Sub BtnLoadDO_Click(sender As Object, e As EventArgs) Handles BtnLoadDO.Click
         view_do()
     End Sub
+
+    Private Sub BViewRet_Click(sender As Object, e As EventArgs) Handles BViewRet.Click
+        viewRetERP()
+    End Sub
+
 End Class
