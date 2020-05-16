@@ -92,8 +92,12 @@
     End Sub
 
     Sub createROR()
+        Dim report_mark_type As String = "119"
+        Dim id_wh_contact_normal As String = get_setup_field("id_wh_contact_normal")
+        Dim id_wh_contact_sale As String = get_setup_field("id_wh_contact_sale")
+        Dim id_user_prepared As String = get_opt_sales_field("default_so_online_prepared_by")
         Dim query As String = "SELECT so.id_sales_order,so.sales_order_ol_shop_number AS `order_number`, so.customer_name, 
-        c.comp_number, c.comp_name, c.id_comp, IF(c.id_store_type=3, 2, c.id_store_type) AS `id_store_type`
+        c.comp_number, c.comp_name, c.id_comp, cc.id_comp_contact, c.id_drawer_def, IF(c.id_store_type=3, 2, c.id_store_type) AS `id_store_type`
         FROM tb_ol_store_ret_list l
         INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
         INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = rd.id_sales_order_det
@@ -115,7 +119,88 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             For i As Integer = 0 To data.Rows.Count - 1
+                Dim qcek As String = "CALL view_stock_ol_store3(" + data.Rows(i)("id_sales_order").ToString + ", " + data.Rows(i)("id_comp").ToString + "); "
+                Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+                If dcek.Rows.Count > 0 Then
+                    'cek wh
+                    Dim id_wh_contact_to As String = ""
+                    If data.Rows(i)("id_store_type").ToString = "1" Then
+                        id_wh_contact_to = id_wh_contact_normal
+                    Else
+                        id_wh_contact_to = id_wh_contact_sale
+                    End If
+                    'Main tbale
+                    Dim query_ins As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, id_wh_contact_to, id_sales_order, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, id_order_type) "
+                    query_ins += "VALUES('" + data.Rows(i)("id_store_contact_to").ToString + "','" + id_wh_contact_to + "', '" + data.Rows(i)("id_sales_order").ToString + "', '" + header_number_sales("4") + "', NOW(), '1', '1', NOW(), '2'); SELECT LAST_INSERT_ID(); "
+                    Dim id_sales_return_order As String = execute_query(query_ins, 0, True, "", "", "", "")
+                    increase_inc_sales("4")
 
+                    'insert who prepared
+                    insert_who_prepared(report_mark_type, id_sales_return_order, id_user_prepared)
+
+                    'detail
+                    For d As Integer = 0 To (dcek.Rows.Count - 1)
+                        'cek stok
+                        Dim qst As String = " SELECT f.id_product, IFNULL(SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) AS `qty` 
+	                    FROM tb_storage_fg f 
+	                    WHERE f.id_wh_drawer=" + data.Rows(i)("id_drawer_def").ToString + " AND f.id_product='" + dcek.Rows(d)("id_product").ToString + "'
+	                    GROUP BY f.id_product "
+                        Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
+                        If dst.Rows(0)("qty") > 0 Then
+                            Dim query_det As String = "INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_sales_order_det, id_product, id_design_price, design_price, sales_return_order_det_qty, sales_return_order_det_note, id_return_cat, id_ol_store_ret_list) 
+                            VALUES('" + id_sales_return_order + "', '" + dcek.Rows(d)("id_sales_order_det").ToString + "', '" + dcek.Rows(d)("id_product").ToString + "', '" + dcek.Rows(d)("id_design_price").ToString + "', '" + decimalSQL(dcek.Rows(d)("design_price").ToString) + "', '" + decimalSQL(dcek.Rows(d)("sales_return_order_det_qty").ToString) + "', '', '1', '" + dcek.Rows(d)("id_ol_store_ret_list").ToString + "' ); "
+                            execute_non_query(query_det, True, "", "", "", "")
+                        End If
+                    Next
+
+                    'reserved qty
+                    Dim ro As New ClassSalesReturnOrder
+                    ro.reservedStock(id_sales_return_order)
+
+                    'cek detail jum
+                    Dim id_stt As String = ""
+                    Dim qjum As String = "SELECT id_sales_return_order FROM tb_sales_return_order_det WHERE id_sales_return_order='" + id_sales_return_order + "' "
+                    Dim djum As DataTable = execute_query(qjum, -1, True, "", "", "", "")
+                    If djum.Rows.Count > 0 Then
+                        id_stt = "6"
+                    Else
+                        id_stt = "5"
+                    End If
+
+                    If id_stt = "5" Then
+                        Dim ror As New ClassSalesReturnOrder()
+                        ro.cancelReservedStock(id_sales_return_order)
+                        Dim qstt As String = "UPDATE tb_sales_return_order SET id_report_status='5' WHERE id_sales_return_order ='" + id_sales_return_order + "'; "
+                        execute_non_query(qstt, True, "", "", "", "")
+                    ElseIf id_stt = "6" Then
+                        'update stt in return centre
+                        Dim qstt As String = "UPDATE tb_ol_store_ret_list main
+                            INNER JOIN (
+                               SELECT d.id_ol_store_ret_list 
+                               FROM tb_sales_return_order_det d
+                               WHERE d.id_sales_return_order=" + id_sales_return_order + "
+                               GROUP BY d.id_ol_store_ret_list
+                            ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                            SET main.id_ol_store_ret_stt=8;
+                            INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                            SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                            FROM tb_sales_return_order_det d
+                            INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                            INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                            JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=8
+                            WHERE d.id_sales_return_order=" + id_sales_return_order + "
+                            GROUP BY rd.id_sales_order_det; 
+                            UPDATE tb_sales_return_order SET id_report_status='6' WHERE id_sales_return_order ='" + id_sales_return_order + "'; "
+                        execute_non_query(qstt, True, "", "", "", "")
+
+                        'send mail for process return
+                        Try
+
+                        Catch ex As Exception
+
+                        End Try
+                    End If
+                End If
             Next
         End If
     End Sub
