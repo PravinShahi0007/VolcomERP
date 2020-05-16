@@ -119,6 +119,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             For i As Integer = 0 To data.Rows.Count - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Create return order : " + (i + 1).ToString + " of " + data.Rows.Count.ToString)
                 Dim qcek As String = "CALL view_stock_ol_store3(" + data.Rows(i)("id_sales_order").ToString + ", " + data.Rows(i)("id_comp").ToString + "); "
                 Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
                 If dcek.Rows.Count > 0 Then
@@ -131,7 +132,7 @@
                     End If
                     'Main tbale
                     Dim query_ins As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, id_wh_contact_to, id_sales_order, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, id_order_type) "
-                    query_ins += "VALUES('" + data.Rows(i)("id_store_contact_to").ToString + "','" + id_wh_contact_to + "', '" + data.Rows(i)("id_sales_order").ToString + "', '" + header_number_sales("4") + "', NOW(), '1', '1', NOW(), '2'); SELECT LAST_INSERT_ID(); "
+                    query_ins += "VALUES('" + data.Rows(i)("id_comp_contact").ToString + "','" + id_wh_contact_to + "', '" + data.Rows(i)("id_sales_order").ToString + "', '" + header_number_sales("4") + "', NOW(), '1', '1', NOW(), '2'); SELECT LAST_INSERT_ID(); "
                     Dim id_sales_return_order As String = execute_query(query_ins, 0, True, "", "", "", "")
                     increase_inc_sales("4")
 

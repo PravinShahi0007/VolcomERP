@@ -72,6 +72,7 @@ Partial Class FormOlStoreReturnList
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReceived = New DevExpress.XtraTab.XtraTabPage()
+        Me.BtnRefund = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -100,6 +101,7 @@ Partial Class FormOlStoreReturnList
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnRefund)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.SLECompGroup)
         Me.PanelControl1.Controls.Add(Me.BUpdateStatus)
@@ -530,6 +532,16 @@ Partial Class FormOlStoreReturnList
         Me.XTPReceived.Size = New System.Drawing.Size(1158, 531)
         Me.XTPReceived.Text = "Received List"
         '
+        'BtnRefund
+        '
+        Me.BtnRefund.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefund.Image = CType(resources.GetObject("BtnRefund.Image"), System.Drawing.Image)
+        Me.BtnRefund.Location = New System.Drawing.Point(1043, 2)
+        Me.BtnRefund.Name = "BtnRefund"
+        Me.BtnRefund.Size = New System.Drawing.Size(113, 42)
+        Me.BtnRefund.TabIndex = 6
+        Me.BtnRefund.Text = "Refund Process"
+        '
         'FormOlStoreReturnList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -616,4 +628,5 @@ Partial Class FormOlStoreReturnList
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BtnRefund As DevExpress.XtraEditors.SimpleButton
 End Class

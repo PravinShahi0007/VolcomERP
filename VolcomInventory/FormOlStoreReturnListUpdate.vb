@@ -68,6 +68,9 @@ WHERE is_only_cs='1'"
             rf.createCN()
 
 
+            'cek ROR
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Checking return order")
+            rf.createROR()
         End If
 
         FormOlStoreReturnList.view_list()
