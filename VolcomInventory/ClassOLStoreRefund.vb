@@ -90,4 +90,33 @@
             Next
         End If
     End Sub
+
+    Sub createROR()
+        Dim query As String = "SELECT so.id_sales_order,so.sales_order_ol_shop_number AS `order_number`, so.customer_name, 
+        c.comp_number, c.comp_name, c.id_comp, IF(c.id_store_type=3, 2, c.id_store_type) AS `id_store_type`
+        FROM tb_ol_store_ret_list l
+        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
+        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = rd.id_sales_order_det
+        INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_lookup_store_type t ON t.id_store_type = c.id_store_type
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order 
+        LEFT JOIN (
+	        SELECT spd.id_ol_store_ret_list 
+            FROM tb_sales_return_order_det spd
+	        INNER JOIN tb_sales_return_order sp ON sp.id_sales_return_order = spd.id_sales_return_order
+	        WHERE sp.id_report_status!=5 AND !ISNULL(spd.id_ol_store_ret_list)
+	        GROUP BY spd.id_ol_store_ret_list
+        ) e ON e.id_ol_store_ret_list = l.id_ol_store_ret_list 
+        WHERE l.id_ol_store_ret_stt=7 AND ISNULL(e.id_ol_store_ret_list)
+        GROUP BY c.id_comp, so.id_sales_order "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            For i As Integer = 0 To data.Rows.Count - 1
+
+            Next
+        End If
+    End Sub
 End Class
