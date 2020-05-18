@@ -36,9 +36,9 @@ Partial Class FormOlStoreReturnInputAWB
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEInputAWB = New DevExpress.XtraEditors.TextEdit()
-        Me.SBInputAWB = New DevExpress.XtraEditors.SimpleButton()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.SBInputAWB = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEInputAWB = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GCRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,8 +158,6 @@ Partial Class FormOlStoreReturnInputAWB
         Me.GridColumnawb_number.Caption = "AWB"
         Me.GridColumnawb_number.FieldName = "awb_number"
         Me.GridColumnawb_number.Name = "GridColumnawb_number"
-        Me.GridColumnawb_number.Visible = True
-        Me.GridColumnawb_number.VisibleIndex = 9
         '
         'GridColumnnote
         '
@@ -167,7 +165,7 @@ Partial Class FormOlStoreReturnInputAWB
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
         Me.GridColumnnote.Visible = True
-        Me.GridColumnnote.VisibleIndex = 10
+        Me.GridColumnnote.VisibleIndex = 9
         '
         'GridColumnreport_status
         '
@@ -175,7 +173,7 @@ Partial Class FormOlStoreReturnInputAWB
         Me.GridColumnreport_status.FieldName = "report_status"
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
-        Me.GridColumnreport_status.VisibleIndex = 11
+        Me.GridColumnreport_status.VisibleIndex = 10
         '
         'PanelControl2
         '
@@ -187,21 +185,7 @@ Partial Class FormOlStoreReturnInputAWB
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1008, 49)
         Me.PanelControl2.TabIndex = 2
-        '
-        'TEInputAWB
-        '
-        Me.TEInputAWB.Location = New System.Drawing.Point(48, 12)
-        Me.TEInputAWB.Name = "TEInputAWB"
-        Me.TEInputAWB.Size = New System.Drawing.Size(203, 20)
-        Me.TEInputAWB.TabIndex = 0
-        '
-        'SBInputAWB
-        '
-        Me.SBInputAWB.Location = New System.Drawing.Point(257, 10)
-        Me.SBInputAWB.Name = "SBInputAWB"
-        Me.SBInputAWB.Size = New System.Drawing.Size(75, 23)
-        Me.SBInputAWB.TabIndex = 1
-        Me.SBInputAWB.Text = "Input AWB"
+        Me.PanelControl2.Visible = False
         '
         'Label1
         '
@@ -211,6 +195,21 @@ Partial Class FormOlStoreReturnInputAWB
         Me.Label1.Size = New System.Drawing.Size(30, 13)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "AWB"
+        '
+        'SBInputAWB
+        '
+        Me.SBInputAWB.Location = New System.Drawing.Point(257, 10)
+        Me.SBInputAWB.Name = "SBInputAWB"
+        Me.SBInputAWB.Size = New System.Drawing.Size(75, 23)
+        Me.SBInputAWB.TabIndex = 1
+        Me.SBInputAWB.Text = "Input AWB"
+        '
+        'TEInputAWB
+        '
+        Me.TEInputAWB.Location = New System.Drawing.Point(48, 12)
+        Me.TEInputAWB.Name = "TEInputAWB"
+        Me.TEInputAWB.Size = New System.Drawing.Size(203, 20)
+        Me.TEInputAWB.TabIndex = 0
         '
         'FormOlStoreReturnInputAWB
         '

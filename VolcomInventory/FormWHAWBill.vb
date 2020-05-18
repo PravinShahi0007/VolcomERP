@@ -1318,4 +1318,8 @@ ORDER BY a.id_sales_order DESC "
             GVRet.ActiveFilterString = ""
         End If
     End Sub
+
+    Private Sub BGenerateAWBRef_Click(sender As Object, e As EventArgs) Handles BGenerateAWBRef.Click
+
+    End Sub
 End Class

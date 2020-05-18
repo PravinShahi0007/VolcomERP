@@ -6591,6 +6591,12 @@
     <Compile Include="FormWHAWBillInDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWHAWBillReff.Designer.vb">
+      <DependentUpon>FormWHAWBillReff.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHAWBillReff.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHAwbillTrackCollection.Designer.vb">
       <DependentUpon>FormWHAwbillTrackCollection.vb</DependentUpon>
     </Compile>
@@ -7732,6 +7738,12 @@
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPurcReturn.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportRequestRetOLStore.Designer.vb">
+      <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRequestRetOLStore.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportRetOLStoreDet.Designer.vb">
@@ -11742,6 +11754,9 @@
     <EmbeddedResource Include="FormWHAWBillInDet.resx">
       <DependentUpon>FormWHAWBillInDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormWHAWBillReff.resx">
+      <DependentUpon>FormWHAWBillReff.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormWHAwbillTrackCollection.resx">
       <DependentUpon>FormWHAwbillTrackCollection.vb</DependentUpon>
     </EmbeddedResource>
@@ -12368,6 +12383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReturn.resx">
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRequestRetOLStore.resx">
+      <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRetOLStoreDet.resx">
       <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>

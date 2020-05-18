@@ -150,6 +150,7 @@ Partial Class FormWHAWBill
         Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BGenerateAWBRef = New DevExpress.XtraEditors.SimpleButton()
         Me.BExportToCS3 = New DevExpress.XtraEditors.SimpleButton()
         Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -159,6 +160,30 @@ Partial Class FormWHAWBill
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPRet = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRet = New DevExpress.XtraGrid.GridControl()
+        Me.GVRet = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.BGenKoliRetReq = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLECompRetReq = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewOutRetReq = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPListOut = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SBImportCsss = New DevExpress.XtraEditors.SimpleButton()
@@ -267,31 +292,6 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.BGenKoliRetReq = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLECompRetReq = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BViewOutRetReq = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCRet = New DevExpress.XtraGrid.GridControl()
-        Me.GVRet = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BGenerateAWBRef = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -334,6 +334,13 @@ Partial Class FormWHAWBill
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPRet.SuspendLayout()
+        CType(Me.GCRet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.SLECompRetReq.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPListOut.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -360,13 +367,6 @@ Partial Class FormWHAWBill
         CType(Me.DEInStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInNoEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInNoStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
-        CType(Me.SLECompRetReq.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCRet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVRet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCAWBill
@@ -1659,6 +1659,14 @@ Partial Class FormWHAWBill
         Me.PanelControl1.Size = New System.Drawing.Size(1267, 47)
         Me.PanelControl1.TabIndex = 0
         '
+        'BGenerateAWBRef
+        '
+        Me.BGenerateAWBRef.Location = New System.Drawing.Point(429, 14)
+        Me.BGenerateAWBRef.Name = "BGenerateAWBRef"
+        Me.BGenerateAWBRef.Size = New System.Drawing.Size(151, 23)
+        Me.BGenerateAWBRef.TabIndex = 15
+        Me.BGenerateAWBRef.Text = "Generate Kolie From AWB"
+        '
         'BExportToCS3
         '
         Me.BExportToCS3.Location = New System.Drawing.Point(334, 14)
@@ -1729,6 +1737,263 @@ Partial Class FormWHAWBill
         Me.XTPRet.Name = "XTPRet"
         Me.XTPRet.Size = New System.Drawing.Size(1267, 484)
         Me.XTPRet.Text = "From Return Request"
+        '
+        'GCRet
+        '
+        Me.GCRet.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRet.Location = New System.Drawing.Point(0, 47)
+        Me.GCRet.MainView = Me.GVRet
+        Me.GCRet.Name = "GCRet"
+        Me.GCRet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.GCRet.Size = New System.Drawing.Size(1267, 437)
+        Me.GCRet.TabIndex = 7
+        Me.GCRet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRet})
+        '
+        'GVRet
+        '
+        Me.GVRet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52})
+        Me.GVRet.GridControl = Me.GCRet
+        Me.GVRet.Name = "GVRet"
+        Me.GVRet.OptionsCustomization.AllowColumnMoving = False
+        Me.GVRet.OptionsCustomization.AllowColumnResizing = False
+        Me.GVRet.OptionsCustomization.AllowFilter = False
+        Me.GVRet.OptionsCustomization.AllowGroup = False
+        Me.GVRet.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVRet.OptionsCustomization.AllowRowSizing = True
+        Me.GVRet.OptionsCustomization.AllowSort = False
+        Me.GVRet.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.GVRet.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "ID Del"
+        Me.GridColumn41.FieldName = "id_ol_store_cust_ret"
+        Me.GridColumn41.Name = "GridColumn41"
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn42.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn42.Caption = "Number"
+        Me.GridColumn42.FieldName = "number"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.OptionsColumn.AllowEdit = False
+        Me.GridColumn42.OptionsColumn.AllowFocus = False
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 1
+        Me.GridColumn42.Width = 142
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Created Date"
+        Me.GridColumn43.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn43.FieldName = "created_date"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.OptionsColumn.AllowEdit = False
+        Me.GridColumn43.OptionsColumn.AllowFocus = False
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 3
+        Me.GridColumn43.Width = 119
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn44.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn44.Caption = "Order#"
+        Me.GridColumn44.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.OptionsColumn.AllowEdit = False
+        Me.GridColumn44.OptionsColumn.AllowFocus = False
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 4
+        Me.GridColumn44.Width = 83
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Store"
+        Me.GridColumn45.FieldName = "comp_name"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.OptionsColumn.AllowEdit = False
+        Me.GridColumn45.OptionsColumn.AllowFocus = False
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 6
+        Me.GridColumn45.Width = 201
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn46.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn46.Caption = "*"
+        Me.GridColumn46.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn46.FieldName = "is_check"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 0
+        Me.GridColumn46.Width = 61
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn47.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn47.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn47.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn47.Caption = "Qty"
+        Me.GridColumn47.DisplayFormat.FormatString = "N0"
+        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn47.FieldName = "qty"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 10
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn48.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn48.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn48.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn48.Caption = "Ship To"
+        Me.GridColumn48.FieldName = "shipping_name"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.OptionsColumn.AllowEdit = False
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 2
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn49.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn49.Caption = "Ship Address"
+        Me.GridColumn49.FieldName = "shipping_address"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 7
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn50.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn50.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn50.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn50.Caption = "City"
+        Me.GridColumn50.FieldName = "shipping_city"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 8
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn51.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn51.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn51.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn51.Caption = "Region"
+        Me.GridColumn51.FieldName = "shipping_region"
+        Me.GridColumn51.Name = "GridColumn51"
+        Me.GridColumn51.Visible = True
+        Me.GridColumn51.VisibleIndex = 9
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn52.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn52.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn52.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn52.Caption = "Code"
+        Me.GridColumn52.FieldName = "comp_number"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 5
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.BGenKoliRetReq)
+        Me.PanelControl5.Controls.Add(Me.SLECompRetReq)
+        Me.PanelControl5.Controls.Add(Me.LabelControl3)
+        Me.PanelControl5.Controls.Add(Me.BViewOutRetReq)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(1267, 47)
+        Me.PanelControl5.TabIndex = 2
+        '
+        'BGenKoliRetReq
+        '
+        Me.BGenKoliRetReq.Location = New System.Drawing.Point(301, 14)
+        Me.BGenKoliRetReq.Name = "BGenKoliRetReq"
+        Me.BGenKoliRetReq.Size = New System.Drawing.Size(102, 23)
+        Me.BGenKoliRetReq.TabIndex = 13
+        Me.BGenKoliRetReq.Text = "Generate to Kolie"
+        '
+        'SLECompRetReq
+        '
+        Me.SLECompRetReq.Location = New System.Drawing.Point(42, 16)
+        Me.SLECompRetReq.Name = "SLECompRetReq"
+        Me.SLECompRetReq.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECompRetReq.Properties.View = Me.GridView4
+        Me.SLECompRetReq.Size = New System.Drawing.Size(185, 20)
+        Me.SLECompRetReq.TabIndex = 12
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn38, Me.GridColumn39, Me.GridColumn40})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "ID Comp"
+        Me.GridColumn38.FieldName = "id_comp"
+        Me.GridColumn38.Name = "GridColumn38"
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Number"
+        Me.GridColumn39.FieldName = "comp_number"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 0
+        Me.GridColumn39.Width = 269
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Store"
+        Me.GridColumn40.FieldName = "comp_name"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 1
+        Me.GridColumn40.Width = 1363
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(10, 19)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl3.TabIndex = 10
+        Me.LabelControl3.Text = "Store"
+        '
+        'BViewOutRetReq
+        '
+        Me.BViewOutRetReq.Location = New System.Drawing.Point(233, 14)
+        Me.BViewOutRetReq.Name = "BViewOutRetReq"
+        Me.BViewOutRetReq.Size = New System.Drawing.Size(62, 23)
+        Me.BViewOutRetReq.TabIndex = 8
+        Me.BViewOutRetReq.Text = "view"
         '
         'XTPListOut
         '
@@ -2682,6 +2947,7 @@ Partial Class FormWHAWBill
         Me.SBReturnList.Size = New System.Drawing.Size(90, 35)
         Me.SBReturnList.TabIndex = 110
         Me.SBReturnList.Text = "Online Store " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Return List"
+        Me.SBReturnList.Visible = False
         '
         'BImportAwb
         '
@@ -2799,271 +3065,6 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
         '
-        'PanelControl5
-        '
-        Me.PanelControl5.Controls.Add(Me.BGenKoliRetReq)
-        Me.PanelControl5.Controls.Add(Me.SLECompRetReq)
-        Me.PanelControl5.Controls.Add(Me.LabelControl3)
-        Me.PanelControl5.Controls.Add(Me.BViewOutRetReq)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(1267, 47)
-        Me.PanelControl5.TabIndex = 2
-        '
-        'BGenKoliRetReq
-        '
-        Me.BGenKoliRetReq.Location = New System.Drawing.Point(301, 14)
-        Me.BGenKoliRetReq.Name = "BGenKoliRetReq"
-        Me.BGenKoliRetReq.Size = New System.Drawing.Size(102, 23)
-        Me.BGenKoliRetReq.TabIndex = 13
-        Me.BGenKoliRetReq.Text = "Generate to Kolie"
-        '
-        'SLECompRetReq
-        '
-        Me.SLECompRetReq.Location = New System.Drawing.Point(42, 16)
-        Me.SLECompRetReq.Name = "SLECompRetReq"
-        Me.SLECompRetReq.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLECompRetReq.Properties.View = Me.GridView4
-        Me.SLECompRetReq.Size = New System.Drawing.Size(185, 20)
-        Me.SLECompRetReq.TabIndex = 12
-        '
-        'GridView4
-        '
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn38, Me.GridColumn39, Me.GridColumn40})
-        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView4.Name = "GridView4"
-        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView4.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn38
-        '
-        Me.GridColumn38.Caption = "ID Comp"
-        Me.GridColumn38.FieldName = "id_comp"
-        Me.GridColumn38.Name = "GridColumn38"
-        '
-        'GridColumn39
-        '
-        Me.GridColumn39.Caption = "Number"
-        Me.GridColumn39.FieldName = "comp_number"
-        Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 0
-        Me.GridColumn39.Width = 269
-        '
-        'GridColumn40
-        '
-        Me.GridColumn40.Caption = "Store"
-        Me.GridColumn40.FieldName = "comp_name"
-        Me.GridColumn40.Name = "GridColumn40"
-        Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 1
-        Me.GridColumn40.Width = 1363
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(10, 19)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl3.TabIndex = 10
-        Me.LabelControl3.Text = "Store"
-        '
-        'BViewOutRetReq
-        '
-        Me.BViewOutRetReq.Location = New System.Drawing.Point(233, 14)
-        Me.BViewOutRetReq.Name = "BViewOutRetReq"
-        Me.BViewOutRetReq.Size = New System.Drawing.Size(62, 23)
-        Me.BViewOutRetReq.TabIndex = 8
-        Me.BViewOutRetReq.Text = "view"
-        '
-        'GCRet
-        '
-        Me.GCRet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRet.Location = New System.Drawing.Point(0, 47)
-        Me.GCRet.MainView = Me.GVRet
-        Me.GCRet.Name = "GCRet"
-        Me.GCRet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCRet.Size = New System.Drawing.Size(1267, 437)
-        Me.GCRet.TabIndex = 7
-        Me.GCRet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRet})
-        '
-        'GVRet
-        '
-        Me.GVRet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52})
-        Me.GVRet.GridControl = Me.GCRet
-        Me.GVRet.Name = "GVRet"
-        Me.GVRet.OptionsCustomization.AllowColumnMoving = False
-        Me.GVRet.OptionsCustomization.AllowColumnResizing = False
-        Me.GVRet.OptionsCustomization.AllowFilter = False
-        Me.GVRet.OptionsCustomization.AllowGroup = False
-        Me.GVRet.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVRet.OptionsCustomization.AllowRowSizing = True
-        Me.GVRet.OptionsCustomization.AllowSort = False
-        Me.GVRet.OptionsCustomization.CustomizationFormSearchBoxVisible = True
-        Me.GVRet.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn41
-        '
-        Me.GridColumn41.Caption = "ID Del"
-        Me.GridColumn41.FieldName = "id_ol_store_cust_ret"
-        Me.GridColumn41.Name = "GridColumn41"
-        '
-        'GridColumn42
-        '
-        Me.GridColumn42.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn42.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn42.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn42.Caption = "Number"
-        Me.GridColumn42.FieldName = "number"
-        Me.GridColumn42.Name = "GridColumn42"
-        Me.GridColumn42.OptionsColumn.AllowEdit = False
-        Me.GridColumn42.OptionsColumn.AllowFocus = False
-        Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 1
-        Me.GridColumn42.Width = 142
-        '
-        'GridColumn43
-        '
-        Me.GridColumn43.Caption = "Created Date"
-        Me.GridColumn43.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn43.FieldName = "created_date"
-        Me.GridColumn43.Name = "GridColumn43"
-        Me.GridColumn43.OptionsColumn.AllowEdit = False
-        Me.GridColumn43.OptionsColumn.AllowFocus = False
-        Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 3
-        Me.GridColumn43.Width = 119
-        '
-        'GridColumn44
-        '
-        Me.GridColumn44.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn44.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn44.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn44.Caption = "Order#"
-        Me.GridColumn44.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumn44.Name = "GridColumn44"
-        Me.GridColumn44.OptionsColumn.AllowEdit = False
-        Me.GridColumn44.OptionsColumn.AllowFocus = False
-        Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 4
-        Me.GridColumn44.Width = 83
-        '
-        'GridColumn45
-        '
-        Me.GridColumn45.Caption = "Store"
-        Me.GridColumn45.FieldName = "comp_name"
-        Me.GridColumn45.Name = "GridColumn45"
-        Me.GridColumn45.OptionsColumn.AllowEdit = False
-        Me.GridColumn45.OptionsColumn.AllowFocus = False
-        Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 6
-        Me.GridColumn45.Width = 201
-        '
-        'GridColumn46
-        '
-        Me.GridColumn46.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn46.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn46.Caption = "*"
-        Me.GridColumn46.ColumnEdit = Me.RepositoryItemCheckEdit2
-        Me.GridColumn46.FieldName = "is_check"
-        Me.GridColumn46.Name = "GridColumn46"
-        Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 0
-        Me.GridColumn46.Width = 61
-        '
-        'RepositoryItemCheckEdit2
-        '
-        Me.RepositoryItemCheckEdit2.AutoHeight = False
-        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
-        '
-        'GridColumn47
-        '
-        Me.GridColumn47.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn47.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn47.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn47.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn47.Caption = "Qty"
-        Me.GridColumn47.DisplayFormat.FormatString = "N0"
-        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn47.FieldName = "qty"
-        Me.GridColumn47.Name = "GridColumn47"
-        Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 10
-        '
-        'GridColumn48
-        '
-        Me.GridColumn48.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn48.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn48.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn48.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn48.Caption = "Ship To"
-        Me.GridColumn48.FieldName = "shipping_name"
-        Me.GridColumn48.Name = "GridColumn48"
-        Me.GridColumn48.OptionsColumn.AllowEdit = False
-        Me.GridColumn48.Visible = True
-        Me.GridColumn48.VisibleIndex = 2
-        '
-        'GridColumn49
-        '
-        Me.GridColumn49.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn49.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn49.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn49.Caption = "Ship Address"
-        Me.GridColumn49.FieldName = "shipping_address"
-        Me.GridColumn49.Name = "GridColumn49"
-        Me.GridColumn49.Visible = True
-        Me.GridColumn49.VisibleIndex = 7
-        '
-        'GridColumn50
-        '
-        Me.GridColumn50.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn50.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn50.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn50.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn50.Caption = "City"
-        Me.GridColumn50.FieldName = "shipping_city"
-        Me.GridColumn50.Name = "GridColumn50"
-        Me.GridColumn50.Visible = True
-        Me.GridColumn50.VisibleIndex = 8
-        '
-        'GridColumn51
-        '
-        Me.GridColumn51.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn51.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn51.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn51.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn51.Caption = "Region"
-        Me.GridColumn51.FieldName = "shipping_region"
-        Me.GridColumn51.Name = "GridColumn51"
-        Me.GridColumn51.Visible = True
-        Me.GridColumn51.VisibleIndex = 9
-        '
-        'GridColumn52
-        '
-        Me.GridColumn52.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn52.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn52.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn52.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn52.Caption = "Code"
-        Me.GridColumn52.FieldName = "comp_number"
-        Me.GridColumn52.Name = "GridColumn52"
-        Me.GridColumn52.Visible = True
-        Me.GridColumn52.VisibleIndex = 5
-        '
-        'BGenerateAWBRef
-        '
-        Me.BGenerateAWBRef.Location = New System.Drawing.Point(429, 14)
-        Me.BGenerateAWBRef.Name = "BGenerateAWBRef"
-        Me.BGenerateAWBRef.Size = New System.Drawing.Size(151, 23)
-        Me.BGenerateAWBRef.TabIndex = 15
-        Me.BGenerateAWBRef.Text = "Generate Kolie From AWB"
-        '
         'FormWHAWBill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3126,6 +3127,14 @@ Partial Class FormWHAWBill
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPRet.ResumeLayout(False)
+        CType(Me.GCRet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.SLECompRetReq.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPListOut.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
@@ -3153,14 +3162,6 @@ Partial Class FormWHAWBill
         CType(Me.DEInStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInNoEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInNoStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        Me.PanelControl5.PerformLayout()
-        CType(Me.SLECompRetReq.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCRet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVRet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
