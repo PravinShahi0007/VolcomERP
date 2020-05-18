@@ -314,7 +314,7 @@
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
         IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sz.code_detail_name AS `size`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
-        IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del.report_status AS `del_status`,
+        IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del.report_status AS `del_status`, awb_del.awbill_no,
         IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro.report_status AS `ro_status`,
         IFNULL(ret.id_sales_return,0) AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret.report_status AS `ret_status`,
         IFNULL(inv.id_sales_pos,0) AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv.report_status AS `inv_status`,
@@ -443,6 +443,18 @@
             WHERE c.id_report_status!=5
             GROUP BY rd.id_sales_order_det
         ) ret_cust ON ret_cust.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+            SELECT sod.id_sales_order_det,a.awbill_no 
+            FROM tb_wh_awbill a
+            INNER JOIN tb_wh_awbill_det ad ON ad.id_awbill = a.id_awbill
+            INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = ad.id_pl_sales_order_del
+            INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp AND c.id_commerce_type=2
+            WHERE so.id_report_status=6 
+            GROUP BY sod.id_sales_order_det
+        ) awb_del ON awb_del.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group

@@ -22,6 +22,7 @@ Partial Class FormOlStoreReturnList
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOlStoreReturnList))
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnRefund = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -72,7 +73,6 @@ Partial Class FormOlStoreReturnList
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReceived = New DevExpress.XtraTab.XtraTabPage()
-        Me.BtnRefund = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -113,6 +113,17 @@ Partial Class FormOlStoreReturnList
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1158, 46)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnRefund
+        '
+        Me.BtnRefund.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefund.Image = CType(resources.GetObject("BtnRefund.Image"), System.Drawing.Image)
+        Me.BtnRefund.Location = New System.Drawing.Point(1043, 2)
+        Me.BtnRefund.Name = "BtnRefund"
+        Me.BtnRefund.Size = New System.Drawing.Size(113, 42)
+        Me.BtnRefund.TabIndex = 6
+        Me.BtnRefund.Text = "Refund Process"
+        Me.BtnRefund.Visible = False
         '
         'LabelControl2
         '
@@ -531,16 +542,6 @@ Partial Class FormOlStoreReturnList
         Me.XTPReceived.Name = "XTPReceived"
         Me.XTPReceived.Size = New System.Drawing.Size(1158, 531)
         Me.XTPReceived.Text = "Received List"
-        '
-        'BtnRefund
-        '
-        Me.BtnRefund.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRefund.Image = CType(resources.GetObject("BtnRefund.Image"), System.Drawing.Image)
-        Me.BtnRefund.Location = New System.Drawing.Point(1043, 2)
-        Me.BtnRefund.Name = "BtnRefund"
-        Me.BtnRefund.Size = New System.Drawing.Size(113, 42)
-        Me.BtnRefund.TabIndex = 6
-        Me.BtnRefund.Text = "Refund Process"
         '
         'FormOlStoreReturnList
         '

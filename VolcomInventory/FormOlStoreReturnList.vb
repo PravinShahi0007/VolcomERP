@@ -16,6 +16,10 @@
         view_comp_group()
         view_order()
         viewRequest()
+
+        If id_role_login = get_setup_field("id_role_super_admin") Then
+            BtnRefund.Visible = True
+        End If
     End Sub
 
     Sub view_comp_group()
