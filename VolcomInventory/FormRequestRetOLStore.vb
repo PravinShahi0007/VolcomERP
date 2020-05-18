@@ -271,4 +271,30 @@
         FormRequestRetOLStoreSingle.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim report As ReportRequestRetOLStore = New ReportRequestRetOLStore
+
+        report.LabelNumber.Text = "NO. " + TxtNumber.Text
+
+        report.LabelStoreGroup.Text = SLECompGroup.Text
+        report.LabelOrderNumber.Text = TxtOrderNumber.Text
+        report.LabelReceivedByCustomer.Text = DERecByCust.Text
+        report.LabelRequestNumber.Text = TxtRetRequest.Text
+        report.LabelRequestDate.Text = DEReqDate.Text
+
+        report.LabelCreatedDate.Text = DECreated.Text
+        report.LabelStatus.Text = LEReportStatus.Text
+
+        report.LabelRemark.Text = MENote.Text
+
+        report.id = id
+        report.data = GCData.DataSource
+        report.id_pre = If(id_report_status = "6", "-1", "1")
+        report.report_mark_type = rmt
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreview()
+    End Sub
 End Class

@@ -7734,6 +7734,12 @@
     <Compile Include="ReportPurcReturn.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportRequestRetOLStore.Designer.vb">
+      <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRequestRetOLStore.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportRetOLStoreDet.Designer.vb">
       <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>
     </Compile>
@@ -12368,6 +12374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReturn.resx">
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRequestRetOLStore.resx">
+      <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRetOLStoreDet.resx">
       <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>
