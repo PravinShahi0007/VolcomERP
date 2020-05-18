@@ -76,8 +76,19 @@
 
         Dim cek_attachment As String = If(execute_query(query_attachment, 0, True, "", "", "", "") = "0", "Please add attachment", "")
 
+        'check pph
+        Dim cek_pph As String = ""
+
+        If TEPPH.EditValue > 0 Then
+            If SLEPPHAccount.EditValue.ToString = "0" Then
+                cek_pph = "Please add PPH Account"
+            End If
+        End If
+
         If Not cek_attachment = "" Then
             errorCustom(cek_attachment)
+        ElseIf Not cek_pph = "" Then
+            errorCustom(cek_pph)
         Else
             Dim confirm As DialogResult
 
