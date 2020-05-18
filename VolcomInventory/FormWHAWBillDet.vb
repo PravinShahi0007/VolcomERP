@@ -193,6 +193,33 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
                 GCDO.RefreshDataSource()
             Next
             '
+        ElseIf opt = "From DO AWB" Then
+            id_comp = FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "id_comp").ToString
+            TECompName.Text = FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "store_name").ToString
+            TECompCode.Text = FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "store_number").ToString
+            '
+            load_sub_dsitrict_filter(" WHERE ct.city='" & FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "shipping_city").ToString & "' ")
+            '
+            If FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "id_commerce_type").ToString = "2" Then
+                SLESubDistrict.Enabled = True
+            Else
+                SLESubDistrict.Enabled = False
+            End If
+            '
+            clear_do()
+            rate_table()
+
+            'masukkan DO
+            For i As Integer = 0 To FormWHAWBillReff.GVDOERP.RowCount - 1
+                Dim newRow As DataRow = (TryCast(GCDO.DataSource, DataTable)).NewRow()
+                newRow("id_pl_sales_order_del") = FormWHAWBillReff.GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                newRow("do_no") = FormWHAWBillReff.GVDOERP.GetRowCellValue(i, "do_no").ToString
+                newRow("qty") = FormWHAWBillReff.GVDOERP.GetRowCellValue(i, "qty")
+
+                TryCast(GCDO.DataSource, DataTable).Rows.Add(newRow)
+                GCDO.RefreshDataSource()
+            Next
+            '
         ElseIf opt = "From Return Customer" Then
             id_comp = FormWHAWBill.GVRet.GetRowCellValue(0, "id_comp").ToString
             TECompName.Text = FormWHAWBill.GVRet.GetRowCellValue(0, "comp_name").ToString
@@ -276,6 +303,12 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
     End Sub
 
     Private Sub FormWHAWBillDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Try
+            FormWHAWBillReff.Close()
+            FormWHAWBill.XTCOutbound.SelectedTabPageIndex = 3
+        Catch ex As Exception
+
+        End Try
         Dispose()
     End Sub
 

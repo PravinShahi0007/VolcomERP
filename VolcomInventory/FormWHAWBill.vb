@@ -1320,6 +1320,6 @@ ORDER BY a.id_sales_order DESC "
     End Sub
 
     Private Sub BGenerateAWBRef_Click(sender As Object, e As EventArgs) Handles BGenerateAWBRef.Click
-
+        FormWHAWBillReff.ShowDialog()
     End Sub
 End Class
