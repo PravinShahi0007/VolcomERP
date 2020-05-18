@@ -322,11 +322,12 @@
         IFNULL(rec_pay.id_rec_payment,0) AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
         prt.`id_pre_return`, prt.`pre_return_number`, prt.`pre_return_date`, prt.`pre_return_status`,
         ret_cust.`id_ret_cust`,ret_cust.`ret_cust_number`, ret_cust.`ret_cust_date`, ret_cust.`ret_cust_status`,
+        ret_request.`id_ret_request`, ret_request.`ret_request_awb`,ret_request.`ret_request_number`, ret_request.`ret_request_created_date`,ret_request.`ret_request_date`, ret_request.`ret_request_status`,
         '0' AS `report_mark_type`, 
         IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         IFNULL(stt_internal.`status`, '-') AS `ol_store_status_internal`, IFNULL(stt_internal.status_date, sales_order_ol_shop_date) AS `ol_store_date_internal`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
-        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`
+        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, cg.lead_time_return
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
         LEFT JOIN (
@@ -456,6 +457,24 @@
             WHERE so.id_report_status=6 
             GROUP BY sod.id_sales_order_det
         ) awb_del ON awb_del.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+            SELECT rd.id_sales_order_det, r.id_ol_store_ret_req AS `id_ret_request`, 
+            req.awbill_no_return AS `ret_request_awb`, r.ret_req_number AS `ret_request_number`, r.created_date AS `ret_request_created_date`,
+            stt.report_status AS `ret_request_status`, r.ret_req_date AS `ret_request_date`
+            FROM tb_ol_store_ret_req r
+            INNER JOIN tb_ol_store_ret_req_det rd ON rd.id_ol_store_ret_req = r.id_ol_store_ret_req
+            LEFT JOIN (
+	            SELECT r.id_ol_store_ret_req, a.awbill_no AS `awbill_no_return`
+               FROM tb_wh_awbill_det_in ad
+               INNER JOIN tb_wh_awbill a ON a.id_awbill = ad.id_awbill
+               INNER JOIN tb_ol_store_ret_req r ON r.id_ol_store_ret_req = ad.id_ol_store_ret_req
+               WHERE r.id_report_status=6
+               GROUP BY r.id_ol_store_ret_req
+            ) req ON req.id_ol_store_ret_req = r.id_ol_store_ret_req
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
+            WHERE r.id_report_status=6
+            GROUP BY rd.id_sales_order_det
+        ) ret_request ON ret_request.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
