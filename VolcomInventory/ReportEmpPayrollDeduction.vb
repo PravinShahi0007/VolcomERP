@@ -59,7 +59,7 @@
         'get column
         Dim query_column As String = "
             (
-                SELECT tb.id_salary_" + type + "_cat, tb.id_salary_" + type + ", tb.salary_" + type + "_cat, tb.salary_" + type + ", MAX(tb.total) AS total
+                SELECT tb.id_salary_" + type + "_cat, tb.id_salary_" + type + ", tb.salary_" + type + "_cat, tb.salary_" + type + ", MIN(tb.total) AS total
                 FROM (
                     SELECT sald.id_salary_" + type + "_cat, sald.id_salary_" + type + ", saldc.salary_" + type + "_cat, sald.salary_" + type + ", COUNT(sald.id_salary_" + type + ") AS total
                     FROM tb_emp_payroll_" + If(type = "adjustment", "adj", type) + " pyd
@@ -124,28 +124,28 @@
             Dim column As String() = Split(data_employee.Rows(i)("salary_" + type + "_c").ToString, ",")
             Dim value As String() = Split(data_employee.Rows(i)("salary_" + type + "_v").ToString, ",")
 
-            Dim first_column As String = ""
+            'Dim first_column As String = ""
 
             Dim k As Integer = 1
 
             Dim total As Integer = 0
 
             For j = 0 To column.Count - 1
-                If first_column = column(j).ToString Then
-                    k = k + 1
-                Else
-                    k = 1
-                End If
+                'If first_column = column(j).ToString Then
+                '    k = k + 1
+                'Else
+                '    k = 1
+                'End If
 
                 Dim row_column As String = column(j).ToString + " " + k.ToString
 
                 'add to row
-                row(row_column) = Convert.ToDecimal(value(j))
+                row(row_column) += Convert.ToDecimal(value(j))
 
                 'calculate total
                 total = total + Convert.ToDecimal(value(j))
 
-                first_column = column(j).ToString
+                'first_column = column(j).ToString
             Next
 
             'add total
