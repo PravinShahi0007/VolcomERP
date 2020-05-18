@@ -9,8 +9,14 @@
 
     Sub viewRequest()
         Cursor = Cursors.WaitCursor
+        'check in
+        Dim w_in As String = "0, "
+        For i = 0 To FormWHAWBillIn.GVDO.RowCount - 1
+            w_in += If(FormWHAWBillIn.GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString = "", "0", FormWHAWBillIn.GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString) + ", "
+        Next
+
         Dim r As New ClassRequestRetOLStore()
-        Dim query As String = r.queryMain(" AND r.id_report_status = 6", "2")
+        Dim query As String = r.queryMain(" AND r.id_report_status = 6 AND r.id_ol_store_ret_req NOT IN (" + w_in.Substring(0, w_in.Length - 2) + ") AND r.id_ol_store_ret_req NOT IN (SELECT IFNULL(id_ol_store_ret_req, 0) AS id_ol_store_ret_req FROM tb_wh_awbill_det_in) ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRequest.DataSource = data
         Cursor = Cursors.Default
@@ -46,5 +52,19 @@
         End If
 
         viewRequest()
+    End Sub
+
+    Private Sub GVRequest_DoubleClick(sender As Object, e As EventArgs) Handles GVRequest.DoubleClick
+        Dim newRow As DataRow = (TryCast(FormWHAWBillIn.GCDO.DataSource, DataTable)).NewRow()
+        newRow("id_wh_awb_det") = "0"
+        newRow("do_no") = GVRequest.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
+        newRow("qty") = GVRequest.GetFocusedRowCellValue("qty_fisik")
+        newRow("act_qty") = GVRequest.GetFocusedRowCellValue("qty_fisik")
+        newRow("id_ol_store_ret_req") = GVRequest.GetFocusedRowCellValue("id_ol_store_ret_req")
+        TryCast(FormWHAWBillIn.GCDO.DataSource, DataTable).Rows.Add(newRow)
+        FormWHAWBillIn.GCDO.RefreshDataSource()
+        FormWHAWBillIn.GVDO.RefreshData()
+
+        Close()
     End Sub
 End Class
