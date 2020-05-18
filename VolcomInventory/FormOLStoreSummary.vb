@@ -691,4 +691,16 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub RepoBtnDetailRetRequest_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnDetailRetRequest.ButtonClick
+        '246
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_ret_request").ToString > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.report_mark_type = "246"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_ret_request").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
