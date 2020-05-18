@@ -27,7 +27,7 @@
                 execute_non_query("CALL gen_number(" + id_cn + ", " + report_mark_type + ");", True, "", "", "", "")
                 'detail
                 Dim qd As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_ol_store_ret_list) 
-                SELECT '" + id_cn + "', p.id_product, id.id_design_price, id.design_price, id.sales_pos_det_qty*-1 AS sales_pos_det_qty,
+                SELECT '" + id_cn + "', p.id_product, id.id_design_price, id.design_price, IF((SUM(id.sales_pos_det_qty)-IFNULL(cn.jum_cn,0))<=0,0,-1)  AS qty,
                 id.id_design_price_retail, id.design_price_retail, 'OK' AS `note`, id.id_sales_pos_det AS `id_sales_pos_det_ref`, l.id_ol_store_ret_list
                 FROM tb_ol_store_ret_list l
                 INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
@@ -43,7 +43,16 @@
                 INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
                 INNER JOIN tb_m_design_price prc ON prc.id_design_price = id.id_design_price_retail
                 INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
-                WHERE l.id_ol_store_ret_stt=6 AND  r.sales_order_ol_shop_number='" + dcn.Rows(c)("order_number").ToString + "' AND i.id_sales_pos=" + dcn.Rows(c)("id_sales_pos").ToString + " ;
+                LEFT JOIN (
+	                SELECT spd.id_sales_pos_det_ref AS `id_sales_pos_det`, SUM(spd.sales_pos_det_qty)*-1 AS `jum_cn`
+	                FROM tb_sales_pos sp
+	                INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+	                WHERE sp.id_sales_pos_ref=" + dcn.Rows(c)("id_sales_pos").ToString + " AND sp.id_report_status!=5
+	                GROUP BY spd.id_sales_pos_det_ref
+                ) cn ON cn.id_sales_pos_det = id.id_sales_pos_det
+                WHERE l.id_ol_store_ret_stt=6 AND  r.sales_order_ol_shop_number='" + dcn.Rows(c)("order_number").ToString + "' AND i.id_sales_pos=" + dcn.Rows(c)("id_sales_pos").ToString + " 
+                GROUP BY id.id_sales_pos_det
+                HAVING qty=-1 ;
                 -- update total qty
                 UPDATE tb_sales_pos main
                 INNER JOIN (
@@ -63,30 +72,45 @@
                 'journal draft
                 Dim acc As New ClassAccounting()
                 acc.generateJournalSalesDraftWithMapping(id_cn, report_mark_type)
-                'complete
-                Dim stc_in As ClassSalesInv = New ClassSalesInv()
-                stc_in.completeInStock(id_cn, report_mark_type)
-                'update status
-                Dim qu As String = "-- update status di return center
-                UPDATE tb_ol_store_ret_list main
-                INNER JOIN (
-	                SELECT d.id_ol_store_ret_list 
-	                FROM tb_sales_pos_det d
-	                WHERE d.id_sales_pos=" + id_cn + "
-	                GROUP BY d.id_ol_store_ret_list
-                ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
-                SET main.id_ol_store_ret_stt=7;
-                INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
-                SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
-                FROM tb_sales_pos_det d
-                INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
-                INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
-                JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=7
-                WHERE d.id_sales_pos=" + id_cn + "
-                GROUP BY rd.id_sales_order_det;
-                -- update sttatus trans
-                UPDATE tb_sales_pos SET id_report_status=6 WHERE id_sales_pos=" + id_cn + ";"
-                execute_non_query(qu, True, "", "", "", "")
+                'cek detail jum
+                Dim id_stt As String = ""
+                Dim qjum As String = "SELECT id_sales_pos FROM tb_sales_pos_det WHERE id_sales_pos='" + id_cn + "' "
+                Dim djum As DataTable = execute_query(qjum, -1, True, "", "", "", "")
+                If djum.Rows.Count > 0 Then
+                    id_stt = "6"
+                Else
+                    id_stt = "5"
+                End If
+                If id_stt = "6" Then
+                    'complete
+                    Dim stc_in As ClassSalesInv = New ClassSalesInv()
+                    stc_in.completeInStock(id_cn, report_mark_type)
+                    'update status
+                    Dim qu As String = "-- update status di return center
+                    UPDATE tb_ol_store_ret_list main
+                    INNER JOIN (
+	                    SELECT d.id_ol_store_ret_list 
+	                    FROM tb_sales_pos_det d
+	                    WHERE d.id_sales_pos=" + id_cn + "
+	                    GROUP BY d.id_ol_store_ret_list
+                    ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                    SET main.id_ol_store_ret_stt=7;
+                    INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                    SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                    FROM tb_sales_pos_det d
+                    INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                    INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                    JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=7
+                    WHERE d.id_sales_pos=" + id_cn + "
+                    GROUP BY rd.id_sales_order_det;
+                    -- update sttatus trans
+                    UPDATE tb_sales_pos SET id_report_status=6 WHERE id_sales_pos=" + id_cn + ";"
+                    execute_non_query(qu, True, "", "", "", "")
+                Else
+                    'cancel
+                    Dim qu As String = "UPDATE tb_sales_pos SET id_report_status=5 WHERE id_sales_pos=" + id_cn + ";"
+                    execute_non_query(qu, True, "", "", "", "")
+                End If
             Next
         End If
     End Sub
