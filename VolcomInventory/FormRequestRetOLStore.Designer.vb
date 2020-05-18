@@ -67,10 +67,10 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnitem_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnol_store_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DERecByCust.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -579,6 +579,14 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnno.VisibleIndex = 0
         Me.GridColumnno.Width = 47
         '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 1
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
@@ -608,14 +616,6 @@ Partial Class FormRequestRetOLStore
         Me.BtnAdd.Size = New System.Drawing.Size(77, 39)
         Me.BtnAdd.TabIndex = 158
         Me.BtnAdd.Text = "Add"
-        '
-        'GridColumncode
-        '
-        Me.GridColumncode.Caption = "Code"
-        Me.GridColumncode.FieldName = "code"
-        Me.GridColumncode.Name = "GridColumncode"
-        Me.GridColumncode.Visible = True
-        Me.GridColumncode.VisibleIndex = 1
         '
         'FormRequestRetOLStore
         '
