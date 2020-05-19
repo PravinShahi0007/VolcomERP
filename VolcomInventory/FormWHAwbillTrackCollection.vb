@@ -69,4 +69,35 @@ WHERE 3n.id_comp='" & SLECargo.EditValue.ToString & "' AND 3n.track_no='" & addS
             End If
         End If
     End Sub
+
+    Private Sub TEScanGenerate_KeyDown(sender As Object, e As KeyEventArgs) Handles TEScanGenerate.KeyDown
+        If (e.KeyData = Keys.Enter) Then
+            Dim query As String = "SELECT 3n.`id_track_no`,3n.`track_no`,IF(3n.is_use=1,'Used','-') AS used,c.`comp_name`,3n.is_use
+FROM tb_3pl_track_no 3n
+INNER JOIN tb_m_comp c ON c.id_comp=3n.id_comp
+WHERE 3n.id_comp='" & id_vendor & "' AND 3n.track_no='" & addSlashes(TEScanGenerate.Text) & "'
+ORDER BY 3n.track_no DESC"
+            Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If dt.Rows.Count = 0 Then
+                warningCustom("AWB not found")
+            Else
+                If dt.Rows(0)("is_use").ToString = "1" Then
+                    warningCustom("AWB already used")
+                Else
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("AWB found and ready to use, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Cursor = Cursors.WaitCursor
+                        For i As Integer = 0 To FormWHAWBill.GVAWBill.RowCount - 1
+                            Dim q As String = "UPDATE tb_wh_awbill SET awbill_no='" & addSlashes(TEScanGenerate.Text) & "' WHERE id_awbill='" & FormWHAWBill.GVAWBill.GetRowCellValue(i, "id_awbill").ToString & "'"
+                            execute_non_query(q, True, "", "", "", "")
+                        Next
+                        FormWHAWBill.load_outbound()
+                        FormWHAWBill.GVAWBill.ActiveFilterString = ""
+                        Close()
+                        Cursor = Cursors.Default
+                    End If
+                End If
+            End If
+        End If
+    End Sub
 End Class
