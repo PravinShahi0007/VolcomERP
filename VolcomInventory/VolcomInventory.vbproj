@@ -2188,6 +2188,12 @@
     <Compile Include="FormInvoiceTracking.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvoiceTrackingBBK.Designer.vb">
+      <DependentUpon>FormInvoiceTrackingBBK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceTrackingBBK.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormInvoiceTrackingBBM.Designer.vb">
       <DependentUpon>FormInvoiceTrackingBBM.vb</DependentUpon>
     </Compile>
@@ -9136,6 +9142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceTracking.resx">
       <DependentUpon>FormInvoiceTracking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceTrackingBBK.resx">
+      <DependentUpon>FormInvoiceTrackingBBK.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceTrackingBBM.resx">
       <DependentUpon>FormInvoiceTrackingBBM.vb</DependentUpon>

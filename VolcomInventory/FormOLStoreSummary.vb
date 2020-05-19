@@ -493,7 +493,7 @@
 	            INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
                 INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
 	            WHERE bkd.report_mark_type=118 AND bk.id_report_status!=5
-	            ORDER BY bk.id_pn ASC
+	            ORDER BY bk.id_pn DESC
             ) bbk
             GROUP BY bbk.id_sales_order_det
         ) refund ON refund.id_sales_order_det = sod.id_sales_order_det
