@@ -323,6 +323,7 @@
         prt.`id_pre_return`, prt.`pre_return_number`, prt.`pre_return_date`, prt.`pre_return_status`,
         ret_cust.`id_ret_cust`,ret_cust.`ret_cust_number`, ret_cust.`ret_cust_date`, ret_cust.`ret_cust_status`,
         ret_request.`id_ret_request`, ret_request.`ret_request_awb`,ret_request.`ret_request_number`, ret_request.`ret_request_created_date`,ret_request.`ret_request_date`, ret_request.`ret_request_status`,
+        refund.`id_bbk`, refund.`bbk_number`, refund.`bbk_created_date`, refund.`bbk_status`,
         '0' AS `report_mark_type`, 
         IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         IFNULL(stt_internal.`status`, '-') AS `ol_store_status_internal`, IFNULL(stt_internal.status_date, sales_order_ol_shop_date) AS `ol_store_date_internal`,
@@ -479,6 +480,23 @@
             WHERE r.id_report_status=6
             GROUP BY rd.id_sales_order_det
         ) ret_request ON ret_request.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+            SELECT bbk.id_sales_order_det, bbk.id_pn AS `id_bbk`, bbk.number AS `bbk_number`, 
+            bbk.date_created AS `bbk_created_date`,  bbk.report_status AS `bbk_status`
+            FROM (
+	            SELECT dd.id_sales_order_det, bk.id_pn, bk.number, bk.date_created, stt.report_status
+	            FROM tb_pn bk
+	            INNER JOIN tb_pn_det bkd ON bkd.id_pn = bk.id_pn
+	            INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = bkd.id_report
+	            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+	            INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = spd.id_sales_pos_det_ref
+	            INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+                INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
+	            WHERE bkd.report_mark_type=118 AND bk.id_report_status!=5
+	            ORDER BY bk.id_pn ASC
+            ) bbk
+            GROUP BY bbk.id_sales_order_det
+        ) refund ON refund.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
@@ -703,6 +721,17 @@
             Dim m As New ClassShowPopUp()
             m.report_mark_type = "246"
             m.id_report = GVDetail.GetFocusedRowCellValue("id_ret_request").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnRefund_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnRefund.ButtonClick
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_bbk").ToString > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.report_mark_type = "159"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_bbk").ToString
             m.show()
             Cursor = Cursors.Default
         End If
