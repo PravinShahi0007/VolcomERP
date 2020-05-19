@@ -147,6 +147,7 @@ Partial Class FormWHAWBill
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEPickSOR = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -1326,7 +1327,7 @@ Partial Class FormWHAWBill
         Me.XTCOutbound.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCOutbound.Location = New System.Drawing.Point(0, 0)
         Me.XTCOutbound.Name = "XTCOutbound"
-        Me.XTCOutbound.SelectedTabPage = Me.XTPDO
+        Me.XTCOutbound.SelectedTabPage = Me.XTPListOut
         Me.XTCOutbound.Size = New System.Drawing.Size(1273, 512)
         Me.XTCOutbound.TabIndex = 113
         Me.XTCOutbound.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrder, Me.XTPDO, Me.XTPRet, Me.XTPListOut})
@@ -1562,7 +1563,7 @@ Partial Class FormWHAWBill
         '
         'GVSalesOrder
         '
-        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTotalOrder, Me.GridColumnOLStoreOrder, Me.GridColumn30, Me.GridColumn31})
+        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTotalOrder, Me.GridColumnOLStoreOrder, Me.GridColumn30, Me.GridColumn31, Me.GridColumn53})
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumnTotalOrder, "{0:n0}")})
         Me.GVSalesOrder.Name = "GVSalesOrder"
@@ -1578,7 +1579,7 @@ Partial Class FormWHAWBill
         Me.GridColumnSalesTargetNumb.OptionsColumn.ReadOnly = True
         Me.GridColumnSalesTargetNumb.Visible = True
         Me.GridColumnSalesTargetNumb.VisibleIndex = 1
-        Me.GridColumnSalesTargetNumb.Width = 334
+        Me.GridColumnSalesTargetNumb.Width = 244
         '
         'GridColumnTotalOrder
         '
@@ -1591,7 +1592,7 @@ Partial Class FormWHAWBill
         Me.GridColumnTotalOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:n0}")})
         Me.GridColumnTotalOrder.Visible = True
         Me.GridColumnTotalOrder.VisibleIndex = 3
-        Me.GridColumnTotalOrder.Width = 313
+        Me.GridColumnTotalOrder.Width = 229
         '
         'GridColumnOLStoreOrder
         '
@@ -1601,7 +1602,7 @@ Partial Class FormWHAWBill
         Me.GridColumnOLStoreOrder.OptionsColumn.ReadOnly = True
         Me.GridColumnOLStoreOrder.Visible = True
         Me.GridColumnOLStoreOrder.VisibleIndex = 2
-        Me.GridColumnOLStoreOrder.Width = 368
+        Me.GridColumnOLStoreOrder.Width = 269
         '
         'GridColumn30
         '
@@ -1615,7 +1616,7 @@ Partial Class FormWHAWBill
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 0
-        Me.GridColumn30.Width = 192
+        Me.GridColumn30.Width = 140
         '
         'RICEPickSOR
         '
@@ -1632,7 +1633,20 @@ Partial Class FormWHAWBill
         Me.GridColumn31.OptionsColumn.ReadOnly = True
         Me.GridColumn31.Visible = True
         Me.GridColumn31.VisibleIndex = 4
-        Me.GridColumn31.Width = 425
+        Me.GridColumn31.Width = 241
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn53.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn53.Caption = "DO Created"
+        Me.GridColumn53.FieldName = "jml_del"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 5
+        Me.GridColumn53.Width = 126
         '
         'RepositoryItemProgressBar1
         '
@@ -3438,4 +3452,5 @@ Partial Class FormWHAWBill
     Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGenerateAWBRef As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -1062,7 +1062,7 @@ a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) A
 ('No') AS `is_select`, cat.id_so_status, cat.so_status, ot.order_type, del_cat.id_so_cat, del_cat.so_cat, 
  IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,
 a.id_so_type,prep.id_user, prep.prepared_date, gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, 
-eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name , SUM(so_item.sales_order_det_qty) AS tot_so,SUM(so_item.grams)/1000 AS tot_weight
+eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name,count(del.id_pl_sales_order_del) AS jml_del, SUM(so_item.sales_order_det_qty) AS tot_so,SUM(so_item.grams)/1000 AS tot_weight
 FROM tb_sales_order a 
 INNER JOIN tb_sales_order_det so_item ON so_item.id_sales_order = a.id_sales_order  
 INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
@@ -1078,6 +1078,7 @@ LEFT JOIN(
 	SELECT a.id_report, a.id_user, a.report_mark_datetime AS `prepared_date` 
 	FROM tb_report_mark a WHERE a.report_mark_type ='39' AND a.id_report_status='1' GROUP BY a.id_report 
 ) prep ON prep.id_report = a.id_sales_order 
+LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order=a.id_sales_order AND del.id_report_status=6
 LEFT JOIN tb_fg_so_reff an ON an.id_fg_so_reff = a.id_fg_so_reff 
 LEFT JOIN tb_lookup_pd_alloc alloc ON alloc.id_pd_alloc = d.id_pd_alloc 
 LEFT JOIN tb_lookup_so_cat del_cat ON del_cat.id_so_cat = alloc.id_so_cat 

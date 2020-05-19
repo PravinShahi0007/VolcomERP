@@ -33,10 +33,11 @@ Partial Class FormWHAWBillReff
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEAWBReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +56,7 @@ Partial Class FormWHAWBillReff
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(714, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(857, 42)
         Me.PanelControl1.TabIndex = 0
         '
         'BLoad
@@ -87,14 +88,14 @@ Partial Class FormWHAWBillReff
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 341)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(714, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(857, 42)
         Me.PanelControl2.TabIndex = 1
         '
         'BPick
         '
         Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPick.Image = CType(resources.GetObject("BPick.Image"), System.Drawing.Image)
-        Me.BPick.Location = New System.Drawing.Point(615, 2)
+        Me.BPick.Location = New System.Drawing.Point(758, 2)
         Me.BPick.Name = "BPick"
         Me.BPick.Size = New System.Drawing.Size(97, 38)
         Me.BPick.TabIndex = 3
@@ -107,13 +108,13 @@ Partial Class FormWHAWBillReff
         Me.GCDOERP.MainView = Me.GVDOERP
         Me.GCDOERP.Name = "GCDOERP"
         Me.GCDOERP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCDOERP.Size = New System.Drawing.Size(714, 299)
+        Me.GCDOERP.Size = New System.Drawing.Size(857, 299)
         Me.GCDOERP.TabIndex = 4
         Me.GCDOERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDOERP})
         '
         'GVDOERP
         '
-        Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumnIdDel, Me.GridColumncombine_number, Me.GridColumnreport_status})
+        Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumnIdDel, Me.GridColumncombine_number, Me.GridColumnreport_status, Me.GridColumn1})
         Me.GVDOERP.GridControl = Me.GCDOERP
         Me.GVDOERP.Name = "GVDOERP"
         Me.GVDOERP.OptionsCustomization.AllowColumnMoving = False
@@ -183,13 +184,6 @@ Partial Class FormWHAWBillReff
         Me.GridColumn11.VisibleIndex = 5
         Me.GridColumn11.Width = 86
         '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
         'GridColumnIdDel
         '
         Me.GridColumnIdDel.Caption = "ID Del"
@@ -207,17 +201,32 @@ Partial Class FormWHAWBillReff
         '
         'GridColumnreport_status
         '
-        Me.GridColumnreport_status.Caption = "Status"
-        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Caption = "Status Export"
+        Me.GridColumnreport_status.FieldName = "is_export_awb"
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 6
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Collie Number"
+        Me.GridColumn1.FieldName = "collie_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 7
         '
         'FormWHAWBillReff
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(714, 383)
+        Me.ClientSize = New System.Drawing.Size(857, 383)
         Me.Controls.Add(Me.GCDOERP)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -257,4 +266,5 @@ Partial Class FormWHAWBillReff
     Friend WithEvents TEAWBReff As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
