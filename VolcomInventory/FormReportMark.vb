@@ -5937,7 +5937,7 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     For i As Integer = 0 To dt.Rows.Count - 1
                         If dt.Rows(i)("report_mark_type").ToString = "118" Then 'payment
                             Dim qc As String = "UPDATE tb_sales_pos 
-                                                SET is_close_rec_payment='2'
+                                                SET is_close_rec_payment='1'
                                                 WHERE id_sales_pos='" & dt.Rows(i)("id_report").ToString & "'"
                             execute_non_query(qc, True, "", "", "", "")
                         End If
