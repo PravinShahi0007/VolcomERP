@@ -1190,7 +1190,7 @@ Partial Class FormWHAWBill
         Me.BAWBRec.Name = "BAWBRec"
         Me.BAWBRec.Size = New System.Drawing.Size(107, 23)
         Me.BAWBRec.TabIndex = 108
-        Me.BAWBRec.Text = "Import AWB Data"
+        Me.BAWBRec.Text = "Import AWB Invoice"
         '
         'TENoStart
         '

@@ -153,7 +153,7 @@
                 gridBandDO.Visible = True
                 query = "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,do.do_no, NULL AS `do_no_combine`,do.qty, 0 AS `amount`,do.reff, do.scan_date, grp.id_comp_group,grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
-                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
+                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,comp_store.id_commerce_type,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff, ('') AS `rmk`, ('') AS `no`"
@@ -179,7 +179,7 @@
                 query += " UNION ALL "
                 query += "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,awbd.do_no, doc.combine_number AS `do_no_combine`,awbd.qty,  dod.amount, UPPER(sos.so_status) AS `reff`,do.pl_sales_order_del_date AS `scan_date`, grp.id_comp_group, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
-                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
+                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,comp_store.id_commerce_type,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff, ('') AS `rmk`, ('') AS `no`"
@@ -212,7 +212,7 @@
                 query += " UNION ALL 
                             SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,awbd.do_no, '' AS `do_no_combine`,awbd.qty,  dod.amount, 'Return Customer' AS `reff`,do.created_date AS `scan_date`, grp.id_comp_group, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
                             DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,
-                            DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,
+                            DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,comp_store.id_commerce_type,
                             (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,
                             (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,
                             (awb.c_weight-awb.a_weight) AS weight_diff,(awb.c_tot_price-awb.a_tot_price) AS amount_diff, ('') AS `rmk`, ('') AS `no`
@@ -244,7 +244,7 @@
                 gridBandDO.Visible = False
                 query = "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
-                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
+                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,comp_store.id_commerce_type,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff,('') AS `no`,2 as penanda"
@@ -990,7 +990,7 @@ WHERE CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) IN (" + q_in.
 
                 If confirm = DialogResult.Yes Then
                     Dim query As String = "
-                        SELECT so.shipping_name, IF(so.shipping_address1='' OR isnull(so.shipping_address1),so.shipping_address,CONCAT(so.shipping_address1, ' ', so.shipping_address2)) AS shipping_address, so.shipping_city, so.shipping_post_code, so.shipping_region, so.shipping_phone, 1 AS qty, SUM(sod.grams * sod.sales_order_det_qty) AS c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
+                        SELECT so.shipping_name, IF(so.shipping_address1='' OR isnull(so.shipping_address1),so.shipping_address,CONCAT(so.shipping_address1, ' ', so.shipping_address2)) AS shipping_address, so.shipping_city, so.shipping_post_code, so.shipping_region, so.shipping_phone, 1 AS qty, IF(SUM(sod.grams * sod.sales_order_det_qty)<1,1,SUM(sod.grams * sod.sales_order_det_qty)) AS c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
                         FROM tb_sales_order so
                         INNER JOIN tb_sales_order_det sod ON so.id_sales_order = sod.id_sales_order
                         INNER JOIN tb_opt AS opt 
@@ -1174,41 +1174,47 @@ ORDER BY a.id_sales_order DESC "
                 Dim total_not_imported As Integer = 0
 
                 For i = 2 To dt.Rows.Count - 1
-                    Try
-                        Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
-                        Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
 
-                        '
-                        Dim already_awb As String = execute_query("SELECT COUNT(*) AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+                    Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
+                    Dim comp_group_desc As String = dt.Rows(i)(1).ToString.Split("#")(0)
+                    Dim ol_shop_order As String = dt.Rows(i)(1).ToString.Split("#")(1)
 
-                        If Not already_awb = "0" Then
-                            '
-                            Dim select_awbill_no As String = execute_query("SELECT awbill_no AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
-
-                            If select_awbill_no = "" Then
+                    '
+                    Dim q As String = "SELECT awb.`id_awbill`
+FROM tb_wh_awbill awb
+INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
+INNER JOIN tb_pl_sales_order_del del ON del.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del`
+INNER JOIN tb_sales_order so ON so.id_sales_order=del.`id_sales_order`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
+WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_number`='" & ol_shop_order & "'"
+                    Dim dt_awb As DataTable = execute_query(q, -1, True, "", "", "", "")
+                    If dt_awb.Rows.Count = 0 Then
+                        total_not_imported = total_not_imported + 1
+                    Else
+                        For j As Integer = 0 To dt_awb.Rows.Count - 1
+                            Dim id_awbill As String = dt_awb.Rows(j)("id_awbill").ToString
+                            If dt_awb.Rows(j)("awbill_no").ToString = "" Then
                                 'update
                                 Dim que As String = "UPDATE tb_wh_awbill SET awbill_no = '" + awbill_no + "' WHERE id_awbill = '" + id_awbill + "'"
 
                                 execute_non_query(que, True, "", "", "", "")
-
                                 total_imported = total_imported + 1
                             Else
                                 total_already_imported = total_already_imported + 1
                             End If
-                        Else
-                            total_not_imported = total_not_imported + 1
-                        End If
-                    Catch ex As Exception
-                    End Try
+                        Next
+                    End If
                 Next
 
                 MyConnection.Close()
 
                 My.Computer.FileSystem.DeleteFile(awb_tmp)
 
-                Dim msg As String = total_imported.ToString + " data successfully imported."
-                msg += Environment.NewLine + total_already_imported.ToString + " data already imported."
-                msg += Environment.NewLine + total_not_imported.ToString + " data failed to imported."
+                Dim msg As String = total_imported.ToString + " kolie AWB number successfully update."
+                msg += Environment.NewLine + total_already_imported.ToString + " kolie already updated."
+                msg += Environment.NewLine + total_not_imported.ToString + " AWB data failed to imported."
 
                 infoCustom(msg)
             End If
@@ -1321,5 +1327,28 @@ ORDER BY a.id_sales_order DESC "
 
     Private Sub BGenerateAWBRef_Click(sender As Object, e As EventArgs) Handles BGenerateAWBRef.Click
         FormWHAWBillReff.ShowDialog()
+    End Sub
+
+    Private Sub BBAwbCollection_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBAwbCollection.ItemClick
+        GVAWBill.ActiveFilterString = "[is_check] = 'yes'"
+        'checking
+        Dim problem As Boolean = False
+        For i As Integer = 0 To GVAWBill.RowCount - 1
+            If Not GVAWBill.GetRowCellValue(i, "id_store").ToString = GVAWBill.GetRowCellValue(0, "id_store").ToString Then
+                warningCustom("Different shipping location, please generate separate AWB")
+                problem = True
+                Exit For
+            ElseIf GVAWBill.GetRowCellValue(i, "id_commerce_type").ToString = "2" Then
+                warningCustom("Online shop cannot use AWB collection.")
+                problem = True
+                Exit For
+            End If
+        Next
+
+        If Not problem Then
+
+        Else
+            GVAWBill.ActiveFilterString = ""
+        End If
     End Sub
 End Class

@@ -21,6 +21,8 @@ Partial Class FormWHAwbillTrackCollection
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormWHAwbillTrackCollection))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TECodeScan = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.Bimport = New DevExpress.XtraEditors.SimpleButton()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -35,16 +37,25 @@ Partial Class FormWHAwbillTrackCollection
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCAWBCollection = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPAWBCollection = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPPickAWB = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TECodeScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCAWBCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCAWBCollection.SuspendLayout()
+        Me.XTPAWBCollection.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TECodeScan)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.Bimport)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -52,18 +63,34 @@ Partial Class FormWHAwbillTrackCollection
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(961, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(955, 41)
         Me.PanelControl1.TabIndex = 0
+        '
+        'TECodeScan
+        '
+        Me.TECodeScan.Location = New System.Drawing.Point(403, 9)
+        Me.TECodeScan.Name = "TECodeScan"
+        Me.TECodeScan.Size = New System.Drawing.Size(195, 20)
+        Me.TECodeScan.TabIndex = 15
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(311, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(86, 13)
+        Me.LabelControl2.TabIndex = 14
+        Me.LabelControl2.Text = "Scan to collection "
         '
         'Bimport
         '
         Me.Bimport.Dock = System.Windows.Forms.DockStyle.Right
         Me.Bimport.Image = CType(resources.GetObject("Bimport.Image"), System.Drawing.Image)
-        Me.Bimport.Location = New System.Drawing.Point(816, 2)
+        Me.Bimport.Location = New System.Drawing.Point(810, 2)
         Me.Bimport.Name = "Bimport"
         Me.Bimport.Size = New System.Drawing.Size(143, 37)
         Me.Bimport.TabIndex = 13
         Me.Bimport.Text = "Import Collection"
+        Me.Bimport.Visible = False
         '
         'BView
         '
@@ -122,7 +149,7 @@ Partial Class FormWHAwbillTrackCollection
         Me.GCCollection.Location = New System.Drawing.Point(0, 41)
         Me.GCCollection.MainView = Me.GVCollection
         Me.GCCollection.Name = "GCCollection"
-        Me.GCCollection.Size = New System.Drawing.Size(961, 465)
+        Me.GCCollection.Size = New System.Drawing.Size(955, 437)
         Me.GCCollection.TabIndex = 1
         Me.GCCollection.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCollection})
         '
@@ -169,13 +196,37 @@ Partial Class FormWHAwbillTrackCollection
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
         '
+        'XTCAWBCollection
+        '
+        Me.XTCAWBCollection.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCAWBCollection.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCAWBCollection.Location = New System.Drawing.Point(0, 0)
+        Me.XTCAWBCollection.Name = "XTCAWBCollection"
+        Me.XTCAWBCollection.SelectedTabPage = Me.XTPAWBCollection
+        Me.XTCAWBCollection.Size = New System.Drawing.Size(961, 506)
+        Me.XTCAWBCollection.TabIndex = 2
+        Me.XTCAWBCollection.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPAWBCollection, Me.XTPPickAWB})
+        '
+        'XTPAWBCollection
+        '
+        Me.XTPAWBCollection.Controls.Add(Me.GCCollection)
+        Me.XTPAWBCollection.Controls.Add(Me.PanelControl1)
+        Me.XTPAWBCollection.Name = "XTPAWBCollection"
+        Me.XTPAWBCollection.Size = New System.Drawing.Size(955, 478)
+        Me.XTPAWBCollection.Text = "Collection"
+        '
+        'XTPPickAWB
+        '
+        Me.XTPPickAWB.Name = "XTPPickAWB"
+        Me.XTPPickAWB.Size = New System.Drawing.Size(955, 478)
+        Me.XTPPickAWB.Text = "Pick AWB"
+        '
         'FormWHAwbillTrackCollection
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(961, 506)
-        Me.Controls.Add(Me.GCCollection)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.XTCAWBCollection)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormWHAwbillTrackCollection"
@@ -185,10 +236,14 @@ Partial Class FormWHAwbillTrackCollection
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TECodeScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCAWBCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCAWBCollection.ResumeLayout(False)
+        Me.XTPAWBCollection.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -208,4 +263,9 @@ Partial Class FormWHAwbillTrackCollection
     Friend WithEvents GridColumnRange As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Bimport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TECodeScan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTCAWBCollection As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPAWBCollection As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPPickAWB As DevExpress.XtraTab.XtraTabPage
 End Class
