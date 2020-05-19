@@ -312,7 +312,7 @@ Public Class FormSalesReturnDet
                 dt_cust.Clear()
             Catch ex As Exception
             End Try
-            Dim qry As String = "SELECT sod.item_id, sod.ol_store_id, CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `full_code`
+            Dim qry As String = "SELECT sod.item_id, sod.ol_store_id, CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `full_code`, '2' AS `is_used`
             FROM tb_sales_return_order_det rod
             INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det
             INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
@@ -734,6 +734,14 @@ Public Class FormSalesReturnDet
                 tot = GVItemList.GetFocusedRowCellValue("sales_return_det_qty") + 1
             ElseIf action_scan_btn = "delete" Then
                 tot = GVItemList.GetFocusedRowCellValue("sales_return_det_qty") - 1
+            End If
+
+            'update dt
+            Dim dtf As DataRow() = dt_cust.Select("[ol_store_id]='" + ol_store_id_param + "' AND [item_id]='" + item_id_param + "' ")
+            If action_scan_btn = "start" Then
+                dtf(0)("is_used") = "1"
+            ElseIf action_scan_btn = "delete" Then
+                dtf(0)("is_used") = "2"
             End If
 
 
@@ -1719,12 +1727,15 @@ Public Class FormSalesReturnDet
 
             'check unik code custormer - ol store
             If id_ret_type = "4" Then
-                Dim dt_cust_filter As DataRow() = dt_cust.Select("[full_code]='" + code_check + "' ")
+                Dim condition_str As String = "[full_code]='" + code_check + "' AND [is_used]='2' "
+                Dim dt_cust_filter As DataRow() = dt_cust.Select(condition_str)
                 If dt_cust_filter.Length > 0 Then
                     ol_store_id = dt_cust_filter(0)("ol_store_id").ToString
                     item_id = dt_cust_filter(0)("item_id").ToString
                 End If
+                Console.WriteLine(condition_str)
             End If
+
 
             'get jum del & limit
             If id_commerce_type = "2" Then 'online store

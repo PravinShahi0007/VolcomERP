@@ -463,14 +463,18 @@
             stt.report_status AS `ret_request_status`, r.ret_req_date AS `ret_request_date`
             FROM tb_ol_store_ret_req r
             INNER JOIN tb_ol_store_ret_req_det rd ON rd.id_ol_store_ret_req = r.id_ol_store_ret_req
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det  = rd.id_sales_order_det
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
             LEFT JOIN (
-	            SELECT r.id_ol_store_ret_req, a.awbill_no AS `awbill_no_return`
+	           SELECT r.id_ol_store_ret_req, a.awbill_no AS `awbill_no_return`, a.id_store
                FROM tb_wh_awbill_det_in ad
                INNER JOIN tb_wh_awbill a ON a.id_awbill = ad.id_awbill
                INNER JOIN tb_ol_store_ret_req r ON r.id_ol_store_ret_req = ad.id_ol_store_ret_req
                WHERE r.id_report_status=6
-               GROUP BY r.id_ol_store_ret_req
-            ) req ON req.id_ol_store_ret_req = r.id_ol_store_ret_req
+               GROUP BY r.id_ol_store_ret_req, a.id_store
+            ) req ON req.id_ol_store_ret_req = r.id_ol_store_ret_req AND req.id_store=c.id_comp
             INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
             WHERE r.id_report_status=6
             GROUP BY rd.id_sales_order_det
