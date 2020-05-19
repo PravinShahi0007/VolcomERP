@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormWHAwbillTrackCollection
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormWHAwbillTrackCollection
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormWHAwbillTrackCollection))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -40,6 +40,16 @@ Partial Class FormWHAwbillTrackCollection
         Me.XTCAWBCollection = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPAWBCollection = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPickAWB = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEScanGenerate = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCVendorCollection = New DevExpress.XtraGrid.GridControl()
+        Me.GVVendorCollection = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TECodeScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +60,12 @@ Partial Class FormWHAwbillTrackCollection
         CType(Me.XTCAWBCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAWBCollection.SuspendLayout()
         Me.XTPAWBCollection.SuspendLayout()
+        Me.XTPPickAWB.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.TEScanGenerate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCVendorCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVVendorCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -217,9 +233,89 @@ Partial Class FormWHAwbillTrackCollection
         '
         'XTPPickAWB
         '
+        Me.XTPPickAWB.Controls.Add(Me.GCVendorCollection)
+        Me.XTPPickAWB.Controls.Add(Me.PanelControl2)
         Me.XTPPickAWB.Name = "XTPPickAWB"
         Me.XTPPickAWB.Size = New System.Drawing.Size(955, 478)
         Me.XTPPickAWB.Text = "Pick AWB"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.TEScanGenerate)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(955, 41)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'TEScanGenerate
+        '
+        Me.TEScanGenerate.Location = New System.Drawing.Point(126, 11)
+        Me.TEScanGenerate.Name = "TEScanGenerate"
+        Me.TEScanGenerate.Size = New System.Drawing.Size(375, 20)
+        Me.TEScanGenerate.TabIndex = 15
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(109, 13)
+        Me.LabelControl3.TabIndex = 14
+        Me.LabelControl3.Text = "Scan to generate AWB"
+        '
+        'GCVendorCollection
+        '
+        Me.GCVendorCollection.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCVendorCollection.Location = New System.Drawing.Point(0, 41)
+        Me.GCVendorCollection.MainView = Me.GVVendorCollection
+        Me.GCVendorCollection.Name = "GCVendorCollection"
+        Me.GCVendorCollection.Size = New System.Drawing.Size(955, 437)
+        Me.GCVendorCollection.TabIndex = 2
+        Me.GCVendorCollection.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVendorCollection})
+        '
+        'GVVendorCollection
+        '
+        Me.GVVendorCollection.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GVVendorCollection.GridControl = Me.GCVendorCollection
+        Me.GVVendorCollection.Name = "GVVendorCollection"
+        Me.GVVendorCollection.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID "
+        Me.GridColumn8.FieldName = "id_track_no"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "IS Use"
+        Me.GridColumn9.FieldName = "is_use"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Vendor"
+        Me.GridColumn10.FieldName = "comp_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Tracking Number"
+        Me.GridColumn11.FieldName = "track_no"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 1
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Status"
+        Me.GridColumn12.FieldName = "used"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
         '
         'FormWHAwbillTrackCollection
         '
@@ -244,6 +340,13 @@ Partial Class FormWHAwbillTrackCollection
         CType(Me.XTCAWBCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCAWBCollection.ResumeLayout(False)
         Me.XTPAWBCollection.ResumeLayout(False)
+        Me.XTPPickAWB.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.TEScanGenerate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCVendorCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVVendorCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -268,4 +371,14 @@ Partial Class FormWHAwbillTrackCollection
     Friend WithEvents XTCAWBCollection As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPAWBCollection As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPPickAWB As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCVendorCollection As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVVendorCollection As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEScanGenerate As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -1,5 +1,6 @@
 ﻿Public Class FormWHAwbillTrackCollection
     Public is_pick As Boolean = False
+    Public id_vendor As String = ""
     Private Sub FormWHAwbillTrackCollection_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -9,6 +10,17 @@
         If is_pick Then
             XTPAWBCollection.PageVisible = False
             XTPPickAWB.PageVisible = True
+            '
+            Dim query As String = "SELECT 3n.`id_track_no`,3n.`track_no`,IF(3n.is_use=1,'Used','-') AS used,c.`comp_name`
+FROM tb_3pl_track_no 3n
+INNER JOIN tb_m_comp c ON c.id_comp=3n.id_comp
+WHERE 3n.id_comp='" & id_vendor & "'
+ORDER BY 3n.track_no DESC"
+            Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCVendorCollection.DataSource = dt
+            GVVendorCollection.BestFitColumns()
+            '
+            TEScanGenerate.Focus()
         Else
             XTPAWBCollection.PageVisible = True
             XTPPickAWB.PageVisible = False

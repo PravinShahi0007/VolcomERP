@@ -1238,7 +1238,7 @@ WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_num
         LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
         LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
-        WHERE (d.id_report_status=3 OR d.id_report_status=6) AND so.is_export_awb=2  AND ISNULL(awb.id_awbill) " & q_where & "
+        WHERE (d.id_report_status=6) AND so.is_export_awb=2  AND ISNULL(awb.id_awbill) " & q_where & "
         GROUP BY d.id_pl_sales_order_del "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDOERP.DataSource = data
@@ -1338,6 +1338,14 @@ WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_num
                 warningCustom("Different shipping location, please generate separate AWB")
                 problem = True
                 Exit For
+            ElseIf Not GVAWBill.GetRowCellValue(i, "id_cargo").ToString = GVAWBill.GetRowCellValue(0, "id_cargo").ToString Then
+                warningCustom("Different shipping vendor, please generate separate AWB")
+                problem = True
+                Exit For
+            ElseIf Not GVAWBill.GetRowCellValue(i, "awbill_no").ToString = "" Then
+                warningCustom("Some collie already have AWB")
+                problem = True
+                Exit For
             ElseIf GVAWBill.GetRowCellValue(i, "id_commerce_type").ToString = "2" Then
                 warningCustom("Online shop cannot use AWB collection.")
                 problem = True
@@ -1346,7 +1354,9 @@ WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_num
         Next
 
         If Not problem Then
-
+            FormWHAwbillTrackCollection.id_vendor = GVAWBill.GetRowCellValue(0, "id_cargo").ToString
+            FormWHAwbillTrackCollection.is_pick = True
+            FormWHAwbillTrackCollection.ShowDialog()
         Else
             GVAWBill.ActiveFilterString = ""
         End If
