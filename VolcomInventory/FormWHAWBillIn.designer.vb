@@ -61,6 +61,7 @@ Partial Class FormWHAWBillIn
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
+        Me.BBrowseReference = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDO = New DevExpress.XtraGrid.GridControl()
         Me.GVDO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -114,6 +115,7 @@ Partial Class FormWHAWBillIn
         Me.TEPriceVolcom = New DevExpress.XtraEditors.TextEdit()
         Me.TEVolumeVolc = New DevExpress.XtraEditors.TextEdit()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -605,6 +607,7 @@ Partial Class FormWHAWBillIn
         '
         'XTPInvoice
         '
+        Me.XTPInvoice.Controls.Add(Me.BBrowseReference)
         Me.XTPInvoice.Controls.Add(Me.GCDO)
         Me.XTPInvoice.Controls.Add(Me.Label22)
         Me.XTPInvoice.Controls.Add(Me.TEAWBNo)
@@ -615,6 +618,14 @@ Partial Class FormWHAWBillIn
         Me.XTPInvoice.Name = "XTPInvoice"
         Me.XTPInvoice.Size = New System.Drawing.Size(797, 296)
         Me.XTPInvoice.Text = "AWB"
+        '
+        'BBrowseReference
+        '
+        Me.BBrowseReference.Location = New System.Drawing.Point(478, 81)
+        Me.BBrowseReference.Name = "BBrowseReference"
+        Me.BBrowseReference.Size = New System.Drawing.Size(123, 23)
+        Me.BBrowseReference.TabIndex = 105
+        Me.BBrowseReference.Text = "Browse Reference"
         '
         'GCDO
         '
@@ -628,7 +639,7 @@ Partial Class FormWHAWBillIn
         '
         'GVDO
         '
-        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnRetNo, Me.GridColumnQtySuratJalan, Me.GridColumnActQty})
+        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnRetNo, Me.GridColumnQtySuratJalan, Me.GridColumnActQty, Me.GridColumn2})
         Me.GVDO.GridControl = Me.GCDO
         Me.GVDO.Name = "GVDO"
         Me.GVDO.OptionsCustomization.AllowColumnMoving = False
@@ -1179,6 +1190,12 @@ Partial Class FormWHAWBillIn
         Me.Label7.TabIndex = 91
         Me.Label7.Text = "Total Price"
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "id_ol_store_ret_req"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
         'FormWHAWBillIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1358,4 +1375,6 @@ Partial Class FormWHAWBillIn
     Friend WithEvents TEAWBNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label22 As Label
     Friend WithEvents GridColumnActQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BBrowseReference As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

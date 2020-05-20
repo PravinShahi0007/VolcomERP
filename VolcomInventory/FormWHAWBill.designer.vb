@@ -200,6 +200,7 @@ Partial Class FormWHAWBill
         Me.CESelAllInboud = New DevExpress.XtraEditors.CheckEdit()
         Me.BLockInbound = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBReturnList = New DevExpress.XtraEditors.SimpleButton()
         Me.BImportAwb = New DevExpress.XtraEditors.SimpleButton()
         Me.CERO = New DevExpress.XtraEditors.CheckEdit()
         Me.BInView = New DevExpress.XtraEditors.SimpleButton()
@@ -212,7 +213,6 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
-        Me.SBReturnList = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2088,6 +2088,16 @@ Partial Class FormWHAWBill
         Me.PanelControl2.Size = New System.Drawing.Size(1273, 39)
         Me.PanelControl2.TabIndex = 3
         '
+        'SBReturnList
+        '
+        Me.SBReturnList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBReturnList.Location = New System.Drawing.Point(1041, 2)
+        Me.SBReturnList.Name = "SBReturnList"
+        Me.SBReturnList.Size = New System.Drawing.Size(90, 35)
+        Me.SBReturnList.TabIndex = 110
+        Me.SBReturnList.Text = "Online Store " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Return List"
+        Me.SBReturnList.Visible = False
+        '
         'BImportAwb
         '
         Me.BImportAwb.Dock = System.Windows.Forms.DockStyle.Right
@@ -2203,15 +2213,6 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
-        '
-        'SBReturnList
-        '
-        Me.SBReturnList.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBReturnList.Location = New System.Drawing.Point(1041, 2)
-        Me.SBReturnList.Name = "SBReturnList"
-        Me.SBReturnList.Size = New System.Drawing.Size(90, 35)
-        Me.SBReturnList.TabIndex = 110
-        Me.SBReturnList.Text = "Online Store " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Return List"
         '
         'FormWHAWBill
         '

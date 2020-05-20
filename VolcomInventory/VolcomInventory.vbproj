@@ -3465,6 +3465,12 @@
     <Compile Include="FormSalesOrderDetEdit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesOrderDetViewLogSync.Designer.vb">
+      <DependentUpon>FormSalesOrderDetViewLogSync.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderDetViewLogSync.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderGen.Designer.vb">
       <DependentUpon>FormSalesOrderGen.vb</DependentUpon>
     </Compile>
@@ -6589,6 +6595,12 @@
       <DependentUpon>FormWHAWBillInDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormWHAWBillInDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWHAWBillReff.Designer.vb">
+      <DependentUpon>FormWHAWBillReff.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHAWBillReff.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormWHAwbillTrackCollection.Designer.vb">
@@ -9772,6 +9784,9 @@
     <EmbeddedResource Include="FormSalesOrderDetEdit.resx">
       <DependentUpon>FormSalesOrderDetEdit.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderDetViewLogSync.resx">
+      <DependentUpon>FormSalesOrderDetViewLogSync.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderGen.resx">
       <DependentUpon>FormSalesOrderGen.vb</DependentUpon>
     </EmbeddedResource>
@@ -11747,6 +11762,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHAWBillInDet.resx">
       <DependentUpon>FormWHAWBillInDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWHAWBillReff.resx">
+      <DependentUpon>FormWHAWBillReff.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHAwbillTrackCollection.resx">
       <DependentUpon>FormWHAwbillTrackCollection.vb</DependentUpon>
