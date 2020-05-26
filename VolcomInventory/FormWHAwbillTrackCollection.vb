@@ -63,8 +63,10 @@ WHERE 3n.id_comp='" & SLECargo.EditValue.ToString & "' AND 3n.track_no='" & addS
             If data.Rows.Count > 0 Then
                 stopCustom("Code duplicate.")
             Else
-                Dim q As String = "INSERT INTO tb_3pl_track_no(id_comp_track_no) VALUES('" & SLECargo.EditValue.ToString & "','" & addSlashes(TECodeScan.Text) & "')"
+                Dim q As String = "INSERT INTO tb_3pl_track_no(id_comp,track_no) VALUES('" & SLECargo.EditValue.ToString & "','" & addSlashes(TECodeScan.Text) & "')"
                 execute_non_query(q, True, "", "", "", "")
+                TECodeScan.Text = ""
+                TECodeScan.Focus()
                 load_collection()
             End If
         End If
