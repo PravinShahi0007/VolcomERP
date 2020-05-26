@@ -396,6 +396,12 @@
     <Compile Include="FormBudgetProdDemandNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCollie.Designer.vb">
+      <DependentUpon>FormCollie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCollie.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCompanyEmailMapping.Designer.vb">
       <DependentUpon>FormCompanyEmailMapping.vb</DependentUpon>
     </Compile>
@@ -3463,6 +3469,12 @@
       <DependentUpon>FormSalesOrderDetEdit.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesOrderDetEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesOrderDetViewLogSync.Designer.vb">
+      <DependentUpon>FormSalesOrderDetViewLogSync.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderDetViewLogSync.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesOrderGen.Designer.vb">
@@ -8190,6 +8202,9 @@
     <EmbeddedResource Include="FormBudgetProdDemandNew.resx">
       <DependentUpon>FormBudgetProdDemandNew.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCollie.resx">
+      <DependentUpon>FormCollie.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCompanyEmailMapping.resx">
       <DependentUpon>FormCompanyEmailMapping.vb</DependentUpon>
     </EmbeddedResource>
@@ -9777,6 +9792,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderDetEdit.resx">
       <DependentUpon>FormSalesOrderDetEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderDetViewLogSync.resx">
+      <DependentUpon>FormSalesOrderDetViewLogSync.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderGen.resx">
       <DependentUpon>FormSalesOrderGen.vb</DependentUpon>

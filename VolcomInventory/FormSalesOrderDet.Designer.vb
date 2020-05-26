@@ -55,8 +55,9 @@ Partial Class FormSalesOrderDet
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.LabelPeriod = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBViewLog = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -567,6 +568,7 @@ Partial Class FormSalesOrderDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SBViewLog)
         Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
@@ -582,18 +584,16 @@ Partial Class FormSalesOrderDet
         Me.PanelControl3.Size = New System.Drawing.Size(896, 38)
         Me.PanelControl3.TabIndex = 186
         '
-        'BtnXlsBOF
+        'SBViewLog
         '
-        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
-        Me.BtnXlsBOF.ImageIndex = 11
-        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(454, 2)
-        Me.BtnXlsBOF.Name = "BtnXlsBOF"
-        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
-        Me.BtnXlsBOF.TabIndex = 15
-        Me.BtnXlsBOF.Text = "Generate XLS"
-        Me.BtnXlsBOF.Visible = False
+        Me.SBViewLog.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBViewLog.ImageList = Me.LargeImageCollection
+        Me.SBViewLog.Location = New System.Drawing.Point(152, 2)
+        Me.SBViewLog.Name = "SBViewLog"
+        Me.SBViewLog.Size = New System.Drawing.Size(97, 34)
+        Me.SBViewLog.TabIndex = 16
+        Me.SBViewLog.Text = "View log sync"
+        Me.SBViewLog.Visible = False
         '
         'LargeImageCollection
         '
@@ -611,6 +611,19 @@ Partial Class FormSalesOrderDet
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(11, "ordering32.png")
+        '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(454, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
+        Me.BtnXlsBOF.TabIndex = 15
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
         '
         'BtnAttachment
         '
@@ -1445,4 +1458,5 @@ Partial Class FormSalesOrderDet
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CESync As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents SBSyncShopify As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBViewLog As DevExpress.XtraEditors.SimpleButton
 End Class

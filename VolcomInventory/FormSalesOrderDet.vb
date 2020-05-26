@@ -399,21 +399,29 @@ Public Class FormSalesOrderDet
         'check sku shopify
         If CESync.Checked Then
             Dim sku_already As Boolean = True
+            Dim sku_in As String = ""
+            Dim sku_copy As String = ""
 
             For i = 0 To GVItemList.RowCount - 1
                 If GVItemList.IsValidRowHandle(i) Then
-                    Dim q_already As String = "SELECT COUNT(*) AS total FROM tb_m_product_shopify WHERE sku = " + GVItemList.GetRowCellValue(i, "code").ToString
+                    Dim q_already As String = "SELECT COUNT(*) AS total, sku FROM tb_m_product_shopify WHERE sku = " + GVItemList.GetRowCellValue(i, "code").ToString
 
-                    Dim d_already As String = execute_query(q_already, 0, True, "", "", "", "")
+                    Dim d_already As DataTable = execute_query(q_already, -1, True, "", "", "", "")
 
-                    If d_already = "0" Then
+                    If d_already.Rows(0)("total").ToString = "0" Then
                         sku_already = False
+
+                        sku_in += d_already.Rows(0)("sku").ToString + ", "
+
+                        sku_copy += d_already.Rows(0)("sku").ToString + Environment.NewLine
                     End If
                 End If
             Next
 
             If Not sku_already Then
-                stopCustom("Please sync to shopify first.")
+                stopCustom("Can't find SKU: " + sku_in.Substring(0, sku_in.Length - 2) + ". Please make sure these SKU already on web or sync to shopify first.")
+
+                My.Computer.Clipboard.SetText(sku_copy)
 
                 Cursor = Cursors.Default
 
@@ -1595,6 +1603,18 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
 
         If no_duplicate Then
             infoCustom("Sync complete.")
+        End If
+    End Sub
+
+    Private Sub SBViewLog_Click(sender As Object, e As EventArgs) Handles SBViewLog.Click
+        FormSalesOrderDetViewLogSync.ShowDialog()
+    End Sub
+
+    Private Sub CESync_CheckedChanged(sender As Object, e As EventArgs) Handles CESync.CheckedChanged
+        If CESync.EditValue Then
+            SBViewLog.Visible = True
+        Else
+            SBViewLog.Visible = False
         End If
     End Sub
 End Class
