@@ -990,7 +990,7 @@ WHERE CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) IN (" + q_in.
 
                 If confirm = DialogResult.Yes Then
                     Dim query As String = "
-                        SELECT so.shipping_name, IF(so.shipping_address1='' OR isnull(so.shipping_address1),so.shipping_address,CONCAT(so.shipping_address1, ' ', so.shipping_address2)) AS shipping_address, so.shipping_city, so.shipping_post_code, so.shipping_region, so.shipping_phone, 1 AS qty, IF(SUM(sod.grams * sod.sales_order_det_qty)<1,1,SUM(sod.grams * sod.sales_order_det_qty)) AS c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
+                        SELECT so.shipping_name, IF(so.shipping_address1='' OR isnull(so.shipping_address1),so.shipping_address,CONCAT(so.shipping_address1, ' ', so.shipping_address2)) AS shipping_address, so.shipping_city, so.shipping_post_code, so.shipping_region, so.shipping_phone, 1 AS qty, CEIL(SUM(sod.grams * sod.sales_order_det_qty)/1000) AS c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
                         FROM tb_sales_order so
                         INNER JOIN tb_sales_order_det sod ON so.id_sales_order = sod.id_sales_order
                         INNER JOIN tb_opt AS opt 
@@ -1062,7 +1062,7 @@ a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) A
 ('No') AS `is_select`, cat.id_so_status, cat.so_status, ot.order_type, del_cat.id_so_cat, del_cat.so_cat, 
  IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,
 a.id_so_type,prep.id_user, prep.prepared_date, gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, 
-eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name,count(del.id_pl_sales_order_del) AS jml_del, SUM(so_item.sales_order_det_qty) AS tot_so,SUM(so_item.grams)/1000 AS tot_weight
+eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name,count(del.id_pl_sales_order_del) AS jml_del, SUM(so_item.sales_order_det_qty) AS tot_so,CEIL(SUM(so_item.grams)/1000) AS tot_weight
 FROM tb_sales_order a 
 INNER JOIN tb_sales_order_det so_item ON so_item.id_sales_order = a.id_sales_order  
 INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
@@ -1078,7 +1078,7 @@ LEFT JOIN(
 	SELECT a.id_report, a.id_user, a.report_mark_datetime AS `prepared_date` 
 	FROM tb_report_mark a WHERE a.report_mark_type ='39' AND a.id_report_status='1' GROUP BY a.id_report 
 ) prep ON prep.id_report = a.id_sales_order 
-LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order=a.id_sales_order AND del.id_report_status=6
+LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order=a.id_sales_order AND (del.id_report_status=6 OR del.id_report_status=3) 
 LEFT JOIN tb_fg_so_reff an ON an.id_fg_so_reff = a.id_fg_so_reff 
 LEFT JOIN tb_lookup_pd_alloc alloc ON alloc.id_pd_alloc = d.id_pd_alloc 
 LEFT JOIN tb_lookup_so_cat del_cat ON del_cat.id_so_cat = alloc.id_so_cat 
@@ -1088,7 +1088,7 @@ LEFT JOIN tb_emp_uni_period eu ON eu.id_emp_uni_period=a.id_emp_uni_period
 LEFT JOIN tb_lookup_uni_type ut ON ut.id_uni_type = a.id_uni_type 
 LEFT JOIN tb_emp_uni_budget ub ON ub.id_emp_uni_budget = a.id_emp_uni_budget
 LEFT JOIN tb_m_employee ube ON ube.id_employee = ub.id_employee 
-WHERE a.id_report_status=6 AND a.is_export_awb=2 " & q_where & "
+WHERE (a.id_report_status=6) AND a.is_export_awb=2 " & q_where & "
 GROUP BY CONCAT(cg.`description`,'#',a.`sales_order_ol_shop_number`) 
 ORDER BY a.id_sales_order DESC "
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -1175,11 +1175,9 @@ ORDER BY a.id_sales_order DESC "
                 Dim total_not_imported As Integer = 0
 
                 For i = 2 To dt.Rows.Count - 1
-
                     Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
                     Dim comp_group_desc As String = dt.Rows(i)(1).ToString.Split("#")(0)
                     Dim ol_shop_order As String = dt.Rows(i)(1).ToString.Split("#")(1)
-
                     '
                     Dim q As String = "SELECT awb.`id_awbill`
 FROM tb_wh_awbill awb

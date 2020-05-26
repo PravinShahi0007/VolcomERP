@@ -36,8 +36,14 @@ Partial Class FormWHAWBillReff
         Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BLoad2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEAWBReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,10 +52,14 @@ Partial Class FormWHAWBillReff
         CType(Me.GCDOERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDOERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEComp)
+        Me.PanelControl1.Controls.Add(Me.BLoad2)
         Me.PanelControl1.Controls.Add(Me.BLoad)
         Me.PanelControl1.Controls.Add(Me.TEAWBReff)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -207,13 +217,6 @@ Partial Class FormWHAWBillReff
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 6
         '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Collie Number"
@@ -221,6 +224,64 @@ Partial Class FormWHAWBillReff
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 7
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'BLoad2
+        '
+        Me.BLoad2.Location = New System.Drawing.Point(577, 10)
+        Me.BLoad2.Name = "BLoad2"
+        Me.BLoad2.Size = New System.Drawing.Size(56, 23)
+        Me.BLoad2.TabIndex = 4
+        Me.BLoad2.Text = "load"
+        Me.BLoad2.Visible = False
+        '
+        'SLEComp
+        '
+        Me.SLEComp.Location = New System.Drawing.Point(386, 12)
+        Me.SLEComp.Name = "SLEComp"
+        Me.SLEComp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEComp.Properties.View = Me.GridView3
+        Me.SLEComp.Size = New System.Drawing.Size(185, 20)
+        Me.SLEComp.TabIndex = 13
+        Me.SLEComp.Visible = False
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn29, Me.GridColumn25})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "ID Comp"
+        Me.GridColumn24.FieldName = "id_comp"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Number"
+        Me.GridColumn29.FieldName = "comp_number"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        Me.GridColumn29.Width = 269
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Store"
+        Me.GridColumn25.FieldName = "comp_name"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 1
+        Me.GridColumn25.Width = 1363
         '
         'FormWHAWBillReff
         '
@@ -245,6 +306,8 @@ Partial Class FormWHAWBillReff
         CType(Me.GCDOERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDOERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -267,4 +330,10 @@ Partial Class FormWHAWBillReff
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BLoad2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEComp As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
