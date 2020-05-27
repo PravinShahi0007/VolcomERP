@@ -1179,7 +1179,7 @@ ORDER BY a.id_sales_order DESC "
                     Dim comp_group_desc As String = dt.Rows(i)(1).ToString.Split("#")(0)
                     Dim ol_shop_order As String = dt.Rows(i)(1).ToString.Split("#")(1)
                     '
-                    Dim q As String = "SELECT awb.`id_awbill`
+                    Dim q As String = "SELECT awb.`id_awbill`,awb.awbill_no 
 FROM tb_wh_awbill awb
 INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
 INNER JOIN tb_pl_sales_order_del del ON del.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del`
