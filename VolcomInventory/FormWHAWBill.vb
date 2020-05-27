@@ -17,11 +17,11 @@
     Sub check_but()
         If XTCAwb.SelectedTabPageIndex = 0 Then
             If GVAWBill.RowCount > 0 Then
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "1"
                 bdel_active = "1"
             Else
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "0"
                 bdel_active = "0"
             End If
