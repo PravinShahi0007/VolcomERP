@@ -169,7 +169,7 @@
                     newRow("number") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "number").ToString
                     newRow("total_pay") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_paid")
                     newRow("value") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
-                    newRow("kurs") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "kurs")
+                    newRow("kurs") = FormBankWithdrawal.TEKurs.EditValue
                     newRow("id_currency") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_currency").ToString
                     newRow("currency") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "currency").ToString
                     newRow("val_bef_kurs") = If(FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "value_bef_kurs"))
@@ -543,7 +543,9 @@
                 calculate_amount()
             End If
         Else
-            PCAddDel.Visible = False
+            'PCAddDel.Visible = False
+            BtnAdd.Visible = False
+            BtnDelete.Visible = False
             '
             BtnPrint.Visible = True
             BMark.Visible = True
@@ -728,7 +730,7 @@ WHERE pnd.id_pn='" & id_payment & "'"
         GridColumnCurrencyHide.VisibleIndex = -1
 
         'Parse val
-        Dim query As String = "SELECT py.number,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
+        Dim query As String = "SELECT py.number,py.kurs,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
 ,'" & ConvertCurrencyToIndonesian(TETotal.EditValue) & "' AS tot_say
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
@@ -742,7 +744,19 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=py.id_acc_payfrom
 WHERE py.`id_pn`='" & id_payment & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Report.DataSource = data
-
+        '
+        If Not TEKurs.EditValue = 1 Then
+            Report.LKurs.Text = Decimal.Parse(data.Rows(0)("kurs").ToString()).ToString("N2")
+            '
+            Report.LKurs.Visible = True
+            Report.LkursLabel.Visible = True
+            Report.LKursTitik.Visible = True
+        Else
+            Report.LKurs.Visible = False
+            Report.LkursLabel.Visible = False
+            Report.LKursTitik.Visible = False
+        End If
+        '
         If Not data.Rows(0)("id_report_status").ToString = "6" Then
             Report.id_pre = "2"
         Else
