@@ -411,7 +411,7 @@
                         Dim sales_return_order_det_note As String = addSlashes(GVItemList.GetRowCellValue(i, "sales_return_order_det_note").ToString)
                         Dim id_return_cat As String = "1"
                         Dim id_ol_store_ret_list As String = GVItemList.GetRowCellValue(i, "id_ol_store_ret_list").ToString
-                        If id_ol_store_ret_list = "0" Then
+                        If id_ol_store_ret_list = "0" Or id_ol_store_ret_list = "" Then
                             id_ol_store_ret_list = "NULL"
                         End If
 
