@@ -1032,6 +1032,32 @@ Public Class FormSalesReturnDet
             makeSafeGV(GVItemList)
         End If
 
+        'cek stok
+        If id_ret_type = "1" Or id_ret_type = "3" Then
+            If GVItemList.RowCount > 0 Then
+                Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
+                            INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+                Dim id_prod As String = ""
+                For s As Integer = 0 To GVItemList.RowCount - 1
+                    If s > 0 Then
+                        qs += ","
+                        id_prod += ","
+                    End If
+                    qs += "('" + id_user + "','" + GVItemList.GetRowCellValue(s, "code").ToString + "','" + addSlashes(GVItemList.GetRowCellValue(s, "name").ToString) + "', '" + GVItemList.GetRowCellValue(s, "size").ToString + "', '" + GVItemList.GetRowCellValue(s, "id_product").ToString + "', '" + decimalSQL(GVItemList.GetRowCellValue(s, "sales_return_order_det_qty").ToString) + "') "
+                    id_prod += GVItemList.GetRowCellValue(s, "id_product").ToString
+                Next
+                qs += "; CALL view_validate_stock(" + id_user + ", " + id_store + ", '" + id_prod + "',1); "
+                Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+                If dts.Rows.Count > 0 Then
+                    Cursor = Cursors.Default
+                    stopCustom("No stock available for some items.")
+                    FormValidateStock.dt = dts
+                    FormValidateStock.ShowDialog()
+                    Exit Sub
+                End If
+            End If
+        End If
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopRight) Then
             errorInput()
         ElseIf GVItemList.RowCount = 0 And id_ret_type <> "2" Then

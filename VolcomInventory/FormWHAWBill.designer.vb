@@ -1849,11 +1849,9 @@ Partial Class FormWHAWBill
         Me.GVDOERP.Name = "GVDOERP"
         Me.GVDOERP.OptionsCustomization.AllowColumnMoving = False
         Me.GVDOERP.OptionsCustomization.AllowColumnResizing = False
-        Me.GVDOERP.OptionsCustomization.AllowFilter = False
         Me.GVDOERP.OptionsCustomization.AllowGroup = False
         Me.GVDOERP.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVDOERP.OptionsCustomization.AllowRowSizing = True
-        Me.GVDOERP.OptionsCustomization.AllowSort = False
         Me.GVDOERP.OptionsCustomization.CustomizationFormSearchBoxVisible = True
         Me.GVDOERP.OptionsView.ShowGroupPanel = False
         '
