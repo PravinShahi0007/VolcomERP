@@ -1237,8 +1237,9 @@ WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_num
         LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
         LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
-        WHERE (d.id_report_status=6) AND so.is_export_awb=2  AND ISNULL(awb.id_awbill) " & q_where & "
-        GROUP BY d.id_pl_sales_order_del "
+        WHERE (d.id_report_status=6 OR d.id_report_status=3) AND so.is_export_awb=2  AND ISNULL(awb.id_awbill) " & q_where & "
+        GROUP BY d.id_pl_sales_order_del 
+        ORDER BY d.id_pl_sales_order_del DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDOERP.DataSource = data
         GVDOERP.BestFitColumns()
