@@ -125,6 +125,8 @@ Partial Class FormBankDeposit
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEPayoutNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BImportPayout = New DevExpress.XtraEditors.SimpleButton()
         Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -178,6 +180,7 @@ Partial Class FormBankDeposit
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TEPayoutNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1124,6 +1127,8 @@ Partial Class FormBankDeposit
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.TEPayoutNumber)
+        Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Controls.Add(Me.BImportPayout)
         Me.PanelControl3.Controls.Add(Me.SearchLookUpEdit1)
         Me.PanelControl3.Controls.Add(Me.LabelControl7)
@@ -1138,9 +1143,24 @@ Partial Class FormBankDeposit
         Me.PanelControl3.Size = New System.Drawing.Size(995, 43)
         Me.PanelControl3.TabIndex = 20
         '
+        'TEPayoutNumber
+        '
+        Me.TEPayoutNumber.Location = New System.Drawing.Point(761, 11)
+        Me.TEPayoutNumber.Name = "TEPayoutNumber"
+        Me.TEPayoutNumber.Size = New System.Drawing.Size(137, 20)
+        Me.TEPayoutNumber.TabIndex = 8926
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(681, 14)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl10.TabIndex = 8925
+        Me.LabelControl10.Text = "Payout Number"
+        '
         'BImportPayout
         '
-        Me.BImportPayout.Location = New System.Drawing.Point(681, 11)
+        Me.BImportPayout.Location = New System.Drawing.Point(904, 11)
         Me.BImportPayout.Name = "BImportPayout"
         Me.BImportPayout.Size = New System.Drawing.Size(84, 20)
         Me.BImportPayout.TabIndex = 8924
@@ -1347,6 +1367,7 @@ Partial Class FormBankDeposit
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TEPayoutNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1481,4 +1502,6 @@ Partial Class FormBankDeposit
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents TEPayoutNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class

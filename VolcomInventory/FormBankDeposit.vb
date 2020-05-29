@@ -292,6 +292,9 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
     End Sub
 
     Private Sub BImportPayout_Click(sender As Object, e As EventArgs) Handles BImportPayout.Click
+        If TEPayoutNumber.Text = "" Then
+
+        End If
         FormImportExcel.id_pop_up = "50"
         FormImportExcel.ShowDialog()
     End Sub
