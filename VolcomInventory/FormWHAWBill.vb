@@ -1221,6 +1221,10 @@ WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_num
     End Sub
 
     Private Sub BViewOutFromDO_Click(sender As Object, e As EventArgs) Handles BViewOutFromDO.Click
+        load_from_do()
+    End Sub
+
+    Sub load_from_do()
         Dim q_where As String = ""
 
         If Not SLEComp.EditValue.ToString = "0" Then
@@ -1241,9 +1245,11 @@ WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_num
         GROUP BY d.id_pl_sales_order_del 
         ORDER BY d.id_pl_sales_order_del DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GVDOERP.ActiveFilterString = ""
         GCDOERP.DataSource = data
         GVDOERP.BestFitColumns()
     End Sub
+
 
     Private Sub BGenerateKolie_Click(sender As Object, e As EventArgs) Handles BGenerateKolie.Click
         'check bukan dari toko berbeda
@@ -1254,10 +1260,18 @@ WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_num
             problem = True
         Else
             For i As Integer = 0 To GVDOERP.RowCount - 1
-                If Not GVDOERP.GetRowCellValue(i, "id_comp").ToString = GVDOERP.GetRowCellValue(0, "id_comp").ToString Then
-                    warningCustom("Pastikan semua tujuan toko sama.")
+                Dim qc As String = "SELECT * FROM `tb_wh_awbill_det` WHERE id_pl_sales_order_del='" & GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    warningCustom("DO nomor " & GVDOERP.GetRowCellValue(i, "do_no").ToString & " sudah tergenerate ke dalam koli.")
                     problem = True
                     Exit For
+                Else
+                    If Not GVDOERP.GetRowCellValue(i, "id_comp").ToString = GVDOERP.GetRowCellValue(0, "id_comp").ToString Then
+                        warningCustom("Pastikan semua tujuan toko sama.")
+                        problem = True
+                        Exit For
+                    End If
                 End If
             Next
         End If
@@ -1334,20 +1348,32 @@ WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_num
         'checking
         Dim problem As Boolean = False
         For i As Integer = 0 To GVAWBill.RowCount - 1
-            If Not GVAWBill.GetRowCellValue(i, "id_store").ToString = GVAWBill.GetRowCellValue(0, "id_store").ToString Then
-                warningCustom("Different shipping location, please generate separate AWB")
-                problem = True
-                Exit For
-            ElseIf Not GVAWBill.GetRowCellValue(i, "id_cargo").ToString = GVAWBill.GetRowCellValue(0, "id_cargo").ToString Then
-                warningCustom("Different shipping vendor, please generate separate AWB")
-                problem = True
-                Exit For
-            ElseIf Not GVAWBill.GetRowCellValue(i, "awbill_no").ToString = "" Then
-                warningCustom("Some collie already have AWB")
-                problem = True
-                Exit For
-            ElseIf GVAWBill.GetRowCellValue(i, "id_commerce_type").ToString = "2" Then
-                warningCustom("Online shop cannot use AWB collection.")
+            Dim qc As String = "SELECT awbill_no FROM tb_wh_awbill WHERE id_awbill='" & GVAWBill.GetRowCellValue(i, "id_awbill").ToString & "'"
+            Dim dt_qc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dt_qc.Rows.Count > 0 Then
+                If Not GVAWBill.GetRowCellValue(i, "id_store").ToString = GVAWBill.GetRowCellValue(0, "id_store").ToString Then
+                    warningCustom("Different shipping location, please generate separate AWB")
+                    problem = True
+                    Exit For
+                ElseIf Not GVAWBill.GetRowCellValue(i, "id_cargo").ToString = GVAWBill.GetRowCellValue(0, "id_cargo").ToString Then
+                    warningCustom("Different shipping vendor, please generate separate AWB")
+                    problem = True
+                    Exit For
+                ElseIf Not GVAWBill.GetRowCellValue(i, "awbill_no").ToString = "" Then
+                    warningCustom("Some collie already have AWB")
+                    problem = True
+                    Exit For
+                ElseIf Not dt_qc.Rows(0)("awbill_no").ToString = "" Then
+                    warningCustom("Some collie already have AWB")
+                    problem = True
+                    Exit For
+                ElseIf GVAWBill.GetRowCellValue(i, "id_commerce_type").ToString = "2" Then
+                    warningCustom("Online shop cannot use AWB collection.")
+                    problem = True
+                    Exit For
+                End If
+            Else
+                infoCustom("Collie not found.")
                 problem = True
                 Exit For
             End If
