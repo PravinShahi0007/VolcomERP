@@ -3111,6 +3111,34 @@ Public Class FormImportExcel
             'Customize column
             GVData.Columns("track_no").Caption = "Tracking Number"
             GVData.Columns("status").Caption = "Description"
+        ElseIf id_pop_up = "50" Then
+            Dim queryx As String = "SELECT * FROM tb_ol_store_order ol
+LEFT JOIN tb_list_payout lp ON lp.id=ol.`id`
+WHERE NOT ISNULL(ol.`checkout_id`)
+GROUP BY ol.`id`"
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+            Dim tb2 = dt.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("Order").ToString Equals table_tmp("checkout_id").ToString
+                            Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .Vendor = FormWHAwbillTrackCollection.SLECargo.Text,
+                                .track_no = table1("track_no"),
+                                .status = If(y1 Is Nothing, "OK", "Tracking Number already registered")
+                            }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("track_no").Caption = "Tracking Number"
+            GVData.Columns("status").Caption = "Description"
         End If
         data_temp.Dispose()
         oledbconn.Close()
