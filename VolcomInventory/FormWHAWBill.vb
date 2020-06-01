@@ -17,11 +17,11 @@
     Sub check_but()
         If XTCAwb.SelectedTabPageIndex = 0 Then
             If GVAWBill.RowCount > 0 Then
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "1"
                 bdel_active = "1"
             Else
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "0"
                 bdel_active = "0"
             End If
@@ -153,7 +153,7 @@
                 gridBandDO.Visible = True
                 query = "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,do.do_no, NULL AS `do_no_combine`,do.qty, 0 AS `amount`,do.reff, do.scan_date, grp.id_comp_group,grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
-                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
+                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,comp_store.id_commerce_type,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff, ('') AS `rmk`, ('') AS `no`"
@@ -179,7 +179,7 @@
                 query += " UNION ALL "
                 query += "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,awbd.do_no, doc.combine_number AS `do_no_combine`,awbd.qty,  dod.amount, UPPER(sos.so_status) AS `reff`,do.pl_sales_order_del_date AS `scan_date`, grp.id_comp_group, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
-                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
+                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,comp_store.id_commerce_type,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff, ('') AS `rmk`, ('') AS `no`"
@@ -212,7 +212,7 @@
                 query += " UNION ALL 
                             SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,awbd.do_no, '' AS `do_no_combine`,awbd.qty,  dod.amount, 'Return Customer' AS `reff`,do.created_date AS `scan_date`, grp.id_comp_group, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
                             DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,
-                            DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,
+                            DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,comp_store.id_commerce_type,
                             (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,
                             (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,
                             (awb.c_weight-awb.a_weight) AS weight_diff,(awb.c_tot_price-awb.a_tot_price) AS amount_diff, ('') AS `rmk`, ('') AS `no`
@@ -244,7 +244,7 @@
                 gridBandDO.Visible = False
                 query = "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
-                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
+                query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,comp_store.id_commerce_type,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff,('') AS `no`,2 as penanda"
@@ -599,6 +599,9 @@
     End Sub
 
     Private Sub FormWHAWBill_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_comp_group()
+        view_comp()
+
         If is_lock = "1" Then
             PCLock.Visible = True
             PCLockIn.Visible = True
@@ -606,6 +609,27 @@
             PCLock.Visible = False
             PCLockIn.Visible = False
         End If
+    End Sub
+
+    Sub view_comp_group()
+        Dim q As String = "SELECT 0 AS id_comp_group,'ALL' AS comp_group,'ALL' AS description
+UNION
+SELECT cg.id_comp_group,cg.comp_group,cg.description
+FROM tb_m_comp c
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
+WHERE c.id_commerce_type='2' 
+GROUP BY cg.`id_comp_group`"
+        viewSearchLookupQuery(SLECompGroup, q, "id_comp_group", "description", "id_comp_group")
+    End Sub
+
+    Sub view_comp()
+        Dim q As String = "SELECT 0 AS id_comp,'ALL' AS comp_number,'ALL' AS comp_name
+UNION
+SELECT c.id_comp,c.comp_number,c.comp_name
+FROM tb_m_comp c
+WHERE c.id_commerce_type='1' AND c.id_comp_cat='6'"
+        viewSearchLookupQuery(SLEComp, q, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLECompRetReq, q, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Private Sub BReportInvoice_Click(sender As Object, e As EventArgs) Handles BReportInvoice.Click
@@ -817,6 +841,262 @@
     End Sub
 
     Private Sub SBImportCsss_Click(sender As Object, e As EventArgs) Handles SBImportCsss.Click
+        'Dim fdlg As OpenFileDialog = New OpenFileDialog()
+
+        'fdlg.Title = "Select excel file To import"
+        'fdlg.InitialDirectory = "C: \"
+        'fdlg.Filter = "Excel File|*.xls; *.xlsx"
+        'fdlg.FilterIndex = 0
+        'fdlg.RestoreDirectory = True
+
+        'If fdlg.ShowDialog() = DialogResult.OK Then
+        '    open_file_import = fdlg.FileName
+        'End If
+
+        'fdlg.Dispose()
+
+        'If Not fdlg.FileName = "" Then
+        '    Dim confirm As DialogResult
+
+        '    confirm = DevExpress.XtraEditors.XtraMessageBox.Show("AWB can only be imported once, are you sure want to import?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        '    If confirm = DialogResult.Yes Then
+        '        'resave
+        '        Dim awb_tmp As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\awb_tmp.xls"
+
+        '        Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
+
+        '        Dim awb As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(fdlg.FileName)
+
+        '        Dim aws As Microsoft.Office.Interop.Excel.Worksheet = awb.Worksheets(1)
+
+        '        aws.Name = "Sheet1"
+
+        '        awb.SaveAs(awb_tmp, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook)
+
+        '        awb.Close()
+
+        '        app.Quit()
+
+        '        Dim MyConnection As System.Data.OleDb.OleDbConnection
+        '        Dim DtSet As System.Data.DataSet
+        '        Dim MyCommand As System.Data.OleDb.OleDbDataAdapter
+
+        '        MyConnection = New System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0; Data Source='" + awb_tmp + "'; Extended Properties=""Excel 12.0 XML; IMEX=1; HDR=YES; TypeGuessRows=0; ImportMixedTypes=Text;""")
+
+        '        MyCommand = New System.Data.OleDb.OleDbDataAdapter("select * from [Sheet1$]", MyConnection)
+
+        '        DtSet = New System.Data.DataSet
+
+        '        MyCommand.Fill(DtSet)
+
+        '        Dim dt As DataTable = DtSet.Tables(0)
+
+        '        Dim data As DataTable = New DataTable
+
+        '        data.Columns.Add("id_awbill", GetType(String))
+        '        data.Columns.Add("awbill", GetType(String))
+
+        '        'check already imported
+        '        Dim already_imported As Boolean = False
+
+        '        For i = 2 To dt.Rows.Count - 1
+        '            Try
+        '                Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
+
+        '                Dim awbill_no As String = execute_query("SELECT awbill_no AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+
+        '                If Not awbill_no = "" Then
+        '                    already_imported = True
+        '                End If
+        '            Catch ex As Exception
+        '            End Try
+        '        Next
+
+        '        'import
+        '        Dim total_imported As Integer = 0
+        '        Dim total_already_imported As Integer = 0
+        '        Dim total_not_imported As Integer = 0
+
+        '        For i = 2 To dt.Rows.Count - 1
+        '            Try
+        '                Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
+        '                Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
+
+        '                '
+        '                Dim already_awb As String = execute_query("SELECT COUNT(*) AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+
+        '                If Not already_awb = "0" Then
+        '                    '
+        '                    Dim select_awbill_no As String = execute_query("SELECT awbill_no AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
+
+        '                    If select_awbill_no = "" Then
+        '                        'update
+        '                        Dim que As String = "UPDATE tb_wh_awbill SET awbill_no = '" + awbill_no + "' WHERE id_awbill = '" + id_awbill + "'"
+
+        '                        execute_non_query(que, True, "", "", "", "")
+
+        '                        total_imported = total_imported + 1
+        '                    Else
+        '                        total_already_imported = total_already_imported + 1
+        '                    End If
+        '                Else
+        '                    total_not_imported = total_not_imported + 1
+        '                End If
+        '            Catch ex As Exception
+        '            End Try
+        '        Next
+
+        '        MyConnection.Close()
+
+        '        My.Computer.FileSystem.DeleteFile(awb_tmp)
+
+        '        Dim msg As String = total_imported.ToString + " data successfully imported."
+        '        msg += Environment.NewLine + total_already_imported.ToString + " data already imported."
+        '        msg += Environment.NewLine + total_not_imported.ToString + " data failed to imported."
+
+        '        infoCustom(msg)
+        '    End If
+        'End If
+    End Sub
+
+    Private Sub SBReturnList_Click(sender As Object, e As EventArgs) Handles SBReturnList.Click
+        FormOlStoreReturnInputAWB.ShowDialog()
+    End Sub
+
+    Private Sub BExportToCS3_Click(sender As Object, e As EventArgs) Handles BExportToCS3.Click
+        GVSalesOrder.ActiveFilterString = "[is_check] = 'yes'"
+
+        If GVSalesOrder.RowCount > 0 Then
+            Dim q_in As String = ""
+
+            For i = 0 To GVSalesOrder.RowCount - 1
+                If GVSalesOrder.IsValidRowHandle(i) Then
+                    q_in += "'" + GVSalesOrder.GetRowCellValue(i, "stru").ToString + "', "
+                End If
+            Next
+
+            Dim is_exported As String = execute_query("SELECT MIN(so.is_export_awb) 
+FROM tb_sales_order so 
+INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = so.id_store_contact_to 
+INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp AND d.`id_commerce_type`='2'
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=d.`id_comp_group`
+WHERE CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) IN (" + q_in.Substring(0, q_in.Length - 2) + ")", 0, True, "", "", "", "")
+
+            If is_exported = "2" Then
+                Dim confirm As DialogResult
+
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Selected SO can only be exported once, are you sure want to export?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = DialogResult.Yes Then
+                    Dim query As String = "
+                        SELECT so.shipping_name, IF(so.shipping_address1='' OR isnull(so.shipping_address1),so.shipping_address,CONCAT(so.shipping_address1, ' ', so.shipping_address2)) AS shipping_address, so.shipping_city, so.shipping_post_code, so.shipping_region, so.shipping_phone, 1 AS qty, CEIL(SUM(sod.grams * sod.sales_order_det_qty)/1000) AS c_weight, opt.jne_good_desc, opt.jne_goods_value, opt.jne_special_instruction, opt.jne_service, CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) AS order_id, opt.jne_insurance, opt.jne_shipper_name, opt.jne_shipper_address, opt.jne_shipper_city, opt.jne_shipper_zip, opt.jne_shipper_region, opt.jne_shipper_contact, opt.jne_shipper_phone, '' AS destination_code
+                        FROM tb_sales_order so
+                        INNER JOIN tb_sales_order_det sod ON so.id_sales_order = sod.id_sales_order
+                        INNER JOIN tb_opt AS opt 
+                        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = so.id_store_contact_to 
+                        INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp AND d.`id_commerce_type`='2'
+                        INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=d.`id_comp_group`
+                        WHERE CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) IN  (" + q_in.Substring(0, q_in.Length - 2) + ")
+                        GROUP BY CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) "
+
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                    GCExportExcel.DataSource = data
+
+                    Dim save As SaveFileDialog = New SaveFileDialog
+
+                    save.Filter = "Excel File | *.xls"
+                    save.ShowDialog()
+
+                    If Not save.FileName = "" Then
+                        Dim op As DevExpress.XtraPrinting.XlsExportOptionsEx = New DevExpress.XtraPrinting.XlsExportOptionsEx
+
+                        op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+
+                        GVExportExcel.ExportToXls(save.FileName, op)
+
+                        'resave
+                        Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
+
+                        Dim awb As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(save.FileName)
+
+                        awb.Save()
+                        awb.Close()
+                        app.Quit()
+
+                        'update is exported
+                        execute_non_query("UPDATE tb_sales_order so
+INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = so.id_store_contact_to 
+INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp AND d.`id_commerce_type`='2'
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=d.`id_comp_group`
+SET so.is_export_awb = 1 WHERE CONCAT(cg.`description`,'#',so.`sales_order_ol_shop_number`) IN (" + q_in.Substring(0, q_in.Length - 2) + ") ", True, "", "", "", "")
+
+                        infoCustom("File saved.")
+                    End If
+                End If
+            Else
+                errorCustom("Some data already exported. Please refresh data.")
+            End If
+        Else
+            errorCustom("No AWB selected.")
+        End If
+
+        GVSalesOrder.ActiveFilterString = ""
+        load_outbound_from_olstore()
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        load_outbound_from_olstore()
+    End Sub
+
+    Sub load_outbound_from_olstore()
+        Dim q_where As String = ""
+
+        If Not SLECompGroup.EditValue.ToString = "0" Then
+            q_where += " AND cg.id_comp_group='" & SLECompGroup.EditValue.ToString & "' "
+        End If
+
+        Dim q As String = "SELECT 'no' AS is_check,CONCAT(cg.`description`,'#',a.`sales_order_ol_shop_number`) AS stru, cg.description AS comp_group,a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary AS `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, 
+a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, 
+('No') AS `is_select`, cat.id_so_status, cat.so_status, ot.order_type, del_cat.id_so_cat, del_cat.so_cat, 
+ IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,
+a.id_so_type,prep.id_user, prep.prepared_date, gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, 
+eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name,count(del.id_pl_sales_order_del) AS jml_del, SUM(so_item.sales_order_det_qty) AS tot_so,CEIL(SUM(so_item.grams)/1000) AS tot_weight
+FROM tb_sales_order a 
+INNER JOIN tb_sales_order_det so_item ON so_item.id_sales_order = a.id_sales_order  
+INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
+INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp AND d.`id_commerce_type`='2'
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=d.`id_comp_group`
+INNER JOIN tb_m_comp_contact wh_c ON wh_c.id_comp_contact = a.id_warehouse_contact_to 
+INNER JOIN tb_m_comp wh ON wh_c.id_comp = wh.id_comp 
+INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status 
+INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = a.id_prepare_status 
+INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = a.id_so_status 
+INNER JOIN tb_lookup_order_type ot ON ot.id_order_type = cat.id_order_type
+LEFT JOIN( 
+	SELECT a.id_report, a.id_user, a.report_mark_datetime AS `prepared_date` 
+	FROM tb_report_mark a WHERE a.report_mark_type ='39' AND a.id_report_status='1' GROUP BY a.id_report 
+) prep ON prep.id_report = a.id_sales_order 
+LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order=a.id_sales_order AND (del.id_report_status=6 OR del.id_report_status=3) 
+LEFT JOIN tb_fg_so_reff an ON an.id_fg_so_reff = a.id_fg_so_reff 
+LEFT JOIN tb_lookup_pd_alloc alloc ON alloc.id_pd_alloc = d.id_pd_alloc 
+LEFT JOIN tb_lookup_so_cat del_cat ON del_cat.id_so_cat = alloc.id_so_cat 
+LEFT JOIN tb_sales_order_gen gen ON gen.id_sales_order_gen = a.id_sales_order_gen 
+LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = wh.id_drawer_def 
+LEFT JOIN tb_emp_uni_period eu ON eu.id_emp_uni_period=a.id_emp_uni_period 
+LEFT JOIN tb_lookup_uni_type ut ON ut.id_uni_type = a.id_uni_type 
+LEFT JOIN tb_emp_uni_budget ub ON ub.id_emp_uni_budget = a.id_emp_uni_budget
+LEFT JOIN tb_m_employee ube ON ube.id_employee = ub.id_employee 
+WHERE (a.id_report_status=6) AND a.is_export_awb=2 " & q_where & "
+GROUP BY CONCAT(cg.`description`,'#',a.`sales_order_ol_shop_number`) 
+ORDER BY a.id_sales_order DESC "
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCSalesOrder.DataSource = dt
+        GVSalesOrder.BestFitColumns()
+    End Sub
+
+    Private Sub BBAwbCS3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBAwbCS3.ItemClick
         Dim fdlg As OpenFileDialog = New OpenFileDialog()
 
         fdlg.Title = "Select excel file To import"
@@ -895,48 +1175,216 @@
                 Dim total_not_imported As Integer = 0
 
                 For i = 2 To dt.Rows.Count - 1
-                    Try
-                        Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
-                        Dim id_awbill As String = dt.Rows(i)(1).ToString.Substring(0, dt.Rows(i)(1).ToString.IndexOf("#"))
-
-                        '
-                        Dim already_awb As String = execute_query("SELECT COUNT(*) AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
-
-                        If Not already_awb = "0" Then
-                            '
-                            Dim select_awbill_no As String = execute_query("SELECT awbill_no AS total FROM tb_wh_awbill WHERE id_awbill = '" + id_awbill + "'", 0, True, "", "", "", "")
-
-                            If select_awbill_no = "" Then
+                    Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
+                    Dim comp_group_desc As String = dt.Rows(i)(1).ToString.Split("#")(0)
+                    Dim ol_shop_order As String = dt.Rows(i)(1).ToString.Split("#")(1)
+                    '
+                    Dim q As String = "SELECT awb.`id_awbill`,awb.awbill_no 
+FROM tb_wh_awbill awb
+INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
+INNER JOIN tb_pl_sales_order_del del ON del.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del`
+INNER JOIN tb_sales_order so ON so.id_sales_order=del.`id_sales_order`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
+WHERE cg.`description`='" & comp_group_desc & "' AND so.`sales_order_ol_shop_number`='" & ol_shop_order & "'"
+                    Dim dt_awb As DataTable = execute_query(q, -1, True, "", "", "", "")
+                    If dt_awb.Rows.Count = 0 Then
+                        total_not_imported = total_not_imported + 1
+                    Else
+                        For j As Integer = 0 To dt_awb.Rows.Count - 1
+                            Dim id_awbill As String = dt_awb.Rows(j)("id_awbill").ToString
+                            If dt_awb.Rows(j)("awbill_no").ToString = "" Then
                                 'update
                                 Dim que As String = "UPDATE tb_wh_awbill SET awbill_no = '" + awbill_no + "' WHERE id_awbill = '" + id_awbill + "'"
 
                                 execute_non_query(que, True, "", "", "", "")
-
                                 total_imported = total_imported + 1
                             Else
                                 total_already_imported = total_already_imported + 1
                             End If
-                        Else
-                            total_not_imported = total_not_imported + 1
-                        End If
-                    Catch ex As Exception
-                    End Try
+                        Next
+                    End If
                 Next
 
                 MyConnection.Close()
 
                 My.Computer.FileSystem.DeleteFile(awb_tmp)
 
-                Dim msg As String = total_imported.ToString + " data successfully imported."
-                msg += Environment.NewLine + total_already_imported.ToString + " data already imported."
-                msg += Environment.NewLine + total_not_imported.ToString + " data failed to imported."
+                Dim msg As String = total_imported.ToString + " kolie AWB number successfully update."
+                msg += Environment.NewLine + total_already_imported.ToString + " kolie already updated."
+                msg += Environment.NewLine + total_not_imported.ToString + " AWB data failed to imported."
 
                 infoCustom(msg)
             End If
         End If
     End Sub
 
-    Private Sub SBReturnList_Click(sender As Object, e As EventArgs) Handles SBReturnList.Click
-        FormOlStoreReturnInputAWB.ShowDialog()
+    Private Sub BViewOutFromDO_Click(sender As Object, e As EventArgs) Handles BViewOutFromDO.Click
+        load_from_do()
+    End Sub
+
+    Sub load_from_do()
+        Dim q_where As String = ""
+
+        If Not SLEComp.EditValue.ToString = "0" Then
+            q_where += " AND c.id_comp='" + addSlashes(SLEComp.EditValue.ToString) + "'"
+        End If
+
+        Dim query As String = "SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
+        c.comp_number AS `store_number`,c.id_commerce_type,c.id_sub_district,c.id_comp, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
+        FROM tb_pl_sales_order_del d
+        INNER JOIN tb_sales_order so On so.id_sales_order=d.id_sales_order
+        LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+        LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
+        WHERE (d.id_report_status=6 OR d.id_report_status=3) AND so.is_export_awb=2  AND ISNULL(awb.id_awbill) " & q_where & "
+        GROUP BY d.id_pl_sales_order_del 
+        ORDER BY d.id_pl_sales_order_del DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GVDOERP.ActiveFilterString = ""
+        GCDOERP.DataSource = data
+        GVDOERP.BestFitColumns()
+    End Sub
+
+
+    Private Sub BGenerateKolie_Click(sender As Object, e As EventArgs) Handles BGenerateKolie.Click
+        'check bukan dari toko berbeda
+        GVDOERP.ActiveFilterString = "[is_check]='yes'"
+        Dim problem As Boolean = False
+        If GVDOERP.RowCount = 0 Then
+            warningCustom("Pilihlah DO terlebih dahulu.")
+            problem = True
+        Else
+            For i As Integer = 0 To GVDOERP.RowCount - 1
+                Dim qc As String = "SELECT * FROM `tb_wh_awbill_det` WHERE id_pl_sales_order_del='" & GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    warningCustom("DO nomor " & GVDOERP.GetRowCellValue(i, "do_no").ToString & " sudah tergenerate ke dalam koli.")
+                    problem = True
+                    Exit For
+                Else
+                    If Not GVDOERP.GetRowCellValue(i, "id_comp").ToString = GVDOERP.GetRowCellValue(0, "id_comp").ToString Then
+                        warningCustom("Pastikan semua tujuan toko sama.")
+                        problem = True
+                        Exit For
+                    End If
+                End If
+            Next
+        End If
+        '
+        If Not problem Then
+            FormWHAWBillDet.opt = "From DO"
+            FormWHAWBillDet.id_awb_type = "1"
+            FormWHAWBillDet.ShowDialog()
+        Else
+            GVDOERP.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub BViewOutRetReq_Click(sender As Object, e As EventArgs) Handles BViewOutRetReq.Click
+        Dim q_where As String = ""
+
+        If Not SLECompRetReq.EditValue.ToString = "0" Then
+            q_where += " AND c.id_comp='" + addSlashes(SLECompRetReq.EditValue.ToString) + "'"
+        End If
+
+        Dim query As String = "SELECT cr.*,cg.`comp_group`,so.id_comp,so.id_commerce_type,so.comp_number,so.comp_name,so.qty,'no' AS is_check
+        FROM `tb_ol_store_cust_ret` cr
+        INNER JOIN (
+            SELECT rd.`id_ol_store_cust_ret`,c.id_comp,c.id_commerce_type,c.`comp_number`,c.comp_name,COUNT(DISTINCT(rd.`id_ol_store_ret_list`)) AS qty  FROM tb_ol_store_cust_ret_det rd
+            INNER JOIN tb_ol_store_ret_list rl ON rl.`id_ol_store_ret_list`=rd.`id_ol_store_ret_list`
+            INNER JOIN tb_ol_store_ret_det retd ON retd.`id_ol_store_ret_det`=rl.`id_ol_store_ret_det`
+            INNER JOIN tb_sales_order_det sod ON sod.`id_sales_order_det`=retd.`id_sales_order_det`
+            INNER JOIN tb_sales_order so ON so.`id_sales_order`=sod.`id_sales_order`
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
+            GROUP BY rd.`id_ol_store_cust_ret`
+        )so ON so.id_ol_store_cust_ret=cr.id_ol_store_cust_ret
+        INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=cr.`id_comp_group`
+        LEFT JOIN tb_wh_awbill_det awb ON awb.id_ol_store_cust_ret = cr.id_ol_store_cust_ret
+        WHERE cr.id_report_status=6 AND ISNULL(awb.id_awbill) " & q_where & "
+        GROUP BY cr.id_ol_store_cust_ret  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRet.DataSource = data
+        GVRet.BestFitColumns()
+    End Sub
+
+    Private Sub BGenKoliRetReq_Click(sender As Object, e As EventArgs) Handles BGenKoliRetReq.Click
+        'check bukan dari toko berbeda
+        GVRet.ActiveFilterString = "[is_check]='yes'"
+        Dim problem As Boolean = False
+        If GVRet.RowCount = 0 Then
+            warningCustom("Pilihlah return terlebih dahulu.")
+            problem = True
+        Else
+            For i As Integer = 0 To GVRet.RowCount - 1
+                If Not GVRet.GetRowCellValue(i, "sales_order_ol_shop_number").ToString = GVRet.GetRowCellValue(0, "sales_order_ol_shop_number").ToString Then
+                    warningCustom("Pastikan hanya memilih satu order number.")
+                    problem = True
+                    Exit For
+                End If
+            Next
+        End If
+        '
+        If Not problem Then
+            FormWHAWBillDet.opt = "From Return Customer"
+            FormWHAWBillDet.id_awb_type = "1"
+            FormWHAWBillDet.ShowDialog()
+        Else
+            GVRet.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub BGenerateAWBRef_Click(sender As Object, e As EventArgs) Handles BGenerateAWBRef.Click
+        FormWHAWBillReff.ShowDialog()
+    End Sub
+
+    Private Sub BBAwbCollection_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBAwbCollection.ItemClick
+        GVAWBill.ActiveFilterString = "[is_check] = 'yes'"
+        'checking
+        Dim problem As Boolean = False
+        For i As Integer = 0 To GVAWBill.RowCount - 1
+            Dim qc As String = "SELECT awbill_no FROM tb_wh_awbill WHERE id_awbill='" & GVAWBill.GetRowCellValue(i, "id_awbill").ToString & "'"
+            Dim dt_qc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dt_qc.Rows.Count > 0 Then
+                If Not GVAWBill.GetRowCellValue(i, "id_store").ToString = GVAWBill.GetRowCellValue(0, "id_store").ToString Then
+                    warningCustom("Different shipping location, please generate separate AWB")
+                    problem = True
+                    Exit For
+                ElseIf Not GVAWBill.GetRowCellValue(i, "id_cargo").ToString = GVAWBill.GetRowCellValue(0, "id_cargo").ToString Then
+                    warningCustom("Different shipping vendor, please generate separate AWB")
+                    problem = True
+                    Exit For
+                ElseIf Not GVAWBill.GetRowCellValue(i, "awbill_no").ToString = "" Then
+                    warningCustom("Some collie already have AWB")
+                    problem = True
+                    Exit For
+                ElseIf Not dt_qc.Rows(0)("awbill_no").ToString = "" Then
+                    warningCustom("Some collie already have AWB")
+                    problem = True
+                    Exit For
+                ElseIf GVAWBill.GetRowCellValue(i, "id_commerce_type").ToString = "2" Then
+                    warningCustom("Online shop cannot use AWB collection.")
+                    problem = True
+                    Exit For
+                End If
+            Else
+                infoCustom("Collie not found.")
+                problem = True
+                Exit For
+            End If
+        Next
+
+        If Not problem Then
+            FormWHAwbillTrackCollection.id_vendor = GVAWBill.GetRowCellValue(0, "id_cargo").ToString
+            FormWHAwbillTrackCollection.is_pick = True
+            FormWHAwbillTrackCollection.ShowDialog()
+        Else
+            GVAWBill.ActiveFilterString = ""
+        End If
     End Sub
 End Class

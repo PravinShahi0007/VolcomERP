@@ -103,6 +103,7 @@ Partial Class FormFGStock
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.BtnViewImg = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnViewStockCard = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLSStockCard = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseDesign = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtCodeDsgSC = New DevExpress.XtraEditors.TextEdit()
@@ -1231,6 +1232,7 @@ Partial Class FormFGStock
         '
         Me.GroupControlFilter.Controls.Add(Me.BtnExportToXLSStockCard)
         Me.GroupControlFilter.Controls.Add(Me.BtnBrowseDesign)
+        Me.GroupControlFilter.Controls.Add(Me.BtnViewStockCard)
         Me.GroupControlFilter.Controls.Add(Me.TxtCodeDsgSC)
         Me.GroupControlFilter.Controls.Add(Me.SLEWH)
         Me.GroupControlFilter.Controls.Add(Me.LabelControl4)
@@ -1247,9 +1249,17 @@ Partial Class FormFGStock
         Me.GroupControlFilter.TabIndex = 1
         Me.GroupControlFilter.Text = "Filter"
         '
+        'BtnViewStockCard
+        '
+        Me.BtnViewStockCard.Location = New System.Drawing.Point(769, 30)
+        Me.BtnViewStockCard.Name = "BtnViewStockCard"
+        Me.BtnViewStockCard.Size = New System.Drawing.Size(77, 20)
+        Me.BtnViewStockCard.TabIndex = 8907
+        Me.BtnViewStockCard.Text = "View (trial)"
+        '
         'BtnExportToXLSStockCard
         '
-        Me.BtnExportToXLSStockCard.Location = New System.Drawing.Point(832, 30)
+        Me.BtnExportToXLSStockCard.Location = New System.Drawing.Point(921, 29)
         Me.BtnExportToXLSStockCard.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSStockCard.Name = "BtnExportToXLSStockCard"
         Me.BtnExportToXLSStockCard.Size = New System.Drawing.Size(92, 20)
@@ -1348,7 +1358,7 @@ Partial Class FormFGStock
         '
         'BtnTracking
         '
-        Me.BtnTracking.Location = New System.Drawing.Point(766, 30)
+        Me.BtnTracking.Location = New System.Drawing.Point(852, 30)
         Me.BtnTracking.Name = "BtnTracking"
         Me.BtnTracking.Size = New System.Drawing.Size(63, 20)
         Me.BtnTracking.TabIndex = 2
@@ -3678,4 +3688,5 @@ Partial Class FormFGStock
     Friend WithEvents BandedGridColumnprice_type As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents LEGroupBy As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl33 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnViewStockCard As DevExpress.XtraEditors.SimpleButton
 End Class

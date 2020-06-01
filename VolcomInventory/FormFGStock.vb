@@ -213,7 +213,7 @@
     End Sub
 
     Private Sub BtnTracking_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnTracking.Click
-        viewStockCard()
+        viewStockCard(False)
     End Sub
 
     Private Sub BtnViewImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnViewImg.Click
@@ -542,7 +542,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewStockCard()
+    Sub viewStockCard(ByVal is_use_sizetype As Boolean)
         Cursor = Cursors.WaitCursor
         BandedGridViewFGStockCard.Columns.Clear()
         BandedGridViewFGStockCard.Bands.Clear()
@@ -575,8 +575,38 @@
         Dim band_bal As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BandedGridViewFGStockCard.Bands.AddBand("BALANCE")
         Dim band_stat As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BandedGridViewFGStockCard.Bands.AddBand("")
         band_stat.AutoFillDown = True
-        Dim query As String = "CALL view_stock_card_fg('" + id_design_selected + "', '" + id_wh_selected + "', '" + date_from_selected + "', '" + date_until_selected + "') "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+
+        'data
+        Dim query As String = ""
+        Dim data As DataTable
+        If Not is_use_sizetype Then
+            query = "CALL view_stock_card_fg('" + id_design_selected + "', '" + id_wh_selected + "', '" + date_from_selected + "', '" + date_until_selected + "') "
+            data = execute_query(query, -1, True, "", "", "", "")
+        Else
+            Dim qz As String = "SELECT SUBSTRING(p.product_full_code, 10, 1) AS `size_type`
+            FROM tb_m_design d 
+            INNER JOIN tb_m_product p ON p.id_design = d.id_design
+            WHERE d.id_design='" + id_design_selected + "'
+            GROUP BY SUBSTRING(p.product_full_code, 10, 1) "
+            Dim dz As DataTable = execute_query(qz, -1, True, "", "", "", "")
+            Dim data_stock As New DataTable
+            For z As Integer = 0 To dz.Rows.Count - 1
+                Dim query_sc As String = "CALL view_stock_card_fg_sizetype('" + id_design_selected + "', '" + id_wh_selected + "', '" + date_from_selected + "', '" + date_until_selected + "','" + dz.Rows(z)("size_type").ToString + "') "
+                Dim dsc As DataTable = execute_query(query_sc, -1, True, "", "", "", "")
+                If dsc.Rows.Count > 0 Then
+                    If data_stock.Rows.Count = 0 Then
+                        data_stock = dsc
+                    Else
+                        data_stock.Merge(dsc)
+                    End If
+                End If
+            Next
+            data = data_stock
+        End If
+
+
+
         For i As Integer = 0 To data.Columns.Count - 1
             If data.Columns(i).ColumnName.ToString = "id_comp" Or data.Columns(i).ColumnName.ToString = "id_report" Or data.Columns(i).ColumnName.ToString = "report_mark_type" Or data.Columns(i).ColumnName.ToString = "id_storage_category" Or data.Columns(i).ColumnName.ToString = "Time" Or data.Columns(i).ColumnName.ToString = "Transaction" Or data.Columns(i).ColumnName.ToString = "Transaction Type" Or data.Columns(i).ColumnName.ToString = "Size Type" Or data.Columns(i).ColumnName.ToString = "Account" Then
                 band_ref.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
@@ -1123,7 +1153,8 @@
 
     Private Sub DEUntil_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntil.KeyDown
         If e.KeyCode = Keys.Enter Then
-            BtnTracking.Focus()
+            'BtnTracking.Focus()
+            BtnViewStockCard.Focus()
         End If
     End Sub
 
@@ -1639,5 +1670,13 @@
 
     Private Sub LEGroupBy_EditValueChanged(sender As Object, e As EventArgs) Handles LEGroupBy.EditValueChanged
         resetViewSOH()
+    End Sub
+
+    Private Sub BtnViewStockCard_Click(sender As Object, e As EventArgs) Handles BtnViewStockCard.Click
+        viewStockCard(True)
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+
     End Sub
 End Class
