@@ -46,6 +46,9 @@
 
         'invoice list
         load_group_store()
+
+        'payout
+        load_payout()
     End Sub
 
     Sub load_status_payment()
@@ -203,6 +206,19 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         GVInvoiceList.BestFitColumns()
     End Sub
 
+    Sub load_payout()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT t.id_list_payout_trans, t.number, SUM(p.payment) AS `amount`, SUM(p.trans_fee) AS `trans_fee`, SUM(p.payment)-SUM(p.trans_fee) AS `nett`
+        FROM tb_list_payout_trans t
+        INNER JOIN tb_list_payout p ON p.id_list_payout_trans = t.id_list_payout_trans
+        LEFT JOIN tb_rec_payment b ON b.id_list_payout_trans = t.id_list_payout_trans AND b.id_report_status!=5
+        GROUP BY p.id_list_payout_trans "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPayout.DataSource = data
+        GVPayout.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub GVInvoiceList_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVInvoiceList.RowStyle
         Try
             If GVInvoiceList.GetRowCellValue(e.RowHandle, "is_close_rec_payment") = "2" Then
@@ -292,10 +308,24 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
     End Sub
 
     Private Sub BImportPayout_Click(sender As Object, e As EventArgs) Handles BImportPayout.Click
-        If TEPayoutNumber.Text = "" Then
-
+        Cursor = Cursors.WaitCursor
+        Dim numb As String = addSlashes(TEPayoutNumber.Text)
+        If numb = "" Then
+            warningCustom("Please input payout number")
+            Cursor = Cursors.Default
+        Else
+            'cek di table
+            Dim query As String = "SELECT * FROM tb_list_payout_trans p WHERE p.number='" + numb + "' "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                warningCustom("Payout already exist")
+                Cursor = Cursors.Default
+            Else
+                FormImportExcel.id_pop_up = "50"
+                FormImportExcel.ShowDialog()
+                Cursor = Cursors.Default
+            End If
         End If
-        FormImportExcel.id_pop_up = "50"
-        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
