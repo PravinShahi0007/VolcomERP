@@ -328,4 +328,13 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        If GVPayout.RowCount > 0 And GVPayout.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositDet.id_list_payout_trans = GVPayout.GetFocusedRowCellValue("id_list_payout_trans").ToString
+            FormBankDepositDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class

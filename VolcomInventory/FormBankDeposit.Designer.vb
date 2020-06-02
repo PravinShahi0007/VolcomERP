@@ -104,16 +104,16 @@ Partial Class FormBankDeposit
         Me.XTPPayout = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPayout = New DevExpress.XtraGrid.GridControl()
         Me.GVPayout = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEPayoutNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.BImportPayout = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnid_list_payout_trans = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntrans_fee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnett = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEPayoutNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.BImportPayout = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -934,6 +934,53 @@ Partial Class FormBankDeposit
         Me.GVPayout.OptionsView.ShowFooter = True
         Me.GVPayout.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnid_list_payout_trans
+        '
+        Me.GridColumnid_list_payout_trans.Caption = "id_list_payout_trans"
+        Me.GridColumnid_list_payout_trans.FieldName = "id_list_payout_trans"
+        Me.GridColumnid_list_payout_trans.Name = "GridColumnid_list_payout_trans"
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 1
+        '
+        'GridColumntrans_fee
+        '
+        Me.GridColumntrans_fee.Caption = "Transaction Fee"
+        Me.GridColumntrans_fee.DisplayFormat.FormatString = "N2"
+        Me.GridColumntrans_fee.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntrans_fee.FieldName = "trans_fee"
+        Me.GridColumntrans_fee.Name = "GridColumntrans_fee"
+        Me.GridColumntrans_fee.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "trans_fee", "{0:N2}")})
+        Me.GridColumntrans_fee.Visible = True
+        Me.GridColumntrans_fee.VisibleIndex = 2
+        '
+        'GridColumnnett
+        '
+        Me.GridColumnnett.Caption = "Nett"
+        Me.GridColumnnett.DisplayFormat.FormatString = "N2"
+        Me.GridColumnnett.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnnett.FieldName = "nett"
+        Me.GridColumnnett.Name = "GridColumnnett"
+        Me.GridColumnnett.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "nett", "{0:N2}")})
+        Me.GridColumnnett.Visible = True
+        Me.GridColumnnett.VisibleIndex = 3
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.TEPayoutNumber)
@@ -986,53 +1033,6 @@ Partial Class FormBankDeposit
         Me.SimpleButton1.Size = New System.Drawing.Size(1186, 32)
         Me.SimpleButton1.TabIndex = 19
         Me.SimpleButton1.Text = "Receive Payment"
-        '
-        'GridColumnid_list_payout_trans
-        '
-        Me.GridColumnid_list_payout_trans.Caption = "id_list_payout_trans"
-        Me.GridColumnid_list_payout_trans.FieldName = "id_list_payout_trans"
-        Me.GridColumnid_list_payout_trans.Name = "GridColumnid_list_payout_trans"
-        '
-        'GridColumnnumber
-        '
-        Me.GridColumnnumber.Caption = "Number"
-        Me.GridColumnnumber.FieldName = "number"
-        Me.GridColumnnumber.Name = "GridColumnnumber"
-        Me.GridColumnnumber.Visible = True
-        Me.GridColumnnumber.VisibleIndex = 0
-        '
-        'GridColumnamount
-        '
-        Me.GridColumnamount.Caption = "Amount"
-        Me.GridColumnamount.DisplayFormat.FormatString = "N2"
-        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnamount.FieldName = "amount"
-        Me.GridColumnamount.Name = "GridColumnamount"
-        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
-        Me.GridColumnamount.Visible = True
-        Me.GridColumnamount.VisibleIndex = 1
-        '
-        'GridColumntrans_fee
-        '
-        Me.GridColumntrans_fee.Caption = "Transaction Fee"
-        Me.GridColumntrans_fee.DisplayFormat.FormatString = "N2"
-        Me.GridColumntrans_fee.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntrans_fee.FieldName = "trans_fee"
-        Me.GridColumntrans_fee.Name = "GridColumntrans_fee"
-        Me.GridColumntrans_fee.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "trans_fee", "{0:N2}")})
-        Me.GridColumntrans_fee.Visible = True
-        Me.GridColumntrans_fee.VisibleIndex = 2
-        '
-        'GridColumnnett
-        '
-        Me.GridColumnnett.Caption = "Nett"
-        Me.GridColumnnett.DisplayFormat.FormatString = "N2"
-        Me.GridColumnnett.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnnett.FieldName = "nett"
-        Me.GridColumnnett.Name = "GridColumnnett"
-        Me.GridColumnnett.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "nett", "{0:N2}")})
-        Me.GridColumnnett.Visible = True
-        Me.GridColumnnett.VisibleIndex = 3
         '
         'FormBankDeposit
         '
