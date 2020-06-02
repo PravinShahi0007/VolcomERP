@@ -212,6 +212,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         FROM tb_list_payout_trans t
         INNER JOIN tb_list_payout p ON p.id_list_payout_trans = t.id_list_payout_trans
         LEFT JOIN tb_rec_payment b ON b.id_list_payout_trans = t.id_list_payout_trans AND b.id_report_status!=5
+        WHERE ISNULL(b.id_rec_payment)
         GROUP BY p.id_list_payout_trans "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPayout.DataSource = data

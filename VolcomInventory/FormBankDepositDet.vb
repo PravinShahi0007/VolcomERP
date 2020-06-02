@@ -372,9 +372,12 @@ Public Class FormBankDepositDet
                         need_to_pay_amount = decimalSQL(TENeedToPay.EditValue.ToString)
                         need_to_pay_account = SLEPayFrom.EditValue.ToString
                     End If
+                    If id_list_payout_trans = "-1" Then
+                        id_list_payout_trans = "NULL"
+                    End If
 
-                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec)
-                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "'); SELECT LAST_INSERT_ID();"
+                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec, id_list_payout_trans)
+                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "', " + id_list_payout_trans + "); SELECT LAST_INSERT_ID();"
                     id_deposit = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
@@ -414,6 +417,9 @@ Public Class FormBankDepositDet
                     'FormBankDeposit.SLEStoreDeposit.EditValue = SLEStore.EditValue
                     FormBankDeposit.GCInvoiceList.DataSource = Nothing
                     FormBankDeposit.load_deposit()
+                    If id_list_payout_trans <> "-1" Then
+                        FormBankDeposit.load_payout()
+                    End If
                     FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankDeposit.GVList, "id_rec_payment", id_deposit)
                     FormBankDeposit.XTCPO.SelectedTabPageIndex = 0
                     form_load()
