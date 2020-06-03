@@ -24,8 +24,14 @@ Partial Class FormBankWithdrawalBookTransfer
         Me.BConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLETrfTo = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -35,12 +41,6 @@ Partial Class FormBankWithdrawalBookTransfer
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +91,28 @@ Partial Class FormBankWithdrawalBookTransfer
         Me.SearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit2View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID Acc"
+        Me.GridColumn6.FieldName = "id_acc"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Account"
+        Me.GridColumn7.FieldName = "acc_name"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Description"
+        Me.GridColumn8.FieldName = "acc_description"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        '
         'SLETrfTo
         '
         Me.SLETrfTo.Location = New System.Drawing.Point(126, 39)
@@ -109,6 +131,28 @@ Partial Class FormBankWithdrawalBookTransfer
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Acc"
+        Me.GridColumn1.FieldName = "id_acc"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Account"
+        Me.GridColumn2.FieldName = "acc_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Description"
+        Me.GridColumn3.FieldName = "acc_description"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
         '
         'Label1
         '
@@ -149,6 +193,9 @@ Partial Class FormBankWithdrawalBookTransfer
         Me.TEAmountRp.Properties.Appearance.Options.UseFont = True
         Me.TEAmountRp.Properties.Appearance.Options.UseTextOptions = True
         Me.TEAmountRp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEAmountRp.Properties.Mask.EditMask = "N2"
+        Me.TEAmountRp.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEAmountRp.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEAmountRp.Size = New System.Drawing.Size(335, 24)
         Me.TEAmountRp.TabIndex = 173
         '
@@ -160,6 +207,9 @@ Partial Class FormBankWithdrawalBookTransfer
         Me.TEAmount.Properties.Appearance.Options.UseFont = True
         Me.TEAmount.Properties.Appearance.Options.UseTextOptions = True
         Me.TEAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEAmount.Properties.Mask.EditMask = "N2"
+        Me.TEAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEAmount.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEAmount.Size = New System.Drawing.Size(265, 24)
         Me.TEAmount.TabIndex = 175
         '
@@ -181,6 +231,9 @@ Partial Class FormBankWithdrawalBookTransfer
         Me.TEKurs.Properties.Appearance.Options.UseFont = True
         Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
         Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEKurs.Size = New System.Drawing.Size(335, 24)
         Me.TEKurs.TabIndex = 177
         '
@@ -212,50 +265,6 @@ Partial Class FormBankWithdrawalBookTransfer
         Me.LECurrency.Properties.ShowFooter = False
         Me.LECurrency.Size = New System.Drawing.Size(64, 24)
         Me.LECurrency.TabIndex = 8937
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Acc"
-        Me.GridColumn1.FieldName = "id_acc"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Account"
-        Me.GridColumn2.FieldName = "acc_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Description"
-        Me.GridColumn3.FieldName = "acc_description"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ID Acc"
-        Me.GridColumn6.FieldName = "id_acc"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Account"
-        Me.GridColumn7.FieldName = "acc_name"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Description"
-        Me.GridColumn8.FieldName = "acc_description"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
         '
         'FormBankWithdrawalBookTransfer
         '

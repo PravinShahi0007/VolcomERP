@@ -13,7 +13,7 @@
         view_currency()
         '
         TEAmount.EditValue = 0
-        TEKurs.EditValue = 0
+        TEKurs.EditValue = 1
     End Sub
 
     Sub load_pay_from()
@@ -24,41 +24,46 @@
 
     Private Sub BConfirm_Click(sender As Object, e As EventArgs) Handles BConfirm.Click
         'header
-        FormBankWithdrawalDet.SLEPayFrom.EditValue = SLEPayFrom
+        FormBankWithdrawalDet.SLEPayFrom.EditValue = SLEPayFrom.EditValue
         FormBankWithdrawalDet.SLEVendor.EditValue = "0"
         FormBankWithdrawalDet.SLEPayType.EditValue = "2"
         '
         FormBankWithdrawalDet.SLEReportType.EditValue = "159"
 
-        Dim newRow As DataRow = (TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable)).NewRow()
-        newRow("id_report") = "0"
-        newRow("report_mark_type") = "0"
-        newRow("id_acc") = SLETrfTo.EditValue.ToString
-        newRow("vendor") = ""
-        newRow("id_comp") = "1"
-        newRow("comp_number") = "000"
+        Try
+            Dim newRow As DataRow = (TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable)).NewRow()
+            newRow("id_report") = "0"
+            newRow("report_mark_type") = "0"
+            newRow("id_acc") = SLETrfTo.EditValue.ToString
+            newRow("vendor") = ""
+            newRow("id_comp") = "1"
+            newRow("comp_number") = "000"
 
-        newRow("acc_name") = SLETrfTo.Properties.View.GetFocusedRowCellValue("comp_number").ToString
-        newRow("acc_description") = SLETrfTo.Text
-        newRow("number") = ""
-        newRow("total_pay") = 0
+            newRow("acc_name") = SLETrfTo.Properties.View.GetFocusedRowCellValue("acc_name").ToString
+            newRow("acc_description") = SLETrfTo.Text
+            newRow("number") = ""
+            newRow("total_pay") = 0
 
-        newRow("value") = TEAmountRp.EditValue
-        newRow("balance_due") = TEAmountRp.EditValue
+            newRow("value") = TEAmountRp.EditValue
+            newRow("balance_due") = TEAmountRp.EditValue
 
-        newRow("kurs") = TEKurs.EditValue
-        newRow("id_currency") = LECurrency.EditValue
-        newRow("currency") = LECurrency.Text
-        newRow("val_bef_kurs") = TEAmount.EditValue
-        newRow("note") = "Book Transfer"
-        newRow("id_dc") = "1"
-        newRow("dc_code") = "D"
-        newRow("value_view") = TEAmountRp.EditValue
-        TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable).Rows.Add(newRow)
-        FormBankWithdrawalDet.GCList.RefreshDataSource()
-        FormBankWithdrawalDet.GVList.RefreshData()
-        FormBankWithdrawalDet.calculate_amount()
+            newRow("kurs") = TEKurs.EditValue
+            newRow("id_currency") = LECurrency.EditValue
+            newRow("currency") = LECurrency.Text
+            newRow("val_bef_kurs") = TEAmount.EditValue
+            newRow("note") = "Book Transfer"
+            newRow("id_dc") = "1"
+            newRow("dc_code") = "D"
+            newRow("value_view") = TEAmountRp.EditValue
+            TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable).Rows.Add(newRow)
+            FormBankWithdrawalDet.GCList.RefreshDataSource()
+            FormBankWithdrawalDet.GVList.RefreshData()
+            FormBankWithdrawalDet.calculate_amount()
 
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
 
         Close()
     End Sub
