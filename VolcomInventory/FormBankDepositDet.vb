@@ -100,7 +100,7 @@ Public Class FormBankDepositDet
                     ,0 AS total_rec,
                     SUM(p.trans_fee)*-1 AS `value`,
                     SUM(p.trans_fee)*-1 AS `balance_due`,
-                    'Transaction fee' AS `note`,'1' AS `id_dc`, 'D' AS `dc_code`,
+                    a.note_payout_fee AS `note`,'1' AS `id_dc`, 'D' AS `dc_code`,
                     SUM(p.trans_fee) AS `value_view`
                     FROM tb_list_payout p 
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
@@ -111,6 +111,11 @@ Public Class FormBankDepositDet
                     Dim data_view_payout As DataTable = execute_query(query_view_payout, -1, True, "", "", "", "")
                     GCList.DataSource = data_view_payout
                     GVList.OptionsBehavior.ReadOnly = True
+                    'id bank
+                    SLEPayRecTo.EditValue = execute_query("SELECT a.id_acc_bank_ol_store FROM tb_opt_accounting a", 0, True, "", "", "", "")
+                    SLEPayRecTo.Enabled = False
+                    'note
+                    MENote.Text = "Payout No : " + FormBankDeposit.GVPayout.GetFocusedRowCellValue("number").ToString
                 End If
             End If
             calculate_amount()
