@@ -110,6 +110,7 @@ Partial Class FormBankDeposit
         Me.GridColumntrans_fee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnett = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnHistoryPayout = New DevExpress.XtraEditors.SimpleButton()
         Me.TEPayoutNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BImportPayout = New DevExpress.XtraEditors.SimpleButton()
@@ -983,6 +984,7 @@ Partial Class FormBankDeposit
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnHistoryPayout)
         Me.PanelControl3.Controls.Add(Me.TEPayoutNumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Controls.Add(Me.BImportPayout)
@@ -991,6 +993,16 @@ Partial Class FormBankDeposit
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1186, 43)
         Me.PanelControl3.TabIndex = 20
+        '
+        'BtnHistoryPayout
+        '
+        Me.BtnHistoryPayout.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnHistoryPayout.Image = CType(resources.GetObject("BtnHistoryPayout.Image"), System.Drawing.Image)
+        Me.BtnHistoryPayout.Location = New System.Drawing.Point(1054, 2)
+        Me.BtnHistoryPayout.Name = "BtnHistoryPayout"
+        Me.BtnHistoryPayout.Size = New System.Drawing.Size(130, 39)
+        Me.BtnHistoryPayout.TabIndex = 8927
+        Me.BtnHistoryPayout.Text = "Payout History"
         '
         'TEPayoutNumber
         '
@@ -1180,4 +1192,5 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntrans_fee As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnett As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnHistoryPayout As DevExpress.XtraEditors.SimpleButton
 End Class

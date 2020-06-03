@@ -316,7 +316,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 
     Private Sub BImportPayout_Click(sender As Object, e As EventArgs) Handles BImportPayout.Click
         Cursor = Cursors.WaitCursor
-        Dim numb As String = addSlashes(TEPayoutNumber.Text)
+        Dim numb As String = addSlashes(TEPayoutNumber.Text).Trim
         If numb = "" Then
             warningCustom("Please input payout number")
             Cursor = Cursors.Default
@@ -343,5 +343,20 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
             FormBankDepositDet.ShowDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub GVPayout_DoubleClick(sender As Object, e As EventArgs) Handles GVPayout.DoubleClick
+        If GVPayout.RowCount > 0 And GVPayout.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormPayoutHistoryDetail.id = GVPayout.GetFocusedRowCellValue("id_list_payout_trans").ToString
+            FormPayoutHistoryDetail.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnHistoryPayout_Click(sender As Object, e As EventArgs) Handles BtnHistoryPayout.Click
+        Cursor = Cursors.WaitCursor
+        FormPayoutHistory.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -2806,6 +2806,18 @@
     <Compile Include="FormPaymentMissingDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPayoutHistory.Designer.vb">
+      <DependentUpon>FormPayoutHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayoutHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPayoutHistoryDetail.Designer.vb">
+      <DependentUpon>FormPayoutHistoryDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayoutHistoryDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpDept.Designer.vb">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </Compile>
@@ -7537,6 +7549,12 @@
     <Compile Include="ReportPaymentMissing.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPayout.Designer.vb">
+      <DependentUpon>ReportPayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPayout.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPayrollAll.Designer.vb">
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>
     </Compile>
@@ -9463,6 +9481,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPaymentMissingDet.resx">
       <DependentUpon>FormPaymentMissingDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayoutHistory.resx">
+      <DependentUpon>FormPayoutHistory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayoutHistoryDetail.resx">
+      <DependentUpon>FormPayoutHistoryDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDept.resx">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
@@ -12284,6 +12308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPaymentMissing.resx">
       <DependentUpon>ReportPaymentMissing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPayout.resx">
+      <DependentUpon>ReportPayout.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayrollAll.resx">
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>
