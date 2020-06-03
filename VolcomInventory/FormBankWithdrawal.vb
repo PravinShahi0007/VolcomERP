@@ -35,6 +35,9 @@
         load_vendor_expense()
         load_vendor_fgpo()
         load_vendor_refund()
+
+        DECAFrom.EditValue = Date.Parse(Now)
+        DECATo.EditValue = Date.Parse(Now)
     End Sub
 
     Sub load_status_payment()
@@ -826,5 +829,44 @@ GROUP BY sr.`id_sales_return`"
         End If
 
         GVJamsostek.ActiveFilterString = ""
+    End Sub
+
+    Sub load_ca()
+        Dim date_from As String = ""
+        Dim date_to As String = ""
+
+        Try
+            date_from = DateTime.Parse(DECAFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+            date_to = DateTime.Parse(DECATo.EditValue.ToString).ToString("yyyy-MM-dd")
+
+            Dim where_string As String = ""
+
+            Dim query As String = "CALL view_cash_advance_report_coa('" & date_from & "','" & date_to & "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            GCCashAdvance.DataSource = data
+            GVCashAdvance.BestFitColumns()
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub SBViewCashAdvance_Click(sender As Object, e As EventArgs) Handles SBViewCashAdvance.Click
+        load_ca()
+    End Sub
+
+    Private Sub SBPayCashAdvance_Click(sender As Object, e As EventArgs) Handles SBPayCashAdvance.Click
+        GVCashAdvance.ActiveFilterString = ""
+        GVCashAdvance.ActiveFilterString = "[is_check]='yes'"
+
+        If GVCashAdvance.RowCount > 0 Then
+            FormBankWithdrawalDet.id_pay_type = "2"
+            FormBankWithdrawalDet.report_mark_type = "167"
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("Please select item first.")
+        End If
+
+        GVCashAdvance.ActiveFilterString = ""
     End Sub
 End Class
