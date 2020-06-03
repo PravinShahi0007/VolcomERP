@@ -19,14 +19,13 @@ Partial Class FormBankWithdrawal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawal))
         Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPOList = New DevExpress.XtraTab.XtraTabControl()
         Me.XPOListActive = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPOList = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItemAdd = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewBPLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPOList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -118,6 +117,7 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BCreatePay = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCreateBookTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEPayTypePayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -173,7 +173,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGPO = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -226,6 +226,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn129 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn130 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn131 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn133 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn132 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SBPayJamsostek = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPTHR = New DevExpress.XtraTab.XtraTabPage()
@@ -265,6 +266,25 @@ Partial Class FormBankWithdrawal
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewRefund = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreateRefund = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPCashAdvance = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCashAdvance = New DevExpress.XtraGrid.GridControl()
+        Me.GVCashAdvance = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn140 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn134 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn135 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn136 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn137 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn138 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn139 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn141 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn142 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.DECATo = New DevExpress.XtraEditors.DateEdit()
+        Me.DECAFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.SBViewCashAdvance = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPayCashAdvance = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPWaitingList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCwaitingList = New DevExpress.XtraGrid.GridControl()
         Me.GVWaitingList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -282,9 +302,9 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip()
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn133 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CESelectAllCA = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -364,12 +384,24 @@ Partial Class FormBankWithdrawal
         Me.PanelControl5.SuspendLayout()
         CType(Me.SLEVendorRefund.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPCashAdvance.SuspendLayout()
+        CType(Me.GCCashAdvance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCashAdvance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.DECATo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECATo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECAFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECAFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPWaitingList.SuspendLayout()
         CType(Me.GCwaitingList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVWaitingList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
+        CType(Me.CESelectAllCA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -381,7 +413,7 @@ Partial Class FormBankWithdrawal
         Me.XTCPO.SelectedTabPage = Me.XTPPO
         Me.XTCPO.Size = New System.Drawing.Size(1097, 513)
         Me.XTCPO.TabIndex = 2
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPPO, Me.XTPExpense, Me.XTPFGPO, Me.XTPBPJSKesehatan, Me.XTPJamsostek, Me.XTPTHR, Me.XTPRefund, Me.XTPWaitingList})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPPO, Me.XTPExpense, Me.XTPFGPO, Me.XTPBPJSKesehatan, Me.XTPJamsostek, Me.XTPTHR, Me.XTPRefund, Me.XTPCashAdvance, Me.XTPWaitingList})
         '
         'XTPPO
         '
@@ -1352,6 +1384,7 @@ Partial Class FormBankWithdrawal
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BCreateBookTrf)
         Me.PanelControl2.Controls.Add(Me.SLEPayTypePayment)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.SLEVendorPayment)
@@ -1362,6 +1395,16 @@ Partial Class FormBankWithdrawal
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1091, 44)
         Me.PanelControl2.TabIndex = 14
+        '
+        'BCreateBookTrf
+        '
+        Me.BCreateBookTrf.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCreateBookTrf.Image = CType(resources.GetObject("BCreateBookTrf.Image"), System.Drawing.Image)
+        Me.BCreateBookTrf.Location = New System.Drawing.Point(964, 2)
+        Me.BCreateBookTrf.Name = "BCreateBookTrf"
+        Me.BCreateBookTrf.Size = New System.Drawing.Size(125, 40)
+        Me.BCreateBookTrf.TabIndex = 8921
+        Me.BCreateBookTrf.Text = "Book Transfer"
         '
         'SLEPayTypePayment
         '
@@ -2473,6 +2516,16 @@ Partial Class FormBankWithdrawal
         Me.GridColumn131.VisibleIndex = 3
         Me.GridColumn131.Width = 108
         '
+        'GridColumn133
+        '
+        Me.GridColumn133.Caption = "Location"
+        Me.GridColumn133.FieldName = "bpjstk"
+        Me.GridColumn133.Name = "GridColumn133"
+        Me.GridColumn133.OptionsColumn.AllowEdit = False
+        Me.GridColumn133.OptionsColumn.AllowFocus = False
+        Me.GridColumn133.Visible = True
+        Me.GridColumn133.VisibleIndex = 4
+        '
         'GridColumn132
         '
         Me.GridColumn132.AppearanceCell.Options.UseTextOptions = True
@@ -2899,6 +2952,200 @@ Partial Class FormBankWithdrawal
         Me.BCreateRefund.TabIndex = 24
         Me.BCreateRefund.Text = "Create Payment"
         '
+        'XTPCashAdvance
+        '
+        Me.XTPCashAdvance.Controls.Add(Me.GCCashAdvance)
+        Me.XTPCashAdvance.Controls.Add(Me.PanelControl7)
+        Me.XTPCashAdvance.Controls.Add(Me.SBPayCashAdvance)
+        Me.XTPCashAdvance.Name = "XTPCashAdvance"
+        Me.XTPCashAdvance.Size = New System.Drawing.Size(1091, 485)
+        Me.XTPCashAdvance.Text = "Cash Advance"
+        '
+        'GCCashAdvance
+        '
+        Me.GCCashAdvance.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCashAdvance.Location = New System.Drawing.Point(0, 44)
+        Me.GCCashAdvance.MainView = Me.GVCashAdvance
+        Me.GCCashAdvance.Name = "GCCashAdvance"
+        Me.GCCashAdvance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit4, Me.RepositoryItemCheckEdit8})
+        Me.GCCashAdvance.Size = New System.Drawing.Size(1091, 409)
+        Me.GCCashAdvance.TabIndex = 28
+        Me.GCCashAdvance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCashAdvance})
+        '
+        'GVCashAdvance
+        '
+        Me.GVCashAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn140, Me.GridColumn134, Me.GridColumn135, Me.GridColumn136, Me.GridColumn137, Me.GridColumn138, Me.GridColumn139, Me.GridColumn141, Me.GridColumn142})
+        Me.GVCashAdvance.GridControl = Me.GCCashAdvance
+        Me.GVCashAdvance.Name = "GVCashAdvance"
+        Me.GVCashAdvance.OptionsFind.AlwaysVisible = True
+        Me.GVCashAdvance.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GVCashAdvance.OptionsView.ColumnAutoWidth = False
+        Me.GVCashAdvance.OptionsView.ShowFooter = True
+        Me.GVCashAdvance.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn140
+        '
+        Me.GridColumn140.FieldName = "id_cash_advance"
+        Me.GridColumn140.Name = "GridColumn140"
+        '
+        'GridColumn134
+        '
+        Me.GridColumn134.Caption = "*"
+        Me.GridColumn134.ColumnEdit = Me.RepositoryItemCheckEdit8
+        Me.GridColumn134.FieldName = "is_check"
+        Me.GridColumn134.Name = "GridColumn134"
+        Me.GridColumn134.Visible = True
+        Me.GridColumn134.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit8
+        '
+        Me.RepositoryItemCheckEdit8.AutoHeight = False
+        Me.RepositoryItemCheckEdit8.Name = "RepositoryItemCheckEdit8"
+        Me.RepositoryItemCheckEdit8.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit8.ValueUnchecked = "no"
+        '
+        'GridColumn135
+        '
+        Me.GridColumn135.Caption = "Number"
+        Me.GridColumn135.FieldName = "number"
+        Me.GridColumn135.Name = "GridColumn135"
+        Me.GridColumn135.Visible = True
+        Me.GridColumn135.VisibleIndex = 1
+        '
+        'GridColumn136
+        '
+        Me.GridColumn136.Caption = "Date Created"
+        Me.GridColumn136.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn136.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn136.FieldName = "date_created"
+        Me.GridColumn136.Name = "GridColumn136"
+        Me.GridColumn136.Visible = True
+        Me.GridColumn136.VisibleIndex = 2
+        '
+        'GridColumn137
+        '
+        Me.GridColumn137.Caption = "Departement"
+        Me.GridColumn137.FieldName = "departement"
+        Me.GridColumn137.Name = "GridColumn137"
+        Me.GridColumn137.Visible = True
+        Me.GridColumn137.VisibleIndex = 3
+        '
+        'GridColumn138
+        '
+        Me.GridColumn138.Caption = "Employee"
+        Me.GridColumn138.FieldName = "employee_name"
+        Me.GridColumn138.Name = "GridColumn138"
+        Me.GridColumn138.Visible = True
+        Me.GridColumn138.VisibleIndex = 4
+        '
+        'GridColumn139
+        '
+        Me.GridColumn139.Caption = "Cash In Advance"
+        Me.GridColumn139.DisplayFormat.FormatString = "N2"
+        Me.GridColumn139.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn139.FieldName = "val_ca_actual"
+        Me.GridColumn139.Name = "GridColumn139"
+        Me.GridColumn139.Visible = True
+        Me.GridColumn139.VisibleIndex = 5
+        '
+        'GridColumn141
+        '
+        Me.GridColumn141.Caption = "Reconcile Value"
+        Me.GridColumn141.DisplayFormat.FormatString = "N2"
+        Me.GridColumn141.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn141.FieldName = "expense"
+        Me.GridColumn141.Name = "GridColumn141"
+        Me.GridColumn141.Visible = True
+        Me.GridColumn141.VisibleIndex = 6
+        '
+        'GridColumn142
+        '
+        Me.GridColumn142.Caption = "Total Expense"
+        Me.GridColumn142.DisplayFormat.FormatString = "N2"
+        Me.GridColumn142.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn142.FieldName = "expense"
+        Me.GridColumn142.Name = "GridColumn142"
+        Me.GridColumn142.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "expense", "{0:N2}")})
+        Me.GridColumn142.Visible = True
+        Me.GridColumn142.VisibleIndex = 7
+        '
+        'RepositoryItemTextEdit4
+        '
+        Me.RepositoryItemTextEdit4.AutoHeight = False
+        Me.RepositoryItemTextEdit4.Name = "RepositoryItemTextEdit4"
+        Me.RepositoryItemTextEdit4.NullText = "-"
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.Controls.Add(Me.CESelectAllCA)
+        Me.PanelControl7.Controls.Add(Me.DECATo)
+        Me.PanelControl7.Controls.Add(Me.DECAFrom)
+        Me.PanelControl7.Controls.Add(Me.SBViewCashAdvance)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl7.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(1091, 44)
+        Me.PanelControl7.TabIndex = 29
+        '
+        'DECATo
+        '
+        Me.DECATo.EditValue = Nothing
+        Me.DECATo.Location = New System.Drawing.Point(309, 14)
+        Me.DECATo.Name = "DECATo"
+        Me.DECATo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECATo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECATo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECATo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECATo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DECATo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECATo.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DECATo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DECATo.Size = New System.Drawing.Size(175, 20)
+        Me.DECATo.TabIndex = 8918
+        '
+        'DECAFrom
+        '
+        Me.DECAFrom.EditValue = Nothing
+        Me.DECAFrom.Location = New System.Drawing.Point(128, 14)
+        Me.DECAFrom.Name = "DECAFrom"
+        Me.DECAFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECAFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECAFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECAFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECAFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DECAFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECAFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DECAFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DECAFrom.Size = New System.Drawing.Size(175, 20)
+        Me.DECAFrom.TabIndex = 8917
+        '
+        'SBViewCashAdvance
+        '
+        Me.SBViewCashAdvance.Location = New System.Drawing.Point(490, 12)
+        Me.SBViewCashAdvance.Name = "SBViewCashAdvance"
+        Me.SBViewCashAdvance.Size = New System.Drawing.Size(60, 23)
+        Me.SBViewCashAdvance.TabIndex = 8916
+        Me.SBViewCashAdvance.Text = "view"
+        '
+        'SBPayCashAdvance
+        '
+        Me.SBPayCashAdvance.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SBPayCashAdvance.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SBPayCashAdvance.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SBPayCashAdvance.Appearance.Options.UseBackColor = True
+        Me.SBPayCashAdvance.Appearance.Options.UseFont = True
+        Me.SBPayCashAdvance.Appearance.Options.UseForeColor = True
+        Me.SBPayCashAdvance.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SBPayCashAdvance.Location = New System.Drawing.Point(0, 453)
+        Me.SBPayCashAdvance.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SBPayCashAdvance.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SBPayCashAdvance.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SBPayCashAdvance.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SBPayCashAdvance.Name = "SBPayCashAdvance"
+        Me.SBPayCashAdvance.Size = New System.Drawing.Size(1091, 32)
+        Me.SBPayCashAdvance.TabIndex = 27
+        Me.SBPayCashAdvance.Text = "Create Payment"
+        '
         'XTPWaitingList
         '
         Me.XTPWaitingList.Controls.Add(Me.GCwaitingList)
@@ -3057,15 +3304,13 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'GridColumn133
+        'CESelectAllCA
         '
-        Me.GridColumn133.Caption = "Location"
-        Me.GridColumn133.FieldName = "bpjstk"
-        Me.GridColumn133.Name = "GridColumn133"
-        Me.GridColumn133.OptionsColumn.AllowEdit = False
-        Me.GridColumn133.OptionsColumn.AllowFocus = False
-        Me.GridColumn133.Visible = True
-        Me.GridColumn133.VisibleIndex = 4
+        Me.CESelectAllCA.Location = New System.Drawing.Point(12, 14)
+        Me.CESelectAllCA.Name = "CESelectAllCA"
+        Me.CESelectAllCA.Properties.Caption = "Select All"
+        Me.CESelectAllCA.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAllCA.TabIndex = 8919
         '
         'FormBankWithdrawal
         '
@@ -3163,12 +3408,24 @@ Partial Class FormBankWithdrawal
         Me.PanelControl5.PerformLayout()
         CType(Me.SLEVendorRefund.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPCashAdvance.ResumeLayout(False)
+        CType(Me.GCCashAdvance, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCashAdvance, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        CType(Me.DECATo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECATo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECAFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECAFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPWaitingList.ResumeLayout(False)
         CType(Me.GCwaitingList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVWaitingList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
+        CType(Me.CESelectAllCA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3437,4 +3694,25 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn131 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn132 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn133 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPCashAdvance As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCCashAdvance As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCashAdvance As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemTextEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemCheckEdit8 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBViewCashAdvance As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPayCashAdvance As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DECATo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DECAFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn134 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn135 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn136 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn137 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn138 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn139 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn141 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn140 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn142 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCreateBookTrf As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CESelectAllCA As DevExpress.XtraEditors.CheckEdit
 End Class
