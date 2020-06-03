@@ -781,6 +781,49 @@
                 MENote.Text = me_note
 
                 calculate_amount()
+            ElseIf report_mark_type = "167" Then 'cash advance
+                'load header
+                SLEVendor.EditValue = 1
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+
+                Dim me_note As String = ""
+
+                Dim acc_jp As DataTable = execute_query("SELECT acc.id_acc, acc.acc_name, acc.acc_description, comp.comp_name As vendor, comp.id_comp, comp.comp_number FROM tb_a_acc As acc, tb_m_comp As comp WHERE acc.id_acc = 11 And comp.id_comp = 1", -1, True, "", "", "", "")
+
+                Dim id_acc_t_jk As Integer = acc_jp.Rows(0)("id_acc")
+                Dim acc_name_t_jk As String = acc_jp.Rows(0)("acc_name").ToString
+                Dim acc_description_t_jk As String = acc_jp.Rows(0)("acc_description").ToString
+                Dim vendor_t_jk As String = acc_jp.Rows(0)("vendor").ToString
+                Dim id_comp_t_jk As Integer = acc_jp.Rows(0)("id_comp")
+                Dim comp_number_t_jk As String = acc_jp.Rows(0)("comp_number").ToString
+
+                For i = 0 To FormBankWithdrawal.GVCashAdvance.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "id_cash_advance").ToString
+                    newRow("report_mark_type") = "167"
+                    newRow("id_acc") = id_acc_t_jk
+                    newRow("acc_name") = acc_name_t_jk
+                    newRow("acc_description") = acc_description_t_jk
+                    newRow("vendor") = vendor_t_jk
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = id_comp_t_jk
+                    newRow("comp_number") = comp_number_t_jk
+                    newRow("number") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "number").ToString
+                    newRow("total_pay") = 0
+                    newRow("value") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "expense").ToString
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "expense").ToString
+                    newRow("value_view") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "expense").ToString
+                    newRow("balance_due") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "expense").ToString
+                    newRow("note") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "note").ToString
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+
+                calculate_amount()
             End If
         Else
             PCAddDel.Visible = False

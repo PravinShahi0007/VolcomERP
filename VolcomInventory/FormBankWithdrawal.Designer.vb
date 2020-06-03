@@ -19,14 +19,13 @@ Partial Class FormBankWithdrawal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawal))
         Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPOList = New DevExpress.XtraTab.XtraTabControl()
         Me.XPOListActive = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPOList = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItemAdd = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewBPLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPOList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -174,7 +173,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGPO = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -303,8 +302,9 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip()
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CESelectAllCA = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -401,6 +401,7 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
+        CType(Me.CESelectAllCA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -3059,12 +3060,12 @@ Partial Class FormBankWithdrawal
         '
         'GridColumn142
         '
-        Me.GridColumn142.Caption = "Cash On Hand Out"
+        Me.GridColumn142.Caption = "Total Expense"
         Me.GridColumn142.DisplayFormat.FormatString = "N2"
         Me.GridColumn142.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn142.FieldName = "cash_out"
+        Me.GridColumn142.FieldName = "expense"
         Me.GridColumn142.Name = "GridColumn142"
-        Me.GridColumn142.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash_out", "{0:N2}")})
+        Me.GridColumn142.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "expense", "{0:N2}")})
         Me.GridColumn142.Visible = True
         Me.GridColumn142.VisibleIndex = 7
         '
@@ -3076,6 +3077,7 @@ Partial Class FormBankWithdrawal
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.CESelectAllCA)
         Me.PanelControl7.Controls.Add(Me.DECATo)
         Me.PanelControl7.Controls.Add(Me.DECAFrom)
         Me.PanelControl7.Controls.Add(Me.SBViewCashAdvance)
@@ -3088,7 +3090,7 @@ Partial Class FormBankWithdrawal
         'DECATo
         '
         Me.DECATo.EditValue = Nothing
-        Me.DECATo.Location = New System.Drawing.Point(192, 13)
+        Me.DECATo.Location = New System.Drawing.Point(309, 14)
         Me.DECATo.Name = "DECATo"
         Me.DECATo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECATo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -3104,7 +3106,7 @@ Partial Class FormBankWithdrawal
         'DECAFrom
         '
         Me.DECAFrom.EditValue = Nothing
-        Me.DECAFrom.Location = New System.Drawing.Point(11, 13)
+        Me.DECAFrom.Location = New System.Drawing.Point(128, 14)
         Me.DECAFrom.Name = "DECAFrom"
         Me.DECAFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECAFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -3119,7 +3121,7 @@ Partial Class FormBankWithdrawal
         '
         'SBViewCashAdvance
         '
-        Me.SBViewCashAdvance.Location = New System.Drawing.Point(373, 11)
+        Me.SBViewCashAdvance.Location = New System.Drawing.Point(490, 12)
         Me.SBViewCashAdvance.Name = "SBViewCashAdvance"
         Me.SBViewCashAdvance.Size = New System.Drawing.Size(60, 23)
         Me.SBViewCashAdvance.TabIndex = 8916
@@ -3302,6 +3304,14 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'CESelectAllCA
+        '
+        Me.CESelectAllCA.Location = New System.Drawing.Point(12, 14)
+        Me.CESelectAllCA.Name = "CESelectAllCA"
+        Me.CESelectAllCA.Properties.Caption = "Select All"
+        Me.CESelectAllCA.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAllCA.TabIndex = 8919
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3415,6 +3425,7 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
+        CType(Me.CESelectAllCA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3703,4 +3714,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn140 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn142 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BCreateBookTrf As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CESelectAllCA As DevExpress.XtraEditors.CheckEdit
 End Class

@@ -844,7 +844,15 @@ GROUP BY sr.`id_sales_return`"
             Dim query As String = "CALL view_cash_advance_report_coa('" & date_from & "','" & date_to & "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-            GCCashAdvance.DataSource = data
+            Dim data_final As DataTable = data.Clone
+
+            For i = 0 To data.Rows.Count - 1
+                If data.Rows(i)("expense") > 0 And data.Rows(i)("is_bbk").ToString = "2" Then
+                    data_final.ImportRow(data.Rows(i))
+                End If
+            Next
+
+            GCCashAdvance.DataSource = data_final
             GVCashAdvance.BestFitColumns()
         Catch ex As Exception
             stopCustom(ex.ToString)
@@ -868,6 +876,18 @@ GROUP BY sr.`id_sales_return`"
         End If
 
         GVCashAdvance.ActiveFilterString = ""
+    End Sub
+
+    Private Sub CESelectAllCA_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAllCA.EditValueChanged
+        If CESelectAllCA.EditValue Then
+            For i = 0 To GVCashAdvance.RowCount - 1
+                GVCashAdvance.SetRowCellValue(i, "is_check", "yes")
+            Next
+        Else
+            For i = 0 To GVCashAdvance.RowCount - 1
+                GVCashAdvance.SetRowCellValue(i, "is_check", "no")
+            Next
+        End If
     End Sub
 
     Private Sub BCreateBookTrf_Click(sender As Object, e As EventArgs) Handles BCreateBookTrf.Click
