@@ -3043,7 +3043,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn139.Caption = "Cash In Advance"
         Me.GridColumn139.DisplayFormat.FormatString = "N2"
         Me.GridColumn139.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn139.FieldName = "val_ca"
+        Me.GridColumn139.FieldName = "val_ca_actual"
         Me.GridColumn139.Name = "GridColumn139"
         Me.GridColumn139.Visible = True
         Me.GridColumn139.VisibleIndex = 5
