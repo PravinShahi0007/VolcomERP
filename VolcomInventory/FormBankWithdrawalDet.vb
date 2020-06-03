@@ -4,6 +4,7 @@
     Public id_payment As String = "-1"
     '
     Public is_view As String = "-1"
+    Public is_book_transfer As Boolean = False
     '
     Private Sub FormBankWithdrawalDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -28,7 +29,9 @@
             BMark.Visible = False
             BtnSave.Visible = True
             '
-            If report_mark_type = "159" Then 'BBK umum
+            If is_book_transfer = True Then
+                FormBankWithdrawalBookTransfer.ShowDialog()
+            ElseIf report_mark_type = "159" Then 'BBK umum
                 'load header
                 Try
                     SLEVendor.EditValue = FormBankWithdrawal.SLEVendorPayment.EditValue
