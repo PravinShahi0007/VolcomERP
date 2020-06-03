@@ -4,6 +4,7 @@
     Dim bdel_active As String = "1"
 
     Dim id_pay_type_po As String = "-1"
+    Dim id_own_online_store As String = ""
     '
     Private Sub FormBankDeposit_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
@@ -40,6 +41,9 @@
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+
+        'get id own online store
+        id_own_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_store) FROM tb_m_comp_volcom_ol c", 0, True, "", "", "", "")
 
         load_vendor()
         load_status_payment()
@@ -101,7 +105,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='6' " + cond_group + " "
+                                WHERE c.id_comp_cat='6' " + cond_group + " AND c.id_comp NOT IN (" + id_own_online_store + ") "
         viewSearchLookupQuery(SLEStoreInvoice, query, "id_comp_contact", "comp_name", "id_comp_contact")
         Cursor = Cursors.Default
     End Sub
@@ -200,7 +204,9 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
         LEFT JOIN tb_a_acc coa ON coa.id_acc = " + var_acc + "
         INNER JOIN tb_m_comp cf ON cf.id_comp=1
-        WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
+        WHERE sp.`id_report_status`='6' " & where_string & " 
+        AND c.id_comp NOT IN (" + id_own_online_store + ")
+        GROUP BY sp.`id_sales_pos`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInvoiceList.DataSource = data
         GVInvoiceList.BestFitColumns()
