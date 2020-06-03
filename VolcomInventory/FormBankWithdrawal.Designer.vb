@@ -118,6 +118,7 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BCreatePay = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCreateBookTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEPayTypePayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -278,6 +279,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn138 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn139 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn141 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn142 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.DECATo = New DevExpress.XtraEditors.DateEdit()
@@ -303,7 +305,6 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn142 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -1382,6 +1383,7 @@ Partial Class FormBankWithdrawal
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BCreateBookTrf)
         Me.PanelControl2.Controls.Add(Me.SLEPayTypePayment)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.SLEVendorPayment)
@@ -1392,6 +1394,16 @@ Partial Class FormBankWithdrawal
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1091, 44)
         Me.PanelControl2.TabIndex = 14
+        '
+        'BCreateBookTrf
+        '
+        Me.BCreateBookTrf.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCreateBookTrf.Image = CType(resources.GetObject("BCreateBookTrf.Image"), System.Drawing.Image)
+        Me.BCreateBookTrf.Location = New System.Drawing.Point(964, 2)
+        Me.BCreateBookTrf.Name = "BCreateBookTrf"
+        Me.BCreateBookTrf.Size = New System.Drawing.Size(125, 40)
+        Me.BCreateBookTrf.TabIndex = 8921
+        Me.BCreateBookTrf.Text = "Book Transfer"
         '
         'SLEPayTypePayment
         '
@@ -3045,6 +3057,17 @@ Partial Class FormBankWithdrawal
         Me.GridColumn141.Visible = True
         Me.GridColumn141.VisibleIndex = 6
         '
+        'GridColumn142
+        '
+        Me.GridColumn142.Caption = "Cash On Hand Out"
+        Me.GridColumn142.DisplayFormat.FormatString = "N2"
+        Me.GridColumn142.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn142.FieldName = "cash_out"
+        Me.GridColumn142.Name = "GridColumn142"
+        Me.GridColumn142.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash_out", "{0:N2}")})
+        Me.GridColumn142.Visible = True
+        Me.GridColumn142.VisibleIndex = 7
+        '
         'RepositoryItemTextEdit4
         '
         Me.RepositoryItemTextEdit4.AutoHeight = False
@@ -3278,17 +3301,6 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Name = "VDItemList"
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
-        '
-        'GridColumn142
-        '
-        Me.GridColumn142.Caption = "Cash On Hand Out"
-        Me.GridColumn142.DisplayFormat.FormatString = "N2"
-        Me.GridColumn142.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn142.FieldName = "cash_out"
-        Me.GridColumn142.Name = "GridColumn142"
-        Me.GridColumn142.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash_out", "{0:N2}")})
-        Me.GridColumn142.Visible = True
-        Me.GridColumn142.VisibleIndex = 7
         '
         'FormBankWithdrawal
         '
@@ -3690,4 +3702,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn141 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn140 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn142 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCreateBookTrf As DevExpress.XtraEditors.SimpleButton
 End Class

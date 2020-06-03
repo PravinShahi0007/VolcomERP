@@ -869,4 +869,9 @@ GROUP BY sr.`id_sales_return`"
 
         GVCashAdvance.ActiveFilterString = ""
     End Sub
+
+    Private Sub BCreateBookTrf_Click(sender As Object, e As EventArgs) Handles BCreateBookTrf.Click
+        FormBankWithdrawalDet.ShowDialog()
+        FormBankWithdrawalBookTransfer.ShowDialog()
+    End Sub
 End Class
