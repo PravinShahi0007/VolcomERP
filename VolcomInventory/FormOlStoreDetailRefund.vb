@@ -26,20 +26,24 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Cursor = Cursors.WaitCursor
         Dim rek_no As String = addSlashes(TxtNoRek.Text)
         Dim rek_name As String = addSlashes(TxtNameRek.Text)
         Dim rek_bank As String = addSlashes(TxtBank.Text)
         Dim rek_branch As String = addSlashes(TxtBranch.Text)
-        Dim query As String = "UPDATE tb_ol_store_ret_req SET 
-        rek_no = '" + rek_no + "',
-        rek_name ='" + rek_name + "',
-        rek_bank = '" + rek_bank + "',
-        rek_branch = '" + rek_branch + "'
-        WHERE id_ol_store_ret_req='" + id + "' "
-        execute_non_query(query, True, "", "", "", "")
-        FormOlStoreReturnList.view_list()
-        Close()
-        Cursor = Cursors.Default
+        If rek_no = "" Or rek_name = "" Or rek_bank = "" Or rek_branch = "" Then
+            stopCustom("Please complete all data")
+        Else
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_ol_store_ret_req SET 
+            rek_no = '" + rek_no + "',
+            rek_name ='" + rek_name + "',
+            rek_bank = '" + rek_bank + "',
+            rek_branch = '" + rek_branch + "'
+            WHERE id_ol_store_ret_req='" + id + "' "
+            execute_non_query(query, True, "", "", "", "")
+            FormOlStoreReturnList.view_list()
+            Close()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
