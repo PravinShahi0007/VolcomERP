@@ -56,6 +56,8 @@ Partial Class FormItemExpenseDet
         Me.TxtCompName = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEInvNo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtPaymentStatus = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -103,8 +105,8 @@ Partial Class FormItemExpenseDet
         Me.GridColumnAccountDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetTypeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GCCCDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,6 +129,7 @@ Partial Class FormItemExpenseDet
         CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -523,6 +526,8 @@ Partial Class FormItemExpenseDet
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LabelControl9)
+        Me.PanelControl2.Controls.Add(Me.TEInvNo)
         Me.PanelControl2.Controls.Add(Me.TxtPaymentStatus)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
@@ -534,6 +539,23 @@ Partial Class FormItemExpenseDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(292, 125)
         Me.PanelControl2.TabIndex = 5
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(13, 92)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl9.TabIndex = 21
+        Me.LabelControl9.Text = "Invoice Number"
+        '
+        'TEInvNo
+        '
+        Me.TEInvNo.Enabled = False
+        Me.TEInvNo.Location = New System.Drawing.Point(105, 89)
+        Me.TEInvNo.Name = "TEInvNo"
+        Me.TEInvNo.Size = New System.Drawing.Size(174, 20)
+        Me.TEInvNo.TabIndex = 20
         '
         'TxtPaymentStatus
         '
@@ -945,15 +967,6 @@ Partial Class FormItemExpenseDet
         Me.GridColumnBudgetDesc.FieldName = "item_cat_main"
         Me.GridColumnBudgetDesc.Name = "GridColumnBudgetDesc"
         '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "N2"
-        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N2"
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
         'GCCCDesc
         '
         Me.GCCCDesc.AppearanceCell.Options.UseTextOptions = True
@@ -963,6 +976,15 @@ Partial Class FormItemExpenseDet
         Me.GCCCDesc.Caption = "CC"
         Me.GCCCDesc.FieldName = "cc_desc"
         Me.GCCCDesc.Name = "GCCCDesc"
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "N2"
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N2"
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'FormItemExpenseDet
         '
@@ -1005,6 +1027,7 @@ Partial Class FormItemExpenseDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1112,4 +1135,6 @@ Partial Class FormItemExpenseDet
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCCDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEInvNo As DevExpress.XtraEditors.TextEdit
 End Class
