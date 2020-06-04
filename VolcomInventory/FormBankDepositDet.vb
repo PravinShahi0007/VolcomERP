@@ -113,7 +113,6 @@ Public Class FormBankDepositDet
                     GVList.OptionsBehavior.ReadOnly = True
                     'id bank
                     SLEPayRecTo.EditValue = execute_query("SELECT a.id_acc_bank_ol_store FROM tb_opt_accounting a", 0, True, "", "", "", "")
-                    SLEPayRecTo.Enabled = False
                     'note
                     MENote.Text = "Payout No : " + FormBankDeposit.GVPayout.GetFocusedRowCellValue("number").ToString
                 End If
