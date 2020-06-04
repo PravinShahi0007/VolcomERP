@@ -7957,9 +7957,17 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             If id_status_reportx = "6" Then
                 'action completed
                 Dim query_ins As String = "UPDATE `tb_ol_store_ret_list` rl
-INNER JOIN tb_ol_store_cust_ret_det rd ON rd.`id_ol_store_ret_list`=rl.`id_ol_store_ret_list`
-SET rl.`id_ol_store_ret_stt`='5'
-WHERE rd.`id_ol_store_cust_ret`='" & id_report & "'"
+                INNER JOIN tb_ol_store_cust_ret_det rd ON rd.`id_ol_store_ret_list`=rl.`id_ol_store_ret_list`
+                SET rl.`id_ol_store_ret_stt`='5'
+                WHERE rd.`id_ol_store_cust_ret`='" & id_report & "'; 
+                -- update status internal order
+                INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                FROM tb_ol_store_cust_ret_det d
+                INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=5
+                WHERE d.id_ol_store_cust_ret='" & id_report & "'; "
                 execute_non_query(query_ins, True, "", "", "", "")
             End If
 
