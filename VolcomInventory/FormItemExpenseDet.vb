@@ -159,16 +159,19 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT ed.id_item_expense_det,ed.cc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
+        Dim query As String = "SELECT ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
         ed.id_acc, a.acc_description AS `coa_desc`, ed.description, "
+
         If action = "ins" Then
             query += "0.00 AS tax_percent,0.00 AS `amount` "
         ElseIf action = "upd" Then
             query += "ed.tax_percent,ed.amount "
         End If
+
         query += "From tb_item_expense_det ed
         INNER JOIN tb_a_acc a ON a.id_acc = ed.id_acc
         INNER JOIN tb_lookup_expense_type typ ON typ.id_expense_type=ed.id_expense_type
+        LEFT JOIN tb_m_comp c ON ed.cc=c.id_comp
         INNER JOIN 
         (
 	        SELECT bo.`id_b_expense_opex` AS id_b_expense,icm.`id_item_cat_main`,icm.`item_cat_main`,icm.`id_expense_type`
@@ -210,6 +213,9 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         '
         GridColumnBudgetType.Visible = False
         GridColumnBudgetTypeDesc.VisibleIndex = 2
+        '
+        GCCC.Visible = False
+        GCCCDesc.VisibleIndex = 2
         '
         GridColumnBudget.Visible = False
         GridColumnBudgetDesc.VisibleIndex = 3
