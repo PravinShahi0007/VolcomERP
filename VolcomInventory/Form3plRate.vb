@@ -23,6 +23,7 @@
     Private Sub Form3plRate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
         load_type()
+        view_del_type()
     End Sub
 
     Sub load_vendor()
@@ -35,6 +36,11 @@
 UNION
 SELECT 2 AS id_type,'Inbound' AS type"
         viewSearchLookupQuery(SLEInboundOutbound, q, "id_type", "type", "id_type")
+    End Sub
+
+    Sub view_del_type()
+        Dim q As String = "SELECT id_del_type, del_type FROM tb_lookup_del_type"
+        viewSearchLookupQuery(SLEDelType, q, "id_del_type", "del_type", "id_del_type")
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
@@ -51,7 +57,7 @@ INNER JOIN tb_m_state state ON state.`id_state`=ct.`id_state`
 INNER JOIN tb_m_comp c ON c.`id_comp`=3pl.`id_comp`
 INNER JOIN tb_m_user usr ON usr.`id_user`=3pl.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-WHERE 3pl.id_comp='" & SLECargo.EditValue.ToString & "' AND 3pl.id_type='" & SLEInboundOutbound.EditValue.ToString & "'"
+WHERE 3pl.id_del_type = '" + SLEDelType.EditValue.ToString + "' AND 3pl.id_comp='" & SLECargo.EditValue.ToString & "' AND 3pl.id_type='" & SLEInboundOutbound.EditValue.ToString & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListRate.DataSource = dt
         GVListRate.BestFitColumns()
