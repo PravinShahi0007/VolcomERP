@@ -55,7 +55,7 @@
             GCTotalDays.Caption = "Total Years"
             GCActualWorkingDays.Caption = "Actual Working Years"
         Else
-            GCWorkingDays.Caption = "Actual Working Days"
+            GCWorkingDays.Caption = "Working Days"
             GCTotalDays.Caption = "Total Days"
             GCActualWorkingDays.Caption = "Actual Working Days"
         End If
@@ -279,36 +279,28 @@
         End If
     End Sub
 
-    Sub calculate_value()
-        For i = 0 To GVDeduction.RowCount - 1
-            If GVDeduction.IsValidRowHandle(i) Then
-                Dim value As Integer = 0
-
-                Try
-                    If payroll_type.Rows(0)("is_thr").ToString = "1" Then
-                        Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
-                        Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
-                        Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
-
-                        value = total_days * total_salary
-                    Else
-                        Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
-                        Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
-                        Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
-
-                        value = (total_days / workdays) * total_salary
-                    End If
-                Catch ex As Exception
-                End Try
-
-                GVDeduction.SetRowCellValue(i, "value", value)
-            End If
-        Next
-    End Sub
-
     Private Sub GVDeduction_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVDeduction.CellValueChanged
         If e.Column.FieldName.ToString = "total_days" Or e.Column.FieldName.ToString = "total_salary" Then
-            calculate_value()
+            Dim value As Integer = 0
+
+            Try
+                If payroll_type.Rows(0)("is_thr").ToString = "1" Then
+                    Dim total_days As Decimal = GVDeduction.GetRowCellValue(e.RowHandle, "total_days")
+                    Dim workdays As Decimal = GVDeduction.GetRowCellValue(e.RowHandle, "workdays")
+                    Dim total_salary As Integer = GVDeduction.GetRowCellValue(e.RowHandle, "total_salary")
+
+                    value = total_days * total_salary
+                Else
+                    Dim total_days As Decimal = GVDeduction.GetRowCellValue(e.RowHandle, "total_days")
+                    Dim workdays As Decimal = GVDeduction.GetRowCellValue(e.RowHandle, "workdays")
+                    Dim total_salary As Integer = GVDeduction.GetRowCellValue(e.RowHandle, "total_salary")
+
+                    value = (total_days / workdays) * total_salary
+                End If
+            Catch ex As Exception
+            End Try
+
+            GVDeduction.SetRowCellValue(e.RowHandle, "value", value)
         End If
 
         GVDeduction.BestFitColumns()
@@ -319,12 +311,31 @@
             PMSalary.ClearLinks()
 
             Dim query As String = "
-                SELECT IF(sal_det.id_employee_status = 3, ((sal_det.basic_salary + sal_det.allow_job + sal_det.allow_meal + sal_det.allow_trans + sal_det.allow_house + sal_det.allow_car) * dep.total_workdays), (sal_det.basic_salary + sal_det.allow_job + sal_det.allow_meal + sal_det.allow_trans + sal_det.allow_house + sal_det.allow_car)) AS salary, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date
+                (SELECT IF(sal_det.id_employee_status = 3, ((sal_det.basic_salary + sal_det.allow_job + sal_det.allow_meal + sal_det.allow_trans + sal_det.allow_house + sal_det.allow_car) * dep.total_workdays), (sal_det.basic_salary + sal_det.allow_job + sal_det.allow_meal + sal_det.allow_trans + sal_det.allow_house + sal_det.allow_car)) AS salary, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date
+                FROM tb_employee_sal_pps_det AS sal_det
+                LEFT JOIN tb_employee_sal_pps AS sal ON sal_det.id_employee_sal_pps = sal.id_employee_sal_pps
+                LEFT JOIN tb_m_departement AS dep ON sal_det.id_departement = dep.id_departement
+                WHERE sal.id_report_status = 6 AND sal_det.id_employee = " + GVDeduction.GetFocusedRowCellValue("id_employee").ToString + "
+                ORDER BY sal.id_employee_sal_pps DESC)
+
+                UNION ALL
+
+                (SELECT IF(salary > 4600000, salary * (50 / 100), 2300000) AS salary, effective_date
+                FROM (SELECT IF(sal_det.id_employee_status = 3, ((sal_det.basic_salary + sal_det.allow_job + sal_det.allow_meal + sal_det.allow_trans + sal_det.allow_house + sal_det.allow_car) * dep.total_workdays), (sal_det.basic_salary + sal_det.allow_job + sal_det.allow_meal + sal_det.allow_trans + sal_det.allow_house + sal_det.allow_car)) AS salary, '50%' AS effective_date
                 FROM tb_employee_sal_pps_det AS sal_det
                 LEFT JOIN tb_employee_sal_pps AS sal ON sal_det.id_employee_sal_pps = sal.id_employee_sal_pps
                 LEFT JOIN tb_m_departement AS dep ON sal_det.id_departement = dep.id_departement
                 WHERE sal.id_report_status = 6 AND sal_det.id_employee = " + GVDeduction.GetFocusedRowCellValue("id_employee").ToString + "
                 ORDER BY sal.id_employee_sal_pps DESC
+                LIMIT 1) AS tb)
+                
+                UNION ALL
+                
+                (SELECT 2930093 AS salary, 'UMR' AS effective_date)
+
+                UNION ALL
+                
+                (SELECT 1930093 AS salary, 'Dirumahkan' AS effective_date)
             "
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

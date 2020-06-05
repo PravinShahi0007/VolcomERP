@@ -585,6 +585,12 @@
         ElseIf report_mark_type = "243" Then
             'pre return
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_store_ret WHERE id_ol_store_ret = '{0}'", id_report)
+        ElseIf report_mark_type = "245" Then
+            'return customer
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_store_cust_ret WHERE id_ol_store_cust_ret = '{0}'", id_report)
+        ElseIf report_mark_type = "246" Then
+            'return request
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_store_ret_req WHERE id_ol_store_ret_req = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -2517,6 +2523,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             If report_mark_type = "120" Then
                 Dim stt As ClassSalesReturn = New ClassSalesReturn()
                 stt.changeStatusOLStore(id_report, id_status_reportx)
+
+                If id_status_reportx = "6" Then
+
+                End If
             Else
                 Dim stt As ClassSalesReturn = New ClassSalesReturn()
                 stt.changeStatus(id_report, id_status_reportx)
@@ -3068,6 +3078,39 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
                 stc_in.insertUnique(id_report, report_mark_type)
                 stc_in.completeInStock(id_report, report_mark_type)
+
+                'return centre online store
+                If report_mark_type = "118" Then
+                    'update stt in return centre & order status
+                    Try
+                        Dim qstt As String = "UPDATE tb_ol_store_ret_list main
+                        INNER JOIN (
+	                        SELECT d.id_ol_store_ret_list 
+	                        FROM tb_sales_pos_det d
+	                        WHERE d.id_sales_pos=" + id_report + "
+	                        GROUP BY d.id_ol_store_ret_list
+                        ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                        SET main.id_ol_store_ret_stt=7;
+                        INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                        SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                        FROM tb_sales_pos_det d
+                        INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                        JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=7
+                        WHERE d.id_sales_pos=" + id_report + "
+                        GROUP BY rd.id_sales_order_det;"
+                        execute_non_query(qstt, True, "", "", "", "")
+                    Catch ex As Exception
+                        stopCustom("Error updating status in return centre. " + ex.ToString)
+                    End Try
+
+                    'send mail for ROR
+                    Try
+
+                    Catch ex As Exception
+
+                    End Try
+                End If
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
@@ -4338,6 +4381,36 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             If id_status_reportx = "5" Then
                 Dim ro As New ClassSalesReturnOrder()
                 ro.cancelReservedStock(id_report)
+            ElseIf id_status_reportx = "6" Then
+                'update stt in return centre
+                Try
+                    Dim qstt As String = "UPDATE tb_ol_store_ret_list main
+                    INNER JOIN (
+                       SELECT d.id_ol_store_ret_list 
+                       FROM tb_sales_return_order_det d
+                       WHERE d.id_sales_return_order=" + id_report + "
+                       GROUP BY d.id_ol_store_ret_list
+                    ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                    SET main.id_ol_store_ret_stt=8;
+                    INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                    SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                    FROM tb_sales_return_order_det d
+                    INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                    INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                    JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=8
+                    WHERE d.id_sales_return_order=" + id_report + "
+                    GROUP BY rd.id_sales_order_det; "
+                    execute_non_query(qstt, True, "", "", "", "")
+                Catch ex As Exception
+                    stopCustom("Error updating status in return centre. " + ex.ToString)
+                End Try
+
+                'send mail for process return
+                Try
+
+                Catch ex As Exception
+
+                End Try
             End If
 
             query = String.Format("UPDATE tb_sales_return_order SET id_report_status='{0}' WHERE id_sales_return_order ='{1}'", id_status_reportx, id_report)
@@ -5808,14 +5881,14 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 If data_payment.Rows(0)("report_mark_type").ToString = "139" Or report_mark_type = "202" Then
                     'close pay in tb_purc_order
                     Dim qc As String = "UPDATE tb_purc_order po
-                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.`id_pn`=" & id_report & "
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
                                                 SET po.is_close_pay='1'"
                     execute_non_query(qc, True, "", "", "", "")
                     'FormBankWithdrawal.load_po()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
                     'close expense
                     Dim qc As String = "UPDATE tb_item_expense e
-                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.`id_pn`=" & id_report & "
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
                                                 SET e.is_open='2'"
                     execute_non_query(qc, True, "", "", "", "")
                     'FormBankWithdrawal.load_expense()
@@ -5823,7 +5896,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     'Close FGPO
                     Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
 FROM tb_pn_det pd
-WHERE pd.`id_pn`='" & id_report & "'"
+WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
                     '
                     For i As Integer = 0 To dt.Rows.Count - 1
@@ -5854,6 +5927,45 @@ WHERE pd.`id_pn`='" & id_report & "'"
                     'close thr
                     execute_non_query("UPDATE tb_emp_payroll SET is_close_pay = 1 WHERE id_payroll IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                     'FormBankWithdrawal.view_thr()
+                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "118" Then
+                    'close CN
+                    Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
+FROM tb_pn_det pd
+WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
+                    Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+                    '
+                    For i As Integer = 0 To dt.Rows.Count - 1
+                        If dt.Rows(i)("report_mark_type").ToString = "118" Then 'payment
+                            Dim qc As String = "UPDATE tb_sales_pos 
+                                                SET is_close_rec_payment='1'
+                                                WHERE id_sales_pos='" & dt.Rows(i)("id_report").ToString & "';
+                            -- update stt
+                            UPDATE tb_ol_store_ret_list main
+                            INNER JOIN (
+                                SELECT spd.id_ol_store_ret_list
+                                FROM tb_sales_pos sp 
+                                INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+                                WHERE sp.id_sales_pos='" & dt.Rows(i)("id_report").ToString & "'
+                                GROUP BY spd.id_ol_store_ret_list
+                            ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                            SET main.id_ol_store_ret_stt=3; 
+                            -- update stt order
+                            INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                            SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                            FROM tb_sales_pos_det d
+                            INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                            INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                            JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=3
+                            WHERE d.id_sales_pos='" & dt.Rows(i)("id_report").ToString & "'; "
+                            execute_non_query(qc, True, "", "", "", "")
+                        End If
+                    Next
+                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "247" Then
+                    'close jamsostek
+                    execute_non_query("UPDATE tb_emp_payroll SET is_close_pay_jamsostek = 1 WHERE id_payroll IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
+                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "247" Then
+                    'close cash advance
+                    execute_non_query("UPDATE tb_cash_advance SET is_bbk = 1 WHERE id_cash_advance IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                 End If
                 '
             End If
@@ -7818,11 +7930,76 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 FROM tb_ol_store_ret_det d
                 WHERE d.id_ol_store_ret=" + id_report + " "
                 execute_non_query(query_ins, True, "", "", "", "")
+
+                'update status order
+                Try
+                    Dim query_upd_stt_order As String = "INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`)
+                    SELECT d.id_sales_order_det, 'pre return', NOW(), NOW()
+                    FROM tb_ol_store_ret_det d
+                    WHERE d.id_ol_store_ret=" + id_report + "
+                    GROUP BY d.id_sales_order_det "
+                    execute_non_query(query_upd_stt_order, True, "", "", "", "")
+                Catch ex As Exception
+                    warningCustom("Error updating status order. " + ex.ToString)
+                End Try
             End If
 
             'update status
             query = String.Format("UPDATE tb_ol_store_ret SET id_report_status='{0}' WHERE id_ol_store_ret ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "245" Then
+            'return cust
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'action completed
+                Dim query_ins As String = "UPDATE `tb_ol_store_ret_list` rl
+                INNER JOIN tb_ol_store_cust_ret_det rd ON rd.`id_ol_store_ret_list`=rl.`id_ol_store_ret_list`
+                SET rl.`id_ol_store_ret_stt`='5'
+                WHERE rd.`id_ol_store_cust_ret`='" & id_report & "'; 
+                -- update status internal order
+                INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                FROM tb_ol_store_cust_ret_det d
+                INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=5
+                WHERE d.id_ol_store_cust_ret='" & id_report & "'; "
+                execute_non_query(query_ins, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_ol_store_cust_ret SET id_report_status='{0}' WHERE id_ol_store_cust_ret ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "246" Then
+            'request return
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'action completed
+                'send mail
+                Try
+                Catch ex As Exception
+
+                End Try
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_ol_store_ret_req SET id_report_status='{0}' WHERE id_ol_store_ret_req ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            Try
+                FormOlStoreReturnList.viewRequest()
+                FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id_report)
+                FormRequestRetOLStore.actionLoad()
+            Catch ex As Exception
+
+            End Try
         End If
 
         'adding lead time

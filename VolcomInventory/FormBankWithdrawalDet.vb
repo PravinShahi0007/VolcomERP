@@ -4,6 +4,7 @@
     Public id_payment As String = "-1"
     '
     Public is_view As String = "-1"
+    Public is_book_transfer As Boolean = False
     '
     Private Sub FormBankWithdrawalDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -28,7 +29,9 @@
             BMark.Visible = False
             BtnSave.Visible = True
             '
-            If report_mark_type = "159" Then 'BBK umum
+            If is_book_transfer = True Then
+                FormBankWithdrawalBookTransfer.ShowDialog()
+            ElseIf report_mark_type = "159" Then 'BBK umum
                 'load header
                 Try
                     SLEVendor.EditValue = FormBankWithdrawal.SLEVendorPayment.EditValue
@@ -501,6 +504,329 @@
 
                     calculate_amount()
                 End If
+            ElseIf report_mark_type = "118" Then 'refund
+                'load header
+                Dim id_comp As String = FormBankWithdrawal.SLEVendorRefund.EditValue
+                Dim id_comp_contact As String = get_company_x(id_comp, 6)
+                SLEVendor.EditValue = id_comp_contact
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+
+                If id_pay_type = "2" Then 'Payment
+                    GridColumnPayment.OptionsColumn.AllowEdit = False
+                Else
+                    GridColumnPayment.OptionsColumn.AllowEdit = True
+                End If
+                'load detail
+                For i As Integer = 0 To FormBankWithdrawal.GVRefund.RowCount - 1
+                    'id_report,number,total,balance due
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "id_sales_pos").ToString
+                    newRow("report_mark_type") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "report_mark_type").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "acc_description").ToString
+                    newRow("vendor") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "comp_number").ToString
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "id_comp").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "comp_number").ToString
+                    newRow("number") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "sales_pos_number").ToString
+                    newRow("total_pay") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "total_paid")
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "diff")
+                    newRow("value") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "diff")
+                    newRow("value_view") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "diff")
+                    newRow("balance_due") = FormBankWithdrawal.GVRefund.GetRowCellValue(i, "diff")
+                    newRow("note") = ""
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate_amount()
+            ElseIf report_mark_type = "247" Then 'jamsostek
+                'load header
+                SLEVendor.EditValue = 1
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+
+                Dim me_note As String = ""
+
+                'load detail
+                Dim data_map As DataTable = execute_query("
+                    SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
+                    FROM tb_coa_map_departement AS map
+                    LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
+                    LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
+                    WHERE type = 5
+                ", -1, True, "", "", "", "")
+
+                For i As Integer = 0 To FormBankWithdrawal.GVJamsostek.RowCount - 1
+                    Dim query As String = "CALL view_payroll_bpjstk(" + FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString + ")"
+
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                    'location
+                    Dim location As String = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "bpjstk").ToString
+
+                    'period
+                    Dim period As String = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "payroll_periode").ToString
+
+                    me_note = location + " " + period
+
+                    'total
+                    Dim total_jhtjkkjkm As Integer = 0
+                    Dim total_jp As Integer = 0
+
+                    'jht, jkk, jkm
+                    For j = 0 To data.Rows.Count - 1
+                        If data.Rows(j)("is_store").ToString = "2" Or data.Rows(j)("id_departement").ToString = "17" Then
+                            If location = data.Rows(j)("bpjs_tk_location").ToString Then
+                                For k = 0 To data_map.Rows.Count - 1
+                                    If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
+                                        Dim id_acc As Integer = data_map.Rows(k)("id_acc")
+                                        Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
+                                        Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
+                                        Dim vendor As String = data_map.Rows(k)("vendor").ToString
+                                        Dim id_comp As Integer = data_map.Rows(k)("id_comp")
+                                        Dim comp_number As String = data_map.Rows(k)("comp_number").ToString
+                                        Dim balance As Integer = data.Rows(j)("company_contribution_1")
+
+                                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                                        newRow("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
+                                        newRow("report_mark_type") = "247"
+                                        newRow("id_acc") = id_acc
+                                        newRow("acc_name") = acc_name
+                                        newRow("acc_description") = acc_description
+                                        newRow("vendor") = vendor
+                                        newRow("id_dc") = "1"
+                                        newRow("dc_code") = "D"
+                                        newRow("id_comp") = id_comp
+                                        newRow("comp_number") = comp_number
+                                        newRow("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
+                                        newRow("total_pay") = 0
+                                        newRow("value") = balance
+                                        newRow("kurs") = 1
+                                        newRow("id_currency") = "1"
+                                        newRow("currency") = "Rp"
+                                        newRow("val_bef_kurs") = balance
+                                        newRow("value_view") = balance
+                                        newRow("balance_due") = balance
+                                        newRow("note") = "JHT, JKK, JKM " + period + " (dibayar perusahaan)"
+                                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                                        total_jhtjkkjkm += data.Rows(j)("employee_contribution_1")
+
+                                        Exit For
+                                    End If
+                                Next
+                            End If
+                        End If
+                    Next
+
+                    'jp
+                    For j = 0 To data.Rows.Count - 1
+                        If data.Rows(j)("is_store").ToString = "2" Or data.Rows(j)("id_departement").ToString = "17" Then
+                            If location = data.Rows(j)("bpjs_tk_location").ToString Then
+                                For k = 0 To data_map.Rows.Count - 1
+                                    If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
+                                        Dim id_acc As Integer = data_map.Rows(k)("id_acc")
+                                        Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
+                                        Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
+                                        Dim vendor As String = data_map.Rows(k)("vendor").ToString
+                                        Dim id_comp As Integer = data_map.Rows(k)("id_comp")
+                                        Dim comp_number As String = data_map.Rows(k)("comp_number").ToString
+                                        Dim balance As Integer = data.Rows(j)("company_contribution_2")
+
+                                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                                        newRow("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
+                                        newRow("report_mark_type") = "247"
+                                        newRow("id_acc") = id_acc
+                                        newRow("acc_name") = acc_name
+                                        newRow("acc_description") = acc_description
+                                        newRow("vendor") = vendor
+                                        newRow("id_dc") = "1"
+                                        newRow("dc_code") = "D"
+                                        newRow("id_comp") = id_comp
+                                        newRow("comp_number") = comp_number
+                                        newRow("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
+                                        newRow("total_pay") = 0
+                                        newRow("value") = balance
+                                        newRow("kurs") = 1
+                                        newRow("id_currency") = "1"
+                                        newRow("currency") = "Rp"
+                                        newRow("val_bef_kurs") = balance
+                                        newRow("value_view") = balance
+                                        newRow("balance_due") = balance
+                                        newRow("note") = "J Pensiun " + period + " (dibayar perusahaan)"
+                                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                                        total_jp += data.Rows(j)("employee_contribution_2")
+
+                                        Exit For
+                                    End If
+                                Next
+                            End If
+                        End If
+                    Next
+
+                    'store
+                    For j = 0 To data.Rows.Count - 1
+                        If data.Rows(j)("is_store").ToString = "1" And Not data.Rows(j)("id_departement").ToString = "17" Then
+                            If location = data.Rows(j)("bpjs_tk_location").ToString Then
+                                For k = 0 To data_map.Rows.Count - 1
+                                    If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
+                                        Dim id_acc As Integer = data_map.Rows(k)("id_acc")
+                                        Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
+                                        Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
+                                        Dim vendor As String = data_map.Rows(k)("vendor").ToString
+                                        Dim id_comp As Integer = data_map.Rows(k)("id_comp")
+                                        Dim comp_number As String = data_map.Rows(k)("comp_number").ToString
+                                        Dim balance As Integer = data.Rows(j)("total_contribution")
+
+                                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                                        newRow("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
+                                        newRow("report_mark_type") = "247"
+                                        newRow("id_acc") = id_acc
+                                        newRow("acc_name") = acc_name
+                                        newRow("acc_description") = acc_description
+                                        newRow("vendor") = vendor
+                                        newRow("id_dc") = "1"
+                                        newRow("dc_code") = "D"
+                                        newRow("id_comp") = id_comp
+                                        newRow("comp_number") = comp_number
+                                        newRow("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
+                                        newRow("total_pay") = 0
+                                        newRow("value") = balance
+                                        newRow("kurs") = 1
+                                        newRow("id_currency") = "1"
+                                        newRow("currency") = "Rp"
+                                        newRow("val_bef_kurs") = balance
+                                        newRow("value_view") = balance
+                                        newRow("balance_due") = balance
+                                        newRow("note") = "Jamsostek " + period
+                                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                                        Exit For
+                                    End If
+                                Next
+                            End If
+                        End If
+                    Next
+
+                    'total jht, jkk, jkm
+                    Dim acc_jp As DataTable = execute_query("Select acc.id_acc, acc.acc_name, acc.acc_description, comp.comp_name As vendor, comp.id_comp, comp.comp_number FROM tb_a_acc As acc, tb_m_comp As comp WHERE acc.id_acc = 1153 And comp.id_comp = 1", -1, True, "", "", "", "")
+
+                    Dim id_acc_t_jk As Integer = acc_jp.Rows(0)("id_acc")
+                    Dim acc_name_t_jk As String = acc_jp.Rows(0)("acc_name").ToString
+                    Dim acc_description_t_jk As String = acc_jp.Rows(0)("acc_description").ToString
+                    Dim vendor_t_jk As String = acc_jp.Rows(0)("vendor").ToString
+                    Dim id_comp_t_jk As Integer = acc_jp.Rows(0)("id_comp")
+                    Dim comp_number_t_jk As String = acc_jp.Rows(0)("comp_number").ToString
+                    Dim balance_t_jk As Integer = total_jhtjkkjkm
+
+                    Dim newRowTJk As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRowTJk("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
+                    newRowTJk("report_mark_type") = "247"
+                    newRowTJk("id_acc") = id_acc_t_jk
+                    newRowTJk("acc_name") = acc_name_t_jk
+                    newRowTJk("acc_description") = acc_description_t_jk
+                    newRowTJk("vendor") = vendor_t_jk
+                    newRowTJk("id_dc") = "1"
+                    newRowTJk("dc_code") = "D"
+                    newRowTJk("id_comp") = id_comp_t_jk
+                    newRowTJk("comp_number") = comp_number_t_jk
+                    newRowTJk("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
+                    newRowTJk("total_pay") = 0
+                    newRowTJk("value") = balance_t_jk
+                    newRowTJk("kurs") = 1
+                    newRowTJk("id_currency") = "1"
+                    newRowTJk("currency") = "Rp"
+                    newRowTJk("val_bef_kurs") = balance_t_jk
+                    newRowTJk("value_view") = balance_t_jk
+                    newRowTJk("balance_due") = balance_t_jk
+                    newRowTJk("note") = "JHT, JKK, JKM " + period + " (dibayar karyawan)"
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRowTJk)
+
+                    'total jp
+                    Dim id_acc_t_jp As Integer = acc_jp.Rows(0)("id_acc")
+                    Dim acc_name_t_jp As String = acc_jp.Rows(0)("acc_name").ToString
+                    Dim acc_description_t_jp As String = acc_jp.Rows(0)("acc_description").ToString
+                    Dim vendor_t_jp As String = acc_jp.Rows(0)("vendor").ToString
+                    Dim id_comp_t_jp As Integer = acc_jp.Rows(0)("id_comp")
+                    Dim comp_number_t_jp As String = acc_jp.Rows(0)("comp_number").ToString
+                    Dim balance_t_jp As Integer = total_jp
+
+                    Dim newRowTJp As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRowTJp("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
+                    newRowTJp("report_mark_type") = "247"
+                    newRowTJp("id_acc") = id_acc_t_jp
+                    newRowTJp("acc_name") = acc_name_t_jp
+                    newRowTJp("acc_description") = acc_description_t_jp
+                    newRowTJp("vendor") = vendor_t_jp
+                    newRowTJp("id_dc") = "1"
+                    newRowTJp("dc_code") = "D"
+                    newRowTJp("id_comp") = id_comp_t_jp
+                    newRowTJp("comp_number") = comp_number_t_jp
+                    newRowTJp("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
+                    newRowTJp("total_pay") = 0
+                    newRowTJp("value") = balance_t_jp
+                    newRowTJp("kurs") = 1
+                    newRowTJp("id_currency") = "1"
+                    newRowTJp("currency") = "Rp"
+                    newRowTJp("val_bef_kurs") = balance_t_jp
+                    newRowTJp("value_view") = balance_t_jp
+                    newRowTJp("balance_due") = balance_t_jp
+                    newRowTJp("note") = "J Pensiun " + period + " (dibayar karyawan)"
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRowTJp)
+                Next
+
+                MENote.Text = me_note
+
+                calculate_amount()
+            ElseIf report_mark_type = "167" Then 'cash advance
+                'load header
+                SLEVendor.EditValue = 1
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+
+                Dim me_note As String = ""
+
+                Dim acc_jp As DataTable = execute_query("SELECT acc.id_acc, acc.acc_name, acc.acc_description, comp.comp_name As vendor, comp.id_comp, comp.comp_number FROM tb_a_acc As acc, tb_m_comp As comp WHERE acc.id_acc = 11 And comp.id_comp = 1", -1, True, "", "", "", "")
+
+                Dim id_acc_t_jk As Integer = acc_jp.Rows(0)("id_acc")
+                Dim acc_name_t_jk As String = acc_jp.Rows(0)("acc_name").ToString
+                Dim acc_description_t_jk As String = acc_jp.Rows(0)("acc_description").ToString
+                Dim vendor_t_jk As String = acc_jp.Rows(0)("vendor").ToString
+                Dim id_comp_t_jk As Integer = acc_jp.Rows(0)("id_comp")
+                Dim comp_number_t_jk As String = acc_jp.Rows(0)("comp_number").ToString
+
+                For i = 0 To FormBankWithdrawal.GVCashAdvance.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "id_cash_advance").ToString
+                    newRow("report_mark_type") = "167"
+                    newRow("id_acc") = id_acc_t_jk
+                    newRow("acc_name") = acc_name_t_jk
+                    newRow("acc_description") = acc_description_t_jk
+                    newRow("vendor") = vendor_t_jk
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = id_comp_t_jk
+                    newRow("comp_number") = comp_number_t_jk
+                    newRow("number") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "number").ToString
+                    newRow("total_pay") = 0
+                    newRow("value") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "expense").ToString
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "expense").ToString
+                    newRow("value_view") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "expense").ToString
+                    newRow("balance_due") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "expense").ToString
+                    newRow("note") = FormBankWithdrawal.GVCashAdvance.GetRowCellValue(i, "note").ToString
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+
+                calculate_amount()
             End If
         Else
             PCAddDel.Visible = False
@@ -511,7 +837,7 @@
             SLEPayFrom.Enabled = False
             MENote.Enabled = False
             '
-            Dim query As String = "SELECT * FROM tb_pn WHERE id_pn='" & id_payment & "'"
+            Dim query As String = "Select * FROM tb_pn WHERE id_pn='" & id_payment & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 TEPayNumber.Text = data.Rows(0)("number").ToString
@@ -520,6 +846,11 @@
                 SLEVendor.EditValue = data.Rows(0)("id_comp_contact").ToString
                 SLEPayType.EditValue = data.Rows(0)("id_pay_type").ToString
                 SLEReportType.EditValue = data.Rows(0)("report_mark_type").ToString
+                If data.Rows(0)("is_book_transfer").ToString = "1" Then
+                    is_book_transfer = True
+                Else
+                    is_book_transfer = False
+                End If
                 '
                 If data.Rows(0)("id_report_status").ToString = "6" Then
                     BtnViewJournal.Visible = True
@@ -688,7 +1019,7 @@ WHERE pnd.id_pn='" & id_payment & "'"
         GridColumnCurrencyHide.VisibleIndex = -1
 
         'Parse val
-        Dim query As String = "SELECT py.number,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
+        Dim query As String = "SELECT py.number,py.kurs,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
 ,'" & ConvertCurrencyToIndonesian(TETotal.EditValue) & "' AS tot_say
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
@@ -708,7 +1039,23 @@ WHERE py.`id_pn`='" & id_payment & "'"
         Else
             Report.id_pre = "1"
         End If
-
+        '
+        If is_book_transfer Then
+            Report.LBookTrf.Visible = True
+        Else
+            Report.LBookTrf.Visible = True
+        End If
+        '
+        If TEKurs.EditValue = 1 Then
+            Report.LKurs.Visible = False
+            Report.LkursLabel.Visible = False
+            Report.LKursTitik.Visible = False
+        Else
+            Report.LKurs.Visible = False
+            Report.LkursLabel.Visible = False
+            Report.LKursTitik.Visible = False
+        End If
+        '
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
@@ -736,6 +1083,9 @@ WHERE py.`id_pn`='" & id_payment & "'"
         If e.Column.FieldName.ToString = "value" Then
             'set value
             calculate_amount()
+        ElseIf e.Column.FieldName.ToString = "val_bef_kurs" Or e.Column.FieldName.ToString = "kurs" Then
+            Dim rh As Integer = e.RowHandle
+            GVList.SetRowCellValue(rh, "value_view", GVList.GetRowCellValue(rh, "kurs") * GVList.GetRowCellValue(rh, "val_bef_kurs"))
         ElseIf e.Column.FieldName.ToString = "value_view" Then
             Dim rh As Integer = e.RowHandle
             Dim val As Decimal = 0
@@ -774,8 +1124,14 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 warningCustom("You pay more than balance due.")
             Else
                 'header
-                Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,id_report_status) 
-VALUES('" & report_mark_type & "','" & Decimal.Parse(TEKurs.EditValue.ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim is_book_trf As String = "2"
+
+                If is_book_transfer Then
+                    is_book_transfer = "1"
+                End If
+
+                Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,is_book_transfer,id_report_status) 
+VALUES('" & report_mark_type & "','" & Decimal.Parse(TEKurs.EditValue.ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & is_book_trf & "','1'); SELECT LAST_INSERT_ID(); "
                 id_payment = execute_query(query, 0, True, "", "", "", "")
                 'detail
                 Dim id_currency, kurs, val_bef_kurs As String

@@ -133,6 +133,7 @@
         newRow("id_wh_awb_det") = "0"
         newRow("do_no") = ""
         newRow("qty") = 0
+        newRow("id_ol_store_ret_req") = 0
         TryCast(GCDO.DataSource, DataTable).Rows.Add(newRow)
         GCDO.RefreshDataSource()
         GVDO.RefreshData()
@@ -348,12 +349,12 @@
                 id_awb = execute_query(query, 0, True, "", "", "", "")
                 'detail do
                 If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty) VALUES"
+                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty,id_ol_store_ret_req) VALUES"
                     For i As Integer = 0 To GVDO.RowCount - 1
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "')"
+                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "'," + If(GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString = "0", "NULL", GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString) + ")"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If
@@ -387,12 +388,12 @@
                 execute_non_query(query, True, "", "", "", "")
                 '
                 If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty) VALUES"
+                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty,id_ol_store_ret_req) VALUES"
                     For i As Integer = 0 To GVDO.RowCount - 1
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "')"
+                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "'," + If(GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString = "0", "NULL", GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString) + ")"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If
@@ -573,5 +574,9 @@
             e.SuppressKeyPress = True
             MENote.Focus()
         End If
+    End Sub
+
+    Private Sub BBrowseReference_Click(sender As Object, e As EventArgs) Handles BBrowseReference.Click
+        FormOlStoreReturnInputAWB.ShowDialog()
     End Sub
 End Class

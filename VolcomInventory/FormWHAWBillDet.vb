@@ -3,7 +3,7 @@
     Public id_comp As String = ""
 
     Public id_awb_type As String = "-1"
-
+    Public opt As String = ""
     Public is_view As String = "-1"
 
     Private Sub FormWHAWBillDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -19,6 +19,22 @@ INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
 INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
 INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
         viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
+    End Sub
+
+    Sub load_sub_dsitrict_filter(ByVal filter As String)
+        Dim q As String = "SELECT dis.id_sub_district,dis.`sub_district`,ct.city,ct.`island`,reg.`region`,st.`state`,c.`country`
+FROM tb_m_sub_district dis
+INNER JOIN tb_m_city ct ON dis.id_city=ct.id_city
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
+        Else
+            warningCustom("Shipping district not found, please choose shipping district correctly !")
+            load_sub_dsitrict()
+        End If
     End Sub
 
     Sub load_awb()
@@ -68,11 +84,13 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
 
             rate_table()
 
-            If data.Rows(0)("id_track_no").ToString = "0" Then
-                TEAwbNo.Enabled = True
-            Else
-                TEAwbNo.Enabled = False
-            End If
+            'If data.Rows(0)("id_track_no").ToString = "0" Then
+            '    TEAwbNo.Enabled = True
+            'Else
+            '    TEAwbNo.Enabled = False
+            'End If
+
+            TEAwbNo.Enabled = False
 
             SLESubDistrict.EditValue = data.Rows(0)("id_sub_district").ToString
             SLECargo.EditValue = data.Rows(0)("id_cargo").ToString
@@ -126,7 +144,7 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
             TEAwbNo.Enabled = False
         End If
 
-            If id_awb_type = "1" Then
+        If id_awb_type = "1" Then
             TEAwbType.Text = "Outbound"
             CEPaid.Visible = True
             SLECargo.Width = 100
@@ -147,6 +165,106 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
         '
         If is_view = "1" Then
             BSave.Visible = False
+        End If
+        '
+        If id_awb = "-1" Then
+            If opt = "From DO" Then
+                id_comp = FormWHAWBill.GVDOERP.GetRowCellValue(0, "id_comp").ToString
+                SLESubDistrict.EditValue = FormWHAWBill.GVDOERP.GetRowCellValue(0, "id_sub_district").ToString
+                TECompName.Text = FormWHAWBill.GVDOERP.GetRowCellValue(0, "store_name").ToString
+                TECompCode.Text = FormWHAWBill.GVDOERP.GetRowCellValue(0, "store_number").ToString
+                '
+                If FormWHAWBill.GVDOERP.GetRowCellValue(0, "id_commerce_type").ToString = "2" Then
+                    SLESubDistrict.Enabled = True
+                Else
+                    SLESubDistrict.Enabled = False
+                End If
+                '
+                clear_do()
+                rate_table()
+
+                'masukkan DO
+                For i As Integer = 0 To FormWHAWBill.GVDOERP.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCDO.DataSource, DataTable)).NewRow()
+                    newRow("id_pl_sales_order_del") = FormWHAWBill.GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                    newRow("do_no") = FormWHAWBill.GVDOERP.GetRowCellValue(i, "do_no").ToString
+                    newRow("qty") = FormWHAWBill.GVDOERP.GetRowCellValue(i, "qty")
+
+                    TryCast(GCDO.DataSource, DataTable).Rows.Add(newRow)
+                    GCDO.RefreshDataSource()
+                Next
+                '
+            ElseIf opt = "From DO AWB" Then
+                id_comp = FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "id_comp").ToString
+                TECompName.Text = FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "store_name").ToString
+                TECompCode.Text = FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "store_number").ToString
+                '
+                load_sub_dsitrict_filter(" WHERE ct.city='" & FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "shipping_city").ToString & "' ")
+                '
+                If FormWHAWBillReff.GVDOERP.GetRowCellValue(0, "id_commerce_type").ToString = "2" Then
+                    SLESubDistrict.Enabled = True
+                Else
+                    SLESubDistrict.Enabled = False
+                End If
+                '
+                clear_do()
+                rate_table()
+
+                'masukkan DO
+                For i As Integer = 0 To FormWHAWBillReff.GVDOERP.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCDO.DataSource, DataTable)).NewRow()
+                    newRow("id_pl_sales_order_del") = FormWHAWBillReff.GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                    newRow("do_no") = FormWHAWBillReff.GVDOERP.GetRowCellValue(i, "do_no").ToString
+                    newRow("qty") = FormWHAWBillReff.GVDOERP.GetRowCellValue(i, "qty")
+
+                    TryCast(GCDO.DataSource, DataTable).Rows.Add(newRow)
+                    GCDO.RefreshDataSource()
+                Next
+                '
+            ElseIf opt = "From Return Customer" Then
+                id_comp = FormWHAWBill.GVRet.GetRowCellValue(0, "id_comp").ToString
+                TECompName.Text = FormWHAWBill.GVRet.GetRowCellValue(0, "comp_name").ToString
+                TECompCode.Text = FormWHAWBill.GVRet.GetRowCellValue(0, "comp_number").ToString
+                '
+                load_sub_dsitrict_filter(" WHERE ct.city='" & FormWHAWBill.GVRet.GetRowCellValue(0, "shipping_city").ToString & "' ")
+                '
+                If FormWHAWBill.GVRet.GetRowCellValue(0, "id_commerce_type").ToString = "2" Then
+                    SLESubDistrict.Enabled = True
+                Else
+                    SLESubDistrict.Enabled = False
+                End If
+                '
+                clear_do()
+                rate_table()
+
+                'masukkan DO
+                Dim q As String = "SELECT r.id_ol_store_cust_ret,r.number,SUM(sod.sales_order_det_qty) AS qty
+FROM tb_ol_store_cust_ret_det rd
+INNER JOIN tb_ol_store_cust_ret r ON r.id_ol_store_cust_ret=rd.id_ol_store_cust_ret
+INNER JOIN tb_ol_store_ret_list rl ON rl.`id_ol_store_ret_list`=rd.`id_ol_store_ret_list`
+INNER JOIN tb_ol_store_ret_det retd ON retd.`id_ol_store_ret_det`=rl.`id_ol_store_ret_det`
+INNER JOIN tb_sales_order_det sod ON sod.`id_sales_order_det`=retd.`id_sales_order_det`
+INNER JOIN tb_sales_order so ON so.`id_sales_order`=sod.`id_sales_order`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` 
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group` 
+WHERE CONCAT('RET-',cg.`comp_group`,'-',so.`sales_order_ol_shop_number`)='" & FormWHAWBill.GVRet.GetRowCellValue(0, "stru").ToString & "'
+GROUP BY r.id_ol_store_cust_ret"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                For i As Integer = 0 To FormWHAWBill.GVRet.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCDO.DataSource, DataTable)).NewRow()
+                    newRow("id_ol_store_cust_ret") = FormWHAWBill.GVRet.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
+                    newRow("do_no") = FormWHAWBill.GVRet.GetRowCellValue(i, "number").ToString
+                    newRow("qty") = FormWHAWBill.GVRet.GetRowCellValue(i, "qty")
+
+                    TryCast(GCDO.DataSource, DataTable).Rows.Add(newRow)
+                    GCDO.RefreshDataSource()
+                Next
+                '
+            ElseIf opt = "From AWB Reff" Then
+
+            End If
         End If
     End Sub
     Sub view_do()
@@ -201,6 +319,12 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
     End Sub
 
     Private Sub FormWHAWBillDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Try
+            FormWHAWBillReff.Close()
+            FormWHAWBill.XTCOutbound.SelectedTabPageIndex = 3
+        Catch ex As Exception
+
+        End Try
         Dispose()
     End Sub
 
@@ -225,7 +349,8 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
 ,comp.awb_rank
 FROM `tb_3pl_rate` AS rate
 INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_comp
-WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.id_type='" + id_awb_type + "'"
+WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.id_type='" + id_awb_type + "'
+ORDER BY amount ASC,comp.awb_rank ASC"
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCCargoRate.DataSource = data
@@ -430,29 +555,39 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
             rec_store_by = TERecByPerson.Text
 
             If id_awb = "-1" Then 'new
-                query = "INSERT INTO tb_wh_awbill(is_paid_by_store,id_sub_district,id_track_no,awbill_type,awbill_date,id_store,id_cargo,cargo_rate,cargo_lead_time,cargo_min_weight,weight,`length`,width,height,weight_calc,c_weight,c_tot_price,a_weight,a_tot_price,awbill_no,awbill_inv_no,pick_up_date,rec_by_store_date,rec_by_store_person,awbill_note,id_cargo_best,cargo_rate_best,cargo_lead_time_best,cargo_min_weight_best,mark_different)"
-                query += " VALUES('" + is_paid_by_store + "','" + id_sub_district + "',(SELECT get_track_no('" & SLECargo.EditValue.ToString & "')),'" + id_awb_type + "',NOW(),'" + id_comp + "','" + SLECargo.EditValue.ToString + "','" + decimalSQL(TEChargeRate.EditValue.ToString) + "','" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "','" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "','" + decimalSQL(TEWeight.EditValue.ToString) + "','" + decimalSQL(TELength.EditValue.ToString) + "','" + decimalSQL(TEWidth.EditValue.ToString) + "','" + decimalSQL(TEHeight.EditValue.ToString) + "','" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "','" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "','" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "','" + decimalSQL(vol_airport.ToString) + "','" + decimalSQL(TEPriceAirport.EditValue.ToString) + "','" + addSlashes(TEAwbNo.Text.ToString) + "','" + addSlashes(TEInvNo.Text.ToString) + "'," + date_pickup + "," + date_store + ",'" + rec_store_by + "','" + addSlashes(MENote.Text) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" & mark_diff & "'); SELECT LAST_INSERT_ID(); "
+                'query = "INSERT INTO tb_wh_awbill(is_paid_by_store,id_sub_district,id_track_no,awbill_type,awbill_date,id_store,id_cargo,cargo_rate,cargo_lead_time,cargo_min_weight,weight,`length`,width,height,weight_calc,c_weight,c_tot_price,a_weight,a_tot_price,awbill_no,awbill_inv_no,pick_up_date,rec_by_store_date,rec_by_store_person,awbill_note,id_cargo_best,cargo_rate_best,cargo_lead_time_best,cargo_min_weight_best,mark_different)"
+                'query += " VALUES('" + is_paid_by_store + "','" + id_sub_district + "',(SELECT get_track_no('" & SLECargo.EditValue.ToString & "')),'" + id_awb_type + "',NOW(),'" + id_comp + "','" + SLECargo.EditValue.ToString + "','" + decimalSQL(TEChargeRate.EditValue.ToString) + "','" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "','" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "','" + decimalSQL(TEWeight.EditValue.ToString) + "','" + decimalSQL(TELength.EditValue.ToString) + "','" + decimalSQL(TEWidth.EditValue.ToString) + "','" + decimalSQL(TEHeight.EditValue.ToString) + "','" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "','" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "','" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "','" + decimalSQL(vol_airport.ToString) + "','" + decimalSQL(TEPriceAirport.EditValue.ToString) + "','" + addSlashes(TEAwbNo.Text.ToString) + "','" + addSlashes(TEInvNo.Text.ToString) + "'," + date_pickup + "," + date_store + ",'" + rec_store_by + "','" + addSlashes(MENote.Text) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" & mark_diff & "'); SELECT LAST_INSERT_ID(); "
+                query = "INSERT INTO tb_wh_awbill(is_paid_by_store,id_sub_district,awbill_type,awbill_date,id_store,id_cargo,cargo_rate,cargo_lead_time,cargo_min_weight,weight,`length`,width,height,weight_calc,c_weight,c_tot_price,a_weight,a_tot_price,awbill_no,awbill_inv_no,pick_up_date,rec_by_store_date,rec_by_store_person,awbill_note,id_cargo_best,cargo_rate_best,cargo_lead_time_best,cargo_min_weight_best,mark_different)"
+                query += " VALUES('" + is_paid_by_store + "','" + id_sub_district + "','" + id_awb_type + "',NOW(),'" + id_comp + "','" + SLECargo.EditValue.ToString + "','" + decimalSQL(TEChargeRate.EditValue.ToString) + "','" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "','" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "','" + decimalSQL(TEWeight.EditValue.ToString) + "','" + decimalSQL(TELength.EditValue.ToString) + "','" + decimalSQL(TEWidth.EditValue.ToString) + "','" + decimalSQL(TEHeight.EditValue.ToString) + "','" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "','" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "','" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "','" + decimalSQL(vol_airport.ToString) + "','" + decimalSQL(TEPriceAirport.EditValue.ToString) + "','" + addSlashes(TEAwbNo.Text.ToString) + "','" + addSlashes(TEInvNo.Text.ToString) + "'," + date_pickup + "," + date_store + ",'" + rec_store_by + "','" + addSlashes(MENote.Text) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" & mark_diff & "'); SELECT LAST_INSERT_ID(); "
 
                 id_awb = execute_query(query, 0, True, "", "", "", "")
 
                 execute_non_query("CALL upd_track_no('" & id_awb & "')", True, "", "", "", "")
                 'detail do
                 If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,do_no,qty) VALUES"
+                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,id_ol_store_cust_ret,do_no,qty) VALUES"
                     For i As Integer = 0 To GVDO.RowCount - 1
                         Dim id_pl_sales_order_del As String = "NULL"
+                        Dim id_ol_store_cust_ret As String = "NULL"
                         Try
                             id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                        Catch ex As Exception
+                        End Try
+                        Try
+                            id_ol_store_cust_ret = GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
                         Catch ex As Exception
                         End Try
                         If id_pl_sales_order_del = "" Then
                             id_pl_sales_order_del = "NULL"
                         End If
+                        If id_ol_store_cust_ret = "" Then
+                            id_ol_store_cust_ret = "NULL"
+                        End If
 
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
+                        query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If
@@ -473,9 +608,12 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
                 End If
 
                 load_awb()
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Calculation saved. Do you want to create again ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    again_awb = "1"
+                'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Calculation saved. Do you want to create again ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                'If confirm = Windows.Forms.DialogResult.Yes Then
+                '    again_awb = "1"
+                'End If
+                If opt = "From DO AWB" Then
+                    FormWHAWBill.load_from_do()
                 End If
                 Close()
             Else 'edit
@@ -483,31 +621,31 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
                 execute_non_query(query, True, "", "", "", "")
 
                 'detail
-                If Not isCreatedManifest()Then
-                    '
-                    query = "DELETE FROM tb_wh_awbill_det WHERE id_awbill='" + id_awb + "'"
-                    execute_non_query(query, True, "", "", "", "")
-                    '
-                    If GVDO.RowCount > 0 Then
-                        query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,do_no,qty) VALUES"
-                        For i As Integer = 0 To GVDO.RowCount - 1
-                            Dim id_pl_sales_order_del As String = "NULL"
-                            Try
-                                id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
-                            Catch ex As Exception
-                            End Try
-                            If id_pl_sales_order_del = "" Then
-                                id_pl_sales_order_del = "NULL"
-                            End If
+                'If Not isCreatedManifest()Then
+                '    '
+                '    query = "DELETE FROM tb_wh_awbill_det WHERE id_awbill='" + id_awb + "'"
+                '    execute_non_query(query, True, "", "", "", "")
+                '    '
+                '    If GVDO.RowCount > 0 Then
+                '        query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,do_no,qty) VALUES"
+                '        For i As Integer = 0 To GVDO.RowCount - 1
+                '            Dim id_pl_sales_order_del As String = "NULL"
+                '            Try
+                '                id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                '            Catch ex As Exception
+                '            End Try
+                '            If id_pl_sales_order_del = "" Then
+                '                id_pl_sales_order_del = "NULL"
+                '            End If
 
-                            If Not i = 0 Then
-                                query += ","
-                            End If
-                            query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
-                        Next
-                        execute_non_query(query, True, "", "", "", "")
-                    End If
-                End If
+                '            If Not i = 0 Then
+                '                query += ","
+                '            End If
+                '            query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
+                '        Next
+                '        execute_non_query(query, True, "", "", "", "")
+                '    End If
+                'End If
 
 
                 'infoCustom("AWB calculation updated.")
@@ -739,7 +877,7 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
     End Sub
 
     Private Sub SLECity_EditValueChanged(sender As Object, e As EventArgs) Handles SLESubDistrict.EditValueChanged
-        clear_do()
+        'clear_do()
         '
         'TEWeight.Focus() ---三
         rate_table()

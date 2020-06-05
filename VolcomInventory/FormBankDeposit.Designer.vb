@@ -101,6 +101,20 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPPayout = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPayout = New DevExpress.XtraGrid.GridControl()
+        Me.GVPayout = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_list_payout_trans = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntrans_fee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnett = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnHistoryPayout = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEPayoutNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.BImportPayout = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -128,6 +142,12 @@ Partial Class FormBankDeposit
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPayout.SuspendLayout()
+        CType(Me.GCPayout, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPayout, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.TEPayoutNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -137,9 +157,9 @@ Partial Class FormBankDeposit
         Me.XTCPO.Location = New System.Drawing.Point(0, 0)
         Me.XTCPO.Name = "XTCPO"
         Me.XTCPO.SelectedTabPage = Me.XTPInvoice
-        Me.XTCPO.Size = New System.Drawing.Size(1001, 561)
+        Me.XTCPO.Size = New System.Drawing.Size(1192, 561)
         Me.XTCPO.TabIndex = 3
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout})
         '
         'XTPInvoice
         '
@@ -147,7 +167,7 @@ Partial Class FormBankDeposit
         Me.XTPInvoice.Controls.Add(Me.BCreatePO)
         Me.XTPInvoice.Controls.Add(Me.PanelControl1)
         Me.XTPInvoice.Name = "XTPInvoice"
-        Me.XTPInvoice.Size = New System.Drawing.Size(995, 533)
+        Me.XTPInvoice.Size = New System.Drawing.Size(1186, 533)
         Me.XTPInvoice.Text = "Sales Invoice List"
         '
         'GCInvoiceList
@@ -157,7 +177,7 @@ Partial Class FormBankDeposit
         Me.GCInvoiceList.MainView = Me.GVInvoiceList
         Me.GCInvoiceList.Name = "GCInvoiceList"
         Me.GCInvoiceList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RepositoryItemCheckEdit2})
-        Me.GCInvoiceList.Size = New System.Drawing.Size(995, 458)
+        Me.GCInvoiceList.Size = New System.Drawing.Size(1186, 458)
         Me.GCInvoiceList.TabIndex = 17
         Me.GCInvoiceList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoiceList})
         '
@@ -476,7 +496,7 @@ Partial Class FormBankDeposit
         Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(995, 32)
+        Me.BCreatePO.Size = New System.Drawing.Size(1186, 32)
         Me.BCreatePO.TabIndex = 18
         Me.BCreatePO.Text = "Receive Payment"
         '
@@ -492,7 +512,7 @@ Partial Class FormBankDeposit
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(995, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(1186, 43)
         Me.PanelControl1.TabIndex = 2
         '
         'SLEStoreGroup
@@ -633,7 +653,7 @@ Partial Class FormBankDeposit
         Me.XTPDeposit.Controls.Add(Me.GCList)
         Me.XTPDeposit.Controls.Add(Me.PanelControl2)
         Me.XTPDeposit.Name = "XTPDeposit"
-        Me.XTPDeposit.Size = New System.Drawing.Size(995, 533)
+        Me.XTPDeposit.Size = New System.Drawing.Size(1186, 533)
         Me.XTPDeposit.Text = "Deposit List"
         '
         'GCList
@@ -643,7 +663,7 @@ Partial Class FormBankDeposit
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCList.Size = New System.Drawing.Size(995, 485)
+        Me.GCList.Size = New System.Drawing.Size(1186, 485)
         Me.GCList.TabIndex = 18
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -792,7 +812,7 @@ Partial Class FormBankDeposit
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(995, 48)
+        Me.PanelControl2.Size = New System.Drawing.Size(1186, 48)
         Me.PanelControl2.TabIndex = 14
         '
         'DEUntilList
@@ -886,11 +906,151 @@ Partial Class FormBankDeposit
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
         '
+        'XTPPayout
+        '
+        Me.XTPPayout.Controls.Add(Me.GCPayout)
+        Me.XTPPayout.Controls.Add(Me.PanelControl3)
+        Me.XTPPayout.Controls.Add(Me.SimpleButton1)
+        Me.XTPPayout.Name = "XTPPayout"
+        Me.XTPPayout.Size = New System.Drawing.Size(1186, 533)
+        Me.XTPPayout.Text = "Payout List"
+        '
+        'GCPayout
+        '
+        Me.GCPayout.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPayout.Location = New System.Drawing.Point(0, 43)
+        Me.GCPayout.MainView = Me.GVPayout
+        Me.GCPayout.Name = "GCPayout"
+        Me.GCPayout.Size = New System.Drawing.Size(1186, 458)
+        Me.GCPayout.TabIndex = 21
+        Me.GCPayout.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayout})
+        '
+        'GVPayout
+        '
+        Me.GVPayout.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_list_payout_trans, Me.GridColumnnumber, Me.GridColumnamount, Me.GridColumntrans_fee, Me.GridColumnnett})
+        Me.GVPayout.GridControl = Me.GCPayout
+        Me.GVPayout.Name = "GVPayout"
+        Me.GVPayout.OptionsBehavior.ReadOnly = True
+        Me.GVPayout.OptionsFind.AlwaysVisible = True
+        Me.GVPayout.OptionsView.ShowFooter = True
+        Me.GVPayout.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_list_payout_trans
+        '
+        Me.GridColumnid_list_payout_trans.Caption = "id_list_payout_trans"
+        Me.GridColumnid_list_payout_trans.FieldName = "id_list_payout_trans"
+        Me.GridColumnid_list_payout_trans.Name = "GridColumnid_list_payout_trans"
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 1
+        '
+        'GridColumntrans_fee
+        '
+        Me.GridColumntrans_fee.Caption = "Transaction Fee"
+        Me.GridColumntrans_fee.DisplayFormat.FormatString = "N2"
+        Me.GridColumntrans_fee.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntrans_fee.FieldName = "trans_fee"
+        Me.GridColumntrans_fee.Name = "GridColumntrans_fee"
+        Me.GridColumntrans_fee.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "trans_fee", "{0:N2}")})
+        Me.GridColumntrans_fee.Visible = True
+        Me.GridColumntrans_fee.VisibleIndex = 2
+        '
+        'GridColumnnett
+        '
+        Me.GridColumnnett.Caption = "Nett"
+        Me.GridColumnnett.DisplayFormat.FormatString = "N2"
+        Me.GridColumnnett.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnnett.FieldName = "nett"
+        Me.GridColumnnett.Name = "GridColumnnett"
+        Me.GridColumnnett.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "nett", "{0:N2}")})
+        Me.GridColumnnett.Visible = True
+        Me.GridColumnnett.VisibleIndex = 3
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BtnHistoryPayout)
+        Me.PanelControl3.Controls.Add(Me.TEPayoutNumber)
+        Me.PanelControl3.Controls.Add(Me.LabelControl10)
+        Me.PanelControl3.Controls.Add(Me.BImportPayout)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1186, 43)
+        Me.PanelControl3.TabIndex = 20
+        '
+        'BtnHistoryPayout
+        '
+        Me.BtnHistoryPayout.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnHistoryPayout.Image = CType(resources.GetObject("BtnHistoryPayout.Image"), System.Drawing.Image)
+        Me.BtnHistoryPayout.Location = New System.Drawing.Point(1054, 2)
+        Me.BtnHistoryPayout.Name = "BtnHistoryPayout"
+        Me.BtnHistoryPayout.Size = New System.Drawing.Size(130, 39)
+        Me.BtnHistoryPayout.TabIndex = 8927
+        Me.BtnHistoryPayout.Text = "Payout History"
+        '
+        'TEPayoutNumber
+        '
+        Me.TEPayoutNumber.Location = New System.Drawing.Point(92, 11)
+        Me.TEPayoutNumber.Name = "TEPayoutNumber"
+        Me.TEPayoutNumber.Size = New System.Drawing.Size(137, 20)
+        Me.TEPayoutNumber.TabIndex = 8926
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(12, 14)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl10.TabIndex = 8925
+        Me.LabelControl10.Text = "Payout Number"
+        '
+        'BImportPayout
+        '
+        Me.BImportPayout.Location = New System.Drawing.Point(235, 11)
+        Me.BImportPayout.Name = "BImportPayout"
+        Me.BImportPayout.Size = New System.Drawing.Size(84, 20)
+        Me.BImportPayout.TabIndex = 8924
+        Me.BImportPayout.Text = "import payout"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SimpleButton1.Location = New System.Drawing.Point(0, 501)
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(1186, 32)
+        Me.SimpleButton1.TabIndex = 19
+        Me.SimpleButton1.Text = "Receive Payment"
+        '
         'FormBankDeposit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1001, 561)
+        Me.ClientSize = New System.Drawing.Size(1192, 561)
         Me.Controls.Add(Me.XTCPO)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -927,6 +1087,13 @@ Partial Class FormBankDeposit
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPayout.ResumeLayout(False)
+        CType(Me.GCPayout, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPayout, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.TEPayoutNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1012,4 +1179,18 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumnid_dc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndc_code As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote_inv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPPayout As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BImportPayout As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEPayoutNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCPayout As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPayout As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_list_payout_trans As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntrans_fee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnett As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnHistoryPayout As DevExpress.XtraEditors.SimpleButton
 End Class

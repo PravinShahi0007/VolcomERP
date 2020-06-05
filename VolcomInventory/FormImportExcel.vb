@@ -119,6 +119,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([SEX]='')", oledbconn)
         ElseIf id_pop_up = "44" Then
             MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
+        ElseIf id_pop_up = "50" Then
+            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order]='') ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -3111,6 +3113,114 @@ Public Class FormImportExcel
             'Customize column
             GVData.Columns("track_no").Caption = "Tracking Number"
             GVData.Columns("status").Caption = "Description"
+        ElseIf id_pop_up = "50" Then
+            Dim queryx As String = "SELECT ol.id_list_payout, ol.id AS `id_order`, ol.checkout_id,ol.sales_order_ol_shop_number, ol.payment AS curr_payout,
+            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(posd.`sales_pos_det_qty`*posd.`design_price`) AS amount,
+            GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number,
+            GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos FROM
+            (
+	            SELECT ol.*,lp.`payment`,lp.`trans_fee`,lp.pay_type, lp.id_list_payout
+	            FROM tb_ol_store_order ol
+	            LEFT JOIN tb_list_payout lp ON lp.id=ol.`id`
+	            WHERE NOT ISNULL(ol.`checkout_id`)
+	            GROUP BY ol.`id`
+            ) ol
+            INNER JOIN tb_sales_order so ON so.`id_sales_order_ol_shop`=ol.`id`
+            INNER JOIN `tb_pl_sales_order_del` del ON del.`id_sales_order`=so.`id_sales_order`
+            INNER JOIN tb_sales_pos pos ON pos.`id_pl_sales_order_del`=del.`id_pl_sales_order_del` AND pos.id_report_status=6 AND pos.is_close_rec_payment=2
+            INNER JOIN tb_sales_pos_det posd ON posd.`id_sales_pos`=pos.id_sales_pos
+            GROUP BY ol.id "
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+            Dim tb2 = dt.AsEnumerable()
+
+            'formula type
+            Dim qf As String = "SELECT f.id_payout_fee, f.payout_fee_name, f.payout_multiply, f.payout_add, f.minimum FROM tb_lookup_payout_fee f "
+            Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+            Dim tb3 = df.AsEnumerable
+
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("Order").ToString Equals table_tmp("checkout_id").ToString
+                            Into ord = Group
+                        From y1 In ord.DefaultIfEmpty()
+                        Group Join table_typ In tb3 On table1("Payment Type").ToString Equals table_typ("payout_fee_name").ToString
+                            Into typ = Group
+                        From f1 In typ.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .checkout_id = table1("Order"),
+                                .id_order = If(y1 Is Nothing, "0", y1("id_order")),
+                                .id_sales_pos = If(y1 Is Nothing, "0", y1("id_sales_pos")),
+                                .order_ol_shop_number = If(y1 Is Nothing, "0", y1("sales_order_ol_shop_number")),
+                                .inv_number = If(y1 Is Nothing, "0", y1("inv_number")),
+                                .curr_payout = If(y1 Is Nothing, "0", y1("curr_payout")),
+                                .curr_fee = If(y1 Is Nothing, 0, y1("curr_fee")),
+                                .curr_pay_type = If(y1 Is Nothing, "0", y1("curr_pay_type")),
+                                .id_pay_type = If(f1 Is Nothing, "0", f1("id_payout_fee")),
+                                .pay_type = table1("Payment Type").ToString,
+                                .bank = table1("Acquiring Bank").ToString,
+                                .payout = table1("Amount"),
+                                .fee = table1("Transaction Fee"),
+                                .amount_inv = If(y1 Is Nothing, 0, y1("amount")),
+                                .calc_fee = If(f1 Is Nothing, 0, If((table1("Amount") * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (table1("Amount") * f1("payout_multiply") + f1("payout_add")))),
+                                .settle_datetime = Date.Parse(table1("Settlement Time").ToString.Split(",")(0).Trim & " " & table1("Settlement Time").ToString.Split(",")(1).Trim),
+                                .Status = If(f1 Is Nothing, "Fee type not found", If(y1 Is Nothing, "Checkout id Not Found", If(y1("curr_fee").ToString = "", If(table1("Amount") = If(y1 Is Nothing, 0, y1("amount")), If(table1("Transaction Fee") = If(f1 Is Nothing, 0, If((table1("Amount") * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (table1("Amount") * f1("payout_multiply") + f1("payout_add")))), "OK", "Fee Not Match"), "Amount not match"), "Already imported")))
+                            }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_sales_pos").Visible = False
+
+            GVData.Columns("order_ol_shop_number").Caption = "Order#"
+            GVData.Columns("inv_number").Caption = "Invoice Number"
+            GVData.Columns("amount_inv").Caption = "Amount Invoice"
+
+            GVData.Columns("curr_payout").Caption = "Current Payout"
+            GVData.Columns("curr_fee").Caption = "Current Fee"
+            GVData.Columns("curr_pay_type").Caption = "Current Pay Type"
+            GVData.Columns("curr_payout").Visible = False
+            GVData.Columns("curr_fee").Visible = False
+            GVData.Columns("curr_pay_type").Visible = False
+
+            GVData.Columns("pay_type").Caption = "Pay Type"
+            GVData.Columns("bank").Caption = "Bank"
+            GVData.Columns("payout").Caption = "Payout"
+            GVData.Columns("fee").Caption = "Fee"
+            GVData.Columns("calc_fee").Caption = "System Calculated Fee"
+            GVData.Columns("Status").Caption = "Status"
+            GVData.Columns("settle_datetime").Caption = "Settlement Time"
+
+            GVData.Columns("settle_datetime").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("settle_datetime").DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+
+            GVData.Columns("payout").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("payout").DisplayFormat.FormatString = "N2"
+            GVData.Columns("fee").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("fee").DisplayFormat.FormatString = "N2"
+            GVData.Columns("calc_fee").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("calc_fee").DisplayFormat.FormatString = "N2"
+
+            GVData.Columns("curr_payout").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("curr_payout").DisplayFormat.FormatString = "N2"
+            GVData.Columns("curr_fee").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("curr_fee").DisplayFormat.FormatString = "N2"
+            GVData.Columns("amount_inv").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("amount_inv").DisplayFormat.FormatString = "N2"
+
+            'summary
+            GVData.OptionsView.ShowFooter = True
+            GVData.Columns("payout").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("payout").SummaryItem.DisplayFormat = "{0:n2}"
+            GVData.Columns("fee").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("fee").SummaryItem.DisplayFormat = "{0:n2}"
+            GVData.Columns("amount_inv").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("amount_inv").SummaryItem.DisplayFormat = "{0:n2}"
+            GVData.Columns("calc_fee").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("calc_fee").SummaryItem.DisplayFormat = "{0:n2}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3157,7 +3267,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -5321,6 +5431,62 @@ Public Class FormImportExcel
                         execute_non_query(q, True, "", "", "", "")
                         infoCustom("Import Success")
                         Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
+            ElseIf id_pop_up = "50" Then
+                GVData.ActiveFilterString = "[status] <> 'OK' "
+                If GVData.RowCount > 0 Then
+                    stopCustom("Data not valid, please make sure again")
+                    makeSafeGV(GVData)
+                Else
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[status] = 'OK' "
+                    If GVData.RowCount > 0 Then
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only status 'OK' will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            PBC.Properties.Minimum = 0
+                            PBC.Properties.Maximum = GVData.RowCount - 1
+                            PBC.Properties.Step = 1
+                            PBC.Properties.PercentView = True
+
+                            'main
+                            Dim query_main As String = "INSERT INTO tb_list_payout_trans(number, generate_date) VALUES ('" + addSlashes(FormBankDeposit.TEPayoutNumber.Text.Trim) + "', NOW()); SELECT LAST_INSERT_ID(); "
+                            Dim id_list_payout_trans As String = execute_query(query_main, 0, True, "", "", "", "")
+
+                            'detail data
+                            Dim q As String = "INSERT INTO tb_list_payout(id_list_payout_trans,`settlement_date`, `id_pay_type`,`pay_type`, `bank`,`id`,`sales_order_ol_shop_number`,`checkout_id`,`payment`,`trans_fee`, `invoice_amount`, `calculate_fee`) VALUES"
+                            Dim id_sales_pos As String = ""
+                            For i As Integer = 0 To GVData.RowCount - 1
+                                If Not i = 0 Then
+                                    q += ","
+                                    id_sales_pos += ","
+                                End If
+                                '
+                                q += "('" + id_list_payout_trans + "', '" + DateTime.Parse(GVData.GetRowCellValue(i, "settle_datetime").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "','" + GVData.GetRowCellValue(i, "id_pay_type").ToString + "', '" + addSlashes(GVData.GetRowCellValue(i, "pay_type").ToString) + "','" + addSlashes(GVData.GetRowCellValue(i, "bank").ToString) + "', '" + GVData.GetRowCellValue(i, "id_order").ToString + "','" + addSlashes(GVData.GetRowCellValue(i, "order_ol_shop_number").ToString) + "','" + addSlashes(GVData.GetRowCellValue(i, "checkout_id").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "payout").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "fee").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount_inv").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "calc_fee").ToString) + "') "
+                                id_sales_pos += GVData.GetRowCellValue(i, "id_sales_pos").ToString
+
+                                '
+                                PBC.PerformStep()
+                                PBC.Update()
+                            Next
+                            'detail payout
+                            execute_non_query(q, True, "", "", "", "")
+
+                            'detail sales pos
+                            Dim query_det_pos As String = "INSERT INTO tb_list_payout_det(id_list_payout_trans, id_sales_pos) 
+                            SELECT '" + id_list_payout_trans + "', sp.id_sales_pos 
+                            FROM tb_sales_pos sp 
+                            WHERE sp.id_sales_pos IN (" + id_sales_pos + ") "
+                            execute_non_query(query_det_pos, True, "", "", "", "")
+
+                            FormBankDeposit.TEPayoutNumber.Text = ""
+                            FormBankDeposit.load_payout()
+                            infoCustom("Import Success")
+                            Close()
+                        End If
                     Else
                         stopCustom("There is no data for import process, please make sure your input !")
                         makeSafeGV(GVData)

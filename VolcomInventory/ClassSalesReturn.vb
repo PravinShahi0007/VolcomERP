@@ -140,6 +140,37 @@
             'complete unique
             completeUnique(id_report_par)
 
+            'update stt in return centre
+            Try
+                Dim qstt As String = "UPDATE tb_ol_store_ret_list main
+                        INNER JOIN (
+                            SELECT rod.id_ol_store_ret_list 
+                            FROM tb_sales_return_det d
+                            INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order_det = d.id_sales_return_order_det
+                            WHERE d.id_sales_return=" + id_report_par + "
+                            GROUP BY rod.id_ol_store_ret_list
+                        ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
+                        SET main.id_ol_store_ret_stt=9;
+                        INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                        SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
+                        FROM tb_sales_return_det retdet  
+                        INNER JOIN tb_sales_return_order_det d ON d.id_sales_return_order_det = retdet.id_sales_return_order_det
+                        INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
+                        INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = rl.id_ol_store_ret_det
+                        JOIN tb_lookup_ol_store_ret_stt stt ON stt.id_ol_store_ret_stt=9
+                        WHERE retdet.id_sales_return=" + id_report_par + "
+                        GROUP BY rd.id_sales_order_det; "
+                execute_non_query(qstt, True, "", "", "", "")
+            Catch ex As Exception
+                stopCustom("Error updating status in return centre. " + ex.ToString)
+            End Try
+            'send mail returned to WH
+            Try
+
+            Catch ex As Exception
+
+            End Try
+
             'save unreg unique
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")
         ElseIf id_status_reportx_par = "5" Then
