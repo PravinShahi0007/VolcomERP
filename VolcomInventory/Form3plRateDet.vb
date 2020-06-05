@@ -14,15 +14,15 @@
             warningCustom("Please make sure your input right")
         Else
             If id_rate = "-1" Then
-                Dim q As String = "INSERT INTO tb_3pl_rate(`id_type`,`id_sub_district`,`id_comp`,`cargo_code`,`cargo_rate`,`cargo_lead_time`,`cargo_min_weight`,`input_datetime`,`created_by`)
-VALUES('" & SLEInboundOutbound.EditValue.ToString & "','" & SLESubDistrict.EditValue.ToString & "','" & SLECargo.EditValue.ToString & "','" & addSlashes(TECargoCode.Text) & "','" & decimalSQL(TERate.EditValue.ToString) & "','" & decimalSQL(TELeadTime.EditValue.ToString) & "','" & decimalSQL(TEMinWeight.EditValue.ToString) & "',NOW(),'" & id_user & "')"
+                Dim q As String = "INSERT INTO tb_3pl_rate(`id_del_type`,`id_type`,`id_sub_district`,`id_comp`,`cargo_code`,`cargo_rate`,`cargo_lead_time`,`cargo_min_weight`,`input_datetime`,`created_by`)
+VALUES('" & SLEDelType.EditValue.ToString & "','" & SLEInboundOutbound.EditValue.ToString & "','" & SLESubDistrict.EditValue.ToString & "','" & SLECargo.EditValue.ToString & "','" & addSlashes(TECargoCode.Text) & "','" & decimalSQL(TERate.EditValue.ToString) & "','" & decimalSQL(TELeadTime.EditValue.ToString) & "','" & decimalSQL(TEMinWeight.EditValue.ToString) & "',NOW(),'" & id_user & "')"
                 execute_non_query(q, True, "", "", "", "")
                 Form3plRate.SLECargo.EditValue = SLECargo.EditValue
                 Form3plRate.SLEInboundOutbound.EditValue = SLEInboundOutbound.EditValue
                 Form3plRate.load_list()
                 Close()
             Else
-                Dim q As String = "UPDATE tb_3pl_rate SET `id_type`='" & SLEInboundOutbound.EditValue.ToString & "',`id_sub_district`='" & SLESubDistrict.EditValue.ToString & "',`id_comp`='" & SLECargo.EditValue.ToString & "',`cargo_code`='" & addSlashes(TECargoCode.Text) & "',`cargo_rate`='" & decimalSQL(TERate.EditValue.ToString) & "',`cargo_lead_time`='" & decimalSQL(TELeadTime.EditValue.ToString) & "',`cargo_min_weight`='" & decimalSQL(TEMinWeight.EditValue.ToString) & "',`input_datetime`=NOW(),`created_by`='" & id_user & "'
+                Dim q As String = "UPDATE tb_3pl_rate SET `id_del_type`='" + SLEDelType.EditValue.ToString + "', `id_type`='" & SLEInboundOutbound.EditValue.ToString & "',`id_sub_district`='" & SLESubDistrict.EditValue.ToString & "',`id_comp`='" & SLECargo.EditValue.ToString & "',`cargo_code`='" & addSlashes(TECargoCode.Text) & "',`cargo_rate`='" & decimalSQL(TERate.EditValue.ToString) & "',`cargo_lead_time`='" & decimalSQL(TELeadTime.EditValue.ToString) & "',`cargo_min_weight`='" & decimalSQL(TEMinWeight.EditValue.ToString) & "',`input_datetime`=NOW(),`created_by`='" & id_user & "'
 WHERE id_3pl_rate='" & id_rate & "'"
                 execute_non_query(q, True, "", "", "", "")
                 Form3plRate.SLECargo.EditValue = SLECargo.EditValue
@@ -37,6 +37,7 @@ WHERE id_3pl_rate='" & id_rate & "'"
         load_sub_dsitrict()
         load_type()
         load_vendor()
+        load_del_type()
         load_det()
     End Sub
 
@@ -69,6 +70,7 @@ SELECT 2 AS id_type,'Inbound' AS type"
             SLESubDistrict.EditValue = dt.Rows(0)("id_sub_district").ToString
             SLECargo.EditValue = dt.Rows(0)("id_comp").ToString
             SLEInboundOutbound.EditValue = dt.Rows(0)("id_type").ToString
+            SLEDelType.EditValue = dt.Rows(0)("id_del_type").ToString
             TECargoCode.EditValue = dt.Rows(0)("cargo_code").ToString
             TERate.EditValue = dt.Rows(0)("cargo_rate").ToString
             TELeadTime.EditValue = dt.Rows(0)("cargo_lead_time").ToString
@@ -78,5 +80,10 @@ SELECT 2 AS id_type,'Inbound' AS type"
             TEMinWeight.EditValue = 1
             TERate.EditValue = 1
         End If
+    End Sub
+
+    Sub load_del_type()
+        Dim q As String = "SELECT id_del_type, del_type FROM tb_lookup_del_type"
+        viewSearchLookupQuery(SLEDelType, q, "id_del_type", "del_type", "id_del_type")
     End Sub
 End Class
