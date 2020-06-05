@@ -93,7 +93,7 @@ Public Class FormSalesOrderDet
             'query view based on edit id's
             Dim query As String = "SELECT a.id_so_status, h.id_order_type, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS id_store,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, IFNULL(d.id_commerce_type,1) AS `id_commerce_type`, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, a.id_warehouse_contact_to, (wh.id_comp) AS id_comp_par,(wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to, a.id_report_status, f.report_status, "
             query += "a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, "
-            query += "DATE_FORMAT(a.sales_order_date,'%Y-%m-%d') AS sales_order_datex, a.id_so_type, IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`, ps.id_prepare_status, ps.prepare_status, a.id_emp_uni_period, a.id_uni_type, a.is_sync_stock "
+            query += "DATE_FORMAT(a.sales_order_date,'%Y-%m-%d') AS sales_order_datex, a.id_so_type, IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`, ps.id_prepare_status, ps.prepare_status, a.id_emp_uni_period, a.id_uni_type, a.is_sync_stock, a.customer_name "
             query += "FROM tb_sales_order a "
             query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
             query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -139,9 +139,11 @@ Public Class FormSalesOrderDet
             If id_commerce_type = "1" Then
                 TxtOLShopNumber.Text = ""
                 DEOLShop.EditValue = Nothing
+                TxtCustName.EditValue = ""
             ElseIf id_commerce_type = "2" Then
                 TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
                 DEOLShop.EditValue = data.Rows(0)("sales_order_ol_shop_date")
+                TxtCustName.EditValue = data.Rows(0)("customer_name").ToString
             End If
 
 
@@ -350,7 +352,7 @@ Public Class FormSalesOrderDet
         'check number reference ol shop
         Dim cond_ol_shop As Boolean = True
         If id_commerce_type = "2" Then
-            If TxtOLShopNumber.Text = "" Or DEOLShop.Text = "" Then
+            If TxtOLShopNumber.Text = "" Or DEOLShop.Text = "" Or TxtCustName.Text = "" Then
                 cond_ol_shop = False
             End If
         End If
@@ -446,7 +448,7 @@ Public Class FormSalesOrderDet
         ElseIf Not cond_cat_str Then
             stopCustom("Transfer order can't process, please select another category !")
         ElseIf Not cond_ol_shop Then
-            stopCustom("Please input online store order number and order date !")
+            stopCustom("Please input online store order number, order date and cust. name !")
             TxtOLShopNumber.Focus()
         ElseIf Not cond_not_blank_item_id_ol_shop Then
             stopCustom("Please input order id & ol store id")
@@ -472,8 +474,10 @@ Public Class FormSalesOrderDet
             End If
             Dim sales_order_ol_shop_number As String = addSlashes(TxtOLShopNumber.Text)
             Dim sales_order_ol_shop_date As String = "NULL "
+            Dim customer_name As String = "NULL "
             If id_commerce_type = "2" Then
                 sales_order_ol_shop_date = "'" + DateTime.Parse(DEOLShop.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+                customer_name = "'" + addSlashes(TxtCustName.EditValue.ToString) + "'"
             End If
             Dim is_sync_stock As String = If(CESync.Checked, "1", "2")
 
@@ -483,8 +487,8 @@ Public Class FormSalesOrderDet
                     Cursor = Cursors.WaitCursor
                     sales_order_number = ""
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number, sales_order_ol_shop_date, is_transfer_data, is_sync_stock) "
-                    query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + ",'" + sales_order_ol_shop_number + "', " + sales_order_ol_shop_date + ", '" + is_transfer_data + "', '" + is_sync_stock + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number, sales_order_ol_shop_date, is_transfer_data, is_sync_stock, customer_name) "
+                    query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + ",'" + sales_order_ol_shop_number + "', " + sales_order_ol_shop_date + ", '" + is_transfer_data + "', '" + is_sync_stock + "', " + customer_name + "); SELECT LAST_INSERT_ID(); "
                     id_sales_order = execute_query(query, 0, True, "", "", "", "")
 
                     'insert who prepared
@@ -540,7 +544,7 @@ Public Class FormSalesOrderDet
                     Cursor = Cursors.WaitCursor
                     sales_order_number = TxtSalesOrderNumber.Text
                     Dim query As String = "UPDATE tb_sales_order SET id_store_contact_to='" + id_store_contact_to + "', id_warehouse_contact_to='" + id_comp_contact_par + "', sales_order_number = '" + sales_order_number + "', sales_order_note='" + sales_order_note + "', id_so_type='" + id_so_type + "', id_so_status = '" + id_so_status + "', 
-                    id_emp_uni_period=" + id_emp_uni_period + ", id_uni_type=" + id_uni_type + ", sales_order_ol_shop_number='" + sales_order_ol_shop_number + "', is_sync_stock = '" + is_sync_stock + "'
+                    id_emp_uni_period=" + id_emp_uni_period + ", id_uni_type=" + id_uni_type + ", sales_order_ol_shop_number='" + sales_order_ol_shop_number + "', is_sync_stock = '" + is_sync_stock + "', customer_name = " + customer_name + "
                     WHERE id_sales_order='" + id_sales_order + "' "
                     execute_non_query(query, True, "", "", "", "")
 
@@ -645,6 +649,7 @@ Public Class FormSalesOrderDet
             If id_commerce_type = "2" Then
                 TxtOLShopNumber.Enabled = False
                 DEOLShop.Enabled = False
+                TxtCustName.Enabled = False
             End If
         Else
             BtnBrowseContactTo.Enabled = False
@@ -661,6 +666,7 @@ Public Class FormSalesOrderDet
             LEUniType.Enabled = False
             TxtOLShopNumber.Enabled = False
             DEOLShop.Enabled = False
+            TxtCustName.Enabled = False
         End If
         LEOrderType.Enabled = False
 
@@ -943,12 +949,14 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
         If id_commerce_type = "1" Then
             TxtOLShopNumber.Enabled = False
             DEOLShop.Enabled = False
+            TxtCustName.Enabled = False
             GridColumnItemId.Visible = False
             GridColumnOLStoreId.Visible = False
             RepositoryItemSpinEdit1.ReadOnly = False
         ElseIf id_commerce_type = "2" Then
             TxtOLShopNumber.Enabled = True
             DEOLShop.Enabled = True
+            TxtCustName.Enabled = True
             GridColumnItemId.VisibleIndex = 1
             GridColumnOLStoreId.VisibleIndex = 2
             GridColumnCode.VisibleIndex = 3
