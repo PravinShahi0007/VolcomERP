@@ -123,6 +123,8 @@ Partial Class FormSalesOrderDet
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCustName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -173,6 +175,7 @@ Partial Class FormSalesOrderDet
         Me.GroupControlAlloc.SuspendLayout()
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCustName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -184,7 +187,7 @@ Partial Class FormSalesOrderDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 72)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(896, 138)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(896, 158)
         Me.GroupGeneralHeader.TabIndex = 183
         '
         'PanelControlTopLeft
@@ -207,7 +210,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(439, 134)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(439, 154)
         Me.PanelControlTopLeft.TabIndex = 8896
         '
         'TxtOrderType
@@ -385,6 +388,8 @@ Partial Class FormSalesOrderDet
         'PanelControlTopMain
         '
         Me.PanelControlTopMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopMain.Controls.Add(Me.TxtCustName)
+        Me.PanelControlTopMain.Controls.Add(Me.LabelControl13)
         Me.PanelControlTopMain.Controls.Add(Me.SBSyncShopify)
         Me.PanelControlTopMain.Controls.Add(Me.CESync)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl11)
@@ -396,12 +401,12 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopMain.Location = New System.Drawing.Point(459, 2)
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
-        Me.PanelControlTopMain.Size = New System.Drawing.Size(254, 134)
+        Me.PanelControlTopMain.Size = New System.Drawing.Size(254, 154)
         Me.PanelControlTopMain.TabIndex = 8897
         '
         'SBSyncShopify
         '
-        Me.SBSyncShopify.Location = New System.Drawing.Point(161, 98)
+        Me.SBSyncShopify.Location = New System.Drawing.Point(161, 120)
         Me.SBSyncShopify.Name = "SBSyncShopify"
         Me.SBSyncShopify.Size = New System.Drawing.Size(77, 23)
         Me.SBSyncShopify.TabIndex = 8899
@@ -410,7 +415,7 @@ Partial Class FormSalesOrderDet
         'CESync
         '
         Me.CESync.Enabled = False
-        Me.CESync.Location = New System.Drawing.Point(13, 100)
+        Me.CESync.Location = New System.Drawing.Point(13, 122)
         Me.CESync.Name = "CESync"
         Me.CESync.Properties.Caption = "Update Stock to Website"
         Me.CESync.Size = New System.Drawing.Size(142, 19)
@@ -491,7 +496,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(713, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(181, 134)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(181, 154)
         Me.PanelControlTopRight.TabIndex = 8898
         '
         'TxtReff
@@ -777,9 +782,9 @@ Partial Class FormSalesOrderDet
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Location = New System.Drawing.Point(0, 210)
+        Me.GroupControlList.Location = New System.Drawing.Point(0, 230)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(896, 225)
+        Me.GroupControlList.Size = New System.Drawing.Size(896, 205)
         Me.GroupControlList.TabIndex = 184
         Me.GroupControlList.Text = "Item List"
         '
@@ -791,7 +796,7 @@ Partial Class FormSalesOrderDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(874, 186)
+        Me.GCItemList.Size = New System.Drawing.Size(874, 166)
         Me.GCItemList.TabIndex = 4
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1281,6 +1286,24 @@ Partial Class FormSalesOrderDet
         Me.LabelControl12.TabIndex = 8895
         Me.LabelControl12.Text = "Parent Account"
         '
+        'TxtCustName
+        '
+        Me.TxtCustName.EditValue = ""
+        Me.TxtCustName.Enabled = False
+        Me.TxtCustName.Location = New System.Drawing.Point(73, 88)
+        Me.TxtCustName.Name = "TxtCustName"
+        Me.TxtCustName.Size = New System.Drawing.Size(165, 20)
+        Me.TxtCustName.TabIndex = 8901
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(13, 91)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl13.TabIndex = 8900
+        Me.LabelControl13.Text = "Cust. Name"
+        '
         'FormSalesOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1354,6 +1377,7 @@ Partial Class FormSalesOrderDet
         Me.GroupControlAlloc.PerformLayout()
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCustName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1459,4 +1483,6 @@ Partial Class FormSalesOrderDet
     Friend WithEvents CESync As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents SBSyncShopify As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBViewLog As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtCustName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
 End Class
