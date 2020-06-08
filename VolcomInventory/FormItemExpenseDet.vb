@@ -164,7 +164,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
-        ed.id_acc, a.acc_description AS `coa_desc`, ed.description,a.acc_name "
+        ed.id_acc, a.acc_description AS `coa_desc`, ed.description,a.acc_name, "
 
         If action = "ins" Then
             query += "0.00 AS tax_percent,0.00 AS `amount` "
