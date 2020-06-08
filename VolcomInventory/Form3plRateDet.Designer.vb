@@ -53,6 +53,11 @@ Partial Class Form3plRateDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEDelType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +70,8 @@ Partial Class Form3plRateDet
         CType(Me.TEMinWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEDelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -72,7 +79,7 @@ Partial Class Form3plRateDet
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 206)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 231)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(466, 44)
         Me.PanelControl1.TabIndex = 0
@@ -154,7 +161,7 @@ Partial Class Form3plRateDet
         '
         Me.SLEInboundOutbound.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLEInboundOutbound.Location = New System.Drawing.Point(95, 69)
+        Me.SLEInboundOutbound.Location = New System.Drawing.Point(95, 95)
         Me.SLEInboundOutbound.Name = "SLEInboundOutbound"
         Me.SLEInboundOutbound.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEInboundOutbound.Properties.Appearance.Options.UseFont = True
@@ -189,7 +196,7 @@ Partial Class Form3plRateDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 72)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 98)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 14
@@ -197,7 +204,7 @@ Partial Class Form3plRateDet
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 98)
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 124)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl4.TabIndex = 15
@@ -205,7 +212,7 @@ Partial Class Form3plRateDet
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(13, 124)
+        Me.LabelControl5.Location = New System.Drawing.Point(13, 150)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl5.TabIndex = 16
@@ -213,7 +220,7 @@ Partial Class Form3plRateDet
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(12, 150)
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 176)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl6.TabIndex = 17
@@ -221,7 +228,7 @@ Partial Class Form3plRateDet
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(12, 176)
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 202)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(77, 13)
         Me.LabelControl7.TabIndex = 18
@@ -229,14 +236,14 @@ Partial Class Form3plRateDet
         '
         'TECargoCode
         '
-        Me.TECargoCode.Location = New System.Drawing.Point(95, 95)
+        Me.TECargoCode.Location = New System.Drawing.Point(95, 121)
         Me.TECargoCode.Name = "TECargoCode"
         Me.TECargoCode.Size = New System.Drawing.Size(176, 20)
         Me.TECargoCode.TabIndex = 19
         '
         'TERate
         '
-        Me.TERate.Location = New System.Drawing.Point(95, 121)
+        Me.TERate.Location = New System.Drawing.Point(95, 147)
         Me.TERate.Name = "TERate"
         Me.TERate.Properties.Mask.EditMask = "N2"
         Me.TERate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -246,7 +253,7 @@ Partial Class Form3plRateDet
         '
         'TELeadTime
         '
-        Me.TELeadTime.Location = New System.Drawing.Point(95, 147)
+        Me.TELeadTime.Location = New System.Drawing.Point(95, 173)
         Me.TELeadTime.Name = "TELeadTime"
         Me.TELeadTime.Properties.Mask.EditMask = "N0"
         Me.TELeadTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -256,7 +263,7 @@ Partial Class Form3plRateDet
         '
         'TEMinWeight
         '
-        Me.TEMinWeight.Location = New System.Drawing.Point(95, 173)
+        Me.TEMinWeight.Location = New System.Drawing.Point(95, 199)
         Me.TEMinWeight.Name = "TEMinWeight"
         Me.TEMinWeight.Properties.Mask.EditMask = "N0"
         Me.TEMinWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -266,7 +273,7 @@ Partial Class Form3plRateDet
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(192, 150)
+        Me.LabelControl8.Location = New System.Drawing.Point(192, 176)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl8.TabIndex = 23
@@ -274,7 +281,7 @@ Partial Class Form3plRateDet
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(192, 176)
+        Me.LabelControl9.Location = New System.Drawing.Point(192, 202)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl9.TabIndex = 24
@@ -357,11 +364,57 @@ Partial Class Form3plRateDet
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
         '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(12, 72)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl10.TabIndex = 96
+        Me.LabelControl10.Text = "Delivery Type"
+        '
+        'SLEDelType
+        '
+        Me.SLEDelType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SLEDelType.Location = New System.Drawing.Point(95, 69)
+        Me.SLEDelType.Name = "SLEDelType"
+        Me.SLEDelType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEDelType.Properties.Appearance.Options.UseFont = True
+        Me.SLEDelType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDelType.Properties.NullText = "-"
+        Me.SLEDelType.Properties.View = Me.GridView3
+        Me.SLEDelType.Size = New System.Drawing.Size(298, 20)
+        Me.SLEDelType.TabIndex = 95
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn9})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsBehavior.ReadOnly = True
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.FieldName = "id_del_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Delivery Type"
+        Me.GridColumn9.FieldName = "del_type"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        '
         'Form3plRateDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(466, 250)
+        Me.ClientSize = New System.Drawing.Size(466, 275)
+        Me.Controls.Add(Me.LabelControl10)
+        Me.Controls.Add(Me.SLEDelType)
         Me.Controls.Add(Me.SLESubDistrict)
         Me.Controls.Add(Me.LabelControl9)
         Me.Controls.Add(Me.LabelControl8)
@@ -396,6 +449,8 @@ Partial Class Form3plRateDet
         CType(Me.TEMinWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEDelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -434,4 +489,9 @@ Partial Class Form3plRateDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEDelType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

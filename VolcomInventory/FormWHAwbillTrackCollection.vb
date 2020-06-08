@@ -90,9 +90,13 @@ ORDER BY 3n.track_no DESC"
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Cursor = Cursors.WaitCursor
                         For i As Integer = 0 To FormWHAWBill.GVAWBill.RowCount - 1
-                            Dim q As String = "UPDATE tb_wh_awbill SET awbill_no='" & addSlashes(TEScanGenerate.Text) & "' WHERE id_awbill='" & FormWHAWBill.GVAWBill.GetRowCellValue(i, "id_awbill").ToString & "'"
+                            Dim q As String = "UPDATE tb_wh_awbill SET awbill_no='" & addSlashes(TEScanGenerate.Text) & "',id_track_no='" & dt.Rows(0)("id_track_no").ToString & "' WHERE id_awbill='" & FormWHAWBill.GVAWBill.GetRowCellValue(i, "id_awbill").ToString & "'"
                             execute_non_query(q, True, "", "", "", "")
                         Next
+                        'update used
+                        Dim q_upd As String = "UPDATE tb_3pl_track_no SET is_use=1 WHERE id_track_no='" & dt.Rows(0)("id_track_no").ToString & "'"
+                        execute_non_query(q_upd, True, "", "", "", "")
+                        '
                         FormWHAWBill.load_outbound()
                         FormWHAWBill.GVAWBill.ActiveFilterString = ""
                         Close()

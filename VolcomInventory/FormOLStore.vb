@@ -147,7 +147,7 @@
         sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
         so.id_prepare_status, stt.prepare_status,
         so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
-        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, IFNULL(stt.`status`, '-') AS `ol_store_status`, stt.status_date AS `ol_store_date`
+        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, IFNULL(stt.`status`, '-') AS `ol_store_status`, stt.status_date AS `ol_store_date`, c.id_comp_group
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
         LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
@@ -566,5 +566,13 @@
         End If
 
         GVVolcom.ActiveFilterString = ""
+    End Sub
+
+    Private Sub GVDetail_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVDetail.PopupMenuShowing
+        If GVDetail.GetFocusedRowCellValue("id_comp_group").ToString = "75" Then
+            EditToolStripMenuItem.Visible = True
+        Else
+            EditToolStripMenuItem.Visible = False
+        End If
     End Sub
 End Class
