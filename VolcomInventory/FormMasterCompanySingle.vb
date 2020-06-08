@@ -10,7 +10,9 @@
     '
     Public id_comp_group_add As String = "-1"
     Public is_add_other As String = "-1"
-
+    '
+    Public is_accounting As Boolean = False
+    '
     Dim data_map As DataTable
 
     Private Sub FormMasterCompanySingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -18,11 +20,18 @@
             FormPopUpCompGroup.view_comp_group()
 
             FormPopUpCompGroup.GVGroupComp.FocusedRowHandle = find_row(FormPopUpCompGroup.GVGroupComp, "id_comp_group", id_comp_group_add)
-
-            Console.WriteLine(id_company)
         End If
 
         Dispose()
+    End Sub
+
+    Sub viewCOA()
+        Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
+        a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
+        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 "
+        viewSearchLookupQuery(SLEAR, query, "id_acc", "acc_description", "id_acc")
+        viewSearchLookupQuery(SLEAP, query, "id_acc", "acc_description", "id_acc")
+        viewSearchLookupQuery(SLEDP, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Private Sub FormMasterCompanySingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -62,6 +71,7 @@
         '
         XTCCompany.SelectedTabPage = XTCCompany.TabPages(0)
         'LE/SLE
+        viewCOA()
         view_comp_group()
         view_store_company()
         view_country(LECountry)
@@ -122,6 +132,8 @@
                 LECompanyCategory.ItemIndex = LECompanyCategory.Properties.GetDataSourceRowIndex("id_comp_cat", "2")
                 LECompanyCategory.ReadOnly = True
             End If
+            '
+            XTPCOA.PageVisible = False
         Else
             'edit
             XTPLegal.PageVisible = True
@@ -129,7 +141,15 @@
             BApproval.Visible = True
             BPrint.Visible = True
             '
-            Dim query As String = String.Format("SELECT comp.*,ccat.is_need_bank_account,ccat.is_advance_setup,drawer.wh_drawer FROM tb_m_comp comp LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def INNER JOIN tb_m_comp_cat ccat ON ccat.id_comp_cat=comp.id_comp_cat WHERE id_comp = '{0}'", id_company)
+
+            Dim query As String = String.Format("SELECT comp.*,acc_ap.acc_name AS ap_name,acc_ar.acc_name AS ar_name,acc_dp.acc_name As dp_name,ccat.is_need_bank_account,ccat.is_advance_setup,drawer.wh_drawer 
+FROM tb_m_comp comp 
+LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def 
+INNER JOIN tb_m_comp_cat ccat ON ccat.id_comp_cat=comp.id_comp_cat
+LEFT JOIN tb_a_acc acc_ap ON acc_ap.id_acc=comp.id_acc_ap
+LEFT JOIN tb_a_acc acc_dp ON acc_dp.id_acc=comp.id_acc_dp
+LEFT JOIN tb_a_acc acc_ar ON acc_ar.id_acc=comp.id_acc_ar 
+WHERE comp.id_comp = '{0}'", id_company)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             Dim id_company_category As String = data.Rows(0)("id_comp_cat").ToString
@@ -140,6 +160,27 @@
                 PCVendorLegal.Visible = False
             End If
             '
+            If data.Rows(0)("id_acc_ar").ToString = "" Then
+                SLEAR.EditValue = Nothing
+            Else
+                SLEAR.EditValue = data.Rows(0)("id_acc_ar").ToString
+                TxtARCode.Text = data.Rows(0)("ar_name").ToString
+            End If
+            '
+            If data.Rows(0)("id_acc_ap").ToString = "" Then
+                SLEAP.EditValue = Nothing
+            Else
+                SLEAP.EditValue = data.Rows(0)("id_acc_ap").ToString
+                TxtAPCode.Text = data.Rows(0)("ap_name").ToString
+            End If
+            '
+            If data.Rows(0)("id_acc_dp").ToString = "" Then
+                SLEDP.EditValue = Nothing
+            Else
+                SLEDP.EditValue = data.Rows(0)("id_acc_dp").ToString
+                TxtDPCode.Text = data.Rows(0)("dp_name").ToString
+            End If
+
             Dim id_city As String = data.Rows(0)("id_city").ToString
             Dim id_sub_district As String = data.Rows(0)("id_sub_district").ToString
             Dim company_name As String = data.Rows(0)("comp_name").ToString
@@ -162,6 +203,12 @@
             Dim id_comp_group As String = data.Rows(0)("id_comp_group").ToString
             Dim id_vendor_type As String = data.Rows(0)("id_vendor_type").ToString
             Dim id_bank As String = data.Rows(0)("id_bank").ToString
+            '
+            If is_active = "3" And is_accounting = False Then
+                XTPCOA.PageVisible = False
+            Else
+                XTPCOA.PageVisible = True
+            End If
             '
             is_need_bank_account = data.Rows(0)("is_need_bank_account").ToString
             '
@@ -663,6 +710,22 @@
                 Else
                     query += "id_store_company = '" + id_store_company + "', "
                 End If
+                If SLEAP.EditValue = Nothing Or SLEAP.EditValue.ToString = "" Then
+                    query += "id_acc_ap = NULL, "
+                Else
+                    query += "id_acc_ap = '" + SLEAP.EditValue.ToString + "', "
+                End If
+                If SLEDP.EditValue = Nothing Or SLEDP.EditValue.ToString = "" Then
+                    query += "id_acc_dp = NULL, "
+                Else
+                    query += "id_acc_dp = '" + SLEDP.EditValue.ToString + "', "
+                End If
+                If SLEAR.EditValue = Nothing Or SLEAR.EditValue.ToString = "" Then
+                    query += "id_acc_ar = NULL, "
+                Else
+                    query += "id_acc_ar = '" + SLEAR.EditValue.ToString + "', "
+                End If
+
                 query += "id_sub_district='" + id_sub_district + "'"
                 query += "WHERE id_comp='" + id_company + "' "
                 query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address, npwp_name, npwp_address)
@@ -1061,28 +1124,42 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
     End Sub
 
     Private Sub BApproval_Click_1(sender As Object, e As EventArgs) Handles BApproval.Click
-        If BApproval.Text.ToString = "Submit" Then
-            Dim q As String = "SELECT id_comp_cat FROM tb_m_comp WHERE id_comp='" & id_company & "'"
-            Dim id_cat As String = execute_query(q, 0, True, "", "", "", "")
-            If id_cat = "1" Or id_cat = "8" Then
-                'cek attachment already have or not
-                Dim query As String = "SELECT c.`id_comp`,c.`comp_name`,lt.`id_legal_type`,lt.`legal_type`,cl.`id_comp_legal` FROM tb_m_comp c
+        'check coa first
+        Dim q_check As String = "SELECT * FROM tb_m_comp WHERE id_comp='" & id_company & "' AND (ISNULL(id_acc_ar) OR ISNULL(id_acc_ap) OR ISNULL(id_acc_dp))"
+        Dim dt_check As DataTable = execute_query(q_check, -1, True, "", "", "", "")
+
+        If BApproval.Text.ToString = "Submit" And dt_check.Rows.Count > 0 Then
+            'belum dimasukin AP AR DP
+            warningCustom("Please input AR, AP, and DP first before submit. Contact accounting for details.")
+        Else
+            If BApproval.Text.ToString = "Submit" Then
+                Dim q As String = "SELECT id_comp_cat FROM tb_m_comp WHERE id_comp='" & id_company & "'"
+                Dim id_cat As String = execute_query(q, 0, True, "", "", "", "")
+                If id_cat = "1" Or id_cat = "8" Then
+                    'cek attachment already have or not
+                    Dim query As String = "SELECT c.`id_comp`,c.`comp_name`,lt.`id_legal_type`,lt.`legal_type`,cl.`id_comp_legal` FROM tb_m_comp c
 INNER JOIN tb_vendor_type_legal vtl ON vtl.`id_vendor_type`=c.`id_vendor_type` AND c.id_comp_cat=vtl.id_comp_cat
 INNER JOIN `tb_lookup_legal_type` lt ON lt.`id_legal_type`=vtl.`id_legal_type`
 LEFT JOIN tb_m_comp_legal cl ON cl.`id_comp`=c.`id_comp` AND vtl.`id_legal_type`=cl.`id_legal_Type`
 WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                If data.Rows.Count = 0 Then
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If data.Rows.Count = 0 Then
+                        FormReportMark.id_report = id_company
+                        FormReportMark.report_mark_type = "153"
+                        FormReportMark.is_view = is_view
+                        FormReportMark.ShowDialog()
+                    Else
+                        Dim str_missing As String = "Please upload this remaining document : "
+                        For i As Integer = 0 To data.Rows.Count - 1
+                            str_missing += vbNewLine & " - " & data.Rows(i)("legal_type").ToString
+                        Next
+                        warningCustom(str_missing)
+                    End If
+                Else
                     FormReportMark.id_report = id_company
                     FormReportMark.report_mark_type = "153"
                     FormReportMark.is_view = is_view
                     FormReportMark.ShowDialog()
-                Else
-                    Dim str_missing As String = "Please upload this remaining document : "
-                    For i As Integer = 0 To data.Rows.Count - 1
-                        str_missing += vbNewLine & " - " & data.Rows(i)("legal_type").ToString
-                    Next
-                    warningCustom(str_missing)
                 End If
             Else
                 FormReportMark.id_report = id_company
@@ -1090,11 +1167,6 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
                 FormReportMark.is_view = is_view
                 FormReportMark.ShowDialog()
             End If
-        Else
-            FormReportMark.id_report = id_company
-            FormReportMark.report_mark_type = "153"
-            FormReportMark.is_view = is_view
-            FormReportMark.ShowDialog()
         End If
     End Sub
 
@@ -1302,5 +1374,38 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
             errorConnection()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEAR_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAR.EditValueChanged
+        If SLEAR.EditValue = Nothing Then
+            TxtARCode.Text = ""
+        Else
+            Try
+                TxtARCode.Text = SLEAR.Properties.View.GetFocusedRowCellValue("acc_name").ToString
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub SLEAP_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAP.EditValueChanged
+        If SLEAP.EditValue = Nothing Then
+            TxtAPCode.Text = ""
+        Else
+            Try
+                TxtAPCode.Text = SLEAP.Properties.View.GetFocusedRowCellValue("acc_name").ToString
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub SLEDP_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDP.EditValueChanged
+        If SLEDP.EditValue = Nothing Then
+            TxtDPCode.Text = ""
+        Else
+            Try
+                TxtDPCode.Text = SLEDP.Properties.View.GetFocusedRowCellValue("acc_name").ToString
+            Catch ex As Exception
+            End Try
+        End If
     End Sub
 End Class
