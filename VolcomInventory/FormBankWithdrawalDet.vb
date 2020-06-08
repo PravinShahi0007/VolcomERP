@@ -558,6 +558,34 @@
                     GridColumnPayment.OptionsColumn.AllowEdit = True
                 End If
 
+                'load detail
+                For i As Integer = 0 To FormBankWithdrawal.GVCN.RowCount - 1
+                    'id_report,number,total,balance due
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "id_sales_pos").ToString
+                    newRow("report_mark_type") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "report_mark_type").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "acc_description").ToString
+                    newRow("vendor") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "comp_number").ToString
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "id_comp").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "comp_number").ToString
+                    newRow("number") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "sales_pos_number").ToString
+                    newRow("total_pay") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "total_paid")
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "diff")
+                    newRow("value") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "diff")
+                    newRow("value_view") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "diff")
+                    newRow("balance_due") = FormBankWithdrawal.GVCN.GetRowCellValue(i, "diff")
+                    newRow("note") = ""
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate_amount()
+
             ElseIf report_mark_type = "247" Then 'jamsostek
                 'load header
                 SLEVendor.EditValue = 1
