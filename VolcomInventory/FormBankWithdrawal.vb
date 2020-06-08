@@ -35,9 +35,41 @@
         load_vendor_expense()
         load_vendor_fgpo()
         load_vendor_refund()
+        load_group_store_cn()
 
         DECAFrom.EditValue = Date.Parse(Now)
         DECATo.EditValue = Date.Parse(Now)
+    End Sub
+
+    Sub load_group_store_cn()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg 
+        WHERE cg.is_allow_closing_cn=1 "
+        viewSearchLookupQuery(SLEStoreGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_store_cn()
+        Cursor = Cursors.WaitCursor
+        Dim id_group As String = "-1"
+        Try
+            id_group = SLEStoreGroup.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        Dim cond_group As String = ""
+        If id_group <> "0" Then
+            cond_group = "AND c.id_comp_group='" + id_group + "' "
+        End If
+
+
+        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
+                                WHERE c.id_comp_cat='6' " + cond_group + " "
+        viewSearchLookupQuery(SLEStoreInvoice, query, "id_comp_contact", "comp_name", "id_comp_contact")
+        Cursor = Cursors.Default
     End Sub
 
     Sub load_status_payment()
@@ -894,6 +926,56 @@ GROUP BY sr.`id_sales_return`"
 
     Private Sub BCreateBookTrf_Click(sender As Object, e As EventArgs) Handles BCreateBookTrf.Click
         FormBankWithdrawalDet.is_book_transfer = True
+        FormBankWithdrawalDet.ShowDialog()
+    End Sub
+
+    Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        load_store_cn()
+    End Sub
+
+    Private Sub BtnListCN_Click(sender As Object, e As EventArgs) Handles BtnListCN.Click
+        view_list_cn()
+    End Sub
+
+    Sub view_list_cn()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 'no' AS is_check,sp.id_sales_pos, sp.sales_pos_number, cc.id_comp_contact,c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group, sp.id_acc_ar,
+        CAST(((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount,
+        CAST(((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) - IFNULL(p.value,0) AS `diff`,
+        IFNULL(p.jum_pending,0) AS `total_pending`
+        FROM tb_sales_pos sp
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN (
+	        SELECT d.id_report, COUNT(d.id_report) AS `jum_pending`,  SUM(d.`value`) AS `value`
+	        FROM tb_pn_det d
+	        INNER JOIN tb_pn m ON m.id_pn = d.id_pn
+	        WHERE m.id_report_status!=5 AND d.report_mark_type IN(66,67)
+	        GROUP BY d.id_report
+        ) p ON p.id_report = sp.id_sales_pos 
+        WHERE sp.report_mark_type IN (66,67) AND sp.id_report_status=6 
+        AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'
+        AND cc.id_comp_contact='" & SLEStoreInvoice.EditValue.ToString & "'
+        AND sp.is_close_rec_payment=2 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCN.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCN_Click(sender As Object, e As EventArgs) Handles BtnCN.Click
+        'cek pending
+        makeSafeGV(GVCN)
+        GVCN.ActiveFilterString = "[is_check]='yes' AND [total_pending]>0"
+        If GVCN.RowCount > 0 Then
+            warningCustom("Please process all pending payment for selected credit note")
+            Exit Sub
+        End If
+
+        'process
+        makeSafeGV(GVCN)
+        FormBankWithdrawalDet.report_mark_type = "66"
+        FormBankWithdrawalDet.id_pay_type = "2"
         FormBankWithdrawalDet.ShowDialog()
     End Sub
 End Class

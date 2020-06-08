@@ -544,6 +544,20 @@
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
                 calculate_amount()
+            ElseIf report_mark_type = "66" Then 'closing cn
+                'load header
+                Dim id_comp_contact As String = FormBankWithdrawal.SLEStoreInvoice.EditValue
+                Dim id_comp As String = get_company_contact_x(id_comp_contact, "3")
+                SLEVendor.EditValue = id_comp_contact
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+
+                If id_pay_type = "2" Then 'Payment
+                    GridColumnPayment.OptionsColumn.AllowEdit = False
+                Else
+                    GridColumnPayment.OptionsColumn.AllowEdit = True
+                End If
+
             ElseIf report_mark_type = "247" Then 'jamsostek
                 'load header
                 SLEVendor.EditValue = 1
