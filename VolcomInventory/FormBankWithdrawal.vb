@@ -646,6 +646,12 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             view_thr()
         ElseIf XTCPO.SelectedTabPage.Name = "XTPJamsostek" Then
             view_jamsostek()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPRefund" Then
+            If XTCCN.SelectedTabPageIndex = 0 Then
+                load_refund()
+            Else
+                view_list_cn()
+            End If
         End If
     End Sub
 
@@ -941,8 +947,9 @@ GROUP BY sr.`id_sales_return`"
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT 'no' AS is_check,sp.id_sales_pos, sp.sales_pos_number, cc.id_comp_contact,c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group, sp.id_acc_ar,
         CAST(((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount,
+        IFNULL(p.value,0) AS total_paid,
         CAST(((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) - IFNULL(p.value,0) AS `diff`,
-        IFNULL(p.jum_pending,0) AS `total_pending`
+        IFNULL(p.jum_pending,0) AS `total_pending`, sp.id_acc_ar AS `id_acc`, coa.acc_name, coa.acc_description, sp.report_mark_type
         FROM tb_sales_pos sp
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -954,6 +961,7 @@ GROUP BY sr.`id_sales_return`"
 	        WHERE m.id_report_status!=5 AND d.report_mark_type IN(66,67)
 	        GROUP BY d.id_report
         ) p ON p.id_report = sp.id_sales_pos 
+        INNER JOIN tb_a_acc coa ON coa.id_acc = sp.id_acc_ar
         WHERE sp.report_mark_type IN (66,67) AND sp.id_report_status=6 
         AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'
         AND cc.id_comp_contact='" & SLEStoreInvoice.EditValue.ToString & "'
@@ -974,8 +982,10 @@ GROUP BY sr.`id_sales_return`"
 
         'process
         makeSafeGV(GVCN)
+        GVCN.ActiveFilterString = "[is_check]='yes'"
         FormBankWithdrawalDet.report_mark_type = "66"
         FormBankWithdrawalDet.id_pay_type = "2"
         FormBankWithdrawalDet.ShowDialog()
+        makeSafeGV(GVCN)
     End Sub
 End Class
