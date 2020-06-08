@@ -101,6 +101,8 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             'date
             DEDueDate.EditValue = getTimeDB()
 
+            TEInvNo.Enabled = True
+
             'purc order detail
             GVData.OptionsCustomization.AllowSort = False
             SLEPayFrom.Focus()
