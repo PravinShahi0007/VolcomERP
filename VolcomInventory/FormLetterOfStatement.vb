@@ -6,7 +6,7 @@
     Private Sub FormLetterOfStatement_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
-        button_main("1", "0", "0")
+        button_main("1", "0", "1")
     End Sub
 
     Private Sub FormLetterOfStatement_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate

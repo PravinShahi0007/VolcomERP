@@ -6327,6 +6327,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 End Try
             End If
         ElseIf formName = "FormBudgetProdDemand" Then
+        ElseIf formName = "FormLetterOfStatement" Then
+            Dim idx As String = ""
+            Try
+                idx = FormLetterOfStatement.GVLetterOfStatement.GetFocusedRowCellValue("id_letter_of_statement").ToString
+            Catch ex As Exception
+            End Try
+
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query_del As String = "DELETE FROM tb_letter_of_statement WHERE id_letter_of_statement='" + idx + "'"
+                execute_non_query(query_del, True, "", "", "", "")
+
+                FormLetterOfStatement.form_load()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
