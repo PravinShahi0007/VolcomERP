@@ -64,9 +64,7 @@
         End If
 
 
-        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name
-        UNION
-        SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
                                 WHERE c.id_comp_cat='6' " + cond_group + " "
@@ -943,18 +941,19 @@ GROUP BY sr.`id_sales_return`"
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT 'no' AS is_check,sp.id_sales_pos, sp.sales_pos_number, cc.id_comp_contact,c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group, sp.id_acc_ar,
         CAST(((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount,
+        CAST(((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) - IFNULL(p.value,0) AS `diff`,
         IFNULL(p.jum_pending,0) AS `total_pending`
         FROM tb_sales_pos sp
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         LEFT JOIN (
-	        SELECT d.id_report, COUNT(d.id_report) AS `jum_pending` 
+	        SELECT d.id_report, COUNT(d.id_report) AS `jum_pending`,  SUM(d.`value`) AS `value`
 	        FROM tb_pn_det d
 	        INNER JOIN tb_pn m ON m.id_pn = d.id_pn
 	        WHERE m.id_report_status!=5 AND d.report_mark_type IN(66,67)
 	        GROUP BY d.id_report
-        ) p ON p.id_report = sp.id_sales_pos
+        ) p ON p.id_report = sp.id_sales_pos 
         WHERE sp.report_mark_type IN (66,67) AND sp.id_report_status=6 
         AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'
         AND cc.id_comp_contact='" & SLEStoreInvoice.EditValue.ToString & "'
