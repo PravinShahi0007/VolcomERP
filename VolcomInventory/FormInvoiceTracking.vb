@@ -120,6 +120,26 @@
             cond_period = "AND (sp.sales_pos_end_period>='" + date_from_selected + "' AND sp.sales_pos_end_period<='" + date_until_selected + "') "
         End If
 
+        'filter BBM
+        Dim cond_period_bbm As String = ""
+        Dim cond_having_period_bbm As String = ""
+        Dim cond_where_period_bbm As String = ""
+        If CEBBM.EditValue = False Then
+            Dim date_from_selected_bbm As String = "0000-01-01"
+            Dim date_end_selected_bbm As String = "9999-01-01"
+            Try
+                date_from_selected_bbm = DateTime.Parse(DEStartBBM.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Try
+                date_end_selected_bbm = DateTime.Parse(DEEndBBM.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            cond_period_bbm = "AND (py.date_received>='" + date_from_selected_bbm + "' AND py.date_received<='" + date_end_selected_bbm + "') "
+            cond_having_period_bbm = "AND total_rec!=0 "
+            cond_where_period_bbm = "AND IFNULL(pyd.value,0)!=0 "
+        End If
+
         If XTCInvTrack.SelectedTabPageIndex = 0 Then
             Cursor = Cursors.WaitCursor
             Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`, sp.`sales_pos_start_period`, sp.`sales_pos_end_period`
@@ -147,6 +167,7 @@
 	            FROM tb_rec_payment_det pyd
 	            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
 	            WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183)
+                " + cond_period_bbm + "
 	            GROUP BY pyd.id_report, pyd.report_mark_type
             ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
             LEFT JOIN (
@@ -232,6 +253,7 @@
             " + cond_period + "
             GROUP BY sp.`id_sales_pos` 
             HAVING 1=1 " + cond_having + "
+            " + cond_having_period_bbm + "
             ORDER BY id_sales_pos ASC "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCUnpaid.DataSource = data
@@ -246,8 +268,8 @@
             End If
 
             Dim query As String = "SELECT sp.is_close_rec_payment, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
-            SUM(sp.`sales_pos_total`) AS `sales_pos_total`, IFNULL(pyd.`value`,0.00) AS total_rec, 
-            IFNULL(pyd.`value`,0.00) - SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS total_due,
+            SUM(sp.`sales_pos_total`) AS `sales_pos_total`, SUM(IFNULL(pyd.`value`,0.00)) AS total_rec, 
+            SUM(IFNULL(pyd.`value`,0.00)) - SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS total_due,
             SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS amount
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -256,7 +278,7 @@
             INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
             INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
             LEFT JOIN (
-	            SELECT c.id_comp_group, SUM(pyd.value) AS  `value`
+	            SELECT c.id_comp_group, SUM(pyd.value) AS  `value`, sp.id_sales_pos
 	            FROM tb_rec_payment_det pyd
 	            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
                 INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = pyd.id_report AND sp.report_mark_type = pyd.report_mark_type
@@ -271,8 +293,9 @@
                 " + cond_promo + "
                 " + cond_period + "
                 " + cond_ovd + "
-	            GROUP BY c.id_comp_group
-            ) pyd ON pyd.id_comp_group = c.id_comp_group
+                " + cond_period_bbm + "
+	            GROUP BY sp.id_sales_pos
+            ) pyd ON pyd.id_sales_pos = sp.id_sales_pos
             WHERE sp.`id_report_status`='6' 
             " + cond_group + " 
             " + cond_store + "
@@ -280,7 +303,9 @@
             " + cond_promo + "
             " + cond_period + "
             " + cond_ovd + "
+            " + cond_where_period_bbm + "
             GROUP BY c.id_comp_group
+            HAVING 1=1
             ORDER BY cg.description ASC "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCSummary.DataSource = data
@@ -554,6 +579,21 @@
             FormInvoiceTrackingBBK.id_report = GVUnpaid.GetFocusedRowCellValue("id_sales_pos").ToString
             FormInvoiceTrackingBBK.ShowDialog()
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub CEBBM_EditValueChanged(sender As Object, e As EventArgs) Handles CEBBM.EditValueChanged
+        If CEBBM.EditValue = True Then
+            DEStartBBM.EditValue = Nothing
+            DEEndBBM.EditValue = Nothing
+            DEStartBBM.Enabled = False
+            DEEndBBM.Enabled = False
+        Else
+            DEStartBBM.EditValue = tgl_sekarang
+            DEEndBBM.EditValue = tgl_sekarang
+            DEStartBBM.Enabled = True
+            DEEndBBM.Enabled = True
+            DEStartBBM.Focus()
         End If
     End Sub
 End Class

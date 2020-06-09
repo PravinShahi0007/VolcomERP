@@ -56,6 +56,8 @@ Partial Class FormItemExpenseDet
         Me.TxtCompName = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEInvNo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtPaymentStatus = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -79,6 +81,12 @@ Partial Class FormItemExpenseDet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLECC = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLEType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -97,13 +105,21 @@ Partial Class FormItemExpenseDet
         Me.GridColumnAccountDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetTypeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCCDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RISLECC = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPDraftJournal = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDraft = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDraft = New DevExpress.XtraGrid.GridControl()
+        Me.GVDraft = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNoDraft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacc_name_Draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacc_description_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_number_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +142,7 @@ Partial Class FormItemExpenseDet
         CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,14 +155,20 @@ Partial Class FormItemExpenseDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLECC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLECatExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLECC, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTPDraftJournal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDraftJournal.SuspendLayout()
+        Me.XTPDetail.SuspendLayout()
+        Me.XTPDraft.SuspendLayout()
+        CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LEPaymentMethod
@@ -522,6 +545,8 @@ Partial Class FormItemExpenseDet
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LabelControl9)
+        Me.PanelControl2.Controls.Add(Me.TEInvNo)
         Me.PanelControl2.Controls.Add(Me.TxtPaymentStatus)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
@@ -533,6 +558,23 @@ Partial Class FormItemExpenseDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(292, 125)
         Me.PanelControl2.TabIndex = 5
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(13, 92)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl9.TabIndex = 21
+        Me.LabelControl9.Text = "Invoice Number"
+        '
+        'TEInvNo
+        '
+        Me.TEInvNo.Enabled = False
+        Me.TEInvNo.Location = New System.Drawing.Point(105, 89)
+        Me.TEInvNo.Name = "TEInvNo"
+        Me.TEInvNo.Size = New System.Drawing.Size(174, 20)
+        Me.TEInvNo.TabIndex = 20
         '
         'TxtPaymentStatus
         '
@@ -607,16 +649,16 @@ Partial Class FormItemExpenseDet
         Me.PanelControlNav.Controls.Add(Me.BtnDelete)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 129)
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(934, 38)
+        Me.PanelControlNav.Size = New System.Drawing.Size(928, 38)
         Me.PanelControlNav.TabIndex = 17
         '
         'BtnDelete
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(778, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(772, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(79, 34)
         Me.BtnDelete.TabIndex = 23
@@ -626,7 +668,7 @@ Partial Class FormItemExpenseDet
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(857, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(851, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 34)
         Me.BtnAdd.TabIndex = 22
@@ -636,11 +678,11 @@ Partial Class FormItemExpenseDet
         '
         Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 167)
+        Me.GCData.Location = New System.Drawing.Point(0, 38)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemSpinEdit1, Me.RISLEType, Me.RISLECatExpense, Me.RISLECC})
-        Me.GCData.Size = New System.Drawing.Size(934, 288)
+        Me.GCData.Size = New System.Drawing.Size(928, 260)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -658,7 +700,7 @@ Partial Class FormItemExpenseDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GridColumn7, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnAccountDescription, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnAccountDescription, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
@@ -740,6 +782,54 @@ Partial Class FormItemExpenseDet
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 5
         Me.GridColumnDescription.Width = 123
+        '
+        'GCCC
+        '
+        Me.GCCC.Caption = "CC"
+        Me.GCCC.ColumnEdit = Me.RISLECC
+        Me.GCCC.FieldName = "cc"
+        Me.GCCC.Name = "GCCC"
+        Me.GCCC.Visible = True
+        Me.GCCC.VisibleIndex = 2
+        '
+        'RISLECC
+        '
+        Me.RISLECC.AutoHeight = False
+        Me.RISLECC.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLECC.ExportMode = DevExpress.XtraEditors.Repository.ExportMode.DisplayText
+        Me.RISLECC.Name = "RISLECC"
+        Me.RISLECC.View = Me.GridView3
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn14, Me.GridColumn15})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "id"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Code"
+        Me.GridColumn14.FieldName = "comp_number"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        Me.GridColumn14.Width = 327
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Company"
+        Me.GridColumn15.FieldName = "comp_name"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        Me.GridColumn15.Width = 1305
         '
         'GridColumnBudgetType
         '
@@ -896,6 +986,16 @@ Partial Class FormItemExpenseDet
         Me.GridColumnBudgetDesc.FieldName = "item_cat_main"
         Me.GridColumnBudgetDesc.Name = "GridColumnBudgetDesc"
         '
+        'GCCCDesc
+        '
+        Me.GCCCDesc.AppearanceCell.Options.UseTextOptions = True
+        Me.GCCCDesc.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCCCDesc.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCCCDesc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCCCDesc.Caption = "CC"
+        Me.GCCCDesc.FieldName = "cc_desc"
+        Me.GCCCDesc.Name = "GCCCDesc"
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -905,60 +1005,137 @@ Partial Class FormItemExpenseDet
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "N2"
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'GridColumn7
+        'XTPDraftJournal
         '
-        Me.GridColumn7.Caption = "CC"
-        Me.GridColumn7.ColumnEdit = Me.RISLECC
-        Me.GridColumn7.FieldName = "cc"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
+        Me.XTPDraftJournal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTPDraftJournal.Location = New System.Drawing.Point(0, 129)
+        Me.XTPDraftJournal.Name = "XTPDraftJournal"
+        Me.XTPDraftJournal.SelectedTabPage = Me.XTPDetail
+        Me.XTPDraftJournal.Size = New System.Drawing.Size(934, 326)
+        Me.XTPDraftJournal.TabIndex = 19
+        Me.XTPDraftJournal.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPDraft})
         '
-        'RISLECC
+        'XTPDetail
         '
-        Me.RISLECC.AutoHeight = False
-        Me.RISLECC.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLECC.Name = "RISLECC"
-        Me.RISLECC.View = Me.GridView3
+        Me.XTPDetail.Controls.Add(Me.GCData)
+        Me.XTPDetail.Controls.Add(Me.PanelControlNav)
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.Size = New System.Drawing.Size(928, 298)
+        Me.XTPDetail.Text = "Detail"
         '
-        'GridView3
+        'XTPDraft
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn14, Me.GridColumn15})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.XTPDraft.Controls.Add(Me.GCDraft)
+        Me.XTPDraft.Name = "XTPDraft"
+        Me.XTPDraft.Size = New System.Drawing.Size(928, 298)
+        Me.XTPDraft.Text = "Draft Journal"
         '
-        'GridColumn8
+        'GCDraft
         '
-        Me.GridColumn8.Caption = "id"
-        Me.GridColumn8.Name = "GridColumn8"
+        Me.GCDraft.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDraft.Location = New System.Drawing.Point(0, 0)
+        Me.GCDraft.MainView = Me.GVDraft
+        Me.GCDraft.Name = "GCDraft"
+        Me.GCDraft.Size = New System.Drawing.Size(928, 298)
+        Me.GCDraft.TabIndex = 2
+        Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
-        'GridColumn14
+        'GVDraft
         '
-        Me.GridColumn14.Caption = "Code"
-        Me.GridColumn14.FieldName = "comp_number"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
-        Me.GridColumn14.Width = 327
+        Me.GVDraft.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoDraft, Me.GridColumnacc_name_Draft, Me.GridColumnacc_description_draft, Me.GridColumnreport_number_draft, Me.GridColumnnote_draft, Me.GridColumndebit_draft, Me.GridColumncredit_draft, Me.GridColumncc})
+        Me.GVDraft.GridControl = Me.GCDraft
+        Me.GVDraft.Name = "GVDraft"
+        Me.GVDraft.OptionsBehavior.Editable = False
+        Me.GVDraft.OptionsView.ShowFooter = True
+        Me.GVDraft.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn15
+        'GridColumnNoDraft
         '
-        Me.GridColumn15.Caption = "Company"
-        Me.GridColumn15.FieldName = "comp_name"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 1
-        Me.GridColumn15.Width = 1305
+        Me.GridColumnNoDraft.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNoDraft.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNoDraft.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNoDraft.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNoDraft.Caption = "No"
+        Me.GridColumnNoDraft.FieldName = "no"
+        Me.GridColumnNoDraft.Name = "GridColumnNoDraft"
+        Me.GridColumnNoDraft.Visible = True
+        Me.GridColumnNoDraft.VisibleIndex = 0
+        Me.GridColumnNoDraft.Width = 59
+        '
+        'GridColumnacc_name_Draft
+        '
+        Me.GridColumnacc_name_Draft.Caption = "Account"
+        Me.GridColumnacc_name_Draft.FieldName = "acc_name"
+        Me.GridColumnacc_name_Draft.Name = "GridColumnacc_name_Draft"
+        Me.GridColumnacc_name_Draft.Visible = True
+        Me.GridColumnacc_name_Draft.VisibleIndex = 1
+        Me.GridColumnacc_name_Draft.Width = 194
+        '
+        'GridColumnacc_description_draft
+        '
+        Me.GridColumnacc_description_draft.Caption = "COA"
+        Me.GridColumnacc_description_draft.FieldName = "acc_description"
+        Me.GridColumnacc_description_draft.Name = "GridColumnacc_description_draft"
+        Me.GridColumnacc_description_draft.Visible = True
+        Me.GridColumnacc_description_draft.VisibleIndex = 2
+        Me.GridColumnacc_description_draft.Width = 126
+        '
+        'GridColumnreport_number_draft
+        '
+        Me.GridColumnreport_number_draft.Caption = "Reference"
+        Me.GridColumnreport_number_draft.FieldName = "report_number"
+        Me.GridColumnreport_number_draft.Name = "GridColumnreport_number_draft"
+        Me.GridColumnreport_number_draft.Visible = True
+        Me.GridColumnreport_number_draft.VisibleIndex = 4
+        Me.GridColumnreport_number_draft.Width = 125
+        '
+        'GridColumnnote_draft
+        '
+        Me.GridColumnnote_draft.Caption = "Description"
+        Me.GridColumnnote_draft.FieldName = "note"
+        Me.GridColumnnote_draft.Name = "GridColumnnote_draft"
+        Me.GridColumnnote_draft.Visible = True
+        Me.GridColumnnote_draft.VisibleIndex = 5
+        Me.GridColumnnote_draft.Width = 547
+        '
+        'GridColumndebit_draft
+        '
+        Me.GridColumndebit_draft.Caption = "Debit"
+        Me.GridColumndebit_draft.DisplayFormat.FormatString = "N2"
+        Me.GridColumndebit_draft.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndebit_draft.FieldName = "debit"
+        Me.GridColumndebit_draft.Name = "GridColumndebit_draft"
+        Me.GridColumndebit_draft.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
+        Me.GridColumndebit_draft.Visible = True
+        Me.GridColumndebit_draft.VisibleIndex = 6
+        Me.GridColumndebit_draft.Width = 267
+        '
+        'GridColumncredit_draft
+        '
+        Me.GridColumncredit_draft.Caption = "Credit"
+        Me.GridColumncredit_draft.DisplayFormat.FormatString = "N2"
+        Me.GridColumncredit_draft.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncredit_draft.FieldName = "credit"
+        Me.GridColumncredit_draft.Name = "GridColumncredit_draft"
+        Me.GridColumncredit_draft.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
+        Me.GridColumncredit_draft.Visible = True
+        Me.GridColumncredit_draft.VisibleIndex = 7
+        Me.GridColumncredit_draft.Width = 314
+        '
+        'GridColumncc
+        '
+        Me.GridColumncc.Caption = "CC"
+        Me.GridColumncc.FieldName = "cc"
+        Me.GridColumncc.Name = "GridColumncc"
+        Me.GridColumncc.Visible = True
+        Me.GridColumncc.VisibleIndex = 3
         '
         'FormItemExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(934, 661)
-        Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.PanelControlNav)
+        Me.Controls.Add(Me.XTPDraftJournal)
         Me.Controls.Add(Me.PanelControlPay)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -993,6 +1170,7 @@ Partial Class FormItemExpenseDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1005,14 +1183,20 @@ Partial Class FormItemExpenseDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLECC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLECatExpense, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLECC, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTPDraftJournal, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDraftJournal.ResumeLayout(False)
+        Me.XTPDetail.ResumeLayout(False)
+        Me.XTPDraft.ResumeLayout(False)
+        CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1093,10 +1277,26 @@ Partial Class FormItemExpenseDet
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBudgetTypeDesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBudgetDesc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCC As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLECC As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCCDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEInvNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents XTPDraftJournal As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDraft As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDraft As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDraft As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnNoDraft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnacc_name_Draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnacc_description_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_number_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndebit_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncredit_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
 End Class

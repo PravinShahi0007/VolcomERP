@@ -20,11 +20,10 @@ Partial Class FormInvoiceTracking
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceTracking))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStatusInvoice = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -52,6 +51,7 @@ Partial Class FormInvoiceTracking
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCUnpaid = New DevExpress.XtraGrid.GridControl()
         Me.GVUnpaid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -59,6 +59,7 @@ Partial Class FormInvoiceTracking
         Me.GridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -80,18 +81,22 @@ Partial Class FormInvoiceTracking
         Me.GridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumntotal_rec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumntotaldue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnmail_invoice_no = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkEmailInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnmail_invoice_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmail_invoice_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnLastNumberEN = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkEMailNotice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnCreatedDateEN = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnStatusEN = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnLastNumberEW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkEmailWarning = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnCreatedDateEW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnStatusEW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnbbm_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkBBM = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnbbm_created_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -100,11 +105,21 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnbbm_on_process = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnbtn_more_bbm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnMoreBBM = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnbbk_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkBBK = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.BandedGridColumnbbk_created_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnbbk_payment_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnbbk_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoBtnMoreBBK = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.BandedGridColumnid_mail_notice_no = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_mail_warning_no = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_bbm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_mail_invoice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_propose_delay_payment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_bbk = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnbbk_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTCInvTrack = New DevExpress.XtraTab.XtraTabControl()
@@ -138,26 +153,12 @@ Partial Class FormInvoiceTracking
         Me.RepositoryItemHyperLinkEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemHyperLinkEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.BandedGridColumnid_bbk = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnbbk_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnbbk_created_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnbbk_payment_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnbbk_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnbbk_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepoLinkBBK = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepoBtnMoreBBK = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.DEStartBBM = New DevExpress.XtraEditors.DateEdit()
+        Me.DEEndBBM = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.CEBBM = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,6 +184,8 @@ Partial Class FormInvoiceTracking
         CType(Me.RepoLinkEmailWarning, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnMoreBBM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkBBK, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoBtnMoreBBK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCInvTrack, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,33 +204,30 @@ Partial Class FormInvoiceTracking
         CType(Me.RepositoryItemHyperLinkEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkBBK, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoBtnMoreBBK, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartBBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartBBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEndBBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEndBBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.PanelControl3)
+        Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLSTrf)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1173, 74)
+        Me.PanelControl1.Size = New System.Drawing.Size(1173, 104)
         Me.PanelControl1.TabIndex = 3
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.PanelControl2)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(651, 70)
-        Me.PanelControl3.TabIndex = 8932
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CEBBM)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Controls.Add(Me.DEEndBBM)
+        Me.PanelControl2.Controls.Add(Me.DEStartBBM)
         Me.PanelControl2.Controls.Add(Me.SLEStatusInvoice)
         Me.PanelControl2.Controls.Add(Me.DEUntil)
         Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
@@ -240,15 +240,15 @@ Partial Class FormInvoiceTracking
         Me.PanelControl2.Controls.Add(Me.CEPeriod)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.SLEStoreGroup)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(651, 70)
+        Me.PanelControl2.Size = New System.Drawing.Size(724, 100)
         Me.PanelControl2.TabIndex = 8931
         '
         'SLEStatusInvoice
         '
-        Me.SLEStatusInvoice.Location = New System.Drawing.Point(486, 10)
+        Me.SLEStatusInvoice.Location = New System.Drawing.Point(556, 10)
         Me.SLEStatusInvoice.Name = "SLEStatusInvoice"
         Me.SLEStatusInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStatusInvoice.Properties.View = Me.GridView5
@@ -281,7 +281,7 @@ Partial Class FormInvoiceTracking
         '
         Me.DEUntil.EditValue = Nothing
         Me.DEUntil.Enabled = False
-        Me.DEUntil.Location = New System.Drawing.Point(267, 37)
+        Me.DEUntil.Location = New System.Drawing.Point(337, 37)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -293,7 +293,7 @@ Partial Class FormInvoiceTracking
         '
         'CEShowHighlight
         '
-        Me.CEShowHighlight.Location = New System.Drawing.Point(544, 38)
+        Me.CEShowHighlight.Location = New System.Drawing.Point(614, 38)
         Me.CEShowHighlight.Name = "CEShowHighlight"
         Me.CEShowHighlight.Properties.Caption = "Show Highlight"
         Me.CEShowHighlight.Size = New System.Drawing.Size(90, 19)
@@ -301,7 +301,7 @@ Partial Class FormInvoiceTracking
         '
         'CEPromo
         '
-        Me.CEPromo.Location = New System.Drawing.Point(449, 38)
+        Me.CEPromo.Location = New System.Drawing.Point(519, 38)
         Me.CEPromo.Name = "CEPromo"
         Me.CEPromo.Properties.Caption = "Include Promo"
         Me.CEPromo.Size = New System.Drawing.Size(89, 19)
@@ -309,7 +309,7 @@ Partial Class FormInvoiceTracking
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(235, 13)
+        Me.LabelControl2.Location = New System.Drawing.Point(305, 13)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(26, 13)
         Me.LabelControl2.TabIndex = 8911
@@ -317,7 +317,7 @@ Partial Class FormInvoiceTracking
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(235, 40)
+        Me.LabelControl1.Location = New System.Drawing.Point(305, 40)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl1.TabIndex = 8929
@@ -325,7 +325,7 @@ Partial Class FormInvoiceTracking
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(449, 13)
+        Me.LabelControl5.Location = New System.Drawing.Point(519, 13)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl5.TabIndex = 8918
@@ -335,7 +335,7 @@ Partial Class FormInvoiceTracking
         '
         Me.DEFrom.EditValue = Nothing
         Me.DEFrom.Enabled = False
-        Me.DEFrom.Location = New System.Drawing.Point(84, 37)
+        Me.DEFrom.Location = New System.Drawing.Point(154, 37)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -347,7 +347,7 @@ Partial Class FormInvoiceTracking
         '
         'SLEStoreInvoice
         '
-        Me.SLEStoreInvoice.Location = New System.Drawing.Point(267, 10)
+        Me.SLEStoreInvoice.Location = New System.Drawing.Point(337, 10)
         Me.SLEStoreInvoice.Name = "SLEStoreInvoice"
         Me.SLEStoreInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStoreInvoice.Properties.View = Me.GridView2
@@ -381,8 +381,8 @@ Partial Class FormInvoiceTracking
         Me.CEPeriod.EditValue = True
         Me.CEPeriod.Location = New System.Drawing.Point(12, 37)
         Me.CEPeriod.Name = "CEPeriod"
-        Me.CEPeriod.Properties.Caption = "All Period"
-        Me.CEPeriod.Size = New System.Drawing.Size(75, 19)
+        Me.CEPeriod.Properties.Caption = "All Sales Period"
+        Me.CEPeriod.Size = New System.Drawing.Size(106, 19)
         Me.CEPeriod.TabIndex = 8927
         '
         'LabelControl3
@@ -395,7 +395,7 @@ Partial Class FormInvoiceTracking
         '
         'SLEStoreGroup
         '
-        Me.SLEStoreGroup.Location = New System.Drawing.Point(84, 10)
+        Me.SLEStoreGroup.Location = New System.Drawing.Point(154, 10)
         Me.SLEStoreGroup.Name = "SLEStoreGroup"
         Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStoreGroup.Properties.View = Me.GridView3
@@ -435,7 +435,7 @@ Partial Class FormInvoiceTracking
         'BtnExportToXLSTrf
         '
         Me.BtnExportToXLSTrf.Image = CType(resources.GetObject("BtnExportToXLSTrf.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(726, 26)
+        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(807, 35)
         Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
         Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(106, 20)
@@ -445,7 +445,7 @@ Partial Class FormInvoiceTracking
         'BView
         '
         Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
-        Me.BView.Location = New System.Drawing.Point(662, 26)
+        Me.BView.Location = New System.Drawing.Point(743, 35)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(60, 20)
         Me.BView.TabIndex = 8913
@@ -458,7 +458,7 @@ Partial Class FormInvoiceTracking
         Me.GCUnpaid.MainView = Me.GVUnpaid
         Me.GCUnpaid.Name = "GCUnpaid"
         Me.GCUnpaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepoBtnMoreBBM, Me.RepositoryItemCheckEdit2, Me.RepoLinkInvoice, Me.RepoLinkBBM, Me.RepoLinkEMailNotice, Me.RepoLinkEmailWarning, Me.RepoLinkEmailInvoice, Me.RepoLinkMemoPenangguhan, Me.RepoLinkBBK, Me.RepoBtnMoreBBK})
-        Me.GCUnpaid.Size = New System.Drawing.Size(1167, 404)
+        Me.GCUnpaid.Size = New System.Drawing.Size(1167, 374)
         Me.GCUnpaid.TabIndex = 20
         Me.GCUnpaid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUnpaid})
         '
@@ -480,6 +480,18 @@ Partial Class FormInvoiceTracking
         Me.GVUnpaid.OptionsView.ShowFooter = True
         Me.GVUnpaid.OptionsView.ShowGroupPanel = False
         Me.GVUnpaid.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn27, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.GridColumn7)
+        Me.gridBand2.Columns.Add(Me.GridColumn9)
+        Me.gridBand2.Columns.Add(Me.GridColumn21)
+        Me.gridBand2.Columns.Add(Me.GridColumn20)
+        Me.gridBand2.Columns.Add(Me.GridColumn27)
+        Me.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 390
         '
         'GridColumn7
         '
@@ -536,6 +548,33 @@ Partial Class FormInvoiceTracking
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail Invoice"
+        Me.GridBand1.Columns.Add(Me.GridColumn8)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn15)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Columns.Add(Me.GridColumn22)
+        Me.GridBand1.Columns.Add(Me.GridColumn11)
+        Me.GridBand1.Columns.Add(Me.GridColumn31)
+        Me.GridBand1.Columns.Add(Me.GridColumn32)
+        Me.GridBand1.Columns.Add(Me.GridColumn18)
+        Me.GridBand1.Columns.Add(Me.GridColumndue_days)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnmemo_number)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnpropose_delay_payment_due_date)
+        Me.GridBand1.Columns.Add(Me.GridColumn33)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand1.Columns.Add(Me.GridColumn24)
+        Me.GridBand1.Columns.Add(Me.GridColumn28)
+        Me.GridBand1.Columns.Add(Me.GridColumn30)
+        Me.GridBand1.Columns.Add(Me.GridColumntotal_rec)
+        Me.GridBand1.Columns.Add(Me.GridColumntotaldue)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 1071
         '
         'GridColumn8
         '
@@ -741,6 +780,16 @@ Partial Class FormInvoiceTracking
         Me.GridColumntotaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_due", "{0:N2}")})
         Me.GridColumntotaldue.Visible = True
         '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "Email Invoice"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_no)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_date)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_status)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 2
+        Me.gridBand6.Width = 225
+        '
         'BandedGridColumnmail_invoice_no
         '
         Me.BandedGridColumnmail_invoice_no.Caption = "Last Number"
@@ -773,6 +822,16 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnmail_invoice_status.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnmail_invoice_status.Visible = True
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Email Pemberitahuan"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnLastNumberEN)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnCreatedDateEN)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnStatusEN)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 3
+        Me.gridBand3.Width = 225
+        '
         'BandedGridColumnLastNumberEN
         '
         Me.BandedGridColumnLastNumberEN.Caption = "Last Number"
@@ -804,6 +863,16 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnStatusEN.Name = "BandedGridColumnStatusEN"
         Me.BandedGridColumnStatusEN.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnStatusEN.Visible = True
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Email Peringatan"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnLastNumberEW)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnCreatedDateEW)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnStatusEW)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 4
+        Me.gridBand4.Width = 302
         '
         'BandedGridColumnLastNumberEW
         '
@@ -839,6 +908,19 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnStatusEW.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnStatusEW.Visible = True
         '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "Bukti Bank Masuk"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_number)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_created_date)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_received_date)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_value)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_on_process)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbtn_more_bbm)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 5
+        Me.gridBand5.Width = 450
+        '
         'BandedGridColumnbbm_number
         '
         Me.BandedGridColumnbbm_number.Caption = "Last Number"
@@ -871,6 +953,7 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnbbm_received_date.FieldName = "bbm_received_date"
         Me.BandedGridColumnbbm_received_date.Name = "BandedGridColumnbbm_received_date"
         Me.BandedGridColumnbbm_received_date.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnbbm_received_date.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Date]
         Me.BandedGridColumnbbm_received_date.Visible = True
         '
         'BandedGridColumnbbm_value
@@ -903,16 +986,92 @@ Partial Class FormInvoiceTracking
         'RepoBtnMoreBBM
         '
         Me.RepoBtnMoreBBM.AutoHeight = False
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.RepoBtnMoreBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject13.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject13.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject13.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject13.Options.UseBackColor = True
+        SerializableAppearanceObject13.Options.UseFont = True
+        SerializableAppearanceObject13.Options.UseForeColor = True
+        Me.RepoBtnMoreBBM.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, "", Nothing, Nothing, True)})
         Me.RepoBtnMoreBBM.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnMoreBBM.Name = "RepoBtnMoreBBM"
         Me.RepoBtnMoreBBM.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "Bukti Bank Keluar"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnbbk_number)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnbbk_created_date)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnbbk_payment_date)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnbbk_value)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 6
+        Me.gridBand7.Width = 375
+        '
+        'BandedGridColumnbbk_number
+        '
+        Me.BandedGridColumnbbk_number.Caption = "Last Number"
+        Me.BandedGridColumnbbk_number.ColumnEdit = Me.RepoLinkBBK
+        Me.BandedGridColumnbbk_number.FieldName = "bbk_number"
+        Me.BandedGridColumnbbk_number.Name = "BandedGridColumnbbk_number"
+        Me.BandedGridColumnbbk_number.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnbbk_number.Visible = True
+        '
+        'RepoLinkBBK
+        '
+        Me.RepoLinkBBK.AutoHeight = False
+        Me.RepoLinkBBK.Name = "RepoLinkBBK"
+        '
+        'BandedGridColumnbbk_created_date
+        '
+        Me.BandedGridColumnbbk_created_date.Caption = "Created Date"
+        Me.BandedGridColumnbbk_created_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumnbbk_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumnbbk_created_date.FieldName = "bbk_created_date"
+        Me.BandedGridColumnbbk_created_date.Name = "BandedGridColumnbbk_created_date"
+        Me.BandedGridColumnbbk_created_date.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnbbk_created_date.Visible = True
+        '
+        'BandedGridColumnbbk_payment_date
+        '
+        Me.BandedGridColumnbbk_payment_date.Caption = "Payment Date"
+        Me.BandedGridColumnbbk_payment_date.FieldName = "bbk_payment_date"
+        Me.BandedGridColumnbbk_payment_date.Name = "BandedGridColumnbbk_payment_date"
+        Me.BandedGridColumnbbk_payment_date.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnbbk_payment_date.Visible = True
+        '
+        'BandedGridColumnbbk_value
+        '
+        Me.BandedGridColumnbbk_value.Caption = "Amount"
+        Me.BandedGridColumnbbk_value.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnbbk_value.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnbbk_value.FieldName = "bbk_value"
+        Me.BandedGridColumnbbk_value.Name = "BandedGridColumnbbk_value"
+        Me.BandedGridColumnbbk_value.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnbbk_value.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bbk_value", "{0:N2}")})
+        Me.BandedGridColumnbbk_value.Visible = True
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.Caption = "  "
+        Me.BandedGridColumn7.ColumnEdit = Me.RepoBtnMoreBBK
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.Visible = True
+        '
+        'RepoBtnMoreBBK
+        '
+        Me.RepoBtnMoreBBK.AutoHeight = False
+        SerializableAppearanceObject14.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject14.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject14.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject14.Options.UseBackColor = True
+        SerializableAppearanceObject14.Options.UseFont = True
+        SerializableAppearanceObject14.Options.UseForeColor = True
+        Me.RepoBtnMoreBBK.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBK", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject14, "", Nothing, Nothing, True)})
+        Me.RepoBtnMoreBBK.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.RepoBtnMoreBBK.Name = "RepoBtnMoreBBK"
+        Me.RepoBtnMoreBBK.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
         'BandedGridColumnid_mail_notice_no
         '
@@ -949,6 +1108,21 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnid_propose_delay_payment.Name = "BandedGridColumnid_propose_delay_payment"
         Me.BandedGridColumnid_propose_delay_payment.OptionsColumn.AllowEdit = False
         '
+        'BandedGridColumnid_bbk
+        '
+        Me.BandedGridColumnid_bbk.Caption = "id_bbk"
+        Me.BandedGridColumnid_bbk.FieldName = "id_bbk"
+        Me.BandedGridColumnid_bbk.Name = "BandedGridColumnid_bbk"
+        Me.BandedGridColumnid_bbk.OptionsColumn.ReadOnly = True
+        '
+        'BandedGridColumnbbk_status
+        '
+        Me.BandedGridColumnbbk_status.Caption = "Status"
+        Me.BandedGridColumnbbk_status.FieldName = "bbk_status"
+        Me.BandedGridColumnbbk_status.Name = "BandedGridColumnbbk_status"
+        Me.BandedGridColumnbbk_status.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnbbk_status.Visible = True
+        '
         'RepositoryItemCheckEdit3
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
@@ -967,10 +1141,10 @@ Partial Class FormInvoiceTracking
         '
         Me.XTCInvTrack.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCInvTrack.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCInvTrack.Location = New System.Drawing.Point(0, 74)
+        Me.XTCInvTrack.Location = New System.Drawing.Point(0, 104)
         Me.XTCInvTrack.Name = "XTCInvTrack"
         Me.XTCInvTrack.SelectedTabPage = Me.XTPDetail
-        Me.XTCInvTrack.Size = New System.Drawing.Size(1173, 432)
+        Me.XTCInvTrack.Size = New System.Drawing.Size(1173, 402)
         Me.XTCInvTrack.TabIndex = 21
         Me.XTCInvTrack.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPSummary})
         '
@@ -978,14 +1152,14 @@ Partial Class FormInvoiceTracking
         '
         Me.XTPDetail.Controls.Add(Me.GCUnpaid)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1167, 404)
+        Me.XTPDetail.Size = New System.Drawing.Size(1167, 374)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPSummary
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1167, 404)
+        Me.XTPSummary.Size = New System.Drawing.Size(1167, 374)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
@@ -995,7 +1169,7 @@ Partial Class FormInvoiceTracking
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
         Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit4, Me.RepositoryItemCheckEdit5, Me.RepositoryItemButtonEdit1, Me.RepositoryItemCheckEdit6, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHyperLinkEdit6, Me.RepositoryItemHyperLinkEdit4, Me.RepositoryItemHyperLinkEdit5, Me.RepositoryItemHyperLinkEdit3, Me.RepositoryItemHyperLinkEdit2})
-        Me.GCSummary.Size = New System.Drawing.Size(1167, 404)
+        Me.GCSummary.Size = New System.Drawing.Size(1167, 374)
         Me.GCSummary.TabIndex = 21
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -1188,13 +1362,13 @@ Partial Class FormInvoiceTracking
         'RepositoryItemButtonEdit1
         '
         Me.RepositoryItemButtonEdit1.AutoHeight = False
-        SerializableAppearanceObject3.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject3.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject3.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject3.Options.UseBackColor = True
-        SerializableAppearanceObject3.Options.UseFont = True
-        SerializableAppearanceObject3.Options.UseForeColor = True
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject15.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject15.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject15.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject15.Options.UseBackColor = True
+        SerializableAppearanceObject15.Options.UseFont = True
+        SerializableAppearanceObject15.Options.UseForeColor = True
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject15, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEdit1.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1238,178 +1412,50 @@ Partial Class FormInvoiceTracking
         Me.RepositoryItemHyperLinkEdit2.AutoHeight = False
         Me.RepositoryItemHyperLinkEdit2.Name = "RepositoryItemHyperLinkEdit2"
         '
-        'BandedGridColumnid_bbk
+        'DEStartBBM
         '
-        Me.BandedGridColumnid_bbk.Caption = "id_bbk"
-        Me.BandedGridColumnid_bbk.FieldName = "id_bbk"
-        Me.BandedGridColumnid_bbk.Name = "BandedGridColumnid_bbk"
-        Me.BandedGridColumnid_bbk.OptionsColumn.ReadOnly = True
+        Me.DEStartBBM.EditValue = Nothing
+        Me.DEStartBBM.Enabled = False
+        Me.DEStartBBM.Location = New System.Drawing.Point(154, 63)
+        Me.DEStartBBM.Name = "DEStartBBM"
+        Me.DEStartBBM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartBBM.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartBBM.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStartBBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartBBM.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEStartBBM.Size = New System.Drawing.Size(145, 20)
+        Me.DEStartBBM.TabIndex = 8931
         '
-        'BandedGridColumnbbk_number
+        'DEEndBBM
         '
-        Me.BandedGridColumnbbk_number.Caption = "Last Number"
-        Me.BandedGridColumnbbk_number.ColumnEdit = Me.RepoLinkBBK
-        Me.BandedGridColumnbbk_number.FieldName = "bbk_number"
-        Me.BandedGridColumnbbk_number.Name = "BandedGridColumnbbk_number"
-        Me.BandedGridColumnbbk_number.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnbbk_number.Visible = True
+        Me.DEEndBBM.EditValue = Nothing
+        Me.DEEndBBM.Enabled = False
+        Me.DEEndBBM.Location = New System.Drawing.Point(337, 63)
+        Me.DEEndBBM.Name = "DEEndBBM"
+        Me.DEEndBBM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEndBBM.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEndBBM.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEEndBBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEndBBM.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEEndBBM.Size = New System.Drawing.Size(177, 20)
+        Me.DEEndBBM.TabIndex = 8932
         '
-        'BandedGridColumnbbk_created_date
+        'LabelControl4
         '
-        Me.BandedGridColumnbbk_created_date.Caption = "Created Date"
-        Me.BandedGridColumnbbk_created_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.BandedGridColumnbbk_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumnbbk_created_date.FieldName = "bbk_created_date"
-        Me.BandedGridColumnbbk_created_date.Name = "BandedGridColumnbbk_created_date"
-        Me.BandedGridColumnbbk_created_date.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnbbk_created_date.Visible = True
+        Me.LabelControl4.Location = New System.Drawing.Point(305, 66)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8933
+        Me.LabelControl4.Text = "Until"
         '
-        'BandedGridColumnbbk_payment_date
+        'CEBBM
         '
-        Me.BandedGridColumnbbk_payment_date.Caption = "Payment Date"
-        Me.BandedGridColumnbbk_payment_date.FieldName = "bbk_payment_date"
-        Me.BandedGridColumnbbk_payment_date.Name = "BandedGridColumnbbk_payment_date"
-        Me.BandedGridColumnbbk_payment_date.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnbbk_payment_date.Visible = True
-        '
-        'BandedGridColumnbbk_value
-        '
-        Me.BandedGridColumnbbk_value.Caption = "Amount"
-        Me.BandedGridColumnbbk_value.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumnbbk_value.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnbbk_value.FieldName = "bbk_value"
-        Me.BandedGridColumnbbk_value.Name = "BandedGridColumnbbk_value"
-        Me.BandedGridColumnbbk_value.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnbbk_value.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bbk_value", "{0:N2}")})
-        Me.BandedGridColumnbbk_value.Visible = True
-        '
-        'BandedGridColumnbbk_status
-        '
-        Me.BandedGridColumnbbk_status.Caption = "Status"
-        Me.BandedGridColumnbbk_status.FieldName = "bbk_status"
-        Me.BandedGridColumnbbk_status.Name = "BandedGridColumnbbk_status"
-        Me.BandedGridColumnbbk_status.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnbbk_status.Visible = True
-        '
-        'RepoLinkBBK
-        '
-        Me.RepoLinkBBK.AutoHeight = False
-        Me.RepoLinkBBK.Name = "RepoLinkBBK"
-        '
-        'BandedGridColumn7
-        '
-        Me.BandedGridColumn7.Caption = "  "
-        Me.BandedGridColumn7.ColumnEdit = Me.RepoBtnMoreBBK
-        Me.BandedGridColumn7.Name = "BandedGridColumn7"
-        Me.BandedGridColumn7.Visible = True
-        '
-        'RepoBtnMoreBBK
-        '
-        Me.RepoBtnMoreBBK.AutoHeight = False
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepoBtnMoreBBK.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More BBK", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
-        Me.RepoBtnMoreBBK.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.RepoBtnMoreBBK.Name = "RepoBtnMoreBBK"
-        Me.RepoBtnMoreBBK.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Columns.Add(Me.GridColumn7)
-        Me.gridBand2.Columns.Add(Me.GridColumn9)
-        Me.gridBand2.Columns.Add(Me.GridColumn21)
-        Me.gridBand2.Columns.Add(Me.GridColumn20)
-        Me.gridBand2.Columns.Add(Me.GridColumn27)
-        Me.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 390
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Detail Invoice"
-        Me.GridBand1.Columns.Add(Me.GridColumn8)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn15)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand1.Columns.Add(Me.GridColumn22)
-        Me.GridBand1.Columns.Add(Me.GridColumn11)
-        Me.GridBand1.Columns.Add(Me.GridColumn31)
-        Me.GridBand1.Columns.Add(Me.GridColumn32)
-        Me.GridBand1.Columns.Add(Me.GridColumn18)
-        Me.GridBand1.Columns.Add(Me.GridColumndue_days)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnmemo_number)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnpropose_delay_payment_due_date)
-        Me.GridBand1.Columns.Add(Me.GridColumn33)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand1.Columns.Add(Me.GridColumn24)
-        Me.GridBand1.Columns.Add(Me.GridColumn28)
-        Me.GridBand1.Columns.Add(Me.GridColumn30)
-        Me.GridBand1.Columns.Add(Me.GridColumntotal_rec)
-        Me.GridBand1.Columns.Add(Me.GridColumntotaldue)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 1071
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "Email Invoice"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_no)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_date)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_status)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 2
-        Me.gridBand6.Width = 225
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Email Pemberitahuan"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnLastNumberEN)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnCreatedDateEN)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnStatusEN)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 3
-        Me.gridBand3.Width = 225
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "Email Peringatan"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnLastNumberEW)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnCreatedDateEW)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnStatusEW)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 4
-        Me.gridBand4.Width = 302
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "Bukti Bank Masuk"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_number)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_created_date)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_received_date)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_value)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_on_process)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbtn_more_bbm)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 5
-        Me.gridBand5.Width = 450
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "Bukti Bank Keluar"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnbbk_number)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnbbk_created_date)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnbbk_payment_date)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnbbk_value)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 6
-        Me.gridBand7.Width = 375
+        Me.CEBBM.EditValue = True
+        Me.CEBBM.Location = New System.Drawing.Point(12, 63)
+        Me.CEBBM.Name = "CEBBM"
+        Me.CEBBM.Properties.Caption = "All Bank Received Period"
+        Me.CEBBM.Size = New System.Drawing.Size(138, 19)
+        Me.CEBBM.TabIndex = 8934
         '
         'FormInvoiceTracking
         '
@@ -1424,8 +1470,6 @@ Partial Class FormInvoiceTracking
         Me.Text = "Invoice Tracking"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -1452,6 +1496,8 @@ Partial Class FormInvoiceTracking
         CType(Me.RepoLinkEmailWarning, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkBBM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnMoreBBM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkBBK, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoBtnMoreBBK, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCInvTrack, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1470,8 +1516,11 @@ Partial Class FormInvoiceTracking
         CType(Me.RepositoryItemHyperLinkEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkBBK, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoBtnMoreBBK, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartBBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartBBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEndBBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEndBBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1558,7 +1607,6 @@ Partial Class FormInvoiceTracking
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents CEPeriod As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XTCInvTrack As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
@@ -1607,4 +1655,8 @@ Partial Class FormInvoiceTracking
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoBtnMoreBBK As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents CEBBM As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEEndBBM As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStartBBM As DevExpress.XtraEditors.DateEdit
 End Class

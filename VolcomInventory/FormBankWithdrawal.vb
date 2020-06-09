@@ -35,6 +35,41 @@
         load_vendor_expense()
         load_vendor_fgpo()
         load_vendor_refund()
+        load_group_store_cn()
+
+        DECAFrom.EditValue = Date.Parse(Now)
+        DECATo.EditValue = Date.Parse(Now)
+    End Sub
+
+    Sub load_group_store_cn()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg 
+        WHERE cg.is_allow_closing_cn=1 "
+        viewSearchLookupQuery(SLEStoreGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_store_cn()
+        Cursor = Cursors.WaitCursor
+        Dim id_group As String = "-1"
+        Try
+            id_group = SLEStoreGroup.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        Dim cond_group As String = ""
+        If id_group <> "0" Then
+            cond_group = "AND c.id_comp_group='" + id_group + "' "
+        End If
+
+
+        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
+                                WHERE c.id_comp_cat='6' " + cond_group + " "
+        viewSearchLookupQuery(SLEStoreInvoice, query, "id_comp_contact", "comp_name", "id_comp_contact")
+        Cursor = Cursors.Default
     End Sub
 
     Sub load_status_payment()
@@ -611,6 +646,12 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             view_thr()
         ElseIf XTCPO.SelectedTabPage.Name = "XTPJamsostek" Then
             view_jamsostek()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPRefund" Then
+            If XTCCN.SelectedTabPageIndex = 0 Then
+                load_refund()
+            Else
+                view_list_cn()
+            End If
         End If
     End Sub
 
@@ -706,7 +747,8 @@ sr.`id_sales_return`,c.`id_comp`,c.`comp_number`,c.`comp_name`,r.`rec_date`,sr.`
 ,SUM(posd.`design_price`) AS total
 ,IFNULL(payment.value,0) AS total_paid
 ,IFNULL(payment_pending.jml,0) AS total_pending
-,(SUM(posd.`design_price`) - IFNULL(payment.value,0)) AS diff
+,(SUM(posd.`design_price`) - IFNULL(payment.value,0)) AS diff,
+rq.rek_no, rq.rek_name, rq.rek_bank, rq.rek_branch
 FROM tb_sales_return_det srd
 INNER JOIN tb_sales_return sr ON sr.`id_sales_return`=srd.`id_sales_return` AND sr.`id_report_status`=6
 INNER JOIN tb_sales_return_order_det rord ON rord.`id_sales_return_order_det`=srd.`id_sales_return_order_det`
@@ -716,6 +758,7 @@ INNER JOIN tb_sales_pos pos ON pos.`id_sales_pos`=posd.id_sales_pos AND pos.`id_
 INNER JOIN tb_a_acc acc ON acc.id_acc=pos.`id_acc_ar`
 INNER JOIN tb_ol_store_ret_det rd ON rd.`id_ol_store_ret_det`=rl.`id_ol_store_ret_det`
 INNER JOIN tb_ol_store_ret r ON r.`id_ol_store_ret`=rd.`id_ol_store_ret`
+INNER JOIN tb_ol_store_ret_req rq ON rq.id_ol_store_ret_req = r.id_ol_store_ret_req
 INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=r.`id_comp_group` AND cg.is_refund=1
 INNER JOIN tb_sales_order_det sod ON sod.`id_sales_order_det`=rd.`id_sales_order_det`
 INNER JOIN tb_sales_order so ON so.`id_sales_order`=sod.`id_sales_order`
@@ -826,5 +869,123 @@ GROUP BY sr.`id_sales_return`"
         End If
 
         GVJamsostek.ActiveFilterString = ""
+    End Sub
+
+    Sub load_ca()
+        Dim date_from As String = ""
+        Dim date_to As String = ""
+
+        Try
+            date_from = DateTime.Parse(DECAFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+            date_to = DateTime.Parse(DECATo.EditValue.ToString).ToString("yyyy-MM-dd")
+
+            Dim where_string As String = ""
+
+            Dim query As String = "CALL view_cash_advance_report_coa('" & date_from & "','" & date_to & "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            Dim data_final As DataTable = data.Clone
+
+            For i = 0 To data.Rows.Count - 1
+                If data.Rows(i)("expense") > 0 And data.Rows(i)("is_bbk").ToString = "2" Then
+                    data_final.ImportRow(data.Rows(i))
+                End If
+            Next
+
+            GCCashAdvance.DataSource = data_final
+            GVCashAdvance.BestFitColumns()
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub SBViewCashAdvance_Click(sender As Object, e As EventArgs) Handles SBViewCashAdvance.Click
+        load_ca()
+    End Sub
+
+    Private Sub SBPayCashAdvance_Click(sender As Object, e As EventArgs) Handles SBPayCashAdvance.Click
+        GVCashAdvance.ActiveFilterString = ""
+        GVCashAdvance.ActiveFilterString = "[is_check]='yes'"
+
+        If GVCashAdvance.RowCount > 0 Then
+            FormBankWithdrawalDet.id_pay_type = "2"
+            FormBankWithdrawalDet.report_mark_type = "167"
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("Please select item first.")
+        End If
+
+        GVCashAdvance.ActiveFilterString = ""
+    End Sub
+
+    Private Sub CESelectAllCA_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAllCA.EditValueChanged
+        If CESelectAllCA.EditValue Then
+            For i = 0 To GVCashAdvance.RowCount - 1
+                GVCashAdvance.SetRowCellValue(i, "is_check", "yes")
+            Next
+        Else
+            For i = 0 To GVCashAdvance.RowCount - 1
+                GVCashAdvance.SetRowCellValue(i, "is_check", "no")
+            Next
+        End If
+    End Sub
+
+    Private Sub BCreateBookTrf_Click(sender As Object, e As EventArgs) Handles BCreateBookTrf.Click
+        FormBankWithdrawalDet.is_book_transfer = True
+        FormBankWithdrawalDet.ShowDialog()
+    End Sub
+
+    Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        load_store_cn()
+    End Sub
+
+    Private Sub BtnListCN_Click(sender As Object, e As EventArgs) Handles BtnListCN.Click
+        view_list_cn()
+    End Sub
+
+    Sub view_list_cn()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 'no' AS is_check,sp.id_sales_pos, sp.sales_pos_number, cc.id_comp_contact,c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group, sp.id_acc_ar,
+        CAST(((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount,
+        IFNULL(p.value,0) AS total_paid,
+        CAST(((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) - IFNULL(p.value,0) AS `diff`,
+        IFNULL(p.jum_pending,0) AS `total_pending`, sp.id_acc_ar AS `id_acc`, coa.acc_name, coa.acc_description, sp.report_mark_type
+        FROM tb_sales_pos sp
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN (
+	        SELECT d.id_report, COUNT(d.id_report) AS `jum_pending`,  SUM(d.`value`) AS `value`
+	        FROM tb_pn_det d
+	        INNER JOIN tb_pn m ON m.id_pn = d.id_pn
+	        WHERE m.id_report_status!=5 AND d.report_mark_type IN(66,67)
+	        GROUP BY d.id_report
+        ) p ON p.id_report = sp.id_sales_pos 
+        INNER JOIN tb_a_acc coa ON coa.id_acc = sp.id_acc_ar
+        WHERE sp.report_mark_type IN (66,67) AND sp.id_report_status=6 
+        AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'
+        AND cc.id_comp_contact='" & SLEStoreInvoice.EditValue.ToString & "'
+        AND sp.is_close_rec_payment=2 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCN.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCN_Click(sender As Object, e As EventArgs) Handles BtnCN.Click
+        'cek pending
+        makeSafeGV(GVCN)
+        GVCN.ActiveFilterString = "[is_check]='yes' AND [total_pending]>0"
+        If GVCN.RowCount > 0 Then
+            warningCustom("Please process all pending payment for selected credit note")
+            Exit Sub
+        End If
+
+        'process
+        makeSafeGV(GVCN)
+        GVCN.ActiveFilterString = "[is_check]='yes'"
+        FormBankWithdrawalDet.report_mark_type = "66"
+        FormBankWithdrawalDet.id_pay_type = "2"
+        FormBankWithdrawalDet.ShowDialog()
+        makeSafeGV(GVCN)
     End Sub
 End Class
