@@ -623,7 +623,7 @@ WHERE c.id_comp='" + id_comp + "' "
                     newRow("id_acc") = GVData.GetRowCellValue(i, "id_acc").ToString
                     newRow("acc_name") = GVData.GetRowCellValue(i, "acc_name").ToString
                     newRow("acc_description") = GVData.GetRowCellValue(i, "coa_desc").ToString
-                    newRow("cc") = "000"
+                    newRow("cc") = GVData.GetRowCellValue(i, "cc_desc").ToString
                     newRow("report_number") = ""
                     newRow("note") = GVData.GetRowCellValue(i, "description").ToString
                     If GVData.GetRowCellValue(i, "amount") < 0 Then
