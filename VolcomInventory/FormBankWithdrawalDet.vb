@@ -871,7 +871,9 @@
                 calculate_amount()
             End If
         Else
-            PCAddDel.Visible = False
+            'PCAddDel.Visible = False
+            BtnAdd.Visible = False
+            BtnDelete.Visible = False
             '
             BtnPrint.Visible = True
             BMark.Visible = True
@@ -1093,9 +1095,9 @@ WHERE py.`id_pn`='" & id_payment & "'"
             Report.LkursLabel.Visible = False
             Report.LKursTitik.Visible = False
         Else
-            Report.LKurs.Visible = False
-            Report.LkursLabel.Visible = False
-            Report.LKursTitik.Visible = False
+            Report.LKurs.Visible = True
+            Report.LkursLabel.Visible = True
+            Report.LKursTitik.Visible = True
         End If
         '
         'Show the report's preview. 
@@ -1173,7 +1175,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 End If
 
                 Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,is_book_transfer,id_report_status) 
-VALUES('" & report_mark_type & "','" & Decimal.Parse(TEKurs.EditValue.ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & is_book_trf & "','1'); SELECT LAST_INSERT_ID(); "
+VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue.ToString).ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & is_book_trf & "','1'); SELECT LAST_INSERT_ID(); "
                 id_payment = execute_query(query, 0, True, "", "", "", "")
                 'detail
                 Dim id_currency, kurs, val_bef_kurs As String
