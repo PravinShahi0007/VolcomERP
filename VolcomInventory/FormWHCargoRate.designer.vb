@@ -158,6 +158,7 @@ Partial Class FormWHCargoRate
         Me.XTPOutbound.Controls.Add(Me.GCCompany)
         Me.XTPOutbound.Controls.Add(Me.PCEdit)
         Me.XTPOutbound.Name = "XTPOutbound"
+        Me.XTPOutbound.PageVisible = False
         Me.XTPOutbound.Size = New System.Drawing.Size(849, 434)
         Me.XTPOutbound.Text = "Outbound"
         '
@@ -227,6 +228,7 @@ Partial Class FormWHCargoRate
         Me.BCompanyIn.Size = New System.Drawing.Size(149, 37)
         Me.BCompanyIn.TabIndex = 3
         Me.BCompanyIn.Text = "Master Store / Cargo"
+        Me.BCompanyIn.Visible = False
         '
         'FormWHCargoRate
         '
@@ -240,7 +242,7 @@ Partial Class FormWHCargoRate
         Me.Name = "FormWHCargoRate"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Cargo Rate"
+        Me.Text = "Inbound Rate"
         CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCEdit.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
