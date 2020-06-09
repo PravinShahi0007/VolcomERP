@@ -7,6 +7,7 @@
     Dim scan_mode As String = ""
     Dim dt As DataTable
     Dim lead_time_return As Integer = 0
+    Dim is_confirm As String = "2"
 
     Private Sub FormRequestRetOLStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
@@ -82,6 +83,7 @@
             MENote.Text = data.Rows(0)("note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
+            is_confirm = data.Rows(0)("is_confirm").ToString
 
             'detail
             viewDetail()
@@ -107,25 +109,49 @@
     End Sub
 
     Sub allow_status()
-        BtnMark.Visible = True
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
         SLECompGroup.Enabled = False
         BtnBrowseOrder.Enabled = False
-        BtnPrint.Visible = True
         PanelControlNav.Visible = False
-        TxtRetRequest.Enabled = False
-        DEReqDate.Enabled = False
-        BtnSaveChanges.Visible = False
+
+
+        If is_confirm = "2" And is_view = "-1" Then
+            BtnConfirm.Visible = True
+            BtnMark.Visible = False
+            BtnPrint.Visible = False
+            BtnSaveChanges.Visible = True
+            TxtRetRequest.Enabled = True
+            DEReqDate.Enabled = True
+        Else
+            BtnMark.Visible = True
+            BtnConfirm.Visible = False
+            BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
+            TxtRetRequest.Enabled = False
+            DEReqDate.Enabled = False
+        End If
+
+        'reset propose
+        If is_view = "-1" And is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
             MENote.Enabled = False
+            MEReason.Enabled = False
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
-            MENote.Enabled = False
-        ElseIf id_report_status = "1" Then
-            MENote.Enabled = True
+            BtnResetPropose.Visible = False
+            BtnConfirm.Visible = False
+            BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
+            TxtRetRequest.Enabled = False
+            DEReqDate.Enabled = False
         End If
     End Sub
 
@@ -180,7 +206,7 @@
         makeSafeGV(GVData)
         checkDate()
 
-        If TxtOrderNumber.Text = "" Or TxtRetRequest.Text = "" Or GVData.RowCount <= 0 Then
+        If TxtOrderNumber.Text = "" Or TxtRetRequest.Text = "" Or MEReason.Text = "" Or GVData.RowCount <= 0 Then
             stopCustom("Please complete all data")
         ElseIf LabelValidDate.Text <> "OK" Then
             stopCustom("Request date not valid")
@@ -197,10 +223,11 @@
                 Dim ret_req_number As String = addSlashes(TxtRetRequest.Text)
                 Dim ret_req_date As String = DateTime.Parse(DEReqDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim note As String = addSlashes(MENote.Text)
+                Dim ret_reason As String = addSlashes(MEReason.Text)
 
                 'main 
-                Dim query As String = "INSERT INTO tb_ol_store_ret_req(id_comp_group, sales_order_ol_shop_number, receive_cust_date, ret_req_number, ret_req_date, created_date, created_by, updated_date, updated_by, note, id_report_status) VALUES 
-                ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "', '" + receive_cust_date + "', '" + ret_req_number + "', '" + ret_req_date + "', NOW(), " + id_user + ", NOW(), " + id_user + ", '" + note + "', 1);SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_ol_store_ret_req(id_comp_group, sales_order_ol_shop_number, receive_cust_date, ret_req_number, ret_req_date, created_date, created_by, updated_date, updated_by, note, id_report_status, ret_reason) VALUES 
+                ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "', '" + receive_cust_date + "', '" + ret_req_number + "', '" + ret_req_date + "', NOW(), " + id_user + ", NOW(), " + id_user + ", '" + note + "', 1, '" + ret_reason + "');SELECT LAST_INSERT_ID(); "
                 id = execute_query(query, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + "," + rmt + "); ", True, "", "", "", "")
 
