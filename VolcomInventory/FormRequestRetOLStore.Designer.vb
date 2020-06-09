@@ -44,7 +44,6 @@ Partial Class FormRequestRetOLStore
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -71,6 +70,17 @@ Partial Class FormRequestRetOLStore
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
+        Me.MEAddress = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPhone = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DERecByCust.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,8 +99,6 @@ Partial Class FormRequestRetOLStore
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,34 +107,35 @@ Partial Class FormRequestRetOLStore
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPhone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlHead.Controls.Add(Me.LabelValidDate)
-        Me.GroupControlHead.Controls.Add(Me.BtnBrowseOrder)
-        Me.GroupControlHead.Controls.Add(Me.LabelControl1)
-        Me.GroupControlHead.Controls.Add(Me.DERecByCust)
         Me.GroupControlHead.Controls.Add(Me.SLECompGroup)
-        Me.GroupControlHead.Controls.Add(Me.LabelControl6)
-        Me.GroupControlHead.Controls.Add(Me.DEReqDate)
         Me.GroupControlHead.Controls.Add(Me.LabelControl5)
-        Me.GroupControlHead.Controls.Add(Me.LabelControl8)
-        Me.GroupControlHead.Controls.Add(Me.TxtRetRequest)
         Me.GroupControlHead.Controls.Add(Me.TxtOrderNumber)
         Me.GroupControlHead.Controls.Add(Me.LabelControl2)
         Me.GroupControlHead.Controls.Add(Me.PanelControl1)
+        Me.GroupControlHead.Controls.Add(Me.PanelControl3)
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(844, 155)
+        Me.GroupControlHead.Size = New System.Drawing.Size(816, 195)
         Me.GroupControlHead.TabIndex = 11
         '
         'LabelValidDate
         '
         Me.LabelValidDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelValidDate.Location = New System.Drawing.Point(420, 121)
+        Me.LabelValidDate.Location = New System.Drawing.Point(779, 13)
         Me.LabelValidDate.Name = "LabelValidDate"
         Me.LabelValidDate.Size = New System.Drawing.Size(16, 13)
         Me.LabelValidDate.TabIndex = 8931
@@ -135,7 +144,7 @@ Partial Class FormRequestRetOLStore
         'BtnBrowseOrder
         '
         Me.BtnBrowseOrder.Image = CType(resources.GetObject("BtnBrowseOrder.Image"), System.Drawing.Image)
-        Me.BtnBrowseOrder.Location = New System.Drawing.Point(387, 38)
+        Me.BtnBrowseOrder.Location = New System.Drawing.Point(328, 36)
         Me.BtnBrowseOrder.Name = "BtnBrowseOrder"
         Me.BtnBrowseOrder.Size = New System.Drawing.Size(27, 23)
         Me.BtnBrowseOrder.TabIndex = 12
@@ -143,17 +152,17 @@ Partial Class FormRequestRetOLStore
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(36, 69)
+        Me.LabelControl1.Location = New System.Drawing.Point(36, 13)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(108, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(66, 13)
         Me.LabelControl1.TabIndex = 8930
-        Me.LabelControl1.Text = "Received by Customer"
+        Me.LabelControl1.Text = "Rec. by Cust."
         '
         'DERecByCust
         '
         Me.DERecByCust.EditValue = Nothing
         Me.DERecByCust.Enabled = False
-        Me.DERecByCust.Location = New System.Drawing.Point(155, 66)
+        Me.DERecByCust.Location = New System.Drawing.Point(114, 10)
         Me.DERecByCust.Name = "DERecByCust"
         Me.DERecByCust.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DERecByCust.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -162,12 +171,12 @@ Partial Class FormRequestRetOLStore
         Me.DERecByCust.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DERecByCust.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DERecByCust.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DERecByCust.Size = New System.Drawing.Size(259, 20)
+        Me.DERecByCust.Size = New System.Drawing.Size(152, 20)
         Me.DERecByCust.TabIndex = 8929
         '
         'SLECompGroup
         '
-        Me.SLECompGroup.Location = New System.Drawing.Point(155, 12)
+        Me.SLECompGroup.Location = New System.Drawing.Point(116, 12)
         Me.SLECompGroup.Name = "SLECompGroup"
         Me.SLECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECompGroup.Properties.ShowClearButton = False
@@ -200,7 +209,7 @@ Partial Class FormRequestRetOLStore
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(36, 121)
+        Me.LabelControl6.Location = New System.Drawing.Point(520, 13)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(66, 13)
         Me.LabelControl6.TabIndex = 8927
@@ -209,7 +218,7 @@ Partial Class FormRequestRetOLStore
         'DEReqDate
         '
         Me.DEReqDate.EditValue = Nothing
-        Me.DEReqDate.Location = New System.Drawing.Point(155, 118)
+        Me.DEReqDate.Location = New System.Drawing.Point(593, 10)
         Me.DEReqDate.Name = "DEReqDate"
         Me.DEReqDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEReqDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -219,7 +228,7 @@ Partial Class FormRequestRetOLStore
         Me.DEReqDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEReqDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEReqDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEReqDate.Size = New System.Drawing.Size(259, 20)
+        Me.DEReqDate.Size = New System.Drawing.Size(180, 20)
         Me.DEReqDate.TabIndex = 8926
         '
         'LabelControl5
@@ -234,7 +243,7 @@ Partial Class FormRequestRetOLStore
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(36, 95)
+        Me.LabelControl8.Location = New System.Drawing.Point(276, 13)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(80, 13)
         Me.LabelControl8.TabIndex = 8918
@@ -243,19 +252,19 @@ Partial Class FormRequestRetOLStore
         'TxtRetRequest
         '
         Me.TxtRetRequest.AllowDrop = True
-        Me.TxtRetRequest.Location = New System.Drawing.Point(155, 92)
+        Me.TxtRetRequest.Location = New System.Drawing.Point(362, 10)
         Me.TxtRetRequest.Name = "TxtRetRequest"
         Me.TxtRetRequest.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtRetRequest.Properties.Appearance.Options.UseFont = True
         Me.TxtRetRequest.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtRetRequest.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtRetRequest.Size = New System.Drawing.Size(259, 20)
+        Me.TxtRetRequest.Size = New System.Drawing.Size(152, 20)
         Me.TxtRetRequest.TabIndex = 8919
         '
         'TxtOrderNumber
         '
         Me.TxtOrderNumber.Enabled = False
-        Me.TxtOrderNumber.Location = New System.Drawing.Point(155, 40)
+        Me.TxtOrderNumber.Location = New System.Drawing.Point(116, 40)
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtOrderNumber.Properties.Appearance.Options.UseFont = True
@@ -274,16 +283,18 @@ Partial Class FormRequestRetOLStore
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl21)
         Me.PanelControl1.Controls.Add(Me.TxtCreatedBy)
+        Me.PanelControl1.Controls.Add(Me.LEReportStatus)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.LabelControl9)
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.DECreated)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(536, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(508, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(306, 151)
+        Me.PanelControl1.Size = New System.Drawing.Size(306, 191)
         Me.PanelControl1.TabIndex = 4
         '
         'TxtCreatedBy
@@ -353,30 +364,27 @@ Partial Class FormRequestRetOLStore
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.PanelControl2)
-        Me.GroupControl1.Controls.Add(Me.MENote)
+        Me.GroupControl1.Controls.Add(Me.MEReason)
+        Me.GroupControl1.Controls.Add(Me.LabelControl14)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 460)
+        Me.GroupControl1.Controls.Add(Me.MENote)
+        Me.GroupControl1.Controls.Add(Me.DEReqDate)
+        Me.GroupControl1.Controls.Add(Me.TxtRetRequest)
+        Me.GroupControl1.Controls.Add(Me.LabelValidDate)
+        Me.GroupControl1.Controls.Add(Me.LabelControl8)
+        Me.GroupControl1.Controls.Add(Me.LabelControl1)
+        Me.GroupControl1.Controls.Add(Me.DERecByCust)
+        Me.GroupControl1.Controls.Add(Me.LabelControl6)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 195)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(844, 63)
+        Me.GroupControl1.Size = New System.Drawing.Size(816, 133)
         Me.GroupControl1.TabIndex = 155
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.LabelControl21)
-        Me.PanelControl2.Controls.Add(Me.LEReportStatus)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(596, 2)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(246, 59)
-        Me.PanelControl2.TabIndex = 152
         '
         'LabelControl21
         '
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(12, 7)
+        Me.LabelControl21.Location = New System.Drawing.Point(10, 92)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -385,7 +393,7 @@ Partial Class FormRequestRetOLStore
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(56, 4)
+        Me.LEReportStatus.Location = New System.Drawing.Point(87, 89)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
@@ -395,21 +403,21 @@ Partial Class FormRequestRetOLStore
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(183, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(201, 20)
         Me.LEReportStatus.TabIndex = 7
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(92, 7)
+        Me.MENote.Location = New System.Drawing.Point(114, 84)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(319, 41)
+        Me.MENote.Size = New System.Drawing.Size(681, 33)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(36, 9)
+        Me.LabelControl7.Location = New System.Drawing.Point(36, 86)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl7.TabIndex = 150
@@ -425,14 +433,14 @@ Partial Class FormRequestRetOLStore
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 523)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(844, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(816, 44)
         Me.PanelControlBottom.TabIndex = 154
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(403, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(375, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -443,7 +451,7 @@ Partial Class FormRequestRetOLStore
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(490, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(462, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -465,7 +473,7 @@ Partial Class FormRequestRetOLStore
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(596, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(568, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -476,7 +484,7 @@ Partial Class FormRequestRetOLStore
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(722, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(694, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
@@ -485,10 +493,10 @@ Partial Class FormRequestRetOLStore
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 198)
+        Me.GCData.Location = New System.Drawing.Point(0, 371)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(844, 262)
+        Me.GCData.Size = New System.Drawing.Size(816, 152)
         Me.GCData.TabIndex = 156
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -592,16 +600,16 @@ Partial Class FormRequestRetOLStore
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 155)
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 328)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(844, 43)
+        Me.PanelControlNav.Size = New System.Drawing.Size(816, 43)
         Me.PanelControlNav.TabIndex = 157
         '
         'BtnDel
         '
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.Image = CType(resources.GetObject("BtnDel.Image"), System.Drawing.Image)
-        Me.BtnDel.Location = New System.Drawing.Point(679, 2)
+        Me.BtnDel.Location = New System.Drawing.Point(651, 2)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(86, 39)
         Me.BtnDel.TabIndex = 159
@@ -611,17 +619,133 @@ Partial Class FormRequestRetOLStore
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(765, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(737, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(77, 39)
         Me.BtnAdd.TabIndex = 158
         Me.BtnAdd.Text = "Add"
         '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(16, 92)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl10.TabIndex = 8932
+        Me.LabelControl10.Text = "Customer"
+        '
+        'TxtCustomer
+        '
+        Me.TxtCustomer.Enabled = False
+        Me.TxtCustomer.Location = New System.Drawing.Point(96, 89)
+        Me.TxtCustomer.Name = "TxtCustomer"
+        Me.TxtCustomer.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCustomer.Properties.Appearance.Options.UseFont = True
+        Me.TxtCustomer.Size = New System.Drawing.Size(259, 20)
+        Me.TxtCustomer.TabIndex = 8933
+        '
+        'MEAddress
+        '
+        Me.MEAddress.Enabled = False
+        Me.MEAddress.Location = New System.Drawing.Point(96, 115)
+        Me.MEAddress.Name = "MEAddress"
+        Me.MEAddress.Properties.ReadOnly = True
+        Me.MEAddress.Size = New System.Drawing.Size(259, 41)
+        Me.MEAddress.TabIndex = 153
+        Me.MEAddress.TabStop = False
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(16, 117)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl11.TabIndex = 8934
+        Me.LabelControl11.Text = "Address"
+        '
+        'TxtPhone
+        '
+        Me.TxtPhone.Enabled = False
+        Me.TxtPhone.Location = New System.Drawing.Point(96, 162)
+        Me.TxtPhone.Name = "TxtPhone"
+        Me.TxtPhone.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtPhone.Properties.Appearance.Options.UseFont = True
+        Me.TxtPhone.Size = New System.Drawing.Size(259, 20)
+        Me.TxtPhone.TabIndex = 8935
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(16, 165)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl12.TabIndex = 8936
+        Me.LabelControl12.Text = "Phone"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.LabelControl12)
+        Me.PanelControl3.Controls.Add(Me.LabelControl13)
+        Me.PanelControl3.Controls.Add(Me.TxtPhone)
+        Me.PanelControl3.Controls.Add(Me.DateEdit1)
+        Me.PanelControl3.Controls.Add(Me.LabelControl11)
+        Me.PanelControl3.Controls.Add(Me.BtnBrowseOrder)
+        Me.PanelControl3.Controls.Add(Me.MEAddress)
+        Me.PanelControl3.Controls.Add(Me.TxtCustomer)
+        Me.PanelControl3.Controls.Add(Me.LabelControl10)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl3.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(385, 191)
+        Me.PanelControl3.TabIndex = 8937
+        '
+        'DateEdit1
+        '
+        Me.DateEdit1.EditValue = Nothing
+        Me.DateEdit1.Enabled = False
+        Me.DateEdit1.Location = New System.Drawing.Point(96, 64)
+        Me.DateEdit1.Name = "DateEdit1"
+        Me.DateEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateEdit1.Properties.Appearance.Options.UseFont = True
+        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateEdit1.Size = New System.Drawing.Size(259, 20)
+        Me.DateEdit1.TabIndex = 8926
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(16, 67)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl13.TabIndex = 8938
+        Me.LabelControl13.Text = "Order Date"
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl14.Location = New System.Drawing.Point(36, 40)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl14.TabIndex = 8933
+        Me.LabelControl14.Text = "Return Reason"
+        '
+        'MEReason
+        '
+        Me.MEReason.Location = New System.Drawing.Point(114, 39)
+        Me.MEReason.Name = "MEReason"
+        Me.MEReason.Size = New System.Drawing.Size(681, 39)
+        Me.MEReason.TabIndex = 8926
+        Me.MEReason.TabStop = False
+        '
         'FormRequestRetOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(844, 567)
+        Me.ClientSize = New System.Drawing.Size(816, 567)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.GroupControl1)
@@ -653,9 +777,6 @@ Partial Class FormRequestRetOLStore
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
@@ -664,6 +785,15 @@ Partial Class FormRequestRetOLStore
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
+        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPhone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -691,7 +821,6 @@ Partial Class FormRequestRetOLStore
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents BtnBrowseOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
@@ -719,4 +848,15 @@ Partial Class FormRequestRetOLStore
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelValidDate As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents MEAddress As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents TxtCustomer As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtPhone As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents MEReason As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
 End Class
