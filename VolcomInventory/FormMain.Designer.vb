@@ -444,6 +444,7 @@ Partial Class FormMain
         Me.NBCollectionAvg = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBListFixedAsset = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAccClosing = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCompCOA = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPaymentMissing = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
@@ -479,7 +480,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBCompCOA = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2944,7 +2944,7 @@ Partial Class FormMain
         '
         'NBCargoRate
         '
-        Me.NBCargoRate.Caption = "WH Cargo Rate"
+        Me.NBCargoRate.Caption = "Inbound Rate"
         Me.NBCargoRate.Name = "NBCargoRate"
         Me.NBCargoRate.SmallImageIndex = 34
         '
@@ -3447,6 +3447,12 @@ Partial Class FormMain
         Me.NBAccClosing.Name = "NBAccClosing"
         Me.NBAccClosing.SmallImage = CType(resources.GetObject("NBAccClosing.SmallImage"), System.Drawing.Image)
         '
+        'NBCompCOA
+        '
+        Me.NBCompCOA.Caption = "COA Company"
+        Me.NBCompCOA.Name = "NBCompCOA"
+        Me.NBCompCOA.SmallImage = CType(resources.GetObject("NBCompCOA.SmallImage"), System.Drawing.Image)
+        '
         'NBPaymentMissing
         '
         Me.NBPaymentMissing.Caption = "Pembayaran Tabungan Missing"
@@ -3728,12 +3734,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBCompCOA
-        '
-        Me.NBCompCOA.Caption = "COA Company"
-        Me.NBCompCOA.Name = "NBCompCOA"
-        Me.NBCompCOA.SmallImage = CType(resources.GetObject("NBCompCOA.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
