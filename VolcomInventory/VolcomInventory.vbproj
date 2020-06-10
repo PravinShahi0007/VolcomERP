@@ -2860,6 +2860,12 @@
     <Compile Include="FormPopUpListJournal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPopUpMasterCOA.Designer.vb">
+      <DependentUpon>FormPopUpMasterCOA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpMasterCOA.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpOVH.Designer.vb">
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
     </Compile>
@@ -9521,6 +9527,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpListJournal.resx">
       <DependentUpon>FormPopUpListJournal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpMasterCOA.resx">
+      <DependentUpon>FormPopUpMasterCOA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpOVH.resx">
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
