@@ -206,8 +206,10 @@ WHERE comp.id_comp = '{0}'", id_company)
             '
             If is_active = "3" And is_accounting = False Then
                 XTPCOA.PageVisible = False
+                BApproval.Visible = False
             Else
                 XTPCOA.PageVisible = True
+                BApproval.Visible = True
             End If
             '
             is_need_bank_account = data.Rows(0)("is_need_bank_account").ToString
