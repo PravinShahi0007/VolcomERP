@@ -205,6 +205,35 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPCOA = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.GroupControl9 = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEAP = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl44 = New DevExpress.XtraEditors.LabelControl()
+        Me.BClearAP = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl45 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDPCode = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEDP = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BClearDP = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtAPCode = New DevExpress.XtraEditors.TextEdit()
+        Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEAR = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl46 = New DevExpress.XtraEditors.LabelControl()
+        Me.BClearAR = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtARCode = New DevExpress.XtraEditors.TextEdit()
+        Me.BCreateCOA = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -299,6 +328,22 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPCOA.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl9.SuspendLayout()
+        CType(Me.SLEAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDPCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEDP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtAPCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl7.SuspendLayout()
+        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -1679,7 +1724,7 @@ Partial Class FormMasterCompanySingle
         Me.XTCCompany.SelectedTabPage = Me.XTPDesc
         Me.XTCCompany.Size = New System.Drawing.Size(645, 656)
         Me.XTCCompany.TabIndex = 28
-        Me.XTCCompany.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesc, Me.XTPLegal, Me.XTPSetup})
+        Me.XTCCompany.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesc, Me.XTPLegal, Me.XTPSetup, Me.XTPCOA})
         '
         'XTPDesc
         '
@@ -2192,6 +2237,270 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
         '
+        'XTPCOA
+        '
+        Me.XTPCOA.Controls.Add(Me.PanelControl3)
+        Me.XTPCOA.Name = "XTPCOA"
+        Me.XTPCOA.Size = New System.Drawing.Size(639, 628)
+        Me.XTPCOA.Text = "COA Setup"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.GroupControl9)
+        Me.PanelControl3.Controls.Add(Me.GroupControl7)
+        Me.PanelControl3.Controls.Add(Me.BCreateCOA)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(639, 628)
+        Me.PanelControl3.TabIndex = 0
+        '
+        'GroupControl9
+        '
+        Me.GroupControl9.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl9.Controls.Add(Me.SLEAP)
+        Me.GroupControl9.Controls.Add(Me.LabelControl44)
+        Me.GroupControl9.Controls.Add(Me.BClearAP)
+        Me.GroupControl9.Controls.Add(Me.LabelControl45)
+        Me.GroupControl9.Controls.Add(Me.TxtDPCode)
+        Me.GroupControl9.Controls.Add(Me.SLEDP)
+        Me.GroupControl9.Controls.Add(Me.BClearDP)
+        Me.GroupControl9.Controls.Add(Me.TxtAPCode)
+        Me.GroupControl9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl9.Location = New System.Drawing.Point(2, 110)
+        Me.GroupControl9.Name = "GroupControl9"
+        Me.GroupControl9.Size = New System.Drawing.Size(635, 122)
+        Me.GroupControl9.TabIndex = 25
+        Me.GroupControl9.Text = "Payable"
+        '
+        'SLEAP
+        '
+        Me.SLEAP.Location = New System.Drawing.Point(137, 31)
+        Me.SLEAP.Name = "SLEAP"
+        Me.SLEAP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAP.Properties.NullText = ""
+        Me.SLEAP.Properties.ShowClearButton = False
+        Me.SLEAP.Properties.View = Me.GridView9
+        Me.SLEAP.Size = New System.Drawing.Size(257, 20)
+        Me.SLEAP.TabIndex = 26
+        '
+        'GridView9
+        '
+        Me.GridView9.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn37, Me.GridColumn38, Me.GridColumn39})
+        Me.GridView9.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView9.Name = "GridView9"
+        Me.GridView9.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView9.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Id"
+        Me.GridColumn37.FieldName = "id_acc"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Account"
+        Me.GridColumn38.FieldName = "acc_name"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 0
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Description"
+        Me.GridColumn39.FieldName = "acc_description"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 1
+        '
+        'LabelControl44
+        '
+        Me.LabelControl44.Location = New System.Drawing.Point(34, 12)
+        Me.LabelControl44.Name = "LabelControl44"
+        Me.LabelControl44.Size = New System.Drawing.Size(80, 13)
+        Me.LabelControl44.TabIndex = 25
+        Me.LabelControl44.Text = "Account Payable"
+        '
+        'BClearAP
+        '
+        Me.BClearAP.Location = New System.Drawing.Point(397, 28)
+        Me.BClearAP.Name = "BClearAP"
+        Me.BClearAP.Size = New System.Drawing.Size(42, 23)
+        Me.BClearAP.TabIndex = 27
+        Me.BClearAP.Text = "clear"
+        '
+        'LabelControl45
+        '
+        Me.LabelControl45.Location = New System.Drawing.Point(34, 63)
+        Me.LabelControl45.Name = "LabelControl45"
+        Me.LabelControl45.Size = New System.Drawing.Size(96, 13)
+        Me.LabelControl45.TabIndex = 28
+        Me.LabelControl45.Text = "Down Payment (DP)"
+        '
+        'TxtDPCode
+        '
+        Me.TxtDPCode.Enabled = False
+        Me.TxtDPCode.Location = New System.Drawing.Point(34, 82)
+        Me.TxtDPCode.Name = "TxtDPCode"
+        Me.TxtDPCode.Size = New System.Drawing.Size(100, 20)
+        Me.TxtDPCode.TabIndex = 32
+        '
+        'SLEDP
+        '
+        Me.SLEDP.Location = New System.Drawing.Point(137, 82)
+        Me.SLEDP.Name = "SLEDP"
+        Me.SLEDP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDP.Properties.NullText = ""
+        Me.SLEDP.Properties.ShowClearButton = False
+        Me.SLEDP.Properties.View = Me.GridView10
+        Me.SLEDP.Size = New System.Drawing.Size(257, 20)
+        Me.SLEDP.TabIndex = 29
+        '
+        'GridView10
+        '
+        Me.GridView10.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn40, Me.GridColumn41, Me.GridColumn42})
+        Me.GridView10.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView10.Name = "GridView10"
+        Me.GridView10.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView10.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Id"
+        Me.GridColumn40.FieldName = "id_acc"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Account"
+        Me.GridColumn41.FieldName = "acc_name"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 0
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Description"
+        Me.GridColumn42.FieldName = "acc_description"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 1
+        '
+        'BClearDP
+        '
+        Me.BClearDP.Location = New System.Drawing.Point(397, 79)
+        Me.BClearDP.Name = "BClearDP"
+        Me.BClearDP.Size = New System.Drawing.Size(42, 23)
+        Me.BClearDP.TabIndex = 30
+        Me.BClearDP.Text = "clear"
+        '
+        'TxtAPCode
+        '
+        Me.TxtAPCode.Enabled = False
+        Me.TxtAPCode.Location = New System.Drawing.Point(34, 31)
+        Me.TxtAPCode.Name = "TxtAPCode"
+        Me.TxtAPCode.Size = New System.Drawing.Size(100, 20)
+        Me.TxtAPCode.TabIndex = 31
+        '
+        'GroupControl7
+        '
+        Me.GroupControl7.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl7.Controls.Add(Me.SLEAR)
+        Me.GroupControl7.Controls.Add(Me.LabelControl46)
+        Me.GroupControl7.Controls.Add(Me.BClearAR)
+        Me.GroupControl7.Controls.Add(Me.TxtARCode)
+        Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl7.Location = New System.Drawing.Point(2, 35)
+        Me.GroupControl7.Name = "GroupControl7"
+        Me.GroupControl7.Size = New System.Drawing.Size(635, 75)
+        Me.GroupControl7.TabIndex = 24
+        Me.GroupControl7.Text = "Receiveable"
+        '
+        'SLEAR
+        '
+        Me.SLEAR.Location = New System.Drawing.Point(137, 34)
+        Me.SLEAR.Name = "SLEAR"
+        Me.SLEAR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAR.Properties.NullText = ""
+        Me.SLEAR.Properties.ShowClearButton = False
+        Me.SLEAR.Properties.View = Me.GridView6
+        Me.SLEAR.Size = New System.Drawing.Size(257, 20)
+        Me.SLEAR.TabIndex = 4
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29, Me.GridColumn30})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Id"
+        Me.GridColumn28.FieldName = "id_acc"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Account"
+        Me.GridColumn29.FieldName = "acc_name"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Description"
+        Me.GridColumn30.FieldName = "acc_description"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 1
+        '
+        'LabelControl46
+        '
+        Me.LabelControl46.Location = New System.Drawing.Point(34, 15)
+        Me.LabelControl46.Name = "LabelControl46"
+        Me.LabelControl46.Size = New System.Drawing.Size(94, 13)
+        Me.LabelControl46.TabIndex = 5
+        Me.LabelControl46.Text = "Account Receivable"
+        '
+        'BClearAR
+        '
+        Me.BClearAR.Location = New System.Drawing.Point(397, 32)
+        Me.BClearAR.Name = "BClearAR"
+        Me.BClearAR.Size = New System.Drawing.Size(42, 23)
+        Me.BClearAR.TabIndex = 10
+        Me.BClearAR.Text = "clear"
+        '
+        'TxtARCode
+        '
+        Me.TxtARCode.Enabled = False
+        Me.TxtARCode.Location = New System.Drawing.Point(34, 34)
+        Me.TxtARCode.Name = "TxtARCode"
+        Me.TxtARCode.Size = New System.Drawing.Size(100, 20)
+        Me.TxtARCode.TabIndex = 20
+        '
+        'BCreateCOA
+        '
+        Me.BCreateCOA.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BCreateCOA.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateCOA.Appearance.Options.UseBackColor = True
+        Me.BCreateCOA.Appearance.Options.UseForeColor = True
+        Me.BCreateCOA.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCreateCOA.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BCreateCOA.ImageList = Me.LargeImageCollection
+        Me.BCreateCOA.Location = New System.Drawing.Point(2, 2)
+        Me.BCreateCOA.Name = "BCreateCOA"
+        Me.BCreateCOA.Size = New System.Drawing.Size(635, 33)
+        Me.BCreateCOA.TabIndex = 28
+        Me.BCreateCOA.Text = "Manage COA"
+        Me.BCreateCOA.Visible = False
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2308,6 +2617,24 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPCOA.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl9.ResumeLayout(False)
+        Me.GroupControl9.PerformLayout()
+        CType(Me.SLEAP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDPCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEDP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtAPCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl7.ResumeLayout(False)
+        Me.GroupControl7.PerformLayout()
+        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2495,4 +2822,33 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LEDistrict As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl43 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPCOA As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GroupControl7 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents SLEAR As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl46 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BClearAR As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtARCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GroupControl9 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents SLEAP As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl44 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BClearAP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl45 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtDPCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLEDP As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView10 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BClearDP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtAPCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BCreateCOA As DevExpress.XtraEditors.SimpleButton
 End Class
