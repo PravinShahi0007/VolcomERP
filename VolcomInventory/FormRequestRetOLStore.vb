@@ -95,12 +95,16 @@
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT d.id_ol_store_ret_req_det, d.id_ol_store_ret_req, 
-        d.id_sales_order_det, sod.id_product, p.product_full_code AS `code`,d.product_full_code, p.product_display_name AS `name`, cd.code_detail_name AS `size`, sod.item_id, sod.ol_store_id
+        d.id_sales_order_det, sod.id_product, p.product_full_code AS `code`,d.product_full_code, p.product_display_name AS `name`, cd.code_detail_name AS `size`, sod.item_id, sod.ol_store_id, dd.design_price, stt.design_cat
         FROM tb_ol_store_ret_req_det d 
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
         INNER JOIN tb_m_product p ON p.id_product = sod.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
+        INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+        INNER JOIN tb_lookup_design_cat stt ON stt.id_design_cat = pt.id_design_cat
         WHERE d.id_ol_store_ret_req=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -114,7 +118,7 @@
         SLECompGroup.Enabled = False
         BtnBrowseOrder.Enabled = False
         PanelControlNav.Visible = False
-
+        DEReqDate.Enabled = False
 
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
@@ -122,14 +126,16 @@
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = True
             TxtRetRequest.Enabled = True
-            DEReqDate.Enabled = True
+            MEReason.Enabled = True
+            MENote.Enabled = True
         Else
             BtnMark.Visible = True
             BtnConfirm.Visible = False
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
             TxtRetRequest.Enabled = False
-            DEReqDate.Enabled = False
+            MEReason.Enabled = False
+            MENote.Enabled = False
         End If
 
         'reset propose
@@ -151,7 +157,8 @@
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
             TxtRetRequest.Enabled = False
-            DEReqDate.Enabled = False
+            MEReason.Enabled = False
+            MENote.Enabled = False
         End If
     End Sub
 
@@ -185,7 +192,7 @@
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id
-        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Then
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.ShowDialog()
@@ -202,7 +209,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+    Sub saveChanges()
         makeSafeGV(GVData)
         checkDate()
 
@@ -211,53 +218,69 @@
         ElseIf LabelValidDate.Text <> "OK" Then
             stopCustom("Request date not valid")
         Else
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                BtnSaveChanges.Visible = False
-                Cursor = Cursors.WaitCursor
-                BtnSaveChanges.Enabled = False
+            Dim id_comp_group As String = SLECompGroup.EditValue.ToString
+            Dim sales_order_ol_shop_number As String = addSlashes(TxtOrderNumber.Text)
+            Dim receive_cust_date As String = DateTime.Parse(DERecByCust.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim ret_req_number As String = addSlashes(TxtRetRequest.Text)
+            Dim ret_req_date As String = DateTime.Parse(DEReqDate.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim note As String = addSlashes(MENote.Text)
+            Dim ret_reason As String = addSlashes(MEReason.Text)
 
-                Dim id_comp_group As String = SLECompGroup.EditValue.ToString
-                Dim sales_order_ol_shop_number As String = addSlashes(TxtOrderNumber.Text)
-                Dim receive_cust_date As String = DateTime.Parse(DERecByCust.EditValue.ToString).ToString("yyyy-MM-dd")
-                Dim ret_req_number As String = addSlashes(TxtRetRequest.Text)
-                Dim ret_req_date As String = DateTime.Parse(DEReqDate.EditValue.ToString).ToString("yyyy-MM-dd")
-                Dim note As String = addSlashes(MENote.Text)
-                Dim ret_reason As String = addSlashes(MEReason.Text)
+            If action = "ins" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    BtnSaveChanges.Visible = False
+                    Cursor = Cursors.WaitCursor
+                    BtnSaveChanges.Visible = False
 
-                'main 
-                Dim query As String = "INSERT INTO tb_ol_store_ret_req(id_comp_group, sales_order_ol_shop_number, receive_cust_date, ret_req_number, ret_req_date, created_date, created_by, updated_date, updated_by, note, id_report_status, ret_reason) VALUES 
-                ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "', '" + receive_cust_date + "', '" + ret_req_number + "', '" + ret_req_date + "', NOW(), " + id_user + ", NOW(), " + id_user + ", '" + note + "', 1, '" + ret_reason + "');SELECT LAST_INSERT_ID(); "
-                id = execute_query(query, 0, True, "", "", "", "")
-                execute_non_query("CALL gen_number(" + id + "," + rmt + "); ", True, "", "", "", "")
+                    'main 
+                    Dim query As String = "INSERT INTO tb_ol_store_ret_req(id_comp_group, sales_order_ol_shop_number, receive_cust_date, ret_req_number, ret_req_date, created_date, created_by, updated_date, updated_by, note, id_report_status, ret_reason) VALUES 
+                    ('" + id_comp_group + "', '" + sales_order_ol_shop_number + "', '" + receive_cust_date + "', '" + ret_req_number + "', '" + ret_req_date + "', NOW(), " + id_user + ", NOW(), " + id_user + ", '" + note + "', 1, '" + ret_reason + "');SELECT LAST_INSERT_ID(); "
+                    id = execute_query(query, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id + "," + rmt + "); ", True, "", "", "", "")
 
-                'detail
-                Dim query_det As String = "INSERT INTO tb_ol_store_ret_req_det(id_ol_store_ret_req, id_sales_order_det, product_full_code) VALUES "
-                For i As Integer = 0 To GVData.RowCount - 1
-                    Dim id_sales_order_det As String = GVData.GetRowCellValue(i, "id_sales_order_det").ToString
-                    Dim product_full_code As String = GVData.GetRowCellValue(i, "product_full_code").ToString
+                    'detail
+                    Dim query_det As String = "INSERT INTO tb_ol_store_ret_req_det(id_ol_store_ret_req, id_sales_order_det, product_full_code) VALUES "
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        Dim id_sales_order_det As String = GVData.GetRowCellValue(i, "id_sales_order_det").ToString
+                        Dim product_full_code As String = GVData.GetRowCellValue(i, "product_full_code").ToString
 
-                    If i > 0 Then
-                        query_det += ","
+                        If i > 0 Then
+                            query_det += ","
+                        End If
+                        query_det += "('" + id + "', '" + id_sales_order_det + "', '" + product_full_code + "') "
+                    Next
+                    If GVData.RowCount > 0 Then
+                        execute_non_query(query_det, True, "", "", "", "")
                     End If
-                    query_det += "('" + id + "', '" + id_sales_order_det + "', '" + product_full_code + "') "
-                Next
-                If GVData.RowCount > 0 Then
-                    execute_non_query(query_det, True, "", "", "", "")
+
+                    'submit
+                    submit_who_prepared(rmt, id, id_user)
+
+                    ''refresh
+                    FormOlStoreReturnList.viewRequest()
+                    FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Request return submitted.")
+                    Cursor = Cursors.Default
                 End If
-
-                'submit
-                submit_who_prepared(rmt, id, id_user)
-
-                ''refresh
+            ElseIf action = "upd" Then
+                Cursor = Cursors.WaitCursor
+                Dim query As String = "UPDATE tb_ol_store_ret_req SET ret_req_number='" + ret_req_number + "', ret_reason='" + ret_reason + "', note='" + note + "'
+                WHERE id_ol_store_ret_req='" + id + "' "
+                execute_non_query(query, True, "", "", "", "")
                 FormOlStoreReturnList.viewRequest()
                 FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id)
                 action = "upd"
                 actionLoad()
-                infoCustom("Request return submitted.")
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        saveChanges()
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
@@ -300,28 +323,75 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        Dim report As ReportRequestRetOLStore = New ReportRequestRetOLStore
+        If Not check_allow_print(id_report_status, rmt, id) Then
+            warningCustom("Can't print, please complete all approval on system first")
+        Else
+            Dim report As ReportRequestRetOLStore = New ReportRequestRetOLStore
 
-        report.LabelNumber.Text = "NO. " + TxtNumber.Text
+            report.LabelNumber.Text = "NO. " + TxtNumber.Text
 
-        report.LabelStoreGroup.Text = SLECompGroup.Text
-        report.LabelOrderNumber.Text = TxtOrderNumber.Text
-        report.LabelReceivedByCustomer.Text = DERecByCust.Text
-        report.LabelRequestNumber.Text = TxtRetRequest.Text
-        report.LabelRequestDate.Text = DEReqDate.Text
+            report.LabelStoreGroup.Text = SLECompGroup.Text
+            report.LabelOrderNumber.Text = TxtOrderNumber.Text
+            report.LabelReceivedByCustomer.Text = DERecByCust.Text
+            report.LabelRequestNumber.Text = TxtRetRequest.Text
+            report.LabelRequestDate.Text = DEReqDate.Text
 
-        report.LabelCreatedDate.Text = DECreated.Text
-        report.LabelStatus.Text = LEReportStatus.Text
+            report.LabelCreatedDate.Text = DECreated.Text
+            report.LabelStatus.Text = LEReportStatus.Text
 
-        report.LabelRemark.Text = MENote.Text
+            report.LabelRemark.Text = MENote.Text
 
-        report.id = id
-        report.data = GCData.DataSource
-        report.id_pre = If(id_report_status = "6", "-1", "1")
-        report.report_mark_type = rmt
+            report.id = id
+            report.data = GCData.DataSource
+            report.id_pre = If(id_report_status = "6", "-1", "1")
+            report.report_mark_type = rmt
 
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
-        tool.ShowPreview()
+            tool.ShowPreview()
+        End If
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this request?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            saveChanges()
+
+            'update confirm
+            Dim query As String = "UPDATE tb_ol_store_ret_req SET is_confirm=1 WHERE id_ol_store_ret_req='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'submit approval 
+            submit_who_prepared(rmt, id, id_user)
+            BtnConfirm.Visible = False
+            FormOlStoreReturnList.viewRequest()
+            FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id)
+            action = "upd"
+            actionLoad()
+            infoCustom("Request submitted. Waiting for approval.")
+        End If
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=2 
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_ol_store_ret_req SET is_confirm=2 WHERE id_ol_store_ret_req=" + id + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                FormFGProposePrice.viewPropose()
+                FormFGProposePrice.GVFGPropose.FocusedRowHandle = find_row(FormFGProposePrice.GVFGPropose, "id_fg_propose_price", id)
+                actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
     End Sub
 End Class

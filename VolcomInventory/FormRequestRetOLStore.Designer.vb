@@ -64,8 +64,8 @@ Partial Class FormRequestRetOLStore
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -80,6 +80,8 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnol_store_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_cat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -612,16 +614,6 @@ Partial Class FormRequestRetOLStore
         Me.BtnCancell.Text = "Cancell Propose"
         Me.BtnCancell.Visible = False
         '
-        'BtnSaveChanges
-        '
-        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(883, 2)
-        Me.BtnSaveChanges.Name = "BtnSaveChanges"
-        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
-        Me.BtnSaveChanges.TabIndex = 8
-        Me.BtnSaveChanges.Text = "Save Changes"
-        '
         'BtnResetPropose
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
@@ -631,6 +623,17 @@ Partial Class FormRequestRetOLStore
         Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
         Me.BtnResetPropose.TabIndex = 10
         Me.BtnResetPropose.Text = "Reset Propose"
+        Me.BtnResetPropose.Visible = False
+        '
+        'BtnSaveChanges
+        '
+        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(883, 2)
+        Me.BtnSaveChanges.Name = "BtnSaveChanges"
+        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
+        Me.BtnSaveChanges.TabIndex = 8
+        Me.BtnSaveChanges.Text = "Save Changes"
         '
         'BtnConfirm
         '
@@ -655,11 +658,12 @@ Partial Class FormRequestRetOLStore
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_ret_req_det, Me.GridColumnid_ol_store_ret_req, Me.GridColumnid_sales_order_det, Me.GridColumnid_product, Me.GridColumnproduct_full_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnitem_id, Me.GridColumnol_store_id, Me.GridColumnno, Me.GridColumncode})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_ret_req_det, Me.GridColumnid_ol_store_ret_req, Me.GridColumnid_sales_order_det, Me.GridColumnid_product, Me.GridColumnproduct_full_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnitem_id, Me.GridColumnol_store_id, Me.GridColumnno, Me.GridColumncode, Me.GridColumndesign_price, Me.GridColumndesign_cat})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumnid_ol_store_ret_req_det
@@ -719,7 +723,7 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnitem_id.FieldName = "item_id"
         Me.GridColumnitem_id.Name = "GridColumnitem_id"
         Me.GridColumnitem_id.Visible = True
-        Me.GridColumnitem_id.VisibleIndex = 5
+        Me.GridColumnitem_id.VisibleIndex = 7
         Me.GridColumnitem_id.Width = 188
         '
         'GridColumnol_store_id
@@ -728,7 +732,7 @@ Partial Class FormRequestRetOLStore
         Me.GridColumnol_store_id.FieldName = "ol_store_id"
         Me.GridColumnol_store_id.Name = "GridColumnol_store_id"
         Me.GridColumnol_store_id.Visible = True
-        Me.GridColumnol_store_id.VisibleIndex = 6
+        Me.GridColumnol_store_id.VisibleIndex = 8
         Me.GridColumnol_store_id.Width = 195
         '
         'GridColumnno
@@ -747,6 +751,25 @@ Partial Class FormRequestRetOLStore
         Me.GridColumncode.Name = "GridColumncode"
         Me.GridColumncode.Visible = True
         Me.GridColumncode.VisibleIndex = 1
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Unit Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_price", "{0:N0}")})
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 6
+        '
+        'GridColumndesign_cat
+        '
+        Me.GridColumndesign_cat.Caption = "Status"
+        Me.GridColumndesign_cat.FieldName = "design_cat"
+        Me.GridColumndesign_cat.Name = "GridColumndesign_cat"
+        Me.GridColumndesign_cat.Visible = True
+        Me.GridColumndesign_cat.VisibleIndex = 5
         '
         'PanelControlNav
         '
@@ -897,4 +920,6 @@ Partial Class FormRequestRetOLStore
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_cat As DevExpress.XtraGrid.Columns.GridColumn
 End Class
