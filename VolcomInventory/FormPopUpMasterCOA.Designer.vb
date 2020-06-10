@@ -33,8 +33,8 @@ Partial Class FormPopUpMasterCOA
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddNew = New DevExpress.XtraEditors.SimpleButton()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAcc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAcc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,16 +154,6 @@ Partial Class FormPopUpMasterCOA
         Me.PanelControl1.Size = New System.Drawing.Size(872, 40)
         Me.PanelControl1.TabIndex = 6
         '
-        'BRefresh
-        '
-        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
-        Me.BRefresh.Location = New System.Drawing.Point(771, 2)
-        Me.BRefresh.Name = "BRefresh"
-        Me.BRefresh.Size = New System.Drawing.Size(99, 36)
-        Me.BRefresh.TabIndex = 0
-        Me.BRefresh.Text = "Refresh"
-        '
         'BAddNew
         '
         Me.BAddNew.Dock = System.Windows.Forms.DockStyle.Right
@@ -173,6 +163,16 @@ Partial Class FormPopUpMasterCOA
         Me.BAddNew.Size = New System.Drawing.Size(122, 36)
         Me.BAddNew.TabIndex = 1
         Me.BAddNew.Text = "Create COA"
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(771, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(99, 36)
+        Me.BRefresh.TabIndex = 0
+        Me.BRefresh.Text = "Refresh"
         '
         'FormPopUpMasterCOA
         '

@@ -35,6 +35,11 @@
     End Sub
 
     Private Sub FormMasterCompanySingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        MsgBox(FormMasterCompany.is_accounting.ToString)
+        If FormMasterCompany.is_accounting Then
+            is_accounting = True
+        End If
+
         action_load()
 
         If id_comp_group_add = "-1" Then
@@ -206,10 +211,13 @@ WHERE comp.id_comp = '{0}'", id_company)
             '
             If is_active = "3" And is_accounting = False Then
                 XTPCOA.PageVisible = False
-                BApproval.Visible = False
             Else
                 XTPCOA.PageVisible = True
-                BApproval.Visible = True
+                If is_accounting = False Then
+                    BCreateCOA.Visible = False
+                Else
+                    BCreateCOA.Visible = True
+                End If
             End If
             '
             is_need_bank_account = data.Rows(0)("is_need_bank_account").ToString
@@ -1409,5 +1417,9 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
             Catch ex As Exception
             End Try
         End If
+    End Sub
+
+    Private Sub BCreateCOA_Click(sender As Object, e As EventArgs) Handles BCreateCOA.Click
+        FormPopUpMasterCOA.ShowDialog()
     End Sub
 End Class

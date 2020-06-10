@@ -15,4 +15,12 @@
         GCAcc.DataSource = data
         GVAcc.BestFitColumns()
     End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        view_acc()
+    End Sub
+
+    Private Sub BAddNew_Click(sender As Object, e As EventArgs) Handles BAddNew.Click
+
+    End Sub
 End Class
