@@ -311,6 +311,7 @@ Partial Class FormAccountingLedger
         Me.GVAccountingLedger.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVAccountingLedger.OptionsBehavior.Editable = False
         Me.GVAccountingLedger.OptionsView.ColumnAutoWidth = False
+        Me.GVAccountingLedger.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVAccountingLedger.OptionsView.ShowFooter = True
         Me.GVAccountingLedger.OptionsView.ShowGroupPanel = False
         '

@@ -18,8 +18,8 @@
 
     Sub actionLoad()
         view_currency()
-        TEBeforeKurs.EditValue = 0
-        TEKurs.EditValue = 1
+        TEBeforeKurs.EditValue = 0.00
+        TEKurs.EditValue = 1.0
 
         'focus
         ActiveControl = SLECOA

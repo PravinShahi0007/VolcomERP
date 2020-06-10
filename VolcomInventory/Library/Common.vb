@@ -1845,6 +1845,10 @@ WHERE note='Closing End'"
             'acc name
             query = "SELECT acc_name FROM tb_a_acc WHERE id_acc='" & id_acc & "'"
             result = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "2" Then
+            'acc desc
+            query = "SELECT acc_description FROM tb_a_acc WHERE id_acc='" & id_acc & "'"
+            result = execute_query(query, 0, True, "", "", "", "")
         End If
 
         Return result
