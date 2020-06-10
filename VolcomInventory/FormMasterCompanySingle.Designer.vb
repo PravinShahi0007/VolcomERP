@@ -207,15 +207,6 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPCOA = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
-        Me.SLEAR = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl46 = New DevExpress.XtraEditors.LabelControl()
-        Me.BClearAR = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtARCode = New DevExpress.XtraEditors.TextEdit()
         Me.GroupControl9 = New DevExpress.XtraEditors.GroupControl()
         Me.SLEAP = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -233,6 +224,16 @@ Partial Class FormMasterCompanySingle
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BClearDP = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtAPCode = New DevExpress.XtraEditors.TextEdit()
+        Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEAR = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl46 = New DevExpress.XtraEditors.LabelControl()
+        Me.BClearAR = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtARCode = New DevExpress.XtraEditors.TextEdit()
+        Me.BCreateCOA = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -330,11 +331,6 @@ Partial Class FormMasterCompanySingle
         Me.XTPCOA.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl7.SuspendLayout()
-        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl9.SuspendLayout()
         CType(Me.SLEAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -343,6 +339,11 @@ Partial Class FormMasterCompanySingle
         CType(Me.SLEDP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAPCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl7.SuspendLayout()
+        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -2247,91 +2248,12 @@ Partial Class FormMasterCompanySingle
         '
         Me.PanelControl3.Controls.Add(Me.GroupControl9)
         Me.PanelControl3.Controls.Add(Me.GroupControl7)
+        Me.PanelControl3.Controls.Add(Me.BCreateCOA)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(639, 628)
         Me.PanelControl3.TabIndex = 0
-        '
-        'GroupControl7
-        '
-        Me.GroupControl7.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl7.Controls.Add(Me.SLEAR)
-        Me.GroupControl7.Controls.Add(Me.LabelControl46)
-        Me.GroupControl7.Controls.Add(Me.BClearAR)
-        Me.GroupControl7.Controls.Add(Me.TxtARCode)
-        Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl7.Location = New System.Drawing.Point(2, 2)
-        Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(635, 75)
-        Me.GroupControl7.TabIndex = 24
-        Me.GroupControl7.Text = "Receiveable"
-        '
-        'SLEAR
-        '
-        Me.SLEAR.Location = New System.Drawing.Point(137, 34)
-        Me.SLEAR.Name = "SLEAR"
-        Me.SLEAR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEAR.Properties.NullText = ""
-        Me.SLEAR.Properties.ShowClearButton = False
-        Me.SLEAR.Properties.View = Me.GridView6
-        Me.SLEAR.Size = New System.Drawing.Size(257, 20)
-        Me.SLEAR.TabIndex = 4
-        '
-        'GridView6
-        '
-        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29, Me.GridColumn30})
-        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView6.Name = "GridView6"
-        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView6.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "Id"
-        Me.GridColumn28.FieldName = "id_acc"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Account"
-        Me.GridColumn29.FieldName = "acc_name"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 0
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "Description"
-        Me.GridColumn30.FieldName = "acc_description"
-        Me.GridColumn30.Name = "GridColumn30"
-        Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 1
-        '
-        'LabelControl46
-        '
-        Me.LabelControl46.Location = New System.Drawing.Point(34, 15)
-        Me.LabelControl46.Name = "LabelControl46"
-        Me.LabelControl46.Size = New System.Drawing.Size(94, 13)
-        Me.LabelControl46.TabIndex = 5
-        Me.LabelControl46.Text = "Account Receivable"
-        '
-        'BClearAR
-        '
-        Me.BClearAR.Location = New System.Drawing.Point(397, 32)
-        Me.BClearAR.Name = "BClearAR"
-        Me.BClearAR.Size = New System.Drawing.Size(42, 23)
-        Me.BClearAR.TabIndex = 10
-        Me.BClearAR.Text = "clear"
-        '
-        'TxtARCode
-        '
-        Me.TxtARCode.Enabled = False
-        Me.TxtARCode.Location = New System.Drawing.Point(34, 34)
-        Me.TxtARCode.Name = "TxtARCode"
-        Me.TxtARCode.Size = New System.Drawing.Size(100, 20)
-        Me.TxtARCode.TabIndex = 20
         '
         'GroupControl9
         '
@@ -2345,7 +2267,7 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl9.Controls.Add(Me.BClearDP)
         Me.GroupControl9.Controls.Add(Me.TxtAPCode)
         Me.GroupControl9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl9.Location = New System.Drawing.Point(2, 77)
+        Me.GroupControl9.Location = New System.Drawing.Point(2, 110)
         Me.GroupControl9.Name = "GroupControl9"
         Me.GroupControl9.Size = New System.Drawing.Size(635, 122)
         Me.GroupControl9.TabIndex = 25
@@ -2483,6 +2405,102 @@ Partial Class FormMasterCompanySingle
         Me.TxtAPCode.Size = New System.Drawing.Size(100, 20)
         Me.TxtAPCode.TabIndex = 31
         '
+        'GroupControl7
+        '
+        Me.GroupControl7.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl7.Controls.Add(Me.SLEAR)
+        Me.GroupControl7.Controls.Add(Me.LabelControl46)
+        Me.GroupControl7.Controls.Add(Me.BClearAR)
+        Me.GroupControl7.Controls.Add(Me.TxtARCode)
+        Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl7.Location = New System.Drawing.Point(2, 35)
+        Me.GroupControl7.Name = "GroupControl7"
+        Me.GroupControl7.Size = New System.Drawing.Size(635, 75)
+        Me.GroupControl7.TabIndex = 24
+        Me.GroupControl7.Text = "Receiveable"
+        '
+        'SLEAR
+        '
+        Me.SLEAR.Location = New System.Drawing.Point(137, 34)
+        Me.SLEAR.Name = "SLEAR"
+        Me.SLEAR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAR.Properties.NullText = ""
+        Me.SLEAR.Properties.ShowClearButton = False
+        Me.SLEAR.Properties.View = Me.GridView6
+        Me.SLEAR.Size = New System.Drawing.Size(257, 20)
+        Me.SLEAR.TabIndex = 4
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29, Me.GridColumn30})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Id"
+        Me.GridColumn28.FieldName = "id_acc"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Account"
+        Me.GridColumn29.FieldName = "acc_name"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Description"
+        Me.GridColumn30.FieldName = "acc_description"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 1
+        '
+        'LabelControl46
+        '
+        Me.LabelControl46.Location = New System.Drawing.Point(34, 15)
+        Me.LabelControl46.Name = "LabelControl46"
+        Me.LabelControl46.Size = New System.Drawing.Size(94, 13)
+        Me.LabelControl46.TabIndex = 5
+        Me.LabelControl46.Text = "Account Receivable"
+        '
+        'BClearAR
+        '
+        Me.BClearAR.Location = New System.Drawing.Point(397, 32)
+        Me.BClearAR.Name = "BClearAR"
+        Me.BClearAR.Size = New System.Drawing.Size(42, 23)
+        Me.BClearAR.TabIndex = 10
+        Me.BClearAR.Text = "clear"
+        '
+        'TxtARCode
+        '
+        Me.TxtARCode.Enabled = False
+        Me.TxtARCode.Location = New System.Drawing.Point(34, 34)
+        Me.TxtARCode.Name = "TxtARCode"
+        Me.TxtARCode.Size = New System.Drawing.Size(100, 20)
+        Me.TxtARCode.TabIndex = 20
+        '
+        'BCreateCOA
+        '
+        Me.BCreateCOA.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BCreateCOA.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateCOA.Appearance.Options.UseBackColor = True
+        Me.BCreateCOA.Appearance.Options.UseForeColor = True
+        Me.BCreateCOA.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCreateCOA.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BCreateCOA.ImageList = Me.LargeImageCollection
+        Me.BCreateCOA.Location = New System.Drawing.Point(2, 2)
+        Me.BCreateCOA.Name = "BCreateCOA"
+        Me.BCreateCOA.Size = New System.Drawing.Size(635, 33)
+        Me.BCreateCOA.TabIndex = 28
+        Me.BCreateCOA.Text = "Manage COA"
+        Me.BCreateCOA.Visible = False
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2602,12 +2620,6 @@ Partial Class FormMasterCompanySingle
         Me.XTPCOA.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl7.ResumeLayout(False)
-        Me.GroupControl7.PerformLayout()
-        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl9.ResumeLayout(False)
         Me.GroupControl9.PerformLayout()
@@ -2617,6 +2629,12 @@ Partial Class FormMasterCompanySingle
         CType(Me.SLEDP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAPCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl7.ResumeLayout(False)
+        Me.GroupControl7.PerformLayout()
+        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2832,4 +2850,5 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BClearDP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtAPCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BCreateCOA As DevExpress.XtraEditors.SimpleButton
 End Class
