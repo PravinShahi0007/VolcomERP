@@ -353,6 +353,8 @@
         ElseIf report_mark_type = "246" Then
             'return request
             FormRequestRetOLStore.Close()
+        ElseIf report_mark_type = "249" Then
+            FormShipInvoiceDet.Close()
         End If
     End Sub
     Sub show()
@@ -1229,6 +1231,10 @@ GROUP BY rec.`id_prod_order`"
             FormRequestRetOLStore.action = "upd"
             FormRequestRetOLStore.is_view = "1"
             FormRequestRetOLStore.ShowDialog()
+        ElseIf report_mark_type = "249" Then
+            FormShipInvoiceDet.id = id_report
+            FormShipInvoiceDet.is_view = "1"
+            FormShipInvoiceDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")

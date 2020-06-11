@@ -76,4 +76,34 @@
         WHERE d.id_invoice_ship=" + id_invoice_ship + " "
         execute_non_query(qd, True, "", "", "", "")
     End Sub
+
+    Public Function queryMain(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT s.id_invoice_ship, s.id_comp_contact, c.id_comp, c.comp_number, c.comp_name,
+        s.id_acc_ar, coa.acc_name, coa.acc_description, s.id_report, od.sales_order_ol_shop_number AS `order_number`, od.customer_name, s.number, 
+        s.created_date, s.due_date, s.start_period, s.end_period, s.value AS `amount`, 
+        s.id_report_status, rs.report_status, s.is_close_rec, s.report_mark_type, rmt.report_mark_type_name
+        FROM tb_invoice_ship s
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = s.id_comp_contact
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_a_acc coa ON coa.id_acc = s.id_acc_ar
+        INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = s.id_report_status
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = s.report_mark_type
+        INNER JOIN tb_ol_store_order od ON od.id = s.id_report
+        WHERE s.id_invoice_ship>0 "
+        query += condition + " "
+        query += "ORDER BY s.id_invoice_ship " + order_type
+        Return query
+    End Function
 End Class
