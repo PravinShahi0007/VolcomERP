@@ -35,7 +35,6 @@
     End Sub
 
     Private Sub FormMasterCompanySingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        MsgBox(FormMasterCompany.is_accounting.ToString)
         If FormMasterCompany.is_accounting Then
             is_accounting = True
         End If
