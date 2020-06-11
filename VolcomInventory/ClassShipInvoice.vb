@@ -19,7 +19,7 @@
             DATE_ADD(DATE('" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "'),INTERVAL IFNULL(sd.due,0) DAY) AS sales_pos_due_date, '" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "' AS `start_period`, '" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "' AS `end_period`,
             '" + decimalSQL(dc.Rows(0)("shipping_price").ToString) + "' AS `value`, 1 AS `id_report_status`
             FROM  tb_m_comp_volcom_ol s 
-            INNER JOIN tb_m_comp_contact cc ON cc.id_comp = s.id_comp AND cc.is_default=1
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp = s.id_store AND cc.is_default=1
             INNER JOIN tb_m_comp c ON c.id_comp = s.id_store
             LEFT JOIN tb_store_due sd ON sd.id_comp = c.id_comp
             WHERE s.id_design_cat=1; SELECT LAST_INSERT_ID(); "
