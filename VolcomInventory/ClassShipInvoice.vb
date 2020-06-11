@@ -63,7 +63,7 @@
 
         'det journal
         Dim qd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_status_open) 
-        SELECT '" + id + "', d.id_acc, cc.id_comp, m.`value` AS `debit`, 0 AS `credit`, d.note, m.report_mark_type, m.id_invoice_ship, m.`number`,1 
+        SELECT '" + id + "', m.id_acc_ar, cc.id_comp, m.`value` AS `debit`, 0 AS `credit`, d.note, m.report_mark_type, m.id_invoice_ship, m.`number`,1 
         FROM tb_invoice_ship_det d
         INNER JOIN tb_invoice_ship m ON m.id_invoice_ship = d.id_invoice_ship 
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
