@@ -4,6 +4,8 @@
     Dim bdel_active As String = "1"
     Dim bcontact_active As String = "1"
 
+    Public is_accounting As Boolean = False
+
     Private Sub FormCompany_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         apply_skin()
         view_company()

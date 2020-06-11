@@ -3115,7 +3115,7 @@ Public Class FormImportExcel
             GVData.Columns("status").Caption = "Description"
         ElseIf id_pop_up = "50" Then
             Dim queryx As String = "SELECT ol.id_list_payout, ol.id AS `id_order`, ol.checkout_id,ol.sales_order_ol_shop_number, ol.payment AS curr_payout,
-            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(posd.`sales_pos_det_qty`*posd.`design_price`) AS amount,
+            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(posd.`sales_pos_det_qty`*posd.`design_price`)+IFNULL(ol.shipping_price,0) AS amount,
             GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number,
             GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos FROM
             (
@@ -3163,10 +3163,10 @@ Public Class FormImportExcel
                                 .payout = table1("Amount"),
                                 .fee = table1("Transaction Fee"),
                                 .amount_inv = If(y1 Is Nothing, 0, y1("amount")),
-                                .calc_fee = If(f1 Is Nothing, 0, If((table1("Amount") * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (table1("Amount") * f1("payout_multiply") + f1("payout_add")))),
+                                .calc_fee = If(f1 Is Nothing, 0, If((If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")))),
                                 .settle_datetime = Date.Parse(table1("Settlement Time").ToString.Split(",")(0).Trim & " " & table1("Settlement Time").ToString.Split(",")(1).Trim),
-                                .Status = If(f1 Is Nothing, "Fee type not found", If(y1 Is Nothing, "Checkout id Not Found", If(y1("curr_fee").ToString = "", If(table1("Amount") = If(y1 Is Nothing, 0, y1("amount")), If(table1("Transaction Fee") = If(f1 Is Nothing, 0, If((table1("Amount") * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (table1("Amount") * f1("payout_multiply") + f1("payout_add")))), "OK", "Fee Not Match"), "Amount not match"), "Already imported")))
-                            }
+                                .Status = If(f1 Is Nothing, "Fee type not found", If(y1 Is Nothing, "Checkout id Not Found", If(y1("curr_fee").ToString = "", If(table1("Amount") = If(y1 Is Nothing, 0, y1("amount")), If(Decimal.Parse(table1("Transaction Fee").ToString) = Decimal.Parse((If(f1 Is Nothing, 0, If((If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add"))))).ToString), "OK", "Fee Not Match"), "Amount not match"), "Already imported")))
+                                }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
             GCData.RefreshDataSource()
