@@ -8,6 +8,7 @@
     Dim dt As DataTable
     Dim lead_time_return As Integer = 0
     Dim is_confirm As String = "2"
+    Dim source_path As String = get_setup_field("upload_dir")
 
     Private Sub FormRequestRetOLStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
@@ -328,23 +329,74 @@
         Else
             Dim report As ReportRequestRetOLStore = New ReportRequestRetOLStore
 
-            report.LabelNumber.Text = "NO. " + TxtNumber.Text
-
-            report.LabelStoreGroup.Text = SLECompGroup.Text
-            report.LabelOrderNumber.Text = TxtOrderNumber.Text
-            report.LabelReceivedByCustomer.Text = DERecByCust.Text
-            report.LabelRequestNumber.Text = TxtRetRequest.Text
-            report.LabelRequestDate.Text = DEReqDate.Text
-
-            report.LabelCreatedDate.Text = DECreated.Text
-            report.LabelStatus.Text = LEReportStatus.Text
-
-            report.LabelRemark.Text = MENote.Text
+            report.XTCNumber.Text = TxtNumber.Text
+            report.XTCOrderNumber.Text = TxtOrderNumber.Text
+            report.XTCRecByCust.Text = DERecByCust.Text
+            report.XTCReqDate.Text = DEReqDate.Text
+            report.XTCRemark.Text = MENote.Text
+            report.XTCReason.Text = MEReason.Text
+            report.XTCCustomer.Text = TxtCustomer.Text
+            report.XTCAddress.Text = MEAddress.Text
+            report.XTCPhone.Text = TxtPhone.Text
 
             report.id = id
             report.data = GCData.DataSource
             report.id_pre = If(id_report_status = "6", "-1", "1")
             report.report_mark_type = rmt
+
+            'image
+            Dim data_image As DataTable = execute_query("
+                SELECT doc.id_doc,doc.doc_desc,doc.datetime,'yes' as is_download,CONCAT(doc.id_doc,'_" & rmt & "_" & id & "',doc.ext) AS filename,emp.employee_name,doc.is_encrypted
+                FROM tb_doc doc
+                LEFT JOIN tb_m_user usr ON usr.id_user=doc.id_user_upload
+                LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+                WHERE report_mark_type='" & rmt & "' AND id_report='" & id & "'
+            ", -1, True, "", "", "", "")
+
+            Dim path As String = Application.StartupPath & "\download\"
+
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+
+            Dim x As Integer = 0
+            Dim y As Integer = 0
+
+            For i = 0 To data_image.Rows.Count - 1
+                If data_image.Rows(i)("is_encrypted").ToString = "1" Then
+                    Dim p_file As String = path & data_image.Rows(i)("doc_desc").ToString & "_" & data_image.Rows(i)("filename").ToString
+
+                    CryptFile.DecryptFile(get_setup_field("en_phrase"), source_path & rmt & "\" & data_image.Rows(i)("filename").ToString, p_file)
+
+                    If i = 0 Then
+                        report.XrPictureBox.ImageUrl = p_file
+                    Else
+                        Dim pb As DevExpress.XtraReports.UI.XRPictureBox = New DevExpress.XtraReports.UI.XRPictureBox
+
+                        pb.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+
+                        pb.HeightF = report.XrPictureBox.HeightF
+                        pb.WidthF = report.XrPictureBox.WidthF
+
+                        pb.ImageUrl = p_file
+
+                        Dim n As Integer = i Mod 2
+
+                        If n = 0 Then
+                            y = y + report.XrPictureBox.HeightF + 10
+                            x = 0
+                        Else
+                            x = report.XrPictureBox.WidthF + 10
+                        End If
+
+                        pb.LocationF = New PointF(x, y)
+
+                        report.Detail2.Controls.Add(pb)
+                    End If
+
+                End If
+            Next
 
             Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
