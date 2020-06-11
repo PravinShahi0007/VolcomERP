@@ -242,12 +242,15 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 ,IFNULL(payment_pending.jml,0) as total_pending
 ,DATEDIFF(po.`due_date`,NOW()) AS due_days
 ,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
-,po.report_mark_type
+,po.report_mark_type,tag.id_coa_tag,tag.tag_code
 " & q_acc & "
 FROM tb_purc_order po
 LEFT JOIN tb_a_acc coa ON coa.id_acc=po.pph_account
 INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
+INNER JOIN tb_purc_req_det prd ON pod.id_purc_req_det = prd.id_purc_req_det
+INNER JOIN tb_m_comp c_tag ON prd.ship_to = c_tag.id_comp
+INNER JOIN tb_coa_tag tag ON c_tag.id_coa_tag = tag.id_coa_tag
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
 INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
 INNER JOIN tb_m_user usr_upd ON usr_upd.id_user=po.last_update_by
@@ -279,7 +282,7 @@ LEFT JOIN
 	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report
 )payment_pending ON payment_pending.id_report=po.id_purc_order
-WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY po.id_purc_order " & having_string
+WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY c_tag.id_coa_tag, po.id_purc_order " & having_string
         If XTPPOList.SelectedTabPageIndex = 0 Then
             'active
             query = query.Replace("{query_active}", "AND po.is_active_payment = 1")
@@ -288,7 +291,7 @@ WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY po.id_p
             GVPOList.BestFitColumns()
         Else
             'non active
-            query = query.Replace("{query_active}", "AND po.is_active_payment = 2")
+            query = query.Replace("{query_active}", "AND po.is_active_payment = 2").Replace("c_tag.id_coa_tag,", "")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCPOListNonActive.DataSource = data
             GVPOListNonActive.BestFitColumns()
