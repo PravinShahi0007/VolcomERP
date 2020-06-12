@@ -29,22 +29,23 @@ Partial Class FormPayoutHistoryDetail
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsales_order_ol_shop_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncustomer_name = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsettlement_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpay_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnbank = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandPaymentGate = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnpayment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntrans_fee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandERP = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumninvoice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumninvoice_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncalculate_fee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncheckout_id = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnship_invoice_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandPaymentGate = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandERP = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,7 +139,7 @@ Partial Class FormPayoutHistoryDetail
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBandPaymentGate, Me.gridBandERP})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnsettlement_date, Me.BandedGridColumnpay_type, Me.BandedGridColumnbank, Me.BandedGridColumnid_order, Me.BandedGridColumnsales_order_ol_shop_number, Me.BandedGridColumncustomer_name, Me.BandedGridColumncheckout_id, Me.BandedGridColumnpayment, Me.BandedGridColumntrans_fee, Me.BandedGridColumninvoice, Me.BandedGridColumninvoice_amount, Me.BandedGridColumncalculate_fee, Me.BandedGridColumnno})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnsettlement_date, Me.BandedGridColumnpay_type, Me.BandedGridColumnbank, Me.BandedGridColumnid_order, Me.BandedGridColumnsales_order_ol_shop_number, Me.BandedGridColumncustomer_name, Me.BandedGridColumncheckout_id, Me.BandedGridColumnpayment, Me.BandedGridColumntrans_fee, Me.BandedGridColumninvoice, Me.BandedGridColumninvoice_amount, Me.BandedGridColumncalculate_fee, Me.BandedGridColumnno, Me.BandedGridColumnship_invoice_number})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -147,18 +148,6 @@ Partial Class FormPayoutHistoryDetail
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnno)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnsales_order_ol_shop_number)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumncustomer_name)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnsettlement_date)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnpay_type)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnbank)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 504
         '
         'BandedGridColumnno
         '
@@ -207,15 +196,6 @@ Partial Class FormPayoutHistoryDetail
         Me.BandedGridColumnbank.Name = "BandedGridColumnbank"
         Me.BandedGridColumnbank.Visible = True
         '
-        'gridBandPaymentGate
-        '
-        Me.gridBandPaymentGate.Caption = "Payment Gateway"
-        Me.gridBandPaymentGate.Columns.Add(Me.BandedGridColumnpayment)
-        Me.gridBandPaymentGate.Columns.Add(Me.BandedGridColumntrans_fee)
-        Me.gridBandPaymentGate.Name = "gridBandPaymentGate"
-        Me.gridBandPaymentGate.VisibleIndex = 1
-        Me.gridBandPaymentGate.Width = 270
-        '
         'BandedGridColumnpayment
         '
         Me.BandedGridColumnpayment.Caption = "Amount"
@@ -237,16 +217,6 @@ Partial Class FormPayoutHistoryDetail
         Me.BandedGridColumntrans_fee.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "trans_fee", "{0:N2}")})
         Me.BandedGridColumntrans_fee.Visible = True
         Me.BandedGridColumntrans_fee.Width = 135
-        '
-        'gridBandERP
-        '
-        Me.gridBandERP.Caption = "ERP"
-        Me.gridBandERP.Columns.Add(Me.BandedGridColumninvoice)
-        Me.gridBandERP.Columns.Add(Me.BandedGridColumninvoice_amount)
-        Me.gridBandERP.Columns.Add(Me.BandedGridColumncalculate_fee)
-        Me.gridBandERP.Name = "gridBandERP"
-        Me.gridBandERP.VisibleIndex = 2
-        Me.gridBandERP.Width = 269
         '
         'BandedGridColumninvoice
         '
@@ -289,6 +259,45 @@ Partial Class FormPayoutHistoryDetail
         Me.BandedGridColumncheckout_id.Caption = "Checkout Id"
         Me.BandedGridColumncheckout_id.FieldName = "checkout_id"
         Me.BandedGridColumncheckout_id.Name = "BandedGridColumncheckout_id"
+        '
+        'BandedGridColumnship_invoice_number
+        '
+        Me.BandedGridColumnship_invoice_number.Caption = "Invoice Ship"
+        Me.BandedGridColumnship_invoice_number.FieldName = "ship_invoice_number"
+        Me.BandedGridColumnship_invoice_number.Name = "BandedGridColumnship_invoice_number"
+        Me.BandedGridColumnship_invoice_number.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnno)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnsales_order_ol_shop_number)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumncustomer_name)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnsettlement_date)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnpay_type)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnbank)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 504
+        '
+        'gridBandPaymentGate
+        '
+        Me.gridBandPaymentGate.Caption = "Payment Gateway"
+        Me.gridBandPaymentGate.Columns.Add(Me.BandedGridColumnpayment)
+        Me.gridBandPaymentGate.Columns.Add(Me.BandedGridColumntrans_fee)
+        Me.gridBandPaymentGate.Name = "gridBandPaymentGate"
+        Me.gridBandPaymentGate.VisibleIndex = 1
+        Me.gridBandPaymentGate.Width = 270
+        '
+        'gridBandERP
+        '
+        Me.gridBandERP.Caption = "ERP"
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumninvoice)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumnship_invoice_number)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumninvoice_amount)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumncalculate_fee)
+        Me.gridBandERP.Name = "gridBandERP"
+        Me.gridBandERP.VisibleIndex = 2
+        Me.gridBandERP.Width = 344
         '
         'FormPayoutHistoryDetail
         '
@@ -335,8 +344,9 @@ Partial Class FormPayoutHistoryDetail
     Friend WithEvents BandedGridColumninvoice_amount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncalculate_fee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncheckout_id As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnno As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPaymentGate As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandERP As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnship_invoice_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
