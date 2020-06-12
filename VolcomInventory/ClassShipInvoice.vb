@@ -13,34 +13,39 @@
         GROUP BY o.id "
         Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dc.Rows.Count > 0 Then
-            'create invoice
-            Dim qmain As String = "INSERT INTO tb_invoice_ship(id_comp_contact, id_acc_ar, id_report, number, created_date, due_date, start_period, end_period, value, id_report_status) 
-            SELECT  cc.id_comp_contact, c.id_acc_ar, '" + dc.Rows(0)("id_order").ToString + "', '', NOW(),  
-            DATE_ADD(DATE('" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "'),INTERVAL IFNULL(sd.due,0) DAY) AS sales_pos_due_date, '" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "' AS `start_period`, '" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "' AS `end_period`,
-            '" + decimalSQL(dc.Rows(0)("shipping_price").ToString) + "' AS `value`, 1 AS `id_report_status`
-            FROM  tb_m_comp_volcom_ol s 
-            INNER JOIN tb_m_comp_contact cc ON cc.id_comp = s.id_store AND cc.is_default=1
-            INNER JOIN tb_m_comp c ON c.id_comp = s.id_store
-            LEFT JOIN tb_store_due sd ON sd.id_comp = c.id_comp
-            WHERE s.id_design_cat=1; SELECT LAST_INSERT_ID(); "
-            id_invoice_ship = execute_query(qmain, 0, True, "", "", "", "")
-            execute_non_query("CALL gen_number('" + id_invoice_ship + "', '249');", True, "", "", "", "")
-            'detil
-            Dim qdet As String = "INSERT INTO tb_invoice_ship_det(id_invoice_ship, id_acc, value, note)
-            SELECT '" + id_invoice_ship + "', o.id_acc_pendapatan_shipping, '" + decimalSQL(dc.Rows(0)("shipping_price").ToString) + "', 'Shipping #" + dc.Rows(0)("order_number").ToString + "'
-            FROM tb_opt_accounting o "
-            execute_non_query(qdet, True, "", "", "", "")
-            'submit prepared
-            Dim id_user_prepared_inv As String = get_opt_acc_field("invoice_prepared_by")
-            submit_who_prepared(rmt, id_invoice_ship, id_user_prepared_inv)
-            'nonaktif mark
-            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "249", id_invoice_ship)
-            execute_non_query(queryrm, True, "", "", "", "")
-            'set journal
-            setJournal()
-            'set completed
-            Dim query_stt As String = "UPDATE tb_invoice_ship SET id_report_status=6 WHERE id_invoice_ship='" + id_invoice_ship + "'"
-            execute_non_query(query_stt, True, "", "", "", "")
+            'cek
+            Dim qe As String = "SELECT * FROM tb_invoice_ship WHERE id_report='" + dc.Rows(0)("id_order").ToString + "' AND id_report_status!=5 "
+            Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
+            If de.Rows.Count <= 0 Then
+                'create invoice
+                Dim qmain As String = "INSERT INTO tb_invoice_ship(id_comp_contact, id_acc_ar, id_report, number, created_date, due_date, start_period, end_period, value, id_report_status) 
+                SELECT  cc.id_comp_contact, c.id_acc_ar, '" + dc.Rows(0)("id_order").ToString + "', '', NOW(),  
+                DATE_ADD(DATE('" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "'),INTERVAL IFNULL(sd.due,0) DAY) AS sales_pos_due_date, '" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "' AS `start_period`, '" + DateTime.Parse(dc.Rows(0)("order_date").ToString).ToString("yyyy-MM-dd") + "' AS `end_period`,
+                '" + decimalSQL(dc.Rows(0)("shipping_price").ToString) + "' AS `value`, 1 AS `id_report_status`
+                FROM  tb_m_comp_volcom_ol s 
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp = s.id_store AND cc.is_default=1
+                INNER JOIN tb_m_comp c ON c.id_comp = s.id_store
+                LEFT JOIN tb_store_due sd ON sd.id_comp = c.id_comp
+                WHERE s.id_design_cat=1; SELECT LAST_INSERT_ID(); "
+                id_invoice_ship = execute_query(qmain, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number('" + id_invoice_ship + "', '249');", True, "", "", "", "")
+                'detil
+                Dim qdet As String = "INSERT INTO tb_invoice_ship_det(id_invoice_ship, id_acc, value, note)
+                SELECT '" + id_invoice_ship + "', o.id_acc_pendapatan_shipping, '" + decimalSQL(dc.Rows(0)("shipping_price").ToString) + "', 'Shipping #" + dc.Rows(0)("order_number").ToString + "'
+                FROM tb_opt_accounting o "
+                execute_non_query(qdet, True, "", "", "", "")
+                'submit prepared
+                Dim id_user_prepared_inv As String = get_opt_acc_field("invoice_prepared_by")
+                submit_who_prepared(rmt, id_invoice_ship, id_user_prepared_inv)
+                'nonaktif mark
+                Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "249", id_invoice_ship)
+                execute_non_query(queryrm, True, "", "", "", "")
+                'set journal
+                setJournal()
+                'set completed
+                Dim query_stt As String = "UPDATE tb_invoice_ship SET id_report_status=6 WHERE id_invoice_ship='" + id_invoice_ship + "'"
+                execute_non_query(query_stt, True, "", "", "", "")
+            End If
         End If
     End Sub
 
