@@ -1,6 +1,8 @@
 ﻿Public Class FormAccountingAcc 
     Public id_acc As String = "-1"
     Public id_parent As String = "-1"
+    '
+    Public id_popup As String = "-1"
     Private Sub BCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancel.Click
         Close()
     End Sub
@@ -54,8 +56,6 @@
             LEType.Properties.ReadOnly = True
         End If
     End Sub
-
-
 
     Private Sub view_acc_category(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_acc_cat,acc_cat FROM tb_lookup_acc_cat"
@@ -143,12 +143,17 @@
 
                 id_acc = execute_query(query, 0, True, "", "", "", "")
 
-                FormAccounting.view_acc()
-                FormAccounting.CreateNodes(FormAccounting.TreeList1)
-                FormAccounting.XTCGeneral.SelectedTabPageIndex = 0
+                If id_popup = "1" Then
+                    FormPopUpMasterCOA.view_acc()
 
-                FormAccounting.GVAcc.FocusedRowHandle = find_row(FormAccounting.GVAcc, "id_acc", id_acc)
+                    FormPopUpMasterCOA.GVAcc.FocusedRowHandle = find_row(FormPopUpMasterCOA.GVAcc, "id_acc", id_acc)
+                Else
+                    FormAccounting.view_acc()
+                    FormAccounting.CreateNodes(FormAccounting.TreeList1)
+                    FormAccounting.XTCGeneral.SelectedTabPageIndex = 0
 
+                    FormAccounting.GVAcc.FocusedRowHandle = find_row(FormAccounting.GVAcc, "id_acc", id_acc)
+                End If
                 Close()
             Else
                 'edit

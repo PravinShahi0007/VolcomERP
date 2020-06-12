@@ -35,6 +35,10 @@
     End Sub
 
     Private Sub FormMasterCompanySingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        If FormMasterCompany.is_accounting Then
+            is_accounting = True
+        End If
+
         action_load()
 
         If id_comp_group_add = "-1" Then
@@ -206,10 +210,13 @@ WHERE comp.id_comp = '{0}'", id_company)
             '
             If is_active = "3" And is_accounting = False Then
                 XTPCOA.PageVisible = False
-                BApproval.Visible = False
             Else
                 XTPCOA.PageVisible = True
-                BApproval.Visible = True
+                If is_accounting = False Then
+                    BCreateCOA.Visible = False
+                Else
+                    BCreateCOA.Visible = True
+                End If
             End If
             '
             is_need_bank_account = data.Rows(0)("is_need_bank_account").ToString
@@ -1127,12 +1134,12 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
 
     Private Sub BApproval_Click_1(sender As Object, e As EventArgs) Handles BApproval.Click
         'check coa first
-        Dim q_check As String = "SELECT * FROM tb_m_comp WHERE id_comp='" & id_company & "' AND (ISNULL(id_acc_ar) OR ISNULL(id_acc_ap) OR ISNULL(id_acc_dp))"
+        Dim q_check As String = "SELECT * FROM tb_m_comp WHERE id_comp='" & id_company & "' AND ISNULL(id_acc_ap) AND ISNULL(id_acc_ar) AND ISNULL(id_acc_dp)"
         Dim dt_check As DataTable = execute_query(q_check, -1, True, "", "", "", "")
 
         If BApproval.Text.ToString = "Submit" And dt_check.Rows.Count > 0 Then
             'belum dimasukin AP AR DP
-            warningCustom("Please input AR, AP, and DP first before submit. Contact accounting for details.")
+            warningCustom("Please input AR, AP, or DP first before submit. Contact accounting for details.")
         Else
             If BApproval.Text.ToString = "Submit" Then
                 Dim q As String = "SELECT id_comp_cat FROM tb_m_comp WHERE id_comp='" & id_company & "'"
@@ -1409,5 +1416,9 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
             Catch ex As Exception
             End Try
         End If
+    End Sub
+
+    Private Sub BCreateCOA_Click(sender As Object, e As EventArgs) Handles BCreateCOA.Click
+        FormPopUpMasterCOA.ShowDialog()
     End Sub
 End Class

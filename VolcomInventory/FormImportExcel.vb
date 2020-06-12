@@ -3115,9 +3115,10 @@ Public Class FormImportExcel
             GVData.Columns("status").Caption = "Description"
         ElseIf id_pop_up = "50" Then
             Dim queryx As String = "SELECT ol.id_list_payout, ol.id AS `id_order`, ol.checkout_id,ol.sales_order_ol_shop_number, ol.payment AS curr_payout,
-            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(posd.`sales_pos_det_qty`*posd.`design_price`) AS amount,
-            GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number,
-            GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos FROM
+            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(posd.`sales_pos_det_qty`*posd.`design_price`)+IFNULL(sh.ship_amo,0) AS amount,
+            GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,
+            GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`
+            FROM
             (
 	            SELECT ol.*,lp.`payment`,lp.`trans_fee`,lp.pay_type, lp.id_list_payout
 	            FROM tb_ol_store_order ol
@@ -3129,6 +3130,12 @@ Public Class FormImportExcel
             INNER JOIN `tb_pl_sales_order_del` del ON del.`id_sales_order`=so.`id_sales_order`
             INNER JOIN tb_sales_pos pos ON pos.`id_pl_sales_order_del`=del.`id_pl_sales_order_del` AND pos.id_report_status=6 AND pos.is_close_rec_payment=2
             INNER JOIN tb_sales_pos_det posd ON posd.`id_sales_pos`=pos.id_sales_pos
+            LEFT JOIN (
+                SELECT s.id_invoice_ship, s.id_report, s.`number` AS `ship_number`, s.`value` AS `ship_amo`
+                FROM tb_invoice_ship s
+                WHERE s.id_report_status=6
+                GROUP BY s.id_report
+            ) sh ON sh.id_report = ol.id
             GROUP BY ol.id "
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
@@ -3152,8 +3159,10 @@ Public Class FormImportExcel
                                 .checkout_id = table1("Order"),
                                 .id_order = If(y1 Is Nothing, "0", y1("id_order")),
                                 .id_sales_pos = If(y1 Is Nothing, "0", y1("id_sales_pos")),
+                                .id_invoice_ship = If(y1 Is Nothing, "0", y1("id_invoice_ship")),
                                 .order_ol_shop_number = If(y1 Is Nothing, "0", y1("sales_order_ol_shop_number")),
                                 .inv_number = If(y1 Is Nothing, "0", y1("inv_number")),
+                                .ship_inv_number = If(y1 Is Nothing, "0", y1("ship_inv_number")),
                                 .curr_payout = If(y1 Is Nothing, "0", y1("curr_payout")),
                                 .curr_fee = If(y1 Is Nothing, 0, y1("curr_fee")),
                                 .curr_pay_type = If(y1 Is Nothing, "0", y1("curr_pay_type")),
@@ -3163,10 +3172,10 @@ Public Class FormImportExcel
                                 .payout = table1("Amount"),
                                 .fee = table1("Transaction Fee"),
                                 .amount_inv = If(y1 Is Nothing, 0, y1("amount")),
-                                .calc_fee = If(f1 Is Nothing, 0, If((table1("Amount") * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (table1("Amount") * f1("payout_multiply") + f1("payout_add")))),
+                                .calc_fee = If(f1 Is Nothing, 0, If((If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")))),
                                 .settle_datetime = Date.Parse(table1("Settlement Time").ToString.Split(",")(0).Trim & " " & table1("Settlement Time").ToString.Split(",")(1).Trim),
-                                .Status = If(f1 Is Nothing, "Fee type not found", If(y1 Is Nothing, "Checkout id Not Found", If(y1("curr_fee").ToString = "", If(table1("Amount") = If(y1 Is Nothing, 0, y1("amount")), If(table1("Transaction Fee") = If(f1 Is Nothing, 0, If((table1("Amount") * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (table1("Amount") * f1("payout_multiply") + f1("payout_add")))), "OK", "Fee Not Match"), "Amount not match"), "Already imported")))
-                            }
+                                .Status = If(f1 Is Nothing, "Fee type not found", If(y1 Is Nothing, "Checkout id Not Found", If(y1("curr_fee").ToString = "", If(table1("Amount") = If(y1 Is Nothing, 0, y1("amount")), If(Decimal.Parse(table1("Transaction Fee").ToString) = Decimal.Parse((If(f1 Is Nothing, 0, If((If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add"))))).ToString), "OK", "Fee Not Match"), "Amount not match"), "Already imported")))
+                                }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
             GCData.RefreshDataSource()
@@ -3174,9 +3183,11 @@ Public Class FormImportExcel
 
             'Customize column
             GVData.Columns("id_sales_pos").Visible = False
+            GVData.Columns("id_invoice_ship").Visible = False
 
             GVData.Columns("order_ol_shop_number").Caption = "Order#"
             GVData.Columns("inv_number").Caption = "Invoice Number"
+            GVData.Columns("ship_inv_number").Caption = "Shipping Invoice"
             GVData.Columns("amount_inv").Caption = "Amount Invoice"
 
             GVData.Columns("curr_payout").Caption = "Current Payout"
@@ -5459,14 +5470,17 @@ Public Class FormImportExcel
                             'detail data
                             Dim q As String = "INSERT INTO tb_list_payout(id_list_payout_trans,`settlement_date`, `id_pay_type`,`pay_type`, `bank`,`id`,`sales_order_ol_shop_number`,`checkout_id`,`payment`,`trans_fee`, `invoice_amount`, `calculate_fee`) VALUES"
                             Dim id_sales_pos As String = ""
+                            Dim id_invoice_ship As String = ""
                             For i As Integer = 0 To GVData.RowCount - 1
                                 If Not i = 0 Then
                                     q += ","
                                     id_sales_pos += ","
+                                    id_invoice_ship += ","
                                 End If
                                 '
                                 q += "('" + id_list_payout_trans + "', '" + DateTime.Parse(GVData.GetRowCellValue(i, "settle_datetime").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "','" + GVData.GetRowCellValue(i, "id_pay_type").ToString + "', '" + addSlashes(GVData.GetRowCellValue(i, "pay_type").ToString) + "','" + addSlashes(GVData.GetRowCellValue(i, "bank").ToString) + "', '" + GVData.GetRowCellValue(i, "id_order").ToString + "','" + addSlashes(GVData.GetRowCellValue(i, "order_ol_shop_number").ToString) + "','" + addSlashes(GVData.GetRowCellValue(i, "checkout_id").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "payout").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "fee").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount_inv").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "calc_fee").ToString) + "') "
                                 id_sales_pos += GVData.GetRowCellValue(i, "id_sales_pos").ToString
+                                id_invoice_ship += GVData.GetRowCellValue(i, "id_invoice_ship").ToString
 
                                 '
                                 PBC.PerformStep()
@@ -5479,7 +5493,11 @@ Public Class FormImportExcel
                             Dim query_det_pos As String = "INSERT INTO tb_list_payout_det(id_list_payout_trans, id_sales_pos) 
                             SELECT '" + id_list_payout_trans + "', sp.id_sales_pos 
                             FROM tb_sales_pos sp 
-                            WHERE sp.id_sales_pos IN (" + id_sales_pos + ") "
+                            WHERE sp.id_sales_pos IN (" + id_sales_pos + ");
+                            INSERT INTO tb_list_payout_det(id_list_payout_trans, id_invoice_ship) 
+                            SELECT '" + id_list_payout_trans + "', sh.id_invoice_ship 
+                            FROM tb_invoice_ship sh 
+                            WHERE sh.id_invoice_ship IN(" + id_invoice_ship + "); "
                             execute_non_query(query_det_pos, True, "", "", "", "")
 
                             FormBankDeposit.TEPayoutNumber.Text = ""
