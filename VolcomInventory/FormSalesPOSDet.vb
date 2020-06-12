@@ -1536,7 +1536,13 @@ Public Class FormSalesPOSDet
         IFNULL(deld.pl_sales_order_del_det_qty,0) AS `qty`, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
         CONCAT(IF(ISNULL(so.id_sales_order),'ERP order not found; ',''), IF(ISNULL(del.id_pl_sales_order_del),'Delivery not found;',''), IF(!ISNULL(sal.id_sales_pos),'Invoice already created;',''), IF(!ISNULL(ro.id_sales_return_order),'Return Order already created;',''), IF(!ISNULL(rl.id_ol_store_ret_list),'On process in return centre; ','')) AS `status`
         FROM tb_ol_order_temp o
-        LEFT JOIN tb_sales_order so ON so.sales_order_ol_shop_number = o.`order` AND so.id_store_contact_to=" + id_store_contact_from + " AND so.id_report_status=6
+        LEFT JOIN (
+            SELECT so.id_sales_order, so.sales_order_ol_shop_number , so.sales_order_number
+            FROM tb_sales_order so
+            INNER JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order
+            WHERE so.id_report_status=6 AND del.id_report_status=6 AND so.sales_order_ol_shop_number!='' AND so.id_store_contact_to='" + id_store_contact_from + "'
+            GROUP BY so.id_sales_order
+        ) so ON so.sales_order_ol_shop_number = o.`order`
         LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order AND del.id_report_status=6
         LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del = del.id_pl_sales_order_del
         LEFT JOIN tb_sales_pos_det sald ON sald.id_pl_sales_order_del_det = deld.id_pl_sales_order_del_det
