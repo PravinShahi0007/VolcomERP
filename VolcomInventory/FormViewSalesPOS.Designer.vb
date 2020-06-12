@@ -611,7 +611,7 @@ Partial Class FormViewSalesPOS
         Me.GroupControl3.Controls.Add(Me.BtnDraft)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 638)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 575)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(954, 36)
         Me.GroupControl3.TabIndex = 187
@@ -667,7 +667,7 @@ Partial Class FormViewSalesPOS
         Me.GroupControl1.Controls.Add(Me.MENote)
         Me.GroupControl1.Controls.Add(Me.LabelControl18)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 492)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 429)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(954, 146)
         Me.GroupControl1.TabIndex = 188
@@ -895,7 +895,7 @@ Partial Class FormViewSalesPOS
         Me.GroupControlList.Enabled = False
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(948, 261)
+        Me.GroupControlList.Size = New System.Drawing.Size(948, 198)
         Me.GroupControlList.TabIndex = 189
         Me.GroupControlList.Text = "Item List"
         '
@@ -907,7 +907,7 @@ Partial Class FormViewSalesPOS
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(925, 257)
+        Me.GCItemList.Size = New System.Drawing.Size(925, 194)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1119,7 +1119,7 @@ Partial Class FormViewSalesPOS
         Me.XTCInvoice.Location = New System.Drawing.Point(0, 203)
         Me.XTCInvoice.Name = "XTCInvoice"
         Me.XTCInvoice.SelectedTabPage = Me.XTPInvoice
-        Me.XTCInvoice.Size = New System.Drawing.Size(954, 289)
+        Me.XTCInvoice.Size = New System.Drawing.Size(954, 226)
         Me.XTCInvoice.TabIndex = 190
         Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoice, Me.XTPDetail})
         '
@@ -1127,7 +1127,7 @@ Partial Class FormViewSalesPOS
         '
         Me.XTPInvoice.Controls.Add(Me.GroupControlList)
         Me.XTPInvoice.Name = "XTPInvoice"
-        Me.XTPInvoice.Size = New System.Drawing.Size(948, 261)
+        Me.XTPInvoice.Size = New System.Drawing.Size(948, 198)
         Me.XTPInvoice.Text = "Invoice"
         '
         'XTPDetail
@@ -1246,7 +1246,7 @@ Partial Class FormViewSalesPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(954, 674)
+        Me.ClientSize = New System.Drawing.Size(954, 611)
         Me.Controls.Add(Me.XTCInvoice)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupControl3)

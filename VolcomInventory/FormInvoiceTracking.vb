@@ -84,16 +84,21 @@
         'filter status
         Dim id_status As String = SLEStatusInvoice.EditValue.ToString
         Dim cond_status As String = ""
+        Dim cond_status2 As String = ""
         Dim cond_having As String = ""
         If id_status = "1" Then 'a''
             cond_status = ""
+            cond_status2 = ""
         ElseIf id_status = "2" Then 'open=unpaid
             cond_status = "AND sp.is_close_rec_payment=2 "
+            cond_status2 = "AND sp.is_close_rec=2 "
         ElseIf id_status = "3" Then 'overdue
             cond_status = "AND sp.is_close_rec_payment=2 "
+            cond_status2 = "AND sp.is_close_rec=2 "
             cond_having += "AND due_days>0 "
         ElseIf id_status = "4" Then 'close = paid
             cond_status = "AND sp.is_close_rec_payment=1 "
+            cond_status2 = "AND sp.is_close_rec=1 "
         End If
 
         'filter promo
@@ -106,6 +111,7 @@
 
         'filter sales period
         Dim cond_period As String = ""
+        Dim cond_period2 As String = ""
         If CEPeriod.EditValue = False Then
             Dim date_from_selected As String = "0000-01-01"
             Dim date_until_selected As String = "9999-01-01"
@@ -118,6 +124,7 @@
             Catch ex As Exception
             End Try
             cond_period = "AND (sp.sales_pos_end_period>='" + date_from_selected + "' AND sp.sales_pos_end_period<='" + date_until_selected + "') "
+            cond_period2 = "AND (sp.end_period>='" + date_from_selected + "' AND sp.end_period<='" + date_until_selected + "') "
         End If
 
         'filter BBM
@@ -252,6 +259,61 @@
             " + cond_promo + "
             " + cond_period + "
             GROUP BY sp.`id_sales_pos` 
+            UNION
+            SELECT 'no' AS is_check,sp.is_close_rec AS `is_close_rec_payment`,sp.id_invoice_ship AS id_sales_pos,'' AS sales_pos_note,sp.number AS sales_pos_number,
+            0 AS id_memo_type,'' AS `memo_type`,2 AS `is_receive_payment`,sp.created_date AS `sales_pos_date`,sp.id_comp_contact AS `id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,
+            sp.due_date AS `sales_pos_due_date`, sp.start_period AS `sales_pos_start_period`, sp.end_period AS `sales_pos_end_period`
+            ,sp.value AS `sales_pos_total`,0 AS `sales_pos_discount`,0 AS `sales_pos_vat`,0 AS `sales_pos_potongan`, 0 AS sales_pos_total_qty, IFNULL(pyd.`value`,0.00) AS total_rec, 
+            IFNULL(pyd.`value`,0.00) - (sp.value) AS total_due, sp.value AS  amount ,sp.report_mark_type,rmt.report_mark_type_name
+            ,DATEDIFF(IF(sp.is_close_rec=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),sp.due_date) AS due_days,
+            0 AS id_mail_warning_no,'' AS mail_warning_no, NULL AS mail_warning_date, '' AS mail_warning_status,
+            0 AS id_mail_notice_no,'' AS mail_notice_no, NULL AS mail_notice_date, '' AS mail_notice_status,
+            0 AS id_mail_invoice, '' AS mail_invoice_no, NULL AS mail_invoice_date, '' AS mail_invoice_status,
+            bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`,
+            0 AS `id_bbk`,'' AS `bbk_number`, NULL AS `bbk_created_date`, NULL AS `bbk_payment_date`, 0 AS `bbk_value`, '' AS `bbk_status`,
+            0 AS `id_propose_delay_payment`, '' AS `memo_number`, NULL AS propose_delay_payment_due_date
+            FROM tb_invoice_ship sp
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
+            INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+            LEFT JOIN (
+               SELECT pyd.id_report, pyd.report_mark_type, 
+               COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+               SUM(pyd.value) AS  `value`
+               FROM tb_rec_payment_det pyd
+               INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+               WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (249)
+               " + cond_period_bbm + "
+               GROUP BY pyd.id_report, pyd.report_mark_type
+            ) pyd ON pyd.id_report = sp.id_invoice_ship AND pyd.report_mark_type = sp.report_mark_type
+            LEFT JOIN (
+                SELECT pyd.id_report, pyd.report_mark_type, 
+               COUNT(py.id_rec_payment) AS `total_pending`,
+               SUM(pyd.value) AS  `value`
+               FROM tb_rec_payment_det pyd
+               INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+               WHERE py.`id_report_status`<5 AND pyd.report_mark_type IN (249)
+               GROUP BY pyd.id_report, pyd.report_mark_type
+            ) pyd_op ON pyd_op.id_report = sp.id_invoice_ship AND pyd_op.report_mark_type = sp.report_mark_type
+            LEFT JOIN (
+               SELECT * FROM  (
+                  SELECT r.id_rec_payment AS `id_bbm`, rd.id_report, r.number AS `bbm_number`, r.value AS `bbm_value`,
+                  r.date_created AS `bbm_created_date`,
+                  r.date_received AS `bbm_received_date`
+                  FROM tb_rec_payment_det rd
+                  INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+                  WHERE rd.report_mark_type IN (249) AND r.id_report_status=6
+                  ORDER BY r.id_rec_payment DESC
+               ) rm
+               GROUP BY rm.id_report
+            ) bbm ON bbm.id_report = sp.id_invoice_ship
+             WHERE sp.`id_report_status`='6' 
+            " + cond_group + " 
+            " + cond_store + "
+            " + cond_status2 + "
+            " + cond_period2 + "
+            GROUP BY sp.id_invoice_ship
             HAVING 1=1 " + cond_having + "
             " + cond_having_period_bbm + "
             ORDER BY id_sales_pos ASC "
@@ -263,11 +325,17 @@
 
             'overdue
             Dim cond_ovd As String = ""
+            Dim cond_ovd2 As String = ""
             If id_status = "3" Then
                 cond_ovd = "AND DATEDIFF(NOW(),sp.sales_pos_due_date)>0 "
+                cond_ovd2 = "AND DATEDIFF(NOW(),sp.due_date)>0 "
             End If
 
-            Dim query As String = "SELECT sp.is_close_rec_payment, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
+            Dim query As String = "
+            SELECT is_close_rec_payment, id_comp_group, comp_group, comp_group_desc, 
+            SUM(sales_pos_total) AS `sales_pos_total`, SUM(total_rec) AS `total_rec`, SUM(total_due) AS `total_due`, SUM(amount) AS `amount`
+            FROM
+            (SELECT sp.is_close_rec_payment, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
             SUM(sp.`sales_pos_total`) AS `sales_pos_total`, SUM(IFNULL(pyd.`value`,0.00)) AS total_rec, 
             SUM(IFNULL(pyd.`value`,0.00)) - SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS total_due,
             SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS amount
@@ -305,8 +373,44 @@
             " + cond_ovd + "
             " + cond_where_period_bbm + "
             GROUP BY c.id_comp_group
+            UNION
+            SELECT sp.is_close_rec AS is_close_rec_payment, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
+            SUM(sp.value) AS `sales_pos_total`, SUM(IFNULL(pyd.`value`,0.00)) AS total_rec, 
+            SUM(IFNULL(pyd.`value`,0.00)) - SUM(sp.value) AS total_due,
+            SUM(sp.value) AS amount
+            FROM tb_invoice_ship sp 
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
+            INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+            LEFT JOIN (
+	            SELECT c.id_comp_group, SUM(pyd.value) AS  `value`, sp.id_invoice_ship
+	            FROM tb_rec_payment_det pyd
+	            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+                INNER JOIN tb_invoice_ship sp ON sp.id_invoice_ship = pyd.id_report AND sp.report_mark_type = pyd.report_mark_type
+                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
+                INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+                INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+	            WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (249)
+                " + cond_group + " 
+                " + cond_store + "
+                " + cond_status2 + "
+                " + cond_period2 + "
+                " + cond_ovd2 + "
+                " + cond_period_bbm + "
+	            GROUP BY sp.id_invoice_ship
+            ) pyd ON pyd.id_invoice_ship = sp.id_invoice_ship
+            WHERE sp.`id_report_status`='6' 
+            " + cond_group + " 
+            " + cond_store + "
+            " + cond_status2 + "
+            " + cond_period2 + "
+            " + cond_ovd2 + "
+            " + cond_where_period_bbm + "
+            GROUP BY c.id_comp_group) a
+            GROUP BY id_comp_group
             HAVING 1=1
-            ORDER BY cg.description ASC "
+            ORDER BY comp_group_desc ASC "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCSummary.DataSource = data
             GVSummary.BestFitColumns()

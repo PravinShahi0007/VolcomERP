@@ -6062,6 +6062,11 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     SET pos.`is_close_rec_payment`=1
                     WHERE pyd.`id_rec_payment`='" & id_report & "'
                     AND pyd.`value`=balance_due AND pyd.`value` != 0;
+                    /*closing invoice ship*/
+                    UPDATE tb_invoice_ship ps
+                    INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=ps.id_invoice_ship AND pyd.`report_mark_type`=ps.`report_mark_type`
+                    SET ps.`is_close_rec`=1
+                    WHERE pyd.`id_rec_payment`='" & id_report & "';
                     /*updayte eval AR*/
                     UPDATE tb_ar_eval main
                     INNER JOIN (
