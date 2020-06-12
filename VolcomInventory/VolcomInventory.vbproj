@@ -8124,6 +8124,12 @@
     <Compile Include="ReportSetupBudgetOPEX.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportShipInvoice.Designer.vb">
+      <DependentUpon>ReportShipInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportShipInvoice.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSummaryInvoice.Designer.vb">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
     </Compile>
@@ -12662,6 +12668,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSetupBudgetOPEX.resx">
       <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportShipInvoice.resx">
+      <DependentUpon>ReportShipInvoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSummaryInvoice.resx">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
