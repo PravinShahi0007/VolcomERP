@@ -364,7 +364,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
         'cek empty
         Dim cond_empty As Boolean = False
-        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc]) OR ([pph]>0 AND IsNullOrEmpty([id_acc_pph])"
+        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc]) OR ([pph_percent]>0 AND IsNullOrEmpty([id_acc_pph])"
         If GVData.RowCount > 0 Then
             cond_empty = True
         End If
@@ -521,7 +521,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
         Cursor = Cursors.WaitCursor
         Dim rh As Integer = e.RowHandle
-        If e.Column.FieldName = "amount" Or e.Column.FieldName = "tax_percent" Then
+        If e.Column.FieldName = "amount" Or e.Column.FieldName = "tax_percent" Or e.Column.FieldName = "pph_percent" Then
             GCData.RefreshDataSource()
             GVData.RefreshData()
             calculate()
@@ -616,7 +616,7 @@ WHERE c.id_comp='" + id_comp + "' "
                     newRowh("report_number") = ""
                     newRowh("note") = MENote.Text
                     newRowh("debit") = 0
-                    newRowh("credit") = TxtSubTotal.EditValue + TxtVAT.EditValue
+                    newRowh("credit") = TxtSubTotal.EditValue + TxtVAT.EditValue + TEPPH.EditValue
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
                     GCDraft.RefreshDataSource()
                     GVDraft.RefreshData()
@@ -729,5 +729,6 @@ WHERE c.id_comp='" + id_comp + "' "
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc]) OR ([pph_percent]>0 AND IsNullOrEmpty([id_acc_pph])"
     End Sub
 End Class
