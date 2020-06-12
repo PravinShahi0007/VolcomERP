@@ -14,7 +14,7 @@
     Sub viewData()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT t.settlement_date, t.pay_type, t.bank, t.id AS `id_order`, t.sales_order_ol_shop_number, sp.customer_name, t.checkout_id, 
-        t.payment, t.trans_fee, sp.sales_pos_number AS `invoice_number`, t.invoice_amount, t.calculate_fee 
+        t.payment, t.trans_fee, sp.sales_pos_number AS `invoice_number`, sh.number AS `ship_invoice_number`, t.invoice_amount, t.calculate_fee 
         FROM tb_list_payout t 
         LEFT JOIN (
 	        SELECT so.id_sales_order_ol_shop, GROUP_CONCAT(DISTINCT sp.sales_pos_number) AS `sales_pos_number`, so.customer_name
@@ -25,6 +25,11 @@
 	        WHERE t.id_list_payout_trans=" + id + "
 	        GROUP BY so.id_sales_order_ol_shop
         ) sp ON sp.id_sales_order_ol_shop = t.id
+        LEFT JOIN (
+            SELECT s.id_invoice_ship, s.id_report, s.number, s.value 
+            FROM tb_invoice_ship s 
+            GROUP BY s.id_report
+        ) sh ON sh.id_report = t.id
         WHERE t.id_list_payout_trans=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data

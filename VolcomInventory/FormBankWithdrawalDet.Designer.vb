@@ -113,6 +113,8 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TxtTag = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,6 +165,7 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -268,7 +271,7 @@ Partial Class FormBankWithdrawalDet
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.Label1.Location = New System.Drawing.Point(6, 14)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(76, 21)
+        Me.Label1.Size = New System.Drawing.Size(75, 21)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Pay From"
         '
@@ -321,7 +324,7 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 59)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(945, 69)
+        Me.PanelControl2.Size = New System.Drawing.Size(945, 100)
         Me.PanelControl2.TabIndex = 1
         '
         'PanelControl6
@@ -334,7 +337,7 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(529, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(414, 65)
+        Me.PanelControl6.Size = New System.Drawing.Size(414, 96)
         Me.PanelControl6.TabIndex = 166
         '
         'DEPayment
@@ -383,6 +386,8 @@ Partial Class FormBankWithdrawalDet
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.TxtTag)
+        Me.PanelControl3.Controls.Add(Me.LabelControl9)
         Me.PanelControl3.Controls.Add(Me.SLEVendor)
         Me.PanelControl3.Controls.Add(Me.TEPayNumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
@@ -390,7 +395,7 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(390, 65)
+        Me.PanelControl3.Size = New System.Drawing.Size(390, 96)
         Me.PanelControl3.TabIndex = 165
         '
         'SLEVendor
@@ -625,7 +630,7 @@ Partial Class FormBankWithdrawalDet
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal, Me.RepositoryItemTextEdit1, Me.SLECurrency})
-        Me.GCList.Size = New System.Drawing.Size(939, 204)
+        Me.GCList.Size = New System.Drawing.Size(939, 173)
         Me.GCList.TabIndex = 18
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -930,10 +935,10 @@ Partial Class FormBankWithdrawalDet
         'XTCBBK
         '
         Me.XTCBBK.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCBBK.Location = New System.Drawing.Point(0, 128)
+        Me.XTCBBK.Location = New System.Drawing.Point(0, 159)
         Me.XTCBBK.Name = "XTCBBK"
         Me.XTCBBK.SelectedTabPage = Me.XTPPayment
-        Me.XTCBBK.Size = New System.Drawing.Size(945, 279)
+        Me.XTCBBK.Size = New System.Drawing.Size(945, 248)
         Me.XTCBBK.TabIndex = 19
         Me.XTCBBK.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPJournal})
         '
@@ -942,7 +947,7 @@ Partial Class FormBankWithdrawalDet
         Me.XTPPayment.Controls.Add(Me.GCList)
         Me.XTPPayment.Controls.Add(Me.PCAddDel)
         Me.XTPPayment.Name = "XTPPayment"
-        Me.XTPPayment.Size = New System.Drawing.Size(939, 251)
+        Me.XTPPayment.Size = New System.Drawing.Size(939, 220)
         Me.XTPPayment.Text = "Payment"
         '
         'PCAddDel
@@ -1119,6 +1124,26 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
+        'TxtTag
+        '
+        Me.TxtTag.EditValue = ""
+        Me.TxtTag.Location = New System.Drawing.Point(88, 64)
+        Me.TxtTag.Name = "TxtTag"
+        Me.TxtTag.Properties.EditValueChangedDelay = 1
+        Me.TxtTag.Properties.ReadOnly = True
+        Me.TxtTag.Size = New System.Drawing.Size(287, 20)
+        Me.TxtTag.TabIndex = 8915
+        Me.TxtTag.TabStop = False
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(10, 67)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl9.TabIndex = 8916
+        Me.LabelControl9.Text = "Tag"
+        '
         'FormBankWithdrawalDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1192,6 +1217,7 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1288,4 +1314,6 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents GridColumnCurrencyHide As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DEPayment As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtTag As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
 End Class

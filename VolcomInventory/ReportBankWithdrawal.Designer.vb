@@ -61,13 +61,16 @@ Partial Public Class ReportBankWithdrawal
         Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.LBookTrf = New DevExpress.XtraReports.UI.XRLabel()
         Me.LkursLabel = New DevExpress.XtraReports.UI.XRLabel()
         Me.LKursTitik = New DevExpress.XtraReports.UI.XRLabel()
         Me.LKurs = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LBookTrf = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -511,14 +514,24 @@ Partial Public Class ReportBankWithdrawal
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LBookTrf, Me.LkursLabel, Me.LKursTitik, Me.LKurs, Me.XrLabel17, Me.XrLabel19, Me.XrLabel20, Me.XrLine1, Me.XrLabel7, Me.XrPictureBox1, Me.XrLabel1, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel13, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.XrLabel8, Me.XrLabel12})
-        Me.PageHeader.HeightF = 122.9167!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel21, Me.XrLabel22, Me.XrLabel23, Me.LBookTrf, Me.LkursLabel, Me.LKursTitik, Me.LKurs, Me.XrLabel17, Me.XrLabel19, Me.XrLabel20, Me.XrLine1, Me.XrLabel7, Me.XrPictureBox1, Me.XrLabel1, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel13, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.XrLabel8, Me.XrLabel12})
+        Me.PageHeader.HeightF = 135.0417!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'LBookTrf
+        '
+        Me.LBookTrf.LocationFloat = New DevExpress.Utils.PointFloat(673.0!, 26.4167!)
+        Me.LBookTrf.Name = "LBookTrf"
+        Me.LBookTrf.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LBookTrf.SizeF = New System.Drawing.SizeF(100.0!, 13.16663!)
+        Me.LBookTrf.StylePriority.UseTextAlignment = False
+        Me.LBookTrf.Text = "Book Transfer"
+        Me.LBookTrf.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'LkursLabel
         '
         Me.LkursLabel.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.LkursLabel.LocationFloat = New DevExpress.Utils.PointFloat(0.00009536743!, 93.04161!)
+        Me.LkursLabel.LocationFloat = New DevExpress.Utils.PointFloat(0.0001738469!, 109.0416!)
         Me.LkursLabel.Name = "LkursLabel"
         Me.LkursLabel.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LkursLabel.SizeF = New System.Drawing.SizeF(70.83333!, 16.0!)
@@ -530,7 +543,7 @@ Partial Public Class ReportBankWithdrawal
         'LKursTitik
         '
         Me.LKursTitik.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.LKursTitik.LocationFloat = New DevExpress.Utils.PointFloat(70.83344!, 93.04163!)
+        Me.LKursTitik.LocationFloat = New DevExpress.Utils.PointFloat(70.83353!, 109.0417!)
         Me.LKursTitik.Name = "LKursTitik"
         Me.LKursTitik.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LKursTitik.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
@@ -542,7 +555,7 @@ Partial Public Class ReportBankWithdrawal
         'LKurs
         '
         Me.LKurs.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.LKurs.LocationFloat = New DevExpress.Utils.PointFloat(85.41684!, 93.04164!)
+        Me.LKurs.LocationFloat = New DevExpress.Utils.PointFloat(85.41693!, 109.0417!)
         Me.LKurs.Name = "LKurs"
         Me.LKurs.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LKurs.SizeF = New System.Drawing.SizeF(234.375!, 16.0!)
@@ -587,15 +600,41 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel20.Text = ":"
         Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'LBookTrf
+        'XrLabel21
         '
-        Me.LBookTrf.LocationFloat = New DevExpress.Utils.PointFloat(673.0!, 26.4167!)
-        Me.LBookTrf.Name = "LBookTrf"
-        Me.LBookTrf.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.LBookTrf.SizeF = New System.Drawing.SizeF(100.0!, 13.16663!)
-        Me.LBookTrf.StylePriority.UseTextAlignment = False
-        Me.LBookTrf.Text = "Book Transfer"
-        Me.LBookTrf.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrLabel21.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(0.0001390775!, 93.04166!)
+        Me.XrLabel21.Name = "XrLabel21"
+        Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel21.SizeF = New System.Drawing.SizeF(70.83334!, 16.0!)
+        Me.XrLabel21.StylePriority.UseFont = False
+        Me.XrLabel21.StylePriority.UseTextAlignment = False
+        Me.XrLabel21.Text = "Tag"
+        Me.XrLabel21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel22
+        '
+        Me.XrLabel22.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(70.83349!, 93.04166!)
+        Me.XrLabel22.Name = "XrLabel22"
+        Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel22.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
+        Me.XrLabel22.StylePriority.UseFont = False
+        Me.XrLabel22.StylePriority.UseTextAlignment = False
+        Me.XrLabel22.Text = ":"
+        Me.XrLabel22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel23
+        '
+        Me.XrLabel23.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(85.41684!, 93.04166!)
+        Me.XrLabel23.Name = "XrLabel23"
+        Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel23.SizeF = New System.Drawing.SizeF(234.375!, 16.0!)
+        Me.XrLabel23.StylePriority.UseFont = False
+        Me.XrLabel23.StylePriority.UseTextAlignment = False
+        Me.XrLabel23.Text = "[tag]"
+        Me.XrLabel23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportBankWithdrawal
         '
@@ -661,4 +700,7 @@ Partial Public Class ReportBankWithdrawal
     Friend WithEvents LKursTitik As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LKurs As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LBookTrf As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel21 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel22 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel23 As DevExpress.XtraReports.UI.XRLabel
 End Class

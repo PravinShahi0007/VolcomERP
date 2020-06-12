@@ -284,6 +284,7 @@
     <Compile Include="ClassSamplePLtoWH.vb" />
     <Compile Include="ClassSampleReturnPL.vb" />
     <Compile Include="ClassSendEmail.vb" />
+    <Compile Include="ClassShipInvoice.vb" />
     <Compile Include="ClassShopifyApi.vb" />
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
@@ -5926,6 +5927,12 @@
     <Compile Include="FormSetupRawMatCodeSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormShipInvoiceDet.Designer.vb">
+      <DependentUpon>FormShipInvoiceDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormShipInvoiceDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOH.designer.vb">
       <DependentUpon>FormSOH.vb</DependentUpon>
     </Compile>
@@ -8115,6 +8122,12 @@
       <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSetupBudgetOPEX.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportShipInvoice.Designer.vb">
+      <DependentUpon>ReportShipInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportShipInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSummaryInvoice.Designer.vb">
@@ -11398,6 +11411,9 @@
       <DependentUpon>FormSetupRawMatCodeSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormShipInvoiceDet.resx">
+      <DependentUpon>FormShipInvoiceDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSOH.resx">
       <DependentUpon>FormSOH.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -12652,6 +12668,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSetupBudgetOPEX.resx">
       <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportShipInvoice.resx">
+      <DependentUpon>ReportShipInvoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSummaryInvoice.resx">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
