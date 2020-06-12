@@ -6,6 +6,7 @@
     Public is_view As String = "-1"
     Public is_book_transfer As Boolean = False
     '
+    Public id_coa_tag As String = "1"
     Private Sub FormBankWithdrawalDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -16,6 +17,7 @@
         DEDateCreated.EditValue = Now
         DEPayment.EditValue = Now
         TEPayNumber.Text = "[Auto generate]"
+        TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = 1", 0, True, "", "", "", "")
 
         load_pay_from()
         load_vendor()
@@ -48,6 +50,7 @@
                 Try
                     SLEVendor.EditValue = FormBankWithdrawal.SLEVendor.EditValue
                     SLEPayType.EditValue = id_pay_type
+                    TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = " + FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString, 0, True, "", "", "", "")
                     '
                     SLEReportType.EditValue = report_mark_type
                     'load detail
@@ -890,6 +893,7 @@
                 SLEVendor.EditValue = data.Rows(0)("id_comp_contact").ToString
                 SLEPayType.EditValue = data.Rows(0)("id_pay_type").ToString
                 SLEReportType.EditValue = data.Rows(0)("report_mark_type").ToString
+                TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = " + data.Rows(0)("id_coa_tag").ToString, 0, True, "", "", "", "")
                 If data.Rows(0)("is_book_transfer").ToString = "1" Then
                     is_book_transfer = True
                 Else
@@ -1064,7 +1068,7 @@ WHERE pnd.id_pn='" & id_payment & "'"
 
         'Parse val
         Dim query As String = "SELECT py.number,py.kurs,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
-,'" & ConvertCurrencyToIndonesian(TETotal.EditValue) & "' AS tot_say
+,'" & ConvertCurrencyToIndonesian(TETotal.EditValue) & "' AS tot_say, CONCAT(tag.tag_code, ' - ', tag.tag_description) AS tag
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -1074,6 +1078,7 @@ INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 INNER JOIN tb_a_acc acc ON acc.id_acc=py.id_acc_payfrom
+INNER JOIN tb_coa_tag tag ON py.id_coa_tag = tag.id_coa_tag
 WHERE py.`id_pn`='" & id_payment & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Report.DataSource = data
@@ -1174,8 +1179,12 @@ WHERE py.`id_pn`='" & id_payment & "'"
                     is_book_transfer = "1"
                 End If
 
-                Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,is_book_transfer,id_report_status) 
-VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue.ToString).ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & is_book_trf & "','1'); SELECT LAST_INSERT_ID(); "
+                If report_mark_type = "139" Or report_mark_type = "202" Then
+                    id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString
+                End If
+
+                Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,is_book_transfer,id_report_status,id_coa_tag) 
+VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue.ToString).ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & is_book_trf & "','1','" + id_coa_tag + "'); SELECT LAST_INSERT_ID(); "
                 id_payment = execute_query(query, 0, True, "", "", "", "")
                 'detail
                 Dim id_currency, kurs, val_bef_kurs As String
