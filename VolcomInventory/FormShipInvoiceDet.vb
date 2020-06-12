@@ -1,4 +1,6 @@
-﻿Public Class FormShipInvoiceDet
+﻿Imports DevExpress.XtraReports.UI
+
+Public Class FormShipInvoiceDet
     Public id As String = "-1"
     Public report_mark_type As String = "249"
     Public is_view = "-1"
@@ -96,6 +98,40 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim report As ReportShipInvoice = New ReportShipInvoice
 
+        report.LabelTitleNumber.Text = "NO. " + TxtNumber.Text
+
+        report.LabelStoreName.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+        report.LabelPeriodDate.Text = DEStart.Text + " - " + DEEnd.Text
+        report.LabelDueDate.Text = DEDueDate.Text
+
+        report.LabelCreatedDate.Text = DECreated.Text
+        report.LabalOrderRef.Text = TxtOLStoreNumber.Text
+        report.LabelCustName.Text = TXTName.Text
+
+        report.LabelNote.Text = "Note: " + MENote.Text
+
+        report.LabelPrintedDate.Text = "Printed: " + Date.Parse(Now.ToString).ToString("dd MMMM yyyy HH:mm:ss")
+        report.LabelPrintedBy.Text = get_user_identify(id_user, "1")
+
+        report.id = id
+        report.data = GCData.DataSource
+        report.id_pre = "1"
+        report.report_mark_type = report_mark_type
+
+        If CEPrintPreview.EditValue = True Then
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+            tool.ShowPreviewDialog()
+        Else
+            Dim instance As New Printing.PrinterSettings
+            Dim DefaultPrinter As String = instance.PrinterName
+
+            ' THIS IS TO PRINT THE REPORT
+            report.PrinterName = DefaultPrinter
+            report.CreateDocument()
+            report.PrintingSystem.ShowMarginsWarning = False
+            report.Print()
+        End If
     End Sub
 End Class

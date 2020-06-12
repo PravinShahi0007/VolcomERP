@@ -420,6 +420,7 @@ Partial Class FormShipInvoiceDet
         '
         'CEPrintPreview
         '
+        Me.CEPrintPreview.EditValue = True
         Me.CEPrintPreview.Location = New System.Drawing.Point(5, 10)
         Me.CEPrintPreview.Name = "CEPrintPreview"
         Me.CEPrintPreview.Properties.Caption = "Preview"
