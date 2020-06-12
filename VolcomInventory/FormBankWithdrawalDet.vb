@@ -1119,7 +1119,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
         GVList.RefreshData()
         Dim gross_total As Double = 0.0
         Try
-            gross_total = Double.Parse(GVList.Columns("value").SummaryItem.SummaryValue.ToString)
+            gross_total = Double.Parse(GVList.Columns("value_view").SummaryItem.SummaryValue.ToString)
         Catch ex As Exception
         End Try
 
