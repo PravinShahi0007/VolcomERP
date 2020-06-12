@@ -60,7 +60,7 @@ INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
 WHERE pld.`id_pl_mrs`='" & dt.Rows(i)("id_report").ToString & "' AND CONCAT(md.mat_det_code,' - ',md.mat_det_name)='" & dt.Rows(i)("info_design").ToString & "'"
             Else
                 If FormInvMatDet.SLEPayType.EditValue.ToString = "1" Then 'packing list
-                    query = "SELECT md.`mat_det_code`,md.`mat_det_name`,pld.`pl_mrs_det_qty` AS qty,pld.`pl_mrs_det_price` AS price,(pld.`pl_mrs_det_qty`*pld.`pl_mrs_det_price`) AS amount
+                    query = "SELECT md.`mat_det_code`,md.`mat_det_name`,pld.`pl_mrs_det_qty` AS qty,ROUND(pld.`pl_mrs_det_price`,2) AS price,(pld.`pl_mrs_det_qty`*ROUND(pld.`pl_mrs_det_price`,2)) AS amount
 FROM tb_pl_mrs_det pld
 INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=pld.`id_mat_det_price`
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`

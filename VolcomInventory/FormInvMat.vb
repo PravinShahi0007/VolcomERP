@@ -60,7 +60,7 @@ GROUP BY invd.`id_inv_mat`"
                 GVInvoice.BestFitColumns()
             ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
                 'pl mrs
-                Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(pld.`pl_mrs_det_price`*pld.`pl_mrs_det_qty`) AS amount,0 AS `id_prod_order`,'' AS prod_order_number
+                Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(ROUND(pld.`pl_mrs_det_price`,2)*pld.`pl_mrs_det_qty`) AS amount,0 AS `id_prod_order`,'' AS prod_order_number
 ,'-' AS design_display_name
 FROM tb_pl_mrs_det pld
 INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
@@ -133,7 +133,7 @@ GROUP BY invd.`id_inv_mat`"
                     GVInvoice.BestFitColumns()
                 ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
                     'pl mrs
-                    Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(pld.`pl_mrs_det_price`*pld.`pl_mrs_det_qty`) AS amount,mrs.`id_prod_order`,po.`prod_order_number`
+                    Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(ROUND(pld.`pl_mrs_det_price`,2)*pld.`pl_mrs_det_qty`) AS amount,mrs.`id_prod_order`,po.`prod_order_number`
 ,dsg.`design_display_name`
 FROM tb_pl_mrs_det pld
 INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
