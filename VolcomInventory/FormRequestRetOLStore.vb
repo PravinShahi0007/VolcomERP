@@ -82,6 +82,7 @@
             TxtRetRequest.Text = data.Rows(0)("ret_req_number").ToString
             DEReqDate.EditValue = data.Rows(0)("ret_req_date")
             MENote.Text = data.Rows(0)("note").ToString
+            MEReason.Text = data.Rows(0)("ret_reason").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
@@ -230,9 +231,7 @@
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
-                    BtnSaveChanges.Visible = False
                     Cursor = Cursors.WaitCursor
-                    BtnSaveChanges.Visible = False
 
                     'main 
                     Dim query As String = "INSERT INTO tb_ol_store_ret_req(id_comp_group, sales_order_ol_shop_number, receive_cust_date, ret_req_number, ret_req_date, created_date, created_by, updated_date, updated_by, note, id_report_status, ret_reason) VALUES 
@@ -255,9 +254,6 @@
                         execute_non_query(query_det, True, "", "", "", "")
                     End If
 
-                    'submit
-                    submit_who_prepared(rmt, id, id_user)
-
                     ''refresh
                     FormOlStoreReturnList.viewRequest()
                     FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id)
@@ -267,21 +263,32 @@
                     Cursor = Cursors.Default
                 End If
             ElseIf action = "upd" Then
-                Cursor = Cursors.WaitCursor
-                Dim query As String = "UPDATE tb_ol_store_ret_req SET ret_req_number='" + ret_req_number + "', ret_reason='" + ret_reason + "', note='" + note + "'
-                WHERE id_ol_store_ret_req='" + id + "' "
-                execute_non_query(query, True, "", "", "", "")
-                FormOlStoreReturnList.viewRequest()
-                FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id)
-                action = "upd"
-                actionLoad()
-                Cursor = Cursors.Default
+                updateHeader()
             End If
         End If
     End Sub
 
+    Sub updateHeader()
+        Cursor = Cursors.WaitCursor
+        Dim ret_req_number As String = addSlashes(TxtRetRequest.Text)
+        Dim note As String = addSlashes(MENote.Text)
+        Dim ret_reason As String = addSlashes(MEReason.Text)
+        Dim query As String = "UPDATE tb_ol_store_ret_req SET ret_req_number='" + ret_req_number + "', ret_reason='" + ret_reason + "', note='" + note + "'
+        WHERE id_ol_store_ret_req='" + id + "' "
+        execute_non_query(query, True, "", "", "", "")
+        FormOlStoreReturnList.viewRequest()
+        FormOlStoreReturnList.GVRequest.FocusedRowHandle = find_row(FormOlStoreReturnList.GVRequest, "id_ol_store_ret_req", id)
+        action = "upd"
+        actionLoad()
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
-        saveChanges()
+        If action = "ins" Then
+            saveChanges()
+        ElseIf action = "upd" Then
+            updateHeader()
+        End If
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
@@ -407,7 +414,7 @@
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this request?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            saveChanges()
+            updateHeader()
 
             'update confirm
             Dim query As String = "UPDATE tb_ol_store_ret_req SET is_confirm=1 WHERE id_ol_store_ret_req='" + id + "'"
