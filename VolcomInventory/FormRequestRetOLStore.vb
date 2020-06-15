@@ -357,7 +357,7 @@
                 FROM tb_doc doc
                 LEFT JOIN tb_m_user usr ON usr.id_user=doc.id_user_upload
                 LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-                WHERE report_mark_type='" & rmt & "' AND id_report='" & id & "'
+                WHERE doc.report_mark_type='" & rmt & "' AND doc.id_report='" & id & "' AND doc.id_user_upload = (SELECT id_user FROM tb_report_mark WHERE id_report_status = '1' AND id_report = '" & id & "' AND report_mark_type = '" & rmt & "')
             ", -1, True, "", "", "", "")
 
             Dim path As String = Application.StartupPath & "\download\"
@@ -399,7 +399,7 @@
 
                         pb.LocationF = New PointF(x, y)
 
-                        report.Detail2.Controls.Add(pb)
+                        report.XPLampiran.Controls.Add(pb)
                     End If
 
                 End If
