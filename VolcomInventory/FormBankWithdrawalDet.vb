@@ -1119,7 +1119,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
         GVList.RefreshData()
         Dim gross_total As Double = 0.0
         Try
-            gross_total = Double.Parse(GVList.Columns("value_view").SummaryItem.SummaryValue.ToString)
+            gross_total = Double.Parse(GVList.Columns("value").SummaryItem.SummaryValue.ToString)
         Catch ex As Exception
         End Try
 
@@ -1140,7 +1140,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
             Dim val As Decimal = 0
             Dim id_dc As String = GVList.GetRowCellValue(rh, "id_dc").ToString
             If id_dc = "2" Then 'credit
-                val = e.Value * -1
+                val = Math.Abs(e.Value) * -1
             Else
                 val = e.Value
             End If
@@ -1160,8 +1160,14 @@ WHERE py.`id_pn`='" & id_payment & "'"
             'cek paid no exceed balance
             Dim paid_more As Boolean = False
             For i As Integer = 0 To GVList.RowCount - 1
-                If GVList.GetRowCellValue(i, "value") > GVList.GetRowCellValue(i, "balance_due") Then
-                    paid_more = True
+                If GVList.GetRowCellValue(i, "value") < 0 And GVList.GetRowCellValue(i, "balance_due") < 0 Then
+                    If Math.Abs(GVList.GetRowCellValue(i, "value")) > Math.Abs(GVList.GetRowCellValue(i, "balance_due")) Then
+                        paid_more = True
+                    End If
+                Else
+                    If GVList.GetRowCellValue(i, "value") > GVList.GetRowCellValue(i, "balance_due") Then
+                        paid_more = True
+                    End If
                 End If
             Next
             '
