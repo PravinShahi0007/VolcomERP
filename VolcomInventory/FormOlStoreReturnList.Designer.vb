@@ -82,6 +82,10 @@ Partial Class FormOlStoreReturnList
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReceived = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPFollowUp = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCFollowUp = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPRequestList = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -100,6 +104,9 @@ Partial Class FormOlStoreReturnList
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         Me.XTPReceived.SuspendLayout()
+        Me.XTPFollowUp.SuspendLayout()
+        CType(Me.XTCFollowUp, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCFollowUp.SuspendLayout()
         Me.SuspendLayout()
         '
         'RICECheck
@@ -423,7 +430,7 @@ Partial Class FormOlStoreReturnList
         Me.XTCData.SelectedTabPage = Me.XTPRequest
         Me.XTCData.Size = New System.Drawing.Size(1164, 559)
         Me.XTCData.TabIndex = 2
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPReceived})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPReceived, Me.XTPFollowUp})
         '
         'XTPRequest
         '
@@ -613,6 +620,37 @@ Partial Class FormOlStoreReturnList
         Me.XTPReceived.Size = New System.Drawing.Size(1158, 531)
         Me.XTPReceived.Text = "Received List"
         '
+        'XTPFollowUp
+        '
+        Me.XTPFollowUp.Controls.Add(Me.XTCFollowUp)
+        Me.XTPFollowUp.Name = "XTPFollowUp"
+        Me.XTPFollowUp.Size = New System.Drawing.Size(1158, 531)
+        Me.XTPFollowUp.Text = "Follow Up"
+        '
+        'XTCFollowUp
+        '
+        Me.XTCFollowUp.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCFollowUp.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCFollowUp.Location = New System.Drawing.Point(0, 0)
+        Me.XTCFollowUp.Name = "XTCFollowUp"
+        Me.XTCFollowUp.SelectedTabPage = Me.XTPList
+        Me.XTCFollowUp.Size = New System.Drawing.Size(1158, 531)
+        Me.XTCFollowUp.TabIndex = 0
+        Me.XTCFollowUp.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPRequestList})
+        '
+        'XTPList
+        '
+        Me.XTPList.Name = "XTPList"
+        Me.XTPList.Size = New System.Drawing.Size(1129, 525)
+        Me.XTPList.Text = "List"
+        Me.XTPList.UseWaitCursor = True
+        '
+        'XTPRequestList
+        '
+        Me.XTPRequestList.Name = "XTPRequestList"
+        Me.XTPRequestList.Size = New System.Drawing.Size(1129, 525)
+        Me.XTPRequestList.Text = "Requested List"
+        '
         'FormOlStoreReturnList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -644,6 +682,9 @@ Partial Class FormOlStoreReturnList
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.XTPReceived.ResumeLayout(False)
+        Me.XTPFollowUp.ResumeLayout(False)
+        CType(Me.XTCFollowUp, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCFollowUp.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -709,4 +750,8 @@ Partial Class FormOlStoreReturnList
     Friend WithEvents GridColumnid_ol_store_ret_req_list As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents DetailRefundToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XTPFollowUp As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTCFollowUp As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPRequestList As DevExpress.XtraTab.XtraTabPage
 End Class
