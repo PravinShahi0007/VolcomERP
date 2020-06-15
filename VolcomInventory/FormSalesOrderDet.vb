@@ -413,9 +413,9 @@ Public Class FormSalesOrderDet
                     If d_already.Rows(0)("total").ToString = "0" Then
                         sku_already = False
 
-                        sku_in += d_already.Rows(0)("sku").ToString + ", "
+                        sku_in += GVItemList.GetRowCellValue(i, "code").ToString + ", "
 
-                        sku_copy += d_already.Rows(0)("sku").ToString + Environment.NewLine
+                        sku_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
                     End If
                 End If
             Next
