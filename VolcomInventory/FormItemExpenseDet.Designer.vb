@@ -68,7 +68,6 @@ Partial Class FormItemExpenseDet
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCompNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -689,7 +688,6 @@ Partial Class FormItemExpenseDet
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.SimpleButton1)
         Me.PanelControlNav.Controls.Add(Me.BtnDelete)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
@@ -697,16 +695,6 @@ Partial Class FormItemExpenseDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(928, 38)
         Me.PanelControlNav.TabIndex = 17
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(693, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(79, 34)
-        Me.SimpleButton1.TabIndex = 24
-        Me.SimpleButton1.Text = "Delete"
         '
         'BtnDelete
         '
@@ -1455,7 +1443,6 @@ Partial Class FormItemExpenseDet
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEPPH As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
 End Class

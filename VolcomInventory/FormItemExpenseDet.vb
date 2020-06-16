@@ -437,7 +437,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
                         If GVData.GetRowCellValue(d, "pph_percent") > 0 Then
                             id_acc_pph = "'" & GVData.GetRowCellValue(d, "id_acc_pph").ToString & "'"
                             pph_percent = decimalSQL(GVData.GetRowCellValue(d, "pph_percent").ToString)
-                            pph = decimalSQL(GVData.GetRowCellValue(d, "pph").ToString)
+                            pph = decimalSQL(GVData.GetRowCellValue(d, "pph_value").ToString)
                         End If
                         '
                         If d > 0 Then
@@ -728,7 +728,7 @@ WHERE c.id_comp='" + id_comp + "' "
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
         GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc]) OR ([pph_percent]>0 AND IsNullOrEmpty([id_acc_pph]))"
     End Sub
 End Class
