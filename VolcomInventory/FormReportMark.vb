@@ -5878,12 +5878,34 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                     )trx WHERE trx.debit != 0 OR trx.credit != 0"
                 execute_non_query(qjd, True, "", "", "", "")
                 '
-                If data_payment.Rows(0)("report_mark_type").ToString = "139" Or report_mark_type = "202" Then
-                    'close pay in tb_purc_order
-                    Dim qc As String = "UPDATE tb_purc_order po
+                If data_payment.Rows(0)("report_mark_type").ToString = "139" Or data_payment.Rows(0)("report_mark_type").ToString = "202" Then
+                    'check total
+                    Dim id_po As String = execute_query("SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + " LIMIT 1", 0, True, "", "", "", "")
+
+                    Dim value_pn As String = execute_query("
+                        SELECT ROUND(SUM(pn_det.value), 2) AS VALUE
+                        FROM tb_pn_det AS pn_det
+                        LEFT JOIN tb_pn AS pn ON pn_det.id_pn = pn.id_pn
+                        WHERE pn.report_mark_type = '" + data_payment.Rows(0)("report_mark_type").ToString + "' AND pn_det.id_report = '" + id_po + "' AND pn.id_report_status = 6
+                    ", 0, True, "", "", "", "")
+
+
+                    Dim value_po As String = execute_query("
+                        SELECT ROUND((SUM(pod.qty * (pod.value - pod.discount)) - po.disc_value + po.vat_value - po.pph_total), 2) AS VALUE
+                        FROM tb_purc_order po
+                        INNER JOIN tb_purc_order_det pod ON pod.id_purc_order = po.id_purc_order
+                        WHERE po.id_purc_order = '" + id_po + "'
+                    ", 0, True, "", "", "", "")
+
+                    If value_pn = value_po Then
+                        'close pay in tb_purc_order
+                        Dim qc As String = "UPDATE tb_purc_order po
                                                 INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
                                                 SET po.is_close_pay='1'"
-                    execute_non_query(qc, True, "", "", "", "")
+                        execute_non_query(qc, True, "", "", "", "")
+
+                    End If
+
                     'FormBankWithdrawal.load_po()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
                     'close expense
@@ -6062,6 +6084,11 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     SET pos.`is_close_rec_payment`=1
                     WHERE pyd.`id_rec_payment`='" & id_report & "'
                     AND pyd.`value`=balance_due AND pyd.`value` != 0;
+                    /*closing invoice ship*/
+                    UPDATE tb_invoice_ship ps
+                    INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=ps.id_invoice_ship AND pyd.`report_mark_type`=ps.`report_mark_type`
+                    SET ps.`is_close_rec`=1
+                    WHERE pyd.`id_rec_payment`='" & id_report & "';
                     /*updayte eval AR*/
                     UPDATE tb_ar_eval main
                     INNER JOIN (

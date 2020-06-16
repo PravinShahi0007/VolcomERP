@@ -413,9 +413,9 @@ Public Class FormSalesOrderDet
                     If d_already.Rows(0)("total").ToString = "0" Then
                         sku_already = False
 
-                        sku_in += d_already.Rows(0)("sku").ToString + ", "
+                        sku_in += GVItemList.GetRowCellValue(i, "code").ToString + ", "
 
-                        sku_copy += d_already.Rows(0)("sku").ToString + Environment.NewLine
+                        sku_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
                     End If
                 End If
             Next
@@ -1165,7 +1165,7 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
                         If data_filter_dupe.Length <= 0 Or id_commerce_type = "2" Then
 
                             'untuk akun tujuan sale dan normal
-                            If (id_account_type = "1" Or id_account_type = "2") And LEStatusSO.EditValue.ToString <> 8 Then
+                            If (id_account_type = "1" Or id_account_type = "2") And LEStatusSO.EditValue.ToString <> 8 And is_transfer_data <> "1" Then
                                 If (id_account_type <> data_filter(0)("id_design_cat").ToString) And data_filter(0)("design_price") > 0 Then
                                     GVItemList.SetRowCellValue(GVItemList.RowCount - 1, "code", "")
                                     GVItemList.FocusedRowHandle = GVItemList.RowCount - 1

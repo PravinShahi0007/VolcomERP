@@ -19,6 +19,9 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'Dim shp As New ClassShipInvoice()
+        'shp.id_invoice_ship = "-1"
+        'shp.create("25081")
         'Dim a As New ClassShopifyApi()
         'a.get_product()
 

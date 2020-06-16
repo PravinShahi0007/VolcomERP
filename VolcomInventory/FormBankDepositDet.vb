@@ -91,6 +91,36 @@ Public Class FormBankDepositDet
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
                     WHERE d.id_list_payout_trans=" + id_list_payout_trans + " 
                     UNION
+                    SELECT sp.id_invoice_ship AS `id_report`,
+                    sp.report_mark_type,rmt.report_mark_type_name,
+                    sp.`number` AS `number`, 
+                    cf.id_comp AS `id_comp`, 
+                    sp.id_acc_ar AS `id_acc`, coa.acc_name, coa.acc_description,
+                    cf.comp_number AS `comp_number`,c.`comp_number` AS `vendor`
+                    ,IFNULL(pyd.`value`,0.00) AS total_rec,
+                    sp.`value`-IFNULL(pyd.`value`,0.00) AS `value`,
+                    sp.value-IFNULL(pyd.`value`,0.00) AS `balance_due`,
+                    CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.end_period,'%d-%m-%y')) AS `note`,2 AS `id_dc`, 'K' AS `dc_code`,
+                    ABS((SELECT balance_due)) AS `value_view`
+                    FROM tb_list_payout_det d
+                    INNER JOIN tb_invoice_ship sp ON sp.id_invoice_ship = d.id_invoice_ship
+                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
+                    INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+                    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+                    INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+                    LEFT JOIN (
+                     SELECT pyd.id_report, pyd.report_mark_type, 
+                     COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+                     SUM(pyd.value) AS  `value`
+                     FROM tb_rec_payment_det pyd
+                     INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+                     WHERE py.`id_report_status`!=5
+                     GROUP BY pyd.id_report, pyd.report_mark_type
+                    ) pyd ON pyd.id_report = sp.id_invoice_ship AND pyd.report_mark_type = sp.report_mark_type
+                    LEFT JOIN tb_a_acc coa ON coa.id_acc = sp.id_acc_ar
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    WHERE d.id_list_payout_trans=" + id_list_payout_trans + " 
+                    UNION
                     SELECT '0' AS `id_report`,
                     '0' AS report_mark_type,'' AS report_mark_type_name,
                     '" + FormBankDeposit.GVPayout.GetFocusedRowCellValue("number").ToString + "' AS `number`, 

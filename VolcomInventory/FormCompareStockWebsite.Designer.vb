@@ -21,6 +21,9 @@ Partial Class FormCompareStockWebsite
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormCompareStockWebsite))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelLast = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SBExport = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControlStock = New DevExpress.XtraGrid.GridControl()
@@ -41,6 +44,9 @@ Partial Class FormCompareStockWebsite
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelLast)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.SBExport)
         Me.PanelControl1.Controls.Add(Me.SBSync)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -48,6 +54,34 @@ Partial Class FormCompareStockWebsite
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 40)
         Me.PanelControl1.TabIndex = 0
+        '
+        'LabelLast
+        '
+        Me.LabelLast.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLast.Location = New System.Drawing.Point(197, 13)
+        Me.LabelLast.Name = "LabelLast"
+        Me.LabelLast.Size = New System.Drawing.Size(5, 13)
+        Me.LabelLast.TabIndex = 4
+        Me.LabelLast.Text = "-"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(135, 13)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl1.TabIndex = 3
+        Me.LabelControl1.Text = "Last Sync : "
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(127, 36)
+        Me.SimpleButton1.TabIndex = 2
+        Me.SimpleButton1.Text = "View Last Sync"
         '
         'SBExport
         '
@@ -177,6 +211,7 @@ Partial Class FormCompareStockWebsite
         Me.Text = "Compare Stock Website"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.GridControlStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewStock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -196,4 +231,7 @@ Partial Class FormCompareStockWebsite
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBExport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelLast As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

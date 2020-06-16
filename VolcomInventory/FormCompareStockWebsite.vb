@@ -1,6 +1,10 @@
 ﻿Public Class FormCompareStockWebsite
     Private Sub FormCompareStockWebsite_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Cursor = Cursors.WaitCursor
+        Dim qry As String = "SELECT s.date AS `last_sync` FROM tb_m_stock_shopify s ORDER BY s.date DESC LIMIT 1 "
+        Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+        LabelLast.Text = DateTime.Parse(dt.Rows(0)("last_sync").ToString).ToString("dd MMMM yyyy ")
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormCompareStockWebsite_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -31,14 +35,18 @@
         cls.sync_stock()
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Compare stock with ERP")
+        viewCompare()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewCompare()
+        Cursor = Cursors.WaitCursor
         Dim query As String = "CALL view_stock_compare_erp_shopify()"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GridControlStock.DataSource = data
-
-        GridViewStock.BestFitColumns()
-        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
@@ -57,5 +65,9 @@
 
             infoCustom("File exported.")
         End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        viewCompare()
     End Sub
 End Class

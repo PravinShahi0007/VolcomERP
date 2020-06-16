@@ -327,6 +327,14 @@
                 Catch ex As Exception
                     stopCustom("Automatic journal failed. Please contact administrator. " + System.Environment.NewLine + ex.ToString)
                 End Try
+                'shipping invoice
+                Try
+                    Dim shp As New ClassShipInvoice()
+                    shp.id_invoice_ship = "-1"
+                    shp.create(id_report_par)
+                Catch ex As Exception
+
+                End Try
             End If
 
             'unique
