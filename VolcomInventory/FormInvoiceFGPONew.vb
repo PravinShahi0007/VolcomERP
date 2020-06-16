@@ -148,7 +148,8 @@ HAVING qty_rec_remaining > 0"
                             Dim qty_used As Integer = 0
 
                             If (qty_po - dt_det.Rows(i)("qty_rec_remaining")) < 0 Then
-                                qty_used = dt_det.Rows(i)("qty_rec_remaining") - qty_po
+                                'qty_used = dt_det.Rows(i)("qty_rec_remaining") - qty_po
+                                qty_used = qty_po
                             Else
                                 qty_used = dt_det.Rows(i)("qty_rec_remaining")
                             End If
