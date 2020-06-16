@@ -330,7 +330,7 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
     Sub load_vendor()
         Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
-                                WHERE c.id_comp_cat='1' OR c.id_comp_cat='8' "
+                                WHERE (c.id_comp_cat='1' OR c.id_comp_cat='8') "
 
         If id_invoice = "-1" Then
             query += " AND c.is_active=1"

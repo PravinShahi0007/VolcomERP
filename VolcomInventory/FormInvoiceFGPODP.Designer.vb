@@ -81,6 +81,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPORef = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCInvNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCur = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -116,7 +117,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCPORef = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -779,6 +779,16 @@ Partial Class FormInvoiceFGPODP
         Me.GCReff.VisibleIndex = 1
         Me.GCReff.Width = 168
         '
+        'GCPORef
+        '
+        Me.GCPORef.AppearanceCell.Options.UseTextOptions = True
+        Me.GCPORef.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCPORef.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCPORef.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCPORef.Caption = "PO Reff"
+        Me.GCPORef.FieldName = "prod_order_number"
+        Me.GCPORef.Name = "GCPORef"
+        '
         'GCInvNumber
         '
         Me.GCInvNumber.AppearanceCell.Options.UseTextOptions = True
@@ -1123,16 +1133,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 1
         Me.GridColumncc.Width = 39
-        '
-        'GCPORef
-        '
-        Me.GCPORef.AppearanceCell.Options.UseTextOptions = True
-        Me.GCPORef.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCPORef.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCPORef.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCPORef.Caption = "PO Reff"
-        Me.GCPORef.FieldName = "prod_order_number"
-        Me.GCPORef.Name = "GCPORef"
         '
         'FormInvoiceFGPODP
         '
