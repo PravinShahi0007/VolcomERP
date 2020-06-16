@@ -17,6 +17,9 @@
         If doc_type = "1" Or doc_type = "3" Then
             query += " WHERE id_type='1' OR id_type='2'"
         End If
+        If doc_type = "4" Then
+            query += " WHERE id_type='6'"
+        End If
         viewSearchLookupQuery(SLEPayType, query, "id_type", "pn_type", "id_type")
     End Sub
 
@@ -61,9 +64,15 @@
             DEDueDateInv.Properties.ReadOnly = False
             DERefDate.Properties.ReadOnly = False
             '
-            If doc_type = "1" Or doc_type = "3" Then
+            If doc_type = "1" Or doc_type = "3" Or doc_type = "4" Then
                 SLEPayType.Properties.ReadOnly = False
                 SLEVendor.Properties.ReadOnly = False
+
+                If doc_type = "4" Then
+                    SLEPayType.EditValue = "6"
+
+                    SLEPayType.Properties.ReadOnly = True
+                End If
             Else
                 GCReff.OptionsColumn.AllowFocus = False
                 GCDescription.OptionsColumn.AllowFocus = False
