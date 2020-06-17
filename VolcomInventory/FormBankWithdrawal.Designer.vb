@@ -19,13 +19,14 @@ Partial Class FormBankWithdrawal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawal))
         Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPOList = New DevExpress.XtraTab.XtraTabControl()
         Me.XPOListActive = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPOList = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItemAdd = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewBPLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPOList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -174,7 +175,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGPO = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -368,6 +369,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn184 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePaymentDPKhusus = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEKursDPKhusus = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDPKhususVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn185 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -391,10 +394,8 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TEKursDPKhusus = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -506,6 +507,7 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemCheckEdit11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
+        CType(Me.TEKursDPKhusus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDPKhususVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPWaitingList.SuspendLayout()
@@ -514,7 +516,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
-        CType(Me.TEKursDPKhusus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -2691,7 +2692,7 @@ Partial Class FormBankWithdrawal
         Me.XTPTHR.Controls.Add(Me.SBPayTHR)
         Me.XTPTHR.Name = "XTPTHR"
         Me.XTPTHR.Size = New System.Drawing.Size(1091, 485)
-        Me.XTPTHR.Text = "THR"
+        Me.XTPTHR.Text = "Payroll/THR"
         '
         'GCTHR
         '
@@ -4082,6 +4083,33 @@ Partial Class FormBankWithdrawal
         Me.PanelControl8.Size = New System.Drawing.Size(1091, 44)
         Me.PanelControl8.TabIndex = 21
         '
+        'TEKursDPKhusus
+        '
+        Me.TEKursDPKhusus.EditValue = ""
+        Me.TEKursDPKhusus.Location = New System.Drawing.Point(266, 12)
+        Me.TEKursDPKhusus.Name = "TEKursDPKhusus"
+        Me.TEKursDPKhusus.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKursDPKhusus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKursDPKhusus.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEKursDPKhusus.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKursDPKhusus.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEKursDPKhusus.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEKursDPKhusus.Properties.EditValueChangedDelay = 1
+        Me.TEKursDPKhusus.Properties.Mask.EditMask = "N2"
+        Me.TEKursDPKhusus.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKursDPKhusus.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKursDPKhusus.Size = New System.Drawing.Size(161, 20)
+        Me.TEKursDPKhusus.TabIndex = 8920
+        Me.TEKursDPKhusus.TabStop = False
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Location = New System.Drawing.Point(237, 15)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl13.TabIndex = 8919
+        Me.LabelControl13.Text = "Kurs"
+        '
         'SLEDPKhususVendor
         '
         Me.SLEDPKhususVendor.Location = New System.Drawing.Point(54, 12)
@@ -4287,33 +4315,6 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'TEKursDPKhusus
-        '
-        Me.TEKursDPKhusus.EditValue = ""
-        Me.TEKursDPKhusus.Location = New System.Drawing.Point(266, 12)
-        Me.TEKursDPKhusus.Name = "TEKursDPKhusus"
-        Me.TEKursDPKhusus.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEKursDPKhusus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKursDPKhusus.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEKursDPKhusus.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKursDPKhusus.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEKursDPKhusus.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEKursDPKhusus.Properties.EditValueChangedDelay = 1
-        Me.TEKursDPKhusus.Properties.Mask.EditMask = "N2"
-        Me.TEKursDPKhusus.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEKursDPKhusus.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEKursDPKhusus.Size = New System.Drawing.Size(161, 20)
-        Me.TEKursDPKhusus.TabIndex = 8920
-        Me.TEKursDPKhusus.TabStop = False
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Location = New System.Drawing.Point(237, 15)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl13.TabIndex = 8919
-        Me.LabelControl13.Text = "Kurs"
-        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4444,6 +4445,7 @@ Partial Class FormBankWithdrawal
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
         Me.PanelControl8.PerformLayout()
+        CType(Me.TEKursDPKhusus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDPKhususVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPWaitingList.ResumeLayout(False)
@@ -4452,7 +4454,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
-        CType(Me.TEKursDPKhusus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
