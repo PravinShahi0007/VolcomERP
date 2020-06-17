@@ -65,7 +65,7 @@
                 LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
                 LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
                 LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pdel.id_combine = pdelc.id_combine
-                WHERE a.id_cargo = " + FormDelManifestDet.SLUE3PL.EditValue.ToString + " AND adet.id_wh_awb_det NOT IN (SELECT x.id_wh_awb_det FROM tb_del_manifest_det AS x LEFT JOIN tb_del_manifest AS y ON x.id_del_manifest = y.id_del_manifest WHERE y.id_report_status <> 5 AND x.id_del_manifest <> " + FormDelManifestDet.id_del_manifest + ") AND adet.id_wh_awb_det NOT IN (" + query_in + ") " + query_where + "
+                WHERE a.id_cargo = " + FormDelManifestDet.SLUE3PL.EditValue.ToString + " AND a.awbill_no <> '' AND adet.id_wh_awb_det NOT IN (SELECT x.id_wh_awb_det FROM tb_del_manifest_det AS x LEFT JOIN tb_del_manifest AS y ON x.id_del_manifest = y.id_del_manifest WHERE y.id_report_status <> 5 AND x.id_del_manifest <> " + FormDelManifestDet.id_del_manifest + ") AND adet.id_wh_awb_det NOT IN (" + query_in + ") " + query_where + "
             ) AS tb
             ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC
         "
