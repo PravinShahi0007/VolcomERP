@@ -154,6 +154,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             TxtPaymentStatus.Text = data.Rows(0)("paid_status").ToString
 
             viewDetail()
+            calculate()
             allow_status()
         End If
     End Sub

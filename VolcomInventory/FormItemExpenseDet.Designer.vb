@@ -1024,6 +1024,7 @@ Partial Class FormItemExpenseDet
         Me.RISLECOAPPH.AutoHeight = False
         Me.RISLECOAPPH.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RISLECOAPPH.Name = "RISLECOAPPH"
+        Me.RISLECOAPPH.NullText = "- No PPH -"
         Me.RISLECOAPPH.View = Me.GridView4
         '
         'GridView4
