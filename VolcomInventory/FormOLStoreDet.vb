@@ -1,4 +1,10 @@
 ﻿Public Class FormOLStoreDet
+    Dim id_wh_induk_normal As String = "-1"
+    Dim id_wh_induk_normal_cc As String = "-1"
+    Dim id_wh_induk_sale As String = "-1"
+    Dim id_wh_induk_sale_cc As String = "-1"
+    Dim is_use_virtual_account As String = "2"
+
     Private Sub BtnBrowseFile_Click(sender As Object, e As EventArgs) Handles BtnBrowseFile.Click
         Cursor = Cursors.WaitCursor
         FormImportExcel.id_pop_up = "41"
@@ -9,6 +15,22 @@
     Private Sub FormOLStoreDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
         viewDetail()
+
+        'load gudang induk
+        Dim query As String = "SELECT o.is_use_virtual_account, 
+        IFNULL(o.id_wh_contact_online_normal,0) AS `id_wh_contact_online_normal`, IFNULL(n.id_comp,0) AS  `id_wh_online_normal`,
+        IFNULL(o.id_wh_contact_online_sale,0) AS `id_wh_contact_online_sale`, IFNULL(s.id_comp,0) AS  `id_wh_online_sale`
+        FROM tb_opt o 
+        LEFT JOIN tb_m_comp_contact nc ON nc.id_comp_contact = o.id_wh_contact_online_normal
+        LEFT JOIN tb_m_comp_contact n ON n.id_comp = nc.id_comp
+        LEFT JOIN tb_m_comp_contact sc ON sc.id_comp_contact = o.id_wh_contact_online_sale
+        LEFT JOIN tb_m_comp_contact s ON s.id_comp = sc.id_comp "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        is_use_virtual_account = data.Rows(0)("is_use_virtual_account").ToString
+        id_wh_induk_normal = data.Rows(0)("id_wh_online_normal").ToString
+        id_wh_induk_normal_cc = data.Rows(0)("id_wh_contact_online_normal").ToString
+        id_wh_induk_sale = data.Rows(0)("id_wh_online_sale").ToString
+        id_wh_induk_sale_cc = data.Rows(0)("id_wh_contact_online_sale").ToString
     End Sub
 
     Sub viewDetail()
