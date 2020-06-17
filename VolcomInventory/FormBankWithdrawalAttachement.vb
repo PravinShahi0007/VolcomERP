@@ -6,6 +6,8 @@
         Dim query_pph As String = "(SELECT 0 AS id_acc, '' AS acc_name, '' AS acc_description, '' AS acc) UNION (SELECT id_acc, acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) as acc FROM tb_a_acc WHERE id_status = 1 AND id_is_det = 2)"
         viewSearchLookupQuery(SLEPPHAccount, query_pph, "id_acc", "acc", "id_acc")
 
+        SLEPPHAccount.EditValue = "0"
+
         Dim query As String = "
             SELECT po.purc_order_number, c.comp_number, c.comp_name, IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent, po.vat_value, po.is_disc_percent ,po.disc_percent, po.disc_value 
             FROM tb_purc_order AS po
