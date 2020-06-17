@@ -623,7 +623,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             SELECT 'no' AS is_check, p.id_payroll, p.report_number, DATE_FORMAT(p.periode_end, '%Y') AS payroll_periode, t.payroll_type, 0 AS amount
             FROM tb_emp_payroll AS p
             LEFT JOIN tb_emp_payroll_type AS t ON p.id_payroll_type = t.id_payroll_type
-            WHERE p.id_report_status = 6 AND t.is_thr = 1 AND p.is_close_pay = 2
+            WHERE p.id_report_status = 6 AND p.is_close_pay = 2
             ORDER BY p.periode_end DESC, p.id_payroll_type ASC
         "
 
@@ -631,16 +631,33 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
         'amount
         For i = 0 To data.Rows.Count - 1
-            Dim query_a As String = "CALL view_payroll_sum(" + data.Rows(i)("id_payroll").ToString + ")"
+            Dim id_acc As String = execute_query("
+                SELECT map.id_acc
+                FROM tb_coa_map_departement AS map
+                LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
+                LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
+                WHERE type = 6
+            ", 0, True, "", "", "", "")
+
+            Dim query_a As String = "
+                SELECT SUM(CAST(a.credit AS DECIMAL(13, 2))) AS credit
+                FROM tb_a_acc_trans_det a 
+                INNER JOIN tb_a_acc b ON a.id_acc = b.id_acc 
+                LEFT JOIN tb_m_comp c ON c.id_comp = a.id_comp
+                WHERE a.id_acc_trans = (SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad WHERE ad.report_mark_type = 192 AND ad.id_report = " + data.Rows(i)("id_payroll").ToString + " GROUP BY ad.id_acc_trans) AND a.id_acc = (" + id_acc + ")
+            "
 
             Dim data_a As DataTable = execute_query(query_a, -1, True, "", "", "", "")
 
             Dim total As Integer = 0
 
             For j = 0 To data_a.Rows.Count - 1
-                If data_a.Rows(j)("is_store").ToString = "2" Then
-                    total += data_a.Rows(j)("salary")
-                End If
+                Dim credit As Integer = 0
+
+                Try
+                    total += Decimal.Parse(data_a.Rows(j)("credit").ToString)
+                Catch ex As Exception
+                End Try
             Next
 
             data.Rows(i)("amount") = total

@@ -590,6 +590,49 @@
                     MENote.Text = me_note
 
                     calculate_amount()
+                Else
+                    Dim data_map As DataTable = execute_query("
+                        SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
+                        FROM tb_coa_map_departement AS map
+                        LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
+                        LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
+                        WHERE type = 6
+                    ", -1, True, "", "", "", "")
+
+                    Dim id_acc As Integer = data_map.Rows(0)("id_acc")
+                    Dim acc_name As String = data_map.Rows(0)("acc_name").ToString
+                    Dim acc_description As String = data_map.Rows(0)("acc_description").ToString
+                    Dim vendor As String = data_map.Rows(0)("vendor").ToString
+                    Dim id_comp As Integer = data_map.Rows(0)("id_comp")
+                    Dim comp_number As String = data_map.Rows(0)("comp_number").ToString
+                    Dim balance As Decimal = FormBankWithdrawal.GVTHR.Columns("amount").SummaryItem.SummaryValue
+
+                    Dim note As String = execute_query("SELECT CONCAT('Gaji ', DATE_FORMAT(periode_end, '%M %Y')) AS note FROM tb_emp_payroll WHERE id_payroll = " + FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_payroll").ToString, 0, True, "", "", "", "")
+
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_payroll").ToString
+                    newRow("report_mark_type") = "192"
+                    newRow("id_acc") = id_acc
+                    newRow("acc_name") = acc_name
+                    newRow("acc_description") = acc_description
+                    newRow("vendor") = vendor
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = id_comp
+                    newRow("comp_number") = comp_number
+                    newRow("number") = FormBankWithdrawal.GVTHR.GetRowCellValue(0, "report_number").ToString
+                    newRow("total_pay") = 0
+                    newRow("value") = balance
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = balance
+                    newRow("value_view") = balance
+                    newRow("balance_due") = balance
+                    newRow("note") = note + " - via payroll"
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                    calculate_amount()
                 End If
             ElseIf report_mark_type = "118" Then 'refund
                 'load header
