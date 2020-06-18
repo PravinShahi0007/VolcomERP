@@ -24,6 +24,7 @@
 
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEKurs.EditValue = 1.0
+        TEKursDPKhusus.EditValue = 1.0
         '
         load_vendor()
         load_trans_type()
@@ -36,6 +37,7 @@
         load_vendor_fgpo()
         load_vendor_refund()
         load_group_store_cn()
+        load_vendor_dpkhusus()
 
         DECAFrom.EditValue = Date.Parse(Now)
         DECATo.EditValue = Date.Parse(Now)
@@ -180,6 +182,13 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 
         GCFGPO.DataSource = data
         GVFGPO.BestFitColumns()
+    End Sub
+    '
+    Sub load_vendor_dpkhusus()
+        Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                WHERE c.id_comp_cat='1' OR c.id_comp_cat='8' AND c.is_active=1"
+        viewSearchLookupQuery(SLEDPKhususVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
     '
     Sub load_po()
@@ -611,10 +620,10 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
     Sub view_thr()
         Dim query As String = "
-            SELECT 'no' AS is_check, p.id_payroll, p.report_number, DATE_FORMAT(p.periode_end, '%Y') AS payroll_periode, t.payroll_type, 0 AS amount
+            SELECT 'no' AS is_check, p.id_payroll, p.report_number, DATE_FORMAT(p.periode_end, '%M %Y') AS payroll_periode, t.payroll_type, 0 AS amount
             FROM tb_emp_payroll AS p
             LEFT JOIN tb_emp_payroll_type AS t ON p.id_payroll_type = t.id_payroll_type
-            WHERE p.id_report_status = 6 AND t.is_thr = 1 AND p.is_close_pay = 2
+            WHERE p.id_report_status = 6 AND p.is_close_pay = 2
             ORDER BY p.periode_end DESC, p.id_payroll_type ASC
         "
 
@@ -622,16 +631,33 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
         'amount
         For i = 0 To data.Rows.Count - 1
-            Dim query_a As String = "CALL view_payroll_sum(" + data.Rows(i)("id_payroll").ToString + ")"
+            Dim id_acc As String = execute_query("
+                SELECT map.id_acc
+                FROM tb_coa_map_departement AS map
+                LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
+                LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
+                WHERE type = 6
+            ", 0, True, "", "", "", "")
+
+            Dim query_a As String = "
+                SELECT SUM(CAST(a.credit AS DECIMAL(13, 2))) AS credit
+                FROM tb_a_acc_trans_det a 
+                INNER JOIN tb_a_acc b ON a.id_acc = b.id_acc 
+                LEFT JOIN tb_m_comp c ON c.id_comp = a.id_comp
+                WHERE a.id_acc_trans = (SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad WHERE ad.report_mark_type = 192 AND ad.id_report = " + data.Rows(i)("id_payroll").ToString + " GROUP BY ad.id_acc_trans) AND a.id_acc = (" + id_acc + ")
+            "
 
             Dim data_a As DataTable = execute_query(query_a, -1, True, "", "", "", "")
 
             Dim total As Integer = 0
 
             For j = 0 To data_a.Rows.Count - 1
-                If data_a.Rows(j)("is_store").ToString = "2" Then
-                    total += data_a.Rows(j)("salary")
-                End If
+                Dim credit As Integer = 0
+
+                Try
+                    total += Decimal.Parse(data_a.Rows(j)("credit").ToString)
+                Catch ex As Exception
+                End Try
             Next
 
             data.Rows(i)("amount") = total
@@ -990,5 +1016,85 @@ GROUP BY sr.`id_sales_return`"
         FormBankWithdrawalDet.id_pay_type = "2"
         FormBankWithdrawalDet.ShowDialog()
         makeSafeGV(GVCN)
+    End Sub
+
+    Private Sub BViewDPKhususPay_Click(sender As Object, e As EventArgs) Handles BViewDPKhususPay.Click
+        Dim where_string As String = ""
+
+        If Not SLEDPKhususVendor.EditValue.ToString = "0" Then
+            where_string = " AND c.id_comp = " & SLEDPKhususVendor.EditValue.ToString & " "
+            BCreatePaymentDPKhusus.Visible = True
+        Else
+            BCreatePaymentDPKhusus.Visible = False
+        End If
+
+        Dim kursx As String = decimalSQL(TEKursDPKhusus.EditValue.ToString)
+
+        Dim query As String = "
+            -- payment
+	        SELECT 
+	        'no' AS is_check,1 AS is_dc,'189' AS report_mark_type,acc.id_acc,acc.acc_name,acc.acc_description,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS `type`,pn.number,pn.id_pn_fgpo AS id_report,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
+	        ,det.amount AS total_bpl
+	        ,det.amount_now_kurs AS total 
+	        ,IFNULL(payment.value,0) AS total_paid
+	        ,IFNULL(payment_pending.jml,0) AS total_pending
+	        ,(det.amount - IFNULL(payment.value,0)) AS balance
+	        ,cf.id_comp AS `id_comp_default`, cf.comp_number AS `comp_number_default`
+	        ,det.value_bef_kurs,det.`id_currency`,det.`currency`,det.`kurs`
+	        ,det.vat AS vat_bpl,det.amount_selisih_kurs
+	        FROM tb_pn_fgpo pn
+	        INNER JOIN tb_m_comp cf ON cf.id_comp=1
+	        INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+	        INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+	        INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp` " & where_string & "
+	        INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap
+	        INNER JOIN (
+		        SELECT pnd.id_pn_fgpo
+		        ,SUM(pnd.`value`+pnd.`vat`) AS amount
+		        ,SUM(pnd.`vat`) AS vat
+		        ,SUM(pnd.`value_bef_kurs`) AS value_bef_kurs
+		        ,CAST(SUM(IF(pnd.id_currency=2,(pnd.`value_bef_kurs`*pnd.`kurs`)-(pnd.`value_bef_kurs`*" & kursx & "),0)) AS DECIMAL(13,2)) AS amount_selisih_kurs 
+		        ,CAST(SUM(IF(pnd.id_currency=2,((pnd.`value_bef_kurs`*" & kursx & ")+pnd.`vat`),(pnd.`value`+pnd.`vat`))) AS DECIMAL(13,2)) AS amount_now_kurs 
+		        ,cur.`id_currency`,cur.`currency`,pnd.`kurs`
+		        FROM tb_pn_fgpo_det pnd
+		        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo` AND pn.`is_open`='1' AND pn.`id_report_status`=6
+		        INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pnd.`id_currency`
+		        INNER JOIN tb_m_comp c ON c.id_comp=pn.id_comp " & where_string & "
+		        GROUP BY pnd.`id_pn_fgpo`
+	        ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo` AND det.amount>0
+	        LEFT JOIN
+	        (
+		        SELECT COUNT(pyd.id_report) AS jml,pyd.id_report FROM `tb_pn_det` pyd
+		        INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='189'
+		        GROUP BY pyd.id_report
+	        )payment_pending ON payment_pending.id_report=pn.id_pn_fgpo
+	        LEFT JOIN
+	        (
+		        SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
+		        INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND pyd.report_mark_type='189'
+		        GROUP BY pyd.id_report
+	        )payment ON payment.id_report=pn.id_pn_fgpo
+	        INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+	        WHERE pn.is_open=1 AND pn.id_report_status=6 AND pn.doc_type=4
+        "
+
+        GCDPKhusus.DataSource = execute_query(query, -1, True, "", "", "", "")
+
+        GVDPKhusus.BestFitColumns()
+    End Sub
+
+    Private Sub BCreatePaymentDPKhusus_Click(sender As Object, e As EventArgs) Handles BCreatePaymentDPKhusus.Click
+        GVDPKhusus.ActiveFilterString = ""
+        GVDPKhusus.ActiveFilterString = "[is_check]='yes'"
+
+        If GVDPKhusus.RowCount > 0 Then
+            FormBankWithdrawalDet.TEKurs.EditValue = TEKursDPKhusus.EditValue
+            FormBankWithdrawalDet.report_mark_type = "189"
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("Please select item first.")
+        End If
+
+        GVDPKhusus.ActiveFilterString = ""
     End Sub
 End Class

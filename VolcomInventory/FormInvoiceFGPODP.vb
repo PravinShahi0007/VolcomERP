@@ -17,6 +17,9 @@
         If doc_type = "1" Or doc_type = "3" Then
             query += " WHERE id_type='1' OR id_type='2'"
         End If
+        If doc_type = "4" Then
+            query += " WHERE id_type='6'"
+        End If
         viewSearchLookupQuery(SLEPayType, query, "id_type", "pn_type", "id_type")
     End Sub
 
@@ -61,9 +64,15 @@
             DEDueDateInv.Properties.ReadOnly = False
             DERefDate.Properties.ReadOnly = False
             '
-            If doc_type = "1" Or doc_type = "3" Then
+            If doc_type = "1" Or doc_type = "3" Or doc_type = "4" Then
                 SLEPayType.Properties.ReadOnly = False
                 SLEVendor.Properties.ReadOnly = False
+
+                If doc_type = "4" Then
+                    SLEPayType.EditValue = "6"
+
+                    SLEPayType.Properties.ReadOnly = True
+                End If
             Else
                 GCReff.OptionsColumn.AllowFocus = False
                 GCDescription.OptionsColumn.AllowFocus = False
@@ -321,7 +330,12 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
     Sub load_vendor()
         Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
-                                WHERE c.id_comp_cat='1' OR c.id_comp_cat='8' "
+                                WHERE (c.id_comp_cat='1' OR c.id_comp_cat='8') "
+
+        If id_invoice = "-1" Then
+            query += " AND c.is_active=1"
+        End If
+
         viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
@@ -401,7 +415,7 @@ VALUES ('" & SLEPayType.EditValue.ToString & "','" & SLEVatAcc.EditValue.ToStrin
                 query = ""
                 For i = 0 To GVList.RowCount - 1 '
                     query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,id_prod_order,`id_acc`,`id_report`,`report_mark_type`,report_number,info_design,qty,id_currency,value_bef_kurs,kurs,`value`,`vat`,`inv_number`,`note`)
-VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_acc").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & GVList.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value_bef_kurs").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "kurs").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "valuex").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_acc").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "info_design").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & GVList.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value_bef_kurs").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "kurs").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "valuex").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
                 Next
                 execute_non_query(query, True, "", "", "", "")
                 '

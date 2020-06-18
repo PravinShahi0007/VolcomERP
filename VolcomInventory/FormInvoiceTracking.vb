@@ -259,6 +259,8 @@
             " + cond_promo + "
             " + cond_period + "
             GROUP BY sp.`id_sales_pos` 
+            HAVING 1=1 " + cond_having + "
+            " + cond_having_period_bbm + "
             UNION
             SELECT 'no' AS is_check,sp.is_close_rec AS `is_close_rec_payment`,sp.id_invoice_ship AS id_sales_pos,'' AS sales_pos_note,sp.number AS sales_pos_number,
             0 AS id_memo_type,'' AS `memo_type`,2 AS `is_receive_payment`,sp.created_date AS `sales_pos_date`,sp.id_comp_contact AS `id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,
