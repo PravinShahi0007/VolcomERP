@@ -34,7 +34,7 @@ Public Class FormInvMatDet
                 Try
                     For i = 0 To FormInvMat.GVPL.RowCount - 1
                         If is_deposit = "1" Then
-                            Dim query As String = "SELECT md.`mat_det_code`,md.`mat_det_name`,pld.`pl_mrs_det_qty` AS qty,pld.`pl_mrs_det_price` AS price,(pld.`pl_mrs_det_qty`*pld.`pl_mrs_det_price`) AS amount
+                            Dim query As String = "SELECT md.`mat_det_code`,md.`mat_det_name`,pld.`pl_mrs_det_qty` AS qty,ROUND(pld.`pl_mrs_det_price`,2) AS price,(pld.`pl_mrs_det_qty`*ROUND(pld.`pl_mrs_det_price`,2)) AS amount
 FROM tb_pl_mrs_det pld
 INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=pld.`id_mat_det_price`
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
