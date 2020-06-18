@@ -147,6 +147,7 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnSelectExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CESelectExpense = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn187 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalExpenseDP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalExpensePaid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPaymentPendingExpense = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -396,7 +397,6 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn187 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -1762,6 +1762,12 @@ Partial Class FormBankWithdrawal
         Me.CESelectExpense.ValueChecked = "Yes"
         Me.CESelectExpense.ValueUnchecked = "No"
         '
+        'GridColumn187
+        '
+        Me.GridColumn187.Caption = "Total PPH"
+        Me.GridColumn187.FieldName = "total_pph"
+        Me.GridColumn187.Name = "GridColumn187"
+        '
         'GridColumnTotalExpenseDP
         '
         Me.GridColumnTotalExpenseDP.Caption = "Total DP"
@@ -1820,7 +1826,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnDiffExpense.UnboundExpression = "[total] - [total_paid]"
         Me.GridColumnDiffExpense.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffExpense.Visible = True
-        Me.GridColumnDiffExpense.VisibleIndex = 12
+        Me.GridColumnDiffExpense.VisibleIndex = 11
         '
         'GridColumnDueDays
         '
@@ -4315,14 +4321,6 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Name = "VDItemList"
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
-        '
-        'GridColumn187
-        '
-        Me.GridColumn187.Caption = "Total PPH"
-        Me.GridColumn187.FieldName = "total_pph"
-        Me.GridColumn187.Name = "GridColumn187"
-        Me.GridColumn187.Visible = True
-        Me.GridColumn187.VisibleIndex = 11
         '
         'FormBankWithdrawal
         '
