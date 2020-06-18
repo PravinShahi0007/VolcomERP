@@ -438,6 +438,19 @@
 
     Private Sub BtnSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnSyncOrder.Click
         Cursor = Cursors.WaitCursor
+
+        'cek freeze
+        Dim qf As String = "SELECT c.id_comp ,cm.comp_number, cm.comp_name
+        FROM tb_m_comp_volcom_ol c
+        INNER JOIN tb_m_comp cm ON cm.id_comp = c.id_comp
+        WHERE cm.is_active=2 "
+        Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+        If df.Rows.Count > 0 Then
+            Cursor = Cursors.Default
+            stopCustom("WH already freeze")
+            Exit Sub
+        End If
+
         Dim is_processed_order As String = get_setup_field("is_processed_order")
         If is_processed_order = "1" Then
             stopCustom("Sync still running")
