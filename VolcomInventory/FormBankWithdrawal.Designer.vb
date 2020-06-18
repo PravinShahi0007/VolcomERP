@@ -396,6 +396,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn187 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -1637,7 +1638,7 @@ Partial Class FormBankWithdrawal
         '
         'GVExpense
         '
-        Me.GVExpense.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumn39, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotalExpense, Me.GridColumnIdComp, Me.GridColumnBeneficiary, Me.GridColumnSelectExpense, Me.GridColumnTotalExpenseDP, Me.GridColumnTotalExpensePaid, Me.GridColumnPaymentPendingExpense, Me.GridColumnDueDateExpense, Me.GridColumnDiffExpense, Me.GridColumnDueDays, Me.GridColumnIsOpenExpense})
+        Me.GVExpense.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumn39, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotalExpense, Me.GridColumnIdComp, Me.GridColumnBeneficiary, Me.GridColumnSelectExpense, Me.GridColumn187, Me.GridColumnTotalExpenseDP, Me.GridColumnTotalExpensePaid, Me.GridColumnPaymentPendingExpense, Me.GridColumnDueDateExpense, Me.GridColumnDiffExpense, Me.GridColumnDueDays, Me.GridColumnIsOpenExpense})
         Me.GVExpense.GridControl = Me.GCExpense
         Me.GVExpense.Name = "GVExpense"
         Me.GVExpense.OptionsFind.AlwaysVisible = True
@@ -1819,7 +1820,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnDiffExpense.UnboundExpression = "[total] - [total_paid]"
         Me.GridColumnDiffExpense.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffExpense.Visible = True
-        Me.GridColumnDiffExpense.VisibleIndex = 11
+        Me.GridColumnDiffExpense.VisibleIndex = 12
         '
         'GridColumnDueDays
         '
@@ -4315,6 +4316,14 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'GridColumn187
+        '
+        Me.GridColumn187.Caption = "Total PPH"
+        Me.GridColumn187.FieldName = "total_pph"
+        Me.GridColumn187.Name = "GridColumn187"
+        Me.GridColumn187.Visible = True
+        Me.GridColumn187.VisibleIndex = 11
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4833,4 +4842,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents BViewDPKhususPay As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEKursDPKhusus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn187 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

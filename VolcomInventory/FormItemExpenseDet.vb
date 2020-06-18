@@ -556,7 +556,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         End Try
         TEPPH.EditValue = pph
 
-        TxtTotal.EditValue = TxtSubTotal.EditValue + TxtVAT.EditValue + TEPPH.EditValue
+        TxtTotal.EditValue = TxtSubTotal.EditValue + TxtVAT.EditValue - TEPPH.EditValue
         Cursor = Cursors.Default
     End Sub
 
@@ -696,8 +696,8 @@ WHERE c.id_comp='" + id_comp + "' "
                         End Try
                         newRowvat("cc") = "000"
                         newRowvat("report_number") = ""
-                        newRowvat("debit") = GVData.GetRowCellValue(i, "pph_value")
-                        newRowvat("credit") = 0
+                        newRowvat("debit") = 0
+                        newRowvat("credit") = GVData.GetRowCellValue(i, "pph_value")
                         TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
                     End If
                 Next
