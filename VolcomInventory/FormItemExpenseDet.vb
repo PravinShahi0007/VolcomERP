@@ -446,6 +446,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
                         End If
                         qd += "('" + id + "','" + id_acc + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "') "
                     Next
+                    '
                     If GVData.RowCount > 0 Then
                         execute_non_query(qd, True, "", "", "", "")
                     End If
