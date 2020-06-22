@@ -153,12 +153,8 @@
             If id_report_status = "6" Then
                 BPrintSlip.Enabled = True
                 SBSendSlip.Enabled = True
-                If is_thr = "2" Then
-                    BtnViewJournal.Visible = True
-                Else
-                    BtnViewJournal.Visible = False
-                End If
                 BReset.Visible = False
+                BtnViewJournal.Visible = True
             End If
 
             'grid
@@ -1210,6 +1206,75 @@
 
             If total_all > 0 Then
                 insert_detail = insert_detail + "('" + id_acc_trans + "', 1223, 1, '000', " + decimalSQL(total_all) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Sogo', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+            End If
+
+            execute_non_query(insert_detail.Substring(0, insert_detail.Length - 2), True, "", "", "", "")
+        Else
+            Dim payroll_det As DataTable = execute_query("SELECT (SELECT payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = tb_emp_payroll.id_payroll_type) AS `type`, DATE_FORMAT(periode_end, '%Y') AS periode, report_number FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
+
+            Dim rmt As DataTable = execute_query("SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type = 192 AND rm.id_report = '" + id_payroll + "' AND rm.id_report_status = 1", -1, True, "", "", "", "")
+
+            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('" + header_number_acc("1") + "', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+
+            Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
+
+            Dim data_map As DataTable = execute_query("
+                SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
+                FROM tb_coa_map_departement AS map
+                LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
+                LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
+                WHERE type = 4
+            ", -1, True, "", "", "", "")
+
+            Dim query As String = "CALL view_payroll_sum(" + id_payroll + ")"
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
+
+            Dim total_all As Decimal = 0.00
+
+            For j = 0 To data.Rows.Count - 1
+                For k = 0 To data_map.Rows.Count - 1
+                    If data.Rows(j)("is_store").ToString = "2" Then
+                        If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
+                            'get id_acc, id_comp, vendor gaji
+                            Dim id_acc_gaji As String = data_map.Rows(k)("id_acc").ToString
+                            Dim id_comp As String = data_map.Rows(k)("id_comp").ToString
+                            Dim vendor As String = data_map.Rows(k)("comp_number").ToString
+
+                            Dim salary As Decimal = data.Rows(j)("salary") - data.Rows(j)("d_other")
+
+                            insert_detail = insert_detail + "('" + id_acc_trans + "', '" + id_acc_gaji + "', '" + id_comp + "', '" + vendor + "', 0, " + decimalSQL(salary) + ", '" + payroll_det.Rows(0)("type").ToString + " " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+                            total_all += salary
+                        End If
+                    End If
+                Next
+            Next
+
+            'sogo
+            For j = 0 To data.Rows.Count - 1
+                For k = 0 To data_map.Rows.Count - 1
+                    If data.Rows(j)("id_departement").ToString = "17" Then
+                        If data.Rows(j)("id_departement_sub").ToString = data_map.Rows(k)("id_departement_sub").ToString Then
+                            'get id_acc, id_comp, vendor gaji
+                            Dim id_acc_gaji As String = data_map.Rows(k)("id_acc").ToString
+                            Dim id_comp As String = data_map.Rows(k)("id_comp").ToString
+                            Dim vendor As String = data_map.Rows(k)("comp_number").ToString
+
+                            Dim salary As Decimal = data.Rows(j)("salary") - data.Rows(j)("d_other")
+
+                            insert_detail = insert_detail + "('" + id_acc_trans + "', '" + id_acc_gaji + "', '" + id_comp + "', '" + vendor + "', 0, " + decimalSQL(salary) + ", '" + payroll_det.Rows(0)("type").ToString + " " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+
+                            total_all += salary
+                        End If
+                    End If
+                Next
+            Next
+
+            If total_all > 0 Then
+                insert_detail = insert_detail + "('" + id_acc_trans + "', 1223, 1, '000', " + decimalSQL(total_all) + ", 0, '" + payroll_det.Rows(0)("type").ToString + " " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
             End If
 
             execute_non_query(insert_detail.Substring(0, insert_detail.Length - 2), True, "", "", "", "")
