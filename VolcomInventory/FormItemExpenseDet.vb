@@ -618,7 +618,7 @@ WHERE c.id_comp='" + id_comp + "' "
                     newRowh("report_number") = ""
                     newRowh("note") = MENote.Text
                     newRowh("debit") = 0
-                    newRowh("credit") = TxtSubTotal.EditValue + TxtVAT.EditValue + TEPPH.EditValue
+                    newRowh("credit") = TxtSubTotal.EditValue + TxtVAT.EditValue - TEPPH.EditValue
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
                     GCDraft.RefreshDataSource()
                     GVDraft.RefreshData()

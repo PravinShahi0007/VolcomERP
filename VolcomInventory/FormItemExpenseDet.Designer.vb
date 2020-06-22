@@ -1178,6 +1178,7 @@ Partial Class FormItemExpenseDet
         Me.GVDraft.OptionsBehavior.Editable = False
         Me.GVDraft.OptionsView.ShowFooter = True
         Me.GVDraft.OptionsView.ShowGroupPanel = False
+        Me.GVDraft.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndebit_draft, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumnNoDraft
         '
