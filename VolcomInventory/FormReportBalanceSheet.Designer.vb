@@ -143,6 +143,12 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCPajak = New DevExpress.XtraEditors.PanelControl()
+        Me.SLETaxTagCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BPrintPajak = New DevExpress.XtraEditors.SimpleButton()
@@ -191,6 +197,8 @@ Partial Class FormReportBalanceSheet
         CType(Me.GVTaxReport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCPajak, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCPajak.SuspendLayout()
+        CType(Me.SLETaxTagCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1272,6 +1280,8 @@ Partial Class FormReportBalanceSheet
         '
         'PCPajak
         '
+        Me.PCPajak.Controls.Add(Me.SLETaxTagCOA)
+        Me.PCPajak.Controls.Add(Me.LabelControl5)
         Me.PCPajak.Controls.Add(Me.DateEdit2)
         Me.PCPajak.Controls.Add(Me.LabelControl3)
         Me.PCPajak.Controls.Add(Me.BPrintPajak)
@@ -1283,6 +1293,59 @@ Partial Class FormReportBalanceSheet
         Me.PCPajak.Name = "PCPajak"
         Me.PCPajak.Size = New System.Drawing.Size(894, 48)
         Me.PCPajak.TabIndex = 1
+        '
+        'SLETaxTagCOA
+        '
+        Me.SLETaxTagCOA.Location = New System.Drawing.Point(449, 16)
+        Me.SLETaxTagCOA.Name = "SLETaxTagCOA"
+        Me.SLETaxTagCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLETaxTagCOA.Properties.View = Me.GridView1
+        Me.SLETaxTagCOA.Size = New System.Drawing.Size(168, 20)
+        Me.SLETaxTagCOA.TabIndex = 10
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "id_comp"
+        Me.GridColumn18.FieldName = "id_comp"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn19.Caption = "Number"
+        Me.GridColumn19.FieldName = "comp_number"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 0
+        Me.GridColumn19.Width = 281
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Unit"
+        Me.GridColumn20.FieldName = "comp_name"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        Me.GridColumn20.Width = 1351
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(424, 19)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl5.TabIndex = 9
+        Me.LabelControl5.Text = "Tag"
         '
         'DateEdit2
         '
@@ -1306,7 +1369,7 @@ Partial Class FormReportBalanceSheet
         '
         'BPrintPajak
         '
-        Me.BPrintPajak.Location = New System.Drawing.Point(480, 14)
+        Me.BPrintPajak.Location = New System.Drawing.Point(679, 14)
         Me.BPrintPajak.Name = "BPrintPajak"
         Me.BPrintPajak.Size = New System.Drawing.Size(50, 23)
         Me.BPrintPajak.TabIndex = 6
@@ -1314,7 +1377,7 @@ Partial Class FormReportBalanceSheet
         '
         'BViewPajak
         '
-        Me.BViewPajak.Location = New System.Drawing.Point(424, 14)
+        Me.BViewPajak.Location = New System.Drawing.Point(623, 14)
         Me.BViewPajak.Name = "BViewPajak"
         Me.BViewPajak.Size = New System.Drawing.Size(50, 23)
         Me.BViewPajak.TabIndex = 3
@@ -1397,6 +1460,8 @@ Partial Class FormReportBalanceSheet
         CType(Me.PCPajak, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCPajak.ResumeLayout(False)
         Me.PCPajak.PerformLayout()
+        CType(Me.SLETaxTagCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1535,4 +1600,10 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLETaxTagCOA As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class
