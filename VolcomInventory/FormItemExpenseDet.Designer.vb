@@ -132,6 +132,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GrossUpPPHToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -730,14 +731,14 @@ Partial Class FormItemExpenseDet
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem, Me.GrossUpPPHToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVData
@@ -1261,6 +1262,12 @@ Partial Class FormItemExpenseDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
+        'GrossUpPPHToolStripMenuItem
+        '
+        Me.GrossUpPPHToolStripMenuItem.Name = "GrossUpPPHToolStripMenuItem"
+        Me.GrossUpPPHToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GrossUpPPHToolStripMenuItem.Text = "Gross up PPH"
+        '
         'FormItemExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1447,4 +1454,5 @@ Partial Class FormItemExpenseDet
     Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents TEPPH As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GrossUpPPHToolStripMenuItem As ToolStripMenuItem
 End Class
