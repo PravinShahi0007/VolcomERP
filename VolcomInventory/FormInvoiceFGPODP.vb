@@ -204,9 +204,10 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
 
     Sub load_det()
         Dim query As String = "
-Select pnd.pph_percent,pnd.id_acc_pph,pnd.`id_prod_order`,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` 
+Select pnd.pph_percent,pnd.id_acc_pph,pnd.`id_prod_order`,accpph.acc_description AS coa_desc_pph,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` 
 FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
+LEFT JOIN tb_a_acc accpph ON accpph.id_acc=pnd.id_acc_pph
 WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
@@ -543,10 +544,12 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         ReportFGPODP.id_pn_fgpo = id_invoice
-        Dim q_print As String = "Select pnd.`id_prod_order`,po.prod_order_number,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` 
+        Dim q_print As String = "Select pnd.`id_prod_order`,po.prod_order_number,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note`
+,accpph.acc_description AS coa_desc_pph,pnd.pph_percent
 FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
 LEFT JOIN tb_prod_order po ON po.id_prod_order=pnd.id_prod_order 
+LEFT JOIN tb_a_acc accpph ON accpph.id_acc=pnd.id_acc_pph
 WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
         Dim dt As DataTable = execute_query(q_print, -1, True, "", "", "", "")
         'ReportFGPODP.dt = GCList.DataSource
@@ -563,6 +566,9 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
         GridColumnAccPick.VisibleIndex = -1
         GridColumnNote.VisibleIndex = -1
         GCPORef.VisibleIndex = 1
+        '
+        GridColumnPPHCOA.VisibleIndex = -1
+        GridColumnPPHDesc.VisibleIndex = 10
 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
@@ -580,13 +586,16 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
         GCCurHide.VisibleIndex = -1
         GridColumnNote.VisibleIndex = 10
         GCPORef.VisibleIndex = -1
+        '
+        GridColumnPPHCOA.VisibleIndex = -1
+        GridColumnPPHDesc.VisibleIndex = 11
 
         'search total
         Dim tot As String = Decimal.Parse("0").ToString("N2")
         Dim tot_vat As String = Decimal.Parse("0").ToString("N2")
-        Dim q_tot As String = "SELECT IFNULL(SUM(pnd.value),0) AS tot,IFNULL(SUM(pnd.vat),0) AS tot_vat FROM tb_pn_fgpo_det pnd 
+        Dim q_tot As String = "SELECT IFNULL(SUM(IF(pnd.report_mark_type!='199',pnd.value,0)),0) AS tot,IFNULL(SUM(pnd.vat),0) AS tot_vat FROM tb_pn_fgpo_det pnd 
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency 
-WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
+WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
         Dim dt_tot As DataTable = execute_query(q_tot, -1, True, "", "", "", "")
         If dt_tot.Rows.Count > 0 Then
             tot = Decimal.Parse(dt_tot.Rows(0)("tot").ToString).ToString("N2")
@@ -595,7 +604,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
 
         'search dp
         Dim dp As String = Decimal.Parse("0").ToString("N2")
-        Dim q_dp As String = "SELECT IFNULL(SUM(pnd.value+pnd.vat),0) AS tot_dp FROM tb_pn_fgpo_det pnd 
+        Dim q_dp As String = "SELECT IFNULL(SUM(pnd.value),0) AS tot_dp FROM tb_pn_fgpo_det pnd 
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency 
 WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
         Dim dt_dp As DataTable = execute_query(q_dp, -1, True, "", "", "", "")

@@ -97,7 +97,7 @@ Partial Class FormInvoiceFGPODP
         Me.GCQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCVat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPPHCOA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLECOAPPH = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -127,6 +127,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPPHDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -721,7 +722,7 @@ Partial Class FormInvoiceFGPODP
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumnAccPick, Me.GCDescription, Me.GCReff, Me.GCPORef, Me.GCInvNumber, Me.GridColumnNote, Me.GCCur, Me.GCCurHide, Me.GCKurs, Me.GCBeforeKurs, Me.GCQty, Me.GridColumnPayment, Me.GCVat, Me.GridColumn11, Me.GridColumn9, Me.GridColumn10})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumnAccPick, Me.GCDescription, Me.GCReff, Me.GCPORef, Me.GCInvNumber, Me.GridColumnNote, Me.GCCur, Me.GCCurHide, Me.GCKurs, Me.GCBeforeKurs, Me.GCQty, Me.GridColumnPayment, Me.GCVat, Me.GridColumnPPHCOA, Me.GridColumnPPHDesc, Me.GridColumn9, Me.GridColumn10})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -969,14 +970,14 @@ Partial Class FormInvoiceFGPODP
         Me.GCVat.VisibleIndex = 9
         Me.GCVat.Width = 97
         '
-        'GridColumn11
+        'GridColumnPPHCOA
         '
-        Me.GridColumn11.Caption = "COA PPH"
-        Me.GridColumn11.ColumnEdit = Me.RISLECOAPPH
-        Me.GridColumn11.FieldName = "id_acc_pph"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 10
+        Me.GridColumnPPHCOA.Caption = "COA PPH"
+        Me.GridColumnPPHCOA.ColumnEdit = Me.RISLECOAPPH
+        Me.GridColumnPPHCOA.FieldName = "id_acc_pph"
+        Me.GridColumnPPHCOA.Name = "GridColumnPPHCOA"
+        Me.GridColumnPPHCOA.Visible = True
+        Me.GridColumnPPHCOA.VisibleIndex = 10
         '
         'RISLECOAPPH
         '
@@ -1251,6 +1252,12 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumncc.VisibleIndex = 1
         Me.GridColumncc.Width = 39
         '
+        'GridColumnPPHDesc
+        '
+        Me.GridColumnPPHDesc.Caption = "COA PPH"
+        Me.GridColumnPPHDesc.FieldName = "coa_desc_pph"
+        Me.GridColumnPPHDesc.Name = "GridColumnPPHDesc"
+        '
         'FormInvoiceFGPODP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1428,7 +1435,7 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents GCPORef As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPPHCOA As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLECOAPPH As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1436,4 +1443,5 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TETotalPPH As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnPPHDesc As DevExpress.XtraGrid.Columns.GridColumn
 End Class
