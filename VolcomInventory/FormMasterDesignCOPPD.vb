@@ -88,9 +88,9 @@ WHERE dsg.id_design='" & id_design & "'"
     End Sub
 
     Sub load_cold_storage()
-        Dim q As String = "SELECT '1' AS id,'Yes' AS cold_desc
+        Dim q As String = "SELECT '2' AS id,'No' AS cold_desc
 UNION ALL
-SELECT '2' AS id,'No' AS cold_desc"
+SELECT '1' AS id,'Yes' AS cold_desc"
         viewSearchLookupQuery(SLEColdStorage, q, "id", "cold_desc", "id")
     End Sub
 
