@@ -204,9 +204,10 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
 
     Sub load_det()
         Dim query As String = "
-Select pnd.pph_percent,pnd.id_acc_pph,pnd.`id_prod_order`,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` 
+Select pnd.pph_percent,pnd.id_acc_pph,pnd.`id_prod_order`,accpph.acc_description AS coa_desc_pph,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` 
 FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
+LEFT JOIN tb_a_acc accpph ON accpph.id_acc=pnd.id_acc_pph
 WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
@@ -563,6 +564,9 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
         GridColumnAccPick.VisibleIndex = -1
         GridColumnNote.VisibleIndex = -1
         GCPORef.VisibleIndex = 1
+        '
+        GridColumnPPHCOA.VisibleIndex = -1
+        GridColumnPPHDesc.VisibleIndex = 10
 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
@@ -580,6 +584,9 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
         GCCurHide.VisibleIndex = -1
         GridColumnNote.VisibleIndex = 10
         GCPORef.VisibleIndex = -1
+        '
+        GridColumnPPHCOA.VisibleIndex = -1
+        GridColumnPPHDesc.VisibleIndex = 11
 
         'search total
         Dim tot As String = Decimal.Parse("0").ToString("N2")

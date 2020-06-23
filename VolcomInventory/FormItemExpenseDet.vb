@@ -177,7 +177,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
-        ed.id_acc, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
+        ed.id_acc,pphacc.acc_description AS coa_desc_pph, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If action = "ins" Then
             query += "0.00 AS tax_percent,0.00 AS `amount` "
@@ -186,6 +186,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         End If
 
         query += "FROM tb_item_expense_det ed
+        LEFT JOIN tb_a_acc pphacc ON pphacc.id_acc = ed.id_acc_pph
         INNER JOIN tb_a_acc a ON a.id_acc = ed.id_acc
         INNER JOIN tb_lookup_expense_type typ ON typ.id_expense_type=ed.id_expense_type
         LEFT JOIN tb_m_comp c ON ed.cc=c.id_comp
@@ -227,6 +228,9 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         '
         GridColumnaccount.Visible = False
         GridColumnAccountDescription.VisibleIndex = 1
+        '
+        GridColumnPPHCOA.Visible = False
+        GridColumnPPHDesc.VisibleIndex = 9
         '
         GridColumnBudgetType.Visible = False
         GridColumnBudgetTypeDesc.VisibleIndex = 2

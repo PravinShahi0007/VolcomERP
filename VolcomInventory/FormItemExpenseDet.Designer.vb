@@ -105,7 +105,7 @@ Partial Class FormItemExpenseDet
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnTaxValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPPHCOA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLECOAPPH = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -133,6 +133,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPPHDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -749,7 +750,7 @@ Partial Class FormItemExpenseDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumn17, Me.GridColumn16, Me.GridColumn7, Me.GridColumnAccountDescription, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnPPHCOA, Me.GridColumn16, Me.GridColumn7, Me.GridColumnPPHDesc, Me.GridColumnAccountDescription, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
@@ -1017,14 +1018,14 @@ Partial Class FormItemExpenseDet
         Me.GridColumnAmount.VisibleIndex = 6
         Me.GridColumnAmount.Width = 123
         '
-        'GridColumn17
+        'GridColumnPPHCOA
         '
-        Me.GridColumn17.Caption = "PPH COA"
-        Me.GridColumn17.ColumnEdit = Me.RISLECOAPPH
-        Me.GridColumn17.FieldName = "id_acc_pph"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 9
+        Me.GridColumnPPHCOA.Caption = "PPH COA"
+        Me.GridColumnPPHCOA.ColumnEdit = Me.RISLECOAPPH
+        Me.GridColumnPPHCOA.FieldName = "id_acc_pph"
+        Me.GridColumnPPHCOA.Name = "GridColumnPPHCOA"
+        Me.GridColumnPPHCOA.Visible = True
+        Me.GridColumnPPHCOA.VisibleIndex = 9
         '
         'RISLECOAPPH
         '
@@ -1164,7 +1165,7 @@ Partial Class FormItemExpenseDet
         '
         Me.XTPDraft.Controls.Add(Me.GCDraft)
         Me.XTPDraft.Name = "XTPDraft"
-        Me.XTPDraft.Size = New System.Drawing.Size(928, 268)
+        Me.XTPDraft.Size = New System.Drawing.Size(928, 247)
         Me.XTPDraft.Text = "Draft Journal"
         '
         'GCDraft
@@ -1173,7 +1174,7 @@ Partial Class FormItemExpenseDet
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.MainView = Me.GVDraft
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(928, 268)
+        Me.GCDraft.Size = New System.Drawing.Size(928, 247)
         Me.GCDraft.TabIndex = 2
         Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
@@ -1267,6 +1268,12 @@ Partial Class FormItemExpenseDet
         Me.GridColumncc.Name = "GridColumncc"
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
+        '
+        'GridColumnPPHDesc
+        '
+        Me.GridColumnPPHDesc.Caption = "PPH COA"
+        Me.GridColumnPPHDesc.FieldName = "coa_desc_pph"
+        Me.GridColumnPPHDesc.Name = "GridColumnPPHDesc"
         '
         'FormItemExpenseDet
         '
@@ -1442,7 +1449,7 @@ Partial Class FormItemExpenseDet
     Friend WithEvents GridColumndebit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncredit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPPHCOA As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLECOAPPH As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
@@ -1455,4 +1462,5 @@ Partial Class FormItemExpenseDet
     Friend WithEvents TEPPH As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GrossUpPPHToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnPPHDesc As DevExpress.XtraGrid.Columns.GridColumn
 End Class
