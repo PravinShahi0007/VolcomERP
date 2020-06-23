@@ -35,7 +35,6 @@
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-
     End Sub
 
     Sub load_unit()
@@ -190,6 +189,7 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             End If
         End If
     End Sub
+
     Sub print_bs()
         Cursor = Cursors.WaitCursor
         Dim Report As New ReportBalanceSheet()
