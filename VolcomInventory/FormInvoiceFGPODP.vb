@@ -544,10 +544,12 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         ReportFGPODP.id_pn_fgpo = id_invoice
-        Dim q_print As String = "Select pnd.`id_prod_order`,po.prod_order_number,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note` 
+        Dim q_print As String = "Select pnd.`id_prod_order`,po.prod_order_number,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note`
+,accpph.acc_description AS coa_desc_pph,pnd.pph_percent
 FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
 LEFT JOIN tb_prod_order po ON po.id_prod_order=pnd.id_prod_order 
+LEFT JOIN tb_a_acc accpph ON accpph.id_acc=pnd.id_acc_pph
 WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
         Dim dt As DataTable = execute_query(q_print, -1, True, "", "", "", "")
         'ReportFGPODP.dt = GCList.DataSource
