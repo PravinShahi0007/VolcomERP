@@ -20,9 +20,15 @@
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
 
+    Sub load_tag_coa()
+        Dim q As String = "SELECT id_coa_tag,tag_description FROM `tb_coa_tag`"
+        viewSearchLookupQuery(SLETaxTagCOA, q, "id_coa_tag", "tag_description", "id_coa_tag")
+    End Sub
+
     Private Sub FormReportBalanceSheet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEUntil.EditValue = New DateTime(Now.Year, Now.Month, Date.DaysInMonth(Now.Year, Now.Month))
         load_unit()
+        load_tag_coa()
 
         Try
             CreateNodes(TLLedger, "", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
@@ -192,5 +198,17 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
         Tool.ShowPreviewDialog()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCBalanceSheet_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCBalanceSheet.SelectedPageChanged
+        If XTCBalanceSheet.SelectedTabPageIndex = 0 Or XTCBalanceSheet.SelectedTabPageIndex = 2 Then
+            PCFilterUpper.Visible = True
+        Else
+            PCFilterUpper.Visible = False
+        End If
+    End Sub
+
+    Private Sub BViewPajak_Click(sender As Object, e As EventArgs) Handles BViewPajak.Click
+
     End Sub
 End Class
