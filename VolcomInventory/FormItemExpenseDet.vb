@@ -369,7 +369,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         If GVData.RowCount > 0 Then
             cond_empty = True
         End If
-        'makeSafeGV(GVData)
+        makeSafeGV(GVData)
 
         If SLEPayFrom.EditValue = Nothing Then
             warningCustom("Please select pay from account")

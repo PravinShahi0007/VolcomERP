@@ -149,12 +149,12 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.DETaxUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BPrintPajak = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewPajak = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.DETaxFrom = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,10 +199,10 @@ Partial Class FormReportBalanceSheet
         Me.PCPajak.SuspendLayout()
         CType(Me.SLETaxTagCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETaxUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETaxUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETaxFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETaxFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCFilterUpper
@@ -1282,12 +1282,12 @@ Partial Class FormReportBalanceSheet
         '
         Me.PCPajak.Controls.Add(Me.SLETaxTagCOA)
         Me.PCPajak.Controls.Add(Me.LabelControl5)
-        Me.PCPajak.Controls.Add(Me.DateEdit2)
+        Me.PCPajak.Controls.Add(Me.DETaxUntil)
         Me.PCPajak.Controls.Add(Me.LabelControl3)
         Me.PCPajak.Controls.Add(Me.BPrintPajak)
         Me.PCPajak.Controls.Add(Me.BViewPajak)
         Me.PCPajak.Controls.Add(Me.LabelControl4)
-        Me.PCPajak.Controls.Add(Me.DateEdit1)
+        Me.PCPajak.Controls.Add(Me.DETaxFrom)
         Me.PCPajak.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCPajak.Location = New System.Drawing.Point(0, 0)
         Me.PCPajak.Name = "PCPajak"
@@ -1347,17 +1347,17 @@ Partial Class FormReportBalanceSheet
         Me.LabelControl5.TabIndex = 9
         Me.LabelControl5.Text = "Tag"
         '
-        'DateEdit2
+        'DETaxUntil
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(245, 16)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit2.Size = New System.Drawing.Size(173, 20)
-        Me.DateEdit2.TabIndex = 8
+        Me.DETaxUntil.EditValue = Nothing
+        Me.DETaxUntil.Location = New System.Drawing.Point(245, 16)
+        Me.DETaxUntil.Name = "DETaxUntil"
+        Me.DETaxUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DETaxUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETaxUntil.Size = New System.Drawing.Size(173, 20)
+        Me.DETaxUntil.TabIndex = 8
         '
         'LabelControl3
         '
@@ -1391,17 +1391,17 @@ Partial Class FormReportBalanceSheet
         Me.LabelControl4.TabIndex = 2
         Me.LabelControl4.Text = "Date"
         '
-        'DateEdit1
+        'DETaxFrom
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(40, 16)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Size = New System.Drawing.Size(173, 20)
-        Me.DateEdit1.TabIndex = 1
+        Me.DETaxFrom.EditValue = Nothing
+        Me.DETaxFrom.Location = New System.Drawing.Point(40, 16)
+        Me.DETaxFrom.Name = "DETaxFrom"
+        Me.DETaxFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DETaxFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETaxFrom.Size = New System.Drawing.Size(173, 20)
+        Me.DETaxFrom.TabIndex = 1
         '
         'FormReportBalanceSheet
         '
@@ -1462,10 +1462,10 @@ Partial Class FormReportBalanceSheet
         Me.PCPajak.PerformLayout()
         CType(Me.SLETaxTagCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETaxUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETaxUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETaxFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETaxFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1575,12 +1575,12 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPPajak As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PCPajak As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DETaxUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BPrintPajak As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BViewPajak As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DETaxFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GCTaxReport As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVTaxReport As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents XTPTaxDetail As DevExpress.XtraTab.XtraTabControl
