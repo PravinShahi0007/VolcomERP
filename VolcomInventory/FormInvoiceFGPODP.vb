@@ -584,9 +584,9 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
         'search total
         Dim tot As String = Decimal.Parse("0").ToString("N2")
         Dim tot_vat As String = Decimal.Parse("0").ToString("N2")
-        Dim q_tot As String = "SELECT IFNULL(SUM(pnd.value),0) AS tot,IFNULL(SUM(pnd.vat),0) AS tot_vat FROM tb_pn_fgpo_det pnd 
+        Dim q_tot As String = "SELECT IFNULL(SUM(IF(pnd.report_mark_type!='199',pnd.value,0)),0) AS tot,IFNULL(SUM(pnd.vat),0) AS tot_vat FROM tb_pn_fgpo_det pnd 
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency 
-WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
+WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
         Dim dt_tot As DataTable = execute_query(q_tot, -1, True, "", "", "", "")
         If dt_tot.Rows.Count > 0 Then
             tot = Decimal.Parse(dt_tot.Rows(0)("tot").ToString).ToString("N2")
@@ -595,7 +595,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
 
         'search dp
         Dim dp As String = Decimal.Parse("0").ToString("N2")
-        Dim q_dp As String = "SELECT IFNULL(SUM(pnd.value+pnd.vat),0) AS tot_dp FROM tb_pn_fgpo_det pnd 
+        Dim q_dp As String = "SELECT IFNULL(SUM(pnd.value),0) AS tot_dp FROM tb_pn_fgpo_det pnd 
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency 
 WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
         Dim dt_dp As DataTable = execute_query(q_dp, -1, True, "", "", "", "")

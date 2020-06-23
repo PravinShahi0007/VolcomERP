@@ -73,6 +73,7 @@ Partial Class FormItemExpenseDet
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GrossUpPPHToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdAcc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -132,7 +133,6 @@ Partial Class FormItemExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GrossUpPPHToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -241,7 +241,7 @@ Partial Class FormItemExpenseDet
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 620)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 599)
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(934, 41)
         Me.PanelControlBottom.TabIndex = 11
@@ -319,7 +319,7 @@ Partial Class FormItemExpenseDet
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 425)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 404)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(934, 195)
         Me.PanelControl3.TabIndex = 14
@@ -725,7 +725,7 @@ Partial Class FormItemExpenseDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemSpinEdit1, Me.RISLEType, Me.RISLECatExpense, Me.RISLECC, Me.RISLECOAPPH, Me.RepositoryItemTextEdit2, Me.RepositoryItemTextEdit3})
-        Me.GCData.Size = New System.Drawing.Size(928, 230)
+        Me.GCData.Size = New System.Drawing.Size(928, 209)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -733,13 +733,19 @@ Partial Class FormItemExpenseDet
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem, Me.GrossUpPPHToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(147, 48)
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
+        'GrossUpPPHToolStripMenuItem
+        '
+        Me.GrossUpPPHToolStripMenuItem.Name = "GrossUpPPHToolStripMenuItem"
+        Me.GrossUpPPHToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.GrossUpPPHToolStripMenuItem.Text = "Gross up PPH"
         '
         'GVData
         '
@@ -1142,7 +1148,7 @@ Partial Class FormItemExpenseDet
         Me.XTPDraftJournal.Location = New System.Drawing.Point(0, 129)
         Me.XTPDraftJournal.Name = "XTPDraftJournal"
         Me.XTPDraftJournal.SelectedTabPage = Me.XTPDetail
-        Me.XTPDraftJournal.Size = New System.Drawing.Size(934, 296)
+        Me.XTPDraftJournal.Size = New System.Drawing.Size(934, 275)
         Me.XTPDraftJournal.TabIndex = 19
         Me.XTPDraftJournal.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPDraft})
         '
@@ -1151,7 +1157,7 @@ Partial Class FormItemExpenseDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControlNav)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(928, 268)
+        Me.XTPDetail.Size = New System.Drawing.Size(928, 247)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPDraft
@@ -1262,17 +1268,11 @@ Partial Class FormItemExpenseDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'GrossUpPPHToolStripMenuItem
-        '
-        Me.GrossUpPPHToolStripMenuItem.Name = "GrossUpPPHToolStripMenuItem"
-        Me.GrossUpPPHToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.GrossUpPPHToolStripMenuItem.Text = "Gross up PPH"
-        '
         'FormItemExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(934, 661)
+        Me.ClientSize = New System.Drawing.Size(934, 640)
         Me.Controls.Add(Me.XTPDraftJournal)
         Me.Controls.Add(Me.PanelControlPay)
         Me.Controls.Add(Me.PanelControl3)
