@@ -86,6 +86,10 @@
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
+            DEOrderDate.EditValue = data.Rows(0)("order_date")
+            TxtCustomer.Text = data.Rows(0)("customer_name").ToString
+            MEAddress.Text = data.Rows(0)("shipping_address").ToString
+            TxtPhone.Text = data.Rows(0)("shipping_phone").ToString
 
             'detail
             viewDetail()
@@ -345,6 +349,7 @@
             report.XTCCustomer.Text = TxtCustomer.Text
             report.XTCAddress.Text = MEAddress.Text
             report.XTCPhone.Text = TxtPhone.Text
+            report.XTCOrderDate.Text = DEOrderDate.Text
 
             report.id = id
             report.data = GCData.DataSource
