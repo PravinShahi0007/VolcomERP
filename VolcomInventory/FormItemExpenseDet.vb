@@ -286,6 +286,8 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         ReportItemExpense.dt = GCData.DataSource
         Dim Report As New ReportItemExpense()
 
+        GridColumnPPHDesc.VisibleIndex = -1
+
         GVData.BestFitColumns()
 
         'creating and saving the view's layout to a new memory stream 
@@ -298,6 +300,8 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
         'Grid Detail
         ReportStyleGridview(Report.GVData)
+
+        GridColumnPPHDesc.VisibleIndex = 9
 
         'Parse val
         Report.LabelNumber.Text = TxtNumber.Text.ToUpper
