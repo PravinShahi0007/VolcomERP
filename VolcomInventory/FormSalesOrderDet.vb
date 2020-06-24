@@ -160,6 +160,26 @@ Public Class FormSalesOrderDet
             getDataReference()
             check_but()
             allow_status()
+
+            'view log jika dia sync
+            If CESync.EditValue And id_report_status = "6" Then
+                Dim id_trf As String = "-1"
+                Try
+                    id_trf = execute_query("SELECT t.id_fg_trf FROM tb_fg_trf t WHERE t.id_sales_order=" + id_sales_order + "", 0, True, "", "", "", "")
+                Catch ex As Exception
+                    id_trf = "-1"
+                End Try
+
+                Try
+                    Dim ql As String = "SELECT * FROM tb_shopify_api_log a WHERE a.report_mark_type=57 AND a.id_report=" + id_trf + " AND a.message<>'OK' "
+                    Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+                    If dl.Rows.Count > 0 Then
+                        stopCustom("Some product failed to sync")
+                        viewLog()
+                    End If
+                Catch ex As Exception
+                End Try
+            End If
         End If
 
         'general view
@@ -413,9 +433,9 @@ Public Class FormSalesOrderDet
                     If d_already.Rows(0)("total").ToString = "0" Then
                         sku_already = False
 
-                        sku_in += d_already.Rows(0)("sku").ToString + ", "
+                        sku_in += GVItemList.GetRowCellValue(i, "code").ToString + ", "
 
-                        sku_copy += d_already.Rows(0)("sku").ToString + Environment.NewLine
+                        sku_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
                     End If
                 End If
             Next
@@ -1615,6 +1635,10 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
     End Sub
 
     Private Sub SBViewLog_Click(sender As Object, e As EventArgs) Handles SBViewLog.Click
+        viewLog()
+    End Sub
+
+    Sub viewLog()
         FormSalesOrderDetViewLogSync.ShowDialog()
     End Sub
 

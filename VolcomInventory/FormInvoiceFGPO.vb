@@ -68,7 +68,7 @@ INNER JOIN (
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE 1=1 " & query_where
+WHERE 1=1 AND pn.doc_type <> 4 " & query_where
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCBPL.DataSource = data
                 GVBPL.BestFitColumns()
@@ -89,7 +89,7 @@ INNER JOIN (
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE pnt.is_payment=2 " & query_where
+WHERE pnt.is_payment=2 AND pn.doc_type <> 4 " & query_where
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                     GCDP.DataSource = data
                     GVDP.BestFitColumns()
@@ -150,10 +150,30 @@ INNER JOIN (
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE pnt.is_payment=1 " & query_where
+WHERE pnt.is_payment=1 AND pn.doc_type <> 4 " & query_where
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCPayment.DataSource = data
                 GVPayment.BestFitColumns()
+            ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 3 Then
+                'list dp khusus
+                Dim query As String = "SELECT pn.*,pnt.pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
+,det.report_number,det.inv_number
+FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN (
+	SELECT id_pn_fgpo,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount 
+        ,GROUP_CONCAT(pnd.report_number) AS report_number,GROUP_CONCAT(pnd.inv_number) AS inv_number
+    FROM tb_pn_fgpo_det pnd 
+	GROUP BY pnd.`id_pn_fgpo`
+) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE 1=1 AND pn.doc_type = 4 " & query_where
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCDPKhusus.DataSource = data
+                GVDPKhusus.BestFitColumns()
             End If
         End If
     End Sub
@@ -254,5 +274,18 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
 
     Private Sub BBDPFGPO_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDPFGPO.ItemClick
         XTCInvoiceFGPO.SelectedTabPageIndex = 1
+    End Sub
+
+    Private Sub SBCreateDPKhusus_Click(sender As Object, e As EventArgs) Handles SBCreateDPKhusus.Click
+        FormInvoiceFGPODP.doc_type = "4"
+        FormInvoiceFGPODP.ShowDialog()
+    End Sub
+
+    Private Sub GVDPKhusus_DoubleClick(sender As Object, e As EventArgs) Handles GVDPKhusus.DoubleClick
+        If GVDPKhusus.RowCount > 0 Then
+            FormInvoiceFGPODP.id_invoice = GVDPKhusus.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.doc_type = GVDPKhusus.GetFocusedRowCellValue("doc_type").ToString
+            FormInvoiceFGPODP.ShowDialog()
+        End If
     End Sub
 End Class

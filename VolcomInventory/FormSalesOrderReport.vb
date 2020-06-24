@@ -163,6 +163,7 @@
         so.id_prepare_status, ps.prepare_status, so.final_comment, so.final_date, ef.employee_name AS `final_by_name`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, CONCAT(s.comp_number, ' - ', s.comp_name) AS `destination`,
         SUM(sod.sales_order_det_qty) AS `total_order`, IFNULL(scan.total_trs,0) AS `total_scan`, IFNULL(comp.total_trs,0) AS `total_completed`
+        ,scan_date.first_scan_date,scan_date.last_scan_date
         FROM tb_sales_order so
         LEFT JOIN tb_sales_order_gen sog ON sog.id_sales_order_gen = so.id_sales_order_gen
         INNER JOIN tb_lookup_so_status so_stt ON so_stt.id_so_status = so.id_so_status
@@ -216,6 +217,20 @@
 	        ) trs 
 	        GROUP BY trs.id_sales_order
         ) comp ON comp.id_sales_order = so.id_sales_order
+        LEFT JOIN
+        (
+                (SELECT del.id_sales_order,MIN(del.pl_sales_order_del_date) AS first_scan_date,MAX(del.pl_sales_order_del_date) AS last_scan_date 
+                FROM tb_pl_sales_order_del del
+                INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order AND so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "'
+                WHERE del.`id_report_status`!=5
+                GROUP BY del.id_sales_order)
+                UNION ALL 
+                (SELECT del.id_sales_order,MIN(del.fg_trf_date) AS first_scan_date,MAX(del.fg_trf_date) AS last_scan_date 
+                FROM tb_fg_trf del
+                INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order AND so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "'
+                WHERE del.`id_report_status`!=5
+                GROUP BY del.id_sales_order)
+        ) scan_date ON scan_date.id_sales_order=so.id_sales_order
         LEFT JOIN tb_m_user u ON u.id_user = so.final_by
         LEFT JOIN tb_m_employee ef ON ef.id_employee = u.id_employee
         WHERE so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
