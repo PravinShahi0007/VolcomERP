@@ -132,7 +132,9 @@
 
                 'load detail
                 For i As Integer = 0 To FormBankWithdrawal.GVExpense.RowCount - 1
-                    'id_report,number,total,balance due
+                    Dim qe As String = ""
+
+
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_item_expense").ToString
                     newRow("report_mark_type") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "report_mark_type").ToString
@@ -1212,6 +1214,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
     Sub calculate_amount()
         GVList.RefreshData()
         Dim gross_total As Double = 0.0
+
         Try
             gross_total = Double.Parse(GVList.Columns("value").SummaryItem.SummaryValue.ToString)
         Catch ex As Exception

@@ -397,6 +397,13 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn188 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn189 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn190 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn191 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn192 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -517,6 +524,8 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
+        CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -1631,14 +1640,14 @@ Partial Class FormBankWithdrawal
         Me.GCExpense.Location = New System.Drawing.Point(0, 42)
         Me.GCExpense.MainView = Me.GVExpense
         Me.GCExpense.Name = "GCExpense"
-        Me.GCExpense.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.CESelectExpense})
+        Me.GCExpense.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.CESelectExpense, Me.RISLECurrency})
         Me.GCExpense.Size = New System.Drawing.Size(1091, 400)
         Me.GCExpense.TabIndex = 20
         Me.GCExpense.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVExpense})
         '
         'GVExpense
         '
-        Me.GVExpense.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumn39, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotalExpense, Me.GridColumnIdComp, Me.GridColumnBeneficiary, Me.GridColumnSelectExpense, Me.GridColumn187, Me.GridColumnTotalExpenseDP, Me.GridColumnTotalExpensePaid, Me.GridColumnPaymentPendingExpense, Me.GridColumnDueDateExpense, Me.GridColumnDiffExpense, Me.GridColumnDueDays, Me.GridColumnIsOpenExpense})
+        Me.GVExpense.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumn39, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumn190, Me.GridColumn189, Me.GridColumn188, Me.GridColumntotalExpense, Me.GridColumnIdComp, Me.GridColumnBeneficiary, Me.GridColumnSelectExpense, Me.GridColumn187, Me.GridColumnTotalExpenseDP, Me.GridColumnTotalExpensePaid, Me.GridColumnPaymentPendingExpense, Me.GridColumnDueDateExpense, Me.GridColumnDiffExpense, Me.GridColumnDueDays, Me.GridColumnIsOpenExpense})
         Me.GVExpense.GridControl = Me.GCExpense
         Me.GVExpense.Name = "GVExpense"
         Me.GVExpense.OptionsFind.AlwaysVisible = True
@@ -1707,7 +1716,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnBal.OptionsColumn.AllowEdit = False
         Me.GridColumnBal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
         Me.GridColumnBal.Visible = True
-        Me.GridColumnBal.VisibleIndex = 7
+        Me.GridColumnBal.VisibleIndex = 11
         '
         'GridColumntotalExpense
         '
@@ -1719,7 +1728,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumntotalExpense.OptionsColumn.AllowEdit = False
         Me.GridColumntotalExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumntotalExpense.Visible = True
-        Me.GridColumntotalExpense.VisibleIndex = 8
+        Me.GridColumntotalExpense.VisibleIndex = 10
         '
         'GridColumnIdComp
         '
@@ -1778,7 +1787,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnTotalExpenseDP.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalExpenseDP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_dp", "{0:N2}")})
         Me.GridColumnTotalExpenseDP.Visible = True
-        Me.GridColumnTotalExpenseDP.VisibleIndex = 9
+        Me.GridColumnTotalExpenseDP.VisibleIndex = 12
         '
         'GridColumnTotalExpensePaid
         '
@@ -1790,7 +1799,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnTotalExpensePaid.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalExpensePaid.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
         Me.GridColumnTotalExpensePaid.Visible = True
-        Me.GridColumnTotalExpensePaid.VisibleIndex = 10
+        Me.GridColumnTotalExpensePaid.VisibleIndex = 13
         '
         'GridColumnPaymentPendingExpense
         '
@@ -1826,7 +1835,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnDiffExpense.UnboundExpression = "[total] - [total_paid]"
         Me.GridColumnDiffExpense.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffExpense.Visible = True
-        Me.GridColumnDiffExpense.VisibleIndex = 11
+        Me.GridColumnDiffExpense.VisibleIndex = 14
         '
         'GridColumnDueDays
         '
@@ -4322,6 +4331,60 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'GridColumn188
+        '
+        Me.GridColumn188.Caption = "Total Expense Before Kurs"
+        Me.GridColumn188.FieldName = "amount_before"
+        Me.GridColumn188.Name = "GridColumn188"
+        Me.GridColumn188.Visible = True
+        Me.GridColumn188.VisibleIndex = 8
+        '
+        'GridColumn189
+        '
+        Me.GridColumn189.Caption = "Kurs"
+        Me.GridColumn189.FieldName = "kurs"
+        Me.GridColumn189.Name = "GridColumn189"
+        Me.GridColumn189.Visible = True
+        Me.GridColumn189.VisibleIndex = 9
+        '
+        'GridColumn190
+        '
+        Me.GridColumn190.Caption = "Currency"
+        Me.GridColumn190.ColumnEdit = Me.RISLECurrency
+        Me.GridColumn190.FieldName = "id_currency"
+        Me.GridColumn190.Name = "GridColumn190"
+        Me.GridColumn190.Visible = True
+        Me.GridColumn190.VisibleIndex = 7
+        '
+        'RISLECurrency
+        '
+        Me.RISLECurrency.AutoHeight = False
+        Me.RISLECurrency.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLECurrency.Name = "RISLECurrency"
+        Me.RISLECurrency.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn191, Me.GridColumn192})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn191
+        '
+        Me.GridColumn191.Caption = "ID"
+        Me.GridColumn191.FieldName = "id_currency"
+        Me.GridColumn191.Name = "GridColumn191"
+        '
+        'GridColumn192
+        '
+        Me.GridColumn192.Caption = "Currency"
+        Me.GridColumn192.FieldName = "currency"
+        Me.GridColumn192.Name = "GridColumn192"
+        Me.GridColumn192.Visible = True
+        Me.GridColumn192.VisibleIndex = 0
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4461,6 +4524,8 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
+        CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4841,4 +4906,11 @@ Partial Class FormBankWithdrawal
     Friend WithEvents TEKursDPKhusus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn187 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn190 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISLECurrency As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn191 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn192 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn189 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn188 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
