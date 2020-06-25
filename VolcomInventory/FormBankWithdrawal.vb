@@ -22,6 +22,11 @@
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
 
+    Sub load_currency()
+        Dim q As String = "SELECT id_currency,currency FROM tb_lookup_currency"
+        viewSearchLookupRepositoryQuery(RISLECurrency, q, 0, "currency", "id_currency")
+    End Sub
+
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEKurs.EditValue = 1.0
         TEKursDPKhusus.EditValue = 1.0
@@ -29,6 +34,7 @@
         load_vendor()
         load_trans_type()
         load_status_payment()
+        load_currency()
         '
         load_trans_type_po()
         '

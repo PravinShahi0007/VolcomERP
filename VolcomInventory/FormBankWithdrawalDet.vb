@@ -132,7 +132,6 @@
 
                 'load detail
                 For i As Integer = 0 To FormBankWithdrawal.GVExpense.RowCount - 1
-                    'id_report,number,total,balance due
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_item_expense").ToString
                     newRow("report_mark_type") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "report_mark_type").ToString
@@ -146,10 +145,10 @@
                     newRow("comp_number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "comp_number_default").ToString
                     newRow("number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "number").ToString
                     newRow("total_pay") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "total_dp")
-                    newRow("kurs") = 1
-                    newRow("id_currency") = "1"
-                    newRow("currency") = "Rp"
-                    newRow("val_bef_kurs") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
+                    newRow("kurs") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "kurs")
+                    newRow("id_currency") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_currency").ToString
+                    newRow("currency") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "currency").ToString
+                    newRow("val_bef_kurs") = If(FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVExpense.GetRowCellValue(i, "amount_before"))
                     newRow("value") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("value_view") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
@@ -1212,6 +1211,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
     Sub calculate_amount()
         GVList.RefreshData()
         Dim gross_total As Double = 0.0
+
         Try
             gross_total = Double.Parse(GVList.Columns("value").SummaryItem.SummaryValue.ToString)
         Catch ex As Exception
