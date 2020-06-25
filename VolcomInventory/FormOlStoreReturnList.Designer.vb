@@ -197,7 +197,6 @@ Partial Class FormOlStoreReturnList
         Me.BUpdateStatus.Size = New System.Drawing.Size(113, 23)
         Me.BUpdateStatus.TabIndex = 3
         Me.BUpdateStatus.Text = "Update Status"
-        Me.BUpdateStatus.Visible = False
         '
         'LabelControl1
         '
