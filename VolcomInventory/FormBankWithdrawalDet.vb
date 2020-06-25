@@ -132,9 +132,6 @@
 
                 'load detail
                 For i As Integer = 0 To FormBankWithdrawal.GVExpense.RowCount - 1
-                    Dim qe As String = ""
-
-
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_item_expense").ToString
                     newRow("report_mark_type") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "report_mark_type").ToString
@@ -148,10 +145,10 @@
                     newRow("comp_number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "comp_number_default").ToString
                     newRow("number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "number").ToString
                     newRow("total_pay") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "total_dp")
-                    newRow("kurs") = 1
-                    newRow("id_currency") = "1"
-                    newRow("currency") = "Rp"
-                    newRow("val_bef_kurs") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
+                    newRow("kurs") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "kurs")
+                    newRow("id_currency") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_currency").ToString
+                    newRow("currency") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "currency").ToString
+                    newRow("val_bef_kurs") = If(FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVExpense.GetRowCellValue(i, "amount_before"))
                     newRow("value") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("value_view") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")

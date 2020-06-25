@@ -41,7 +41,7 @@
 
         Dim query As String = "SELECT e.inv_number,e.id_item_expense,157 AS report_mark_type, IFNULL(e.id_comp,0) AS `id_comp`, c.comp_number, c.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name) AS `comp`, e.`number`, e.created_date, e.due_date, e.created_by, emp.employee_name AS `created_by_name`, e.id_acc_from, e.id_payment_purchasing, e.id_report_status, stt.report_status, IF(e.id_report_status!=6, '-', IF(e.is_pay_later=2,'Paid', IF(e.is_open=2, 'Paid', IF(DATE(NOW())>e.due_date,'Overdue', 'Open')))) AS `paid_status`, e.note, e.is_pay_later, e.is_open,
         e.sub_total, e.vat_total,e.total, IFNULL(er.total,0) AS `total_paid`, IF(e.is_pay_later=1,(e.total-IFNULL(er.total,0)),0) AS `balance`, 'No' AS `is_select`, DATEDIFF(e.`due_date`,NOW()) AS due_days
-        ,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`,SUM(ed.amount_before) AS amount_before,ed.kurs,ed.id_currency
+        ,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`,SUM(ed.amount_before) AS amount_before,ed.kurs,ed.id_currency,cur.currency
         " + col_dp + "
         " + col_pay_pending + "
         " + q_acc + "
@@ -53,6 +53,7 @@
         INNER JOIN tb_lookup_payment_purchasing pp ON pp.id_payment_purchasing = e.id_payment_purchasing
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = e.id_report_status
         INNER JOIN tb_item_expense_det ed ON ed.id_item_expense=e.id_item_expense
+        INNER JOIN tb_lookup_currency cur ON cur.id_currency=ed.id_currency
         LEFT JOIN (
             SELECT pd.id_report, SUM(pd.`value`) AS total 
             FROM tb_pn p
