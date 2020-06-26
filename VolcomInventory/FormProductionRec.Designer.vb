@@ -104,6 +104,8 @@ Partial Class FormProductionRec
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPListPO.SuspendLayout()
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCRec.SuspendLayout()
@@ -521,7 +523,7 @@ Partial Class FormProductionRec
         Me.XTPListReceive.Controls.Add(Me.PCUpdateHO)
         Me.XTPListReceive.Controls.Add(Me.PanelControl1)
         Me.XTPListReceive.Name = "XTPListReceive"
-        Me.XTPListReceive.Size = New System.Drawing.Size(803, 466)
+        Me.XTPListReceive.Size = New System.Drawing.Size(980, 466)
         Me.XTPListReceive.Text = "List Receive"
         '
         'GCProdRec
@@ -531,19 +533,20 @@ Partial Class FormProductionRec
         Me.GCProdRec.MainView = Me.GVProdRec
         Me.GCProdRec.Name = "GCProdRec"
         Me.GCProdRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemTextEdit1})
-        Me.GCProdRec.Size = New System.Drawing.Size(803, 390)
+        Me.GCProdRec.Size = New System.Drawing.Size(980, 390)
         Me.GCProdRec.TabIndex = 2
         Me.GCProdRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdRec, Me.GridView3})
         '
         'GVProdRec
         '
-        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColShipFrom, Me.ColShipTo, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnIdDel, Me.GridColumnDelRec, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnPoTypeRec, Me.GridColumnQty, Me.GridColumnArriveDate})
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColShipFrom, Me.ColShipTo, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnIdDel, Me.GridColumnDelRec, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnPoTypeRec, Me.GridColumnQty, Me.GridColumnArriveDate, Me.GridColumn5, Me.GridColumn7})
         Me.GVProdRec.GridControl = Me.GCProdRec
         Me.GVProdRec.GroupCount = 1
         Me.GVProdRec.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}")})
         Me.GVProdRec.Name = "GVProdRec"
         Me.GVProdRec.OptionsBehavior.Editable = False
         Me.GVProdRec.OptionsFind.AlwaysVisible = True
+        Me.GVProdRec.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVProdRec.OptionsView.ShowFooter = True
         Me.GVProdRec.OptionsView.ShowGroupPanel = False
         Me.GVProdRec.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColIdPRodOrderRecPurc, DevExpress.Data.ColumnSortOrder.Descending)})
@@ -598,7 +601,7 @@ Partial Class FormProductionRec
         Me.ColRecDate.FieldName = "prod_order_rec_date"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
-        Me.ColRecDate.VisibleIndex = 11
+        Me.ColRecDate.VisibleIndex = 10
         Me.ColRecDate.Width = 122
         '
         'ColDueDate
@@ -649,7 +652,7 @@ Partial Class FormProductionRec
         Me.ColStatus.FieldName = "report_status"
         Me.ColStatus.Name = "ColStatus"
         Me.ColStatus.Visible = True
-        Me.ColStatus.VisibleIndex = 12
+        Me.ColStatus.VisibleIndex = 11
         Me.ColStatus.Width = 93
         '
         'GridColumnIdDel
@@ -710,7 +713,7 @@ Partial Class FormProductionRec
         Me.GridColumnArriveDate.FieldName = "arrive_date"
         Me.GridColumnArriveDate.Name = "GridColumnArriveDate"
         Me.GridColumnArriveDate.Visible = True
-        Me.GridColumnArriveDate.VisibleIndex = 10
+        Me.GridColumnArriveDate.VisibleIndex = 12
         '
         'RepositoryItemDateEdit1
         '
@@ -731,7 +734,7 @@ Partial Class FormProductionRec
         Me.PCUpdateHO.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCUpdateHO.Location = New System.Drawing.Point(0, 428)
         Me.PCUpdateHO.Name = "PCUpdateHO"
-        Me.PCUpdateHO.Size = New System.Drawing.Size(803, 38)
+        Me.PCUpdateHO.Size = New System.Drawing.Size(980, 38)
         Me.PCUpdateHO.TabIndex = 7
         '
         'BUpdate
@@ -739,7 +742,7 @@ Partial Class FormProductionRec
         Me.BUpdate.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BUpdate.Location = New System.Drawing.Point(2, 2)
         Me.BUpdate.Name = "BUpdate"
-        Me.BUpdate.Size = New System.Drawing.Size(799, 34)
+        Me.BUpdate.Size = New System.Drawing.Size(976, 34)
         Me.BUpdate.TabIndex = 8908
         Me.BUpdate.Text = "Update Target Handover"
         '
@@ -754,7 +757,7 @@ Partial Class FormProductionRec
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(803, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(980, 38)
         Me.PanelControl1.TabIndex = 6
         '
         'SLESeasonByCode
@@ -880,15 +883,33 @@ Partial Class FormProductionRec
         Me.XTCTabReceive.Location = New System.Drawing.Point(0, 0)
         Me.XTCTabReceive.Name = "XTCTabReceive"
         Me.XTCTabReceive.SelectedTabPage = Me.XTPListReceive
-        Me.XTCTabReceive.Size = New System.Drawing.Size(809, 494)
+        Me.XTCTabReceive.Size = New System.Drawing.Size(986, 494)
         Me.XTCTabReceive.TabIndex = 8
         Me.XTCTabReceive.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReceive, Me.XTPListPO})
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Est Arrive in QC"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "est_qc_date"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 13
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Diff Day On Estimate"
+        Me.GridColumn7.FieldName = "diff_day"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 14
         '
         'FormProductionRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(809, 494)
+        Me.ClientSize = New System.Drawing.Size(986, 494)
         Me.Controls.Add(Me.XTCTabReceive)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -1018,4 +1039,6 @@ Partial Class FormProductionRec
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PCUpdateHO As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BUpdate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
