@@ -14,7 +14,7 @@
 
         Dim query As String = "SELECT p.id_ol_promo_collection, p.id_promo, prm.promo, p.`number`, p.created_date, 
         p.created_by, e.employee_name AS `created_by_name`,
-        p.start_period, p.end_period, p.id_report_status, stt.report_status, p.note
+        p.start_period, p.end_period, p.id_report_status, stt.report_status, p.note, p.is_confirm
         FROM tb_ol_promo_collection p
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = p.id_report_status
         INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
