@@ -3161,6 +3161,18 @@
     <Compile Include="FormProductionWOList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoCollection.Designer.vb">
+      <DependentUpon>FormPromoCollection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoCollection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPromoCollectionDet.Designer.vb">
+      <DependentUpon>FormPromoCollectionDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoCollectionDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPromoRules.Designer.vb">
       <DependentUpon>FormPromoRules.vb</DependentUpon>
     </Compile>
