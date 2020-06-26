@@ -151,4 +151,45 @@
             viewDetailProduct()
         End If
     End Sub
+
+    Sub saveHead()
+        'head
+        Dim id_promo As String = SLEPromoType.EditValue.ToString
+        Dim start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
+        Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
+        If action = "ins" Then
+
+        ElseIf action = "upd" Then
+
+        End If
+        Dim query_head As String = "UPDATE tb_ol_promo_collection SET id_promo='' 
+        WHERE id_fg_propose_price='" + id + "' "
+        execute_non_query(query_head, True, "", "", "", "")
+    End Sub
+
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        makeSafeGV(GVData)
+        If GVData.RowCount <= 0 Then
+            stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose Price ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update 
+                saveHead()
+
+                'update confirm
+                Dim query As String = "UPDATE tb_fg_propose_price SET is_confirm=1 WHERE id_fg_propose_price='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'submit approval 
+                submit_who_prepared(rmt, id, id_user)
+                BtnConfirm.Visible = False
+                actionLoad()
+                infoCustom("Propose Price submitted. Waiting for approval.")
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
 End Class
