@@ -1803,6 +1803,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormRefundOLStoreDet.action = "ins"
                 FormRefundOLStoreDet.ShowDialog()
             End If
+        ElseIf formName = "FormPromoCollection" Then
+            FormPromoCollectionDet.action = "ins"
+            FormPromoCollectionDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2985,6 +2988,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormRefundOLStoreDet.action = "upd"
                     FormRefundOLStoreDet.ShowDialog()
                 End If
+            ElseIf formName = "FormPromoCollection" Then
+                FormPromoCollectionDet.action = "upd"
+                FormPromoCollectionDet.id = FormPromoCollection.GVData.GetFocusedRowCellValue("id_ol_promo_collection").ToString
+                FormPromoCollectionDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8228,6 +8235,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormRetOlStore.GCData, "Pre Return List")
         ElseIf formName = "FormRefundOLStore" Then
             print(FormRefundOLStore.GCData, "Accepted Refund List")
+        ElseIf formName = "FormPromoCollection" Then
+            print(FormPromoCollection.GCData, "Promo Collection List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9111,6 +9120,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormRefundOLStore" Then
             FormRefundOLStore.Close()
             FormRefundOLStore.Dispose()
+        ElseIf formName = "FormPromoCollection" Then
+            FormPromoCollection.Close()
+            FormPromoCollection.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10028,6 +10040,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRetOlStore.viewData()
         ElseIf formName = "FormRefundOLStore" Then
             FormRefundOLStore.viewData()
+        ElseIf formName = "FormPromoCollection" Then
+            FormPromoCollection.viewPropose()
         End If
     End Sub
     'Switch

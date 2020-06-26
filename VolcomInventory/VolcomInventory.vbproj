@@ -258,6 +258,7 @@
     <Compile Include="ClassProductionClaimReturn.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
+    <Compile Include="ClassPromoCollection.vb" />
     <Compile Include="ClassPurcAsset.vb" />
     <Compile Include="ClassPurcItemStock.vb" />
     <Compile Include="ClassPurcOrder.vb" />
@@ -9708,6 +9709,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollection.resx">
+      <DependentUpon>FormPromoCollection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollectionDet.resx">
+      <DependentUpon>FormPromoCollectionDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRules.resx">
       <DependentUpon>FormPromoRules.vb</DependentUpon>
