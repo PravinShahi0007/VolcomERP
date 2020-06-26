@@ -84,6 +84,8 @@ Partial Class FormProductionRec
         Me.GridColumnPoTypeRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnArriveDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PCUpdateHO = New DevExpress.XtraEditors.PanelControl()
@@ -104,8 +106,6 @@ Partial Class FormProductionRec
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPListPO.SuspendLayout()
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCRec.SuspendLayout()
@@ -145,7 +145,7 @@ Partial Class FormProductionRec
         '
         Me.XTPListPO.Controls.Add(Me.SCCRec)
         Me.XTPListPO.Name = "XTPListPO"
-        Me.XTPListPO.Size = New System.Drawing.Size(803, 466)
+        Me.XTPListPO.Size = New System.Drawing.Size(980, 466)
         Me.XTPListPO.Text = "List Production Order"
         '
         'SCCRec
@@ -158,7 +158,7 @@ Partial Class FormProductionRec
         Me.SCCRec.Panel1.Text = "Panel1"
         Me.SCCRec.Panel2.Controls.Add(Me.GroupControl2)
         Me.SCCRec.Panel2.Text = "Panel2"
-        Me.SCCRec.Size = New System.Drawing.Size(803, 466)
+        Me.SCCRec.Size = New System.Drawing.Size(980, 466)
         Me.SCCRec.SplitterPosition = 315
         Me.SCCRec.TabIndex = 28
         Me.SCCRec.Text = "SplitContainerControl1"
@@ -169,7 +169,7 @@ Partial Class FormProductionRec
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(803, 315)
+        Me.GroupControl1.Size = New System.Drawing.Size(980, 315)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Production Order"
         '
@@ -180,7 +180,7 @@ Partial Class FormProductionRec
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(799, 293)
+        Me.GCProd.Size = New System.Drawing.Size(976, 293)
         Me.GCProd.TabIndex = 3
         Me.GCProd.ToolTipController = Me.ToolTipControllerNew
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd, Me.GridView2})
@@ -342,7 +342,7 @@ Partial Class FormProductionRec
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(803, 146)
+        Me.GroupControl2.Size = New System.Drawing.Size(980, 146)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Detail"
         '
@@ -353,7 +353,7 @@ Partial Class FormProductionRec
         Me.GCListProd.MainView = Me.GVListProd
         Me.GCListProd.Name = "GCListProd"
         Me.GCListProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit1})
-        Me.GCListProd.Size = New System.Drawing.Size(799, 124)
+        Me.GCListProd.Size = New System.Drawing.Size(976, 124)
         Me.GCListProd.TabIndex = 2
         Me.GCListProd.ToolTipController = Me.ToolTipControllerNew
         Me.GCListProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProd, Me.GridView1})
@@ -715,6 +715,24 @@ Partial Class FormProductionRec
         Me.GridColumnArriveDate.Visible = True
         Me.GridColumnArriveDate.VisibleIndex = 12
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Est Arrive in QC"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "est_qc_date"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 13
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Diff Day On Estimate"
+        Me.GridColumn7.FieldName = "diff_day"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 14
+        '
         'RepositoryItemDateEdit1
         '
         Me.RepositoryItemDateEdit1.AutoHeight = False
@@ -886,24 +904,6 @@ Partial Class FormProductionRec
         Me.XTCTabReceive.Size = New System.Drawing.Size(986, 494)
         Me.XTCTabReceive.TabIndex = 8
         Me.XTCTabReceive.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReceive, Me.XTPListPO})
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Est Arrive in QC"
-        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "est_qc_date"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 13
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Diff Day On Estimate"
-        Me.GridColumn7.FieldName = "diff_day"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 14
         '
         'FormProductionRec
         '
