@@ -84,6 +84,18 @@ Partial Class FormBankWithdrawal
         Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn86 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.XTPOGJasa = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPO = New DevExpress.XtraGrid.GridControl()
+        Me.GVPO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn193 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn194 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn195 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn196 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn197 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn198 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn199 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn200 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BViewPOOG = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStatusPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -404,7 +416,6 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.XTPOGJasa = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -420,6 +431,9 @@ Partial Class FormBankWithdrawal
         CType(Me.GCPOListNonActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPOListNonActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPOGJasa.SuspendLayout()
+        CType(Me.GCPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStatusPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -906,6 +920,7 @@ Partial Class FormBankWithdrawal
         '
         Me.XPOListNonActive.Controls.Add(Me.GCPOListNonActive)
         Me.XPOListNonActive.Name = "XPOListNonActive"
+        Me.XPOListNonActive.PageVisible = False
         Me.XPOListNonActive.Size = New System.Drawing.Size(1085, 383)
         Me.XPOListNonActive.Text = "Non Active"
         '
@@ -1186,6 +1201,105 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
         Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
+        'XTPOGJasa
+        '
+        Me.XTPOGJasa.Controls.Add(Me.GCPO)
+        Me.XTPOGJasa.Controls.Add(Me.BViewPOOG)
+        Me.XTPOGJasa.Name = "XTPOGJasa"
+        Me.XTPOGJasa.Size = New System.Drawing.Size(1085, 383)
+        Me.XTPOGJasa.Text = "Set PPH"
+        '
+        'GCPO
+        '
+        Me.GCPO.ContextMenuStrip = Me.ContextMenuStrip
+        Me.GCPO.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPO.Location = New System.Drawing.Point(0, 26)
+        Me.GCPO.MainView = Me.GVPO
+        Me.GCPO.Name = "GCPO"
+        Me.GCPO.Size = New System.Drawing.Size(1085, 357)
+        Me.GCPO.TabIndex = 8915
+        Me.GCPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPO})
+        '
+        'GVPO
+        '
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn193, Me.GridColumn194, Me.GridColumn195, Me.GridColumn196, Me.GridColumn197, Me.GridColumn198, Me.GridColumn199, Me.GridColumn200})
+        Me.GVPO.GridControl = Me.GCPO
+        Me.GVPO.Name = "GVPO"
+        Me.GVPO.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn193
+        '
+        Me.GridColumn193.Caption = "ID PO"
+        Me.GridColumn193.FieldName = "id_purc_order"
+        Me.GridColumn193.Name = "GridColumn193"
+        '
+        'GridColumn194
+        '
+        Me.GridColumn194.Caption = "PO Number"
+        Me.GridColumn194.FieldName = "purc_order_number"
+        Me.GridColumn194.Name = "GridColumn194"
+        Me.GridColumn194.Visible = True
+        Me.GridColumn194.VisibleIndex = 0
+        '
+        'GridColumn195
+        '
+        Me.GridColumn195.Caption = "Created By"
+        Me.GridColumn195.FieldName = "emp_created"
+        Me.GridColumn195.Name = "GridColumn195"
+        Me.GridColumn195.Visible = True
+        Me.GridColumn195.VisibleIndex = 1
+        '
+        'GridColumn196
+        '
+        Me.GridColumn196.Caption = "Vendor Code"
+        Me.GridColumn196.FieldName = "comp_number"
+        Me.GridColumn196.Name = "GridColumn196"
+        Me.GridColumn196.Visible = True
+        Me.GridColumn196.VisibleIndex = 3
+        '
+        'GridColumn197
+        '
+        Me.GridColumn197.Caption = "Vendor"
+        Me.GridColumn197.FieldName = "comp_name"
+        Me.GridColumn197.Name = "GridColumn197"
+        Me.GridColumn197.Visible = True
+        Me.GridColumn197.VisibleIndex = 2
+        '
+        'GridColumn198
+        '
+        Me.GridColumn198.Caption = "Contact Person"
+        Me.GridColumn198.FieldName = "contact_person"
+        Me.GridColumn198.Name = "GridColumn198"
+        Me.GridColumn198.Visible = True
+        Me.GridColumn198.VisibleIndex = 5
+        '
+        'GridColumn199
+        '
+        Me.GridColumn199.Caption = "Contact Number"
+        Me.GridColumn199.FieldName = "contact_number"
+        Me.GridColumn199.Name = "GridColumn199"
+        Me.GridColumn199.Visible = True
+        Me.GridColumn199.VisibleIndex = 6
+        '
+        'GridColumn200
+        '
+        Me.GridColumn200.Caption = "Created Date"
+        Me.GridColumn200.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn200.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn200.FieldName = "date_created"
+        Me.GridColumn200.Name = "GridColumn200"
+        Me.GridColumn200.Visible = True
+        Me.GridColumn200.VisibleIndex = 4
+        '
+        'BViewPOOG
+        '
+        Me.BViewPOOG.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BViewPOOG.Location = New System.Drawing.Point(0, 0)
+        Me.BViewPOOG.Name = "BViewPOOG"
+        Me.BViewPOOG.Size = New System.Drawing.Size(1085, 26)
+        Me.BViewPOOG.TabIndex = 8914
+        Me.BViewPOOG.Text = "view po list"
         '
         'BCreatePO
         '
@@ -4390,12 +4504,6 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'XTPOGJasa
-        '
-        Me.XTPOGJasa.Name = "XTPOGJasa"
-        Me.XTPOGJasa.Size = New System.Drawing.Size(1085, 383)
-        Me.XTPOGJasa.Text = "Set PPH"
-        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4423,6 +4531,9 @@ Partial Class FormBankWithdrawal
         CType(Me.GCPOListNonActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPOListNonActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPOGJasa.ResumeLayout(False)
+        CType(Me.GCPO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -4925,4 +5036,15 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn189 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn188 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPOGJasa As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BViewPOOG As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCPO As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPO As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn193 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn194 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn195 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn196 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn197 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn198 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn199 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn200 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

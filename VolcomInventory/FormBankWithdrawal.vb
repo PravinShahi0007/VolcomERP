@@ -558,10 +558,13 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
     End Sub
 
     Private Sub ToolStripMenuItemAdd_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemAdd.Click
-        If XTCPO.SelectedTabPageIndex = 0 Then
+        If XTPPOList.SelectedTabPageIndex = 0 Then
             infoCustom("Already active.")
-        Else
+        ElseIf XTPPOList.SelectedTabPageIndex.ToString = 1 Then
             FormBankWithdrawalAttachement.id_purc_order = GVPOListNonActive.GetFocusedRowCellValue("id_purc_order").ToString
+            FormBankWithdrawalAttachement.ShowDialog()
+        ElseIf XTPPOList.SelectedTabPageIndex = 2 Then
+            FormBankWithdrawalAttachement.id_purc_order = GVPO.GetFocusedRowCellValue("id_purc_order").ToString
             FormBankWithdrawalAttachement.ShowDialog()
         End If
     End Sub
@@ -1102,5 +1105,26 @@ GROUP BY sr.`id_sales_return`"
         End If
 
         GVDPKhusus.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BViewPOOG_Click(sender As Object, e As EventArgs) Handles BViewPOOG.Click
+        view_po_og()
+    End Sub
+    Sub view_po_og()
+        Dim q As String = "SELECT po.`id_purc_order`,po.`purc_order_number`,emp.`employee_name` AS emp_created,c.comp_name,cc.`contact_person`,cc.`contact_number`,po.`date_created`
+FROM tb_purc_order_det pod
+INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`=6
+INNER JOIN tb_m_comp_contact cc ON po.`id_comp_contact`=cc.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
+INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
+WHERE it.id_item_type='1' AND po.`is_active_payment`=2 AND po.`is_close_pay`=2
+GROUP BY pod.`id_purc_order`
+ORDER BY pod.id_purc_order DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCPO.DataSource = dt
+        GVPO.BestFitColumns()
     End Sub
 End Class

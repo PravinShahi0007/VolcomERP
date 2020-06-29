@@ -5191,6 +5191,14 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            query = String.Format("UPDATE tb_purc_rec SET id_report_status='{0}' WHERE id_purc_rec ='{1}';", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'update
+            Dim query_complete As String = ""
+            query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
+            execute_non_query(query_complete, True, "", "", "", "")
+
             'completed
             Dim qjd As String = ""
             Dim id_acc_trans As String = ""
@@ -5463,12 +5471,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 execute_non_query(qjd, True, "", "", "", "")
             End If
 
-            query = String.Format("UPDATE tb_purc_rec SET id_report_status='{0}' WHERE id_purc_rec ='{1}';", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'update
-            Dim query_complete As String = ""
-            query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
-            execute_non_query(query_complete, True, "", "", "", "")
+
+
+            'jika ada PPH dan receiving klop
+
 
             'DP pindah BBK
             '            If id_status_reportx = "6" Then
