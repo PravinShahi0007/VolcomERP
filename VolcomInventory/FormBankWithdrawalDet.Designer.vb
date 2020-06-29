@@ -82,6 +82,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -123,7 +124,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BPickDP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -782,6 +783,12 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.OptionsColumn.AllowFocus = False
         '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Acc Description"
+        Me.GridColumn29.FieldName = "acc_description"
+        Me.GridColumn29.Name = "GridColumn29"
+        '
         'GridColumn11
         '
         Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
@@ -1061,6 +1068,7 @@ Partial Class FormBankWithdrawalDet
         '
         'PCAddDel
         '
+        Me.PCAddDel.Controls.Add(Me.BPickDP)
         Me.PCAddDel.Controls.Add(Me.TEKurs)
         Me.PCAddDel.Controls.Add(Me.LabelControl4)
         Me.PCAddDel.Controls.Add(Me.BtnDelete)
@@ -1236,11 +1244,15 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
-        'GridColumn29
+        'BPickDP
         '
-        Me.GridColumn29.Caption = "Acc Description"
-        Me.GridColumn29.FieldName = "acc_description"
-        Me.GridColumn29.Name = "GridColumn29"
+        Me.BPickDP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPickDP.Image = CType(resources.GetObject("BPickDP.Image"), System.Drawing.Image)
+        Me.BPickDP.Location = New System.Drawing.Point(664, 2)
+        Me.BPickDP.Name = "BPickDP"
+        Me.BPickDP.Size = New System.Drawing.Size(91, 43)
+        Me.BPickDP.TabIndex = 8909
+        Me.BPickDP.Text = "Pick DP"
         '
         'FormBankWithdrawalDet
         '
@@ -1426,4 +1438,5 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPickDP As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -362,7 +362,6 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
             warningCustom("Please process all pending payment for selected purchase")
         Else
             If id_pay_type_po = "1" Then 'dp
-                '
                 If GVPOList.RowCount > 0 Then
                     FormBankWithdrawalDet.report_mark_type = GVPOList.GetFocusedRowCellValue("report_mark_type").ToString
                     FormBankWithdrawalDet.id_pay_type = id_pay_type_po
@@ -1110,6 +1109,7 @@ GROUP BY sr.`id_sales_return`"
     Private Sub BViewPOOG_Click(sender As Object, e As EventArgs) Handles BViewPOOG.Click
         view_po_og()
     End Sub
+
     Sub view_po_og()
         Dim q As String = "SELECT po.`id_purc_order`,po.`purc_order_number`,emp.`employee_name` AS emp_created,c.comp_name,cc.`contact_person`,cc.`contact_number`,po.`date_created`
 FROM tb_purc_order_det pod
