@@ -108,6 +108,7 @@ Partial Class FormBankWithdrawalDet
         Me.XTCBBK = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
+        Me.BPickDP = New DevExpress.XtraEditors.SimpleButton()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
@@ -124,7 +125,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BPickDP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1079,6 +1079,16 @@ Partial Class FormBankWithdrawalDet
         Me.PCAddDel.Size = New System.Drawing.Size(939, 47)
         Me.PCAddDel.TabIndex = 19
         '
+        'BPickDP
+        '
+        Me.BPickDP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPickDP.Image = CType(resources.GetObject("BPickDP.Image"), System.Drawing.Image)
+        Me.BPickDP.Location = New System.Drawing.Point(664, 2)
+        Me.BPickDP.Name = "BPickDP"
+        Me.BPickDP.Size = New System.Drawing.Size(91, 43)
+        Me.BPickDP.TabIndex = 8909
+        Me.BPickDP.Text = "Pick DP"
+        '
         'TEKurs
         '
         Me.TEKurs.EditValue = ""
@@ -1243,16 +1253,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
-        '
-        'BPickDP
-        '
-        Me.BPickDP.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPickDP.Image = CType(resources.GetObject("BPickDP.Image"), System.Drawing.Image)
-        Me.BPickDP.Location = New System.Drawing.Point(664, 2)
-        Me.BPickDP.Name = "BPickDP"
-        Me.BPickDP.Size = New System.Drawing.Size(91, 43)
-        Me.BPickDP.TabIndex = 8909
-        Me.BPickDP.Text = "Pick DP"
         '
         'FormBankWithdrawalDet
         '
