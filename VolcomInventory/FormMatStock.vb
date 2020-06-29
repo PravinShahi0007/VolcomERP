@@ -63,6 +63,8 @@
         viewProductStockStore()
         '
 
+        DEStockFrom.EditValue = Now
+        DEStockTo.EditValue = Now
     End Sub
 
     '==============FUNCTION==========================='
@@ -1022,6 +1024,23 @@
         Dim row_handle As Integer = view.FocusedRowHandle
 
         BGVStockRes.BestFitColumns()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBStockView_Click(sender As Object, e As EventArgs) Handles SBStockView.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim d_from As String = Date.Parse(DEStockFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim d_to As String = Date.Parse(DEStockTo.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        Dim data As DataTable = execute_query("CALL view_stock_report_mat('" + d_from + "', '" + d_to + "')", -1, True, "", "", "", "")
+
+        GCStockReport.DataSource = data
+
+        GVStockReport.BestFitColumns()
+
+        GroupControl6.Enabled = True
 
         Cursor = Cursors.Default
     End Sub
