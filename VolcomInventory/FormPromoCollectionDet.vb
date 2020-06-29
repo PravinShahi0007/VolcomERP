@@ -37,6 +37,7 @@
             Dim query As String = p.queryMain("AND p.id_ol_promo_collection=" + id + "", "2")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             SLEPromoType.EditValue = data.Rows(0)("id_promo").ToString
+            TxtTag.Text = data.Rows(0)("tag").ToString
             DEStart.EditValue = data.Rows(0)("start_period")
             DEEnd.EditValue = data.Rows(0)("end_period")
             MENote.Text = data.Rows(0)("note").ToString
@@ -46,7 +47,7 @@
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
-            viewDetail()
+            viewDetailProduct()
             allow_status()
         End If
         Cursor = Cursors.Default
@@ -54,17 +55,17 @@
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT pd.id_ol_promo_collection_det, pd.id_ol_promo_collection, 
-        pd.id_design, d.design_code AS `code`, d.design_display_name AS `name`, 
+        Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
+        prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, 
         GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC) AS `size_chart`
-        FROM tb_ol_promo_collection_det pd
-        INNER JOIN tb_m_design d ON d.id_design = pd.id_design
-        INNER JOIN tb_m_product prod ON prod.id_design = d.id_design
+        FROM tb_ol_promo_collection_sku pd
+        INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         WHERE pd.id_ol_promo_collection=" + id + "
-        GROUP BY pd.id_ol_promo_collection_det 
-        ORDER BY d.design_code_import ASC "
+        GROUP BY d.id_design
+        ORDER BY d.design_display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         Cursor = Cursors.Default
@@ -72,23 +73,21 @@
 
     Sub viewDetailProduct()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT pd.id_ol_promo_collection_det, pd.id_ol_promo_collection, 
-        pd.id_design, prod.id_product, prod.product_full_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`
-        FROM tb_ol_promo_collection_det pd
-        INNER JOIN tb_m_design d ON d.id_design = pd.id_design
-        INNER JOIN tb_m_product prod ON prod.id_design = d.id_design
+        Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
+        prod.id_design, prod.id_product, prod.product_full_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`
+        FROM tb_ol_promo_collection_sku pd
+        INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         WHERE pd.id_ol_promo_collection=" + id + "
-        ORDER BY d.design_code_import ASC, cd.id_code_detail ASC "
+        ORDER BY prod.product_display_name ASC, cd.id_code_detail ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProduct.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
-        XTPProduct.PageVisible = True
-        PanelControlAdd.Visible = False
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
         BtnExportToXLS.Visible = True
@@ -96,6 +95,8 @@
             BtnConfirm.Visible = True
             BtnMark.Visible = False
             MENote.Enabled = True
+            TxtTag.Enabled = True
+            PanelControlAdd.Visible = True
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
@@ -107,6 +108,8 @@
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
+            TxtTag.Enabled = False
+            PanelControlAdd.Visible = False
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
@@ -131,6 +134,8 @@
             BtnResetPropose.Visible = False
             BtnConfirm.Visible = False
             MENote.Enabled = False
+            TxtTag.Enabled = False
+            PanelControlAdd.Visible = False
             BtnPrint.Visible = False
             PanelControlAdd.Visible = False
             BtnSaveChanges.Visible = False
@@ -142,13 +147,13 @@
         End If
     End Sub
 
-    Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
+    Private Sub BtnDel_Click(sender As Object, e As EventArgs)
 
     End Sub
 
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
-        If XTCData.SelectedTabPageIndex = 1 Then
-            viewDetailProduct()
+        If XTCData.SelectedTabPageIndex = 0 Then
+            viewDetail()
         End If
     End Sub
 
@@ -169,7 +174,7 @@
         ElseIf action = "upd" Then
             Dim query_head As String = "UPDATE tb_ol_promo_collection SET note='" + note + "'
             WHERE id_ol_promo_collection='" + id + "' "
-            execute_non_query(query_head, True, "", "", "", ""
+            execute_non_query(query_head, True, "", "", "", "")
             'refresh
             refreshData()
         End If
@@ -187,6 +192,8 @@
         makeSafeGV(GVData)
         If GVData.RowCount <= 0 Then
             stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
+        ElseIf Not validateInput() Then
+            stopCustom("Please complete all data")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose  ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -209,8 +216,20 @@
     End Sub
 
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
-        saveHead()
+        If validateInput() Then
+            saveHead()
+        Else
+            stopCustom("Please complete all data")
+        End If
     End Sub
+
+    Function validateInput() As Boolean
+        If TxtTag.Text = "" Or DEStart.EditValue = Nothing Or DEEnd.EditValue = Nothing Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 
     Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
         Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=2 
@@ -344,6 +363,9 @@
     End Sub
 
     Private Sub BtnImportExcel_Click(sender As Object, e As EventArgs) Handles BtnImportExcel.Click
-
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "51"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
