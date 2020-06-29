@@ -5191,7 +5191,18 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            query = String.Format("UPDATE tb_purc_rec SET id_report_status='{0}' WHERE id_purc_rec ='{1}';", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'update
+            Dim query_complete As String = ""
+            query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
+            execute_non_query(query_complete, True, "", "", "", "")
+
             'completed
+            Dim qjd As String = ""
+            Dim id_acc_trans As String = ""
+
             If id_status_reportx = "6" Then
                 'stock only OPEX and Not delivered yet
                 Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
@@ -5303,15 +5314,18 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
                 VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                id_acc_trans = execute_query(qjm, 0, True, "", "", "", "")
                 increase_inc_acc("1")
 
                 'det journal
-                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
+                qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
+SELECT id_acc_trans,id_acc,id_comp,qty,IF(SUM(debit)>SUM(credit),SUM(debit)-SUM(credit),0) AS debit,IF(SUM(credit)>SUM(debit),SUM(credit)-SUM(debit),0) AS credit,note,report_mark_type,id_report,report_number,rmt_reff,id_report_reff,report_number_reff
+FROM
+(
                 /* total biaya jasa atau non inventory */
-                SELECT " + id_acc_trans + ",o.id_coa_out AS `id_acc`, IF(reqd.ship_to=0,1,reqd.ship_to) AS id_comp,  SUM(rd.qty) AS `qty`,
+                SELECT " + id_acc_trans + " AS id_acc_trans,o.id_coa_out AS `id_acc`, IF(reqd.ship_to=0,1,reqd.ship_to) AS id_comp,  SUM(rd.qty) AS `qty`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
+                0 AS `credit`,'' AS `note`,148 AS report_mark_type,rd.id_purc_rec AS id_report, r.purc_rec_number AS report_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order AS id_report_reff, po.purc_order_number AS report_number_reff
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5335,7 +5349,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 HAVING debit>0 OR credit>0
                 UNION ALL
                 /*total value item inventory tanpa diskon*/
-                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, dep.id_main_comp,  SUM(rd.qty) AS `qty`,
+                SELECT " + id_acc_trans + " AS id_acc_trans,o.acc_coa_receive AS `id_acc`, dep.id_main_comp,  SUM(rd.qty) AS `qty`,
                 SUM(rd.qty * (pod.`value`)) AS `debit`,
                 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
@@ -5361,7 +5375,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 HAVING debit>0 OR credit>0
                 UNION ALL
                 /*total value item asset tanpa diskon*/
-                SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, dep.id_main_comp,  
+                SELECT " + id_acc_trans + " AS id_acc_trans,coa.id_coa_out AS `id_acc`, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`, SUM(rd.qty * (pod.`value`)) AS `debit`,
                 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
@@ -5386,7 +5400,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 GROUP BY rd.id_purc_rec, rq.id_departement
                 UNION ALL
                 /*Discount ke pendapatan lain-lain*/
-                SELECT " + id_acc_trans + ",(SELECT id_acc_pendapatan_lain FROM tb_opt_accounting) AS `id_acc`, dep.id_main_comp,  
+                SELECT " + id_acc_trans + " AS id_acc_trans,(SELECT id_acc_pendapatan_lain FROM tb_opt_accounting) AS `id_acc`, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`,
                 0 AS `debit`,
                 SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
@@ -5413,7 +5427,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 HAVING debit!=0 OR credit!=0
                 UNION ALL
                 /*total vat in*/
-                SELECT " + id_acc_trans + ",o.acc_coa_vat_in AS `id_acc`, dep.id_main_comp,  SUM(rd.qty) AS `qty`,
+                SELECT " + id_acc_trans + " AS id_acc_trans,o.acc_coa_vat_in AS `id_acc`, dep.id_main_comp,  SUM(rd.qty) AS `qty`,
                 (po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value)) AS `debit`,
                 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
@@ -5436,7 +5450,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 GROUP BY rd.id_purc_rec,dep.id_main_comp
                 UNION ALL
                 /* Total value item inventory + total value item asset + vat in ke AP */
-                SELECT " + id_acc_trans + ", comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`, 0 AS `debit`,
+                SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`, 0 AS `debit`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) + ((po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value))) AS `credit`,
                 '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
@@ -5456,58 +5470,97 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 	                GROUP BY pod.id_purc_order
                 ) poall ON poall.id_purc_order = r.id_purc_order
                 WHERE rd.id_purc_rec=" + id_report + "
-                GROUP BY rd.id_purc_rec,dep.id_main_comp "
-
-                'jika klop diinsert jurnal balik DP nya jika ada
-                Dim q_dp As String = "SELECT pnd.id_report,SUM(pnd.`value`) AS `value`, po.is_close_rec FROM tb_pn_det pnd
-                                        INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
-                                        INNER JOIN tb_purc_order po ON po.id_purc_order=pnd.id_report AND (pnd.report_mark_type='139' OR pnd.report_mark_type='202')
-                                        WHERE (pnd.report_mark_type='139' OR pnd.report_mark_type='202') AND pnd.id_report='" + FormPurcReceiveDet.id_purc_order + "' 
-                                        GROUP BY pnd.id_report"
-                Dim dt_dp As DataTable = execute_query(q_dp, -1, True, "", "", "", "")
-                If dt_dp.Rows.Count > 0 Then 'ada DP
-                    If dt_dp.Rows(0)("is_close_rec").ToString = "1" Then
-                        'sudah klop receiving
-                        qjd += " UNION ALL
-                                /* Total DP balik */
-                                SELECT " + id_acc_trans + ", comp.id_acc_dp AS `id_acc`, 1, 0 AS `qty`,0 AS `debit`,SUM(pnd.`value`) AS `credit`, 
-                                'Receiving complete, inverting journal DP' AS note, '159', pn.id_pn, pn.number, po.report_mark_type, po.id_purc_order, po.purc_order_number
-                                FROM tb_pn_det pnd
-                                INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
-                                INNER JOIN tb_purc_order po ON po.id_purc_order=pnd.id_report AND (pnd.report_mark_type='139' OR pnd.report_mark_type='202')
-                                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
-                                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
-                                WHERE (pnd.report_mark_type='139' OR pnd.report_mark_type='202') AND pnd.id_report='" + FormPurcReceiveDet.id_purc_order + "' 
-                                GROUP BY pnd.id_report
-                                UNION ALL
-                                /* Hutang dagang balik */
-                                SELECT " + id_acc_trans + ", comp.id_acc_ap AS `id_acc`, 1, 0 AS `qty`,SUM(pnd.`value`) AS `debit`,0 AS `credit`, 
-                                'Receiving complete, inverting journal DP' AS note, '159', pn.id_pn, pn.number, po.report_mark_type, po.id_purc_order, po.purc_order_number
-                                FROM tb_pn_det pnd
-                                INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
-                                INNER JOIN tb_purc_order po ON po.id_purc_order=pnd.id_report AND (pnd.report_mark_type='139' OR pnd.report_mark_type='202')
-                                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
-                                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
-                                WHERE (pnd.report_mark_type='139' OR pnd.report_mark_type='202') AND pnd.id_report='" + FormPurcReceiveDet.id_purc_order + "' 
-                                GROUP BY pnd.id_report"
-                    End If
-                End If
-
+                GROUP BY rd.id_purc_rec,dep.id_main_comp
+                UNION ALL 
+                SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
+                0 AS `debit`,
+                SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `credit`,
+                '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+                INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+                INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
+                WHERE po.id_purc_order=" + FormPurcReceiveDet.id_purc_order + " AND po.`is_close_rec`=1 
+                GROUP BY po.id_purc_order,dep.id_main_comp
+                UNION ALL
+                SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
+                SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `debit`,
+                0 AS `credit`,
+                '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+                INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+                INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
+                WHERE po.id_purc_order=" + FormPurcReceiveDet.id_purc_order + " AND po.`is_close_rec`=1
+                GROUP BY po.id_purc_order,dep.id_main_comp
+) ttl
+GROUP BY ttl.id_acc
+HAVING debit!=credit"
                 execute_non_query(qjd, True, "", "", "", "")
             End If
-
-            query = String.Format("UPDATE tb_purc_rec SET id_report_status='{0}' WHERE id_purc_rec ='{1}';", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-
-            'update
-            Dim query_complete As String = ""
-            query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
-            execute_non_query(query_complete, True, "", "", "", "")
 
             'refresh view
             FormPurcReceiveDet.actionLoad()
             FormPurcReceive.viewReceive()
             FormPurcReceive.GVReceive.FocusedRowHandle = find_row(FormPurcReceive.GVReceive, "id_purc_rec", id_report)
+
+            'jika ada PPH dan receiving klop
+            'DP pindah BBK
+            '            If id_status_reportx = "6" Then
+            '                'jika klop diinsert jurnal balik DP nya jika ada
+            '                Dim q_dp As String = "SELECT pnd.id_report,SUM(pnd.`value`) AS `value`, po.is_close_rec FROM tb_pn_det pnd
+            '                                        INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
+            '                                        INNER JOIN tb_purc_order po ON po.id_purc_order=pnd.id_report AND (pnd.report_mark_type='139' OR pnd.report_mark_type='202')
+            '                                        WHERE (pnd.report_mark_type='139' OR pnd.report_mark_type='202') AND pnd.id_report='" + FormPurcReceiveDet.id_purc_order + "' 
+            '                                        GROUP BY pnd.id_report"
+            '                Dim dt_dp As DataTable = execute_query(q_dp, -1, True, "", "", "", "")
+            '                If dt_dp.Rows.Count > 0 Then 'ada DP
+            '                    If dt_dp.Rows(0)("is_close_rec").ToString = "1" Then
+            '                        'sudah klop receiving
+            '                        qjd += " UNION ALL
+            '                                /* Total DP balik */
+            '                                SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_dp AS `id_acc`, 1, 0 AS `qty`,0 AS `debit`,SUM(pnd.`value`) AS `credit`, 
+            '                                'Receiving complete, inverting journal DP' AS note, '159', pn.id_pn, pn.number, po.report_mark_type, po.id_purc_order, po.purc_order_number
+            '                                FROM tb_pn_det pnd
+            '                                INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
+            '                                INNER JOIN tb_purc_order po ON po.id_purc_order=pnd.id_report AND (pnd.report_mark_type='139' OR pnd.report_mark_type='202')
+            '                                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+            '                                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
+            '                                WHERE (pnd.report_mark_type='139' OR pnd.report_mark_type='202') AND pnd.id_report='" + FormPurcReceiveDet.id_purc_order + "' 
+            '                                GROUP BY pnd.id_report
+            '                                UNION ALL
+            '                                /* Hutang dagang balik */
+            '                                SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, 1, 0 AS `qty`,SUM(pnd.`value`) AS `debit`,0 AS `credit`, 
+            '                                'Receiving complete, inverting journal DP' AS note, '159', pn.id_pn, pn.number, po.report_mark_type, po.id_purc_order, po.purc_order_number
+            '                                FROM tb_pn_det pnd
+            '                                INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
+            '                                INNER JOIN tb_purc_order po ON po.id_purc_order=pnd.id_report AND (pnd.report_mark_type='139' OR pnd.report_mark_type='202')
+            '                                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+            '                                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
+            '                                WHERE (pnd.report_mark_type='139' OR pnd.report_mark_type='202') AND pnd.id_report='" + FormPurcReceiveDet.id_purc_order + "' 
+            '                                GROUP BY pnd.id_report"
+            '                    End If
+            '                End If
+
+            '                qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
+            'SELECT id_acc_trans,id_acc,id_comp,qty,IF(SUM(debit)>SUM(credit),SUM(debit)-SUM(credit),0) AS debit,IF(SUM(credit)>SUM(debit),SUM(credit)-SUM(debit),0) AS credit,note,report_mark_type,id_report,report_number,rmt_reff,id_report_reff,report_number_reff
+            'FROM 
+            '(
+            '" + qjd + "
+            ') ttl
+            'GROUP BY ttl.id_acc
+            'HAVING debit!=credit"
+            '            End If
         ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'COP Propose
             'auto complete
