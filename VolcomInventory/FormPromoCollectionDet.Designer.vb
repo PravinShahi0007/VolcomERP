@@ -21,24 +21,24 @@ Partial Class FormPromoCollectionDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPromoCollectionDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEPromoType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
-        Me.TxtCreatedBy = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEPromoType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -49,17 +49,6 @@ Partial Class FormPromoCollectionDet
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControlAdd = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
-        Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPProduct = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCProduct = New DevExpress.XtraGrid.GridControl()
-        Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnid_ol_promo_collection_det = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ol_promo_collection = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -67,6 +56,17 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsize_chart = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlAdd = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPProduct = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProduct = New DevExpress.XtraGrid.GridControl()
+        Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNoProduct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ol_promo_collection_det_prod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ol_promo_collection_prod = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -77,20 +77,20 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEPromoType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEPromoType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,13 +125,14 @@ Partial Class FormPromoCollectionDet
         Me.GroupControlHead.Size = New System.Drawing.Size(834, 155)
         Me.GroupControlHead.TabIndex = 10
         '
-        'MENote
+        'LabelControl6
         '
-        Me.MENote.Location = New System.Drawing.Point(111, 93)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(301, 41)
-        Me.MENote.TabIndex = 151
-        Me.MENote.TabStop = False
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(33, 69)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(51, 13)
+        Me.LabelControl6.TabIndex = 157
+        Me.LabelControl6.Text = "End Period"
         '
         'LabelControl7
         '
@@ -142,24 +143,78 @@ Partial Class FormPromoCollectionDet
         Me.LabelControl7.TabIndex = 150
         Me.LabelControl7.Text = "Note"
         '
-        'TxtNumber
+        'DEEnd
         '
-        Me.TxtNumber.Location = New System.Drawing.Point(82, 12)
-        Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Properties.ReadOnly = True
-        Me.TxtNumber.Size = New System.Drawing.Size(154, 20)
-        Me.TxtNumber.TabIndex = 147
+        Me.DEEnd.EditValue = Nothing
+        Me.DEEnd.Location = New System.Drawing.Point(111, 66)
+        Me.DEEnd.Name = "DEEnd"
+        Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.CalendarTimeProperties.Mask.EditMask = "HH:mm"
+        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEnd.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
+        Me.DEEnd.Size = New System.Drawing.Size(301, 20)
+        Me.DEEnd.TabIndex = 156
         '
-        'LabelControl2
+        'DEStart
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(11, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl2.TabIndex = 147
-        Me.LabelControl2.Text = "Number"
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(111, 40)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Mask.EditMask = "HH:mm"
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
+        Me.DEStart.Size = New System.Drawing.Size(301, 20)
+        Me.DEStart.TabIndex = 155
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(33, 43)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl5.TabIndex = 154
+        Me.LabelControl5.Text = "Start Period"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(33, 17)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl3.TabIndex = 153
+        Me.LabelControl3.Text = "Promo Type"
+        '
+        'SLEPromoType
+        '
+        Me.SLEPromoType.Enabled = False
+        Me.SLEPromoType.Location = New System.Drawing.Point(111, 14)
+        Me.SLEPromoType.Name = "SLEPromoType"
+        Me.SLEPromoType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPromoType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEPromoType.Size = New System.Drawing.Size(301, 20)
+        Me.SLEPromoType.TabIndex = 152
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(111, 93)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(301, 41)
+        Me.MENote.TabIndex = 151
+        Me.MENote.TabStop = False
         '
         'PanelControl1
         '
@@ -177,6 +232,25 @@ Partial Class FormPromoCollectionDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(251, 151)
         Me.PanelControl1.TabIndex = 4
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 67)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl1.TabIndex = 149
+        Me.LabelControl1.Text = "Created By"
+        '
+        'TxtCreatedBy
+        '
+        Me.TxtCreatedBy.Enabled = False
+        Me.TxtCreatedBy.Location = New System.Drawing.Point(82, 64)
+        Me.TxtCreatedBy.Name = "TxtCreatedBy"
+        Me.TxtCreatedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCreatedBy.Properties.Appearance.Options.UseFont = True
+        Me.TxtCreatedBy.Size = New System.Drawing.Size(154, 20)
+        Me.TxtCreatedBy.TabIndex = 148
         '
         'LabelControl21
         '
@@ -212,6 +286,25 @@ Partial Class FormPromoCollectionDet
         Me.LEReportStatus.Size = New System.Drawing.Size(154, 20)
         Me.LEReportStatus.TabIndex = 7
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl2.TabIndex = 147
+        Me.LabelControl2.Text = "Number"
+        '
+        'TxtNumber
+        '
+        Me.TxtNumber.Location = New System.Drawing.Point(82, 12)
+        Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNumber.Properties.Appearance.Options.UseFont = True
+        Me.TxtNumber.Properties.ReadOnly = True
+        Me.TxtNumber.Size = New System.Drawing.Size(154, 20)
+        Me.TxtNumber.TabIndex = 147
+        '
         'DECreated
         '
         Me.DECreated.EditValue = Nothing
@@ -226,99 +319,6 @@ Partial Class FormPromoCollectionDet
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreated.Size = New System.Drawing.Size(154, 20)
         Me.DECreated.TabIndex = 6
-        '
-        'TxtCreatedBy
-        '
-        Me.TxtCreatedBy.Enabled = False
-        Me.TxtCreatedBy.Location = New System.Drawing.Point(82, 64)
-        Me.TxtCreatedBy.Name = "TxtCreatedBy"
-        Me.TxtCreatedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCreatedBy.Properties.Appearance.Options.UseFont = True
-        Me.TxtCreatedBy.Size = New System.Drawing.Size(154, 20)
-        Me.TxtCreatedBy.TabIndex = 148
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 67)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl1.TabIndex = 149
-        Me.LabelControl1.Text = "Created By"
-        '
-        'SLEPromoType
-        '
-        Me.SLEPromoType.Enabled = False
-        Me.SLEPromoType.Location = New System.Drawing.Point(111, 14)
-        Me.SLEPromoType.Name = "SLEPromoType"
-        Me.SLEPromoType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEPromoType.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEPromoType.Size = New System.Drawing.Size(301, 20)
-        Me.SLEPromoType.TabIndex = 152
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(33, 17)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl3.TabIndex = 153
-        Me.LabelControl3.Text = "Promo Type"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(33, 43)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl5.TabIndex = 154
-        Me.LabelControl5.Text = "Start Period"
-        '
-        'DEStart
-        '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(111, 40)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeProperties.Mask.EditMask = "HH:mm"
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEStart.Size = New System.Drawing.Size(301, 20)
-        Me.DEStart.TabIndex = 155
-        '
-        'DEEnd
-        '
-        Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(111, 66)
-        Me.DEEnd.Name = "DEEnd"
-        Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEnd.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEnd.Properties.CalendarTimeProperties.Mask.EditMask = "HH:mm"
-        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
-        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEnd.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEEnd.Size = New System.Drawing.Size(301, 20)
-        Me.DEEnd.TabIndex = 156
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(33, 69)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(51, 13)
-        Me.LabelControl6.TabIndex = 157
-        Me.LabelControl6.Text = "End Period"
         '
         'PanelControlBottom
         '
@@ -430,6 +430,60 @@ Partial Class FormPromoCollectionDet
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnid_ol_promo_collection_det
+        '
+        Me.GridColumnid_ol_promo_collection_det.Caption = "id_ol_promo_collection_det"
+        Me.GridColumnid_ol_promo_collection_det.FieldName = "id_ol_promo_collection_det"
+        Me.GridColumnid_ol_promo_collection_det.Name = "GridColumnid_ol_promo_collection_det"
+        '
+        'GridColumnid_ol_promo_collection
+        '
+        Me.GridColumnid_ol_promo_collection.Caption = "id_ol_promo_collection"
+        Me.GridColumnid_ol_promo_collection.FieldName = "id_ol_promo_collection"
+        Me.GridColumnid_ol_promo_collection.Name = "GridColumnid_ol_promo_collection"
+        '
+        'GridColumnid_design
+        '
+        Me.GridColumnid_design.Caption = "id_design"
+        Me.GridColumnid_design.FieldName = "id_design"
+        Me.GridColumnid_design.Name = "GridColumnid_design"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 1
+        Me.GridColumncode.Width = 121
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 2
+        Me.GridColumnname.Width = 281
+        '
+        'GridColumnsize_chart
+        '
+        Me.GridColumnsize_chart.Caption = "Size Chart"
+        Me.GridColumnsize_chart.FieldName = "size_chart"
+        Me.GridColumnsize_chart.Name = "GridColumnsize_chart"
+        Me.GridColumnsize_chart.Visible = True
+        Me.GridColumnsize_chart.VisibleIndex = 3
+        Me.GridColumnsize_chart.Width = 92
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.VisibleIndex = 0
+        Me.GridColumnno.Width = 43
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
@@ -439,6 +493,17 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(834, 39)
         Me.PanelControlNav.TabIndex = 17
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(425, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(126, 35)
+        Me.BtnExportToXLS.TabIndex = 9
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        Me.BtnExportToXLS.Visible = False
         '
         'PanelControlAdd
         '
@@ -452,17 +517,6 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlAdd.Size = New System.Drawing.Size(281, 35)
         Me.PanelControlAdd.TabIndex = 6
         '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(92, 0)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(77, 35)
-        Me.BtnAdd.TabIndex = 6
-        Me.BtnAdd.Text = "Add"
-        Me.BtnAdd.Visible = False
-        '
         'BtnDel
         '
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
@@ -473,6 +527,17 @@ Partial Class FormPromoCollectionDet
         Me.BtnDel.TabIndex = 7
         Me.BtnDel.Text = "Delete"
         Me.BtnDel.Visible = False
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(92, 0)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(77, 35)
+        Me.BtnAdd.TabIndex = 6
+        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Visible = False
         '
         'BtnImportExcel
         '
@@ -529,71 +594,6 @@ Partial Class FormPromoCollectionDet
         Me.GVProduct.OptionsView.ColumnAutoWidth = False
         Me.GVProduct.OptionsView.ShowFooter = True
         Me.GVProduct.OptionsView.ShowGroupPanel = False
-        '
-        'BtnExportToXLS
-        '
-        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(425, 2)
-        Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(126, 35)
-        Me.BtnExportToXLS.TabIndex = 9
-        Me.BtnExportToXLS.Text = "Export to XLS"
-        Me.BtnExportToXLS.Visible = False
-        '
-        'GridColumnid_ol_promo_collection_det
-        '
-        Me.GridColumnid_ol_promo_collection_det.Caption = "id_ol_promo_collection_det"
-        Me.GridColumnid_ol_promo_collection_det.FieldName = "id_ol_promo_collection_det"
-        Me.GridColumnid_ol_promo_collection_det.Name = "GridColumnid_ol_promo_collection_det"
-        '
-        'GridColumnid_ol_promo_collection
-        '
-        Me.GridColumnid_ol_promo_collection.Caption = "id_ol_promo_collection"
-        Me.GridColumnid_ol_promo_collection.FieldName = "id_ol_promo_collection"
-        Me.GridColumnid_ol_promo_collection.Name = "GridColumnid_ol_promo_collection"
-        '
-        'GridColumnid_design
-        '
-        Me.GridColumnid_design.Caption = "id_design"
-        Me.GridColumnid_design.FieldName = "id_design"
-        Me.GridColumnid_design.Name = "GridColumnid_design"
-        '
-        'GridColumncode
-        '
-        Me.GridColumncode.Caption = "Code"
-        Me.GridColumncode.FieldName = "code"
-        Me.GridColumncode.Name = "GridColumncode"
-        Me.GridColumncode.Visible = True
-        Me.GridColumncode.VisibleIndex = 1
-        Me.GridColumncode.Width = 121
-        '
-        'GridColumnname
-        '
-        Me.GridColumnname.Caption = "Description"
-        Me.GridColumnname.FieldName = "name"
-        Me.GridColumnname.Name = "GridColumnname"
-        Me.GridColumnname.Visible = True
-        Me.GridColumnname.VisibleIndex = 2
-        Me.GridColumnname.Width = 281
-        '
-        'GridColumnsize_chart
-        '
-        Me.GridColumnsize_chart.Caption = "Size Chart"
-        Me.GridColumnsize_chart.FieldName = "size_chart"
-        Me.GridColumnsize_chart.Name = "GridColumnsize_chart"
-        Me.GridColumnsize_chart.Visible = True
-        Me.GridColumnsize_chart.VisibleIndex = 3
-        Me.GridColumnsize_chart.Width = 92
-        '
-        'GridColumnno
-        '
-        Me.GridColumnno.Caption = "No"
-        Me.GridColumnno.FieldName = "no"
-        Me.GridColumnno.Name = "GridColumnno"
-        Me.GridColumnno.Visible = True
-        Me.GridColumnno.VisibleIndex = 0
-        Me.GridColumnno.Width = 43
         '
         'GridColumnNoProduct
         '
@@ -671,21 +671,21 @@ Partial Class FormPromoCollectionDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEPromoType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEPromoType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
