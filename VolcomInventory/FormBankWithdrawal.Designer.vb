@@ -404,6 +404,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XTPOGJasa = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -556,7 +557,7 @@ Partial Class FormBankWithdrawal
         Me.XTPPOList.SelectedTabPage = Me.XPOListActive
         Me.XTPPOList.Size = New System.Drawing.Size(1091, 411)
         Me.XTPPOList.TabIndex = 19
-        Me.XTPPOList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XPOListActive, Me.XPOListNonActive})
+        Me.XTPPOList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XPOListActive, Me.XPOListNonActive, Me.XTPOGJasa})
         '
         'XPOListActive
         '
@@ -4389,6 +4390,12 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'XTPOGJasa
+        '
+        Me.XTPOGJasa.Name = "XTPOGJasa"
+        Me.XTPOGJasa.Size = New System.Drawing.Size(1085, 383)
+        Me.XTPOGJasa.Text = "Set PPH"
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4917,4 +4924,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn192 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn189 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn188 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPOGJasa As DevExpress.XtraTab.XtraTabPage
 End Class
