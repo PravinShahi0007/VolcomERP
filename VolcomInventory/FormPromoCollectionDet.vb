@@ -47,6 +47,7 @@
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
+            viewDetail()
             viewDetailProduct()
             allow_status()
         End If
@@ -152,27 +153,26 @@
     End Sub
 
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
-        If XTCData.SelectedTabPageIndex = 0 Then
-            viewDetail()
-        End If
+
     End Sub
 
     Sub saveHead()
         'head
         Cursor = Cursors.WaitCursor
         Dim id_promo As String = SLEPromoType.EditValue.ToString
+        Dim tag As String = addSlashes(TxtTag.Text)
         Dim start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim note As String = addSlashes(MENote.Text)
         If action = "ins" Then
-            Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, created_date, created_by, start_period, end_period, id_report_status, note)
-            VALUES('" + id_promo + "', NOW(), '" + id_user + "', '" + start_period + "', '" + end_period + "',1, '" + note + "');SELECT LAST_INSERT_ID(); "
-            id = execute_query(query, 0, True, "", "", "", "")
-            execute_non_query("CALL gen_number(" + id + ", " + rmt + ")", True, "", "", "", "")
-            'refresh
-            refreshData()
+            'Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, created_date, created_by, start_period, end_period, id_report_status, note)
+            'VALUES('" + id_promo + "', NOW(), '" + id_user + "', '" + start_period + "', '" + end_period + "',1, '" + note + "');SELECT LAST_INSERT_ID(); "
+            'id = execute_query(query, 0, True, "", "", "", "")
+            'execute_non_query("CALL gen_number(" + id + ", " + rmt + ")", True, "", "", "", "")
+            ''refresh
+            'refreshData()
         ElseIf action = "upd" Then
-            Dim query_head As String = "UPDATE tb_ol_promo_collection SET note='" + note + "'
+            Dim query_head As String = "UPDATE tb_ol_promo_collection SET id_promo='" + id_promo + "',start_period='" + start_period + "', end_period='" + end_period + "', tag='" + tag + "',note='" + note + "'
             WHERE id_ol_promo_collection='" + id + "' "
             execute_non_query(query_head, True, "", "", "", "")
             'refresh
@@ -367,5 +367,21 @@
         FormImportExcel.id_pop_up = "51"
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_CustomFilterDisplayText(sender As Object, e As DevExpress.XtraEditors.Controls.ConvertEditValueEventArgs) Handles GVData.CustomFilterDisplayText
+
+    End Sub
+
+    Private Sub GVProduct_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVProduct.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class
