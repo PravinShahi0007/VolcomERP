@@ -1461,8 +1461,8 @@ VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue
     End Sub
 
     Private Sub BPickDP_Click(sender As Object, e As EventArgs) Handles BPickDP.Click
-        FormBankWithdrawalDP.id_popup = "1"
-        FormBankWithdrawalDP.id_report = "482"
+        FormBankWithdrawalDP.report_mark_type = "139"
+        FormBankWithdrawalDP.id_report = GVList.GetFocusedRowCellValue("id_report").ToString
         FormBankWithdrawalDP.ShowDialog()
     End Sub
 End Class

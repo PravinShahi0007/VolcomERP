@@ -1,9 +1,9 @@
 ﻿Public Class FormBankWithdrawalDP
-    Public id_popup As String = "-1"
+    Public report_mark_type As String = "-1"
     Public id_report As String = "-1"
 
     Private Sub FormBankWithdrawalDP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If id_popup = "1" Then 'OG
+        If report_mark_type = "139" Then 'OG
             Dim q As String = "SELECT 'no' AS is_check,acc.acc_name,acc.acc_description,pn.number,pnd.id_comp AS id_comp_tag,ct.comp_number AS comp_number_tag,pnd.`id_pn` AS id_report,c.`id_acc_dp` AS id_acc,c.`comp_number`,c.`comp_name`,SUM(pnd.`value`)-IFNULL(already.value,0) AS amount,pn.`note`
 FROM tb_pn_det pnd
 INNER JOIN tb_pn pn ON pn.`id_pn`=pnd.`id_pn`
@@ -17,7 +17,7 @@ LEFT JOIN
 	INNER JOIN tb_pn pn ON pn.`id_pn`=pnd.`id_pn` AND pn.`id_report_status`!=5
 	WHERE pnd.report_mark_type='159'
 ) already ON already.id_report=pn.`id_pn`
-WHERE pn.`id_pay_type`=1 AND pn.`id_report_status`=6 AND pn.report_mark_type='139' AND pnd.`id_report`='" & id_report & "'
+WHERE pn.`id_pay_type`=1 AND pn.`id_report_status`=6 AND pn.report_mark_type='" & report_mark_type & "' AND pnd.`id_report`='" & id_report & "'
 GROUP BY pnd.`id_pn`
 HAVING amount>0"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
