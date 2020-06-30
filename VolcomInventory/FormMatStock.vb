@@ -279,16 +279,16 @@
             'for information print
             label_mat_selected = label_mat_def
         Else
-            id_mat_image = view.GetRowCellValue(row_handle, "id_mat_det")
-            LabelLot.Text = view.GetRowCellValue(row_handle, "lot")
-            LabelColor.Text = view.GetRowCellValue(row_handle, "color")
-            LabelSizeSetting.Text = view.GetRowCellValue(row_handle, "size")
-            LabelYear.Text = view.GetRowCellValue(row_handle, "year")
+            id_mat_image = view.GetRowCellValue(row_handle, "id_mat_det").ToString
+            LabelLot.Text = view.GetRowCellValue(row_handle, "lot").ToString
+            LabelColor.Text = view.GetRowCellValue(row_handle, "color").ToString
+            LabelSizeSetting.Text = view.GetRowCellValue(row_handle, "size").ToString
+            LabelYear.Text = view.GetRowCellValue(row_handle, "year").ToString
             LabelMatCategory.Text = view.GetRowCellValue(row_handle, "mat_category").ToString
-            LUom.Text = view.GetRowCellValue(row_handle, "uom")
+            LUom.Text = view.GetRowCellValue(row_handle, "uom").ToString
 
             'for information print
-            label_mat_selected = view.GetRowCellValue(row_handle, "label_mat")
+            label_mat_selected = view.GetRowCellValue(row_handle, "label_mat").ToString
         End If
 
         If row_handle_wh < 0 Then
