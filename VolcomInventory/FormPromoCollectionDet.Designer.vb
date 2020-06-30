@@ -535,8 +535,6 @@ Partial Class FormPromoCollectionDet
         Me.GridColumncurrent_tag_design.Caption = "Current Tag"
         Me.GridColumncurrent_tag_design.FieldName = "current_tag"
         Me.GridColumncurrent_tag_design.Name = "GridColumncurrent_tag_design"
-        Me.GridColumncurrent_tag_design.Visible = True
-        Me.GridColumncurrent_tag_design.VisibleIndex = 4
         '
         'PanelControlNav
         '
@@ -703,8 +701,6 @@ Partial Class FormPromoCollectionDet
         Me.GridColumncurrenttag.Caption = "Current Tag"
         Me.GridColumncurrenttag.FieldName = "current_tag"
         Me.GridColumncurrenttag.Name = "GridColumncurrenttag"
-        Me.GridColumncurrenttag.Visible = True
-        Me.GridColumncurrenttag.VisibleIndex = 5
         '
         'FormPromoCollectionDet
         '
