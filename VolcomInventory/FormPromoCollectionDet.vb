@@ -385,4 +385,62 @@
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
+    Private Sub BtnExportToXLS_Click(sender As Object, e As EventArgs) Handles BtnExportToXLS.Click
+        Cursor = Cursors.WaitCursor
+        If XTCData.SelectedTabPageIndex = 0 Then
+            If GVData.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'Dim dt_from As String = DEFromRec.Text.Replace(" ", "")
+                'Dim dt_until As String = DEUntilRec.Text.Replace(" ", "")
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "promo_coll_" + id
+                exportToXLS(path, "promo_coll_" + id, GCData)
+                Cursor = Cursors.Default
+            End If
+        ElseIf XTCData.SelectedTabPageIndex = 1 Then
+            If GVProduct.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'Dim dt_from As String = DEFromRec.Text.Replace(" ", "")
+                'Dim dt_until As String = DEUntilRec.Text.Replace(" ", "")
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "promo_coll_sku_" + id
+                exportToXLS(path, "promo_coll_sku_" + id, GCProduct)
+                Cursor = Cursors.Default
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
