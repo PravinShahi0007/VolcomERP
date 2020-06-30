@@ -19,6 +19,7 @@ Partial Class FormMatStock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.XTCFGStock = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPFGStockWHSum = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControlStockSum = New DevExpress.XtraEditors.GroupControl()
@@ -208,13 +209,32 @@ Partial Class FormMatStock
         Me.BViewMatRes = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPStockReport = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCStockReport = New DevExpress.XtraGrid.GridControl()
+        Me.GVStockReport = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn74 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn82 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.DEStockTo = New DevExpress.XtraEditors.DateEdit()
         Me.DEStockFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.SBStockView = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -227,30 +247,11 @@ Partial Class FormMatStock
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewMenuWO = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenuWO = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewPackingListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewMaterialRequestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WorkOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
-        Me.GCStockReport = New DevExpress.XtraGrid.GridControl()
-        Me.GVStockReport = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn74 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn82 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -328,6 +329,10 @@ Partial Class FormMatStock
         CType(Me.SLEResMat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStockReport.SuspendLayout()
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl6.SuspendLayout()
+        CType(Me.GCStockReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVStockReport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEStockTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -336,10 +341,6 @@ Partial Class FormMatStock
         CType(Me.DEStockFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         Me.ViewMenuWO.SuspendLayout()
-        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl6.SuspendLayout()
-        CType(Me.GCStockReport, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVStockReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCFGStock
@@ -2103,6 +2104,201 @@ Partial Class FormMatStock
         Me.XTPStockReport.Size = New System.Drawing.Size(1154, 460)
         Me.XTPStockReport.Text = "Stock Report"
         '
+        'GroupControl6
+        '
+        Me.GroupControl6.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl6.Controls.Add(Me.GCStockReport)
+        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl6.Enabled = False
+        Me.GroupControl6.Location = New System.Drawing.Point(0, 54)
+        Me.GroupControl6.Name = "GroupControl6"
+        Me.GroupControl6.Size = New System.Drawing.Size(1154, 406)
+        Me.GroupControl6.TabIndex = 20
+        Me.GroupControl6.Text = "Raw Material"
+        '
+        'GCStockReport
+        '
+        Me.GCStockReport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCStockReport.Location = New System.Drawing.Point(20, 2)
+        Me.GCStockReport.MainView = Me.GVStockReport
+        Me.GCStockReport.Name = "GCStockReport"
+        Me.GCStockReport.Size = New System.Drawing.Size(1132, 402)
+        Me.GCStockReport.TabIndex = 38
+        Me.GCStockReport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStockReport})
+        '
+        'GVStockReport
+        '
+        Me.GVStockReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn68, Me.GridColumn69, Me.GridColumn78, Me.GridColumn71, Me.GridColumn72, Me.GridColumn70, Me.GridColumn73, Me.GridColumn79, Me.GridColumn74, Me.GridColumn80, Me.GridColumn75, Me.GridColumn81, Me.GridColumn76, Me.GridColumn82, Me.GridColumn77, Me.GridColumn83})
+        Me.GVStockReport.GridControl = Me.GCStockReport
+        Me.GVStockReport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, "")})
+        Me.GVStockReport.Name = "GVStockReport"
+        Me.GVStockReport.OptionsBehavior.ReadOnly = True
+        Me.GVStockReport.OptionsView.ColumnAutoWidth = False
+        Me.GVStockReport.OptionsView.ShowFooter = True
+        Me.GVStockReport.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn68
+        '
+        Me.GridColumn68.Caption = "No"
+        Me.GridColumn68.FieldName = "no"
+        Me.GridColumn68.Name = "GridColumn68"
+        '
+        'GridColumn69
+        '
+        Me.GridColumn69.Caption = "Category"
+        Me.GridColumn69.FieldName = "mat_cat"
+        Me.GridColumn69.Name = "GridColumn69"
+        Me.GridColumn69.Visible = True
+        Me.GridColumn69.VisibleIndex = 0
+        '
+        'GridColumn78
+        '
+        Me.GridColumn78.Caption = "Code"
+        Me.GridColumn78.FieldName = "mat_det_code"
+        Me.GridColumn78.Name = "GridColumn78"
+        Me.GridColumn78.Visible = True
+        Me.GridColumn78.VisibleIndex = 1
+        '
+        'GridColumn71
+        '
+        Me.GridColumn71.Caption = "Product"
+        Me.GridColumn71.FieldName = "mat_det_display_name"
+        Me.GridColumn71.Name = "GridColumn71"
+        Me.GridColumn71.Visible = True
+        Me.GridColumn71.VisibleIndex = 2
+        '
+        'GridColumn72
+        '
+        Me.GridColumn72.Caption = "Begin Qty"
+        Me.GridColumn72.DisplayFormat.FormatString = "N2"
+        Me.GridColumn72.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn72.FieldName = "qty_beg"
+        Me.GridColumn72.Name = "GridColumn72"
+        Me.GridColumn72.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_beg", "{0:N2}")})
+        Me.GridColumn72.Visible = True
+        Me.GridColumn72.VisibleIndex = 3
+        '
+        'GridColumn70
+        '
+        Me.GridColumn70.Caption = "Begin Amount"
+        Me.GridColumn70.DisplayFormat.FormatString = "N2"
+        Me.GridColumn70.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn70.FieldName = "amount_beg"
+        Me.GridColumn70.Name = "GridColumn70"
+        Me.GridColumn70.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_beg", "{0:N2}")})
+        Me.GridColumn70.Visible = True
+        Me.GridColumn70.VisibleIndex = 4
+        '
+        'GridColumn73
+        '
+        Me.GridColumn73.Caption = "Receive Qty"
+        Me.GridColumn73.DisplayFormat.FormatString = "N2"
+        Me.GridColumn73.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn73.FieldName = "qty_receive"
+        Me.GridColumn73.Name = "GridColumn73"
+        Me.GridColumn73.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_receive", "{0:N2}")})
+        Me.GridColumn73.Visible = True
+        Me.GridColumn73.VisibleIndex = 5
+        '
+        'GridColumn79
+        '
+        Me.GridColumn79.Caption = "Receive Amount"
+        Me.GridColumn79.DisplayFormat.FormatString = "N2"
+        Me.GridColumn79.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn79.FieldName = "amount_receive"
+        Me.GridColumn79.Name = "GridColumn79"
+        Me.GridColumn79.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_receive", "{0:N2}")})
+        Me.GridColumn79.Visible = True
+        Me.GridColumn79.VisibleIndex = 6
+        '
+        'GridColumn74
+        '
+        Me.GridColumn74.Caption = "MIS Qty"
+        Me.GridColumn74.DisplayFormat.FormatString = "N2"
+        Me.GridColumn74.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn74.FieldName = "qty_mrs"
+        Me.GridColumn74.Name = "GridColumn74"
+        Me.GridColumn74.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_mrs", "{0:N2}")})
+        Me.GridColumn74.Visible = True
+        Me.GridColumn74.VisibleIndex = 7
+        '
+        'GridColumn80
+        '
+        Me.GridColumn80.Caption = "MIS Amount"
+        Me.GridColumn80.DisplayFormat.FormatString = "N2"
+        Me.GridColumn80.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn80.FieldName = "amount_mrs"
+        Me.GridColumn80.Name = "GridColumn80"
+        Me.GridColumn80.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_mrs", "{0:N2}")})
+        Me.GridColumn80.Visible = True
+        Me.GridColumn80.VisibleIndex = 8
+        '
+        'GridColumn75
+        '
+        Me.GridColumn75.Caption = "Retur Qty"
+        Me.GridColumn75.DisplayFormat.FormatString = "N2"
+        Me.GridColumn75.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn75.FieldName = "qty_retur"
+        Me.GridColumn75.Name = "GridColumn75"
+        Me.GridColumn75.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_retur", "{0:N2}")})
+        Me.GridColumn75.Visible = True
+        Me.GridColumn75.VisibleIndex = 9
+        '
+        'GridColumn81
+        '
+        Me.GridColumn81.Caption = "Retur Amount"
+        Me.GridColumn81.DisplayFormat.FormatString = "N2"
+        Me.GridColumn81.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn81.FieldName = "amount_retur"
+        Me.GridColumn81.Name = "GridColumn81"
+        Me.GridColumn81.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_retur", "{0:N2}")})
+        Me.GridColumn81.Visible = True
+        Me.GridColumn81.VisibleIndex = 10
+        '
+        'GridColumn76
+        '
+        Me.GridColumn76.Caption = "Adjust Qty"
+        Me.GridColumn76.DisplayFormat.FormatString = "N2"
+        Me.GridColumn76.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn76.FieldName = "qty_adj"
+        Me.GridColumn76.Name = "GridColumn76"
+        Me.GridColumn76.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj", "{0:N2}")})
+        Me.GridColumn76.Visible = True
+        Me.GridColumn76.VisibleIndex = 11
+        '
+        'GridColumn82
+        '
+        Me.GridColumn82.Caption = "Adjust Amount"
+        Me.GridColumn82.DisplayFormat.FormatString = "N2"
+        Me.GridColumn82.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn82.FieldName = "amount_adj"
+        Me.GridColumn82.Name = "GridColumn82"
+        Me.GridColumn82.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_adj", "{0:N2}")})
+        Me.GridColumn82.Visible = True
+        Me.GridColumn82.VisibleIndex = 12
+        '
+        'GridColumn77
+        '
+        Me.GridColumn77.Caption = "Ending Qty"
+        Me.GridColumn77.DisplayFormat.FormatString = "N2"
+        Me.GridColumn77.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn77.FieldName = "qty_ending"
+        Me.GridColumn77.Name = "GridColumn77"
+        Me.GridColumn77.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ending", "{0:N2}")})
+        Me.GridColumn77.Visible = True
+        Me.GridColumn77.VisibleIndex = 13
+        '
+        'GridColumn83
+        '
+        Me.GridColumn83.Caption = "Ending Amount"
+        Me.GridColumn83.DisplayFormat.FormatString = "N2"
+        Me.GridColumn83.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn83.FieldName = "amount_ending"
+        Me.GridColumn83.Name = "GridColumn83"
+        Me.GridColumn83.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_ending", "{0:N2}")})
+        Me.GridColumn83.Visible = True
+        Me.GridColumn83.VisibleIndex = 14
+        '
         'GroupControl1
         '
         Me.GroupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
@@ -2308,201 +2504,6 @@ Partial Class FormMatStock
         Me.WorkOrderToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.WorkOrderToolStripMenuItem.Text = "Work Order"
         '
-        'GroupControl6
-        '
-        Me.GroupControl6.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl6.Controls.Add(Me.GCStockReport)
-        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl6.Enabled = False
-        Me.GroupControl6.Location = New System.Drawing.Point(0, 54)
-        Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(1154, 406)
-        Me.GroupControl6.TabIndex = 20
-        Me.GroupControl6.Text = "Raw Material"
-        '
-        'GCStockReport
-        '
-        Me.GCStockReport.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCStockReport.Location = New System.Drawing.Point(20, 2)
-        Me.GCStockReport.MainView = Me.GVStockReport
-        Me.GCStockReport.Name = "GCStockReport"
-        Me.GCStockReport.Size = New System.Drawing.Size(1132, 402)
-        Me.GCStockReport.TabIndex = 38
-        Me.GCStockReport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStockReport})
-        '
-        'GVStockReport
-        '
-        Me.GVStockReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn68, Me.GridColumn69, Me.GridColumn78, Me.GridColumn71, Me.GridColumn72, Me.GridColumn70, Me.GridColumn73, Me.GridColumn79, Me.GridColumn74, Me.GridColumn80, Me.GridColumn75, Me.GridColumn81, Me.GridColumn76, Me.GridColumn82, Me.GridColumn77, Me.GridColumn83})
-        Me.GVStockReport.GridControl = Me.GCStockReport
-        Me.GVStockReport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, "")})
-        Me.GVStockReport.Name = "GVStockReport"
-        Me.GVStockReport.OptionsBehavior.ReadOnly = True
-        Me.GVStockReport.OptionsView.ColumnAutoWidth = False
-        Me.GVStockReport.OptionsView.ShowFooter = True
-        Me.GVStockReport.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn68
-        '
-        Me.GridColumn68.Caption = "No"
-        Me.GridColumn68.FieldName = "no"
-        Me.GridColumn68.Name = "GridColumn68"
-        '
-        'GridColumn69
-        '
-        Me.GridColumn69.Caption = "Category"
-        Me.GridColumn69.FieldName = "mat_cat"
-        Me.GridColumn69.Name = "GridColumn69"
-        Me.GridColumn69.Visible = True
-        Me.GridColumn69.VisibleIndex = 0
-        '
-        'GridColumn71
-        '
-        Me.GridColumn71.Caption = "Product"
-        Me.GridColumn71.FieldName = "mat_det_display_name"
-        Me.GridColumn71.Name = "GridColumn71"
-        Me.GridColumn71.Visible = True
-        Me.GridColumn71.VisibleIndex = 2
-        '
-        'GridColumn72
-        '
-        Me.GridColumn72.Caption = "Begin Qty"
-        Me.GridColumn72.DisplayFormat.FormatString = "N2"
-        Me.GridColumn72.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn72.FieldName = "qty_beg"
-        Me.GridColumn72.Name = "GridColumn72"
-        Me.GridColumn72.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_beg", "{0:N2}")})
-        Me.GridColumn72.Visible = True
-        Me.GridColumn72.VisibleIndex = 3
-        '
-        'GridColumn73
-        '
-        Me.GridColumn73.Caption = "Receive Qty"
-        Me.GridColumn73.DisplayFormat.FormatString = "N2"
-        Me.GridColumn73.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn73.FieldName = "qty_receive"
-        Me.GridColumn73.Name = "GridColumn73"
-        Me.GridColumn73.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_receive", "{0:N2}")})
-        Me.GridColumn73.Visible = True
-        Me.GridColumn73.VisibleIndex = 4
-        '
-        'GridColumn74
-        '
-        Me.GridColumn74.Caption = "M I S Qty"
-        Me.GridColumn74.DisplayFormat.FormatString = "N2"
-        Me.GridColumn74.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn74.FieldName = "qty_mrs"
-        Me.GridColumn74.Name = "GridColumn74"
-        Me.GridColumn74.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_mrs", "{0:N2}")})
-        Me.GridColumn74.Visible = True
-        Me.GridColumn74.VisibleIndex = 6
-        '
-        'GridColumn75
-        '
-        Me.GridColumn75.Caption = "Retur Qty"
-        Me.GridColumn75.DisplayFormat.FormatString = "N2"
-        Me.GridColumn75.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn75.FieldName = "qty_retur"
-        Me.GridColumn75.Name = "GridColumn75"
-        Me.GridColumn75.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_retur", "{0:N2}")})
-        Me.GridColumn75.Visible = True
-        Me.GridColumn75.VisibleIndex = 8
-        '
-        'GridColumn76
-        '
-        Me.GridColumn76.Caption = "Adjust Qty"
-        Me.GridColumn76.DisplayFormat.FormatString = "N2"
-        Me.GridColumn76.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn76.FieldName = "qty_adj"
-        Me.GridColumn76.Name = "GridColumn76"
-        Me.GridColumn76.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj", "{0:N2}")})
-        Me.GridColumn76.Visible = True
-        Me.GridColumn76.VisibleIndex = 10
-        '
-        'GridColumn77
-        '
-        Me.GridColumn77.Caption = "Ending Qty"
-        Me.GridColumn77.DisplayFormat.FormatString = "N2"
-        Me.GridColumn77.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn77.FieldName = "qty_ending"
-        Me.GridColumn77.Name = "GridColumn77"
-        Me.GridColumn77.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ending", "{0:N2}")})
-        Me.GridColumn77.Visible = True
-        Me.GridColumn77.VisibleIndex = 12
-        '
-        'GridColumn78
-        '
-        Me.GridColumn78.Caption = "Code"
-        Me.GridColumn78.FieldName = "mat_det_code"
-        Me.GridColumn78.Name = "GridColumn78"
-        Me.GridColumn78.Visible = True
-        Me.GridColumn78.VisibleIndex = 1
-        '
-        'GridColumn70
-        '
-        Me.GridColumn70.Caption = "Begin Amount"
-        Me.GridColumn70.DisplayFormat.FormatString = "N2"
-        Me.GridColumn70.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn70.FieldName = "amount_beg"
-        Me.GridColumn70.Name = "GridColumn70"
-        Me.GridColumn70.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_beg", "{0:N2}")})
-        Me.GridColumn70.Visible = True
-        Me.GridColumn70.VisibleIndex = 5
-        '
-        'GridColumn79
-        '
-        Me.GridColumn79.Caption = "Receive Amount"
-        Me.GridColumn79.DisplayFormat.FormatString = "N2"
-        Me.GridColumn79.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn79.FieldName = "amount_receive"
-        Me.GridColumn79.Name = "GridColumn79"
-        Me.GridColumn79.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_receive", "{0:N2}")})
-        Me.GridColumn79.Visible = True
-        Me.GridColumn79.VisibleIndex = 7
-        '
-        'GridColumn80
-        '
-        Me.GridColumn80.Caption = "M I S Amount"
-        Me.GridColumn80.DisplayFormat.FormatString = "N2"
-        Me.GridColumn80.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn80.FieldName = "amount_mrs"
-        Me.GridColumn80.Name = "GridColumn80"
-        Me.GridColumn80.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_mrs", "{0:N2}")})
-        Me.GridColumn80.Visible = True
-        Me.GridColumn80.VisibleIndex = 9
-        '
-        'GridColumn81
-        '
-        Me.GridColumn81.Caption = "Retur Amount"
-        Me.GridColumn81.DisplayFormat.FormatString = "N2"
-        Me.GridColumn81.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn81.FieldName = "amount_retur"
-        Me.GridColumn81.Name = "GridColumn81"
-        Me.GridColumn81.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_retur", "{0:N2}")})
-        Me.GridColumn81.Visible = True
-        Me.GridColumn81.VisibleIndex = 11
-        '
-        'GridColumn82
-        '
-        Me.GridColumn82.Caption = "Adjust Amount"
-        Me.GridColumn82.DisplayFormat.FormatString = "N2"
-        Me.GridColumn82.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn82.FieldName = "amount_adj"
-        Me.GridColumn82.Name = "GridColumn82"
-        Me.GridColumn82.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_adj", "{0:N2}")})
-        Me.GridColumn82.Visible = True
-        Me.GridColumn82.VisibleIndex = 13
-        '
-        'GridColumn83
-        '
-        Me.GridColumn83.Caption = "Ending Amount"
-        Me.GridColumn83.DisplayFormat.FormatString = "N2"
-        Me.GridColumn83.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn83.FieldName = "amount_ending"
-        Me.GridColumn83.Name = "GridColumn83"
-        Me.GridColumn83.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_ending", "{0:N2}")})
-        Me.GridColumn83.Visible = True
-        Me.GridColumn83.VisibleIndex = 14
-        '
         'FormMatStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2599,6 +2600,10 @@ Partial Class FormMatStock
         CType(Me.SLEResMat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStockReport.ResumeLayout(False)
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl6.ResumeLayout(False)
+        CType(Me.GCStockReport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVStockReport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
@@ -2608,10 +2613,6 @@ Partial Class FormMatStock
         CType(Me.DEStockFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         Me.ViewMenuWO.ResumeLayout(False)
-        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl6.ResumeLayout(False)
-        CType(Me.GCStockReport, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVStockReport, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
