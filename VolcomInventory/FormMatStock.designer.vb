@@ -2213,7 +2213,7 @@ Partial Class FormMatStock
         '
         'GridColumn74
         '
-        Me.GridColumn74.Caption = "M I S Qty"
+        Me.GridColumn74.Caption = "MIS Qty"
         Me.GridColumn74.DisplayFormat.FormatString = "N2"
         Me.GridColumn74.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn74.FieldName = "qty_mrs"
@@ -2224,7 +2224,7 @@ Partial Class FormMatStock
         '
         'GridColumn80
         '
-        Me.GridColumn80.Caption = "M I S Amount"
+        Me.GridColumn80.Caption = "MIS Amount"
         Me.GridColumn80.DisplayFormat.FormatString = "N2"
         Me.GridColumn80.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn80.FieldName = "amount_mrs"
