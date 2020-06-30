@@ -593,4 +593,15 @@ GROUP BY p.sku"
         response.Close()
         Return tags
     End Function
+
+    Sub set_tag(ByVal product_id As String, ByVal new_tag As String)
+        Dim data = Text.Encoding.UTF8.GetBytes("{
+  ""product"": {
+    ""id"": " + product_id + ",
+    ""tags"": """ + new_tag + """
+  }
+}")
+        'Console.WriteLine(tracking_url + tracking_number)
+        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/products/" + product_id + ".json", data, "application/json", "PUT", username, password)
+    End Sub
 End Class

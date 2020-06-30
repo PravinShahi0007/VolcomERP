@@ -216,38 +216,10 @@
         makeSafeGV(GVData)
         makeSafeGV(GVProduct)
 
-        'cek current tag
-        execute_non_query("DELETE FROM tb_ol_promo_collection_log WHERE type=1 AND id_ol_promo_collection='" + id + "' ", True, "", "", "", "")
-        For t As Integer = 0 To GVData.RowCount - 1
-            Dim id_design_curr As String = GVData.GetRowCellValue(t, "id_design").ToString
-            Try
-                Dim s As New ClassShopifyApi()
-                Dim curr_tag As String = addSlashes(s.get_tag(GVData.GetRowCellValue(t, "id_prod_shopify").ToString))
-                Dim query_cek As String = "UPDATE tb_ol_promo_collection_sku s 
-                INNER JOIN tb_m_product p ON p.id_product = s.id_product
-                SET s.current_tag = '" + curr_tag + "'
-                WHERE s.id_ol_promo_collection=" + id + " AND p.id_design='" + id_design_curr + "'; 
-                INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
-                VALUES('" + id + "', 1, '" + id_design_curr + "', 'OK', NOW()); "
-                execute_non_query(query_cek, True, "", "", "", "")
-            Catch ex As Exception
-                Dim query_cek As String = " INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
-                VALUES('" + id + "', 1, '" + id_design_curr + "', '" + addSlashes(ex.ToString) + "', NOW()); "
-                execute_non_query(query_cek, True, "", "", "", "")
-            End Try
-        Next
-        Dim dt_log As DataTable = execute_query("SELECT 'Get Tag' AS `type`, d.design_code AS `code`, d.design_display_name AS `description`, l.log, l.log_date
-FROM tb_ol_promo_collection_log l 
-INNER JOIN tb_m_design d ON d.id_design = l.id_design
-WHERE l.type=1 AND l.id_ol_promo_collection=1 AND l.log<>'OK' ", -1, True, "", "", "", "")
-
         If GVData.RowCount <= 0 Then
             stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
         ElseIf Not validateInput() Then
             stopCustom("Please complete all data")
-        ElseIf dt_log.Rows.Count > 0 Then
-            stopCustom("Failed to get current tag for few products")
-            showLog(dt_log)
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose  ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -452,7 +424,7 @@ WHERE l.type=1 AND l.id_ol_promo_collection=1 AND l.log<>'OK' ", -1, True, "", "
                 If Not IO.Directory.Exists(path) Then
                     System.IO.Directory.CreateDirectory(path)
                 End If
-                path = path + "promo_coll_" + id
+                path = path + "promo_coll_" + id + ".xlsx"
                 exportToXLS(path, "promo_coll_" + id, GCData)
                 Cursor = Cursors.Default
             End If
@@ -466,7 +438,7 @@ WHERE l.type=1 AND l.id_ol_promo_collection=1 AND l.log<>'OK' ", -1, True, "", "
                 If Not IO.Directory.Exists(path) Then
                     System.IO.Directory.CreateDirectory(path)
                 End If
-                path = path + "promo_coll_sku_" + id
+                path = path + "promo_coll_sku_" + id + ".xlsx"
                 exportToXLS(path, "promo_coll_sku_" + id, GCProduct)
                 Cursor = Cursors.Default
             End If
