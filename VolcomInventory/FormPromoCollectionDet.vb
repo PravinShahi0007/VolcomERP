@@ -5,6 +5,7 @@
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "-1"
     Dim rmt As String = "250"
+    Public dt As DataTable
 
     Private Sub FormPromoCollectionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -47,6 +48,7 @@
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
+
             viewDetail()
             viewDetailProduct()
             allow_status()
@@ -54,11 +56,26 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub getProductShopify()
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Get shopify product id")
+        Try
+            Dim s As New ClassShopifyApi()
+            dt = s.get_product()
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
         prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, 
-        GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC) AS `size_chart`
+        GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC) AS `size_chart`,
+        pd.id_prod_shopify, pd.current_tag
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
@@ -75,14 +92,15 @@
     Sub viewDetailProduct()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
-        prod.id_design, prod.id_product, prod.product_full_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`
+        prod.id_design, prod.id_product, d.design_code,prod.product_full_code AS `code`, d.design_display_name AS `name`, 
+        cd.code_detail_name AS `size`, pd.id_prod_shopify, pd.current_tag
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         WHERE pd.id_ol_promo_collection=" + id + "
-        ORDER BY prod.product_display_name ASC, cd.id_code_detail ASC "
+        ORDER BY code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProduct.DataSource = data
         Cursor = Cursors.Default
@@ -187,13 +205,49 @@
         FormPromoCollection.GVData.FocusedRowHandle = find_row(FormPromoCollection.GVData, "id_ol_promo_collection", id)
     End Sub
 
+    Sub showLog(ByVal dtx As DataTable)
+        Cursor = Cursors.WaitCursor
+        FormPromoCollectionLog.dt = dtx
+        FormPromoCollectionLog.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
         makeSafeGV(GVData)
+        makeSafeGV(GVProduct)
+
+        'cek current tag
+        execute_non_query("DELETE FROM tb_ol_promo_collection_log WHERE type=1 AND id_ol_promo_collection='" + id + "' ", True, "", "", "", "")
+        For t As Integer = 0 To GVData.RowCount - 1
+            Dim id_design_curr As String = GVData.GetRowCellValue(t, "id_design").ToString
+            Try
+                Dim s As New ClassShopifyApi()
+                Dim curr_tag As String = addSlashes(s.get_tag(GVData.GetRowCellValue(t, "id_prod_shopify").ToString))
+                Dim query_cek As String = "UPDATE tb_ol_promo_collection_sku s 
+                INNER JOIN tb_m_product p ON p.id_product = s.id_product
+                SET s.current_tag = '" + curr_tag + "'
+                WHERE s.id_ol_promo_collection=" + id + " AND p.id_design='" + id_design_curr + "'; 
+                INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+                VALUES('" + id + "', 1, '" + id_design_curr + "', 'OK', NOW()); "
+                execute_non_query(query_cek, True, "", "", "", "")
+            Catch ex As Exception
+                Dim query_cek As String = " INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+                VALUES('" + id + "', 1, '" + id_design_curr + "', '" + addSlashes(ex.ToString) + "', NOW()); "
+                execute_non_query(query_cek, True, "", "", "", "")
+            End Try
+        Next
+        Dim dt_log As DataTable = execute_query("SELECT 'Get Tag' AS `type`, d.design_code AS `code`, d.design_display_name AS `description`, l.log, l.log_date
+FROM tb_ol_promo_collection_log l 
+INNER JOIN tb_m_design d ON d.id_design = l.id_design
+WHERE l.type=1 AND l.id_ol_promo_collection=1 AND l.log<>'OK' ", -1, True, "", "", "", "")
+
         If GVData.RowCount <= 0 Then
             stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
         ElseIf Not validateInput() Then
             stopCustom("Please complete all data")
+        ElseIf dt_log.Rows.Count > 0 Then
+            stopCustom("Failed to get current tag for few products")
+            showLog(dt_log)
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose  ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -442,5 +496,10 @@
             stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnShopifyLog_Click(sender As Object, e As EventArgs) Handles BtnShopifyLog.Click
+        Dim dt_log As DataTable = execute_query("SELECT * FROM tb_ol_promo_collection_log WHERE id_ol_promo_collection='" + id + "' ", -1, True, "", "", "", "")
+        showLog(dt_log)
     End Sub
 End Class

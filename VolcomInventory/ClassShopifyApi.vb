@@ -566,4 +566,31 @@ GROUP BY p.sku"
         'Console.WriteLine(tracking_url + tracking_number)
         Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/orders/" & id_order & "/fulfillments.json", data, "application/json", "POST", username, password)
     End Sub
+
+    Function get_tag(ByVal product_id As String) As String
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products/" + product_id + ".json?fields=tags"
+        Console.WriteLine(url)
+        Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+        request.Method = "GET"
+        request.Credentials = New Net.NetworkCredential(username, password)
+        Dim response As Net.WebResponse = request.GetResponse()
+
+        Dim tags As String = ""
+        Using dataStream As IO.Stream = response.GetResponseStream()
+            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+
+            Dim responseFromServer As String = reader.ReadToEnd()
+            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+            tags = json("product")("tags").ToString
+            'For Each row In json("product").ToList
+            '    tags = row("tags").ToString
+            'Next
+        End Using
+
+        response.Close()
+        Return tags
+    End Function
 End Class

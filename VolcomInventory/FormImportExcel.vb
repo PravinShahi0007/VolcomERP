@@ -3243,19 +3243,27 @@ Public Class FormImportExcel
             ORDER BY d.design_display_name ASC, cd.id_code_detail ASC "
             Dim dt As DataTable = execute_query(query_prod, -1, True, "", "", "", "")
             Dim tb2 = dt.AsEnumerable() 'ini tabel excel table1
+            'get shopify
+            FormPromoCollectionDet.getProductShopify()
+            Dim tb3 = FormPromoCollectionDet.dt
+
             Dim query = From table1 In tb1
                         Group Join table_tmp In tb2 On table1("KODE").ToString Equals table_tmp("code").ToString
                         Into ord = Group
                         From y1 In ord.DefaultIfEmpty()
+                        Group Join table_web In tb3 On If(y1 Is Nothing, "", y1("sku").ToString) Equals table_web("sku").ToString
+                        Into web = Group
+                        From w1 In web.DefaultIfEmpty()
                         Select New With
                             {
                                 .id_design = If(y1 Is Nothing, "0", y1("id_design").ToString),
                                 .id_product = If(y1 Is Nothing, "0", y1("id_product").ToString),
+                                .id_prod_shopify = If(w1 Is Nothing, "0", w1("product_id").ToString),
                                 .code = table1("KODE").ToString,
                                 .sku = If(y1 Is Nothing, "", y1("sku").ToString),
                                 .description = If(y1 Is Nothing, "", y1("description").ToString),
                                 .size = If(y1 Is Nothing, "", y1("size").ToString),
-                                .Status = If(y1 Is Nothing, "Not found", "OK")
+                                .Status = If(y1 Is Nothing Or w1 Is Nothing, If(y1 Is Nothing, "Not found in ERP;", "") + If(w1 Is Nothing, "Not found in Shopify;", ""), "OK")
                             }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
@@ -3265,6 +3273,7 @@ Public Class FormImportExcel
             'Customize column
             GVData.Columns("id_design").Visible = False
             GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_prod_shopify").Visible = False
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -5557,13 +5566,13 @@ Public Class FormImportExcel
 
                         'detail data
                         Dim id_prm As String = FormPromoCollectionDet.id
-                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product) VALUES "
+                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product, id_prod_shopify) VALUES "
                         For i As Integer = 0 To GVData.RowCount - 1
                             If Not i = 0 Then
                                 q += ","
                             End If
                             '
-                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "') "
+                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + GVData.GetRowCellValue(i, "id_prod_shopify").ToString + "') "
 
                             '
                             PBC.PerformStep()

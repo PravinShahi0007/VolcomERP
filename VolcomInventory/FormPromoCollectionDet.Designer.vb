@@ -42,6 +42,7 @@ Partial Class FormPromoCollectionDet
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnShopifyLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
@@ -58,6 +59,8 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsize_chart = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_prod_shopify_design = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncurrent_tag_design = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlAdd = New DevExpress.XtraEditors.PanelControl()
@@ -75,6 +78,9 @@ Partial Class FormPromoCollectionDet
         Me.GridColumncodeprod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnname_prod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_prod_shopify = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncurrenttag = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,7 +131,7 @@ Partial Class FormPromoCollectionDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(834, 188)
+        Me.GroupControlHead.Size = New System.Drawing.Size(915, 188)
         Me.GroupControlHead.TabIndex = 10
         '
         'TxtTag
@@ -250,7 +256,7 @@ Partial Class FormPromoCollectionDet
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Controls.Add(Me.DECreated)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(581, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(662, 2)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(251, 184)
         Me.PanelControl1.TabIndex = 4
@@ -344,6 +350,7 @@ Partial Class FormPromoCollectionDet
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnShopifyLog)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
@@ -354,14 +361,24 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 517)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(834, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(915, 44)
         Me.PanelControlBottom.TabIndex = 15
+        '
+        'BtnShopifyLog
+        '
+        Me.BtnShopifyLog.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnShopifyLog.Image = CType(resources.GetObject("BtnShopifyLog.Image"), System.Drawing.Image)
+        Me.BtnShopifyLog.Location = New System.Drawing.Point(91, 2)
+        Me.BtnShopifyLog.Name = "BtnShopifyLog"
+        Me.BtnShopifyLog.Size = New System.Drawing.Size(115, 40)
+        Me.BtnShopifyLog.TabIndex = 10
+        Me.BtnShopifyLog.Text = "Shopify Log"
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(174, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(255, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -371,7 +388,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(261, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(342, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -393,7 +410,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(367, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(448, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -404,7 +421,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(493, 2)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(574, 2)
         Me.BtnResetPropose.Name = "BtnResetPropose"
         Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
         Me.BtnResetPropose.TabIndex = 9
@@ -414,7 +431,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(616, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(697, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
@@ -425,7 +442,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(736, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(817, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
         Me.BtnConfirm.TabIndex = 6
@@ -438,16 +455,17 @@ Partial Class FormPromoCollectionDet
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(805, 284)
+        Me.GCData.Size = New System.Drawing.Size(886, 284)
         Me.GCData.TabIndex = 16
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
+        Me.GVData.OptionsCustomization.AllowSort = False
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
@@ -506,6 +524,20 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnno.VisibleIndex = 0
         Me.GridColumnno.Width = 43
         '
+        'GridColumnid_prod_shopify_design
+        '
+        Me.GridColumnid_prod_shopify_design.Caption = "id_prod_shopify"
+        Me.GridColumnid_prod_shopify_design.FieldName = "id_prod_shopify"
+        Me.GridColumnid_prod_shopify_design.Name = "GridColumnid_prod_shopify_design"
+        '
+        'GridColumncurrent_tag_design
+        '
+        Me.GridColumncurrent_tag_design.Caption = "Current Tag"
+        Me.GridColumncurrent_tag_design.FieldName = "current_tag"
+        Me.GridColumncurrent_tag_design.Name = "GridColumncurrent_tag_design"
+        Me.GridColumncurrent_tag_design.Visible = True
+        Me.GridColumncurrent_tag_design.VisibleIndex = 4
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
@@ -513,14 +545,14 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 188)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(834, 39)
+        Me.PanelControlNav.Size = New System.Drawing.Size(915, 39)
         Me.PanelControlNav.TabIndex = 17
         '
         'BtnExportToXLS
         '
         Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(592, 2)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(673, 2)
         Me.BtnExportToXLS.Name = "BtnExportToXLS"
         Me.BtnExportToXLS.Size = New System.Drawing.Size(126, 35)
         Me.BtnExportToXLS.TabIndex = 9
@@ -532,7 +564,7 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlAdd.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlAdd.Controls.Add(Me.BtnImportExcel)
         Me.PanelControlAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlAdd.Location = New System.Drawing.Point(718, 2)
+        Me.PanelControlAdd.Location = New System.Drawing.Point(799, 2)
         Me.PanelControlAdd.Name = "PanelControlAdd"
         Me.PanelControlAdd.Size = New System.Drawing.Size(114, 35)
         Me.PanelControlAdd.TabIndex = 6
@@ -554,7 +586,7 @@ Partial Class FormPromoCollectionDet
         Me.XTCData.Location = New System.Drawing.Point(0, 227)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPDesign
-        Me.XTCData.Size = New System.Drawing.Size(834, 290)
+        Me.XTCData.Size = New System.Drawing.Size(915, 290)
         Me.XTCData.TabIndex = 18
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPProduct})
         '
@@ -562,14 +594,14 @@ Partial Class FormPromoCollectionDet
         '
         Me.XTPDesign.Controls.Add(Me.GCData)
         Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(805, 284)
+        Me.XTPDesign.Size = New System.Drawing.Size(886, 284)
         Me.XTPDesign.Text = "Product List"
         '
         'XTPProduct
         '
         Me.XTPProduct.Controls.Add(Me.GCProduct)
         Me.XTPProduct.Name = "XTPProduct"
-        Me.XTPProduct.Size = New System.Drawing.Size(805, 284)
+        Me.XTPProduct.Size = New System.Drawing.Size(886, 284)
         Me.XTPProduct.Text = "Product List by SKU"
         '
         'GCProduct
@@ -578,16 +610,17 @@ Partial Class FormPromoCollectionDet
         Me.GCProduct.Location = New System.Drawing.Point(0, 0)
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(805, 284)
+        Me.GCProduct.Size = New System.Drawing.Size(886, 284)
         Me.GCProduct.TabIndex = 0
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.ReadOnly = True
+        Me.GVProduct.OptionsCustomization.AllowSort = False
         Me.GVProduct.OptionsView.ColumnAutoWidth = False
         Me.GVProduct.OptionsView.ShowFooter = True
         Me.GVProduct.OptionsView.ShowGroupPanel = False
@@ -631,7 +664,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumncodeprod.FieldName = "code"
         Me.GridColumncodeprod.Name = "GridColumncodeprod"
         Me.GridColumncodeprod.Visible = True
-        Me.GridColumncodeprod.VisibleIndex = 1
+        Me.GridColumncodeprod.VisibleIndex = 2
         Me.GridColumncodeprod.Width = 100
         '
         'GridColumnname_prod
@@ -640,7 +673,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnname_prod.FieldName = "name"
         Me.GridColumnname_prod.Name = "GridColumnname_prod"
         Me.GridColumnname_prod.Visible = True
-        Me.GridColumnname_prod.VisibleIndex = 2
+        Me.GridColumnname_prod.VisibleIndex = 3
         Me.GridColumnname_prod.Width = 263
         '
         'GridColumnsize
@@ -649,13 +682,35 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnsize.FieldName = "size"
         Me.GridColumnsize.Name = "GridColumnsize"
         Me.GridColumnsize.Visible = True
-        Me.GridColumnsize.VisibleIndex = 3
+        Me.GridColumnsize.VisibleIndex = 4
+        '
+        'GridColumndesign_code
+        '
+        Me.GridColumndesign_code.Caption = "Main Code"
+        Me.GridColumndesign_code.FieldName = "design_code"
+        Me.GridColumndesign_code.Name = "GridColumndesign_code"
+        Me.GridColumndesign_code.Visible = True
+        Me.GridColumndesign_code.VisibleIndex = 1
+        '
+        'GridColumnid_prod_shopify
+        '
+        Me.GridColumnid_prod_shopify.Caption = "id_prod_shopify"
+        Me.GridColumnid_prod_shopify.FieldName = "id_prod_shopify"
+        Me.GridColumnid_prod_shopify.Name = "GridColumnid_prod_shopify"
+        '
+        'GridColumncurrenttag
+        '
+        Me.GridColumncurrenttag.Caption = "Current Tag"
+        Me.GridColumncurrenttag.FieldName = "current_tag"
+        Me.GridColumncurrenttag.Name = "GridColumncurrenttag"
+        Me.GridColumncurrenttag.Visible = True
+        Me.GridColumncurrenttag.VisibleIndex = 5
         '
         'FormPromoCollectionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(834, 561)
+        Me.ClientSize = New System.Drawing.Size(915, 561)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -757,4 +812,10 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtTag As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumndesign_code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_prod_shopify As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncurrenttag As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_prod_shopify_design As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncurrent_tag_design As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnShopifyLog As DevExpress.XtraEditors.SimpleButton
 End Class
