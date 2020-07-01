@@ -5,10 +5,11 @@
 
     Sub form_load()
         Dim data As DataTable = execute_query("
-            SELECT c.id_comp, s.store_name, c.comp_name
+            SELECT c.id_comp, s.store_name, c.comp_number, c.comp_name, c.address_primary
             FROM tb_m_comp AS c
             LEFT JOIN tb_m_store AS s ON c.id_store = s.id_store
             WHERE c.id_comp_cat = 6
+            ORDER BY c.comp_number ASC
         ", -1, True, "", "", "", "")
 
         GCMappingStore.DataSource = data
