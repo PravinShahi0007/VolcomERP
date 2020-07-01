@@ -311,71 +311,75 @@
         If Not check_allow_print(id_report_status, rmt, id) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
-            'Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            'gv = GVData
-            'ReportFGProposePriceDetail.dt = GCData.DataSource
-            'ReportFGProposePriceDetail.id = id
-            'If id_report_status <> "6" Then
-            '    ReportFGProposePriceDetail.is_pre = "1"
-            'Else
-            '    ReportFGProposePriceDetail.is_pre = "-1"
-            'End If
-            'ReportFGProposePriceDetail.id_report_status = LEReportStatus.EditValue.ToString
+            Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            If XTCData.SelectedTabPageIndex = 0 Then
+                gv = GVData
+                ReportPromoCollection.dt = GCData.DataSource
+            Else
+                gv = GVProduct
+                ReportPromoCollection.dt = GCProduct.DataSource
+            End If
+            ReportPromoCollection.id = id
+            If id_report_status <> "6" Then
+                ReportPromoCollection.is_pre = "1"
+            Else
+                ReportPromoCollection.is_pre = "-1"
+            End If
+            ReportPromoCollection.id_report_status = LEReportStatus.EditValue.ToString
+            ReportPromoCollection.rmt = rmt
 
-            'ReportFGProposePriceDetail.rmt = rmt
-            'Dim Report As New ReportFGProposePriceDetail()
+            Dim Report As New ReportPromoCollection()
+            '... 
+            ' creating And saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            ''... 
-            '' creating And saving the view's layout to a new memory stream 
-            'Dim str As System.IO.Stream
-            'str = New System.IO.MemoryStream()
-            'gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
-            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
+            'style
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 8, FontStyle.Regular)
 
-            ''style
-            'Report.GVData.OptionsPrint.UsePrintStyles = True
-            'Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 8, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
-            'Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
-
-            'Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 8, FontStyle.Bold)
 
 
-            'Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 8, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
-            'Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 8.3, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 8.3, FontStyle.Regular)
 
-            'Report.GVData.OptionsPrint.ExpandAllDetails = True
-            'Report.GVData.OptionsPrint.UsePrintStyles = True
-            'Report.GVData.OptionsPrint.PrintDetails = True
-            'Report.GVData.OptionsPrint.PrintFooter = True
+            Report.GVData.OptionsPrint.ExpandAllDetails = True
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.OptionsPrint.PrintDetails = True
+            Report.GVData.OptionsPrint.PrintFooter = True
 
-            'Report.LabelNumber.Text = TxtNumber.Text
-            'Report.LabelSeason.Text = SLESeason.Text
-            'Report.LabelDivision.Text = TxtDivision.Text
-            'Report.LabelSource.Text = TxtSource.Text.ToUpper
-            'Report.LabelType.Text = TxtType.Text.ToUpper
-            'Report.LabelDate.Text = DECreated.Text.ToUpper
-            'Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-            'Report.LNote.Text = MENote.Text
+            Report.LabelPromoTyoe.Text = SLEPromoType.Text.ToUpper
+            Report.LabelTag.Text = TxtTag.Text.ToUpper
+            Report.LabelStartPeriod.Text = DEStart.Text.ToUpper
+            Report.LabelEndPeriod.Text = DEEnd.Text.ToUpper
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            Report.LabelDate.Text = DECreated.Text.ToUpper
+            Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+            Report.LNote.Text = MENote.Text.ToUpper
 
-            '' Show the report's preview. 
-            'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            'Tool.ShowPreviewDialog()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         End If
     End Sub
 

@@ -7845,6 +7845,12 @@
     <Compile Include="ReportProductionWO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPromoCollection.Designer.vb">
+      <DependentUpon>ReportPromoCollection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPromoCollection.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProposeEmpSalary.Designer.vb">
       <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>
     </Compile>
@@ -12572,6 +12578,9 @@
     <EmbeddedResource Include="ReportProductionWO.resx">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPromoCollection.resx">
+      <DependentUpon>ReportPromoCollection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposeEmpSalary.resx">
       <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>
