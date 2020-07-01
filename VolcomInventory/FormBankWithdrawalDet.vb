@@ -951,6 +951,10 @@
             'PCAddDel.Visible = False
             BtnAdd.Visible = False
             BtnDelete.Visible = False
+            BPickDP.Visible = False
+            '
+            SLEACCTrfFee.ReadOnly = True
+            TETrfFee.Enabled = False
             '
             BtnPrint.Visible = True
             BMark.Visible = True
