@@ -21,6 +21,8 @@ Partial Class FormExternalUserDet
     Private Sub InitializeComponent()
         Me.SLUEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -31,14 +33,15 @@ Partial Class FormExternalUserDet
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPassword = New DevExpress.XtraEditors.TextEdit()
         Me.TEUsername = New DevExpress.XtraEditors.TextEdit()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECode = New DevExpress.XtraEditors.TextEdit()
         CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPassword.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUsername.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SLUEStore
@@ -57,6 +60,20 @@ Partial Class FormExternalUserDet
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "id_store"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Store Name"
+        Me.GridColumn2.FieldName = "store_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
         '
         'LabelControl3
         '
@@ -84,7 +101,7 @@ Partial Class FormExternalUserDet
         '
         'SBSave
         '
-        Me.SBSave.Location = New System.Drawing.Point(191, 241)
+        Me.SBSave.Location = New System.Drawing.Point(191, 286)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(75, 23)
         Me.SBSave.TabIndex = 11
@@ -135,25 +152,28 @@ Partial Class FormExternalUserDet
         Me.TEUsername.Size = New System.Drawing.Size(250, 20)
         Me.TEUsername.TabIndex = 17
         '
-        'GridColumn1
+        'LabelControl6
         '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.FieldName = "id_store"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.LabelControl6.Location = New System.Drawing.Point(16, 241)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl6.TabIndex = 22
+        Me.LabelControl6.Text = "Code"
         '
-        'GridColumn2
+        'TECode
         '
-        Me.GridColumn2.Caption = "Store Name"
-        Me.GridColumn2.FieldName = "store_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.TECode.Location = New System.Drawing.Point(16, 260)
+        Me.TECode.Name = "TECode"
+        Me.TECode.Size = New System.Drawing.Size(250, 20)
+        Me.TECode.TabIndex = 21
         '
         'FormExternalUserDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 278)
+        Me.ClientSize = New System.Drawing.Size(284, 324)
+        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.TECode)
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.TEPassword)
@@ -174,6 +194,7 @@ Partial Class FormExternalUserDet
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPassword.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUsername.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -193,4 +214,6 @@ Partial Class FormExternalUserDet
     Friend WithEvents TEUsername As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TECode As DevExpress.XtraEditors.TextEdit
 End Class

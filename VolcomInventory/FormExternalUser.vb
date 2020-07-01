@@ -5,9 +5,10 @@
 
     Sub load_form()
         Dim data As DataTable = execute_query("
-            SELECT u.id_user, u.name_external, u.position_external, u.username, s.store_name
+            SELECT u.id_user, u.name_external, u.position_external, u.username, s.store_name, t.st_user_code
             FROM tb_m_user AS u
             LEFT JOIN tb_m_store AS s ON u.id_store = s.id_store
+            LEFT JOIN tb_st_user AS t ON u.id_user = t.id_user
             WHERE u.is_external_user = 1
         ", -1, True, "", "", "", "")
 
