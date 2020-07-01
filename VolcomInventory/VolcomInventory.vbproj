@@ -3222,6 +3222,12 @@
     <Compile Include="FormPromoCollectionLog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoCollectionNew.Designer.vb">
+      <DependentUpon>FormPromoCollectionNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoCollectionNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPromoRules.Designer.vb">
       <DependentUpon>FormPromoRules.vb</DependentUpon>
     </Compile>
@@ -9787,6 +9793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollectionLog.resx">
       <DependentUpon>FormPromoCollectionLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollectionNew.resx">
+      <DependentUpon>FormPromoCollectionNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRules.resx">
       <DependentUpon>FormPromoRules.vb</DependentUpon>

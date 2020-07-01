@@ -1804,8 +1804,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormRefundOLStoreDet.ShowDialog()
             End If
         ElseIf formName = "FormPromoCollection" Then
-            FormPromoCollectionDet.action = "ins"
-            FormPromoCollectionDet.ShowDialog()
+            FormPromoCollectionNew.ShowDialog()
         ElseIf formName = "FormExternalUser" Then
             FormExternalUserDet.id_user = "-1"
             FormExternalUserDet.ShowDialog()
