@@ -253,11 +253,6 @@ Partial Class FormAccountingJournalBill
         Me.RepositoryItemTextEdit1.AutoHeight = False
         Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "N2"
         Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemTextEdit1.EditFormat.FormatString = "N2"
-        Me.RepositoryItemTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
-        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumn5
@@ -282,11 +277,6 @@ Partial Class FormAccountingJournalBill
         Me.RepositoryItemTextEdit2.AutoHeight = False
         Me.RepositoryItemTextEdit2.DisplayFormat.FormatString = "N2"
         Me.RepositoryItemTextEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemTextEdit2.EditFormat.FormatString = "N2"
-        Me.RepositoryItemTextEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemTextEdit2.Mask.EditMask = "N2"
-        Me.RepositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
         'GridColumnStatus

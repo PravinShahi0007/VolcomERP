@@ -177,7 +177,7 @@
                     Dim date_reference As String = DateTime.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd")
                     If id_trans = "-1" Then
                         'new
-                        Dim query As String = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created, date_reference,id_user,acc_trans_note,id_bill_type) VALUES('{0}',NOW(),'" + date_reference + "','{1}','{2}','{3}'); SELECT LAST_INSERT_ID()", header_number_acc("1"), id_user, MENote.Text, LEBilling.EditValue.ToString)
+                        Dim query As String = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created, date_reference,id_user,acc_trans_note,id_bill_type) VALUES('{0}',NOW(),'" + date_reference + "','{1}','{2}','{3}'); SELECT LAST_INSERT_ID()", header_number_acc("1"), id_user, addSlashes(MENote.Text), LEBilling.EditValue.ToString)
                         id_trans = execute_query(query, 0, True, "", "", "", "")
 
                         increase_inc_acc("1")
@@ -236,7 +236,7 @@
                                     If GVJournalDet.GetRowCellValue(i, "report_number_ref").ToString = "" Then
                                         report_number_ref = "NULL"
                                     Else
-                                        report_number_ref = "'" + GVJournalDet.GetRowCellValue(i, "report_number_ref").ToString + "'"
+                                        report_number_ref = "'" + addSlashes(GVJournalDet.GetRowCellValue(i, "report_number_ref").ToString) + "'"
                                     End If
                                     If GVJournalDet.GetRowCellValue(i, "id_comp").ToString = "0" Then
                                         vend = "NULL"
@@ -244,17 +244,17 @@
                                         vend = "'" + execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp = " + id_compd, 0, True, "", "", "", "") + "'"
                                     End If
                                     If GVJournalDet.GetRowCellValue(i, "report_number").ToString = "" Then
-                                        rreport_number = dt_trans.Rows(0)("acc_trans_number").ToString
+                                        rreport_number = addSlashes(dt_trans.Rows(0)("acc_trans_number").ToString)
                                     Else
-                                        rreport_number = GVJournalDet.GetRowCellValue(i, "report_number").ToString
+                                        rreport_number = addSlashes(GVJournalDet.GetRowCellValue(i, "report_number").ToString)
                                     End If
                                     If GVJournalDet.GetRowCellValue(i, "report_mark_type_ref").ToString = "" Then
                                         report_mark_type_ref = "NULL"
                                     Else
-                                        report_mark_type_ref = GVJournalDet.GetRowCellValue(i, "report_mark_type_ref").ToString
+                                        report_mark_type_ref = addSlashes(GVJournalDet.GetRowCellValue(i, "report_mark_type_ref").ToString)
                                     End If
 
-                                    query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open,report_mark_type,id_report,report_number,id_comp, id_acc_src, id_report_ref, report_number_ref,report_mark_type_ref,vendor) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},'{8}',{9},{10},{11},{12},{13},{14})", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString, report_mark_typed, id_reportd, rreport_number, id_compd, id_acc_srcd, id_report_ref, report_number_ref, report_mark_type_ref, vend)
+                                    query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open,report_mark_type,id_report,report_number,id_comp, id_acc_src, id_report_ref, report_number_ref,report_mark_type_ref,vendor) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},'{8}',{9},{10},{11},{12},{13},{14})", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), addSlashes(GVJournalDet.GetRowCellValue(i, "note").ToString), GVJournalDet.GetRowCellValue(i, "id_status_open").ToString, report_mark_typed, id_reportd, rreport_number, id_compd, id_acc_srcd, id_report_ref, report_number_ref, report_mark_type_ref, vend)
                                     execute_non_query(query, True, "", "", "", "")
                                 End If
                             Next
@@ -385,7 +385,11 @@
         MENote.Properties.ReadOnly = True
         BAddMat.Enabled = False
         BDelMat.Enabled = False
-        BSave.Enabled = False
+        If check_print_report_status(id_report_status_g) Then
+            BSave.Enabled = False
+        Else
+            BSave.Enabled = True
+        End If
 
         'If check_print_report_status(id_report_status_g) Then
         '    Bprint.Enabled = True
@@ -736,6 +740,8 @@
     End Sub
 
     Sub add_coa()
+        GCJournalDet.Focus()
+        GVJournalDet.Focus()
         FormPopUpCOA.id_pop_up = "6"
         FormPopUpCOA.ShowDialog()
     End Sub
