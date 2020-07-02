@@ -341,14 +341,16 @@
     End Sub
 
     Sub del_coa()
-        Dim confirm As DialogResult
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this entry ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            GVJournalDet.DeleteSelectedRows()
-            CType(GCJournalDet.DataSource, DataTable).AcceptChanges()
+        If BDelMat.Visible = True And BDelMat.Enabled = True Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this entry ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                GVJournalDet.DeleteSelectedRows()
+                CType(GCJournalDet.DataSource, DataTable).AcceptChanges()
+            End If
+            GVJournalDet.RefreshData()
+            but_check()
         End If
-        GVJournalDet.RefreshData()
-        but_check()
     End Sub
 
     Private Sub TENumber_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs)
@@ -740,10 +742,12 @@
     End Sub
 
     Sub add_coa()
-        GCJournalDet.Focus()
-        GVJournalDet.Focus()
-        FormPopUpCOA.id_pop_up = "6"
-        FormPopUpCOA.ShowDialog()
+        If BAddMat.Enabled = True And BAddMat.Visible = True Then
+            GCJournalDet.Focus()
+            GVJournalDet.Focus()
+            FormPopUpCOA.id_pop_up = "6"
+            FormPopUpCOA.ShowDialog()
+        End If
     End Sub
 
     Private Sub BtnRef_Click(sender As Object, e As EventArgs) Handles BtnRef.Click
