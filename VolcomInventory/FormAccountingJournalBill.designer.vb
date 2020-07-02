@@ -460,6 +460,7 @@ Partial Class FormAccountingJournalBill
         '
         Me.MENote.Location = New System.Drawing.Point(55, 8)
         Me.MENote.Name = "MENote"
+        Me.MENote.Properties.MaxLength = 250
         Me.MENote.Size = New System.Drawing.Size(317, 40)
         Me.MENote.TabIndex = 4
         '

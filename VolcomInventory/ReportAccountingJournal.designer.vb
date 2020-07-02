@@ -116,11 +116,12 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn6.Caption = "No."
         Me.GridColumn6.FieldName = "no"
+        Me.GridColumn6.MaxWidth = 20
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 35
+        Me.GridColumn6.Width = 20
         '
         'GridColumn7
         '
@@ -145,11 +146,13 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn2.Caption = "Account"
         Me.GridColumn2.FieldName = "acc_name"
+        Me.GridColumn2.MaxWidth = 60
+        Me.GridColumn2.MinWidth = 60
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 81
+        Me.GridColumn2.Width = 60
         '
         'GridColumn8
         '
@@ -246,7 +249,7 @@ Partial Public Class ReportAccountingJournal
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 8.0!
+        Me.TopMargin.HeightF = 19.45833!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -254,7 +257,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel9
         '
         Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(566.4996!, 54.95834!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(566.4996!, 63.25!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(12.50003!, 23.0!)
@@ -266,7 +269,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel8
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(566.499!, 31.95834!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(566.499!, 40.25!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(12.50003!, 23.0!)
@@ -278,7 +281,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(480.0406!, 31.95834!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(480.0406!, 40.25!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(86.45834!, 23.0!)
@@ -290,7 +293,7 @@ Partial Public Class ReportAccountingJournal
         'LVoucherType
         '
         Me.LVoucherType.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LVoucherType.LocationFloat = New DevExpress.Utils.PointFloat(578.999!, 31.95834!)
+        Me.LVoucherType.LocationFloat = New DevExpress.Utils.PointFloat(578.999!, 40.25!)
         Me.LVoucherType.Name = "LVoucherType"
         Me.LVoucherType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LVoucherType.SizeF = New System.Drawing.SizeF(141.6666!, 23.0!)
@@ -301,7 +304,7 @@ Partial Public Class ReportAccountingJournal
         'LDate
         '
         Me.LDate.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LDate.LocationFloat = New DevExpress.Utils.PointFloat(102.0835!, 54.95834!)
+        Me.LDate.LocationFloat = New DevExpress.Utils.PointFloat(102.0835!, 63.25!)
         Me.LDate.Name = "LDate"
         Me.LDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LDate.SizeF = New System.Drawing.SizeF(186.4583!, 23.0!)
@@ -312,7 +315,7 @@ Partial Public Class ReportAccountingJournal
         'LNumber
         '
         Me.LNumber.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LNumber.LocationFloat = New DevExpress.Utils.PointFloat(102.0835!, 31.95834!)
+        Me.LNumber.LocationFloat = New DevExpress.Utils.PointFloat(102.0835!, 40.25!)
         Me.LNumber.Name = "LNumber"
         Me.LNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LNumber.SizeF = New System.Drawing.SizeF(186.4583!, 23.0!)
@@ -323,7 +326,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(89.58343!, 31.95834!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(89.58343!, 40.25!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(12.50003!, 23.0!)
@@ -335,7 +338,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(89.58343!, 54.95834!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(89.58343!, 63.25!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(12.50003!, 23.0!)
@@ -347,7 +350,7 @@ Partial Public Class ReportAccountingJournal
         'LUserEntry
         '
         Me.LUserEntry.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LUserEntry.LocationFloat = New DevExpress.Utils.PointFloat(578.9996!, 54.95834!)
+        Me.LUserEntry.LocationFloat = New DevExpress.Utils.PointFloat(578.9996!, 63.25!)
         Me.LUserEntry.Name = "LUserEntry"
         Me.LUserEntry.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LUserEntry.SizeF = New System.Drawing.SizeF(141.6666!, 23.0!)
@@ -358,7 +361,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(480.0406!, 54.95834!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(480.0406!, 63.25!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(86.45837!, 23.0!)
@@ -370,7 +373,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 54.95834!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 63.25!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(89.58335!, 23.0!)
@@ -382,7 +385,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 31.95834!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 40.25!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(89.58337!, 23.0!)
@@ -394,7 +397,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 14.0!, System.Drawing.FontStyle.Italic)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 8.291656!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(180.2083!, 23.0!)
@@ -408,7 +411,7 @@ Partial Public Class ReportAccountingJournal
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(570.6656!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(570.6656!, 8.291656!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -486,7 +489,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel10
         '
         Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 77.95834!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 86.25!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(89.58335!, 23.0!)
@@ -498,7 +501,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel11
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(89.5834!, 77.95834!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(89.5834!, 86.25!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel11.SizeF = New System.Drawing.SizeF(12.50003!, 23.0!)
@@ -510,7 +513,7 @@ Partial Public Class ReportAccountingJournal
         'LReffDate
         '
         Me.LReffDate.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LReffDate.LocationFloat = New DevExpress.Utils.PointFloat(102.0835!, 77.95834!)
+        Me.LReffDate.LocationFloat = New DevExpress.Utils.PointFloat(102.0835!, 86.25!)
         Me.LReffDate.Name = "LReffDate"
         Me.LReffDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LReffDate.SizeF = New System.Drawing.SizeF(186.4583!, 23.0!)
@@ -521,13 +524,13 @@ Partial Public Class ReportAccountingJournal
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1, Me.XrLabel1, Me.XrLabel2, Me.XrLabel3, Me.XrLabel4, Me.LUserEntry, Me.XrLabel6, Me.XrLabel7, Me.LNumber, Me.LDate, Me.LVoucherType, Me.XrLabel5, Me.XrLabel8, Me.XrLabel9, Me.LReffDate, Me.XrLabel11, Me.XrLabel10})
-        Me.PageHeader.HeightF = 106.25!
+        Me.PageHeader.HeightF = 116.6667!
         Me.PageHeader.Name = "PageHeader"
         '
         'ReportAccountingJournal
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
-        Me.Margins = New System.Drawing.Printing.Margins(33, 73, 8, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(33, 73, 19, 19)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
