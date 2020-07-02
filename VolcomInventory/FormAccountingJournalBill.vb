@@ -87,7 +87,6 @@
             TEReffNumber.Properties.ReadOnly = True
             TENumber.Properties.ReadOnly = True
             '
-            DERefDate.Enabled = False
             LEBilling.Enabled = False
             PCButton.Enabled = False
             view_det()
@@ -271,9 +270,8 @@
                         infoCustom("Journal saved.")
                     Else
                         'edit
-                        Dim query As String = String.Format("UPDATE tb_a_acc_trans SET acc_trans_note='{0}' WHERE id_acc_trans='{1}'", MENote.Text, id_trans)
+                        Dim query As String = String.Format("UPDATE tb_a_acc_trans SET acc_trans_note='{0}',date_reference='{2}' WHERE id_acc_trans='{1}'", MENote.Text, id_trans, date_reference)
                         execute_non_query(query, True, "", "", "", "")
-
                         'delete first
                         Dim sp_check As Boolean = False
                         Dim query_del As String = "SELECT id_acc_trans_det FROM tb_a_acc_trans_det WHERE id_acc_trans='" & id_trans & "'"
@@ -281,7 +279,7 @@
                         If data_del.Rows.Count > 0 Then
                             For i As Integer = 0 To data_del.Rows.Count - 1
                                 sp_check = False
-                                ' false mean not found, believe me
+                                'False mean not found, believe me
                                 For j As Integer = 0 To GVJournalDet.RowCount - 1
                                     If Not GVJournalDet.GetRowCellValue(j, "id_acc_trans_det").ToString = "" Then
                                         '
@@ -290,7 +288,8 @@
                                         End If
                                     End If
                                 Next
-                                'end loop check on gv
+
+                                'End loop check on gv
                                 If sp_check = False Then
                                     'Because not found, it's only mean already deleted
                                     query = String.Format("DELETE FROM tb_a_acc_trans_det WHERE id_acc_trans_det='{0}'", data_del.Rows(i)("id_acc_trans_det").ToString())
@@ -298,7 +297,7 @@
                                 End If
                             Next
                         End If
-
+                        '
                         For i As Integer = 0 To GVJournalDet.RowCount - 1
                             If Not GVJournalDet.GetRowCellValue(i, "id_acc").ToString = "" Then
                                 If GVJournalDet.GetRowCellValue(i, "id_acc_trans_det").ToString = "" Then
@@ -312,7 +311,6 @@
                                 End If
                             End If
                         Next
-
                         'FormAccountingJournal.view_entry(LEBilling.EditValue.ToString)
                         'FormAccountingJournal.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournal.GVAccTrans, "id_acc_trans", id_trans)
                         infoCustom("Journal updated.")
@@ -388,8 +386,10 @@
         BAddMat.Enabled = False
         BDelMat.Enabled = False
         If check_print_report_status(id_report_status_g) Then
+            DERefDate.Enabled = False
             BSave.Enabled = False
         Else
+            DERefDate.Enabled = True
             BSave.Enabled = True
         End If
 
