@@ -49,6 +49,21 @@
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
 
+            'properti
+            If is_confirm = "2" Then
+                'cek date
+                Dim min_date As DateTime
+                Dim qmin As String = "SELECT DATE(DATE_ADD(c.end_period,INTERVAL 1 DAY)) AS `min_date` FROM tb_ol_promo_collection c WHERE c.id_report_status=6 ORDER BY c.id_ol_promo_collection DESC LIMIT 1 "
+                Dim dmin As DataTable = execute_query(qmin, -1, True, "", "", "", "")
+                If dmin.Rows.Count > 0 Then
+                    min_date = dmin.Rows(0)("min_date")
+                Else
+                    min_date = getTimeDB()
+                End If
+                DEStart.Properties.MinValue = min_date
+                DEEnd.Properties.MinValue = min_date
+            End If
+
             viewDetail()
             viewDetailProduct()
             allow_status()
