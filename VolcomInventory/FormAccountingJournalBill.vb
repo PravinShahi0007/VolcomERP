@@ -337,6 +337,10 @@
     End Sub
 
     Private Sub BDelMat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelMat.Click
+        del_coa()
+    End Sub
+
+    Sub del_coa()
         Dim confirm As DialogResult
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this entry ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
@@ -728,6 +732,10 @@
     End Sub
 
     Private Sub BAddMat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAddMat.Click
+        add_coa()
+    End Sub
+
+    Sub add_coa()
         FormPopUpCOA.id_pop_up = "6"
         FormPopUpCOA.ShowDialog()
     End Sub
@@ -745,5 +753,13 @@
 
     Private Sub GVJournalDet_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVJournalDet.FocusedRowChanged
         noEdit()
+    End Sub
+
+    Private Sub FormAccountingJournalBill_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.Add Then
+            add_coa()
+        ElseIf e.KeyCode = Keys.Subtract Then
+            del_coa()
+        End If
     End Sub
 End Class
