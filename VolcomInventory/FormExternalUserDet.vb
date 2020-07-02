@@ -5,12 +5,13 @@
         view_store()
 
         If Not id_user = "-1" Then
-            Dim data As DataTable = execute_query("SELECT username, name_external, position_external, id_store FROM tb_m_user WHERE id_user = '" + id_user + "'", -1, True, "", "", "", "")
+            Dim data As DataTable = execute_query("SELECT username, name_external, position_external, id_store, (SELECT st_user_code FROM tb_st_user WHERE id_user = '" + id_user + "') AS st_user_code FROM tb_m_user WHERE id_user = '" + id_user + "'", -1, True, "", "", "", "")
 
             TEName.EditValue = data.Rows(0)("name_external").ToString
             TEPosition.EditValue = data.Rows(0)("position_external").ToString
             TEUsername.EditValue = data.Rows(0)("username").ToString
             SLUEStore.EditValue = data.Rows(0)("id_store").ToString
+            TECode.EditValue = data.Rows(0)("st_user_code").ToString
         End If
     End Sub
 
@@ -26,12 +27,12 @@
 
         'check empty
         If id_user = "-1" Then
-            If TEName.Text = "" Or TEPosition.Text = "" Or TEUsername.Text = "" Or TEPassword.Text = "" Then
-                messages = "Name, position, username & password can't be blank."
+            If TEName.Text = "" Or TEPosition.Text = "" Or TEUsername.Text = "" Or TEPassword.Text = "" Or TECode.Text = "" Then
+                messages = "Name, position, username, password & code can't be blank."
             End If
         Else
-            If TEName.Text = "" Or TEPosition.Text = "" Or TEUsername.Text = "" Then
-                messages = "Name, position & username can't be blank."
+            If TEName.Text = "" Or TEPosition.Text = "" Or TEUsername.Text = "" Or TECode.Text = "" Then
+                messages = "Name, position, username & code can't be blank."
             End If
         End If
 
@@ -39,7 +40,9 @@
         If messages = "" Then
             If id_user = "-1" Then
                 'new
-                execute_non_query("INSERT INTO tb_m_user (username, password, name_external, position_external, is_external_user, id_store) VALUES ('" + addSlashes(TEUsername.EditValue.ToString) + "', MD5('" + addSlashes(TEPassword.EditValue.ToString) + "'), '" + addSlashes(TEName.EditValue.ToString) + "', '" + addSlashes(TEPosition.EditValue.ToString) + "', '1', '" + SLUEStore.EditValue.ToString + "')", True, "", "", "", "")
+                id_user = execute_query("INSERT INTO tb_m_user (username, password, name_external, position_external, is_external_user, id_store) VALUES ('" + addSlashes(TEUsername.EditValue.ToString) + "', MD5('" + addSlashes(TEPassword.EditValue.ToString) + "'), '" + addSlashes(TEName.EditValue.ToString) + "', '" + addSlashes(TEPosition.EditValue.ToString) + "', '1', '" + SLUEStore.EditValue.ToString + "'); SELECT LAST_INSERT_ID();", 0, True, "", "", "", "")
+
+                execute_non_query("INSERT INTO tb_st_user (id_user, st_user_code, role) VALUES ('" + id_user + "', '" + addSlashes(TECode.EditValue.ToString) + "', '5')", True, "", "", "", "")
             Else
                 'update
                 If TEPassword.Text = "" Then
@@ -47,6 +50,8 @@
                 Else
                     execute_non_query("UPDATE tb_m_user SET username = '" + addSlashes(TEUsername.EditValue.ToString) + "', password = MD5('" + addSlashes(TEPassword.EditValue.ToString) + "'), name_external = '" + addSlashes(TEName.EditValue.ToString) + "', position_external = '" + addSlashes(TEPosition.EditValue.ToString) + "', id_store = '" + SLUEStore.EditValue.ToString + "' WHERE id_user = '" + id_user + "'", True, "", "", "", "")
                 End If
+
+                execute_non_query("UPDATE tb_st_user SET st_user_code = '" + addSlashes(TECode.EditValue.ToString) + "' WHERE id_user = '" + id_user + "'", True, "", "", "", "")
             End If
 
             infoCustom("User external saved.")
