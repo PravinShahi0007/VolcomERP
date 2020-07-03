@@ -5377,7 +5377,7 @@ FROM
                 /*total value item asset tanpa diskon*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,coa.id_coa_out AS `id_acc`, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`, SUM(rd.qty * (pod.`value`)) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                0 AS `credit`,CONCAT(rqd.`item_detail`,' ','(Qty : ',SUM(rd.qty) ,')') AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5397,7 +5397,7 @@ FROM
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2
-                GROUP BY rd.id_purc_rec, rq.id_departement
+                GROUP BY rd.id_purc_rec, rq.id_departement,rd.id_item,rqd.item_detail
                 UNION ALL
                 /*Discount ke pendapatan lain-lain*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,(SELECT id_acc_pendapatan_lain FROM tb_opt_accounting) AS `id_acc`, dep.id_main_comp,  
@@ -5739,7 +5739,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 If FormItemDelDetail.is_for_store = "1" Then
                     Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp)
                     SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`,
-                    CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,')') AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, c.id_comp
+                    CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,'), ',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, c.id_comp
                     FROM tb_item_del_det_alloc dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
@@ -5752,7 +5752,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     UNION ALL
                     -- afiliasi companynya
                     SELECT " + id_acc_trans + " AS `id_trans`,(SELECT id_acc_afiliasi FROM tb_opt_accounting LIMIT 1) AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`,
-                    CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,')') AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, c.id_comp
+                    CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,'), ',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, c.id_comp
                     FROM tb_item_del_det_alloc dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
@@ -5765,7 +5765,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     UNION ALL
                     -- balik afiliasi volcom
                     SELECT " + id_acc_trans + " AS `id_trans`,(SELECT id_acc_afiliasi FROM tb_opt_accounting LIMIT 1) AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`,
-                    CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,')') AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1
+                    CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,'), ',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1
                     FROM tb_item_del_det_alloc dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
@@ -5785,7 +5785,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     execute_non_query(qjd, True, "", "", "", "")
                 ElseIf FormItemDelDetail.is_for_store = "2" Then
                     Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_comp)
-                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, CONCAT('Expense : ',cat.item_cat) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`
+                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, CONCAT('Expense : ',cat.item_cat,' ,',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
@@ -5795,8 +5795,10 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY i.id_item_cat
                     UNION ALL
-                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`
+                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, CONCAT('Expense : ',cat.item_cat,' ,',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`
                     FROM tb_item_del_det dd
+                    INNER JOIN tb_item i ON i.id_item = dd.id_item
+                    INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     JOIN tb_opt_purchasing o
                     WHERE dd.id_item_del=" + id_report + "
@@ -5869,12 +5871,12 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     INNER JOIN  tb_item_expense_det ed ON ed.id_item_expense = e.id_item_expense
                     WHERE e.id_item_expense=" + id_report + "
                     UNION ALL
-                    SELECT " + id_acc_trans + ", o.acc_coa_vat_in, e.vat_total AS `debit`, 0 AS `credit`, '' AS description, 157, e.id_item_expense, e.`number`,1
+                    SELECT " + id_acc_trans + ", o.acc_coa_vat_in, e.vat_total AS `debit`, 0 AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
                     FROM tb_item_expense e
                     JOIN tb_opt_purchasing o
                     WHERE e.id_item_expense=" + id_report + " AND e.vat_total>0
                     UNION ALL
-                    SELECT " + id_acc_trans + ", e.id_acc_from, 0 AS `debit`, e.`total` AS `credit`, '' AS description, 157, e.id_item_expense, e.`number`,1
+                    SELECT " + id_acc_trans + ", e.id_acc_from, 0 AS `debit`, e.`total` AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
                     FROM tb_item_expense e
                     WHERE e.id_item_expense=" + id_report + " "
                     execute_non_query(qjd, True, "", "", "", "")
@@ -5929,12 +5931,12 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                     SELECT * FROM
                                     (
 	                                    /* Pay from */
-	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value+py.trf_fee AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
+	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`,1 AS id_comp,  0 AS `qty`,0 AS `debit`, py.value+py.trf_fee AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,py.note AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
 	                                    FROM tb_pn py
 	                                    WHERE py.id_pn=" & id_report & "
 	                                    UNION ALL
                                         /* Transfer Fee */
-	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_trf_fee AS `id_acc`,1 AS id_comp,  0 AS `qty`,py.trf_fee AS `debit`, 0 AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,'' AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
+	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_trf_fee AS `id_acc`,1 AS id_comp,  0 AS `qty`,py.trf_fee AS `debit`, 0 AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,py.note AS `note`,159 AS report_mark_type,py.id_pn AS id_report, py.number AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor
 	                                    FROM tb_pn py
 	                                    WHERE py.id_pn=" & id_report & "
                                         UNION ALL

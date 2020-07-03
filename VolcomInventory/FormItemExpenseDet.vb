@@ -412,6 +412,8 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             warningCustom("Please input invoice number")
         ElseIf multiple_curr Then
             warningCustom("Please use only same currency with same kurs")
+        ElseIf MENote.Text = "" Then
+            warningCustom("Please put some note")
         Else
             GVData.ActiveFilterString = ""
             'check invoice duplicate
