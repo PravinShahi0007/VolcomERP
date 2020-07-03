@@ -5377,7 +5377,7 @@ FROM
                 /*total value item asset tanpa diskon*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,coa.id_coa_out AS `id_acc`, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`, SUM(rd.qty * (pod.`value`)) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                0 AS `credit`,CONCAT(rqd.`item_detail`,' ','(Qty : ',SUM(rd.qty) ,')') AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5397,7 +5397,7 @@ FROM
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2
-                GROUP BY rd.id_purc_rec, rq.id_departement
+                GROUP BY rd.id_purc_rec, rq.id_departement,rd.id_item,rqd.item_detail
                 UNION ALL
                 /*Discount ke pendapatan lain-lain*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,(SELECT id_acc_pendapatan_lain FROM tb_opt_accounting) AS `id_acc`, dep.id_main_comp,  
