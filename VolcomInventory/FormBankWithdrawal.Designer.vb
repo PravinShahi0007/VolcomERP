@@ -416,6 +416,21 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip()
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XTCBBKList = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPBBKList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPBBKSUmmary = New DevExpress.XtraTab.XtraTabPage()
+        Me.BCreateToday = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCBBKSummary = New DevExpress.XtraGrid.GridControl()
+        Me.GVBBKSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn201 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn202 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn203 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn204 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn205 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn206 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn207 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn211 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit12 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -541,6 +556,13 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
+        CType(Me.XTCBBKList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCBBKList.SuspendLayout()
+        Me.XTPBBKList.SuspendLayout()
+        Me.XTPBBKSUmmary.SuspendLayout()
+        CType(Me.GCBBKSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBBKSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -1462,9 +1484,7 @@ Partial Class FormBankWithdrawal
         '
         'XTPPayment
         '
-        Me.XTPPayment.Controls.Add(Me.GCList)
-        Me.XTPPayment.Controls.Add(Me.BCreatePay)
-        Me.XTPPayment.Controls.Add(Me.PanelControl2)
+        Me.XTPPayment.Controls.Add(Me.XTCBBKList)
         Me.XTPPayment.Name = "XTPPayment"
         Me.XTPPayment.Size = New System.Drawing.Size(1091, 485)
         Me.XTPPayment.Text = "BBK List"
@@ -1476,7 +1496,7 @@ Partial Class FormBankWithdrawal
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCList.Size = New System.Drawing.Size(1091, 409)
+        Me.GCList.Size = New System.Drawing.Size(1085, 381)
         Me.GCList.TabIndex = 18
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -1619,13 +1639,13 @@ Partial Class FormBankWithdrawal
         Me.BCreatePay.Appearance.Options.UseFont = True
         Me.BCreatePay.Appearance.Options.UseForeColor = True
         Me.BCreatePay.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePay.Location = New System.Drawing.Point(0, 453)
+        Me.BCreatePay.Location = New System.Drawing.Point(0, 425)
         Me.BCreatePay.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BCreatePay.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BCreatePay.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreatePay.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreatePay.Name = "BCreatePay"
-        Me.BCreatePay.Size = New System.Drawing.Size(1091, 32)
+        Me.BCreatePay.Size = New System.Drawing.Size(1085, 32)
         Me.BCreatePay.TabIndex = 19
         Me.BCreatePay.Text = "Create Payment"
         Me.BCreatePay.Visible = False
@@ -1641,14 +1661,14 @@ Partial Class FormBankWithdrawal
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1091, 44)
+        Me.PanelControl2.Size = New System.Drawing.Size(1085, 44)
         Me.PanelControl2.TabIndex = 14
         '
         'BCreateBookTrf
         '
         Me.BCreateBookTrf.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCreateBookTrf.Image = CType(resources.GetObject("BCreateBookTrf.Image"), System.Drawing.Image)
-        Me.BCreateBookTrf.Location = New System.Drawing.Point(964, 2)
+        Me.BCreateBookTrf.Location = New System.Drawing.Point(958, 2)
         Me.BCreateBookTrf.Name = "BCreateBookTrf"
         Me.BCreateBookTrf.Size = New System.Drawing.Size(125, 40)
         Me.BCreateBookTrf.TabIndex = 8921
@@ -4509,6 +4529,166 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'XTCBBKList
+        '
+        Me.XTCBBKList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCBBKList.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCBBKList.Location = New System.Drawing.Point(0, 0)
+        Me.XTCBBKList.Name = "XTCBBKList"
+        Me.XTCBBKList.SelectedTabPage = Me.XTPBBKList
+        Me.XTCBBKList.Size = New System.Drawing.Size(1091, 485)
+        Me.XTCBBKList.TabIndex = 20
+        Me.XTCBBKList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBBKList, Me.XTPBBKSUmmary})
+        '
+        'XTPBBKList
+        '
+        Me.XTPBBKList.Controls.Add(Me.GCList)
+        Me.XTPBBKList.Controls.Add(Me.PanelControl2)
+        Me.XTPBBKList.Controls.Add(Me.BCreatePay)
+        Me.XTPBBKList.Name = "XTPBBKList"
+        Me.XTPBBKList.Size = New System.Drawing.Size(1085, 457)
+        Me.XTPBBKList.Text = "List"
+        '
+        'XTPBBKSUmmary
+        '
+        Me.XTPBBKSUmmary.Controls.Add(Me.GCBBKSummary)
+        Me.XTPBBKSUmmary.Controls.Add(Me.BCreateToday)
+        Me.XTPBBKSUmmary.Name = "XTPBBKSUmmary"
+        Me.XTPBBKSUmmary.Size = New System.Drawing.Size(1085, 457)
+        Me.XTPBBKSUmmary.Text = "Summary"
+        '
+        'BCreateToday
+        '
+        Me.BCreateToday.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateToday.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateToday.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateToday.Appearance.Options.UseBackColor = True
+        Me.BCreateToday.Appearance.Options.UseFont = True
+        Me.BCreateToday.Appearance.Options.UseForeColor = True
+        Me.BCreateToday.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateToday.Location = New System.Drawing.Point(0, 425)
+        Me.BCreateToday.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateToday.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateToday.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateToday.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateToday.Name = "BCreateToday"
+        Me.BCreateToday.Size = New System.Drawing.Size(1085, 32)
+        Me.BCreateToday.TabIndex = 20
+        Me.BCreateToday.Text = "Create Summary"
+        Me.BCreateToday.Visible = False
+        '
+        'GCBBKSummary
+        '
+        Me.GCBBKSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBBKSummary.Location = New System.Drawing.Point(0, 0)
+        Me.GCBBKSummary.MainView = Me.GVBBKSummary
+        Me.GCBBKSummary.Name = "GCBBKSummary"
+        Me.GCBBKSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit12})
+        Me.GCBBKSummary.Size = New System.Drawing.Size(1085, 425)
+        Me.GCBBKSummary.TabIndex = 21
+        Me.GCBBKSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBBKSummary})
+        '
+        'GVBBKSummary
+        '
+        Me.GVBBKSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn201, Me.GridColumn202, Me.GridColumn203, Me.GridColumn204, Me.GridColumn205, Me.GridColumn206, Me.GridColumn207, Me.GridColumn211})
+        Me.GVBBKSummary.GridControl = Me.GCBBKSummary
+        Me.GVBBKSummary.Name = "GVBBKSummary"
+        Me.GVBBKSummary.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVBBKSummary.OptionsView.ColumnAutoWidth = False
+        Me.GVBBKSummary.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn201
+        '
+        Me.GridColumn201.Caption = "ID"
+        Me.GridColumn201.FieldName = "id_pn"
+        Me.GridColumn201.Name = "GridColumn201"
+        Me.GridColumn201.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn202
+        '
+        Me.GridColumn202.Caption = "Number"
+        Me.GridColumn202.FieldName = "number"
+        Me.GridColumn202.Name = "GridColumn202"
+        Me.GridColumn202.OptionsColumn.AllowEdit = False
+        Me.GridColumn202.Visible = True
+        Me.GridColumn202.VisibleIndex = 1
+        Me.GridColumn202.Width = 117
+        '
+        'GridColumn203
+        '
+        Me.GridColumn203.Caption = "Created Date"
+        Me.GridColumn203.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumn203.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn203.FieldName = "date_created"
+        Me.GridColumn203.Name = "GridColumn203"
+        Me.GridColumn203.OptionsColumn.AllowEdit = False
+        Me.GridColumn203.Visible = True
+        Me.GridColumn203.VisibleIndex = 5
+        Me.GridColumn203.Width = 107
+        '
+        'GridColumn204
+        '
+        Me.GridColumn204.Caption = "Created By"
+        Me.GridColumn204.FieldName = "created_by"
+        Me.GridColumn204.Name = "GridColumn204"
+        Me.GridColumn204.OptionsColumn.AllowEdit = False
+        Me.GridColumn204.Visible = True
+        Me.GridColumn204.VisibleIndex = 6
+        Me.GridColumn204.Width = 109
+        '
+        'GridColumn205
+        '
+        Me.GridColumn205.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn205.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn205.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn205.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn205.Caption = "Value"
+        Me.GridColumn205.DisplayFormat.FormatString = "N2"
+        Me.GridColumn205.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn205.FieldName = "value"
+        Me.GridColumn205.Name = "GridColumn205"
+        Me.GridColumn205.OptionsColumn.AllowEdit = False
+        Me.GridColumn205.Visible = True
+        Me.GridColumn205.VisibleIndex = 7
+        '
+        'GridColumn206
+        '
+        Me.GridColumn206.Caption = "Approval Status"
+        Me.GridColumn206.FieldName = "report_status"
+        Me.GridColumn206.Name = "GridColumn206"
+        Me.GridColumn206.OptionsColumn.AllowEdit = False
+        Me.GridColumn206.Visible = True
+        Me.GridColumn206.VisibleIndex = 9
+        Me.GridColumn206.Width = 87
+        '
+        'GridColumn207
+        '
+        Me.GridColumn207.Caption = "Note"
+        Me.GridColumn207.FieldName = "note"
+        Me.GridColumn207.Name = "GridColumn207"
+        Me.GridColumn207.OptionsColumn.AllowEdit = False
+        Me.GridColumn207.Visible = True
+        Me.GridColumn207.VisibleIndex = 8
+        '
+        'GridColumn211
+        '
+        Me.GridColumn211.Caption = "Payment Date"
+        Me.GridColumn211.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn211.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn211.FieldName = "date_payment"
+        Me.GridColumn211.Name = "GridColumn211"
+        Me.GridColumn211.OptionsColumn.AllowEdit = False
+        Me.GridColumn211.Visible = True
+        Me.GridColumn211.VisibleIndex = 4
+        Me.GridColumn211.Width = 78
+        '
+        'RepositoryItemCheckEdit12
+        '
+        Me.RepositoryItemCheckEdit12.AutoHeight = False
+        Me.RepositoryItemCheckEdit12.Name = "RepositoryItemCheckEdit12"
+        Me.RepositoryItemCheckEdit12.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit12.ValueUnchecked = "no"
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4653,6 +4833,13 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
+        CType(Me.XTCBBKList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCBBKList.ResumeLayout(False)
+        Me.XTPBBKList.ResumeLayout(False)
+        Me.XTPBBKSUmmary.ResumeLayout(False)
+        CType(Me.GCBBKSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBBKSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5052,5 +5239,20 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn198 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn199 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn200 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCBBKList As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPBBKList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPBBKSUmmary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BCreateToday As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCBBKSummary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVBBKSummary As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn201 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn202 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn203 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn204 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn205 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn206 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn207 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn211 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit12 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents ViewBUMToolStripMenuItem As ToolStripMenuItem
 End Class
