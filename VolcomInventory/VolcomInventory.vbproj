@@ -392,6 +392,12 @@
     <Compile Include="FormBankWithdrawalDP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankWithdrawalSum.Designer.vb">
+      <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalSum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
     </Compile>
@@ -8320,6 +8326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalDP.resx">
       <DependentUpon>FormBankWithdrawalDP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalSum.resx">
+      <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
