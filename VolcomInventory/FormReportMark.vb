@@ -6462,12 +6462,12 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                                     -- kas keluar
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, 1,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,(SELECT acc_description FROM tb_a_acc WHERE id_acc = ca.id_acc_from) AS `note`,167,ca.id_cash_advance, ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, 1,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,ca.note,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
                                     UNION ALL
                                     -- cash advance
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, 1,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,(SELECT acc_description FROM tb_a_acc WHERE id_acc = ca.id_acc_to) AS `note`,167,ca.id_cash_advance, ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, 1,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,ca.note,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0"
                 execute_non_query(qjd, True, "", "", "", "")
