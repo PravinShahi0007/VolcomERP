@@ -7592,6 +7592,12 @@
     <Compile Include="ReportMatStockOpnameSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMatStockReport.Designer.vb">
+      <DependentUpon>ReportMatStockReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMatStockReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMatStockSum.designer.vb">
       <DependentUpon>ReportMatStockSum.vb</DependentUpon>
     </Compile>
@@ -12408,6 +12414,9 @@
     <EmbeddedResource Include="ReportMatStockOpnameSum.resx">
       <DependentUpon>ReportMatStockOpnameSum.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMatStockReport.resx">
+      <DependentUpon>ReportMatStockReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMatStockSum.resx">
       <DependentUpon>ReportMatStockSum.vb</DependentUpon>

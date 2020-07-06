@@ -1057,7 +1057,7 @@
                 newRowfee("acc_description") = dfee.Rows(0)("acc_description").ToString
                 newRowfee("cc") = "000"
                 newRowfee("report_number") = ""
-                newRowfee("note") = "Transfer Fee"
+                newRowfee("note") = MENote.Text
                 newRowfee("debit") = TETrfFee.EditValue
                 newRowfee("credit") = 0
                 TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowfee)
@@ -1280,6 +1280,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 warningCustom("You must fill value.")
             ElseIf paid_more = True Then
                 warningCustom("You pay more than balance due.")
+            ElseIf MENote.Text = "" Then
+                warningCustom("Please put some note")
             Else
                 'header
                 Dim is_book_trf As String = "2"
