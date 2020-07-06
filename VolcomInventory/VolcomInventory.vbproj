@@ -258,6 +258,7 @@
     <Compile Include="ClassProductionClaimReturn.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
+    <Compile Include="ClassPromoCollection.vb" />
     <Compile Include="ClassPurcAsset.vb" />
     <Compile Include="ClassPurcItemStock.vb" />
     <Compile Include="ClassPurcOrder.vb" />
@@ -390,6 +391,12 @@
       <DependentUpon>FormBankWithdrawalDP.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBankWithdrawalDP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBankWithdrawalSum.Designer.vb">
+      <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalSum.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
@@ -3213,6 +3220,18 @@
       <DependentUpon>FormPromoCollectionDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPromoCollectionDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPromoCollectionLog.Designer.vb">
+      <DependentUpon>FormPromoCollectionLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoCollectionLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPromoCollectionNew.Designer.vb">
+      <DependentUpon>FormPromoCollectionNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoCollectionNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPromoRules.Designer.vb">
@@ -7838,6 +7857,12 @@
     <Compile Include="ReportProductionWO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPromoCollection.Designer.vb">
+      <DependentUpon>ReportPromoCollection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPromoCollection.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProposeEmpSalary.Designer.vb">
       <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>
     </Compile>
@@ -8320,6 +8345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalDP.resx">
       <DependentUpon>FormBankWithdrawalDP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalSum.resx">
+      <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
@@ -9777,6 +9805,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollection.resx">
+      <DependentUpon>FormPromoCollection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollectionDet.resx">
+      <DependentUpon>FormPromoCollectionDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollectionLog.resx">
+      <DependentUpon>FormPromoCollectionLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollectionNew.resx">
+      <DependentUpon>FormPromoCollectionNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRules.resx">
       <DependentUpon>FormPromoRules.vb</DependentUpon>
@@ -12556,6 +12596,9 @@
     <EmbeddedResource Include="ReportProductionWO.resx">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPromoCollection.resx">
+      <DependentUpon>ReportPromoCollection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposeEmpSalary.resx">
       <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>

@@ -102,7 +102,7 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='')", oledbconn)
         ElseIf id_pop_up = "26" Then
             MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, id_keterangan_tambahan, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
-        ElseIf id_pop_up = "33" Then
+        ElseIf id_pop_up = "33" Or id_pop_up = "51" Then
             MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         ElseIf id_pop_up = "35" Then
             MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
@@ -3232,6 +3232,48 @@ Public Class FormImportExcel
             GVData.Columns("amount_inv").SummaryItem.DisplayFormat = "{0:n2}"
             GVData.Columns("calc_fee").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("calc_fee").SummaryItem.DisplayFormat = "{0:n2}"
+        ElseIf id_pop_up = "51" Then
+            Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+            Dim query_prod As String = "SELECT d.id_design, prod.id_product, d.design_code AS `code`, prod.product_full_code AS `sku`, d.design_display_name AS `description`, cd.code_detail_name AS `size`
+            FROM tb_m_design d 
+            INNER JOIN tb_m_product prod ON prod.id_design = d.id_design
+            INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+            WHERE d.id_lookup_status_order!=2 
+            ORDER BY d.design_display_name ASC, cd.id_code_detail ASC "
+            Dim dt As DataTable = execute_query(query_prod, -1, True, "", "", "", "")
+            Dim tb2 = dt.AsEnumerable() 'ini tabel excel table1
+            'get shopify
+            FormPromoCollectionDet.getProductShopify()
+            Dim tb3 = FormPromoCollectionDet.dt
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("KODE").ToString Equals table_tmp("code").ToString
+                        Into ord = Group
+                        From y1 In ord.DefaultIfEmpty()
+                        Group Join table_web In tb3 On If(y1 Is Nothing, "", y1("sku").ToString) Equals table_web("sku").ToString
+                        Into web = Group
+                        From w1 In web.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .id_design = If(y1 Is Nothing, "0", y1("id_design").ToString),
+                                .id_product = If(y1 Is Nothing, "0", y1("id_product").ToString),
+                                .id_prod_shopify = If(w1 Is Nothing, "0", w1("product_id").ToString),
+                                .code = table1("KODE").ToString,
+                                .sku = If(y1 Is Nothing, "", y1("sku").ToString),
+                                .description = If(y1 Is Nothing, "", y1("description").ToString),
+                                .size = If(y1 Is Nothing, "", y1("size").ToString),
+                                .Status = If(y1 Is Nothing Or w1 Is Nothing, If(y1 Is Nothing, "Not found in ERP;", "") + If(w1 Is Nothing, "Not found in Shopify;", ""), "OK")
+                            }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_prod_shopify").Visible = False
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3278,7 +3320,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -5509,6 +5551,48 @@ Public Class FormImportExcel
                         stopCustom("There is no data for import process, please make sure your input !")
                         makeSafeGV(GVData)
                     End If
+                End If
+            ElseIf id_pop_up = "51" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'OK' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only status 'OK' will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+
+                        'detail data
+                        Dim id_prm As String = FormPromoCollectionDet.id
+                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product, id_prod_shopify) VALUES "
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            If Not i = 0 Then
+                                q += ","
+                            End If
+                            '
+                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + GVData.GetRowCellValue(i, "id_prod_shopify").ToString + "') "
+
+                            '
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        'detail 
+                        If GVData.RowCount > 0 Then
+                            execute_non_query(q, True, "", "", "", "")
+                        End If
+
+
+                        'refresh
+                        FormPromoCollectionDet.refreshData()
+                        FormPromoCollectionDet.viewDetail()
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
                 End If
             End If
         End If

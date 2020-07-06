@@ -276,15 +276,16 @@
                 DATE(NOW()) AS sales_pos_date, 
                 '' AS sales_pos_note, 6 AS id_report_status, 0 AS id_so_type, 0 AS sales_pos_total, DATE_ADD(DATE(so.sales_order_ol_shop_date),INTERVAL IFNULL(sd.due,0) DAY) AS sales_pos_due_date, 
                 so.sales_order_ol_shop_date AS sales_pos_start_period,so.sales_order_ol_shop_date AS sales_pos_end_period,
-                c.comp_commission AS sales_pos_discount, 0 AS sales_pos_potongan, o.vat_inv_default AS sales_pos_vat, del.id_pl_sales_order_del, 1 AS id_memo_type,0 AS id_inv_type, NULL AS id_sales_pos_ref, 48 AS report_mark_type,o.is_use_unique_code_all AS is_use_unique_code, 
+                c.comp_commission AS sales_pos_discount, SUM(sod.discount) AS sales_pos_potongan, o.vat_inv_default AS sales_pos_vat, del.id_pl_sales_order_del, 1 AS id_memo_type,0 AS id_inv_type, NULL AS id_sales_pos_ref, 48 AS report_mark_type,o.is_use_unique_code_all AS is_use_unique_code, 
                 c.id_acc_ar, c.id_acc_sales, c.id_acc_sales_return 
                 FROM tb_pl_sales_order_del del 
                 INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
                 JOIN tb_opt o
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
                 INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
                 LEFT JOIN tb_store_due sd ON sd.id_comp = c.id_comp
-                WHERE del.id_pl_sales_order_del=" + id_report_par + "; SELECT LAST_INSERT_ID(); "
+                WHERE del.id_pl_sales_order_del=" + id_report_par + " GROUP BY del.id_pl_sales_order_del; SELECT LAST_INSERT_ID(); "
                 Dim id_sales_pos As String = execute_query(query_inv, 0, True, "", "", "", "")
                 'gen number
                 execute_non_query("CALL gen_number(" + id_sales_pos + ", 48);", True, "", "", "", "")
