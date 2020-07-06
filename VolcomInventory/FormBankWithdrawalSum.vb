@@ -24,7 +24,7 @@ INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
 INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
-WHERE pn.`id_report_status`!='5' AND pn.`id_report_status`!='6' AND  DATE(pn.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+WHERE py.`id_report_status`!='5' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
@@ -36,8 +36,15 @@ WHERE pn.`id_report_status`!='5' AND pn.`id_report_status`!='6' AND  DATE(pn.`da
         Else
             If id_sum = "-1" Then 'new
                 Dim q As String = "INSERT INTO tb_pn_summary(date_payment,created_date,created_by,id_report_status)
-VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "',NOW(),'" & id_user & "',1)"
-                execute_non_query(q, True, "", "", "", "")
+VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "',NOW(),'" & id_user & "',1); SELECT LAST_INSERT_ID();"
+                id_sum = execute_query(q, 0, True, "", "", "", "")
+                For i As Integer = 0 To GVList.RowCount - 1
+                    q = "INSERT INTO tb_pn_summary_det(id_pn_summary,id_pn)
+VALUES('" & id_sum & "','" & GVList.GetRowCellValue(i, "id_pn").ToString & "')"
+                    execute_non_query(q, True, "", "", "", "")
+                Next
+
+                FormBankWithdrawal.view_sum()
                 Close()
             End If
         End If
