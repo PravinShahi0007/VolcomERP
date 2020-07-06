@@ -7193,6 +7193,33 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                     Tool.ShowPreview()
                 End If
+            ElseIf FormMatStock.XTCFGStock.SelectedTabPageIndex = 5 Then 'STOCK REPORT
+                If FormMatStock.GroupControl6.Enabled = False Then 'not yet
+                    stopCustom("Data not found.")
+                Else
+                    'modify period
+                    Dim period_from As String = ""
+                    Dim period_until As String = ""
+                    period_from = Date.Parse(FormMatStock.DEStockFrom.EditValue.ToString).ToString("dd MMM yyyy")
+                    period_until = Date.Parse(FormMatStock.DEStockTo.EditValue.ToString).ToString("dd MMM yyyy")
+
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormMatStock.GVStockReport.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportMatStockReport.dt = FormMatStock.GCStockReport.DataSource
+                    Dim Report As New ReportMatStockReport()
+                    Report.LabelPeriod.Text = period_from + " / " + period_until
+                    Report.GVStockReport.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportStyleGridview(Report.GVStockReport)
+
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
+                End If
             End If
             Cursor = Cursors.Default
         ElseIf formName = "FormAccountingSummary" Then
