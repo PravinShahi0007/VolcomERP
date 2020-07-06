@@ -19,14 +19,13 @@ Partial Class FormBankWithdrawal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawal))
         Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPOList = New DevExpress.XtraTab.XtraTabControl()
         Me.XPOListActive = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPOList = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItemAdd = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewBPLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPOList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -195,8 +194,9 @@ Partial Class FormBankWithdrawal
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGPO = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewBUMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -414,7 +414,7 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip()
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
         Me.XTCBBKList = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBBKList = New DevExpress.XtraTab.XtraTabPage()
@@ -2236,15 +2236,21 @@ Partial Class FormBankWithdrawal
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewBUMToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(138, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(138, 48)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
         Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Report"
+        '
+        'ViewBUMToolStripMenuItem
+        '
+        Me.ViewBUMToolStripMenuItem.Name = "ViewBUMToolStripMenuItem"
+        Me.ViewBUMToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.ViewBUMToolStripMenuItem.Text = "View BUM"
         '
         'GVFGPO
         '
@@ -3977,7 +3983,6 @@ Partial Class FormBankWithdrawal
         '
         'GCDPKhusus
         '
-        Me.GCDPKhusus.ContextMenuStrip = Me.ViewMenu
         Me.GCDPKhusus.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDPKhusus.Location = New System.Drawing.Point(0, 44)
         Me.GCDPKhusus.MainView = Me.GVDPKhusus
@@ -5249,4 +5254,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn207 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn211 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit12 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents ViewBUMToolStripMenuItem As ToolStripMenuItem
 End Class

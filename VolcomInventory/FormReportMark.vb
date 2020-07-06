@@ -2239,9 +2239,10 @@
                     For m As Integer = 0 To dtv.Rows.Count - 1
                         'main
                         Dim qm As String = "INSERT INTO tb_fg_trf(id_comp_contact_from, id_comp_contact_to, id_sales_order, fg_trf_number, fg_trf_date, fg_trf_date_rec, fg_trf_note, id_report_status, id_report_status_rec, id_wh_drawer, last_update, last_update_by)
-                        VALUES('" + dtv.Rows(m)("id_warehouse_contact_to").ToString + "', '" + dtv.Rows(m)("id_store_contact_to").ToString + "', '" + dtv.Rows(m)("id_sales_order").ToString + "', '" + header_number_sales("15") + "', NOW(), NOW(), '', '3', '3', '" + dtv.Rows(m)("id_drawer_def").ToString + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
+                        VALUES('" + dtv.Rows(m)("id_warehouse_contact_to").ToString + "', '" + dtv.Rows(m)("id_store_contact_to").ToString + "', '" + dtv.Rows(m)("id_sales_order").ToString + "', '', NOW(), NOW(), '', '3', '3', '" + dtv.Rows(m)("id_drawer_def").ToString + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
                         Dim id_so As String = execute_query(qm, 0, True, "", "", "", "")
-                        increase_inc_sales("15")
+                        execute_non_query("CALL gen_number(" + id_so + ", 57)", True, "", "", "", "")
+                        'increase_inc_sales("15")
 
                         'detail
                         Dim qd As String = "INSERT INTO tb_fg_trf_det(id_fg_trf, id_product, id_sales_order_det, fg_trf_det_qty, fg_trf_det_qty_rec, fg_trf_det_qty_stored, fg_trf_det_note)
@@ -3677,9 +3678,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                     For m As Integer = 0 To dtv.Rows.Count - 1
                         'main
                         Dim qm As String = "INSERT INTO tb_fg_trf(id_comp_contact_from, id_comp_contact_to, id_sales_order, fg_trf_number, fg_trf_date, fg_trf_date_rec, fg_trf_note, id_report_status, id_report_status_rec, id_wh_drawer, last_update, last_update_by)
-                        VALUES('" + dtv.Rows(m)("id_warehouse_contact_to").ToString + "', '" + dtv.Rows(m)("id_store_contact_to").ToString + "', '" + dtv.Rows(m)("id_sales_order").ToString + "', '" + header_number_sales("15") + "', NOW(), NOW(), '', '3', '3', '" + dtv.Rows(m)("id_drawer_def").ToString + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
+                        VALUES('" + dtv.Rows(m)("id_warehouse_contact_to").ToString + "', '" + dtv.Rows(m)("id_store_contact_to").ToString + "', '" + dtv.Rows(m)("id_sales_order").ToString + "', '', NOW(), NOW(), '', '3', '3', '" + dtv.Rows(m)("id_drawer_def").ToString + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
                         Dim id_so As String = execute_query(qm, 0, True, "", "", "", "")
-                        increase_inc_sales("15")
+                        execute_non_query("CALL gen_number(" + id_so + ", 57)", True, "", "", "", "")
+                        'increase_inc_sales("15")
 
                         'detail
                         Dim qd As String = "INSERT INTO tb_fg_trf_det(id_fg_trf, id_product, id_sales_order_det, fg_trf_det_qty, fg_trf_det_qty_rec, fg_trf_det_qty_stored, fg_trf_det_note)
