@@ -22,6 +22,11 @@
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
 
+    Sub load_currency()
+        Dim q As String = "SELECT id_currency,currency FROM tb_lookup_currency"
+        viewSearchLookupRepositoryQuery(RISLECurrency, q, 0, "currency", "id_currency")
+    End Sub
+
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEKurs.EditValue = 1.0
         TEKursDPKhusus.EditValue = 1.0
@@ -29,6 +34,7 @@
         load_vendor()
         load_trans_type()
         load_status_payment()
+        load_currency()
         '
         load_trans_type_po()
         '
@@ -356,7 +362,6 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
             warningCustom("Please process all pending payment for selected purchase")
         Else
             If id_pay_type_po = "1" Then 'dp
-                '
                 If GVPOList.RowCount > 0 Then
                     FormBankWithdrawalDet.report_mark_type = GVPOList.GetFocusedRowCellValue("report_mark_type").ToString
                     FormBankWithdrawalDet.id_pay_type = id_pay_type_po
@@ -536,12 +541,22 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
     End Sub
 
     Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
-        showpopup.report_mark_type = GVFGPO.GetFocusedRowCellValue("report_mark_type").ToString
-        showpopup.id_report = GVFGPO.GetFocusedRowCellValue("id_report").ToString
-        showpopup.show()
-        Cursor = Cursors.Default
+        If XTCPO.SelectedTabPage.Name = "XTPFGPO" Then
+            Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+            showpopup.report_mark_type = GVFGPO.GetFocusedRowCellValue("report_mark_type").ToString
+            showpopup.id_report = GVFGPO.GetFocusedRowCellValue("id_report").ToString
+            showpopup.show()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPTHR" Then
+            FormEmpPayrollReportSummary.id_payroll = GVTHR.GetFocusedRowCellValue("id_payroll").ToString
+            FormEmpPayrollReportSummary.ShowDialog()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPJamsostek" Then
+            FormEmpPayrollReportBPJSTK.id_payroll = GVJamsostek.GetFocusedRowCellValue("id_payroll").ToString
+            FormEmpPayrollReportBPJSTK.ShowDialog()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPBPJSKesehatan" Then
+            FormEmpBPJSKesehatanDet.id = GVBPJSKesehatan.GetFocusedRowCellValue("id_pay_bpjs_kesehatan").ToString
+            FormEmpBPJSKesehatanDet.is_approve = "1"
+            FormEmpBPJSKesehatanDet.ShowDialog()
+        End If
     End Sub
 
     Private Sub BCreatePay_Click(sender As Object, e As EventArgs) Handles BCreatePay.Click
@@ -552,10 +567,13 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
     End Sub
 
     Private Sub ToolStripMenuItemAdd_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemAdd.Click
-        If XTCPO.SelectedTabPageIndex = 0 Then
+        If XTPPOList.SelectedTabPageIndex = 0 Then
             infoCustom("Already active.")
-        Else
+        ElseIf XTPPOList.SelectedTabPageIndex.ToString = 1 Then
             FormBankWithdrawalAttachement.id_purc_order = GVPOListNonActive.GetFocusedRowCellValue("id_purc_order").ToString
+            FormBankWithdrawalAttachement.ShowDialog()
+        ElseIf XTPPOList.SelectedTabPageIndex = 2 Then
+            FormBankWithdrawalAttachement.id_purc_order = GVPO.GetFocusedRowCellValue("id_purc_order").ToString
             FormBankWithdrawalAttachement.ShowDialog()
         End If
     End Sub
@@ -1096,5 +1114,67 @@ GROUP BY sr.`id_sales_return`"
         End If
 
         GVDPKhusus.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BViewPOOG_Click(sender As Object, e As EventArgs) Handles BViewPOOG.Click
+        view_po_og()
+    End Sub
+
+    Sub view_po_og()
+        Dim q As String = "SELECT po.`id_purc_order`,po.`purc_order_number`,emp.`employee_name` AS emp_created,c.comp_name,cc.`contact_person`,cc.`contact_number`,po.`date_created`
+FROM tb_purc_order_det pod
+INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`=6
+INNER JOIN tb_m_comp_contact cc ON po.`id_comp_contact`=cc.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
+INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
+WHERE it.id_item_type='1' AND po.`is_active_payment`=2 AND po.`is_close_pay`=2
+GROUP BY pod.`id_purc_order`
+ORDER BY pod.id_purc_order DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCPO.DataSource = dt
+        GVPO.BestFitColumns()
+    End Sub
+
+    Private Sub ViewBUMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewBUMToolStripMenuItem.Click
+        If XTCPO.SelectedTabPage.Name = "XTPTHR" Then
+            Dim id_acc_trans As String = ""
+            Try
+                id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type = 192 AND ad.id_report = " + GVTHR.GetFocusedRowCellValue("id_payroll").ToString + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+            Catch ex As Exception
+                id_acc_trans = ""
+            End Try
+
+            If id_acc_trans <> "" Then
+                Dim s As New ClassShowPopUp()
+                FormViewJournal.is_enable_view_doc = False
+                FormViewJournal.BMark.Visible = False
+                s.id_report = id_acc_trans
+                s.report_mark_type = "36"
+                s.show()
+            Else
+                warningCustom("Auto journal not found.")
+            End If
+        End If
+    End Sub
+
+    Private Sub GVTHR_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVTHR.PopupMenuShowing
+        ViewBUMToolStripMenuItem.Visible = True
+    End Sub
+
+    Private Sub GVFGPO_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVFGPO.PopupMenuShowing
+        ViewBUMToolStripMenuItem.Visible = False
+    End Sub
+
+    Private Sub GVBPJSKesehatan_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVBPJSKesehatan.PopupMenuShowing
+        ViewBUMToolStripMenuItem.Visible = False
+    End Sub
+
+    Private Sub GVJamsostek_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVJamsostek.PopupMenuShowing
+        ViewBUMToolStripMenuItem.Visible = False
     End Sub
 End Class
