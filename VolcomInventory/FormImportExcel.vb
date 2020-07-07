@@ -3234,11 +3234,25 @@ Public Class FormImportExcel
             GVData.Columns("calc_fee").SummaryItem.DisplayFormat = "{0:n2}"
         ElseIf id_pop_up = "51" Then
             Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
-            Dim query_prod As String = "SELECT d.id_design, prod.id_product, d.design_code AS `code`, prod.product_full_code AS `sku`, d.design_display_name AS `description`, cd.code_detail_name AS `size`
+            Dim query_prod As String = "SELECT d.id_design, prod.id_product, d.design_code AS `code`, prod.product_full_code AS `sku`, 
+            d.design_display_name AS `description`, cd.code_detail_name AS `size`,
+            IFNULL(p.id_design_price,0) AS `id_design_price`, IFNULL(p.design_price,0) AS `design_price`
             FROM tb_m_design d 
             INNER JOIN tb_m_product prod ON prod.id_design = d.id_design
             INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+            LEFT JOIN (
+				SELECT prc.id_design, prc.id_design_price, prc.design_price , prc.id_design_cat, prc.design_cat, prc.`price_type`
+				FROM (
+					SELECT prc.id_design, prc.id_design_price, prc.design_price, cat.id_design_cat, cat.design_cat, prct.design_price_type AS `price_type`  
+					FROM tb_m_design_price prc
+					INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
+					INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = prct.id_design_cat
+					WHERE design_price_start_date<=DATE(NOW()) AND is_active_wh = 1 AND is_design_cost=0
+					ORDER BY design_price_start_date DESC, id_design_price DESC
+				) prc
+				GROUP BY id_design
+			) p ON p.id_design = d.id_design
             WHERE d.id_lookup_status_order!=2 
             ORDER BY d.design_display_name ASC, cd.id_code_detail ASC "
             Dim dt As DataTable = execute_query(query_prod, -1, True, "", "", "", "")
@@ -3263,6 +3277,8 @@ Public Class FormImportExcel
                                 .sku = If(y1 Is Nothing, "", y1("sku").ToString),
                                 .description = If(y1 Is Nothing, "", y1("description").ToString),
                                 .size = If(y1 Is Nothing, "", y1("size").ToString),
+                                .id_design_price = If(y1 Is Nothing, "0", y1("id_design_price").ToString),
+                                .design_price = If(y1 Is Nothing, 0, y1("design_price")),
                                 .Status = If(y1 Is Nothing Or w1 Is Nothing, If(y1 Is Nothing, "Not found in ERP;", "") + If(w1 Is Nothing, "Not found in Shopify;", ""), "OK")
                             }
             GCData.DataSource = Nothing
@@ -3274,6 +3290,11 @@ Public Class FormImportExcel
             GVData.Columns("id_design").Visible = False
             GVData.Columns("id_product").Visible = False
             GVData.Columns("id_prod_shopify").Visible = False
+            GVData.Columns("id_design_price").Visible = False
+
+            'display format
+            GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("design_price").DisplayFormat.FormatString = "N0"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -5566,13 +5587,18 @@ Public Class FormImportExcel
 
                         'detail data
                         Dim id_prm As String = FormPromoCollectionDet.id
-                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product, id_prod_shopify) VALUES "
+                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product, id_prod_shopify, id_design_price, design_price) VALUES "
                         For i As Integer = 0 To GVData.RowCount - 1
+                            Dim id_design_price As String = GVData.GetRowCellValue(i, "id_design_price").ToString
+                            If id_design_price = "0" Then
+                                id_design_price = "NULL"
+                            End If
+
                             If Not i = 0 Then
                                 q += ","
                             End If
                             '
-                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + GVData.GetRowCellValue(i, "id_prod_shopify").ToString + "') "
+                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + GVData.GetRowCellValue(i, "id_prod_shopify").ToString + "', " + id_design_price + ", '" + decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString) + "') "
 
                             '
                             PBC.PerformStep()
