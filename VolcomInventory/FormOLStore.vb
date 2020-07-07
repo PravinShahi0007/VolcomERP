@@ -401,7 +401,7 @@
     Sub viewVolcomOrder(ByVal cond As String)
         Dim query As String = "SELECT 'no' AS is_checked, vo.id, vo.sales_order_ol_shop_number, vo.sales_order_ol_shop_date, vo.customer_name, vo.shipping_name, vo.shipping_address, vo.shipping_phone, vo.shipping_city, vo.shipping_post_code,
         vo.shipping_region, vo.payment_method, vo.tracking_code, vo.ol_store_sku, vo.ol_store_id, vo.sku, vo.design_price, vo.sales_order_det_qty, vo.is_process, IF(vo.is_process=1,'Yes', 'No') AS `is_process_view`,
-        vo.note_price, vo.id_design_cat, vo.id_design_price, vo.id_product, vo.note_stock, 
+        vo.note_price, vo.id_design_cat, vo.id_design_price, vo.id_product, vo.note_stock, vo.note_promo,
         vo.id_report_trf_order, vo.rmt_trf_order, trf_order.sales_order_number AS `trf_order_number`,
         vo.id_report_trf, vo.rmt_trf, trf.fg_trf_number AS `trf_number`,
         vo.id_report_order, vo.rmt_order , actual_order.sales_order_number, vo.fail_reason
@@ -438,6 +438,19 @@
 
     Private Sub BtnSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnSyncOrder.Click
         Cursor = Cursors.WaitCursor
+
+        'cek freeze
+        Dim qf As String = "SELECT c.id_comp ,cm.comp_number, cm.comp_name
+        FROM tb_m_comp_volcom_ol c
+        INNER JOIN tb_m_comp cm ON cm.id_comp = c.id_comp
+        WHERE cm.is_active=2 "
+        Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+        If df.Rows.Count > 0 Then
+            Cursor = Cursors.Default
+            stopCustom("WH already freeze")
+            Exit Sub
+        End If
+
         Dim is_processed_order As String = get_setup_field("is_processed_order")
         If is_processed_order = "1" Then
             stopCustom("Sync still running")

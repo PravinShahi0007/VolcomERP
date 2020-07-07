@@ -10,14 +10,21 @@
     Private Sub FormItemExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewCCRepo()
+        viewCOAPPH()
         viewCOA()
         viewCOARepo()
         viewPaymentMethod()
+        load_currency()
         '
         view_repo_cat()
         view_repo_type()
         '
         actionLoad()
+    End Sub
+
+    Sub load_currency()
+        Dim q As String = "SELECT id_currency,currency FROM tb_lookup_currency"
+        viewSearchLookupRepositoryQuery(RISLECurrency, q, 0, "currency", "id_currency")
     End Sub
 
     Sub view_repo_type()
@@ -60,6 +67,17 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         RepositoryItemSearchLookUpEdit1.DataSource = data
         RepositoryItemSearchLookUpEdit1.DisplayMember = "acc_description"
         RepositoryItemSearchLookUpEdit1.ValueMember = "id_acc"
+    End Sub
+
+    Sub viewCOAPPH()
+        Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
+        a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
+        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND LEFT(a.acc_name,4)='2111' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RISLECOAPPH.DataSource = Nothing
+        RISLECOAPPH.DataSource = data
+        RISLECOAPPH.DisplayMember = "acc_description"
+        RISLECOAPPH.ValueMember = "id_acc"
     End Sub
 
     Sub viewPaymentMethod()
@@ -142,6 +160,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             TxtPaymentStatus.Text = data.Rows(0)("paid_status").ToString
 
             viewDetail()
+            calculate()
             allow_status()
         End If
     End Sub
@@ -163,8 +182,8 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
-        ed.id_acc, a.acc_description AS `coa_desc`, ed.description,a.acc_name, "
+        Dim query As String = "SELECT ed.id_currency,cur.currency,ed.amount_before,ed.kurs,ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
+        ed.id_acc,pphacc.acc_description AS coa_desc_pph, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If action = "ins" Then
             query += "0.00 AS tax_percent,0.00 AS `amount` "
@@ -172,10 +191,12 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             query += "ed.tax_percent,ed.amount "
         End If
 
-        query += "From tb_item_expense_det ed
+        query += "FROM tb_item_expense_det ed
+        LEFT JOIN tb_a_acc pphacc ON pphacc.id_acc = ed.id_acc_pph
         INNER JOIN tb_a_acc a ON a.id_acc = ed.id_acc
         INNER JOIN tb_lookup_expense_type typ ON typ.id_expense_type=ed.id_expense_type
         LEFT JOIN tb_m_comp c ON ed.cc=c.id_comp
+        INNER JOIN tb_lookup_currency cur ON cur.id_currency=ed.id_currency
         INNER JOIN 
         (
 	        SELECT bo.`id_b_expense_opex` AS id_b_expense,icm.`id_item_cat_main`,icm.`item_cat_main`,icm.`id_expense_type`
@@ -214,6 +235,12 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         '
         GridColumnaccount.Visible = False
         GridColumnAccountDescription.VisibleIndex = 1
+        '
+        GridColumnPPHCOA.Visible = False
+        GridColumnPPHDesc.VisibleIndex = 12
+        '
+        GridColumnCurr.Visible = False
+        GridColumnCurrView.VisibleIndex = 6
         '
         GridColumnBudgetType.Visible = False
         GridColumnBudgetTypeDesc.VisibleIndex = 2
@@ -269,6 +296,8 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         ReportItemExpense.dt = GCData.DataSource
         Dim Report As New ReportItemExpense()
 
+        GridColumnPPHDesc.VisibleIndex = -1
+
         GVData.BestFitColumns()
 
         'creating and saving the view's layout to a new memory stream 
@@ -281,6 +310,8 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
         'Grid Detail
         ReportStyleGridview(Report.GVData)
+
+        GridColumnPPHDesc.VisibleIndex = 9
 
         'Parse val
         Report.LabelNumber.Text = TxtNumber.Text.ToUpper
@@ -348,15 +379,26 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        GVData.RefreshData()
         makeSafeGV(GVData)
+
+        Dim multiple_curr As Boolean = False
 
         'cek empty
         Dim cond_empty As Boolean = False
-        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc])"
+        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc]) OR ([pph_percent]>0 AND IsNullOrEmpty([id_acc_pph]))"
         If GVData.RowCount > 0 Then
             cond_empty = True
         End If
         makeSafeGV(GVData)
+
+        'cek multiple currency
+        For i As Integer = 0 To GVData.RowCount - 1
+            If Not GVData.GetRowCellValue(i, "id_currency").ToString = GVData.GetRowCellValue(0, "id_currency").ToString Or Not GVData.GetRowCellValue(i, "kurs").ToString = GVData.GetRowCellValue(0, "kurs").ToString Then
+                multiple_curr = True
+                Exit For
+            End If
+        Next
 
         If SLEPayFrom.EditValue = Nothing Then
             warningCustom("Please select pay from account")
@@ -368,7 +410,12 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             warningCustom("Please input detail expense")
         ElseIf TEInvNo.Text = "" Then
             warningCustom("Please input invoice number")
+        ElseIf multiple_curr Then
+            warningCustom("Please use only same currency with same kurs")
+        ElseIf MENote.Text = "" Then
+            warningCustom("Please put some note")
         Else
+            GVData.ActiveFilterString = ""
             'check invoice duplicate
             Dim inv_no As String = addSlashes(TEInvNo.Text)
             Dim qc As String = "SELECT * FROM tb_item_expense WHERE id_comp='" & id_comp & "' AND inv_number='" & inv_no & "'"
@@ -406,7 +453,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
                     execute_non_query("CALL gen_number(" + id + ",157); ", True, "", "", "", "")
 
                     'query det
-                    Dim qd As String = "INSERT INTO tb_item_expense_det(id_item_expense, id_acc,cc, description, tax_percent, tax_value, amount, id_expense_type, id_b_expense) VALUES "
+                    Dim qd As String = "INSERT INTO tb_item_expense_det(id_item_expense, id_acc,cc, description, tax_percent, tax_value, id_currency,kurs,amount_before, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph) VALUES "
                     For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                         Dim id_acc As String = GVData.GetRowCellValue(d, "id_acc").ToString
                         Dim cc As String = GVData.GetRowCellValue(d, "cc").ToString
@@ -416,12 +463,27 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
                         Dim amount As String = decimalSQL(GVData.GetRowCellValue(d, "amount").ToString)
                         Dim id_expense_type As String = GVData.GetRowCellValue(d, "id_expense_type").ToString
                         Dim id_b_expense As String = GVData.GetRowCellValue(d, "id_b_expense").ToString
-
+                        '
+                        Dim id_currency As String = GVData.GetRowCellValue(d, "id_currency").ToString
+                        Dim kurs As String = decimalSQL(GVData.GetRowCellValue(d, "kurs").ToString)
+                        Dim amount_before As String = decimalSQL(GVData.GetRowCellValue(d, "amount_before").ToString)
+                        '
+                        Dim id_acc_pph As String = "NULL"
+                        Dim pph_percent As String = "0"
+                        Dim pph As String = "0"
+                        '
+                        If GVData.GetRowCellValue(d, "pph_percent") > 0 Then
+                            id_acc_pph = "'" & GVData.GetRowCellValue(d, "id_acc_pph").ToString & "'"
+                            pph_percent = decimalSQL(GVData.GetRowCellValue(d, "pph_percent").ToString)
+                            pph = decimalSQL(GVData.GetRowCellValue(d, "pph_value").ToString)
+                        End If
+                        '
                         If d > 0 Then
                             qd += ", "
                         End If
-                        qd += "('" + id + "','" + id_acc + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "') "
+                        qd += "('" + id + "','" + id_acc + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + id_currency + "', '" + kurs + "', '" + amount_before + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "') "
                     Next
+                    '
                     If GVData.RowCount > 0 Then
                         execute_non_query(qd, True, "", "", "", "")
                     End If
@@ -475,6 +537,13 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         '
         GVData.SetRowCellValue(GVData.RowCount - 1, "amount", 0)
         GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", 0)
+        '
+        GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", 0)
+        '
+        GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", 0)
+        GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 0)
+        GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
+        '
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
@@ -495,7 +564,19 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
         Cursor = Cursors.WaitCursor
         Dim rh As Integer = e.RowHandle
-        If e.Column.FieldName = "amount" Or e.Column.FieldName = "tax_percent" Then
+
+        If e.Column.FieldName = "id_currency" Or e.Column.FieldName = "kurs" Or e.Column.FieldName = "amount_before" Then
+            'calculate amount in RP
+            For i = 0 To GVData.RowCount - 1
+                Try
+                    GVData.SetRowCellValue(i, "amount", If(GVData.GetRowCellValue(i, "id_currency").ToString = "1", GVData.GetRowCellValue(i, "amount_before"), GVData.GetRowCellValue(i, "amount_before") * GVData.GetRowCellValue(i, "kurs")))
+                Catch ex As Exception
+                    Console.WriteLine(ex.ToString)
+                End Try
+            Next
+        End If
+
+        If e.Column.FieldName = "amount" Or e.Column.FieldName = "tax_percent" Or e.Column.FieldName = "pph_percent" Or e.Column.FieldName = "id_currency" Or e.Column.FieldName = "kurs" Or e.Column.FieldName = "amount_before" Then
             GCData.RefreshDataSource()
             GVData.RefreshData()
             calculate()
@@ -505,6 +586,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
     Sub calculate()
         Cursor = Cursors.WaitCursor
+
         Dim sub_total As Decimal = 0.00
         Try
             sub_total = GVData.Columns("amount").SummaryItem.SummaryValue
@@ -520,7 +602,16 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             vat = 0.00
         End Try
         TxtVAT.EditValue = vat
-        TxtTotal.EditValue = TxtSubTotal.EditValue + TxtVAT.EditValue
+
+        Dim pph As Decimal = 0.00
+        Try
+            pph = GVData.Columns("pph_value").SummaryItem.SummaryValue
+        Catch ex As Exception
+            pph = 0.00
+        End Try
+        TEPPH.EditValue = pph
+
+        TxtTotal.EditValue = TxtSubTotal.EditValue + TxtVAT.EditValue - TEPPH.EditValue
         Cursor = Cursors.Default
     End Sub
 
@@ -542,6 +633,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
     Private Sub XTPDraftJournal_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTPDraftJournal.SelectedPageChanged
         If XTPDraftJournal.SelectedTabPageIndex = 1 Then
+            GVData.RefreshData()
             load_blank_draft()
             viewDraftJournal()
         End If
@@ -581,7 +673,7 @@ WHERE c.id_comp='" + id_comp + "' "
                     newRowh("report_number") = ""
                     newRowh("note") = MENote.Text
                     newRowh("debit") = 0
-                    newRowh("credit") = TxtSubTotal.EditValue + TxtVAT.EditValue
+                    newRowh("credit") = TxtSubTotal.EditValue + TxtVAT.EditValue - TEPPH.EditValue
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
                     GCDraft.RefreshDataSource()
                     GVDraft.RefreshData()
@@ -621,9 +713,20 @@ WHERE c.id_comp='" + id_comp + "' "
                     Dim newRow As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
                     newRow("no") = jum_row
                     newRow("id_acc") = GVData.GetRowCellValue(i, "id_acc").ToString
-                    newRow("acc_name") = GVData.GetRowCellValue(i, "acc_name").ToString
-                    newRow("acc_description") = GVData.GetRowCellValue(i, "coa_desc").ToString
-                    newRow("cc") = GVData.GetRowCellValue(i, "cc_desc").ToString
+
+                    If id = "-1" Then
+                        Try
+                            newRow("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "1")
+                            newRow("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "2")
+                            newRow("cc") = GVData.GetRowCellValue(i, "cc_desc").ToString
+                        Catch ex As Exception
+                        End Try
+                    Else
+                        newRow("acc_name") = GVData.GetRowCellValue(i, "acc_name").ToString
+                        newRow("acc_description") = GVData.GetRowCellValue(i, "coa_desc").ToString
+                        newRow("cc") = GVData.GetRowCellDisplayText(i, "cc").ToString
+                    End If
+
                     newRow("report_number") = ""
                     newRow("note") = GVData.GetRowCellValue(i, "description").ToString
                     If GVData.GetRowCellValue(i, "amount") < 0 Then
@@ -636,9 +739,27 @@ WHERE c.id_comp='" + id_comp + "' "
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
                     GCDraft.RefreshDataSource()
                     GVDraft.RefreshData()
+                    'pph
+                    If GVData.GetRowCellValue(i, "pph_percent") > 0 Then
+                        jum_row += 1
+                        Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                        newRowvat("no") = jum_row
+                        Try
+                            newRowvat("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "1")
+                            newRowvat("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2")
+                            newRowvat("note") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2") & " (PPH " & GVData.GetRowCellValue(i, "pph_percent").ToString & " %)"
+                        Catch ex As Exception
+                        End Try
+                        newRowvat("cc") = "000"
+                        newRowvat("report_number") = ""
+                        newRowvat("debit") = 0
+                        newRowvat("credit") = GVData.GetRowCellValue(i, "pph_value")
+                        TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+                    End If
                 Next
                 'vat
                 If TxtVAT.EditValue > 0 Then
+                    jum_row += 1
                     Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
                     newRowvat("no") = jum_row
                     newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "1")
@@ -649,6 +770,7 @@ WHERE c.id_comp='" + id_comp + "' "
                     newRowvat("debit") = TxtVAT.EditValue
                     newRowvat("credit") = 0
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+                    jum_row += 1
                 End If
                 '
                 GCDraft.RefreshDataSource()
@@ -661,5 +783,31 @@ WHERE c.id_comp='" + id_comp + "' "
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
+        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc]) OR ([pph_percent]>0 AND IsNullOrEmpty([id_acc_pph]))"
+    End Sub
+
+    Private Sub GrossUpPPHToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GrossUpPPHToolStripMenuItem.Click
+        If GVData.RowCount > 0 Then
+            Try
+                Dim dpp As Decimal = Decimal.Parse(GVData.GetFocusedRowCellValue("amount").ToString)
+                Dim pph As Decimal = Decimal.Parse(GVData.GetFocusedRowCellValue("pph_percent").ToString)
+                '
+                Dim grossup_val As Decimal = 0.00
+                grossup_val = (100 / (100 - pph)) * dpp
+                GVData.SetFocusedRowCellValue("amount", grossup_val)
+                calculate()
+            Catch ex As Exception
+                warningCustom("Please check your input")
+            End Try
+        End If
+    End Sub
+
+
+    Private Sub RISLECurrency_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles RISLECurrency.EditValueChanging
+        GCData.RefreshDataSource()
+        GVData.RefreshData()
     End Sub
 End Class
