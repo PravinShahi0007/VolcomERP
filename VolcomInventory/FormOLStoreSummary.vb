@@ -23,6 +23,7 @@
         viewComp()
         viewCompGroup()
         viewCompDetail()
+        viewPromo()
     End Sub
 
     Sub viewCompGroup()
@@ -56,6 +57,23 @@
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1 
         WHERE c.id_commerce_type=2 AND c.is_active=1 " + If(SLECompGroup.EditValue.ToString = "0", "", "AND c.id_comp_group = " + SLECompGroup.EditValue.ToString)
         viewSearchLookupQuery(SLECompDetail, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub viewPromo()
+        Cursor = Cursors.WaitCursor
+        Dim prm As New ClassPromoCollection()
+        Dim query As String = "SELECT 0 AS id_ol_promo_collection, 0 AS id_promo, 'All' AS promo, '' AS `number`,
+        NOW() AS start_period, NOW() AS end_period
+        UNION ALL 
+        SELECT p.id_ol_promo_collection, prm.id_promo, prm.promo, p.`number`,
+        p.start_period, p.end_period
+        FROM tb_ol_promo_collection p
+        INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
+        WHERE p.id_report_status=6
+        ORDER BY id_ol_promo_collection DESC "
+        viewSearchLookupQuery(SLEPromo, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection")
+        SLEPromo.EditValue = 0
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
@@ -761,5 +779,41 @@
             s.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnViewPromo_Click(sender As Object, e As EventArgs) Handles BtnViewPromo.Click
+        viewPromoList()
+    End Sub
+
+    Sub viewPromoList()
+        Cursor = Cursors.WaitCursor
+
+        'filter promo
+        Dim id_ol_promo_collection As String = SLEPromo.EditValue.ToString
+        Dim cond_promo As String = ""
+        If id_ol_promo_collection <> "0" Then
+            cond_promo = "AND p.id_ol_promo_collection=" + id_ol_promo_collection + " "
+        End If
+
+        Dim query As String = "SELECT prod.id_product, d.id_design, prod.product_full_code, d.design_code, d.design_display_name AS `name`,cd.code_detail_name AS `size`, 
+        sod.sales_order_det_qty, sod.design_price, (sod.sales_order_det_qty * sod.design_price) AS `amount`, sod.discount, ((SELECT amount) - sod.discount)  AS `nett`,
+        p.id_ol_promo_collection,prm.promo, p.`number` AS `proposed_number`, p.start_period, p.end_period,
+        so.id_sales_order_ol_shop, so.sales_order_ol_shop_number, so.sales_order_ol_shop_date, 
+        so.id_sales_order, so.sales_order_number, so.sales_order_date, so.customer_name, so.shipping_name, so.shipping_address, so.shipping_city, so.shipping_region, so.shipping_phone
+        FROM tb_sales_order_det sod
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+        INNER JOIN tb_ol_promo_collection_sku pd ON pd.id_ol_promo_collection_sku = sod.id_ol_promo_collection_sku
+        INNER JOIN tb_ol_promo_collection p ON p.id_ol_promo_collection = pd.id_ol_promo_collection
+        INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
+        INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+        WHERE so.id_report_status=6 AND !ISNULL(sod.id_ol_promo_collection_sku)
+        " + cond_promo + "
+        ORDER BY so.id_sales_order_ol_shop "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPromo.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 End Class
