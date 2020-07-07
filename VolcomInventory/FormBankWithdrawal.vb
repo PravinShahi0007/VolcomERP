@@ -1177,4 +1177,12 @@ ORDER BY pod.id_purc_order DESC"
     Private Sub GVJamsostek_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVJamsostek.PopupMenuShowing
         ViewBUMToolStripMenuItem.Visible = False
     End Sub
+
+    Private Sub BCreateToday_Click(sender As Object, e As EventArgs) Handles BCreateToday.Click
+        FormBankWithdrawalSum.ShowDialog()
+    End Sub
+
+    Sub view_sum()
+        Dim q As String = ""
+    End Sub
 End Class
