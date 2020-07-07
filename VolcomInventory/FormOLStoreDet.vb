@@ -136,6 +136,12 @@
         Dim id_order_last As String = ""
         Dim order_last As String = ""
 
+        'virtual ada trf alokasi
+        If is_use_virtual_account = "1" Then
+            makeSafeGV(GVProduct)
+            'akun trf alokasi here
+        End If
+
         makeSafeGV(GVDetail)
         GVDetail.ActiveFilterString = "[id_design_cat]='" + id_store_type + "' "
         GridColumnOrderNumber.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending
