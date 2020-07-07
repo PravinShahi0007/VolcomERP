@@ -591,6 +591,9 @@
         ElseIf report_mark_type = "246" Then
             'return request
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_store_ret_req WHERE id_ol_store_ret_req = '{0}'", id_report)
+        ElseIf report_mark_type = "250" Then
+            'propose promo collection
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_promo_collection WHERE id_ol_promo_collection = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -6459,12 +6462,12 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                                     -- kas keluar
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, 1,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,(SELECT acc_description FROM tb_a_acc WHERE id_acc = ca.id_acc_from) AS `note`,167,ca.id_cash_advance, ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, 1,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,ca.note,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
                                     UNION ALL
                                     -- cash advance
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, 1,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,(SELECT acc_description FROM tb_a_acc WHERE id_acc = ca.id_acc_to) AS `note`,167,ca.id_cash_advance, ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, 1,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,ca.note,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0"
                 execute_non_query(qjd, True, "", "", "", "")
@@ -8108,10 +8111,71 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             Catch ex As Exception
 
             End Try
+        ElseIf report_mark_type = "250" Then
+            'request return
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'delete log
+
+                'set tag
+                Dim ql As String = "DELETE FROM tb_ol_promo_collection_log WHERE id_ol_promo_collection='" + id_report + "';
+                SELECT s.id_prod_shopify, p.id_design , m.tag
+                FROM tb_ol_promo_collection_sku s
+                INNER JOIN tb_ol_promo_collection m ON m.id_ol_promo_collection = s.id_ol_promo_collection
+                INNER JOIN tb_m_product p ON p.id_product = s.id_product
+                WHERE s.id_ol_promo_collection=" + id_report + "
+                GROUP BY s.id_prod_shopify "
+                Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+                FormMain.SplashScreenManager1.ShowWaitForm()
+                For l As Integer = 0 To dl.Rows.Count - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Set tag "(l + 1).ToString + " of " + dl.Rows.Count.ToString)
+                    Dim prod_id As String = dl.Rows(l)("id_prod_shopify").ToString
+                    Dim id_design_curr As String = dl.Rows(l)("id_design").ToString
+                    Try
+                        Dim s As New ClassShopifyApi()
+                        Dim tag As String = s.get_tag(prod_id)
+                        Dim tag_save As String = ""
+                        If tag <> "" Then
+                            tag_save = tag + "," + dl.Rows(l)("tag").ToString
+                        Else
+                            tag_save = dl.Rows(l)("tag").ToString
+                        End If
+                        s.set_tag(prod_id, tag_save)
+                        execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+                        VALUES('" + id_report + "', 1, '" + id_design_curr + "', 'OK', NOW()); ", True, "", "", "", "")
+                    Catch ex As Exception
+                        execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+                        VALUES('" + id_report + "', 1, '" + id_design_curr + "', '" + addSlashes(ex.ToString) + "', NOW()); ", True, "", "", "", "")
+                    End Try
+                Next
+                FormMain.SplashScreenManager1.CloseWaitForm()
+
+                'cek log
+                Dim qlog As String = "SELECT * FROM tb_ol_promo_collection_log l WHERE l.id_ol_promo_collection=1 AND l.log<>'OK'"
+                Dim dlog As DataTable = execute_query(qlog, -1, True, "", "", "", "")
+                If dlog.Rows.Count > 0 Then
+                    stopCustom("Can't complete this propose, because some product failed to sync")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_ol_promo_collection SET id_report_status='{0}' WHERE id_ol_promo_collection ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            Try
+                FormPromoCollectionDet.refreshData()
+            Catch ex As Exception
+
+            End Try
         End If
 
-        'adding lead time
-        Dim query_auto As String = "SELECT DISTINCT(id_report_status) as id_report_status FROM tb_report_mark  WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status>'" & id_status_reportx & "' ORDER BY id_report_status LIMIT 1"
+            'adding lead time
+            Dim query_auto As String = "SELECT DISTINCT(id_report_status) as id_report_status FROM tb_report_mark  WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status>'" & id_status_reportx & "' ORDER BY id_report_status LIMIT 1"
         Dim data_auto As DataTable = execute_query(query_auto, -1, True, "", "", "", "")
         If data_auto.Rows.Count > 0 Then
             Dim query_set As String = "SELECT * FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status>'" & id_status_reportx & "' AND id_report_status='" & data_auto.Rows(0)("id_report_status").ToString & "' ORDER BY level"

@@ -1803,6 +1803,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormRefundOLStoreDet.action = "ins"
                 FormRefundOLStoreDet.ShowDialog()
             End If
+        ElseIf formName = "FormPromoCollection" Then
+            FormPromoCollectionNew.ShowDialog()
         ElseIf formName = "FormExternalUser" Then
             FormExternalUserDet.id_user = "-1"
             FormExternalUserDet.ShowDialog()
@@ -2991,6 +2993,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormRefundOLStoreDet.action = "upd"
                     FormRefundOLStoreDet.ShowDialog()
                 End If
+            ElseIf formName = "FormPromoCollection" Then
+                FormPromoCollectionDet.action = "upd"
+                FormPromoCollectionDet.id = FormPromoCollection.GVData.GetFocusedRowCellValue("id_ol_promo_collection").ToString
+                FormPromoCollectionDet.ShowDialog()
             ElseIf formName = "FormExternalUser" Then
                 FormExternalUserDet.id_user = FormExternalUser.GVExternalUser.GetFocusedRowCellValue("id_user").ToString
                 FormExternalUserDet.ShowDialog()
@@ -7834,6 +7840,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print_raw(FormOLStoreSummary.GCData, "")
             ElseIf FormOLStoreSummary.XTCOLStore.SelectedTabPageIndex = 1 Then
                 print_raw(FormOLStoreSummary.GCDetail, "")
+            ElseIf FormOLStoreSummary.XTCOLStore.SelectedTabPageIndex = 2 Then
+                print_raw(FormOLStoreSummary.GCPromo, "")
             End If
         ElseIf formName = "FormFGAging" Then
             print_raw(FormFGAging.GCDesign, "")
@@ -8267,6 +8275,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormRetOlStore.GCData, "Pre Return List")
         ElseIf formName = "FormRefundOLStore" Then
             print(FormRefundOLStore.GCData, "Accepted Refund List")
+        ElseIf formName = "FormPromoCollection" Then
+            print(FormPromoCollection.GCData, "Promo Collection List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9150,6 +9160,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormRefundOLStore" Then
             FormRefundOLStore.Close()
             FormRefundOLStore.Dispose()
+        ElseIf formName = "FormPromoCollection" Then
+            FormPromoCollection.Close()
+            FormPromoCollection.Dispose()
         ElseIf formName = "FormExternalUser" Then
             FormExternalUser.Close()
             FormExternalUser.Dispose()
@@ -10076,6 +10089,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRetOlStore.viewData()
         ElseIf formName = "FormRefundOLStore" Then
             FormRefundOLStore.viewData()
+        ElseIf formName = "FormPromoCollection" Then
+            FormPromoCollection.viewPropose()
         ElseIf formName = "FormExternalUser" Then
             FormExternalUser.load_form()
         ElseIf formName = "FormMasterStore" Then
