@@ -223,6 +223,7 @@ Partial Class FormOLStoreSummary
         Me.RepoBtnDetailSO = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepoBtnAttachSO = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewUpdated = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUpdatedUntil = New DevExpress.XtraEditors.DateEdit()
@@ -281,7 +282,9 @@ Partial Class FormOLStoreSummary
         Me.GridColumnshipping_city = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnshipping_region = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnshipping_phone = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_ol_promo_collection_prm = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLSPromo = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewPromo = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEPromo = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -292,7 +295,6 @@ Partial Class FormOLStoreSummary
         Me.GridColumnstart_period = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnend_period = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnid_ol_promo_collection_prm = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2144,6 +2146,7 @@ Partial Class FormOLStoreSummary
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl2.Controls.Add(Me.BtnViewUpdated)
         Me.PanelControl2.Controls.Add(Me.LabelControl9)
         Me.PanelControl2.Controls.Add(Me.DEUpdatedUntil)
@@ -2164,6 +2167,16 @@ Partial Class FormOLStoreSummary
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1225, 104)
         Me.PanelControl2.TabIndex = 1
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(566, 66)
+        Me.BtnExportToXLS.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(108, 20)
+        Me.BtnExportToXLS.TabIndex = 15
+        Me.BtnExportToXLS.Text = "Export to XLS"
         '
         'BtnViewUpdated
         '
@@ -2699,8 +2712,15 @@ Partial Class FormOLStoreSummary
         Me.GridColumnshipping_phone.Visible = True
         Me.GridColumnshipping_phone.VisibleIndex = 22
         '
+        'GridColumnid_ol_promo_collection_prm
+        '
+        Me.GridColumnid_ol_promo_collection_prm.Caption = "id_ol_promo_collection"
+        Me.GridColumnid_ol_promo_collection_prm.FieldName = "id_ol_promo_collection"
+        Me.GridColumnid_ol_promo_collection_prm.Name = "GridColumnid_ol_promo_collection_prm"
+        '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BtnExportToXLSPromo)
         Me.PanelControl4.Controls.Add(Me.BtnViewPromo)
         Me.PanelControl4.Controls.Add(Me.SLEPromo)
         Me.PanelControl4.Controls.Add(Me.LabelControl11)
@@ -2709,6 +2729,16 @@ Partial Class FormOLStoreSummary
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(1225, 48)
         Me.PanelControl4.TabIndex = 0
+        '
+        'BtnExportToXLSPromo
+        '
+        Me.BtnExportToXLSPromo.Image = CType(resources.GetObject("BtnExportToXLSPromo.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSPromo.Location = New System.Drawing.Point(333, 13)
+        Me.BtnExportToXLSPromo.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSPromo.Name = "BtnExportToXLSPromo"
+        Me.BtnExportToXLSPromo.Size = New System.Drawing.Size(108, 20)
+        Me.BtnExportToXLSPromo.TabIndex = 14
+        Me.BtnExportToXLSPromo.Text = "Export to XLS"
         '
         'BtnViewPromo
         '
@@ -2792,12 +2822,6 @@ Partial Class FormOLStoreSummary
         Me.LabelControl11.Size = New System.Drawing.Size(30, 13)
         Me.LabelControl11.TabIndex = 0
         Me.LabelControl11.Text = "Promo"
-        '
-        'GridColumnid_ol_promo_collection_prm
-        '
-        Me.GridColumnid_ol_promo_collection_prm.Caption = "id_ol_promo_collection"
-        Me.GridColumnid_ol_promo_collection_prm.FieldName = "id_ol_promo_collection"
-        Me.GridColumnid_ol_promo_collection_prm.Name = "GridColumnid_ol_promo_collection_prm"
         '
         'FormOLStoreSummary
         '
@@ -3147,4 +3171,6 @@ Partial Class FormOLStoreSummary
     Friend WithEvents GridColumnshipping_region As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnshipping_phone As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_ol_promo_collection_prm As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportToXLSPromo As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
 End Class
