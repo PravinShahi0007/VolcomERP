@@ -398,6 +398,7 @@ Partial Class FormBankWithdrawalSum
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVList.OptionsView.ColumnAutoWidth = False
+        Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -447,6 +448,7 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn20.FieldName = "value"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 5
         '

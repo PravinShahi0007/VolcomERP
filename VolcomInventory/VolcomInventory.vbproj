@@ -6924,6 +6924,12 @@
     <Compile Include="ReportBankWithdrawal.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBankWithdrawalSum.Designer.vb">
+      <DependentUpon>ReportBankWithdrawalSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBankWithdrawalSum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBOM.Designer.vb">
       <DependentUpon>ReportBOM.vb</DependentUpon>
     </Compile>
@@ -12077,6 +12083,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankWithdrawal.resx">
       <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBankWithdrawalSum.resx">
+      <DependentUpon>ReportBankWithdrawalSum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBOM.resx">
       <DependentUpon>ReportBOM.vb</DependentUpon>
