@@ -5,10 +5,12 @@
         DEDateCreated.EditValue = Now
         DEPayment.EditValue = Now
 
-        If id_sum = "-1" Then
-
+        If id_sum = "-1" Then 'new
+            BCancel.Visible = False
+            BRelease.Visible = False
         Else
-
+            BCancel.Visible = True
+            BRelease.Visible = True
         End If
     End Sub
 
@@ -99,6 +101,23 @@ VALUES('" & id_sum & "','" & GVList.GetRowCellValue(i, "id_pn").ToString & "')"
                 FormBankWithdrawal.view_sum()
                 Close()
             End If
+        End If
+    End Sub
+
+    Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancel ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_pn_summary SET id_report_status=5 WHERE id_pn_summary='" + id_sum + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "", id_sum)
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            FormBankWithdrawal.view_sum()
+            FormBankWithdrawal.GVBBKSummary.FocusedRowHandle = find_row(FormBankWithdrawal.GVBBKSummary, "id_pn_summary", id_sum)
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

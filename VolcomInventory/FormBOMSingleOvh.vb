@@ -124,7 +124,7 @@
         Dim query As String = "SELECT tb_m_comp_contact.contact_person AS cp,tb_lookup_currency.currency,tb_m_ovh_price.id_ovh_price,tb_m_ovh_price.ovh_price_name,tb_m_ovh_price.ovh_price,tb_m_ovh_price.ovh_price_date,tb_m_comp.comp_name,tb_m_ovh_price.id_currency,tb_m_comp.id_comp_cat 
 FROM 
 tb_m_ovh_price
-INNER JOIN tb_m_comp_contact ON tb_m_ovh_price.id_comp_contact=tb_m_comp_contact.id_comp_contact 
+INNER JOIN tb_m_comp_contact ON tb_m_ovh_price.id_comp_contact=tb_m_comp_contact.id_comp_contact AND tb_m_comp_contact.is_default=1
 INNER JOIN tb_m_comp ON tb_m_comp_contact.id_comp=tb_m_comp.id_comp AND tb_m_comp.`is_active`=1 AND (tb_m_comp.id_comp_cat='1' OR tb_m_comp.id_comp_cat='8')
 INNER JOIN tb_lookup_currency ON tb_m_ovh_price.id_currency=tb_lookup_currency.id_currency 
 WHERE tb_m_ovh_price.id_ovh = '" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_price DESC"
