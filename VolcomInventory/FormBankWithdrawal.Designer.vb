@@ -157,6 +157,12 @@ Partial Class FormBankWithdrawal
         Me.GridColumn207 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn211 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit12 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEToSum = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFromSum = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewBBKSum = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreateToday = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPExpense = New DevExpress.XtraTab.XtraTabPage()
         Me.GCExpense = New DevExpress.XtraGrid.GridControl()
@@ -432,12 +438,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
-        Me.BViewBBKSum = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEFromSum = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEToSum = New DevExpress.XtraEditors.DateEdit()
+        Me.GridColumn208 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -481,6 +482,12 @@ Partial Class FormBankWithdrawal
         CType(Me.GCBBKSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBBKSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl9.SuspendLayout()
+        CType(Me.DEToSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEToSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPExpense.SuspendLayout()
         CType(Me.GCExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVExpense, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -570,12 +577,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
-        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl9.SuspendLayout()
-        CType(Me.DEFromSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEToSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEToSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -1815,7 +1816,7 @@ Partial Class FormBankWithdrawal
         '
         'GVBBKSummary
         '
-        Me.GVBBKSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn201, Me.GridColumn202, Me.GridColumn203, Me.GridColumn204, Me.GridColumn205, Me.GridColumn206, Me.GridColumn207, Me.GridColumn211})
+        Me.GVBBKSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn201, Me.GridColumn202, Me.GridColumn203, Me.GridColumn204, Me.GridColumn208, Me.GridColumn205, Me.GridColumn206, Me.GridColumn207, Me.GridColumn211})
         Me.GVBBKSummary.GridControl = Me.GCBBKSummary
         Me.GVBBKSummary.Name = "GVBBKSummary"
         Me.GVBBKSummary.OptionsBehavior.AutoExpandAllGroups = True
@@ -1835,8 +1836,6 @@ Partial Class FormBankWithdrawal
         Me.GridColumn202.FieldName = "number"
         Me.GridColumn202.Name = "GridColumn202"
         Me.GridColumn202.OptionsColumn.AllowEdit = False
-        Me.GridColumn202.Visible = True
-        Me.GridColumn202.VisibleIndex = 0
         Me.GridColumn202.Width = 117
         '
         'GridColumn203
@@ -1844,7 +1843,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn203.Caption = "Created Date"
         Me.GridColumn203.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
         Me.GridColumn203.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn203.FieldName = "date_created"
+        Me.GridColumn203.FieldName = "created_date"
         Me.GridColumn203.Name = "GridColumn203"
         Me.GridColumn203.OptionsColumn.AllowEdit = False
         Me.GridColumn203.Visible = True
@@ -1854,7 +1853,7 @@ Partial Class FormBankWithdrawal
         'GridColumn204
         '
         Me.GridColumn204.Caption = "Created By"
-        Me.GridColumn204.FieldName = "created_by"
+        Me.GridColumn204.FieldName = "employee_name"
         Me.GridColumn204.Name = "GridColumn204"
         Me.GridColumn204.OptionsColumn.AllowEdit = False
         Me.GridColumn204.Visible = True
@@ -1870,11 +1869,11 @@ Partial Class FormBankWithdrawal
         Me.GridColumn205.Caption = "Value"
         Me.GridColumn205.DisplayFormat.FormatString = "N2"
         Me.GridColumn205.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn205.FieldName = "value"
+        Me.GridColumn205.FieldName = "val_bef_kurs"
         Me.GridColumn205.Name = "GridColumn205"
         Me.GridColumn205.OptionsColumn.AllowEdit = False
         Me.GridColumn205.Visible = True
-        Me.GridColumn205.VisibleIndex = 4
+        Me.GridColumn205.VisibleIndex = 3
         '
         'GridColumn206
         '
@@ -1913,6 +1912,69 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemCheckEdit12.Name = "RepositoryItemCheckEdit12"
         Me.RepositoryItemCheckEdit12.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit12.ValueUnchecked = "no"
+        '
+        'PanelControl9
+        '
+        Me.PanelControl9.Controls.Add(Me.DEToSum)
+        Me.PanelControl9.Controls.Add(Me.LabelControl17)
+        Me.PanelControl9.Controls.Add(Me.DEFromSum)
+        Me.PanelControl9.Controls.Add(Me.LabelControl16)
+        Me.PanelControl9.Controls.Add(Me.BViewBBKSum)
+        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl9.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl9.Name = "PanelControl9"
+        Me.PanelControl9.Size = New System.Drawing.Size(1085, 44)
+        Me.PanelControl9.TabIndex = 22
+        '
+        'DEToSum
+        '
+        Me.DEToSum.EditValue = Nothing
+        Me.DEToSum.Location = New System.Drawing.Point(239, 12)
+        Me.DEToSum.Name = "DEToSum"
+        Me.DEToSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEToSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEToSum.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEToSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEToSum.Size = New System.Drawing.Size(175, 20)
+        Me.DEToSum.TabIndex = 8920
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl17.Location = New System.Drawing.Point(221, 15)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl17.TabIndex = 8919
+        Me.LabelControl17.Text = "To"
+        '
+        'DEFromSum
+        '
+        Me.DEFromSum.EditValue = Nothing
+        Me.DEFromSum.Location = New System.Drawing.Point(40, 12)
+        Me.DEFromSum.Name = "DEFromSum"
+        Me.DEFromSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromSum.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFromSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromSum.Size = New System.Drawing.Size(175, 20)
+        Me.DEFromSum.TabIndex = 8918
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl16.Location = New System.Drawing.Point(10, 15)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl16.TabIndex = 8917
+        Me.LabelControl16.Text = "From"
+        '
+        'BViewBBKSum
+        '
+        Me.BViewBBKSum.Location = New System.Drawing.Point(420, 10)
+        Me.BViewBBKSum.Name = "BViewBBKSum"
+        Me.BViewBBKSum.Size = New System.Drawing.Size(60, 23)
+        Me.BViewBBKSum.TabIndex = 8916
+        Me.BViewBBKSum.Text = "view"
         '
         'BCreateToday
         '
@@ -4702,68 +4764,17 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'PanelControl9
+        'GridColumn208
         '
-        Me.PanelControl9.Controls.Add(Me.DEToSum)
-        Me.PanelControl9.Controls.Add(Me.LabelControl17)
-        Me.PanelControl9.Controls.Add(Me.DEFromSum)
-        Me.PanelControl9.Controls.Add(Me.LabelControl16)
-        Me.PanelControl9.Controls.Add(Me.BViewBBKSum)
-        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl9.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl9.Name = "PanelControl9"
-        Me.PanelControl9.Size = New System.Drawing.Size(1085, 44)
-        Me.PanelControl9.TabIndex = 22
-        '
-        'BViewBBKSum
-        '
-        Me.BViewBBKSum.Location = New System.Drawing.Point(420, 10)
-        Me.BViewBBKSum.Name = "BViewBBKSum"
-        Me.BViewBBKSum.Size = New System.Drawing.Size(60, 23)
-        Me.BViewBBKSum.TabIndex = 8916
-        Me.BViewBBKSum.Text = "view"
-        '
-        'DEFromSum
-        '
-        Me.DEFromSum.EditValue = Nothing
-        Me.DEFromSum.Location = New System.Drawing.Point(40, 12)
-        Me.DEFromSum.Name = "DEFromSum"
-        Me.DEFromSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromSum.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEFromSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFromSum.Size = New System.Drawing.Size(175, 20)
-        Me.DEFromSum.TabIndex = 8918
-        '
-        'LabelControl16
-        '
-        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(10, 15)
-        Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl16.TabIndex = 8917
-        Me.LabelControl16.Text = "From"
-        '
-        'LabelControl17
-        '
-        Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Location = New System.Drawing.Point(221, 15)
-        Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(12, 13)
-        Me.LabelControl17.TabIndex = 8919
-        Me.LabelControl17.Text = "To"
-        '
-        'DEToSum
-        '
-        Me.DEToSum.EditValue = Nothing
-        Me.DEToSum.Location = New System.Drawing.Point(239, 12)
-        Me.DEToSum.Name = "DEToSum"
-        Me.DEToSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEToSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEToSum.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEToSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEToSum.Size = New System.Drawing.Size(175, 20)
-        Me.DEToSum.TabIndex = 8920
+        Me.GridColumn208.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn208.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn208.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn208.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn208.Caption = "Currency"
+        Me.GridColumn208.FieldName = "currency"
+        Me.GridColumn208.Name = "GridColumn208"
+        Me.GridColumn208.Visible = True
+        Me.GridColumn208.VisibleIndex = 4
         '
         'FormBankWithdrawal
         '
@@ -4822,6 +4833,13 @@ Partial Class FormBankWithdrawal
         CType(Me.GCBBKSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBBKSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl9.ResumeLayout(False)
+        Me.PanelControl9.PerformLayout()
+        CType(Me.DEToSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEToSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPExpense.ResumeLayout(False)
         CType(Me.GCExpense, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVExpense, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4916,13 +4934,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
-        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl9.ResumeLayout(False)
-        Me.PanelControl9.PerformLayout()
-        CType(Me.DEFromSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEToSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEToSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5344,4 +5355,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEFromSum As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn208 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

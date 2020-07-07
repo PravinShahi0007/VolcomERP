@@ -355,6 +355,8 @@
             FormRequestRetOLStore.Close()
         ElseIf report_mark_type = "249" Then
             FormShipInvoiceDet.Close()
+        ElseIf report_mark_type = "250" Then
+            FormPromoCollectionDet.Close()
         End If
     End Sub
     Sub show()
@@ -1235,6 +1237,10 @@ GROUP BY rec.`id_prod_order`"
             FormShipInvoiceDet.id = id_report
             FormShipInvoiceDet.is_view = "1"
             FormShipInvoiceDet.ShowDialog()
+        ElseIf report_mark_type = "250" Then
+            FormPromoCollectionDet.id = id_report
+            FormPromoCollectionDet.is_view = "1"
+            FormPromoCollectionDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
