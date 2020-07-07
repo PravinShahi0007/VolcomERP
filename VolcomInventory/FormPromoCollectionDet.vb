@@ -90,12 +90,14 @@
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
         prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, 
         GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC) AS `size_chart`,
-        pd.id_prod_shopify, pd.current_tag
+        pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
+        LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
         WHERE pd.id_ol_promo_collection=" + id + "
         GROUP BY d.id_design
         ORDER BY d.design_display_name ASC "
@@ -108,12 +110,14 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
         prod.id_design, prod.id_product, d.design_code,prod.product_full_code AS `code`, d.design_display_name AS `name`, 
-        cd.code_detail_name AS `size`, pd.id_prod_shopify, pd.current_tag
+        cd.code_detail_name AS `size`, pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
+        LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
         WHERE pd.id_ol_promo_collection=" + id + "
         ORDER BY code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

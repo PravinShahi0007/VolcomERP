@@ -61,6 +61,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_prod_shopify_design = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrent_tag_design = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlAdd = New DevExpress.XtraEditors.PanelControl()
@@ -81,6 +82,9 @@ Partial Class FormPromoCollectionDet
         Me.GridColumndesign_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_prod_shopify = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrenttag = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price_prod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprice_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprice_type_prod = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -461,7 +465,7 @@ Partial Class FormPromoCollectionDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design, Me.GridColumndesign_price, Me.GridColumnprice_type})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -535,6 +539,16 @@ Partial Class FormPromoCollectionDet
         Me.GridColumncurrent_tag_design.Caption = "Current Tag"
         Me.GridColumncurrent_tag_design.FieldName = "current_tag"
         Me.GridColumncurrent_tag_design.Name = "GridColumncurrent_tag_design"
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Unit Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 5
         '
         'PanelControlNav
         '
@@ -614,7 +628,7 @@ Partial Class FormPromoCollectionDet
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.ReadOnly = True
@@ -701,6 +715,32 @@ Partial Class FormPromoCollectionDet
         Me.GridColumncurrenttag.Caption = "Current Tag"
         Me.GridColumncurrenttag.FieldName = "current_tag"
         Me.GridColumncurrenttag.Name = "GridColumncurrenttag"
+        '
+        'GridColumndesign_price_prod
+        '
+        Me.GridColumndesign_price_prod.Caption = "Unit Price"
+        Me.GridColumndesign_price_prod.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price_prod.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price_prod.FieldName = "design_price"
+        Me.GridColumndesign_price_prod.Name = "GridColumndesign_price_prod"
+        Me.GridColumndesign_price_prod.Visible = True
+        Me.GridColumndesign_price_prod.VisibleIndex = 6
+        '
+        'GridColumnprice_type
+        '
+        Me.GridColumnprice_type.Caption = "Price Type"
+        Me.GridColumnprice_type.FieldName = "price_type"
+        Me.GridColumnprice_type.Name = "GridColumnprice_type"
+        Me.GridColumnprice_type.Visible = True
+        Me.GridColumnprice_type.VisibleIndex = 4
+        '
+        'GridColumnprice_type_prod
+        '
+        Me.GridColumnprice_type_prod.Caption = "Price Type"
+        Me.GridColumnprice_type_prod.FieldName = "price_type"
+        Me.GridColumnprice_type_prod.Name = "GridColumnprice_type_prod"
+        Me.GridColumnprice_type_prod.Visible = True
+        Me.GridColumnprice_type_prod.VisibleIndex = 5
         '
         'FormPromoCollectionDet
         '
@@ -814,4 +854,8 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumnid_prod_shopify_design As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncurrent_tag_design As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnShopifyLog As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price_prod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnprice_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnprice_type_prod As DevExpress.XtraGrid.Columns.GridColumn
 End Class
