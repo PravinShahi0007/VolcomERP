@@ -9949,7 +9949,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormBankWithdrawal" Then
             If FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 0 Then
-                FormBankWithdrawal.load_payment()
+                If FormBankWithdrawal.XTCBBKList.SelectedTabPageIndex = 0 Then
+                    FormBankWithdrawal.load_payment()
+                Else
+                    FormBankWithdrawal.view_sum()
+                End If
             ElseIf FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 1 Then
                 FormBankWithdrawal.load_po()
             End If
