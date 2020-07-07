@@ -342,6 +342,8 @@
         ret_cust.`id_ret_cust`,ret_cust.`ret_cust_number`, ret_cust.`ret_cust_date`, ret_cust.`ret_cust_status`, ret_cust.`ret_cust_awb`,
         ret_request.`id_ret_request`, ret_request.`ret_request_awb`,ret_request.`ret_request_number`, ret_request.`ret_request_created_date`,ret_request.`ret_request_date`, ret_request.`ret_request_status`,
         refund.`id_bbk`, refund.`bbk_number`, refund.`bbk_created_date`, refund.`bbk_status`,
+        ish.id_invoice_ship, ish.`invoice_ship_number`, 
+        ish.`invoice_ship_status`, ish.`invoice_ship_date`,
         '0' AS `report_mark_type`, 
         IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         IFNULL(stt_internal.`status`, '-') AS `ol_store_status_internal`, IFNULL(stt_internal.status_date, sales_order_ol_shop_date) AS `ol_store_date_internal`,
@@ -525,6 +527,14 @@
             ) bbk
             GROUP BY bbk.id_sales_order_det
         ) refund ON refund.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+            SELECT ish.id_report,ish.id_invoice_ship, ish.`number` AS `invoice_ship_number`, 
+            stt.report_status AS `invoice_ship_status`, ish.created_date AS `invoice_ship_date`
+            FROM tb_invoice_ship ish
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ish.id_report_status
+            WHERE ish.id_report_status=6 
+            GROUP BY ish.id_report
+        ) ish ON ish.id_report = so.id_sales_order_ol_shop
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
@@ -888,6 +898,16 @@
             path = path + "ol_store_report_prm.xlsx"
             exportToXLS(path, "ol_store_report_prm", GCPromo)
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnInvoiceShip_Click(sender As Object, e As EventArgs) Handles RepoBtnInvoiceShip.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            Dim m As New ClassShowPopUp()
+            Dim id As String = GVDetail.GetFocusedRowCellValue("id_invoice_ship").ToString
+            m.id_report = id
+            m.report_mark_type = "249"
+            m.show()
         End If
     End Sub
 End Class
