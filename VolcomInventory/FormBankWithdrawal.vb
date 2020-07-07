@@ -1185,4 +1185,8 @@ ORDER BY pod.id_purc_order DESC"
     Sub view_sum()
         Dim q As String = ""
     End Sub
+
+    Private Sub BViewBBKSum_Click(sender As Object, e As EventArgs) Handles BViewBBKSum.Click
+        view_sum()
+    End Sub
 End Class
