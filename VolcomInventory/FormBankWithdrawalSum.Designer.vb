@@ -65,6 +65,7 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,6 +135,7 @@ Partial Class FormBankWithdrawalSum
         Me.DEChangeDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEChangeDate.Size = New System.Drawing.Size(201, 20)
         Me.DEChangeDate.TabIndex = 171
+        Me.DEChangeDate.Visible = False
         '
         'LChangeTo
         '
@@ -143,6 +145,7 @@ Partial Class FormBankWithdrawalSum
         Me.LChangeTo.Size = New System.Drawing.Size(50, 13)
         Me.LChangeTo.TabIndex = 170
         Me.LChangeTo.Text = "Change to"
+        Me.LChangeTo.Visible = False
         '
         'BChangeDate
         '
@@ -151,6 +154,7 @@ Partial Class FormBankWithdrawalSum
         Me.BChangeDate.Size = New System.Drawing.Size(124, 23)
         Me.BChangeDate.TabIndex = 169
         Me.BChangeDate.Text = "Change Payment Date"
+        Me.BChangeDate.Visible = False
         '
         'SLEType
         '
@@ -444,7 +448,7 @@ Partial Class FormBankWithdrawalSum
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn100})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn4, Me.GridColumn100})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -569,6 +573,14 @@ Partial Class FormBankWithdrawalSum
         Me.BGenerate.TabStop = False
         Me.BGenerate.Text = "Generate"
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Status"
+        Me.GridColumn4.FieldName = "report_status"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 7
+        '
         'FormBankWithdrawalSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -663,4 +675,5 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents BChangeDate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEChangeDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LChangeTo As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
