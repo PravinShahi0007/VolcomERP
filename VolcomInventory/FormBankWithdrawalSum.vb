@@ -169,7 +169,28 @@ VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportBankWithdrawalSum.id_sum = id_sum
+        Dim Report As New ReportBankWithdrawalSum()
 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+
+        'If CEPrintPreview.EditValue = True Then
+        '    Dim Tool As ReportPrintTool = New ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+        'Else
+        '    Dim instance As New Printing.PrinterSettings
+        '    Dim DefaultPrinter As String = instance.PrinterName
+
+        '    ' THIS IS TO PRINT THE REPORT
+        '    Report.PrinterName = DefaultPrinter
+        '    Report.CreateDocument()
+        '    Report.PrintingSystem.ShowMarginsWarning = False
+        '    Report.Print()
+        'End If
+
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BRelease_Click(sender As Object, e As EventArgs) Handles BRelease.Click
