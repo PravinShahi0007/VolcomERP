@@ -41,7 +41,7 @@ Partial Class FormBankWithdrawalSum
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BRelease = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -295,7 +295,7 @@ Partial Class FormBankWithdrawalSum
         '
         'PanelControl7
         '
-        Me.PanelControl7.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl7.Controls.Add(Me.BRelease)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
         Me.PanelControl7.Controls.Add(Me.BCancel)
@@ -307,18 +307,18 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl7.Size = New System.Drawing.Size(936, 48)
         Me.PanelControl7.TabIndex = 4
         '
-        'SimpleButton1
+        'BRelease
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.ImageIndex = 4
-        Me.SimpleButton1.Location = New System.Drawing.Point(127, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(125, 44)
-        Me.SimpleButton1.TabIndex = 21
-        Me.SimpleButton1.TabStop = False
-        Me.SimpleButton1.Text = "Release"
-        Me.SimpleButton1.Visible = False
+        Me.BRelease.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BRelease.Image = CType(resources.GetObject("BRelease.Image"), System.Drawing.Image)
+        Me.BRelease.ImageIndex = 4
+        Me.BRelease.Location = New System.Drawing.Point(127, 2)
+        Me.BRelease.Name = "BRelease"
+        Me.BRelease.Size = New System.Drawing.Size(125, 44)
+        Me.BRelease.TabIndex = 21
+        Me.BRelease.TabStop = False
+        Me.BRelease.Text = "Release"
+        Me.BRelease.Visible = False
         '
         'BtnViewJournal
         '
@@ -398,6 +398,7 @@ Partial Class FormBankWithdrawalSum
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVList.OptionsView.ColumnAutoWidth = False
+        Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -447,6 +448,7 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn20.FieldName = "value"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 5
         '
@@ -598,7 +600,7 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents BGenerate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BRelease As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
