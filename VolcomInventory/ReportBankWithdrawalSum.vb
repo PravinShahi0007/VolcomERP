@@ -16,7 +16,7 @@ WHERE pns.`id_pn_summary`='" & id_sum & "' GROUP BY pns.`id_pn_summary` "
         DataSource = data_head
 
         'set invocie value info
-        LTotal.Text = Decimal.Parse(data_head.Rows(0)("val_bef_kurs").ToString).ToString("N2")
+        LTotal.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(data_head.Rows(0)("val_bef_kurs").ToString).ToString("N0")
         LTotSay.Text = "Say : " + ConvertCurrencyToIndonesian(data_head.Rows(0)("val_bef_kurs"))
 
         'detail
@@ -66,7 +66,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
             descrip.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             descrip.BackColor = Color.Transparent
             descrip.Font = font_row_style
-            descrip.WidthF = 220
+            descrip.WidthF = 200
 
             row_det.Cells.Add(descrip)
 
@@ -83,23 +83,23 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
 
             'value
             Dim price As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-            price.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("value").ToString).ToString("N2")
+            price.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("value").ToString).ToString("N0")
             price.Borders = DevExpress.XtraPrinting.BorderSide.None
             price.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             price.BackColor = Color.Transparent
             price.Font = font_row_style
-            price.WidthF = 130
+            price.WidthF = 140
 
             row_det.Cells.Add(price)
 
             'total
             Dim amo As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-            amo.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("val_total").ToString).ToString("N2")
+            amo.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("val_total").ToString).ToString("N0")
             amo.Borders = DevExpress.XtraPrinting.BorderSide.None
             amo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             amo.BackColor = Color.Transparent
             amo.Font = font_row_style
-            amo.WidthF = 130
+            amo.WidthF = 140
 
             row_det.Cells.Add(amo)
 
@@ -108,6 +108,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
             notes.Text = dt_det.Rows(j)("note").ToString
             notes.Borders = DevExpress.XtraPrinting.BorderSide.None
             notes.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            notes.Padding = "5"
             notes.BackColor = Color.Transparent
             notes.Font = font_row_style
             notes.WidthF = 120
