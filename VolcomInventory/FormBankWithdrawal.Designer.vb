@@ -152,6 +152,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn202 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn203 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn204 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn208 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn205 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn206 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn207 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -438,7 +439,8 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn208 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMBBKList = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -577,6 +579,7 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
+        Me.CMBBKList.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -1847,7 +1850,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn203.Name = "GridColumn203"
         Me.GridColumn203.OptionsColumn.AllowEdit = False
         Me.GridColumn203.Visible = True
-        Me.GridColumn203.VisibleIndex = 2
+        Me.GridColumn203.VisibleIndex = 1
         Me.GridColumn203.Width = 107
         '
         'GridColumn204
@@ -1857,8 +1860,20 @@ Partial Class FormBankWithdrawal
         Me.GridColumn204.Name = "GridColumn204"
         Me.GridColumn204.OptionsColumn.AllowEdit = False
         Me.GridColumn204.Visible = True
-        Me.GridColumn204.VisibleIndex = 3
+        Me.GridColumn204.VisibleIndex = 2
         Me.GridColumn204.Width = 109
+        '
+        'GridColumn208
+        '
+        Me.GridColumn208.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn208.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn208.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn208.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn208.Caption = "Currency"
+        Me.GridColumn208.FieldName = "currency"
+        Me.GridColumn208.Name = "GridColumn208"
+        Me.GridColumn208.Visible = True
+        Me.GridColumn208.VisibleIndex = 4
         '
         'GridColumn205
         '
@@ -1903,7 +1918,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn211.Name = "GridColumn211"
         Me.GridColumn211.OptionsColumn.AllowEdit = False
         Me.GridColumn211.Visible = True
-        Me.GridColumn211.VisibleIndex = 1
+        Me.GridColumn211.VisibleIndex = 0
         Me.GridColumn211.Width = 78
         '
         'RepositoryItemCheckEdit12
@@ -4764,17 +4779,17 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'GridColumn208
+        'CMBBKList
         '
-        Me.GridColumn208.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn208.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn208.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn208.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn208.Caption = "Currency"
-        Me.GridColumn208.FieldName = "currency"
-        Me.GridColumn208.Name = "GridColumn208"
-        Me.GridColumn208.Visible = True
-        Me.GridColumn208.VisibleIndex = 4
+        Me.CMBBKList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.CMBBKList.Name = "ContextMenuStripYM"
+        Me.CMBBKList.Size = New System.Drawing.Size(190, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(189, 22)
+        Me.ToolStripMenuItem1.Text = "History Payment Date"
         '
         'FormBankWithdrawal
         '
@@ -4934,6 +4949,7 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
+        Me.CMBBKList.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -5356,4 +5372,6 @@ Partial Class FormBankWithdrawal
     Friend WithEvents DEFromSum As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn208 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMBBKList As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
 End Class

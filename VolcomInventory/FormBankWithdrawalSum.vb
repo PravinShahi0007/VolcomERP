@@ -1,6 +1,7 @@
 ﻿Public Class FormBankWithdrawalSum
     Public id_sum As String = "-1"
     Public id_report_status As String = "-1"
+    Public is_view As String = "-1"
     Private Sub FormBankWithdrawalSum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_type()
         DEDateCreated.EditValue = Now
@@ -44,9 +45,15 @@ GROUP BY pns.`id_pn_summary`"
                     BCancel.Visible = True
                     BRelease.Visible = True
                     '
-                    LChangeTo.Visible = True
-                    DEChangeDate.Visible = True
-                    BChangeDate.Visible = True
+                    If Not is_view = "1" Then
+                        LChangeTo.Visible = True
+                        DEChangeDate.Visible = True
+                        BChangeDate.Visible = True
+                    Else
+                        LChangeTo.Visible = False
+                        DEChangeDate.Visible = False
+                        BChangeDate.Visible = False
+                    End If
                 End If
                 load_det()
             End If
@@ -273,6 +280,9 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
                             query = "INSERT INTO tb_pn_summary_det(id_pn_summary,id_pn) VALUES('" & dtc.Rows(0)("id_pn_summary").ToString & "','" & GVList.GetRowCellValue(i, "id_pn").ToString & "')"
                             execute_non_query(query, True, "", "", "", "")
                         End If
+                        'log
+                        query = "INSERT INTO tb_pn_log_date_payment(id_pn,log_date,from_date,to_date) VALUES('" & GVList.GetRowCellValue(i, "id_pn").ToString & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
+                        execute_non_query(query, True, "", "", "", "")
                     Next
                     'refresh list
                     If id_sum = "-1" Then
