@@ -594,6 +594,9 @@
         ElseIf report_mark_type = "250" Then
             'propose promo collection
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_promo_collection WHERE id_ol_promo_collection = '{0}'", id_report)
+        ElseIf report_mark_type = "251" Then
+            'bbk summary
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_pn_summary WHERE id_pn_summary = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5907,10 +5910,10 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             FormItemExpense.GVData.FocusedRowHandle = find_row(FormItemExpense.GVData, "id_item_expense", id_report)
         ElseIf report_mark_type = "159" Then
             'Payment
-            'auto completed
-            If id_status_reportx = "3" Then
-                id_status_reportx = "6"
-            End If
+            'auto completed on summary
+            'If id_status_reportx = "3" Then
+            'id_status_reportx = "6"
+            'End If
             'completed
             If id_status_reportx = "6" Then
                 'select header
@@ -8172,6 +8175,27 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             Catch ex As Exception
 
             End Try
+        ElseIf report_mark_type = "251" Then
+            'bbk summary
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete all BBK
+                Dim q As String = "SELECT id_pn FROM tb_pn_summary_det WHERE id_pn_summary='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                For i = 0 To dt.Rows.Count - 1
+                    Dim rm As FormReportMark = New FormReportMark
+                    rm.id_report = dt.Rows(i)("id_pn").ToString
+                    rm.report_mark_type = "159"
+                    rm.change_status("6")
+                Next
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_pn_summary SET id_report_status='{0}' WHERE id_pn_summary ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
             'adding lead time

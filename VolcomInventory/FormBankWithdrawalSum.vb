@@ -1,5 +1,6 @@
 ﻿Public Class FormBankWithdrawalSum
     Public id_sum As String = "-1"
+    Public id_report_status As String = "-1"
     Private Sub FormBankWithdrawalSum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_type()
         DEDateCreated.EditValue = Now
@@ -8,11 +9,14 @@
         If id_sum = "-1" Then 'new
             BCancel.Visible = False
             BRelease.Visible = False
+            BtnPrint.Visible = False
+            BtnAttachment.Visible = False
         Else
-            BCancel.Visible = True
-            BRelease.Visible = True
-
-            Dim q As String = "SELECT pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`id_currency`,cur.`currency`,SUM(pnd.`val_bef_kurs`) AS val_bef_kurs, pns.note
+            BtnSave.Visible = False
+            BGenerate.Visible = False
+            BtnPrint.Visible = True
+            BtnAttachment.Visible = True
+            Dim q As String = "SELECT pns.id_report_status,pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`id_currency`,cur.`currency`,SUM(pnd.`val_bef_kurs`) AS val_bef_kurs, pns.note
 FROM tb_pn_summary pns
 INNER JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
 INNER JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
@@ -28,6 +32,14 @@ GROUP BY pns.`id_pn_summary`"
                 DEPayment.EditValue = dt.Rows(0)("date_payment")
                 SLEType.EditValue = dt.Rows(0)("id_currency").ToString
                 MENote.Text = dt.Rows(0)("note").ToString
+                id_report_status = dt.Rows(0)("id_report_status").ToString
+                If id_report_status = "5" Or id_report_status = "6" Then
+                    BRelease.Visible = False
+                    BCancel.Visible = False
+                Else
+                    BCancel.Visible = True
+                    BRelease.Visible = True
+                End If
                 load_det()
             End If
         End If
@@ -159,7 +171,7 @@ VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'
             execute_non_query(query, True, "", "", "", "")
 
             'nonaktif mark
-            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "", id_sum)
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "251", id_sum)
             execute_non_query(queryrm, True, "", "", "", "")
 
             FormBankWithdrawal.view_sum()
@@ -194,6 +206,26 @@ VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'
     End Sub
 
     Private Sub BRelease_Click(sender As Object, e As EventArgs) Handles BRelease.Click
+        'check first
+        Dim qc As String = "SELECT id_pn FROM tb_pn_summary_det pnsd 
+INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
+WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
+        Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            warningCustom("BBK not approved yet")
+        Else
+            FormReportMark.id_report = id_sum
+            FormReportMark.report_mark_type = "251"
+            FormReportMark.form_origin = Name
+            FormReportMark.ShowDialog()
+        End If
+    End Sub
 
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_sum
+        FormDocumentUpload.report_mark_type = "251"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -61,6 +61,7 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -295,6 +296,7 @@ Partial Class FormBankWithdrawalSum
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.BtnAttachment)
         Me.PanelControl7.Controls.Add(Me.BRelease)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
@@ -518,6 +520,18 @@ Partial Class FormBankWithdrawalSum
         Me.BGenerate.TabStop = False
         Me.BGenerate.Text = "Generate"
         '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.ImageIndex = 16
+        Me.BtnAttachment.Location = New System.Drawing.Point(440, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 44)
+        Me.BtnAttachment.TabIndex = 22
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
+        '
         'FormBankWithdrawalSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -606,4 +620,5 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
 End Class
