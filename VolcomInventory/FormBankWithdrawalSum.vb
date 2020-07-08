@@ -83,7 +83,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         Dim qc As String = "SELECT id_pn_summary FROM tb_pn_summary WHERE id_pn_summary!='" & id_sum & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=5 AND DATE(date_payment)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count = 0 Then
-            Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`value_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+            Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -103,6 +103,7 @@ WHERE py.`id_report_status`!='5' AND py.`id_report_status`!='6' AND  DATE(py.`da
             GCList.DataSource = dt
             GVList.BestFitColumns()
             DEPayment.Enabled = False
+            SLEType.ReadOnly = True
             BGenerate.Text = "Unlock"
         Else
             warningCustom("Summary already created for this payment date.")
@@ -124,6 +125,7 @@ WHERE py.id_pn='-1'"
         GCList.DataSource = dt
         GVList.BestFitColumns()
         DEPayment.Enabled = True
+        SLEType.ReadOnly = False
         BGenerate.Text = "Generate"
     End Sub
 
