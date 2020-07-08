@@ -1210,4 +1210,9 @@ GROUP BY pns.`id_pn_summary`"
             FormBankWithdrawalSum.ShowDialog()
         End If
     End Sub
+
+    Private Sub BBHistoryPaymentDate_Click(sender As Object, e As EventArgs) Handles BBHistoryPaymentDate.Click
+        FormBankWithdrawalLogPaymentDate.id_pn = GVList.GetFocusedRowCellValue("id_pn").ToString
+        FormBankWithdrawalLogPaymentDate.ShowDialog()
+    End Sub
 End Class

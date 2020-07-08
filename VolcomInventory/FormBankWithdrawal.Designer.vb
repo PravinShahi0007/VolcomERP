@@ -118,6 +118,8 @@ Partial Class FormBankWithdrawal
         Me.XTCBBKList = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBBKList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
+        Me.CMBBKList = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.BBHistoryPaymentDate = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -439,8 +441,6 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CMBBKList = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -472,6 +472,7 @@ Partial Class FormBankWithdrawal
         Me.XTCBBKList.SuspendLayout()
         Me.XTPBBKList.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMBBKList.SuspendLayout()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -579,7 +580,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
-        Me.CMBBKList.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -1528,6 +1528,7 @@ Partial Class FormBankWithdrawal
         '
         'GCList
         '
+        Me.GCList.ContextMenuStrip = Me.CMBBKList
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCList.Location = New System.Drawing.Point(0, 44)
         Me.GCList.MainView = Me.GVList
@@ -1536,6 +1537,18 @@ Partial Class FormBankWithdrawal
         Me.GCList.Size = New System.Drawing.Size(1085, 381)
         Me.GCList.TabIndex = 18
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
+        '
+        'CMBBKList
+        '
+        Me.CMBBKList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BBHistoryPaymentDate})
+        Me.CMBBKList.Name = "ContextMenuStripYM"
+        Me.CMBBKList.Size = New System.Drawing.Size(190, 48)
+        '
+        'BBHistoryPaymentDate
+        '
+        Me.BBHistoryPaymentDate.Name = "BBHistoryPaymentDate"
+        Me.BBHistoryPaymentDate.Size = New System.Drawing.Size(189, 22)
+        Me.BBHistoryPaymentDate.Text = "History Payment Date"
         '
         'GVList
         '
@@ -4779,18 +4792,6 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'CMBBKList
-        '
-        Me.CMBBKList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
-        Me.CMBBKList.Name = "ContextMenuStripYM"
-        Me.CMBBKList.Size = New System.Drawing.Size(190, 26)
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(189, 22)
-        Me.ToolStripMenuItem1.Text = "History Payment Date"
-        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4835,6 +4836,7 @@ Partial Class FormBankWithdrawal
         Me.XTCBBKList.ResumeLayout(False)
         Me.XTPBBKList.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMBBKList.ResumeLayout(False)
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4949,7 +4951,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
-        Me.CMBBKList.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -5373,5 +5374,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn208 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMBBKList As ContextMenuStrip
-    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents BBHistoryPaymentDate As ToolStripMenuItem
 End Class
