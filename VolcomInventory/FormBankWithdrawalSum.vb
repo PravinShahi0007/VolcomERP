@@ -36,9 +36,17 @@ GROUP BY pns.`id_pn_summary`"
                 If id_report_status = "5" Or id_report_status = "6" Then
                     BRelease.Visible = False
                     BCancel.Visible = False
+                    '
+                    LChangeTo.Visible = False
+                    DEChangeDate.Visible = False
+                    BChangeDate.Visible = False
                 Else
                     BCancel.Visible = True
                     BRelease.Visible = True
+                    '
+                    LChangeTo.Visible = True
+                    DEChangeDate.Visible = True
+                    BChangeDate.Visible = True
                 End If
                 load_det()
             End If
@@ -116,6 +124,11 @@ WHERE py.`id_report_status`!='5' AND py.`id_report_status`!='6' AND  DATE(py.`da
             GVList.BestFitColumns()
             DEPayment.Enabled = False
             SLEType.ReadOnly = True
+            '
+            LChangeTo.Visible = True
+            DEChangeDate.Visible = True
+            BChangeDate.Visible = True
+            '
             BGenerate.Text = "Unlock"
         Else
             warningCustom("Summary already created for this payment date.")
@@ -138,6 +151,11 @@ WHERE py.id_pn='-1'"
         GVList.BestFitColumns()
         DEPayment.Enabled = True
         SLEType.ReadOnly = False
+        '
+        LChangeTo.Visible = False
+        DEChangeDate.Visible = False
+        BChangeDate.Visible = False
+        '
         BGenerate.Text = "Generate"
     End Sub
 
@@ -230,6 +248,46 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
     End Sub
 
     Private Sub BChangeDate_Click(sender As Object, e As EventArgs) Handles BChangeDate.Click
+        GVList.ActiveFilterString = ""
+        GVList.ActiveFilterString = "[is_check]='yes'"
 
+        If GVList.RowCount > 0 Then
+            'check if summary already created and completed
+            Dim qc As String = "SELECT * FROM tb_pn_summary WHERE DATE(date_payment)='" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_report_status=6"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                warningCustom("This payment date already created and completed")
+            Else
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to change payment date ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    For i = 0 To GVList.RowCount - 1
+                        'update date payment + remove from this summary + add to summary
+                        Dim query As String = "UPDATE tb_pn SET date_payment='" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_pn='" & GVList.GetRowCellValue(i, "id_pn").ToString & "'"
+                        execute_non_query(query, True, "", "", "", "")
+                        query = "DELETE FROM tb_pn_summary_det WHERE id_pn_summary='" & id_sum & "' AND id_pn='" & GVList.GetRowCellValue(i, "id_pn").ToString & "'"
+                        execute_non_query(query, True, "", "", "", "")
+                        qc = "SELECT id_pn_summary WHERE DATE(date_payment)='" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_report_status!=6"
+                        dtc = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            query = "INSERT INTO tb_pn_summary_det(id_pn_summary,id_pn) VALUES('" & dtc.Rows(0)("id_pn_summary").ToString & "','" & GVList.GetRowCellValue(i, "id_pn").ToString & "')"
+                            execute_non_query(query, True, "", "", "", "")
+                        End If
+                    Next
+                    'refresh list
+                    If id_sum = "-1" Then
+                        unlock()
+                        generate()
+                    Else
+                        load_det()
+                    End If
+                    Cursor = Cursors.Default
+                End If
+            End If
+        Else
+            warningCustom("Please select BBK first.")
+        End If
+
+        GVList.ActiveFilterString = ""
     End Sub
 End Class
