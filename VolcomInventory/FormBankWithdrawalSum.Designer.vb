@@ -22,6 +22,7 @@ Partial Class FormBankWithdrawalSum
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawalSum))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BChangeDate = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,6 +42,7 @@ Partial Class FormBankWithdrawalSum
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BRelease = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -61,7 +63,6 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,6 +102,7 @@ Partial Class FormBankWithdrawalSum
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BChangeDate)
         Me.PanelControl3.Controls.Add(Me.SLEType)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
         Me.PanelControl3.Controls.Add(Me.DEPayment)
@@ -112,8 +114,16 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(417, 118)
+        Me.PanelControl3.Size = New System.Drawing.Size(523, 118)
         Me.PanelControl3.TabIndex = 165
+        '
+        'BChangeDate
+        '
+        Me.BChangeDate.Location = New System.Drawing.Point(408, 88)
+        Me.BChangeDate.Name = "BChangeDate"
+        Me.BChangeDate.Size = New System.Drawing.Size(104, 23)
+        Me.BChangeDate.TabIndex = 169
+        Me.BChangeDate.Text = "Change Date"
         '
         'SLEType
         '
@@ -308,6 +318,18 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(936, 48)
         Me.PanelControl7.TabIndex = 4
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.ImageIndex = 16
+        Me.BtnAttachment.Location = New System.Drawing.Point(440, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 44)
+        Me.BtnAttachment.TabIndex = 22
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
         '
         'BRelease
         '
@@ -520,18 +542,6 @@ Partial Class FormBankWithdrawalSum
         Me.BGenerate.TabStop = False
         Me.BGenerate.Text = "Generate"
         '
-        'BtnAttachment
-        '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.ImageIndex = 16
-        Me.BtnAttachment.Location = New System.Drawing.Point(440, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(103, 44)
-        Me.BtnAttachment.TabIndex = 22
-        Me.BtnAttachment.TabStop = False
-        Me.BtnAttachment.Text = "Attachment"
-        '
         'FormBankWithdrawalSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -621,4 +631,5 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BChangeDate As DevExpress.XtraEditors.SimpleButton
 End Class
