@@ -89,6 +89,10 @@ Partial Class FormOLStoreDet
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProdStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_design_cat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp_contact_from = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_store_contact_to = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -629,7 +633,7 @@ Partial Class FormOLStoreDet
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumnProdStatus, Me.GridColumnid_design_cat})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumnProdStatus, Me.GridColumnid_design_cat, Me.GridColumnid_comp_contact_from, Me.GridColumnid_store_contact_to, Me.GridColumnid_design_price, Me.GridColumndesign_price})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.AutoExpandAllGroups = True
@@ -703,6 +707,34 @@ Partial Class FormOLStoreDet
         Me.GridColumnid_design_cat.Caption = "id_design_cat"
         Me.GridColumnid_design_cat.FieldName = "id_design_cat"
         Me.GridColumnid_design_cat.Name = "GridColumnid_design_cat"
+        '
+        'GridColumnid_comp_contact_from
+        '
+        Me.GridColumnid_comp_contact_from.Caption = "id_comp_contact_from"
+        Me.GridColumnid_comp_contact_from.FieldName = "id_comp_contact_from"
+        Me.GridColumnid_comp_contact_from.Name = "GridColumnid_comp_contact_from"
+        '
+        'GridColumnid_store_contact_to
+        '
+        Me.GridColumnid_store_contact_to.Caption = "id_store_contact_to"
+        Me.GridColumnid_store_contact_to.FieldName = "id_store_contact_to"
+        Me.GridColumnid_store_contact_to.Name = "GridColumnid_store_contact_to"
+        '
+        'GridColumnid_design_price
+        '
+        Me.GridColumnid_design_price.Caption = "id_design_price"
+        Me.GridColumnid_design_price.FieldName = "id_design_price"
+        Me.GridColumnid_design_price.Name = "GridColumnid_design_price"
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 5
         '
         'FormOLStoreDet
         '
@@ -813,4 +845,8 @@ Partial Class FormOLStoreDet
     Friend WithEvents GridColumnOLStoreOrderDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnol_store_sku As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_design_cat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_comp_contact_from As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_store_contact_to As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_design_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
 End Class
