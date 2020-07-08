@@ -228,4 +228,8 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BChangeDate_Click(sender As Object, e As EventArgs) Handles BChangeDate.Click
+
+    End Sub
 End Class
