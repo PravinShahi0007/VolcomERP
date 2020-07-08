@@ -28,6 +28,9 @@
     End Sub
 
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEFromSum.EditValue = Now
+        DEToSum.EditValue = Now
+        '
         TEKurs.EditValue = 1.0
         TEKursDPKhusus.EditValue = 1.0
         '
@@ -1183,6 +1186,28 @@ ORDER BY pod.id_purc_order DESC"
     End Sub
 
     Sub view_sum()
-        Dim q As String = ""
+        Dim q As String = "SELECT pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(pnd.`val_bef_kurs`) AS val_bef_kurs
+FROM tb_pn_summary pns
+INNER JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
+INNER JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
+INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pns.`id_currency`
+INNER JOIN tb_m_user usr ON usr.`id_user`=pns.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE DATE(pns.date_payment) >= '" & Date.Parse(DEFromSum.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(pns.date_payment) <= '" & Date.Parse(DEToSum.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+GROUP BY pns.`id_pn_summary`"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCBBKSummary.DataSource = dt
+        GVBBKSummary.BestFitColumns()
+    End Sub
+
+    Private Sub BViewBBKSum_Click(sender As Object, e As EventArgs) Handles BViewBBKSum.Click
+        view_sum()
+    End Sub
+
+    Private Sub GVBBKSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVBBKSummary.DoubleClick
+        If GVBBKSummary.RowCount > 0 Then
+            FormBankWithdrawalSum.id_sum = GVBBKSummary.GetFocusedRowCellValue("id_pn_summary").ToString
+            FormBankWithdrawalSum.ShowDialog()
+        End If
     End Sub
 End Class
