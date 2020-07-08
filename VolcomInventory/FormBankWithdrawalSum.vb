@@ -6,6 +6,7 @@
         load_type()
         DEDateCreated.EditValue = Now
         DEPayment.EditValue = Now
+        DEChangeDate.EditValue = Now
 
         If id_sum = "-1" Then 'new
             BCancel.Visible = False
@@ -13,6 +14,9 @@
             BtnPrint.Visible = False
             BtnAttachment.Visible = False
         Else
+            DEPayment.Enabled = False
+            SLEType.ReadOnly = True
+            '
             BtnSave.Visible = False
             BGenerate.Visible = False
             BtnPrint.Visible = True
@@ -61,7 +65,7 @@ GROUP BY pns.`id_pn_summary`"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -71,6 +75,7 @@ INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='" & SLEType.EditValue.ToString & "' AND pyd.`is_include_total`=1
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_summary`='" & id_sum & "'"
 
         If SLEType.EditValue.ToString = "1" Then
@@ -110,7 +115,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         Dim qc As String = "SELECT id_pn_summary FROM tb_pn_summary WHERE id_pn_summary!='" & id_sum & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=5 AND DATE(date_payment)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count = 0 Then
-            Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+            Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -120,6 +125,7 @@ INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='" & SLEType.EditValue.ToString & "' AND pyd.`is_include_total`=1
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 WHERE py.`id_report_status`!='5' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
             If SLEType.EditValue.ToString = "1" Then
                 q += " GROUP BY py.id_pn "
@@ -143,7 +149,7 @@ WHERE py.`id_report_status`!='5' AND py.`id_report_status`!='6' AND  DATE(py.`da
     End Sub
 
     Sub unlock()
-        Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -151,6 +157,7 @@ INNER JOIN `tb_lookup_report_mark_type` rm ON rm.`report_mark_type`=py.`report_m
 INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
 INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 WHERE py.id_pn='-1'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -232,7 +239,7 @@ VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 
     Private Sub BRelease_Click(sender As Object, e As EventArgs) Handles BRelease.Click
         'check first
-        Dim qc As String = "SELECT id_pn FROM tb_pn_summary_det pnsd 
+        Dim qc As String = "SELECT pnsd.id_pn FROM tb_pn_summary_det pnsd 
 INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
 WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
@@ -281,7 +288,7 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
                             execute_non_query(query, True, "", "", "", "")
                         End If
                         'log
-                        query = "INSERT INTO tb_pn_log_date_payment(id_pn,log_date,from_date,to_date) VALUES('" & GVList.GetRowCellValue(i, "id_pn").ToString & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
+                        query = "INSERT INTO tb_pn_log_date_payment(id_pn,log_date,from_date,to_date,log_by) VALUES('" & GVList.GetRowCellValue(i, "id_pn").ToString & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "')"
                         execute_non_query(query, True, "", "", "", "")
                     Next
                     'refresh list
