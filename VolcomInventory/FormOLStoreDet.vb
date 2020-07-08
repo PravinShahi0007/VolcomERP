@@ -165,6 +165,7 @@
                     Dim qtrf As String = "INSERT INTO tb_fg_trf(id_comp_contact_from, id_comp_contact_to, id_sales_order, fg_trf_number, fg_trf_date, fg_trf_date_rec, fg_trf_note, id_report_status, id_report_status_rec, id_wh_drawer, last_update, last_update_by)
                     VALUES('" + id_warehouse_contact_to + "', '" + id_contact_to + "', '" + id_order_trf + "','',NOW(), NOW(),'Trf for Order Zalora by ERP',1,1,getCompByContact(" + id_contact_to + ", 4),NOW(), '" + id_user_prepared + "'); SELECT LAST_INSERT_ID(); "
                     id_trf = execute_query(qtrf, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_trf + ", 57);", True, "", "", "", "")
                 End If
 
                 'detail insert order trf
