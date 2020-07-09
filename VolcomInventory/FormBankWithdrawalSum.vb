@@ -88,7 +88,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         GCList.DataSource = dt
         GVList.BestFitColumns()
 
-        TETotal.EditValue = 0
+        TETotal.EditValue = GVList.Columns("value").SummaryItem.SummaryValue
     End Sub
 
     Sub load_type()
@@ -136,6 +136,7 @@ WHERE py.`id_report_status`!='5' AND py.`id_report_status`!='6' AND  DATE(py.`da
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCList.DataSource = dt
             GVList.BestFitColumns()
+            TETotal.EditValue = GVList.Columns("value").SummaryItem.SummaryValue
             DEPayment.Enabled = False
             SLEType.ReadOnly = True
             '
@@ -163,6 +164,7 @@ WHERE py.id_pn='-1'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
+        TETotal.EditValue = GVList.Columns("value").SummaryItem.SummaryValue
         DEPayment.Enabled = True
         SLEType.ReadOnly = False
         '
