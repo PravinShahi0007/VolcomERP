@@ -1,10 +1,13 @@
 ﻿Public Class FormBankWithdrawalSum
     Public id_sum As String = "-1"
     Public id_report_status As String = "-1"
+    Public is_view As String = "-1"
     Private Sub FormBankWithdrawalSum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TETotal.EditValue = 0.0
         load_type()
         DEDateCreated.EditValue = Now
         DEPayment.EditValue = Now
+        DEChangeDate.EditValue = Now
 
         If id_sum = "-1" Then 'new
             BCancel.Visible = False
@@ -12,6 +15,9 @@
             BtnPrint.Visible = False
             BtnAttachment.Visible = False
         Else
+            DEPayment.Enabled = False
+            SLEType.ReadOnly = True
+            '
             BtnSave.Visible = False
             BGenerate.Visible = False
             BtnPrint.Visible = True
@@ -36,9 +42,23 @@ GROUP BY pns.`id_pn_summary`"
                 If id_report_status = "5" Or id_report_status = "6" Then
                     BRelease.Visible = False
                     BCancel.Visible = False
+                    '
+                    LChangeTo.Visible = False
+                    DEChangeDate.Visible = False
+                    BChangeDate.Visible = False
                 Else
                     BCancel.Visible = True
                     BRelease.Visible = True
+                    '
+                    If Not is_view = "1" Then
+                        LChangeTo.Visible = True
+                        DEChangeDate.Visible = True
+                        BChangeDate.Visible = True
+                    Else
+                        LChangeTo.Visible = False
+                        DEChangeDate.Visible = False
+                        BChangeDate.Visible = False
+                    End If
                 End If
                 load_det()
             End If
@@ -46,7 +66,7 @@ GROUP BY pns.`id_pn_summary`"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -67,6 +87,8 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
+
+        TETotal.EditValue = GVList.Columns("value").SummaryItem.SummaryValue
     End Sub
 
     Sub load_type()
@@ -95,7 +117,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         Dim qc As String = "SELECT id_pn_summary FROM tb_pn_summary WHERE id_pn_summary!='" & id_sum & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=5 AND DATE(date_payment)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count = 0 Then
-            Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+            Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -114,8 +136,14 @@ WHERE py.`id_report_status`!='5' AND py.`id_report_status`!='6' AND  DATE(py.`da
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCList.DataSource = dt
             GVList.BestFitColumns()
+            TETotal.EditValue = GVList.Columns("value").SummaryItem.SummaryValue
             DEPayment.Enabled = False
             SLEType.ReadOnly = True
+            '
+            LChangeTo.Visible = True
+            DEChangeDate.Visible = True
+            BChangeDate.Visible = True
+            '
             BGenerate.Text = "Unlock"
         Else
             warningCustom("Summary already created for this payment date.")
@@ -123,7 +151,7 @@ WHERE py.`id_report_status`!='5' AND py.`id_report_status`!='6' AND  DATE(py.`da
     End Sub
 
     Sub unlock()
-        Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -136,8 +164,14 @@ WHERE py.id_pn='-1'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
+        TETotal.EditValue = GVList.Columns("value").SummaryItem.SummaryValue
         DEPayment.Enabled = True
         SLEType.ReadOnly = False
+        '
+        LChangeTo.Visible = False
+        DEChangeDate.Visible = False
+        BChangeDate.Visible = False
+        '
         BGenerate.Text = "Generate"
     End Sub
 
@@ -156,6 +190,8 @@ VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 
                 q = "CALL gen_number('" & id_sum & "','251')"
                 execute_non_query(q, True, "", "", "", "")
+
+                submit_who_prepared("251", id_sum, id_user)
 
                 FormBankWithdrawal.view_sum()
                 Close()
@@ -207,7 +243,7 @@ VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 
     Private Sub BRelease_Click(sender As Object, e As EventArgs) Handles BRelease.Click
         'check first
-        Dim qc As String = "SELECT id_pn FROM tb_pn_summary_det pnsd 
+        Dim qc As String = "SELECT pnsd.id_pn FROM tb_pn_summary_det pnsd 
 INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
 WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
@@ -230,6 +266,49 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
     End Sub
 
     Private Sub BChangeDate_Click(sender As Object, e As EventArgs) Handles BChangeDate.Click
+        GVList.ActiveFilterString = ""
+        GVList.ActiveFilterString = "[is_check]='yes'"
 
+        If GVList.RowCount > 0 Then
+            'check if summary already created and completed
+            Dim qc As String = "SELECT * FROM tb_pn_summary WHERE DATE(date_payment)='" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_report_status=6"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                warningCustom("This payment date already created and completed")
+            Else
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to change payment date ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    For i = 0 To GVList.RowCount - 1
+                        'update date payment + remove from this summary + add to summary
+                        Dim query As String = "UPDATE tb_pn SET date_payment='" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_pn='" & GVList.GetRowCellValue(i, "id_pn").ToString & "'"
+                        execute_non_query(query, True, "", "", "", "")
+                        query = "DELETE FROM tb_pn_summary_det WHERE id_pn_summary='" & id_sum & "' AND id_pn='" & GVList.GetRowCellValue(i, "id_pn").ToString & "'"
+                        execute_non_query(query, True, "", "", "", "")
+                        qc = "SELECT id_pn_summary FROM tb_pn_summary WHERE DATE(date_payment)='" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_report_status!=6"
+                        dtc = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            query = "INSERT INTO tb_pn_summary_det(id_pn_summary,id_pn) VALUES('" & dtc.Rows(0)("id_pn_summary").ToString & "','" & GVList.GetRowCellValue(i, "id_pn").ToString & "')"
+                            execute_non_query(query, True, "", "", "", "")
+                        End If
+                        'log
+                        query = "INSERT INTO tb_pn_log_date_payment(id_pn,log_date,from_date,to_date,log_by) VALUES('" & GVList.GetRowCellValue(i, "id_pn").ToString & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "')"
+                        execute_non_query(query, True, "", "", "", "")
+                    Next
+                    'refresh list
+                    If id_sum = "-1" Then
+                        unlock()
+                        generate()
+                    Else
+                        load_det()
+                    End If
+                    Cursor = Cursors.Default
+                End If
+            End If
+        Else
+            warningCustom("Please select BBK first.")
+        End If
+
+        GVList.ActiveFilterString = ""
     End Sub
 End Class

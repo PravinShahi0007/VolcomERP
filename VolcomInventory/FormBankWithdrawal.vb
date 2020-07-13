@@ -1133,7 +1133,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
-WHERE it.id_item_type='1' AND po.`is_active_payment`=2 AND po.`is_close_pay`=2
+WHERE it.id_item_type='2' AND po.`is_active_payment`=2 AND po.`is_close_pay`=2
 GROUP BY pod.`id_purc_order`
 ORDER BY pod.id_purc_order DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -1186,13 +1186,14 @@ ORDER BY pod.id_purc_order DESC"
     End Sub
 
     Sub view_sum()
-        Dim q As String = "SELECT pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(pnd.`val_bef_kurs`) AS val_bef_kurs
+        Dim q As String = "SELECT pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IFNULL(pnd.`val_bef_kurs`,0)) AS val_bef_kurs
 FROM tb_pn_summary pns
-INNER JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
-INNER JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
+LEFT JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
+LEFT JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
 INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pns.`id_currency`
 INNER JOIN tb_m_user usr ON usr.`id_user`=pns.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pns.id_report_status
 WHERE DATE(pns.date_payment) >= '" & Date.Parse(DEFromSum.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(pns.date_payment) <= '" & Date.Parse(DEToSum.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 GROUP BY pns.`id_pn_summary`"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -1208,6 +1209,15 @@ GROUP BY pns.`id_pn_summary`"
         If GVBBKSummary.RowCount > 0 Then
             FormBankWithdrawalSum.id_sum = GVBBKSummary.GetFocusedRowCellValue("id_pn_summary").ToString
             FormBankWithdrawalSum.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BBHistoryPaymentDate_Click(sender As Object, e As EventArgs) Handles BBHistoryPaymentDate.Click
+        If GVList.RowCount > 0 Then
+            FormBankWithdrawalLogPaymentDate.id_pn = GVList.GetFocusedRowCellValue("id_pn").ToString
+            FormBankWithdrawalLogPaymentDate.ShowDialog()
+        Else
+            warningCustom("No BBK selected")
         End If
     End Sub
 End Class
