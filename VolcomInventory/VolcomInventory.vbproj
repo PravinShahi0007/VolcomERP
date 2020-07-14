@@ -393,6 +393,12 @@
     <Compile Include="FormBankWithdrawalDP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankWithdrawalLogPaymentDate.Designer.vb">
+      <DependentUpon>FormBankWithdrawalLogPaymentDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalLogPaymentDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankWithdrawalSum.Designer.vb">
       <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
     </Compile>
@@ -6924,6 +6930,12 @@
     <Compile Include="ReportBankWithdrawal.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBankWithdrawalSum.Designer.vb">
+      <DependentUpon>ReportBankWithdrawalSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBankWithdrawalSum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBOM.Designer.vb">
       <DependentUpon>ReportBOM.vb</DependentUpon>
     </Compile>
@@ -8221,6 +8233,12 @@
     <Compile Include="ReportShipInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportStockQCSummary.Designer.vb">
+      <DependentUpon>ReportStockQCSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStockQCSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSummaryInvoice.Designer.vb">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
     </Compile>
@@ -8345,6 +8363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalDP.resx">
       <DependentUpon>FormBankWithdrawalDP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalLogPaymentDate.resx">
+      <DependentUpon>FormBankWithdrawalLogPaymentDate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalSum.resx">
       <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
@@ -12078,6 +12099,9 @@
     <EmbeddedResource Include="ReportBankWithdrawal.resx">
       <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportBankWithdrawalSum.resx">
+      <DependentUpon>ReportBankWithdrawalSum.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportBOM.resx">
       <DependentUpon>ReportBOM.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -12804,6 +12828,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportShipInvoice.resx">
       <DependentUpon>ReportShipInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStockQCSummary.resx">
+      <DependentUpon>ReportStockQCSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSummaryInvoice.resx">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>

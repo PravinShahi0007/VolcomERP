@@ -1218,7 +1218,7 @@ WHERE cg.`comp_group`='" & comp_group & "' AND so.`sales_order_ol_shop_number`='
                 Dim total_not_imported As Integer = 0
 
                 For i = 2 To dt.Rows.Count - 1
-                    Dim awbill_no As String = dt.Rows(i)(29).ToString.Replace("#", "")
+                    Dim awbill_no As String = dt.Rows(i)(30).ToString.Replace("#", "")
 
                     If dt.Rows(i)(1).ToString.Contains("RET-") Then
                         Dim comp_group_desc As String = dt.Rows(i)(1).ToString.Split("-")(1)

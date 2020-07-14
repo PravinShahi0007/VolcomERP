@@ -357,6 +357,8 @@
             FormShipInvoiceDet.Close()
         ElseIf report_mark_type = "250" Then
             FormPromoCollectionDet.Close()
+        ElseIf report_mark_type = "251" Then
+            FormBankWithdrawalSum.Close()
         End If
     End Sub
     Sub show()
@@ -1241,6 +1243,10 @@ GROUP BY rec.`id_prod_order`"
             FormPromoCollectionDet.id = id_report
             FormPromoCollectionDet.is_view = "1"
             FormPromoCollectionDet.ShowDialog()
+        ElseIf report_mark_type = "251" Then
+            FormBankWithdrawalSum.id_sum = id_report
+            FormBankWithdrawalSum.is_view = "1"
+            FormBankWithdrawalSum.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2228,6 +2234,12 @@ GROUP BY rec.`id_prod_order`"
             'return request
             table_name = "tb_ol_store_ret_req"
             field_id = "id_ol_store_ret_req"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "251" Then
+            'bbk sumamry
+            table_name = "tb_pn_summary"
+            field_id = "id_pn_summary"
             field_number = "number"
             field_date = "created_date"
         Else

@@ -28,6 +28,9 @@
     End Sub
 
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEFromSum.EditValue = Now
+        DEToSum.EditValue = Now
+        '
         TEKurs.EditValue = 1.0
         TEKursDPKhusus.EditValue = 1.0
         '
@@ -1130,7 +1133,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
-WHERE it.id_item_type='1' AND po.`is_active_payment`=2 AND po.`is_close_pay`=2
+WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2
 GROUP BY pod.`id_purc_order`
 ORDER BY pod.id_purc_order DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -1183,10 +1186,38 @@ ORDER BY pod.id_purc_order DESC"
     End Sub
 
     Sub view_sum()
-        Dim q As String = ""
+        Dim q As String = "SELECT pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IFNULL(pnd.`val_bef_kurs`,0)) AS val_bef_kurs
+FROM tb_pn_summary pns
+LEFT JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
+LEFT JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
+INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pns.`id_currency`
+INNER JOIN tb_m_user usr ON usr.`id_user`=pns.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pns.id_report_status
+WHERE DATE(pns.date_payment) >= '" & Date.Parse(DEFromSum.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(pns.date_payment) <= '" & Date.Parse(DEToSum.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+GROUP BY pns.`id_pn_summary`"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCBBKSummary.DataSource = dt
+        GVBBKSummary.BestFitColumns()
     End Sub
 
     Private Sub BViewBBKSum_Click(sender As Object, e As EventArgs) Handles BViewBBKSum.Click
         view_sum()
+    End Sub
+
+    Private Sub GVBBKSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVBBKSummary.DoubleClick
+        If GVBBKSummary.RowCount > 0 Then
+            FormBankWithdrawalSum.id_sum = GVBBKSummary.GetFocusedRowCellValue("id_pn_summary").ToString
+            FormBankWithdrawalSum.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BBHistoryPaymentDate_Click(sender As Object, e As EventArgs) Handles BBHistoryPaymentDate.Click
+        If GVList.RowCount > 0 Then
+            FormBankWithdrawalLogPaymentDate.id_pn = GVList.GetFocusedRowCellValue("id_pn").ToString
+            FormBankWithdrawalLogPaymentDate.ShowDialog()
+        Else
+            warningCustom("No BBK selected")
+        End If
     End Sub
 End Class
