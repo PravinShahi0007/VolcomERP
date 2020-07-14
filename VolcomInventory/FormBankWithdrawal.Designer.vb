@@ -134,6 +134,10 @@ Partial Class FormBankWithdrawal
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEBBKTo = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEBBKFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BCreateBookTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEPayTypePayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -441,10 +445,6 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DEBBKFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEBBKTo = New DevExpress.XtraEditors.DateEdit()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -481,6 +481,10 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.DEBBKTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBBKTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBBKFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBBKFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPayTypePayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -584,10 +588,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
-        CType(Me.DEBBKFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEBBKFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEBBKTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEBBKTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -596,7 +596,7 @@ Partial Class FormBankWithdrawal
         Me.XTCPO.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCPO.Location = New System.Drawing.Point(0, 0)
         Me.XTCPO.Name = "XTCPO"
-        Me.XTCPO.SelectedTabPage = Me.XTPPO
+        Me.XTCPO.SelectedTabPage = Me.XTPPayment
         Me.XTCPO.Size = New System.Drawing.Size(1097, 513)
         Me.XTCPO.TabIndex = 2
         Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPPO, Me.XTPExpense, Me.XTPFGPO, Me.XTPBPJSKesehatan, Me.XTPJamsostek, Me.XTPTHR, Me.XTPRefund, Me.XTPCashAdvance, Me.XTPDPKhusus, Me.XTPWaitingList})
@@ -1705,6 +1705,46 @@ Partial Class FormBankWithdrawal
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1085, 44)
         Me.PanelControl2.TabIndex = 14
+        '
+        'DEBBKTo
+        '
+        Me.DEBBKTo.EditValue = Nothing
+        Me.DEBBKTo.Location = New System.Drawing.Point(656, 12)
+        Me.DEBBKTo.Name = "DEBBKTo"
+        Me.DEBBKTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBBKTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBBKTo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEBBKTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEBBKTo.Size = New System.Drawing.Size(158, 20)
+        Me.DEBBKTo.TabIndex = 8925
+        '
+        'LabelControl19
+        '
+        Me.LabelControl19.Location = New System.Drawing.Point(638, 15)
+        Me.LabelControl19.Name = "LabelControl19"
+        Me.LabelControl19.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl19.TabIndex = 8924
+        Me.LabelControl19.Text = "To"
+        '
+        'LabelControl18
+        '
+        Me.LabelControl18.Location = New System.Drawing.Point(444, 15)
+        Me.LabelControl18.Name = "LabelControl18"
+        Me.LabelControl18.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl18.TabIndex = 8923
+        Me.LabelControl18.Text = "From"
+        '
+        'DEBBKFrom
+        '
+        Me.DEBBKFrom.EditValue = Nothing
+        Me.DEBBKFrom.Location = New System.Drawing.Point(474, 12)
+        Me.DEBBKFrom.Name = "DEBBKFrom"
+        Me.DEBBKFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBBKFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBBKFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEBBKFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEBBKFrom.Size = New System.Drawing.Size(158, 20)
+        Me.DEBBKFrom.TabIndex = 8922
         '
         'BCreateBookTrf
         '
@@ -4804,46 +4844,6 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'DEBBKFrom
-        '
-        Me.DEBBKFrom.EditValue = Nothing
-        Me.DEBBKFrom.Location = New System.Drawing.Point(474, 12)
-        Me.DEBBKFrom.Name = "DEBBKFrom"
-        Me.DEBBKFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEBBKFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEBBKFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEBBKFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEBBKFrom.Size = New System.Drawing.Size(158, 20)
-        Me.DEBBKFrom.TabIndex = 8922
-        '
-        'LabelControl18
-        '
-        Me.LabelControl18.Location = New System.Drawing.Point(444, 15)
-        Me.LabelControl18.Name = "LabelControl18"
-        Me.LabelControl18.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl18.TabIndex = 8923
-        Me.LabelControl18.Text = "From"
-        '
-        'LabelControl19
-        '
-        Me.LabelControl19.Location = New System.Drawing.Point(638, 15)
-        Me.LabelControl19.Name = "LabelControl19"
-        Me.LabelControl19.Size = New System.Drawing.Size(12, 13)
-        Me.LabelControl19.TabIndex = 8924
-        Me.LabelControl19.Text = "To"
-        '
-        'DEBBKTo
-        '
-        Me.DEBBKTo.EditValue = Nothing
-        Me.DEBBKTo.Location = New System.Drawing.Point(656, 12)
-        Me.DEBBKTo.Name = "DEBBKTo"
-        Me.DEBBKTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEBBKTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEBBKTo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEBBKTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEBBKTo.Size = New System.Drawing.Size(158, 20)
-        Me.DEBBKTo.TabIndex = 8925
-        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4894,6 +4894,10 @@ Partial Class FormBankWithdrawal
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.DEBBKTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBBKTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBBKFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBBKFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPayTypePayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -5003,10 +5007,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
-        CType(Me.DEBBKFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEBBKFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEBBKTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEBBKTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

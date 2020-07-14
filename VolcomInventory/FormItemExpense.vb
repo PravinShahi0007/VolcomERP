@@ -106,4 +106,8 @@
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub DEBBKFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEBBKFrom.EditValueChanged
+        DEBBKTo.Properties.MinValue = DEBBKFrom.EditValue
+    End Sub
 End Class

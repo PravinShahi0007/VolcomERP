@@ -1224,4 +1224,8 @@ GROUP BY pns.`id_pn_summary`"
             warningCustom("No BBK selected")
         End If
     End Sub
+
+    Private Sub DEBBKFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEBBKFrom.EditValueChanged
+        DEBBKTo.Properties.MinValue = DEBBKFrom.EditValue
+    End Sub
 End Class

@@ -34,12 +34,12 @@ Partial Class FormItemExpense
         Me.GridColumnBeneficiary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnBankWithdrawal = New DevExpress.XtraEditors.SimpleButton()
         Me.DEBBKTo = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEBBKFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnBankWithdrawal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,16 +177,6 @@ Partial Class FormItemExpense
         Me.PanelControlNav.Size = New System.Drawing.Size(783, 46)
         Me.PanelControlNav.TabIndex = 1
         '
-        'BtnBankWithdrawal
-        '
-        Me.BtnBankWithdrawal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnBankWithdrawal.Image = CType(resources.GetObject("BtnBankWithdrawal.Image"), System.Drawing.Image)
-        Me.BtnBankWithdrawal.Location = New System.Drawing.Point(651, 2)
-        Me.BtnBankWithdrawal.Name = "BtnBankWithdrawal"
-        Me.BtnBankWithdrawal.Size = New System.Drawing.Size(130, 42)
-        Me.BtnBankWithdrawal.TabIndex = 0
-        Me.BtnBankWithdrawal.Text = "Bank Withdrawal"
-        '
         'DEBBKTo
         '
         Me.DEBBKTo.EditValue = Nothing
@@ -234,6 +224,16 @@ Partial Class FormItemExpense
         Me.BViewPayment.Size = New System.Drawing.Size(60, 23)
         Me.BViewPayment.TabIndex = 8926
         Me.BViewPayment.Text = "view"
+        '
+        'BtnBankWithdrawal
+        '
+        Me.BtnBankWithdrawal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnBankWithdrawal.Image = CType(resources.GetObject("BtnBankWithdrawal.Image"), System.Drawing.Image)
+        Me.BtnBankWithdrawal.Location = New System.Drawing.Point(651, 2)
+        Me.BtnBankWithdrawal.Name = "BtnBankWithdrawal"
+        Me.BtnBankWithdrawal.Size = New System.Drawing.Size(130, 42)
+        Me.BtnBankWithdrawal.TabIndex = 0
+        Me.BtnBankWithdrawal.Text = "Bank Withdrawal"
         '
         'FormItemExpense
         '
