@@ -1206,7 +1206,9 @@
                         End If
                     Next
 
-                    insert_detail = insert_detail + "('" + id_acc_trans + "', " + id_acc_miss + ", '" + id_comp + "', '" + vendor + "', " + decimalSQL(data_sum.Rows(i)("d_missing")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Tab. Missing', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+                    If data_sum.Rows(i)("d_missing") > 0 Then
+                        insert_detail = insert_detail + "('" + id_acc_trans + "', " + id_acc_miss + ", '" + id_comp + "', '" + vendor + "', " + decimalSQL(data_sum.Rows(i)("d_missing")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Tab. Missing', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+                    End If
                 End If
             Next
 
