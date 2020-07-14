@@ -5333,7 +5333,7 @@ FROM
                 /* total biaya jasa atau non inventory */
                 SELECT " + id_acc_trans + " AS id_acc_trans,o.id_coa_out AS `id_acc`, IF(reqd.ship_to=0,1,reqd.ship_to) AS id_comp,  SUM(rd.qty) AS `qty`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
-                0 AS `credit`,'' AS `note`,148 AS report_mark_type,rd.id_purc_rec AS id_report, r.purc_rec_number AS report_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order AS id_report_reff, po.purc_order_number AS report_number_reff
+                0 AS `credit`,i.item_desc AS `note`,148 AS report_mark_type,rd.id_purc_rec AS id_report, r.purc_rec_number AS report_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order AS id_report_reff, po.purc_order_number AS report_number_reff
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5353,13 +5353,13 @@ FROM
                 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
                 INNER JOIN tb_item_coa o ON o.id_item_cat=i.id_item_cat AND o.id_departement=req.id_departement
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND (i.id_item_type='2' OR r.is_delivered='1')
-                GROUP BY rd.id_purc_rec,dep.id_main_comp,reqd.ship_to
+                GROUP BY rd.id_purc_rec_det,dep.id_main_comp,reqd.ship_to
                 HAVING debit>0 OR credit>0
                 UNION ALL
                 /*total value item inventory tanpa diskon*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,o.acc_coa_receive AS `id_acc`, dep.id_main_comp,  SUM(rd.qty) AS `qty`,
                 SUM(rd.qty * (pod.`value`)) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
+                0 AS `credit`,i.item_desc AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5379,13 +5379,13 @@ FROM
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 JOIN tb_opt_purchasing o
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1' AND r.is_delivered='2'
-                GROUP BY rd.id_purc_rec,dep.id_main_comp
+                GROUP BY rd.id_purc_rec_det,dep.id_main_comp
                 HAVING debit>0 OR credit>0
                 UNION ALL
                 /*total value item asset tanpa diskon*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,coa.id_coa_out AS `id_acc`, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`, SUM(rd.qty * (pod.`value`)) AS `debit`,
-                0 AS `credit`,CONCAT(rqd.`item_detail`,' ','(Qty : ',SUM(rd.qty) ,')') AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                0 AS `credit`,i.item_desc AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5405,13 +5405,13 @@ FROM
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2
-                GROUP BY rd.id_purc_rec, rq.id_departement,rd.id_item,rqd.item_detail
+                GROUP BY rd.id_purc_rec_det, rq.id_departement,rd.id_item,rqd.item_detail
                 UNION ALL
                 /*Discount ke pendapatan lain-lain*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,(SELECT id_acc_pendapatan_lain FROM tb_opt_accounting) AS `id_acc`, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`,
                 0 AS `debit`,
-                SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `credit`,i.item_desc AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5431,19 +5431,20 @@ FROM
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
                 WHERE rd.id_purc_rec=" + id_report + "
-                GROUP BY rd.id_purc_rec, rq.id_departement
+                GROUP BY rd.id_purc_rec_det, rq.id_departement
                 HAVING debit!=0 OR credit!=0
                 UNION ALL
                 /*total vat in*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,o.acc_coa_vat_in AS `id_acc`, dep.id_main_comp,  SUM(rd.qty) AS `qty`,
                 (po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value)) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
+                0 AS `credit`,i.item_desc AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
                 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
                 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
                 INNER JOIN (
@@ -5460,7 +5461,7 @@ FROM
                 /* Total value item inventory + total value item asset + vat in ke AP */
                 SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`, 0 AS `debit`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) + ((po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value))) AS `credit`,
-                '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
+                i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5468,6 +5469,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
                 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
                 INNER JOIN (
@@ -5483,7 +5485,7 @@ FROM
                 SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
                 SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `debit`,
                 0 AS `credit`,
-                '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5491,6 +5493,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
                 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
                 WHERE po.id_purc_order=" + FormPurcReceiveDet.id_purc_order + " AND po.`is_close_rec`=1 
@@ -5499,7 +5502,7 @@ FROM
                 SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
                 0 AS `debit`,
                 SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `credit`,
-                '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+                i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5507,6 +5510,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
                 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
                 WHERE po.id_purc_order=" + FormPurcReceiveDet.id_purc_order + " AND po.`is_close_rec`=1
@@ -5845,23 +5849,27 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 
                 If FormItemExpenseDet.CEPayLater.EditValue = True Then
                     'utang
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp)
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_reff)
                     SELECT " + id_acc_trans + ", ed.id_acc_pph,IF(ed.amount<0,(ed.pph_percent/100)*-ed.amount,0) AS `debit`, IF(ed.amount<0,0,(ed.pph_percent/100)*ed.amount) AS `credit`, ed.description, 157, e.id_item_expense, e.`number`,ed.cc
+                    ,e.inv_number
                     FROM tb_item_expense e
                     INNER JOIN  tb_item_expense_det ed ON ed.id_item_expense = e.id_item_expense
                     WHERE e.id_item_expense=" + id_report + " AND pph_percent>0
                     UNION ALL
                     SELECT " + id_acc_trans + ", ed.id_acc, IF(ed.amount<0,0,ed.amount) AS `debit`, IF(ed.amount<0,-ed.amount,0) AS `credit`, ed.description, 157, e.id_item_expense, e.`number`,ed.cc
+                    ,e.inv_number
                     FROM tb_item_expense e
                     INNER JOIN  tb_item_expense_det ed ON ed.id_item_expense = e.id_item_expense
                     WHERE e.id_item_expense=" + id_report + "
                     UNION ALL
-                    SELECT " + id_acc_trans + ", o.acc_coa_vat_in, e.vat_total AS `debit`, 0 AS `credit`, '' AS description, 157, e.id_item_expense, e.`number`,1
+                    SELECT " + id_acc_trans + ", o.acc_coa_vat_in, e.vat_total AS `debit`, 0 AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
+                    ,e.inv_number
                     FROM tb_item_expense e
                     JOIN tb_opt_purchasing o
                     WHERE e.id_item_expense=" + id_report + " AND e.vat_total>0
                     UNION ALL
-                    SELECT " + id_acc_trans + ", c.id_acc_ap, 0 AS `debit`, e.`total` AS `credit`, '' AS description, 157, e.id_item_expense, e.`number`,1
+                    SELECT " + id_acc_trans + ", c.id_acc_ap, 0 AS `debit`, e.`total` AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
+                    ,e.inv_number
                     FROM tb_item_expense e
                     INNER JOIN tb_m_comp c ON c.id_comp = e.id_comp
                     WHERE e.id_item_expense=" + id_report + " "
