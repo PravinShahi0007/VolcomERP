@@ -7968,9 +7968,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormPurcItemStock" Then
             If FormPurcItemStock.XTCStock.SelectedTabPageIndex = 0 Then
-                print_raw(FormPurcItemStock.GCSOH, "")
+                print(FormPurcItemStock.GCSOH, "Stock On Hand until " & Date.Parse(FormPurcItemStock.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy"))
             ElseIf FormPurcItemStock.XTCStock.SelectedTabPageIndex = 1 Then
-                print_raw(FormPurcItemStock.GCSC, "")
+                print(FormPurcItemStock.GCSC, "Stock Card " & FormPurcItemStock.SLEITem.Text & " From " & Date.Parse(FormPurcItemStock.DEFromSC.EditValue.ToString).ToString("dd MMMM yyyy") & " Until " & Date.Parse(FormPurcItemStock.DEUntilSC.EditValue.ToString).ToString("dd MMMM yyyy"))
             End If
         ElseIf formName = "FormEmpUniSumReport" Then
             If FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 0 Then
