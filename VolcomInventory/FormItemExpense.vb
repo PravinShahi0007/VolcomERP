@@ -15,7 +15,7 @@
         Dim exp As New ClassItemExpense()
         Dim cond As String = "-1"
 
-        cond = " DATE(e.created_date)>='" & Date.Parse(DEBBKTo.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(e.created_date)<='" & Date.Parse(DEBBKTo.EditValue.ToString).ToString("yyyy-MM-dd") & "' "
+        cond = " AND DATE(e.created_date)>='" & Date.Parse(DEBBKTo.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(e.created_date)<='" & Date.Parse(DEBBKTo.EditValue.ToString).ToString("yyyy-MM-dd") & "' "
 
         Dim query As String = exp.queryMain(cond, "2", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -109,5 +109,9 @@
 
     Private Sub DEBBKFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEBBKFrom.EditValueChanged
         DEBBKTo.Properties.MinValue = DEBBKFrom.EditValue
+    End Sub
+
+    Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
+
     End Sub
 End Class
