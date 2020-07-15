@@ -2272,7 +2272,7 @@ WHERE note='Closing End'"
     Sub CreateReportHeaderAreaCustom(ByVal sender As System.Object, ByVal e As CreateAreaEventArgs)
         Dim reportHeader As String = title_print
         e.Graph.StringFormat = New BrickStringFormat(StringAlignment.Near)
-        e.Graph.Font = New Font("Tahoma", 9)
+        e.Graph.Font = New Font("Tahoma", 9, FontStyle.Bold)
         Dim rec As RectangleF = New RectangleF(0, 20, e.Graph.ClientPageSize.Width, 50)
         e.Graph.DrawString(reportHeader, Color.Black, rec, BorderSide.None)
     End Sub
