@@ -23,6 +23,10 @@ Partial Class FormBankWithdrawalBuyValas
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawalBuyValas))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEPayment = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPayNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -58,11 +62,14 @@ Partial Class FormBankWithdrawalBuyValas
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.DEPayment.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPayNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,7 +107,10 @@ Partial Class FormBankWithdrawalBuyValas
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.LabelControl2)
+        Me.PanelControl4.Controls.Add(Me.DEPayment)
+        Me.PanelControl4.Controls.Add(Me.LabelControl8)
+        Me.PanelControl4.Controls.Add(Me.DEDateCreated)
+        Me.PanelControl4.Controls.Add(Me.LabelControl7)
         Me.PanelControl4.Controls.Add(Me.LabelControl5)
         Me.PanelControl4.Controls.Add(Me.TEPayNumber)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
@@ -108,6 +118,49 @@ Partial Class FormBankWithdrawalBuyValas
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(470, 102)
         Me.PanelControl4.TabIndex = 166
+        '
+        'DEPayment
+        '
+        Me.DEPayment.EditValue = Nothing
+        Me.DEPayment.Location = New System.Drawing.Point(88, 63)
+        Me.DEPayment.Name = "DEPayment"
+        Me.DEPayment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPayment.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPayment.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEPayment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEPayment.Size = New System.Drawing.Size(314, 20)
+        Me.DEPayment.TabIndex = 170
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(10, 66)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl8.TabIndex = 169
+        Me.LabelControl8.Text = "Date Payment"
+        '
+        'DEDateCreated
+        '
+        Me.DEDateCreated.EditValue = Nothing
+        Me.DEDateCreated.Location = New System.Drawing.Point(88, 37)
+        Me.DEDateCreated.Name = "DEDateCreated"
+        Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDateCreated.Properties.ReadOnly = True
+        Me.DEDateCreated.Size = New System.Drawing.Size(314, 20)
+        Me.DEDateCreated.TabIndex = 168
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(10, 40)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl7.TabIndex = 167
+        Me.LabelControl7.Text = "Date Created"
         '
         'LabelControl5
         '
@@ -125,7 +178,7 @@ Partial Class FormBankWithdrawalBuyValas
         Me.TEPayNumber.Name = "TEPayNumber"
         Me.TEPayNumber.Properties.EditValueChangedDelay = 1
         Me.TEPayNumber.Properties.ReadOnly = True
-        Me.TEPayNumber.Size = New System.Drawing.Size(287, 20)
+        Me.TEPayNumber.Size = New System.Drawing.Size(314, 20)
         Me.TEPayNumber.TabIndex = 161
         Me.TEPayNumber.TabStop = False
         '
@@ -405,7 +458,7 @@ Partial Class FormBankWithdrawalBuyValas
         '
         Me.XTPJournal.Controls.Add(Me.GCDraft)
         Me.XTPJournal.Name = "XTPJournal"
-        Me.XTPJournal.Size = New System.Drawing.Size(555, 128)
+        Me.XTPJournal.Size = New System.Drawing.Size(555, 129)
         Me.XTPJournal.Text = "Draft Journal"
         '
         'GCDraft
@@ -414,7 +467,7 @@ Partial Class FormBankWithdrawalBuyValas
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.MainView = Me.GVDraft
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(555, 128)
+        Me.GCDraft.Size = New System.Drawing.Size(555, 129)
         Me.GCDraft.TabIndex = 1
         Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
@@ -508,15 +561,6 @@ Partial Class FormBankWithdrawalBuyValas
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'LabelControl2
-        '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 40)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl2.TabIndex = 164
-        Me.LabelControl2.Text = "Date"
-        '
         'FormBankWithdrawalBuyValas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -536,6 +580,10 @@ Partial Class FormBankWithdrawalBuyValas
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.DEPayment.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPayNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
@@ -602,5 +650,8 @@ Partial Class FormBankWithdrawalBuyValas
     Friend WithEvents Label3 As Label
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LECurrency As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEPayment As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
 End Class
