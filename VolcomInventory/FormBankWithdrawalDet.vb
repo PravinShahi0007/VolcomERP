@@ -16,6 +16,13 @@
         viewSearchLookupQuery(SLEACCTrfFee, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
+    Sub load_auto_debet()
+        Dim query As String = "SELECT 2 AS id,'No' AS auto_debet
+UNION
+SELECT 1 AS id,'Yes' AS auto_debet"
+        viewSearchLookupQuery(SLEAutoDebet, query, "id", "auto_debet", "id")
+    End Sub
+
     Sub form_load()
         TETrfFee.EditValue = 0.0
         TEKurs.EditValue = 1.0
@@ -31,6 +38,7 @@
         load_trans_type()
         load_report_type()
         load_currency()
+        load_auto_debet()
         '
         If id_payment = "-1" Then
             load_det()
@@ -1046,6 +1054,7 @@
                 TETrfFee.EditValue = data.Rows(0)("trf_fee").ToString
                 SLEACCTrfFee.EditValue = data.Rows(0)("id_acc_trf_fee").ToString
                 '
+                SLEAutoDebet.EditValue = data.Rows(0)("is_auto_debet").ToString
                 SLEVendor.EditValue = data.Rows(0)("id_comp_contact").ToString
                 SLEPayType.EditValue = data.Rows(0)("id_pay_type").ToString
                 SLEReportType.EditValue = data.Rows(0)("report_mark_type").ToString
@@ -1065,6 +1074,7 @@
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 DEPayment.EditValue = data.Rows(0)("date_payment")
                 DEPayment.Properties.ReadOnly = True
+                SLEAutoDebet.Properties.ReadOnly = True
                 SLEPayFrom.EditValue = data.Rows(0)("id_acc_payfrom").ToString
                 MENote.EditValue = data.Rows(0)("note").ToString
             End If
@@ -1242,7 +1252,7 @@ WHERE pnd.id_pn='" & id_payment & "'"
         GridColumnCurrencyHide.VisibleIndex = -1
 
         'Parse val
-        Dim query As String = "SELECT py.number,py.trf_fee,py.kurs,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
+        Dim query As String = "SELECT py.number,IF(py.is_auto_debet=1,'- Auto Debet','') AS auto_debet,py.trf_fee,py.kurs,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
 ,'" & ConvertCurrencyToIndonesian(TETotal.EditValue) & "' AS tot_say, CONCAT(tag.tag_code, ' - ', tag.tag_description) AS tag
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
@@ -1368,8 +1378,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
                     id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString
                 End If
 
-                Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,is_book_transfer,id_report_status,id_coa_tag,id_acc_trf_fee,trf_fee) 
-VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue.ToString).ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & is_book_trf & "','1','" + id_coa_tag + "','" & SLEACCTrfFee.EditValue.ToString & "','" & decimalSQL(TETrfFee.EditValue.ToString) & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,is_book_transfer,id_report_status,id_coa_tag,id_acc_trf_fee,trf_fee,is_auto_debet) 
+VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue.ToString).ToString) & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & is_book_trf & "','1','" + id_coa_tag + "','" & SLEACCTrfFee.EditValue.ToString & "','" & decimalSQL(TETrfFee.EditValue.ToString) & "','" & SLEAutoDebet.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                 id_payment = execute_query(query, 0, True, "", "", "", "")
                 'detail
                 Dim id_currency, kurs, val_bef_kurs As String

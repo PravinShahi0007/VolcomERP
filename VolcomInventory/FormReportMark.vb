@@ -5928,11 +5928,18 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             'If id_status_reportx = "3" Then
             'id_status_reportx = "6"
             'End If
+            'select header
+            Dim qu_payment As String = "SELECT id_pay_type,report_mark_type,date_created,date_payment,is_auto_debet FROM tb_pn py WHERE py.id_pn='" & id_report & "'"
+            Dim data_payment As DataTable = execute_query(qu_payment, -1, True, "", "", "", "")
+
+            If data_payment.Rows(0)("is_auto_debet").ToString = "1" Then
+                If id_status_reportx = "3" Then
+                    id_status_reportx = "6"
+                End If
+            End If
+
             'completed
             If id_status_reportx = "6" Then
-                'select header
-                Dim qu_payment As String = "SELECT id_pay_type,report_mark_type,date_created,date_payment FROM tb_pn py WHERE py.id_pn='" & id_report & "'"
-                Dim data_payment As DataTable = execute_query(qu_payment, -1, True, "", "", "", "")
 
                 'auto journal
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
