@@ -5700,7 +5700,9 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
     End Sub
 
     Sub load_billing_type(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
-        Dim query As String = "SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
+        Dim query As String = "SELECT 'ALL' AS id_bill_type,'ALL' AS bill_type 
+UNION ALL 
+SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
         viewLookupQuery(lookup, query, 0, "bill_type", "id_bill_type")
     End Sub
     Sub load_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
