@@ -2604,6 +2604,12 @@
     <Compile Include="FormMasterDesignCOPProposeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterDesignLookUp.Designer.vb">
+      <DependentUpon>FormMasterDesignLookUp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterDesignLookUp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterEmployeeCustom.Designer.vb">
       <DependentUpon>FormMasterEmployeeCustom.vb</DependentUpon>
     </Compile>
@@ -2878,6 +2884,18 @@
       <DependentUpon>FormOutboundLabel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOutboundLabel.vb">
+        <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOutboundList.Designer.vb">
+      <DependentUpon>FormOutboundList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOutboundListDet.Designer.vb">
+      <DependentUpon>FormOutboundListDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundListDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOutboundManifest.Designer.vb">
@@ -9562,6 +9580,9 @@
     <EmbeddedResource Include="FormMasterDesignCOPProposeDet.resx">
       <DependentUpon>FormMasterDesignCOPProposeDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterDesignLookUp.resx">
+      <DependentUpon>FormMasterDesignLookUp.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeCustom.resx">
       <DependentUpon>FormMasterEmployeeCustom.vb</DependentUpon>
     </EmbeddedResource>
@@ -9699,6 +9720,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundLabel.resx">
       <DependentUpon>FormOutboundLabel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundList.resx">
+      <DependentUpon>FormOutboundList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundListDet.resx">
+      <DependentUpon>FormOutboundListDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundManifest.resx">
       <DependentUpon>FormOutboundManifest.vb</DependentUpon>

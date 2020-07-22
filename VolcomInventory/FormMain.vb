@@ -15068,4 +15068,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBCNSalesBranch_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCNSalesBranch.LinkClicked
 
     End Sub
+
+    Private Sub NBOutboundList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOutboundList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOutboundList.MdiParent = Me
+            FormOutboundList.Show()
+            FormOutboundList.WindowState = FormWindowState.Maximized
+            FormOutboundList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
