@@ -2880,6 +2880,18 @@
     <Compile Include="FormOptViewSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOutboundList.Designer.vb">
+      <DependentUpon>FormOutboundList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOutboundListDet.Designer.vb">
+      <DependentUpon>FormOutboundListDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundListDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOutboundManifest.Designer.vb">
       <DependentUpon>FormOutboundManifest.vb</DependentUpon>
     </Compile>
@@ -9699,6 +9711,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptViewSingle.resx">
       <DependentUpon>FormOptViewSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundList.resx">
+      <DependentUpon>FormOutboundList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundListDet.resx">
+      <DependentUpon>FormOutboundListDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundManifest.resx">
       <DependentUpon>FormOutboundManifest.vb</DependentUpon>
