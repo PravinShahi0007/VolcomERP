@@ -1,5 +1,4 @@
 ﻿Public Class FormEmpAttn
-    Dim fp As New ClassFingerPrint
     Private Sub BGetData_Click(sender As Object, e As EventArgs) Handles BGetData.Click
         Cursor = Cursors.WaitCursor
         get_data()
@@ -7,6 +6,8 @@
     End Sub
 
     Sub get_data()
+        Dim fp As New ClassFingerPrint
+
         Dim query As String = "SELECT * FROM tb_m_fingerprint"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
