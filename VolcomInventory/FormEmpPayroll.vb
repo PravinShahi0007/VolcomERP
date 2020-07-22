@@ -193,6 +193,8 @@
                 BBonusAdjustment.Text = "Bonus / Adjustment"
                 BandedGridColumnTotalAdjustment.Caption = "Total Bonus / Adjustment"
                 GBBonusAdjustment.Caption = "Bonus / Adjustment"
+
+                BarButtonItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             Else
                 GBWorkingDays.Visible = False
                 GBSalary.Visible = True
@@ -220,6 +222,8 @@
                 BBonusAdjustment.Text = "Adjustment"
                 BandedGridColumnTotalAdjustment.Caption = "Total Adjustment"
                 GBBonusAdjustment.Caption = "Adjustment"
+
+                BarButtonItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             End If
 
             If id_report_status = "0" Then
@@ -1070,7 +1074,7 @@
 
             For i = 0 To data_sum.Rows.Count - 1
                 If data_sum.Rows(i)("is_office_payroll").ToString = "1" Then
-                    Dim salary As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_other")
+                    Dim salary As Decimal = data_sum.Rows(i)("salary")
 
                     'get id_acc, id_comp, vendor gaji
                     Dim id_acc_gaji As String = ""
@@ -1095,7 +1099,12 @@
                     total_missing = total_missing + data_sum.Rows(i)("d_missing")
                     total_cash = total_cash + data_sum.Rows(i)("d_meditation_cash")
 
-                    total_all = total_all + salary
+                    total_all = total_all + salary - data_sum.Rows(i)("d_other")
+
+                    'other
+                    If data_sum.Rows(i)("d_other") > 0 Then
+                        insert_detail = insert_detail + "('" + id_acc_trans + "', '2941', '" + id_comp + "', '" + vendor + "', " + decimalSQL(data_sum.Rows(i)("d_other")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+                    End If
                 End If
             Next
 
@@ -1136,7 +1145,7 @@
 
             For i = 0 To data_sum.Rows.Count - 1
                 If data_sum.Rows(i)("id_departement").ToString = "17" Then
-                    Dim salary As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_other")
+                    Dim salary As Decimal = data_sum.Rows(i)("salary")
 
                     'get id_acc, id_comp, vendor gaji
                     Dim id_acc_gaji As String = ""
@@ -1161,7 +1170,12 @@
                     total_missing = total_missing + data_sum.Rows(i)("d_missing")
                     total_cash = total_cash + data_sum.Rows(i)("d_meditation_cash")
 
-                    total_all = total_all + salary
+                    total_all = total_all + salary - data_sum.Rows(i)("d_other")
+
+                    'other
+                    If data_sum.Rows(i)("d_other") > 0 Then
+                        insert_detail = insert_detail + "('" + id_acc_trans + "', '2941', '" + id_comp + "', '" + vendor + "', " + decimalSQL(data_sum.Rows(i)("d_other")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+                    End If
                 End If
             Next
 
@@ -1196,7 +1210,9 @@
                         End If
                     Next
 
-                    insert_detail = insert_detail + "('" + id_acc_trans + "', " + id_acc_miss + ", '" + id_comp + "', '" + vendor + "', " + decimalSQL(data_sum.Rows(i)("d_missing")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Tab. Missing', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+                    If data_sum.Rows(i)("d_missing") > 0 Then
+                        insert_detail = insert_detail + "('" + id_acc_trans + "', " + id_acc_miss + ", '" + id_comp + "', '" + vendor + "', " + decimalSQL(data_sum.Rows(i)("d_missing")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Pot. Tab. Missing', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+                    End If
                 End If
             Next
 
@@ -1243,11 +1259,16 @@
                             Dim id_comp As String = data_map.Rows(k)("id_comp").ToString
                             Dim vendor As String = data_map.Rows(k)("comp_number").ToString
 
-                            Dim salary As Decimal = data.Rows(j)("salary") - data.Rows(j)("d_other")
+                            Dim salary As Decimal = data.Rows(j)("salary")
 
                             insert_detail = insert_detail + "('" + id_acc_trans + "', '" + id_acc_gaji + "', '" + id_comp + "', '" + vendor + "', 0, " + decimalSQL(salary) + ", '" + payroll_det.Rows(0)("type").ToString + " " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
 
-                            total_all += salary
+                            total_all += salary - data.Rows(j)("d_other")
+
+                            'other
+                            If data.Rows(j)("d_other") > 0 Then
+                                insert_detail = insert_detail + "('" + id_acc_trans + "', '2941', '" + id_comp + "', '" + vendor + "', " + decimalSQL(data.Rows(j)("d_other")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+                            End If
                         End If
                     End If
                 Next
@@ -1263,11 +1284,16 @@
                             Dim id_comp As String = data_map.Rows(k)("id_comp").ToString
                             Dim vendor As String = data_map.Rows(k)("comp_number").ToString
 
-                            Dim salary As Decimal = data.Rows(j)("salary") - data.Rows(j)("d_other")
+                            Dim salary As Decimal = data.Rows(j)("salary")
 
                             insert_detail = insert_detail + "('" + id_acc_trans + "', '" + id_acc_gaji + "', '" + id_comp + "', '" + vendor + "', 0, " + decimalSQL(salary) + ", '" + payroll_det.Rows(0)("type").ToString + " " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
 
-                            total_all += salary
+                            total_all += salary - data.Rows(j)("d_other")
+
+                            'other
+                            If data.Rows(j)("d_other") > 0 Then
+                                insert_detail = insert_detail + "('" + id_acc_trans + "', '2941', '" + id_comp + "', '" + vendor + "', " + decimalSQL(data.Rows(j)("d_other")) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
+                            End If
                         End If
                     End If
                 Next
@@ -1733,5 +1759,9 @@
         If message <> "" Then
             infoCustom(message)
         End If
+    End Sub
+
+    Private Sub BarButtonItem4_ItemClick_1(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
+        FormEmpPayrollReportSummaryCompare.ShowDialog()
     End Sub
 End Class

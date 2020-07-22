@@ -401,7 +401,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 50
+        Me.GridColumn1.Width = 44
         '
         'GridColumn2
         '
@@ -409,11 +409,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn2.AppearanceHeader.Options.UseBorderColor = True
         Me.GridColumn2.Caption = "Departement"
         Me.GridColumn2.FieldName = "departement"
-        Me.GridColumn2.MinWidth = 200
+        Me.GridColumn2.MinWidth = 190
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 200
+        Me.GridColumn2.Width = 190
         '
         'GridColumn3
         '
@@ -429,7 +429,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "salary", "{0:N0}")})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 73
+        Me.GridColumn3.Width = 65
         '
         'GridColumn4
         '
@@ -446,7 +446,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "event_overtime", "{0:N0}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 73
+        Me.GridColumn4.Width = 65
         '
         'GridColumn5
         '
@@ -463,7 +463,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_cooperative_loan", "{0:N0}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 73
+        Me.GridColumn5.Width = 65
         '
         'GridColumn6
         '
@@ -480,7 +480,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_bpjskes", "{0:N0}")})
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 73
+        Me.GridColumn6.Width = 65
         '
         'GridColumn7
         '
@@ -497,7 +497,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_jaminan_pensiun", "{0:N0}")})
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
-        Me.GridColumn7.Width = 73
+        Me.GridColumn7.Width = 65
         '
         'GridColumn8
         '
@@ -513,7 +513,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_bpjstk", "{0:N0}")})
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 73
+        Me.GridColumn8.Width = 65
         '
         'GridColumn9
         '
@@ -530,7 +530,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_cooperative_contribution", "{0:N0}")})
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 8
-        Me.GridColumn9.Width = 73
+        Me.GridColumn9.Width = 65
         '
         'GridColumn10
         '
@@ -547,7 +547,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_missing", "{0:N0}")})
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 9
-        Me.GridColumn10.Width = 73
+        Me.GridColumn10.Width = 65
         '
         'GridColumn11
         '
@@ -564,7 +564,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_meditation_cash", "{0:N0}")})
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 10
-        Me.GridColumn11.Width = 73
+        Me.GridColumn11.Width = 65
         '
         'GridColumn12
         '
@@ -580,7 +580,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_other", "{0:N0}")})
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 11
-        Me.GridColumn12.Width = 73
+        Me.GridColumn12.Width = 65
         '
         'GridColumn13
         '
@@ -600,7 +600,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 12
-        Me.GridColumn13.Width = 76
+        Me.GridColumn13.Width = 68
         '
         'WinControlContainer4
         '
@@ -670,17 +670,17 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 0
-        Me.GridColumn27.Width = 50
+        Me.GridColumn27.Width = 44
         '
         'GridColumn28
         '
         Me.GridColumn28.Caption = "Departement"
         Me.GridColumn28.FieldName = "departement"
-        Me.GridColumn28.MinWidth = 200
+        Me.GridColumn28.MinWidth = 190
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
         Me.GridColumn28.VisibleIndex = 1
-        Me.GridColumn28.Width = 200
+        Me.GridColumn28.Width = 190
         '
         'GridColumn29
         '
@@ -696,7 +696,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn29.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 2
-        Me.GridColumn29.Width = 73
+        Me.GridColumn29.Width = 65
         '
         'GridColumn30
         '
@@ -713,7 +713,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 3
-        Me.GridColumn30.Width = 73
+        Me.GridColumn30.Width = 65
         '
         'GridColumn31
         '
@@ -730,7 +730,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn31.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn31.Visible = True
         Me.GridColumn31.VisibleIndex = 4
-        Me.GridColumn31.Width = 73
+        Me.GridColumn31.Width = 65
         '
         'GridColumn32
         '
@@ -747,7 +747,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn32.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn32.Visible = True
         Me.GridColumn32.VisibleIndex = 5
-        Me.GridColumn32.Width = 73
+        Me.GridColumn32.Width = 65
         '
         'GridColumn33
         '
@@ -764,7 +764,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn33.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 6
-        Me.GridColumn33.Width = 73
+        Me.GridColumn33.Width = 65
         '
         'GridColumn34
         '
@@ -780,7 +780,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn34.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 7
-        Me.GridColumn34.Width = 73
+        Me.GridColumn34.Width = 65
         '
         'GridColumn35
         '
@@ -797,7 +797,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn35.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 8
-        Me.GridColumn35.Width = 73
+        Me.GridColumn35.Width = 65
         '
         'GridColumn36
         '
@@ -814,7 +814,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn36.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 9
-        Me.GridColumn36.Width = 73
+        Me.GridColumn36.Width = 65
         '
         'GridColumn37
         '
@@ -831,7 +831,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn37.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 10
-        Me.GridColumn37.Width = 73
+        Me.GridColumn37.Width = 65
         '
         'GridColumn38
         '
@@ -847,7 +847,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn38.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 11
-        Me.GridColumn38.Width = 73
+        Me.GridColumn38.Width = 65
         '
         'GridColumn39
         '
@@ -867,7 +867,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 12
-        Me.GridColumn39.Width = 76
+        Me.GridColumn39.Width = 68
         '
         'XrLabel7
         '
