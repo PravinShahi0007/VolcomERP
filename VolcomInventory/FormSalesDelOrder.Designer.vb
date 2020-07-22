@@ -20,6 +20,7 @@ Partial Class FormSalesDelOrder
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesDelOrder))
         Me.XTCSalesDelOrder = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListDel = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCDO = New DevExpress.XtraTab.XtraTabControl()
@@ -43,6 +44,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntracking_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -98,7 +100,7 @@ Partial Class FormSalesDelOrder
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
-        Me.GridColumntotal_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BOutboundLabel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -174,10 +176,10 @@ Partial Class FormSalesDelOrder
         'GCSalesDelOrder
         '
         Me.GCSalesDelOrder.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesDelOrder.Location = New System.Drawing.Point(0, 39)
+        Me.GCSalesDelOrder.Location = New System.Drawing.Point(0, 45)
         Me.GCSalesDelOrder.MainView = Me.GVSalesDelOrder
         Me.GCSalesDelOrder.Name = "GCSalesDelOrder"
-        Me.GCSalesDelOrder.Size = New System.Drawing.Size(793, 417)
+        Me.GCSalesDelOrder.Size = New System.Drawing.Size(793, 411)
         Me.GCSalesDelOrder.TabIndex = 2
         Me.GCSalesDelOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesDelOrder, Me.GridView3})
         '
@@ -353,6 +355,17 @@ Partial Class FormSalesDelOrder
         Me.GridColumncustomer_name.VisibleIndex = 6
         Me.GridColumncustomer_name.Width = 109
         '
+        'GridColumntotal_amount
+        '
+        Me.GridColumntotal_amount.Caption = "Amount"
+        Me.GridColumntotal_amount.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_amount.FieldName = "total_amount"
+        Me.GridColumntotal_amount.Name = "GridColumntotal_amount"
+        Me.GridColumntotal_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N0}")})
+        Me.GridColumntotal_amount.Visible = True
+        Me.GridColumntotal_amount.VisibleIndex = 10
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.GCSalesDelOrder
@@ -361,6 +374,7 @@ Partial Class FormSalesDelOrder
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.BOutboundLabel)
         Me.GCFilter.Controls.Add(Me.BtnView)
         Me.GCFilter.Controls.Add(Me.BHide)
         Me.GCFilter.Controls.Add(Me.BExpand)
@@ -371,12 +385,12 @@ Partial Class FormSalesDelOrder
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(793, 39)
+        Me.GCFilter.Size = New System.Drawing.Size(793, 45)
         Me.GCFilter.TabIndex = 4
         '
         'BtnView
         '
-        Me.BtnView.Location = New System.Drawing.Point(317, 9)
+        Me.BtnView.Location = New System.Drawing.Point(317, 13)
         Me.BtnView.LookAndFeel.SkinName = "Blue"
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 20)
@@ -406,7 +420,7 @@ Partial Class FormSalesDelOrder
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntil.Location = New System.Drawing.Point(202, 13)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -419,7 +433,7 @@ Partial Class FormSalesDelOrder
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(58, 9)
+        Me.DEFrom.Location = New System.Drawing.Point(58, 13)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -431,7 +445,7 @@ Partial Class FormSalesDelOrder
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl2.Location = New System.Drawing.Point(175, 16)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl2.TabIndex = 8893
@@ -439,7 +453,7 @@ Partial Class FormSalesDelOrder
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl3.Location = New System.Drawing.Point(28, 16)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 8892
@@ -865,16 +879,16 @@ Partial Class FormSalesDelOrder
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
         '
-        'GridColumntotal_amount
+        'BOutboundLabel
         '
-        Me.GridColumntotal_amount.Caption = "Amount"
-        Me.GridColumntotal_amount.DisplayFormat.FormatString = "N0"
-        Me.GridColumntotal_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntotal_amount.FieldName = "total_amount"
-        Me.GridColumntotal_amount.Name = "GridColumntotal_amount"
-        Me.GridColumntotal_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N0}")})
-        Me.GridColumntotal_amount.Visible = True
-        Me.GridColumntotal_amount.VisibleIndex = 10
+        Me.BOutboundLabel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BOutboundLabel.Image = CType(resources.GetObject("BOutboundLabel.Image"), System.Drawing.Image)
+        Me.BOutboundLabel.Location = New System.Drawing.Point(650, 2)
+        Me.BOutboundLabel.LookAndFeel.SkinName = "Blue"
+        Me.BOutboundLabel.Name = "BOutboundLabel"
+        Me.BOutboundLabel.Size = New System.Drawing.Size(141, 41)
+        Me.BOutboundLabel.TabIndex = 8899
+        Me.BOutboundLabel.Text = "Outbound Label"
         '
         'FormSalesDelOrder
         '
@@ -1005,4 +1019,5 @@ Partial Class FormSalesDelOrder
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnSyncOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumntotal_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BOutboundLabel As DevExpress.XtraEditors.SimpleButton
 End Class

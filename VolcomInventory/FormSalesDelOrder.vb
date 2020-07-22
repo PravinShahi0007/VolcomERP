@@ -443,4 +443,8 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BOutboundLabel_Click(sender As Object, e As EventArgs) Handles BOutboundLabel.Click
+        FormOutboundLabel.ShowDialog()
+    End Sub
 End Class

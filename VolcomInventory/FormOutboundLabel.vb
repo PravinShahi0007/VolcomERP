@@ -27,9 +27,88 @@ ORDER BY d.id_pl_sales_order_del DESC "
         GVDOERP.ActiveFilterString = ""
         GCDOERP.DataSource = data
         GVDOERP.BestFitColumns()
+        '
+        If data.Rows.Count > 0 Then
+            SLESubDistrict.EditValue = data.Rows(0)("id_sub_district").ToString
+        End If
     End Sub
 
     Private Sub FormOutboundLabel_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
+        If GVDOERP.RowCount > 0 Then
+            Dim cek As String = CheckEditSelAll.EditValue.ToString
+            For i As Integer = 0 To ((GVDOERP.RowCount - 1) - GetGroupRowCount(GVDOERP))
+                If cek Then
+                    GVDOERP.SetRowCellValue(i, "is_check", "yes")
+                Else
+                    GVDOERP.SetRowCellValue(i, "is_check", "no")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub BCreateOutboundLabel_Click(sender As Object, e As EventArgs) Handles BCreateOutboundLabel.Click
+        'create outbound label
+        GVDOERP.ActiveFilterString = "[is_check]='yes'"
+        If GVDOERP.RowCount > 0 Then
+            'check if already generated
+            Dim id As String = ""
+            For i = 0 To GVDOERP.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += "'" & GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString & "'"
+            Next
+            '
+            Dim query_check As String = "SELECT * FROM tb_wh_awbill_det awbd
+INNER JOIN tb_wh_awbill awb ON awbd.`id_awbill`=awb.`id_awbill` AND awb.`id_report_status` != 5 
+WHERE awbd.`id_report` IN (" & id & ") "
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If data_check.Rows.Count > 0 Then
+                Dim number_already_generated As String = ""
+                For i = 0 To data_check.Rows.Count - 1
+                    If Not i = 0 Then
+                        number_already_generated += ","
+                    End If
+                    number_already_generated += "'" & data_check.Rows(i)("prod_order_number").ToString & "'"
+                Next
+                warningCustom("Delivery with number : " & number_already_generated & " already process.")
+            Else
+                'outbound label generate
+                Dim query As String = ""
+                Dim id_awb As String = ""
+                '
+                query = "INSERT INTO tb_wh_awbill(id_sub_district,awbill_type,awbill_date,id_store,is_old_ways)"
+                query += " VALUES('" + SLESubDistrict.EditValue.ToString + "','1',NOW(),'" + SLEComp.EditValue.ToString + "','2'); SELECT LAST_INSERT_ID(); "
+
+                id_awb = execute_query(query, 0, True, "", "", "", "")
+            End If
+        End If
+        GVDOERP.ActiveFilterString = ""
+    End Sub
+
+    Private Sub FormOutboundLabel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_comp()
+        load_sub_dsitrict()
+    End Sub
+
+    Sub load_sub_dsitrict()
+        Dim q As String = "SELECT dis.id_sub_district,dis.`sub_district`,ct.city,ct.`island`,reg.`region`,st.`state`,c.`country`
+FROM tb_m_sub_district dis
+INNER JOIN tb_m_city ct ON dis.id_city=ct.id_city
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
+        viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
+    End Sub
+
+    Sub view_comp()
+        Dim q As String = "SELECT c.id_comp,c.comp_number,c.comp_name
+FROM tb_m_comp c
+WHERE c.id_commerce_type='1' AND c.id_comp_cat='6' AND is_active='1'"
+        viewSearchLookupQuery(SLEComp, q, "id_comp", "comp_name", "id_comp")
     End Sub
 End Class
