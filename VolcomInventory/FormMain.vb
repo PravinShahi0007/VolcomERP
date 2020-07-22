@@ -9524,7 +9524,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             If FormAccountingJournal.XTCJurnal.SelectedTabPageIndex = 0 Then
                 FormAccountingJournal.view_entry()
             Else
-                FormAccountingJournal.view_det(Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"))
+                FormAccountingJournal.view_det(Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"), "2")
             End If
         ElseIf formName = "FormAccountingJournalAdj" Then
             FormAccountingJournalAdj.view_jurnal()
