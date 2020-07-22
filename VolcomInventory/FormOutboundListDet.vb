@@ -36,6 +36,13 @@
     End Sub
 
     Sub calculate()
+        Dim dim_weight As Decimal = 0.0
+        Dim divide_by As Decimal = 0.0
+        '
+        Dim panjang As Decimal = 0.0
+        Dim lebar As Decimal = 0.0
+        Dim tinggi As Decimal = 0.0
+        '
 
     End Sub
 End Class
