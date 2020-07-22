@@ -23,17 +23,17 @@ Partial Class FormOutboundList
         Me.XTPPending = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOutbound = New DevExpress.XtraGrid.GridControl()
         Me.GVOutbound = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEOutboundNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -41,9 +41,9 @@ Partial Class FormOutboundList
         CType(Me.GVOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEOutboundNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPHistory.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCOutbound
@@ -83,31 +83,6 @@ Partial Class FormOutboundList
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.TextEdit1)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(910, 46)
-        Me.PanelControl1.TabIndex = 0
-        '
-        'XTPHistory
-        '
-        Me.XTPHistory.Controls.Add(Me.PanelControl2)
-        Me.XTPHistory.Name = "XTPHistory"
-        Me.XTPHistory.Size = New System.Drawing.Size(910, 494)
-        Me.XTPHistory.Text = "History"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(910, 46)
-        Me.PanelControl2.TabIndex = 1
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Outbound Number"
@@ -126,15 +101,6 @@ Partial Class FormOutboundList
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 492
         '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Qty"
-        Me.GridColumn3.FieldName = "qty"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
-        Me.GridColumn3.Width = 269
-        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Sub District"
@@ -144,23 +110,22 @@ Partial Class FormOutboundList
         Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 683
         '
-        'LabelControl1
+        'GridColumn5
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 12)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(133, 21)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Outbound Number"
+        Me.GridColumn5.Caption = "Scan Date"
+        Me.GridColumn5.FieldName = "scan_date"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
         '
-        'TextEdit1
+        'GridColumn3
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(150, 9)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Size = New System.Drawing.Size(518, 28)
-        Me.TextEdit1.TabIndex = 1
+        Me.GridColumn3.Caption = "Qty"
+        Me.GridColumn3.FieldName = "qty"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 269
         '
         'BRefresh
         '
@@ -171,13 +136,48 @@ Partial Class FormOutboundList
         Me.BRefresh.TabIndex = 2
         Me.BRefresh.Text = "Refresh"
         '
-        'GridColumn5
+        'PanelControl1
         '
-        Me.GridColumn5.Caption = "Scan Date"
-        Me.GridColumn5.FieldName = "scan_date"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.PanelControl1.Controls.Add(Me.TEOutboundNumber)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(910, 46)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'TEOutboundNumber
+        '
+        Me.TEOutboundNumber.Location = New System.Drawing.Point(150, 9)
+        Me.TEOutboundNumber.Name = "TEOutboundNumber"
+        Me.TEOutboundNumber.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.TEOutboundNumber.Properties.Appearance.Options.UseFont = True
+        Me.TEOutboundNumber.Size = New System.Drawing.Size(518, 28)
+        Me.TEOutboundNumber.TabIndex = 1
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(133, 21)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Outbound Number"
+        '
+        'XTPHistory
+        '
+        Me.XTPHistory.Controls.Add(Me.PanelControl2)
+        Me.XTPHistory.Name = "XTPHistory"
+        Me.XTPHistory.Size = New System.Drawing.Size(910, 494)
+        Me.XTPHistory.Text = "History"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(910, 46)
+        Me.PanelControl2.TabIndex = 1
         '
         'FormOutboundList
         '
@@ -199,9 +199,9 @@ Partial Class FormOutboundList
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TEOutboundNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPHistory.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -217,7 +217,7 @@ Partial Class FormOutboundList
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEOutboundNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
