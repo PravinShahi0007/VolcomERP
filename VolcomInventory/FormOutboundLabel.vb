@@ -65,7 +65,7 @@ ORDER BY d.id_pl_sales_order_del DESC "
             '
             Dim query_check As String = "SELECT * FROM tb_wh_awbill_det awbd
 INNER JOIN tb_wh_awbill awb ON awbd.`id_awbill`=awb.`id_awbill` AND awb.`id_report_status` != 5 
-WHERE awbd.`id_report` IN (" & id & ") "
+WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
             Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
             If data_check.Rows.Count > 0 Then
                 Dim number_already_generated As String = ""
@@ -85,7 +85,38 @@ WHERE awbd.`id_report` IN (" & id & ") "
                 query += " VALUES('" + SLESubDistrict.EditValue.ToString + "','1',NOW(),'" + SLEComp.EditValue.ToString + "','2'); SELECT LAST_INSERT_ID(); "
 
                 id_awb = execute_query(query, 0, True, "", "", "", "")
+
+                query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,id_ol_store_cust_ret,do_no,qty) VALUES"
+                For i As Integer = 0 To GVDOERP.RowCount - 1
+                    Dim id_pl_sales_order_del As String = "NULL"
+                    Dim id_ol_store_cust_ret As String = "NULL"
+                    Try
+                        id_pl_sales_order_del = GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                    Catch ex As Exception
+                    End Try
+                    Try
+                        id_ol_store_cust_ret = GVDOERP.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
+                    Catch ex As Exception
+                    End Try
+                    If id_pl_sales_order_del = "" Then
+                        id_pl_sales_order_del = "NULL"
+                    End If
+                    If id_ol_store_cust_ret = "" Then
+                        id_ol_store_cust_ret = "NULL"
+                    End If
+
+                    If Not i = 0 Then
+                        query += ","
+                    End If
+                    query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + GVDOERP.GetRowCellValue(i, "do_no").ToString + "','" + GVDOERP.GetRowCellValue(i, "qty").ToString + "')"
+                Next
+                execute_non_query(query, True, "", "", "", "")
+
+                warningCustom("Outbound Number " & id_awb & " created")
+                load_from_do()
             End If
+        Else
+            warningCustom("Please choose DO")
         End If
         GVDOERP.ActiveFilterString = ""
     End Sub
