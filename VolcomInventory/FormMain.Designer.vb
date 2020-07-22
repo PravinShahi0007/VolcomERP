@@ -404,6 +404,7 @@ Partial Class FormMain
         Me.NBRetOlStoreCust = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCompareStockWebsite = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAcceptRefundOLStore = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBOutboundList = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPromoCollection = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
@@ -487,7 +488,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBOutboundList = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3205,6 +3205,12 @@ Partial Class FormMain
         Me.NBAcceptRefundOLStore.Name = "NBAcceptRefundOLStore"
         Me.NBAcceptRefundOLStore.SmallImage = CType(resources.GetObject("NBAcceptRefundOLStore.SmallImage"), System.Drawing.Image)
         '
+        'NBOutboundList
+        '
+        Me.NBOutboundList.Caption = "Outbound"
+        Me.NBOutboundList.Name = "NBOutboundList"
+        Me.NBOutboundList.SmallImage = CType(resources.GetObject("NBOutboundList.SmallImage"), System.Drawing.Image)
+        '
         'NBPromoCollection
         '
         Me.NBPromoCollection.Caption = "Propose Promo Collection"
@@ -3784,12 +3790,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBOutboundList
-        '
-        Me.NBOutboundList.Caption = "Outbound"
-        Me.NBOutboundList.Name = "NBOutboundList"
-        Me.NBOutboundList.SmallImage = CType(resources.GetObject("NBOutboundList.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
