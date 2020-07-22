@@ -73,6 +73,7 @@ Partial Class FormAccountingJournal
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewReff = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCJurnal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,7 +209,7 @@ Partial Class FormAccountingJournal
         Me.XTCJurnal.Location = New System.Drawing.Point(0, 0)
         Me.XTCJurnal.Name = "XTCJurnal"
         Me.XTCJurnal.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCJurnal.Size = New System.Drawing.Size(818, 354)
+        Me.XTCJurnal.Size = New System.Drawing.Size(864, 354)
         Me.XTCJurnal.TabIndex = 7
         Me.XTCJurnal.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -304,7 +305,7 @@ Partial Class FormAccountingJournal
         Me.XtraTabPage2.Controls.Add(Me.GCJournalDet)
         Me.XtraTabPage2.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(753, 348)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(799, 348)
         Me.XtraTabPage2.Text = "View"
         '
         'GCJournalDet
@@ -315,7 +316,7 @@ Partial Class FormAccountingJournal
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
-        Me.GCJournalDet.Size = New System.Drawing.Size(753, 305)
+        Me.GCJournalDet.Size = New System.Drawing.Size(799, 305)
         Me.GCJournalDet.TabIndex = 12
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
@@ -533,6 +534,7 @@ Partial Class FormAccountingJournal
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BViewReff)
         Me.PanelControl1.Controls.Add(Me.LEBillingView)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -542,7 +544,7 @@ Partial Class FormAccountingJournal
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 305)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(753, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(799, 43)
         Me.PanelControl1.TabIndex = 13
         '
         'LEBillingView
@@ -610,11 +612,19 @@ Partial Class FormAccountingJournal
         Me.BView.TabIndex = 0
         Me.BView.Text = "View Transaction"
         '
+        'BViewReff
+        '
+        Me.BViewReff.Location = New System.Drawing.Point(663, 10)
+        Me.BViewReff.Name = "BViewReff"
+        Me.BViewReff.Size = New System.Drawing.Size(119, 22)
+        Me.BViewReff.TabIndex = 148
+        Me.BViewReff.Text = "View By Reff"
+        '
         'FormAccountingJournal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(818, 354)
+        Me.ClientSize = New System.Drawing.Size(864, 354)
         Me.Controls.Add(Me.XTCJurnal)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -706,4 +716,5 @@ Partial Class FormAccountingJournal
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SMEditEcopPD As ToolStripMenuItem
+    Friend WithEvents BViewReff As DevExpress.XtraEditors.SimpleButton
 End Class
