@@ -681,11 +681,11 @@ SELECT 1 AS id,'Yes' AS auto_debet"
 
                 'load detail
                 Dim data_map As DataTable = execute_query("
-                    SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
+                    SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number, map.type
                     FROM tb_coa_map_departement AS map
                     LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
                     LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
-                    WHERE type = 5
+                    WHERE map.type IN (5, 7)
                 ", -1, True, "", "", "", "")
 
                 For i As Integer = 0 To FormBankWithdrawal.GVJamsostek.RowCount - 1
@@ -710,9 +710,46 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                         If data.Rows(j)("is_store").ToString = "2" Or data.Rows(j)("id_departement").ToString = "17" Then
                             If location = data.Rows(j)("bpjs_tk_location").ToString Then
                                 For k = 0 To data_map.Rows.Count - 1
-                                    If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
-                                        If data.Rows(j)("id_departement").ToString = "17" Then
-                                            If data.Rows(j)("id_departement_sub").ToString = data_map.Rows(k)("id_departement_sub").ToString Then
+                                    If data_map.Rows(k)("type").ToString = "5" Then
+                                        If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
+                                            If data.Rows(j)("id_departement").ToString = "17" Then
+                                                If data.Rows(j)("id_departement_sub").ToString = data_map.Rows(k)("id_departement_sub").ToString Then
+                                                    Dim id_acc As Integer = data_map.Rows(k)("id_acc")
+                                                    Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
+                                                    Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
+                                                    Dim vendor As String = data_map.Rows(k)("vendor").ToString
+                                                    Dim id_comp As Integer = data_map.Rows(k)("id_comp")
+                                                    Dim comp_number As String = data_map.Rows(k)("comp_number").ToString
+                                                    Dim balance As Integer = data.Rows(j)("company_contribution_1")
+
+                                                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                                                    newRow("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
+                                                    newRow("report_mark_type") = "247"
+                                                    newRow("id_acc") = id_acc
+                                                    newRow("acc_name") = acc_name
+                                                    newRow("acc_description") = acc_description
+                                                    newRow("vendor") = vendor
+                                                    newRow("id_dc") = "1"
+                                                    newRow("dc_code") = "D"
+                                                    newRow("id_comp") = id_comp
+                                                    newRow("comp_number") = comp_number
+                                                    newRow("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
+                                                    newRow("total_pay") = 0
+                                                    newRow("value") = balance
+                                                    newRow("kurs") = 1
+                                                    newRow("id_currency") = "1"
+                                                    newRow("currency") = "Rp"
+                                                    newRow("val_bef_kurs") = balance
+                                                    newRow("value_view") = balance
+                                                    newRow("balance_due") = balance
+                                                    newRow("note") = "JHT, JKK, JKM " + period + " (dibayar perusahaan)"
+                                                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                                                    total_jhtjkkjkm += data.Rows(j)("employee_contribution_1")
+
+                                                    Exit For
+                                                End If
+                                            Else
                                                 Dim id_acc As Integer = data_map.Rows(k)("id_acc")
                                                 Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
                                                 Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
@@ -748,41 +785,6 @@ SELECT 1 AS id,'Yes' AS auto_debet"
 
                                                 Exit For
                                             End If
-                                        Else
-                                            Dim id_acc As Integer = data_map.Rows(k)("id_acc")
-                                            Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
-                                            Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
-                                            Dim vendor As String = data_map.Rows(k)("vendor").ToString
-                                            Dim id_comp As Integer = data_map.Rows(k)("id_comp")
-                                            Dim comp_number As String = data_map.Rows(k)("comp_number").ToString
-                                            Dim balance As Integer = data.Rows(j)("company_contribution_1")
-
-                                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                                            newRow("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
-                                            newRow("report_mark_type") = "247"
-                                            newRow("id_acc") = id_acc
-                                            newRow("acc_name") = acc_name
-                                            newRow("acc_description") = acc_description
-                                            newRow("vendor") = vendor
-                                            newRow("id_dc") = "1"
-                                            newRow("dc_code") = "D"
-                                            newRow("id_comp") = id_comp
-                                            newRow("comp_number") = comp_number
-                                            newRow("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
-                                            newRow("total_pay") = 0
-                                            newRow("value") = balance
-                                            newRow("kurs") = 1
-                                            newRow("id_currency") = "1"
-                                            newRow("currency") = "Rp"
-                                            newRow("val_bef_kurs") = balance
-                                            newRow("value_view") = balance
-                                            newRow("balance_due") = balance
-                                            newRow("note") = "JHT, JKK, JKM " + period + " (dibayar perusahaan)"
-                                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-
-                                            total_jhtjkkjkm += data.Rows(j)("employee_contribution_1")
-
-                                            Exit For
                                         End If
                                     End If
                                 Next
@@ -795,9 +797,46 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                         If data.Rows(j)("is_store").ToString = "2" Or data.Rows(j)("id_departement").ToString = "17" Then
                             If location = data.Rows(j)("bpjs_tk_location").ToString Then
                                 For k = 0 To data_map.Rows.Count - 1
-                                    If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
-                                        If data.Rows(j)("id_departement").ToString = "17" Then
-                                            If data.Rows(j)("id_departement_sub").ToString = data_map.Rows(k)("id_departement_sub").ToString Then
+                                    If data_map.Rows(k)("type").ToString = "7" Then
+                                        If data.Rows(j)("id_departement").ToString = data_map.Rows(k)("id_departement").ToString Then
+                                            If data.Rows(j)("id_departement").ToString = "17" Then
+                                                If data.Rows(j)("id_departement_sub").ToString = data_map.Rows(k)("id_departement_sub").ToString Then
+                                                    Dim id_acc As Integer = data_map.Rows(k)("id_acc")
+                                                    Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
+                                                    Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
+                                                    Dim vendor As String = data_map.Rows(k)("vendor").ToString
+                                                    Dim id_comp As Integer = data_map.Rows(k)("id_comp")
+                                                    Dim comp_number As String = data_map.Rows(k)("comp_number").ToString
+                                                    Dim balance As Integer = data.Rows(j)("company_contribution_2")
+
+                                                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                                                    newRow("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
+                                                    newRow("report_mark_type") = "247"
+                                                    newRow("id_acc") = id_acc
+                                                    newRow("acc_name") = acc_name
+                                                    newRow("acc_description") = acc_description
+                                                    newRow("vendor") = vendor
+                                                    newRow("id_dc") = "1"
+                                                    newRow("dc_code") = "D"
+                                                    newRow("id_comp") = id_comp
+                                                    newRow("comp_number") = comp_number
+                                                    newRow("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
+                                                    newRow("total_pay") = 0
+                                                    newRow("value") = balance
+                                                    newRow("kurs") = 1
+                                                    newRow("id_currency") = "1"
+                                                    newRow("currency") = "Rp"
+                                                    newRow("val_bef_kurs") = balance
+                                                    newRow("value_view") = balance
+                                                    newRow("balance_due") = balance
+                                                    newRow("note") = "J Pensiun " + period + " (dibayar perusahaan)"
+                                                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                                                    total_jp += data.Rows(j)("employee_contribution_2")
+
+                                                    Exit For
+                                                End If
+                                            Else
                                                 Dim id_acc As Integer = data_map.Rows(k)("id_acc")
                                                 Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
                                                 Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
@@ -833,41 +872,6 @@ SELECT 1 AS id,'Yes' AS auto_debet"
 
                                                 Exit For
                                             End If
-                                        Else
-                                            Dim id_acc As Integer = data_map.Rows(k)("id_acc")
-                                            Dim acc_name As String = data_map.Rows(k)("acc_name").ToString
-                                            Dim acc_description As String = data_map.Rows(k)("acc_description").ToString
-                                            Dim vendor As String = data_map.Rows(k)("vendor").ToString
-                                            Dim id_comp As Integer = data_map.Rows(k)("id_comp")
-                                            Dim comp_number As String = data_map.Rows(k)("comp_number").ToString
-                                            Dim balance As Integer = data.Rows(j)("company_contribution_2")
-
-                                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                                            newRow("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
-                                            newRow("report_mark_type") = "247"
-                                            newRow("id_acc") = id_acc
-                                            newRow("acc_name") = acc_name
-                                            newRow("acc_description") = acc_description
-                                            newRow("vendor") = vendor
-                                            newRow("id_dc") = "1"
-                                            newRow("dc_code") = "D"
-                                            newRow("id_comp") = id_comp
-                                            newRow("comp_number") = comp_number
-                                            newRow("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
-                                            newRow("total_pay") = 0
-                                            newRow("value") = balance
-                                            newRow("kurs") = 1
-                                            newRow("id_currency") = "1"
-                                            newRow("currency") = "Rp"
-                                            newRow("val_bef_kurs") = balance
-                                            newRow("value_view") = balance
-                                            newRow("balance_due") = balance
-                                            newRow("note") = "J Pensiun " + period + " (dibayar perusahaan)"
-                                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-
-                                            total_jp += data.Rows(j)("employee_contribution_2")
-
-                                            Exit For
                                         End If
                                     End If
                                 Next
