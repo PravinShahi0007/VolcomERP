@@ -67,6 +67,8 @@
                 FormSalesInv.GridBand3.Columns.Add(FormSalesInv.BandedGridColumndesign_cop_per_acc_per_prod)
                 FormSalesInv.GVByAccount.Columns("design_cop").VisibleIndex = FormSalesInv.GVByAccount.Columns("design_price").VisibleIndex + 1
                 FormSalesInv.GVByAccount.Columns("design_cop").OptionsColumn.ShowInCustomizationForm = True
+            ElseIf type = "6" Then 'able not approve
+                FormOutboundListDet.is_cancel = True
             End If
             Close()
         Else

@@ -20,6 +20,10 @@ Partial Class FormOutboundListDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TESubDistrict = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEStore = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TEOutboundNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -57,6 +61,8 @@ Partial Class FormOutboundListDet
         Me.BNotApprove = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOutboundNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -80,24 +86,61 @@ Partial Class FormOutboundListDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TESubDistrict)
+        Me.PanelControl1.Controls.Add(Me.LabelControl12)
+        Me.PanelControl1.Controls.Add(Me.TEStore)
+        Me.PanelControl1.Controls.Add(Me.LabelControl11)
         Me.PanelControl1.Controls.Add(Me.TEOutboundNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(508, 70)
+        Me.PanelControl1.Size = New System.Drawing.Size(508, 109)
         Me.PanelControl1.TabIndex = 0
+        '
+        'TESubDistrict
+        '
+        Me.TESubDistrict.Location = New System.Drawing.Point(12, 77)
+        Me.TESubDistrict.Name = "TESubDistrict"
+        Me.TESubDistrict.Properties.ReadOnly = True
+        Me.TESubDistrict.Size = New System.Drawing.Size(478, 20)
+        Me.TESubDistrict.TabIndex = 5
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(12, 58)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl12.TabIndex = 4
+        Me.LabelControl12.Text = "Sub District"
+        '
+        'TEStore
+        '
+        Me.TEStore.Location = New System.Drawing.Point(163, 32)
+        Me.TEStore.Name = "TEStore"
+        Me.TEStore.Properties.ReadOnly = True
+        Me.TEStore.Size = New System.Drawing.Size(329, 20)
+        Me.TEStore.TabIndex = 3
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(163, 13)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl11.TabIndex = 2
+        Me.LabelControl11.Text = "Store"
         '
         'TEOutboundNumber
         '
-        Me.TEOutboundNumber.Location = New System.Drawing.Point(12, 34)
+        Me.TEOutboundNumber.Location = New System.Drawing.Point(12, 32)
         Me.TEOutboundNumber.Name = "TEOutboundNumber"
-        Me.TEOutboundNumber.Size = New System.Drawing.Size(480, 20)
+        Me.TEOutboundNumber.Properties.ReadOnly = True
+        Me.TEOutboundNumber.Size = New System.Drawing.Size(145, 20)
         Me.TEOutboundNumber.TabIndex = 1
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 13)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(88, 13)
         Me.LabelControl1.TabIndex = 0
@@ -108,7 +151,7 @@ Partial Class FormOutboundListDet
         Me.PanelControl2.Controls.Add(Me.SLEDelType)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 245)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 305)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(508, 71)
         Me.PanelControl2.TabIndex = 1
@@ -174,10 +217,11 @@ Partial Class FormOutboundListDet
         Me.PCWeight.Controls.Add(Me.LabelControl3)
         Me.PCWeight.Controls.Add(Me.TEPanjang)
         Me.PCWeight.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCWeight.Location = New System.Drawing.Point(0, 316)
+        Me.PCWeight.Location = New System.Drawing.Point(0, 376)
         Me.PCWeight.Name = "PCWeight"
         Me.PCWeight.Size = New System.Drawing.Size(508, 60)
         Me.PCWeight.TabIndex = 2
+        Me.PCWeight.Visible = False
         '
         'LabelControl9
         '
@@ -215,6 +259,8 @@ Partial Class FormOutboundListDet
         '
         Me.TEActWeight.Location = New System.Drawing.Point(397, 30)
         Me.TEActWeight.Name = "TEActWeight"
+        Me.TEActWeight.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEActWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TEActWeight.Size = New System.Drawing.Size(95, 20)
         Me.TEActWeight.TabIndex = 7
         '
@@ -222,6 +268,13 @@ Partial Class FormOutboundListDet
         '
         Me.TEDimWeight.Location = New System.Drawing.Point(268, 30)
         Me.TEDimWeight.Name = "TEDimWeight"
+        Me.TEDimWeight.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEDimWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TEDimWeight.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEDimWeight.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TEDimWeight.Properties.Mask.EditMask = "N2"
+        Me.TEDimWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEDimWeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEDimWeight.Properties.ReadOnly = True
         Me.TEDimWeight.Size = New System.Drawing.Size(113, 20)
         Me.TEDimWeight.TabIndex = 6
@@ -238,6 +291,8 @@ Partial Class FormOutboundListDet
         '
         Me.TETinggi.Location = New System.Drawing.Point(176, 30)
         Me.TETinggi.Name = "TETinggi"
+        Me.TETinggi.Properties.Appearance.Options.UseTextOptions = True
+        Me.TETinggi.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TETinggi.Size = New System.Drawing.Size(76, 20)
         Me.TETinggi.TabIndex = 4
         '
@@ -253,6 +308,8 @@ Partial Class FormOutboundListDet
         '
         Me.TELebar.Location = New System.Drawing.Point(94, 30)
         Me.TELebar.Name = "TELebar"
+        Me.TELebar.Properties.Appearance.Options.UseTextOptions = True
+        Me.TELebar.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TELebar.Size = New System.Drawing.Size(76, 20)
         Me.TELebar.TabIndex = 2
         '
@@ -268,6 +325,8 @@ Partial Class FormOutboundListDet
         '
         Me.TEPanjang.Location = New System.Drawing.Point(12, 30)
         Me.TEPanjang.Name = "TEPanjang"
+        Me.TEPanjang.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPanjang.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TEPanjang.Size = New System.Drawing.Size(76, 20)
         Me.TEPanjang.TabIndex = 0
         '
@@ -275,9 +334,9 @@ Partial Class FormOutboundListDet
         '
         Me.GroupControl1.Controls.Add(Me.GCDO)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 70)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 109)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(508, 175)
+        Me.GroupControl1.Size = New System.Drawing.Size(508, 196)
         Me.GroupControl1.TabIndex = 3
         Me.GroupControl1.Text = "SDO List"
         '
@@ -287,7 +346,7 @@ Partial Class FormOutboundListDet
         Me.GCDO.Location = New System.Drawing.Point(2, 20)
         Me.GCDO.MainView = Me.GVDO
         Me.GCDO.Name = "GCDO"
-        Me.GCDO.Size = New System.Drawing.Size(504, 153)
+        Me.GCDO.Size = New System.Drawing.Size(504, 174)
         Me.GCDO.TabIndex = 2
         Me.GCDO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDO})
         '
@@ -351,7 +410,7 @@ Partial Class FormOutboundListDet
         Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 376)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 436)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(508, 100)
         Me.PanelControl3.TabIndex = 4
@@ -380,7 +439,7 @@ Partial Class FormOutboundListDet
         Me.BApprove.Appearance.Options.UseFont = True
         Me.BApprove.Appearance.Options.UseForeColor = True
         Me.BApprove.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BApprove.Location = New System.Drawing.Point(0, 508)
+        Me.BApprove.Location = New System.Drawing.Point(0, 568)
         Me.BApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -389,7 +448,6 @@ Partial Class FormOutboundListDet
         Me.BApprove.Size = New System.Drawing.Size(508, 32)
         Me.BApprove.TabIndex = 20
         Me.BApprove.Text = "Approve"
-        Me.BApprove.Visible = False
         '
         'BNotApprove
         '
@@ -400,7 +458,7 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.Appearance.Options.UseFont = True
         Me.BNotApprove.Appearance.Options.UseForeColor = True
         Me.BNotApprove.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BNotApprove.Location = New System.Drawing.Point(0, 476)
+        Me.BNotApprove.Location = New System.Drawing.Point(0, 536)
         Me.BNotApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BNotApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BNotApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -409,13 +467,12 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.Size = New System.Drawing.Size(508, 32)
         Me.BNotApprove.TabIndex = 21
         Me.BNotApprove.Text = "Not Approve"
-        Me.BNotApprove.Visible = False
         '
         'FormOutboundListDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(508, 540)
+        Me.ClientSize = New System.Drawing.Size(508, 600)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PCWeight)
@@ -432,6 +489,8 @@ Partial Class FormOutboundListDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TESubDistrict.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOutboundNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -494,4 +553,8 @@ Partial Class FormOutboundListDet
     Friend WithEvents BApprove As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BNotApprove As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TESubDistrict As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEStore As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
 End Class
