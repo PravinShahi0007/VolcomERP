@@ -261,8 +261,10 @@ WHERE NOT ISNULL(beg.id_item) OR NOT ISNULL(rec.id_item) OR NOT ISNULL(used.id_i
 
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
         If GVPemakaian.RowCount > 0 Then
+            LEDeptSC.EditValue = "-1"
             DEFromSC.EditValue = Date.Parse(GVPemakaian.GetFocusedRowCellValue("min_date").ToString)
             DEUntilSC.EditValue = DEUntil.EditValue
+            SLEITem.EditValue = GVPemakaian.GetFocusedRowCellValue("id_item").ToString
             XTCStock.SelectedTabPageIndex = 1
             viewStockCard()
         End If
