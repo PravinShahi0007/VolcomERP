@@ -62,7 +62,7 @@ Partial Class FormDesignColumnValue
         Me.TEValue.Location = New System.Drawing.Point(12, 133)
         Me.TEValue.Name = "TEValue"
         Me.TEValue.Size = New System.Drawing.Size(360, 20)
-        Me.TEValue.TabIndex = 7
+        Me.TEValue.TabIndex = 1
         '
         'SBClose
         '
@@ -70,7 +70,7 @@ Partial Class FormDesignColumnValue
         Me.SBClose.Location = New System.Drawing.Point(216, 166)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 23)
-        Me.SBClose.TabIndex = 9
+        Me.SBClose.TabIndex = 3
         Me.SBClose.Text = "Close"
         '
         'SBSave
@@ -79,7 +79,7 @@ Partial Class FormDesignColumnValue
         Me.SBSave.Location = New System.Drawing.Point(297, 166)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(75, 23)
-        Me.SBSave.TabIndex = 8
+        Me.SBSave.TabIndex = 2
         Me.SBSave.Text = "Save"
         '
         'LabelControl3
