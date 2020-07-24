@@ -261,11 +261,11 @@ Public Class FormProductionFinalClearDet
         TxtStyle.Enabled = False
         LEPLCategory.Enabled = False
         LECLaim.Enabled = False
+        SLEServiceNote.Enabled = False
         BtnBrowseFrom.Enabled = False
         BtnBrowseTo.Enabled = False
         BtnBrowsePO.Enabled = False
         PanelNavBarcode.Visible = False
-
 
         'preprint
         If id_report_status <> "5" Then
