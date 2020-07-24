@@ -968,6 +968,8 @@
         If is_propose_changes And id_propose_changes = "-1" Then
             TEChangesRequest.EditValue = get_emp(id_employee_user, "2") + " | " + execute_query("SELECT DATE_FORMAT(NOW(), '%d %M %Y %h:%i %p') created_date", 0, True, "", "", "", "")
         End If
+
+        load_additional()
     End Sub
 
     Sub inputPermission()
@@ -1909,6 +1911,7 @@
                             Else
                                 dupe = "-1"
                                 id_design = id_design_tersimpan
+                                save_additional()
                                 Dim stt As New ClassDesign
                                 stt.updatedTime(id_design)
                                 infoCustom(display_name + ", has been sucessfully created.")
@@ -2008,6 +2011,7 @@
                                 FormFGDesignList.GVDesign.ActiveFilterString = filter_string
                             End If
 
+                            save_additional()
                             'ipdate time
                             Dim stt As New ClassDesign
                             stt.updatedTime(id_design)
@@ -2127,7 +2131,7 @@
                             FormFGDesignList.GVDesign.ActiveFilterString = filter_string
                         End If
                         id_design = id_design_tersimpan
-
+                        save_additional()
                         'ipdate time
                         Dim stt As New ClassDesign
                         stt.updatedTime(id_design)
@@ -3140,5 +3144,96 @@
 
     Private Sub MEDetail_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MEDetail.Validating
         EP_ME_cant_blank(EPMasterDesign, MEDetail)
+    End Sub
+
+    Sub load_additional()
+        Dim data As DataTable = execute_query("
+            SELECT c.id_design_column, c.column_name, v.value, c.is_lookup
+            FROM tb_design_column AS c
+            LEFT JOIN (
+	            SELECT tb_m_design_information.id_design_column, tb_m_design_information.value
+	            FROM tb_m_design_information
+	            LEFT JOIN tb_design_column ON tb_m_design_information.id_design_column = tb_design_column.id_design_column
+	            WHERE tb_m_design_information.id_design = '" + id_design + "'
+            ) AS v ON c.id_design_column = v.id_design_column
+        ", -1, True, "", "", "", "")
+
+        GCAdditional.DataSource = data
+
+        GVAdditional.BestFitColumns()
+    End Sub
+
+    Sub save_additional()
+        'additional information
+        'delete
+        Dim q_delete_info As String = "DELETE FROM tb_m_design_information WHERE id_design = " + id_design
+
+        execute_non_query(q_delete_info, True, "", "", "", "")
+
+        'save
+        Dim execute_insert As Boolean = False
+
+        Dim q_insert_info As String = "
+            INSERT INTO tb_m_design_information (id_design, id_design_column, `value`) VALUES 
+        "
+
+        For i = 0 To GVAdditional.RowCount - 1
+            If GVAdditional.IsValidRowHandle(i) Then
+                If Not GVAdditional.GetRowCellValue(i, "value").ToString = "" Then
+                    execute_insert = True
+
+                    q_insert_info += " (" + id_design + ", " + GVAdditional.GetRowCellValue(i, "id_design_column").ToString + ", '" + addSlashes(GVAdditional.GetRowCellValue(i, "value").ToString) + "'), "
+                End If
+            End If
+        Next
+
+        q_insert_info = q_insert_info.Substring(0, q_insert_info.Length - 2)
+
+        If execute_insert Then
+            execute_non_query(q_insert_info, True, "", "", "", "")
+        End If
+    End Sub
+
+    Private Sub RIMEValue_KeyDown(sender As Object, e As KeyEventArgs) Handles RIMEValue.KeyDown
+        Dim first_value As String = GVAdditional.GetFocusedRowCellValue("value").ToString
+
+        If GVAdditional.GetFocusedRowCellValue("is_lookup").ToString = "1" Then
+            stopCustom("Please browse for this value.")
+
+            GVAdditional.SetFocusedRowCellValue("value", first_value)
+        End If
+    End Sub
+
+    Private Sub RICEBrowse_Click(sender As Object, e As EventArgs) Handles RICEBrowse.Click
+        If GVAdditional.GetFocusedRowCellValue("is_lookup").ToString = "2" Then
+            stopCustom("Column type is not look up.")
+        Else
+            Dim c_front As String = ""
+            Dim c_end As String = ""
+
+            For i = 0 To GVCodeDsg.RowCount - 1
+                If GVCodeDsg.GetRowCellValue(i, "code").ToString = "32" Then
+                    c_front = GVCodeDsg.GetRowCellValue(i, "value").ToString
+                ElseIf GVCodeDsg.GetRowCellValue(i, "code").ToString = "31" Then
+                    c_end = GVCodeDsg.GetRowCellValue(i, "value").ToString
+                End If
+            Next
+
+            If c_front = "" Or c_end = "" Then
+                Dim code As String = execute_query("
+                    SELECT GROUP_CONCAT(code_name SEPARATOR ' & ') AS code_name
+                    FROM tb_m_code
+                    WHERE id_code IN (31, 32)
+                ", 0, True, "", "", "", "")
+
+                stopCustom("Please fill " + code + ".")
+            Else
+                FormMasterDesignLookUp.id_design_column = GVAdditional.GetFocusedRowCellValue("id_design_column").ToString
+                FormMasterDesignLookUp.column_type_front = c_front
+                FormMasterDesignLookUp.column_type_end = c_end
+
+                FormMasterDesignLookUp.ShowDialog()
+            End If
+        End If
     End Sub
 End Class

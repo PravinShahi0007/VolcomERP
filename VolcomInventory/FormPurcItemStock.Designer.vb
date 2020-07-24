@@ -26,6 +26,7 @@ Partial Class FormPurcItemStock
         Me.GCSOH = New DevExpress.XtraGrid.GridControl()
         Me.GVSOH = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdItem = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,6 +65,7 @@ Partial Class FormPurcItemStock
         Me.SLEITem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DEUntilSC = New DevExpress.XtraEditors.DateEdit()
@@ -106,8 +108,9 @@ Partial Class FormPurcItemStock
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -142,6 +145,7 @@ Partial Class FormPurcItemStock
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCStock
@@ -191,6 +195,15 @@ Partial Class FormPurcItemStock
         Me.GridColumnIdItem.Caption = "Id Item"
         Me.GridColumnIdItem.FieldName = "id_item"
         Me.GridColumnIdItem.Name = "GridColumnIdItem"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Kode Item"
+        Me.GridColumn12.FieldName = "id_item"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        Me.GridColumn12.Width = 117
         '
         'GridColumnItemDesc
         '
@@ -531,6 +544,15 @@ Partial Class FormPurcItemStock
         Me.GridColumnItemId.FieldName = "id_item"
         Me.GridColumnItemId.Name = "GridColumnItemId"
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Kode Item"
+        Me.GridColumn13.FieldName = "id_item"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        Me.GridColumn13.Width = 178
+        '
         'GridColumnDesc
         '
         Me.GridColumnDesc.Caption = "Description"
@@ -635,6 +657,7 @@ Partial Class FormPurcItemStock
         '
         'GCPemakaian
         '
+        Me.GCPemakaian.ContextMenuStrip = Me.ContextMenuStrip2
         Me.GCPemakaian.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCPemakaian.Location = New System.Drawing.Point(0, 42)
         Me.GCPemakaian.MainView = Me.GVPemakaian
@@ -660,13 +683,14 @@ Partial Class FormPurcItemStock
         Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 150
+        Me.GridBand1.Width = 225
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "ID Item"
+        Me.GridColumn1.Caption = "Kode Item"
         Me.GridColumn1.FieldName = "id_item"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
         '
         'GridColumn2
         '
@@ -840,6 +864,7 @@ Partial Class FormPurcItemStock
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
         Me.PanelControl2.Controls.Add(Me.LECatPemakaian)
         Me.PanelControl2.Controls.Add(Me.LabelControl10)
         Me.PanelControl2.Controls.Add(Me.BPrint)
@@ -873,7 +898,7 @@ Partial Class FormPurcItemStock
         '
         'BPrint
         '
-        Me.BPrint.Location = New System.Drawing.Point(672, 9)
+        Me.BPrint.Location = New System.Drawing.Point(785, 9)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(56, 23)
         Me.BPrint.TabIndex = 5
@@ -885,7 +910,7 @@ Partial Class FormPurcItemStock
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(56, 23)
         Me.BView.TabIndex = 4
-        Me.BView.Text = "view"
+        Me.BView.Text = "view all"
         '
         'LabelControl9
         '
@@ -927,23 +952,25 @@ Partial Class FormPurcItemStock
         Me.DEStart.Size = New System.Drawing.Size(165, 20)
         Me.DEStart.TabIndex = 0
         '
-        'GridColumn12
+        'SimpleButton1
         '
-        Me.GridColumn12.Caption = "Kode Item"
-        Me.GridColumn12.FieldName = "id_item"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 0
-        Me.GridColumn12.Width = 117
+        Me.SimpleButton1.Location = New System.Drawing.Point(672, 9)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(107, 23)
+        Me.SimpleButton1.TabIndex = 25
+        Me.SimpleButton1.Text = "view (with filter)"
         '
-        'GridColumn13
+        'ContextMenuStrip2
         '
-        Me.GridColumn13.Caption = "Kode Item"
-        Me.GridColumn13.FieldName = "id_item"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 0
-        Me.GridColumn13.Width = 178
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(133, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Text = "View Detail"
         '
         'FormPurcItemStock
         '
@@ -992,6 +1019,7 @@ Partial Class FormPurcItemStock
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1083,4 +1111,7 @@ Partial Class FormPurcItemStock
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
 End Class
