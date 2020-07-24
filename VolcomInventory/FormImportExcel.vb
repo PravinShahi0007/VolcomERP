@@ -3262,6 +3262,46 @@ Public Class FormImportExcel
             'get shopify
             FormPromoCollectionDet.getProductShopify()
             Dim tb3 = FormPromoCollectionDet.dt
+            'data stock
+            Dim qgt As String = "SET @startd = DATE(NOW());
+            SET @cm_beg_startd = "";
+	        SET @beg_date="";
+	        SET @beg_year ="";
+	        SET @beg_month ="";
+            SELECT STR_TO_DATE(CONCAT(YEAR(@startd),'-', MONTH(@startd),'-', '01'),'%Y-%m-%d') AS `cm_beg_startd`,
+	        STR_TO_DATE(DATE_SUB(CONCAT(YEAR(@startd),'-', MONTH(@startd),'-', '01'),INTERVAL 1 DAY),'%Y-%m-%d') AS `beg_date`, 
+	        YEAR((SELECT beg_date)) AS `beg_year`, MONTH((SELECT beg_date)) AS `beg_month`, @startd AS `end_date` "
+            Dim dgt As DataTable = execute_query(qgt, -1, True, "", "", "", "")
+            Dim beg_month As String = dgt.Rows(0)("beg_month").ToString
+            Dim beg_year As String = dgt.Rows(0)("beg_year").ToString
+            Dim start_time As String = dgt.Rows(0)("cm_beg_startd").ToString
+            Dim end_time As String = dgt.Rows(0)("end_date").ToString
+            Dim id_ol As String = execute_query("SELECT GROUP_CONCAT(DISTINCT d.id_comp) FROM tb_m_comp_volcom_ol d", 0, True, "", "", "", "")
+            Dim query_stc As String = "SELECT p.product_full_code AS `code`, a.qty_ttl AS `qty` 
+            FROM (
+                SELECT a.id_product,
+                SUM(qty_ttl) AS `qty_ttl`
+                FROM (
+	                SELECT f.id_wh_drawer, f.id_product, f.`qty_ttl`
+	                FROM tb_storage_fg_" + beg_year + " f
+	                WHERE f.month='" + beg_month + "'
+	                UNION ALL
+	                SELECT f.id_wh_drawer, f.id_product, 
+	                SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `qty_ttl` 
+	                FROM tb_storage_fg f
+	                WHERE f.storage_product_datetime>='" + start_time + " 00:00:00'  AND f.storage_product_datetime<='" + end_time + " 23:59:59' 
+	                GROUP BY f.id_wh_drawer, f.id_product
+                ) a
+                INNER JOIN tb_m_wh_drawer drw ON  drw.id_wh_drawer= a.id_wh_drawer
+                INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack
+                INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator
+                WHERE loc.id_comp IN (" + id_ol + ")
+                GROUP BY a.id_product 
+                HAVING qty_ttl>0
+            ) a
+            INNER JOIN tb_m_product p ON p.id_product = a.id_product "
+            Dim data_stc As DataTable = execute_query(query_stc, -1, True, "", "", "", "")
+            Dim tb4 = data_stc.AsEnumerable
 
             Dim query = From table1 In tb1
                         Group Join table_tmp In tb2 On table1("KODE").ToString Equals table_tmp("code").ToString
@@ -3270,6 +3310,9 @@ Public Class FormImportExcel
                         Group Join table_web In tb3 On If(y1 Is Nothing, "", y1("sku").ToString) Equals table_web("sku").ToString
                         Into web = Group
                         From w1 In web.DefaultIfEmpty()
+                        Group Join table_stock In tb4 On If(y1 Is Nothing, "", y1("sku").ToString) Equals table_stock("code").ToString
+                        Into stc = Group
+                        From s1 In stc.DefaultIfEmpty
                         Select New With
                             {
                                 .id_design = If(y1 Is Nothing, "0", y1("id_design").ToString),
@@ -3281,7 +3324,8 @@ Public Class FormImportExcel
                                 .size = If(y1 Is Nothing, "", y1("size").ToString),
                                 .id_design_price = If(y1 Is Nothing, "0", y1("id_design_price").ToString),
                                 .design_price = If(y1 Is Nothing, 0, y1("design_price")),
-                                .Status = If(y1 Is Nothing Or w1 Is Nothing, If(y1 Is Nothing, "Not found in ERP;", "") + If(w1 Is Nothing, "Not found in Shopify;", ""), "OK")
+                                .qty = If(s1 Is Nothing, 0, s1("qty")),
+                                .Status = If(y1 Is Nothing Or w1 Is Nothing Or s1 Is Nothing, If(y1 Is Nothing, "Not found in ERP;", "") + If(w1 Is Nothing, "Not found in Shopify;", "") + If(s1 Is Nothing, "Stock not available;", ""), "OK")
                             }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
@@ -3297,6 +3341,8 @@ Public Class FormImportExcel
             'display format
             GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("design_price").DisplayFormat.FormatString = "N0"
+            GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("qty").DisplayFormat.FormatString = "N0"
         ElseIf id_pop_up = "52" Then 'import rate
             Dim queryx As String = "SELECT sd.`id_sub_district`,ct.`city`,sd.`sub_district`
 FROM tb_m_sub_district sd 
@@ -5619,7 +5665,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
 
                         'detail data
                         Dim id_prm As String = FormPromoCollectionDet.id
-                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product, id_prod_shopify, id_design_price, design_price) VALUES "
+                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product, id_prod_shopify, id_design_price, design_price,qty) VALUES "
                         For i As Integer = 0 To GVData.RowCount - 1
                             Dim id_design_price As String = GVData.GetRowCellValue(i, "id_design_price").ToString
                             If id_design_price = "0" Then
@@ -5630,7 +5676,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                                 q += ","
                             End If
                             '
-                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + GVData.GetRowCellValue(i, "id_prod_shopify").ToString + "', " + id_design_price + ", '" + decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString) + "') "
+                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + GVData.GetRowCellValue(i, "id_prod_shopify").ToString + "', " + id_design_price + ", '" + decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "qty").ToString) + "') "
 
                             '
                             PBC.PerformStep()
