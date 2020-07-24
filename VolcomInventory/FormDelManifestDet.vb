@@ -30,7 +30,6 @@
 UNION
 SELECT '1' AS id, 'Yes' AS `type`"
         viewSearchLookupQuery(SLEOnlineShop, q, "id", "type", "id")
-        SLEOnlineShop.EditValue = Nothing
     End Sub
 
     Sub view_comp()
@@ -493,11 +492,19 @@ GROUP BY cg.`id_comp_group`"
 
     Private Sub SLEOnlineShop_EditValueChanged(sender As Object, e As EventArgs) Handles SLEOnlineShop.EditValueChanged
         If SLEOnlineShop.EditValue.ToString = "1" Then
-            PCOnline.Visible = False
-            PCOffline.Visible = True
-        ElseIf SLEOnlineShop.EditValue.ToString = "2" Then
             PCOnline.Visible = True
             PCOffline.Visible = False
+        ElseIf SLEOnlineShop.EditValue.ToString = "2" Then
+            PCOnline.Visible = False
+            PCOffline.Visible = True
         End If
+    End Sub
+
+    Private Sub BGenOnline_Click(sender As Object, e As EventArgs) Handles BGenOnline.Click
+        Dim q As String = "SELECT * FROM tb_wh_awbill"
+    End Sub
+
+    Private Sub BGenOffline_Click(sender As Object, e As EventArgs) Handles BGenOffline.Click
+
     End Sub
 End Class

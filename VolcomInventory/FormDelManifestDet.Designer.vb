@@ -33,7 +33,7 @@ Partial Class FormDelManifestDet
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBComplete = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCRate = New DevExpress.XtraEditors.PanelControl()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -114,12 +114,14 @@ Partial Class FormDelManifestDet
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PCRate, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCRate.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -267,24 +269,25 @@ Partial Class FormDelManifestDet
         '
         Me.ErrorProvider.ContainerControl = Me
         '
-        'PanelControl1
+        'PCRate
         '
-        Me.PanelControl1.Controls.Add(Me.Label12)
-        Me.PanelControl1.Controls.Add(Me.TEAwb)
-        Me.PanelControl1.Controls.Add(Me.Label11)
-        Me.PanelControl1.Controls.Add(Me.TETotalRate)
-        Me.PanelControl1.Controls.Add(Me.Label10)
-        Me.PanelControl1.Controls.Add(Me.TERate)
-        Me.PanelControl1.Controls.Add(Me.Label9)
-        Me.PanelControl1.Controls.Add(Me.TECWeight)
-        Me.PanelControl1.Controls.Add(Me.PanelControl3)
-        Me.PanelControl1.Controls.Add(Me.SLUE3PL)
-        Me.PanelControl1.Controls.Add(Me.Label6)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 426)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1008, 209)
-        Me.PanelControl1.TabIndex = 5
+        Me.PCRate.Controls.Add(Me.Label12)
+        Me.PCRate.Controls.Add(Me.TEAwb)
+        Me.PCRate.Controls.Add(Me.Label11)
+        Me.PCRate.Controls.Add(Me.TETotalRate)
+        Me.PCRate.Controls.Add(Me.Label10)
+        Me.PCRate.Controls.Add(Me.TERate)
+        Me.PCRate.Controls.Add(Me.Label9)
+        Me.PCRate.Controls.Add(Me.TECWeight)
+        Me.PCRate.Controls.Add(Me.PanelControl3)
+        Me.PCRate.Controls.Add(Me.SLUE3PL)
+        Me.PCRate.Controls.Add(Me.Label6)
+        Me.PCRate.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCRate.Location = New System.Drawing.Point(0, 426)
+        Me.PCRate.Name = "PCRate"
+        Me.PCRate.Size = New System.Drawing.Size(1008, 209)
+        Me.PCRate.TabIndex = 5
+        Me.PCRate.Visible = False
         '
         'GCList
         '
@@ -724,6 +727,7 @@ Partial Class FormDelManifestDet
         '
         'GridView2
         '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8})
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -1026,6 +1030,20 @@ Partial Class FormDelManifestDet
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ID"
+        Me.GridColumn7.FieldName = "id_comp_group"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Group"
+        Me.GridColumn8.FieldName = "comp_group"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1034,7 +1052,7 @@ Partial Class FormDelManifestDet
         Me.Controls.Add(Me.GCList)
         Me.Controls.Add(Me.PCOffline)
         Me.Controls.Add(Me.PCOnline)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.PCRate)
         Me.Controls.Add(Me.SBAttachement)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl2)
@@ -1046,9 +1064,9 @@ Partial Class FormDelManifestDet
         Me.PanelControl4.PerformLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
+        CType(Me.PCRate, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCRate.ResumeLayout(False)
+        Me.PCRate.PerformLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1098,7 +1116,7 @@ Partial Class FormDelManifestDet
     Friend WithEvents SBSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBComplete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ErrorProvider As ErrorProvider
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCRate As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
@@ -1181,4 +1199,6 @@ Partial Class FormDelManifestDet
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
