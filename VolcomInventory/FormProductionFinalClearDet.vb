@@ -20,7 +20,13 @@ Public Class FormProductionFinalClearDet
         viewReportStatus()
         viewPLCat()
         viewPLCatSub()
+        view_service_type()
         actionLoad()
+    End Sub
+
+    Sub view_service_type()
+        Dim q As String = "SELECT id_service_type,service_type FROM tb_lookup_service_type"
+        viewSearchLookupQuery(SLEServiceNote, q, "id_service_type", "service_type", "id_service_type")
     End Sub
 
     Sub load_cat_rec()
@@ -148,6 +154,7 @@ Public Class FormProductionFinalClearDet
             Else
                 LECLaim.EditValue = Nothing
             End If
+            SLEServiceNote.EditValue = data.Rows(0)("id_service_type").ToString
             SLERecType.EditValue = data.Rows(0)("id_pl_category_rec").ToString
             TxtNumber.Text = data.Rows(0)("prod_fc_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("prod_fc_datex").ToString, 0)
@@ -254,11 +261,11 @@ Public Class FormProductionFinalClearDet
         TxtStyle.Enabled = False
         LEPLCategory.Enabled = False
         LECLaim.Enabled = False
+        SLEServiceNote.Enabled = False
         BtnBrowseFrom.Enabled = False
         BtnBrowseTo.Enabled = False
         BtnBrowsePO.Enabled = False
         PanelNavBarcode.Visible = False
-
 
         'preprint
         If id_report_status <> "5" Then
@@ -588,6 +595,7 @@ Public Class FormProductionFinalClearDet
         Report.LVendor.Text = TxtVendorCode.Text + " - " + TxtVendorName.Text
         Report.LDesign.Text = TxtStyleCode.Text + " - " + TxtStyle.Text
         Report.Lcat.Text = LEPLCategory.Text
+        Report.LServiceNote.Text = SLEServiceNote.Text
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -642,8 +650,8 @@ Public Class FormProductionFinalClearDet
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     Dim report_mark_type As String = If(id_pl_category = "1", "224", "105")
-                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order,id_prod_order_rec, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, report_mark_type) "
-                    query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1', '" + report_mark_type + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order,id_prod_order_rec, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, id_service_type, report_mark_type) "
+                    query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1','" + SLEServiceNote.EditValue.ToString + "', '" + report_mark_type + "'); SELECT LAST_INSERT_ID(); "
                     id_prod_fc = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_prod("12")
 
