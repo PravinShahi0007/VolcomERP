@@ -13,11 +13,38 @@
         view_ol_or_no()
         view_comp()
         view_comp_group()
+        load_sub_dsitrict()
         '
         form_load()
 
 
         loaded = True
+    End Sub
+
+    Sub load_sub_dsitrict()
+        Dim q As String = "SELECT dis.id_sub_district,dis.`sub_district`,ct.city,ct.`island`,reg.`region`,st.`state`,c.`country`
+FROM tb_m_sub_district dis
+INNER JOIN tb_m_city ct ON dis.id_city=ct.id_city
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country`"
+        viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
+    End Sub
+
+    Sub load_sub_dsitrict_filter(ByVal filter As String)
+        Dim q As String = "SELECT dis.id_sub_district,dis.`sub_district`,ct.city,ct.`island`,reg.`region`,st.`state`,c.`country`
+FROM tb_m_sub_district dis
+INNER JOIN tb_m_city ct ON dis.id_city=ct.id_city
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            viewSearchLookupQuery(SLESubDistrict, q, "id_sub_district", "sub_district", "id_sub_district")
+        Else
+            warningCustom("Shipping district not found, please choose shipping district correctly !")
+            load_sub_dsitrict()
+        End If
     End Sub
 
     Sub view_del_type()
@@ -501,10 +528,126 @@ GROUP BY cg.`id_comp_group`"
     End Sub
 
     Private Sub BGenOnline_Click(sender As Object, e As EventArgs) Handles BGenOnline.Click
-        Dim q As String = "SELECT * FROM tb_wh_awbill"
+        Dim q As String = "SELECT 0 AS `no`,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
+,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,so.`shipping_city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
+FROM tb_wh_awbill_det awbd
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
+LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pl.id_combine = pdelc.id_combine
+LEFT JOIN (
+	SELECT z3.combine_number, SUM(pl_sales_order_del_det_qty) AS qty
+	FROM tb_pl_sales_order_del_det AS z1
+	LEFT JOIN tb_pl_sales_order_del AS z2 ON z1.id_pl_sales_order_del = z2.id_pl_sales_order_del
+	LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
+	GROUP BY z2.id_combine
+) AS z ON pdelc.combine_number = z.combine_number
+INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCList.DataSource = dt
+        GVList.BestFitColumns()
+        '
+        If GVList.RowCount > 0 Then
+            'sub district
+            load_sub_dsitrict_filter(" AND ct.city='" & GVList.GetRowCellValue(0, "city").ToString & "'")
+            '
+            load_cargo_rate()
+        End If
     End Sub
 
     Private Sub BGenOffline_Click(sender As Object, e As EventArgs) Handles BGenOffline.Click
+        Dim q As String = "SELECT 0 AS `no`,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
+,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,ct.`city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume,c.id_sub_district
+FROM tb_wh_awbill_det awbd
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
+LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pl.id_combine = pdelc.id_combine
+LEFT JOIN (
+	SELECT z3.combine_number, SUM(pl_sales_order_del_det_qty) AS qty
+	FROM tb_pl_sales_order_del_det AS z1
+	LEFT JOIN tb_pl_sales_order_del AS z2 ON z1.id_pl_sales_order_del = z2.id_pl_sales_order_del
+	LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
+	GROUP BY z2.id_combine
+) AS z ON pdelc.combine_number = z.combine_number
+INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_city ct ON ct.id_city=c.id_city
+WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCList.DataSource = dt
+        GVList.BestFitColumns()
 
+        If GVList.RowCount > 0 Then
+            'sub district
+            load_sub_dsitrict_filter(" AND dis.id_sub_district='" & GVList.GetRowCellValue(0, "id_sub_district").ToString & "'")
+            '
+            load_cargo_rate()
+        End If
+    End Sub
+    '
+    Sub load_cargo_rate()
+        Dim berat_terpakai As Decimal = 0.0
+        Dim berat_dim As Decimal = 0.0
+        Dim berat_aktual As Decimal = 0.0
+        '
+        Dim q_weight As String = ""
+        If SLEOnlineShop.EditValue.ToString = "1" Then
+            'online
+            q_weight = "SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height,SUM(awb.`weight_calc`) AS volume
+FROM tb_wh_awbill_det awbd
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
+INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'
+HAVING weight > 0 "
+        Else
+            'offline
+            q_weight = "SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height,SUM(awb.`weight_calc`) AS volume
+FROM tb_wh_awbill_det awbd
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
+INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'
+HAVING weight > 0 "
+        End If
+        Dim dt_weight As DataTable = execute_query(q_weight, -1, True, "", "", "", "")
+        If dt_weight.Rows.Count > 0 Then
+            berat_dim = Decimal.Parse(dt_weight.Rows(0)("volume").ToString)
+            berat_aktual = Decimal.Parse(dt_weight.Rows(0)("weight").ToString)
+
+            If berat_dim > berat_aktual Then
+                berat_terpakai = berat_dim
+            Else
+                berat_terpakai = berat_aktual
+            End If
+
+            Dim q As String = "SELECT rate.id_comp AS id_cargo,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate
+, IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight, Rate.cargo_min_weight, " + decimalSQL(berat_terpakai.ToString) + ") AS weight
+,(IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight,rate.cargo_min_weight," + decimalSQL(berat_terpakai.ToString) + ") * cargo_rate) AS amount
+,rate.cargo_lead_time
+,comp.awb_rank
+FROM `tb_3pl_rate` AS rate
+INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_comp
+WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.is_active=1 AND rate.id_type='" + SLEDelType.EditValue.ToString + "'
+ORDER BY amount ASC,comp.awb_rank ASC"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCCargoRate.DataSource = dt
+            GVCargoRate.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub SLESubDistrict_EditValueChanged(sender As Object, e As EventArgs) Handles SLESubDistrict.EditValueChanged
+        Try
+            load_cargo_rate()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
