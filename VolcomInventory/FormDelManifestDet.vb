@@ -9,12 +9,47 @@
         loaded = False
 
         view_3pl()
+        view_del_type()
+        view_ol_or_no()
+        view_comp()
+        view_comp_group()
+        '
         form_load()
+
 
         loaded = True
     End Sub
 
-    Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
+    Sub view_del_type()
+        Dim q As String = "SELECT id_del_type, del_type, is_no_weight,volume_divide_by FROM tb_lookup_del_type"
+        viewSearchLookupQuery(SLEDelType, q, "id_del_type", "del_type", "id_del_type")
+    End Sub
+
+    Sub view_ol_or_no()
+        Dim q As String = "SELECT '2' AS id, 'No' AS `type` 
+UNION
+SELECT '1' AS id, 'Yes' AS `type`"
+        viewSearchLookupQuery(SLEOnlineShop, q, "id", "type", "id")
+        SLEOnlineShop.EditValue = Nothing
+    End Sub
+
+    Sub view_comp()
+        Dim q As String = "SELECT c.id_comp,c.comp_number,c.comp_name
+FROM tb_m_comp c
+WHERE c.id_commerce_type='1' AND c.id_comp_cat='6' AND is_active='1'"
+        viewSearchLookupQuery(SLEComp, q, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub view_comp_group()
+        Dim q As String = "SELECT cg.`id_comp_group`,cg.`comp_group` 
+FROM tb_m_comp c 
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
+WHERE c.`id_commerce_type`=2 AND c.`is_active`=1
+GROUP BY cg.`id_comp_group`"
+        viewSearchLookupQuery(SLEStoreGroup, q, "id_comp_group", "comp_group", "id_comp_group")
+    End Sub
+
+    Private Sub SBAdd_Click(sender As Object, e As EventArgs)
         If SLUE3PL.EditValue.ToString = "0" Then
             stopCustom("Please select 3PL.")
         Else
@@ -22,7 +57,7 @@
         End If
     End Sub
 
-    Private Sub SBRemove_Click(sender As Object, e As EventArgs) Handles SBRemove.Click
+    Private Sub SBRemove_Click(sender As Object, e As EventArgs)
         GVList.DeleteSelectedRows()
     End Sub
 
@@ -147,8 +182,6 @@
             SBSave.Enabled = True
             SBComplete.Enabled = True
 
-            SBAdd.Enabled = True
-            SBRemove.Enabled = True
         Else
             SLUE3PL.ReadOnly = True
 
@@ -163,8 +196,6 @@
                 SBPrePrint.Enabled = False
             End If
 
-            SBAdd.Enabled = False
-            SBRemove.Enabled = False
         End If
 
         SBAttachement.Enabled = True
@@ -459,4 +490,14 @@
 
         Return match
     End Function
+
+    Private Sub SLEOnlineShop_EditValueChanged(sender As Object, e As EventArgs) Handles SLEOnlineShop.EditValueChanged
+        If SLEOnlineShop.EditValue.ToString = "1" Then
+            PCOnline.Visible = False
+            PCOffline.Visible = True
+        ElseIf SLEOnlineShop.EditValue.ToString = "2" Then
+            PCOnline.Visible = True
+            PCOffline.Visible = False
+        End If
+    End Sub
 End Class
