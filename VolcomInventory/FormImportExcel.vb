@@ -3274,8 +3274,8 @@ Public Class FormImportExcel
             Dim dgt As DataTable = execute_query(qgt, -1, True, "", "", "", "")
             Dim beg_month As String = dgt.Rows(0)("beg_month").ToString
             Dim beg_year As String = dgt.Rows(0)("beg_year").ToString
-            Dim start_time As String = dgt.Rows(0)("cm_beg_startd").ToString
-            Dim end_time As String = dgt.Rows(0)("end_date").ToString
+            Dim start_time As String = DateTime.Parse(dgt.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd")
+            Dim end_time As String = DateTime.Parse(dgt.Rows(0)("end_date").ToString).ToString("yyyy-MM-dd")
             Dim id_ol As String = execute_query("SELECT GROUP_CONCAT(DISTINCT d.id_comp) FROM tb_m_comp_volcom_ol d", 0, True, "", "", "", "")
             Dim query_stc As String = "SELECT p.product_full_code AS `code`, a.qty_ttl AS `qty` 
             FROM (
@@ -3325,7 +3325,7 @@ Public Class FormImportExcel
                                 .id_design_price = If(y1 Is Nothing, "0", y1("id_design_price").ToString),
                                 .design_price = If(y1 Is Nothing, 0, y1("design_price")),
                                 .qty = If(s1 Is Nothing, 0, s1("qty")),
-                                .Status = If(y1 Is Nothing Or w1 Is Nothing Or s1 Is Nothing, If(y1 Is Nothing, "Not found in ERP;", "") + If(w1 Is Nothing, "Not found in Shopify;", "") + If(s1 Is Nothing, "Stock not available;", ""), "OK")
+                                .Status = If(y1 Is Nothing Or w1 Is Nothing, If(y1 Is Nothing, "Not found in ERP;", "") + If(w1 Is Nothing, "Not found in Shopify;", ""), "OK")
                             }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
