@@ -64,8 +64,14 @@ Partial Class FormDelManifestDet
         Me.GridColumnLeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCCompany = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -393,7 +399,7 @@ Partial Class FormDelManifestDet
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(533, 155)
+        Me.Label12.Location = New System.Drawing.Point(533, 168)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(76, 13)
         Me.Label12.TabIndex = 27
@@ -401,7 +407,7 @@ Partial Class FormDelManifestDet
         '
         'TEAwb
         '
-        Me.TEAwb.Location = New System.Drawing.Point(638, 152)
+        Me.TEAwb.Location = New System.Drawing.Point(638, 165)
         Me.TEAwb.Name = "TEAwb"
         Me.TEAwb.Size = New System.Drawing.Size(267, 20)
         Me.TEAwb.TabIndex = 26
@@ -419,6 +425,7 @@ Partial Class FormDelManifestDet
         '
         Me.TETotalRate.Location = New System.Drawing.Point(638, 126)
         Me.TETotalRate.Name = "TETotalRate"
+        Me.TETotalRate.Properties.ReadOnly = True
         Me.TETotalRate.Size = New System.Drawing.Size(176, 20)
         Me.TETotalRate.TabIndex = 24
         '
@@ -435,6 +442,7 @@ Partial Class FormDelManifestDet
         '
         Me.TERate.Location = New System.Drawing.Point(638, 100)
         Me.TERate.Name = "TERate"
+        Me.TERate.Properties.ReadOnly = True
         Me.TERate.Size = New System.Drawing.Size(125, 20)
         Me.TERate.TabIndex = 22
         '
@@ -451,6 +459,7 @@ Partial Class FormDelManifestDet
         '
         Me.TECWeight.Location = New System.Drawing.Point(638, 74)
         Me.TECWeight.Name = "TECWeight"
+        Me.TECWeight.Properties.ReadOnly = True
         Me.TECWeight.Size = New System.Drawing.Size(82, 20)
         Me.TECWeight.TabIndex = 20
         '
@@ -516,6 +525,8 @@ Partial Class FormDelManifestDet
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Chargeable Weight (Kg)"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "weight"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
@@ -525,6 +536,8 @@ Partial Class FormDelManifestDet
         'GridColumnRate
         '
         Me.GridColumnRate.Caption = "Rate/Kg"
+        Me.GridColumnRate.DisplayFormat.FormatString = "N2"
+        Me.GridColumnRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnRate.FieldName = "cargo_rate"
         Me.GridColumnRate.Name = "GridColumnRate"
         Me.GridColumnRate.Visible = True
@@ -534,6 +547,8 @@ Partial Class FormDelManifestDet
         'GridColumnAmount
         '
         Me.GridColumnAmount.Caption = "Amount"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmount.FieldName = "amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Visible = True
@@ -560,24 +575,92 @@ Partial Class FormDelManifestDet
         '
         'SearchLookUpEdit1View
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdComp, Me.GCCompany})
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsBehavior.ReadOnly = True
+        Me.SearchLookUpEdit1View.OptionsCustomization.AllowColumnMoving = False
+        Me.SearchLookUpEdit1View.OptionsCustomization.AllowColumnResizing = False
+        Me.SearchLookUpEdit1View.OptionsCustomization.AllowFilter = False
+        Me.SearchLookUpEdit1View.OptionsCustomization.AllowGroup = False
+        Me.SearchLookUpEdit1View.OptionsCustomization.AllowQuickHideColumns = False
+        Me.SearchLookUpEdit1View.OptionsCustomization.AllowRowSizing = True
+        Me.SearchLookUpEdit1View.OptionsCustomization.AllowSort = False
+        Me.SearchLookUpEdit1View.OptionsCustomization.CustomizationFormSearchBoxVisible = True
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
-        'GCIdComp
+        'GridColumn23
         '
-        Me.GCIdComp.FieldName = "id_comp"
-        Me.GCIdComp.Name = "GCIdComp"
+        Me.GridColumn23.Caption = "ID Rate"
+        Me.GridColumn23.FieldName = "id_3pl_rate"
+        Me.GridColumn23.Name = "GridColumn23"
         '
-        'GCCompany
+        'GridColumn16
         '
-        Me.GCCompany.Caption = "3PL"
-        Me.GCCompany.FieldName = "comp_name"
-        Me.GCCompany.Name = "GCCompany"
-        Me.GCCompany.Visible = True
-        Me.GCCompany.VisibleIndex = 0
+        Me.GridColumn16.Caption = "ID Cargo"
+        Me.GridColumn16.FieldName = "id_cargo"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Cargo"
+        Me.GridColumn17.FieldName = "cargo"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        Me.GridColumn17.Width = 116
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Min Weight (Kg)"
+        Me.GridColumn18.FieldName = "cargo_min_weight"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.Width = 92
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Chargeable Weight (Kg)"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "weight"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 2
+        Me.GridColumn19.Width = 131
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Rate/Kg"
+        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "cargo_rate"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 3
+        Me.GridColumn20.Width = 96
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Amount"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "amount"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 4
+        Me.GridColumn21.Width = 127
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Lead Time (days)"
+        Me.GridColumn22.FieldName = "cargo_lead_time"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.Width = 134
         '
         'GCList
         '
@@ -1238,8 +1321,6 @@ Partial Class FormDelManifestDet
     Friend WithEvents TECreatedDate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SLUE3PL As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GCIdComp As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCCompany As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStoreAccount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStoreName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
@@ -1314,4 +1395,12 @@ Partial Class FormDelManifestDet
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label13 As Label
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

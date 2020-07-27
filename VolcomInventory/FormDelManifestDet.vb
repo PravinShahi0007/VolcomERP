@@ -652,7 +652,7 @@ FROM
                 berat_terpakai = berat_aktual
             End If
 
-            Dim q As String = "SELECT rate.id_comp AS id_cargo,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate
+            Dim q As String = "SELECT rate.id_3pl_rate,rate.id_comp AS id_cargo,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate
 , IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight, Rate.cargo_min_weight, " + decimalSQL(berat_terpakai.ToString) + ") AS weight
 ,(IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight,rate.cargo_min_weight," + decimalSQL(berat_terpakai.ToString) + ") * cargo_rate) AS amount
 ,rate.cargo_lead_time
@@ -664,12 +664,21 @@ ORDER BY amount ASC,comp.awb_rank ASC"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCCargoRate.DataSource = dt
             GVCargoRate.BestFitColumns()
+            viewSearchLookupQuery(SLUE3PL, q, "id_3pl_rate", "cargo", "id_3pl_rate")
         End If
     End Sub
 
     Private Sub SLESubDistrict_EditValueChanged(sender As Object, e As EventArgs) Handles SLESubDistrict.EditValueChanged
         Try
             load_cargo_rate()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub SLUE3PL_EditValueChanged(sender As Object, e As EventArgs) Handles SLUE3PL.EditValueChanged
+        Try
+
         Catch ex As Exception
 
         End Try
