@@ -119,7 +119,7 @@
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
         LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
         WHERE pd.id_ol_promo_collection=" + id + "
-        ORDER BY code ASC "
+        ORDER BY d.design_display_name ASC, prod.product_full_code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProduct.DataSource = data
         Cursor = Cursors.Default
