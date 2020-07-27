@@ -161,7 +161,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 162
+        Me.GridColumn8.Width = 226
         '
         'GridColumn9
         '
@@ -174,7 +174,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 3
-        Me.GridColumn9.Width = 23
+        Me.GridColumn9.Width = 32
         '
         'GridColumn3
         '
@@ -183,7 +183,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 83
+        Me.GridColumn3.Width = 216
         '
         'GridColumn4
         '
@@ -196,13 +196,13 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn4.DisplayFormat.FormatString = "N2"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "debit"
-        Me.GridColumn4.MaxWidth = 90
-        Me.GridColumn4.MinWidth = 90
+        Me.GridColumn4.MaxWidth = 80
+        Me.GridColumn4.MinWidth = 80
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 90
+        Me.GridColumn4.Width = 80
         '
         'RepositoryItemTextEdit1
         '
@@ -227,13 +227,13 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn5.DisplayFormat.FormatString = "N2"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "credit"
-        Me.GridColumn5.MaxWidth = 90
-        Me.GridColumn5.MinWidth = 90
+        Me.GridColumn5.MaxWidth = 80
+        Me.GridColumn5.MinWidth = 80
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 6
-        Me.GridColumn5.Width = 90
+        Me.GridColumn5.Width = 80
         '
         'RepositoryItemTextEdit2
         '
