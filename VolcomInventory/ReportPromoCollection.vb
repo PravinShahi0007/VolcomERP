@@ -10,7 +10,7 @@
         GCData.DataSource = dt
         If is_hidden_mark = "-1" Then
             If is_pre = "1" Then
-                pre_load_mark_horz_pd(rmt, id, "2", "2", XrTable1)
+                pre_load_mark_horz(rmt, id, "2", "2", XrTable1)
             Else
                 load_mark_horz(rmt, id, "2", "1", XrTable1)
             End If

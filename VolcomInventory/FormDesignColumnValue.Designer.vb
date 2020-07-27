@@ -23,14 +23,14 @@ Partial Class FormDesignColumnValue
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TEColumnName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEValue = New DevExpress.XtraEditors.TextEdit()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEType = New DevExpress.XtraEditors.TextEdit()
+        Me.TEValue = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.TEColumnName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -43,6 +43,8 @@ Partial Class FormDesignColumnValue
         '
         'TEColumnName
         '
+        Me.TEColumnName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEColumnName.Location = New System.Drawing.Point(12, 80)
         Me.TEColumnName.Name = "TEColumnName"
         Me.TEColumnName.Properties.ReadOnly = True
@@ -57,29 +59,24 @@ Partial Class FormDesignColumnValue
         Me.LabelControl2.TabIndex = 6
         Me.LabelControl2.Text = "Value"
         '
-        'TEValue
-        '
-        Me.TEValue.Location = New System.Drawing.Point(12, 133)
-        Me.TEValue.Name = "TEValue"
-        Me.TEValue.Size = New System.Drawing.Size(360, 20)
-        Me.TEValue.TabIndex = 7
-        '
         'SBClose
         '
+        Me.SBClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(216, 166)
+        Me.SBClose.Location = New System.Drawing.Point(216, 289)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 23)
-        Me.SBClose.TabIndex = 9
+        Me.SBClose.TabIndex = 3
         Me.SBClose.Text = "Close"
         '
         'SBSave
         '
+        Me.SBSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(297, 166)
+        Me.SBSave.Location = New System.Drawing.Point(297, 289)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(75, 23)
-        Me.SBSave.TabIndex = 8
+        Me.SBSave.TabIndex = 2
         Me.SBSave.Text = "Save"
         '
         'LabelControl3
@@ -92,31 +89,43 @@ Partial Class FormDesignColumnValue
         '
         'TEType
         '
+        Me.TEType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEType.Location = New System.Drawing.Point(12, 31)
         Me.TEType.Name = "TEType"
         Me.TEType.Properties.ReadOnly = True
         Me.TEType.Size = New System.Drawing.Size(360, 20)
         Me.TEType.TabIndex = 11
         '
+        'TEValue
+        '
+        Me.TEValue.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEValue.Location = New System.Drawing.Point(12, 133)
+        Me.TEValue.Name = "TEValue"
+        Me.TEValue.Size = New System.Drawing.Size(360, 150)
+        Me.TEValue.TabIndex = 12
+        '
         'FormDesignColumnValue
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 200)
+        Me.ClientSize = New System.Drawing.Size(384, 323)
+        Me.Controls.Add(Me.TEValue)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.TEType)
         Me.Controls.Add(Me.SBClose)
         Me.Controls.Add(Me.SBSave)
         Me.Controls.Add(Me.LabelControl2)
-        Me.Controls.Add(Me.TEValue)
         Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.TEColumnName)
         Me.Name = "FormDesignColumnValue"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Design Column Value"
         CType(Me.TEColumnName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -125,9 +134,9 @@ Partial Class FormDesignColumnValue
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEColumnName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TEValue As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEValue As DevExpress.XtraEditors.MemoEdit
 End Class

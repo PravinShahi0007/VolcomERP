@@ -62,6 +62,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnid_prod_shopify_design = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrent_tag_design = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprice_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlAdd = New DevExpress.XtraEditors.PanelControl()
@@ -83,8 +84,11 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnid_prod_shopify = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrenttag = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_prod = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnprice_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprice_type_prod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_prod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount_prod = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -465,7 +469,7 @@ Partial Class FormPromoCollectionDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design, Me.GridColumndesign_price, Me.GridColumnprice_type})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design, Me.GridColumndesign_price, Me.GridColumnprice_type, Me.GridColumnqty, Me.GridColumnamount})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -550,6 +554,14 @@ Partial Class FormPromoCollectionDet
         Me.GridColumndesign_price.Visible = True
         Me.GridColumndesign_price.VisibleIndex = 5
         '
+        'GridColumnprice_type
+        '
+        Me.GridColumnprice_type.Caption = "Price Type"
+        Me.GridColumnprice_type.FieldName = "price_type"
+        Me.GridColumnprice_type.Name = "GridColumnprice_type"
+        Me.GridColumnprice_type.Visible = True
+        Me.GridColumnprice_type.VisibleIndex = 4
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
@@ -628,7 +640,7 @@ Partial Class FormPromoCollectionDet
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod, Me.GridColumnqty_prod, Me.GridColumnamount_prod})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.ReadOnly = True
@@ -726,14 +738,6 @@ Partial Class FormPromoCollectionDet
         Me.GridColumndesign_price_prod.Visible = True
         Me.GridColumndesign_price_prod.VisibleIndex = 6
         '
-        'GridColumnprice_type
-        '
-        Me.GridColumnprice_type.Caption = "Price Type"
-        Me.GridColumnprice_type.FieldName = "price_type"
-        Me.GridColumnprice_type.Name = "GridColumnprice_type"
-        Me.GridColumnprice_type.Visible = True
-        Me.GridColumnprice_type.VisibleIndex = 4
-        '
         'GridColumnprice_type_prod
         '
         Me.GridColumnprice_type_prod.Caption = "Price Type"
@@ -741,6 +745,54 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnprice_type_prod.Name = "GridColumnprice_type_prod"
         Me.GridColumnprice_type_prod.Visible = True
         Me.GridColumnprice_type_prod.VisibleIndex = 5
+        '
+        'GridColumnqty
+        '
+        Me.GridColumnqty.Caption = "Qty"
+        Me.GridColumnqty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty.FieldName = "qty"
+        Me.GridColumnqty.Name = "GridColumnqty"
+        Me.GridColumnqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnqty.Visible = True
+        Me.GridColumnqty.VisibleIndex = 6
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.GridColumnamount.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumnamount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 7
+        '
+        'GridColumnqty_prod
+        '
+        Me.GridColumnqty_prod.Caption = "Qty"
+        Me.GridColumnqty_prod.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_prod.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_prod.FieldName = "qty"
+        Me.GridColumnqty_prod.Name = "GridColumnqty_prod"
+        Me.GridColumnqty_prod.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnqty_prod.Visible = True
+        Me.GridColumnqty_prod.VisibleIndex = 7
+        '
+        'GridColumnamount_prod
+        '
+        Me.GridColumnamount_prod.Caption = "Amount"
+        Me.GridColumnamount_prod.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamount_prod.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount_prod.FieldName = "amount"
+        Me.GridColumnamount_prod.Name = "GridColumnamount_prod"
+        Me.GridColumnamount_prod.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamount_prod.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumnamount_prod.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnamount_prod.Visible = True
+        Me.GridColumnamount_prod.VisibleIndex = 8
         '
         'FormPromoCollectionDet
         '
@@ -858,4 +910,8 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumndesign_price_prod As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnprice_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnprice_type_prod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty_prod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount_prod As DevExpress.XtraGrid.Columns.GridColumn
 End Class
