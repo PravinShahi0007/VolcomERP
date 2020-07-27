@@ -203,7 +203,7 @@
         End If
 
         Dim q As String = "SELECT it.`id_item`,it.`item_desc`,IFNULL(beg.min_date,rec.min_date) AS min_date,uom.uom
-,IFNULL(beg.qty_beg,0) AS qty_beg,IFNULL(beg.harga_satuan_beg,0) AS harga_satuan_beg,IFNULL(beg.amount_beg,0) AS amount_beg
+,IFNULL(beg.qty_beg,0) AS qty_beg,IFNULL(beg.harga_satuan_beg,0) AS harga_satuan_beg,IF(IFNULL(beg.qty_beg,0)=0,0,IFNULL(beg.amount_beg,0)) AS amount_beg
 ,IFNULL(rec.qty_rec,0) AS qty_rec,IFNULL(rec.harga_satuan_rec,0) AS harga_satuan_rec,IFNULL(rec.amount_rec,0) AS amount_rec
 ,IFNULL(used.qty_used,0) AS qty_used,IFNULL(used.harga_satuan_used,0) AS harga_satuan_used,IFNULL(used.amount_used,0) AS amount_used
 ,IFNULL(rem.qty_rem,0) AS qty_rem,IFNULL(rem.harga_satuan_rem,0) AS harga_satuan_rem,IFNULL(rem.amount_rem,0) AS amount_rem

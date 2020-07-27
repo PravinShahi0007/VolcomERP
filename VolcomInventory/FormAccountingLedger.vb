@@ -212,7 +212,7 @@
 
         Try
             Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
-
+            showpopup.opt = "Buku Besar"
             showpopup.report_mark_type = GVAccountingLedger.GetFocusedRowCellValue("report_mark_type").ToString
             showpopup.id_report = GVAccountingLedger.GetFocusedRowCellValue("id_report").ToString
             showpopup.show()
@@ -227,7 +227,7 @@
         Cursor = Cursors.WaitCursor
 
         Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
-
+        showpopup.opt = "Buku Besar"
         showpopup.report_mark_type = GVAccountingLedger.GetFocusedRowCellValue("report_mark_type_ref").ToString
         showpopup.id_report = GVAccountingLedger.GetFocusedRowCellValue("id_report_ref").ToString
         showpopup.show()
