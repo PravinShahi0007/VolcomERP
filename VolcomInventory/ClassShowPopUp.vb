@@ -284,13 +284,17 @@
             FormWorkOrderDet.Close()
         ElseIf report_mark_type = "192" Then
             'payroll
-            Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+            If opt = "Buku Besar" Then
+                FormEmpPayrollReportSummary.Close()
+            Else
+                Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
 
-            FormEmpPayroll.load_payroll()
+                FormEmpPayroll.load_payroll()
 
-            FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_payroll)
+                FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_payroll)
 
-            FormEmpPayroll.load_payroll_detail()
+                FormEmpPayroll.load_payroll_detail()
+            End If
         ElseIf report_mark_type = "179" Then
             'sample material purchase
             FormSampleExpenseDet.Close()
@@ -1131,14 +1135,19 @@ GROUP BY rec.`id_prod_order`"
             FormWorkOrderDet.id_wo = id_report
             FormWorkOrderDet.ShowDialog()
         ElseIf report_mark_type = "192" Then
-            FormEmpPayroll.is_view = "1"
-            FormEmpPayroll.MdiParent = FormMain
-            FormEmpPayroll.Show()
-            FormEmpPayroll.WindowState = FormWindowState.Maximized
-            FormEmpPayroll.Focus()
+            If opt = "Buku Besar" Then
+                FormEmpPayrollReportSummary.id_payroll = id_report
+                FormEmpPayrollReportSummary.ShowDialog()
+            Else
+                FormEmpPayroll.is_view = "1"
+                FormEmpPayroll.MdiParent = FormMain
+                FormEmpPayroll.Show()
+                FormEmpPayroll.WindowState = FormWindowState.Maximized
+                FormEmpPayroll.Focus()
 
-            FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
-            FormEmpPayroll.XTCPayroll.SelectedTabPageIndex = 1
+                FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
+                FormEmpPayroll.XTCPayroll.SelectedTabPageIndex = 1
+            End If
         ElseIf report_mark_type = "179" Then
             'sample material purchase
             FormSampleExpenseDet.id_purc = id_report
