@@ -34,6 +34,16 @@ Partial Class FormDelManifestDet
         Me.SBComplete = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PCRate = New DevExpress.XtraEditors.PanelControl()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.SLESubDistrict = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TEAwb = New DevExpress.XtraEditors.TextEdit()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -116,22 +126,14 @@ Partial Class FormDelManifestDet
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGenOffline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLESubDistrict = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label13 = New System.Windows.Forms.Label()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCRate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCRate.SuspendLayout()
+        CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEAwb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotalRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,8 +166,6 @@ Partial Class FormDelManifestDet
         Me.PCOffline.SuspendLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label7
@@ -302,6 +302,93 @@ Partial Class FormDelManifestDet
         Me.PCRate.Size = New System.Drawing.Size(1008, 209)
         Me.PCRate.TabIndex = 5
         Me.PCRate.Visible = False
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(533, 15)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(61, 13)
+        Me.Label13.TabIndex = 95
+        Me.Label13.Text = "Sub District"
+        '
+        'SLESubDistrict
+        '
+        Me.SLESubDistrict.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SLESubDistrict.Enabled = False
+        Me.SLESubDistrict.Location = New System.Drawing.Point(638, 12)
+        Me.SLESubDistrict.Name = "SLESubDistrict"
+        Me.SLESubDistrict.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLESubDistrict.Properties.Appearance.Options.UseFont = True
+        Me.SLESubDistrict.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESubDistrict.Properties.NullText = "-"
+        Me.SLESubDistrict.Properties.View = Me.GridView5
+        Me.SLESubDistrict.Size = New System.Drawing.Size(157, 20)
+        Me.SLESubDistrict.TabIndex = 94
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsBehavior.ReadOnly = True
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ID Sub District"
+        Me.GridColumn10.FieldName = "id_sub_district"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Sub District"
+        Me.GridColumn9.FieldName = "sub_district"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "City"
+        Me.GridColumn11.FieldName = "city"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 1
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "State"
+        Me.GridColumn12.FieldName = "state"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Island"
+        Me.GridColumn13.FieldName = "island"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 3
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Region"
+        Me.GridColumn14.FieldName = "region"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 4
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Country"
+        Me.GridColumn15.FieldName = "country"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 5
         '
         'Label12
         '
@@ -652,7 +739,6 @@ Partial Class FormDelManifestDet
         Me.GridColumnWeight.Name = "GridColumnWeight"
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
         Me.GridColumnWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnWeight.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "weight", "{0:N2}")})
         Me.GridColumnWeight.Visible = True
         Me.GridColumnWeight.VisibleIndex = 7
         '
@@ -701,7 +787,6 @@ Partial Class FormDelManifestDet
         Me.GridColumnDim.Name = "GridColumnDim"
         Me.GridColumnDim.OptionsColumn.AllowEdit = False
         Me.GridColumnDim.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnDim.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "volume", "{0:N2}")})
         Me.GridColumnDim.Visible = True
         Me.GridColumnDim.VisibleIndex = 11
         '
@@ -1060,93 +1145,6 @@ Partial Class FormDelManifestDet
         Me.LabelControl2.TabIndex = 19
         Me.LabelControl2.Text = "Store"
         '
-        'SLESubDistrict
-        '
-        Me.SLESubDistrict.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLESubDistrict.Enabled = False
-        Me.SLESubDistrict.Location = New System.Drawing.Point(638, 12)
-        Me.SLESubDistrict.Name = "SLESubDistrict"
-        Me.SLESubDistrict.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLESubDistrict.Properties.Appearance.Options.UseFont = True
-        Me.SLESubDistrict.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLESubDistrict.Properties.NullText = "-"
-        Me.SLESubDistrict.Properties.View = Me.GridView5
-        Me.SLESubDistrict.Size = New System.Drawing.Size(157, 20)
-        Me.SLESubDistrict.TabIndex = 94
-        '
-        'GridView5
-        '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
-        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView5.Name = "GridView5"
-        Me.GridView5.OptionsBehavior.ReadOnly = True
-        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView5.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "ID Sub District"
-        Me.GridColumn10.FieldName = "id_sub_district"
-        Me.GridColumn10.Name = "GridColumn10"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Sub District"
-        Me.GridColumn9.FieldName = "sub_district"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "City"
-        Me.GridColumn11.FieldName = "city"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 1
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "State"
-        Me.GridColumn12.FieldName = "state"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 2
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Island"
-        Me.GridColumn13.FieldName = "island"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 3
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Region"
-        Me.GridColumn14.FieldName = "region"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 4
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Country"
-        Me.GridColumn15.FieldName = "country"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 5
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(533, 15)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(61, 13)
-        Me.Label13.TabIndex = 95
-        Me.Label13.Text = "Sub District"
-        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1170,6 +1168,8 @@ Partial Class FormDelManifestDet
         CType(Me.PCRate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCRate.ResumeLayout(False)
         Me.PCRate.PerformLayout()
+        CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEAwb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotalRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1205,8 +1205,6 @@ Partial Class FormDelManifestDet
         Me.PCOffline.PerformLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

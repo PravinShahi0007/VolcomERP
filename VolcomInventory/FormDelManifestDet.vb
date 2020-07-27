@@ -531,7 +531,7 @@ GROUP BY cg.`id_comp_group`"
         Dim q As String = "SELECT 0 AS `no`,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
 ,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,so.`shipping_city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
 FROM tb_wh_awbill_det awbd
-INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_del_type=" & SLEDelType.EditValue.ToString & "
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
 LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pl.id_combine = pdelc.id_combine
 LEFT JOIN (
@@ -554,6 +554,13 @@ WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales
             load_sub_dsitrict_filter(" AND ct.city='" & GVList.GetRowCellValue(0, "city").ToString & "'")
             '
             load_cargo_rate()
+            '
+            SLEDelType.Properties.ReadOnly = True
+            SLEOnlineShop.Properties.ReadOnly = True
+            SLEStoreGroup.Properties.ReadOnly = True
+            TEOrderNumber.Enabled = False
+        Else
+            warningCustom("Outbound number not found")
         End If
     End Sub
 
@@ -561,7 +568,7 @@ WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales
         Dim q As String = "SELECT 0 AS `no`,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
 ,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,ct.`city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume,c.id_sub_district
 FROM tb_wh_awbill_det awbd
-INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_del_type='" & SLEDelType.EditValue.ToString & "'
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
 LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pl.id_combine = pdelc.id_combine
 LEFT JOIN (
@@ -585,6 +592,14 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'"
             load_sub_dsitrict_filter(" AND dis.id_sub_district='" & GVList.GetRowCellValue(0, "id_sub_district").ToString & "'")
             '
             load_cargo_rate()
+            '
+            SLEDelType.Properties.ReadOnly = True
+            SLEOnlineShop.Properties.ReadOnly = True
+            SLEComp.Properties.ReadOnly = True
+            '
+            PCRate.Visible = True
+        Else
+            warningCustom("Outbound number not found")
         End If
     End Sub
     '
@@ -596,7 +611,10 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'"
         Dim q_weight As String = ""
         If SLEOnlineShop.EditValue.ToString = "1" Then
             'online
-            q_weight = "SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height,SUM(awb.`weight_calc`) AS volume
+            q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
+FROM 
+(
+SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height,SUM(awb.`weight_calc`) AS volume
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
@@ -604,18 +622,24 @@ INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'
-HAVING weight > 0 "
+HAVING weight > 0 
+)tb "
         Else
             'offline
-            q_weight = "SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height,SUM(awb.`weight_calc`) AS volume
-FROM tb_wh_awbill_det awbd
-INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
-INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
-INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
-INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'
-HAVING weight > 0 "
+            q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
+FROM 
+(
+	SELECT awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
+	FROM tb_wh_awbill_det awbd
+	INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+	INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
+	INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+	WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'
+	GROUP BY awb.id_awbill
+	HAVING weight > 0
+)tb "
         End If
         Dim dt_weight As DataTable = execute_query(q_weight, -1, True, "", "", "", "")
         If dt_weight.Rows.Count > 0 Then
