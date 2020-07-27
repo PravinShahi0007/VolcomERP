@@ -585,7 +585,7 @@ GROUP BY p.sku"
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
 
         Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products/" + product_id + ".json?fields=tags"
-        Console.WriteLine(url)
+        'Console.WriteLine(url)
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
         request.Credentials = New Net.NetworkCredential(username, password)
