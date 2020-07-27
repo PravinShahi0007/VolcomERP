@@ -557,7 +557,11 @@
     End Sub
 
     Private Sub BtnShopifyLog_Click(sender As Object, e As EventArgs) Handles BtnShopifyLog.Click
-        Dim dt_log As DataTable = execute_query("SELECT * FROM tb_ol_promo_collection_log WHERE id_ol_promo_collection='" + id + "' ", -1, True, "", "", "", "")
+        Dim qlog As String = "SELECT l.`type`, d.design_code AS `code`, d.design_display_name AS `description`, l.log, l.log_date
+        FROM tb_ol_promo_collection_log l
+        INNER JOIN tb_m_design d ON d.id_design = l.id_design
+        WHERE id_ol_promo_collection='" + id + "' "
+        Dim dt_log As DataTable = execute_query(qlog, -1, True, "", "", "", "")
         showLog(dt_log)
     End Sub
 End Class

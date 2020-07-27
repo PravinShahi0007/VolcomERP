@@ -8156,7 +8156,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
                 FormMain.SplashScreenManager1.ShowWaitForm()
                 For l As Integer = 0 To dl.Rows.Count - 1
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Set tag "(l + 1).ToString + " of " + dl.Rows.Count.ToString)
+                    FormMain.SplashScreenManager1.SetWaitFormDescription((l + 1).ToString + " of " + dl.Rows.Count.ToString)
                     Dim prod_id As String = dl.Rows(l)("id_prod_shopify").ToString
                     Dim id_design_curr As String = dl.Rows(l)("id_design").ToString
                     Try
