@@ -393,9 +393,12 @@
             If XTCData.SelectedTabPageIndex = 0 Then
                 gv = GVData
                 ReportPromoCollection.dt = GCData.DataSource
-            Else
+            ElseIf XTCData.SelectedTabPageIndex = 1 Then
                 gv = GVProduct
                 ReportPromoCollection.dt = GCProduct.DataSource
+            Else
+                gv = GVBySizeType
+                ReportPromoCollection.dt = GCBySizeType.DataSource
             End If
             ReportPromoCollection.id = id
             If id_report_status <> "6" Then

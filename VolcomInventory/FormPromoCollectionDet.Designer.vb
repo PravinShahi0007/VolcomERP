@@ -848,6 +848,7 @@ Partial Class FormPromoCollectionDet
         Me.GVBySizeType.GridControl = Me.GCBySizeType
         Me.GVBySizeType.Name = "GVBySizeType"
         Me.GVBySizeType.OptionsBehavior.ReadOnly = True
+        Me.GVBySizeType.OptionsCustomization.AllowFilter = False
         Me.GVBySizeType.OptionsCustomization.AllowSort = False
         Me.GVBySizeType.OptionsPrint.AllowMultilineHeaders = True
         Me.GVBySizeType.OptionsView.AllowCellMerge = True
