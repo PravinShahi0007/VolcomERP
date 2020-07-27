@@ -465,7 +465,7 @@ Public Class FormSalesOrderDet
 
                     'cek promo
                     If dpp.Rows.Count > 0 Then
-                        Dim dpp_filter As DataRow() = dt.Select("[id_product]='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' ")
+                        Dim dpp_filter As DataRow() = dpp.Select("[id_product]='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' ")
                         If dpp_filter.Length > 0 Then
                             already_promo = False
 
