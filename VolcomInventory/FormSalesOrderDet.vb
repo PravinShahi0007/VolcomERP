@@ -420,6 +420,31 @@ Public Class FormSalesOrderDet
 
         'check sku shopify
         If CESync.Checked Then
+            'cek promo
+            Dim already_promo As Boolean = True
+            Dim sku_promo As String = ""
+            Dim sku_promo_copy As String = ""
+            Dim query_get_promo As String = "SELECT p.id_ol_promo_collection , p.number
+            FROM tb_ol_promo_collection p WHERE p.id_report_status=6 
+            AND (NOW()>=p.start_period AND NOW()<=p.end_period)
+            LIMIT 1 "
+            Dim data_get_promo As DataTable = execute_query(query_get_promo, -1, True, "", "", "", "")
+            Dim dpp As DataTable
+            Dim promo_number As String = ""
+            If data_get_promo.Rows.Count > 0 Then
+                Dim id_ol_promo_collection As String = data_get_promo.Rows(0)("id_ol_promo_collection").ToString
+                promo_number = data_get_promo.Rows(0)("number").ToString
+                'get data product
+                Dim qpp As String = "SELECT d.id_product 
+                FROM tb_ol_promo_collection_sku d 
+                WHERE d.id_ol_promo_collection=" + id_ol_promo_collection + " AND d.is_block=1
+                GROUP BY d.id_product "
+                dpp = execute_query(qpp, -1, True, "", "", "", "")
+            Else
+                dpp.Clear()
+            End If
+
+
             Dim sku_already As Boolean = True
             Dim sku_in As String = ""
             Dim sku_copy As String = ""
@@ -437,6 +462,18 @@ Public Class FormSalesOrderDet
 
                         sku_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
                     End If
+
+                    'cek promo
+                    If dpp.Rows.Count > 0 Then
+                        Dim dpp_filter As DataRow() = dt.Select("[id_product]='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' ")
+                        If dpp_filter.Length > 0 Then
+                            already_promo = False
+
+                            sku_promo += GVItemList.GetRowCellValue(i, "code").ToString + ", "
+
+                            sku_promo_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
+                        End If
+                    End If
                 End If
             Next
 
@@ -444,6 +481,16 @@ Public Class FormSalesOrderDet
                 stopCustom("Can't find SKU: " + sku_in.Substring(0, sku_in.Length - 2) + ". Please make sure these SKU already on web or sync to shopify first.")
 
                 My.Computer.Clipboard.SetText(sku_copy)
+
+                Cursor = Cursors.Default
+
+                Exit Sub
+            End If
+
+            If Not already_promo Then
+                stopCustom("These product already in promo programs (" + promo_number + ") : " + sku_promo.Substring(0, sku_promo.Length - 2) + ". Please create memo for replace stock these products.")
+
+                My.Computer.Clipboard.SetText(sku_promo_copy)
 
                 Cursor = Cursors.Default
 

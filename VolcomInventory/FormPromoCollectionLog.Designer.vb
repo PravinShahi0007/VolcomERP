@@ -30,6 +30,7 @@ Partial Class FormPromoCollectionLog
         Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnlog = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnlog_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,7 +79,7 @@ Partial Class FormPromoCollectionLog
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumntype, Me.GridColumncode, Me.GridColumndescription, Me.GridColumnlog, Me.GridColumnlog_date})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumntype, Me.GridColumncode, Me.GridColumndescription, Me.GridColumnlog, Me.GridColumnlog_date, Me.GridColumnno})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -91,7 +92,7 @@ Partial Class FormPromoCollectionLog
         Me.GridColumntype.FieldName = "type"
         Me.GridColumntype.Name = "GridColumntype"
         Me.GridColumntype.Visible = True
-        Me.GridColumntype.VisibleIndex = 0
+        Me.GridColumntype.VisibleIndex = 1
         '
         'GridColumncode
         '
@@ -99,7 +100,7 @@ Partial Class FormPromoCollectionLog
         Me.GridColumncode.FieldName = "code"
         Me.GridColumncode.Name = "GridColumncode"
         Me.GridColumncode.Visible = True
-        Me.GridColumncode.VisibleIndex = 1
+        Me.GridColumncode.VisibleIndex = 2
         '
         'GridColumndescription
         '
@@ -107,7 +108,7 @@ Partial Class FormPromoCollectionLog
         Me.GridColumndescription.FieldName = "description"
         Me.GridColumndescription.Name = "GridColumndescription"
         Me.GridColumndescription.Visible = True
-        Me.GridColumndescription.VisibleIndex = 2
+        Me.GridColumndescription.VisibleIndex = 3
         '
         'GridColumnlog
         '
@@ -115,7 +116,7 @@ Partial Class FormPromoCollectionLog
         Me.GridColumnlog.FieldName = "log"
         Me.GridColumnlog.Name = "GridColumnlog"
         Me.GridColumnlog.Visible = True
-        Me.GridColumnlog.VisibleIndex = 3
+        Me.GridColumnlog.VisibleIndex = 4
         '
         'GridColumnlog_date
         '
@@ -125,7 +126,16 @@ Partial Class FormPromoCollectionLog
         Me.GridColumnlog_date.FieldName = "log_date"
         Me.GridColumnlog_date.Name = "GridColumnlog_date"
         Me.GridColumnlog_date.Visible = True
-        Me.GridColumnlog_date.VisibleIndex = 4
+        Me.GridColumnlog_date.VisibleIndex = 5
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.VisibleIndex = 0
+        Me.GridColumnno.Width = 49
         '
         'FormPromoCollectionLog
         '
@@ -156,4 +166,5 @@ Partial Class FormPromoCollectionLog
     Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnlog As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnlog_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
 End Class
