@@ -182,37 +182,44 @@
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        load_pemakaian()
+        load_pemakaian("zero")
     End Sub
 
-    Sub load_pemakaian()
+    Sub load_pemakaian(ByVal opt As String)
         Dim date_start As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_until As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
 
         Dim cat As String = ""
+        Dim zero_filter As String = ""
 
         If Not LECatPemakaian.EditValue.ToString = "0" Then
             cat = " AND it.id_item_cat='" & LECatPemakaian.EditValue.ToString & "'"
         End If
 
-        Dim q As String = "SELECT it.`id_item`,it.`item_desc`,uom.uom
-,IFNULL(beg.qty_beg,0) AS qty_beg,IFNULL(beg.harga_satuan_beg,0) AS harga_satuan_beg,IFNULL(beg.amount_beg,0) AS amount_beg
+        If opt = "zero" Then
+            zero_filter = ""
+        Else
+            zero_filter = " HAVING qty_beg!=0 "
+        End If
+
+        Dim q As String = "SELECT it.`id_item`,it.`item_desc`,IFNULL(beg.min_date,rec.min_date) AS min_date,uom.uom
+,IFNULL(beg.qty_beg,0) AS qty_beg,IFNULL(beg.harga_satuan_beg,0) AS harga_satuan_beg,IF(IFNULL(beg.qty_beg,0)=0,0,IFNULL(beg.amount_beg,0)) AS amount_beg
 ,IFNULL(rec.qty_rec,0) AS qty_rec,IFNULL(rec.harga_satuan_rec,0) AS harga_satuan_rec,IFNULL(rec.amount_rec,0) AS amount_rec
 ,IFNULL(used.qty_used,0) AS qty_used,IFNULL(used.harga_satuan_used,0) AS harga_satuan_used,IFNULL(used.amount_used,0) AS amount_used
 ,IFNULL(rem.qty_rem,0) AS qty_rem,IFNULL(rem.harga_satuan_rem,0) AS harga_satuan_rem,IFNULL(rem.amount_rem,0) AS amount_rem
 FROM tb_item it
 INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom_stock " & cat & "
 LEFT JOIN (
-	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_beg
+	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_beg,MIN(storage_item_datetime) as min_date
 	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_beg
 	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_beg
 	FROM `tb_storage_item`
 	WHERE DATE(storage_item_datetime)<'" & date_start & "'
 	GROUP BY id_item
-	HAVING qty_beg!=0
+	" & zero_filter & "
 )beg ON beg.id_item=it.id_item
 LEFT JOIN (
-	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_rec
+	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_rec,MIN(storage_item_datetime) as min_date
 	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_rec
 	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_rec
 	FROM `tb_storage_item`
@@ -246,5 +253,20 @@ WHERE NOT ISNULL(beg.id_item) OR NOT ISNULL(rec.id_item) OR NOT ISNULL(used.id_i
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print(GCPemakaian, "Report Pemakaian")
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        load_pemakaian("")
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        If GVPemakaian.RowCount > 0 Then
+            LEDeptSC.EditValue = "-1"
+            DEFromSC.EditValue = Date.Parse(GVPemakaian.GetFocusedRowCellValue("min_date").ToString)
+            DEUntilSC.EditValue = DEUntil.EditValue
+            SLEITem.EditValue = GVPemakaian.GetFocusedRowCellValue("id_item").ToString
+            XTCStock.SelectedTabPageIndex = 1
+            viewStockCard()
+        End If
     End Sub
 End Class

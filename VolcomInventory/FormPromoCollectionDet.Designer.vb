@@ -62,6 +62,9 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnid_prod_shopify_design = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrent_tag_design = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprice_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlAdd = New DevExpress.XtraEditors.PanelControl()
@@ -83,8 +86,36 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnid_prod_shopify = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrenttag = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_prod = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnprice_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprice_type_prod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_prod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount_prod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCBySizeType = New DevExpress.XtraGrid.GridControl()
+        Me.GVBySizeType = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty0 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +147,9 @@ Partial Class FormPromoCollectionDet
         Me.XTPProduct.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GCBySizeType, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBySizeType, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -363,7 +397,7 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 517)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 561)
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(915, 44)
         Me.PanelControlBottom.TabIndex = 15
@@ -459,13 +493,13 @@ Partial Class FormPromoCollectionDet
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(886, 284)
+        Me.GCData.Size = New System.Drawing.Size(886, 328)
         Me.GCData.TabIndex = 16
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design, Me.GridColumndesign_price, Me.GridColumnprice_type})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design, Me.GridColumndesign_price, Me.GridColumnprice_type, Me.GridColumnqty, Me.GridColumnamount})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -550,6 +584,38 @@ Partial Class FormPromoCollectionDet
         Me.GridColumndesign_price.Visible = True
         Me.GridColumndesign_price.VisibleIndex = 5
         '
+        'GridColumnprice_type
+        '
+        Me.GridColumnprice_type.Caption = "Price Type"
+        Me.GridColumnprice_type.FieldName = "price_type"
+        Me.GridColumnprice_type.Name = "GridColumnprice_type"
+        Me.GridColumnprice_type.Visible = True
+        Me.GridColumnprice_type.VisibleIndex = 4
+        '
+        'GridColumnqty
+        '
+        Me.GridColumnqty.Caption = "Qty"
+        Me.GridColumnqty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty.FieldName = "qty"
+        Me.GridColumnqty.Name = "GridColumnqty"
+        Me.GridColumnqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnqty.Visible = True
+        Me.GridColumnqty.VisibleIndex = 6
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.GridColumnamount.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumnamount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 7
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
@@ -598,22 +664,22 @@ Partial Class FormPromoCollectionDet
         Me.XTCData.Location = New System.Drawing.Point(0, 227)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPDesign
-        Me.XTCData.Size = New System.Drawing.Size(915, 290)
+        Me.XTCData.Size = New System.Drawing.Size(915, 334)
         Me.XTCData.TabIndex = 18
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPProduct})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPProduct, Me.XtraTabPage1})
         '
         'XTPDesign
         '
         Me.XTPDesign.Controls.Add(Me.GCData)
         Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(886, 284)
+        Me.XTPDesign.Size = New System.Drawing.Size(886, 328)
         Me.XTPDesign.Text = "Product List"
         '
         'XTPProduct
         '
         Me.XTPProduct.Controls.Add(Me.GCProduct)
         Me.XTPProduct.Name = "XTPProduct"
-        Me.XTPProduct.Size = New System.Drawing.Size(886, 284)
+        Me.XTPProduct.Size = New System.Drawing.Size(886, 328)
         Me.XTPProduct.Text = "Product List by SKU"
         '
         'GCProduct
@@ -622,13 +688,13 @@ Partial Class FormPromoCollectionDet
         Me.GCProduct.Location = New System.Drawing.Point(0, 0)
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(886, 284)
+        Me.GCProduct.Size = New System.Drawing.Size(886, 328)
         Me.GCProduct.TabIndex = 0
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod, Me.GridColumnqty_prod, Me.GridColumnamount_prod})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.ReadOnly = True
@@ -726,14 +792,6 @@ Partial Class FormPromoCollectionDet
         Me.GridColumndesign_price_prod.Visible = True
         Me.GridColumndesign_price_prod.VisibleIndex = 6
         '
-        'GridColumnprice_type
-        '
-        Me.GridColumnprice_type.Caption = "Price Type"
-        Me.GridColumnprice_type.FieldName = "price_type"
-        Me.GridColumnprice_type.Name = "GridColumnprice_type"
-        Me.GridColumnprice_type.Visible = True
-        Me.GridColumnprice_type.VisibleIndex = 4
-        '
         'GridColumnprice_type_prod
         '
         Me.GridColumnprice_type_prod.Caption = "Price Type"
@@ -742,11 +800,312 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnprice_type_prod.Visible = True
         Me.GridColumnprice_type_prod.VisibleIndex = 5
         '
+        'GridColumnqty_prod
+        '
+        Me.GridColumnqty_prod.Caption = "Qty"
+        Me.GridColumnqty_prod.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_prod.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_prod.FieldName = "qty"
+        Me.GridColumnqty_prod.Name = "GridColumnqty_prod"
+        Me.GridColumnqty_prod.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnqty_prod.Visible = True
+        Me.GridColumnqty_prod.VisibleIndex = 7
+        '
+        'GridColumnamount_prod
+        '
+        Me.GridColumnamount_prod.Caption = "Amount"
+        Me.GridColumnamount_prod.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamount_prod.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount_prod.FieldName = "amount"
+        Me.GridColumnamount_prod.Name = "GridColumnamount_prod"
+        Me.GridColumnamount_prod.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamount_prod.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumnamount_prod.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnamount_prod.Visible = True
+        Me.GridColumnamount_prod.VisibleIndex = 8
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCBySizeType)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(886, 328)
+        Me.XtraTabPage1.Text = "Product List By Sizetype"
+        '
+        'GCBySizeType
+        '
+        Me.GCBySizeType.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBySizeType.Location = New System.Drawing.Point(0, 0)
+        Me.GCBySizeType.MainView = Me.GVBySizeType
+        Me.GCBySizeType.Name = "GCBySizeType"
+        Me.GCBySizeType.Size = New System.Drawing.Size(886, 328)
+        Me.GCBySizeType.TabIndex = 17
+        Me.GCBySizeType.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBySizeType})
+        '
+        'GVBySizeType
+        '
+        Me.GVBySizeType.ColumnPanelRowHeight = 35
+        Me.GVBySizeType.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumnqty1, Me.GridColumnqty2, Me.GridColumnqty3, Me.GridColumnqty4, Me.GridColumnqty5, Me.GridColumnqty6, Me.GridColumnqty7, Me.GridColumnqty8, Me.GridColumnqty9, Me.GridColumnqty0, Me.GridColumnsize_type})
+        Me.GVBySizeType.GridControl = Me.GCBySizeType
+        Me.GVBySizeType.Name = "GVBySizeType"
+        Me.GVBySizeType.OptionsBehavior.ReadOnly = True
+        Me.GVBySizeType.OptionsCustomization.AllowFilter = False
+        Me.GVBySizeType.OptionsCustomization.AllowSort = False
+        Me.GVBySizeType.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVBySizeType.OptionsView.AllowCellMerge = True
+        Me.GVBySizeType.OptionsView.ColumnAutoWidth = False
+        Me.GVBySizeType.OptionsView.ShowFooter = True
+        Me.GVBySizeType.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "id_ol_promo_collection_det"
+        Me.GridColumn1.FieldName = "id_ol_promo_collection_sku"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "id_ol_promo_collection"
+        Me.GridColumn2.FieldName = "id_ol_promo_collection"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "id_design"
+        Me.GridColumn3.FieldName = "id_design"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Code"
+        Me.GridColumn4.FieldName = "code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 121
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Description"
+        Me.GridColumn5.FieldName = "name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.Width = 281
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Size Chart"
+        Me.GridColumn6.FieldName = "size_chart"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn6.Width = 92
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "No"
+        Me.GridColumn7.FieldName = "nomer_urut"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 43
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "id_prod_shopify"
+        Me.GridColumn8.FieldName = "id_prod_shopify"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Current Tag"
+        Me.GridColumn9.FieldName = "current_tag"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Unit Price"
+        Me.GridColumn10.DisplayFormat.FormatString = "N0"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "design_price"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 16
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Price Type"
+        Me.GridColumn11.FieldName = "price_type"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 15
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Total Qty"
+        Me.GridColumn12.DisplayFormat.FormatString = "N0"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "qty"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 14
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Amount"
+        Me.GridColumn13.DisplayFormat.FormatString = "N0"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "amount"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.GridColumn13.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 17
+        '
+        'GridColumnqty1
+        '
+        Me.GridColumnqty1.Caption = "qty1"
+        Me.GridColumnqty1.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty1.FieldName = "qty1"
+        Me.GridColumnqty1.Name = "GridColumnqty1"
+        Me.GridColumnqty1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty1", "{0:N0}")})
+        Me.GridColumnqty1.Visible = True
+        Me.GridColumnqty1.VisibleIndex = 4
+        '
+        'GridColumnqty2
+        '
+        Me.GridColumnqty2.Caption = "qty2"
+        Me.GridColumnqty2.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty2.FieldName = "qty2"
+        Me.GridColumnqty2.Name = "GridColumnqty2"
+        Me.GridColumnqty2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty2", "{0:N0}")})
+        Me.GridColumnqty2.Visible = True
+        Me.GridColumnqty2.VisibleIndex = 5
+        '
+        'GridColumnqty3
+        '
+        Me.GridColumnqty3.Caption = "qty3"
+        Me.GridColumnqty3.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty3.FieldName = "qty3"
+        Me.GridColumnqty3.Name = "GridColumnqty3"
+        Me.GridColumnqty3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty3.Visible = True
+        Me.GridColumnqty3.VisibleIndex = 6
+        '
+        'GridColumnqty4
+        '
+        Me.GridColumnqty4.Caption = "qty4"
+        Me.GridColumnqty4.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty4.FieldName = "qty4"
+        Me.GridColumnqty4.Name = "GridColumnqty4"
+        Me.GridColumnqty4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty4", "{0:N0}")})
+        Me.GridColumnqty4.Visible = True
+        Me.GridColumnqty4.VisibleIndex = 7
+        '
+        'GridColumnqty5
+        '
+        Me.GridColumnqty5.Caption = "qty5"
+        Me.GridColumnqty5.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty5.FieldName = "qty5"
+        Me.GridColumnqty5.Name = "GridColumnqty5"
+        Me.GridColumnqty5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty5", "{0:N0}")})
+        Me.GridColumnqty5.Visible = True
+        Me.GridColumnqty5.VisibleIndex = 8
+        '
+        'GridColumnqty6
+        '
+        Me.GridColumnqty6.Caption = "qty6"
+        Me.GridColumnqty6.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty6.FieldName = "qty6"
+        Me.GridColumnqty6.Name = "GridColumnqty6"
+        Me.GridColumnqty6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", "{0:N0}")})
+        Me.GridColumnqty6.Visible = True
+        Me.GridColumnqty6.VisibleIndex = 9
+        '
+        'GridColumnqty7
+        '
+        Me.GridColumnqty7.Caption = "qty7"
+        Me.GridColumnqty7.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty7.FieldName = "qty7"
+        Me.GridColumnqty7.Name = "GridColumnqty7"
+        Me.GridColumnqty7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty7.Visible = True
+        Me.GridColumnqty7.VisibleIndex = 10
+        '
+        'GridColumnqty8
+        '
+        Me.GridColumnqty8.Caption = "qty8"
+        Me.GridColumnqty8.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty8.FieldName = "qty8"
+        Me.GridColumnqty8.Name = "GridColumnqty8"
+        Me.GridColumnqty8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty8.Visible = True
+        Me.GridColumnqty8.VisibleIndex = 11
+        '
+        'GridColumnqty9
+        '
+        Me.GridColumnqty9.Caption = "qty9"
+        Me.GridColumnqty9.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty9.FieldName = "qty9"
+        Me.GridColumnqty9.Name = "GridColumnqty9"
+        Me.GridColumnqty9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty9", "{0:N0}")})
+        Me.GridColumnqty9.Visible = True
+        Me.GridColumnqty9.VisibleIndex = 12
+        '
+        'GridColumnqty0
+        '
+        Me.GridColumnqty0.Caption = "qty0"
+        Me.GridColumnqty0.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty0.FieldName = "qty0"
+        Me.GridColumnqty0.Name = "GridColumnqty0"
+        Me.GridColumnqty0.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty0.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty0", "{0:N0}")})
+        Me.GridColumnqty0.Visible = True
+        Me.GridColumnqty0.VisibleIndex = 13
+        '
+        'GridColumnsize_type
+        '
+        Me.GridColumnsize_type.Caption = "Size Type"
+        Me.GridColumnsize_type.FieldName = "size_type"
+        Me.GridColumnsize_type.Name = "GridColumnsize_type"
+        Me.GridColumnsize_type.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnsize_type.Visible = True
+        Me.GridColumnsize_type.VisibleIndex = 3
+        '
         'FormPromoCollectionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(915, 561)
+        Me.ClientSize = New System.Drawing.Size(915, 605)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -789,6 +1148,9 @@ Partial Class FormPromoCollectionDet
         Me.XTPProduct.ResumeLayout(False)
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCBySizeType, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBySizeType, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -858,4 +1220,35 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumndesign_price_prod As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnprice_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnprice_type_prod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty_prod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount_prod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCBySizeType As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVBySizeType As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty0 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

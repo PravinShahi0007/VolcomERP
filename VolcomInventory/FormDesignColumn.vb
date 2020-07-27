@@ -160,6 +160,8 @@
         If GVDesignColumn.Columns.Count > 0 Then
             GVDesignColumn.FocusedColumn = GVDesignColumn.Columns(0)
         End If
+
+        GVDesignColumn.BestFitColumns()
     End Sub
 
     Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEType.EditValueChanged
