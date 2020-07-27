@@ -29,6 +29,17 @@
 
     Sub actionLoad()
         Cursor = Cursors.WaitCursor
+        'set caption
+        GVBySizeType.Columns("qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVBySizeType.Columns("qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVBySizeType.Columns("qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVBySizeType.Columns("qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVBySizeType.Columns("qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVBySizeType.Columns("qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVBySizeType.Columns("qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVBySizeType.Columns("qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVBySizeType.Columns("qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVBySizeType.Columns("qty0").Caption = "0" + System.Environment.NewLine + "SM"
         If action = "ins" Then
             DEStart.EditValue = Now
             DEEnd.EditValue = Now
@@ -125,6 +136,52 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewProductBySizeType()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SET @nomer=0;
+        SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
+        n.nomer_urut,prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, 
+        SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN pd.qty END),0) AS `qty1`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='2' THEN pd.qty END),0) AS `qty2`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='3' THEN pd.qty END),0) AS `qty3`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='4' THEN pd.qty END),0) AS `qty4`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='5' THEN pd.qty END),0) AS `qty5`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='6' THEN pd.qty END),0) AS `qty6`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='7' THEN pd.qty END),0) AS `qty7`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='8' THEN pd.qty END),0) AS `qty8`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='9' THEN pd.qty END),0) AS `qty9`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='0' THEN pd.qty END),0) AS `qty0`,
+        SUM(pd.qty) AS `qty`,
+        pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`
+        FROM tb_ol_promo_collection_sku pd
+        INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
+        LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
+        INNER JOIN (
+	        SELECT @nomer:=@nomer+1 AS `nomer_urut`,a.id_design FROM (
+		        SELECT d.id_design
+		        FROM tb_ol_promo_collection_sku pd
+		        INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+		        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+		        WHERE pd.id_ol_promo_collection=" + id + "
+		        GROUP BY prod.id_design
+		        ORDER BY d.design_display_name ASC 
+	        ) a
+	        JOIN (SELECT @nomer:=0 AS `nox`) AS `n`
+        ) n ON n.id_design = prod.id_design
+        WHERE pd.id_ol_promo_collection=" + id + "
+        GROUP BY d.id_design, SUBSTRING(prod.product_full_code, 10, 1)
+        ORDER BY d.design_display_name ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCBySizeType.DataSource = data
+        GVBySizeType.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub allow_status()
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
@@ -190,7 +247,9 @@
     End Sub
 
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
-
+        If XTCData.SelectedTabPageIndex = 2 Then
+            viewProductBySizeType()
+        End If
     End Sub
 
     Sub saveHead()
@@ -287,7 +346,7 @@
                 Dim query_upd As String = "-- delete report mark
                 DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
                 -- reset confirm
-                UPDATE tb_ol_promo_collection SET is_confirm=2 WHERE id_ol_promo_collection=" + id + "; "
+                UPDATE tb_ol_promo_collection SET is_confirm=2,id_report_status=1 WHERE id_ol_promo_collection=" + id + "; "
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'refresh
@@ -334,9 +393,12 @@
             If XTCData.SelectedTabPageIndex = 0 Then
                 gv = GVData
                 ReportPromoCollection.dt = GCData.DataSource
-            Else
+            ElseIf XTCData.SelectedTabPageIndex = 1 Then
                 gv = GVProduct
                 ReportPromoCollection.dt = GCProduct.DataSource
+            Else
+                gv = GVBySizeType
+                ReportPromoCollection.dt = GCBySizeType.DataSource
             End If
             ReportPromoCollection.id = id
             If id_report_status <> "6" Then
