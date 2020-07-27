@@ -287,7 +287,7 @@
                 Dim query_upd As String = "-- delete report mark
                 DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
                 -- reset confirm
-                UPDATE tb_ol_promo_collection SET is_confirm=2 WHERE id_ol_promo_collection=" + id + "; "
+                UPDATE tb_ol_promo_collection SET is_confirm=2,id_report_status=1 WHERE id_ol_promo_collection=" + id + "; "
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'refresh
