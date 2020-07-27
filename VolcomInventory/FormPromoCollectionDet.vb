@@ -167,7 +167,7 @@
 		        FROM tb_ol_promo_collection_sku pd
 		        INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
 		        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
-		        WHERE pd.id_ol_promo_collection=1
+		        WHERE pd.id_ol_promo_collection=" + id + "
 		        GROUP BY prod.id_design
 		        ORDER BY d.design_display_name ASC 
 	        ) a
