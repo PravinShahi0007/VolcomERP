@@ -63,7 +63,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.SLEV3pl = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -149,7 +149,7 @@ Partial Class FormDelManifestDet
         CType(Me.GCCargoRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCargoRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEV3pl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -425,6 +425,8 @@ Partial Class FormDelManifestDet
         '
         Me.TETotalRate.Location = New System.Drawing.Point(638, 126)
         Me.TETotalRate.Name = "TETotalRate"
+        Me.TETotalRate.Properties.Mask.EditMask = "N2"
+        Me.TETotalRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETotalRate.Properties.ReadOnly = True
         Me.TETotalRate.Size = New System.Drawing.Size(176, 20)
         Me.TETotalRate.TabIndex = 24
@@ -442,6 +444,8 @@ Partial Class FormDelManifestDet
         '
         Me.TERate.Location = New System.Drawing.Point(638, 100)
         Me.TERate.Name = "TERate"
+        Me.TERate.Properties.Mask.EditMask = "N2"
+        Me.TERate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TERate.Properties.ReadOnly = True
         Me.TERate.Size = New System.Drawing.Size(125, 20)
         Me.TERate.TabIndex = 22
@@ -459,6 +463,8 @@ Partial Class FormDelManifestDet
         '
         Me.TECWeight.Location = New System.Drawing.Point(638, 74)
         Me.TECWeight.Name = "TECWeight"
+        Me.TECWeight.Properties.Mask.EditMask = "N2"
+        Me.TECWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TECWeight.Properties.ReadOnly = True
         Me.TECWeight.Size = New System.Drawing.Size(82, 20)
         Me.TECWeight.TabIndex = 20
@@ -569,26 +575,26 @@ Partial Class FormDelManifestDet
         Me.SLUE3PL.Location = New System.Drawing.Point(638, 48)
         Me.SLUE3PL.Name = "SLUE3PL"
         Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUE3PL.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUE3PL.Properties.View = Me.SLEV3pl
         Me.SLUE3PL.Size = New System.Drawing.Size(199, 20)
         Me.SLUE3PL.TabIndex = 18
         '
-        'SearchLookUpEdit1View
+        'SLEV3pl
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsBehavior.ReadOnly = True
-        Me.SearchLookUpEdit1View.OptionsCustomization.AllowColumnMoving = False
-        Me.SearchLookUpEdit1View.OptionsCustomization.AllowColumnResizing = False
-        Me.SearchLookUpEdit1View.OptionsCustomization.AllowFilter = False
-        Me.SearchLookUpEdit1View.OptionsCustomization.AllowGroup = False
-        Me.SearchLookUpEdit1View.OptionsCustomization.AllowQuickHideColumns = False
-        Me.SearchLookUpEdit1View.OptionsCustomization.AllowRowSizing = True
-        Me.SearchLookUpEdit1View.OptionsCustomization.AllowSort = False
-        Me.SearchLookUpEdit1View.OptionsCustomization.CustomizationFormSearchBoxVisible = True
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        Me.SLEV3pl.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.SLEV3pl.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SLEV3pl.Name = "SLEV3pl"
+        Me.SLEV3pl.OptionsBehavior.ReadOnly = True
+        Me.SLEV3pl.OptionsCustomization.AllowColumnMoving = False
+        Me.SLEV3pl.OptionsCustomization.AllowColumnResizing = False
+        Me.SLEV3pl.OptionsCustomization.AllowFilter = False
+        Me.SLEV3pl.OptionsCustomization.AllowGroup = False
+        Me.SLEV3pl.OptionsCustomization.AllowQuickHideColumns = False
+        Me.SLEV3pl.OptionsCustomization.AllowRowSizing = True
+        Me.SLEV3pl.OptionsCustomization.AllowSort = False
+        Me.SLEV3pl.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.SLEV3pl.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SLEV3pl.OptionsView.ShowGroupPanel = False
         '
         'GridColumn23
         '
@@ -1262,7 +1268,7 @@ Partial Class FormDelManifestDet
         CType(Me.GCCargoRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCargoRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEV3pl, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1320,7 +1326,7 @@ Partial Class FormDelManifestDet
     Friend WithEvents TEUpdatedDate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TECreatedDate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SLUE3PL As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLEV3pl As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnStoreAccount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStoreName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn

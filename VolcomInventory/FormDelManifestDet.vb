@@ -436,24 +436,6 @@ GROUP BY cg.`id_comp_group`"
         End If
     End Sub
 
-    Private Sub SLUE3PL_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles SLUE3PL.EditValueChanging
-        If loaded And GVList.RowCount > 0 Then
-            Dim confirm As DialogResult
-
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Change 3PL will reset list, are you sure ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                For i = GVList.RowCount - 1 To 0 Step -1
-                    If GVList.IsValidRowHandle(i) Then
-                        GVList.DeleteRow(i)
-                    End If
-                Next
-            Else
-                e.Cancel = True
-            End If
-        End If
-    End Sub
-
     Function compare_database() As Boolean
         Dim query As String = "
             SELECT *
@@ -659,12 +641,16 @@ FROM
 ,comp.awb_rank
 FROM `tb_3pl_rate` AS rate
 INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_comp
-WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.is_active=1 AND rate.id_type='" + SLEDelType.EditValue.ToString + "'
+WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.is_active=1 AND rate.id_type=1 AND rate.id_del_type='" + SLEDelType.EditValue.ToString + "'
 ORDER BY amount ASC,comp.awb_rank ASC"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCCargoRate.DataSource = dt
             GVCargoRate.BestFitColumns()
             viewSearchLookupQuery(SLUE3PL, q, "id_3pl_rate", "cargo", "id_3pl_rate")
+            '
+            TECWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
+            TERate.EditValue = GVCargoRate.GetFocusedRowCellValue("cargo_rate")
+            TETotalRate.EditValue = GVCargoRate.GetFocusedRowCellValue("amount")
         End If
     End Sub
 
@@ -678,7 +664,9 @@ ORDER BY amount ASC,comp.awb_rank ASC"
 
     Private Sub SLUE3PL_EditValueChanged(sender As Object, e As EventArgs) Handles SLUE3PL.EditValueChanged
         Try
-
+            TECWeight.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("weight")
+            TERate.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("cargo_rate")
+            TETotalRate.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("amount")
         Catch ex As Exception
 
         End Try
