@@ -6084,7 +6084,7 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "247" Then
                     'close jamsostek
                     execute_non_query("UPDATE tb_emp_payroll SET is_close_pay_jamsostek = 1 WHERE id_payroll IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
-                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "247" Then
+                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "167" Then
                     'close cash advance
                     execute_non_query("UPDATE tb_cash_advance SET is_bbk = 1 WHERE id_cash_advance IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                 End If
