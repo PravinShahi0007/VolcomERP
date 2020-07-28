@@ -1106,12 +1106,12 @@
 
             'infoCustom("Status changed.")
             Try
-                FormSampleReceiveDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormSampleReceiveDet.allow_status()
-                FormSampleReceiveDet.view_list_rec()
-                FormSampleReceive.view_sample_rec()
-                FormSampleReceive.GVSampleReceive.FocusedRowHandle = find_row(FormSampleReceive.GVSampleReceive, "id_sample_purc_rec", id_report)
-                FormViewSampleReceive.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                'FormSampleReceiveDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                'FormSampleReceiveDet.allow_status()
+                'FormSampleReceiveDet.view_list_rec()
+                'FormSampleReceive.view_sample_rec()
+                'FormSampleReceive.GVSampleReceive.FocusedRowHandle = find_row(FormSampleReceive.GVSampleReceive, "id_sample_purc_rec", id_report)
+                'FormViewSampleReceive.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 'FormWork.view_sample_rec()
             Catch ex As Exception
             End Try
@@ -8286,33 +8286,33 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
         ElseIf report_mark_type = "2" Then 'receive sample purc
             'MsgBox(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
             'declare account
-            Dim id_coa_m_d As String = "3"
-            Dim id_coa_m_k As String = "4"
-            'vendor name and code
-            Dim _comp_code As String = get_company_x(FormSampleReceiveDet.id_comp_from, "2")
-            Dim _comp_name As String = FormSampleReceiveDet.TECompName.Text
-            Dim _value_str As String = decimalSQL(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+            'Dim id_coa_m_d As String = "3"
+            'Dim id_coa_m_k As String = "4"
+            ''vendor name and code
+            'Dim _comp_code As String = get_company_x(FormSampleReceiveDet.id_comp_from, "2")
+            'Dim _comp_name As String = FormSampleReceiveDet.TECompName.Text
+            'Dim _value_str As String = decimalSQL(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
+            ''
+            'Dim id_acc_x As String = ""
+            'q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+            ''-debit
+            ''-- item
+            'If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+            '    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+            'Else
+            '    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+            'End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Receive - " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+            'q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Receive - " & _comp_name, report_mark_type, id_report)
+            ''credit
+            'If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+            '    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+            'Else
+            '    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+            'End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Receive - " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
+            'q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Receive - " & _comp_name, report_mark_type, id_report)
+            'execute_non_query(q_posting, True, "", "", "", "")
         ElseIf report_mark_type = "13" Then 'mat purc
             If FormMatPurchaseDet.LEPOType.EditValue.ToString = "1" Then 'domestic
                 'declare account
