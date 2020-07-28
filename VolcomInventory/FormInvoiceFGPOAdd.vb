@@ -164,6 +164,16 @@ GROUP BY sp.`id_sample_purc`"
                 TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
                 aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
                 TEAfterKurs.EditValue = aft_kurs
+            ElseIf SLEReportType.EditValue.ToString = "1" Then
+                Dim aft_kurs As Decimal = 0.00
+
+                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
+                TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("po_val")
+                TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
+                TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty")
+                TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
+                aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
+                TEAfterKurs.EditValue = aft_kurs
             End If
         Catch ex As Exception
         End Try

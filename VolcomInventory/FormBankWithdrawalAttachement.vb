@@ -91,6 +91,8 @@
             errorCustom(cek_attachment)
         ElseIf Not cek_pph = "" Then
             errorCustom(cek_pph)
+        ElseIf TEInvNumber.Text = "" Then
+            warningCustom("Please input invoice number")
         Else
             Dim confirm As DialogResult
 
@@ -101,12 +103,51 @@
                     execute_non_query("UPDATE tb_purc_order_det SET pph_percent='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph_percent").ToString) & "' WHERE id_purc_order_det='" & GVPurcReq.GetRowCellValue(i, "id_purc_order_det").ToString & "'", True, "", "", "", "")
                 Next
 
-                Dim query As String = "UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ",due_date = '" + Date.Parse(DateEditDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', is_active_payment = 1, pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ", pph_account = " + If(SLEPPHAccount.EditValue.ToString = "0", "NULL", SLEPPHAccount.EditValue.ToString) + " WHERE id_purc_order = " + id_purc_order
-
+                Dim query As String = "UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ",due_date = '" + Date.Parse(DateEditDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', is_active_payment = 1, pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ", pph_account = " + If(SLEPPHAccount.EditValue.ToString = "0", "NULL", SLEPPHAccount.EditValue.ToString) + ",inv_number='" & addSlashes(TEInvNumber.Text) & "' WHERE id_purc_order = " + id_purc_order
                 execute_non_query(query, True, "", "", "", "")
+                'Jurnal PPH
+                'main journal
+                Dim id_acc_trans As String = ""
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                VALUES ('" + header_number_acc("1") + "','" + id_purc_order + "','24','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                id_acc_trans = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
 
-                'FormBankWithdrawal.buttonView_click()
-
+                query = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
+SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
+SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `debit`,
+0 AS `credit`,
+i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+FROM tb_purc_rec_det rd
+INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
+INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+INNER JOIN tb_item i ON i.id_item = rd.id_item
+INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
+WHERE po.id_purc_order=" & id_purc_order & " AND po.`is_close_rec`=1 
+GROUP BY po.id_purc_order,dep.id_main_comp
+UNION ALL
+SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
+0 AS `debit`,
+SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `credit`,
+i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
+FROM tb_purc_rec_det rd
+INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
+INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+INNER JOIN tb_item i ON i.id_item = rd.id_item
+INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
+WHERE po.id_purc_order=" & id_purc_order & " AND po.`is_close_rec`=1
+GROUP BY po.id_purc_order,dep.id_main_comp"
+                execute_non_query(query, True, "", "", "", "")
                 Close()
             End If
         End If

@@ -5481,45 +5481,46 @@ FROM
                 ) poall ON poall.id_purc_order = r.id_purc_order
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec,dep.id_main_comp
-                UNION ALL 
-                SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
-                SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `debit`,
-                0 AS `credit`,
-                i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
-                FROM tb_purc_rec_det rd
-                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
-                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
-                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
-                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
-                INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
-                INNER JOIN tb_item i ON i.id_item = rd.id_item
-                INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
-                INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
-                WHERE po.id_purc_order=" + FormPurcReceiveDet.id_purc_order + " AND po.`is_close_rec`=1 
-                GROUP BY po.id_purc_order,dep.id_main_comp
-                UNION ALL
-                SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
-                0 AS `debit`,
-                SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `credit`,
-                i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
-                FROM tb_purc_rec_det rd
-                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
-                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
-                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
-                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
-                INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
-                INNER JOIN tb_item i ON i.id_item = rd.id_item
-                INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
-                INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
-                WHERE po.id_purc_order=" + FormPurcReceiveDet.id_purc_order + " AND po.`is_close_rec`=1
-                GROUP BY po.id_purc_order,dep.id_main_comp
 ) ttl
 GROUP BY ttl.id_acc
 HAVING debit!=credit"
                 execute_non_query(qjd, True, "", "", "", "")
             End If
+            'jurnal PPH pindah
+            'UNION ALL - -PPH
+            '    Select Case " + id_acc_trans + " As id_acc_trans, comp.id_acc_ap As `id_acc`, dep.id_main_comp, SUM(rd.qty) As `qty`,
+            '    SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) As `debit`,
+            '    0 AS `credit`,
+            '    i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, If(po.id_expense_type = 1, 139, 202) As rmt_reff, po.id_purc_order, po.purc_order_number
+            '    From tb_purc_rec_det rd
+            '    INNER Join tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+            '    INNER Join tb_purc_order po ON po.id_purc_order = r.id_purc_order
+            '    INNER Join tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+            '    INNER Join tb_m_comp comp ON comp.id_comp = cont.id_comp
+            '    INNER Join tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+            '    INNER Join tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+            '    INNER Join tb_item i ON i.id_item = rd.id_item
+            '    INNER Join tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+            '    INNER Join tb_m_departement dep ON dep.id_departement=req.id_departement
+            '    WHERE po.id_purc_order = " + FormPurcReceiveDet.id_purc_order + " And po.`is_close_rec`=1 
+            '    GROUP BY po.id_purc_order, dep.id_main_comp
+            '    UNION ALL - -PPH
+            '    Select Case " + id_acc_trans + " As id_acc_trans, po.`pph_account` As `id_acc`, dep.id_main_comp, SUM(rd.qty) As `qty`,
+            '    0 AS `debit`,
+            '    SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) As `credit`,
+            '    i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, If(po.id_expense_type = 1, 139, 202) As rmt_reff, po.id_purc_order, po.purc_order_number
+            '    From tb_purc_rec_det rd
+            '    INNER Join tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+            '    INNER Join tb_purc_order po ON po.id_purc_order = r.id_purc_order
+            '    INNER Join tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+            '    INNER Join tb_m_comp comp ON comp.id_comp = cont.id_comp
+            '    INNER Join tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+            '    INNER Join tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+            '    INNER Join tb_item i ON i.id_item = rd.id_item
+            '    INNER Join tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+            '    INNER Join tb_m_departement dep ON dep.id_departement=req.id_departement
+            '    WHERE po.id_purc_order = " + FormPurcReceiveDet.id_purc_order + " And po.`is_close_rec`=1
+            '    GROUP BY po.id_purc_order, dep.id_main_comp
 
             'refresh view
             FormPurcReceiveDet.actionLoad()
