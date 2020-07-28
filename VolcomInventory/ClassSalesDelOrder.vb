@@ -344,10 +344,12 @@
                 Dim data_store As DataTable = execute_query(query_store, -1, True, "", "", "", "")
                 Dim id_store As String = data_store.Rows(0)("id_store").ToString
                 Dim id_drawer_store As String = data_store.Rows(0)("id_drawer_store").ToString
-                Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
-                    `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                Dim quniq As String = "DELETE FROM tb_m_unique_code WHERE id_report=" + id_report_par + " AND report_mark_type=43 AND id_report_status=6;
+                    INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
+                    `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`,`id_report`, `report_mark_type`, `id_report_status`) 
                     SELECT cc.id_comp, c.id_drawer_def, td.id_product, tc.id_pl_prod_order_rec_det_unique,  tc.id_pl_sales_order_del_det_counting, '1', 
-                    CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW() 
+                    CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW(),
+                    td.id_pl_sales_order_del, 43,6 
                     FROM tb_pl_sales_order_del_det td
                     INNER JOIN tb_pl_sales_order_del t ON t.id_pl_sales_order_del = td.id_pl_sales_order_del
                     INNER JOIN tb_pl_sales_order_del_det_counting tc ON tc.id_pl_sales_order_del_det = td.id_pl_sales_order_del_det
@@ -371,10 +373,11 @@
             'save unreg unique
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",1)", True, "", "", "", "")
         ElseIf id_status_reportx_par = "5" Then
-            Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
-            `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+            Dim quniq As String = "DELETE FROM tb_m_unique_code WHERE id_report=" + id_report_par + " AND report_mark_type=43 AND id_report_status=5;
+            INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
+            `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`,`id_report`, `report_mark_type`, `id_report_status`) 
             SELECT cc.id_comp, t.id_wh_drawer, td.id_product, tc.id_pl_prod_order_rec_det_unique,  tc.id_pl_sales_order_del_det_counting, '1', 
-            CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, 1, NOW() 
+            CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, 1, NOW(),td.id_pl_sales_order_del, 43,5
             FROM tb_pl_sales_order_del_det td
             INNER JOIN tb_pl_sales_order_del t ON t.id_pl_sales_order_del = td.id_pl_sales_order_del
             INNER JOIN tb_pl_sales_order_del_det_counting tc ON tc.id_pl_sales_order_del_det = td.id_pl_sales_order_del_det
@@ -435,10 +438,12 @@
                 Dim id_store As String = data_store.Rows(0)("id_store").ToString
                 Dim id_drawer_store As String = data_store.Rows(0)("id_drawer_store").ToString
 
-                Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
-                `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                Dim quniq As String = "DELETE FROM tb_m_unique_code WHERE id_report=" + id_report_par + " AND report_mark_type=103 AND id_report_status=6;
+                INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
+                `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`,`id_report`, `report_mark_type`, `id_report_status`) 
                 SELECT cc.id_comp, c.id_drawer_def, td.id_product, tc.id_pl_prod_order_rec_det_unique,  tc.id_pl_sales_order_del_det_counting, '1', 
-                CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW() 
+                CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW(),
+                '" + id_report_par + "', 103,6
                 FROM tb_pl_sales_order_del_det td
                 INNER JOIN tb_pl_sales_order_del t ON t.id_pl_sales_order_del = td.id_pl_sales_order_del
                 INNER JOIN tb_pl_sales_order_del_det_counting tc ON tc.id_pl_sales_order_del_det = td.id_pl_sales_order_del_det
@@ -459,10 +464,12 @@
                 stopCustom("failed insert unique :" + ex.ToString)
             End Try
         ElseIf id_status_reportx_par = "5" Then
-            Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
-            `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+            Dim quniq As String = "DELETE FROM tb_m_unique_code WHERE id_report=" + id_report_par + " AND report_mark_type=103 AND id_report_status=5;
+            INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_pl_sales_order_del_det_counting`,`id_type`,`unique_code`,
+            `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`,`id_report`, `report_mark_type`, `id_report_status`) 
             SELECT cc.id_comp, t.id_wh_drawer, td.id_product,  tc.id_pl_prod_order_rec_det_unique,tc.id_pl_sales_order_del_det_counting, '1', 
-            CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, 1, NOW() 
+            CONCAT(p.product_full_code,tc.pl_sales_order_del_det_counting), td.id_design_price, td.design_price, 1, 1, NOW(),
+            '" + id_report_par + "', '103',5
             FROM tb_pl_sales_order_del_det td
             INNER JOIN tb_pl_sales_order_del t ON t.id_pl_sales_order_del = td.id_pl_sales_order_del
             INNER JOIN tb_pl_sales_order_del_det_counting tc ON tc.id_pl_sales_order_del_det = td.id_pl_sales_order_del_det
