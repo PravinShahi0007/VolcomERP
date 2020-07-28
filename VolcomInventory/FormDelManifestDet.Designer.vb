@@ -282,6 +282,7 @@ Partial Class FormDelManifestDet
         Me.SBComplete.Size = New System.Drawing.Size(101, 45)
         Me.SBComplete.TabIndex = 2
         Me.SBComplete.Text = "Complete"
+        Me.SBComplete.Visible = False
         '
         'ErrorProvider
         '

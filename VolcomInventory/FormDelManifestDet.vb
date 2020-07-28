@@ -239,13 +239,10 @@ GROUP BY cg.`id_comp_group`"
     End Sub
 
     Sub save(ByVal type As String)
-        If SLUE3PL.EditValue.ToString = "0" Then
-            stopCustom("Please select 3PL.")
-        ElseIf GVList.RowCount < 1 Then
-            stopCustom("Please add delivery.")
+        If GVList.RowCount < 1 Then
+            stopCustom("DO not found.")
         Else
             Dim continue_save As Boolean = True
-
             If type = "complete" Or type = "cancel" Then
                 Dim confirm As DialogResult
 
@@ -299,6 +296,67 @@ GROUP BY cg.`id_comp_group`"
                 End If
             End If
         End If
+
+        'If SLUE3PL.EditValue.ToString = "0" Then
+        '    stopCustom("Please select 3PL.")
+        'ElseIf GVList.RowCount < 1 Then
+        '    stopCustom("Please add delivery.")
+        'Else
+        '    Dim continue_save As Boolean = True
+
+        '    If type = "complete" Or type = "cancel" Then
+        '        Dim confirm As DialogResult
+
+        '        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to " + type + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        '        If confirm = Windows.Forms.DialogResult.Yes Then
+        '            continue_save = True
+        '        Else
+        '            continue_save = False
+        '        End If
+        '    End If
+
+        '    If continue_save Then
+        '        Dim query As String = ""
+
+        '        If id_del_manifest = "0" Then
+        '            query = "INSERT INTO tb_del_manifest (id_comp, created_date, created_by) VALUES (" + SLUE3PL.EditValue.ToString + ", NOW(), " + id_user + "); SELECT LAST_INSERT_ID();"
+
+        '            id_del_manifest = execute_query(query, 0, True, "", "", "", "")
+        '        Else
+        '            'update
+        '            query = "UPDATE tb_del_manifest SET id_comp = " + SLUE3PL.EditValue.ToString + ", updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + If(type = "draft", "NULL", If(type = "complete", "6", "5")) + " WHERE id_del_manifest = " + id_del_manifest
+
+        '            execute_non_query(query, True, "", "", "", "")
+
+        '            'delete
+        '            query = "DELETE FROM tb_del_manifest_det WHERE id_del_manifest = " + id_del_manifest
+
+        '            execute_non_query(query, True, "", "", "", "")
+        '        End If
+
+        '        'detail
+        '        query = "INSERT INTO tb_del_manifest_det (id_del_manifest, id_wh_awb_det) VALUES "
+
+        '        For i = 0 To GVList.RowCount - 1
+        '            If GVList.IsValidRowHandle(i) Then
+        '                query += "(" + id_del_manifest + ", " + GVList.GetRowCellValue(i, "id_wh_awb_det").ToString + "), "
+        '            End If
+        '        Next
+
+        '        query = query.Substring(0, query.Length - 2)
+
+        '        execute_non_query(query, True, "", "", "", "")
+
+        '        execute_non_query("CALL gen_number(" + id_del_manifest + ", '232')", True, "", "", "", "")
+
+        '        If type = "draft" Then
+        '            form_load()
+        '        Else
+        '            Close()
+        '        End If
+        '    End If
+        'End If
     End Sub
 
     Private Sub GVList_RowCountChanged(sender As Object, e As EventArgs) Handles GVList.RowCountChanged
