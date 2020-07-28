@@ -90,10 +90,11 @@
             End If
 
             'insertUniqueCode
-            Dim qun As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`,`id_pl_prod_order_rec_det_unique`,`id_type`,`unique_code`,
-            `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+            Dim qun As String = "DELETE FROM tb_m_unique_code WHERE id_report=" + id_report_par + " AND report_mark_type=37 AND id_report_status=6;
+            INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`,`id_pl_prod_order_rec_det_unique`,`id_type`,`unique_code`,
+            `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`,`id_report`, `report_mark_type`, `id_report_status`) 
             SELECT cc.id_comp, r.id_wh_drawer, rc.id_product,  rc.id_pl_prod_order_rec_det_unique, '6', CONCAT(p.product_full_code,rc.pl_prod_order_rec_det_counting),
-            prc.id_design_price, prc.design_price, 1, 1, NOW()
+            prc.id_design_price, prc.design_price, 1, 1, NOW(), rd.id_pl_prod_order_rec, 37,6
             FROM tb_pl_prod_order_rec_det rd
             INNER JOIN tb_pl_prod_order_rec r ON r.id_pl_prod_order_rec = rd.id_pl_prod_order_rec
             INNER JOIN tb_pl_prod_order_rec_det_counting rc ON rc.id_pl_prod_order_rec_det = rd.id_pl_prod_order_rec_det

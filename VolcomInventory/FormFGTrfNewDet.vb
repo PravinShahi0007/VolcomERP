@@ -1157,10 +1157,12 @@ Public Class FormFGTrfNewDet
 
                     'reserved unique code
                     If is_use_unique_code_wh = "1" Then
-                        Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_fg_trf_det_counting`,`id_pl_prod_order_rec_det_unique`,`id_type`,`unique_code`,
-                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                        Dim quniq As String = "DELETE FROM tb_m_unique_code WHERE id_report=" + id_fg_trf + " AND report_mark_type=57 AND id_report_status=1;
+                        INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_fg_trf_det_counting`,`id_pl_prod_order_rec_det_unique`,`id_type`,`unique_code`,
+                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`, `id_report`, `report_mark_type`, `id_report_status`) 
                         SELECT cc.id_comp, '" + id_wh_drawer_from + "', td.id_product,  tc.id_fg_trf_det_counting,tc.id_pl_prod_order_rec_det_unique, '7', 
-                        CONCAT(p.product_full_code,tc.fg_trf_det_counting), sod.id_design_price, sod.design_price, -1, 1, NOW() 
+                        CONCAT(p.product_full_code,tc.fg_trf_det_counting), sod.id_design_price, sod.design_price, -1, 1, NOW(),
+                        td.id_fg_trf, 57, 1
                         FROM tb_fg_trf_det td
                         INNER JOIN tb_fg_trf t ON t.id_fg_trf = td.id_fg_trf
                         INNER JOIN tb_sales_order so ON so.id_sales_order = t.id_sales_order
