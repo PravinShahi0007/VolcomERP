@@ -1704,11 +1704,12 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
 
     Private Sub SBSyncShopify_Click(sender As Object, e As EventArgs) Handles SBSyncShopify.Click
         Cursor = Cursors.WaitCursor
-
+        FormMain.SplashScreenManager1.ShowWaitForm()
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Please wait")
         Dim cls As ClassShopifyApi = New ClassShopifyApi
 
         Dim no_duplicate As Boolean = cls.sync_sku()
-
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
 
         If no_duplicate Then
