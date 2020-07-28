@@ -159,6 +159,7 @@ Partial Class FormReportBalanceSheet
         Me.BViewPajak = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DETaxFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1177,9 +1178,10 @@ Partial Class FormReportBalanceSheet
         '
         'GVTaxReport
         '
-        Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
+        Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn23, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
         Me.GVTaxReport.GridControl = Me.GCTaxReport
         Me.GVTaxReport.Name = "GVTaxReport"
+        Me.GVTaxReport.OptionsView.ColumnAutoWidth = False
         Me.GVTaxReport.OptionsView.ShowGroupPanel = False
         '
         'GridColumn4
@@ -1224,7 +1226,7 @@ Partial Class FormReportBalanceSheet
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "Vendor"
+        Me.GridColumn9.Caption = "Vendor Code"
         Me.GridColumn9.FieldName = "comp_number"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
@@ -1238,7 +1240,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn10.FieldName = "pph_percent"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 5
+        Me.GridColumn10.VisibleIndex = 6
         '
         'GridColumn11
         '
@@ -1248,7 +1250,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn11.FieldName = "pph"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 6
+        Me.GridColumn11.VisibleIndex = 7
         '
         'GridColumn12
         '
@@ -1258,7 +1260,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn12.FieldName = "dpp"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 7
+        Me.GridColumn12.VisibleIndex = 8
         '
         'GridColumn13
         '
@@ -1266,7 +1268,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn13.FieldName = "npwp"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 8
+        Me.GridColumn13.VisibleIndex = 9
         '
         'GridColumn14
         '
@@ -1464,6 +1466,14 @@ Partial Class FormReportBalanceSheet
         Me.DETaxFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DETaxFrom.Size = New System.Drawing.Size(173, 20)
         Me.DETaxFrom.TabIndex = 1
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Vendor"
+        Me.GridColumn23.FieldName = "comp_name"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 5
         '
         'FormReportBalanceSheet
         '
@@ -1674,4 +1684,5 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

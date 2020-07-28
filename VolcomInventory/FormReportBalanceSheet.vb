@@ -289,4 +289,8 @@ HAVING NOT ISNULL(jurnal_no)"
         GCTaxReport.DataSource = dt
         GVTaxReport.BestFitColumns()
     End Sub
+
+    Private Sub BPrintPajak_Click(sender As Object, e As EventArgs) Handles BPrintPajak.Click
+        print_raw(GCTaxReport, SLETaxCat.Text & " (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+    End Sub
 End Class
