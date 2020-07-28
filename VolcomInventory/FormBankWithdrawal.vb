@@ -946,7 +946,14 @@ GROUP BY sr.`id_sales_return`"
             Dim data_final As DataTable = data.Clone
 
             For i = 0 To data.Rows.Count - 1
-                If data.Rows(i)("expense") > 0 And data.Rows(i)("is_bbk").ToString = "2" Then
+                Dim expense As Decimal = 0.00
+
+                Try
+                    expense = data.Rows(i)("expense")
+                Catch ex As Exception
+                End Try
+
+                If expense > 0 And data.Rows(i)("is_bbk").ToString = "2" Then
                     data_final.ImportRow(data.Rows(i))
                 End If
             Next
