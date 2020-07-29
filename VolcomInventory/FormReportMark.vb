@@ -1106,12 +1106,12 @@
 
             'infoCustom("Status changed.")
             Try
-                FormSampleReceiveDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormSampleReceiveDet.allow_status()
-                FormSampleReceiveDet.view_list_rec()
-                FormSampleReceive.view_sample_rec()
-                FormSampleReceive.GVSampleReceive.FocusedRowHandle = find_row(FormSampleReceive.GVSampleReceive, "id_sample_purc_rec", id_report)
-                FormViewSampleReceive.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                'FormSampleReceiveDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                'FormSampleReceiveDet.allow_status()
+                'FormSampleReceiveDet.view_list_rec()
+                'FormSampleReceive.view_sample_rec()
+                'FormSampleReceive.GVSampleReceive.FocusedRowHandle = find_row(FormSampleReceive.GVSampleReceive, "id_sample_purc_rec", id_report)
+                'FormViewSampleReceive.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 'FormWork.view_sample_rec()
             Catch ex As Exception
             End Try
@@ -5482,45 +5482,46 @@ FROM
                 ) poall ON poall.id_purc_order = r.id_purc_order
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec,dep.id_main_comp
-                UNION ALL 
-                SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
-                SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `debit`,
-                0 AS `credit`,
-                i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
-                FROM tb_purc_rec_det rd
-                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
-                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
-                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
-                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
-                INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
-                INNER JOIN tb_item i ON i.id_item = rd.id_item
-                INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
-                INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
-                WHERE po.id_purc_order=" + FormPurcReceiveDet.id_purc_order + " AND po.`is_close_rec`=1 
-                GROUP BY po.id_purc_order,dep.id_main_comp
-                UNION ALL
-                SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
-                0 AS `debit`,
-                SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) AS `credit`,
-                i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
-                FROM tb_purc_rec_det rd
-                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
-                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
-                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
-                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
-                INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
-                INNER JOIN tb_item i ON i.id_item = rd.id_item
-                INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
-                INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
-                WHERE po.id_purc_order=" + FormPurcReceiveDet.id_purc_order + " AND po.`is_close_rec`=1
-                GROUP BY po.id_purc_order,dep.id_main_comp
 ) ttl
 GROUP BY ttl.id_acc
 HAVING debit!=credit"
                 execute_non_query(qjd, True, "", "", "", "")
             End If
+            'jurnal PPH pindah
+            'UNION ALL - -PPH
+            '    Select Case " + id_acc_trans + " As id_acc_trans, comp.id_acc_ap As `id_acc`, dep.id_main_comp, SUM(rd.qty) As `qty`,
+            '    SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) As `debit`,
+            '    0 AS `credit`,
+            '    i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, If(po.id_expense_type = 1, 139, 202) As rmt_reff, po.id_purc_order, po.purc_order_number
+            '    From tb_purc_rec_det rd
+            '    INNER Join tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+            '    INNER Join tb_purc_order po ON po.id_purc_order = r.id_purc_order
+            '    INNER Join tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+            '    INNER Join tb_m_comp comp ON comp.id_comp = cont.id_comp
+            '    INNER Join tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+            '    INNER Join tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+            '    INNER Join tb_item i ON i.id_item = rd.id_item
+            '    INNER Join tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+            '    INNER Join tb_m_departement dep ON dep.id_departement=req.id_departement
+            '    WHERE po.id_purc_order = " + FormPurcReceiveDet.id_purc_order + " And po.`is_close_rec`=1 
+            '    GROUP BY po.id_purc_order, dep.id_main_comp
+            '    UNION ALL - -PPH
+            '    Select Case " + id_acc_trans + " As id_acc_trans, po.`pph_account` As `id_acc`, dep.id_main_comp, SUM(rd.qty) As `qty`,
+            '    0 AS `debit`,
+            '    SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) As `credit`,
+            '    i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, If(po.id_expense_type = 1, 139, 202) As rmt_reff, po.id_purc_order, po.purc_order_number
+            '    From tb_purc_rec_det rd
+            '    INNER Join tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+            '    INNER Join tb_purc_order po ON po.id_purc_order = r.id_purc_order
+            '    INNER Join tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+            '    INNER Join tb_m_comp comp ON comp.id_comp = cont.id_comp
+            '    INNER Join tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+            '    INNER Join tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+            '    INNER Join tb_item i ON i.id_item = rd.id_item
+            '    INNER Join tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+            '    INNER Join tb_m_departement dep ON dep.id_departement=req.id_departement
+            '    WHERE po.id_purc_order = " + FormPurcReceiveDet.id_purc_order + " And po.`is_close_rec`=1
+            '    GROUP BY po.id_purc_order, dep.id_main_comp
 
             'refresh view
             FormPurcReceiveDet.actionLoad()
@@ -8286,33 +8287,33 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
         ElseIf report_mark_type = "2" Then 'receive sample purc
             'MsgBox(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
             'declare account
-            Dim id_coa_m_d As String = "3"
-            Dim id_coa_m_k As String = "4"
-            'vendor name and code
-            Dim _comp_code As String = get_company_x(FormSampleReceiveDet.id_comp_from, "2")
-            Dim _comp_name As String = FormSampleReceiveDet.TECompName.Text
-            Dim _value_str As String = decimalSQL(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+            'Dim id_coa_m_d As String = "3"
+            'Dim id_coa_m_k As String = "4"
+            ''vendor name and code
+            'Dim _comp_code As String = get_company_x(FormSampleReceiveDet.id_comp_from, "2")
+            'Dim _comp_name As String = FormSampleReceiveDet.TECompName.Text
+            'Dim _value_str As String = decimalSQL(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
+            ''
+            'Dim id_acc_x As String = ""
+            'q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+            ''-debit
+            ''-- item
+            'If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+            '    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+            'Else
+            '    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+            'End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Receive - " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+            'q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Receive - " & _comp_name, report_mark_type, id_report)
+            ''credit
+            'If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+            '    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+            'Else
+            '    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+            'End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Receive - " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
+            'q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Receive - " & _comp_name, report_mark_type, id_report)
+            'execute_non_query(q_posting, True, "", "", "", "")
         ElseIf report_mark_type = "13" Then 'mat purc
             If FormMatPurchaseDet.LEPOType.EditValue.ToString = "1" Then 'domestic
                 'declare account
