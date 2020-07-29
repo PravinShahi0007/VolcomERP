@@ -1281,7 +1281,7 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "2" Then
             'sample receive
             table_name = "tb_sample_purc_rec"
-            field_id = "id_sample_purc"
+            field_id = "id_sample_purc_rec"
             field_number = "sample_purc_rec_number"
             field_date = "sample_purc_rec_date"
         ElseIf report_mark_type = "3" Then
