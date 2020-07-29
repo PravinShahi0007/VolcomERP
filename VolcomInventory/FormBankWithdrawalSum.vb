@@ -180,8 +180,8 @@ WHERE py.id_pn='-1'"
             warningCustom("No BBK listed.")
         Else
             If id_sum = "-1" Then 'new
-                Dim q As String = "INSERT INTO tb_pn_summary(date_payment,created_date,created_by,note,id_report_status)
-VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
+                Dim q As String = "INSERT INTO tb_pn_summary(id_currency,date_payment,created_date,created_by,note,id_report_status)
+VALUES('" & SLEType.EditValue.ToString & "','" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
                 id_sum = execute_query(q, 0, True, "", "", "", "")
                 For i As Integer = 0 To GVList.RowCount - 1
                     q = "INSERT INTO tb_pn_summary_det(id_pn_summary,id_pn) VALUES('" & id_sum & "','" & GVList.GetRowCellValue(i, "id_pn").ToString & "')"
