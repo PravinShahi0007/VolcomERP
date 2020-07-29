@@ -308,6 +308,8 @@ Public Class FormSalesOrderDet
         delNotFoundMyRow()
 
         'check stock
+        FormMain.SplashScreenManager1.ShowWaitForm()
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
         Dim dts As DataTable
         Dim cond_data As Boolean = True
         If id_commerce_type = "1" Then
@@ -356,6 +358,7 @@ Public Class FormSalesOrderDet
         End If
         GCItemList.RefreshDataSource()
         GVItemList.RefreshData()
+        FormMain.SplashScreenManager1.CloseWaitForm()
 
 
         'check account trf
@@ -431,28 +434,22 @@ Public Class FormSalesOrderDet
 
             'cek promo
             FormMain.SplashScreenManager1.SetWaitFormDescription("Get promo product")
-            Dim already_promo As Boolean = True
+            Dim already_no_promo As Boolean = True
             Dim sku_promo As String = ""
             Dim sku_promo_copy As String = ""
-            Dim query_get_promo As String = "SELECT p.id_ol_promo_collection , p.number
+            Dim query_get_promo As String = "SELECT GROUP_CONCAT(DISTINCT p.id_ol_promo_collection) AS `id_prm`
             FROM tb_ol_promo_collection p WHERE p.id_report_status=6 
-            AND (NOW()>=p.start_period AND NOW()<=p.end_period)
-            LIMIT 1 "
-            Dim data_get_promo As DataTable = execute_query(query_get_promo, -1, True, "", "", "", "")
-            Dim dpp As DataTable
-            Dim promo_number As String = ""
-            If data_get_promo.Rows.Count > 0 Then
-                Dim id_ol_promo_collection As String = data_get_promo.Rows(0)("id_ol_promo_collection").ToString
-                promo_number = data_get_promo.Rows(0)("number").ToString
-                'get data product
-                Dim qpp As String = "SELECT d.id_product 
-                FROM tb_ol_promo_collection_sku d 
-                WHERE d.id_ol_promo_collection=" + id_ol_promo_collection + " AND d.is_block=1
-                GROUP BY d.id_product "
-                dpp = execute_query(qpp, -1, True, "", "", "", "")
-            Else
-                dpp.Clear()
+            AND NOW()<=p.end_period"
+            Dim id_prm As String = execute_query(query_get_promo, 0, True, "", "", "", "")
+            If id_prm = "" Then
+                id_prm = "0"
             End If
+            'get data product
+            Dim qpp As String = "SELECT d.id_product 
+                FROM tb_ol_promo_collection_sku d 
+                WHERE d.is_block=1 AND d.id_ol_promo_collection IN(" + id_prm + ")
+                GROUP BY d.id_product "
+            Dim dpp As DataTable = execute_query(qpp, -1, True, "", "", "", "")
 
 
             Dim sku_already As Boolean = True
@@ -478,7 +475,7 @@ Public Class FormSalesOrderDet
                     If dpp.Rows.Count > 0 Then
                         Dim dpp_filter As DataRow() = dpp.Select("[id_product]='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' ")
                         If dpp_filter.Length > 0 Then
-                            already_promo = False
+                            already_no_promo = False
 
                             sku_promo += GVItemList.GetRowCellValue(i, "code").ToString + ", "
 
@@ -510,9 +507,9 @@ Public Class FormSalesOrderDet
             End If
 
             'termasuk barang promo
-            If Not already_promo Then
+            If Not already_no_promo Then
                 FormMain.SplashScreenManager1.CloseWaitForm()
-                stopCustom("These product already in promo programs (" + promo_number + ") : " + sku_promo.Substring(0, sku_promo.Length - 2) + ". Please create memo for replace stock these products.")
+                stopCustom("These product already in promo programs : " + sku_promo.Substring(0, sku_promo.Length - 2) + ". Please use menu 'Replace Online Promo' for replace stock these products.")
 
                 My.Computer.Clipboard.SetText(sku_promo_copy)
 
