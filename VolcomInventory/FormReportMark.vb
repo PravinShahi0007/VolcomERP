@@ -8253,714 +8253,714 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
     End Sub
 
     Sub posting_journal()
-        Dim q_posting As String = ""
-        Dim acc_trans_number As String = ""
-        acc_trans_number = header_number_acc("1")
+        'Dim q_posting As String = ""
+        'Dim acc_trans_number As String = ""
+        'acc_trans_number = header_number_acc("1")
 
-        q_posting = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,id_user,date_created,acc_trans_note) VALUES('{0}','{1}',NOW(),'Auto posting {2}');SELECT LAST_INSERT_ID()", acc_trans_number, id_user, report_number)
-        'execute_non_query(q_posting, True, "", "", "", "")
+        'q_posting = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,id_user,date_created,acc_trans_note) VALUES('{0}','{1}',NOW(),'Auto posting {2}');SELECT LAST_INSERT_ID()", acc_trans_number, id_user, report_number)
+        ''execute_non_query(q_posting, True, "", "", "", "")
 
-        'q_posting = "SELECT LAST_INSERT_ID()"
-        Dim last_id As String = execute_query(q_posting, 0, True, "", "", "", "")
+        ''q_posting = "SELECT LAST_INSERT_ID()"
+        'Dim last_id As String = execute_query(q_posting, 0, True, "", "", "", "")
 
-        If report_mark_type = "1" Then ' sample purchase det
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping("1", "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping("1", "1"), get_coa_mapping("1", "2") & "" & FormSamplePurchaseDet.TECompCode.Text, FormSamplePurchaseDet.TECompName.Text)
-            Else
-                id_acc_x = get_coa_mapping("1", "1")
-            End If
+        'If report_mark_type = "1" Then ' sample purchase det
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping("1", "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping("1", "1"), get_coa_mapping("1", "2") & "" & FormSamplePurchaseDet.TECompCode.Text, FormSamplePurchaseDet.TECompName.Text)
+        '    Else
+        '        id_acc_x = get_coa_mapping("1", "1")
+        '    End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, decimalSQL(FormSamplePurchaseDet.TEGrossTot.EditValue.ToString), 0, "Sample - " & FormSamplePurchaseDet.TECompName.Text, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping("2", "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping("2", "1"), get_coa_mapping("2", "2") & "" & FormSamplePurchaseDet.TECompCode.Text, FormSamplePurchaseDet.TECompName.Text)
-            Else
-                id_acc_x = get_coa_mapping("2", "1")
-            End If
+        '    q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, decimalSQL(FormSamplePurchaseDet.TEGrossTot.EditValue.ToString), 0, "Sample - " & FormSamplePurchaseDet.TECompName.Text, report_mark_type, id_report)
+        '    'credit
+        '    If get_coa_mapping("2", "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping("2", "1"), get_coa_mapping("2", "2") & "" & FormSamplePurchaseDet.TECompCode.Text, FormSamplePurchaseDet.TECompName.Text)
+        '    Else
+        '        id_acc_x = get_coa_mapping("2", "1")
+        '    End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, decimalSQL(FormSamplePurchaseDet.TEGrossTot.EditValue.ToString), "PO Sample - " & FormSamplePurchaseDet.TECompName.Text, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "2" Then 'receive sample purc
-            'MsgBox(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
-            'declare account
-            'Dim id_coa_m_d As String = "3"
-            'Dim id_coa_m_k As String = "4"
-            ''vendor name and code
-            'Dim _comp_code As String = get_company_x(FormSampleReceiveDet.id_comp_from, "2")
-            'Dim _comp_name As String = FormSampleReceiveDet.TECompName.Text
-            'Dim _value_str As String = decimalSQL(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
-            ''
-            'Dim id_acc_x As String = ""
-            'q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            ''-debit
-            ''-- item
-            'If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-            '    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            'Else
-            '    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            'End If
+        '    q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, decimalSQL(FormSamplePurchaseDet.TEGrossTot.EditValue.ToString), "PO Sample - " & FormSamplePurchaseDet.TECompName.Text, report_mark_type, id_report)
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "2" Then 'receive sample purc
+        '    'MsgBox(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
+        '    'declare account
+        '    'Dim id_coa_m_d As String = "3"
+        '    'Dim id_coa_m_k As String = "4"
+        '    ''vendor name and code
+        '    'Dim _comp_code As String = get_company_x(FormSampleReceiveDet.id_comp_from, "2")
+        '    'Dim _comp_name As String = FormSampleReceiveDet.TECompName.Text
+        '    'Dim _value_str As String = decimalSQL(FormSampleReceiveDet.GVListPurchase.Columns("sample_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
+        '    ''
+        '    'Dim id_acc_x As String = ""
+        '    'q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    ''-debit
+        '    ''-- item
+        '    'If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '    '    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    'Else
+        '    '    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    'End If
 
-            'q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Receive - " & _comp_name, report_mark_type, id_report)
-            ''credit
-            'If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-            '    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            'Else
-            '    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            'End If
+        '    'q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Receive - " & _comp_name, report_mark_type, id_report)
+        '    ''credit
+        '    'If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '    '    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    'Else
+        '    '    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    'End If
 
-            'q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Receive - " & _comp_name, report_mark_type, id_report)
-            'execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "13" Then 'mat purc
-            If FormMatPurchaseDet.LEPOType.EditValue.ToString = "1" Then 'domestic
-                'declare account
-                Dim id_coa_m_d As String = "13"
-                Dim id_coa_m_k As String = "14"
-                'vendor name and code
-                Dim _comp_code As String = FormMatPurchaseDet.TECompCode.Text
-                Dim _comp_name As String = FormMatPurchaseDet.TECompName.Text
-                Dim _value_str As String = decimalSQL(FormMatPurchaseDet.TEGrossTot.EditValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '    'q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Receive - " & _comp_name, report_mark_type, id_report)
+        '    'execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "13" Then 'mat purc
+        '    If FormMatPurchaseDet.LEPOType.EditValue.ToString = "1" Then 'domestic
+        '        'declare account
+        '        Dim id_coa_m_d As String = "13"
+        '        Dim id_coa_m_k As String = "14"
+        '        'vendor name and code
+        '        Dim _comp_code As String = FormMatPurchaseDet.TECompCode.Text
+        '        Dim _comp_name As String = FormMatPurchaseDet.TECompName.Text
+        '        Dim _value_str As String = decimalSQL(FormMatPurchaseDet.TEGrossTot.EditValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Purchase Domestic - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Purchase Domestic - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Purchase Domestic - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            ElseIf FormMatPurchaseDet.LEPOType.EditValue.ToString = "2" Then 'international
-                'declare account
-                Dim id_coa_m_d As String = "5"
-                Dim id_coa_m_k As String = "6"
-                'vendor name and code
-                Dim _comp_code As String = FormMatPurchaseDet.TECompCode.Text
-                Dim _comp_name As String = FormMatPurchaseDet.TECompName.Text
-                Dim _value_str As String = decimalSQL(FormMatPurchaseDet.TEGrossTot.EditValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Purchase Domestic - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    ElseIf FormMatPurchaseDet.LEPOType.EditValue.ToString = "2" Then 'international
+        '        'declare account
+        '        Dim id_coa_m_d As String = "5"
+        '        Dim id_coa_m_k As String = "6"
+        '        'vendor name and code
+        '        Dim _comp_code As String = FormMatPurchaseDet.TECompCode.Text
+        '        Dim _comp_name As String = FormMatPurchaseDet.TECompName.Text
+        '        Dim _value_str As String = decimalSQL(FormMatPurchaseDet.TEGrossTot.EditValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Purchase Import - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Purchase Import - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Purchase Import - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            ElseIf FormMatPurchaseDet.LEPOType.EditValue.ToString = "3" Then 'merchandise
-                'declare account
-                Dim id_coa_m_d As String = "15"
-                Dim id_coa_m_k As String = "16"
-                'vendor name and code
-                Dim _comp_code As String = FormMatPurchaseDet.TECompCode.Text
-                Dim _comp_name As String = FormMatPurchaseDet.TECompName.Text
-                Dim _value_str As String = decimalSQL(FormMatPurchaseDet.TEGrossTot.EditValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Purchase Import - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    ElseIf FormMatPurchaseDet.LEPOType.EditValue.ToString = "3" Then 'merchandise
+        '        'declare account
+        '        Dim id_coa_m_d As String = "15"
+        '        Dim id_coa_m_k As String = "16"
+        '        'vendor name and code
+        '        Dim _comp_code As String = FormMatPurchaseDet.TECompCode.Text
+        '        Dim _comp_name As String = FormMatPurchaseDet.TECompName.Text
+        '        Dim _value_str As String = decimalSQL(FormMatPurchaseDet.TEGrossTot.EditValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Purchase Non Merchandise - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Purchase Non Merchandise - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Purchase Non Merchandise - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            End If
-        ElseIf report_mark_type = "16" Then 'mat purc receive
-            Dim query_det As String = "SELECT b.id_po_type FROM tb_mat_purc_rec a INNER JOIN tb_mat_purc b ON a.id_mat_purc=b.id_mat_purc WHERE a.id_mat_purc_rec='" & id_report & "'"
-            Dim id_po_type As String = execute_query(query_det, 0, True, "", "", "", "")
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Purchase Non Merchandise - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    End If
+        'ElseIf report_mark_type = "16" Then 'mat purc receive
+        '    Dim query_det As String = "SELECT b.id_po_type FROM tb_mat_purc_rec a INNER JOIN tb_mat_purc b ON a.id_mat_purc=b.id_mat_purc WHERE a.id_mat_purc_rec='" & id_report & "'"
+        '    Dim id_po_type As String = execute_query(query_det, 0, True, "", "", "", "")
 
-            If id_po_type = "1" Then 'domestic
-                'declare account
-                Dim id_coa_m_d As String = "17"
-                Dim id_coa_m_k As String = "18"
-                'vendor name and code
-                Dim _comp_code As String = get_company_x(get_company_contact_x(FormMatRecPurcDet.id_comp_from, "3"), "2")
-                Dim _comp_name As String = FormMatRecPurcDet.TECompName.Text
-                Dim _value_str As String = decimalSQL(FormMatRecPurcDet.GVListPurchase.Columns("mat_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '    If id_po_type = "1" Then 'domestic
+        '        'declare account
+        '        Dim id_coa_m_d As String = "17"
+        '        Dim id_coa_m_k As String = "18"
+        '        'vendor name and code
+        '        Dim _comp_code As String = get_company_x(get_company_contact_x(FormMatRecPurcDet.id_comp_from, "3"), "2")
+        '        Dim _comp_name As String = FormMatRecPurcDet.TECompName.Text
+        '        Dim _value_str As String = decimalSQL(FormMatRecPurcDet.GVListPurchase.Columns("mat_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Receive Purchasing Domestic - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Receive Purchasing Domestic - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Receive Purchasing Domestic - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            ElseIf id_po_type = "2" Then 'import
-                'declare account
-                Dim id_coa_m_d As String = "7"
-                Dim id_coa_m_k As String = "8"
-                'vendor name and code
-                Dim _comp_code As String = get_company_x(FormMatRecPurcDet.id_comp_from, "2")
-                Dim _comp_name As String = FormMatRecPurcDet.TECompName.Text
-                Dim _value_str As String = decimalSQL(FormMatRecPurcDet.GVListPurchase.Columns("mat_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Receive Purchasing Domestic - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    ElseIf id_po_type = "2" Then 'import
+        '        'declare account
+        '        Dim id_coa_m_d As String = "7"
+        '        Dim id_coa_m_k As String = "8"
+        '        'vendor name and code
+        '        Dim _comp_code As String = get_company_x(FormMatRecPurcDet.id_comp_from, "2")
+        '        Dim _comp_name As String = FormMatRecPurcDet.TECompName.Text
+        '        Dim _value_str As String = decimalSQL(FormMatRecPurcDet.GVListPurchase.Columns("mat_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Receive Purchasing Import - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Receive Purchasing Import - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Receive Purchasing Import  - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            ElseIf id_po_type = "3" Then 'non merchandise
-                'declare account
-                Dim id_coa_m_d As String = "19"
-                Dim id_coa_m_k As String = "20"
-                'vendor name and code
-                Dim _comp_code As String = get_company_x(FormMatRecPurcDet.id_comp_from, "2")
-                Dim _comp_name As String = FormMatRecPurcDet.TECompName.Text
-                Dim _value_str As String = decimalSQL(FormMatRecPurcDet.GVListPurchase.Columns("mat_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Receive Purchasing Import  - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    ElseIf id_po_type = "3" Then 'non merchandise
+        '        'declare account
+        '        Dim id_coa_m_d As String = "19"
+        '        Dim id_coa_m_k As String = "20"
+        '        'vendor name and code
+        '        Dim _comp_code As String = get_company_x(FormMatRecPurcDet.id_comp_from, "2")
+        '        Dim _comp_name As String = FormMatRecPurcDet.TECompName.Text
+        '        Dim _value_str As String = decimalSQL(FormMatRecPurcDet.GVListPurchase.Columns("mat_purc_rec_det_price").SummaryItem.SummaryValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Receive Purchasing Non Merchandise - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Receive Purchasing Non Merchandise - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Receive Purchasing Non Merchandise - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            End If
-        ElseIf report_mark_type = "15" Then 'mat wo
-            'declare account
-            Dim id_coa_m_d As String = "33"
-            Dim id_coa_m_k As String = "34"
-            'vendor name and code
-            Dim _comp_code As String = FormMatWODet.TECompCode.Text
-            Dim _comp_name As String = FormMatWODet.TECompName.Text
-            Dim _value_str As String = decimalSQL(FormMatWODet.GVListPurchase.Columns("total").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Receive Purchasing Non Merchandise - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    End If
+        'ElseIf report_mark_type = "15" Then 'mat wo
+        '    'declare account
+        '    Dim id_coa_m_d As String = "33"
+        '    Dim id_coa_m_k As String = "34"
+        '    'vendor name and code
+        '    Dim _comp_code As String = FormMatWODet.TECompCode.Text
+        '    Dim _comp_name As String = FormMatWODet.TECompName.Text
+        '    Dim _value_str As String = decimalSQL(FormMatWODet.GVListPurchase.Columns("total").SummaryItem.SummaryValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Work Order - " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+        '    q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Work Order - " & _comp_name, report_mark_type, id_report)
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Work Order - " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "17" Then 'mat rec wo
-            'declare account
-            Dim id_coa_m_d As String = "35"
-            Dim id_coa_m_k As String = "36"
-            'vendor name and code
-            Dim _comp_code As String = get_company_x(FormMatRecWODet.id_comp_from, "2")
-            Dim _comp_name As String = FormMatRecWODet.TECompName.Text
-            Dim _value_str As String = decimalSQL(FormMatRecWODet.GVListPurchase.Columns("total_price").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '    q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Work Order - " & _comp_name, report_mark_type, id_report)
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "17" Then 'mat rec wo
+        '    'declare account
+        '    Dim id_coa_m_d As String = "35"
+        '    Dim id_coa_m_k As String = "36"
+        '    'vendor name and code
+        '    Dim _comp_code As String = get_company_x(FormMatRecWODet.id_comp_from, "2")
+        '    Dim _comp_name As String = FormMatRecWODet.TECompName.Text
+        '    Dim _value_str As String = decimalSQL(FormMatRecWODet.GVListPurchase.Columns("total_price").SummaryItem.SummaryValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material WO Receiving - " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+        '    q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material WO Receiving - " & _comp_name, report_mark_type, id_report)
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material WO Receiving - " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "18" Then 'mat ret out
-            Dim query_det As String = "SELECT b.id_po_type FROM tb_mat_purc_ret_out a INNER JOIN tb_mat_purc b ON a.id_mat_purc=b.id_mat_purc WHERE a.id_mat_purc_ret_out='" & id_report & "'"
-            Dim id_po_type As String = execute_query(query_det, 0, True, "", "", "", "")
+        '    q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material WO Receiving - " & _comp_name, report_mark_type, id_report)
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "18" Then 'mat ret out
+        '    Dim query_det As String = "SELECT b.id_po_type FROM tb_mat_purc_ret_out a INNER JOIN tb_mat_purc b ON a.id_mat_purc=b.id_mat_purc WHERE a.id_mat_purc_ret_out='" & id_report & "'"
+        '    Dim id_po_type As String = execute_query(query_det, 0, True, "", "", "", "")
 
-            If id_po_type = "1" Then 'domestic
-                'declare account
-                Dim id_coa_m_d As String = "21"
-                Dim id_coa_m_k As String = "22"
-                'vendor name and code
-                Dim _comp_code As String = FormMatRetOutDet.TxtCodeCompTo.Text
-                Dim _comp_name As String = FormMatRetOutDet.TxtNameCompTo.Text
-                Dim _value_str As String = decimalSQL(FormMatRetOutDet.GVRetDetail.Columns("mat_purc_ret_out_det_price").SummaryItem.SummaryValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '    If id_po_type = "1" Then 'domestic
+        '        'declare account
+        '        Dim id_coa_m_d As String = "21"
+        '        Dim id_coa_m_k As String = "22"
+        '        'vendor name and code
+        '        Dim _comp_code As String = FormMatRetOutDet.TxtCodeCompTo.Text
+        '        Dim _comp_name As String = FormMatRetOutDet.TxtNameCompTo.Text
+        '        Dim _value_str As String = decimalSQL(FormMatRetOutDet.GVRetDetail.Columns("mat_purc_ret_out_det_price").SummaryItem.SummaryValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Return Out - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Return Out - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Return Out - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            ElseIf id_po_type = "2" Then 'import
-                'declare account
-                Dim id_coa_m_d As String = "9"
-                Dim id_coa_m_k As String = "10"
-                'vendor name and code
-                Dim _comp_code As String = FormMatRetOutDet.TxtCodeCompTo.Text
-                Dim _comp_name As String = FormMatRetOutDet.TxtNameCompTo.Text
-                Dim _value_str As String = decimalSQL(FormMatRetOutDet.GVRetDetail.Columns("mat_purc_ret_out_det_price").SummaryItem.SummaryValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Return Out - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    ElseIf id_po_type = "2" Then 'import
+        '        'declare account
+        '        Dim id_coa_m_d As String = "9"
+        '        Dim id_coa_m_k As String = "10"
+        '        'vendor name and code
+        '        Dim _comp_code As String = FormMatRetOutDet.TxtCodeCompTo.Text
+        '        Dim _comp_name As String = FormMatRetOutDet.TxtNameCompTo.Text
+        '        Dim _value_str As String = decimalSQL(FormMatRetOutDet.GVRetDetail.Columns("mat_purc_ret_out_det_price").SummaryItem.SummaryValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Return Out - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Return Out - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Return Out - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            ElseIf id_po_type = "3" Then 'non merchandise
-                'declare account
-                Dim id_coa_m_d As String = "23"
-                Dim id_coa_m_k As String = "24"
-                'vendor name and code
-                Dim _comp_code As String = FormMatRetOutDet.TxtCodeCompTo.Text
-                Dim _comp_name As String = FormMatRetOutDet.TxtNameCompTo.Text
-                Dim _value_str As String = decimalSQL(FormMatRetOutDet.GVRetDetail.Columns("mat_purc_ret_out_det_price").SummaryItem.SummaryValue.ToString)
-                '
-                Dim id_acc_x As String = ""
-                q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-                '-debit
-                '-- item
-                If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-                End If
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Return Out - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    ElseIf id_po_type = "3" Then 'non merchandise
+        '        'declare account
+        '        Dim id_coa_m_d As String = "23"
+        '        Dim id_coa_m_k As String = "24"
+        '        'vendor name and code
+        '        Dim _comp_code As String = FormMatRetOutDet.TxtCodeCompTo.Text
+        '        Dim _comp_name As String = FormMatRetOutDet.TxtNameCompTo.Text
+        '        Dim _value_str As String = decimalSQL(FormMatRetOutDet.GVRetDetail.Columns("mat_purc_ret_out_det_price").SummaryItem.SummaryValue.ToString)
+        '        '
+        '        Dim id_acc_x As String = ""
+        '        q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '        '-debit
+        '        '-- item
+        '        If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '        End If
 
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Return Out - " & _comp_name, report_mark_type, id_report)
-                'credit
-                If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                    id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-                Else
-                    id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-                End If
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Return Out - " & _comp_name, report_mark_type, id_report)
+        '        'credit
+        '        If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '            id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '        Else
+        '            id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '        End If
 
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Return Out - " & _comp_name, report_mark_type, id_report)
-                execute_non_query(q_posting, True, "", "", "", "")
-            End If
-        ElseIf report_mark_type = "26" Then 'mat adj in
-            'declare account
-            Dim id_coa_m_d As String = "25"
-            Dim id_coa_m_k As String = "26"
-            'vendor name and code
-            Dim _comp_code As String = ""
-            Dim _comp_name As String = ""
-            Dim _value_str As String = decimalSQL(FormMatAdjInSingle.GVDetail.Columns("adj_in_mat_det_amount").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Return Out - " & _comp_name, report_mark_type, id_report)
+        '        execute_non_query(q_posting, True, "", "", "", "")
+        '    End If
+        'ElseIf report_mark_type = "26" Then 'mat adj in
+        '    'declare account
+        '    Dim id_coa_m_d As String = "25"
+        '    Dim id_coa_m_k As String = "26"
+        '    'vendor name and code
+        '    Dim _comp_code As String = ""
+        '    Dim _comp_name As String = ""
+        '    Dim _value_str As String = decimalSQL(FormMatAdjInSingle.GVDetail.Columns("adj_in_mat_det_amount").SummaryItem.SummaryValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Adjustment In " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+        '    q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Adjustment In " & _comp_name, report_mark_type, id_report)
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Adjustment In " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "30" Then 'mat PL
-            'declare account
-            Dim id_coa_m_d As String = "37"
-            Dim id_coa_m_k As String = "38"
-            'vendor name and code
-            Dim _comp_code As String = FormMatPLSingle.TxtCodeCompTo.Text
-            Dim _comp_name As String = FormMatPLSingle.TxtNameCompTo.Text
-            Dim _value_str As String = decimalSQL(FormMatPLSingle.GVDrawer.Columns("total_price").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '    q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Adjustment In " & _comp_name, report_mark_type, id_report)
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "30" Then 'mat PL
+        '    'declare account
+        '    Dim id_coa_m_d As String = "37"
+        '    Dim id_coa_m_k As String = "38"
+        '    'vendor name and code
+        '    Dim _comp_code As String = FormMatPLSingle.TxtCodeCompTo.Text
+        '    Dim _comp_name As String = FormMatPLSingle.TxtNameCompTo.Text
+        '    Dim _value_str As String = decimalSQL(FormMatPLSingle.GVDrawer.Columns("total_price").SummaryItem.SummaryValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Packing List " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+        '    q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Packing List " & _comp_name, report_mark_type, id_report)
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Packing List " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "27" Then 'mat adj out
-            'declare account
-            Dim id_coa_m_d As String = "27"
-            Dim id_coa_m_k As String = "28"
-            'vendor name and code
-            Dim _comp_code As String = ""
-            Dim _comp_name As String = ""
-            Dim _value_str As String = decimalSQL(FormMatAdjOutSingle.GVDetail.Columns("adj_out_mat_det_amount").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '    q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Packing List " & _comp_name, report_mark_type, id_report)
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "27" Then 'mat adj out
+        '    'declare account
+        '    Dim id_coa_m_d As String = "27"
+        '    Dim id_coa_m_k As String = "28"
+        '    'vendor name and code
+        '    Dim _comp_code As String = ""
+        '    Dim _comp_name As String = ""
+        '    Dim _value_str As String = decimalSQL(FormMatAdjOutSingle.GVDetail.Columns("adj_out_mat_det_amount").SummaryItem.SummaryValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Adjustment Out " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+        '    q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Adjustment Out " & _comp_name, report_mark_type, id_report)
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Adjustment Out " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "20" Then 'sample adjustment in
-            'declare account
-            Dim id_coa_m_d As String = "29"
-            Dim id_coa_m_k As String = "30"
-            'vendor name and code
-            Dim _comp_code As String = ""
-            Dim _comp_name As String = ""
-            Dim _value_str As String = decimalSQL(FormSampleAdjustmentInSingle.GVDetail.Columns("adj_in_sample_det_amount").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '    q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Adjustment Out " & _comp_name, report_mark_type, id_report)
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "20" Then 'sample adjustment in
+        '    'declare account
+        '    Dim id_coa_m_d As String = "29"
+        '    Dim id_coa_m_k As String = "30"
+        '    'vendor name and code
+        '    Dim _comp_code As String = ""
+        '    Dim _comp_name As String = ""
+        '    Dim _value_str As String = decimalSQL(FormSampleAdjustmentInSingle.GVDetail.Columns("adj_in_sample_det_amount").SummaryItem.SummaryValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Adjustment In " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+        '    q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Adjustment In " & _comp_name, report_mark_type, id_report)
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Adjustment In " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "21" Then 'sample adjustment out
-            'declare account
-            Dim id_coa_m_d As String = "31"
-            Dim id_coa_m_k As String = "32"
-            'vendor name and code
-            Dim _comp_code As String = ""
-            Dim _comp_name As String = ""
-            Dim _value_str As String = decimalSQL(FormSampleAdjustmentOutSingle.GVDetail.Columns("adj_out_sample_det_amount").SummaryItem.SummaryValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '    q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Adjustment In " & _comp_name, report_mark_type, id_report)
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "21" Then 'sample adjustment out
+        '    'declare account
+        '    Dim id_coa_m_d As String = "31"
+        '    Dim id_coa_m_k As String = "32"
+        '    'vendor name and code
+        '    Dim _comp_code As String = ""
+        '    Dim _comp_name As String = ""
+        '    Dim _value_str As String = decimalSQL(FormSampleAdjustmentOutSingle.GVDetail.Columns("adj_out_sample_det_amount").SummaryItem.SummaryValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Adjustment Out " & _comp_name, report_mark_type, id_report)
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
+        '    q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Sample Adjustment Out " & _comp_name, report_mark_type, id_report)
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
 
-            q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Adjustment Out " & _comp_name, report_mark_type, id_report)
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "23" Then 'Production Work Order
-            'declare account
-            Dim id_coa_m_d As String = "45"
-            Dim id_coa_m_k As String = "46"
-            Dim id_coa_m_v As String = "47" 'vat
-            Dim id_v_dc As String = get_coa_mapping(id_coa_m_v, "5")
-            'vendor name and code
-            Dim _comp_code As String = FormMatInvoiceReturDet.TECompCode.Text
-            Dim _comp_name As String = FormMatInvoiceReturDet.TECompName.Text
-            Dim _value_str As String = decimalSQL(FormMatInvoiceReturDet.TETot.EditValue.ToString)
-            Dim _value_gross_str As String = decimalSQL(FormMatInvoiceReturDet.TEGrossTot.EditValue.ToString)
-            Dim _value_vat_str As String = decimalSQL(FormMatInvoiceReturDet.TEVatTot.EditValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '    q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Sample Adjustment Out " & _comp_name, report_mark_type, id_report)
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "23" Then 'Production Work Order
+        '    'declare account
+        '    Dim id_coa_m_d As String = "45"
+        '    Dim id_coa_m_k As String = "46"
+        '    Dim id_coa_m_v As String = "47" 'vat
+        '    Dim id_v_dc As String = get_coa_mapping(id_coa_m_v, "5")
+        '    'vendor name and code
+        '    Dim _comp_code As String = FormMatInvoiceReturDet.TECompCode.Text
+        '    Dim _comp_name As String = FormMatInvoiceReturDet.TECompName.Text
+        '    Dim _value_str As String = decimalSQL(FormMatInvoiceReturDet.TETot.EditValue.ToString)
+        '    Dim _value_gross_str As String = decimalSQL(FormMatInvoiceReturDet.TEGrossTot.EditValue.ToString)
+        '    Dim _value_vat_str As String = decimalSQL(FormMatInvoiceReturDet.TEVatTot.EditValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_gross_str, 0, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
-            End If
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_gross_str, 0, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
-            '
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_gross_str, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
-            End If
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
+        '    '
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_gross_str, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            'vat
-            If get_coa_mapping(id_coa_m_v, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_v, "1"), get_coa_mapping(id_coa_m_v, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_v, "1")
-            End If
-            '
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_vat_str, 0, "Material Invoice Retur Vat " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_vat_str, "Material Invoice Retur Vat " & _comp_name, report_mark_type, id_report)
-            End If
+        '    'vat
+        '    If get_coa_mapping(id_coa_m_v, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_v, "1"), get_coa_mapping(id_coa_m_v, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_v, "1")
+        '    End If
+        '    '
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_vat_str, 0, "Material Invoice Retur Vat " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_vat_str, "Material Invoice Retur Vat " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "34" Then 'Mat Invoice
-            'declare account
-            Dim id_coa_m_d As String = "39"
-            Dim id_coa_m_k As String = "40"
-            Dim id_coa_m_v As String = "41" 'vat
-            Dim id_v_dc As String = get_coa_mapping(id_coa_m_v, "5")
-            'vendor name and code
-            Dim _comp_code As String = FormMatInvoiceDet.TECompCode.Text
-            Dim _comp_name As String = FormMatInvoiceDet.TECompName.Text
-            Dim _value_str As String = decimalSQL(FormMatInvoiceDet.TETot.EditValue.ToString)
-            Dim _value_gross_str As String = decimalSQL(FormMatInvoiceDet.TEGrossTot.EditValue.ToString)
-            Dim _value_vat_str As String = decimalSQL(FormMatInvoiceDet.TEVatTot.EditValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "34" Then 'Mat Invoice
+        '    'declare account
+        '    Dim id_coa_m_d As String = "39"
+        '    Dim id_coa_m_k As String = "40"
+        '    Dim id_coa_m_v As String = "41" 'vat
+        '    Dim id_v_dc As String = get_coa_mapping(id_coa_m_v, "5")
+        '    'vendor name and code
+        '    Dim _comp_code As String = FormMatInvoiceDet.TECompCode.Text
+        '    Dim _comp_name As String = FormMatInvoiceDet.TECompName.Text
+        '    Dim _value_str As String = decimalSQL(FormMatInvoiceDet.TETot.EditValue.ToString)
+        '    Dim _value_gross_str As String = decimalSQL(FormMatInvoiceDet.TEGrossTot.EditValue.ToString)
+        '    Dim _value_vat_str As String = decimalSQL(FormMatInvoiceDet.TEVatTot.EditValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_gross_str, 0, "Material Invoice " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Invoice " & _comp_name, report_mark_type, id_report)
-            End If
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_gross_str, 0, "Material Invoice " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Invoice " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
-            '
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Invoice " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_gross_str, "Material Invoice " & _comp_name, report_mark_type, id_report)
-            End If
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
+        '    '
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Invoice " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_gross_str, "Material Invoice " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            'vat
-            If get_coa_mapping(id_coa_m_v, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_v, "1"), get_coa_mapping(id_coa_m_v, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_v, "1")
-            End If
-            '
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_vat_str, 0, "Material Invoice Vat " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_vat_str, "Material Invoice Vat " & _comp_name, report_mark_type, id_report)
-            End If
+        '    'vat
+        '    If get_coa_mapping(id_coa_m_v, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_v, "1"), get_coa_mapping(id_coa_m_v, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_v, "1")
+        '    End If
+        '    '
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_vat_str, 0, "Material Invoice Vat " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_vat_str, "Material Invoice Vat " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            execute_non_query(q_posting, True, "", "", "", "")
-        ElseIf report_mark_type = "35" Then 'Mat Invoice Retur
-            'declare account
-            Dim id_coa_m_d As String = "42"
-            Dim id_coa_m_k As String = "43"
-            Dim id_coa_m_v As String = "44" 'vat
-            Dim id_v_dc As String = get_coa_mapping(id_coa_m_v, "5")
-            'vendor name and code
-            Dim _comp_code As String = FormMatInvoiceReturDet.TECompCode.Text
-            Dim _comp_name As String = FormMatInvoiceReturDet.TECompName.Text
-            Dim _value_str As String = decimalSQL(FormMatInvoiceReturDet.TETot.EditValue.ToString)
-            Dim _value_gross_str As String = decimalSQL(FormMatInvoiceReturDet.TEGrossTot.EditValue.ToString)
-            Dim _value_vat_str As String = decimalSQL(FormMatInvoiceReturDet.TEVatTot.EditValue.ToString)
-            '
-            Dim id_acc_x As String = ""
-            q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
-            '-debit
-            '-- item
-            If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_d, "1")
-            End If
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'ElseIf report_mark_type = "35" Then 'Mat Invoice Retur
+        '    'declare account
+        '    Dim id_coa_m_d As String = "42"
+        '    Dim id_coa_m_k As String = "43"
+        '    Dim id_coa_m_v As String = "44" 'vat
+        '    Dim id_v_dc As String = get_coa_mapping(id_coa_m_v, "5")
+        '    'vendor name and code
+        '    Dim _comp_code As String = FormMatInvoiceReturDet.TECompCode.Text
+        '    Dim _comp_name As String = FormMatInvoiceReturDet.TECompName.Text
+        '    Dim _value_str As String = decimalSQL(FormMatInvoiceReturDet.TETot.EditValue.ToString)
+        '    Dim _value_gross_str As String = decimalSQL(FormMatInvoiceReturDet.TEGrossTot.EditValue.ToString)
+        '    Dim _value_vat_str As String = decimalSQL(FormMatInvoiceReturDet.TEVatTot.EditValue.ToString)
+        '    '
+        '    Dim id_acc_x As String = ""
+        '    q_posting = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,report_mark_type,id_report) VALUES"
+        '    '-debit
+        '    '-- item
+        '    If get_coa_mapping(id_coa_m_d, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_d, "1"), get_coa_mapping(id_coa_m_d, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_d, "1")
+        '    End If
 
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_gross_str, 0, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
-            End If
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_gross_str, 0, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_str, 0, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            'credit
-            If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_k, "1")
-            End If
-            '
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_gross_str, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
-            End If
+        '    'credit
+        '    If get_coa_mapping(id_coa_m_k, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_k, "1"), get_coa_mapping(id_coa_m_k, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_k, "1")
+        '    End If
+        '    '
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_str, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_gross_str, "Material Invoice Retur " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            'vat
-            If get_coa_mapping(id_coa_m_v, "4").ToString = "1" Then
-                id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_v, "1"), get_coa_mapping(id_coa_m_v, "2") & _comp_code, _comp_name)
-            Else
-                id_acc_x = get_coa_mapping(id_coa_m_v, "1")
-            End If
-            '
-            If id_v_dc = "1" Then 'debit
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_vat_str, 0, "Material Invoice Retur Vat " & _comp_name, report_mark_type, id_report)
-            Else
-                q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_vat_str, "Material Invoice Retur Vat " & _comp_name, report_mark_type, id_report)
-            End If
+        '    'vat
+        '    If get_coa_mapping(id_coa_m_v, "4").ToString = "1" Then
+        '        id_acc_x = make_sure_acc(get_coa_mapping(id_coa_m_v, "1"), get_coa_mapping(id_coa_m_v, "2") & _comp_code, _comp_name)
+        '    Else
+        '        id_acc_x = get_coa_mapping(id_coa_m_v, "1")
+        '    End If
+        '    '
+        '    If id_v_dc = "1" Then 'debit
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, _value_vat_str, 0, "Material Invoice Retur Vat " & _comp_name, report_mark_type, id_report)
+        '    Else
+        '        q_posting += String.Format(",('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", last_id, id_acc_x, 0, _value_vat_str, "Material Invoice Retur Vat " & _comp_name, report_mark_type, id_report)
+        '    End If
 
-            execute_non_query(q_posting, True, "", "", "", "")
-        End If
-        insert_who_prepared("36", last_id, id_user)
-        increase_inc_acc("1")
+        '    execute_non_query(q_posting, True, "", "", "", "")
+        'End If
+        'insert_who_prepared("36", last_id, id_user)
+        'increase_inc_acc("1")
         '
     End Sub
     Private Sub BLeadTime_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BLeadTime.Click
