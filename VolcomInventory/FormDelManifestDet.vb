@@ -5,10 +5,11 @@
 
     Private loaded As Boolean = False
 
+    Dim id_report_status As String = "-1"
+
     Private Sub FormDelManifestDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loaded = False
 
-        view_3pl()
         view_del_type()
         view_ol_or_no()
         view_comp()
@@ -93,6 +94,7 @@ GROUP BY cg.`id_comp_group`"
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
         Cursor = Cursors.WaitCursor
+        GVCargoRate.FocusedRowHandle = find_row(GVCargoRate, "id_3pl_rate", SLUE3PL.EditValue.ToString)
 
         save("draft")
 
@@ -104,31 +106,65 @@ GROUP BY cg.`id_comp_group`"
     End Sub
 
     Sub form_load()
-        Dim query As String = "
-            SELECT m.id_del_manifest, m.id_comp, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, m.id_report_status, IFNULL(l.report_status, 'Draft') AS report_status
+        'header
+        id_report_status = ""
+        Dim data As DataTable
+
+        If Not id_del_manifest = "0" Then
+            Dim query As String = "
+            SELECT m.id_del_manifest, m.id_del_type,m.id_comp, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, m.id_report_status, IFNULL(l.report_status, 'Draft') AS report_status
+            ,m.id_sub_district,m.awbill_no, m.id_cargo,m.cargo_rate,m.cargo_min_weight,m.cargo_lead_time,m.is_ol_shop,m.id_comp_group,m.ol_order,m.id_store_offline
+            ,m.c_weight,m.c_tot_price,m.id_cargo_best,m.cargo_rate_best,m.cargo_min_weight_best,m.cargo_lead_time_best,m.mark_different       
             FROM tb_del_manifest AS m
             LEFT JOIN tb_m_user AS ua ON m.created_by = ua.id_user
             LEFT JOIN tb_m_employee AS ea ON ua.id_employee = ea.id_employee
             LEFT JOIN tb_m_user AS ub ON m.created_by = ub.id_user
             LEFT JOIN tb_m_employee AS eb ON ub.id_employee = eb.id_employee
             LEFT JOIN tb_lookup_report_status AS l ON m.id_report_status = l.id_report_status
-            WHERE m.id_del_manifest = " + id_del_manifest + "
+            WHERE m.id_del_manifest = " + id_del_manifest + ""
 
-            UNION
+            Data = execute_query(query, -1, True, "", "", "", "")
 
-            SELECT 0 AS id_del_manifest, 0 AS id_comp, '[autogenerate]' AS number, DATE_FORMAT(NOW(), '%d %M %Y %H:%i:%s') AS created_date, '' AS updated_date, (SELECT employee_name FROM tb_m_employee WHERE id_employee = " + id_employee_user + ") AS created_by, '' AS updated_by, '' AS id_report_status, '' AS report_status
-        "
+            TENumber.EditValue = data.Rows(0)("number").ToString
+            TECreatedDate.EditValue = data.Rows(0)("created_date").ToString
+            TEUpdatedDate.EditValue = data.Rows(0)("updated_date").ToString
+            TECreatedBy.EditValue = data.Rows(0)("created_by").ToString
+            TEUpdatedBy.EditValue = data.Rows(0)("updated_by").ToString
+            TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            '
+            SLEDelType.EditValue = data.Rows(0)("id_del_type").ToString
+            SLEOnlineShop.EditValue = data.Rows(0)("is_ol_shop").ToString
+            '
+            online_pc_changed()
+            '
+            SLEStoreGroup.EditValue = data.Rows(0)("id_comp_group").ToString
+            TEOrderNumber.EditValue = data.Rows(0)("ol_order").ToString
+            SLEComp.EditValue = data.Rows(0)("id_store_offline").ToString
 
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            'footer
+            'sub district
+            load_sub_dsitrict_filter("")
 
-        SLUE3PL.EditValue = data.Rows(0)("id_comp")
-        TENumber.EditValue = data.Rows(0)("number").ToString
-        TECreatedDate.EditValue = data.Rows(0)("created_date").ToString
-        TEUpdatedDate.EditValue = data.Rows(0)("updated_date").ToString
-        TECreatedBy.EditValue = data.Rows(0)("created_by").ToString
-        TEUpdatedBy.EditValue = data.Rows(0)("updated_by").ToString
-        TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
+            If SLEOnlineShop.EditValue.ToString = "1" Then
+                SLEDelType.Properties.ReadOnly = True
+                SLEOnlineShop.Properties.ReadOnly = True
+                SLEStoreGroup.Properties.ReadOnly = True
+                TEOrderNumber.Enabled = False
+            Else
+                SLEDelType.Properties.ReadOnly = True
+                SLEOnlineShop.Properties.ReadOnly = True
+                SLEComp.Properties.ReadOnly = True
+            End If
+            '
+            load_cargo_rate()
+            PCRate.Visible = True
+            '
+            SLESubDistrict.EditValue = data.Rows(0)("id_sub_district").ToString
+            TEAwb.Text = data.Rows(0)("awbill_no").ToString
+        End If
 
+        'detail
         Dim query_det As String = "
             SELECT *
             FROM (
@@ -194,10 +230,13 @@ GROUP BY cg.`id_comp_group`"
         GVList.BestFitColumns()
 
         'controls
-        If data.Rows(0)("id_report_status").ToString = "" Then
+        If id_report_status = "" Then
             SLUE3PL.ReadOnly = False
 
             SBCancel.Enabled = False
+
+            BGenOffline.Visible = True
+            BGenOnline.Visible = True
 
             If id_del_manifest <> "0" Then
                 SBCancel.Enabled = True
@@ -208,8 +247,28 @@ GROUP BY cg.`id_comp_group`"
             SBSave.Enabled = True
             SBComplete.Enabled = True
 
+            If Not id_del_manifest = "0" Then
+                SLUE3PL.ReadOnly = True
+                SLESubDistrict.ReadOnly = True
+                SLEComp.ReadOnly = True
+                SLEStoreGroup.ReadOnly = True
+                TEOrderNumber.Enabled = False
+
+                BGenOffline.Visible = False
+                BGenOnline.Visible = False
+            End If
         Else
             SLUE3PL.ReadOnly = True
+            SLESubDistrict.ReadOnly = True
+            SLEComp.ReadOnly = True
+            SLEStoreGroup.ReadOnly = True
+            TEOrderNumber.Enabled = False
+
+            BGenOffline.Visible = False
+            BGenOnline.Visible = False
+
+            TERemarkDiff.Enabled = False
+            TEAwb.Enabled = False
 
             SBCancel.Enabled = False
             SBPrint.Enabled = True
@@ -217,7 +276,7 @@ GROUP BY cg.`id_comp_group`"
             SBSave.Enabled = False
             SBComplete.Enabled = False
 
-            If data.Rows(0)("id_report_status").ToString = "5" Then
+            If id_report_status = "5" Then
                 SBPrint.Enabled = False
                 SBPrePrint.Enabled = False
             End If
@@ -232,15 +291,13 @@ GROUP BY cg.`id_comp_group`"
         End If
     End Sub
 
-    Sub view_3pl()
-        Dim query As String = "(SELECT 0 AS id_comp, '' AS comp_name) UNION ALL (SELECT id_comp, comp_name AS comp_name FROM tb_m_comp WHERE id_comp_cat = 7)"
-
-        viewSearchLookupQuery(SLUE3PL, query, "id_comp", "comp_name", "id_comp")
-    End Sub
-
     Sub save(ByVal type As String)
         If GVList.RowCount < 1 Then
             stopCustom("DO not found.")
+        ElseIf TERemarkDiff.Visible = True And TERemarkDiff.Text = "" Then
+            stopCustom("Please put remark why choose this 3PL.")
+        ElseIf TEAwb.Text = "" Then
+            stopCustom("Please put awb/resi number.")
         Else
             Dim continue_save As Boolean = True
             If type = "complete" Or type = "cancel" Then
@@ -259,18 +316,25 @@ GROUP BY cg.`id_comp_group`"
                 Dim query As String = ""
 
                 If id_del_manifest = "0" Then
-                    query = "INSERT INTO tb_del_manifest (id_comp, created_date, created_by) VALUES (" + SLUE3PL.EditValue.ToString + ", NOW(), " + id_user + "); SELECT LAST_INSERT_ID();"
+                    query = "INSERT INTO tb_del_manifest (id_comp, created_date, created_by,is_ol_shop,id_comp_group,ol_order,id_store_offline,id_del_type, id_sub_district ,awbill_no, id_cargo,cargo_rate,cargo_min_weight,cargo_lead_time
+,c_weight,c_tot_price,id_cargo_best,cargo_rate_best,cargo_min_weight_best,cargo_lead_time_best,mark_different) 
+VALUES (" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", NOW(), " + id_user + "
+,'" + SLEOnlineShop.EditValue.ToString + "','" + SLEStoreGroup.EditValue.ToString + "','" + addSlashes(TEOrderNumber.Text) + "','" + SLEComp.EditValue.ToString + "'
+,'" + SLEDelType.EditValue.ToString + "','" + SLESubDistrict.EditValue.ToString + "','" + addSlashes(TEAwb.Text) + "','" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_lead_time").ToString) + "'
+,'" + decimalSQL(TECWeight.EditValue.ToString) + "','" + decimalSQL(TETotalRate.EditValue.ToString) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + addSlashes(TERemarkDiff.Text) + "'); SELECT LAST_INSERT_ID();"
 
                     id_del_manifest = execute_query(query, 0, True, "", "", "", "")
                 Else
                     'update
-                    query = "UPDATE tb_del_manifest SET id_comp = " + SLUE3PL.EditValue.ToString + ", updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + If(type = "draft", "NULL", If(type = "complete", "6", "5")) + " WHERE id_del_manifest = " + id_del_manifest
-
+                    query = "UPDATE tb_del_manifest SET id_comp = " + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + If(type = "draft", "NULL", If(type = "complete", "6", "5")) + "
+,id_del_type='" + SLEDelType.EditValue.ToString + "',id_sub_district='" + SLESubDistrict.EditValue.ToString + "' ,is_ol_shop='" + SLEOnlineShop.EditValue.ToString + "',id_comp_group='" + SLEStoreGroup.EditValue.ToString + "',ol_order='" + addSlashes(TEOrderNumber.Text) + "',id_store_offline='" + SLEComp.EditValue.ToString + "'
+,awbill_no='" + addSlashes(TEAwb.Text) + "',id_cargo='" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + "',cargo_rate='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_rate").ToString) + "',cargo_min_weight='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_min_weight").ToString) + "',cargo_lead_time='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_lead_time").ToString) + "'
+,c_weight='" + decimalSQL(TECWeight.EditValue.ToString) + "',c_tot_price='" + decimalSQL(TETotalRate.EditValue.ToString) + "',id_cargo_best='" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "',cargo_rate_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "',cargo_min_weight_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "',cargo_lead_time_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "',mark_different='" + addSlashes(TERemarkDiff.Text) + "'
+WHERE id_del_manifest = " + id_del_manifest
                     execute_non_query(query, True, "", "", "", "")
 
                     'delete
                     query = "DELETE FROM tb_del_manifest_det WHERE id_del_manifest = " + id_del_manifest
-
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
@@ -558,6 +622,10 @@ GROUP BY cg.`id_comp_group`"
     End Function
 
     Private Sub SLEOnlineShop_EditValueChanged(sender As Object, e As EventArgs) Handles SLEOnlineShop.EditValueChanged
+        online_pc_changed()
+    End Sub
+
+    Sub online_pc_changed()
         If SLEOnlineShop.EditValue.ToString = "1" Then
             PCOnline.Visible = True
             PCOffline.Visible = False
@@ -567,7 +635,7 @@ GROUP BY cg.`id_comp_group`"
         End If
     End Sub
 
-    Private Sub BGenOnline_Click(sender As Object, e As EventArgs) Handles BGenOnline.Click
+    Sub gen_online()
         Dim q As String = "SELECT 0 AS `no`,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
 ,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,so.`shipping_city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
 FROM tb_wh_awbill_det awbd
@@ -599,12 +667,18 @@ WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales
             SLEOnlineShop.Properties.ReadOnly = True
             SLEStoreGroup.Properties.ReadOnly = True
             TEOrderNumber.Enabled = False
+            '
+            PCRate.Visible = True
         Else
             warningCustom("Outbound number not found")
         End If
     End Sub
 
-    Private Sub BGenOffline_Click(sender As Object, e As EventArgs) Handles BGenOffline.Click
+    Private Sub BGenOnline_Click(sender As Object, e As EventArgs) Handles BGenOnline.Click
+        gen_online()
+    End Sub
+
+    Sub gen_offline()
         Dim q As String = "SELECT 0 AS `no`,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
 ,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,ct.`city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume,c.id_sub_district
 FROM tb_wh_awbill_det awbd
@@ -642,16 +716,21 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'"
             warningCustom("Outbound number not found")
         End If
     End Sub
+
+    Private Sub BGenOffline_Click(sender As Object, e As EventArgs) Handles BGenOffline.Click
+        gen_offline()
+    End Sub
     '
     Sub load_cargo_rate()
         Dim berat_terpakai As Decimal = 0.0
         Dim berat_dim As Decimal = 0.0
         Dim berat_aktual As Decimal = 0.0
         '
-        Dim q_weight As String = ""
-        If SLEOnlineShop.EditValue.ToString = "1" Then
-            'online
-            q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
+        If id_del_manifest = "0" Then
+            Dim q_weight As String = ""
+            If SLEOnlineShop.EditValue.ToString = "1" Then
+                'online
+                q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
 FROM 
 (
 SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height,SUM(awb.`weight_calc`) AS volume
@@ -664,9 +743,9 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'
 HAVING weight > 0 
 )tb "
-        Else
-            'offline
-            q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
+            Else
+                'offline
+                q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
 FROM 
 (
 	SELECT awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
@@ -680,19 +759,21 @@ FROM
 	GROUP BY awb.id_awbill
 	HAVING weight > 0
 )tb "
-        End If
-        Dim dt_weight As DataTable = execute_query(q_weight, -1, True, "", "", "", "")
-        If dt_weight.Rows.Count > 0 Then
-            berat_dim = Decimal.Parse(dt_weight.Rows(0)("volume").ToString)
-            berat_aktual = Decimal.Parse(dt_weight.Rows(0)("weight").ToString)
-
-            If berat_dim > berat_aktual Then
-                berat_terpakai = berat_dim
-            Else
-                berat_terpakai = berat_aktual
             End If
+            Dim dt_weight As DataTable = execute_query(q_weight, -1, True, "", "", "", "")
+            If dt_weight.Rows.Count > 0 Then
+                berat_dim = Decimal.Parse(dt_weight.Rows(0)("volume").ToString)
+                berat_aktual = Decimal.Parse(dt_weight.Rows(0)("weight").ToString)
 
-            Dim q As String = "SELECT rate.id_3pl_rate,rate.id_comp AS id_cargo,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate
+                If berat_dim > berat_aktual Then
+                    berat_terpakai = berat_dim
+                Else
+                    berat_terpakai = berat_aktual
+                End If
+
+                Dim q As String = ""
+
+                q = "SELECT rate.id_3pl_rate,rate.id_comp AS id_cargo,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate
 , IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight, Rate.cargo_min_weight, " + decimalSQL(berat_terpakai.ToString) + ") AS weight
 ,(IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight,rate.cargo_min_weight," + decimalSQL(berat_terpakai.ToString) + ") * cargo_rate) AS amount
 ,rate.cargo_lead_time
@@ -700,11 +781,33 @@ FROM
 FROM `tb_3pl_rate` AS rate
 INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_comp
 WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.is_active=1 AND rate.id_type=1 AND rate.id_del_type='" + SLEDelType.EditValue.ToString + "'
+GROUP BY rate.id_comp
 ORDER BY amount ASC,comp.awb_rank ASC"
+
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                GCCargoRate.DataSource = dt
+                GVCargoRate.BestFitColumns()
+                viewSearchLookupQuery(SLUE3PL, q, "id_3pl_rate", "cargo", "id_3pl_rate")
+                '
+                TECWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
+                TERate.EditValue = GVCargoRate.GetFocusedRowCellValue("cargo_rate")
+                TETotalRate.EditValue = GVCargoRate.GetFocusedRowCellValue("amount")
+            End If
+        Else
+            Dim q As String = ""
+            q = "SELECT 1 AS id_3pl_rate,del.id_comp AS id_cargo,c.comp_name AS cargo,del.cargo_min_weight,del.cargo_rate
+, del.`c_weight` AS weight
+,del.`c_tot_price` AS amount
+,del.cargo_lead_time
+,1 AS awb_rank
+FROM tb_del_manifest del
+INNER JOIN tb_m_comp c ON c.`id_comp`=del.`id_cargo`
+WHERE del.id_del_manifest='" + id_del_manifest + "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCCargoRate.DataSource = dt
             GVCargoRate.BestFitColumns()
             viewSearchLookupQuery(SLUE3PL, q, "id_3pl_rate", "cargo", "id_3pl_rate")
+            SLUE3PL.EditValue = "1"
             '
             TECWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
             TERate.EditValue = GVCargoRate.GetFocusedRowCellValue("cargo_rate")
@@ -725,8 +828,22 @@ ORDER BY amount ASC,comp.awb_rank ASC"
             TECWeight.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("weight")
             TERate.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("cargo_rate")
             TETotalRate.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("amount")
+            '
+            If Not SLUE3PL.EditValue.ToString = GVCargoRate.GetRowCellValue(0, "id_3pl_rate").ToString Then
+                TERemarkDiff.Visible = True
+                LRemarkDiff.Visible = True
+            Else
+                TERemarkDiff.Visible = False
+                LRemarkDiff.Visible = False
+            End If
+            '
+            GVCargoRate.FocusedRowHandle = find_row(GVCargoRate, "id_3pl_rate", SLUE3PL.EditValue.ToString)
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub GVCargoRate_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVCargoRate.FocusedRowChanged
+        SLUE3PL.EditValue = GVCargoRate.GetFocusedRowCellValue("id_3pl_rate").ToString
     End Sub
 End Class

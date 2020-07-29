@@ -132,6 +132,8 @@ Partial Class FormDelManifestDet
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGenOffline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LRemarkDiff = New System.Windows.Forms.Label()
+        Me.TERemarkDiff = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,6 +174,7 @@ Partial Class FormDelManifestDet
         Me.PCOffline.SuspendLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TERemarkDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label7
@@ -290,6 +293,8 @@ Partial Class FormDelManifestDet
         '
         'PCRate
         '
+        Me.PCRate.Controls.Add(Me.TERemarkDiff)
+        Me.PCRate.Controls.Add(Me.LRemarkDiff)
         Me.PCRate.Controls.Add(Me.Label13)
         Me.PCRate.Controls.Add(Me.SLESubDistrict)
         Me.PCRate.Controls.Add(Me.Label12)
@@ -428,6 +433,7 @@ Partial Class FormDelManifestDet
         Me.TETotalRate.Name = "TETotalRate"
         Me.TETotalRate.Properties.Mask.EditMask = "N2"
         Me.TETotalRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TETotalRate.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETotalRate.Properties.ReadOnly = True
         Me.TETotalRate.Size = New System.Drawing.Size(176, 20)
         Me.TETotalRate.TabIndex = 24
@@ -447,6 +453,7 @@ Partial Class FormDelManifestDet
         Me.TERate.Name = "TERate"
         Me.TERate.Properties.Mask.EditMask = "N2"
         Me.TERate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TERate.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TERate.Properties.ReadOnly = True
         Me.TERate.Size = New System.Drawing.Size(125, 20)
         Me.TERate.TabIndex = 22
@@ -466,6 +473,7 @@ Partial Class FormDelManifestDet
         Me.TECWeight.Name = "TECWeight"
         Me.TECWeight.Properties.Mask.EditMask = "N2"
         Me.TECWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECWeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TECWeight.Properties.ReadOnly = True
         Me.TECWeight.Size = New System.Drawing.Size(82, 20)
         Me.TECWeight.TabIndex = 20
@@ -577,7 +585,7 @@ Partial Class FormDelManifestDet
         Me.SLUE3PL.Name = "SLUE3PL"
         Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUE3PL.Properties.View = Me.SLEV3pl
-        Me.SLUE3PL.Size = New System.Drawing.Size(199, 20)
+        Me.SLUE3PL.Size = New System.Drawing.Size(157, 20)
         Me.SLUE3PL.TabIndex = 18
         '
         'SLEV3pl
@@ -1235,6 +1243,22 @@ Partial Class FormDelManifestDet
         Me.LabelControl2.TabIndex = 19
         Me.LabelControl2.Text = "Store"
         '
+        'LRemarkDiff
+        '
+        Me.LRemarkDiff.AutoSize = True
+        Me.LRemarkDiff.Location = New System.Drawing.Point(801, 51)
+        Me.LRemarkDiff.Name = "LRemarkDiff"
+        Me.LRemarkDiff.Size = New System.Drawing.Size(43, 13)
+        Me.LRemarkDiff.TabIndex = 96
+        Me.LRemarkDiff.Text = "Remark"
+        '
+        'TERemarkDiff
+        '
+        Me.TERemarkDiff.Location = New System.Drawing.Point(850, 48)
+        Me.TERemarkDiff.Name = "TERemarkDiff"
+        Me.TERemarkDiff.Size = New System.Drawing.Size(146, 20)
+        Me.TERemarkDiff.TabIndex = 97
+        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1295,6 +1319,7 @@ Partial Class FormDelManifestDet
         Me.PCOffline.PerformLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TERemarkDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1410,4 +1435,6 @@ Partial Class FormDelManifestDet
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TERemarkDiff As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LRemarkDiff As Label
 End Class
