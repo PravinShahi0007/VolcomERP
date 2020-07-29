@@ -23,6 +23,7 @@ Public Class FormSalesOrderDet
     Public id_account_type As String = "-1"
     Dim is_block_same_nw As String = get_setup_field("is_block_same_nw")
     Public is_transfer_data As String = "2"
+    Public id_ol_promo As String = "-1"
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         id_type = FormSalesOrder.id_type
@@ -86,6 +87,15 @@ Public Class FormSalesOrderDet
                 LEOrderType.Enabled = False
                 LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "5")
                 LEStatusSO.Enabled = False
+            End If
+            'replace promo
+            If id_ol_promo <> "-1" Then
+                BtnAddV3.Visible = False
+                BtnDel.Visible = False
+                BtnImportExcelNew.Visible = False
+                BtnImportExcel.Visible = False
+                GridColumnCode.OptionsColumn.AllowEdit = False
+                GridColumnQty.OptionsColumn.AllowEdit = False
             End If
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
@@ -437,19 +447,23 @@ Public Class FormSalesOrderDet
             Dim already_no_promo As Boolean = True
             Dim sku_promo As String = ""
             Dim sku_promo_copy As String = ""
-            Dim query_get_promo As String = "SELECT GROUP_CONCAT(DISTINCT p.id_ol_promo_collection) AS `id_prm`
-            FROM tb_ol_promo_collection p WHERE p.id_report_status=6 
-            AND NOW()<=p.end_period"
-            Dim id_prm As String = execute_query(query_get_promo, 0, True, "", "", "", "")
-            If id_prm = "" Then
-                id_prm = "0"
-            End If
-            'get data product
-            Dim qpp As String = "SELECT d.id_product 
+            Dim dpp As DataTable
+            If id_ol_promo = "-1" Then
+                Dim query_get_promo As String = "SELECT GROUP_CONCAT(DISTINCT p.id_ol_promo_collection) AS `id_prm`
+                FROM tb_ol_promo_collection p WHERE p.id_report_status=6 
+                AND NOW()<=p.end_period"
+                Dim id_prm As String = execute_query(query_get_promo, 0, True, "", "", "", "")
+                If id_prm = "" Then
+                    id_prm = "0"
+                End If
+                'get data product
+                Dim qpp As String = "SELECT d.id_product 
                 FROM tb_ol_promo_collection_sku d 
-                WHERE d.is_block=1 AND d.id_ol_promo_collection IN(" + id_prm + ")
+                WHERE d.id_ol_promo_collection IN(" + id_prm + ")
                 GROUP BY d.id_product "
-            Dim dpp As DataTable = execute_query(qpp, -1, True, "", "", "", "")
+                dpp = execute_query(qpp, -1, True, "", "", "", "")
+            End If
+
 
 
             Dim sku_already As Boolean = True
@@ -472,14 +486,16 @@ Public Class FormSalesOrderDet
                     End If
 
                     'cek promo
-                    If dpp.Rows.Count > 0 Then
-                        Dim dpp_filter As DataRow() = dpp.Select("[id_product]='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' ")
-                        If dpp_filter.Length > 0 Then
-                            already_no_promo = False
+                    If id_ol_promo = "-1" Then
+                        If dpp.Rows.Count > 0 Then
+                            Dim dpp_filter As DataRow() = dpp.Select("[id_product]='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' ")
+                            If dpp_filter.Length > 0 Then
+                                already_no_promo = False
 
-                            sku_promo += GVItemList.GetRowCellValue(i, "code").ToString + ", "
+                                sku_promo += GVItemList.GetRowCellValue(i, "code").ToString + ", "
 
-                            sku_promo_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
+                                sku_promo_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
+                            End If
                         End If
                     End If
 
@@ -597,7 +613,7 @@ Public Class FormSalesOrderDet
                     Dim query_detail As String = ""
                     Dim jum_ins_j As Integer = 0
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note, item_id, ol_store_id) VALUES "
+                        query_detail = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note, item_id, ol_store_id,id_ol_promo_collection_sku_replace) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Try
@@ -608,11 +624,14 @@ Public Class FormSalesOrderDet
                             Dim sales_order_det_note As String = addSlashes(GVItemList.GetRowCellValue(i, "sales_order_det_note").ToString)
                             Dim item_id As String = addSlashes(GVItemList.GetRowCellValue(i, "item_id").ToString)
                             Dim ol_store_id As String = addSlashes(GVItemList.GetRowCellValue(i, "ol_store_id").ToString)
-
+                            Dim id_ol_promo_collection_sku_replace = GVItemList.GetRowCellValue(i, "id_ol_promo_collection_sku_replace").ToString
+                            If id_ol_promo_collection_sku_replace = "" Then
+                                id_ol_promo_collection_sku_replace = "NULL"
+                            End If
                             If jum_ins_j > 0 Then
                                 query_detail += ", "
                             End If
-                            query_detail += "('" + id_sales_order + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_order_det_qty + "', '" + sales_order_det_note + "','" + item_id + "','" + ol_store_id + "') "
+                            query_detail += "('" + id_sales_order + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_order_det_qty + "', '" + sales_order_det_note + "','" + item_id + "','" + ol_store_id + "'," + id_ol_promo_collection_sku_replace + ") "
                             jum_ins_j = jum_ins_j + 1
                         Catch ex As Exception
                         End Try
@@ -922,10 +941,17 @@ Public Class FormSalesOrderDet
             stopCustom("Please select warehouse and store first !")
         Else
             Cursor = Cursors.WaitCursor
-            FormSalesOrderSingleV2.id_wh_par = id_comp_par
-            FormSalesOrderSingleV2.id_store_par = id_store
-            FormSalesOrderSingleV2.data_par = GCItemList.DataSource
-            FormSalesOrderSingleV2.ShowDialog()
+            If id_ol_promo = "-1" Then
+                FormSalesOrderSingleV2.id_wh_par = id_comp_par
+                FormSalesOrderSingleV2.id_store_par = id_store
+                FormSalesOrderSingleV2.data_par = GCItemList.DataSource
+                FormSalesOrderSingleV2.ShowDialog()
+            Else
+                FormSalesOrderPromoList.id_ol_promo = id_ol_promo
+                FormSalesOrderPromoList.data_par = GCItemList.DataSource
+                FormSalesOrderPromoList.data_stock = dt
+                FormSalesOrderPromoList.ShowDialog()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub
@@ -1120,28 +1146,30 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
     End Sub
 
     Sub addMyRow()
-        Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
-        newRow("id_sales_order_det") = "0"
-        newRow("name") = ""
-        newRow("code") = ""
-        newRow("size") = ""
-        newRow("sales_order_det_qty") = 0
-        newRow("id_design_price") = 0
-        newRow("design_price") = 0
-        newRow("design_price_type") = ""
-        newRow("amount") = 0
-        newRow("qty_avail") = 0
-        newRow("sales_order_det_note") = ""
-        newRow("id_design") = "0"
-        newRow("id_product") = "0"
-        newRow("id_sample") = "0"
-        newRow("is_found") = "2"
-        newRow("error_status") = ""
-        TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
-        'CType(GCItemList.DataSource, DataTable).AcceptChanges()
-        GCItemList.RefreshDataSource()
-        GVItemList.RefreshData()
-        check_but()
+        If id_ol_promo = "-1" Then
+            Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+            newRow("id_sales_order_det") = "0"
+            newRow("name") = ""
+            newRow("code") = ""
+            newRow("size") = ""
+            newRow("sales_order_det_qty") = 0
+            newRow("id_design_price") = 0
+            newRow("design_price") = 0
+            newRow("design_price_type") = ""
+            newRow("amount") = 0
+            newRow("qty_avail") = 0
+            newRow("sales_order_det_note") = ""
+            newRow("id_design") = "0"
+            newRow("id_product") = "0"
+            newRow("id_sample") = "0"
+            newRow("is_found") = "2"
+            newRow("error_status") = ""
+            TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+            'CType(GCItemList.DataSource, DataTable).AcceptChanges()
+            GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
+            check_but()
+        End If
     End Sub
 
     Sub delMyRow()
