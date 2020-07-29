@@ -37,16 +37,19 @@ INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='" & data_head.Rows(0)("id_currency").ToString & "' AND pyd.`is_include_total`=1
+INNER JOIN tb_a_acc acc ON acc.id_acc=pyd.id_acc AND acc.is_no_summary=2
 LEFT JOIN 
 ( SELECT id_pn,SUM(val_bef_kurs) as val_total FROM tb_pn_det WHERE `id_currency`='" & data_head.Rows(0)("id_currency").ToString & "' AND `is_include_total`=1 GROUP BY id_pn)
 tot ON tot.id_pn=py.id_pn
 INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_summary`='" & id_sum & "'"
 
-        If data_head.Rows(0)("id_currency").ToString = "1" Then
-            q += " GROUP BY py.id_pn "
-        Else
-            q += " GROUP BY pyd.id_pn_det "
-        End If
+        q += " GROUP BY py.id_pn "
+
+        'If data_head.Rows(0)("id_currency").ToString = "1" Then
+        '    q += " GROUP BY py.id_pn "
+        'Else
+        '    q += " GROUP BY pyd.id_pn_det "
+        'End If
         '
         Dim dt_det As DataTable = execute_query(q, -1, True, "", "", "", "")
 
