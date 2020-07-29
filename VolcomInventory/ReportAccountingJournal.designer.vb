@@ -79,7 +79,7 @@ Partial Public Class ReportAccountingJournal
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(720.6661!, 159.375!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(773.0!, 159.375!)
         Me.WinControlContainer1.WinControl = Me.GCJournalDet
         '
         'GCJournalDet
@@ -88,7 +88,7 @@ Partial Public Class ReportAccountingJournal
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
-        Me.GCJournalDet.Size = New System.Drawing.Size(692, 153)
+        Me.GCJournalDet.Size = New System.Drawing.Size(742, 153)
         Me.GCJournalDet.TabIndex = 11
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
@@ -161,7 +161,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 162
+        Me.GridColumn8.Width = 226
         '
         'GridColumn9
         '
@@ -174,7 +174,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 3
-        Me.GridColumn9.Width = 23
+        Me.GridColumn9.Width = 32
         '
         'GridColumn3
         '
@@ -183,7 +183,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 83
+        Me.GridColumn3.Width = 216
         '
         'GridColumn4
         '
@@ -196,13 +196,13 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn4.DisplayFormat.FormatString = "N2"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "debit"
-        Me.GridColumn4.MaxWidth = 90
-        Me.GridColumn4.MinWidth = 90
+        Me.GridColumn4.MaxWidth = 80
+        Me.GridColumn4.MinWidth = 80
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 90
+        Me.GridColumn4.Width = 80
         '
         'RepositoryItemTextEdit1
         '
@@ -227,13 +227,13 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn5.DisplayFormat.FormatString = "N2"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "credit"
-        Me.GridColumn5.MaxWidth = 90
-        Me.GridColumn5.MinWidth = 90
+        Me.GridColumn5.MaxWidth = 80
+        Me.GridColumn5.MinWidth = 80
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 6
-        Me.GridColumn5.Width = 90
+        Me.GridColumn5.Width = 80
         '
         'RepositoryItemTextEdit2
         '
@@ -249,7 +249,7 @@ Partial Public Class ReportAccountingJournal
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 19.45833!
+        Me.TopMargin.HeightF = 8.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -257,7 +257,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel9
         '
         Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(566.4996!, 63.25!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(618.1656!, 63.25!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(12.50003!, 23.0!)
@@ -269,7 +269,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel8
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(566.499!, 40.25!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(618.165!, 40.25!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(12.50003!, 23.0!)
@@ -281,7 +281,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(480.0406!, 40.25!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(531.7066!, 40.25!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(86.45834!, 23.0!)
@@ -293,7 +293,7 @@ Partial Public Class ReportAccountingJournal
         'LVoucherType
         '
         Me.LVoucherType.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LVoucherType.LocationFloat = New DevExpress.Utils.PointFloat(578.999!, 40.25!)
+        Me.LVoucherType.LocationFloat = New DevExpress.Utils.PointFloat(630.665!, 40.25!)
         Me.LVoucherType.Name = "LVoucherType"
         Me.LVoucherType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LVoucherType.SizeF = New System.Drawing.SizeF(141.6666!, 23.0!)
@@ -350,7 +350,7 @@ Partial Public Class ReportAccountingJournal
         'LUserEntry
         '
         Me.LUserEntry.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LUserEntry.LocationFloat = New DevExpress.Utils.PointFloat(578.9996!, 63.25!)
+        Me.LUserEntry.LocationFloat = New DevExpress.Utils.PointFloat(630.6656!, 63.25!)
         Me.LUserEntry.Name = "LUserEntry"
         Me.LUserEntry.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LUserEntry.SizeF = New System.Drawing.SizeF(141.6666!, 23.0!)
@@ -361,7 +361,7 @@ Partial Public Class ReportAccountingJournal
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(480.0406!, 63.25!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(531.7066!, 63.25!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(86.45837!, 23.0!)
@@ -411,7 +411,7 @@ Partial Public Class ReportAccountingJournal
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(570.6656!, 8.291656!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(622.3316!, 8.291656!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -422,7 +422,7 @@ Partial Public Class ReportAccountingJournal
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 19.0!
+        Me.BottomMargin.HeightF = 10.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -433,7 +433,7 @@ Partial Public Class ReportAccountingJournal
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 46.95829!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(720.6656!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(773.0!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
@@ -459,7 +459,7 @@ Partial Public Class ReportAccountingJournal
         Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(43.66681!, 0!)
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNote.SizeF = New System.Drawing.SizeF(676.9992!, 46.95832!)
+        Me.LNote.SizeF = New System.Drawing.SizeF(729.3337!, 46.95832!)
         Me.LNote.StylePriority.UseBorderColor = False
         Me.LNote.StylePriority.UseBorders = False
         Me.LNote.StylePriority.UseTextAlignment = False
@@ -484,6 +484,7 @@ Partial Public Class ReportAccountingJournal
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.LNote, Me.XrTable1})
         Me.ReportFooter.HeightF = 71.95832!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrLabel10
@@ -530,10 +531,9 @@ Partial Public Class ReportAccountingJournal
         'ReportAccountingJournal
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
-        Me.Margins = New System.Drawing.Printing.Margins(33, 73, 19, 19)
-        Me.PageHeight = 1169
-        Me.PageWidth = 827
-        Me.PaperKind = System.Drawing.Printing.PaperKind.A4
+        Me.Margins = New System.Drawing.Printing.Margins(30, 47, 8, 10)
+        Me.PageHeight = 550
+        Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.Version = "15.1"
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).EndInit()

@@ -19,10 +19,9 @@ Partial Class FormMasterDesignSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterDesignSingle))
         Me.RILEValNon = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.EPMasterDesign = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.EPMasterDesign = New System.Windows.Forms.ErrorProvider()
         Me.DNCode = New DevExpress.XtraEditors.DataNavigator()
         Me.GCCode = New DevExpress.XtraGrid.GridControl()
         Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -160,7 +159,7 @@ Partial Class FormMasterDesignSingle
         Me.TEDisplayName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCDesign = New DevExpress.XtraTab.XtraTabControl()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
         Me.PanC3 = New DevExpress.XtraEditors.PanelControl()
         Me.XTPCode = New DevExpress.XtraTab.XtraTabControl()
@@ -225,6 +224,16 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPAdditional = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAdditional = New DevExpress.XtraGrid.GridControl()
+        Me.GVAdditional = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMEValue = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEBrowse = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSize = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -270,9 +279,9 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment = New DevExpress.XtraEditors.PanelControl()
         Me.BDelComment = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddComment = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.EPChanges = New System.Windows.Forms.ErrorProvider()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -377,6 +386,11 @@ Partial Class FormMasterDesignSingle
         Me.PanelControl4.SuspendLayout()
         CType(Me.LETemplateNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPAdditional.SuspendLayout()
+        CType(Me.GCAdditional, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVAdditional, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMEValue, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEBrowse, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSize.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1853,7 +1867,7 @@ Partial Class FormMasterDesignSingle
         Me.XTPCode.SelectedTabPage = Me.XTPDesign
         Me.XTPCode.Size = New System.Drawing.Size(505, 725)
         Me.XTPCode.TabIndex = 100
-        Me.XTPCode.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPMD, Me.XTPNonMD})
+        Me.XTPCode.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPMD, Me.XTPNonMD, Me.XTPAdditional})
         '
         'XTPDesign
         '
@@ -2455,6 +2469,87 @@ Partial Class FormMasterDesignSingle
         Me.LabelControl17.TabIndex = 88
         Me.LabelControl17.Text = "TemplateCode"
         '
+        'XTPAdditional
+        '
+        Me.XTPAdditional.Controls.Add(Me.GCAdditional)
+        Me.XTPAdditional.Name = "XTPAdditional"
+        Me.XTPAdditional.Size = New System.Drawing.Size(499, 697)
+        Me.XTPAdditional.Text = "Additional Information"
+        '
+        'GCAdditional
+        '
+        Me.GCAdditional.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCAdditional.Location = New System.Drawing.Point(0, 0)
+        Me.GCAdditional.MainView = Me.GVAdditional
+        Me.GCAdditional.Name = "GCAdditional"
+        Me.GCAdditional.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBrowse, Me.RIMEValue})
+        Me.GCAdditional.Size = New System.Drawing.Size(499, 697)
+        Me.GCAdditional.TabIndex = 0
+        Me.GCAdditional.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAdditional})
+        '
+        'GVAdditional
+        '
+        Me.GVAdditional.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn57, Me.GridColumn56})
+        Me.GVAdditional.GridControl = Me.GCAdditional
+        Me.GVAdditional.Name = "GVAdditional"
+        Me.GVAdditional.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.FieldName = "id_design_column"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn54
+        '
+        Me.GridColumn54.Caption = "Column"
+        Me.GridColumn54.FieldName = "column_name"
+        Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.OptionsColumn.AllowEdit = False
+        Me.GridColumn54.Visible = True
+        Me.GridColumn54.VisibleIndex = 0
+        Me.GridColumn54.Width = 200
+        '
+        'GridColumn55
+        '
+        Me.GridColumn55.Caption = "Value"
+        Me.GridColumn55.ColumnEdit = Me.RIMEValue
+        Me.GridColumn55.FieldName = "value"
+        Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.Visible = True
+        Me.GridColumn55.VisibleIndex = 1
+        Me.GridColumn55.Width = 231
+        '
+        'RIMEValue
+        '
+        Me.RIMEValue.Name = "RIMEValue"
+        '
+        'GridColumn57
+        '
+        Me.GridColumn57.Caption = "Browse"
+        Me.GridColumn57.ColumnEdit = Me.RICEBrowse
+        Me.GridColumn57.MaxWidth = 50
+        Me.GridColumn57.MinWidth = 50
+        Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.Visible = True
+        Me.GridColumn57.VisibleIndex = 2
+        Me.GridColumn57.Width = 50
+        '
+        'RICEBrowse
+        '
+        Me.RICEBrowse.AutoHeight = False
+        Me.RICEBrowse.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RICEBrowse.Name = "RICEBrowse"
+        Me.RICEBrowse.PictureChecked = CType(resources.GetObject("RICEBrowse.PictureChecked"), System.Drawing.Image)
+        Me.RICEBrowse.PictureGrayed = CType(resources.GetObject("RICEBrowse.PictureGrayed"), System.Drawing.Image)
+        Me.RICEBrowse.PictureUnchecked = CType(resources.GetObject("RICEBrowse.PictureUnchecked"), System.Drawing.Image)
+        '
+        'GridColumn56
+        '
+        Me.GridColumn56.FieldName = "is_lookup"
+        Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.OptionsColumn.AllowEdit = False
+        '
         'XTPSize
         '
         Me.XTPSize.Controls.Add(Me.GCProduct)
@@ -3043,6 +3138,11 @@ Partial Class FormMasterDesignSingle
         Me.PanelControl4.PerformLayout()
         CType(Me.LETemplateNonMD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPAdditional.ResumeLayout(False)
+        CType(Me.GCAdditional, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVAdditional, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMEValue, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEBrowse, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSize.ResumeLayout(False)
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3319,4 +3419,14 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumnClass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CEPRM As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTPAdditional As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCAdditional As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVAdditional As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEBrowse As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RIMEValue As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

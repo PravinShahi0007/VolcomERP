@@ -62,6 +62,8 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEInvNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.RepositoryItemTextEditPph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,6 +87,7 @@ Partial Class FormBankWithdrawalAttachement
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEditPph
@@ -160,18 +163,18 @@ Partial Class FormBankWithdrawalAttachement
         '
         'TextEditVendor
         '
-        Me.TextEditVendor.Location = New System.Drawing.Point(76, 12)
+        Me.TextEditVendor.Location = New System.Drawing.Point(97, 12)
         Me.TextEditVendor.Name = "TextEditVendor"
         Me.TextEditVendor.Properties.ReadOnly = True
-        Me.TextEditVendor.Size = New System.Drawing.Size(160, 20)
+        Me.TextEditVendor.Size = New System.Drawing.Size(139, 20)
         Me.TextEditVendor.TabIndex = 7
         '
         'TextEditPONumber
         '
-        Me.TextEditPONumber.Location = New System.Drawing.Point(76, 38)
+        Me.TextEditPONumber.Location = New System.Drawing.Point(97, 38)
         Me.TextEditPONumber.Name = "TextEditPONumber"
         Me.TextEditPONumber.Properties.ReadOnly = True
-        Me.TextEditPONumber.Size = New System.Drawing.Size(160, 20)
+        Me.TextEditPONumber.Size = New System.Drawing.Size(139, 20)
         Me.TextEditPONumber.TabIndex = 9
         '
         'LabelControl4
@@ -201,9 +204,9 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl2.Controls.Add(Me.TEDiscTotal)
         Me.PanelControl2.Controls.Add(Me.LabelControl15)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 313)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 347)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(492, 179)
+        Me.PanelControl2.Size = New System.Drawing.Size(492, 145)
         Me.PanelControl2.TabIndex = 11
         '
         'LabelControl7
@@ -438,7 +441,7 @@ Partial Class FormBankWithdrawalAttachement
         'GCPurcReq
         '
         Me.GCPurcReq.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GCPurcReq.Location = New System.Drawing.Point(2, 87)
+        Me.GCPurcReq.Location = New System.Drawing.Point(2, 121)
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.Size = New System.Drawing.Size(488, 224)
@@ -525,6 +528,8 @@ Partial Class FormBankWithdrawalAttachement
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.TEInvNumber)
+        Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Controls.Add(Me.GCPurcReq)
         Me.PanelControl3.Controls.Add(Me.PanelControl1)
         Me.PanelControl3.Controls.Add(Me.TextEditVendor)
@@ -538,7 +543,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(492, 313)
+        Me.PanelControl3.Size = New System.Drawing.Size(492, 347)
         Me.PanelControl3.TabIndex = 12
         '
         'PanelControl1
@@ -546,7 +551,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PanelControl1.Appearance.Options.UseBackColor = True
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.PanelControl1.Location = New System.Drawing.Point(18, 69)
+        Me.PanelControl1.Location = New System.Drawing.Point(18, 100)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(462, 2)
         Me.PanelControl1.TabIndex = 8905
@@ -559,6 +564,21 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(492, 38)
         Me.PanelControl4.TabIndex = 11
+        '
+        'TEInvNumber
+        '
+        Me.TEInvNumber.Location = New System.Drawing.Point(97, 64)
+        Me.TEInvNumber.Name = "TEInvNumber"
+        Me.TEInvNumber.Size = New System.Drawing.Size(381, 20)
+        Me.TEInvNumber.TabIndex = 8907
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(16, 67)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl10.TabIndex = 8906
+        Me.LabelControl10.Text = "Invoice Number"
         '
         'FormBankWithdrawalAttachement
         '
@@ -598,6 +618,7 @@ Partial Class FormBankWithdrawalAttachement
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -644,4 +665,6 @@ Partial Class FormBankWithdrawalAttachement
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEInvNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class

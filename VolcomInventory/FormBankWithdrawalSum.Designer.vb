@@ -22,6 +22,9 @@ Partial Class FormBankWithdrawalSum
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawalSum))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEChangeDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LChangeTo = New DevExpress.XtraEditors.LabelControl()
+        Me.BChangeDate = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,6 +44,7 @@ Partial Class FormBankWithdrawalSum
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BRelease = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -61,10 +65,13 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.DEChangeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEChangeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPayment.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +107,9 @@ Partial Class FormBankWithdrawalSum
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.DEChangeDate)
+        Me.PanelControl3.Controls.Add(Me.LChangeTo)
+        Me.PanelControl3.Controls.Add(Me.BChangeDate)
         Me.PanelControl3.Controls.Add(Me.SLEType)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
         Me.PanelControl3.Controls.Add(Me.DEPayment)
@@ -111,8 +121,40 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(417, 118)
+        Me.PanelControl3.Size = New System.Drawing.Size(798, 118)
         Me.PanelControl3.TabIndex = 165
+        '
+        'DEChangeDate
+        '
+        Me.DEChangeDate.EditValue = Nothing
+        Me.DEChangeDate.Location = New System.Drawing.Point(464, 90)
+        Me.DEChangeDate.Name = "DEChangeDate"
+        Me.DEChangeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEChangeDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEChangeDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEChangeDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEChangeDate.Size = New System.Drawing.Size(201, 20)
+        Me.DEChangeDate.TabIndex = 171
+        Me.DEChangeDate.Visible = False
+        '
+        'LChangeTo
+        '
+        Me.LChangeTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LChangeTo.Location = New System.Drawing.Point(408, 93)
+        Me.LChangeTo.Name = "LChangeTo"
+        Me.LChangeTo.Size = New System.Drawing.Size(50, 13)
+        Me.LChangeTo.TabIndex = 170
+        Me.LChangeTo.Text = "Change to"
+        Me.LChangeTo.Visible = False
+        '
+        'BChangeDate
+        '
+        Me.BChangeDate.Location = New System.Drawing.Point(671, 88)
+        Me.BChangeDate.Name = "BChangeDate"
+        Me.BChangeDate.Size = New System.Drawing.Size(124, 23)
+        Me.BChangeDate.TabIndex = 169
+        Me.BChangeDate.Text = "Change Payment Date"
+        Me.BChangeDate.Visible = False
         '
         'SLEType
         '
@@ -295,6 +337,7 @@ Partial Class FormBankWithdrawalSum
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.BtnAttachment)
         Me.PanelControl7.Controls.Add(Me.BRelease)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
@@ -306,6 +349,18 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(936, 48)
         Me.PanelControl7.TabIndex = 4
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.ImageIndex = 16
+        Me.BtnAttachment.Location = New System.Drawing.Point(440, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 44)
+        Me.BtnAttachment.TabIndex = 22
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
         '
         'BRelease
         '
@@ -393,7 +448,7 @@ Partial Class FormBankWithdrawalSum
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn100})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn4, Me.GridColumn100})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -518,6 +573,14 @@ Partial Class FormBankWithdrawalSum
         Me.BGenerate.TabStop = False
         Me.BGenerate.Text = "Generate"
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Status"
+        Me.GridColumn4.FieldName = "report_status"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 7
+        '
         'FormBankWithdrawalSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -538,6 +601,8 @@ Partial Class FormBankWithdrawalSum
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.DEChangeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEChangeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPayment.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -606,4 +671,9 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BChangeDate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEChangeDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LChangeTo As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

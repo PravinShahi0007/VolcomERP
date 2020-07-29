@@ -28,6 +28,9 @@
     End Sub
 
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEBBKFrom.EditValue = Now
+        DEBBKTo.EditValue = Now
+        '
         DEFromSum.EditValue = Now
         DEToSum.EditValue = Now
         '
@@ -170,7 +173,8 @@ INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
 INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
-WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
+WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(py.date_payment) <= '" & Date.Parse(DEBBKTo.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+" & where_string & " ORDER BY py.id_pn DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
@@ -303,7 +307,12 @@ LEFT JOIN
 WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY c_tag.id_coa_tag, po.id_purc_order " & having_string
         If XTPPOList.SelectedTabPageIndex = 0 Then
             'active
-            query = query.Replace("{query_active}", "AND po.is_active_payment = 1")
+            If SLEPayType.EditValue.ToString = "1" Then 'DP
+                query = query.Replace("{query_active}", "")
+            Else
+                query = query.Replace("{query_active}", "AND po.is_active_payment = 1")
+            End If
+
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCPOList.DataSource = data
             GVPOList.BestFitColumns()
@@ -937,7 +946,14 @@ GROUP BY sr.`id_sales_return`"
             Dim data_final As DataTable = data.Clone
 
             For i = 0 To data.Rows.Count - 1
-                If data.Rows(i)("expense") > 0 And data.Rows(i)("is_bbk").ToString = "2" Then
+                Dim expense As Decimal = 0.00
+
+                Try
+                    expense = data.Rows(i)("expense")
+                Catch ex As Exception
+                End Try
+
+                If expense > 0 And data.Rows(i)("is_bbk").ToString = "2" Then
                     data_final.ImportRow(data.Rows(i))
                 End If
             Next
@@ -1133,7 +1149,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
-WHERE it.id_item_type='1' AND po.`is_active_payment`=2 AND po.`is_close_pay`=2
+WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2 AND po.is_close_rec='1'
 GROUP BY pod.`id_purc_order`
 ORDER BY pod.id_purc_order DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -1186,13 +1202,14 @@ ORDER BY pod.id_purc_order DESC"
     End Sub
 
     Sub view_sum()
-        Dim q As String = "SELECT pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(pnd.`val_bef_kurs`) AS val_bef_kurs
+        Dim q As String = "SELECT pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IFNULL(pnd.`val_bef_kurs`,0)) AS val_bef_kurs
 FROM tb_pn_summary pns
-INNER JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
-INNER JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
+LEFT JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
+LEFT JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
 INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pns.`id_currency`
 INNER JOIN tb_m_user usr ON usr.`id_user`=pns.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pns.id_report_status
 WHERE DATE(pns.date_payment) >= '" & Date.Parse(DEFromSum.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(pns.date_payment) <= '" & Date.Parse(DEToSum.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 GROUP BY pns.`id_pn_summary`"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -1209,5 +1226,22 @@ GROUP BY pns.`id_pn_summary`"
             FormBankWithdrawalSum.id_sum = GVBBKSummary.GetFocusedRowCellValue("id_pn_summary").ToString
             FormBankWithdrawalSum.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BBHistoryPaymentDate_Click(sender As Object, e As EventArgs) Handles BBHistoryPaymentDate.Click
+        If GVList.RowCount > 0 Then
+            FormBankWithdrawalLogPaymentDate.id_pn = GVList.GetFocusedRowCellValue("id_pn").ToString
+            FormBankWithdrawalLogPaymentDate.ShowDialog()
+        Else
+            warningCustom("No BBK selected")
+        End If
+    End Sub
+
+    Private Sub DEBBKFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEBBKFrom.EditValueChanged
+        DEBBKTo.Properties.MinValue = DEBBKFrom.EditValue
+    End Sub
+
+    Private Sub BBuyValas_Click(sender As Object, e As EventArgs) Handles BBuyValas.Click
+
     End Sub
 End Class

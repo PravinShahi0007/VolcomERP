@@ -43,15 +43,25 @@
         check_but()
     End Sub
 
-    Sub view_det(ByVal start_date As String, ByVal end_date As String)
+    Sub view_det(ByVal start_date As String, ByVal end_date As String, ByVal opt As String)
+
         Dim query As String = "SELECT c.id_acc_trans,c.acc_trans_number,c.date_created,a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description
-,CAST(a.debit AS DECIMAL(13,2)) AS debit,CAST(a.credit AS DECIMAL(13,2)) AS credit,a.acc_trans_det_note AS note 
+,a.debit,a.credit,a.acc_trans_det_note AS note 
 ,comp.comp_number,a.`report_mark_type`,a.`id_report`,a.`report_number`,a.`report_mark_type_ref`,a.`id_report_ref`,a.`report_number_ref`
 FROM tb_a_acc_trans_det a 
 INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc 
 INNER JOIN tb_a_acc_trans c ON c.id_acc_trans=a.id_acc_trans 
 LEFT JOIN tb_m_comp comp ON comp.id_comp=a.id_comp"
-        query += " WHERE (DATE(c.date_created) <= '" & end_date & "') AND (DATE(c.date_created) >= '" & start_date & "') AND c.id_bill_type='" & LEBillingView.EditValue.ToString & "'"
+
+        If opt = "1" Then
+            query += " WHERE (DATE(c.date_created) <= '" & end_date & "') AND (DATE(c.date_created) >= '" & start_date & "')"
+        ElseIf opt = "2" Then
+            query += " WHERE (DATE(c.date_reference) <= '" & end_date & "') AND (DATE(c.date_reference) >= '" & start_date & "')"
+        End If
+
+        If Not LEBillingView.EditValue.ToString = "ALL" Then
+            query += " AND c.id_bill_type='" & LEBillingView.EditValue.ToString & "'"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCJournalDet.DataSource = data
         GVJournalDet.ExpandAllGroups()
@@ -78,7 +88,7 @@ LEFT JOIN tb_m_comp comp ON comp.id_comp=a.id_comp"
         If LEBillingView.Text = "" Then
             warningCustom("Please choose type first")
         Else
-            view_det(fromdate, enddate)
+            view_det(fromdate, enddate, "1")
         End If
     End Sub
 
@@ -110,7 +120,10 @@ LEFT JOIN tb_m_comp comp ON comp.id_comp=a.id_comp"
         query += "INNER JOIN tb_m_employee i ON h.id_employee = i.id_employee "
         query += "INNER JOIN tb_lookup_report_status f ON t.id_report_status = f.id_report_status "
         query += "INNER JOIN tb_lookup_bill_type bill ON bill.id_bill_type=t.id_bill_type "
-        query += "WHERE t.id_bill_type LIKE '" + id_type + "' AND (DATE(t.date_created) <= '" & enddate & "') AND (DATE(t.date_created) >= '" & fromdate & "')"
+        query += "WHERE (DATE(t.date_created) <= '" & enddate & "') AND (DATE(t.date_created) >= '" & fromdate & "')"
+        If LEBilling.EditValue.ToString = "ALL" Then
+            query += " AND t.id_bill_type = '" + id_type + "' "
+        End If
         query += "ORDER BY t.id_acc_trans DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCAccTrans.DataSource = data
@@ -141,5 +154,30 @@ LEFT JOIN tb_m_comp comp ON comp.id_comp=a.id_comp"
 
     Private Sub GVAccTrans_DoubleClick(sender As Object, e As EventArgs) Handles GVAccTrans.DoubleClick
         FormMain.but_edit()
+    End Sub
+
+    Private Sub BViewReff_Click(sender As Object, e As EventArgs) Handles BViewReff.Click
+        Dim fromdate As String = ""
+        Dim enddate As String = ""
+
+        If DEFrom.Text = "" Then
+            DEFrom.DateTime = Now
+            fromdate = Now.ToString("yyy-MM-dd")
+        Else
+            fromdate = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyy-MM-dd")
+        End If
+
+        If DETo.Text = "" Then
+            DETo.DateTime = Now
+            enddate = Now.ToString("yyy-MM-dd")
+        Else
+            enddate = DateTime.Parse(DETo.EditValue.ToString).ToString("yyy-MM-dd")
+        End If
+
+        If LEBillingView.Text = "" Then
+            warningCustom("Please choose type first")
+        Else
+            view_det(fromdate, enddate, "2")
+        End If
     End Sub
 End Class

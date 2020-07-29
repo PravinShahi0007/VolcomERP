@@ -15,6 +15,7 @@ Public Class FormSalesOrderDet
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_so")
     Public dt As DataTable
+    Public dt_shop As DataTable
     Public id_type As String
     Public id_commerce_type As String = "-1"
     Public id_store_type As String = "-1"
@@ -420,11 +421,46 @@ Public Class FormSalesOrderDet
 
         'check sku shopify
         If CESync.Checked Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+            'get shopify product
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Get shopify product")
+            Dim found_sku As Boolean = True
+            Dim sku_shopify As String = ""
+            Dim sku_shopify_copy As String = ""
+            getProductShopify()
+
+            'cek promo
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Get promo product")
+            Dim already_promo As Boolean = True
+            Dim sku_promo As String = ""
+            Dim sku_promo_copy As String = ""
+            Dim query_get_promo As String = "SELECT p.id_ol_promo_collection , p.number
+            FROM tb_ol_promo_collection p WHERE p.id_report_status=6 
+            AND (NOW()>=p.start_period AND NOW()<=p.end_period)
+            LIMIT 1 "
+            Dim data_get_promo As DataTable = execute_query(query_get_promo, -1, True, "", "", "", "")
+            Dim dpp As DataTable
+            Dim promo_number As String = ""
+            If data_get_promo.Rows.Count > 0 Then
+                Dim id_ol_promo_collection As String = data_get_promo.Rows(0)("id_ol_promo_collection").ToString
+                promo_number = data_get_promo.Rows(0)("number").ToString
+                'get data product
+                Dim qpp As String = "SELECT d.id_product 
+                FROM tb_ol_promo_collection_sku d 
+                WHERE d.id_ol_promo_collection=" + id_ol_promo_collection + " AND d.is_block=1
+                GROUP BY d.id_product "
+                dpp = execute_query(qpp, -1, True, "", "", "", "")
+            Else
+                dpp.Clear()
+            End If
+
+
             Dim sku_already As Boolean = True
             Dim sku_in As String = ""
             Dim sku_copy As String = ""
 
             For i = 0 To GVItemList.RowCount - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking order " + (i + 1).ToString + " of " + GVItemList.RowCount.ToString)
                 If GVItemList.IsValidRowHandle(i) Then
                     Dim q_already As String = "SELECT COUNT(*) AS total, sku FROM tb_m_product_shopify WHERE sku = " + GVItemList.GetRowCellValue(i, "code").ToString
 
@@ -437,18 +473,64 @@ Public Class FormSalesOrderDet
 
                         sku_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
                     End If
+
+                    'cek promo
+                    If dpp.Rows.Count > 0 Then
+                        Dim dpp_filter As DataRow() = dpp.Select("[id_product]='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' ")
+                        If dpp_filter.Length > 0 Then
+                            already_promo = False
+
+                            sku_promo += GVItemList.GetRowCellValue(i, "code").ToString + ", "
+
+                            sku_promo_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
+                        End If
+                    End If
+
+                    'cek shopify
+                    Dim dt_shop_filter As DataRow() = dt_shop.Select("[sku]='" + GVItemList.GetRowCellValue(i, "code").ToString + "'")
+                    If dt_shop_filter.Length <= 0 Then
+                        found_sku = False
+
+                        sku_shopify += GVItemList.GetRowCellValue(i, "code").ToString + ", "
+
+                        sku_shopify_copy += GVItemList.GetRowCellValue(i, "code").ToString + Environment.NewLine
+                    End If
                 End If
             Next
 
+            'not found sku di tabel
             If Not sku_already Then
+                FormMain.SplashScreenManager1.CloseWaitForm()
                 stopCustom("Can't find SKU: " + sku_in.Substring(0, sku_in.Length - 2) + ". Please make sure these SKU already on web or sync to shopify first.")
 
                 My.Computer.Clipboard.SetText(sku_copy)
 
                 Cursor = Cursors.Default
-
                 Exit Sub
             End If
+
+            'termasuk barang promo
+            If Not already_promo Then
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                stopCustom("These product already in promo programs (" + promo_number + ") : " + sku_promo.Substring(0, sku_promo.Length - 2) + ". Please create memo for replace stock these products.")
+
+                My.Computer.Clipboard.SetText(sku_promo_copy)
+
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
+            'sku di web gak ada
+            If Not found_sku Then
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                stopCustom("These product not found on website : " + sku_shopify.Substring(0, sku_shopify.Length - 2))
+
+                My.Computer.Clipboard.SetText(sku_shopify_copy)
+
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            FormMain.SplashScreenManager1.CloseWaitForm()
         End If
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
@@ -1622,11 +1704,12 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
 
     Private Sub SBSyncShopify_Click(sender As Object, e As EventArgs) Handles SBSyncShopify.Click
         Cursor = Cursors.WaitCursor
-
+        FormMain.SplashScreenManager1.ShowWaitForm()
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Please wait")
         Dim cls As ClassShopifyApi = New ClassShopifyApi
 
         Dim no_duplicate As Boolean = cls.sync_sku()
-
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
 
         If no_duplicate Then
@@ -1648,5 +1731,32 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
         Else
             SBViewLog.Visible = False
         End If
+    End Sub
+
+    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+        'reset store
+        resetStore()
+        TxtCodeCompTo.Text = ""
+        'reset wh
+        id_comp_par = "-1"
+        id_comp_contact_par = "-1"
+        TxtWHNameTo.Text = ""
+        TxtWHCodeTo.Text = ""
+    End Sub
+
+    Sub getProductShopify()
+        Cursor = Cursors.WaitCursor
+        'clear dt
+        Try
+            dt_shop.Clear()
+        Catch ex As Exception
+        End Try
+        Try
+            Dim s As New ClassShopifyApi()
+            dt_shop = s.get_product()
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

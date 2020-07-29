@@ -19,12 +19,20 @@
         load_sum()
 
         'number
+        Dim num As Integer = 0
+
         For i = 0 To GVSummary.RowCount - 1
             If GVSummary.IsValidRowHandle(i) Then
-                GVSummary.SetRowCellValue(i, "no", i + 1)
-
                 If GVSummary.GetRowCellValue(i, "id_departement").ToString = "17" Then
-                    Exit For
+                    If GVSummary.GetRowCellValue(i, "id_departement_sub").ToString = "" Then
+                        num = num + 1
+
+                        GVSummary.SetRowCellValue(i, "no", num)
+                    End If
+                Else
+                    num = num + 1
+
+                    GVSummary.SetRowCellValue(i, "no", num)
                 End If
             End If
         Next
@@ -167,21 +175,19 @@
         'store
         Dim data_payroll_2 As DataTable = data.Clone
 
-        no = 0
-
         For j = 0 To data.Rows.Count - 1
             If data.Rows(j)("is_office_payroll").ToString = "2" Then
                 data_payroll_2.ImportRow(data.Rows(j))
             End If
         Next
 
+        no = 0
+
         For i = 0 To data_payroll_2.Rows.Count - 1
-            data_payroll_2.Rows(no)("no") = no + 1
+            If Not data_payroll_2.Rows(i)("no").ToString = "" Then
+                data_payroll_2.Rows(i)("no") = no + 1
 
-            no += 1
-
-            If data_payroll_2.Rows(i)("id_departement").ToString = "17" Then
-                Exit For
+                no += 1
             End If
         Next
 

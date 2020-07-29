@@ -112,6 +112,11 @@ Partial Class FormProductionFinalClearDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEServiceNote = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,6 +166,8 @@ Partial Class FormProductionFinalClearDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEServiceNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -502,6 +509,8 @@ Partial Class FormProductionFinalClearDet
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelHeaderLeft.Controls.Add(Me.SLEServiceNote)
+        Me.PanelHeaderLeft.Controls.Add(Me.LabelControl14)
         Me.PanelHeaderLeft.Controls.Add(Me.SLERecType)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl13)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl11)
@@ -520,7 +529,7 @@ Partial Class FormProductionFinalClearDet
         '
         'SLERecType
         '
-        Me.SLERecType.Location = New System.Drawing.Point(117, 72)
+        Me.SLERecType.Location = New System.Drawing.Point(117, 57)
         Me.SLERecType.Name = "SLERecType"
         Me.SLERecType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLERecType.Properties.ReadOnly = True
@@ -553,7 +562,7 @@ Partial Class FormProductionFinalClearDet
         'LabelControl13
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(7, 75)
+        Me.LabelControl13.Location = New System.Drawing.Point(7, 60)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(85, 13)
         Me.LabelControl13.TabIndex = 10011
@@ -562,7 +571,7 @@ Partial Class FormProductionFinalClearDet
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(7, 137)
+        Me.LabelControl11.Location = New System.Drawing.Point(7, 112)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl11.TabIndex = 10009
@@ -570,7 +579,7 @@ Partial Class FormProductionFinalClearDet
         '
         'LECLaim
         '
-        Me.LECLaim.Location = New System.Drawing.Point(117, 134)
+        Me.LECLaim.Location = New System.Drawing.Point(117, 109)
         Me.LECLaim.Name = "LECLaim"
         Me.LECLaim.Properties.Appearance.Options.UseTextOptions = True
         Me.LECLaim.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -585,7 +594,7 @@ Partial Class FormProductionFinalClearDet
         '
         'LEPLCategory
         '
-        Me.LEPLCategory.Location = New System.Drawing.Point(117, 108)
+        Me.LEPLCategory.Location = New System.Drawing.Point(117, 83)
         Me.LEPLCategory.Name = "LEPLCategory"
         Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
         Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -601,7 +610,7 @@ Partial Class FormProductionFinalClearDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(7, 111)
+        Me.LabelControl2.Location = New System.Drawing.Point(7, 86)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(99, 13)
         Me.LabelControl2.TabIndex = 10007
@@ -1179,6 +1188,46 @@ Partial Class FormProductionFinalClearDet
         Me.BScan.TabIndex = 6
         Me.BScan.Text = "Start Scan"
         '
+        'LabelControl14
+        '
+        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl14.Location = New System.Drawing.Point(7, 138)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl14.TabIndex = 10014
+        Me.LabelControl14.Text = "Service Note"
+        '
+        'SLEServiceNote
+        '
+        Me.SLEServiceNote.Location = New System.Drawing.Point(117, 135)
+        Me.SLEServiceNote.Name = "SLEServiceNote"
+        Me.SLEServiceNote.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEServiceNote.Properties.View = Me.GridView1
+        Me.SLEServiceNote.Size = New System.Drawing.Size(142, 20)
+        Me.SLEServiceNote.TabIndex = 10015
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID"
+        Me.GridColumn5.FieldName = "id_service_type"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Type"
+        Me.GridColumn6.FieldName = "service_type"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
         'FormProductionFinalClearDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1247,6 +1296,8 @@ Partial Class FormProductionFinalClearDet
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEServiceNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1342,4 +1393,9 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnInfoSrs As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEServiceNote As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
 End Class

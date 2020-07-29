@@ -67,6 +67,9 @@ Partial Public Class ReportProductionFinalClear
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LServiceNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -261,7 +264,7 @@ Partial Public Class ReportProductionFinalClear
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel16, Me.XrLabel15, Me.LVendor, Me.LDesign, Me.XrLabel19, Me.XrLabel4, Me.Lcat, Me.XrLabel17, Me.XrLabel14, Me.XrLabel8, Me.XrLabel7, Me.LSeason, Me.LPONumber, Me.XrLabel5, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LFromName, Me.LToName, Me.XrLabel2, Me.XrLabel3})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LServiceNote, Me.XrLabel18, Me.XrLabel20, Me.XrLabel16, Me.XrLabel15, Me.LVendor, Me.LDesign, Me.XrLabel19, Me.XrLabel4, Me.Lcat, Me.XrLabel17, Me.XrLabel14, Me.XrLabel8, Me.XrLabel7, Me.LSeason, Me.LPONumber, Me.XrLabel5, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LFromName, Me.LToName, Me.XrLabel2, Me.XrLabel3})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 47.41829!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(772.9999!, 68.62337!)
@@ -619,6 +622,42 @@ Partial Public Class ReportProductionFinalClear
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
+        'LServiceNote
+        '
+        Me.LServiceNote.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LServiceNote.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
+        Me.LServiceNote.LocationFloat = New DevExpress.Utils.PointFloat(525.1252!, 42.75015!)
+        Me.LServiceNote.Name = "LServiceNote"
+        Me.LServiceNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LServiceNote.SizeF = New System.Drawing.SizeF(234.8748!, 13.58339!)
+        Me.LServiceNote.StylePriority.UseBorders = False
+        Me.LServiceNote.StylePriority.UseFont = False
+        Me.LServiceNote.Text = "-"
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel18.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(513.6668!, 42.7502!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(11.45837!, 13.58334!)
+        Me.XrLabel18.StylePriority.UseBorders = False
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.Text = ":"
+        '
+        'XrLabel20
+        '
+        Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel20.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(436.5836!, 42.75018!)
+        Me.XrLabel20.Name = "XrLabel20"
+        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(77.08319!, 13.58334!)
+        Me.XrLabel20.StylePriority.UseBorders = False
+        Me.XrLabel20.StylePriority.UseFont = False
+        Me.XrLabel20.Text = "Service Note"
+        '
         'ReportProductionFinalClear
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
@@ -682,4 +721,7 @@ Partial Public Class ReportProductionFinalClear
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LVendor As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LServiceNote As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
 End Class

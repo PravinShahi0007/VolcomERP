@@ -7968,9 +7968,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormPurcItemStock" Then
             If FormPurcItemStock.XTCStock.SelectedTabPageIndex = 0 Then
-                print_raw(FormPurcItemStock.GCSOH, "")
+                print_custom(FormPurcItemStock.GCSOH, "Stock On Hand until " & Date.Parse(FormPurcItemStock.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy"))
             ElseIf FormPurcItemStock.XTCStock.SelectedTabPageIndex = 1 Then
-                print_raw(FormPurcItemStock.GCSC, "")
+                print_custom(FormPurcItemStock.GCSC, FormPurcItemStock.SLEITem.Text & Environment.NewLine & "" & Date.Parse(FormPurcItemStock.DEFromSC.EditValue.ToString).ToString("dd/MM/yyyy") & " until " & Date.Parse(FormPurcItemStock.DEUntilSC.EditValue.ToString).ToString("dd/MM/yyyy"))
             End If
         ElseIf formName = "FormEmpUniSumReport" Then
             If FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 0 Then
@@ -9172,6 +9172,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMappingStore" Then
             FormMappingStore.Close()
             FormMappingStore.Dispose()
+        ElseIf formName = "FormDesignColumn" Then
+            FormDesignColumn.Close()
+            FormDesignColumn.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9521,7 +9524,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             If FormAccountingJournal.XTCJurnal.SelectedTabPageIndex = 0 Then
                 FormAccountingJournal.view_entry()
             Else
-                FormAccountingJournal.view_det(Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"))
+                FormAccountingJournal.view_det(Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"), "2")
             End If
         ElseIf formName = "FormAccountingJournalAdj" Then
             FormAccountingJournalAdj.view_jurnal()
@@ -10101,6 +10104,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMasterStore.form_load()
         ElseIf formName = "FormMappingStore" Then
             FormMappingStore.form_load()
+        ElseIf formName = "FormDesignColumn" Then
+            FormDesignColumn.form_load()
         End If
     End Sub
     'Switch
@@ -15041,6 +15046,36 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMasterStore.Show()
             FormMasterStore.WindowState = FormWindowState.Maximized
             FormMasterStore.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDesignColumn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDesignColumn.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDesignColumn.MdiParent = Me
+            FormDesignColumn.Show()
+            FormDesignColumn.WindowState = FormWindowState.Maximized
+            FormDesignColumn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCNSalesBranch_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCNSalesBranch.LinkClicked
+
+    End Sub
+
+    Private Sub NBOutboundList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOutboundList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOutboundList.MdiParent = Me
+            FormOutboundList.Show()
+            FormOutboundList.WindowState = FormWindowState.Maximized
+            FormOutboundList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

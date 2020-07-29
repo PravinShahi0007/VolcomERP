@@ -4,6 +4,9 @@
     Dim bdel_active As String = "1"
 
     Private Sub FormItemExpense_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEBBKFrom.EditValue = Now
+        DEBBKTo.EditValue = Now
+        '
         viewData()
     End Sub
 
@@ -11,8 +14,12 @@
         Cursor = Cursors.WaitCursor
         Dim exp As New ClassItemExpense()
         Dim cond As String = "-1"
+
+        cond = " AND DATE(e.created_date)>='" & Date.Parse(DEBBKFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(e.created_date)<='" & Date.Parse(DEBBKTo.EditValue.ToString).ToString("yyyy-MM-dd") & "' "
+
         Dim query As String = exp.queryMain(cond, "2", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Console.WriteLine(query)
         GCData.DataSource = data
         GVData.BestFitColumns()
         check_menu()
@@ -99,5 +106,13 @@
             errorCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DEBBKFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEBBKFrom.EditValueChanged
+        DEBBKTo.Properties.MinValue = DEBBKFrom.EditValue
+    End Sub
+
+    Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
+        viewData()
     End Sub
 End Class
