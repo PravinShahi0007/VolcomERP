@@ -1348,6 +1348,16 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 End If
             Next
 
+            'cek debit negatif or kredit positif
+            Dim value_is_wrong As Boolean = False
+            For i As Integer = 0 To GVList.RowCount - 1
+                If GVList.GetRowCellValue(i, "id_dc").ToString = "1" And GVList.GetRowCellValue(i, "value") < 0 Then 'debit negatif
+                    value_is_wrong = True
+                ElseIf GVList.GetRowCellValue(i, "id_dc").ToString = "2" And GVList.GetRowCellValue(i, "value") > 0 Then 'kredit positif
+                    value_is_wrong = True
+                End If
+            Next
+
             'cek paid no exceed balance
             Dim paid_more As Boolean = False
             For i As Integer = 0 To GVList.RowCount - 1
@@ -1370,6 +1380,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 warningCustom("You pay more than balance due.")
             ElseIf MENote.Text = "" Then
                 warningCustom("Please put some note")
+            ElseIf value_is_wrong Then
+                warningCustom("Make sure debit is positive value, credit is negative value")
             Else
                 'header
                 Dim is_book_trf As String = "2"
