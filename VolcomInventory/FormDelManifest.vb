@@ -26,7 +26,7 @@
         End If
 
         Dim query As String = "
-            SELECT m.id_del_manifest, c.comp_name, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, IFNULL(l.report_status, 'Draft') AS report_status
+            SELECT m.id_del_manifest, c.comp_name, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, IFNULL(l.report_status, 'Waiting checked by security') AS report_status
             FROM tb_del_manifest AS m
             LEFT JOIN tb_m_comp AS c ON m.id_comp = c.id_comp
             LEFT JOIN tb_m_user AS ua ON m.created_by = ua.id_user

@@ -142,4 +142,8 @@ FROM tb_m_comp c
 WHERE c.id_commerce_type='1' AND c.id_comp_cat='6' AND is_active='1'"
         viewSearchLookupQuery(SLEComp, q, "id_comp", "comp_name", "id_comp")
     End Sub
+
+    Private Sub BCreateOutboundOnline_Click(sender As Object, e As EventArgs) Handles BCreateOutboundOnline.Click
+
+    End Sub
 End Class

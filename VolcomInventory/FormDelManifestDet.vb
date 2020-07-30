@@ -96,7 +96,8 @@ GROUP BY cg.`id_comp_group`"
         Cursor = Cursors.WaitCursor
         GVCargoRate.FocusedRowHandle = find_row(GVCargoRate, "id_3pl_rate", SLUE3PL.EditValue.ToString)
 
-        save("draft")
+        'save("draft")
+        save("save")
 
         Cursor = Cursors.Default
     End Sub
@@ -112,7 +113,7 @@ GROUP BY cg.`id_comp_group`"
 
         If Not id_del_manifest = "0" Then
             Dim query As String = "
-            SELECT m.id_del_manifest, m.id_del_type,m.id_comp, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, m.id_report_status, IFNULL(l.report_status, 'Draft') AS report_status
+            SELECT m.id_del_manifest, m.id_del_type,m.id_comp, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, m.id_report_status, IFNULL(l.report_status, 'Waiting Check By Security') AS report_status
             ,m.id_sub_district,m.awbill_no, m.id_cargo,m.cargo_rate,m.cargo_min_weight,m.cargo_lead_time,m.is_ol_shop,m.id_comp_group,m.ol_order,m.id_store_offline
             ,m.c_weight,m.c_tot_price,m.id_cargo_best,m.cargo_rate_best,m.cargo_min_weight_best,m.cargo_lead_time_best,m.mark_different       
             FROM tb_del_manifest AS m
@@ -243,7 +244,7 @@ GROUP BY cg.`id_comp_group`"
             End If
 
             SBPrint.Enabled = False
-            SBPrePrint.Enabled = True
+            SBPrePrint.Enabled = False
             SBSave.Enabled = True
             SBComplete.Enabled = True
 
@@ -256,8 +257,12 @@ GROUP BY cg.`id_comp_group`"
 
                 BGenOffline.Visible = False
                 BGenOnline.Visible = False
+                '
+                SBPrint.Visible = False
+                SBPrePrint.Visible = False
+                SBSave.Visible = False
             End If
-        Else
+        Else 'engggak dipakai ini
             SLUE3PL.ReadOnly = True
             SLESubDistrict.ReadOnly = True
             SLEComp.ReadOnly = True
@@ -271,8 +276,8 @@ GROUP BY cg.`id_comp_group`"
             TEAwb.Enabled = False
 
             SBCancel.Enabled = False
-            SBPrint.Enabled = True
-            SBPrePrint.Enabled = True
+            SBPrint.Enabled = False
+            SBPrePrint.Enabled = False
             SBSave.Enabled = False
             SBComplete.Enabled = False
 
@@ -300,7 +305,7 @@ GROUP BY cg.`id_comp_group`"
             stopCustom("Please put awb/resi number.")
         Else
             Dim continue_save As Boolean = True
-            If type = "complete" Or type = "cancel" Then
+            If type = "save" Or type = "cancel" Then
                 Dim confirm As DialogResult
 
                 confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to " + type + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -353,7 +358,7 @@ WHERE id_del_manifest = " + id_del_manifest
 
                 execute_non_query("CALL gen_number(" + id_del_manifest + ", '232')", True, "", "", "", "")
 
-                If type = "draft" Then
+                If type = "save" Then
                     form_load()
                 Else
                     Close()
@@ -696,7 +701,12 @@ INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 INNER JOIN tb_m_city ct ON ct.id_city=c.id_city
-WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'"
+LEFT JOIN (
+    SELECT id_wh_awb_det 
+    FROM `tb_del_manifest_det` deld 
+    INNER JOIN tb_del_manifest del ON del.id_del_manifest=deld.id_del_manifest AND del.id_report_status!=5
+) tb_c ON tb_c.id_wh_awb_det=awbd.id_wh_awb_det
+WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb_det)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
@@ -845,5 +855,9 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
 
     Private Sub GVCargoRate_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVCargoRate.FocusedRowChanged
         SLUE3PL.EditValue = GVCargoRate.GetFocusedRowCellValue("id_3pl_rate").ToString
+        '
+        TECWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
+        TERate.EditValue = GVCargoRate.GetFocusedRowCellValue("cargo_rate")
+        TETotalRate.EditValue = GVCargoRate.GetFocusedRowCellValue("amount")
     End Sub
 End Class

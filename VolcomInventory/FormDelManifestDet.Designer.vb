@@ -34,6 +34,8 @@ Partial Class FormDelManifestDet
         Me.SBComplete = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PCRate = New DevExpress.XtraEditors.PanelControl()
+        Me.TERemarkDiff = New DevExpress.XtraEditors.TextEdit()
+        Me.LRemarkDiff = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.SLESubDistrict = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -132,14 +134,13 @@ Partial Class FormDelManifestDet
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGenOffline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LRemarkDiff = New System.Windows.Forms.Label()
-        Me.TERemarkDiff = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCRate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCRate.SuspendLayout()
+        CType(Me.TERemarkDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEAwb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,7 +175,6 @@ Partial Class FormDelManifestDet
         Me.PCOffline.SuspendLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TERemarkDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label7
@@ -232,17 +232,17 @@ Partial Class FormDelManifestDet
         '
         Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
-        Me.SBCancel.Location = New System.Drawing.Point(461, 2)
+        Me.SBCancel.Location = New System.Drawing.Point(475, 2)
         Me.SBCancel.Name = "SBCancel"
-        Me.SBCancel.Size = New System.Drawing.Size(129, 45)
+        Me.SBCancel.Size = New System.Drawing.Size(137, 45)
         Me.SBCancel.TabIndex = 4
-        Me.SBCancel.Text = "Cancel Propose"
+        Me.SBCancel.Text = "Cancel Manifest"
         '
         'SBPrePrint
         '
         Me.SBPrePrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrePrint.Image = CType(resources.GetObject("SBPrePrint.Image"), System.Drawing.Image)
-        Me.SBPrePrint.Location = New System.Drawing.Point(590, 2)
+        Me.SBPrePrint.Location = New System.Drawing.Point(612, 2)
         Me.SBPrePrint.Name = "SBPrePrint"
         Me.SBPrePrint.Size = New System.Drawing.Size(96, 45)
         Me.SBPrePrint.TabIndex = 15
@@ -252,7 +252,7 @@ Partial Class FormDelManifestDet
         '
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(686, 2)
+        Me.SBPrint.Location = New System.Drawing.Point(708, 2)
         Me.SBPrint.Name = "SBPrint"
         Me.SBPrint.Size = New System.Drawing.Size(96, 45)
         Me.SBPrint.TabIndex = 14
@@ -270,11 +270,11 @@ Partial Class FormDelManifestDet
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(782, 2)
+        Me.SBSave.Location = New System.Drawing.Point(804, 2)
         Me.SBSave.Name = "SBSave"
-        Me.SBSave.Size = New System.Drawing.Size(123, 45)
+        Me.SBSave.Size = New System.Drawing.Size(101, 45)
         Me.SBSave.TabIndex = 3
-        Me.SBSave.Text = "Save Changes"
+        Me.SBSave.Text = "Save"
         '
         'SBComplete
         '
@@ -314,6 +314,22 @@ Partial Class FormDelManifestDet
         Me.PCRate.Size = New System.Drawing.Size(1008, 209)
         Me.PCRate.TabIndex = 5
         Me.PCRate.Visible = False
+        '
+        'TERemarkDiff
+        '
+        Me.TERemarkDiff.Location = New System.Drawing.Point(850, 48)
+        Me.TERemarkDiff.Name = "TERemarkDiff"
+        Me.TERemarkDiff.Size = New System.Drawing.Size(146, 20)
+        Me.TERemarkDiff.TabIndex = 97
+        '
+        'LRemarkDiff
+        '
+        Me.LRemarkDiff.AutoSize = True
+        Me.LRemarkDiff.Location = New System.Drawing.Point(801, 51)
+        Me.LRemarkDiff.Name = "LRemarkDiff"
+        Me.LRemarkDiff.Size = New System.Drawing.Size(43, 13)
+        Me.LRemarkDiff.TabIndex = 96
+        Me.LRemarkDiff.Text = "Remark"
         '
         'Label13
         '
@@ -502,6 +518,7 @@ Partial Class FormDelManifestDet
         Me.GVCargoRate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDCargo, Me.GridColumnCargo, Me.GridColumnMinWeight, Me.GridColumn4, Me.GridColumnRate, Me.GridColumnAmount, Me.GridColumnLeadTime})
         Me.GVCargoRate.GridControl = Me.GCCargoRate
         Me.GVCargoRate.Name = "GVCargoRate"
+        Me.GVCargoRate.OptionsBehavior.Editable = False
         Me.GVCargoRate.OptionsBehavior.ReadOnly = True
         Me.GVCargoRate.OptionsCustomization.AllowColumnMoving = False
         Me.GVCargoRate.OptionsCustomization.AllowColumnResizing = False
@@ -1243,22 +1260,6 @@ Partial Class FormDelManifestDet
         Me.LabelControl2.TabIndex = 19
         Me.LabelControl2.Text = "Store"
         '
-        'LRemarkDiff
-        '
-        Me.LRemarkDiff.AutoSize = True
-        Me.LRemarkDiff.Location = New System.Drawing.Point(801, 51)
-        Me.LRemarkDiff.Name = "LRemarkDiff"
-        Me.LRemarkDiff.Size = New System.Drawing.Size(43, 13)
-        Me.LRemarkDiff.TabIndex = 96
-        Me.LRemarkDiff.Text = "Remark"
-        '
-        'TERemarkDiff
-        '
-        Me.TERemarkDiff.Location = New System.Drawing.Point(850, 48)
-        Me.TERemarkDiff.Name = "TERemarkDiff"
-        Me.TERemarkDiff.Size = New System.Drawing.Size(146, 20)
-        Me.TERemarkDiff.TabIndex = 97
-        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1282,6 +1283,7 @@ Partial Class FormDelManifestDet
         CType(Me.PCRate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCRate.ResumeLayout(False)
         Me.PCRate.PerformLayout()
+        CType(Me.TERemarkDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESubDistrict.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEAwb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1319,7 +1321,6 @@ Partial Class FormDelManifestDet
         Me.PCOffline.PerformLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TERemarkDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

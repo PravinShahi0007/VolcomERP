@@ -26,6 +26,7 @@ Partial Public Class ReportDelManifest
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell36 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -110,7 +111,9 @@ Partial Public Class ReportDelManifest
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         Me.XrLabelDraft = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrTableCell36 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrLabelAWB = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,6 +181,16 @@ Partial Public Class ReportDelManifest
         Me.XrTableCell5.StylePriority.UsePadding = False
         Me.XrTableCell5.Text = "DELIVERY SLIP"
         Me.XrTableCell5.Weight = 0.838792261416158R
+        '
+        'XrTableCell36
+        '
+        Me.XrTableCell36.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell36.Name = "XrTableCell36"
+        Me.XrTableCell36.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell36.StylePriority.UseBorders = False
+        Me.XrTableCell36.StylePriority.UsePadding = False
+        Me.XrTableCell36.Text = "AWB NUMBER"
+        Me.XrTableCell36.Weight = 0.838792261416158R
         '
         'XrTableCell2
         '
@@ -304,7 +317,7 @@ Partial Public Class ReportDelManifest
         Me.XrTableCell38.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell38.StylePriority.UseBorders = False
         Me.XrTableCell38.StylePriority.UsePadding = False
-        Me.XrTableCell38.Weight = 3.43615277218971R
+        Me.XrTableCell38.Weight = 3.863351889121815R
         '
         'XTCCollie
         '
@@ -316,7 +329,7 @@ Partial Public Class ReportDelManifest
         Me.XTCCollie.StylePriority.UsePadding = False
         Me.XTCCollie.StylePriority.UseTextAlignment = False
         Me.XTCCollie.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XTCCollie.Weight = 0.333967339375017R
+        Me.XTCCollie.Weight = 0.30340472283650477R
         '
         'XrTableCell47
         '
@@ -327,7 +340,7 @@ Partial Public Class ReportDelManifest
         Me.XrTableCell47.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell47.StylePriority.UseBorders = False
         Me.XrTableCell47.StylePriority.UsePadding = False
-        Me.XrTableCell47.Weight = 3.5925014417326295R
+        Me.XrTableCell47.Weight = 3.1958649413390368R
         '
         'TopMargin
         '
@@ -940,8 +953,8 @@ Partial Public Class ReportDelManifest
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabelDraft, Me.XrLabelTitle, Me.XrLabel5, Me.XrPictureBox1, Me.XrLabel2, Me.XrLabel10, Me.XrLabel12, Me.XrLabel11, Me.XrLabelNumber, Me.XrLabel3PL})
-        Me.PageHeader.HeightF = 113.4583!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabelAWB, Me.XrLabel8, Me.XrLabel13, Me.XrLabelDraft, Me.XrLabelTitle, Me.XrLabel5, Me.XrPictureBox1, Me.XrLabel2, Me.XrLabel10, Me.XrLabel12, Me.XrLabel11, Me.XrLabelNumber, Me.XrLabel3PL})
+        Me.PageHeader.HeightF = 124.9166!
         Me.PageHeader.Name = "PageHeader"
         '
         'XrLabelDraft
@@ -955,15 +968,40 @@ Partial Public Class ReportDelManifest
         Me.XrLabelDraft.StylePriority.UseTextAlignment = False
         Me.XrLabelDraft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'XrTableCell36
+        'XrLabelAWB
         '
-        Me.XrTableCell36.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell36.Name = "XrTableCell36"
-        Me.XrTableCell36.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell36.StylePriority.UseBorders = False
-        Me.XrTableCell36.StylePriority.UsePadding = False
-        Me.XrTableCell36.Text = "AWB NUMBER"
-        Me.XrTableCell36.Weight = 0.838792261416158R
+        Me.XrLabelAWB.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabelAWB.LocationFloat = New DevExpress.Utils.PointFloat(80.00005!, 93.45834!)
+        Me.XrLabelAWB.Name = "XrLabelAWB"
+        Me.XrLabelAWB.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabelAWB.SizeF = New System.Drawing.SizeF(250.0!, 17.79167!)
+        Me.XrLabelAWB.StylePriority.UseFont = False
+        Me.XrLabelAWB.StylePriority.UseTextAlignment = False
+        Me.XrLabelAWB.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
+        '
+        'XrLabel8
+        '
+        Me.XrLabel8.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(69.99995!, 93.45834!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(10.0!, 17.79167!)
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseTextAlignment = False
+        Me.XrLabel8.Text = ":"
+        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
+        '
+        'XrLabel13
+        '
+        Me.XrLabel13.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(0!, 93.45834!)
+        Me.XrLabel13.Name = "XrLabel13"
+        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(70.0!, 17.79167!)
+        Me.XrLabel13.StylePriority.UseFont = False
+        Me.XrLabel13.StylePriority.UseTextAlignment = False
+        Me.XrLabel13.Text = "AWB/Resi"
+        Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
         '
         'ReportDelManifest
         '
@@ -1074,4 +1112,7 @@ Partial Public Class ReportDelManifest
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrLabelDraft As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTableCell36 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabelAWB As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
 End Class
