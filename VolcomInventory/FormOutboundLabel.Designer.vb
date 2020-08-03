@@ -40,8 +40,8 @@ Partial Class FormOutboundLabel
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlFooterOffline = New DevExpress.XtraEditors.PanelControl()
         Me.BCreateOutboundLabel = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.GCDOERP = New DevExpress.XtraGrid.GridControl()
         Me.GVDOERP = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,10 +57,25 @@ Partial Class FormOutboundLabel
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOffline = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPOnline = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDOOnline = New DevExpress.XtraGrid.GridControl()
+        Me.GVDOOnline = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCreateOutboundOnline = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEOrderOnline = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLESubDistrctOnline = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLESubDistrictOnline = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,23 +91,7 @@ Partial Class FormOutboundLabel
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewDOOnline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCreateOutboundOnline = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.CESelAllOnline = New DevExpress.XtraEditors.CheckEdit()
-        Me.GCDOOnline = New DevExpress.XtraGrid.GridControl()
-        Me.GVDOOnline = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TEOrderOnline = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,9 +102,9 @@ Partial Class FormOutboundLabel
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlFooterOffline, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlFooterOffline.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDOERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDOERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,23 +112,20 @@ Partial Class FormOutboundLabel
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPOffline.SuspendLayout()
         Me.XTPOnline.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
-        CType(Me.SLESubDistrctOnline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl6.SuspendLayout()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl7.SuspendLayout()
-        CType(Me.CESelAllOnline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDOOnline, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDOOnline, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.TEOrderOnline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.SLESubDistrictOnline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -300,7 +296,7 @@ Partial Class FormOutboundLabel
         'PanelControlFooterOffline
         '
         Me.PanelControlFooterOffline.Controls.Add(Me.BCreateOutboundLabel)
-        Me.PanelControlFooterOffline.Controls.Add(Me.PanelControl3)
+        Me.PanelControlFooterOffline.Controls.Add(Me.PanelControl7)
         Me.PanelControlFooterOffline.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlFooterOffline.Location = New System.Drawing.Point(0, 369)
         Me.PanelControlFooterOffline.Name = "PanelControlFooterOffline"
@@ -316,22 +312,22 @@ Partial Class FormOutboundLabel
         Me.BCreateOutboundLabel.TabIndex = 3
         Me.BCreateOutboundLabel.Text = "Create Outbound Label"
         '
-        'PanelControl3
+        'PanelControl7
         '
-        Me.PanelControl3.Controls.Add(Me.CheckEditSelAll)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(115, 44)
-        Me.PanelControl3.TabIndex = 4
+        Me.PanelControl7.Controls.Add(Me.CESelAll)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl7.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(115, 44)
+        Me.PanelControl7.TabIndex = 5
         '
-        'CheckEditSelAll
+        'CESelAll
         '
-        Me.CheckEditSelAll.Location = New System.Drawing.Point(11, 12)
-        Me.CheckEditSelAll.Name = "CheckEditSelAll"
-        Me.CheckEditSelAll.Properties.Caption = "Select All Item"
-        Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
-        Me.CheckEditSelAll.TabIndex = 103
+        Me.CESelAll.Location = New System.Drawing.Point(11, 12)
+        Me.CESelAll.Name = "CESelAll"
+        Me.CESelAll.Properties.Caption = "Select All Item"
+        Me.CESelAll.Size = New System.Drawing.Size(92, 19)
+        Me.CESelAll.TabIndex = 103
         '
         'GCDOERP
         '
@@ -485,6 +481,141 @@ Partial Class FormOutboundLabel
         Me.XTPOnline.Size = New System.Drawing.Size(863, 417)
         Me.XTPOnline.Text = "Online Store"
         '
+        'GCDOOnline
+        '
+        Me.GCDOOnline.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDOOnline.Location = New System.Drawing.Point(0, 48)
+        Me.GCDOOnline.MainView = Me.GVDOOnline
+        Me.GCDOOnline.Name = "GCDOOnline"
+        Me.GCDOOnline.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.GCDOOnline.Size = New System.Drawing.Size(863, 321)
+        Me.GCDOOnline.TabIndex = 5
+        Me.GCDOOnline.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDOOnline})
+        '
+        'GVDOOnline
+        '
+        Me.GVDOOnline.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28})
+        Me.GVDOOnline.GridControl = Me.GCDOOnline
+        Me.GVDOOnline.Name = "GVDOOnline"
+        Me.GVDOOnline.OptionsCustomization.AllowColumnMoving = False
+        Me.GVDOOnline.OptionsCustomization.AllowColumnResizing = False
+        Me.GVDOOnline.OptionsCustomization.AllowFilter = False
+        Me.GVDOOnline.OptionsCustomization.AllowGroup = False
+        Me.GVDOOnline.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVDOOnline.OptionsCustomization.AllowRowSizing = True
+        Me.GVDOOnline.OptionsCustomization.AllowSort = False
+        Me.GVDOOnline.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.GVDOOnline.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Delivery Order Number"
+        Me.GridColumn18.FieldName = "do_no"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.OptionsColumn.AllowFocus = False
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.Width = 142
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Scan Date"
+        Me.GridColumn19.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn19.FieldName = "scan_date"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.AllowFocus = False
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        Me.GridColumn19.Width = 119
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Code"
+        Me.GridColumn20.FieldName = "store_number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.OptionsColumn.AllowFocus = False
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 4
+        Me.GridColumn20.Width = 83
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Store Name"
+        Me.GridColumn21.FieldName = "store_name"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.OptionsColumn.AllowEdit = False
+        Me.GridColumn21.OptionsColumn.AllowFocus = False
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 0
+        Me.GridColumn21.Width = 201
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Qty"
+        Me.GridColumn22.FieldName = "qty"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.AllowEdit = False
+        Me.GridColumn22.OptionsColumn.AllowFocus = False
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.Width = 86
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Del"
+        Me.GridColumn23.FieldName = "id_pl_sales_order_del"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Combine No"
+        Me.GridColumn26.FieldName = "combine_number"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 2
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Status Export CS3"
+        Me.GridColumn27.FieldName = "is_export_awb"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Collie Number"
+        Me.GridColumn28.FieldName = "collie_number"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.BCreateOutboundOnline)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 369)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(863, 48)
+        Me.PanelControl6.TabIndex = 3
+        '
+        'BCreateOutboundOnline
+        '
+        Me.BCreateOutboundOnline.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BCreateOutboundOnline.Location = New System.Drawing.Point(2, 2)
+        Me.BCreateOutboundOnline.Name = "BCreateOutboundOnline"
+        Me.BCreateOutboundOnline.Size = New System.Drawing.Size(859, 44)
+        Me.BCreateOutboundOnline.TabIndex = 3
+        Me.BCreateOutboundOnline.Text = "Create Outbound Label"
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.TEOrderOnline)
@@ -498,10 +629,17 @@ Partial Class FormOutboundLabel
         Me.PanelControl2.Size = New System.Drawing.Size(863, 48)
         Me.PanelControl2.TabIndex = 2
         '
+        'TEOrderOnline
+        '
+        Me.TEOrderOnline.Location = New System.Drawing.Point(264, 14)
+        Me.TEOrderOnline.Name = "TEOrderOnline"
+        Me.TEOrderOnline.Size = New System.Drawing.Size(131, 20)
+        Me.TEOrderOnline.TabIndex = 96
+        '
         'PanelControl5
         '
         Me.PanelControl5.Controls.Add(Me.LabelControl3)
-        Me.PanelControl5.Controls.Add(Me.SLESubDistrctOnline)
+        Me.PanelControl5.Controls.Add(Me.SLESubDistrictOnline)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl5.Location = New System.Drawing.Point(577, 2)
         Me.PanelControl5.Name = "PanelControl5"
@@ -516,20 +654,19 @@ Partial Class FormOutboundLabel
         Me.LabelControl3.TabIndex = 95
         Me.LabelControl3.Text = "Sub District"
         '
-        'SLESubDistrctOnline
+        'SLESubDistrictOnline
         '
-        Me.SLESubDistrctOnline.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.SLESubDistrictOnline.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLESubDistrctOnline.Enabled = False
-        Me.SLESubDistrctOnline.Location = New System.Drawing.Point(76, 12)
-        Me.SLESubDistrctOnline.Name = "SLESubDistrctOnline"
-        Me.SLESubDistrctOnline.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLESubDistrctOnline.Properties.Appearance.Options.UseFont = True
-        Me.SLESubDistrctOnline.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLESubDistrctOnline.Properties.NullText = "-"
-        Me.SLESubDistrctOnline.Properties.View = Me.GridView2
-        Me.SLESubDistrctOnline.Size = New System.Drawing.Size(198, 20)
-        Me.SLESubDistrctOnline.TabIndex = 94
+        Me.SLESubDistrictOnline.Location = New System.Drawing.Point(76, 12)
+        Me.SLESubDistrictOnline.Name = "SLESubDistrictOnline"
+        Me.SLESubDistrictOnline.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLESubDistrictOnline.Properties.Appearance.Options.UseFont = True
+        Me.SLESubDistrictOnline.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESubDistrictOnline.Properties.NullText = "-"
+        Me.SLESubDistrictOnline.Properties.View = Me.GridView2
+        Me.SLESubDistrictOnline.Size = New System.Drawing.Size(198, 20)
+        Me.SLESubDistrictOnline.TabIndex = 94
         '
         'GridView2
         '
@@ -537,7 +674,9 @@ Partial Class FormOutboundLabel
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.ReadOnly = True
+        Me.GridView2.OptionsFind.FindFilterColumns = "sub_district"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ColumnAutoWidth = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -614,13 +753,13 @@ Partial Class FormOutboundLabel
         'GridColumn15
         '
         Me.GridColumn15.Caption = "ID Comp"
-        Me.GridColumn15.FieldName = "id_comp"
+        Me.GridColumn15.FieldName = "id_comp_group"
         Me.GridColumn15.Name = "GridColumn15"
         '
         'GridColumn16
         '
-        Me.GridColumn16.Caption = "Number"
-        Me.GridColumn16.FieldName = "comp_number"
+        Me.GridColumn16.Caption = "Code"
+        Me.GridColumn16.FieldName = "comp_group"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 0
@@ -628,8 +767,8 @@ Partial Class FormOutboundLabel
         '
         'GridColumn17
         '
-        Me.GridColumn17.Caption = "Store"
-        Me.GridColumn17.FieldName = "comp_name"
+        Me.GridColumn17.Caption = "Store Group"
+        Me.GridColumn17.FieldName = "description"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 1
@@ -651,171 +790,11 @@ Partial Class FormOutboundLabel
         Me.LabelControl4.TabIndex = 1
         Me.LabelControl4.Text = "Order#"
         '
-        'PanelControl6
+        'GridColumn30
         '
-        Me.PanelControl6.Controls.Add(Me.BCreateOutboundOnline)
-        Me.PanelControl6.Controls.Add(Me.PanelControl7)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 369)
-        Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(863, 48)
-        Me.PanelControl6.TabIndex = 3
-        '
-        'BCreateOutboundOnline
-        '
-        Me.BCreateOutboundOnline.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BCreateOutboundOnline.Location = New System.Drawing.Point(117, 2)
-        Me.BCreateOutboundOnline.Name = "BCreateOutboundOnline"
-        Me.BCreateOutboundOnline.Size = New System.Drawing.Size(744, 44)
-        Me.BCreateOutboundOnline.TabIndex = 3
-        Me.BCreateOutboundOnline.Text = "Create Outbound Label"
-        '
-        'PanelControl7
-        '
-        Me.PanelControl7.Controls.Add(Me.CESelAllOnline)
-        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl7.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(115, 44)
-        Me.PanelControl7.TabIndex = 4
-        '
-        'CESelAllOnline
-        '
-        Me.CESelAllOnline.Location = New System.Drawing.Point(11, 12)
-        Me.CESelAllOnline.Name = "CESelAllOnline"
-        Me.CESelAllOnline.Properties.Caption = "Select All Item"
-        Me.CESelAllOnline.Size = New System.Drawing.Size(92, 19)
-        Me.CESelAllOnline.TabIndex = 103
-        '
-        'GCDOOnline
-        '
-        Me.GCDOOnline.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDOOnline.Location = New System.Drawing.Point(0, 48)
-        Me.GCDOOnline.MainView = Me.GVDOOnline
-        Me.GCDOOnline.Name = "GCDOOnline"
-        Me.GCDOOnline.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCDOOnline.Size = New System.Drawing.Size(863, 321)
-        Me.GCDOOnline.TabIndex = 6
-        Me.GCDOOnline.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDOOnline})
-        '
-        'GVDOOnline
-        '
-        Me.GVDOOnline.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28})
-        Me.GVDOOnline.GridControl = Me.GCDOOnline
-        Me.GVDOOnline.Name = "GVDOOnline"
-        Me.GVDOOnline.OptionsCustomization.AllowColumnMoving = False
-        Me.GVDOOnline.OptionsCustomization.AllowColumnResizing = False
-        Me.GVDOOnline.OptionsCustomization.AllowGroup = False
-        Me.GVDOOnline.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVDOOnline.OptionsCustomization.AllowRowSizing = True
-        Me.GVDOOnline.OptionsCustomization.CustomizationFormSearchBoxVisible = True
-        Me.GVDOOnline.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Delivery Order Number"
-        Me.GridColumn18.FieldName = "do_no"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.AllowEdit = False
-        Me.GridColumn18.OptionsColumn.AllowFocus = False
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
-        Me.GridColumn18.Width = 142
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Scan Date"
-        Me.GridColumn19.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn19.FieldName = "scan_date"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.OptionsColumn.AllowEdit = False
-        Me.GridColumn19.OptionsColumn.AllowFocus = False
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 3
-        Me.GridColumn19.Width = 119
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Code"
-        Me.GridColumn20.FieldName = "store_number"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.AllowEdit = False
-        Me.GridColumn20.OptionsColumn.AllowFocus = False
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 4
-        Me.GridColumn20.Width = 83
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Store Name"
-        Me.GridColumn21.FieldName = "store_name"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.OptionsColumn.AllowEdit = False
-        Me.GridColumn21.OptionsColumn.AllowFocus = False
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 5
-        Me.GridColumn21.Width = 201
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Qty"
-        Me.GridColumn22.FieldName = "qty"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.OptionsColumn.AllowEdit = False
-        Me.GridColumn22.OptionsColumn.AllowFocus = False
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 6
-        Me.GridColumn22.Width = 86
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn23.Caption = "*"
-        Me.GridColumn23.ColumnEdit = Me.RepositoryItemCheckEdit2
-        Me.GridColumn23.FieldName = "is_check"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 0
-        Me.GridColumn23.Width = 61
-        '
-        'RepositoryItemCheckEdit2
-        '
-        Me.RepositoryItemCheckEdit2.AutoHeight = False
-        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "ID Del"
-        Me.GridColumn26.FieldName = "id_pl_sales_order_del"
-        Me.GridColumn26.Name = "GridColumn26"
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "Combine No"
-        Me.GridColumn27.FieldName = "combine_number"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.OptionsColumn.AllowEdit = False
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 2
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "Status"
-        Me.GridColumn28.FieldName = "report_status"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 7
-        '
-        'TEOrderOnline
-        '
-        Me.TEOrderOnline.Location = New System.Drawing.Point(264, 14)
-        Me.TEOrderOnline.Name = "TEOrderOnline"
-        Me.TEOrderOnline.Size = New System.Drawing.Size(131, 20)
-        Me.TEOrderOnline.TabIndex = 96
+        Me.GridColumn30.Caption = "ID Comp"
+        Me.GridColumn30.FieldName = "id_comp"
+        Me.GridColumn30.Name = "GridColumn30"
         '
         'FormOutboundLabel
         '
@@ -840,9 +819,9 @@ Partial Class FormOutboundLabel
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlFooterOffline, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlFooterOffline.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDOERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDOERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -850,25 +829,22 @@ Partial Class FormOutboundLabel
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPOffline.ResumeLayout(False)
         Me.XTPOnline.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        Me.PanelControl5.PerformLayout()
-        CType(Me.SLESubDistrctOnline.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl6.ResumeLayout(False)
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl7.ResumeLayout(False)
-        CType(Me.CESelAllOnline.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDOOnline, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDOOnline, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
         CType(Me.TEOrderOnline.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.SLESubDistrictOnline.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -894,8 +870,6 @@ Partial Class FormOutboundLabel
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLESubDistrict As DevExpress.XtraEditors.SearchLookUpEdit
@@ -910,26 +884,12 @@ Partial Class FormOutboundLabel
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPOffline As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPOnline As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCDOOnline As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVDOOnline As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCreateOutboundOnline As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CESelAllOnline As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SLESubDistrctOnline As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLESubDistrictOnline As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
@@ -946,4 +906,19 @@ Partial Class FormOutboundLabel
     Friend WithEvents BViewDOOnline As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEOrderOnline As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GCDOOnline As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDOOnline As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

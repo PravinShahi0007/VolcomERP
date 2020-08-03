@@ -113,7 +113,7 @@ GROUP BY cg.`id_comp_group`"
 
         If Not id_del_manifest = "0" Then
             Dim query As String = "
-            SELECT m.id_del_manifest, m.id_del_type,m.id_comp, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, m.id_report_status, IFNULL(l.report_status, 'Waiting Check By Security') AS report_status
+            SELECT m.mark_different,m.id_del_manifest, m.id_del_type,m.id_comp, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, m.id_report_status, IFNULL(l.report_status, 'Waiting Check By Security') AS report_status
             ,m.id_sub_district,m.awbill_no, m.id_cargo,m.cargo_rate,m.cargo_min_weight,m.cargo_lead_time,m.is_ol_shop,m.id_comp_group,m.ol_order,m.id_store_offline
             ,m.c_weight,m.c_tot_price,m.id_cargo_best,m.cargo_rate_best,m.cargo_min_weight_best,m.cargo_lead_time_best,m.mark_different       
             FROM tb_del_manifest AS m
@@ -124,7 +124,7 @@ GROUP BY cg.`id_comp_group`"
             LEFT JOIN tb_lookup_report_status AS l ON m.id_report_status = l.id_report_status
             WHERE m.id_del_manifest = " + id_del_manifest + ""
 
-            Data = execute_query(query, -1, True, "", "", "", "")
+            data = execute_query(query, -1, True, "", "", "", "")
 
             TENumber.EditValue = data.Rows(0)("number").ToString
             TECreatedDate.EditValue = data.Rows(0)("created_date").ToString
@@ -133,6 +133,15 @@ GROUP BY cg.`id_comp_group`"
             TEUpdatedBy.EditValue = data.Rows(0)("updated_by").ToString
             TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
             id_report_status = data.Rows(0)("id_report_status").ToString
+            TERemarkDiff.Text = data.Rows(0)("mark_different").ToString
+
+            If Not TERemarkDiff.Text = "" Then
+                TERemarkDiff.Visible = True
+                LRemarkDiff.Visible = True
+            Else
+                TERemarkDiff.Visible = False
+                LRemarkDiff.Visible = False
+            End If
             '
             SLEDelType.EditValue = data.Rows(0)("id_del_type").ToString
             SLEOnlineShop.EditValue = data.Rows(0)("is_ol_shop").ToString

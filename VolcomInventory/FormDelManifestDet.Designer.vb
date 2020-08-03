@@ -1108,7 +1108,8 @@ Partial Class FormDelManifestDet
         '
         'TENumber
         '
-        Me.TENumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TENumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TENumber.Location = New System.Drawing.Point(86, 12)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.ReadOnly = True

@@ -14,6 +14,7 @@
     Private Sub FormWHAWBill_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
     Sub check_but()
         If XTCAwb.SelectedTabPageIndex = 0 Then
             If GVAWBill.RowCount > 0 Then
@@ -1529,11 +1530,9 @@ WHERE CONCAT('RET-',cg.`comp_group`,'-',so.`sales_order_ol_shop_number`) IN (" +
                         GROUP BY CONCAT('RET-',cg.`comp_group`,'-',so.`sales_order_ol_shop_number`) "
 
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
                     GCExportExcel.DataSource = data
 
                     Dim save As SaveFileDialog = New SaveFileDialog
-
                     save.Filter = "Excel File | *.xls"
                     save.ShowDialog()
 
