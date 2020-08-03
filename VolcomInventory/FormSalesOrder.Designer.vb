@@ -81,7 +81,9 @@ Partial Class FormSalesOrder
         Me.XTPInfo = New DevExpress.XtraTab.XtraTabPage()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControlAlloc = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAllocHist = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCreateNewAlloc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
         Me.BExpand = New DevExpress.XtraEditors.SimpleButton()
@@ -89,8 +91,7 @@ Partial Class FormSalesOrder
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControlAlloc = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnCreateNewAlloc = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnReplacePromo = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesOrder.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -118,12 +119,12 @@ Partial Class FormSalesOrder
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
+        CType(Me.PanelControlAlloc, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlAlloc.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlAlloc, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlAlloc.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCSalesOrder
@@ -586,7 +587,7 @@ Partial Class FormSalesOrder
         '
         Me.XTPPrepareGenerate.Controls.Add(Me.GCGen)
         Me.XTPPrepareGenerate.Name = "XTPPrepareGenerate"
-        Me.XTPPrepareGenerate.Size = New System.Drawing.Size(774, 410)
+        Me.XTPPrepareGenerate.Size = New System.Drawing.Size(1053, 410)
         Me.XTPPrepareGenerate.Text = "Generate Prepare Order"
         '
         'GCGen
@@ -595,7 +596,7 @@ Partial Class FormSalesOrder
         Me.GCGen.Location = New System.Drawing.Point(0, 0)
         Me.GCGen.MainView = Me.GVGen
         Me.GCGen.Name = "GCGen"
-        Me.GCGen.Size = New System.Drawing.Size(774, 410)
+        Me.GCGen.Size = New System.Drawing.Size(1053, 410)
         Me.GCGen.TabIndex = 0
         Me.GCGen.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVGen})
         '
@@ -656,7 +657,7 @@ Partial Class FormSalesOrder
         'XTPInfo
         '
         Me.XTPInfo.Name = "XTPInfo"
-        Me.XTPInfo.Size = New System.Drawing.Size(780, 438)
+        Me.XTPInfo.Size = New System.Drawing.Size(1059, 438)
         Me.XTPInfo.Text = "Info"
         '
         'LargeImageCollection
@@ -682,16 +683,39 @@ Partial Class FormSalesOrder
         Me.GCFilter.Size = New System.Drawing.Size(1065, 39)
         Me.GCFilter.TabIndex = 5
         '
+        'PanelControlAlloc
+        '
+        Me.PanelControlAlloc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlAlloc.Controls.Add(Me.BtnAllocHist)
+        Me.PanelControlAlloc.Controls.Add(Me.BtnReplacePromo)
+        Me.PanelControlAlloc.Controls.Add(Me.BtnCreateNewAlloc)
+        Me.PanelControlAlloc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlAlloc.Location = New System.Drawing.Point(586, 2)
+        Me.PanelControlAlloc.Name = "PanelControlAlloc"
+        Me.PanelControlAlloc.Size = New System.Drawing.Size(477, 35)
+        Me.PanelControlAlloc.TabIndex = 8901
+        '
         'BtnAllocHist
         '
         Me.BtnAllocHist.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAllocHist.Image = CType(resources.GetObject("BtnAllocHist.Image"), System.Drawing.Image)
-        Me.BtnAllocHist.Location = New System.Drawing.Point(40, 0)
+        Me.BtnAllocHist.Location = New System.Drawing.Point(56, 0)
         Me.BtnAllocHist.LookAndFeel.SkinName = "Blue"
         Me.BtnAllocHist.Name = "BtnAllocHist"
         Me.BtnAllocHist.Size = New System.Drawing.Size(132, 35)
         Me.BtnAllocHist.TabIndex = 8900
         Me.BtnAllocHist.Text = "Allocation History"
+        '
+        'BtnCreateNewAlloc
+        '
+        Me.BtnCreateNewAlloc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCreateNewAlloc.Image = CType(resources.GetObject("BtnCreateNewAlloc.Image"), System.Drawing.Image)
+        Me.BtnCreateNewAlloc.Location = New System.Drawing.Point(326, 0)
+        Me.BtnCreateNewAlloc.LookAndFeel.SkinName = "Blue"
+        Me.BtnCreateNewAlloc.Name = "BtnCreateNewAlloc"
+        Me.BtnCreateNewAlloc.Size = New System.Drawing.Size(151, 35)
+        Me.BtnCreateNewAlloc.TabIndex = 8899
+        Me.BtnCreateNewAlloc.Text = "Create New Allocation"
         '
         'BtnView
         '
@@ -764,27 +788,15 @@ Partial Class FormSalesOrder
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
         '
-        'PanelControlAlloc
+        'BtnReplacePromo
         '
-        Me.PanelControlAlloc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlAlloc.Controls.Add(Me.BtnAllocHist)
-        Me.PanelControlAlloc.Controls.Add(Me.BtnCreateNewAlloc)
-        Me.PanelControlAlloc.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlAlloc.Location = New System.Drawing.Point(740, 2)
-        Me.PanelControlAlloc.Name = "PanelControlAlloc"
-        Me.PanelControlAlloc.Size = New System.Drawing.Size(323, 35)
-        Me.PanelControlAlloc.TabIndex = 8901
-        '
-        'BtnCreateNewAlloc
-        '
-        Me.BtnCreateNewAlloc.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCreateNewAlloc.Image = CType(resources.GetObject("BtnCreateNewAlloc.Image"), System.Drawing.Image)
-        Me.BtnCreateNewAlloc.Location = New System.Drawing.Point(172, 0)
-        Me.BtnCreateNewAlloc.LookAndFeel.SkinName = "Blue"
-        Me.BtnCreateNewAlloc.Name = "BtnCreateNewAlloc"
-        Me.BtnCreateNewAlloc.Size = New System.Drawing.Size(151, 35)
-        Me.BtnCreateNewAlloc.TabIndex = 8899
-        Me.BtnCreateNewAlloc.Text = "Create New Allocation"
+        Me.BtnReplacePromo.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnReplacePromo.Image = CType(resources.GetObject("BtnReplacePromo.Image"), System.Drawing.Image)
+        Me.BtnReplacePromo.Location = New System.Drawing.Point(188, 0)
+        Me.BtnReplacePromo.Name = "BtnReplacePromo"
+        Me.BtnReplacePromo.Size = New System.Drawing.Size(138, 35)
+        Me.BtnReplacePromo.TabIndex = 8901
+        Me.BtnReplacePromo.Text = "Replace OL Promo"
         '
         'FormSalesOrder
         '
@@ -828,12 +840,12 @@ Partial Class FormSalesOrder
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
+        CType(Me.PanelControlAlloc, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlAlloc.ResumeLayout(False)
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlAlloc, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlAlloc.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -907,4 +919,5 @@ Partial Class FormSalesOrder
     Friend WithEvents BtnAllocHist As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControlAlloc As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnCreateNewAlloc As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnReplacePromo As DevExpress.XtraEditors.SimpleButton
 End Class
