@@ -47,6 +47,11 @@ Partial Class FormBankWithdrawalDet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEAutoDebet = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.DEPayment = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
@@ -125,11 +130,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEAutoDebet = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -147,6 +147,8 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.SLEAutoDebet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPayment.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,8 +186,6 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEAutoDebet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -432,6 +432,45 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(414, 96)
         Me.PanelControl6.TabIndex = 166
+        '
+        'SLEAutoDebet
+        '
+        Me.SLEAutoDebet.Location = New System.Drawing.Point(90, 64)
+        Me.SLEAutoDebet.Name = "SLEAutoDebet"
+        Me.SLEAutoDebet.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAutoDebet.Properties.View = Me.GridView5
+        Me.SLEAutoDebet.Size = New System.Drawing.Size(314, 20)
+        Me.SLEAutoDebet.TabIndex = 8915
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn31})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "ID"
+        Me.GridColumn30.FieldName = "id"
+        Me.GridColumn30.Name = "GridColumn30"
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Auto Debet"
+        Me.GridColumn31.FieldName = "auto_debet"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 0
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(12, 67)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl11.TabIndex = 167
+        Me.LabelControl11.Text = "Auto Debet"
         '
         'DEPayment
         '
@@ -949,6 +988,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn21.FieldName = "val_bef_kurs"
         Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_bef_kurs", "{0:N2}")})
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 10
         Me.GridColumn21.Width = 72
@@ -1263,45 +1303,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
-        'LabelControl11
-        '
-        Me.LabelControl11.Location = New System.Drawing.Point(12, 67)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(55, 13)
-        Me.LabelControl11.TabIndex = 167
-        Me.LabelControl11.Text = "Auto Debet"
-        '
-        'SLEAutoDebet
-        '
-        Me.SLEAutoDebet.Location = New System.Drawing.Point(90, 64)
-        Me.SLEAutoDebet.Name = "SLEAutoDebet"
-        Me.SLEAutoDebet.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEAutoDebet.Properties.View = Me.GridView5
-        Me.SLEAutoDebet.Size = New System.Drawing.Size(314, 20)
-        Me.SLEAutoDebet.TabIndex = 8915
-        '
-        'GridView5
-        '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn31})
-        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView5.Name = "GridView5"
-        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView5.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "ID"
-        Me.GridColumn30.FieldName = "id"
-        Me.GridColumn30.Name = "GridColumn30"
-        '
-        'GridColumn31
-        '
-        Me.GridColumn31.Caption = "Auto Debet"
-        Me.GridColumn31.FieldName = "auto_debet"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 0
-        '
         'FormBankWithdrawalDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1338,6 +1339,8 @@ Partial Class FormBankWithdrawalDet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.SLEAutoDebet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPayment.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1379,8 +1382,6 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEAutoDebet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
