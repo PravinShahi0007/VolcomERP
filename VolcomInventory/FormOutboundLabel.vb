@@ -165,7 +165,7 @@ WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
                     If Not i = 0 Then
                         number_already_generated += ","
                     End If
-                    number_already_generated += "'" & data_check.Rows(i)("pl_sales_order_number").ToString & "'"
+                    number_already_generated += "'" & data_check.Rows(i)("do_no").ToString & "'"
                 Next
                 warningCustom("Delivery with number : " & number_already_generated & " already process.")
             Else
@@ -183,7 +183,7 @@ LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sal
 LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
 LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill=awb.id_awbill AND awbh.id_report_status!=5
 INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
-WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderOnline.Text) & "' AND ISNULL(awb.id_awbill) GROUP BY c.id_comp"
+WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderOnline.Text) & "' AND ISNULL(awbh.id_awbill) GROUP BY c.id_comp"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 For j = 0 To dt.Rows.Count - 1
                     'loop per comp
@@ -198,7 +198,7 @@ WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.T
                     id_awb = execute_query(query, 0, True, "", "", "", "")
 
                     If Not j = 0 Then
-                        koli_collection = ","
+                        koli_collection += ","
                     End If
                     koli_collection += id_awb
                     '
@@ -229,8 +229,9 @@ GROUP BY c.id_comp"
                         execute_non_query(query, True, "", "", "", "")
                     Next
                     '================= PRINT HERE PER LOOP ===================
-                    warningCustom("Outbound Number " & koli_collection & " created")
+
                 Next
+                warningCustom("Outbound Number " & koli_collection & " created")
                 Close()
             End If
         Else
