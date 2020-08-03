@@ -101,7 +101,8 @@
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
         prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, 
         GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC) AS `size_chart`,
-        pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`, SUM(pd.qty) AS `qty`
+        pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`, SUM(pd.qty) AS `qty`, 
+        pd.is_block, IF(pd.is_block=1,'Not Active', 'Active') AS `is_block_view`
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
@@ -121,7 +122,8 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
         prod.id_design, prod.id_product, d.design_code,prod.product_full_code AS `code`, d.design_display_name AS `name`, 
-        cd.code_detail_name AS `size`, pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`, pd.qty
+        cd.code_detail_name AS `size`, pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`, pd.qty,
+        pd.is_block, IF(pd.is_block=1,'Not Active', 'Active') AS `is_block_view`
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
@@ -153,7 +155,8 @@
         IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='9' THEN pd.qty END),0) AS `qty9`,
         IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='0' THEN pd.qty END),0) AS `qty0`,
         SUM(pd.qty) AS `qty`,
-        pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`
+        pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`,
+        pd.is_block, IF(pd.is_block=1,'Not Active', 'Active') AS `is_block_view`
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
