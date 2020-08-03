@@ -293,7 +293,27 @@ SELECT atx.`report_number_ref` AS inv_number,tr.acc_trans_number AS jurnal_no,at
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans`
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND tr.`id_bill_type`=25
-WHERE DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + ""
+WHERE DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
+UNION ALL
+-- BBM
+SELECT ied.number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_rec_payment` AS id_report,ied.`vendor` AS `comp_number`,ied.`vendor` AS  `comp_name`,'' AS `npwp_name`,'' AS `npwp`,'' AS `npwp_address`,ie.`number`,atx.`date_reference`,ied.note AS description,ied.id_acc AS `id_acc_pph`,ie.`date_received` AS due_date,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,ied.`value` AS dpp,ied.`value` AS pph 
+FROM tb_rec_payment_det ied
+INNER JOIN tb_rec_payment ie ON ie.`id_rec_payment`=ied.`id_rec_payment` AND ie.`id_report_status`=6
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc` AND acc_pph.`is_tax_report`='1'
+-- INNER JOIN tb_sales_pos pos ON ied.`id_report`=pos.`id_sales_pos`
+-- INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pos.`id_store_contact_from`
+-- INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+LEFT JOIN
+( 
+	SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,atd.id_coa_tag
+	FROM tb_a_acc_trans_det atd 
+	INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
+	INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1
+	WHERE atd.`report_mark_type`='162'
+	GROUP BY atd.`id_report`,atd.`id_acc_trans`
+) atx ON atx.id_report=ie.`id_rec_payment`
+WHERE DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
+"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCTaxReport.DataSource = dt
         GVTaxReport.BestFitColumns()
