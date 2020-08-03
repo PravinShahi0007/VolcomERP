@@ -369,4 +369,10 @@
         FormAllocationHist.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnReplacePromo_Click(sender As Object, e As EventArgs) Handles BtnReplacePromo.Click
+        Cursor = Cursors.WaitCursor
+        FormPromoReplace.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

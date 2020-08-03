@@ -57,8 +57,10 @@ Partial Class FormSalesOrderDet
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.LabelPeriod = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBViewLog = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBViewLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -110,8 +112,6 @@ Partial Class FormSalesOrderDet
         Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddV3 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddV2 = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
@@ -125,6 +125,7 @@ Partial Class FormSalesOrderDet
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnid_ol_promo_collection_sku_replace = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -591,6 +592,8 @@ Partial Class FormSalesOrderDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnAdd)
+        Me.PanelControl3.Controls.Add(Me.BtnEdit)
         Me.PanelControl3.Controls.Add(Me.SBViewLog)
         Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
@@ -607,16 +610,18 @@ Partial Class FormSalesOrderDet
         Me.PanelControl3.Size = New System.Drawing.Size(896, 38)
         Me.PanelControl3.TabIndex = 186
         '
-        'SBViewLog
+        'BtnAdd
         '
-        Me.SBViewLog.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SBViewLog.ImageList = Me.LargeImageCollection
-        Me.SBViewLog.Location = New System.Drawing.Point(152, 2)
-        Me.SBViewLog.Name = "SBViewLog"
-        Me.SBViewLog.Size = New System.Drawing.Size(97, 34)
-        Me.SBViewLog.TabIndex = 16
-        Me.SBViewLog.Text = "View log sync"
-        Me.SBViewLog.Visible = False
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnAdd.ImageIndex = 0
+        Me.BtnAdd.ImageList = Me.LargeImageCollection
+        Me.BtnAdd.Location = New System.Drawing.Point(282, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(35, 34)
+        Me.BtnAdd.TabIndex = 6
+        Me.BtnAdd.TabStop = False
+        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Visible = False
         '
         'LargeImageCollection
         '
@@ -634,6 +639,30 @@ Partial Class FormSalesOrderDet
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(11, "ordering32.png")
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnEdit.ImageIndex = 2
+        Me.BtnEdit.ImageList = Me.LargeImageCollection
+        Me.BtnEdit.Location = New System.Drawing.Point(249, 2)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(33, 34)
+        Me.BtnEdit.TabIndex = 7
+        Me.BtnEdit.TabStop = False
+        Me.BtnEdit.Text = "Edit"
+        Me.BtnEdit.Visible = False
+        '
+        'SBViewLog
+        '
+        Me.SBViewLog.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBViewLog.ImageList = Me.LargeImageCollection
+        Me.SBViewLog.Location = New System.Drawing.Point(152, 2)
+        Me.SBViewLog.Name = "SBViewLog"
+        Me.SBViewLog.Size = New System.Drawing.Size(97, 34)
+        Me.SBViewLog.TabIndex = 16
+        Me.SBViewLog.Text = "View log sync"
+        Me.SBViewLog.Visible = False
         '
         'BtnXlsBOF
         '
@@ -820,7 +849,7 @@ Partial Class FormSalesOrderDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnQtyAvail, Me.GridColumnIsFound, Me.GridColumnErr, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnItemId, Me.GridColumnOLStoreId, Me.GridColumnOLStoreNumber, Me.GridColumnOLStoreOrderDate})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnQtyAvail, Me.GridColumnIsFound, Me.GridColumnErr, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnItemId, Me.GridColumnOLStoreId, Me.GridColumnOLStoreNumber, Me.GridColumnOLStoreOrderDate, Me.GridColumnid_ol_promo_collection_sku_replace})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -1099,8 +1128,6 @@ Partial Class FormSalesOrderDet
         Me.PanelControlNav.Controls.Add(Me.BtnImportExcelNew)
         Me.PanelControlNav.Controls.Add(Me.BtnImportExcel)
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
-        Me.PanelControlNav.Controls.Add(Me.BtnEdit)
-        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Controls.Add(Me.BtnAddV3)
         Me.PanelControlNav.Controls.Add(Me.BtnAddV2)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
@@ -1125,7 +1152,7 @@ Partial Class FormSalesOrderDet
         Me.BtnImportExcelNew.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnImportExcelNew.ImageIndex = 3
         Me.BtnImportExcelNew.ImageList = Me.LargeImageCollection
-        Me.BtnImportExcelNew.Location = New System.Drawing.Point(326, 0)
+        Me.BtnImportExcelNew.Location = New System.Drawing.Point(144, 0)
         Me.BtnImportExcelNew.Name = "BtnImportExcelNew"
         Me.BtnImportExcelNew.Size = New System.Drawing.Size(105, 35)
         Me.BtnImportExcelNew.TabIndex = 9
@@ -1137,7 +1164,7 @@ Partial Class FormSalesOrderDet
         Me.BtnImportExcel.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnImportExcel.ImageIndex = 3
         Me.BtnImportExcel.ImageList = Me.LargeImageCollection
-        Me.BtnImportExcel.Location = New System.Drawing.Point(182, 0)
+        Me.BtnImportExcel.Location = New System.Drawing.Point(0, 0)
         Me.BtnImportExcel.Name = "BtnImportExcel"
         Me.BtnImportExcel.Size = New System.Drawing.Size(144, 35)
         Me.BtnImportExcel.TabIndex = 8
@@ -1155,32 +1182,6 @@ Partial Class FormSalesOrderDet
         Me.BtnDel.TabIndex = 7
         Me.BtnDel.TabStop = False
         Me.BtnDel.Text = "Del (Ctrl+D)"
-        '
-        'BtnEdit
-        '
-        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnEdit.ImageIndex = 2
-        Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(91, 0)
-        Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(91, 35)
-        Me.BtnEdit.TabIndex = 7
-        Me.BtnEdit.TabStop = False
-        Me.BtnEdit.Text = "Edit"
-        Me.BtnEdit.Visible = False
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnAdd.ImageIndex = 0
-        Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(0, 0)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(91, 35)
-        Me.BtnAdd.TabIndex = 6
-        Me.BtnAdd.TabStop = False
-        Me.BtnAdd.Text = "Add"
-        Me.BtnAdd.Visible = False
         '
         'BtnAddV3
         '
@@ -1303,6 +1304,13 @@ Partial Class FormSalesOrderDet
         Me.LabelControl12.Size = New System.Drawing.Size(74, 13)
         Me.LabelControl12.TabIndex = 8895
         Me.LabelControl12.Text = "Parent Account"
+        '
+        'GridColumnid_ol_promo_collection_sku_replace
+        '
+        Me.GridColumnid_ol_promo_collection_sku_replace.Caption = "id_ol_promo_collection_sku_replace"
+        Me.GridColumnid_ol_promo_collection_sku_replace.FieldName = "id_ol_promo_collection_sku_replace"
+        Me.GridColumnid_ol_promo_collection_sku_replace.Name = "GridColumnid_ol_promo_collection_sku_replace"
+        Me.GridColumnid_ol_promo_collection_sku_replace.OptionsColumn.AllowEdit = False
         '
         'FormSalesOrderDet
         '
@@ -1485,4 +1493,5 @@ Partial Class FormSalesOrderDet
     Friend WithEvents SBViewLog As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtCustName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnid_ol_promo_collection_sku_replace As DevExpress.XtraGrid.Columns.GridColumn
 End Class

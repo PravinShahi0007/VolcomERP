@@ -65,6 +65,9 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnprice_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_block = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_block_view = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICReplace = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlAdd = New DevExpress.XtraEditors.PanelControl()
@@ -89,6 +92,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnprice_type_prod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty_prod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount_prod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_block_view_sku = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBySizeType = New DevExpress.XtraGrid.GridControl()
         Me.GVBySizeType = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -116,6 +120,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty0 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsize_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_block_view_stp = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,6 +142,7 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICReplace, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.PanelControlAdd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -493,13 +499,14 @@ Partial Class FormPromoCollectionDet
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICReplace})
         Me.GCData.Size = New System.Drawing.Size(886, 328)
         Me.GCData.TabIndex = 16
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design, Me.GridColumndesign_price, Me.GridColumnprice_type, Me.GridColumnqty, Me.GridColumnamount})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_det, Me.GridColumnid_ol_promo_collection, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize_chart, Me.GridColumnno, Me.GridColumnid_prod_shopify_design, Me.GridColumncurrent_tag_design, Me.GridColumndesign_price, Me.GridColumnprice_type, Me.GridColumnqty, Me.GridColumnamount, Me.GridColumnis_block, Me.GridColumnis_block_view})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -616,6 +623,28 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnamount.Visible = True
         Me.GridColumnamount.VisibleIndex = 7
         '
+        'GridColumnis_block
+        '
+        Me.GridColumnis_block.Caption = "is_block"
+        Me.GridColumnis_block.FieldName = "is_block"
+        Me.GridColumnis_block.Name = "GridColumnis_block"
+        '
+        'GridColumnis_block_view
+        '
+        Me.GridColumnis_block_view.Caption = "Replace Stock"
+        Me.GridColumnis_block_view.FieldName = "is_block_view"
+        Me.GridColumnis_block_view.Name = "GridColumnis_block_view"
+        Me.GridColumnis_block_view.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnis_block_view.Visible = True
+        Me.GridColumnis_block_view.VisibleIndex = 8
+        '
+        'RICReplace
+        '
+        Me.RICReplace.AutoHeight = False
+        Me.RICReplace.Name = "RICReplace"
+        Me.RICReplace.ValueChecked = "Yes"
+        Me.RICReplace.ValueUnchecked = "No"
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
@@ -694,7 +723,7 @@ Partial Class FormPromoCollectionDet
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod, Me.GridColumnqty_prod, Me.GridColumnamount_prod})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod, Me.GridColumnqty_prod, Me.GridColumnamount_prod, Me.GridColumnis_block_view_sku})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.ReadOnly = True
@@ -824,6 +853,15 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnamount_prod.Visible = True
         Me.GridColumnamount_prod.VisibleIndex = 8
         '
+        'GridColumnis_block_view_sku
+        '
+        Me.GridColumnis_block_view_sku.Caption = "Replace Stock"
+        Me.GridColumnis_block_view_sku.FieldName = "is_block_view"
+        Me.GridColumnis_block_view_sku.Name = "GridColumnis_block_view_sku"
+        Me.GridColumnis_block_view_sku.Visible = True
+        Me.GridColumnis_block_view_sku.VisibleIndex = 9
+        Me.GridColumnis_block_view_sku.Width = 92
+        '
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.GCBySizeType)
@@ -844,7 +882,7 @@ Partial Class FormPromoCollectionDet
         'GVBySizeType
         '
         Me.GVBySizeType.ColumnPanelRowHeight = 35
-        Me.GVBySizeType.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumnqty1, Me.GridColumnqty2, Me.GridColumnqty3, Me.GridColumnqty4, Me.GridColumnqty5, Me.GridColumnqty6, Me.GridColumnqty7, Me.GridColumnqty8, Me.GridColumnqty9, Me.GridColumnqty0, Me.GridColumnsize_type})
+        Me.GVBySizeType.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumnqty1, Me.GridColumnqty2, Me.GridColumnqty3, Me.GridColumnqty4, Me.GridColumnqty5, Me.GridColumnqty6, Me.GridColumnqty7, Me.GridColumnqty8, Me.GridColumnqty9, Me.GridColumnqty0, Me.GridColumnsize_type, Me.GridColumnis_block_view_stp})
         Me.GVBySizeType.GridControl = Me.GCBySizeType
         Me.GVBySizeType.Name = "GVBySizeType"
         Me.GVBySizeType.OptionsBehavior.ReadOnly = True
@@ -1101,6 +1139,15 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnsize_type.Visible = True
         Me.GridColumnsize_type.VisibleIndex = 3
         '
+        'GridColumnis_block_view_stp
+        '
+        Me.GridColumnis_block_view_stp.Caption = "Replace Stock"
+        Me.GridColumnis_block_view_stp.FieldName = "is_block_view"
+        Me.GridColumnis_block_view_stp.Name = "GridColumnis_block_view_stp"
+        Me.GridColumnis_block_view_stp.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnis_block_view_stp.Visible = True
+        Me.GridColumnis_block_view_stp.VisibleIndex = 18
+        '
         'FormPromoCollectionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1138,6 +1185,7 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICReplace, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.PanelControlAdd, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1251,4 +1299,9 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumnqty9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnqty0 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsize_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_block As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_block_view As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICReplace As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnis_block_view_sku As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_block_view_stp As DevExpress.XtraGrid.Columns.GridColumn
 End Class

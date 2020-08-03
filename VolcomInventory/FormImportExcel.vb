@@ -102,7 +102,7 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='')", oledbconn)
         ElseIf id_pop_up = "26" Then
             MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, id_keterangan_tambahan, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
-        ElseIf id_pop_up = "33" Or id_pop_up = "51" Then
+        ElseIf id_pop_up = "33" Then
             MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         ElseIf id_pop_up = "35" Then
             MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
@@ -121,6 +121,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         ElseIf id_pop_up = "50" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order]='') ", oledbconn)
+        ElseIf id_pop_up = "51" Then
+            MyCommand = New OleDbDataAdapter("select `KODE`,MAX(REPLACE_STOCK) AS `replace_stock` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         ElseIf id_pop_up = "52" Then
             MyCommand = New OleDbDataAdapter("select city,`sub district`,`minimum weight`,`lead time`,`rate` from [" & CBWorksheetName.SelectedItem.ToString & "] GROUP BY `city`,`sub district` ", oledbconn)
         Else
@@ -3325,6 +3327,8 @@ Public Class FormImportExcel
                                 .id_design_price = If(y1 Is Nothing, "0", y1("id_design_price").ToString),
                                 .design_price = If(y1 Is Nothing, 0, y1("design_price")),
                                 .qty = If(s1 Is Nothing, 0, s1("qty")),
+                                .is_block = table1("replace_stock").ToString,
+                                .replace = If(table1("replace_stock").ToString = "1", "Not Active", "Active"),
                                 .Status = If(y1 Is Nothing Or w1 Is Nothing, If(y1 Is Nothing, "Not found in ERP;", "") + If(w1 Is Nothing, "Not found in Shopify;", ""), "OK")
                             }
             GCData.DataSource = Nothing
@@ -3337,6 +3341,7 @@ Public Class FormImportExcel
             GVData.Columns("id_product").Visible = False
             GVData.Columns("id_prod_shopify").Visible = False
             GVData.Columns("id_design_price").Visible = False
+            GVData.Columns("is_block").Visible = False
 
             'display format
             GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -5665,9 +5670,10 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
 
                         'detail data
                         Dim id_prm As String = FormPromoCollectionDet.id
-                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product, id_prod_shopify, id_design_price, design_price,qty) VALUES "
+                        Dim q As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id_prm + "';INSERT INTO tb_ol_promo_collection_sku(id_ol_promo_collection, id_product, id_prod_shopify, id_design_price, design_price,qty, is_block) VALUES "
                         For i As Integer = 0 To GVData.RowCount - 1
                             Dim id_design_price As String = GVData.GetRowCellValue(i, "id_design_price").ToString
+                            Dim is_block As String = GVData.GetRowCellValue(i, "is_block").ToString
                             If id_design_price = "0" Then
                                 id_design_price = "NULL"
                             End If
@@ -5676,7 +5682,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                                 q += ","
                             End If
                             '
-                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + GVData.GetRowCellValue(i, "id_prod_shopify").ToString + "', " + id_design_price + ", '" + decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "qty").ToString) + "') "
+                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + GVData.GetRowCellValue(i, "id_prod_shopify").ToString + "', " + id_design_price + ", '" + decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "qty").ToString) + "', '" + is_block + "') "
 
                             '
                             PBC.PerformStep()
