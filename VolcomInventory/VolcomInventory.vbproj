@@ -2766,6 +2766,12 @@
     <Compile Include="FormNtwainCoba.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormODM.Designer.vb">
+      <DependentUpon>FormODM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormODM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStore.Designer.vb">
       <DependentUpon>FormOLStore.vb</DependentUpon>
     </Compile>
@@ -9666,6 +9672,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNtwainCoba.resx">
       <DependentUpon>FormNtwainCoba.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormODM.resx">
+      <DependentUpon>FormODM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStore.resx">
       <DependentUpon>FormOLStore.vb</DependentUpon>
