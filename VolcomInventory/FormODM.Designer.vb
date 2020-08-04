@@ -330,6 +330,7 @@ Partial Class FormODM
         Me.GridColumnWeight.FieldName = "weight"
         Me.GridColumnWeight.Name = "GridColumnWeight"
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
+        Me.GridColumnWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnWeight.Visible = True
         Me.GridColumnWeight.VisibleIndex = 9
         '
@@ -341,6 +342,7 @@ Partial Class FormODM
         Me.GridColumnP.FieldName = "width"
         Me.GridColumnP.Name = "GridColumnP"
         Me.GridColumnP.OptionsColumn.AllowEdit = False
+        Me.GridColumnP.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnP.Visible = True
         Me.GridColumnP.VisibleIndex = 10
         '
@@ -352,6 +354,7 @@ Partial Class FormODM
         Me.GridColumnL.FieldName = "length"
         Me.GridColumnL.Name = "GridColumnL"
         Me.GridColumnL.OptionsColumn.AllowEdit = False
+        Me.GridColumnL.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnL.Visible = True
         Me.GridColumnL.VisibleIndex = 11
         '
@@ -363,6 +366,7 @@ Partial Class FormODM
         Me.GridColumnT.FieldName = "height"
         Me.GridColumnT.Name = "GridColumnT"
         Me.GridColumnT.OptionsColumn.AllowEdit = False
+        Me.GridColumnT.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnT.Visible = True
         Me.GridColumnT.VisibleIndex = 12
         '
@@ -374,6 +378,7 @@ Partial Class FormODM
         Me.GridColumnDim.FieldName = "volume"
         Me.GridColumnDim.Name = "GridColumnDim"
         Me.GridColumnDim.OptionsColumn.AllowEdit = False
+        Me.GridColumnDim.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnDim.Visible = True
         Me.GridColumnDim.VisibleIndex = 13
         '
@@ -385,6 +390,7 @@ Partial Class FormODM
         Me.GridColumnFinal.FieldName = "c_weight"
         Me.GridColumnFinal.Name = "GridColumnFinal"
         Me.GridColumnFinal.OptionsColumn.AllowEdit = False
+        Me.GridColumnFinal.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnFinal.Visible = True
         Me.GridColumnFinal.VisibleIndex = 14
         '

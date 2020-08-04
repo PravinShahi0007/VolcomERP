@@ -63,8 +63,20 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Private Sub GVList_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVList.CellMerge
+        Try
+            Console.WriteLine(GVList.GetRowCellValue(e.RowHandle1, "id_awbill").ToString & " : " & GVList.GetRowCellValue(e.RowHandle2, "id_awbill").ToString)
+            Console.WriteLine(e.CellValue1.ToString & " : " & e.CellValue2.ToString)
+        Catch ex As Exception
+
+        End Try
+
+        Console.WriteLine("===========================")
+
         If GVList.GetRowCellValue(e.RowHandle1, "id_awbill").ToString = GVList.GetRowCellValue(e.RowHandle2, "id_awbill").ToString Then
             e.Merge = True
+            e.Handled = True
+        Else
+            e.Merge = False
             e.Handled = True
         End If
     End Sub
