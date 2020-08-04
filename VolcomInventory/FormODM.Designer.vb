@@ -20,16 +20,17 @@ Partial Class FormODM
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLECargo = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SLVCargo = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPManifestList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdWhAwbDet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,8 +59,8 @@ Partial Class FormODM
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPManifestList.SuspendLayout()
@@ -72,14 +73,44 @@ Partial Class FormODM
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLUE3PL)
         Me.PanelControl1.Controls.Add(Me.BView)
-        Me.PanelControl1.Controls.Add(Me.SLECargo)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1072, 44)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SLUE3PL
+        '
+        Me.SLUE3PL.Location = New System.Drawing.Point(40, 13)
+        Me.SLUE3PL.Name = "SLUE3PL"
+        Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUE3PL.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUE3PL.Size = New System.Drawing.Size(211, 20)
+        Me.SLUE3PL.TabIndex = 10
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.FieldName = "id_comp"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "3PL"
+        Me.GridColumn10.FieldName = "comp_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
         '
         'BView
         '
@@ -88,43 +119,6 @@ Partial Class FormODM
         Me.BView.Size = New System.Drawing.Size(54, 23)
         Me.BView.TabIndex = 9
         Me.BView.Text = "view"
-        '
-        'SLECargo
-        '
-        Me.SLECargo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLECargo.Location = New System.Drawing.Point(40, 13)
-        Me.SLECargo.Name = "SLECargo"
-        Me.SLECargo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLECargo.Properties.Appearance.Options.UseFont = True
-        Me.SLECargo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLECargo.Properties.NullText = "-"
-        Me.SLECargo.Properties.View = Me.SLVCargo
-        Me.SLECargo.Size = New System.Drawing.Size(211, 20)
-        Me.SLECargo.TabIndex = 8
-        '
-        'SLVCargo
-        '
-        Me.SLVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdSeason, Me.GridColumnRange})
-        Me.SLVCargo.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SLVCargo.Name = "SLVCargo"
-        Me.SLVCargo.OptionsBehavior.ReadOnly = True
-        Me.SLVCargo.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SLVCargo.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnIdSeason
-        '
-        Me.GridColumnIdSeason.Caption = "ID Cargo"
-        Me.GridColumnIdSeason.FieldName = "id_cargo"
-        Me.GridColumnIdSeason.Name = "GridColumnIdSeason"
-        '
-        'GridColumnRange
-        '
-        Me.GridColumnRange.Caption = "Cargo Name"
-        Me.GridColumnRange.FieldName = "cargo"
-        Me.GridColumnRange.Name = "GridColumnRange"
-        Me.GridColumnRange.Visible = True
-        Me.GridColumnRange.VisibleIndex = 0
         '
         'LabelControl1
         '
@@ -170,7 +164,7 @@ Partial Class FormODM
         '
         Me.GVList.Appearance.GroupPanel.Font = New System.Drawing.Font("Tahoma", 1.0!)
         Me.GVList.Appearance.GroupPanel.Options.UseFont = True
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumnIdWhAwbDet, Me.GridColumnIdCompGroup, Me.GridColumnCreatedDate, Me.GridColumnCollie, Me.GridColumnCombinedNumber, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnAWBNumber, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn2, Me.GridColumn1, Me.GridColumnIdWhAwbDet, Me.GridColumnIdCompGroup, Me.GridColumnCreatedDate, Me.GridColumnCollie, Me.GridColumnCombinedNumber, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnAWBNumber, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
         Me.GVList.GroupFormat = ""
@@ -186,6 +180,15 @@ Partial Class FormODM
         Me.GVList.OptionsView.ShowGroupPanel = False
         Me.GVList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.Caption = "Checklist"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "ODM Number"
@@ -200,7 +203,7 @@ Partial Class FormODM
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 176
         '
         'GridColumnIdWhAwbDet
@@ -226,7 +229,7 @@ Partial Class FormODM
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 14
+        Me.GridColumnCreatedDate.VisibleIndex = 15
         '
         'GridColumnCollie
         '
@@ -236,7 +239,7 @@ Partial Class FormODM
         Me.GridColumnCollie.OptionsColumn.AllowEdit = False
         Me.GridColumnCollie.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnCollie.Visible = True
-        Me.GridColumnCollie.VisibleIndex = 1
+        Me.GridColumnCollie.VisibleIndex = 2
         Me.GridColumnCollie.Width = 141
         '
         'GridColumnCombinedNumber
@@ -247,7 +250,7 @@ Partial Class FormODM
         Me.GridColumnCombinedNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnCombinedNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnCombinedNumber.Visible = True
-        Me.GridColumnCombinedNumber.VisibleIndex = 2
+        Me.GridColumnCombinedNumber.VisibleIndex = 3
         '
         'GridColumnDeliverySlip
         '
@@ -272,7 +275,7 @@ Partial Class FormODM
         Me.GridColumnAWBNumber.Name = "GridColumnAWBNumber"
         Me.GridColumnAWBNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnAWBNumber.Visible = True
-        Me.GridColumnAWBNumber.VisibleIndex = 3
+        Me.GridColumnAWBNumber.VisibleIndex = 4
         '
         'GridColumnStoreAccount
         '
@@ -282,7 +285,7 @@ Partial Class FormODM
         Me.GridColumnStoreAccount.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreAccount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnStoreAccount.Visible = True
-        Me.GridColumnStoreAccount.VisibleIndex = 4
+        Me.GridColumnStoreAccount.VisibleIndex = 5
         Me.GridColumnStoreAccount.Width = 78
         '
         'GridColumnStoreName
@@ -293,7 +296,7 @@ Partial Class FormODM
         Me.GridColumnStoreName.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnStoreName.Visible = True
-        Me.GridColumnStoreName.VisibleIndex = 5
+        Me.GridColumnStoreName.VisibleIndex = 6
         '
         'GridColumnQty
         '
@@ -305,7 +308,7 @@ Partial Class FormODM
         Me.GridColumnQty.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.VisibleIndex = 7
         Me.GridColumnQty.Width = 50
         '
         'GridColumnDestination
@@ -316,7 +319,7 @@ Partial Class FormODM
         Me.GridColumnDestination.OptionsColumn.AllowEdit = False
         Me.GridColumnDestination.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnDestination.Visible = True
-        Me.GridColumnDestination.VisibleIndex = 7
+        Me.GridColumnDestination.VisibleIndex = 8
         Me.GridColumnDestination.Width = 77
         '
         'GridColumnWeight
@@ -327,9 +330,8 @@ Partial Class FormODM
         Me.GridColumnWeight.FieldName = "weight"
         Me.GridColumnWeight.Name = "GridColumnWeight"
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
-        Me.GridColumnWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnWeight.Visible = True
-        Me.GridColumnWeight.VisibleIndex = 8
+        Me.GridColumnWeight.VisibleIndex = 9
         '
         'GridColumnP
         '
@@ -339,9 +341,8 @@ Partial Class FormODM
         Me.GridColumnP.FieldName = "width"
         Me.GridColumnP.Name = "GridColumnP"
         Me.GridColumnP.OptionsColumn.AllowEdit = False
-        Me.GridColumnP.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnP.Visible = True
-        Me.GridColumnP.VisibleIndex = 9
+        Me.GridColumnP.VisibleIndex = 10
         '
         'GridColumnL
         '
@@ -351,9 +352,8 @@ Partial Class FormODM
         Me.GridColumnL.FieldName = "length"
         Me.GridColumnL.Name = "GridColumnL"
         Me.GridColumnL.OptionsColumn.AllowEdit = False
-        Me.GridColumnL.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnL.Visible = True
-        Me.GridColumnL.VisibleIndex = 10
+        Me.GridColumnL.VisibleIndex = 11
         '
         'GridColumnT
         '
@@ -363,9 +363,8 @@ Partial Class FormODM
         Me.GridColumnT.FieldName = "height"
         Me.GridColumnT.Name = "GridColumnT"
         Me.GridColumnT.OptionsColumn.AllowEdit = False
-        Me.GridColumnT.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnT.Visible = True
-        Me.GridColumnT.VisibleIndex = 11
+        Me.GridColumnT.VisibleIndex = 12
         '
         'GridColumnDim
         '
@@ -375,9 +374,8 @@ Partial Class FormODM
         Me.GridColumnDim.FieldName = "volume"
         Me.GridColumnDim.Name = "GridColumnDim"
         Me.GridColumnDim.OptionsColumn.AllowEdit = False
-        Me.GridColumnDim.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnDim.Visible = True
-        Me.GridColumnDim.VisibleIndex = 12
+        Me.GridColumnDim.VisibleIndex = 13
         '
         'GridColumnFinal
         '
@@ -387,9 +385,8 @@ Partial Class FormODM
         Me.GridColumnFinal.FieldName = "c_weight"
         Me.GridColumnFinal.Name = "GridColumnFinal"
         Me.GridColumnFinal.OptionsColumn.AllowEdit = False
-        Me.GridColumnFinal.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnFinal.Visible = True
-        Me.GridColumnFinal.VisibleIndex = 13
+        Me.GridColumnFinal.VisibleIndex = 14
         '
         'GridColumnRemark
         '
@@ -398,7 +395,7 @@ Partial Class FormODM
         Me.GridColumnRemark.OptionsColumn.AllowEdit = False
         Me.GridColumnRemark.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 15
+        Me.GridColumnRemark.VisibleIndex = 16
         '
         'BCreatePO
         '
@@ -479,8 +476,8 @@ Partial Class FormODM
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPManifestList.ResumeLayout(False)
@@ -499,10 +496,6 @@ Partial Class FormODM
     Friend WithEvents XTPManifestList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SLECargo As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SLVCargo As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnIdSeason As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnRange As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCScan As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
@@ -531,4 +524,9 @@ Partial Class FormODM
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLUE3PL As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
