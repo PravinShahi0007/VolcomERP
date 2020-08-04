@@ -8,6 +8,7 @@
     Public is_ho_target As String = "-1"
 
     Private Sub FormProductionRec_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        view_comp()
         view_prod_order()
         '
         viewSeason()
@@ -18,6 +19,14 @@
         Else
             PCUpdateHO.Visible = False
         End If
+    End Sub
+
+    Sub view_comp()
+        Dim query As String = ""
+        query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All Vendor') AS comp_name, ('ALL Vendor') AS comp_name_label UNION ALL "
+        query += "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
+        query += "WHERE comp.id_comp_cat='1'"
+        viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub viewSeason()
@@ -94,26 +103,52 @@
 
 
     Sub view_prod_order()
-        Dim query = "SELECT "
-        query += "NOW() as date_now,b.id_design,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name,d.design_name , d.design_code, h.term_production, g.po_type, "
-        query += "DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date,a.id_report_status,c.report_status, "
-        query += "b.id_delivery, e.delivery, f.season, e.id_season, "
-        query += "DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date, "
-        query += "DATE_FORMAT(DATE_ADD(a.prod_order_date,INTERVAL a.prod_order_lead_time DAY),'%d %M %Y') AS prod_order_lead_time, "
-        query += "(SELECT COUNT(tb_prod_order_rec.id_prod_order_rec) FROM tb_prod_order_rec "
-        query += "  WHERE tb_prod_order_rec.id_prod_order = a.id_prod_order "
-        query += "  AND tb_prod_order_rec.id_report_status != '5' "
-        query += ") AS receive_created, "
-        query += "DATE_FORMAT(DATE_ADD(a.prod_order_date,INTERVAL a.prod_order_lead_time DAY),'%d %M %Y') AS prod_order_lead_time "
-        query += "FROM tb_prod_order a "
-        query += "INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design "
-        query += "INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status "
-        query += "INNER JOIN tb_m_design d ON b.id_design = d.id_design "
-        query += "INNER JOIN tb_season_delivery e ON b.id_delivery=e.id_delivery "
-        query += "INNER JOIN tb_season f ON f.id_season=e.id_season "
-        query += "INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type "
-        query += "INNER JOIN tb_lookup_term_production h ON h.id_term_production=a.id_term_production "
-        query += "WHERE (a.id_report_status = '6') AND is_closing_rec=2 ORDER BY a.id_prod_order ASC "
+        Dim q_where As String = ""
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            q_where = " AND wo.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+        Dim query = "SELECT wo.comp_number,wo.comp_name,wo.id_comp,
+NOW() AS date_now,b.id_design,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name,d.design_name , d.design_code, h.term_production, g.po_type, 
+DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date,a.id_report_status,c.report_status, 
+b.id_delivery, e.delivery, f.season, e.id_season, 
+DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date, 
+DATE_FORMAT(DATE_ADD(a.prod_order_date,INTERVAL a.prod_order_lead_time DAY),'%d %M %Y') AS prod_order_lead_time, 
+(
+  SELECT COUNT(tb_prod_order_rec.id_prod_order_rec) FROM tb_prod_order_rec 
+  WHERE tb_prod_order_rec.id_prod_order = a.id_prod_order 
+  AND tb_prod_order_rec.id_report_status != '5' 
+) AS receive_created, 
+rec.qty_rec,
+wo.qty_po,
+DATE_FORMAT(DATE_ADD(a.prod_order_date,INTERVAL a.prod_order_lead_time DAY),'%d %M %Y') AS prod_order_lead_time 
+FROM tb_prod_order a 
+LEFT JOIN 
+(
+	SELECT wo.`id_prod_order`,SUM(wod.prod_order_wo_det_qty) AS qty_po,c.`comp_name`,c.`comp_number`,c.`id_comp`
+	FROM tb_prod_order_wo_det wod
+    INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=wod.id_prod_order_wo
+	INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+	WHERE wo.id_report_status=6 AND wo.`is_main_vendor`=1
+	GROUP BY wo.`id_prod_order`
+)wo ON wo.id_prod_order=a.`id_prod_order`
+LEFT JOIN (
+        SELECT rec.`id_prod_order`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec 
+        FROM tb_prod_order_rec_det recd
+        INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`
+        WHERE rec.id_report_status != '5' 
+        GROUP BY rec.`id_prod_order`
+)rec ON rec.id_prod_order=a.`id_prod_order`
+INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
+INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status 
+INNER JOIN tb_m_design d ON b.id_design = d.id_design 
+INNER JOIN tb_season_delivery e ON b.id_delivery=e.id_delivery 
+INNER JOIN tb_season f ON f.id_season=e.id_season 
+INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type 
+INNER JOIN tb_lookup_term_production h ON h.id_term_production=a.id_term_production 
+WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a.id_prod_order ASC "
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProd.DataSource = data
         If data.Rows.Count > 0 Then
@@ -412,5 +447,10 @@
             End If
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BViewRec_Click(sender As Object, e As EventArgs) Handles BViewRec.Click
+        view_prod_order()
+        GVProd.BestFitColumns()
     End Sub
 End Class
