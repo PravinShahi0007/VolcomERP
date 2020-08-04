@@ -41,6 +41,7 @@
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+        DEVA.EditValue = dt_now.Rows(0)("tgl")
 
         'get id own online store
         id_own_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_store) FROM tb_m_comp_volcom_ol c", 0, True, "", "", "", "")
@@ -53,6 +54,9 @@
 
         'payout
         load_payout()
+
+        'virtual acc
+        load_vacc()
     End Sub
 
     Sub load_status_payment()
@@ -357,6 +361,11 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
     Private Sub BtnHistoryPayout_Click(sender As Object, e As EventArgs) Handles BtnHistoryPayout.Click
         Cursor = Cursors.WaitCursor
         FormPayoutHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_vacc()
+        Cursor = Cursors.WaitCursor
         Cursor = Cursors.Default
     End Sub
 End Class
