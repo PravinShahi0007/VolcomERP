@@ -1,8 +1,8 @@
 ﻿Public Class FormChangeStatus
     Public id_pop_up As String = "-1"
     Public id_current As String = ""
-    Dim id_volcomstore_normal As String = "-1"
-    Dim id_volcomstore_sale As String = "-1"
+    Public id_volcomstore_normal As String = "-1"
+    Public id_volcomstore_sale As String = "-1"
 
     '1 = Finalize WH- Rec Prod
     '2 = Finalize WH- DO
