@@ -57,6 +57,7 @@
 
         'virtual acc
         load_vacc()
+        load_bank()
     End Sub
 
     Sub load_status_payment()
@@ -366,6 +367,20 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 
     Sub load_vacc()
         Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_bank()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT * FROM tb_virtual_acc a "
+        viewSearchLookupQuery(SLEBank, query, "id_virtual_acc", "bank", "id_virtual_acc")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnImportVA_Click(sender As Object, e As EventArgs) Handles BtnImportVA.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "53"
+        FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

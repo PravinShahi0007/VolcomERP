@@ -125,6 +125,9 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select `KODE`,MAX(REPLACE_STOCK) AS `replace_stock` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         ElseIf id_pop_up = "52" Then
             MyCommand = New OleDbDataAdapter("select city,`sub district`,`minimum weight`,`lead time`,`rate` from [" & CBWorksheetName.SelectedItem.ToString & "] GROUP BY `city`,`sub district` ", oledbconn)
+        ElseIf id_pop_up = "53" Then
+            Dim col_name As String = execute_query("SELECT column_name FROM tb_virtual_acc WHERE id_virtual_acc='" + FormBankDeposit.SLEBank.EditValue.ToString + "' ", 0, True, "", "", "", "")
+            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([" + col_name + "]='') ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -3378,6 +3381,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
 
             'Customize column
             GVData.Columns("id_sub_district").Visible = False
+        ElseIf id_pop_up = "53" Then
+            GCData.DataSource = data_temp
         End If
         data_temp.Dispose()
         oledbconn.Close()

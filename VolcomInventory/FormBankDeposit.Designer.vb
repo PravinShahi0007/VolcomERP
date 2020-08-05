@@ -119,6 +119,9 @@ Partial Class FormBankDeposit
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEBank = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.DEVA = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -161,6 +164,8 @@ Partial Class FormBankDeposit
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.SLEBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEVA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -1090,6 +1095,8 @@ Partial Class FormBankDeposit
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.SLEBank)
+        Me.PanelControl4.Controls.Add(Me.LabelControl8)
         Me.PanelControl4.Controls.Add(Me.BtnImport)
         Me.PanelControl4.Controls.Add(Me.DEVA)
         Me.PanelControl4.Controls.Add(Me.LabelControl7)
@@ -1099,6 +1106,31 @@ Partial Class FormBankDeposit
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(1186, 47)
         Me.PanelControl4.TabIndex = 0
+        '
+        'SLEBank
+        '
+        Me.SLEBank.Location = New System.Drawing.Point(323, 13)
+        Me.SLEBank.Name = "SLEBank"
+        Me.SLEBank.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEBank.Properties.ShowClearButton = False
+        Me.SLEBank.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEBank.Size = New System.Drawing.Size(212, 20)
+        Me.SLEBank.TabIndex = 8931
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(294, 16)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl8.TabIndex = 8930
+        Me.LabelControl8.Text = "Bank"
         '
         'BtnImport
         '
@@ -1119,7 +1151,7 @@ Partial Class FormBankDeposit
         Me.DEVA.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEVA.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEVA.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEVA.Size = New System.Drawing.Size(162, 20)
+        Me.DEVA.Size = New System.Drawing.Size(180, 20)
         Me.DEVA.TabIndex = 1
         '
         'LabelControl7
@@ -1132,7 +1164,7 @@ Partial Class FormBankDeposit
         '
         'BtnImportVA
         '
-        Me.BtnImportVA.Location = New System.Drawing.Point(276, 13)
+        Me.BtnImportVA.Location = New System.Drawing.Point(541, 13)
         Me.BtnImportVA.Name = "BtnImportVA"
         Me.BtnImportVA.Size = New System.Drawing.Size(133, 20)
         Me.BtnImportVA.TabIndex = 8927
@@ -1192,6 +1224,8 @@ Partial Class FormBankDeposit
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.SLEBank.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEVA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1301,4 +1335,7 @@ Partial Class FormBankDeposit
     Friend WithEvents BtnImport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLEBank As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class
