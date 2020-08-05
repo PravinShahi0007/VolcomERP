@@ -467,6 +467,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn221 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -2835,7 +2836,7 @@ Partial Class FormBankWithdrawal
         '
         'GVFGPO
         '
-        Me.GVFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn52, Me.GridColumn40, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn59, Me.GridColumn58, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn60, Me.GridColumn49, Me.GridColumn53, Me.GridColumn41, Me.GridColumn54, Me.GridColumn50, Me.GridColumn51})
+        Me.GVFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn52, Me.GridColumn40, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn59, Me.GridColumn58, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn60, Me.GridColumn49, Me.GridColumn53, Me.GridColumn41, Me.GridColumn54, Me.GridColumn50, Me.GridColumn51, Me.GridColumn221})
         Me.GVFGPO.GridControl = Me.GCFGPO
         Me.GVFGPO.Name = "GVFGPO"
         Me.GVFGPO.OptionsView.ColumnAutoWidth = False
@@ -5110,6 +5111,14 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'GridColumn221
+        '
+        Me.GridColumn221.Caption = "Note"
+        Me.GridColumn221.FieldName = "extra_note"
+        Me.GridColumn221.Name = "GridColumn221"
+        Me.GridColumn221.Visible = True
+        Me.GridColumn221.VisibleIndex = 13
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -5734,4 +5743,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn221 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
