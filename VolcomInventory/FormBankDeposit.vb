@@ -367,6 +367,16 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 
     Sub load_vacc()
         Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT a.id_virtual_acc_trans,a.id_virtual_acc, va.bank, a.transaction_date, a.generate_date, SUM(d.amount) AS `amount`
+        FROM tb_virtual_acc_trans a 
+        INNER JOIN tb_virtual_acc va ON va.id_virtual_acc = a.id_virtual_acc
+        INNER JOIN tb_virtual_acc_trans_det d ON d.id_virtual_acc_trans = a.id_virtual_acc_trans
+        LEFT JOIN tb_rec_payment b ON b.id_virtual_acc_trans = a.id_virtual_acc_trans AND b.id_report_status!=5
+        WHERE ISNULL(b.id_rec_payment)
+        GROUP BY a.id_virtual_acc_trans "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCVA.DataSource = data
+        GVVA.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -382,5 +392,14 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         FormImportExcel.id_pop_up = "53"
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBBMVA_Click(sender As Object, e As EventArgs) Handles BtnBBMVA.Click
+        If GVVA.RowCount > 0 And GVVA.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositDet.id_virtual_acc_trans = GVVA.GetFocusedRowCellValue("id_virtual_acc_trans").ToString
+            FormBankDepositDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
