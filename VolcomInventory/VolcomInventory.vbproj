@@ -3534,6 +3534,12 @@
     <Compile Include="FormReportEstWHInQty.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReportFGPO.Designer.vb">
+      <DependentUpon>FormReportFGPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportFGPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormReportMarkCancel.Designer.vb">
       <DependentUpon>FormReportMarkCancel.vb</DependentUpon>
     </Compile>
@@ -10057,6 +10063,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportEstWHInQty.resx">
       <DependentUpon>FormReportEstWHInQty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportFGPO.resx">
+      <DependentUpon>FormReportFGPO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportMarkCancel.resx">
       <DependentUpon>FormReportMarkCancel.vb</DependentUpon>
