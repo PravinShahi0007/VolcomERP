@@ -755,9 +755,29 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         GVBPJSKesehatan.ActiveFilterString = "[is_check]='yes'"
 
         If GVBPJSKesehatan.RowCount > 0 Then
-            FormBankWithdrawalDet.id_pay_type = "2"
-            FormBankWithdrawalDet.report_mark_type = "223"
-            FormBankWithdrawalDet.ShowDialog()
+            'check created
+            Dim id_pay_bpjs_kesehatan As String = ""
+
+            For i = 0 To GVBPJSKesehatan.RowCount - 1
+                id_pay_bpjs_kesehatan = GVBPJSKesehatan.GetRowCellValue(i, "id_pay_bpjs_kesehatan").ToString + ", "
+            Next
+
+            id_pay_bpjs_kesehatan = id_pay_bpjs_kesehatan.Substring(0, id_pay_bpjs_kesehatan.Length - 2)
+
+            Dim total As String = execute_query("
+                SELECT COUNT(*) AS total
+                FROM tb_pn_det AS pn_det
+                LEFT JOIN tb_pn AS pn ON pn_det.id_pn = pn.id_pn
+                WHERE pn.id_report_status <> 5 AND pn_det.report_mark_type = 223 AND pn_det.id_report IN (" + id_pay_bpjs_kesehatan + ")
+            ", 0, True, "", "", "", "")
+
+            If total = "0" Then
+                FormBankWithdrawalDet.id_pay_type = "2"
+                FormBankWithdrawalDet.report_mark_type = "223"
+                FormBankWithdrawalDet.ShowDialog()
+            Else
+                stopCustom("Payment already created.")
+            End If
         Else
             warningCustom("Please select item first.")
         End If

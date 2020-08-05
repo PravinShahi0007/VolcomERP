@@ -478,10 +478,10 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                                 newRow2("number") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(i, "number").ToString
                                 newRow2("total_pay") = 0
                                 newRow2("value") = total_office
-                                newRow2("kurs") = 0
+                                newRow2("kurs") = 1
                                 newRow2("id_currency") = "1"
                                 newRow2("currency") = "Rp"
-                                newRow2("val_bef_kurs") = 0
+                                newRow2("val_bef_kurs") = total_office
                                 newRow2("value_view") = total_office
                                 newRow2("balance_due") = total_office
                                 newRow2("note") = "BPJS " + data.Rows(j)("periode").ToString + " (dibayar karyawan)"

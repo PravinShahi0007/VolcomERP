@@ -653,16 +653,17 @@
         GCFGStockCard.DataSource = data
         dt = data
 
-        'hide column
-        BandedGridViewFGStockCard.Columns("id_comp").Visible = False
-        BandedGridViewFGStockCard.Columns("id_report").Visible = False
-        BandedGridViewFGStockCard.Columns("report_mark_type").Visible = False
-        BandedGridViewFGStockCard.Columns("id_storage_category").Visible = False
+        If data.Rows.Count > 0 Then
+            'hide column
+            BandedGridViewFGStockCard.Columns("id_comp").Visible = False
+            BandedGridViewFGStockCard.Columns("id_report").Visible = False
+            BandedGridViewFGStockCard.Columns("report_mark_type").Visible = False
+            BandedGridViewFGStockCard.Columns("id_storage_category").Visible = False
+            'enable group
+            BandedGridViewFGStockCard.Columns("Size Type").GroupIndex = 0
+            BandedGridViewFGStockCard.ExpandAllGroups()
+        End If
 
-
-        'enable group
-        BandedGridViewFGStockCard.Columns("Size Type").GroupIndex = 0
-        BandedGridViewFGStockCard.ExpandAllGroups()
         GroupControlInfo.Enabled = True
         GroupControlTraccking.Enabled = True
         Cursor = Cursors.Default
