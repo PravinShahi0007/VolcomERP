@@ -3119,7 +3119,7 @@ Public Class FormImportExcel
             GVData.Columns("status").Caption = "Description"
         ElseIf id_pop_up = "50" Then
             Dim queryx As String = "SELECT ol.id_list_payout, ol.id AS `id_order`, ol.checkout_id,ol.sales_order_ol_shop_number, ol.payment AS curr_payout,
-            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(posd.`sales_pos_det_qty`*posd.`design_price`)+IFNULL(sh.ship_amo,0) AS amount,
+            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`))+IFNULL(sh.ship_amo,0) AS amount,
             GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,
             GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`
             FROM
@@ -3133,7 +3133,6 @@ Public Class FormImportExcel
             INNER JOIN tb_sales_order so ON so.`id_sales_order_ol_shop`=ol.`id`
             INNER JOIN `tb_pl_sales_order_del` del ON del.`id_sales_order`=so.`id_sales_order`
             INNER JOIN tb_sales_pos pos ON pos.`id_pl_sales_order_del`=del.`id_pl_sales_order_del` AND pos.id_report_status=6 AND pos.is_close_rec_payment=2
-            INNER JOIN tb_sales_pos_det posd ON posd.`id_sales_pos`=pos.id_sales_pos
             LEFT JOIN (
                 SELECT s.id_invoice_ship, s.id_report, s.`number` AS `ship_number`, s.`value` AS `ship_amo`
                 FROM tb_invoice_ship s
