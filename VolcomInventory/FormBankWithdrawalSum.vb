@@ -127,12 +127,15 @@ INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='" & SLEType.EditValue.ToString & "' AND pyd.`is_include_total`=1
+INNER JOIN tb_a_acc acc ON acc.id_acc=pyd.id_acc AND acc.is_no_summary=2
 WHERE py.`id_report_status`!='5' AND py.is_auto_debet='2' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
-            If SLEType.EditValue.ToString = "1" Then
-                q += " GROUP BY py.id_pn "
-            Else
-                q += " GROUP BY pyd.id_pn_det "
-            End If
+            q += " GROUP BY py.id_pn "
+
+            'If SLEType.EditValue.ToString = "1" Then
+            '    q += " GROUP BY py.id_pn "
+            'Else
+            '    q += " GROUP BY pyd.id_pn_det "
+            'End If
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCList.DataSource = dt
             GVList.BestFitColumns()
@@ -180,8 +183,8 @@ WHERE py.id_pn='-1'"
             warningCustom("No BBK listed.")
         Else
             If id_sum = "-1" Then 'new
-                Dim q As String = "INSERT INTO tb_pn_summary(date_payment,created_date,created_by,note,id_report_status)
-VALUES('" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
+                Dim q As String = "INSERT INTO tb_pn_summary(id_currency,date_payment,created_date,created_by,note,id_report_status)
+VALUES('" & SLEType.EditValue.ToString & "','" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
                 id_sum = execute_query(q, 0, True, "", "", "", "")
                 For i As Integer = 0 To GVList.RowCount - 1
                     q = "INSERT INTO tb_pn_summary_det(id_pn_summary,id_pn) VALUES('" & id_sum & "','" & GVList.GetRowCellValue(i, "id_pn").ToString & "')"

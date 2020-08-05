@@ -2766,6 +2766,12 @@
     <Compile Include="FormNtwainCoba.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormODM.Designer.vb">
+      <DependentUpon>FormODM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormODM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStore.Designer.vb">
       <DependentUpon>FormOLStore.vb</DependentUpon>
     </Compile>
@@ -3286,6 +3292,12 @@
       <DependentUpon>FormPromoCollectionNew.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPromoCollectionNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPromoReplace.Designer.vb">
+      <DependentUpon>FormPromoReplace.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoReplace.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPromoRules.Designer.vb">
@@ -5044,6 +5056,12 @@
       <DependentUpon>FormSalesOrderPacking.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesOrderPacking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesOrderPromoList.Designer.vb">
+      <DependentUpon>FormSalesOrderPromoList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderPromoList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesOrderRef.Designer.vb">
@@ -9655,6 +9673,9 @@
     <EmbeddedResource Include="FormNtwainCoba.resx">
       <DependentUpon>FormNtwainCoba.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormODM.resx">
+      <DependentUpon>FormODM.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOLStore.resx">
       <DependentUpon>FormOLStore.vb</DependentUpon>
     </EmbeddedResource>
@@ -9916,6 +9937,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollectionNew.resx">
       <DependentUpon>FormPromoCollectionNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoReplace.resx">
+      <DependentUpon>FormPromoReplace.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRules.resx">
       <DependentUpon>FormPromoRules.vb</DependentUpon>
@@ -11025,6 +11049,9 @@
     <EmbeddedResource Include="FormSalesOrderPacking.resx">
       <DependentUpon>FormSalesOrderPacking.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderPromoList.resx">
+      <DependentUpon>FormSalesOrderPromoList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderRef.resx">
       <DependentUpon>FormSalesOrderRef.vb</DependentUpon>

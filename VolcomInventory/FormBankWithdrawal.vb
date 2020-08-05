@@ -659,8 +659,12 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+        Dim i As Integer = 0
+
+        Dim r As Integer = data.Rows.Count - 1
+
         'amount
-        For i = 0 To data.Rows.Count - 1
+        While i < r
             Dim id_acc As String = execute_query("
                 SELECT map.id_acc
                 FROM tb_coa_map_departement AS map
@@ -682,16 +686,48 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             Dim total As Integer = 0
 
             For j = 0 To data_a.Rows.Count - 1
-                Dim credit As Integer = 0
-
                 Try
                     total += Decimal.Parse(data_a.Rows(j)("credit").ToString)
                 Catch ex As Exception
                 End Try
             Next
 
+            'cooperative
+            Dim data_cooperative As DataTable = execute_query("CALL view_payroll_sum('" + data.Rows(i)("id_payroll").ToString + "')", -1, True, "", "", "", "")
+
+            Dim total_cooperative As Integer = 0
+
+            For j = 0 To data_cooperative.Rows.Count - 1
+                Try
+                    total_cooperative += data_cooperative.Rows(j)("d_cooperative_contribution") + data_cooperative.Rows(j)("d_cooperative_loan")
+                Catch ex As Exception
+                End Try
+            Next
+
+            If total_cooperative > 0 Then
+                total = total - total_cooperative
+            End If
+
             data.Rows(i)("amount") = total
-        Next
+
+            If total_cooperative > 0 Then
+                Dim row_cooperative As DataRow = data.NewRow
+
+                row_cooperative("is_check") = "no"
+                row_cooperative("id_payroll") = data.Rows(i)("id_payroll")
+                row_cooperative("report_number") = data.Rows(i)("report_number").ToString
+                row_cooperative("payroll_periode") = data.Rows(i)("payroll_periode").ToString
+                row_cooperative("payroll_type") = data.Rows(i)("payroll_type").ToString + " (Cooperative)"
+                row_cooperative("amount") = total_cooperative
+
+                data.Rows.InsertAt(row_cooperative, i + 1)
+
+                i += 1
+                r += 2
+            End If
+
+            i += 1
+        End While
 
         GCTHR.DataSource = data
 
@@ -946,7 +982,14 @@ GROUP BY sr.`id_sales_return`"
             Dim data_final As DataTable = data.Clone
 
             For i = 0 To data.Rows.Count - 1
-                If data.Rows(i)("expense") > 0 And data.Rows(i)("is_bbk").ToString = "2" Then
+                Dim expense As Decimal = 0.00
+
+                Try
+                    expense = data.Rows(i)("expense")
+                Catch ex As Exception
+                End Try
+
+                If expense > 0 And data.Rows(i)("is_bbk").ToString = "2" Then
                     data_final.ImportRow(data.Rows(i))
                 End If
             Next
@@ -1142,7 +1185,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
-WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2
+WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2 AND po.is_close_rec='1'
 GROUP BY pod.`id_purc_order`
 ORDER BY pod.id_purc_order DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")

@@ -19,6 +19,21 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'manual fullfilled
+        'Dim q As String = "SELECT d.id_pl_sales_order_del AS `id_report`,c.id_commerce_type, c.id_comp AS `id_store`, so.id_sales_order_ol_shop AS `id_web_order`
+        'FROM tb_pl_sales_order_del d 
+        'INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order
+        'INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        'INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        'WHERE d.pl_sales_order_del_number='SDO81473' "
+        'Dim data As DataTable = execute_query(q, -1, True, "", "", "", "")
+        'Dim f As New FormChangeStatus()
+        'f.id_pop_up = "2"
+        'Dim id_volcomstore_normal As String = execute_query("SELECT v.id_store FROM tb_m_comp_volcom_ol v WHERE v.id_design_cat=1", 0, True, "", "", "", "")
+        'Dim id_volcomstore_sale As String = execute_query("SELECT v.id_store FROM tb_m_comp_volcom_ol v WHERE v.id_design_cat=2", 0, True, "", "", "", "")
+        'f.id_volcomstore_normal = id_volcomstore_normal
+        'f.id_volcomstore_sale = id_volcomstore_sale
+        'f.updateStatusOnlineStore(data.Rows(0)("id_commerce_type").ToString, data.Rows(0)("id_store").ToString, data.Rows(0)("id_report").ToString, data.Rows(0)("id_web_order").ToString)
         'Dim shp As New ClassShipInvoice()
         'shp.id_invoice_ship = "-1"
         'shp.create("25081")
