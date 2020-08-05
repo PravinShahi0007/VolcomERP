@@ -29,6 +29,14 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
+        '
+        If Not GVList.RowCount > 0 Then
+            warningCustom("No manifest found for this 3PL, please choose different 3PL")
+        Else
+            SLUE3PL.Properties.ReadOnly = True
+            BView.Visible = False
+            TEScan.Focus()
+        End If
     End Sub
 
     Private Sub FormODM_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -57,7 +65,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Sub view_3pl()
-        Dim query As String = "(SELECT 0 AS id_comp, 'All 3PL' AS comp_name) UNION ALL (SELECT id_comp, comp_name AS comp_name FROM tb_m_comp WHERE id_comp_cat = 7)"
+        Dim query As String = "(SELECT id_comp, comp_name AS comp_name FROM tb_m_comp WHERE id_comp_cat = 7)"
 
         viewSearchLookupQuery(SLUE3PL, query, "id_comp", "comp_name", "id_comp")
     End Sub
@@ -79,5 +87,13 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             e.Merge = False
             e.Handled = True
         End If
+    End Sub
+
+    Private Sub TEScan_KeyUp(sender As Object, e As KeyEventArgs) Handles TEScan.KeyUp
+
+    End Sub
+
+    Private Sub BReset_Click(sender As Object, e As EventArgs) Handles BReset.Click
+
     End Sub
 End Class
