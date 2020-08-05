@@ -19,7 +19,6 @@
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         view_production_order()
-        GVProd.BestFitColumns()
     End Sub
 
     Sub view_production_order()
@@ -37,7 +36,7 @@
             query_where += " AND cc.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query = "SELECT a.id_prod_order,a.`prod_order_number`,a.prod_order_date
+        Dim query = "SELECT a.id_prod_order,a.`prod_order_number`,a.prod_order_date,g.po_type
 ,comp.comp_name,IF(ISNULL(ko.lead_time_prod),NULL,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)) AS est_del_date_ko,qty_plwh.pl_prod_order_date,rec.prod_order_rec_date,
 season_del_dsg.delivery_date,season_del_dsg.est_wh_date,
 d.design_display_name, d.design_code,d.design_code_import,
@@ -189,4 +188,7 @@ LEFT JOIN (
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
 
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        print_raw(GCProd, "PO List")
+    End Sub
 End Class

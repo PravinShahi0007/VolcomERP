@@ -20,6 +20,7 @@ Partial Class FormReportFGPO
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,15 +57,15 @@ Partial Class FormReportFGPO
         Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRecQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPLWHQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumnDiff = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +95,14 @@ Partial Class FormReportFGPO
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1129, 38)
         Me.PanelControl1.TabIndex = 4
+        '
+        'BPrint
+        '
+        Me.BPrint.Location = New System.Drawing.Point(669, 6)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(59, 23)
+        Me.BPrint.TabIndex = 8906
+        Me.BPrint.Text = "print"
         '
         'SLEVendor
         '
@@ -267,7 +276,7 @@ Partial Class FormReportFGPO
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumn65, Me.GridColumn63, Me.GridColumn62, Me.GridColumnProdDate, Me.GridColumn53, Me.GridColumn52, Me.GridColumnPOType, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnPLWHQty, Me.GridColumn1, Me.GridColumn42, Me.GridColumn41, Me.GridColumn43, Me.GridColumn45, Me.GridColumn44, Me.GridColumnDiff})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumn65, Me.GridColumn63, Me.GridColumn62, Me.GridColumnProdDate, Me.GridColumn53, Me.GridColumn52, Me.GridColumnPOType, Me.GridColumnDesign, Me.GridColumn2, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnPLWHQty, Me.GridColumn1, Me.GridColumn42, Me.GridColumn41, Me.GridColumn43, Me.GridColumn45, Me.GridColumn44, Me.GridColumnDiff})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.Name = "GVProd"
         Me.GVProd.OptionsFind.AlwaysVisible = True
@@ -310,6 +319,7 @@ Partial Class FormReportFGPO
         Me.GridColumnProdNo.FieldName = "prod_order_number"
         Me.GridColumnProdNo.Name = "GridColumnProdNo"
         Me.GridColumnProdNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnProdNo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "prod_order_number", "Total FGPO : {0}")})
         Me.GridColumnProdNo.Visible = True
         Me.GridColumnProdNo.VisibleIndex = 2
         Me.GridColumnProdNo.Width = 74
@@ -322,7 +332,7 @@ Partial Class FormReportFGPO
         Me.GridColumn65.FieldName = "est_del_date_ko"
         Me.GridColumn65.Name = "GridColumn65"
         Me.GridColumn65.Visible = True
-        Me.GridColumn65.VisibleIndex = 5
+        Me.GridColumn65.VisibleIndex = 6
         Me.GridColumn65.Width = 122
         '
         'GridColumn63
@@ -333,7 +343,7 @@ Partial Class FormReportFGPO
         Me.GridColumn63.FieldName = "prod_order_rec_date"
         Me.GridColumn63.Name = "GridColumn63"
         Me.GridColumn63.Visible = True
-        Me.GridColumn63.VisibleIndex = 9
+        Me.GridColumn63.VisibleIndex = 10
         Me.GridColumn63.Width = 123
         '
         'GridColumn62
@@ -344,7 +354,7 @@ Partial Class FormReportFGPO
         Me.GridColumn62.FieldName = "pl_prod_order_date"
         Me.GridColumn62.Name = "GridColumn62"
         Me.GridColumn62.Visible = True
-        Me.GridColumn62.VisibleIndex = 10
+        Me.GridColumn62.VisibleIndex = 11
         Me.GridColumn62.Width = 106
         '
         'GridColumnProdDate
@@ -356,7 +366,7 @@ Partial Class FormReportFGPO
         Me.GridColumnProdDate.Name = "GridColumnProdDate"
         Me.GridColumnProdDate.OptionsColumn.AllowEdit = False
         Me.GridColumnProdDate.Visible = True
-        Me.GridColumnProdDate.VisibleIndex = 8
+        Me.GridColumnProdDate.VisibleIndex = 9
         Me.GridColumnProdDate.Width = 123
         '
         'GridColumn53
@@ -368,7 +378,7 @@ Partial Class FormReportFGPO
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.OptionsColumn.AllowEdit = False
         Me.GridColumn53.Visible = True
-        Me.GridColumn53.VisibleIndex = 7
+        Me.GridColumn53.VisibleIndex = 8
         Me.GridColumn53.Width = 94
         '
         'GridColumn52
@@ -380,7 +390,7 @@ Partial Class FormReportFGPO
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.OptionsColumn.AllowEdit = False
         Me.GridColumn52.Visible = True
-        Me.GridColumn52.VisibleIndex = 6
+        Me.GridColumn52.VisibleIndex = 7
         Me.GridColumn52.Width = 103
         '
         'GridColumnPOType
@@ -400,7 +410,7 @@ Partial Class FormReportFGPO
         Me.GridColumnDesign.Name = "GridColumnDesign"
         Me.GridColumnDesign.OptionsColumn.AllowEdit = False
         Me.GridColumnDesign.Visible = True
-        Me.GridColumnDesign.VisibleIndex = 3
+        Me.GridColumnDesign.VisibleIndex = 5
         Me.GridColumnDesign.Width = 121
         '
         'GridColumnCode
@@ -410,7 +420,7 @@ Partial Class FormReportFGPO
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 4
+        Me.GridColumnCode.VisibleIndex = 3
         Me.GridColumnCode.Width = 78
         '
         'GridColumnOrderQty
@@ -460,6 +470,17 @@ Partial Class FormReportFGPO
         Me.GridColumnPLWHQty.Visible = True
         Me.GridColumnPLWHQty.VisibleIndex = 19
         Me.GridColumnPLWHQty.Width = 104
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "PL Receive By WH"
+        Me.GridColumn1.DisplayFormat.FormatString = "N0"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "qty_rec_plwh"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 20
+        Me.GridColumn1.Width = 107
         '
         'GridColumn42
         '
@@ -532,16 +553,11 @@ Partial Class FormReportFGPO
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.OptionsColumn.AllowEdit = False
         Me.GridColumn44.ToolTip = "Receiving Qty - Return Out + Return In - PL Rec by WH"
-        Me.GridColumn44.UnboundExpression = "[qty_rec] - [qty_ret_out] + [qty_ret_in] - [qty_pl_rec_wh]"
+        Me.GridColumn44.UnboundExpression = "[qty_rec] - [qty_ret_out] + [qty_ret_in] - [qty_rec_plwh]"
         Me.GridColumn44.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 20
+        Me.GridColumn44.VisibleIndex = 21
         Me.GridColumn44.Width = 104
-        '
-        'RIPictureEdit
-        '
-        Me.RIPictureEdit.Name = "RIPictureEdit"
-        Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
         'GridColumnDiff
         '
@@ -560,24 +576,18 @@ Partial Class FormReportFGPO
         Me.GridColumnDiff.Visible = True
         Me.GridColumnDiff.VisibleIndex = 14
         '
-        'BPrint
+        'RIPictureEdit
         '
-        Me.BPrint.Location = New System.Drawing.Point(669, 6)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(59, 23)
-        Me.BPrint.TabIndex = 8906
-        Me.BPrint.Text = "print"
+        Me.RIPictureEdit.Name = "RIPictureEdit"
+        Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
-        'GridColumn1
+        'GridColumn2
         '
-        Me.GridColumn1.Caption = "PL Receive By WH"
-        Me.GridColumn1.DisplayFormat.FormatString = "N0"
-        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn1.FieldName = "qty_rec_plwh"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 19
-        Me.GridColumn1.Width = 107
+        Me.GridColumn2.Caption = "US Code"
+        Me.GridColumn2.FieldName = "design_code_import"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 4
         '
         'FormReportFGPO
         '
@@ -655,4 +665,5 @@ Partial Class FormReportFGPO
     Friend WithEvents RIPictureEdit As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
     Friend WithEvents GridColumnDiff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
