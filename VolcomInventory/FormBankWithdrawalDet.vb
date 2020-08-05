@@ -1281,7 +1281,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
         If is_book_transfer Then
             Report.LBookTrf.Visible = True
         Else
-            Report.LBookTrf.Visible = True
+            Report.LBookTrf.Visible = False
         End If
         '
         If TEKurs.EditValue = 1 Then

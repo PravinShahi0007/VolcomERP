@@ -541,7 +541,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", 0)
         '
         GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", 0)
-        GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 0)
+        GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
         GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
         '
         GVData.BestFitColumns()
