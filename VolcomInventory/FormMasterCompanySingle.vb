@@ -41,6 +41,12 @@
 
         action_load()
 
+        '
+        GroupControlDesc.CausesValidation = True
+        GCAddress.CausesValidation = True
+        GCCP.CausesValidation = True
+        '
+
         If id_comp_group_add = "-1" Then
             GroupControlStoreGroup.Visible = False
 
@@ -457,7 +463,19 @@ WHERE comp.id_comp = '{0}'", id_company)
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Cursor = Cursors.WaitCursor
-        ValidateChildren()
+
+        EP_TE_cant_blank(EPCompany, TECompanyName)
+        EP_TE_cant_blank(EPCompany, TECompanyCode)
+        EP_TE_cant_blank(EPCompany, TECompanyPrintedName)
+
+        EP_TE_cant_blank(EPCompany, TEPhoneComp)
+        EP_TE_cant_blank(EPCompany, TEEMail)
+        EP_ME_cant_blank(EPCompany, MEAddress)
+
+        EP_TE_cant_blank(EPCompany, TECPEmail)
+        EP_TE_cant_blank(EPCompany, TECPName)
+        EP_TE_cant_blank(EPCompany, TECPPhone)
+
 
         Dim query As String
         Dim name As String = addSlashes(TECompanyName.Text)
@@ -559,7 +577,9 @@ WHERE comp.id_comp = '{0}'", id_company)
 
         If id_company = "-1" Then
             'new
-            If Not formIsValidInGroup(EPCompany, GroupControl1) Or Not formIsValidInGroup(EPCompany, GroupControl2) Or Not formIsValidInGroup(EPCompany, GroupControl3) Then
+            If Not (id_company_category = "5" Or id_company_category = "6") And id_tax = 1 Then
+                warningCustom("Please put PKP or Non PKP")
+            ElseIf Not formIsValidInGroup(EPCompany, GroupControlDesc) Or Not formIsValidInGroup(EPCompany, GCAddress) Or Not formIsValidInGroup(EPCompany, GCCP) Then
                 errorInput()
             Else
                 'insert to company
@@ -659,7 +679,9 @@ WHERE comp.id_comp = '{0}'", id_company)
             End If
         Else
             'edit
-            If Not formIsValidInGroup(EPCompany, GroupControl1) Or Not formIsValidInGroup(EPCompany, GroupControl2) Or Not formIsValidInGroup(EPCompany, GroupControl3) Then
+            If Not (id_company_category = "5" Or id_company_category = "6") And id_tax = 1 Then
+                warningCustom("Please put PKP or Non PKP")
+            ElseIf Not formIsValidInGroup(EPCompany, GroupControlDesc) Or Not formIsValidInGroup(EPCompany, GCAddress) Or Not formIsValidInGroup(EPCompany, GCCP) Then
                 errorInput()
             Else
                 'update company
@@ -1154,33 +1176,45 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
             warningCustom("Please input AR, AP, or DP first before submit. Contact accounting for details.")
         Else
             If BApproval.Text.ToString = "Submit" Then
-                Dim q As String = "SELECT id_comp_cat FROM tb_m_comp WHERE id_comp='" & id_company & "'"
-                Dim id_cat As String = execute_query(q, 0, True, "", "", "", "")
-                If id_cat = "1" Or id_cat = "8" Then
-                    'cek attachment already have or not
-                    Dim query As String = "SELECT c.`id_comp`,c.`comp_name`,lt.`id_legal_type`,lt.`legal_type`,cl.`id_comp_legal` FROM tb_m_comp c
+                'check if PKP and no attachment
+                Dim qpkp As String = "SELECT c.id_tax,IFNULL(cl.id_comp_legal,0) AS legal
+FROM tb_m_comp c
+LEFT JOIN `tb_m_comp_legal` cl ON cl.id_comp=c.id_comp AND cl.id_legal_type='4'
+WHERE c.id_comp='" & id_company & "'"
+                Dim dt_pkp As DataTable = execute_query(qpkp, -1, True, "", "", "", "")
+                If dt_pkp.Rows.Count > 0 Then
+                    If dt_pkp.Rows(0)("id_tax").ToString = "2" And dt_pkp.Rows(0)("legal").ToString = "0" Then
+                        warningCustom("Please upload PPKP")
+                    Else
+                        Dim q As String = "SELECT id_comp_cat FROM tb_m_comp WHERE id_comp='" & id_company & "'"
+                        Dim id_cat As String = execute_query(q, 0, True, "", "", "", "")
+                        If id_cat = "1" Or id_cat = "8" Then
+                            'cek attachment already have or not
+                            Dim query As String = "SELECT c.`id_comp`,c.`comp_name`,lt.`id_legal_type`,lt.`legal_type`,cl.`id_comp_legal` FROM tb_m_comp c
 INNER JOIN tb_vendor_type_legal vtl ON vtl.`id_vendor_type`=c.`id_vendor_type` AND c.id_comp_cat=vtl.id_comp_cat
 INNER JOIN `tb_lookup_legal_type` lt ON lt.`id_legal_type`=vtl.`id_legal_type`
 LEFT JOIN tb_m_comp_legal cl ON cl.`id_comp`=c.`id_comp` AND vtl.`id_legal_type`=cl.`id_legal_Type`
 WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
-                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                    If data.Rows.Count = 0 Then
-                        FormReportMark.id_report = id_company
-                        FormReportMark.report_mark_type = "153"
-                        FormReportMark.is_view = is_view
-                        FormReportMark.ShowDialog()
-                    Else
-                        Dim str_missing As String = "Please upload this remaining document : "
-                        For i As Integer = 0 To data.Rows.Count - 1
-                            str_missing += vbNewLine & " - " & data.Rows(i)("legal_type").ToString
-                        Next
-                        warningCustom(str_missing)
+                            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                            If data.Rows.Count = 0 Then
+                                FormReportMark.id_report = id_company
+                                FormReportMark.report_mark_type = "153"
+                                FormReportMark.is_view = is_view
+                                FormReportMark.ShowDialog()
+                            Else
+                                Dim str_missing As String = "Please upload this remaining document : "
+                                For i As Integer = 0 To data.Rows.Count - 1
+                                    str_missing += vbNewLine & " - " & data.Rows(i)("legal_type").ToString
+                                Next
+                                warningCustom(str_missing)
+                            End If
+                        Else
+                            FormReportMark.id_report = id_company
+                            FormReportMark.report_mark_type = "153"
+                            FormReportMark.is_view = is_view
+                            FormReportMark.ShowDialog()
+                        End If
                     End If
-                Else
-                    FormReportMark.id_report = id_company
-                    FormReportMark.report_mark_type = "153"
-                    FormReportMark.is_view = is_view
-                    FormReportMark.ShowDialog()
                 End If
             Else
                 FormReportMark.id_report = id_company
