@@ -411,4 +411,10 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnImport_Click(sender As Object, e As EventArgs) Handles BtnImport.Click
+        Cursor = Cursors.WaitCursor
+        FormVAHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
