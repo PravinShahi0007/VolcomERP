@@ -108,9 +108,10 @@
     End Sub
 
     Sub view_company()
-        Dim query As String = "SELECT tb_m_comp.id_commerce_type,tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, tb_m_comp.id_store_type, tb_m_comp.id_wh_type, IFNULL(tb_m_comp.id_commerce_type,1) AS `id_commerce_type`,tb_m_comp.id_drawer_def,
+        Dim query As String = "SELECT tb_m_comp.id_tax,tb_lookup_tax.tax,tb_m_comp.id_commerce_type,tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, tb_m_comp.id_store_type, tb_m_comp.id_wh_type, IFNULL(tb_m_comp.id_commerce_type,1) AS `id_commerce_type`,tb_m_comp.id_drawer_def,
         IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type`, tb_m_comp.is_use_unique_code, IFNULL(tb_m_comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(tb_m_comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar` "
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
+        query += " INNER JOIN tb_lookup_tax ON tb_lookup_tax.id_tax=tb_m_comp.id_tax "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
         If id_cat <> "-1" Then
             If id_cat.Contains(",") Then
@@ -1153,9 +1154,17 @@
         ElseIf id_pop_up = "86" Then
             'Purchase Order Purchasing
             FormPurcOrderDet.id_vendor_contact = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormPurcOrderDet.id_vendor_tax = GVCompany.GetFocusedRowCellValue("id_tax").ToString
+            FormPurcOrderDet.TEPKP.Text = GVCompany.GetFocusedRowCellValue("tax").ToString
             FormPurcOrderDet.TEVendorCode.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
             FormPurcOrderDet.TEVendorName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             FormPurcOrderDet.MEAdrressCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
+            '
+            If GVCompany.GetFocusedRowCellValue("id_tax").ToString = "2" Then
+                FormPurcOrderDet.TEVATPercent.ReadOnly = False
+            Else
+                FormPurcOrderDet.TEVATPercent.ReadOnly = True
+            End If
             '
             FormPurcOrderDet.TEVendorAttn.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_person").ToString
             FormPurcOrderDet.TEVendorEmail.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "9")
