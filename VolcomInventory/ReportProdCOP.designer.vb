@@ -375,7 +375,7 @@ Partial Public Class ReportProdCOP
         Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyOrder, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote, Me.GridColumn42, Me.GridColumn43})
         Me.GVListProd.GridControl = Me.GCListProd
         Me.GVListProd.GroupCount = 1
-        Me.GVListProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", Me.GridColumnQtyCreated, "{0:N}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", Me.ColQtyOrder, "{0:N}")})
+        Me.GVListProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", Me.GridColumnQtyCreated, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", Me.ColQtyOrder, "{0:N0}")})
         Me.GVListProd.Name = "GVListProd"
         Me.GVListProd.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVListProd.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -484,7 +484,7 @@ Partial Public Class ReportProdCOP
         Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.EditValueChangedDelay = 50
         Me.RepositoryItemSpinEdit1.IsFloatValue = False
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f2"
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N0"
         Me.RepositoryItemSpinEdit1.Mask.SaveLiteral = False
         Me.RepositoryItemSpinEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-469762049, -590869294, 5421010, 131072})
