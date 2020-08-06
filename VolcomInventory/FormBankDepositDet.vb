@@ -45,11 +45,11 @@ Public Class FormBankDepositDet
                         newRow("report_mark_type") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type").ToString
                         newRow("report_mark_type_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type_name").ToString
                         newRow("number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "sales_pos_number").ToString
-                        newRow("id_comp") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_comp_default").ToString
+                        newRow("id_comp") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_comp").ToString
                         newRow("id_acc") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_acc").ToString
                         newRow("acc_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_name").ToString
                         newRow("acc_description") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_description").ToString
-                        newRow("comp_number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number_default").ToString
+                        newRow("comp_number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
                         newRow("vendor") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
                         newRow("total_rec") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_rec")
                         newRow("value") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
@@ -64,9 +64,9 @@ Public Class FormBankDepositDet
                     Dim query_view_payout As String = "SELECT sp.`id_sales_pos` AS `id_report`,
                     sp.report_mark_type,rmt.report_mark_type_name,
                     sp.`sales_pos_number` AS `number`, 
-                    cf.id_comp AS `id_comp`, 
+                    c.id_comp AS `id_comp`, 
                     sp.id_acc_ar AS `id_acc`, coa.acc_name, coa.acc_description,
-                    cf.comp_number AS `comp_number`,c.`comp_number` AS `vendor`
+                    c.comp_number AS `comp_number`,c.`comp_number` AS `vendor`
                     ,IFNULL(pyd.`value`,0.00) AS total_rec,
                     CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `value`,
                     CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `balance_due`,
@@ -95,9 +95,9 @@ Public Class FormBankDepositDet
                     SELECT sp.id_invoice_ship AS `id_report`,
                     sp.report_mark_type,rmt.report_mark_type_name,
                     sp.`number` AS `number`, 
-                    cf.id_comp AS `id_comp`, 
+                    c.id_comp AS `id_comp`, 
                     sp.id_acc_ar AS `id_acc`, coa.acc_name, coa.acc_description,
-                    cf.comp_number AS `comp_number`,c.`comp_number` AS `vendor`
+                    c.comp_number AS `comp_number`,c.`comp_number` AS `vendor`
                     ,IFNULL(pyd.`value`,0.00) AS total_rec,
                     sp.`value`-IFNULL(pyd.`value`,0.00) AS `value`,
                     sp.value-IFNULL(pyd.`value`,0.00) AS `balance_due`,
