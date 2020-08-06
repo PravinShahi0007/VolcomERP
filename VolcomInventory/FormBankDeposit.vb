@@ -402,4 +402,13 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub GVVA_DoubleClick(sender As Object, e As EventArgs) Handles GVVA.DoubleClick
+        If GVVA.RowCount > 0 And GVVA.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormVAHistoryDetail.id = GVVA.GetFocusedRowCellValue("id_virtual_acc_trans").ToString
+            FormVAHistoryDetail.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
