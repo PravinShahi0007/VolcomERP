@@ -37,21 +37,7 @@ Partial Public Class ReportProdCOP
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LStatus = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.Lkurs = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LDesignName = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LCodeDesign = New DevExpress.XtraReports.UI.XRLabel()
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCListProd = New DevExpress.XtraGrid.GridControl()
         Me.GVListProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdRecDet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -71,8 +57,22 @@ Partial Public Class ReportProdCOP
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LStatus = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.Lkurs = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDesignName = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LCodeDesign = New DevExpress.XtraReports.UI.XRLabel()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LTotal = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
@@ -339,6 +339,230 @@ Partial Public Class ReportProdCOP
         Me.GridColumn25.FieldName = "id_category"
         Me.GridColumn25.Name = "GridColumn25"
         '
+        'WinControlContainer1
+        '
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(1.00015!, 15.00003!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(677.9997!, 100.0!)
+        Me.WinControlContainer1.WinControl = Me.GCListProd
+        '
+        'GCListProd
+        '
+        Me.GCListProd.Location = New System.Drawing.Point(0, 0)
+        Me.GCListProd.MainView = Me.GVListProd
+        Me.GCListProd.Name = "GCListProd"
+        Me.GCListProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit1})
+        Me.GCListProd.Size = New System.Drawing.Size(651, 96)
+        Me.GCListProd.TabIndex = 3
+        Me.GCListProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProd, Me.GridView1})
+        '
+        'GVListProd
+        '
+        Me.GVListProd.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.Transparent
+        Me.GVListProd.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
+        Me.GVListProd.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVListProd.AppearancePrint.FooterPanel.Options.UseForeColor = True
+        Me.GVListProd.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.Transparent
+        Me.GVListProd.AppearancePrint.GroupFooter.ForeColor = System.Drawing.Color.Black
+        Me.GVListProd.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVListProd.AppearancePrint.GroupFooter.Options.UseForeColor = True
+        Me.GVListProd.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.Transparent
+        Me.GVListProd.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
+        Me.GVListProd.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVListProd.AppearancePrint.HeaderPanel.Options.UseForeColor = True
+        Me.GVListProd.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.0!)
+        Me.GVListProd.AppearancePrint.Row.Options.UseFont = True
+        Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyOrder, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote, Me.GridColumn42, Me.GridColumn43})
+        Me.GVListProd.GridControl = Me.GCListProd
+        Me.GVListProd.GroupCount = 1
+        Me.GVListProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", Me.GridColumnQtyCreated, "{0:N}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", Me.ColQtyOrder, "{0:N}")})
+        Me.GVListProd.Name = "GVListProd"
+        Me.GVListProd.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVListProd.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVListProd.OptionsBehavior.Editable = False
+        Me.GVListProd.OptionsView.ShowGroupPanel = False
+        Me.GVListProd.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn43, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'ColIdRecDet
+        '
+        Me.ColIdRecDet.Caption = "ID Rec Det"
+        Me.ColIdRecDet.FieldName = "id_prod_order_rec_det"
+        Me.ColIdRecDet.Name = "ColIdRecDet"
+        '
+        'ColIdPurcDet
+        '
+        Me.ColIdPurcDet.Caption = "ID Det Order"
+        Me.ColIdPurcDet.FieldName = "id_prod_order_det"
+        Me.ColIdPurcDet.Name = "ColIdPurcDet"
+        '
+        'ColNo
+        '
+        Me.ColNo.AppearanceCell.Options.UseTextOptions = True
+        Me.ColNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColNo.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColNo.Caption = "No."
+        Me.ColNo.FieldName = "no"
+        Me.ColNo.Name = "ColNo"
+        Me.ColNo.OptionsColumn.AllowEdit = False
+        Me.ColNo.Visible = True
+        Me.ColNo.VisibleIndex = 0
+        Me.ColNo.Width = 41
+        '
+        'ColCode
+        '
+        Me.ColCode.Caption = "Code"
+        Me.ColCode.FieldName = "code"
+        Me.ColCode.Name = "ColCode"
+        Me.ColCode.OptionsColumn.AllowEdit = False
+        Me.ColCode.Visible = True
+        Me.ColCode.VisibleIndex = 1
+        Me.ColCode.Width = 86
+        '
+        'GridColumnEANCode
+        '
+        Me.GridColumnEANCode.Caption = "EAN Code"
+        Me.GridColumnEANCode.FieldName = "ean_code"
+        Me.GridColumnEANCode.Name = "GridColumnEANCode"
+        '
+        'ColName
+        '
+        Me.ColName.Caption = "Name"
+        Me.ColName.FieldName = "name"
+        Me.ColName.Name = "ColName"
+        Me.ColName.OptionsColumn.AllowEdit = False
+        Me.ColName.Visible = True
+        Me.ColName.VisibleIndex = 2
+        Me.ColName.Width = 217
+        '
+        'ColSize
+        '
+        Me.ColSize.AppearanceCell.Options.UseTextOptions = True
+        Me.ColSize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColSize.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColSize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColSize.Caption = "Size"
+        Me.ColSize.FieldName = "size"
+        Me.ColSize.Name = "ColSize"
+        Me.ColSize.OptionsColumn.AllowEdit = False
+        Me.ColSize.Visible = True
+        Me.ColSize.VisibleIndex = 3
+        Me.ColSize.Width = 59
+        '
+        'ColQty
+        '
+        Me.ColQty.AppearanceCell.Options.UseTextOptions = True
+        Me.ColQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColQty.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColQty.Caption = "Qty Limit"
+        Me.ColQty.FieldName = "qty"
+        Me.ColQty.Name = "ColQty"
+        Me.ColQty.OptionsColumn.AllowEdit = False
+        Me.ColQty.Width = 121
+        '
+        'ColQtyOrder
+        '
+        Me.ColQtyOrder.AppearanceCell.Options.UseTextOptions = True
+        Me.ColQtyOrder.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColQtyOrder.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColQtyOrder.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColQtyOrder.Caption = "Qty Order"
+        Me.ColQtyOrder.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.ColQtyOrder.DisplayFormat.FormatString = "N0"
+        Me.ColQtyOrder.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ColQtyOrder.FieldName = "prod_order_qty"
+        Me.ColQtyOrder.Name = "ColQtyOrder"
+        Me.ColQtyOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", "{0:N0}")})
+        Me.ColQtyOrder.Visible = True
+        Me.ColQtyOrder.VisibleIndex = 4
+        Me.ColQtyOrder.Width = 80
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.EditValueChangedDelay = 50
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f2"
+        Me.RepositoryItemSpinEdit1.Mask.SaveLiteral = False
+        Me.RepositoryItemSpinEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-469762049, -590869294, 5421010, 131072})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'GridColumnQtyCreated
+        '
+        Me.GridColumnQtyCreated.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyCreated.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyCreated.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyCreated.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyCreated.Caption = "Qty Received"
+        Me.GridColumnQtyCreated.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyCreated.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyCreated.FieldName = "receive_created_qty"
+        Me.GridColumnQtyCreated.Name = "GridColumnQtyCreated"
+        Me.GridColumnQtyCreated.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", "{0:N0}")})
+        Me.GridColumnQtyCreated.Visible = True
+        Me.GridColumnQtyCreated.VisibleIndex = 5
+        Me.GridColumnQtyCreated.Width = 92
+        '
+        'GridColumnQtyRemaining
+        '
+        Me.GridColumnQtyRemaining.Caption = "Qty Remaining"
+        Me.GridColumnQtyRemaining.DisplayFormat.FormatString = "f2"
+        Me.GridColumnQtyRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyRemaining.FieldName = "receive_created_remaining_qty"
+        Me.GridColumnQtyRemaining.Name = "GridColumnQtyRemaining"
+        Me.GridColumnQtyRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_remaining_qty", "{0:f2}")})
+        Me.GridColumnQtyRemaining.Width = 82
+        '
+        'ColNote
+        '
+        Me.ColNote.Caption = "Note"
+        Me.ColNote.FieldName = "prod_order_det_note"
+        Me.ColNote.Name = "ColNote"
+        Me.ColNote.Width = 136
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Id Production Order"
+        Me.GridColumn42.FieldName = "id_prod_order"
+        Me.GridColumn42.Name = "GridColumn42"
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Production Order"
+        Me.GridColumn43.FieldName = "prod_order_number"
+        Me.GridColumn43.FieldNameSortGroup = "id_prod_order"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 1
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.GCListProd
+        Me.GridView1.Name = "GridView1"
+        '
+        'XrLabel11
+        '
+        Me.XrLabel11.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel11.Name = "XrLabel11"
+        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(679.0002!, 14.99999!)
+        Me.XrLabel11.StylePriority.UseBorders = False
+        Me.XrLabel11.StylePriority.UseFont = False
+        Me.XrLabel11.StylePriority.UseTextAlignment = False
+        Me.XrLabel11.Text = "RECEIVED"
+        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
         'TopMargin
         '
         Me.TopMargin.HeightF = 30.0!
@@ -485,230 +709,6 @@ Partial Public Class ReportProdCOP
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'GCListProd
-        '
-        Me.GCListProd.Location = New System.Drawing.Point(0, 0)
-        Me.GCListProd.MainView = Me.GVListProd
-        Me.GCListProd.Name = "GCListProd"
-        Me.GCListProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit1})
-        Me.GCListProd.Size = New System.Drawing.Size(651, 96)
-        Me.GCListProd.TabIndex = 3
-        Me.GCListProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProd, Me.GridView1})
-        '
-        'GVListProd
-        '
-        Me.GVListProd.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GVListProd.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVListProd.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVListProd.AppearancePrint.FooterPanel.Options.UseForeColor = True
-        Me.GVListProd.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.Transparent
-        Me.GVListProd.AppearancePrint.GroupFooter.ForeColor = System.Drawing.Color.Black
-        Me.GVListProd.AppearancePrint.GroupFooter.Options.UseBackColor = True
-        Me.GVListProd.AppearancePrint.GroupFooter.Options.UseForeColor = True
-        Me.GVListProd.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GVListProd.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVListProd.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVListProd.AppearancePrint.HeaderPanel.Options.UseForeColor = True
-        Me.GVListProd.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.GVListProd.AppearancePrint.Row.Options.UseFont = True
-        Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyOrder, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote, Me.GridColumn42, Me.GridColumn43})
-        Me.GVListProd.GridControl = Me.GCListProd
-        Me.GVListProd.GroupCount = 1
-        Me.GVListProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", Me.GridColumnQtyCreated, "{0:N}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", Me.ColQtyOrder, "{0:N}")})
-        Me.GVListProd.Name = "GVListProd"
-        Me.GVListProd.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GVListProd.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GVListProd.OptionsBehavior.Editable = False
-        Me.GVListProd.OptionsView.ShowGroupPanel = False
-        Me.GVListProd.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn43, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'ColIdRecDet
-        '
-        Me.ColIdRecDet.Caption = "ID Rec Det"
-        Me.ColIdRecDet.FieldName = "id_prod_order_rec_det"
-        Me.ColIdRecDet.Name = "ColIdRecDet"
-        '
-        'ColIdPurcDet
-        '
-        Me.ColIdPurcDet.Caption = "ID Det Order"
-        Me.ColIdPurcDet.FieldName = "id_prod_order_det"
-        Me.ColIdPurcDet.Name = "ColIdPurcDet"
-        '
-        'ColNo
-        '
-        Me.ColNo.AppearanceCell.Options.UseTextOptions = True
-        Me.ColNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColNo.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColNo.Caption = "No."
-        Me.ColNo.FieldName = "no"
-        Me.ColNo.Name = "ColNo"
-        Me.ColNo.OptionsColumn.AllowEdit = False
-        Me.ColNo.Visible = True
-        Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 41
-        '
-        'ColCode
-        '
-        Me.ColCode.Caption = "Code"
-        Me.ColCode.FieldName = "code"
-        Me.ColCode.Name = "ColCode"
-        Me.ColCode.OptionsColumn.AllowEdit = False
-        Me.ColCode.Visible = True
-        Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 86
-        '
-        'GridColumnEANCode
-        '
-        Me.GridColumnEANCode.Caption = "EAN Code"
-        Me.GridColumnEANCode.FieldName = "ean_code"
-        Me.GridColumnEANCode.Name = "GridColumnEANCode"
-        '
-        'ColName
-        '
-        Me.ColName.Caption = "Name"
-        Me.ColName.FieldName = "name"
-        Me.ColName.Name = "ColName"
-        Me.ColName.OptionsColumn.AllowEdit = False
-        Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 2
-        Me.ColName.Width = 217
-        '
-        'ColSize
-        '
-        Me.ColSize.AppearanceCell.Options.UseTextOptions = True
-        Me.ColSize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColSize.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColSize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColSize.Caption = "Size"
-        Me.ColSize.FieldName = "size"
-        Me.ColSize.Name = "ColSize"
-        Me.ColSize.OptionsColumn.AllowEdit = False
-        Me.ColSize.Visible = True
-        Me.ColSize.VisibleIndex = 3
-        Me.ColSize.Width = 59
-        '
-        'ColQty
-        '
-        Me.ColQty.AppearanceCell.Options.UseTextOptions = True
-        Me.ColQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColQty.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColQty.Caption = "Qty Limit"
-        Me.ColQty.FieldName = "qty"
-        Me.ColQty.Name = "ColQty"
-        Me.ColQty.OptionsColumn.AllowEdit = False
-        Me.ColQty.Width = 121
-        '
-        'ColQtyOrder
-        '
-        Me.ColQtyOrder.AppearanceCell.Options.UseTextOptions = True
-        Me.ColQtyOrder.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColQtyOrder.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColQtyOrder.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColQtyOrder.Caption = "Qty Order"
-        Me.ColQtyOrder.ColumnEdit = Me.RepositoryItemSpinEdit1
-        Me.ColQtyOrder.DisplayFormat.FormatString = "f0"
-        Me.ColQtyOrder.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.ColQtyOrder.FieldName = "prod_order_qty"
-        Me.ColQtyOrder.Name = "ColQtyOrder"
-        Me.ColQtyOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", "{0:f2}")})
-        Me.ColQtyOrder.Visible = True
-        Me.ColQtyOrder.VisibleIndex = 4
-        Me.ColQtyOrder.Width = 80
-        '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit1.EditValueChangedDelay = 50
-        Me.RepositoryItemSpinEdit1.IsFloatValue = False
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f2"
-        Me.RepositoryItemSpinEdit1.Mask.SaveLiteral = False
-        Me.RepositoryItemSpinEdit1.Mask.UseMaskAsDisplayFormat = True
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-469762049, -590869294, 5421010, 131072})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'GridColumnQtyCreated
-        '
-        Me.GridColumnQtyCreated.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnQtyCreated.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQtyCreated.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnQtyCreated.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQtyCreated.Caption = "Qty Received"
-        Me.GridColumnQtyCreated.DisplayFormat.FormatString = "f0"
-        Me.GridColumnQtyCreated.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyCreated.FieldName = "receive_created_qty"
-        Me.GridColumnQtyCreated.Name = "GridColumnQtyCreated"
-        Me.GridColumnQtyCreated.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", "{0:f2}")})
-        Me.GridColumnQtyCreated.Visible = True
-        Me.GridColumnQtyCreated.VisibleIndex = 5
-        Me.GridColumnQtyCreated.Width = 92
-        '
-        'GridColumnQtyRemaining
-        '
-        Me.GridColumnQtyRemaining.Caption = "Qty Remaining"
-        Me.GridColumnQtyRemaining.DisplayFormat.FormatString = "f2"
-        Me.GridColumnQtyRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyRemaining.FieldName = "receive_created_remaining_qty"
-        Me.GridColumnQtyRemaining.Name = "GridColumnQtyRemaining"
-        Me.GridColumnQtyRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_remaining_qty", "{0:f2}")})
-        Me.GridColumnQtyRemaining.Width = 82
-        '
-        'ColNote
-        '
-        Me.ColNote.Caption = "Note"
-        Me.ColNote.FieldName = "prod_order_det_note"
-        Me.ColNote.Name = "ColNote"
-        Me.ColNote.Width = 136
-        '
-        'GridColumn42
-        '
-        Me.GridColumn42.Caption = "Id Production Order"
-        Me.GridColumn42.FieldName = "id_prod_order"
-        Me.GridColumn42.Name = "GridColumn42"
-        '
-        'GridColumn43
-        '
-        Me.GridColumn43.Caption = "Production Order"
-        Me.GridColumn43.FieldName = "prod_order_number"
-        Me.GridColumn43.FieldNameSortGroup = "id_prod_order"
-        Me.GridColumn43.Name = "GridColumn43"
-        Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 1
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        '
-        'GridView1
-        '
-        Me.GridView1.GridControl = Me.GCListProd
-        Me.GridView1.Name = "GridView1"
-        '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(1.00015!, 15.00003!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(677.9997!, 100.0!)
-        Me.WinControlContainer1.WinControl = Me.GCListProd
-        '
-        'XrLabel11
-        '
-        Me.XrLabel11.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel11.Name = "XrLabel11"
-        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(679.0002!, 14.99999!)
-        Me.XrLabel11.StylePriority.UseBorders = False
-        Me.XrLabel11.StylePriority.UseFont = False
-        Me.XrLabel11.StylePriority.UseTextAlignment = False
-        Me.XrLabel11.Text = "RECEIVED"
-        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel17
         '

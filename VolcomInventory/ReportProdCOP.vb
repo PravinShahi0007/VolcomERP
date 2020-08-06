@@ -34,7 +34,7 @@ Public Class ReportProdCOP
         Try
             qty = GVListProd.Columns("receive_created_qty").SummaryItem.SummaryValue
             total = GVCost.Columns("total_price").SummaryItem.SummaryValue
-            Lqty.Text = qty.ToString("N2")
+            Lqty.Text = qty.ToString("N0")
             LTotal.Text = total.ToString("N2")
         Catch ex As Exception
             Console.WriteLine("error")
