@@ -130,6 +130,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumnPOItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPOUOM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -149,7 +150,8 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPKP = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,6 +219,7 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPKP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -226,12 +229,14 @@ Partial Class FormPurcOrderDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1044, 147)
+        Me.PanelControl2.Size = New System.Drawing.Size(1044, 170)
         Me.PanelControl2.TabIndex = 2
         '
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.TEPKP)
+        Me.PanelControl4.Controls.Add(Me.LabelControl26)
         Me.PanelControl4.Controls.Add(Me.TEVendorEmail)
         Me.PanelControl4.Controls.Add(Me.LabelControl14)
         Me.PanelControl4.Controls.Add(Me.TEVendorFax)
@@ -249,7 +254,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(423, 143)
+        Me.PanelControl4.Size = New System.Drawing.Size(423, 166)
         Me.PanelControl4.TabIndex = 8937
         '
         'TEVendorEmail
@@ -448,7 +453,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(578, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(464, 143)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(464, 166)
         Me.PanelControlTopRight.TabIndex = 8936
         '
         'CECashPurchase
@@ -547,7 +552,7 @@ Partial Class FormPurcOrderDet
         '
         Me.LEOrderTerm.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEOrderTerm.Location = New System.Drawing.Point(323, 62)
+        Me.LEOrderTerm.Location = New System.Drawing.Point(102, 139)
         Me.LEOrderTerm.Name = "LEOrderTerm"
         Me.LEOrderTerm.Properties.Appearance.Options.UseTextOptions = True
         Me.LEOrderTerm.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -555,12 +560,12 @@ Partial Class FormPurcOrderDet
         Me.LEOrderTerm.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_order_term", "ID Order Term", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("order_term", "Order Term")})
         Me.LEOrderTerm.Properties.NullText = ""
         Me.LEOrderTerm.Properties.ShowFooter = False
-        Me.LEOrderTerm.Size = New System.Drawing.Size(127, 20)
+        Me.LEOrderTerm.Size = New System.Drawing.Size(348, 20)
         Me.LEOrderTerm.TabIndex = 168
         '
         'LabelControl16
         '
-        Me.LabelControl16.Location = New System.Drawing.Point(251, 65)
+        Me.LabelControl16.Location = New System.Drawing.Point(10, 142)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl16.TabIndex = 167
@@ -623,7 +628,7 @@ Partial Class FormPurcOrderDet
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.EditValueChangedDelay = 1
         Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(143, 20)
+        Me.TECreatedBy.Size = New System.Drawing.Size(348, 20)
         Me.TECreatedBy.TabIndex = 162
         Me.TECreatedBy.TabStop = False
         '
@@ -881,6 +886,7 @@ Partial Class FormPurcOrderDet
         Me.TEVATPercent.Properties.EditValueChangedDelay = 1
         Me.TEVATPercent.Properties.Mask.EditMask = "N2"
         Me.TEVATPercent.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEVATPercent.Properties.ReadOnly = True
         Me.TEVATPercent.Size = New System.Drawing.Size(81, 20)
         Me.TEVATPercent.TabIndex = 8902
         Me.TEVATPercent.TabStop = False
@@ -1103,10 +1109,10 @@ Partial Class FormPurcOrderDet
         '
         Me.XTCPurcOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCPurcOrder.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCPurcOrder.Location = New System.Drawing.Point(0, 147)
+        Me.XTCPurcOrder.Location = New System.Drawing.Point(0, 170)
         Me.XTCPurcOrder.Name = "XTCPurcOrder"
         Me.XTCPurcOrder.SelectedTabPage = Me.XTPReqList
-        Me.XTCPurcOrder.Size = New System.Drawing.Size(1044, 274)
+        Me.XTCPurcOrder.Size = New System.Drawing.Size(1044, 251)
         Me.XTCPurcOrder.TabIndex = 8
         Me.XTCPurcOrder.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReqList, Me.XTPSummary})
         '
@@ -1116,7 +1122,7 @@ Partial Class FormPurcOrderDet
         Me.XTPReqList.Controls.Add(Me.PCPrice)
         Me.XTPReqList.Controls.Add(Me.PanelControl3)
         Me.XTPReqList.Name = "XTPReqList"
-        Me.XTPReqList.Size = New System.Drawing.Size(1038, 246)
+        Me.XTPReqList.Size = New System.Drawing.Size(1038, 223)
         Me.XTPReqList.Text = "Request List"
         '
         'GCPurcReq
@@ -1126,7 +1132,7 @@ Partial Class FormPurcOrderDet
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase})
-        Me.GCPurcReq.Size = New System.Drawing.Size(1038, 171)
+        Me.GCPurcReq.Size = New System.Drawing.Size(1038, 148)
         Me.GCPurcReq.TabIndex = 11
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
@@ -1332,7 +1338,7 @@ Partial Class FormPurcOrderDet
         '
         Me.PCPrice.Controls.Add(Me.BSetPrice)
         Me.PCPrice.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCPrice.Location = New System.Drawing.Point(0, 207)
+        Me.PCPrice.Location = New System.Drawing.Point(0, 184)
         Me.PCPrice.Name = "PCPrice"
         Me.PCPrice.Size = New System.Drawing.Size(1038, 39)
         Me.PCPrice.TabIndex = 13
@@ -1464,6 +1470,19 @@ Partial Class FormPurcOrderDet
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 1
         Me.GridColumn23.Width = 722
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn31.Caption = "Type"
+        Me.GridColumn31.FieldName = "item_type"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 2
+        Me.GridColumn31.Width = 68
         '
         'GridColumn15
         '
@@ -1649,18 +1668,30 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
-        'GridColumn31
+        'LabelControl26
         '
-        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn31.Caption = "Type"
-        Me.GridColumn31.FieldName = "item_type"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 2
-        Me.GridColumn31.Width = 68
+        Me.LabelControl26.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl26.Location = New System.Drawing.Point(10, 142)
+        Me.LabelControl26.Name = "LabelControl26"
+        Me.LabelControl26.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl26.TabIndex = 8903
+        Me.LabelControl26.Text = "PKP / Non PKP"
+        '
+        'TEPKP
+        '
+        Me.TEPKP.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEPKP.EditValue = ""
+        Me.TEPKP.Enabled = False
+        Me.TEPKP.Location = New System.Drawing.Point(100, 140)
+        Me.TEPKP.Name = "TEPKP"
+        Me.TEPKP.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEPKP.Properties.Appearance.Options.UseFont = True
+        Me.TEPKP.Properties.EditValueChangedDelay = 1
+        Me.TEPKP.Properties.ReadOnly = True
+        Me.TEPKP.Size = New System.Drawing.Size(312, 20)
+        Me.TEPKP.TabIndex = 8904
+        Me.TEPKP.TabStop = False
         '
         'FormPurcOrderDet
         '
@@ -1749,6 +1780,7 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPKP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1882,4 +1914,6 @@ Partial Class FormPurcOrderDet
     Friend WithEvents CECashPurchase As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEPKP As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl26 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -57,6 +57,8 @@ Partial Class FormPopUpContact
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,7 +120,7 @@ Partial Class FormPopUpContact
         '
         'GVCompany
         '
-        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.CompanyCode, Me.company, Me.address_primary, Me.is_active, Me.Category})
+        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.CompanyCode, Me.GridColumn2, Me.GridColumn1, Me.company, Me.address_primary, Me.is_active, Me.Category})
         Me.GVCompany.GridControl = Me.GCCompany
         Me.GVCompany.GroupCount = 1
         Me.GVCompany.Name = "GVCompany"
@@ -157,7 +159,7 @@ Partial Class FormPopUpContact
         Me.address_primary.FieldName = "address_primary"
         Me.address_primary.Name = "address_primary"
         Me.address_primary.Visible = True
-        Me.address_primary.VisibleIndex = 2
+        Me.address_primary.VisibleIndex = 3
         Me.address_primary.Width = 289
         '
         'is_active
@@ -417,6 +419,20 @@ Partial Class FormPopUpContact
         Me.BtnSave.TabIndex = 1
         Me.BtnSave.Text = "Choose"
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "PKP / Non PKP"
+        Me.GridColumn1.FieldName = "tax"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 2
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID Tax"
+        Me.GridColumn2.FieldName = "id_tax"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
         'FormPopUpContact
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -489,4 +505,6 @@ Partial Class FormPopUpContact
     Friend WithEvents GridColumnRack As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnLocaltor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnEmail As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
