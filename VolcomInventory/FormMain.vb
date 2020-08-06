@@ -9175,6 +9175,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDesignColumn" Then
             FormDesignColumn.Close()
             FormDesignColumn.Dispose()
+        ElseIf formName = "FormOutboundList" Then
+            FormOutboundList.Close()
+            FormOutboundList.Dispose()
+        ElseIf formName = "FormReportFGPO" Then
+            FormReportFGPO.Close()
+            FormReportFGPO.Dispose()
+        ElseIf formName = "FormODM" Then
+            FormODM.Close()
+            FormODM.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -15091,6 +15100,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormODM.Show()
             FormODM.WindowState = FormWindowState.Maximized
             FormODM.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPOList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPOList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormReportFGPO.MdiParent = Me
+            FormReportFGPO.Show()
+            FormReportFGPO.WindowState = FormWindowState.Maximized
+            FormReportFGPO.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
