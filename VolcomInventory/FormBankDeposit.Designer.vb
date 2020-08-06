@@ -115,6 +115,23 @@ Partial Class FormBankDeposit
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BImportPayout = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPVA = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCVA = New DevExpress.XtraGrid.GridControl()
+        Me.GVVA = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_virtual_acc_trans = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntransaction_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnbank = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumngenerate_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamountva = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnBBMVA = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEBank = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEVA = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnImportVA = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -148,6 +165,15 @@ Partial Class FormBankDeposit
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.TEPayoutNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPVA.SuspendLayout()
+        CType(Me.GCVA, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVVA, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.SLEBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEVA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -159,7 +185,7 @@ Partial Class FormBankDeposit
         Me.XTCPO.SelectedTabPage = Me.XTPInvoice
         Me.XTCPO.Size = New System.Drawing.Size(1192, 561)
         Me.XTCPO.TabIndex = 3
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout, Me.XTPVA})
         '
         'XTPInvoice
         '
@@ -1046,6 +1072,174 @@ Partial Class FormBankDeposit
         Me.SimpleButton1.TabIndex = 19
         Me.SimpleButton1.Text = "Receive Payment"
         '
+        'XTPVA
+        '
+        Me.XTPVA.Controls.Add(Me.GCVA)
+        Me.XTPVA.Controls.Add(Me.BtnBBMVA)
+        Me.XTPVA.Controls.Add(Me.PanelControl4)
+        Me.XTPVA.Name = "XTPVA"
+        Me.XTPVA.Size = New System.Drawing.Size(1186, 533)
+        Me.XTPVA.Text = "Virtual Account List"
+        '
+        'GCVA
+        '
+        Me.GCVA.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCVA.Location = New System.Drawing.Point(0, 47)
+        Me.GCVA.MainView = Me.GVVA
+        Me.GCVA.Name = "GCVA"
+        Me.GCVA.Size = New System.Drawing.Size(1186, 454)
+        Me.GCVA.TabIndex = 22
+        Me.GCVA.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVA})
+        '
+        'GVVA
+        '
+        Me.GVVA.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_virtual_acc_trans, Me.GridColumntransaction_date, Me.GridColumnbank, Me.GridColumngenerate_date, Me.GridColumnamountva})
+        Me.GVVA.GridControl = Me.GCVA
+        Me.GVVA.Name = "GVVA"
+        Me.GVVA.OptionsBehavior.ReadOnly = True
+        Me.GVVA.OptionsFind.AlwaysVisible = True
+        Me.GVVA.OptionsView.ShowFooter = True
+        Me.GVVA.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_virtual_acc_trans
+        '
+        Me.GridColumnid_virtual_acc_trans.Caption = "id_virtual_acc_trans"
+        Me.GridColumnid_virtual_acc_trans.FieldName = "id_virtual_acc_trans"
+        Me.GridColumnid_virtual_acc_trans.Name = "GridColumnid_virtual_acc_trans"
+        '
+        'GridColumntransaction_date
+        '
+        Me.GridColumntransaction_date.Caption = "Transaction Date"
+        Me.GridColumntransaction_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumntransaction_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumntransaction_date.FieldName = "transaction_date"
+        Me.GridColumntransaction_date.Name = "GridColumntransaction_date"
+        Me.GridColumntransaction_date.Visible = True
+        Me.GridColumntransaction_date.VisibleIndex = 0
+        '
+        'GridColumnbank
+        '
+        Me.GridColumnbank.Caption = "Bank"
+        Me.GridColumnbank.FieldName = "bank"
+        Me.GridColumnbank.Name = "GridColumnbank"
+        Me.GridColumnbank.Visible = True
+        Me.GridColumnbank.VisibleIndex = 1
+        '
+        'GridColumngenerate_date
+        '
+        Me.GridColumngenerate_date.Caption = "Input Date"
+        Me.GridColumngenerate_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumngenerate_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumngenerate_date.FieldName = "generate_date"
+        Me.GridColumngenerate_date.Name = "GridColumngenerate_date"
+        '
+        'GridColumnamountva
+        '
+        Me.GridColumnamountva.Caption = "Amount"
+        Me.GridColumnamountva.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamountva.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamountva.FieldName = "amount"
+        Me.GridColumnamountva.Name = "GridColumnamountva"
+        Me.GridColumnamountva.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamountva.Visible = True
+        Me.GridColumnamountva.VisibleIndex = 2
+        '
+        'BtnBBMVA
+        '
+        Me.BtnBBMVA.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnBBMVA.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnBBMVA.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnBBMVA.Appearance.Options.UseBackColor = True
+        Me.BtnBBMVA.Appearance.Options.UseFont = True
+        Me.BtnBBMVA.Appearance.Options.UseForeColor = True
+        Me.BtnBBMVA.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnBBMVA.Location = New System.Drawing.Point(0, 501)
+        Me.BtnBBMVA.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnBBMVA.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnBBMVA.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnBBMVA.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnBBMVA.Name = "BtnBBMVA"
+        Me.BtnBBMVA.Size = New System.Drawing.Size(1186, 32)
+        Me.BtnBBMVA.TabIndex = 23
+        Me.BtnBBMVA.Text = "Receive Payment"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.SLEBank)
+        Me.PanelControl4.Controls.Add(Me.LabelControl8)
+        Me.PanelControl4.Controls.Add(Me.BtnImport)
+        Me.PanelControl4.Controls.Add(Me.DEVA)
+        Me.PanelControl4.Controls.Add(Me.LabelControl7)
+        Me.PanelControl4.Controls.Add(Me.BtnImportVA)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(1186, 47)
+        Me.PanelControl4.TabIndex = 0
+        '
+        'SLEBank
+        '
+        Me.SLEBank.Location = New System.Drawing.Point(323, 13)
+        Me.SLEBank.Name = "SLEBank"
+        Me.SLEBank.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEBank.Properties.ShowClearButton = False
+        Me.SLEBank.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEBank.Size = New System.Drawing.Size(212, 20)
+        Me.SLEBank.TabIndex = 8931
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(294, 16)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl8.TabIndex = 8930
+        Me.LabelControl8.Text = "Bank"
+        '
+        'BtnImport
+        '
+        Me.BtnImport.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImport.Image = CType(resources.GetObject("BtnImport.Image"), System.Drawing.Image)
+        Me.BtnImport.Location = New System.Drawing.Point(1054, 2)
+        Me.BtnImport.Name = "BtnImport"
+        Me.BtnImport.Size = New System.Drawing.Size(130, 43)
+        Me.BtnImport.TabIndex = 8929
+        Me.BtnImport.Text = "Import History"
+        '
+        'DEVA
+        '
+        Me.DEVA.EditValue = Nothing
+        Me.DEVA.Location = New System.Drawing.Point(108, 13)
+        Me.DEVA.Name = "DEVA"
+        Me.DEVA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEVA.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEVA.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEVA.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEVA.Size = New System.Drawing.Size(180, 20)
+        Me.DEVA.TabIndex = 1
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(17, 16)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(82, 13)
+        Me.LabelControl7.TabIndex = 8928
+        Me.LabelControl7.Text = "Transaction Date"
+        '
+        'BtnImportVA
+        '
+        Me.BtnImportVA.Location = New System.Drawing.Point(541, 13)
+        Me.BtnImportVA.Name = "BtnImportVA"
+        Me.BtnImportVA.Size = New System.Drawing.Size(133, 20)
+        Me.BtnImportVA.TabIndex = 8927
+        Me.BtnImportVA.Text = "import virtual account"
+        '
         'FormBankDeposit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1094,6 +1288,16 @@ Partial Class FormBankDeposit
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.TEPayoutNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPVA.ResumeLayout(False)
+        CType(Me.GCVA, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVVA, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.SLEBank.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEVA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1193,4 +1397,21 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumntrans_fee As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnett As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnHistoryPayout As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPVA As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DEVA As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnImportVA As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnImport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCVA As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVVA As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLEBank As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnid_virtual_acc_trans As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntransaction_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnbank As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumngenerate_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamountva As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnBBMVA As DevExpress.XtraEditors.SimpleButton
 End Class
