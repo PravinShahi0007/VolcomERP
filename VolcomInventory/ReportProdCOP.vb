@@ -69,10 +69,10 @@ Public Class ReportProdCOP
     End Sub
 
     Private Sub TopMargin_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles TopMargin.BeforePrint
-        Dim query As String = String.Format("SELECT design_name,design_code,id_cop_status FROM tb_m_design WHERE id_design = '{0}'", id_design)
+        Dim query As String = String.Format("SELECT design_display_name,design_code,id_cop_status FROM tb_m_design WHERE id_design = '{0}'", id_design)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-        LDesignName.Text = data.Rows(0)("design_name").ToString
+        LDesignName.Text = data.Rows(0)("design_display_name").ToString
         LCodeDesign.Text = data.Rows(0)("design_code").ToString
         Lkurs.Text = kursx.ToString("N2")
         If data.Rows(0)("id_cop_status").ToString = "1" Then
