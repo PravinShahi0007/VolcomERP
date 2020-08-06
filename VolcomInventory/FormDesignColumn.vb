@@ -108,6 +108,7 @@
             gv_column.FieldName = data_column.Rows(i)("column_name").ToString
             gv_column.Tag = data_column.Rows(i)("id_design_column").ToString
             gv_column.Visible = True
+            gv_column.ColumnEdit = RepositoryItemMemoEdit
 
             For j = 0 To data_row.Rows.Count - 1
                 If data_column.Rows(i)("id_design_column").ToString = data_row.Rows(j)("id_design_column").ToString Then
