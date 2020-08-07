@@ -5,11 +5,11 @@
 
     Private Sub FormMasterDesignLookUp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data As DataTable = execute_query("
-            SELECT '' AS `value`
+            SELECT '' AS column_group, '' AS `value`
 
             UNION ALL
 
-            SELECT `value`
+            SELECT column_group, `value`
             FROM tb_design_column_value
             WHERE id_design_column = " + id_design_column + " AND ((column_type_front = " + column_type_front + " AND column_type_end = " + column_type_end + ") OR (column_type_front IS NULL AND column_type_end IS NULL))
         ", -1, True, "", "", "", "")

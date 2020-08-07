@@ -29,11 +29,14 @@
         ", 0, True, "", "", "", "")
 
         If Not id_design_column_value = "-1" Then
-            TEValue.EditValue = execute_query("
-                SELECT `value`
+            Dim data As DataTable = execute_query("
+                SELECT column_group, `value`
                 FROM tb_design_column_value
                 WHERE id_design_column_value = '" + id_design_column_value + "'
-            ", 0, True, "", "", "", "")
+            ", -1, True, "", "", "", "")
+
+            TEColumnGroup.EditValue = data.Rows(0)("column_group").ToString
+            TEValue.EditValue = data.Rows(0)("value").ToString
         End If
     End Sub
 
@@ -59,7 +62,7 @@
             If id_design_column_value = "-1" Then
                 'insert
                 execute_non_query("
-                INSERT INTO tb_design_column_value (id_design_column, column_type_front, column_type_end, `value`) VALUES (" + id_design_column + ", " + If(column_type_front = "", "NULL", column_type_front) + ", " + If(column_type_end = "", "NULL", column_type_end) + ", '" + addSlashes(TEValue.EditValue) + "')
+                INSERT INTO tb_design_column_value (id_design_column, column_type_front, column_type_end, column_group, `value`) VALUES (" + id_design_column + ", " + If(column_type_front = "", "NULL", column_type_front) + ", " + If(column_type_end = "", "NULL", column_type_end) + ", '" + addSlashes(TEColumnGroup.EditValue) + "', '" + addSlashes(TEValue.EditValue) + "')
             ", True, "", "", "", "")
 
                 infoCustom("Saved.")
@@ -68,7 +71,7 @@
             Else
                 'update
                 execute_non_query("
-                    UPDATE tb_design_column_value SET id_design_column = " + id_design_column + ", column_type_front = " + If(column_type_front = "", "NULL", column_type_front) + ", column_type_end = " + If(column_type_end = "", "NULL", column_type_end) + ", `value` = '" + addSlashes(TEValue.EditValue) + "' WHERE id_design_column_value = " + id_design_column_value + "
+                    UPDATE tb_design_column_value SET id_design_column = " + id_design_column + ", column_type_front = " + If(column_type_front = "", "NULL", column_type_front) + ", column_type_end = " + If(column_type_end = "", "NULL", column_type_end) + ", column_group = '" + addSlashes(TEColumnGroup.EditValue) + "',  `value` = '" + addSlashes(TEValue.EditValue) + "' WHERE id_design_column_value = " + id_design_column_value + "
                 ", True, "", "", "", "")
 
                 infoCustom("Saved.")

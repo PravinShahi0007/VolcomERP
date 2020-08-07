@@ -6276,6 +6276,12 @@
     <Compile Include="FormUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVAHistoryDetail.Designer.vb">
+      <DependentUpon>FormVAHistoryDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVAHistoryDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormValidateStock.Designer.vb">
       <DependentUpon>FormValidateStock.vb</DependentUpon>
     </Compile>
@@ -11784,6 +11790,9 @@
     <EmbeddedResource Include="FormUpload.resx">
       <DependentUpon>FormUpload.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVAHistoryDetail.resx">
+      <DependentUpon>FormVAHistoryDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormValidateStock.resx">
       <DependentUpon>FormValidateStock.vb</DependentUpon>

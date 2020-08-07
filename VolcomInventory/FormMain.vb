@@ -9976,6 +9976,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormBankDeposit.load_invoice()
             ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 2 Then
                 FormBankDeposit.load_payout()
+            ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 3 Then
+                FormBankDeposit.load_vacc()
             End If
         ElseIf formName = "FormPurcAsset" Then
             If FormPurcAsset.XTCAsset.SelectedTabPageIndex = 0 Then
