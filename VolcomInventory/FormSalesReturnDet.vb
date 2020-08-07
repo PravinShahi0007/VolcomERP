@@ -254,7 +254,7 @@ Public Class FormSalesReturnDet
         query += "DATE_FORMAT(a.sales_return_order_date,'%d %M %Y') AS sales_return_order_date, "
         query += "DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date "
         If id_ret_type = "4" Then
-            query += ", wh.id_comp AS `id_wh`,wh.comp_number AS `wh_number`, wh.comp_name AS `wh_name`, wh.id_drawer_def AS `wh_drawer`, so.sales_order_ol_shop_number "
+            query += ", wh.id_comp AS `id_wh`,wh.comp_number AS `wh_number`, wh.comp_name AS `wh_name`, wh.id_drawer_def AS `wh_drawer`, so.sales_order_ol_shop_number, wh.is_active AS `wh_is_active` "
         End If
         query += "FROM tb_sales_return_order a "
         'query += "INNER JOIN tb_sales_return_order_det b ON a.id_sales_return_order = b.id_sales_return_order "
@@ -305,6 +305,12 @@ Public Class FormSalesReturnDet
             id_comp_contact_to = data.Rows(0)("id_wh_contact_to").ToString
             TxtNameCompTo.Text = data.Rows(0)("wh_name").ToString
             TxtCodeCompTo.Text = data.Rows(0)("wh_number").ToString
+            If data.Rows(0)("wh_is_active").ToString <> "1" Then
+                stopCustom("WH already freeze")
+                Cursor = Cursors.Default
+                Close()
+                Exit Sub
+            End If
             setDefDrawer()
 
             'get unik per item id
