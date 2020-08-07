@@ -2492,6 +2492,7 @@ Partial Class FormMasterDesignSingle
         Me.GVAdditional.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn57, Me.GridColumn56})
         Me.GVAdditional.GridControl = Me.GCAdditional
         Me.GVAdditional.Name = "GVAdditional"
+        Me.GVAdditional.OptionsView.RowAutoHeight = True
         Me.GVAdditional.OptionsView.ShowGroupPanel = False
         '
         'GridColumn53

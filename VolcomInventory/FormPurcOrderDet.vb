@@ -6,6 +6,7 @@
     Public is_view As String = "-1"
     '
     Public is_submit As String = "-1"
+    Public id_vendor_tax As String = "-1"
 
     Private Sub FormPurcOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -79,11 +80,12 @@
             BMark.Visible = False
         Else 'edit
             'load header
-            Dim query As String = "SELECT c.comp_name,c.comp_number,c.address_primary,c.fax,c.email,c.comp_number,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
+            Dim query As String = "SELECT c.comp_name,c.id_tax,tax.tax,c.comp_number,c.address_primary,c.fax,c.email,c.comp_number,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
 ,po.id_order_term,po.id_shipping_method,po.ship_destination,po.ship_address,po.id_expense_type,po.is_submit
 FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
 INNER JOIN tb_m_comp c ON cc.id_comp=c.`id_comp`
+INNER JOIN tb_lookup_tax tax ON tax.id_tax=c.id_tax
 INNER JOIN tb_m_user usr ON usr.id_user=po.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 WHERE po.id_purc_order='" & id_po & "'"
@@ -99,6 +101,14 @@ WHERE po.id_purc_order='" & id_po & "'"
                 TEVendorPhone.Text = data.Rows(0)("contact_number").ToString
                 TEVendorFax.Text = data.Rows(0)("fax").ToString
                 TEVendorCode.Text = data.Rows(0)("comp_number").ToString
+                id_vendor_tax = data.Rows(0)("id_tax").ToString
+                '
+                If id_vendor_tax = "2" Then
+                    TEVATPercent.ReadOnly = False
+                Else
+                    TEVATPercent.ReadOnly = True
+                End If
+                TEPKP.Text = data.Rows(0)("tax").ToString
                 '
                 TEShipDestination.Text = data.Rows(0)("ship_destination").ToString
                 MESHipAddress.Text = data.Rows(0)("ship_address").ToString
@@ -376,6 +386,8 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 warningCustom("Please make sure item price listed")
             ElseIf id_vendor_contact = "-1" Then
                 warningCustom("Please input vendor")
+            ElseIf TEVATPercent.EditValue = 0 And TEVATPercent.Properties.ReadOnly = False Then
+                warningCustom("Please input tax percent")
             Else
                 'header
                 Dim is_check As String = "1"
@@ -557,13 +569,14 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 End If
             Next
 
-            Dim query As String = "SELECT c.*,cc.* FROM tb_m_comp c
+            Dim query As String = "SELECT c.*,cc.*,tax.tax FROM tb_m_comp c
                                     INNER JOIN 
                                     (
 	                                    SELECT cc.`id_comp_contact`,cc.`contact_person`,cc.`contact_number`,cc.`id_comp` FROM tb_m_comp_contact cc 
 	                                    WHERE cc.`is_default`='1'
 	                                    GROUP BY cc.`id_comp`
                                     )cc ON cc.id_comp=c.`id_comp`
+                                    INNER JOIN tb_lookup_tax tax ON tax.id_tax=c.id_tax
                                     WHERE (c.id_comp_cat='8' or c.id_comp_cat='1') AND c.is_active='1'
                                     AND c.comp_number='" & TEVendorCode.Text & "' "
             query += " AND c.id_vendor_type >= '" & max_vendor_type.ToString & "' "
@@ -580,6 +593,13 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 FormPopUpContact.ShowDialog()
             Else
                 id_vendor_contact = data.Rows(0)("id_comp_contact").ToString
+                id_vendor_tax = data.Rows(0)("id_tax").ToString
+                If id_vendor_tax = "2" Then
+                    TEVATPercent.ReadOnly = False
+                Else
+                    TEVATPercent.ReadOnly = True
+                End If
+                TEPKP.Text = data.Rows(0)("tax").ToString
                 TEVendorName.Text = data.Rows(0)("comp_name").ToString
                 MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
                 '
