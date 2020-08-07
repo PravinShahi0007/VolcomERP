@@ -41,6 +41,7 @@
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+        DEVA.EditValue = dt_now.Rows(0)("tgl")
 
         'get id own online store
         id_own_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_store) FROM tb_m_comp_volcom_ol c", 0, True, "", "", "", "")
@@ -53,6 +54,10 @@
 
         'payout
         load_payout()
+
+        'virtual acc
+        load_vacc()
+        load_bank()
     End Sub
 
     Sub load_status_payment()
@@ -357,6 +362,59 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
     Private Sub BtnHistoryPayout_Click(sender As Object, e As EventArgs) Handles BtnHistoryPayout.Click
         Cursor = Cursors.WaitCursor
         FormPayoutHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_vacc()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT a.id_virtual_acc_trans,a.id_virtual_acc, va.bank, a.transaction_date, a.generate_date, SUM(d.amount) AS `amount`
+        FROM tb_virtual_acc_trans a 
+        INNER JOIN tb_virtual_acc va ON va.id_virtual_acc = a.id_virtual_acc
+        INNER JOIN tb_virtual_acc_trans_det d ON d.id_virtual_acc_trans = a.id_virtual_acc_trans
+        LEFT JOIN tb_rec_payment b ON b.id_virtual_acc_trans = a.id_virtual_acc_trans AND b.id_report_status!=5
+        WHERE ISNULL(b.id_rec_payment)
+        GROUP BY a.id_virtual_acc_trans "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCVA.DataSource = data
+        GVVA.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_bank()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT * FROM tb_virtual_acc a "
+        viewSearchLookupQuery(SLEBank, query, "id_virtual_acc", "bank", "id_virtual_acc")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnImportVA_Click(sender As Object, e As EventArgs) Handles BtnImportVA.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "53"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBBMVA_Click(sender As Object, e As EventArgs) Handles BtnBBMVA.Click
+        If GVVA.RowCount > 0 And GVVA.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositDet.id_virtual_acc_trans = GVVA.GetFocusedRowCellValue("id_virtual_acc_trans").ToString
+            FormBankDepositDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GVVA_DoubleClick(sender As Object, e As EventArgs) Handles GVVA.DoubleClick
+        If GVVA.RowCount > 0 And GVVA.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormVAHistoryDetail.id = GVVA.GetFocusedRowCellValue("id_virtual_acc_trans").ToString
+            FormVAHistoryDetail.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnImport_Click(sender As Object, e As EventArgs) Handles BtnImport.Click
+        Cursor = Cursors.WaitCursor
+        FormVAHistory.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

@@ -27,18 +27,8 @@
     Sub view_form()
         Cursor = Cursors.WaitCursor
 
-        'clear group
-        GVAccountingWorksheet.ClearGrouping()
-
         'clear datasource
         GCAccountingWorksheet.DataSource = Nothing
-
-        'remove column
-        For i = GVAccountingWorksheet.Columns.Count - 1 To 0 Step -1
-            If GVAccountingWorksheet.Columns.Item(i).FieldName.Contains("group_") Then
-                GVAccountingWorksheet.Columns.Remove(GVAccountingWorksheet.Columns.Item(i))
-            End If
-        Next
 
         Dim is_char As Boolean = False
 
@@ -67,71 +57,48 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         'parent
-        Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc"
+        Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc WHERE CHAR_LENGTH(acc_name) IN (2, 4) ORDER BY acc_name ASC"
 
         Dim data_parent As DataTable = execute_query(query_parent, -1, True, "", "", "", "")
 
-        Dim last_added As String = ""
+        'insert parent
+        For i = 0 To data.Rows.Count - 1
+            For j = 0 To data_parent.Rows.Count - 1
+                'parent 1
+                If data_parent.Rows(j)("acc_name").ToString.Length = 2 Then
+                    If data.Rows(i)("acc_name").ToString.Substring(0, 2) = data_parent.Rows(j)("acc_name").ToString Then
+                        data.Rows(i)("acc_name_1") = data_parent.Rows(j)("acc_name").ToString + " - " + data_parent.Rows(j)("acc_description").ToString
+                    End If
+                End If
 
-        Dim last_g As Integer = 0
-
-        'check is detail
-        Dim id_is_det As String = execute_query("SELECT id_is_det FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", 0, True, "", "", "", "")
-
-        'single group
-        If id_is_det = "2" Then
-            'GVAccountingWorksheet.Columns("acc_name").GroupIndex = 0
-        Else
-            'multi group
-            'add column
-            For g = 0 To 100
-                Dim group_i As String = "group_" + g.ToString
-                Dim parent_group_i As String = "parent_group_" + g.ToString
-
-                'add column to datatable
-                data.Columns.Add(group_i, GetType(String))
-                data.Columns.Add(parent_group_i, GetType(String))
-
-                'add column to gridview
-                Dim col As DevExpress.XtraGrid.Columns.GridColumn = GVAccountingWorksheet.Columns.Add()
-
-                col.Caption = "Account"
-                col.FieldName = group_i
-
-                For i = 0 To data.Rows.Count - 1
-                    For j = 0 To data_parent.Rows.Count - 1
-                        If g = 0 Then
-                            If data.Rows(i)("id_acc_parent").ToString = data_parent.Rows(j)("id_acc").ToString Then
-                                data.Rows(i)(group_i) = data_parent.Rows(j)("acc_name").ToString + " - " + data_parent.Rows(j)("acc_description").ToString
-                                data.Rows(i)(parent_group_i) = data_parent.Rows(j)("id_acc_parent").ToString
-
-                                last_added = data_parent.Rows(j)("acc_name").ToString
-                            End If
-                        Else
-                            If data.Rows(i)("parent_group_" + (g - 1).ToString).ToString = data_parent.Rows(j)("id_acc").ToString Then
-                                data.Rows(i)(group_i) = data_parent.Rows(j)("acc_name").ToString + " - " + data_parent.Rows(j)("acc_description").ToString
-                                data.Rows(i)(parent_group_i) = data_parent.Rows(j)("id_acc_parent").ToString
-
-                                last_added = data_parent.Rows(j)("acc_name").ToString
-                            End If
-                        End If
-                    Next
-                Next
-
-                last_g = g
-
-                If SLUETo.EditValue.ToString = last_added Then
-                    Exit For
+                'parent 2
+                If data_parent.Rows(j)("acc_name").ToString.Length = 4 Then
+                    If data.Rows(i)("acc_name").ToString.Substring(0, 4) = data_parent.Rows(j)("acc_name").ToString Then
+                        data.Rows(i)("acc_name_2") = data_parent.Rows(j)("acc_name").ToString + " - " + data_parent.Rows(j)("acc_description").ToString
+                    End If
                 End If
             Next
+        Next
 
-            'group index
-            For i = last_g To 0 Step -1
-                Dim group_i As String = "group_" + i.ToString
+        'numbering
+        Dim number As Integer = 1
+        Dim last_parent_2 As String = ""
 
-                GVAccountingWorksheet.Columns(group_i).GroupIndex = last_g - i
-            Next
-        End If
+        For i = 0 To data.Rows.Count - 1
+            If Not last_parent_2 = data.Rows(i)("acc_name_2").ToString Then
+                number = 1
+            End If
+
+            If i = 0 Then
+                last_parent_2 = data.Rows(i)("acc_name_2").ToString
+            End If
+
+            data.Rows(i)("number") = number
+
+            last_parent_2 = data.Rows(i)("acc_name_2").ToString
+
+            number = number + 1
+        Next
 
         GCAccountingWorksheet.DataSource = data
 
@@ -145,7 +112,6 @@
             Dim report As ReportAccountingWorksheet = New ReportAccountingWorksheet
 
             report.data = GCAccountingWorksheet.DataSource
-            report.id_is_det = execute_query("SELECT id_is_det FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", 0, True, "", "", "", "")
 
             report.XLPeriod.Text = DEFrom.Text + " - " + DETo.Text
             report.XLAccount.Text = SLUEFrom.Text + " - " + SLUETo.Text
