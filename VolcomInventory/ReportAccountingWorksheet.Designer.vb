@@ -79,7 +79,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellNo.StylePriority.UseBorders = False
         Me.XrTableCellNo.StylePriority.UsePadding = False
         Me.XrTableCellNo.Text = "No"
-        Me.XrTableCellNo.Weight = 0.106036363952854R
+        Me.XrTableCellNo.Weight = 0.10671144229503343R
         '
         'XrTableCellAccount
         '
@@ -89,7 +89,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellAccount.StylePriority.UseBorders = False
         Me.XrTableCellAccount.StylePriority.UsePadding = False
         Me.XrTableCellAccount.Text = "Account"
-        Me.XrTableCellAccount.Weight = 2.4211634678153957R
+        Me.XrTableCellAccount.Weight = 2.3825451756719294R
         '
         'XrTableCellBeginning
         '
@@ -99,7 +99,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellBeginning.StylePriority.UseBorders = False
         Me.XrTableCellBeginning.StylePriority.UsePadding = False
         Me.XrTableCellBeginning.Text = "Beginning"
-        Me.XrTableCellBeginning.Weight = 0.31810907483906109R
+        Me.XrTableCellBeginning.Weight = 0.36660628260973421R
         '
         'XrTableCellDebit
         '
@@ -109,7 +109,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellDebit.StylePriority.UseBorders = False
         Me.XrTableCellDebit.StylePriority.UsePadding = False
         Me.XrTableCellDebit.Text = "Debit"
-        Me.XrTableCellDebit.Weight = 0.31810907941746946R
+        Me.XrTableCellDebit.Weight = 0.36660628718814231R
         '
         'XrTableCellCredit
         '
@@ -119,7 +119,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellCredit.StylePriority.UseBorders = False
         Me.XrTableCellCredit.StylePriority.UsePadding = False
         Me.XrTableCellCredit.Text = "Credit"
-        Me.XrTableCellCredit.Weight = 0.31810908471233262R
+        Me.XrTableCellCredit.Weight = 0.36660629248300625R
         '
         'XrTableCellEnding
         '
@@ -129,7 +129,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellEnding.StylePriority.UseBorders = False
         Me.XrTableCellEnding.StylePriority.UsePadding = False
         Me.XrTableCellEnding.Text = "Ending"
-        Me.XrTableCellEnding.Weight = 0.31810916098408215R
+        Me.XrTableCellEnding.Weight = 0.36660636875475527R
         '
         'XLPeriod
         '
