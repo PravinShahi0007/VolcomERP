@@ -2940,6 +2940,12 @@
     <Compile Include="FormPayoutHistoryDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPayoutReport.Designer.vb">
+      <DependentUpon>FormPayoutReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayoutReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpDept.Designer.vb">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </Compile>
@@ -6270,6 +6276,12 @@
     <Compile Include="FormUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVAHistory.Designer.vb">
+      <DependentUpon>FormVAHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVAHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVAHistoryDetail.Designer.vb">
       <DependentUpon>FormVAHistoryDetail.vb</DependentUpon>
     </Compile>
@@ -8329,6 +8341,12 @@
     <Compile Include="ReportSummaryInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportVA.Designer.vb">
+      <DependentUpon>ReportVA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportVA.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportWHAWBillShipmentLabel.Designer.vb">
       <DependentUpon>ReportWHAWBillShipmentLabel.vb</DependentUpon>
     </Compile>
@@ -9771,6 +9789,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutHistoryDetail.resx">
       <DependentUpon>FormPayoutHistoryDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayoutReport.resx">
+      <DependentUpon>FormPayoutReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDept.resx">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
@@ -11782,6 +11803,9 @@
       <DependentUpon>FormUpload.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormVAHistory.resx">
+      <DependentUpon>FormVAHistory.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormVAHistoryDetail.resx">
       <DependentUpon>FormVAHistoryDetail.vb</DependentUpon>
     </EmbeddedResource>
@@ -12960,6 +12984,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSummaryInvoice.resx">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportVA.resx">
+      <DependentUpon>ReportVA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHAWBillShipmentLabel.resx">
       <DependentUpon>ReportWHAWBillShipmentLabel.vb</DependentUpon>

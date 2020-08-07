@@ -29,6 +29,7 @@
                             newRow("kurs") = GVList.GetRowCellValue(i, "kurs")
                             newRow("value_bef_kurs") = GVList.GetRowCellValue(i, "value_bef_kurs") * -1
                             '
+                            newRow("pph_percent") = 0
                             newRow("vat") = GVList.GetRowCellValue(i, "vat") * -1
                             newRow("inv_number") = GVList.GetRowCellValue(i, "inv_number").ToString
                             newRow("note") = GVList.GetRowCellValue(i, "note").ToString
@@ -47,6 +48,7 @@
                             newRow("kurs") = GVList.GetRowCellValue(i, "kurs")
                             newRow("value_bef_kurs") = GVList.GetRowCellValue(i, "value_bef_kurs") * -1
                             '
+                            newRow("pph_percent") = 0
                             newRow("vat") = GVList.GetRowCellValue(i, "vat") * -1
                             newRow("inv_number") = GVList.GetRowCellValue(i, "inv_number").ToString
                             newRow("note") = GVList.GetRowCellValue(i, "note").ToString
