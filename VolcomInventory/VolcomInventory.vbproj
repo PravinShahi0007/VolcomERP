@@ -2940,6 +2940,12 @@
     <Compile Include="FormPayoutHistoryDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPayoutReport.Designer.vb">
+      <DependentUpon>FormPayoutReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayoutReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpDept.Designer.vb">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </Compile>
@@ -9783,6 +9789,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutHistoryDetail.resx">
       <DependentUpon>FormPayoutHistoryDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayoutReport.resx">
+      <DependentUpon>FormPayoutReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDept.resx">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
