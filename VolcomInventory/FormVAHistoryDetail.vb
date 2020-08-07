@@ -48,4 +48,35 @@
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        GVData.BestFitColumns()
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+        gv = GVData
+        ReportVA.dt = GCData.DataSource
+        ReportVA.id = id
+        Dim Report As New ReportVA()
+
+        '... 
+        ' creating And saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'style
+        ReportStyleBanded(GVData)
+
+        Report.LabelNumber.Text = "Bank : " + TxtBank.Text
+        Report.LabelDate.Text = DECreated.Text.ToUpper
+        Report.LabelTransDate.Text = DETrans.Text.ToUpper
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
