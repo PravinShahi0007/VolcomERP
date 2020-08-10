@@ -268,6 +268,7 @@
     <Compile Include="ClassRequestRetOLStore.vb" />
     <Compile Include="ClassRetOLStore.vb" />
     <Compile Include="ClassReturn.vb" />
+    <Compile Include="ClassSalesBranch.vb" />
     <Compile Include="ClassSalesDelOrder.vb" />
     <Compile Include="ClassSalesInv.vb" />
     <Compile Include="ClassSalesOrder.vb" />
@@ -3616,6 +3617,12 @@
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesBranch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesBranchDet.Designer.vb">
+      <DependentUpon>FormSalesBranchDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesBranchDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesCreditNote.designer.vb">
@@ -8019,6 +8026,12 @@
     <Compile Include="ReportSalarySlip.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesBranch.designer.vb">
+      <DependentUpon>ReportSalesBranch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesBranch.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesCreditNote.designer.vb">
       <DependentUpon>ReportSalesCreditNote.vb</DependentUpon>
     </Compile>
@@ -10126,6 +10139,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesBranch.resx">
+      <DependentUpon>FormSalesBranch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesBranchDet.resx">
+      <DependentUpon>FormSalesBranchDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesCreditNote.resx">
       <DependentUpon>FormSalesCreditNote.vb</DependentUpon>
@@ -12797,6 +12816,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesBranch.resx">
+      <DependentUpon>ReportSalesBranch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesCreditNote.resx">
       <DependentUpon>ReportSalesCreditNote.vb</DependentUpon>
