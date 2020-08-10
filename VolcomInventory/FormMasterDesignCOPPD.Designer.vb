@@ -47,6 +47,8 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEColdStorage = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.XTCCOPPD = New DevExpress.XtraTab.XtraTabControl()
@@ -86,8 +88,6 @@ Partial Class FormMasterDesignCOPPD
         Me.TETodayKurs = New DevExpress.XtraEditors.TextEdit()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -463,13 +463,27 @@ Partial Class FormMasterDesignCOPPD
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Id"
+        Me.GridColumn21.FieldName = "id"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Description"
+        Me.GridColumn22.FieldName = "cold_desc"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 0
+        '
         'LabelControl9
         '
         Me.LabelControl9.Location = New System.Drawing.Point(523, 21)
         Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(90, 13)
+        Me.LabelControl9.Size = New System.Drawing.Size(93, 13)
         Me.LabelControl9.TabIndex = 8910
-        Me.LabelControl9.Text = "Need Cold Storage"
+        Me.LabelControl9.Text = "Room/Cool Storage"
         '
         'PanelControl2
         '
@@ -900,20 +914,6 @@ Partial Class FormMasterDesignCOPPD
         Me.BAdd.Size = New System.Drawing.Size(75, 36)
         Me.BAdd.TabIndex = 0
         Me.BAdd.Text = "Add"
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Id"
-        Me.GridColumn21.FieldName = "id"
-        Me.GridColumn21.Name = "GridColumn21"
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Description"
-        Me.GridColumn22.FieldName = "cold_desc"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 0
         '
         'FormMasterDesignCOPPD
         '
