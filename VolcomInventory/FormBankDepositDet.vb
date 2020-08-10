@@ -259,6 +259,7 @@ Public Class FormBankDepositDet
             BtnPrint.Visible = True
             BMark.Visible = True
             BtnSave.Visible = False
+            SLEUnit.Enabled = False
             SLEPayFrom.Enabled = False
             SLEPayRecTo.Enabled = False
             MENote.Enabled = False
