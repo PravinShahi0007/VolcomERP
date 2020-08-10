@@ -7,6 +7,7 @@ Public Class FormBankDepositDet
     Public type_rec As String = "1" '1 = invoice
     Public id_list_payout_trans As String = "-1"
     Public id_virtual_acc_trans As String = "-1"
+    Public id_coa_tag As String = "1"
 
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -14,6 +15,7 @@ Public Class FormBankDepositDet
     End Sub
 
     Sub form_load()
+        viewCoaTag()
         viewReportStatus()
         load_receive_from()
         load_pay_from()
@@ -37,11 +39,13 @@ Public Class FormBankDepositDet
 
             'load detail
             If type_rec = "1" Then
+                SLEUnit.Enabled = False
                 If FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
                     For i As Integer = 0 To FormBankDeposit.GVInvoiceList.RowCount - 1
                         'id_report,number,total,balance due
                         Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                         newRow("id_report") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_sales_pos").ToString
+                        newRow("id_report_det") = "0"
                         newRow("report_mark_type") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type").ToString
                         newRow("report_mark_type_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type_name").ToString
                         newRow("number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "sales_pos_number").ToString
@@ -61,7 +65,7 @@ Public Class FormBankDepositDet
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                     Next
                 ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 2 Then
-                    Dim query_view_payout As String = "SELECT sp.`id_sales_pos` AS `id_report`,
+                    Dim query_view_payout As String = "SELECT sp.`id_sales_pos` AS `id_report`,0 AS `id_report_det`,
                     sp.report_mark_type,rmt.report_mark_type_name,
                     sp.`sales_pos_number` AS `number`, 
                     c.id_comp AS `id_comp`, 
@@ -147,7 +151,7 @@ Public Class FormBankDepositDet
                     'note
                     MENote.Text = "Payout No : " + FormBankDeposit.GVPayout.GetFocusedRowCellValue("number").ToString
                 ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 3 Then
-                    Dim query_view_trans As String = "SELECT sp.`id_sales_pos` AS `id_report`,
+                    Dim query_view_trans As String = "SELECT sp.`id_sales_pos` AS `id_report`,0 AS `id_report_det`,
                     sp.report_mark_type,rmt.report_mark_type_name,
                     sp.`sales_pos_number` AS `number`, 
                     c.id_comp AS `id_comp`, 
@@ -220,6 +224,34 @@ Public Class FormBankDepositDet
                     MENote.Text = "Virtual Acc " + dv.Rows(0)("bank").ToString + " : " + dv.Rows(0)("trans_date_view").ToString
                     DERecDate.EditValue = dv.Rows(0)("trans_date")
                 End If
+            ElseIf type_rec = "3" Then
+                SLEUnit.EditValue = id_coa_tag
+                SLEUnit.Enabled = False
+                If FormBankDeposit.XTCPO.SelectedTabPageIndex = 4 Then
+                    For i As Integer = 0 To FormBankDeposit.GVSales.RowCount - 1
+                        'id_report,number,total,balance due
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormBankDeposit.GVSales.GetRowCellValue(i, "id_report").ToString
+                        newRow("id_report_det") = FormBankDeposit.GVSales.GetRowCellValue(i, "id_report_det").ToString
+                        newRow("report_mark_type") = FormBankDeposit.GVSales.GetRowCellValue(i, "report_mark_type").ToString
+                        newRow("report_mark_type_name") = FormBankDeposit.GVSales.GetRowCellValue(i, "report_mark_type_name").ToString
+                        newRow("number") = FormBankDeposit.GVSales.GetRowCellValue(i, "report_number").ToString
+                        newRow("id_comp") = FormBankDeposit.GVSales.GetRowCellValue(i, "id_comp").ToString
+                        newRow("id_acc") = FormBankDeposit.GVSales.GetRowCellValue(i, "id_acc").ToString
+                        newRow("acc_name") = FormBankDeposit.GVSales.GetRowCellValue(i, "acc_name").ToString
+                        newRow("acc_description") = FormBankDeposit.GVSales.GetRowCellValue(i, "acc_description").ToString
+                        newRow("comp_number") = FormBankDeposit.GVSales.GetRowCellValue(i, "comp_number").ToString
+                        newRow("vendor") = FormBankDeposit.GVSales.GetRowCellValue(i, "vendor").ToString
+                        newRow("total_rec") = FormBankDeposit.GVSales.GetRowCellValue(i, "total_rec")
+                        newRow("value") = FormBankDeposit.GVSales.GetRowCellValue(i, "total_due")
+                        newRow("balance_due") = FormBankDeposit.GVSales.GetRowCellValue(i, "total_due")
+                        newRow("note") = FormBankDeposit.GVSales.GetRowCellValue(i, "note").ToString
+                        newRow("id_dc") = FormBankDeposit.GVSales.GetRowCellValue(i, "id_dc").ToString
+                        newRow("dc_code") = FormBankDeposit.GVSales.GetRowCellValue(i, "dc_code").ToString
+                        newRow("value_view") = Math.Abs(FormBankDeposit.GVSales.GetRowCellValue(i, "total_due"))
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
+                End If
             End If
             calculate_amount()
         Else
@@ -255,6 +287,8 @@ Public Class FormBankDepositDet
                 id_report_status = data.Rows(0)("id_report_status").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
                 type_rec = data.Rows(0)("type_rec").ToString
+                id_coa_tag = data.Rows(0)("id_coa_tag").ToString
+                SLEUnit.EditValue = id_coa_tag
             End If
             '
             load_det()
@@ -288,6 +322,12 @@ Public Class FormBankDepositDet
         End If
     End Sub
 
+    Sub viewCoaTag()
+        Dim query As String = "SELECT ct.id_coa_tag, ct.tag_code, ct.tag_description, CONCAT(ct.tag_code,' - ', ct.tag_description)  AS `coa_tag`
+        FROM tb_coa_tag ct ORDER BY ct.id_coa_tag ASC "
+        viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
+    End Sub
+
     Sub viewReportStatus()
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -295,7 +335,7 @@ Public Class FormBankDepositDet
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT recd.id_rec_payment_det,recd.id_report,recd.report_mark_type,
+        Dim query As String = "SELECT recd.id_rec_payment_det,recd.id_report,recd.report_mark_type, recd.id_report_det,
         rmt.report_mark_type_name,recd.number,recd.total_rec,recd.`value`,recd.balance_due,recd.note,
         if(recd.id_dc=1, recd.`value`*-1, recd.`value`) AS `value_view`,
         recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description, coa.acc_description, 
@@ -487,16 +527,20 @@ Public Class FormBankDepositDet
                         id_virtual_acc_trans = "NULL"
                     End If
 
-                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec, id_list_payout_trans, id_virtual_acc_trans)
-                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "', " + id_list_payout_trans + ", " + id_virtual_acc_trans + "); SELECT LAST_INSERT_ID();"
+                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec, id_list_payout_trans, id_virtual_acc_trans, id_coa_tag)
+                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "', " + id_list_payout_trans + ", " + id_virtual_acc_trans + ",'" + SLEUnit.EditValue.ToString + "'); SELECT LAST_INSERT_ID();"
                     id_deposit = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
-                    query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc, id_dc, vendor) VALUES"
+                    query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc, id_dc, vendor, id_report_det) VALUES"
                     For i As Integer = 0 To GVList.RowCount - 1
                         Dim id_report As String = GVList.GetRowCellValue(i, "id_report").ToString
                         If id_report = "0" Then
                             id_report = "NULL"
+                        End If
+                        Dim id_report_det As String = GVList.GetRowCellValue(i, "id_report_det").ToString
+                        If id_report_det = "0" Then
+                            id_report_det = "NULL"
                         End If
                         Dim report_mark_type As String = GVList.GetRowCellValue(i, "report_mark_type").ToString
                         If report_mark_type = "0" Then
@@ -513,7 +557,7 @@ Public Class FormBankDepositDet
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "', " + id_comp + ", " + id_acc + ", " + id_dc + ", '" + vendor + "') "
+                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "', " + id_comp + ", " + id_acc + ", " + id_dc + ", '" + vendor + "', " + id_report_det + ") "
                     Next
                     execute_non_query(query, True, "", "", "", "")
 
@@ -581,6 +625,7 @@ Public Class FormBankDepositDet
         ReportBankDepositNew.rmt = "162"
         Dim Report As New ReportBankDepositNew()
 
+        Report.LabelUnit.Text = SLEUnit.Text
         If CEPrintPreview.EditValue = True Then
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
