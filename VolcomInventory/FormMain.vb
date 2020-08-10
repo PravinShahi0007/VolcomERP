@@ -1811,6 +1811,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMasterStore" Then
             FormMasterStoreDet.id_store = "-1"
             FormMasterStoreDet.ShowDialog()
+        ElseIf formName = "FormSalesBranch" Then
+            If FormSalesBranch.rmt = "254" Then
+                FormSalesBranchDet.action = "ins"
+                FormSalesBranchDet.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -3003,6 +3008,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormMasterStore" Then
                 FormMasterStoreDet.id_store = FormMasterStore.GVMasterStore.GetFocusedRowCellValue("id_store").ToString
                 FormMasterStoreDet.ShowDialog()
+            ElseIf formName = "FormSalesBranch" Then
+                FormSalesBranchDet.id = FormSalesBranch.GVData.GetFocusedRowCellValue("id_sales_branch").ToString
+                FormSalesBranchDet.action = "upd"
+                FormSalesBranchDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8279,6 +8288,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormPromoCollection.GCData, "Promo Collection List")
         ElseIf formName = "FormPayoutReport" Then
             print(FormPayoutReport.GCData, "Payout Report")
+        ElseIf formName = "FormSalesBranch" Then
+            print(FormSalesBranch.GCData, "Volcom Store Sales")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9189,6 +9200,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPayoutReport" Then
             FormPayoutReport.Close()
             FormPayoutReport.Dispose()
+        ElseIf formName = "FormSalesBranch" Then
+            FormSalesBranch.Close()
+            FormSalesBranch.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10124,6 +10138,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDesignColumn.form_load()
         ElseIf formName = "FormPayoutReport" Then
             FormPayoutReport.viewData()
+        ElseIf formName = "FormSalesBranch" Then
+            FormSalesBranch.viewData()
         End If
     End Sub
     'Switch
@@ -15084,7 +15100,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     End Sub
 
     Private Sub NBCNSalesBranch_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCNSalesBranch.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesBranch.MdiParent = Me
+            FormSalesBranch.rmt = "256"
+            FormSalesBranch.Show()
+            FormSalesBranch.WindowState = FormWindowState.Maximized
+            FormSalesBranch.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub NBOutboundList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOutboundList.LinkClicked
