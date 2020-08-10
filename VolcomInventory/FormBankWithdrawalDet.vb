@@ -91,7 +91,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                         newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
                         newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
                         newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
-                        newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_description").ToString
+                        newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "inv_number").ToString
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                         'isi DP
                         Dim qdp As String = ""
@@ -164,7 +164,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                     newRow("value") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("value_view") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
-                    newRow("note") = ""
+                    newRow("note") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "inv_number").ToString
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
                 calculate_amount()
@@ -200,7 +200,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                         newRow("val_bef_kurs") = If(FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "value_bef_kurs"))
                         newRow("value_view") = If(FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance") < 0, -FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"))
                         newRow("balance_due") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
-                        newRow("note") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "type").ToString
+                        newRow("note") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "type").ToString & " - " & FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "inv_number").ToString
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                         If FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_paid") = 0 Then
                             selisih_kurs += FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total") - FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_bpl")

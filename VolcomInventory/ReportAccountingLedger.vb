@@ -1,37 +1,8 @@
 ﻿Public Class ReportAccountingLedger
     Public data As DataTable = New DataTable
-    Public id_is_det As String = "1"
 
     Private Sub ReportAccountingLedger_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim data_group As DataTable = New DataTable
-        Dim count_group As Integer = If(id_is_det = "1", Integer.Parse(data.Columns.Item(data.Columns.Count - 1).ColumnName.Replace("parent_group_", "")), -1)
-        Dim last_group As List(Of String) = New List(Of String)
-
-        For i = 0 To count_group
-            last_group.Add("")
-        Next
-
-        last_group.Add("")
-
-        'summaries
-        Dim summaries_debit As List(Of Tuple(Of String, Int64)) = New List(Of Tuple(Of String, Int64))
-        Dim summaries_credit As List(Of Tuple(Of String, Int64)) = New List(Of Tuple(Of String, Int64))
-        Dim summaries_balance As List(Of Tuple(Of String, Int64)) = New List(Of Tuple(Of String, Int64))
-
-        Dim r As Integer = -1
-
-        While FormAccountingLedger.GVAccountingLedger.IsValidRowHandle(r)
-            Dim g_name As String = FormAccountingLedger.GVAccountingLedger.GetGroupRowDisplayText(r).Replace("Account: ", "")
-            Dim g_debit As Int64 = FormAccountingLedger.GVAccountingLedger.GetGroupSummaryValue(r, FormAccountingLedger.GVAccountingLedger.GroupSummary.Item(0))
-            Dim g_credit As Int64 = FormAccountingLedger.GVAccountingLedger.GetGroupSummaryValue(r, FormAccountingLedger.GVAccountingLedger.GroupSummary.Item(1))
-            Dim g_balance As Int64 = FormAccountingLedger.GVAccountingLedger.GetGroupSummaryValue(r, FormAccountingLedger.GVAccountingLedger.GroupSummary.Item(3))
-
-            summaries_debit.Add(Tuple.Create(g_name.Substring(0, g_name.Length - 1), g_debit))
-            summaries_credit.Add(Tuple.Create(g_name.Substring(0, g_name.Length - 1), g_credit))
-            summaries_balance.Add(Tuple.Create(g_name.Substring(0, g_name.Length - 1), g_balance))
-
-            r = r - 1
-        End While
 
         'new data with group, detail & total
         data_group.Columns.Add("number")
@@ -46,36 +17,19 @@
         data_group.Columns.Add("balance")
         data_group.Columns.Add("type")
 
-        Dim no As Integer = 1
+        Dim last_parent As String = ""
+        Dim last_parent_1 As String = ""
+
+        Dim d_last_parent As Decimal = 0.00
+        Dim c_last_parent As Decimal = 0.00
+
+        Dim d_last_parent_1 As Decimal = 0.00
+        Dim c_last_parent_1 As Decimal = 0.00
+        Dim b_last_parent_1 As Decimal = 0.00
 
         For i = 0 To data.Rows.Count - 1
-            'total
             If Not i = 0 Then
-                If Not last_group(count_group + 1) = data.Rows(i)("acc_name").ToString Then
-                    'match summaries
-                    Dim debit As Int64 = 0
-                    Dim credit As Int64 = 0
-                    Dim balance As Int64 = 0
-
-                    For Each value As Tuple(Of String, Int64) In summaries_debit
-                        If data.Rows(i - 1)("acc_name").ToString = value.Item1 Then
-                            debit = value.Item2
-                        End If
-                    Next
-
-                    For Each value As Tuple(Of String, Int64) In summaries_credit
-                        If data.Rows(i - 1)("acc_name").ToString = value.Item1 Then
-                            credit = value.Item2
-                        End If
-                    Next
-
-                    For Each value As Tuple(Of String, Int64) In summaries_balance
-                        If data.Rows(i - 1)("acc_name").ToString = value.Item1 Then
-                            balance = value.Item2
-                        End If
-                    Next
-
-                    'add total
+                If Not last_parent = data.Rows(i)("acc_name").ToString Then
                     data_group.Rows.Add(
                         "SUB TOTAL: " + data.Rows(i - 1)("acc_name").ToString,
                         "",
@@ -84,88 +38,58 @@
                         "",
                         "",
                         "",
-                        debit,
-                        credit,
-                        balance,
+                        d_last_parent,
+                        c_last_parent,
+                        data.Rows(i - 1)("balance"),
                         "total"
                     )
 
-                    last_group.IndexOf(count_group + 1)
+                    d_last_parent = 0.00
+                    c_last_parent = 0.00
+
+                    b_last_parent_1 = b_last_parent_1 + data.Rows(i - 1)("balance")
                 End If
 
-                For j = 0 To count_group
-                    Dim group_j As String = "group_" + j.ToString
+                'total
+                If Not last_parent_1 = data.Rows(i)("acc_name_1").ToString Then
+                    data_group.Rows.Add(
+                        "SUB TOTAL: " + data.Rows(i - 1)("acc_name_1").ToString,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        d_last_parent_1,
+                        c_last_parent_1,
+                        b_last_parent_1,
+                        "total"
+                    )
 
-                    If Not last_group(j) = data.Rows(i)(group_j).ToString Then
-                        If Not i = 0 Then
-                            'match summaries
-                            Dim debit As Int64 = 0
-                            Dim credit As Int64 = 0
-                            Dim balance As Int64 = 0
-
-                            For Each value As Tuple(Of String, Int64) In summaries_debit
-                                If data.Rows(i - 1)(group_j).ToString = value.Item1 Then
-                                    debit = value.Item2
-                                End If
-                            Next
-
-                            For Each value As Tuple(Of String, Int64) In summaries_credit
-                                If data.Rows(i - 1)(group_j).ToString = value.Item1 Then
-                                    credit = value.Item2
-                                End If
-                            Next
-
-                            For Each value As Tuple(Of String, Int64) In summaries_balance
-                                If data.Rows(i - 1)(group_j).ToString = value.Item1 Then
-                                    balance = value.Item2
-                                End If
-                            Next
-
-                            'add total
-                            data_group.Rows.Add(
-                                "SUB TOTAL: " + data.Rows(i - 1)(group_j).ToString,
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                debit,
-                                credit,
-                                balance,
-                                "total"
-                            )
-                        End If
-                    End If
-                Next
+                    d_last_parent_1 = 0.00
+                    c_last_parent_1 = 0.00
+                    b_last_parent_1 = 0.00
+                End If
             End If
 
             'group
-            For j = count_group To 0 Step -1
-                Dim group_j As String = "group_" + j.ToString
+            If Not last_parent_1 = data.Rows(i)("acc_name_1").ToString Then
+                data_group.Rows.Add(
+                    data.Rows(i)("acc_name_1").ToString,
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    0.00,
+                    0.00,
+                    0.00,
+                    "group"
+                )
+            End If
 
-                If Not last_group(j) = data.Rows(i)(group_j).ToString Then
-                    'add group
-                    data_group.Rows.Add(
-                        data.Rows(i)(group_j).ToString,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "group"
-                    )
-                End If
-
-                last_group(j) = data.Rows(i)(group_j).ToString
-            Next
-
-            If Not last_group(count_group + 1) = data.Rows(i)("acc_name").ToString Then
-                'add group
+            If Not last_parent = data.Rows(i)("acc_name").ToString Then
                 data_group.Rows.Add(
                     data.Rows(i)("acc_name").ToString,
                     "",
@@ -174,115 +98,74 @@
                     "",
                     "",
                     "",
-                    "",
-                    "",
-                    "",
+                    0.00,
+                    0.00,
+                    0.00,
                     "group"
                 )
-
-                last_group(count_group + 1) = data.Rows(i)("acc_name").ToString
-
-                no = 1
             End If
 
-            'add detail
+            If i = 0 Then
+                last_parent = data.Rows(i)("acc_name").ToString
+                last_parent_1 = data.Rows(i)("acc_name_1").ToString
+            End If
+
+            'detail
             data_group.Rows.Add(
-                no.ToString,
+                data.Rows(i)("number").ToString,
                 data.Rows(i)("report_number").ToString,
-                data.Rows(i)("comp_number").ToString,
-                data.Rows(i)("date_created").ToString,
-                data.Rows(i)("report_number_ref").ToString,
-                data.Rows(i)("acc_trans_note").ToString,
-                data.Rows(i)("qty").ToString,
-                data.Rows(i)("debit").ToString,
-                data.Rows(i)("credit").ToString,
-                data.Rows(i)("balance").ToString,
-                "detail"
+                data.Rows(i)("comp_number"),
+                data.Rows(i)("date_created"),
+                data.Rows(i)("report_number_ref"),
+                data.Rows(i)("acc_trans_note"),
+                data.Rows(i)("qty"),
+                data.Rows(i)("debit"),
+                data.Rows(i)("credit"),
+                data.Rows(i)("balance"),
+                ""
             )
 
-            no = no + 1
+            d_last_parent = d_last_parent + data.Rows(i)("debit")
+            c_last_parent = c_last_parent + data.Rows(i)("credit")
 
-            'last total
+            d_last_parent_1 = d_last_parent_1 + data.Rows(i)("debit")
+            c_last_parent_1 = c_last_parent_1 + data.Rows(i)("credit")
+
             If i = data.Rows.Count - 1 Then
-                'match summaries
-                Dim debit As Int64 = 0
-                Dim credit As Int64 = 0
-                Dim balance As Int64 = 0
-
-                For Each value As Tuple(Of String, Int64) In summaries_debit
-                    If data.Rows(i - 1)("acc_name").ToString = value.Item1 Then
-                        debit = value.Item2
-                    End If
-                Next
-
-                For Each value As Tuple(Of String, Int64) In summaries_credit
-                    If data.Rows(i - 1)("acc_name").ToString = value.Item1 Then
-                        credit = value.Item2
-                    End If
-                Next
-
-                For Each value As Tuple(Of String, Int64) In summaries_balance
-                    If data.Rows(i - 1)("acc_name").ToString = value.Item1 Then
-                        balance = value.Item2
-                    End If
-                Next
-
-                'add last total
+                'total
                 data_group.Rows.Add(
-                    "SUB TOTAL: " + data.Rows(i - 1)("acc_name").ToString,
+                    "SUB TOTAL: " + data.Rows(i)("acc_name").ToString,
                     "",
                     "",
                     "",
                     "",
                     "",
                     "",
-                    debit,
-                    credit,
-                    balance,
+                    d_last_parent,
+                    c_last_parent,
+                    data.Rows(i)("balance"),
                     "total"
                 )
 
-                last_group.IndexOf(count_group + 1)
+                b_last_parent_1 = b_last_parent_1 + data.Rows(i)("balance")
 
-                For j = 0 To count_group
-                    Dim group_j As String = "group_" + j.ToString
-
-                    For Each value As Tuple(Of String, Int64) In summaries_debit
-                        If data.Rows(i - 1)(group_j).ToString = value.Item1 Then
-                            debit = value.Item2
-                        End If
-                    Next
-
-                    For Each value As Tuple(Of String, Int64) In summaries_credit
-                        If data.Rows(i - 1)(group_j).ToString = value.Item1 Then
-                            credit = value.Item2
-                        End If
-                    Next
-
-                    For Each value As Tuple(Of String, Int64) In summaries_balance
-                        If data.Rows(i - 1)(group_j).ToString = value.Item1 Then
-                            balance = value.Item2
-                        End If
-                    Next
-
-                    If Not i = 0 Then
-                        'add last total
-                        data_group.Rows.Add(
-                            "SUB TOTAL: " + data.Rows(i - 1)(group_j).ToString,
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            debit,
-                            credit,
-                            balance,
-                            "total"
-                        )
-                    End If
-                Next
+                data_group.Rows.Add(
+                    "SUB TOTAL: " + data.Rows(i)("acc_name_1").ToString,
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    d_last_parent_1,
+                    c_last_parent_1,
+                    b_last_parent_1,
+                    "total"
+                )
             End If
+
+            last_parent = data.Rows(i)("acc_name").ToString
+            last_parent_1 = data.Rows(i)("acc_name_1").ToString
         Next
 
         'add table row
@@ -334,25 +217,25 @@
             acc_trans_note.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
             acc_trans_note.WordWrap = False
             Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
-            qty.Text = If(data_group.Rows(i)("qty").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("qty").ToString), "##,##0"))
+            qty.Text = If(data_group.Rows(i)("qty").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("qty").ToString), "##,##0.00"))
             qty.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             qty.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim debit As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
-            debit.Text = If(data_group.Rows(i)("debit").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("debit").ToString), "##,##0"))
+            debit.Text = If(data_group.Rows(i)("debit").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("debit").ToString), "##,##0.00"))
             debit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             debit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             debit.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim credit As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
-            credit.Text = If(data_group.Rows(i)("credit").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("credit").ToString), "##,##0"))
+            credit.Text = If(data_group.Rows(i)("credit").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("credit").ToString), "##,##0.00"))
             credit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             credit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             credit.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Dim balance As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
-            balance.Text = If(data_group.Rows(i)("balance").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("balance").ToString), "##,##0"))
+            balance.Text = If(data_group.Rows(i)("balance").ToString = "", "", Format(Decimal.Parse(data_group.Rows(i)("balance").ToString), "##,##0.00"))
             balance.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             balance.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             balance.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom

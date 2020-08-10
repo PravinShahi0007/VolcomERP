@@ -60,6 +60,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -303,8 +304,9 @@ Partial Class FormAccountingLedger
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseFont = True
-        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn16, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group})
+        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn16, Me.GridColumn23, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group})
         Me.GVAccountingLedger.GridControl = Me.GCAccountingLedger
+        Me.GVAccountingLedger.GroupCount = 2
         Me.GVAccountingLedger.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "number", Me.GridColumn16, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", Me.GridColumn9, "{0:N2}")})
         Me.GVAccountingLedger.LevelIndent = 0
         Me.GVAccountingLedger.Name = "GVAccountingLedger"
@@ -314,6 +316,7 @@ Partial Class FormAccountingLedger
         Me.GVAccountingLedger.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVAccountingLedger.OptionsView.ShowFooter = True
         Me.GVAccountingLedger.OptionsView.ShowGroupPanel = False
+        Me.GVAccountingLedger.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn23, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn20
         '
@@ -341,7 +344,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn16.FieldName = "number"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 1
+        Me.GridColumn16.VisibleIndex = 0
         '
         'GridColumn1
         '
@@ -357,7 +360,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn2.FieldName = "report_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -365,7 +368,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn3.FieldName = "comp_number"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -375,7 +378,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn4.FieldName = "date_created"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.VisibleIndex = 4
         '
         'GridColumn5
         '
@@ -383,7 +386,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn5.FieldName = "report_number_ref"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.VisibleIndex = 5
         '
         'GridColumn6
         '
@@ -391,7 +394,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn6.FieldName = "acc_trans_note"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.VisibleIndex = 6
         '
         'GridColumn22
         '
@@ -401,7 +404,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn22.FieldName = "qty"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 8
+        Me.GridColumn22.VisibleIndex = 7
         '
         'GridColumn7
         '
@@ -412,7 +415,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 9
+        Me.GridColumn7.VisibleIndex = 8
         '
         'GridColumn8
         '
@@ -423,7 +426,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 10
+        Me.GridColumn8.VisibleIndex = 9
         '
         'GridColumn9
         '
@@ -434,7 +437,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", "{0:N2}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 11
+        Me.GridColumn9.VisibleIndex = 10
         '
         'GridColumn21
         '
@@ -449,7 +452,15 @@ Partial Class FormAccountingLedger
         Me.GridColumncomp_group.FieldName = "comp_group"
         Me.GridColumncomp_group.Name = "GridColumncomp_group"
         Me.GridColumncomp_group.Visible = True
-        Me.GridColumncomp_group.VisibleIndex = 4
+        Me.GridColumncomp_group.VisibleIndex = 3
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Account"
+        Me.GridColumn23.FieldName = "acc_name_1"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 5
         '
         'FormAccountingLedger
         '
@@ -521,4 +532,5 @@ Partial Class FormAccountingLedger
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
