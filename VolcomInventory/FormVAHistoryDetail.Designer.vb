@@ -21,12 +21,14 @@ Partial Class FormVAHistoryDetail
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVAHistoryDetail))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtBank = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.DETrans = New DevExpress.XtraEditors.DateEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.DETrans = New DevExpress.XtraEditors.DateEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -43,17 +45,15 @@ Partial Class FormVAHistoryDetail
         Me.BandedGridColumninvoice_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncheckout_id = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.TxtBank = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETrans.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETrans.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -71,6 +71,43 @@ Partial Class FormVAHistoryDetail
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(820, 53)
         Me.PanelControl1.TabIndex = 1
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(13, 6)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl3.TabIndex = 6
+        Me.LabelControl3.Text = "Bank"
+        '
+        'TxtBank
+        '
+        Me.TxtBank.Enabled = False
+        Me.TxtBank.Location = New System.Drawing.Point(13, 21)
+        Me.TxtBank.Name = "TxtBank"
+        Me.TxtBank.Size = New System.Drawing.Size(137, 20)
+        Me.TxtBank.TabIndex = 5
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(154, 5)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(82, 13)
+        Me.LabelControl1.TabIndex = 4
+        Me.LabelControl1.Text = "Transaction Date"
+        '
+        'DETrans
+        '
+        Me.DETrans.EditValue = Nothing
+        Me.DETrans.Enabled = False
+        Me.DETrans.Location = New System.Drawing.Point(153, 21)
+        Me.DETrans.Name = "DETrans"
+        Me.DETrans.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETrans.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETrans.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.DETrans.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETrans.Size = New System.Drawing.Size(201, 20)
+        Me.DETrans.TabIndex = 4
         '
         'DECreated
         '
@@ -112,27 +149,6 @@ Partial Class FormVAHistoryDetail
         Me.BtnPrint.Size = New System.Drawing.Size(90, 49)
         Me.BtnPrint.TabIndex = 0
         Me.BtnPrint.Text = "Print"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(154, 5)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(82, 13)
-        Me.LabelControl1.TabIndex = 4
-        Me.LabelControl1.Text = "Transaction Date"
-        '
-        'DETrans
-        '
-        Me.DETrans.EditValue = Nothing
-        Me.DETrans.Enabled = False
-        Me.DETrans.Location = New System.Drawing.Point(153, 21)
-        Me.DETrans.Name = "DETrans"
-        Me.DETrans.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DETrans.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DETrans.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.DETrans.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DETrans.Size = New System.Drawing.Size(201, 20)
-        Me.DETrans.TabIndex = 4
         '
         'GCData
         '
@@ -275,22 +291,6 @@ Partial Class FormVAHistoryDetail
         Me.BandedGridColumncheckout_id.FieldName = "checkout_id"
         Me.BandedGridColumncheckout_id.Name = "BandedGridColumncheckout_id"
         '
-        'TxtBank
-        '
-        Me.TxtBank.Enabled = False
-        Me.TxtBank.Location = New System.Drawing.Point(13, 21)
-        Me.TxtBank.Name = "TxtBank"
-        Me.TxtBank.Size = New System.Drawing.Size(137, 20)
-        Me.TxtBank.TabIndex = 5
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(13, 6)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl3.TabIndex = 6
-        Me.LabelControl3.Text = "Bank"
-        '
         'FormVAHistoryDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -306,13 +306,13 @@ Partial Class FormVAHistoryDetail
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBank.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETrans.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETrans.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtBank.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

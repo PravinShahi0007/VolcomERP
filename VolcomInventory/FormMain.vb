@@ -8277,6 +8277,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormRefundOLStore.GCData, "Accepted Refund List")
         ElseIf formName = "FormPromoCollection" Then
             print(FormPromoCollection.GCData, "Promo Collection List")
+        ElseIf formName = "FormPayoutReport" Then
+            print(FormPayoutReport.GCData, "Payout Report")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9184,6 +9186,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormODM" Then
             FormODM.Close()
             FormODM.Dispose()
+        ElseIf formName = "FormPayoutReport" Then
+            FormPayoutReport.Close()
+            FormPayoutReport.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10117,6 +10122,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMappingStore.form_load()
         ElseIf formName = "FormDesignColumn" Then
             FormDesignColumn.form_load()
+        ElseIf formName = "FormPayoutReport" Then
+            FormPayoutReport.viewData()
         End If
     End Sub
     'Switch
@@ -15113,6 +15120,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormReportFGPO.Show()
             FormReportFGPO.WindowState = FormWindowState.Maximized
             FormReportFGPO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPayoutReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPayoutReport.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPayoutReport.MdiParent = Me
+            FormPayoutReport.Show()
+            FormPayoutReport.WindowState = FormWindowState.Maximized
+            FormPayoutReport.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

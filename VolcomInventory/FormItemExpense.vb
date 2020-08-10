@@ -19,7 +19,6 @@
 
         Dim query As String = exp.queryMain(cond, "2", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        Console.WriteLine(query)
         GCData.DataSource = data
         GVData.BestFitColumns()
         check_menu()
