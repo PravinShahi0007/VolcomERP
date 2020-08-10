@@ -3426,7 +3426,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             .transaction_time = table1("Transaction time").ToString,
                             .amount = table1("Amount"),
                             .amount_inv = If(y1 Is Nothing, 0, y1("amount")),
-                            .Status = If(y1 Is Nothing Or y1("id_virtual_acc_trans").ToString <> "0" Or table1("Amount") <> If(y1 Is Nothing, 0, y1("amount")), If(y1 Is Nothing, "Checkout id not found;", "") + If(y1("id_virtual_acc_trans").ToString <> "0", "Already imported;", "") + If(table1("Amount") <> If(y1 Is Nothing, 0, y1("amount")), "Amount not match;", ""), "OK")
+                            .Status = If(y1 Is Nothing Or If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString) <> "0" Or table1("Amount") <> If(y1 Is Nothing, 0, y1("amount")), If(y1 Is Nothing, "Checkout id not found;", "") + If(If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString) <> "0", "Already imported;", "") + If(table1("Amount") <> If(y1 Is Nothing, 0, y1("amount")), "Amount not match;", ""), "OK")
                         }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
