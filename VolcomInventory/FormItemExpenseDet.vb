@@ -20,6 +20,10 @@
         view_repo_type()
         '
         actionLoad()
+        '
+        GridColumnPPH.UnboundExpression = "Iif([id_acc_pph] = " & get_opt_acc_field("id_acc_skbp") & ", 0, [pph_percent] / 100 * [amount])"
+        CEPayLater.Checked = True
+        CEPayLater.Enabled = False
     End Sub
 
     Sub load_currency()
@@ -740,7 +744,40 @@ WHERE c.id_comp='" + id_comp + "' "
                     GCDraft.RefreshDataSource()
                     GVDraft.RefreshData()
                     'pph
-                    If GVData.GetRowCellValue(i, "pph_percent") > 0 Then
+                    If GVData.GetRowCellValue(i, "id_acc_pph").ToString = get_opt_acc_field("id_acc_skbp") And GVData.GetRowCellValue(i, "pph_percent") > 0 Then
+                        'SKBP
+                        'debit
+                        jum_row += 1
+                        Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                        newRowvat("no") = jum_row
+                        Try
+                            newRowvat("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "1")
+                            newRowvat("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2")
+                            newRowvat("note") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2") & " (PPH " & GVData.GetRowCellValue(i, "pph_percent").ToString & " %)"
+                        Catch ex As Exception
+                        End Try
+                        newRowvat("cc") = "000"
+                        newRowvat("report_number") = ""
+                        newRowvat("debit") = GVData.GetRowCellValue(i, "pph_percent") * GVData.GetRowCellValue(i, "amount")
+                        newRowvat("credit") = 0
+                        TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+
+                        'credit
+                        jum_row += 1
+                        newRowvat = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                        newRowvat("no") = jum_row
+                        Try
+                            newRowvat("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "1")
+                            newRowvat("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2")
+                            newRowvat("note") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2") & " (PPH " & GVData.GetRowCellValue(i, "pph_percent").ToString & " %)"
+                        Catch ex As Exception
+                        End Try
+                        newRowvat("cc") = "000"
+                        newRowvat("report_number") = ""
+                        newRowvat("debit") = 0
+                        newRowvat("credit") = GVData.GetRowCellValue(i, "pph_percent") * GVData.GetRowCellValue(i, "amount")
+                        TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+                    ElseIf GVData.GetRowCellValue(i, "pph_percent") > 0 Then
                         jum_row += 1
                         Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
                         newRowvat("no") = jum_row
