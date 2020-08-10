@@ -234,6 +234,8 @@ Partial Class FormMasterCompanySingle
         Me.BClearAR = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtARCode = New DevExpress.XtraEditors.TextEdit()
         Me.BCreateCOA = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEDocView = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCCP.SuspendLayout()
@@ -344,6 +346,7 @@ Partial Class FormMasterCompanySingle
         CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEDocView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -1812,14 +1815,14 @@ Partial Class FormMasterCompanySingle
         Me.GCLegal.Location = New System.Drawing.Point(2, 59)
         Me.GCLegal.MainView = Me.GVLegal
         Me.GCLegal.Name = "GCLegal"
-        Me.GCLegal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDownload})
+        Me.GCLegal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDownload, Me.RICEDocView})
         Me.GCLegal.Size = New System.Drawing.Size(635, 528)
         Me.GCLegal.TabIndex = 1
         Me.GCLegal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLegal})
         '
         'GVLegal
         '
-        Me.GVLegal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn16})
+        Me.GVLegal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn16, Me.GridColumn31})
         Me.GVLegal.GridControl = Me.GCLegal
         Me.GVLegal.Name = "GVLegal"
         Me.GVLegal.OptionsView.ColumnAutoWidth = False
@@ -2501,6 +2504,24 @@ Partial Class FormMasterCompanySingle
         Me.BCreateCOA.Text = "Manage COA"
         Me.BCreateCOA.Visible = False
         '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "View"
+        Me.GridColumn31.ColumnEdit = Me.RICEDocView
+        Me.GridColumn31.FieldName = "view_attachment"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 6
+        '
+        'RICEDocView
+        '
+        Me.RICEDocView.AutoHeight = False
+        Me.RICEDocView.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RICEDocView.Name = "RICEDocView"
+        Me.RICEDocView.PictureChecked = CType(resources.GetObject("RICEDocView.PictureChecked"), System.Drawing.Image)
+        Me.RICEDocView.PictureGrayed = CType(resources.GetObject("RICEDocView.PictureGrayed"), System.Drawing.Image)
+        Me.RICEDocView.PictureUnchecked = CType(resources.GetObject("RICEDocView.PictureUnchecked"), System.Drawing.Image)
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2635,6 +2656,7 @@ Partial Class FormMasterCompanySingle
         CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEDocView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2851,4 +2873,6 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents BClearDP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtAPCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BCreateCOA As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEDocView As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
