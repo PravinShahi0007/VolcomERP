@@ -1467,4 +1467,40 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
     Private Sub BCreateCOA_Click(sender As Object, e As EventArgs) Handles BCreateCOA.Click
         FormPopUpMasterCOA.ShowDialog()
     End Sub
+
+    Private Sub RICEDocView_Click(sender As Object, e As EventArgs) Handles RICEDocView.Click
+        Try
+            Dim path As String = Application.StartupPath & "\download\"
+
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            'download
+            Dim directory_upload As String = get_setup_field("upload_legal_dir")
+            Dim source_path As String = directory_upload & id_company & "\"
+
+            'download
+            My.Computer.Network.DownloadFile(source_path & GVLegal.GetFocusedRowCellValue("filename").ToString, path & GVLegal.GetFocusedRowCellValue("file_name").ToString & "_" & GVLegal.GetFocusedRowCellValue("filename").ToString, "", "", True, 100, True)
+
+            'open folder
+            If IO.File.Exists(path & GVLegal.GetFocusedRowCellValue("file_name").ToString & "_" & GVLegal.GetFocusedRowCellValue("filename").ToString) Then
+                Dim FILE_NAME As String = path & GVLegal.GetFocusedRowCellValue("file_name").ToString & "_" & GVLegal.GetFocusedRowCellValue("filename").ToString
+
+                If IO.File.Exists(FILE_NAME) = True Then
+                    Process.Start(FILE_NAME)
+                Else
+                    MsgBox("File Does Not Exist")
+                End If
+            Else
+                stopCustom("No Supporting Document !")
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
