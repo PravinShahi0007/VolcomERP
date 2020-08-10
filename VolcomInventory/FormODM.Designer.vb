@@ -52,7 +52,8 @@ Partial Class FormODM
         Me.GridColumnDim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFinal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
+        Me.RICEODM = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BComplete = New DevExpress.XtraEditors.SimpleButton()
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         Me.PCScan = New DevExpress.XtraEditors.PanelControl()
         Me.TEScan = New DevExpress.XtraEditors.TextEdit()
@@ -66,6 +67,7 @@ Partial Class FormODM
         Me.XTPManifestList.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEODM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCScan.SuspendLayout()
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,7 +144,7 @@ Partial Class FormODM
         'XTPManifestList
         '
         Me.XTPManifestList.Controls.Add(Me.GCList)
-        Me.XTPManifestList.Controls.Add(Me.BCreatePO)
+        Me.XTPManifestList.Controls.Add(Me.BComplete)
         Me.XTPManifestList.Controls.Add(Me.BReset)
         Me.XTPManifestList.Controls.Add(Me.PCScan)
         Me.XTPManifestList.Controls.Add(Me.PanelControl1)
@@ -156,35 +158,37 @@ Partial Class FormODM
         Me.GCList.Location = New System.Drawing.Point(0, 94)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEODM})
         Me.GCList.Size = New System.Drawing.Size(1072, 398)
         Me.GCList.TabIndex = 16
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'GVList
         '
-        Me.GVList.Appearance.GroupPanel.Font = New System.Drawing.Font("Tahoma", 1.0!)
-        Me.GVList.Appearance.GroupPanel.Options.UseFont = True
+        Me.GVList.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black
         Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn2, Me.GridColumn1, Me.GridColumnIdWhAwbDet, Me.GridColumnIdCompGroup, Me.GridColumnCreatedDate, Me.GridColumnCollie, Me.GridColumnCombinedNumber, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnAWBNumber, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
-        Me.GVList.GroupFormat = ""
-        Me.GVList.LevelIndent = 0
+        Me.GVList.GroupFormat = "[#image]{1} {2}"
+        Me.GVList.LevelIndent = 1
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVList.OptionsFind.AlwaysVisible = True
+        Me.GVList.OptionsFind.AllowFindPanel = False
         Me.GVList.OptionsView.AllowCellMerge = True
         Me.GVList.OptionsView.ColumnAutoWidth = False
         Me.GVList.OptionsView.ShowFooter = True
-        Me.GVList.OptionsView.ShowGroupedColumns = True
         Me.GVList.OptionsView.ShowGroupExpandCollapseButtons = False
         Me.GVList.OptionsView.ShowGroupPanel = False
         Me.GVList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn3
         '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn3.Caption = "Checklist"
+        Me.GridColumn3.FieldName = "is_check"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
@@ -192,7 +196,7 @@ Partial Class FormODM
         'GridColumn2
         '
         Me.GridColumn2.Caption = "ODM Number"
-        Me.GridColumn2.FieldName = "id_del_manifest"
+        Me.GridColumn2.FieldName = "number"
         Me.GridColumn2.Name = "GridColumn2"
         '
         'GridColumn1
@@ -403,24 +407,32 @@ Partial Class FormODM
         Me.GridColumnRemark.Visible = True
         Me.GridColumnRemark.VisibleIndex = 16
         '
-        'BCreatePO
+        'RICEODM
         '
-        Me.BCreatePO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreatePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreatePO.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreatePO.Appearance.Options.UseBackColor = True
-        Me.BCreatePO.Appearance.Options.UseFont = True
-        Me.BCreatePO.Appearance.Options.UseForeColor = True
-        Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePO.Location = New System.Drawing.Point(0, 492)
-        Me.BCreatePO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreatePO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(1072, 32)
-        Me.BCreatePO.TabIndex = 14
-        Me.BCreatePO.Text = "COMPLETE + PRINT"
+        Me.RICEODM.AutoHeight = False
+        Me.RICEODM.Name = "RICEODM"
+        Me.RICEODM.ValueChecked = "yes"
+        Me.RICEODM.ValueUnchecked = "no"
+        '
+        'BComplete
+        '
+        Me.BComplete.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BComplete.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BComplete.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BComplete.Appearance.Options.UseBackColor = True
+        Me.BComplete.Appearance.Options.UseFont = True
+        Me.BComplete.Appearance.Options.UseForeColor = True
+        Me.BComplete.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BComplete.Location = New System.Drawing.Point(0, 492)
+        Me.BComplete.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BComplete.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BComplete.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BComplete.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BComplete.Name = "BComplete"
+        Me.BComplete.Size = New System.Drawing.Size(1072, 32)
+        Me.BComplete.TabIndex = 14
+        Me.BComplete.Text = "COMPLETE + PRINT"
+        Me.BComplete.Visible = False
         '
         'BReset
         '
@@ -489,6 +501,7 @@ Partial Class FormODM
         Me.XTPManifestList.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEODM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCScan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCScan.ResumeLayout(False)
         Me.PCScan.PerformLayout()
@@ -505,7 +518,7 @@ Partial Class FormODM
     Friend WithEvents PCScan As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents BCreatePO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BComplete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
@@ -535,4 +548,5 @@ Partial Class FormODM
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEODM As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
