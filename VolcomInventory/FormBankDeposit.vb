@@ -151,11 +151,12 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         'Left Join tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
         'Left Join tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         ',CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name
-        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.date_received, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,rec_py.note, la.employee_name AS `last_approved_by`
+        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.date_received, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,rec_py.note, la.employee_name AS `last_approved_by`, ct.tag_description AS `unit`
 FROM tb_rec_payment rec_py
 INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
+INNER JOIN tb_coa_tag ct ON ct.id_coa_tag = rec_py.id_coa_tag
 LEFT JOIN (
 	SELECT a.id_report, a.id_user, a.username, a.employee_name 
 	FROM (
