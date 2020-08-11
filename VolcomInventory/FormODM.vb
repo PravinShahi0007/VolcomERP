@@ -128,4 +128,12 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             e.Appearance.BackColor = If(GVList.GetRowCellValue(e.RowHandle, "is_check").ToString = "OK", Color.LightGreen, Color.LightSalmon)
         End If
     End Sub
+
+    Private Sub BComplete_Click(sender As Object, e As EventArgs) Handles BComplete.Click
+        For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+            If Not GVList.GetRowCellValue(i, "is_check").ToString = "OK" Then
+
+            End If
+        Next
+    End Sub
 End Class
