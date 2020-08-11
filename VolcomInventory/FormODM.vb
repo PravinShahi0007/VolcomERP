@@ -130,10 +130,21 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Private Sub BComplete_Click(sender As Object, e As EventArgs) Handles BComplete.Click
+        Dim not_ok As Boolean = False
         For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
-            If Not GVList.GetRowCellValue(i, "is_check").ToString = "OK" Then
-
+            If Not GVList.IsGroupRow(i) Then
+                If Not GVList.GetRowCellValue(i, "is_check").ToString = "OK" Then
+                    Console.WriteLine(GVList.GetRowCellValue(i, "id_awbill").ToString & " adalah (" & GVList.GetRowCellValue(i, "is_check").ToString & ")")
+                    not_ok = True
+                    Exit For
+                End If
             End If
         Next
+        '
+        If not_ok Then
+            warningCustom("Some Outbound not scanned.")
+        Else
+            warningCustom("Ready to complete.")
+        End If
     End Sub
 End Class
