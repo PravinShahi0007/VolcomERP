@@ -6301,6 +6301,18 @@
     <Compile Include="FormValidateStock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVerificationMasterOL.Designer.vb">
+    <DependentUpon>FormVerificationMasterOL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerificationMasterOL.vb">
+        <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerificationMasterOLDet.Designer.vb">
+        <DependentUpon>FormVerificationMasterOLDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerificationMasterOLDet.vb">
+        <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVerifyMaster.Designer.vb">
       <DependentUpon>FormVerifyMaster.vb</DependentUpon>
     </Compile>
@@ -11837,6 +11849,12 @@
     <EmbeddedResource Include="FormViewBOM.resx">
       <DependentUpon>FormViewBOM.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerificationMasterOL.resx">
+    <DependentUpon>FormVerificationMasterOL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerificationMasterOLDet.resx">
+        <DependentUpon>FormVerificationMasterOLDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewBOMFull.resx">
       <DependentUpon>FormViewBOMFull.vb</DependentUpon>
