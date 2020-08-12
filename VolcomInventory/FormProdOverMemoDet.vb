@@ -151,7 +151,17 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If TxtMemoNumber.Text = "" Or GVData.RowCount <= 0 Then
+        Dim is_no_discount As Boolean = False
+
+        For i As Integer = 0 To GVData.RowCount - 1
+            If GVData.GetRowCellValue(i, "discount") <= 0 Then
+                is_no_discount = True
+                Exit For
+            End If
+        Next
+        If is_no_discount = True Then
+            stopCustom("Some discount is 0. Please put discount.")
+        ElseIf TxtMemoNumber.Text = "" Or GVData.RowCount <= 0 Then
             stopCustom("Data can't blank !")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
