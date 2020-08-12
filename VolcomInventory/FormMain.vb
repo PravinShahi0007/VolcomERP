@@ -9207,6 +9207,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesBranch" Then
             FormSalesBranch.Close()
             FormSalesBranch.Dispose()
+        ElseIf formName = "FormVerificationMasterOL" Then
+            FormVerificationMasterOL.Close()
+            FormVerificationMasterOL.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -15163,6 +15166,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPayoutReport.Show()
             FormPayoutReport.WindowState = FormWindowState.Maximized
             FormPayoutReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBVerificationMasterOL_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBVerificationMasterOL.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormVerificationMasterOL.MdiParent = Me
+            FormVerificationMasterOL.Show()
+            FormVerificationMasterOL.WindowState = FormWindowState.Maximized
+            FormVerificationMasterOL.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
