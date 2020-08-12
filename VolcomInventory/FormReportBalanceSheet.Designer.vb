@@ -131,10 +131,11 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPPNPPH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -160,7 +161,6 @@ Partial Class FormReportBalanceSheet
         Me.BViewPajak = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DETaxFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1179,7 +1179,7 @@ Partial Class FormReportBalanceSheet
         '
         'GVTaxReport
         '
-        Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn24, Me.GridColumn8, Me.GridColumn9, Me.GridColumn23, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
+        Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn24, Me.GridColumn8, Me.GridColumn9, Me.GridColumn23, Me.GridColumnPPNPPH, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
         Me.GVTaxReport.GridControl = Me.GCTaxReport
         Me.GVTaxReport.Name = "GVTaxReport"
         Me.GVTaxReport.OptionsView.ColumnAutoWidth = False
@@ -1217,6 +1217,14 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
         '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Invoice Number"
+        Me.GridColumn24.FieldName = "inv_number"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 3
+        '
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Description"
@@ -1241,15 +1249,15 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 6
         '
-        'GridColumn10
+        'GridColumnPPNPPH
         '
-        Me.GridColumn10.Caption = "PPH (%)"
-        Me.GridColumn10.DisplayFormat.FormatString = "N1"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "pph_percent"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
+        Me.GridColumnPPNPPH.Caption = "PPH (%)"
+        Me.GridColumnPPNPPH.DisplayFormat.FormatString = "N1"
+        Me.GridColumnPPNPPH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPPNPPH.FieldName = "pph_percent"
+        Me.GridColumnPPNPPH.Name = "GridColumnPPNPPH"
+        Me.GridColumnPPNPPH.Visible = True
+        Me.GridColumnPPNPPH.VisibleIndex = 7
         '
         'GridColumn11
         '
@@ -1476,14 +1484,6 @@ Partial Class FormReportBalanceSheet
         Me.DETaxFrom.Size = New System.Drawing.Size(173, 20)
         Me.DETaxFrom.TabIndex = 1
         '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Invoice Number"
-        Me.GridColumn24.FieldName = "inv_number"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 3
-        '
         'FormReportBalanceSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1674,7 +1674,7 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPPNPPH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn

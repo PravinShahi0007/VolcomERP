@@ -363,6 +363,8 @@
             FormPromoCollectionDet.Close()
         ElseIf report_mark_type = "251" Then
             FormBankWithdrawalSum.Close()
+        ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
+            FormSalesBranchDet.Close()
         End If
     End Sub
     Sub show()
@@ -1256,6 +1258,11 @@ GROUP BY rec.`id_prod_order`"
             FormBankWithdrawalSum.id_sum = id_report
             FormBankWithdrawalSum.is_view = "1"
             FormBankWithdrawalSum.ShowDialog()
+        ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
+            FormSalesBranchDet.action = "upd"
+            FormSalesBranchDet.id = id_report
+            FormSalesBranchDet.is_view = "1"
+            FormSalesBranchDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2249,6 +2256,12 @@ GROUP BY rec.`id_prod_order`"
             'bbk sumamry
             table_name = "tb_pn_summary"
             field_id = "id_pn_summary"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
+            'sales volcom store
+            table_name = "tb_sales_branch"
+            field_id = "id_sales_branch"
             field_number = "number"
             field_date = "created_date"
         Else

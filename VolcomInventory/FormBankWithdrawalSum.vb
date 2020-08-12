@@ -251,7 +251,7 @@ INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
 WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
-            warningCustom("BBK not approved yet")
+            warningCustom("BBK need to be approved.")
         Else
             FormReportMark.id_report = id_sum
             FormReportMark.report_mark_type = "251"

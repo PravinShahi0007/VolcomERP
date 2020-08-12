@@ -25,7 +25,7 @@
 
         'item
         Dim query_item As String = "
-            SELECT pod.`id_purc_order_det`, item.`item_desc`, pod.`qty` AS qty_po, pod.`value` AS val_po, pod.pph_percent
+            SELECT pod.`id_purc_order_det`, item.`item_desc`, pod.`qty` AS qty_po, pod.`value` AS val_po, pod.pph_percent, pod.gross_up_value
             FROM tb_purc_order_det pod
             INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
             INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
@@ -162,11 +162,15 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
     End Sub
 
     Private Sub GVPurcReq_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVPurcReq.CellValueChanged
+        calculate()
+    End Sub
+
+    Sub calculate()
         Dim pph As Decimal = 0.00
 
         For i = 0 To GVPurcReq.RowCount - 1
             If GVPurcReq.IsValidRowHandle(i) Then
-                pph += (GVPurcReq.GetRowCellValue(i, "pph_percent") * GVPurcReq.GetRowCellValue(i, "amount") / 100)
+                pph += (GVPurcReq.GetRowCellValue(i, "pph_percent") * (GVPurcReq.GetRowCellValue(i, "amount") + GVPurcReq.GetRowCellValue(i, "gross_up_value")) / 100)
             End If
         Next
 
@@ -180,5 +184,21 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
             TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue + TEVATValue.EditValue - TEPPH.EditValue
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub GrossUpPPHToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GrossUpPPHToolStripMenuItem.Click
+        If GVPurcReq.RowCount > 0 Then
+            Try
+                Dim dpp As Decimal = Decimal.Parse(GVPurcReq.GetFocusedRowCellValue("amount").ToString)
+                Dim pph As Decimal = Decimal.Parse(GVPurcReq.GetFocusedRowCellValue("pph_percent").ToString)
+                '
+                Dim grossup_val As Decimal = 0.00
+                grossup_val = ((100 / (100 - pph)) * dpp) - dpp
+                GVPurcReq.SetFocusedRowCellValue("gross_up_value", grossup_val)
+                calculate()
+            Catch ex As Exception
+                warningCustom("Please check your input")
+            End Try
+        End If
     End Sub
 End Class

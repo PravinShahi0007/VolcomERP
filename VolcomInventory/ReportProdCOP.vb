@@ -75,10 +75,24 @@ Public Class ReportProdCOP
         LDesignName.Text = data.Rows(0)("design_display_name").ToString
         LCodeDesign.Text = data.Rows(0)("design_code").ToString
         Lkurs.Text = kursx.ToString("N2")
+
         If data.Rows(0)("id_cop_status").ToString = "1" Then
             LStatus.Text = "Pre Final"
         Else
             LStatus.Text = "Final"
+        End If
+        '
+        query = "SELECT c.comp_name,c.`address_primary` FROM tb_prod_order_wo wo
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=wo.`id_prod_order` AND wo.`is_main_vendor`=1
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_ovh_price ov ON ov.`id_ovh_price`=wo.`id_ovh_price`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ov.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE pdd.`id_design`='" & id_design & "'"
+        data = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            LVendor.Text = data.Rows(0)("comp_name").ToString
+            LVendorAddress.Text = data.Rows(0)("address_primary").ToString
         End If
     End Sub
 
