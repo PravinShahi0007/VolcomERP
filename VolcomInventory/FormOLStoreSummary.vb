@@ -24,6 +24,53 @@
         viewCompGroup()
         viewCompDetail()
         viewPromo()
+        viewPromoNotAll()
+
+        'set caption size
+        'propose
+        GVPromoDetail.Columns("qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVPromoDetail.Columns("qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVPromoDetail.Columns("qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVPromoDetail.Columns("qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVPromoDetail.Columns("qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVPromoDetail.Columns("qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVPromoDetail.Columns("qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVPromoDetail.Columns("qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVPromoDetail.Columns("qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVPromoDetail.Columns("qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'soh
+        GVPromoDetail.Columns("rep_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVPromoDetail.Columns("rep_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVPromoDetail.Columns("rep_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVPromoDetail.Columns("rep_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVPromoDetail.Columns("rep_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVPromoDetail.Columns("rep_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVPromoDetail.Columns("rep_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVPromoDetail.Columns("rep_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVPromoDetail.Columns("rep_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVPromoDetail.Columns("rep_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'sal
+        GVPromoDetail.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVPromoDetail.Columns("sal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVPromoDetail.Columns("sal_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVPromoDetail.Columns("sal_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVPromoDetail.Columns("sal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVPromoDetail.Columns("sal_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVPromoDetail.Columns("sal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVPromoDetail.Columns("sal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVPromoDetail.Columns("sal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVPromoDetail.Columns("sal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'bal
+        GVPromoDetail.Columns("bal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVPromoDetail.Columns("bal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVPromoDetail.Columns("bal_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVPromoDetail.Columns("bal_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVPromoDetail.Columns("bal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVPromoDetail.Columns("bal_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVPromoDetail.Columns("bal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVPromoDetail.Columns("bal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVPromoDetail.Columns("bal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVPromoDetail.Columns("bal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     Sub viewCompGroup()
@@ -73,6 +120,19 @@
         ORDER BY id_ol_promo_collection DESC "
         viewSearchLookupQuery(SLEPromo, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection")
         SLEPromo.EditValue = 0
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewPromoNotAll()
+        Cursor = Cursors.WaitCursor
+        Dim prm As New ClassPromoCollection()
+        Dim query As String = "SELECT p.id_ol_promo_collection, prm.id_promo, prm.promo, p.`number`,
+        p.start_period, p.end_period
+        FROM tb_ol_promo_collection p
+        INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
+        WHERE p.id_report_status=6
+        ORDER BY id_ol_promo_collection DESC "
+        viewSearchLookupQuery(SLEPromoDetail, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection")
         Cursor = Cursors.Default
     End Sub
 
@@ -909,5 +969,171 @@
             m.report_mark_type = "249"
             m.show()
         End If
+    End Sub
+
+    Sub viewDetailPromo()
+        Cursor = Cursors.WaitCursor
+        Dim id_promo As String = SLEPromoDetail.EditValue.ToString
+        Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
+        n.nomer_urut,prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, pd.design_price,
+        SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN pd.qty END),0) AS `qty1`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='2' THEN pd.qty END),0) AS `qty2`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='3' THEN pd.qty END),0) AS `qty3`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='4' THEN pd.qty END),0) AS `qty4`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='5' THEN pd.qty END),0) AS `qty5`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='6' THEN pd.qty END),0) AS `qty6`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='7' THEN pd.qty END),0) AS `qty7`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='8' THEN pd.qty END),0) AS `qty8`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='9' THEN pd.qty END),0) AS `qty9`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='0' THEN pd.qty END),0) AS `qty0`,
+        SUM(pd.qty) AS `qty`,
+        SUM(pd.qty) * pd.design_price AS `amount`,
+        IFNULL(sal.qty1,0) AS `sal_qty1`,
+        IFNULL(sal.qty2,0) AS `sal_qty2`,
+        IFNULL(sal.qty3,0) AS `sal_qty3`,
+        IFNULL(sal.qty4,0) AS `sal_qty4`,
+        IFNULL(sal.qty5,0) AS `sal_qty5`,
+        IFNULL(sal.qty6,0) AS `sal_qty6`,
+        IFNULL(sal.qty7,0) AS `sal_qty7`,
+        IFNULL(sal.qty8,0) AS `sal_qty8`,
+        IFNULL(sal.qty9,0) AS `sal_qty9`,
+        IFNULL(sal.qty0,0) AS `sal_qty0`,
+        IFNULL(sal.qty,0) AS `sal_qty`,
+        IFNULL(sal.qty,0) * pd.design_price AS `sal_amount`,
+        IFNULL(rep.rep_qty1,0) AS `rep_qty1`,
+        IFNULL(rep.rep_qty2,0) AS `rep_qty2`,
+        IFNULL(rep.rep_qty3,0) AS `rep_qty3`,
+        IFNULL(rep.rep_qty4,0) AS `rep_qty4`,
+        IFNULL(rep.rep_qty5,0) AS `rep_qty5`,
+        IFNULL(rep.rep_qty6,0) AS `rep_qty6`,
+        IFNULL(rep.rep_qty7,0) AS `rep_qty7`,
+        IFNULL(rep.rep_qty8,0) AS `rep_qty8`,
+        IFNULL(rep.rep_qty9,0) AS `rep_qty9`,
+        IFNULL(rep.rep_qty0,0) AS `rep_qty0`,
+        IFNULL(rep.rep_qty,0) AS `rep_qty`,
+        IFNULL(rep.rep_qty,0) * pd.design_price AS `rep_amount`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN pd.qty END),0)-IFNULL(sal.qty1,0)+IFNULL(rep.rep_qty1,0) AS `bal_qty1`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='2' THEN pd.qty END),0)-IFNULL(sal.qty2,0)+IFNULL(rep.rep_qty2,0) AS `bal_qty2`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='3' THEN pd.qty END),0)-IFNULL(sal.qty3,0)+IFNULL(rep.rep_qty3,0) AS `bal_qty3`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='4' THEN pd.qty END),0)-IFNULL(sal.qty4,0)+IFNULL(rep.rep_qty4,0) AS `bal_qty4`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='5' THEN pd.qty END),0)-IFNULL(sal.qty5,0)+IFNULL(rep.rep_qty5,0) AS `bal_qty5`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='6' THEN pd.qty END),0)-IFNULL(sal.qty6,0)+IFNULL(rep.rep_qty6,0) AS `bal_qty6`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='7' THEN pd.qty END),0)-IFNULL(sal.qty7,0)+IFNULL(rep.rep_qty7,0) AS `bal_qty7`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='8' THEN pd.qty END),0)-IFNULL(sal.qty8,0)+IFNULL(rep.rep_qty8,0) AS `bal_qty8`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='9' THEN pd.qty END),0)-IFNULL(sal.qty9,0)+IFNULL(rep.rep_qty9,0) AS `bal_qty9`,
+        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='0' THEN pd.qty END),0)-IFNULL(sal.qty0,0)+IFNULL(rep.rep_qty0,0) AS `bal_qty0`,
+        SUM(pd.qty)-IFNULL(sal.qty,0)+IFNULL(rep.rep_qty,0) AS `bal_qty`,
+        (SUM(pd.qty)-IFNULL(sal.qty,0)+IFNULL(rep.rep_qty,0)) * pd.design_price AS `bal_amount`,
+        pd.id_prod_shopify, pd.current_tag, pd.design_price, design_price_type AS `price_type`
+        FROM tb_ol_promo_collection_sku pd
+        INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
+        LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
+        INNER JOIN (
+          SELECT @nomer:=@nomer+1 AS `nomer_urut`,a.id_design FROM (
+             SELECT d.id_design
+             FROM tb_ol_promo_collection_sku pd
+             INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+             INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+             WHERE pd.id_ol_promo_collection=" + id_promo + "
+             GROUP BY prod.id_design
+             ORDER BY d.design_display_name ASC 
+          ) a
+          JOIN (SELECT @nomer:=0 AS `nox`) AS `n`
+        ) n ON n.id_design = prod.id_design
+        LEFT JOIN (
+	        SELECT d.id_design,  SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN spd.sales_pos_det_qty END),0) AS `qty1`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='2' THEN spd.sales_pos_det_qty END),0) AS `qty2`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='3' THEN spd.sales_pos_det_qty END),0) AS `qty3`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='4' THEN spd.sales_pos_det_qty END),0) AS `qty4`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='5' THEN spd.sales_pos_det_qty END),0) AS `qty5`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='6' THEN spd.sales_pos_det_qty END),0) AS `qty6`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='7' THEN spd.sales_pos_det_qty END),0) AS `qty7`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='8' THEN spd.sales_pos_det_qty END),0) AS `qty8`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='9' THEN spd.sales_pos_det_qty END),0) AS `qty9`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='0' THEN spd.sales_pos_det_qty END),0) AS `qty0`,
+	        SUM(spd.sales_pos_det_qty) AS `qty`
+	        FROM tb_sales_pos sp
+	        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = spd.id_pl_sales_order_del_det
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	        INNER JOIN tb_ol_promo_collection_sku pd ON pd.id_ol_promo_collection_sku = sod.id_ol_promo_collection_sku AND pd.id_ol_promo_collection=" + id_promo + "
+	        INNER JOIN tb_m_product prod ON prod.id_product = spd.id_product
+	        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+	        WHERE sp.id_report_status=6
+	        GROUP BY d.id_design, SUBSTRING(prod.product_full_code, 10, 1)
+        ) sal ON sal.id_design = d.id_design AND sal.size_type = SUBSTRING(prod.product_full_code, 10, 1)
+        LEFT JOIN (
+	        SELECT d.id_design,  SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN sod.sales_order_det_qty END),0) AS `rep_qty1`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='2' THEN sod.sales_order_det_qty END),0) AS `rep_qty2`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='3' THEN sod.sales_order_det_qty END),0) AS `rep_qty3`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='4' THEN sod.sales_order_det_qty END),0) AS `rep_qty4`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='5' THEN sod.sales_order_det_qty END),0) AS `rep_qty5`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='6' THEN sod.sales_order_det_qty END),0) AS `rep_qty6`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='7' THEN sod.sales_order_det_qty END),0) AS `rep_qty7`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='8' THEN sod.sales_order_det_qty END),0) AS `rep_qty8`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='9' THEN sod.sales_order_det_qty END),0) AS `rep_qty9`,
+	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='0' THEN sod.sales_order_det_qty END),0) AS `rep_qty0`,
+	        SUM(sod.sales_order_det_qty) AS `rep_qty`
+	        FROM tb_sales_order so
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+	        INNER JOIN tb_ol_promo_collection_sku pd ON pd.id_ol_promo_collection_sku = sod.id_ol_promo_collection_sku_replace
+	        INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+	        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+	        WHERE so.id_report_status=6 AND !ISNULL(sod.id_ol_promo_collection_sku_replace) AND pd.id_ol_promo_collection=" + id_promo + "
+	        GROUP BY d.id_design, SUBSTRING(prod.product_full_code, 10, 1)
+        ) rep ON rep.id_design = d.id_design AND rep.size_type = SUBSTRING(prod.product_full_code, 10, 1)
+        WHERE pd.id_ol_promo_collection=" + id_promo + "
+        GROUP BY d.id_design, SUBSTRING(prod.product_full_code, 10, 1)
+        ORDER BY d.design_display_name ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPromoDetail.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSPromoDetail_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSPromoDetail.Click
+        If GVPromoDetail.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVPromoDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To GVPromoDetail.Columns.Count - 1
+                Try
+                    If GVPromoDetail.Columns(i).OwnerBand.ToString = "PROPOSED" Or GVPromoDetail.Columns(i).OwnerBand.ToString = "SALES" Or GVPromoDetail.Columns(i).OwnerBand.ToString = "REPLACE" Or GVPromoDetail.Columns(i).OwnerBand.ToString = "BALANCE" Then
+                        GVPromoDetail.Columns(i).Caption = GVPromoDetail.Columns(i).Caption.ToString.Replace(System.Environment.NewLine, " / ")
+                    End If
+                Catch ex As Exception
+                End Try
+            Next
+
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "ol_store_report_prm_detail.xlsx"
+            exportToXLS(path, "ol_store_report_prm_detail", GCPromoDetail)
+
+            'restore column opt
+            GVPromoDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnViewPromoDetail_Click(sender As Object, e As EventArgs) Handles BtnViewPromoDetail.Click
+        viewDetailPromo()
     End Sub
 End Class
