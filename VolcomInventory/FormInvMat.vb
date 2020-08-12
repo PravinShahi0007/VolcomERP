@@ -25,7 +25,13 @@
     End Sub
 
     Sub print_list()
-
+        If XTCMatInv.SelectedTabPageIndex = 0 Then
+            print_raw(GCInvoice, "")
+        ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
+            print_raw(GCPL, "")
+        ElseIf XTCMatInv.SelectedTabPageIndex = 2 Then
+            print_raw(GCRetur, "")
+        End If
     End Sub
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
