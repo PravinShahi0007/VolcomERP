@@ -329,7 +329,7 @@
                 For i As Integer = 0 To GVJournalDet.RowCount - 1
                     query += If(Not i = 0, ",", "")
 
-                    query += "('" & id_ca & "','" & GVJournalDet.GetRowCellValue(i, "id_acc").ToString & "','" & GVJournalDet.GetRowCellValue(i, "id_comp").ToString & "','" & GVJournalDet.GetRowCellValue(i, "description").ToString & "','" & decimalSQL(GVJournalDet.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVJournalDet.GetRowCellValue(i, "note").ToString) & "')"
+                    query += "('" & id_ca & "','" & GVJournalDet.GetRowCellValue(i, "id_acc").ToString & "','" & GVJournalDet.GetRowCellValue(i, "id_comp").ToString & "','" & addSlashes(GVJournalDet.GetRowCellValue(i, "description").ToString) & "','" & decimalSQL(GVJournalDet.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVJournalDet.GetRowCellValue(i, "note").ToString) & "')"
                 Next
 
                 execute_non_query(query, True, "", "", "", "")
