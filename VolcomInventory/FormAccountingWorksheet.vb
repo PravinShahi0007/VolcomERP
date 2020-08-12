@@ -150,9 +150,9 @@
     Private Sub GVAccountingLedger_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVAccountingWorksheet.CustomSummaryCalculate
         Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
 
-        If item.FieldName.ToString = "number" Then
+        If item.FieldName.ToString = "acc_name" Then
             If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
-                e.TotalValue = "Sub Total" + GVAccountingWorksheet.GetGroupRowDisplayText(e.GroupRowHandle).Replace("Account", "")
+                e.TotalValue = "Sub Total: " + GVAccountingWorksheet.GetGroupRowDisplayText(e.GroupRowHandle).Replace("Account", "")
             End If
         End If
     End Sub

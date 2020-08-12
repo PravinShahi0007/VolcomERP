@@ -262,13 +262,13 @@ Partial Class FormAccountingLedger
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Report"
         '
         'ViewReffToolStripMenuItem
         '
         Me.ViewReffToolStripMenuItem.Name = "ViewReffToolStripMenuItem"
-        Me.ViewReffToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewReffToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.ViewReffToolStripMenuItem.Text = "View Reff"
         '
         'GVAccountingLedger
@@ -308,7 +308,8 @@ Partial Class FormAccountingLedger
         Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn16, Me.GridColumn23, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group})
         Me.GVAccountingLedger.GridControl = Me.GCAccountingLedger
         Me.GVAccountingLedger.GroupCount = 2
-        Me.GVAccountingLedger.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "number", Me.GridColumn16, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", Me.GridColumn9, "{0:N2}")})
+        Me.GVAccountingLedger.GroupFormat = "[#image]{1} {2}"
+        Me.GVAccountingLedger.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", Me.GridColumn9, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "acc_trans_note", Me.GridColumn6, "")})
         Me.GVAccountingLedger.LevelIndent = 0
         Me.GVAccountingLedger.Name = "GVAccountingLedger"
         Me.GVAccountingLedger.OptionsBehavior.AutoExpandAllGroups = True
@@ -466,7 +467,7 @@ Partial Class FormAccountingLedger
         'ViewJournalToolStripMenuItem
         '
         Me.ViewJournalToolStripMenuItem.Name = "ViewJournalToolStripMenuItem"
-        Me.ViewJournalToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewJournalToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.ViewJournalToolStripMenuItem.Text = "View Journal"
         '
         'GridColumn24
