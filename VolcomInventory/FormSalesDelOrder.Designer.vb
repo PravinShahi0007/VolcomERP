@@ -43,6 +43,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntracking_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -98,7 +99,6 @@ Partial Class FormSalesDelOrder
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
-        Me.GridColumntotal_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -352,6 +352,17 @@ Partial Class FormSalesDelOrder
         Me.GridColumncustomer_name.Visible = True
         Me.GridColumncustomer_name.VisibleIndex = 6
         Me.GridColumncustomer_name.Width = 109
+        '
+        'GridColumntotal_amount
+        '
+        Me.GridColumntotal_amount.Caption = "Amount"
+        Me.GridColumntotal_amount.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_amount.FieldName = "total_amount"
+        Me.GridColumntotal_amount.Name = "GridColumntotal_amount"
+        Me.GridColumntotal_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N0}")})
+        Me.GridColumntotal_amount.Visible = True
+        Me.GridColumntotal_amount.VisibleIndex = 10
         '
         'GridView3
         '
@@ -864,17 +875,6 @@ Partial Class FormSalesDelOrder
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'GridColumntotal_amount
-        '
-        Me.GridColumntotal_amount.Caption = "Amount"
-        Me.GridColumntotal_amount.DisplayFormat.FormatString = "N0"
-        Me.GridColumntotal_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntotal_amount.FieldName = "total_amount"
-        Me.GridColumntotal_amount.Name = "GridColumntotal_amount"
-        Me.GridColumntotal_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N0}")})
-        Me.GridColumntotal_amount.Visible = True
-        Me.GridColumntotal_amount.VisibleIndex = 10
         '
         'FormSalesDelOrder
         '
