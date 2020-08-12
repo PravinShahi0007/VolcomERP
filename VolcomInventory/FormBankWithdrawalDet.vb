@@ -87,10 +87,10 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                         newRow("kurs") = 1
                         newRow("id_currency") = "1"
                         newRow("currency") = "Rp"
-                        newRow("val_bef_kurs") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
-                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
-                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
-                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total")
+                        newRow("val_bef_kurs") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total") + FormBankWithdrawal.GVPOList.GetRowCellValue(i, "gross_up_value")
+                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total") + FormBankWithdrawal.GVPOList.GetRowCellValue(i, "gross_up_value")
+                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total") + FormBankWithdrawal.GVPOList.GetRowCellValue(i, "gross_up_value")
+                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_po") - FormBankWithdrawal.GVPOList.GetRowCellValue(i, "pph_total") + FormBankWithdrawal.GVPOList.GetRowCellValue(i, "gross_up_value")
                         newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "inv_number").ToString
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                         'isi DP
