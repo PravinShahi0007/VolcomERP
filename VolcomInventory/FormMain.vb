@@ -7850,7 +7850,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormOLStoreSummary.XTCOLStore.SelectedTabPageIndex = 1 Then
                 print_raw(FormOLStoreSummary.GCDetail, "")
             ElseIf FormOLStoreSummary.XTCOLStore.SelectedTabPageIndex = 2 Then
-                print_raw(FormOLStoreSummary.GCPromo, "")
+                If FormOLStoreSummary.XTCPromo.SelectedTabPageIndex = 0 Then
+                    print_raw(FormOLStoreSummary.GCPromo, "")
+                ElseIf FormOLStoreSummary.XTCPromo.SelectedTabPageIndex = 1 Then
+                    print_raw(FormOLStoreSummary.GCPromoDetail, "")
+                End If
             End If
         ElseIf formName = "FormFGAging" Then
             print_raw(FormFGAging.GCDesign, "")

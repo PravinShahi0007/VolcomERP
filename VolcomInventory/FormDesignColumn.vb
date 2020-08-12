@@ -135,18 +135,20 @@
             data.Columns.Add(list(i).Columns(0).ColumnName, GetType(String))
         Next
 
+        'set empty
+        For i = 0 To list.Count - 1
+            While list(i).Rows.Count < max_row
+                list(i).Rows.Add("")
+            End While
+        Next
+
         'set row
         For i = 0 To max_row - 1
             Dim row As DataRow = data.NewRow
 
             For j = 0 To list.Count - 1
                 Dim column_name As String = list(j).Columns(0).ColumnName
-                Dim value As String = ""
-
-                Try
-                    value = list(j).Rows(i)(column_name).ToString()
-                Catch ex As Exception
-                End Try
+                Dim value As String = list(j).Rows(i)(column_name).ToString()
 
                 row(column_name) = value
             Next

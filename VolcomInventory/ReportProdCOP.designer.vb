@@ -85,6 +85,12 @@ Partial Public Class ReportProdCOP
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LCityDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LVendor = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LVendorAddress = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListProd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -573,7 +579,7 @@ Partial Public Class ReportProdCOP
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(421.2466!, 44.37497!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(421.2466!, 37.08335!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(90.75354!, 15.0!)
@@ -583,7 +589,7 @@ Partial Public Class ReportProdCOP
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(512.0001!, 44.37497!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(512.0001!, 37.08335!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(13.54181!, 15.0!)
@@ -593,7 +599,7 @@ Partial Public Class ReportProdCOP
         'LStatus
         '
         Me.LStatus.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LStatus.LocationFloat = New DevExpress.Utils.PointFloat(525.5419!, 44.37497!)
+        Me.LStatus.LocationFloat = New DevExpress.Utils.PointFloat(525.5419!, 37.08335!)
         Me.LStatus.Name = "LStatus"
         Me.LStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LStatus.SizeF = New System.Drawing.SizeF(146.7483!, 15.0!)
@@ -603,7 +609,7 @@ Partial Public Class ReportProdCOP
         'XrLabel14
         '
         Me.XrLabel14.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(64.67027!, 44.37497!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(512.0001!, 52.08337!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(13.54167!, 15.0!)
@@ -613,20 +619,20 @@ Partial Public Class ReportProdCOP
         'XrLabel12
         '
         Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(1.00015!, 44.37497!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(421.2466!, 52.08337!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(63.6702!, 15.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(90.75354!, 15.0!)
         Me.XrLabel12.StylePriority.UseFont = False
         Me.XrLabel12.Text = "Kurs"
         '
         'Lkurs
         '
         Me.Lkurs.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.Lkurs.LocationFloat = New DevExpress.Utils.PointFloat(78.21194!, 44.37497!)
+        Me.Lkurs.LocationFloat = New DevExpress.Utils.PointFloat(525.5418!, 52.08337!)
         Me.Lkurs.Name = "Lkurs"
         Me.Lkurs.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.Lkurs.SizeF = New System.Drawing.SizeF(223.7446!, 15.0!)
+        Me.Lkurs.SizeF = New System.Drawing.SizeF(146.7484!, 15.0!)
         Me.Lkurs.StylePriority.UseFont = False
         '
         'XrLabel2
@@ -878,9 +884,69 @@ Partial Public Class ReportProdCOP
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTitle, Me.XrLabel5, Me.LDesignName, Me.XrLabel1, Me.XrLabel4, Me.LCodeDesign, Me.XrLabel2, Me.Lkurs, Me.XrLabel12, Me.XrLabel14, Me.LStatus, Me.XrLabel6, Me.XrLabel7})
-        Me.PageHeader.HeightF = 73.95834!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel19, Me.XrLabel20, Me.LVendorAddress, Me.XrLabel3, Me.XrLabel16, Me.LVendor, Me.LTitle, Me.XrLabel5, Me.LDesignName, Me.XrLabel1, Me.XrLabel4, Me.LCodeDesign, Me.XrLabel2, Me.Lkurs, Me.XrLabel12, Me.XrLabel14, Me.LStatus, Me.XrLabel6, Me.XrLabel7})
+        Me.PageHeader.HeightF = 96.875!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(64.67027!, 37.08335!)
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(13.54167!, 15.0!)
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.Text = ":"
+        '
+        'XrLabel16
+        '
+        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(1.000086!, 37.08335!)
+        Me.XrLabel16.Name = "XrLabel16"
+        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel16.SizeF = New System.Drawing.SizeF(63.6702!, 15.0!)
+        Me.XrLabel16.StylePriority.UseFont = False
+        Me.XrLabel16.Text = "Vendor"
+        '
+        'LVendor
+        '
+        Me.LVendor.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.LVendor.LocationFloat = New DevExpress.Utils.PointFloat(78.21194!, 37.08335!)
+        Me.LVendor.Name = "LVendor"
+        Me.LVendor.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LVendor.SizeF = New System.Drawing.SizeF(223.7446!, 15.0!)
+        Me.LVendor.StylePriority.UseFont = False
+        Me.LVendor.Text = "BOM"
+        '
+        'XrLabel19
+        '
+        Me.XrLabel19.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(64.67027!, 52.08337!)
+        Me.XrLabel19.Name = "XrLabel19"
+        Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(13.54167!, 15.0!)
+        Me.XrLabel19.StylePriority.UseFont = False
+        Me.XrLabel19.Text = ":"
+        '
+        'XrLabel20
+        '
+        Me.XrLabel20.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(1.000086!, 52.08337!)
+        Me.XrLabel20.Name = "XrLabel20"
+        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(63.6702!, 15.0!)
+        Me.XrLabel20.StylePriority.UseFont = False
+        Me.XrLabel20.Text = "Address"
+        '
+        'LVendorAddress
+        '
+        Me.LVendorAddress.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.LVendorAddress.LocationFloat = New DevExpress.Utils.PointFloat(78.21194!, 52.08337!)
+        Me.LVendorAddress.Name = "LVendorAddress"
+        Me.LVendorAddress.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LVendorAddress.SizeF = New System.Drawing.SizeF(320.6196!, 32.29163!)
+        Me.LVendorAddress.StylePriority.UseFont = False
+        Me.LVendorAddress.Text = "BOM"
         '
         'ReportProdCOP
         '
@@ -966,4 +1032,10 @@ Partial Public Class ReportProdCOP
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
+    Friend WithEvents XrLabel19 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LVendorAddress As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LVendor As DevExpress.XtraReports.UI.XRLabel
 End Class

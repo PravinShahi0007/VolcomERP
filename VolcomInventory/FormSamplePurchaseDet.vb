@@ -274,11 +274,13 @@ GROUP BY spb.`id_sample_purc_budget`"
             If confirm = DialogResult.Yes Then
                 clear_all_request()
                 FormPopUpContact.id_pop_up = "1"
+                FormPopUpContact.is_must_active = "1"
                 FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
                 FormPopUpContact.ShowDialog()
             End If
         Else
             FormPopUpContact.id_pop_up = "1"
+            FormPopUpContact.is_must_active = "1"
             FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
             FormPopUpContact.ShowDialog()
         End If
