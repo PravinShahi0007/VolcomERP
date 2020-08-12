@@ -32,4 +32,14 @@
     Private Sub SBNew_Click(sender As Object, e As EventArgs) Handles SBNew.Click
         FormVerificationMasterOLDet.ShowDialog()
     End Sub
+
+    Private Sub FormVerificationMasterOL_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+        button_main("0", "0", "0")
+    End Sub
+
+    Private Sub FormVerificationMasterOL_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
 End Class
