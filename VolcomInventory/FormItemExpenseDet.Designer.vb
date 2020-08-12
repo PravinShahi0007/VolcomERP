@@ -121,12 +121,13 @@ Partial Class FormItemExpenseDet
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPPH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPPHDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAccountDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetTypeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCCDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurrView = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTPDraftJournal = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
@@ -141,7 +142,6 @@ Partial Class FormItemExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCurrView = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -760,7 +760,7 @@ Partial Class FormItemExpenseDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumn22, Me.GridColumnCurr, Me.GridColumn17, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnPPHCOA, Me.GridColumn16, Me.GridColumn7, Me.GridColumnPPHDesc, Me.GridColumnAccountDescription, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc, Me.GridColumnCurrView})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumn22, Me.GridColumnCurr, Me.GridColumn17, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnPPHCOA, Me.GridColumn16, Me.GridColumnPPH, Me.GridColumnPPHDesc, Me.GridColumnAccountDescription, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc, Me.GridColumnCurrView})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
@@ -1164,20 +1164,20 @@ Partial Class FormItemExpenseDet
         Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
-        'GridColumn7
+        'GridColumnPPH
         '
-        Me.GridColumn7.Caption = "PPH"
-        Me.GridColumn7.ColumnEdit = Me.RepositoryItemTextEdit3
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "pph_value"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_value", "{0:N2}")})
-        Me.GridColumn7.UnboundExpression = "[pph_percent] / 100 * [amount]"
-        Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 14
+        Me.GridColumnPPH.Caption = "PPH"
+        Me.GridColumnPPH.ColumnEdit = Me.RepositoryItemTextEdit3
+        Me.GridColumnPPH.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPPH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPPH.FieldName = "pph_value"
+        Me.GridColumnPPH.Name = "GridColumnPPH"
+        Me.GridColumnPPH.OptionsColumn.AllowEdit = False
+        Me.GridColumnPPH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_value", "{0:N2}")})
+        Me.GridColumnPPH.UnboundExpression = "Iif([id_acc_pph] = 948, 0, [pph_percent] / 100 * [amount])"
+        Me.GridColumnPPH.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnPPH.Visible = True
+        Me.GridColumnPPH.VisibleIndex = 14
         '
         'GridColumnPPHDesc
         '
@@ -1212,6 +1212,12 @@ Partial Class FormItemExpenseDet
         Me.GCCCDesc.Caption = "CC"
         Me.GCCCDesc.FieldName = "cc_desc"
         Me.GCCCDesc.Name = "GCCCDesc"
+        '
+        'GridColumnCurrView
+        '
+        Me.GridColumnCurrView.Caption = "Currency"
+        Me.GridColumnCurrView.FieldName = "currency"
+        Me.GridColumnCurrView.Name = "GridColumnCurrView"
         '
         'RepositoryItemSpinEdit1
         '
@@ -1347,12 +1353,6 @@ Partial Class FormItemExpenseDet
         Me.GridColumncc.Name = "GridColumncc"
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
-        '
-        'GridColumnCurrView
-        '
-        Me.GridColumnCurrView.Caption = "Currency"
-        Me.GridColumnCurrView.FieldName = "currency"
-        Me.GridColumnCurrView.Name = "GridColumnCurrView"
         '
         'FormItemExpenseDet
         '
@@ -1532,7 +1532,7 @@ Partial Class FormItemExpenseDet
     Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPPHCOA As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPPH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLECOAPPH As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn

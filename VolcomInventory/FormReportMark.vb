@@ -597,6 +597,9 @@
         ElseIf report_mark_type = "251" Then
             'bbk summary
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_pn_summary WHERE id_pn_summary = '{0}'", id_report)
+        ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
+            ' sales volcom store
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_branch WHERE id_sales_branch = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5858,7 +5861,19 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     ,e.inv_number
                     FROM tb_item_expense e
                     INNER JOIN  tb_item_expense_det ed ON ed.id_item_expense = e.id_item_expense
-                    WHERE e.id_item_expense=" + id_report + " AND pph_percent>0
+                    WHERE e.id_item_expense=" + id_report + " AND pph_percent>0 AND ed.`id_acc_pph` != (SELECT id_acc_skbp FROM tb_opt_accounting)
+                    UNION ALL
+                    SELECT " + id_acc_trans + ", ed.id_acc_pph,IF(ed.amount<0,(ed.pph_percent/100)*-ed.amount,0) AS `debit`, IF(ed.amount<0,0,(ed.pph_percent/100)*ed.amount) AS `credit`, ed.description, 157, e.id_item_expense, e.`number`,ed.cc
+                    ,e.inv_number
+                    FROM tb_item_expense e
+                    INNER JOIN  tb_item_expense_det ed ON ed.id_item_expense = e.id_item_expense
+                    WHERE e.id_item_expense=" + id_report + " AND pph_percent>0 AND ed.`id_acc_pph` = (SELECT id_acc_skbp FROM tb_opt_accounting)
+                    UNION ALL
+                    SELECT " + id_acc_trans + ", ed.id_acc_pph,IF(ed.amount<0,0,(ed.pph_percent/100)*ed.amount) AS `debit`, IF(ed.amount<0,(ed.pph_percent/100)*-ed.amount,0) AS `credit`, ed.description, 157, e.id_item_expense, e.`number`,ed.cc
+                    ,e.inv_number
+                    FROM tb_item_expense e
+                    INNER JOIN  tb_item_expense_det ed ON ed.id_item_expense = e.id_item_expense
+                    WHERE e.id_item_expense=" + id_report + " AND pph_percent>0 AND ed.`id_acc_pph` = (SELECT id_acc_skbp FROM tb_opt_accounting)
                     UNION ALL
                     SELECT " + id_acc_trans + ", ed.id_acc, IF(ed.amount<0,0,ed.amount) AS `debit`, IF(ed.amount<0,-ed.amount,0) AS `credit`, ed.description, 157, e.id_item_expense, e.`number`,ed.cc
                     ,e.inv_number
@@ -6279,6 +6294,14 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                             End Try
                         End If
                     End If
+                ElseIf FormBankDepositDet.type_rec = "3" Then
+                    'penjualan toko volcom
+                    Dim qjd_upd = "/*closing invoice*/
+                    UPDATE tb_sales_branch_det d
+                    INNER JOIN tb_rec_payment_det pyd ON pyd.id_report_det = d.id_sales_branch_det AND pyd.report_mark_type=254
+                    SET d.is_close=1
+                    WHERE pyd.id_rec_payment = '" + id_report + "' AND pyd.`value`=balance_due AND pyd.`value`!= 0; "
+                    execute_non_query(qjd_upd, True, "", "", "", "")
                 End If
             End If
 
@@ -8218,6 +8241,184 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             'update status
             query = String.Format("UPDATE tb_pn_summary SET id_report_status='{0}' WHERE id_pn_summary ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "254" Then
+            'volcom store sales
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'completed
+            If id_status_reportx = "6" Then
+                'auto jurnal
+                'Select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim date_reference As String = DateTime.Parse(FormSalesBranchDet.DESalesDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim date_created As String = DateTime.Parse(FormSalesBranchDet.DECreatedDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','19','" + id_user_prepared + "', '" + date_created + "','" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, vendor, id_coa_tag) 
+                SELECT '" + id_acc_trans + "', d.id_acc, d.id_comp, 0, IF(d.id_dc=1, ABS(d.value), 0) AS `debit`, IF(d.id_dc=2, d.value, 0) AS `credit`, d.note, '254', '" + id_report + "', 
+                '" + report_number + "', d.vendor, m.id_coa_tag
+                FROM tb_sales_branch_det d
+                INNER JOIN tb_sales_branch m ON m.id_sales_branch = d.id_sales_branch
+                WHERE d.id_sales_branch='" + id_report + "'
+                UNION ALL 
+                SELECT '" + id_acc_trans + "', m.rev_normal_net_acc, m.id_comp_normal, 0, 0.00 AS `debit`, m.rev_normal_net AS `credit`, m.rev_normal_net_note, '254', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.rev_normal_ppn_acc, m.id_comp_normal, 0, 0.00 AS `debit`, m.rev_normal_ppn AS `credit`, m.rev_normal_ppn_note, '254', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.comp_rev_normal_acc, m.id_comp_normal, 0, 0.00 AS `debit`, m.comp_rev_normal AS `credit`, m.comp_rev_normal_note, '254', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.rev_sale_net_acc, m.id_comp_sale, 0, 0.00 AS `debit`, m.rev_sale_net AS `credit`, m.rev_sale_net_note, '254', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.rev_sale_ppn_acc, m.id_comp_sale, 0, 0.00 AS `debit`, m.rev_sale_ppn AS `credit`, m.rev_sale_ppn_note, '254', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.comp_rev_sale_acc, m.id_comp_sale, 0, 0.00 AS `debit`, m.comp_rev_sale AS `credit`, m.comp_rev_sale_note, '254', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'; "
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sales_branch Set id_report_status='{0}' WHERE id_sales_branch ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
+                FormSalesBranchDet.actionLoad()
+                FormSalesBranch.viewData()
+                FormSalesBranch.GVData.FocusedRowHandle = find_row(FormSalesBranch.GVData, "id_sales_branch", id_report)
+            Catch ex As Exception
+            End Try
+        ElseIf report_mark_type = "256" Then
+            'volcom store CN
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'completed
+            If id_status_reportx = "6" Then
+                'auto jurnal
+                'Select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim date_reference As String = DateTime.Parse(FormSalesBranchDet.DESalesDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim date_created As String = DateTime.Parse(FormSalesBranchDet.DECreatedDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','13','" + id_user_prepared + "', '" + date_created + "','" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, credit,debit, acc_trans_det_note, report_mark_type, id_report, report_number, vendor, id_coa_tag) 
+                SELECT '" + id_acc_trans + "', d.id_acc, d.id_comp, 0, IF(d.id_dc=2, ABS(d.value), 0) AS `credit`, IF(d.id_dc=1, ABS(d.value), 0) AS `debit`, d.note, '256', '" + id_report + "', 
+                '" + report_number + "', d.vendor, m.id_coa_tag
+                FROM tb_sales_branch_det d
+                INNER JOIN tb_sales_branch m ON m.id_sales_branch = d.id_sales_branch
+                WHERE d.id_sales_branch='" + id_report + "'
+                UNION ALL 
+                SELECT '" + id_acc_trans + "', m.rev_normal_net_acc, m.id_comp_normal, 0, 0.00 AS `credit`, m.rev_normal_net AS `debit`, m.rev_normal_net_note, '256', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.rev_normal_ppn_acc, m.id_comp_normal, 0, 0.00 AS `credit`, m.rev_normal_ppn AS `debit`, m.rev_normal_ppn_note, '256', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.comp_rev_normal_acc, m.id_comp_normal, 0, 0.00 AS `credit`, m.comp_rev_normal AS `debit`, m.comp_rev_normal_note, '256', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.rev_sale_net_acc, m.id_comp_sale, 0, 0.00 AS `credit`, m.rev_sale_net AS `debit`, m.rev_sale_net_note, '256', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.rev_sale_ppn_acc, m.id_comp_sale, 0, 0.00 AS `credit`, m.rev_sale_ppn AS `debit`, m.rev_sale_ppn_note, '256', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', m.comp_rev_sale_acc, m.id_comp_sale, 0, 0.00 AS `credit`, m.comp_rev_sale AS `debit`, m.comp_rev_sale_note, '256', '" + id_report + "',
+                '" + report_number + "', '', m.id_coa_tag
+                FROM tb_sales_branch m
+                WHERE m.id_sales_branch='" + id_report + "'; "
+                execute_non_query(qjd, True, "", "", "", "")
+
+                'get id ref
+                Dim id_ref As String = execute_query("SELECT b.id_sales_branch_ref FROM tb_sales_branch b WHERE b.id_sales_branch=" + id_report + "", 0, True, "", "", "", "")
+                Dim qcl As String = "UPDATE tb_sales_branch_det main
+                INNER JOIN (
+	                SELECT d.id_sales_branch_det, d.value-IFNULL(cn.amount_cn,0.00)-IFNULL(rec.value,0.00) AS `bal`
+	                FROM tb_sales_branch_det d
+	                LEFT JOIN (
+	                  SELECT d.id_sales_branch_ref_det, SUM(d.value) AS `amount_cn`
+	                  FROM tb_sales_branch_det d
+	                  INNER JOIN tb_sales_branch m ON m.id_sales_branch = d.id_sales_branch
+	                  WHERE m.id_report_status!=5 AND m.id_sales_branch_ref=" + id_ref + "
+	                  GROUP BY d.id_sales_branch_ref_det
+	                ) cn ON cn.id_sales_branch_ref_det = d.id_sales_branch_det
+	                LEFT JOIN (
+	                  SELECT d.id_report_det, SUM(d.value) AS `value`
+	                  FROM tb_rec_payment_det d
+	                  INNER JOIN tb_rec_payment h ON h.id_rec_payment = d.id_rec_payment
+	                  WHERE h.id_report_status!=5 AND d.report_mark_type=254 AND d.id_report=" + id_ref + "
+	                  GROUP BY d.id_report_det
+	                ) rec ON rec.id_report_det = d.id_sales_branch_det
+	                INNER JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
+	                INNER JOIN tb_m_comp c ON c.id_comp = d.id_comp
+	                WHERE d.id_sales_branch=" + id_ref + " AND d.is_close=2
+	                HAVING bal=0
+                ) src ON src.id_sales_branch_det = main.id_sales_branch_det
+                SET main.is_close=1; "
+                execute_non_query(qcl, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sales_branch Set id_report_status='{0}' WHERE id_sales_branch ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
+                FormSalesBranchDet.actionLoad()
+                FormSalesBranch.viewData()
+                FormSalesBranch.GVData.FocusedRowHandle = find_row(FormSalesBranch.GVData, "id_sales_branch", id_report)
+            Catch ex As Exception
+            End Try
         End If
 
             'adding lead time
