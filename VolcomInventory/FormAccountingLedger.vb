@@ -181,4 +181,26 @@
             End If
         End If
     End Sub
+
+    Private Sub ViewJournalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewJournalToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim id_acc_trans As String = GVAccountingLedger.GetFocusedRowCellValue("id_acc_trans").ToString
+
+        If id_acc_trans <> "0" Then
+            Dim s As New ClassShowPopUp()
+
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+
+            s.show()
+        Else
+            warningCustom("Journal not found.")
+        End If
+
+        Cursor = Cursors.Default
+    End Sub
 End Class

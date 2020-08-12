@@ -19,7 +19,6 @@ Partial Class FormAccountingLedger
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLUETo = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -39,7 +38,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAccountingLedger = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewReffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVAccountingLedger = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -48,6 +47,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -60,7 +60,8 @@ Partial Class FormAccountingLedger
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewJournalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -254,20 +255,20 @@ Partial Class FormAccountingLedger
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewReffToolStripMenuItem})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewReffToolStripMenuItem, Me.ViewJournalToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(138, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(141, 70)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Report"
         '
         'ViewReffToolStripMenuItem
         '
         Me.ViewReffToolStripMenuItem.Name = "ViewReffToolStripMenuItem"
-        Me.ViewReffToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.ViewReffToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ViewReffToolStripMenuItem.Text = "View Reff"
         '
         'GVAccountingLedger
@@ -304,7 +305,7 @@ Partial Class FormAccountingLedger
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseFont = True
-        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn16, Me.GridColumn23, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group})
+        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn16, Me.GridColumn23, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group})
         Me.GVAccountingLedger.GridControl = Me.GCAccountingLedger
         Me.GVAccountingLedger.GroupCount = 2
         Me.GVAccountingLedger.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "number", Me.GridColumn16, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", Me.GridColumn9, "{0:N2}")})
@@ -345,6 +346,14 @@ Partial Class FormAccountingLedger
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Account"
+        Me.GridColumn23.FieldName = "acc_name_1"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 5
         '
         'GridColumn1
         '
@@ -454,13 +463,16 @@ Partial Class FormAccountingLedger
         Me.GridColumncomp_group.Visible = True
         Me.GridColumncomp_group.VisibleIndex = 3
         '
-        'GridColumn23
+        'ViewJournalToolStripMenuItem
         '
-        Me.GridColumn23.Caption = "Account"
-        Me.GridColumn23.FieldName = "acc_name_1"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 5
+        Me.ViewJournalToolStripMenuItem.Name = "ViewJournalToolStripMenuItem"
+        Me.ViewJournalToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewJournalToolStripMenuItem.Text = "View Journal"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.FieldName = "id_acc_trans"
+        Me.GridColumn24.Name = "GridColumn24"
         '
         'FormAccountingLedger
         '
@@ -533,4 +545,6 @@ Partial Class FormAccountingLedger
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewJournalToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
