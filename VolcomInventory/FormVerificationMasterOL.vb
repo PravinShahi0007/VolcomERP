@@ -9,10 +9,40 @@
 
     Sub form_load()
         Dim query As String = "
-            SELECT vm.id_verification_master, c.comp_name, vm.created_date, e.employee_name AS created_by
+            SELECT vm.id_verification_master, c.comp_name, IF(m.is_match = 0, 'Not Matched', 'Matched') AS is_match, vm.created_date, e.employee_name AS created_by
             FROM tb_verification_master AS vm
             LEFT JOIN tb_m_comp AS c ON vm.id_comp = c.id_comp
             LEFT JOIN tb_m_employee AS e ON vm.created_by = e.id_employee
+            LEFT JOIN (
+                (SELECT id_verification_master, LEAST(
+                    MIN(IF(NamaProduk <> NamaProduk_erp, 0, 1)),
+                    MIN(IF(SellerSKU <> SellerSKU_erp, 0, 1)),
+                    MIN(IF(Ukuran <> Ukuran_erp, 0, 1)),
+                    MIN(IF(Warna <> Warna_erp, 0, 1)),
+                    MIN(IF(Parent <> Parent_erp, 0, 1)),
+                    MIN(IF(KodeTokoGudang <> KodeTokoGudang_erp, 0, 1)),
+                    MIN(IF(HargaRp <> HargaRp_erp, 0, 1)),
+                    MIN(IF(HargaPenjualanRp <> HargaPenjualanRp_erp, 0, 1))
+                ) AS is_match
+                FROM tb_verification_master_blibli
+                GROUP BY id_verification_master)
+
+                UNION ALL
+
+                (SELECT id_verification_master, LEAST(
+                    MIN(IF(SkuSupplierConfig <> SkuSupplierConfig_erp, 0, 1)),
+                    MIN(IF(Name <> Name_erp, 0, 1)),
+                    MIN(IF(Brand <> Brand_erp, 0, 1)),
+                    MIN(IF(Color <> Color_erp, 0, 1)),
+                    MIN(IF(ParentSku <> ParentSku_erp, 0, 1)),
+                    MIN(IF(SellerSku <> SellerSku_erp, 0, 1)),
+                    MIN(IF(Price <> Price_erp, 0, 1)),
+                    MIN(IF(SalePrice <> SalePrice_erp, 0, 1)),
+                    MIN(IF(Variation <> Variation_erp, 0, 1))
+                ) AS is_match
+                FROM tb_verification_master_zalora
+                GROUP BY id_verification_master)   
+            ) AS m ON vm.id_verification_master = m.id_verification_master
             ORDER BY vm.created_date DESC
         "
 

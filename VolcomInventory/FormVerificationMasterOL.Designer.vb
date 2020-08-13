@@ -24,6 +24,7 @@ Partial Class FormVerificationMasterOL
         Me.GVVerification = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -46,7 +47,7 @@ Partial Class FormVerificationMasterOL
         '
         'GVVerification
         '
-        Me.GVVerification.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVVerification.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn3, Me.GridColumn4})
         Me.GVVerification.GridControl = Me.GCVerification
         Me.GVVerification.Name = "GVVerification"
         Me.GVVerification.OptionsBehavior.Editable = False
@@ -66,6 +67,14 @@ Partial Class FormVerificationMasterOL
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Match"
+        Me.GridColumn5.FieldName = "is_match"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Created Date"
@@ -74,7 +83,7 @@ Partial Class FormVerificationMasterOL
         Me.GridColumn3.FieldName = "created_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -82,7 +91,7 @@ Partial Class FormVerificationMasterOL
         Me.GridColumn4.FieldName = "created_by"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         '
         'PanelControl1
         '
@@ -129,4 +138,5 @@ Partial Class FormVerificationMasterOL
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBNew As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
