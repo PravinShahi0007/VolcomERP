@@ -115,6 +115,7 @@
             If action = "ins" Then
                 Dim newRow As DataRow = (TryCast(FormBankDepositDet.GCList.DataSource, DataTable)).NewRow()
                 newRow("id_report") = "0"
+                newRow("id_report_det") = "0"
                 newRow("report_mark_type") = "0"
                 newRow("report_mark_type_name") = "-"
                 newRow("number") = addSlashes(TxtReff.Text)
