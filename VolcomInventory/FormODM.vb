@@ -89,21 +89,28 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
 
     Private Sub TEScan_KeyUp(sender As Object, e As KeyEventArgs) Handles TEScan.KeyUp
         If e.KeyCode = Keys.Enter Then
+            Dim is_found As Boolean = False
             For i As Integer = 0 To GVList.RowCount - 1
-                If GVList.GetRowCellValue(i, "id_awbill").ToString = addSlashes(TEScan.Text) Then
-                    GVList.SetRowCellValue(i, "is_check", "OK")
-                    TEScan.Text = ""
-                    TEScan.Focus()
-                    GVList.FocusedRowHandle = i
-                    Exit For
-                End If
+                Try
+                    If GVList.GetRowCellValue(i, "id_awbill").ToString = addSlashes(TEScan.Text) Then
+                        GVList.SetRowCellValue(i, "is_check", "OK")
+
+                        GVList.FocusedRowHandle = i
+                        is_found = True
+                    End If
+                Catch ex As Exception
+
+                End Try
             Next
-            If Not TEScan.Text = "" Then
+
+            If Not is_found Then
                 FormError.LabelContent.Text = "Outbound Number Not Found"
                 FormError.ShowDialog()
-                TEScan.Text = ""
-                TEScan.Focus()
             End If
+
+            TEScan.Text = ""
+            TEScan.Focus()
+
             GVList.RefreshData()
         End If
     End Sub
@@ -132,9 +139,9 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     Private Sub BComplete_Click(sender As Object, e As EventArgs) Handles BComplete.Click
         Dim not_ok As Boolean = False
         For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+
             If Not GVList.IsGroupRow(i) Then
                 If Not GVList.GetRowCellValue(i, "is_check").ToString = "OK" Then
-                    Console.WriteLine(GVList.GetRowCellValue(i, "id_awbill").ToString & " adalah (" & GVList.GetRowCellValue(i, "is_check").ToString & ")")
                     not_ok = True
                     Exit For
                 End If
@@ -144,7 +151,16 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         If not_ok Then
             warningCustom("Some Outbound not scanned.")
         Else
-            warningCustom("Ready to complete.")
+            'complete
+            For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Completing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+                Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+
+                If FormViewSalesDelOrder.id_commerce_type = "2" Then
+                    stt.sendEmailConfirmation(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                End If
+            Next
         End If
     End Sub
 End Class

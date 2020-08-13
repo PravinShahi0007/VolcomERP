@@ -47,6 +47,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumntotal_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BOutboundLabel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
         Me.BExpand = New DevExpress.XtraEditors.SimpleButton()
@@ -100,7 +101,6 @@ Partial Class FormSalesDelOrder
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
-        Me.BOutboundLabel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -387,6 +387,17 @@ Partial Class FormSalesDelOrder
         Me.GCFilter.Name = "GCFilter"
         Me.GCFilter.Size = New System.Drawing.Size(793, 45)
         Me.GCFilter.TabIndex = 4
+        '
+        'BOutboundLabel
+        '
+        Me.BOutboundLabel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BOutboundLabel.Image = CType(resources.GetObject("BOutboundLabel.Image"), System.Drawing.Image)
+        Me.BOutboundLabel.Location = New System.Drawing.Point(650, 2)
+        Me.BOutboundLabel.LookAndFeel.SkinName = "Blue"
+        Me.BOutboundLabel.Name = "BOutboundLabel"
+        Me.BOutboundLabel.Size = New System.Drawing.Size(141, 41)
+        Me.BOutboundLabel.TabIndex = 8899
+        Me.BOutboundLabel.Text = "Outbound Label"
         '
         'BtnView
         '
@@ -878,17 +889,6 @@ Partial Class FormSalesDelOrder
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'BOutboundLabel
-        '
-        Me.BOutboundLabel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BOutboundLabel.Image = CType(resources.GetObject("BOutboundLabel.Image"), System.Drawing.Image)
-        Me.BOutboundLabel.Location = New System.Drawing.Point(650, 2)
-        Me.BOutboundLabel.LookAndFeel.SkinName = "Blue"
-        Me.BOutboundLabel.Name = "BOutboundLabel"
-        Me.BOutboundLabel.Size = New System.Drawing.Size(141, 41)
-        Me.BOutboundLabel.TabIndex = 8899
-        Me.BOutboundLabel.Text = "Outbound Label"
         '
         'FormSalesDelOrder
         '
