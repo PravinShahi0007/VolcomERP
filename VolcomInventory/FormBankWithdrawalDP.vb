@@ -1,6 +1,6 @@
 ﻿Public Class FormBankWithdrawalDP
     Public report_mark_type As String = "-1"
-    Public id_report As String = "-1"
+    Public id_comp_contact As String = "-1"
 
     Private Sub FormBankWithdrawalDP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If report_mark_type = "139" Then 'OG
@@ -17,7 +17,7 @@ LEFT JOIN
 	INNER JOIN tb_pn pn ON pn.`id_pn`=pnd.`id_pn` AND pn.`id_report_status`!=5
 	WHERE pnd.report_mark_type='159'
 ) already ON already.id_report=pn.`id_pn`
-WHERE pn.`id_pay_type`=1 AND pn.`id_report_status`=6 AND pn.report_mark_type='" & report_mark_type & "' AND pnd.`id_report`='" & id_report & "'
+WHERE pn.`id_pay_type`=1 AND pn.`id_report_status`=6 AND pn.report_mark_type='" & report_mark_type & "' AND pn.`id_comp_contact`='" & id_comp_contact & "'
 GROUP BY pnd.`id_pn`
 HAVING amount>0"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -63,12 +63,13 @@ HAVING amount>0"
                     newRow_pph("kurs") = 1
                     newRow_pph("id_currency") = "1"
                     newRow_pph("currency") = "Rp"
-                    newRow_pph("val_bef_kurs") = GVList.GetRowCellValue(i, "amount")
+                    newRow_pph("val_bef_kurs") = -GVList.GetRowCellValue(i, "amount")
                     newRow_pph("value") = -GVList.GetRowCellValue(i, "amount")
                     newRow_pph("value_view") = -GVList.GetRowCellValue(i, "amount")
                     newRow_pph("balance_due") = -GVList.GetRowCellValue(i, "amount")
                     newRow_pph("note") = GVList.GetRowCellValue(i, "note").ToString
                     TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable).Rows.Add(newRow_pph)
+                    FormBankWithdrawalDet.calculate_amount()
                 Else
                     warningCustom("Some DP already listed")
                 End If

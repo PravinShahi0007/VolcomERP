@@ -1382,6 +1382,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 warningCustom("Please put some note")
             ElseIf value_is_wrong Then
                 warningCustom("Make sure debit is positive value, credit is negative value")
+            ElseIf TETotal.EditValue < 0 Then
+                warningCustom("Amount paid is negative")
             Else
                 'header
                 Dim is_book_trf As String = "2"
@@ -1568,7 +1570,7 @@ VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue
 
     Private Sub BPickDP_Click(sender As Object, e As EventArgs) Handles BPickDP.Click
         FormBankWithdrawalDP.report_mark_type = "139"
-        FormBankWithdrawalDP.id_report = GVList.GetFocusedRowCellValue("id_report").ToString
+        FormBankWithdrawalDP.id_comp_contact = SLEVendor.EditValue.ToString
         FormBankWithdrawalDP.ShowDialog()
     End Sub
 End Class
