@@ -96,7 +96,7 @@ Public Class FormBankDepositDet
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
                     WHERE d.id_list_payout_trans=" + id_list_payout_trans + " 
                     UNION
-                    SELECT sp.id_invoice_ship AS `id_report`,
+                    SELECT sp.id_invoice_ship AS `id_report`,0 AS `id_report_det`,
                     sp.report_mark_type,rmt.report_mark_type_name,
                     sp.`number` AS `number`, 
                     c.id_comp AS `id_comp`, 
@@ -126,7 +126,7 @@ Public Class FormBankDepositDet
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
                     WHERE d.id_list_payout_trans=" + id_list_payout_trans + " 
                     UNION
-                    SELECT '0' AS `id_report`,
+                    SELECT '0' AS `id_report`,0 AS `id_report_det`,
                     '0' AS report_mark_type,'' AS report_mark_type_name,
                     '" + FormBankDeposit.GVPayout.GetFocusedRowCellValue("number").ToString + "' AS `number`, 
                     cf.id_comp AS `id_comp`, 
@@ -182,7 +182,7 @@ Public Class FormBankDepositDet
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
                     WHERE d.id_virtual_acc_trans=" + id_virtual_acc_trans + "
                     UNION
-                    SELECT sp.id_invoice_ship AS `id_report`,
+                    SELECT sp.id_invoice_ship AS `id_report`,0 AS `id_report_det`,
                     sp.report_mark_type,rmt.report_mark_type_name,
                     sp.`number` AS `number`, 
                     c.id_comp AS `id_comp`, 
