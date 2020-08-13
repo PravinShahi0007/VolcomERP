@@ -741,21 +741,33 @@ WHERE comp.id_comp = '{0}'", id_company)
                 Else
                     query += "id_store_company = '" + id_store_company + "', "
                 End If
-                If SLEAP.EditValue = Nothing Or SLEAP.EditValue.ToString = "" Then
+                Try
+                    If SLEAP.EditValue = Nothing Or SLEAP.EditValue.ToString = "" Then
+                        query += "id_acc_ap = NULL, "
+                    Else
+                        query += "id_acc_ap = '" + SLEAP.EditValue.ToString + "', "
+                    End If
+                Catch ex As Exception
                     query += "id_acc_ap = NULL, "
-                Else
-                    query += "id_acc_ap = '" + SLEAP.EditValue.ToString + "', "
-                End If
-                If SLEDP.EditValue = Nothing Or SLEDP.EditValue.ToString = "" Then
+                End Try
+                Try
+                    If SLEDP.EditValue = Nothing Or SLEDP.EditValue.ToString = "" Then
+                        query += "id_acc_dp = NULL, "
+                    Else
+                        query += "id_acc_dp = '" + SLEDP.EditValue.ToString + "', "
+                    End If
+                Catch ex As Exception
                     query += "id_acc_dp = NULL, "
-                Else
-                    query += "id_acc_dp = '" + SLEDP.EditValue.ToString + "', "
-                End If
-                If SLEAR.EditValue = Nothing Or SLEAR.EditValue.ToString = "" Then
+                End Try
+                Try
+                    If SLEAR.EditValue = Nothing Or SLEAR.EditValue.ToString = "" Then
+                        query += "id_acc_ar = NULL, "
+                    Else
+                        query += "id_acc_ar = '" + SLEAR.EditValue.ToString + "', "
+                    End If
+                Catch ex As Exception
                     query += "id_acc_ar = NULL, "
-                Else
-                    query += "id_acc_ar = '" + SLEAR.EditValue.ToString + "', "
-                End If
+                End Try
 
                 query += "id_sub_district='" + id_sub_district + "'"
                 query += "WHERE id_comp='" + id_company + "' "

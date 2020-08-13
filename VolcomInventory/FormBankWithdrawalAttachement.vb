@@ -193,6 +193,7 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
 
                 Close()
             End If
+            FormBankWithdrawal.view_po_og()
         End If
     End Sub
 
