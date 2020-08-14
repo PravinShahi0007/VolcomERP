@@ -207,7 +207,9 @@
 ,IFNULL(rec.qty_rec,0) AS qty_rec,IFNULL(rec.harga_satuan_rec,0) AS harga_satuan_rec,IFNULL(rec.amount_rec,0) AS amount_rec
 ,IFNULL(used.qty_used,0) AS qty_used,IFNULL(used.harga_satuan_used,0) AS harga_satuan_used,IFNULL(used.amount_used,0) AS amount_used
 ,IFNULL(rem.qty_rem,0) AS qty_rem,IFNULL(rem.harga_satuan_rem,0) AS harga_satuan_rem,IFNULL(rem.amount_rem,0) AS amount_rem
+,itc.item_cat
 FROM tb_item it
+INNER JOIN tb_item_cat itc ON itc.id_item_cat=it.id_item_cat
 INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom_stock " & cat & "
 LEFT JOIN (
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_beg,MIN(storage_item_datetime) as min_date
