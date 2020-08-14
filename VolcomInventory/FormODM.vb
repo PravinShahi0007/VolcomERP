@@ -152,15 +152,24 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             warningCustom("Some Outbound not scanned.")
         Else
             'complete
-            For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
-                FormMain.SplashScreenManager1.SetWaitFormDescription("Completing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
-                Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+            Try
+                FormMain.SplashScreenManager1.ShowWaitForm()
 
-                If FormViewSalesDelOrder.id_commerce_type = "2" Then
-                    stt.sendEmailConfirmation(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
-                End If
-            Next
+                For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Completing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+                    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+
+                    If FormViewSalesDelOrder.id_commerce_type = "2" Then
+                        stt.sendEmailConfirmation(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                    End If
+                Next
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            Catch ex As Exception
+                warningCustom(ex.ToString)
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            End Try
         End If
     End Sub
 End Class
