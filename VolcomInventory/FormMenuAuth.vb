@@ -67,6 +67,11 @@
                 FormSalesInv.GridBand3.Columns.Add(FormSalesInv.BandedGridColumndesign_cop_per_acc_per_prod)
                 FormSalesInv.GVByAccount.Columns("design_cop").VisibleIndex = FormSalesInv.GVByAccount.Columns("design_price").VisibleIndex + 1
                 FormSalesInv.GVByAccount.Columns("design_cop").OptionsColumn.ShowInCustomizationForm = True
+            ElseIf type = "6" Then
+                FormFGTransList.GridColumnunit_cost_sal.VisibleIndex = 100
+                FormFGTransList.GridColumntotal_cost_sal.VisibleIndex = 101
+                FormFGTransList.GridColumnunit_cost_sal_main.VisibleIndex = 100
+                FormFGTransList.GridColumntotal_cost_sal_main.VisibleIndex = 101
             End If
             Close()
         Else

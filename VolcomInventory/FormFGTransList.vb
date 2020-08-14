@@ -764,7 +764,7 @@
         sp.sales_pos_start_period, sp.sales_pos_end_period,
         prod.id_product, prod.id_design, prod.`code`, prod.`code_main`,
         prod.`name`, prod.`size`, prod.`class`, spd.sales_pos_det_qty, spd.design_price_retail, (spd.sales_pos_det_qty * spd.design_price_retail) AS `amount`,
-        stt.report_status
+        stt.report_status, IFNULL(prod.unit_cost,0) AS `unit_cost`
         FROM tb_sales_pos_det spd
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -773,7 +773,7 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         LEFT JOIN (
 	        SELECT prod.id_product, prod.id_design, prod.product_full_code AS `code`, dsg.design_code AS `code_main`,
-	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`
+	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, dsg.design_cop AS `unit_cost`
 	        FROM tb_m_product prod
 	        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
 	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
@@ -844,7 +844,7 @@
         IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='0' THEN spd.sales_pos_det_qty END),0) AS `qty0`,
         SUM(spd.sales_pos_det_qty) AS `sales_pos_det_qty`, spd.design_price_retail, 
         SUM(spd.sales_pos_det_qty * spd.design_price_retail) AS `amount`,
-        stt.report_status
+        stt.report_status, IFNULL(prod.unit_cost,0) AS `unit_cost`
         FROM tb_sales_pos_det spd
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -853,7 +853,7 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         LEFT JOIN (
 	        SELECT prod.id_product, prod.id_design, prod.product_full_code, dsg.design_code AS `code`,
-	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, sz.code AS `code_size`
+	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, sz.code AS `code_size`, dsg.design_cop AS `unit_cost`
 	        FROM tb_m_product prod
 	        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
 	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
@@ -1192,5 +1192,12 @@
         GVAdjOut1.BestFitColumns()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormFGTransList_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F7 Then
+            FormMenuAuth.type = "6"
+            FormMenuAuth.ShowDialog()
+        End If
     End Sub
 End Class
