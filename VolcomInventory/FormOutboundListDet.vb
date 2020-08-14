@@ -131,7 +131,7 @@ WHERE awb.id_awbill='" & id_awb & "'"
 
     Private Sub BNotApprove_Click(sender As Object, e As EventArgs) Handles BNotApprove.Click
         'pakai login dept head + cancel semua DO
-        FormMenuAuth.type = "6"
+        FormMenuAuth.type = "7"
         FormMenuAuth.ShowDialog()
 
         If is_cancel Then
