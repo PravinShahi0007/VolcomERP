@@ -19,7 +19,7 @@ Partial Class FormEmpLeaveStock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCUpper = New DevExpress.XtraEditors.PanelControl()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LEEmpSum = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -48,6 +48,7 @@ Partial Class FormEmpLeaveStock
         Me.XTCLeaveRemaining = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSum = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
         Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIDSchedule = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,9 +63,29 @@ Partial Class FormEmpLeaveStock
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        Me.XTPExpired = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCExpired = New DevExpress.XtraGrid.GridControl()
+        Me.GVExpired = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.DETo = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        CType(Me.PCUpper, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCUpper.SuspendLayout()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEEmpSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,22 +95,31 @@ Partial Class FormEmpLeaveStock
         Me.XTCLeaveRemaining.SuspendLayout()
         Me.XTPSum.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
-        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPExpired.SuspendLayout()
+        CType(Me.GCExpired, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVExpired, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PanelControl1
+        'PCUpper
         '
-        Me.PanelControl1.Controls.Add(Me.LEDeptSum)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.LEEmpSum)
-        Me.PanelControl1.Controls.Add(Me.LabelControl9)
-        Me.PanelControl1.Controls.Add(Me.BViewSum)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(633, 38)
-        Me.PanelControl1.TabIndex = 3
+        Me.PCUpper.Controls.Add(Me.LEDeptSum)
+        Me.PCUpper.Controls.Add(Me.LabelControl1)
+        Me.PCUpper.Controls.Add(Me.LEEmpSum)
+        Me.PCUpper.Controls.Add(Me.LabelControl9)
+        Me.PCUpper.Controls.Add(Me.BViewSum)
+        Me.PCUpper.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCUpper.Location = New System.Drawing.Point(0, 0)
+        Me.PCUpper.Name = "PCUpper"
+        Me.PCUpper.Size = New System.Drawing.Size(633, 38)
+        Me.PCUpper.TabIndex = 3
         '
         'LEDeptSum
         '
@@ -349,7 +379,7 @@ Partial Class FormEmpLeaveStock
         Me.XTCLeaveRemaining.SelectedTabPage = Me.XTPSum
         Me.XTCLeaveRemaining.Size = New System.Drawing.Size(633, 258)
         Me.XTCLeaveRemaining.TabIndex = 10
-        Me.XTCLeaveRemaining.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSum, Me.XTPDetail})
+        Me.XTCLeaveRemaining.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSum, Me.XTPDetail, Me.XTPExpired})
         '
         'XTPSum
         '
@@ -364,6 +394,16 @@ Partial Class FormEmpLeaveStock
         Me.XTPDetail.Name = "XTPDetail"
         Me.XTPDetail.Size = New System.Drawing.Size(627, 230)
         Me.XTPDetail.Text = "Detail"
+        '
+        'GCSchedule
+        '
+        Me.GCSchedule.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSchedule.Location = New System.Drawing.Point(0, 0)
+        Me.GCSchedule.MainView = Me.GVSchedule
+        Me.GCSchedule.Name = "GCSchedule"
+        Me.GCSchedule.Size = New System.Drawing.Size(627, 230)
+        Me.GCSchedule.TabIndex = 9
+        Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
         '
         'GVSchedule
         '
@@ -485,15 +525,221 @@ Partial Class FormEmpLeaveStock
         Me.GridColumn10.FieldName = "qty_leave"
         Me.GridColumn10.Name = "GridColumn10"
         '
-        'GCSchedule
+        'XTPExpired
         '
-        Me.GCSchedule.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSchedule.Location = New System.Drawing.Point(0, 0)
-        Me.GCSchedule.MainView = Me.GVSchedule
-        Me.GCSchedule.Name = "GCSchedule"
-        Me.GCSchedule.Size = New System.Drawing.Size(627, 230)
-        Me.GCSchedule.TabIndex = 9
-        Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
+        Me.XTPExpired.Controls.Add(Me.GCExpired)
+        Me.XTPExpired.Controls.Add(Me.PanelControl2)
+        Me.XTPExpired.Name = "XTPExpired"
+        Me.XTPExpired.Size = New System.Drawing.Size(627, 230)
+        Me.XTPExpired.Text = "Leave Expired"
+        '
+        'GCExpired
+        '
+        Me.GCExpired.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCExpired.Location = New System.Drawing.Point(0, 41)
+        Me.GCExpired.MainView = Me.GVExpired
+        Me.GCExpired.Name = "GCExpired"
+        Me.GCExpired.Size = New System.Drawing.Size(627, 189)
+        Me.GCExpired.TabIndex = 10
+        Me.GCExpired.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVExpired})
+        '
+        'GVExpired
+        '
+        Me.GVExpired.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn2, Me.GridColumn13, Me.GridColumn24, Me.GridColumn25})
+        Me.GVExpired.GridControl = Me.GCExpired
+        Me.GVExpired.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_leave_h", Me.GridColumn24, "{0:0}")})
+        Me.GVExpired.Name = "GVExpired"
+        Me.GVExpired.OptionsView.ColumnAutoWidth = False
+        Me.GVExpired.OptionsView.ShowFooter = True
+        Me.GVExpired.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Employee"
+        Me.GridColumn1.FieldName = "id_employee"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "NIK"
+        Me.GridColumn4.FieldName = "employee_code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Employee"
+        Me.GridColumn5.FieldName = "employee_name"
+        Me.GridColumn5.FieldNameSortGroup = "id_employee"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 2
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Level"
+        Me.GridColumn6.FieldName = "employee_level"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 3
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Position"
+        Me.GridColumn8.FieldName = "employee_position"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 4
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Status"
+        Me.GridColumn9.FieldName = "employee_active"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 5
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Departement"
+        Me.GridColumn11.FieldName = "departement"
+        Me.GridColumn11.FieldNameSortGroup = "id_departement"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 102
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID Departement"
+        Me.GridColumn12.FieldName = "id_departement"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Date Expired"
+        Me.GridColumn13.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn13.FieldName = "date_expired"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 6
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.Caption = "Total Expired (hours)"
+        Me.GridColumn24.DisplayFormat.FormatString = "N1"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn24.FieldName = "qty_h"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.UnboundExpression = "[qty_leave] / 60"
+        Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 8
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.Caption = "Total Expired (minute)"
+        Me.GridColumn25.DisplayFormat.FormatString = "N0"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn25.FieldName = "qty_m"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 9
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.DETo)
+        Me.PanelControl2.Controls.Add(Me.DEFrom)
+        Me.PanelControl2.Controls.Add(Me.LabelControl28)
+        Me.PanelControl2.Controls.Add(Me.LabelControl31)
+        Me.PanelControl2.Controls.Add(Me.BView)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(627, 41)
+        Me.PanelControl2.TabIndex = 11
+        '
+        'DETo
+        '
+        Me.DETo.EditValue = Nothing
+        Me.DETo.Location = New System.Drawing.Point(267, 11)
+        Me.DETo.Name = "DETo"
+        Me.DETo.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DETo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DETo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETo.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DETo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DETo.Size = New System.Drawing.Size(176, 20)
+        Me.DETo.TabIndex = 18
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(67, 11)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEFrom.Size = New System.Drawing.Size(176, 20)
+        Me.DEFrom.TabIndex = 17
+        '
+        'LabelControl28
+        '
+        Me.LabelControl28.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl28.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl28.Name = "LabelControl28"
+        Me.LabelControl28.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl28.TabIndex = 16
+        Me.LabelControl28.Text = "Expired At"
+        '
+        'LabelControl31
+        '
+        Me.LabelControl31.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl31.Location = New System.Drawing.Point(249, 14)
+        Me.LabelControl31.Name = "LabelControl31"
+        Me.LabelControl31.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl31.TabIndex = 14
+        Me.LabelControl31.Text = "To"
+        '
+        'BView
+        '
+        Me.BView.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BView.Appearance.Options.UseFont = True
+        Me.BView.Location = New System.Drawing.Point(449, 9)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(60, 23)
+        Me.BView.TabIndex = 15
+        Me.BView.Text = "View"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Expired At"
+        Me.GridColumn2.DisplayFormat.FormatString = "dd MMMM yyyy H:mm"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn2.FieldName = "date_leave"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 7
         '
         'FormEmpLeaveStock
         '
@@ -501,16 +747,16 @@ Partial Class FormEmpLeaveStock
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(633, 296)
         Me.Controls.Add(Me.XTCLeaveRemaining)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.PCUpper)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormEmpLeaveStock"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Leave Remaining"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
+        CType(Me.PCUpper, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCUpper.ResumeLayout(False)
+        Me.PCUpper.PerformLayout()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEEmpSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
@@ -520,13 +766,23 @@ Partial Class FormEmpLeaveStock
         Me.XTCLeaveRemaining.ResumeLayout(False)
         Me.XTPSum.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
-        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPExpired.ResumeLayout(False)
+        CType(Me.GCExpired, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVExpired, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCUpper As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BViewSum As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LEEmpSum As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GVSLEDesgSearch As DevExpress.XtraGrid.Views.Grid.GridView
@@ -570,4 +826,25 @@ Partial Class FormEmpLeaveStock
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPExpired As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCExpired As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVExpired As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DETo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl28 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl31 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

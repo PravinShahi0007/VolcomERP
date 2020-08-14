@@ -19,6 +19,7 @@ Partial Class FormBankWithdrawalAttachement
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawalAttachement))
         Me.RepositoryItemTextEditPph = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.SimpleButtonAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -52,6 +53,8 @@ Partial Class FormBankWithdrawalAttachement
         Me.TEDiscTotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.GrossUpPPHToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -59,11 +62,13 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITEGrossupValue = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.TEInvNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.RepositoryItemTextEditPph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,13 +86,15 @@ Partial Class FormBankWithdrawalAttachement
         CType(Me.TEGrandTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDiscTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEGrossupValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEditPph
@@ -440,17 +447,31 @@ Partial Class FormBankWithdrawalAttachement
         '
         'GCPurcReq
         '
+        Me.GCPurcReq.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCPurcReq.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GCPurcReq.Location = New System.Drawing.Point(2, 121)
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
+        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITEGrossupValue})
         Me.GCPurcReq.Size = New System.Drawing.Size(488, 224)
         Me.GCPurcReq.TabIndex = 12
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GrossUpPPHToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(147, 26)
+        '
+        'GrossUpPPHToolStripMenuItem
+        '
+        Me.GrossUpPPHToolStripMenuItem.Name = "GrossUpPPHToolStripMenuItem"
+        Me.GrossUpPPHToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.GrossUpPPHToolStripMenuItem.Text = "Gross up PPH"
+        '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn21, Me.GridColumn33, Me.GridColumn4, Me.GridColumn2, Me.GridColumn1})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn21, Me.GridColumn33, Me.GridColumn4, Me.GridColumn2, Me.GridColumn1, Me.GridColumn7})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AllowFindPanel = False
@@ -524,7 +545,26 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn1.FieldName = "pph_percent"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Grossup Value"
+        Me.GridColumn7.ColumnEdit = Me.RITEGrossupValue
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "gross_up_value"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.AllowFocus = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        '
+        'RITEGrossupValue
+        '
+        Me.RITEGrossupValue.AutoHeight = False
+        Me.RITEGrossupValue.Name = "RITEGrossupValue"
         '
         'PanelControl3
         '
@@ -546,6 +586,21 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl3.Size = New System.Drawing.Size(492, 347)
         Me.PanelControl3.TabIndex = 12
         '
+        'TEInvNumber
+        '
+        Me.TEInvNumber.Location = New System.Drawing.Point(97, 64)
+        Me.TEInvNumber.Name = "TEInvNumber"
+        Me.TEInvNumber.Size = New System.Drawing.Size(381, 20)
+        Me.TEInvNumber.TabIndex = 8907
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(16, 67)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl10.TabIndex = 8906
+        Me.LabelControl10.Text = "Invoice Number"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.Transparent
@@ -564,21 +619,6 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(492, 38)
         Me.PanelControl4.TabIndex = 11
-        '
-        'TEInvNumber
-        '
-        Me.TEInvNumber.Location = New System.Drawing.Point(97, 64)
-        Me.TEInvNumber.Name = "TEInvNumber"
-        Me.TEInvNumber.Size = New System.Drawing.Size(381, 20)
-        Me.TEInvNumber.TabIndex = 8907
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Location = New System.Drawing.Point(16, 67)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(75, 13)
-        Me.LabelControl10.TabIndex = 8906
-        Me.LabelControl10.Text = "Invoice Number"
         '
         'FormBankWithdrawalAttachement
         '
@@ -611,14 +651,16 @@ Partial Class FormBankWithdrawalAttachement
         CType(Me.TEGrandTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDiscTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEGrossupValue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
-        CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -667,4 +709,8 @@ Partial Class FormBankWithdrawalAttachement
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEInvNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RITEGrossupValue As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents GrossUpPPHToolStripMenuItem As ToolStripMenuItem
 End Class

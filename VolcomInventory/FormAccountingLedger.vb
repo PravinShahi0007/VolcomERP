@@ -175,10 +175,32 @@
     Private Sub GVAccountingLedger_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVAccountingLedger.CustomSummaryCalculate
         Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
 
-        If item.FieldName.ToString = "number" Then
+        If item.FieldName.ToString = "acc_trans_note" Then
             If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
-                e.TotalValue = "Sub Total" + GVAccountingLedger.GetGroupRowDisplayText(e.GroupRowHandle).Replace("Account", "")
+                e.TotalValue = "Sub Total: " + GVAccountingLedger.GetGroupRowDisplayText(e.GroupRowHandle).Replace("Account", "")
             End If
         End If
+    End Sub
+
+    Private Sub ViewJournalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewJournalToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim id_acc_trans As String = GVAccountingLedger.GetFocusedRowCellValue("id_acc_trans").ToString
+
+        If id_acc_trans <> "0" Then
+            Dim s As New ClassShowPopUp()
+
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+
+            s.show()
+        Else
+            warningCustom("Journal not found.")
+        End If
+
+        Cursor = Cursors.Default
     End Sub
 End Class

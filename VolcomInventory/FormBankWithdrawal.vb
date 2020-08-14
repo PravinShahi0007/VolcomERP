@@ -266,6 +266,7 @@ WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToS
 ,DATEDIFF(po.`due_date`,NOW()) AS due_days
 ,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
 ,po.report_mark_type,tag.id_coa_tag,tag.tag_code
+,SUM(pod.gross_up_value) AS gross_up_value
 " & q_acc & "
 FROM tb_purc_order po
 LEFT JOIN tb_a_acc coa ON coa.id_acc=po.pph_account

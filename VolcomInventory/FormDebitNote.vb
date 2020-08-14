@@ -167,9 +167,12 @@ GROUP BY rd.`id_prod_order_rec`"
                                 SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0)) AS qc_afkir, 
                                 get_claim_reject_percent(ko.`id_claim_reject`,6) AS p_afkir,
                                 wo_price.prod_order_wo_det_price AS unit_price,
-                                ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
-                                ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,5)/100)))) AS amo_claim_major,
-                                ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,6)/100))) AS amo_claim_afkir
+                                ROUND((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price)+ROUND((SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_minor,
+                                ROUND((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price)+ROUND((SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_major,
+                                ROUND((SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_afkir
+                                -- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
+                                -- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,5)/100)))) AS amo_claim_major,
+                                -- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,6)/100))) AS amo_claim_afkir
                                 ,IFNULL(recfc.qty_rec,rec.qty_rec) AS qty_rec,wo_price.qty_order AS qty_order
                                 ,wo_price.comp_name
                                 ,dsg.design_display_name
@@ -226,7 +229,8 @@ GROUP BY rd.`id_prod_order_rec`"
                                     GROUP BY dnd.id_reff
                                 ) dn ON dn.id_reff=fc.id_prod_fc
                                 WHERE fc.id_report_status = '6' AND ISNULL(dn.id_reff) " & q_where & "
-                                GROUP BY fc.`id_prod_fc`"
+                                GROUP BY fc.`id_prod_fc`
+                                HAVING (amo_claim_minor + amo_claim_major + amo_claim_afkir) > 0"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSumClaimReject.DataSource = data
         GVSumClaimReject.BestFitColumns()

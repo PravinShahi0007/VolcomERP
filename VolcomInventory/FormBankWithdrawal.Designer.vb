@@ -199,6 +199,7 @@ Partial Class FormBankWithdrawal
         Me.GVExpense = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn223 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedByName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReortStt = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -270,6 +271,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn224 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn221 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePaymentFGPO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
@@ -469,8 +471,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn223 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn224 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn225 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -1497,7 +1498,7 @@ Partial Class FormBankWithdrawal
         '
         'GVPOList
         '
-        Me.GVPOList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumn82, Me.GridColumn143, Me.GridColumnOrderNumber, Me.GridColumn222, Me.GridColumnCreatedDate, Me.GridColumnCreatedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumnNote, Me.GridColumn4, Me.GridColumn3, Me.GridColumn24, Me.GridColumn98, Me.GridColumn23, Me.GridColumn19, Me.GridColumn27, Me.GridColumn28, Me.GridColumnVendor, Me.GridColumn32, Me.GridColumn25, Me.GridColumn26, Me.GridColumn12, Me.GridColumn83, Me.GridColumn84})
+        Me.GVPOList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumn82, Me.GridColumn143, Me.GridColumnOrderNumber, Me.GridColumn222, Me.GridColumnCreatedDate, Me.GridColumnCreatedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumnNote, Me.GridColumn4, Me.GridColumn3, Me.GridColumn24, Me.GridColumn98, Me.GridColumn23, Me.GridColumn19, Me.GridColumn27, Me.GridColumn28, Me.GridColumnVendor, Me.GridColumn32, Me.GridColumn25, Me.GridColumn26, Me.GridColumn12, Me.GridColumn83, Me.GridColumn84, Me.GridColumn225})
         Me.GVPOList.GridControl = Me.GCPOList
         Me.GVPOList.Name = "GVPOList"
         Me.GVPOList.OptionsBehavior.AutoExpandAllGroups = True
@@ -1729,7 +1730,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 17
+        Me.GridColumn28.VisibleIndex = 18
         '
         'GridColumnVendor
         '
@@ -1779,7 +1780,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 18
+        Me.GridColumn12.VisibleIndex = 19
         '
         'GridColumn83
         '
@@ -1790,7 +1791,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn83.Name = "GridColumn83"
         Me.GridColumn83.OptionsColumn.AllowEdit = False
         Me.GridColumn83.Visible = True
-        Me.GridColumn83.VisibleIndex = 19
+        Me.GridColumn83.VisibleIndex = 20
         '
         'GridColumn84
         '
@@ -1799,7 +1800,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn84.FieldName = "attachment"
         Me.GridColumn84.Name = "GridColumn84"
         Me.GridColumn84.Visible = True
-        Me.GridColumn84.VisibleIndex = 20
+        Me.GridColumn84.VisibleIndex = 21
         '
         'RICEAttachment
         '
@@ -2400,6 +2401,14 @@ Partial Class FormBankWithdrawal
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 2
+        '
+        'GridColumn223
+        '
+        Me.GridColumn223.Caption = "Inv Number"
+        Me.GridColumn223.FieldName = "inv_number"
+        Me.GridColumn223.Name = "GridColumn223"
+        Me.GridColumn223.Visible = True
+        Me.GridColumn223.VisibleIndex = 3
         '
         'GridColumn39
         '
@@ -3118,6 +3127,14 @@ Partial Class FormBankWithdrawal
         Me.GridColumn51.OptionsColumn.AllowFocus = False
         Me.GridColumn51.OptionsColumn.ReadOnly = True
         Me.GridColumn51.Width = 131
+        '
+        'GridColumn224
+        '
+        Me.GridColumn224.Caption = "Invoice Number"
+        Me.GridColumn224.FieldName = "inv_number"
+        Me.GridColumn224.Name = "GridColumn224"
+        Me.GridColumn224.Visible = True
+        Me.GridColumn224.VisibleIndex = 13
         '
         'GridColumn221
         '
@@ -5131,21 +5148,20 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'GridColumn223
+        'GridColumn225
         '
-        Me.GridColumn223.Caption = "Inv Number"
-        Me.GridColumn223.FieldName = "inv_number"
-        Me.GridColumn223.Name = "GridColumn223"
-        Me.GridColumn223.Visible = True
-        Me.GridColumn223.VisibleIndex = 3
-        '
-        'GridColumn224
-        '
-        Me.GridColumn224.Caption = "Invoice Number"
-        Me.GridColumn224.FieldName = "inv_number"
-        Me.GridColumn224.Name = "GridColumn224"
-        Me.GridColumn224.Visible = True
-        Me.GridColumn224.VisibleIndex = 13
+        Me.GridColumn225.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn225.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn225.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn225.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn225.Caption = "Gross Up Value"
+        Me.GridColumn225.DisplayFormat.FormatString = "N2"
+        Me.GridColumn225.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn225.FieldName = "gross_up_value"
+        Me.GridColumn225.Name = "GridColumn225"
+        Me.GridColumn225.Visible = True
+        Me.GridColumn225.VisibleIndex = 17
+        Me.GridColumn225.Width = 103
         '
         'FormBankWithdrawal
         '
@@ -5775,4 +5791,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn222 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn223 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn224 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn225 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

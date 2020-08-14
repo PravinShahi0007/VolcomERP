@@ -59,6 +59,7 @@
                     warningCustom(ex.ToString)
                 End Try
             Next
+            FormInvoiceFGPODP.calculate()
             Close()
         Else
             warningCustom("Please select DP first")
