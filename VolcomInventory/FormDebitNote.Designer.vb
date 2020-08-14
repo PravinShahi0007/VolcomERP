@@ -485,7 +485,7 @@ Partial Class FormDebitNote
         Me.gridBand7.Columns.Add(Me.BandedGridColumn23)
         Me.gridBand7.Name = "gridBand7"
         Me.gridBand7.VisibleIndex = 2
-        Me.gridBand7.Width = 529
+        Me.gridBand7.Width = 451
         '
         'BandedGridColumn3
         '
@@ -557,7 +557,6 @@ Partial Class FormDebitNote
         Me.BandedGridColumn23.Name = "BandedGridColumn23"
         Me.BandedGridColumn23.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn23.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumn23.Visible = True
         Me.BandedGridColumn23.Width = 78
         '
         'gridBand2

@@ -132,7 +132,7 @@ INNER JOIN tb_item i ON i.id_item = rd.id_item
 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
 INNER JOIN tb_item_coa o ON o.id_item_cat=i.id_item_cat AND o.id_departement=req.id_departement
 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
-WHERE po.id_purc_order=556 AND po.`is_close_rec`=1 AND pod.gross_up_value>0
+WHERE po.id_purc_order=" & id_purc_order & " AND po.`is_close_rec`=1 AND pod.gross_up_value>0
 GROUP BY po.id_purc_order,dep.id_main_comp
 UNION ALL
 -- pph grossup
@@ -150,7 +150,7 @@ INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
 INNER JOIN tb_item i ON i.id_item = rd.id_item
 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
-WHERE po.id_purc_order=556 AND po.`is_close_rec`=1 AND pod.gross_up_value>0
+WHERE po.id_purc_order=" & id_purc_order & " AND po.`is_close_rec`=1 AND pod.gross_up_value>0
 GROUP BY po.id_purc_order,dep.id_main_comp
 UNION ALL
 -- hutang non grossup
@@ -168,7 +168,7 @@ INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
 INNER JOIN tb_item i ON i.id_item = rd.id_item
 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
-WHERE po.id_purc_order=556 AND po.`is_close_rec`=1 AND pod.gross_up_value<=0
+WHERE po.id_purc_order=" & id_purc_order & " AND po.`is_close_rec`=1 AND pod.gross_up_value<=0
 GROUP BY po.id_purc_order,dep.id_main_comp
 UNION ALL
 -- pph non grossup
@@ -186,13 +186,14 @@ INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
 INNER JOIN tb_item i ON i.id_item = rd.id_item
 INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
 INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
-WHERE po.id_purc_order=556 AND po.`is_close_rec`=1 AND pod.gross_up_value<=0
+WHERE po.id_purc_order=" & id_purc_order & " AND po.`is_close_rec`=1 AND pod.gross_up_value<=0
 GROUP BY po.id_purc_order,dep.id_main_comp"
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
                 Close()
             End If
+            FormBankWithdrawal.view_po_og()
         End If
     End Sub
 

@@ -1131,12 +1131,14 @@ Partial Class FormBankWithdrawalDet
         'BPickDP
         '
         Me.BPickDP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPickDP.Enabled = False
         Me.BPickDP.Image = CType(resources.GetObject("BPickDP.Image"), System.Drawing.Image)
         Me.BPickDP.Location = New System.Drawing.Point(664, 2)
         Me.BPickDP.Name = "BPickDP"
         Me.BPickDP.Size = New System.Drawing.Size(91, 43)
         Me.BPickDP.TabIndex = 8909
         Me.BPickDP.Text = "Pick DP"
+        Me.BPickDP.Visible = False
         '
         'TEKurs
         '

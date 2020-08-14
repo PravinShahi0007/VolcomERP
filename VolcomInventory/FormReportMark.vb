@@ -5485,6 +5485,67 @@ FROM
                 ) poall ON poall.id_purc_order = r.id_purc_order
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec,dep.id_main_comp
+                UNION ALL
+                /* Total DP balik */
+                SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_dp AS `id_acc`, 1, 0 AS `qty`,0 AS `debit`
+                ,IF(now_rec.rec_val<=IF((SUM(pnd.`value`)-IFNULL(already_rec.rec_val,0))<0,0,(SUM(pnd.`value`)-IFNULL(already_rec.rec_val,0))),now_rec.rec_val,IF((SUM(pnd.`value`)-IFNULL(already_rec.rec_val,0))<0,0,(SUM(pnd.`value`)-IFNULL(already_rec.rec_val,0)))) AS `credit`, 
+                'Receiving with DP' AS note, '159', pn.id_pn, pn.number, po.report_mark_type, po.id_purc_order, po.purc_order_number
+                FROM tb_pn_det pnd
+                INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
+                INNER JOIN tb_purc_order po ON po.id_purc_order=pnd.id_report AND (pnd.report_mark_type='139' OR pnd.report_mark_type='202')
+                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
+                LEFT JOIN 
+                (
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*((100+po.`vat_percent`)/100)) AS rec_val
+	                FROM tb_purc_rec_det recd
+	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6  AND rec.`id_purc_rec`!='" + id_report + "' AND rec.`id_purc_order`='" + FormPurcReceiveDet.id_purc_order + "'
+	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
+	                INNER JOIN tb_purc_order po ON po.`id_purc_order`=rec.`id_purc_order`
+	                GROUP BY rec.`id_purc_order`
+                )already_rec ON already_rec.id_purc_order=pnd.id_report
+                LEFT JOIN 
+                (
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*((100+po.`vat_percent`)/100)) AS rec_val
+	                FROM tb_purc_rec_det recd
+	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_purc_rec`='" + id_report + "'
+	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
+	                INNER JOIN tb_purc_order po ON po.`id_purc_order`=rec.`id_purc_order`
+	                GROUP BY rec.`id_purc_order`
+                )now_rec ON now_rec.id_purc_order=pnd.id_report
+                WHERE (pnd.report_mark_type='139' OR pnd.report_mark_type='202') AND pnd.id_report='" + FormPurcReceiveDet.id_purc_order + "' 
+                GROUP BY pnd.id_report
+                UNION ALL
+                /* Hutang karena DP dibalik */
+                SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, 1, 0 AS `qty`
+                ,IF(now_rec.rec_val<=IF((SUM(pnd.`value`)-IFNULL(already_rec.rec_val,0))<0,0,(SUM(pnd.`value`)-IFNULL(already_rec.rec_val,0))),now_rec.rec_val,IF((SUM(pnd.`value`)-IFNULL(already_rec.rec_val,0))<0,0,(SUM(pnd.`value`)-IFNULL(already_rec.rec_val,0)))) AS `debit`
+                ,0 AS `credit`, 
+                'Receiving with DP' AS note, '159', pn.id_pn, pn.number, po.report_mark_type, po.id_purc_order, po.purc_order_number
+                FROM tb_pn_det pnd
+                INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
+                INNER JOIN tb_purc_order po ON po.id_purc_order=pnd.id_report AND (pnd.report_mark_type='139' OR pnd.report_mark_type='202')
+                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+                INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
+                LEFT JOIN 
+                (
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*((100+po.`vat_percent`)/100)) AS rec_val
+	                FROM tb_purc_rec_det recd
+	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6  AND rec.`id_purc_rec`!='" + id_report + "' AND rec.`id_purc_order`='" + FormPurcReceiveDet.id_purc_order + "'
+	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
+	                INNER JOIN tb_purc_order po ON po.`id_purc_order`=rec.`id_purc_order`
+	                GROUP BY rec.`id_purc_order`
+                )already_rec ON already_rec.id_purc_order=pnd.id_report
+                LEFT JOIN 
+                (
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*((100+po.`vat_percent`)/100)) AS rec_val
+	                FROM tb_purc_rec_det recd
+	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_purc_rec`='" + id_report + "'
+	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
+	                INNER JOIN tb_purc_order po ON po.`id_purc_order`=rec.`id_purc_order`
+	                GROUP BY rec.`id_purc_order`
+                )now_rec ON now_rec.id_purc_order=pnd.id_report
+                WHERE (pnd.report_mark_type='139' OR pnd.report_mark_type='202') AND pnd.id_report='" + FormPurcReceiveDet.id_purc_order + "' 
+                GROUP BY pnd.id_report
 ) ttl
 GROUP BY ttl.id_acc
 HAVING debit!=credit"

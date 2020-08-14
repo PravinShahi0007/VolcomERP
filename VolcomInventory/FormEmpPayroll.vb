@@ -1426,17 +1426,15 @@
         'actual workdays
         Dim where_actual_workdays As String = "
             -- actual workdays
-            SELECT s.id_employee, COUNT(*) AS actual_workdays
+            SELECT s.id_employee, IF(e.employee_last_date BETWEEN IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), COUNT(*), d.total_workdays) AS actual_workdays
             FROM tb_emp_schedule AS s
-            INNER JOIN tb_emp_shift AS f 
-                ON s.shift_code = f.shift_code
             LEFT JOIN tb_m_employee AS e
                 ON s.id_employee = e.id_employee
             LEFT JOIN tb_m_departement AS d 
                 ON e.id_departement = d.id_departement
             WHERE s.date BETWEEN 
-                    IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
-                    IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) 
+                IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
+                IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) 
                 AND s.id_schedule_type IN (1, 3)
             GROUP BY s.id_employee
         "
@@ -1459,7 +1457,7 @@
         'query
         Dim query As String = "
             SELECT " + id_payroll + " AS id_payroll, employee.id_employee, employee.employee_name, salary.id_employee_salary AS id_salary,
-                departement.total_workdays AS workdays, IFNULL(schedule.actual_workdays, 0) AS actual_workdays
+                departement.total_workdays AS workdays, IFNULL(schedule.actual_workdays, departement.total_workdays) AS actual_workdays
             FROM (
                 -- employee active & join date before payroll period
                 SELECT e.id_employee, e.employee_name
@@ -1543,6 +1541,15 @@
                                 update_salary(data.Rows(i)("id_salary").ToString, data.Rows(i)("id_employee").ToString)
                             End If
                         End If
+
+                        'If data.Rows(i)("actual_workdays").ToString <> GVPayroll.GetRowCellValue(j, "actual_workdays").ToString Then
+                        '    'update actual workdays
+                        '    Dim q_actual_workdays As String = "
+                        '        UPDATE tb_emp_payroll_det SET actual_workdays = " + data.Rows(i)("actual_workdays").ToString + " WHERE id_employee = " + data.Rows(i)("id_employee").ToString + " AND id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString +
+                        '    ""
+
+                        '    execute_non_query(q_actual_workdays, True, "", "", "", "")
+                        'End If
 
                         already = True
                     End If

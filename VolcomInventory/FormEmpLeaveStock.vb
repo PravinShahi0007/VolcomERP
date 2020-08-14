@@ -22,7 +22,8 @@
             XTCLeaveRemaining.SelectedTabPage = t
         Next t
         XTCLeaveRemaining.SelectedTabPage = XTCLeaveRemaining.TabPages(0)
-
+        DEFrom.EditValue = Now
+        DETo.EditValue = Now
         viewDept()
     End Sub
 
@@ -135,5 +136,34 @@
             GVSchedule.BestFitColumns()
             GVSchedule.ExpandAllGroups()
         End If
+    End Sub
+
+    Private Sub XTCLeaveRemaining_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCLeaveRemaining.SelectedPageChanged
+        If XTCLeaveRemaining.SelectedTabPageIndex = 2 Then
+            PCUpper.Visible = False
+        Else
+            PCUpper.Visible = True
+        End If
+    End Sub
+
+    Sub load_expired()
+        Dim d_from As String = Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim d_to As String = Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd")
+        '
+        Dim q As String = "SELECT emp.id_employee,emp.employee_position,emp.employee_code,emp.employee_name,emp.id_departement,dep.departement,lvl.employee_level,active.employee_active,emp_sl.`date_leave`,emp_sl.date_expired,SUM(emp_sl.`qty`)/60 AS qty_h,SUM(emp_sl.`qty`) AS qty_m
+FROM tb_emp_stock_leave emp_sl
+INNER JOIN tb_m_employee emp ON emp.id_employee=emp_sl.id_emp
+INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
+INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
+WHERE DATE(emp_sl.`date_leave`) >= '" & d_from & "' AND DATE(emp_sl.`date_leave`) <= '" & d_to & "' AND note='Auto expired leave'
+GROUP BY emp_sl.id_emp"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCExpired.DataSource = dt
+        GVExpired.BestFitColumns()
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        load_expired()
     End Sub
 End Class
