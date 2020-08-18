@@ -161,7 +161,7 @@
             bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`,
             IFNULL(bbk.`id_bbk`,0) AS `id_bbk`, bbk.`bbk_number`, bbk.`bbk_created_date`, bbk.`bbk_payment_date`, bbk.`bbk_value`, bbk.`bbk_status`,
             IFNULL(sp.id_propose_delay_payment,0) AS `id_propose_delay_payment`, mem.number AS `memo_number`, sp.propose_delay_payment_due_date,
-            so.sales_order_ol_shop_number AS `ol_store_order`, (dsg.design_cop * spd.sales_pos_det_qty) AS `amount_cost`
+            so.sales_order_ol_shop_number AS `ol_store_order`, SUM(dsg.design_cop * spd.sales_pos_det_qty) AS `amount_cost`
             FROM tb_sales_pos sp 
             INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
             INNER JOIN tb_m_product prod ON prod.id_product = spd.id_product
@@ -352,7 +352,7 @@
             (sp.`sales_pos_total`) AS `sales_pos_total`, (IFNULL(pyd.`value`,0.00)) AS total_rec, 
             (IFNULL(pyd.`value`,0.00)) - (CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS total_due,
             (CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS amount,
-            (dsg.design_cop * spd.sales_pos_det_qty) AS amount_cost
+            SUM(dsg.design_cop * spd.sales_pos_det_qty) AS amount_cost
             FROM tb_sales_pos sp 
             INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
             INNER JOIN tb_m_product prod ON prod.id_product = spd.id_product
