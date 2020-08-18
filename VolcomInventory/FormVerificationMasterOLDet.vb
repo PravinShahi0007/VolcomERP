@@ -3,6 +3,7 @@
 
     Private Sub FormVerificationMasterOLDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_slue_online_store()
+        view_slue_division()
 
         form_load()
     End Sub
@@ -10,8 +11,12 @@
     Sub form_load()
         If Not id_verification_master = "-1" Then
             Dim id_comp As String = execute_query("SELECT id_comp FROM tb_verification_master WHERE id_verification_master = '" + id_verification_master + "'", 0, True, "", "", "", "")
+            Dim id_code_detail As String = execute_query("SELECT id_code_detail FROM tb_verification_master WHERE id_verification_master = '" + id_verification_master + "'", 0, True, "", "", "", "")
+            Dim file_name As String = execute_query("SELECT file_name FROM tb_verification_master WHERE id_verification_master = '" + id_verification_master + "'", 0, True, "", "", "", "")
 
             SLUEOnlineStore.EditValue = id_comp
+            SLUEDivision.EditValue = id_code_detail
+            TEFileName.EditValue = file_name
 
             Dim query As String = ""
 
@@ -143,10 +148,16 @@
 
             'controls
             SLUEOnlineStore.ReadOnly = True
+            SLUEDivision.ReadOnly = True
+            TEFileName.ReadOnly = True
             SBImportExcel.Enabled = False
         Else
             SLUEOnlineStore.EditValue = "0"
+            SLUEDivision.EditValue = "0"
+            TEFileName.EditValue = ""
         End If
+
+        TEFileName.ReadOnly = True
     End Sub
 
     Private Sub FormVerificationMasterOLDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -165,8 +176,20 @@
         viewSearchLookupQuery(SLUEOnlineStore, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
+    Sub view_slue_division()
+        Dim query As String = "
+            SELECT 0 AS id_code_detail, '' AS display_name
+            UNION ALL
+            SELECT id_code_detail, display_name
+            FROM tb_m_code_detail AS cd
+            WHERE id_code = 32
+        "
+
+        viewSearchLookupQuery(SLUEDivision, query, "id_code_detail", "display_name", "id_code_detail")
+    End Sub
+
     Private Sub SBImportExcel_Click(sender As Object, e As EventArgs) Handles SBImportExcel.Click
-        If Not SLUEOnlineStore.EditValue.ToString = "0" Then
+        If Not SLUEOnlineStore.EditValue.ToString = "0" And Not SLUEDivision.EditValue.ToString = "0" Then
             Dim file_dialog As OpenFileDialog = New OpenFileDialog
 
             file_dialog.Title = "Browse file..."
@@ -174,13 +197,23 @@
             file_dialog.Filter = "All Files | *.*"
             file_dialog.ShowDialog()
 
-            If SLUEOnlineStore.EditValue.ToString = "653" Then
-                check_zalora(file_dialog.FileName)
-            ElseIf SLUEOnlineStore.EditValue.ToString = "1177" Then
-                check_blibli(file_dialog.FileName)
+            Dim is_already As String = execute_query("
+                SELECT COUNT(*) FROM tb_verification_master WHERE file_name = '" + addSlashes(file_dialog.SafeFileName) + "'
+            ", 0, True, "", "", "", "")
+
+            If is_already = "0" Then
+                TEFileName.EditValue = file_dialog.SafeFileName
+
+                If SLUEOnlineStore.EditValue.ToString = "653" Then
+                    check_zalora(file_dialog.FileName)
+                ElseIf SLUEOnlineStore.EditValue.ToString = "1177" Then
+                    check_blibli(file_dialog.FileName)
+                End If
+            Else
+                errorCustom("File name already imported.")
             End If
         Else
-            errorCustom("Please select online store.")
+            errorCustom("Please select online store and division.")
         End If
     End Sub
 
@@ -437,100 +470,105 @@
                     End If
                 Next
 
-                'save to database
-                Dim query As String = ""
+                'store data if valid
+                If is_valid_all Then
+                    'save to database
+                    Dim query As String = ""
 
-                'header
-                query = "INSERT INTO tb_verification_master (id_comp, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
+                    'header
+                    query = "INSERT INTO tb_verification_master (id_comp, file_name, id_code_detail, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", '" + addSlashes(TEFileName.EditValue.ToString) + "', " + SLUEDivision.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
 
-                id_verification_master = execute_query(query, 0, True, "", "", "", "")
+                    id_verification_master = execute_query(query, 0, True, "", "", "", "")
 
-                'detail
-                query = "INSERT INTO tb_verification_master_zalora (id_verification_master, SkuSupplierConfig, Name, Brand, Color, ParentSku, SellerSku, Price, SalePrice, Variation, SkuSupplierConfig_erp, Name_erp, Brand_erp, Color_erp, ParentSku_erp, SellerSku_erp, Price_erp, SalePrice_erp, Variation_erp) VALUES "
+                    'detail
+                    query = "INSERT INTO tb_verification_master_zalora (id_verification_master, SkuSupplierConfig, Name, Brand, Color, ParentSku, SellerSku, Price, SalePrice, Variation, SkuSupplierConfig_erp, Name_erp, Brand_erp, Color_erp, ParentSku_erp, SellerSku_erp, Price_erp, SalePrice_erp, Variation_erp) VALUES "
 
-                For i = 0 To data_excel.Rows.Count - 1
-                    Dim SkuSupplierConfig As String = data_excel.Rows(i)("SkuSupplierConfig").ToString
-                    Dim Name As String = data_excel.Rows(i)("Name").ToString
-                    Dim Brand As String = data_excel.Rows(i)("Brand").ToString
-                    Dim Color As String = data_excel.Rows(i)("Color").ToString
-                    Dim ParentSku As String = data_excel.Rows(i)("ParentSku").ToString
-                    Dim SellerSku As String = data_excel.Rows(i)("SellerSku").ToString
-                    Dim Price As String = data_excel.Rows(i)("Price").ToString
-                    Dim SalePrice As String = data_excel.Rows(i)("SalePrice").ToString
-                    Dim Variation As String = data_excel.Rows(i)("Variation").ToString
+                    For i = 0 To data_excel.Rows.Count - 1
+                        Dim SkuSupplierConfig As String = data_excel.Rows(i)("SkuSupplierConfig").ToString
+                        Dim Name As String = data_excel.Rows(i)("Name").ToString
+                        Dim Brand As String = data_excel.Rows(i)("Brand").ToString
+                        Dim Color As String = data_excel.Rows(i)("Color").ToString
+                        Dim ParentSku As String = data_excel.Rows(i)("ParentSku").ToString
+                        Dim SellerSku As String = data_excel.Rows(i)("SellerSku").ToString
+                        Dim Price As String = data_excel.Rows(i)("Price").ToString
+                        Dim SalePrice As String = data_excel.Rows(i)("SalePrice").ToString
+                        Dim Variation As String = data_excel.Rows(i)("Variation").ToString
 
-                    Dim SkuSupplierConfig_erp As String = ""
-                    Dim Name_erp As String = ""
-                    Dim Brand_erp As String = ""
-                    Dim Color_erp As String = ""
-                    Dim ParentSku_erp As String = ""
-                    Dim SellerSku_erp As String = ""
-                    Dim Price_erp As String = ""
-                    Dim SalePrice_erp As String = ""
-                    Dim Variation_erp As String = ""
+                        Dim SkuSupplierConfig_erp As String = ""
+                        Dim Name_erp As String = ""
+                        Dim Brand_erp As String = ""
+                        Dim Color_erp As String = ""
+                        Dim ParentSku_erp As String = ""
+                        Dim SellerSku_erp As String = ""
+                        Dim Price_erp As String = ""
+                        Dim SalePrice_erp As String = ""
+                        Dim Variation_erp As String = ""
 
-                    Try
-                        SkuSupplierConfig_erp = data_erp.Rows(i)("SkuSupplierConfig").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            SkuSupplierConfig_erp = data_erp.Rows(i)("SkuSupplierConfig").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        Name_erp = data_erp.Rows(i)("Name").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Name_erp = data_erp.Rows(i)("Name").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        Brand_erp = data_erp.Rows(i)("Brand").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Brand_erp = data_erp.Rows(i)("Brand").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        Color_erp = data_erp.Rows(i)("Color").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Color_erp = data_erp.Rows(i)("Color").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        ParentSku_erp = data_erp.Rows(i)("ParentSku").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            ParentSku_erp = data_erp.Rows(i)("ParentSku").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        SellerSku_erp = data_erp.Rows(i)("SellerSku").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            SellerSku_erp = data_erp.Rows(i)("SellerSku").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        Price_erp = data_erp.Rows(i)("Price").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Price_erp = data_erp.Rows(i)("Price").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        SalePrice_erp = data_erp.Rows(i)("SalePrice").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            SalePrice_erp = data_erp.Rows(i)("SalePrice").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        Variation_erp = data_erp.Rows(i)("Variation").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Variation_erp = data_erp.Rows(i)("Variation").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    query += "('" + id_verification_master + "', '" + SkuSupplierConfig + "', '" + Name + "', '" + Brand + "', '" + Color + "', '" + ParentSku + "', '" + SellerSku + "', '" + Price + "', '" + SalePrice + "', '" + Variation + "', '" + SkuSupplierConfig_erp + "', '" + Name_erp + "', '" + Brand_erp + "', '" + Color_erp + "', '" + ParentSku_erp + "', '" + SellerSku_erp + "', '" + Price_erp + "', '" + SalePrice_erp + "', '" + Variation_erp + "'), "
-                Next
+                        query += "('" + id_verification_master + "', '" + SkuSupplierConfig + "', '" + Name + "', '" + Brand + "', '" + Color + "', '" + ParentSku + "', '" + SellerSku + "', '" + Price + "', '" + SalePrice + "', '" + Variation + "', '" + SkuSupplierConfig_erp + "', '" + Name_erp + "', '" + Brand_erp + "', '" + Color_erp + "', '" + ParentSku_erp + "', '" + SellerSku_erp + "', '" + Price_erp + "', '" + SalePrice_erp + "', '" + Variation_erp + "'), "
+                    Next
 
-                query = query.Substring(0, query.Length - 2)
+                    query = query.Substring(0, query.Length - 2)
 
-                execute_non_query(query, True, "", "", "", "")
+                    execute_non_query(query, True, "", "", "", "")
+                End If
 
                 'warning message
                 If is_valid_all Then
                     infoCustom("Excel data is correct.")
+
+                    'controls
+                    SLUEOnlineStore.ReadOnly = True
+                    SLUEDivision.ReadOnly = True
+                    TEFileName.ReadOnly = True
+                    SBImportExcel.Enabled = False
                 Else
                     errorCustom("There are some excel data wrong.")
                 End If
-
-                'controls
-                SLUEOnlineStore.ReadOnly = True
-                SBImportExcel.Enabled = False
             Catch ex As Exception
                 errorCustom(ex.ToString)
             End Try
@@ -785,93 +823,98 @@
                     End If
                 Next
 
-                'save to database
-                Dim query As String = ""
+                'store data if valid
+                If is_valid_all Then
+                    'save to database
+                    Dim query As String = ""
 
-                'header
-                query = "INSERT INTO tb_verification_master (id_comp, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
+                    'header
+                    query = "INSERT INTO tb_verification_master (id_comp, file_name, id_code_detail, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", '" + addSlashes(TEFileName.EditValue.ToString) + "', " + SLUEDivision.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
 
-                id_verification_master = execute_query(query, 0, True, "", "", "", "")
+                    id_verification_master = execute_query(query, 0, True, "", "", "", "")
 
-                'detail
-                query = "INSERT INTO tb_verification_master_blibli (id_verification_master, NamaProduk, SellerSKU, Ukuran, Warna, Parent, KodeTokoGudang, HargaRp, HargaPenjualanRp, NamaProduk_erp, SellerSKU_erp, Ukuran_erp, Warna_erp, Parent_erp, KodeTokoGudang_erp, HargaRp_erp, HargaPenjualanRp_erp) VALUES "
+                    'detail
+                    query = "INSERT INTO tb_verification_master_blibli (id_verification_master, NamaProduk, SellerSKU, Ukuran, Warna, Parent, KodeTokoGudang, HargaRp, HargaPenjualanRp, NamaProduk_erp, SellerSKU_erp, Ukuran_erp, Warna_erp, Parent_erp, KodeTokoGudang_erp, HargaRp_erp, HargaPenjualanRp_erp) VALUES "
 
-                For i = 0 To data_excel.Rows.Count - 1
-                    Dim NamaProduk As String = data_excel.Rows(i)("NamaProduk").ToString
-                    Dim SellerSKU As String = data_excel.Rows(i)("SellerSKU").ToString
-                    Dim Ukuran As String = data_excel.Rows(i)("Ukuran").ToString
-                    Dim Warna As String = data_excel.Rows(i)("Warna").ToString
-                    Dim Parent As String = data_excel.Rows(i)("Parent").ToString
-                    Dim KodeTokoGudang As String = data_excel.Rows(i)("KodeTokoGudang").ToString
-                    Dim HargaRp As String = data_excel.Rows(i)("HargaRp").ToString
-                    Dim HargaPenjualanRp As String = data_excel.Rows(i)("HargaPenjualanRp").ToString
+                    For i = 0 To data_excel.Rows.Count - 1
+                        Dim NamaProduk As String = data_excel.Rows(i)("NamaProduk").ToString
+                        Dim SellerSKU As String = data_excel.Rows(i)("SellerSKU").ToString
+                        Dim Ukuran As String = data_excel.Rows(i)("Ukuran").ToString
+                        Dim Warna As String = data_excel.Rows(i)("Warna").ToString
+                        Dim Parent As String = data_excel.Rows(i)("Parent").ToString
+                        Dim KodeTokoGudang As String = data_excel.Rows(i)("KodeTokoGudang").ToString
+                        Dim HargaRp As String = data_excel.Rows(i)("HargaRp").ToString
+                        Dim HargaPenjualanRp As String = data_excel.Rows(i)("HargaPenjualanRp").ToString
 
-                    Dim NamaProduk_erp As String = ""
-                    Dim SellerSKU_erp As String = ""
-                    Dim Ukuran_erp As String = ""
-                    Dim Warna_erp As String = ""
-                    Dim Parent_erp As String = ""
-                    Dim KodeTokoGudang_erp As String = ""
-                    Dim HargaRp_erp As String = ""
-                    Dim HargaPenjualanRp_erp As String = ""
+                        Dim NamaProduk_erp As String = ""
+                        Dim SellerSKU_erp As String = ""
+                        Dim Ukuran_erp As String = ""
+                        Dim Warna_erp As String = ""
+                        Dim Parent_erp As String = ""
+                        Dim KodeTokoGudang_erp As String = ""
+                        Dim HargaRp_erp As String = ""
+                        Dim HargaPenjualanRp_erp As String = ""
 
-                    Try
-                        NamaProduk_erp = data_erp.Rows(i)("NamaProduk").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            NamaProduk_erp = data_erp.Rows(i)("NamaProduk").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        SellerSKU_erp = data_erp.Rows(i)("SellerSKU").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            SellerSKU_erp = data_erp.Rows(i)("SellerSKU").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        Ukuran_erp = data_erp.Rows(i)("Ukuran").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Ukuran_erp = data_erp.Rows(i)("Ukuran").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        Warna_erp = data_erp.Rows(i)("Warna").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Warna_erp = data_erp.Rows(i)("Warna").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        Parent_erp = data_erp.Rows(i)("Parent").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Parent_erp = data_erp.Rows(i)("Parent").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        KodeTokoGudang_erp = data_erp.Rows(i)("KodeTokoGudang").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            KodeTokoGudang_erp = data_erp.Rows(i)("KodeTokoGudang").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        HargaRp_erp = data_erp.Rows(i)("HargaRp").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            HargaRp_erp = data_erp.Rows(i)("HargaRp").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    Try
-                        HargaPenjualanRp_erp = data_erp.Rows(i)("HargaPenjualanRp").ToString
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            HargaPenjualanRp_erp = data_erp.Rows(i)("HargaPenjualanRp").ToString
+                        Catch ex As Exception
+                        End Try
 
-                    query += "('" + id_verification_master + "', '" + NamaProduk + "', '" + SellerSKU + "', '" + Ukuran + "', '" + Warna + "', '" + Parent + "', '" + KodeTokoGudang + "', '" + HargaRp + "', '" + HargaPenjualanRp + "', '" + NamaProduk_erp + "', '" + SellerSKU_erp + "', '" + Ukuran_erp + "', '" + Warna_erp + "', '" + Parent_erp + "', '" + KodeTokoGudang_erp + "', '" + HargaRp_erp + "', '" + HargaPenjualanRp_erp + "'), "
-                Next
+                        query += "('" + id_verification_master + "', '" + NamaProduk + "', '" + SellerSKU + "', '" + Ukuran + "', '" + Warna + "', '" + Parent + "', '" + KodeTokoGudang + "', '" + HargaRp + "', '" + HargaPenjualanRp + "', '" + NamaProduk_erp + "', '" + SellerSKU_erp + "', '" + Ukuran_erp + "', '" + Warna_erp + "', '" + Parent_erp + "', '" + KodeTokoGudang_erp + "', '" + HargaRp_erp + "', '" + HargaPenjualanRp_erp + "'), "
+                    Next
 
-                query = query.Substring(0, query.Length - 2)
+                    query = query.Substring(0, query.Length - 2)
 
-                execute_non_query(query, True, "", "", "", "")
+                    execute_non_query(query, True, "", "", "", "")
+                End If
 
                 'warning message
                 If is_valid_all Then
                     infoCustom("Excel data is correct.")
+
+                    'controls
+                    SLUEOnlineStore.ReadOnly = True
+                    SLUEDivision.ReadOnly = True
+                    TEFileName.ReadOnly = True
+                    SBImportExcel.Enabled = False
                 Else
                     errorCustom("There are some excel data wrong.")
                 End If
-
-                'controls
-                SLUEOnlineStore.ReadOnly = True
-                SBImportExcel.Enabled = False
             Catch ex As Exception
                 errorCustom(ex.ToString)
             End Try
