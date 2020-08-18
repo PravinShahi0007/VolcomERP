@@ -1375,9 +1375,20 @@ WHERE py.`id_pn`='" & id_payment & "'"
                     End If
                 End If
             Next
+
+            'description is nothing
+            Dim desc_blank As Boolean = False
+            For i As Integer = 0 To GVList.RowCount - 1
+                If GVList.GetRowCellValue(i, "note").ToString = "" Then
+                    desc_blank = True
+                    Exit For
+                End If
+            Next
             '
             If GVList.RowCount = 0 Then
                 warningCustom("No item listed.")
+            ElseIf desc_blank Then
+                warningCustom("Please fill the description.")
             ElseIf value_is_zero = True Then
                 warningCustom("You must fill value.")
             ElseIf paid_more = True Then

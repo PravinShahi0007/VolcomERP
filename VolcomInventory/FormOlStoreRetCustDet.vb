@@ -154,6 +154,7 @@ INNER JOIN tb_pl_sales_order_del_det_counting c ON c.id_pl_sales_order_del_det_c
         FROM tb_ol_store_ret_list rl
         INNER JOIN tb_ol_store_ret_det rd ON rd.`id_ol_store_ret_det`=rl.id_ol_store_ret_det
         INNER JOIN tb_ol_store_ret r ON r.`id_ol_store_ret`=rd.`id_ol_store_ret`
+        INNER JOIN tb_ol_store_ret_req req ON req.`id_ol_store_ret_req`=r.`id_ol_store_ret_req` AND req.`id_report_status`=6
         INNER JOIN `tb_pl_sales_order_del_det_counting` plc ON rd.`id_pl_sales_order_del_det_counting`=plc.id_pl_sales_order_del_det_counting
         INNER JOIN tb_sales_order_det sod ON sod.`id_sales_order_det`=rd.id_sales_order_det
         INNER JOIN tb_m_product p ON p.`id_product`=sod.`id_product`
