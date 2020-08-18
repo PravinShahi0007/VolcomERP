@@ -224,7 +224,7 @@ Partial Class FormAccountingJournalBill
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Note"
+        Me.GridColumn3.Caption = "Description"
         Me.GridColumn3.FieldName = "note"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
