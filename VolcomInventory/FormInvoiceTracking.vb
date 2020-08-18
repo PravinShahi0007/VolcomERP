@@ -161,8 +161,11 @@
             bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`,
             IFNULL(bbk.`id_bbk`,0) AS `id_bbk`, bbk.`bbk_number`, bbk.`bbk_created_date`, bbk.`bbk_payment_date`, bbk.`bbk_value`, bbk.`bbk_status`,
             IFNULL(sp.id_propose_delay_payment,0) AS `id_propose_delay_payment`, mem.number AS `memo_number`, sp.propose_delay_payment_due_date,
-            so.sales_order_ol_shop_number AS `ol_store_order`
+            so.sales_order_ol_shop_number AS `ol_store_order`, SUM(dsg.design_cop * spd.sales_pos_det_qty) AS `amount_cost`
             FROM tb_sales_pos sp 
+            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+            INNER JOIN tb_m_product prod ON prod.id_product = spd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
             INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -276,7 +279,7 @@
             0 AS id_mail_invoice, '' AS mail_invoice_no, NULL AS mail_invoice_date, '' AS mail_invoice_status,
             bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`,
             0 AS `id_bbk`,'' AS `bbk_number`, NULL AS `bbk_created_date`, NULL AS `bbk_payment_date`, 0 AS `bbk_value`, '' AS `bbk_status`,
-            0 AS `id_propose_delay_payment`, '' AS `memo_number`, NULL AS propose_delay_payment_due_date, od.ol_store_order
+            0 AS `id_propose_delay_payment`, '' AS `memo_number`, NULL AS propose_delay_payment_due_date, od.ol_store_order, 0 AS `amount_cost`
             FROM tb_invoice_ship sp
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -342,13 +345,18 @@
 
             Dim query As String = "
             SELECT is_close_rec_payment, id_comp_group, comp_group, comp_group_desc, 
-            SUM(sales_pos_total) AS `sales_pos_total`, SUM(total_rec) AS `total_rec`, SUM(total_due) AS `total_due`, SUM(amount) AS `amount`
+            SUM(sales_pos_total) AS `sales_pos_total`, SUM(total_rec) AS `total_rec`, SUM(total_due) AS `total_due`, SUM(amount) AS `amount`,
+            SUM(amount_cost) AS `amount_cost`
             FROM
             (SELECT sp.is_close_rec_payment, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
-            SUM(sp.`sales_pos_total`) AS `sales_pos_total`, SUM(IFNULL(pyd.`value`,0.00)) AS total_rec, 
-            SUM(IFNULL(pyd.`value`,0.00)) - SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS total_due,
-            SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS amount
+            (sp.`sales_pos_total`) AS `sales_pos_total`, (IFNULL(pyd.`value`,0.00)) AS total_rec, 
+            (IFNULL(pyd.`value`,0.00)) - (CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS total_due,
+            (CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS amount,
+            SUM(dsg.design_cop * spd.sales_pos_det_qty) AS amount_cost
             FROM tb_sales_pos sp 
+            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+            INNER JOIN tb_m_product prod ON prod.id_product = spd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
             INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -381,12 +389,12 @@
             " + cond_period + "
             " + cond_ovd + "
             " + cond_where_period_bbm + "
-            GROUP BY c.id_comp_group
-            UNION
+            GROUP BY sp.id_sales_pos
+            UNION ALL
             SELECT sp.is_close_rec AS is_close_rec_payment, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
-            SUM(sp.value) AS `sales_pos_total`, SUM(IFNULL(pyd.`value`,0.00)) AS total_rec, 
-            SUM(IFNULL(pyd.`value`,0.00)) - SUM(sp.value) AS total_due,
-            SUM(sp.value) AS amount
+            (sp.value) AS `sales_pos_total`, (IFNULL(pyd.`value`,0.00)) AS total_rec, 
+            (IFNULL(pyd.`value`,0.00)) - (sp.value) AS total_due,
+            (sp.value) AS amount, 0 AS `amount_cost`
             FROM tb_invoice_ship sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -415,8 +423,7 @@
             " + cond_status2 + "
             " + cond_period2 + "
             " + cond_ovd2 + "
-            " + cond_where_period_bbm + "
-            GROUP BY c.id_comp_group) a
+            " + cond_where_period_bbm + ") a
             GROUP BY id_comp_group
             HAVING 1=1
             ORDER BY comp_group_desc ASC "
