@@ -569,4 +569,8 @@
     Private Sub LabelControl15_Click(sender As Object, e As EventArgs) Handles LabelControl15.Click
 
     End Sub
+
+    Private Sub XTCSalesInv_Click(sender As Object, e As EventArgs) Handles XTCSalesInv.Click
+
+    End Sub
 End Class

@@ -164,6 +164,7 @@ Partial Class FormSalesInv
         Me.BtnShowFilterAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlViewByAcc = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESOHBySalPeriod = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewAcc = New DevExpress.XtraEditors.SimpleButton()
@@ -226,6 +227,7 @@ Partial Class FormSalesInv
         Me.PanelControlViewByAcc.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CESOHBySalPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.CEFindAllProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1624,6 +1626,7 @@ Partial Class FormSalesInv
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.CESOHBySalPeriod)
         Me.PanelControl3.Controls.Add(Me.LabelControl15)
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Controls.Add(Me.BtnBrowseProduct)
@@ -1648,6 +1651,16 @@ Partial Class FormSalesInv
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(514, 185)
         Me.PanelControl3.TabIndex = 8926
+        '
+        'CESOHBySalPeriod
+        '
+        Me.CESOHBySalPeriod.Location = New System.Drawing.Point(212, 116)
+        Me.CESOHBySalPeriod.Name = "CESOHBySalPeriod"
+        Me.CESOHBySalPeriod.Properties.Appearance.ForeColor = System.Drawing.Color.Green
+        Me.CESOHBySalPeriod.Properties.Appearance.Options.UseForeColor = True
+        Me.CESOHBySalPeriod.Properties.Caption = "SOH by Sales Period"
+        Me.CESOHBySalPeriod.Size = New System.Drawing.Size(125, 19)
+        Me.CESOHBySalPeriod.TabIndex = 8927
         '
         'LabelControl15
         '
@@ -1967,6 +1980,7 @@ Partial Class FormSalesInv
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.CESOHBySalPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.CEFindAllProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2162,4 +2176,5 @@ Partial Class FormSalesInv
     Friend WithEvents BandedGridColumnage_wh_dsg As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandSales As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandSOH As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents CESOHBySalPeriod As DevExpress.XtraEditors.CheckEdit
 End Class
