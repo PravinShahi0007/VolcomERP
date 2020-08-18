@@ -36,6 +36,13 @@ Partial Class FormVerificationMasterOLDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEDivision = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TEFileName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUEOnlineStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,17 +57,24 @@ Partial Class FormVerificationMasterOLDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEFileName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
+        Me.PanelControl1.Controls.Add(Me.TEFileName)
+        Me.PanelControl1.Controls.Add(Me.LabelControl4)
+        Me.PanelControl1.Controls.Add(Me.SLUEDivision)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SLUEOnlineStore)
         Me.PanelControl1.Controls.Add(Me.SBImportExcel)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 50)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 101)
         Me.PanelControl1.TabIndex = 0
         '
         'LabelControl1
@@ -77,7 +91,7 @@ Partial Class FormVerificationMasterOLDet
         Me.SLUEOnlineStore.Name = "SLUEOnlineStore"
         Me.SLUEOnlineStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEOnlineStore.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUEOnlineStore.Size = New System.Drawing.Size(200, 20)
+        Me.SLUEOnlineStore.Size = New System.Drawing.Size(276, 20)
         Me.SLUEOnlineStore.TabIndex = 1
         '
         'SearchLookUpEdit1View
@@ -104,9 +118,9 @@ Partial Class FormVerificationMasterOLDet
         '
         'SBImportExcel
         '
-        Me.SBImportExcel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBImportExcel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBImportExcel.Image = CType(resources.GetObject("SBImportExcel.Image"), System.Drawing.Image)
-        Me.SBImportExcel.Location = New System.Drawing.Point(667, 2)
+        Me.SBImportExcel.Location = New System.Drawing.Point(657, 28)
         Me.SBImportExcel.Name = "SBImportExcel"
         Me.SBImportExcel.Size = New System.Drawing.Size(115, 46)
         Me.SBImportExcel.TabIndex = 0
@@ -118,7 +132,7 @@ Partial Class FormVerificationMasterOLDet
         Me.GCVerification.Location = New System.Drawing.Point(0, 38)
         Me.GCVerification.MainView = Me.GVVerification
         Me.GCVerification.Name = "GCVerification"
-        Me.GCVerification.Size = New System.Drawing.Size(392, 473)
+        Me.GCVerification.Size = New System.Drawing.Size(392, 422)
         Me.GCVerification.TabIndex = 1
         Me.GCVerification.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVerification})
         '
@@ -135,7 +149,7 @@ Partial Class FormVerificationMasterOLDet
         Me.GCERP.Location = New System.Drawing.Point(0, 38)
         Me.GCERP.MainView = Me.GVERP
         Me.GCERP.Name = "GCERP"
-        Me.GCERP.Size = New System.Drawing.Size(387, 473)
+        Me.GCERP.Size = New System.Drawing.Size(387, 422)
         Me.GCERP.TabIndex = 2
         Me.GCERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVERP})
         '
@@ -148,10 +162,8 @@ Partial Class FormVerificationMasterOLDet
         '
         'SplitContainerControl
         '
-        Me.SplitContainerControl.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SplitContainerControl.Location = New System.Drawing.Point(0, 50)
+        Me.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerControl.Location = New System.Drawing.Point(0, 101)
         Me.SplitContainerControl.Name = "SplitContainerControl"
         Me.SplitContainerControl.Panel1.Controls.Add(Me.GCVerification)
         Me.SplitContainerControl.Panel1.Controls.Add(Me.PanelControl2)
@@ -159,7 +171,7 @@ Partial Class FormVerificationMasterOLDet
         Me.SplitContainerControl.Panel2.Controls.Add(Me.GCERP)
         Me.SplitContainerControl.Panel2.Controls.Add(Me.PanelControl3)
         Me.SplitContainerControl.Panel2.Text = "Panel2"
-        Me.SplitContainerControl.Size = New System.Drawing.Size(784, 511)
+        Me.SplitContainerControl.Size = New System.Drawing.Size(784, 460)
         Me.SplitContainerControl.SplitterPosition = 392
         Me.SplitContainerControl.TabIndex = 3
         Me.SplitContainerControl.Text = "SplitContainerControl1"
@@ -200,6 +212,60 @@ Partial Class FormVerificationMasterOLDet
         Me.LabelControl3.TabIndex = 1
         Me.LabelControl3.Text = "Data ERP"
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(17, 44)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl4.TabIndex = 2
+        Me.LabelControl4.Text = "Division"
+        '
+        'SLUEDivision
+        '
+        Me.SLUEDivision.Location = New System.Drawing.Point(87, 41)
+        Me.SLUEDivision.Name = "SLUEDivision"
+        Me.SLUEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEDivision.Properties.View = Me.GridView1
+        Me.SLUEDivision.Size = New System.Drawing.Size(276, 20)
+        Me.SLUEDivision.TabIndex = 3
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn1"
+        Me.GridColumn3.FieldName = "id_code_detail"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Division"
+        Me.GridColumn4.FieldName = "display_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'TEFileName
+        '
+        Me.TEFileName.Location = New System.Drawing.Point(87, 67)
+        Me.TEFileName.Name = "TEFileName"
+        Me.TEFileName.Size = New System.Drawing.Size(276, 20)
+        Me.TEFileName.TabIndex = 4
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(17, 70)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl5.TabIndex = 5
+        Me.LabelControl5.Text = "File Name"
+        '
         'FormVerificationMasterOLDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -229,6 +295,9 @@ Partial Class FormVerificationMasterOLDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEFileName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -249,4 +318,11 @@ Partial Class FormVerificationMasterOLDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEFileName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLUEDivision As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

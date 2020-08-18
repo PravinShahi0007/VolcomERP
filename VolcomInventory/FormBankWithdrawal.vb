@@ -861,10 +861,10 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
         Dim q As String = "SELECT 'no' AS is_check,pos.id_sales_pos,1 AS is_dc,'118' AS report_mark_type,acc.id_acc,acc.acc_name,acc.acc_description,pos.sales_pos_number,pos.`sales_pos_date`,pos.`sales_pos_due_date`,r.`sales_order_ol_shop_number`,
 sr.`id_sales_return`,c.`id_comp`,c.`comp_number`,c.`comp_name`,r.`rec_date`,sr.`sales_return_number`,r.`ret_req_number`,r.`sales_order_ol_shop_number`,SUM(-1*posd.`sales_pos_det_qty`) AS qty
-,SUM(posd.`design_price`) AS total
+,SUM(posd.`design_price`-sod.discount) AS total
 ,IFNULL(payment.value,0) AS total_paid
 ,IFNULL(payment_pending.jml,0) AS total_pending
-,(SUM(posd.`design_price`) - IFNULL(payment.value,0)) AS diff,
+,(SUM(posd.`design_price`-sod.discount) - IFNULL(payment.value,0)) AS diff,
 rq.rek_no, rq.rek_name, rq.rek_bank, rq.rek_branch
 FROM tb_sales_return_det srd
 INNER JOIN tb_sales_return sr ON sr.`id_sales_return`=srd.`id_sales_return` AND sr.`id_report_status`=6
