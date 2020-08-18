@@ -11,7 +11,7 @@
         Dim q As String = "
 SELECT *
 FROM (
-    SELECT 0 AS NO,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,
+    SELECT 0 AS NO,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
@@ -157,23 +157,31 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Creating report header..")
                 Dim q As String = "INSERT INTO `tb_odm_sc`(id_3pl,created_by,created_date,id_report_status)
 VALUES('" & SLUE3PL.EditValue.ToString & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID(); "
-                Dim id_odm_sc = execute_query(q, 0, True, "", "", "", "")
+                Dim id_odm_sc As String = execute_query(q, 0, True, "", "", "", "")
 
+                Dim before_id_del_manifest As String = ""
                 q = "INSERT INTO tb_odm_sc_det(id_odm_sc,id_del_manifest) VALUES"
+
                 For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                    If Not GVList.GetRowCellValue(i, "id_del_manifest").ToString = before_id_del_manifest Then
+                        before_id_del_manifest = GVList.GetRowCellValue(i, "id_del_manifest").ToString
 
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+                        q += "('" & id_odm_sc & "','" & GVList.GetRowCellValue(i, "id_del_manifest").ToString & "')"
+                    End If
                 Next
-                'For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
-                '    FormMain.SplashScreenManager1.SetWaitFormDescription("Completing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
-                '    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                '    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                execute_non_query(q, True, "", "", "", "")
 
-                '    If FormViewSalesDelOrder.id_commerce_type = "2" Then
-                '        stt.sendEmailConfirmation(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
-                '    End If
-                'Next
+                For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Completing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+                    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                Next
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
+                infoCustom("Print!")
             Catch ex As Exception
                 warningCustom(ex.ToString)
                 FormMain.SplashScreenManager1.CloseWaitForm()
