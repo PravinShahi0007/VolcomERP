@@ -103,6 +103,7 @@
 	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
 	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
             INNER JOIN tb_ol_store_ret_req_det reqd ON reqd.id_sales_order_det=sod.id_sales_order_det
+            INNER JOIN tb_ol_store_ret_req req ON req.`id_ol_store_ret_req`=reqd.id_ol_store_ret_req AND req.`id_report_status`=6
 	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
 	        INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
 	        INNER JOIN tb_m_product p ON p.id_product = dd.id_product

@@ -165,6 +165,8 @@
             For i As Integer = 0 To GVJournalDet.RowCount - 1
                 If GVJournalDet.GetRowCellValue(i, "id_comp").ToString = "0" Then
                     err = "CC Can't be blank."
+                ElseIf GVJournalDet.GetRowCellValue(i, "note").ToString = "" Then
+                    err = "Note Can't be blank."
                 End If
             Next
 
@@ -318,9 +320,7 @@
                     End If
                 End If
             End If
-
         End If
-
     End Sub
 
     Sub load_number()
