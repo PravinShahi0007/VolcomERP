@@ -21,13 +21,24 @@
         If checkHasPropose() Then
             warningCustom("Employee still has proposed changes.")
         Else
-            Close()
+            Dim id_employee As String = "0"
 
-            FormEmployeePpsDet.id_employee = GVEmployeeList.GetFocusedRowCellValue("id_employee")
-            FormEmployeePpsDet.show_payroll = show_payroll
-            FormEmployeePpsDet.is_new = "-1"
+            Try
+                id_employee = GVEmployeeList.GetFocusedRowCellValue("id_employee").ToString
+            Catch ex As Exception
+            End Try
 
-            FormEmployeePpsDet.ShowDialog()
+            If Not id_employee = "0" Then
+                Close()
+
+                FormEmployeePpsDet.id_employee = id_employee
+                FormEmployeePpsDet.show_payroll = show_payroll
+                FormEmployeePpsDet.is_new = "-1"
+
+                FormEmployeePpsDet.ShowDialog()
+            Else
+                stopCustom("Please select employee.")
+            End If
         End If
     End Sub
 
@@ -39,20 +50,36 @@
         If checkHasPropose() Then
             warningCustom("Employee still has proposed changes.")
         Else
-            Close()
+            Dim id_employee As String = "0"
 
-            FormEmployeePpsDet.id_employee = GVEmployeeList.GetFocusedRowCellValue("id_employee")
-            FormEmployeePpsDet.show_payroll = show_payroll
-            FormEmployeePpsDet.is_new = "-1"
+            Try
+                id_employee = GVEmployeeList.GetFocusedRowCellValue("id_employee").ToString
+            Catch ex As Exception
+            End Try
 
-            FormEmployeePpsDet.ShowDialog()
+            If Not id_employee = "0" Then
+                Close()
+
+                FormEmployeePpsDet.id_employee = id_employee
+                FormEmployeePpsDet.show_payroll = show_payroll
+                FormEmployeePpsDet.is_new = "-1"
+
+                FormEmployeePpsDet.ShowDialog()
+            Else
+                stopCustom("Please select employee.")
+            End If
         End If
     End Sub
 
     Function checkHasPropose() As Boolean
         Dim status As Boolean = False
 
-        Dim id_employee As String = GVEmployeeList.GetFocusedRowCellValue("id_employee").ToString
+        Dim id_employee As String = "0"
+
+        Try
+            id_employee = GVEmployeeList.GetFocusedRowCellValue("id_employee").ToString
+        Catch ex As Exception
+        End Try
 
         Dim query As String = "SELECT IFNULL((SELECT COUNT(id_employee) FROM tb_employee_pps WHERE id_employee = '" + id_employee + "' AND id_report_status NOT IN (5, 6) GROUP BY employee_code), 0)"
 
