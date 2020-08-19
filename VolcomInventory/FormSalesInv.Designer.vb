@@ -1656,7 +1656,7 @@ Partial Class FormSalesInv
         '
         Me.CESOHBySalPeriod.Location = New System.Drawing.Point(212, 116)
         Me.CESOHBySalPeriod.Name = "CESOHBySalPeriod"
-        Me.CESOHBySalPeriod.Properties.Appearance.ForeColor = System.Drawing.Color.Green
+        Me.CESOHBySalPeriod.Properties.Appearance.ForeColor = System.Drawing.Color.Black
         Me.CESOHBySalPeriod.Properties.Appearance.Options.UseForeColor = True
         Me.CESOHBySalPeriod.Properties.Caption = "SOH by Sales Period"
         Me.CESOHBySalPeriod.Size = New System.Drawing.Size(125, 19)

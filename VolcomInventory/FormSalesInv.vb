@@ -527,8 +527,18 @@
             id_design_per_outlet = "0"
         End If
 
+        'soh by period
+        Dim is_soh_sal_period As String = ""
+        If CESOHBySalPeriod.EditValue = True Then
+            is_soh_sal_period = "1"
+        Else
+            is_soh_sal_period = "2"
+        End If
+
         'excecute
-        Dim query As String = "CALL view_sales_inv_per_account('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "')"
+        'old query
+        'Dim query As String = "CALL view_sales_inv_per_account('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "')"
+        Dim query As String = "CALL view_sales_inv_per_acc_by_sal('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByAccount.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -572,5 +582,9 @@
 
     Private Sub XTCSalesInv_Click(sender As Object, e As EventArgs) Handles XTCSalesInv.Click
 
+    End Sub
+
+    Private Sub CESOHBySalPeriod_EditValueChanged(sender As Object, e As EventArgs) Handles CESOHBySalPeriod.EditValueChanged
+        resetViewByAccount()
     End Sub
 End Class
