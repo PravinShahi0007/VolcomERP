@@ -28,4 +28,14 @@
     Private Sub FormMasterDesignLookUp_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
+        If Not MEValue.Text = "" Then
+            FormMasterDesignSingle.GVAdditional.SetFocusedRowCellValue("value", MEValue.EditValue.ToString)
+
+            Close()
+        Else
+            stopCustom("Please insert new value.")
+        End If
+    End Sub
 End Class
