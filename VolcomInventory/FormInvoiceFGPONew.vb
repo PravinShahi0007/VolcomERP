@@ -30,13 +30,13 @@ GROUP BY po.`id_prod_order`"
             Dim q_where As String = ""
 
             If SLETypeInvoice.EditValue.ToString = "2" Then 'payment
-                q_where = " AND rec.id_pl_category='1' "
+                q_where = "  AND rec.is_over_tol=2 AND rec.id_pl_category='1' "
             ElseIf SLETypeInvoice.EditValue.ToString = "3" Then 'Extra hingga 2%
-                q_where = " AND rec.id_pl_category='5' "
+                q_where = "  AND rec.is_over_tol=2 AND rec.id_pl_category='5' "
             ElseIf SLETypeInvoice.EditValue.ToString = "4" Then 'over memo
-                q_where = " AND rec.id_pl_category='6' "
+                q_where = "  AND rec.is_over_tol=1 AND rec.id_pl_category='6' "
             ElseIf SLETypeInvoice.EditValue.ToString = "5" Then 'grade
-                q_where = " AND (rec.id_pl_category='2' OR rec.id_pl_category='3' OR rec.id_pl_category='4') "
+                q_where = "  AND rec.is_over_tol=2 AND (rec.id_pl_category='2' OR rec.id_pl_category='3' OR rec.id_pl_category='4') "
             End If
 
             Dim query As String = "SELECT rec.`id_prod_order_rec` AS id_report,'28' AS report_mark_type,rec.prod_order_rec_number AS report_number,
@@ -78,7 +78,7 @@ LEFT JOIN
 INNER JOIN tb_prod_order po ON po.id_prod_order=rec.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
-WHERE rec.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' AND rec.is_over_tol=2 " & q_where & "
+WHERE rec.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' " & q_where & "
 GROUP BY rec.`id_prod_order_rec`
 HAVING qty_rec_remaining > 0"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
