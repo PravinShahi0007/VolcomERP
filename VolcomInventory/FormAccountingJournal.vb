@@ -121,7 +121,7 @@ LEFT JOIN tb_m_comp comp ON comp.id_comp=a.id_comp"
         query += "INNER JOIN tb_lookup_report_status f ON t.id_report_status = f.id_report_status "
         query += "INNER JOIN tb_lookup_bill_type bill ON bill.id_bill_type=t.id_bill_type "
         query += "WHERE (DATE(t.date_created) <= '" & enddate & "') AND (DATE(t.date_created) >= '" & fromdate & "')"
-        If LEBilling.EditValue.ToString = "ALL" Then
+        If Not LEBilling.EditValue.ToString = "ALL" Then
             query += " AND t.id_bill_type = '" + id_type + "' "
         End If
         query += "ORDER BY t.id_acc_trans DESC "
