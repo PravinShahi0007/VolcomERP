@@ -16,6 +16,11 @@ FROM (
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
+    LEFT JOIN (
+        SELECT id_odm_sc,id_del_manifest
+        FROM tb_odm_sc_det odmd
+        INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmd.id_odm_sc AND odm.id_report_status!=5 
+    ) odm ON odm.id_del_manifest=md.id_del_manifest
     LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
     LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
     LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
@@ -29,7 +34,7 @@ FROM (
 	    LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
 	    GROUP BY z2.id_combine
     ) AS z ON pdelc.combine_number = z.combine_number
-    WHERE md.id_comp = " + SLUE3PL.EditValue.ToString + " 
+    WHERE md.id_comp = " + SLUE3PL.EditValue.ToString + " AND ISNULL(od.id_odm_sc)
 ) AS tb
 ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -37,7 +42,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         GVList.BestFitColumns()
         '
         If Not GVList.RowCount > 0 Then
-            warningCustom("No manifest found for this 3PL, please choose different 3PL")
+            warningCustom("No waiting manifest found for this 3PL, please choose different 3PL")
         Else
             SLUE3PL.Properties.ReadOnly = True
             BView.Visible = False
@@ -159,6 +164,9 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
 VALUES('" & SLUE3PL.EditValue.ToString & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID(); "
                 Dim id_odm_sc As String = execute_query(q, 0, True, "", "", "", "")
 
+                q = "CALL gen_number('" & id_odm_sc & "','258')"
+                execute_non_query(q, True, "", "", "", "")
+
                 Dim before_id_del_manifest As String = ""
                 q = "INSERT INTO tb_odm_sc_det(id_odm_sc,id_del_manifest) VALUES"
 
@@ -207,7 +215,7 @@ WHERE sc.id_report_status!=5"
     Sub load_odm_det()
         Dim q As String = "SELECT *
 FROM (
-    SELECT 0 AS NO,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
+    SELECT 0 AS NO,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
@@ -219,6 +227,7 @@ FROM (
     LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
     LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
     LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
+    LEFT JOIN tb_lookup_report_status sts ON sts.id_report_status=pdel.id_report_status
     LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pdel.id_combine = pdelc.id_combine
     LEFT JOIN (
 	    SELECT z3.combine_number, SUM(pl_sales_order_del_det_qty) AS qty
@@ -233,5 +242,9 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListHistory.DataSource = dt
         GVListHistory.BestFitColumns()
+    End Sub
+
+    Private Sub BViewHistory_Click(sender As Object, e As EventArgs) Handles BViewHistory.Click
+        load_odm_det()
     End Sub
 End Class

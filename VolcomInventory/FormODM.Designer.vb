@@ -62,7 +62,7 @@ Partial Class FormODM
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListHistory = New DevExpress.XtraGrid.GridControl()
         Me.GVListHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnISCheckHistory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,7 +86,7 @@ Partial Class FormODM
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCompleteHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.L3PL = New DevExpress.XtraEditors.LabelControl()
@@ -99,7 +99,7 @@ Partial Class FormODM
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -203,7 +203,7 @@ Partial Class FormODM
         Me.XTPManifestList.Controls.Add(Me.PanelControl1)
         Me.XTPManifestList.Name = "XTPManifestList"
         Me.XTPManifestList.Size = New System.Drawing.Size(1072, 556)
-        Me.XTPManifestList.Text = "Scan List"
+        Me.XTPManifestList.Text = "Waiting to Scan "
         '
         'GCList
         '
@@ -544,11 +544,11 @@ Partial Class FormODM
         'XTPHistory
         '
         Me.XTPHistory.Controls.Add(Me.GCListHistory)
-        Me.XTPHistory.Controls.Add(Me.SimpleButton2)
+        Me.XTPHistory.Controls.Add(Me.BCompleteHistory)
         Me.XTPHistory.Controls.Add(Me.PanelControl2)
         Me.XTPHistory.Name = "XTPHistory"
         Me.XTPHistory.Size = New System.Drawing.Size(1072, 556)
-        Me.XTPHistory.Text = "History"
+        Me.XTPHistory.Text = "Already Scan"
         '
         'GCListHistory
         '
@@ -564,7 +564,7 @@ Partial Class FormODM
         'GVListHistory
         '
         Me.GVListHistory.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
+        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnISCheckHistory, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
         Me.GVListHistory.GridControl = Me.GCListHistory
         Me.GVListHistory.GroupCount = 1
         Me.GVListHistory.GroupFormat = "[#image]{1} {2}"
@@ -579,17 +579,18 @@ Partial Class FormODM
         Me.GVListHistory.OptionsView.ShowGroupPanel = False
         Me.GVListHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn8, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'GridColumn7
+        'GridColumnISCheckHistory
         '
-        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn7.Caption = "Checklist"
-        Me.GridColumn7.FieldName = "is_check"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumnISCheckHistory.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnISCheckHistory.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnISCheckHistory.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnISCheckHistory.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnISCheckHistory.Caption = "Checklist"
+        Me.GridColumnISCheckHistory.FieldName = "is_check"
+        Me.GridColumnISCheckHistory.Name = "GridColumnISCheckHistory"
+        Me.GridColumnISCheckHistory.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnISCheckHistory.Visible = True
+        Me.GridColumnISCheckHistory.VisibleIndex = 0
         '
         'GridColumn8
         '
@@ -820,31 +821,31 @@ Partial Class FormODM
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
-        'SimpleButton2
+        'BCompleteHistory
         '
-        Me.SimpleButton2.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton2.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton2.Appearance.Options.UseBackColor = True
-        Me.SimpleButton2.Appearance.Options.UseFont = True
-        Me.SimpleButton2.Appearance.Options.UseForeColor = True
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton2.Location = New System.Drawing.Point(0, 524)
-        Me.SimpleButton2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton2.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton2.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(1072, 32)
-        Me.SimpleButton2.TabIndex = 15
-        Me.SimpleButton2.Text = "COMPLETE + PRINT"
-        Me.SimpleButton2.Visible = False
+        Me.BCompleteHistory.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCompleteHistory.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCompleteHistory.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCompleteHistory.Appearance.Options.UseBackColor = True
+        Me.BCompleteHistory.Appearance.Options.UseFont = True
+        Me.BCompleteHistory.Appearance.Options.UseForeColor = True
+        Me.BCompleteHistory.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCompleteHistory.Location = New System.Drawing.Point(0, 524)
+        Me.BCompleteHistory.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCompleteHistory.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCompleteHistory.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCompleteHistory.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCompleteHistory.Name = "BCompleteHistory"
+        Me.BCompleteHistory.Size = New System.Drawing.Size(1072, 32)
+        Me.BCompleteHistory.TabIndex = 15
+        Me.BCompleteHistory.Text = "COMPLETE + PRINT"
+        Me.BCompleteHistory.Visible = False
         '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.SLEScanList)
-        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.BViewHistory)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
@@ -942,13 +943,13 @@ Partial Class FormODM
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 3
         '
-        'SimpleButton1
+        'BViewHistory
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(325, 11)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(54, 23)
-        Me.SimpleButton1.TabIndex = 9
-        Me.SimpleButton1.Text = "view"
+        Me.BViewHistory.Location = New System.Drawing.Point(325, 11)
+        Me.BViewHistory.Name = "BViewHistory"
+        Me.BViewHistory.Size = New System.Drawing.Size(54, 23)
+        Me.BViewHistory.TabIndex = 9
+        Me.BViewHistory.Text = "view"
         '
         'LabelControl3
         '
@@ -1043,7 +1044,7 @@ Partial Class FormODM
     Friend WithEvents XTPHistory As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCListHistory As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVListHistory As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnISCheckHistory As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1067,13 +1068,13 @@ Partial Class FormODM
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCompleteHistory As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEScanList As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewHistory As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents L3PL As DevExpress.XtraEditors.LabelControl
