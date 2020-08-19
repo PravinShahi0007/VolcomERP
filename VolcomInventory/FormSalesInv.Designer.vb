@@ -812,7 +812,6 @@ Partial Class FormSalesInv
         Me.CESOHBySalPeriodByProduct.Properties.Caption = "SOH by Sales Period"
         Me.CESOHBySalPeriodByProduct.Size = New System.Drawing.Size(125, 19)
         Me.CESOHBySalPeriodByProduct.TabIndex = 8928
-        Me.CESOHBySalPeriodByProduct.Visible = False
         '
         'LabelControl32
         '
