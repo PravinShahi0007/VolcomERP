@@ -2250,7 +2250,7 @@ Public Class FormSalesPOSDet
                 INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = ind.id_pl_sales_order_del_det
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
                 INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
-                WHERE so.sales_order_ol_shop_number='" + addSlashes(TxtOLStoreNumber.Text) + "' AND inv.id_report_status=6
+                WHERE so.sales_order_ol_shop_number='" + addSlashes(TxtOLStoreNumber.Text) + "' AND inv.id_report_status=6 AND inv.id_store_contact_from='" + id_store_contact_from + "'
                 GROUP BY inv.id_sales_pos "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If data.Rows.Count = 1 Then
