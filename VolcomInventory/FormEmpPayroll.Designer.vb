@@ -164,6 +164,7 @@ Partial Class FormEmpPayroll
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetting = New DevExpress.XtraEditors.SimpleButton()
+        Me.BarButtonItem5 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPayroll.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
@@ -278,8 +279,8 @@ Partial Class FormEmpPayroll
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BBBcaFormat, Me.BBIBPJSKesehatan, Me.BBIBPJSTK, Me.BBIPajak, Me.BarButtonItem4})
-        Me.BarManager1.MaxItemId = 20
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BBBcaFormat, Me.BBIBPJSKesehatan, Me.BBIBPJSTK, Me.BBIPajak, Me.BarButtonItem4, Me.BarButtonItem5})
+        Me.BarManager1.MaxItemId = 21
         '
         'barDockControlTop
         '
@@ -1493,7 +1494,7 @@ Partial Class FormEmpPayroll
         '
         'PopupMenu1
         '
-        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem4), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIBPJSTK), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BBIBPJSKesehatan, False), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIPajak), New DevExpress.XtraBars.LinkPersistInfo(Me.BBBcaFormat), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BarButtonItem2, False)})
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem4), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem5), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIBPJSTK), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BBIBPJSKesehatan, False), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BarButtonItem2, False), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIPajak), New DevExpress.XtraBars.LinkPersistInfo(Me.BBBcaFormat)})
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
@@ -1694,6 +1695,12 @@ Partial Class FormEmpPayroll
         Me.BSetting.TabIndex = 0
         Me.BSetting.Text = "Setting"
         '
+        'BarButtonItem5
+        '
+        Me.BarButtonItem5.Caption = "Report Employee Comparison"
+        Me.BarButtonItem5.Id = 20
+        Me.BarButtonItem5.Name = "BarButtonItem5"
+        '
         'FormEmpPayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1893,4 +1900,5 @@ Partial Class FormEmpPayroll
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnActWorkhours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem5 As DevExpress.XtraBars.BarButtonItem
 End Class
