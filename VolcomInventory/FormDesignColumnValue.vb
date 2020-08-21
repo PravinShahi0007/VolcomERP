@@ -1,10 +1,13 @@
 ﻿Public Class FormDesignColumnValue
+    Public id_design_column_category As String = "-1"
     Public id_design_column_value As String = "-1"
     Public id_design_column As String = "-1"
     Public column_type_front As String = "-1"
     Public column_type_end As String = "-1"
 
     Private Sub FormDesignColumnValue_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TECategory.EditValue = execute_query("SELECT category FROM tb_design_column_category WHERE id_design_column_category = " + id_design_column_category, 0, True, "", "", "", "")
+
         TEType.EditValue = execute_query("
             SELECT CONCAT(column_front.display_name, ' ', column_end.display_name) AS `code`
             FROM (
