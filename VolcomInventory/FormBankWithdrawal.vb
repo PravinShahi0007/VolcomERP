@@ -666,7 +666,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         Dim r As Integer = data.Rows.Count - 1
 
         'amount
-        While i < r
+        While i <= r
             Dim id_acc As String = execute_query("
                 SELECT map.id_acc
                 FROM tb_coa_map_departement AS map
@@ -722,10 +722,12 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
                 row_cooperative("payroll_type") = data.Rows(i)("payroll_type").ToString + " (Cooperative)"
                 row_cooperative("amount") = total_cooperative
 
-                data.Rows.InsertAt(row_cooperative, i + 1)
+                data.Rows.Add(row_cooperative)
 
-                i += 1
-                r += 2
+                'data.Rows.InsertAt(row_cooperative, i + 1)
+
+                'i += 1
+                'r += 2
             End If
 
             i += 1
