@@ -1,7 +1,7 @@
 ﻿Public Class FormDesignColumn
     Private id_design_column_category As String = "-1"
-    Private column_type_front As String = "-1"
-    Private column_type_end As String = "-1"
+    Private column_type_front As String = ""
+    Private column_type_end As String = ""
 
     Private loaded As Boolean = False
 
@@ -76,6 +76,8 @@
     Sub form_load()
         'clear column
         GVDesignColumn.Columns.Clear()
+
+        id_design_column_category = SLUECategory.EditValue.ToString
 
         Try
             column_type_front = SLUEType.Properties.View.GetFocusedRowCellValue("id_code_detail_front").ToString
