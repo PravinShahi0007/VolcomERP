@@ -6,9 +6,14 @@
     Public id_comp_req_to As String = "-1"
     Public id_report_status_g As String = "-1"
     Public mrs_type As String = "1" '1= other ; 2= mat wo
+    Dim is_freeze As String = get_opt_mat_field("is_freeze_mat_storage")
     '
     Private Sub FormMatMRSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        load_mrs()
+        If is_freeze = "1" Then
+            warningCustom("Material storage still on hold")
+        Else
+            load_mrs()
+        End If
     End Sub
 
     Sub load_mrs()

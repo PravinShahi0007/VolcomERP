@@ -479,7 +479,7 @@ Partial Class FormMatRecPurcDet
         '
         Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAttach.Image = CType(resources.GetObject("BAttach.Image"), System.Drawing.Image)
-        Me.BAttach.Location = New System.Drawing.Point(543, 2)
+        Me.BAttach.Location = New System.Drawing.Point(520, 2)
         Me.BAttach.Name = "BAttach"
         Me.BAttach.Size = New System.Drawing.Size(109, 36)
         Me.BAttach.TabIndex = 10
@@ -489,7 +489,7 @@ Partial Class FormMatRecPurcDet
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
-        Me.BPrint.Location = New System.Drawing.Point(652, 2)
+        Me.BPrint.Location = New System.Drawing.Point(629, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(87, 36)
         Me.BPrint.TabIndex = 9
@@ -499,7 +499,7 @@ Partial Class FormMatRecPurcDet
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
-        Me.BCancel.Location = New System.Drawing.Point(739, 2)
+        Me.BCancel.Location = New System.Drawing.Point(716, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(93, 36)
         Me.BCancel.TabIndex = 8
@@ -510,9 +510,9 @@ Partial Class FormMatRecPurcDet
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Enabled = False
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(832, 2)
+        Me.BSave.Location = New System.Drawing.Point(809, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(75, 36)
+        Me.BSave.Size = New System.Drawing.Size(98, 36)
         Me.BSave.TabIndex = 7
         Me.BSave.Text = "Save"
         '
