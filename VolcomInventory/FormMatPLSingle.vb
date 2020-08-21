@@ -18,13 +18,18 @@
     Public id_wo As String
 
     Public is_other As String = "-1"
+    Dim is_freeze As String = get_opt_mat_field("is_freeze_mat_storage")
 
     'Form Load
     Private Sub FormMatPLSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        checkFormAccessSingle(Name) 'check access
-        viewReportStatus() 'get report status
-        viewPLType() 'get PL Type
-        actionLoad()
+        If is_freeze = "1" Then
+            warningCustom("Material storage still on hold")
+        Else
+            checkFormAccessSingle(Name) 'check access
+            viewReportStatus() 'get report status
+            viewPLType() 'get PL Type
+            actionLoad()
+        End If
     End Sub
     Sub actionLoad()
         If action = "ins" Then
