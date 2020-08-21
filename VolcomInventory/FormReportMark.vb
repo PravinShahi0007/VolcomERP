@@ -1883,6 +1883,17 @@
 
             query = String.Format("UPDATE tb_adj_in_mat SET id_report_status='{0}' WHERE id_adj_in_mat='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+
+            If id_status_reportx = "6" Then
+                Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report)
+SELECT adjd.id_wh_drawer,1,adjd.id_mat_det,adjd.adj_in_mat_det_qty,NOW(),adj.adj_in_mat_note,adjd.id_mat_det_price,adjd.adj_in_mat_det_price,1,26,adjd.id_adj_in_mat
+FROM
+`tb_adj_in_mat_det` adjd
+INNER JOIN tb_adj_in_mat adj ON adj.id_adj_in_mat=adjd.id_adj_in_mat
+WHERE adjd.id_adj_in_mat='" & id_report & "'"
+                execute_non_query(query_upd_storage, True, "", "", "", "")
+            End If
+
             'infoCustom("Status changed.")
             Try
                 If form_origin = "FormMatAdjInSingle" Then
@@ -1921,26 +1932,42 @@
                     execute_non_query(query_upd_storage, True, "", "", "", "")
                 Next
             ElseIf id_status_reportx = 6 Then 'completed
-                'stock
-                Dim query_cancel As String = "SELECT * FROM tb_adj_out_mat a "
-                query_cancel += "INNER JOIN tb_adj_out_mat_det b ON a.id_adj_out_mat = b.id_adj_out_mat "
-                query_cancel += "WHERE a.id_adj_out_mat = '" + id_report + "' "
-                Dim data As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
-                For i As Integer = 0 To (data.Rows.Count - 1)
-                    Dim id_wh_drawer As String = data.Rows(i)("id_wh_drawer").ToString
-                    Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
-                    Dim adj_out_mat_det_qty As Decimal = data.Rows(i)("adj_out_mat_det_qty")
-                    Dim id_mat_det_price As String = data.Rows(i)("id_mat_det_price").ToString
-                    Dim adj_out_mat_det_price As Decimal = data.Rows(i)("adj_out_mat_det_price")
-                    Dim adj_out_mat_number As String = data.Rows(i)("adj_out_mat_number").ToString
-                    Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report) "
-                    query_upd_storage += "VALUES('" + id_wh_drawer + "', '1', '" + id_mat_det + "', '" + decimalSQL(adj_out_mat_det_qty.ToString) + "', NOW(), 'Completed, Adjustment Out : " + adj_out_mat_number + "','" & id_mat_det_price & "','" & decimalSQL(adj_out_mat_det_price.ToString) & "','2','27','" & id_report & "')"
-                    execute_non_query(query_upd_storage, True, "", "", "", "")
+                ''stock
+                'Dim query_cancel As String = "SELECT * FROM tb_adj_out_mat a "
+                'query_cancel += "INNER JOIN tb_adj_out_mat_det b ON a.id_adj_out_mat = b.id_adj_out_mat "
+                'query_cancel += "WHERE a.id_adj_out_mat = '" + id_report + "' "
+                'Dim data As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
+                'For i As Integer = 0 To (data.Rows.Count - 1)
+                '    Dim id_wh_drawer As String = data.Rows(i)("id_wh_drawer").ToString
+                '    Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
+                '    Dim adj_out_mat_det_qty As Decimal = data.Rows(i)("adj_out_mat_det_qty")
+                '    Dim id_mat_det_price As String = data.Rows(i)("id_mat_det_price").ToString
+                '    Dim adj_out_mat_det_price As Decimal = data.Rows(i)("adj_out_mat_det_price")
+                '    Dim adj_out_mat_number As String = data.Rows(i)("adj_out_mat_number").ToString
+                '    Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report) "
+                '    query_upd_storage += "VALUES('" + id_wh_drawer + "', '1', '" + id_mat_det + "', '" + decimalSQL(adj_out_mat_det_qty.ToString) + "', NOW(), 'Completed, Adjustment Out : " + adj_out_mat_number + "','" & id_mat_det_price & "','" & decimalSQL(adj_out_mat_det_price.ToString) & "','2','27','" & id_report & "')"
+                '    execute_non_query(query_upd_storage, True, "", "", "", "")
 
-                    query_upd_storage = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report) "
-                    query_upd_storage += "VALUES('" + id_wh_drawer + "', '2', '" + id_mat_det + "', '" + decimalSQL(adj_out_mat_det_qty.ToString) + "', NOW(), 'Completed, Adjustment Out : " + adj_out_mat_number + "','" & id_mat_det_price & "','" & decimalSQL(adj_out_mat_det_price.ToString) & "','1','27','" & id_report & "')"
-                    execute_non_query(query_upd_storage, True, "", "", "", "")
-                Next
+                '    query_upd_storage = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report) "
+                '    query_upd_storage += "VALUES('" + id_wh_drawer + "', '2', '" + id_mat_det + "', '" + decimalSQL(adj_out_mat_det_qty.ToString) + "', NOW(), 'Completed, Adjustment Out : " + adj_out_mat_number + "','" & id_mat_det_price & "','" & decimalSQL(adj_out_mat_det_price.ToString) & "','1','27','" & id_report & "')"
+                '    execute_non_query(query_upd_storage, True, "", "", "", "")
+                'Next
+                'batalkan reserved
+                Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report)
+SELECT adjd.id_wh_drawer,1,adjd.id_mat_det,adjd.adj_out_mat_det_qty,NOW(),adj.adj_out_mat_note,adjd.id_mat_det_price,adjd.adj_out_mat_det_price,2,27,adjd.id_adj_out_mat
+FROM
+`tb_adj_out_mat_det` adjd
+INNER JOIN tb_adj_out_mat adj ON adj.id_adj_out_mat=adjd.id_adj_out_mat
+WHERE adjd.id_adj_out_mat='" & id_report & "'"
+                execute_non_query(query_upd_storage, True, "", "", "", "")
+                'masukkan sebenarnya
+                query_upd_storage = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report)
+SELECT adjd.id_wh_drawer,2,adjd.id_mat_det,adjd.adj_out_mat_det_qty,NOW(),adj.adj_out_mat_note,adjd.id_mat_det_price,adjd.adj_out_mat_det_price,1,27,adjd.id_adj_out_mat
+FROM
+`tb_adj_out_mat_det` adjd
+INNER JOIN tb_adj_out_mat adj ON adj.id_adj_out_mat=adjd.id_adj_out_mat
+WHERE adjd.id_adj_out_mat='" & id_report & "'"
+                execute_non_query(query_upd_storage, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_adj_out_mat SET id_report_status='{0}' WHERE id_adj_out_mat='{1}'", id_status_reportx, id_report)
