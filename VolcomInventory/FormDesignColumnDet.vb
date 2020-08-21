@@ -1,7 +1,10 @@
 ﻿Public Class FormDesignColumnDet
+    Public id_design_column_category As String = "-1"
     Public id_design_column As String = "-1"
 
     Private Sub FormDesignColumnDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TECategory.EditValue = execute_query("SELECT category FROM tb_design_column_category WHERE id_design_column_category = " + id_design_column_category, 0, True, "", "", "", "")
+
         If Not id_design_column = "-1" Then
             Dim data As DataTable = execute_query("
                 SELECT d.column_name, d.is_lookup
@@ -36,7 +39,7 @@
             If id_design_column = "-1" Then
                 'insert
                 id_design_column = execute_query("
-                    INSERT INTO tb_design_column (column_name, is_lookup) VALUES ('" + addSlashes(TEColumnName.EditValue) + "', " + If(CEIsLookUp.Checked, "1", "2") + "); SELECT LAST_INSERT_ID();
+                    INSERT INTO tb_design_column (id_design_column_category, column_name, is_lookup) VALUES (" + id_design_column_category + ", '" + addSlashes(TEColumnName.EditValue) + "', " + If(CEIsLookUp.Checked, "1", "2") + "); SELECT LAST_INSERT_ID();
                 ", 0, True, "", "", "", "")
 
                 infoCustom("Saved.")
@@ -45,7 +48,7 @@
             Else
                 'update
                 execute_non_query("
-                    UPDATE tb_design_column SET column_name = '" + addSlashes(TEColumnName.EditValue) + "', is_lookup = " + If(CEIsLookUp.Checked, "1", "2") + " WHERE id_design_column = " + id_design_column + "
+                    UPDATE tb_design_column SET id_design_column_category = '" + id_design_column_category + "', column_name = '" + addSlashes(TEColumnName.EditValue) + "', is_lookup = " + If(CEIsLookUp.Checked, "1", "2") + " WHERE id_design_column = " + id_design_column + "
                 ", True, "", "", "", "")
 
                 infoCustom("Saved.")

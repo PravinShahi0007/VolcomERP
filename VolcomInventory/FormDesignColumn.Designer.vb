@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormDesignColumn
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,12 +17,18 @@ Partial Class FormDesignColumn
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDesignColumn))
         Me.GCDesignColumn = New DevExpress.XtraGrid.GridControl()
         Me.GVDesignColumn = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepositoryItemMemoEdit = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.SLUECategory = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DropDownButtonValue = New DevExpress.XtraEditors.DropDownButton()
         Me.PopupMenuValue = New DevExpress.XtraBars.PopupMenu()
         Me.BarButtonItemAddValue = New DevExpress.XtraBars.BarButtonItem()
@@ -42,17 +48,18 @@ Partial Class FormDesignColumn
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.GCDesignColumn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesignColumn, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLUECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenuValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenuColumn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCDesignColumn
@@ -75,8 +82,14 @@ Partial Class FormDesignColumn
         Me.GVDesignColumn.OptionsView.RowAutoHeight = True
         Me.GVDesignColumn.OptionsView.ShowGroupPanel = False
         '
+        'RepositoryItemMemoEdit
+        '
+        Me.RepositoryItemMemoEdit.Name = "RepositoryItemMemoEdit"
+        '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.Label2)
+        Me.PanelControl1.Controls.Add(Me.SLUECategory)
         Me.PanelControl1.Controls.Add(Me.DropDownButtonValue)
         Me.PanelControl1.Controls.Add(Me.DropDownButtonColumn)
         Me.PanelControl1.Controls.Add(Me.Label1)
@@ -86,6 +99,46 @@ Partial Class FormDesignColumn
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 52)
         Me.PanelControl1.TabIndex = 1
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(15, 20)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(52, 13)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "Category"
+        '
+        'SLUECategory
+        '
+        Me.SLUECategory.Location = New System.Drawing.Point(73, 17)
+        Me.SLUECategory.Name = "SLUECategory"
+        Me.SLUECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUECategory.Properties.View = Me.GridView1
+        Me.SLUECategory.Size = New System.Drawing.Size(200, 20)
+        Me.SLUECategory.TabIndex = 6
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Category"
+        Me.GridColumn4.FieldName = "category"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "GridColumn5"
+        Me.GridColumn5.FieldName = "id_design_column_category"
+        Me.GridColumn5.Name = "GridColumn5"
         '
         'DropDownButtonValue
         '
@@ -186,7 +239,7 @@ Partial Class FormDesignColumn
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 19)
+        Me.Label1.Location = New System.Drawing.Point(285, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(31, 13)
         Me.Label1.TabIndex = 1
@@ -194,7 +247,7 @@ Partial Class FormDesignColumn
         '
         'SLUEType
         '
-        Me.SLUEType.Location = New System.Drawing.Point(53, 16)
+        Me.SLUEType.Location = New System.Drawing.Point(322, 17)
         Me.SLUEType.Name = "SLUEType"
         Me.SLUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEType.Properties.View = Me.SearchLookUpEdit1View
@@ -229,10 +282,6 @@ Partial Class FormDesignColumn
         Me.GridColumn3.FieldName = "id_code_detail_end"
         Me.GridColumn3.Name = "GridColumn3"
         '
-        'RepositoryItemMemoEdit
-        '
-        Me.RepositoryItemMemoEdit.Name = "RepositoryItemMemoEdit"
-        '
         'FormDesignColumn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -249,15 +298,17 @@ Partial Class FormDesignColumn
         Me.Text = "Design Column"
         CType(Me.GCDesignColumn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDesignColumn, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLUECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenuValue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenuColumn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -286,4 +337,9 @@ Partial Class FormDesignColumn
     Friend WithEvents BarButtonItemEditColumn As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents PopupMenuColumn As DevExpress.XtraBars.PopupMenu
     Friend WithEvents RepositoryItemMemoEdit As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents Label2 As Label
+    Friend WithEvents SLUECategory As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
