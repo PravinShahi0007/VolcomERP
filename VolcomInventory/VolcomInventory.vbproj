@@ -1406,6 +1406,12 @@
     <Compile Include="FormEmpPayrollBCAFormat.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollCompare.Designer.vb">
+      <DependentUpon>FormEmpPayrollCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollCompare.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollDeduction.Designer.vb">
       <DependentUpon>FormEmpPayrollDeduction.vb</DependentUpon>
     </Compile>
@@ -6302,16 +6308,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVerificationMasterOL.Designer.vb">
-    <DependentUpon>FormVerificationMasterOL.vb</DependentUpon>
+      <DependentUpon>FormVerificationMasterOL.vb</DependentUpon>
     </Compile>
     <Compile Include="FormVerificationMasterOL.vb">
-        <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVerificationMasterOLDet.Designer.vb">
-        <DependentUpon>FormVerificationMasterOLDet.vb</DependentUpon>
+      <DependentUpon>FormVerificationMasterOLDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormVerificationMasterOLDet.vb">
-        <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVerifyMaster.Designer.vb">
       <DependentUpon>FormVerifyMaster.vb</DependentUpon>
@@ -7804,6 +7810,12 @@
     <Compile Include="ReportPayrollAll2.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPayrollAllCompare.Designer.vb">
+      <DependentUpon>ReportPayrollAllCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPayrollAllCompare.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPLMat.designer.vb">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
     </Compile>
@@ -9028,6 +9040,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollBCAFormat.resx">
       <DependentUpon>FormEmpPayrollBCAFormat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollCompare.resx">
+      <DependentUpon>FormEmpPayrollCompare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollDeduction.resx">
       <DependentUpon>FormEmpPayrollDeduction.vb</DependentUpon>
@@ -11851,10 +11866,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerificationMasterOL.resx">
-    <DependentUpon>FormVerificationMasterOL.vb</DependentUpon>
+      <DependentUpon>FormVerificationMasterOL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerificationMasterOLDet.resx">
-        <DependentUpon>FormVerificationMasterOLDet.vb</DependentUpon>
+      <DependentUpon>FormVerificationMasterOLDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewBOMFull.resx">
       <DependentUpon>FormViewBOMFull.vb</DependentUpon>
@@ -12701,6 +12716,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayrollAll2.resx">
       <DependentUpon>ReportPayrollAll2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPayrollAllCompare.resx">
+      <DependentUpon>ReportPayrollAllCompare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>

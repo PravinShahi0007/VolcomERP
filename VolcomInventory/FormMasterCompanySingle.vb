@@ -643,8 +643,10 @@ WHERE comp.id_comp = '{0}'", id_company)
                 id_baru = execute_query(query, 0, True, "", "", "", "")
 
                 'insert default drawer
-                Dim query_drw As String = "CALL generate_def_loc('" + id_baru + "', '" + code + "') "
-                execute_non_query(query_drw, True, "", "", "", "")
+                If id_company_category = "5" Or id_company_category = "6" Then
+                    Dim query_drw As String = "CALL generate_def_loc('" + id_baru + "', '" + code + "') "
+                    execute_non_query(query_drw, True, "", "", "", "")
+                End If
 
                 'insert to contact
                 query = "INSERT INTO tb_m_comp_contact(contact_person,contact_number,email,position,is_default,id_comp,id_annotation)"
