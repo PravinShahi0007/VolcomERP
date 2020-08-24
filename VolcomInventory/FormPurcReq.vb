@@ -235,4 +235,9 @@ WHERE bex.`id_b_expense` = '" & GVItemReqList.GetRowCellValue(i, "id_b_expense")
         Next
         GVItemReqList.ActiveFilterString = ""
     End Sub
+
+    Private Sub GVPurcReq_DoubleClick(sender As Object, e As EventArgs) Handles GVPurcReq.DoubleClick
+        FormPurcReqDet.id_req = GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
+        FormPurcReqDet.ShowDialog()
+    End Sub
 End Class
