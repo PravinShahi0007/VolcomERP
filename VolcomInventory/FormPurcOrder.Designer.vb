@@ -102,9 +102,9 @@ Partial Class FormPurcOrder
         Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCountPO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotPO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRecAmo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RPBRec = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
@@ -910,10 +910,13 @@ Partial Class FormPurcOrder
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn89, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn61, Me.GridColumn60, Me.GridColumn59, Me.GridColumn53, Me.GridColumn54, Me.GridColumn58, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn89, Me.GridColumn4, Me.GridColumn5, Me.GridColumnCountPO, Me.GridColumnTotPO, Me.GridColumnRecAmo, Me.GridColumn59, Me.GridColumn53, Me.GridColumn54, Me.GridColumn58, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56})
         Me.GVPO.GridControl = Me.GCPO
+        Me.GVPO.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "last_update", Me.GridColumnCountPO, "Total PO : {0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_po", Me.GridColumnTotPO, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.GridColumnRecAmo, "{0:N2}")})
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsView.ColumnAutoWidth = False
+        Me.GVPO.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVPO.OptionsView.ShowFooter = True
         Me.GVPO.OptionsView.ShowGroupPanel = False
         '
         'GridColumn7
@@ -1008,46 +1011,49 @@ Partial Class FormPurcOrder
         Me.GridColumn5.VisibleIndex = 8
         Me.GridColumn5.Width = 83
         '
-        'GridColumn6
+        'GridColumnCountPO
         '
-        Me.GridColumn6.Caption = "Last Update"
-        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn6.FieldName = "last_update"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.AllowEdit = False
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 9
+        Me.GridColumnCountPO.Caption = "Last Update"
+        Me.GridColumnCountPO.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnCountPO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCountPO.FieldName = "last_update"
+        Me.GridColumnCountPO.Name = "GridColumnCountPO"
+        Me.GridColumnCountPO.OptionsColumn.AllowEdit = False
+        Me.GridColumnCountPO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "last_update", "Total PO : {0}")})
+        Me.GridColumnCountPO.Visible = True
+        Me.GridColumnCountPO.VisibleIndex = 9
         '
-        'GridColumn61
+        'GridColumnTotPO
         '
-        Me.GridColumn61.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn61.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn61.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn61.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn61.Caption = "PO Amount"
-        Me.GridColumn61.DisplayFormat.FormatString = "N2"
-        Me.GridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn61.FieldName = "total_po"
-        Me.GridColumn61.Name = "GridColumn61"
-        Me.GridColumn61.OptionsColumn.AllowEdit = False
-        Me.GridColumn61.Visible = True
-        Me.GridColumn61.VisibleIndex = 10
+        Me.GridColumnTotPO.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnTotPO.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnTotPO.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnTotPO.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnTotPO.Caption = "PO Amount"
+        Me.GridColumnTotPO.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotPO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotPO.FieldName = "total_po"
+        Me.GridColumnTotPO.Name = "GridColumnTotPO"
+        Me.GridColumnTotPO.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotPO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_po", "{0:N2}")})
+        Me.GridColumnTotPO.Visible = True
+        Me.GridColumnTotPO.VisibleIndex = 10
         '
-        'GridColumn60
+        'GridColumnRecAmo
         '
-        Me.GridColumn60.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn60.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn60.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn60.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn60.Caption = "Receive Amount"
-        Me.GridColumn60.DisplayFormat.FormatString = "N2"
-        Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn60.FieldName = "total_rec"
-        Me.GridColumn60.Name = "GridColumn60"
-        Me.GridColumn60.OptionsColumn.AllowEdit = False
-        Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 11
+        Me.GridColumnRecAmo.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnRecAmo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnRecAmo.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnRecAmo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnRecAmo.Caption = "Receive Amount"
+        Me.GridColumnRecAmo.DisplayFormat.FormatString = "N2"
+        Me.GridColumnRecAmo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRecAmo.FieldName = "total_rec"
+        Me.GridColumnRecAmo.Name = "GridColumnRecAmo"
+        Me.GridColumnRecAmo.OptionsColumn.AllowEdit = False
+        Me.GridColumnRecAmo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
+        Me.GridColumnRecAmo.Visible = True
+        Me.GridColumnRecAmo.VisibleIndex = 11
         '
         'GridColumn59
         '
@@ -1883,7 +1889,7 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCountPO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1989,8 +1995,8 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RPBRec As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
     Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotPO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRecAmo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPPOList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCPOItem As DevExpress.XtraGrid.GridControl

@@ -97,7 +97,10 @@
                 Dim FILE_NAME As String = path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString
 
                 If IO.File.Exists(FILE_NAME) = True Then
-                    Process.Start(FILE_NAME)
+                    Dim processinfo As ProcessStartInfo = New ProcessStartInfo()
+                    processinfo.FileName = FILE_NAME
+                    processinfo.WorkingDirectory = path
+                    Process.Start(processinfo)
                 Else
                     MsgBox("File Does Not Exist")
                 End If

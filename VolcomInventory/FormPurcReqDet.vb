@@ -32,6 +32,8 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
         load_purc_type()
         is_reload = "2"
         '
+
+        '
         If id_req = "-1" Then 'new
             If FormPurcReq.SLEDepartement.EditValue.ToString = "0" Then
                 TEDep.Text = get_departement_x(id_departement_user, "1")
@@ -54,6 +56,9 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             GVItemList.OptionsBehavior.Editable = True
             BtnAttachment.Visible = False
             '
+            Dim query As String = "SELECT NOW() as time_server"
+            Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+            DERequirementDate.Properties.MinValue = Date.Parse(dt.Rows(0)("time_server"))
         Else 'edit
             BtnAttachment.Visible = True
             BSetShipping.Visible = False
@@ -115,6 +120,19 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             If rmt = "201" Then
                 PCIAIC.Visible = True
             End If
+        End If
+        '
+        If is_submit = "1" Then
+            BMark.Text = "Mark"
+            If FormPurcReq.is_purc_dep = "1" Then
+                LStoreRequest.Visible = True
+                CEStoreRequest.Visible = True
+            Else
+                LStoreRequest.Visible = False
+                CEStoreRequest.Visible = False
+            End If
+        Else
+            BMark.Text = "Submit"
         End If
     End Sub
 
@@ -571,10 +589,10 @@ GROUP BY req.`id_purc_req`"
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id_req
 
-        MsgBox(id_report_status)
         If is_view = "1" Or Not id_report_status = "1" Then
             FormDocumentUpload.is_view = "1"
         End If
+
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
