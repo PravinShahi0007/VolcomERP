@@ -683,4 +683,17 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Sub viewBreakdownSize()
+        Cursor = Cursors.WaitCursor
+        Dim pd As New ClassProdDemand()
+        pd.viewBreakSizePDRevDetail(id, id_prod_demand, GCSize, GVSize)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCDetail_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCDetail.SelectedPageChanged
+        If XTCDetail.SelectedTabPageIndex = 1 Then
+            viewBreakdownSize()
+        End If
+    End Sub
 End Class
