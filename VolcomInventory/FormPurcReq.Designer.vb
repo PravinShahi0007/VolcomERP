@@ -87,6 +87,8 @@ Partial Class FormPurcReq
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -329,7 +331,7 @@ Partial Class FormPurcReq
         '
         'GVItemReqList
         '
-        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn16, Me.GridColumn12, Me.GridColumn17, Me.GridColumn19, Me.GridColumn10, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn24})
+        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn16, Me.GridColumn12, Me.GridColumn17, Me.GridColumn19, Me.GridColumn10, Me.GridColumn25, Me.GridColumn26, Me.GridColumn18, Me.GridColumn30, Me.GridColumn27, Me.GridColumn24})
         Me.GVItemReqList.GridControl = Me.GCItemReqList
         Me.GVItemReqList.Name = "GVItemReqList"
         Me.GVItemReqList.OptionsFind.AlwaysVisible = True
@@ -456,7 +458,7 @@ Partial Class FormPurcReq
         Me.GridColumn12.UnboundExpression = "[po_qty] - [qty_pr]"
         Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.VisibleIndex = 8
         '
         'GridColumn17
         '
@@ -466,7 +468,7 @@ Partial Class FormPurcReq
         Me.GridColumn17.FieldName = "rec_qty"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 8
+        Me.GridColumn17.VisibleIndex = 10
         '
         'GridColumn19
         '
@@ -478,7 +480,7 @@ Partial Class FormPurcReq
         Me.GridColumn19.UnboundExpression = "[rec_qty] - [qty_pr]"
         Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 9
+        Me.GridColumn19.VisibleIndex = 11
         '
         'GridColumn10
         '
@@ -499,7 +501,7 @@ Partial Class FormPurcReq
         Me.GridColumn25.FieldName = "unable_fulfill"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 10
+        Me.GridColumn25.VisibleIndex = 12
         Me.GridColumn25.Width = 99
         '
         'RICEUnableToFulfill
@@ -521,7 +523,7 @@ Partial Class FormPurcReq
         Me.GridColumn27.FieldName = "unable_fulfill_reason"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 11
+        Me.GridColumn27.VisibleIndex = 13
         '
         'GridColumn24
         '
@@ -529,7 +531,7 @@ Partial Class FormPurcReq
         Me.GridColumn24.FieldName = "workstatus"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 12
+        Me.GridColumn24.VisibleIndex = 14
         '
         'RepositoryItemCheckEdit1
         '
@@ -676,6 +678,23 @@ Partial Class FormPurcReq
         Me.LargeImageCollection.Images.SetKeyName(3, "safari (4).png")
         Me.LargeImageCollection.Images.SetKeyName(4, "31-Document_32x32.png")
         '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Estimate Receive Date"
+        Me.GridColumn18.FieldName = "est_rec_date"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 9
+        Me.GridColumn18.Width = 134
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "PO Created Date"
+        Me.GridColumn30.FieldName = "po_date"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 6
+        '
         'FormPurcReq
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -790,4 +809,6 @@ Partial Class FormPurcReq
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
