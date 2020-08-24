@@ -484,7 +484,7 @@ Partial Class FormPurcReq
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Date Created"
+        Me.GridColumn10.Caption = "PR Created"
         Me.GridColumn10.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn10.FieldName = "date_created"
@@ -681,6 +681,8 @@ Partial Class FormPurcReq
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Estimate Receive Date"
+        Me.GridColumn18.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn18.FieldName = "est_rec_date"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
@@ -690,6 +692,8 @@ Partial Class FormPurcReq
         'GridColumn30
         '
         Me.GridColumn30.Caption = "PO Created Date"
+        Me.GridColumn30.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn30.FieldName = "po_date"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
