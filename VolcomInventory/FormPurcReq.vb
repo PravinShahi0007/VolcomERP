@@ -127,6 +127,11 @@
                                SELECT id_departement,departement FROM tb_m_departement"
         Else
             query = "SELECT id_departement,departement FROM tb_m_departement WHERE id_departement='" & id_departement_user & "'"
+            query += " UNION ALL "
+            query += " SELECT dep.`id_departement`,dep.`departement`
+FROM `tb_purc_req_extra_dep` ext 
+INNER JOIN tb_m_departement dep ON dep.`id_departement`=ext.`id_departement`
+WHERE ext.id_user='" & id_user & "' "
         End If
 
         viewSearchLookupQuery(SLEDepartement, query, "id_departement", "departement", "id_departement")
@@ -229,5 +234,10 @@ WHERE bex.`id_b_expense` = '" & GVItemReqList.GetRowCellValue(i, "id_b_expense")
             End If
         Next
         GVItemReqList.ActiveFilterString = ""
+    End Sub
+
+    Private Sub GVPurcReq_DoubleClick(sender As Object, e As EventArgs) Handles GVPurcReq.DoubleClick
+        FormPurcReqDet.id_req = GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
+        FormPurcReqDet.ShowDialog()
     End Sub
 End Class

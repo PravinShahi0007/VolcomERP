@@ -295,14 +295,22 @@
                         query += "VALUES('" + id_adj_out_mat + "','" + adj_out_mat_det_note + "', '" + decimalSQL(adj_out_mat_det_qty) + "', '" + id_wh_drawer + "', '" + id_mat_det + "','" + id_mat_det_price + "', '" + decimalSQL(adj_out_mat_det_price.ToString) + "') "
                         execute_non_query(query, True, "", "", "", "")
 
-                        'INSERT TB PL STORAGE
-                        Dim query_upd_storage As String = "INSERT INTO tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det,id_mat_det_price,price, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_stock_status,report_mark_type,id_report) "
-                        query_upd_storage += "VALUES('" + id_wh_drawer + "', '2', '" + id_mat_det + "','" + id_mat_det_price + "','" + decimalSQL(adj_out_mat_det_price.ToString) + "', '" + decimalSQL(adj_out_mat_det_qty) + "', NOW(), 'Adjustment In : " + adj_out_mat_number + "','2','27','" + id_adj_out_mat + "')"
-                        execute_non_query(query_upd_storage, True, "", "", "", "")
+                        ''INSERT TB PL STORAGE
+                        'Dim query_upd_storage As String = "INSERT INTO tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det,id_mat_det_price,price, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_stock_status,report_mark_type,id_report) "
+                        'query_upd_storage += "VALUES('" + id_wh_drawer + "', '2', '" + id_mat_det + "','" + id_mat_det_price + "','" + decimalSQL(adj_out_mat_det_price.ToString) + "', '" + decimalSQL(adj_out_mat_det_qty) + "', NOW(), 'Adjustment In : " + adj_out_mat_number + "','2','27','" + id_adj_out_mat + "')"
+                        'execute_non_query(query_upd_storage, True, "", "", "", "")
                     Catch ex As Exception
                         Console.WriteLine(ex.ToString)
                     End Try
                 Next
+                '
+                Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report)
+SELECT adjd.id_wh_drawer,2,adjd.id_mat_det,adjd.adj_out_mat_det_qty,NOW(),adj.adj_out_mat_note,adjd.id_mat_det_price,adjd.adj_out_mat_det_price,2,27,adjd.id_adj_out_mat
+FROM
+`tb_adj_out_mat_det` adjd
+INNER JOIN tb_adj_out_mat adj ON adj.id_adj_out_mat=adjd.id_adj_out_mat
+WHERE adjd.id_adj_out_mat='" & id_adj_out_mat & "'"
+                execute_non_query(query_upd_storage, True, "", "", "", "")
 
                 FormMatAdj.XTCAdj.SelectedTabPageIndex = 1
                 FormMatAdj.viewAdjOut()

@@ -327,6 +327,10 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         If CEPayLater.EditValue = True Then
             Report.LabelBeneficiary.Text = TxtCompName.Text
             Report.LabelDUelDate.Text = DEDueDate.Text
+            '
+            Report.LPayFrom.Visible = False
+            Report.LpayFromTitle.Visible = False
+            Report.LpayFromMark.Visible = False
         Else
             Report.LabelBeneficiary.Visible = False
             Report.LabelTitleBeneficiary.Visible = False
@@ -334,6 +338,10 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             Report.LabelDUelDate.Visible = False
             Report.LabelTitleDueDate.Visible = False
             Report.LabelDotDueDate.Visible = False
+            '
+            Report.LPayFrom.Visible = True
+            Report.LpayFromTitle.Visible = True
+            Report.LpayFromMark.Visible = True
         End If
 
         Report.LInvNo.Text = TEInvNo.Text

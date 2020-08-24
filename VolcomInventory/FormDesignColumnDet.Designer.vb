@@ -25,20 +25,23 @@ Partial Class FormDesignColumnDet
         Me.CEIsLookUp = New DevExpress.XtraEditors.CheckEdit()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECategory = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TEColumnName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEIsLookUp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TEColumnName
         '
-        Me.TEColumnName.Location = New System.Drawing.Point(12, 31)
+        Me.TEColumnName.Location = New System.Drawing.Point(12, 88)
         Me.TEColumnName.Name = "TEColumnName"
         Me.TEColumnName.Size = New System.Drawing.Size(360, 20)
         Me.TEColumnName.TabIndex = 3
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 69)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl1.TabIndex = 2
@@ -47,7 +50,7 @@ Partial Class FormDesignColumnDet
         'CEIsLookUp
         '
         Me.CEIsLookUp.EditValue = True
-        Me.CEIsLookUp.Location = New System.Drawing.Point(12, 65)
+        Me.CEIsLookUp.Location = New System.Drawing.Point(12, 122)
         Me.CEIsLookUp.Name = "CEIsLookUp"
         Me.CEIsLookUp.Properties.Caption = "Is Look Up"
         Me.CEIsLookUp.Size = New System.Drawing.Size(75, 19)
@@ -56,7 +59,7 @@ Partial Class FormDesignColumnDet
         'SBSave
         '
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(297, 101)
+        Me.SBSave.Location = New System.Drawing.Point(297, 158)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(75, 23)
         Me.SBSave.TabIndex = 5
@@ -65,17 +68,35 @@ Partial Class FormDesignColumnDet
         'SBClose
         '
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(216, 101)
+        Me.SBClose.Location = New System.Drawing.Point(216, 158)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 23)
         Me.SBClose.TabIndex = 6
         Me.SBClose.Text = "Close"
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 18)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl2.TabIndex = 7
+        Me.LabelControl2.Text = "Category"
+        '
+        'TECategory
+        '
+        Me.TECategory.Location = New System.Drawing.Point(12, 37)
+        Me.TECategory.Name = "TECategory"
+        Me.TECategory.Properties.ReadOnly = True
+        Me.TECategory.Size = New System.Drawing.Size(360, 20)
+        Me.TECategory.TabIndex = 8
+        '
         'FormDesignColumnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 138)
+        Me.ClientSize = New System.Drawing.Size(384, 199)
+        Me.Controls.Add(Me.LabelControl2)
+        Me.Controls.Add(Me.TECategory)
         Me.Controls.Add(Me.SBClose)
         Me.Controls.Add(Me.SBSave)
         Me.Controls.Add(Me.CEIsLookUp)
@@ -86,6 +107,7 @@ Partial Class FormDesignColumnDet
         Me.Text = "Design Column Detail"
         CType(Me.TEColumnName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEIsLookUp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -96,4 +118,6 @@ Partial Class FormDesignColumnDet
     Friend WithEvents CEIsLookUp As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents SBSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TECategory As DevExpress.XtraEditors.TextEdit
 End Class
