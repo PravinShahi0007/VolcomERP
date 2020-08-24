@@ -679,4 +679,89 @@
         gv.Columns("TOTAL QTY").SummaryItem.DisplayFormat = "{0:n0}"
         gv.BestFitColumns()
     End Sub
+
+    Sub viewBreakSizePDRevDetail(ByVal id_rev As String, ByVal id_prod_demand As String, ByVal gc As DevExpress.XtraGrid.GridControl, ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        'get size
+        gc.DataSource = Nothing
+        gc.RepositoryItems.Clear()
+
+        'repo
+        Dim riTE As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+        riTE.NullText = "-"
+        gc.RepositoryItems.Add(riTE)
+
+        Dim qz As String = "SELECT cd.id_code_detail, cd.display_name 
+        FROM tb_prod_demand_design pdd
+        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
+        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdd.is_void=2
+        GROUP BY cd.id_code_detail
+        UNION 
+        SELECT cd.id_code_detail, cd.display_name 
+        FROM tb_prod_demand_design_rev pdd
+        INNER JOIN tb_prod_demand_product_rev pdp ON pdp.id_prod_demand_design_rev = pdd.id_prod_demand_design_rev
+        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        WHERE pdd.id_prod_demand_rev=" + id_rev + " 
+        GROUP BY cd.id_code_detail
+        ORDER BY id_code_detail ASC "
+        Dim dz As DataTable = execute_query(qz, -1, True, "", "", "", "")
+
+        Dim query As String = "SELECT '' AS `NO`,dsg.design_code_import AS `CODE IMPORT`, dsg.design_code AS `CODE` , dsg.design_display_name AS `DESCRIPTION`,
+        GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY prodc.id_code_detail ASC SEPARATOR ', ') AS `SIZE CHART`, "
+        For i As Integer = 0 To dz.Rows.Count - 1
+            query += "IFNULL(SUM(Case When cd.id_code_detail=" + dz.Rows(i)("id_code_detail").ToString + " Then pdp.prod_demand_product_qty End),0) As `" + dz.Rows(i)("display_name").ToString + "`, "
+        Next
+        query += "SUM(pdp.prod_demand_product_qty) AS `TOTAL QTY`
+        FROM tb_prod_demand_design pdd
+        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
+        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        INNER JOIN tb_m_design dsg ON dsg.id_design = pdd.id_design
+        WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdd.is_void=2 AND pdd.id_prod_demand_design NOT IN (
+	        SELECT id_prod_demand_design FROM tb_prod_demand_design_rev pdd_rev
+	        WHERE pdd_rev.id_prod_demand_rev = " + id_rev + "
+        )
+        GROUP BY pdd.id_prod_demand_design
+        UNION ALL
+        SELECT '' AS `NO`,dsg.design_code_import AS `CODE IMPORT`, dsg.design_code AS `CODE` , dsg.design_display_name AS `DESCRIPTION`,
+        GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY prodc.id_code_detail ASC SEPARATOR ', ') AS `SIZE CHART`, "
+        For i As Integer = 0 To dz.Rows.Count - 1
+            query += "IFNULL(SUM(Case When cd.id_code_detail=" + dz.Rows(i)("id_code_detail").ToString + " Then pdp.prod_demand_product_qty End),0) As `" + dz.Rows(i)("display_name").ToString + "`, "
+        Next
+        query += "SUM(pdp.prod_demand_product_qty) AS `TOTAL QTY`
+        FROM tb_prod_demand_design_rev pdd
+        INNER JOIN tb_prod_demand_product_rev pdp ON pdp.id_prod_demand_design_rev = pdd.id_prod_demand_design_rev
+        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        INNER JOIN tb_m_design dsg ON dsg.id_design = pdd.id_design
+        WHERE pdd.id_prod_demand_rev=" + id_rev + "
+        GROUP BY pdd.id_prod_demand_design
+        ORDER BY `DESCRIPTION` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        gc.DataSource = data
+
+        For i As Integer = 0 To dz.Rows.Count - 1
+            'display format
+            gv.Columns(dz.Rows(i)("display_name").ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns(dz.Rows(i)("display_name").ToString).DisplayFormat.FormatString = "{0:n0}"
+
+            'smmary
+            gv.Columns(dz.Rows(i)("display_name").ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            gv.Columns(dz.Rows(i)("display_name").ToString).SummaryItem.DisplayFormat = "{0:n0}"
+
+            'repo
+            gv.Columns(dz.Rows(i)("display_name").ToString).ColumnEdit = riTE
+        Next
+        gv.Columns("TOTAL QTY").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        gv.Columns("TOTAL QTY").DisplayFormat.FormatString = "{0:n0}"
+        gv.Columns("TOTAL QTY").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        gv.Columns("TOTAL QTY").SummaryItem.DisplayFormat = "{0:n0}"
+        gv.BestFitColumns()
+    End Sub
 End Class
