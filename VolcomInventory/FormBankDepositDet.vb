@@ -8,6 +8,7 @@ Public Class FormBankDepositDet
     Public id_list_payout_trans As String = "-1"
     Public id_virtual_acc_trans As String = "-1"
     Public id_coa_tag As String = "1"
+    Public id_coa_type As String = "1"
 
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -417,7 +418,10 @@ Public Class FormBankDepositDet
     End Sub
     '
     Sub load_pay_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' "
+        If id_deposit = "-1" Then
+            query += "AND id_coa_type='" + id_coa_type + "' "
+        End If
         viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
     '
