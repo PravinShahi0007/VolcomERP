@@ -2611,6 +2611,24 @@
     <Compile Include="FormMasterDesignCOPProposeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterDesignFabrication.Designer.vb">
+      <DependentUpon>FormMasterDesignFabrication.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterDesignFabrication.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterDesignFabricationDet.Designer.vb">
+      <DependentUpon>FormMasterDesignFabricationDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterDesignFabricationDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterDesignFabricationLookup.Designer.vb">
+      <DependentUpon>FormMasterDesignFabricationLookup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterDesignFabricationLookup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterDesignLookUp.Designer.vb">
       <DependentUpon>FormMasterDesignLookUp.vb</DependentUpon>
     </Compile>
@@ -9667,6 +9685,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignCOPProposeDet.resx">
       <DependentUpon>FormMasterDesignCOPProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterDesignFabrication.resx">
+      <DependentUpon>FormMasterDesignFabrication.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterDesignFabricationDet.resx">
+      <DependentUpon>FormMasterDesignFabricationDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterDesignFabricationLookup.resx">
+      <DependentUpon>FormMasterDesignFabricationLookup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignLookUp.resx">
       <DependentUpon>FormMasterDesignLookUp.vb</DependentUpon>

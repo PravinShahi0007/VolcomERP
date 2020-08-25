@@ -59,6 +59,7 @@
             gridBandSubCat.Visible = True
             gridBandClass.Visible = True
             gridBandColor.Visible = True
+            gridBandCoolStorage.Visible = True
 
             gridBandCodeImport.VisibleIndex = 0
             gridBandName.VisibleIndex = 1
@@ -70,6 +71,7 @@
             gridBandSubCat.VisibleIndex = 7
             gridBandClass.VisibleIndex = 8
             gridBandColor.VisibleIndex = 9
+            gridBandCoolStorage.VisibleIndex = 10
 
             query = "SELECT 0 AS RowHeight, dr.design_code AS `code_view`, dr.design_display_name AS `name_view`,
             pd.id_prod_demand, pd.prod_demand_number, po.id_prod_order, po.prod_order_number,
@@ -77,6 +79,7 @@
             dr.design_code AS `code`, d.design_code AS `code_new`,
             IF(det.c_design_code_import=1,dr.design_code_import,'-') AS `code_import`, IF(det.c_design_code_import=1,d.design_code_import,'-') AS `code_import_new`,
             IF(det.c_design_display_name=1,dr.design_display_name,'-') AS `name`, IF(det.c_design_display_name=1,d.design_display_name,'-') AS `name_new`,
+            IF(det.c_is_cold_storage=1,cstdr.cool_storage,'-') AS `is_cold_storage`, IF(det.c_is_cold_storage=1,cst.cool_storage,'-') AS `is_cold_storage_new`,
             IF(det.c_id_season_orign=1,sordr.season_orign_display,'-') AS `season_orign`, IF(det.c_id_season_orign=1,sor.season_orign_display,'-') AS `season_orign_new`,
             IF(det.c_design_fabrication=1, dr.design_fabrication,'-') AS `design_fabrication`, IF(det.c_design_fabrication=1, d.design_fabrication,'-') AS `design_fabrication_new`,
             IF(det.c_design_detail=1,dr.design_detail, '-') AS `design_detail`, IF(det.c_design_detail=1,d.design_detail, '-') AS `design_detail_new`,
@@ -85,7 +88,7 @@
             IF(det.c_subcategory=1, subcat.sub_category,'-') AS `sub_category`, IF(det.c_subcategory=1, subcat_new.sub_category_new,'-') AS `sub_category_new`,
             IF(det.c_class=1, cls.class, '-') AS `class`, IF(det.c_class=1, cls_new.class_new, '-') AS `class_new`,
             IF(det.c_color=1, col.color,'-') AS `color`, IF(det.c_color=1, col_new.color_new,'-') AS `color_new`,
-            det.c_design_name, det.c_design_code_import, det.c_design_display_name, det.c_id_season_orign, 
+            det.c_design_name, det.c_is_cold_storage, det.c_design_code_import, det.c_design_display_name, det.c_id_season_orign, 
             det.c_design_fabrication, det.c_design_detail,
             det.c_source, det.c_division, det.c_subcategory, det.c_class, det.c_color "
             Dim dsg As New ClassDesign()
@@ -133,6 +136,10 @@
             GVData.ActiveFilterString = "c_color=1 "
             If GVData.RowCount <= 0 Then
                 gridBandColor.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_is_cold_storage=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandCoolStorage.Visible = False
             End If
             makeSafeGV(GVData)
             GVData.BestFitColumns()
