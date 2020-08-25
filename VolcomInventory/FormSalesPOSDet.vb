@@ -174,6 +174,10 @@ Public Class FormSalesPOSDet
             Dim data_closing As DataTable = execute_query(query_closing, -1, True, "", "", "", "")
             DEStart.Properties.MinValue = data_closing(0)("first_date")
             DEEnd.Properties.MinValue = data_closing(0)("first_date")
+            'maximum date
+            Dim tgl_sekarang As DateTime = getTimeDB()
+            DEStart.Properties.MaxValue = tgl_sekarang
+            DEEnd.Properties.MaxValue = tgl_sekarang
 
             'credit note ol store base on return centre
 
