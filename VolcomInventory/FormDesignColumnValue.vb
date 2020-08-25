@@ -5,6 +5,8 @@
     Public column_type_front As String = "-1"
     Public column_type_end As String = "-1"
 
+    Private has_dependency As String = "-1"
+
     Private Sub FormDesignColumnValue_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TECategory.EditValue = execute_query("SELECT category FROM tb_design_column_category WHERE id_design_column_category = " + id_design_column_category, 0, True, "", "", "", "")
 
@@ -40,6 +42,16 @@
 
             TEColumnGroup.EditValue = data.Rows(0)("column_group").ToString
             TEValue.EditValue = data.Rows(0)("value").ToString
+        End If
+
+        'controls
+        has_dependency = execute_query("SELECT IFNULL(id_dependency, '-1') FROM tb_design_column WHERE id_design_column = " + id_design_column, 0, True, "", "", "", "")
+
+        If has_dependency = "-1" Then
+            TEColumnGroup.Width = 460
+            SBBrowse.Visible = False
+        Else
+            TEColumnGroup.ReadOnly = True
         End If
     End Sub
 
@@ -84,5 +96,13 @@
         Else
             errorCustom("Column value can't be blank.")
         End If
+    End Sub
+
+    Private Sub SBBrowse_Click(sender As Object, e As EventArgs) Handles SBBrowse.Click
+        FormDesignColumnBrowse.id_design_column = has_dependency
+        FormDesignColumnBrowse.column_type_front = column_type_front
+        FormDesignColumnBrowse.column_type_end = column_type_end
+
+        FormDesignColumnBrowse.ShowDialog()
     End Sub
 End Class

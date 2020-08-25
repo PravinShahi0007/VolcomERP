@@ -32,6 +32,7 @@ Partial Class FormDesignColumnValue
         Me.TEColumnGroup = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TECategory = New DevExpress.XtraEditors.TextEdit()
+        Me.SBBrowse = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TEColumnName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +128,7 @@ Partial Class FormDesignColumnValue
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEColumnGroup.Location = New System.Drawing.Point(12, 182)
         Me.TEColumnGroup.Name = "TEColumnGroup"
-        Me.TEColumnGroup.Size = New System.Drawing.Size(460, 20)
+        Me.TEColumnGroup.Size = New System.Drawing.Size(410, 20)
         Me.TEColumnGroup.TabIndex = 0
         '
         'LabelControl5
@@ -146,11 +147,21 @@ Partial Class FormDesignColumnValue
         Me.TECategory.Size = New System.Drawing.Size(460, 20)
         Me.TECategory.TabIndex = 2
         '
+        'SBBrowse
+        '
+        Me.SBBrowse.Image = CType(resources.GetObject("SBBrowse.Image"), System.Drawing.Image)
+        Me.SBBrowse.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.SBBrowse.Location = New System.Drawing.Point(432, 180)
+        Me.SBBrowse.Name = "SBBrowse"
+        Me.SBBrowse.Size = New System.Drawing.Size(40, 23)
+        Me.SBBrowse.TabIndex = 15
+        '
         'FormDesignColumnValue
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(484, 511)
+        Me.Controls.Add(Me.SBBrowse)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.TECategory)
         Me.Controls.Add(Me.LabelControl4)
@@ -188,4 +199,5 @@ Partial Class FormDesignColumnValue
     Friend WithEvents TEColumnGroup As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECategory As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SBBrowse As DevExpress.XtraEditors.SimpleButton
 End Class
