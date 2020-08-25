@@ -441,28 +441,73 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         If is_submit = "1" Then
-            FormReportMark.id_report = id_req
-            FormReportMark.report_mark_type = rmt
-            If is_view = "1" Then
-                FormReportMark.is_view = "1"
+            If rmt = "201" Then
+                Dim qc As String = "SELECT id_report_status,ic_approval FROM tb_purc_req WHERE id_purc_req='" & id_req & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows(0)("id_report_status").ToString = "1" Then
+                    'blom checked
+                    FormReportMark.id_report = id_req
+                    FormReportMark.report_mark_type = rmt
+                    If is_view = "1" Then
+                        FormReportMark.is_view = "1"
+                    End If
+                    FormReportMark.form_origin = Name
+                    FormReportMark.ShowDialog()
+                Else
+                    'sudah checked
+                    'check dulu ic_approval sudah atau belum
+                    If dtc.Rows(0)("ic_approval").ToString = "1" Then
+                        'jika blom
+                        If is_ic_ia = "1" Then
+                            FormPurcReqICApproval.step_approve = FormPurcReqList.step_approve
+                            FormPurcReqICApproval.id_departement_pr = id_departement
+                            FormPurcReqICApproval.id_report = id_req
+                            FormPurcReqICApproval.ShowDialog()
+                            load_form()
+                        Else
+                            warningCustom("Need IC Approval")
+                        End If
+                    Else
+                        FormReportMark.id_report = id_req
+                        FormReportMark.report_mark_type = rmt
+                        If is_view = "1" Then
+                            FormReportMark.is_view = "1"
+                        End If
+                        FormReportMark.form_origin = Name
+                        FormReportMark.ShowDialog()
+                    End If
+                End If
+            Else
+                FormReportMark.id_report = id_req
+                FormReportMark.report_mark_type = rmt
+                If is_view = "1" Then
+                    FormReportMark.is_view = "1"
+                End If
+                FormReportMark.form_origin = Name
+                FormReportMark.ShowDialog()
             End If
-            FormReportMark.form_origin = Name
-            FormReportMark.ShowDialog()
         Else
             'submit
             If rmt = "201" Then 'fixed asset
-                If is_ic_ia = "1" Then
-                    FormPurcReqICApproval.step_approve = FormPurcReqList.step_approve
-                    FormPurcReqICApproval.id_report = id_req
-                    FormPurcReqICApproval.ShowDialog()
-                    load_form()
-                Else
-                    warningCustom("Only IA and IC can submit Fixed Asset request")
-                End If
+                Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_req & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+                submit_who_prepared_pr("201", id_req, id_user_created, id_departement)
+                infoCustom("Form Submitted")
+                load_form()
+                'If is_ic_ia = "1" Then
+                '    FormPurcReqICApproval.step_approve = FormPurcReqList.step_approve
+                '    FormPurcReqICApproval.id_departement_pr = id_departement
+                '    FormPurcReqICApproval.id_report = id_req
+                '    FormPurcReqICApproval.ShowDialog()
+                '    load_form()
+                'Else
+                '    warningCustom("Only IA and IC can submit Fixed Asset request")
+                'End If
             Else 'non fixed asset
                 Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_req & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
-                submit_who_prepared(rmt, id_req, id_user_created)
+                submit_who_prepared_pr(rmt, id_req, id_user_created, id_departement)
+                infoCustom("Form Submitted")
                 load_form()
             End If
         End If

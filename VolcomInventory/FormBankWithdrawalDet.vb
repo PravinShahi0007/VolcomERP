@@ -1343,6 +1343,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        calculate_amount()
         If id_payment = "-1" Then
             'cek value 0
             Dim value_is_zero As Boolean = False

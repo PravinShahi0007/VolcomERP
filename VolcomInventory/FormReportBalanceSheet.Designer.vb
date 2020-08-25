@@ -127,6 +127,9 @@ Partial Class FormReportBalanceSheet
         Me.XTPTaxDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPTaxDetails = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTaxReport = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewJournalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVTaxReport = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -162,9 +165,6 @@ Partial Class FormReportBalanceSheet
         Me.BViewPajak = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DETaxFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViewJournalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,6 +204,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPTaxDetail.SuspendLayout()
         Me.XTPTaxDetails.SuspendLayout()
         CType(Me.GCTaxReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVTaxReport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCPajak, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCPajak.SuspendLayout()
@@ -215,7 +216,6 @@ Partial Class FormReportBalanceSheet
         CType(Me.DETaxUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETaxFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETaxFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'PCFilterUpper
@@ -259,7 +259,7 @@ Partial Class FormReportBalanceSheet
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "id_comp"
+        Me.GridColumn1.Caption = "id_coa_tag"
         Me.GridColumn1.FieldName = "id_comp"
         Me.GridColumn1.Name = "GridColumn1"
         '
@@ -270,7 +270,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn3.Caption = "Number"
-        Me.GridColumn3.FieldName = "comp_number"
+        Me.GridColumn3.FieldName = "tag_code"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
@@ -279,7 +279,7 @@ Partial Class FormReportBalanceSheet
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Unit"
-        Me.GridColumn2.FieldName = "comp_name"
+        Me.GridColumn2.FieldName = "tag_description"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
@@ -1183,6 +1183,24 @@ Partial Class FormReportBalanceSheet
         Me.GCTaxReport.TabIndex = 2
         Me.GCTaxReport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTaxReport})
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewJournalToolStripMenuItem})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(141, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Report"
+        '
+        'ViewJournalToolStripMenuItem
+        '
+        Me.ViewJournalToolStripMenuItem.Name = "ViewJournalToolStripMenuItem"
+        Me.ViewJournalToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.ViewJournalToolStripMenuItem.Text = "View Journal"
+        '
         'GVTaxReport
         '
         Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn24, Me.GridColumn8, Me.GridColumn9, Me.GridColumn23, Me.GridColumnPPNPPH, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
@@ -1490,24 +1508,6 @@ Partial Class FormReportBalanceSheet
         Me.DETaxFrom.Size = New System.Drawing.Size(173, 20)
         Me.DETaxFrom.TabIndex = 1
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewJournalToolStripMenuItem})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "View Report"
-        '
-        'ViewJournalToolStripMenuItem
-        '
-        Me.ViewJournalToolStripMenuItem.Name = "ViewJournalToolStripMenuItem"
-        Me.ViewJournalToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ViewJournalToolStripMenuItem.Text = "View Journal"
-        '
         'FormReportBalanceSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1561,6 +1561,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPTaxDetail.ResumeLayout(False)
         Me.XTPTaxDetails.ResumeLayout(False)
         CType(Me.GCTaxReport, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVTaxReport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCPajak, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCPajak.ResumeLayout(False)
@@ -1573,7 +1574,6 @@ Partial Class FormReportBalanceSheet
         CType(Me.DETaxUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETaxFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETaxFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
