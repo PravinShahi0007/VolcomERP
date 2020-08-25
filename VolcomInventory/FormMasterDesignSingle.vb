@@ -233,7 +233,7 @@
 
     'cool storage
     Sub view_cool_storage()
-        Dim query As String = "SELECT id_cool_storage, cool_storage FROM tb_lookup_cool_storage"
+        Dim query As String = "SELECT id_cool_storage, cool_storage FROM tb_lookup_cool_storage ORDER BY id_cool_storage DESC "
         viewSearchLookupQuery(SLUECoolStorage, query, "id_cool_storage", "cool_storage", "id_cool_storage")
     End Sub
 
