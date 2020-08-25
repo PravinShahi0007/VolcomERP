@@ -33,6 +33,7 @@
         execute_non_query(query, True, "", "", "", "")
 
         FormMasterDesignFabrication.load_form()
+        FormMasterDesignFabricationLookup.form_load()
 
         Close()
     End Sub
@@ -45,5 +46,9 @@
 
             FormMasterDesignFabrication.load_form()
         End If
+    End Sub
+
+    Private Sub FormMasterDesignFabricationDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

@@ -454,6 +454,8 @@
             'TxtFabrication.Enabled = True
             SBFabricationBrowse.Enabled = True
             SLUECoolStorage.Enabled = True
+            GVAdditional.OptionsBehavior.Editable = True
+            TEPrimaryName.Enabled = True
             LESampleOrign.Enabled = True
         End If
 
@@ -999,6 +1001,8 @@
             'TxtFabrication.Enabled = False
             SBFabricationBrowse.Enabled = False
             SLUECoolStorage.Enabled = False
+            GVAdditional.OptionsBehavior.Editable = False
+            TEPrimaryName.Enabled = False
             SLEDesign.Enabled = False
             GCCodeDsg.Enabled = False
             XTPPrice.PageVisible = False
@@ -1078,6 +1082,8 @@
             'TxtFabrication.Enabled = True
             SBFabricationBrowse.Enabled = True
             SLUECoolStorage.Enabled = True
+            GVAdditional.OptionsBehavior.Editable = True
+            TEPrimaryName.Enabled = True
             BtnGetLastCount.Enabled = False
             SLEDesign.Enabled = False
             GCCode.Enabled = False
@@ -1095,6 +1101,8 @@
             'TxtFabrication.Enabled = True
             SBFabricationBrowse.Enabled = True
             SLUECoolStorage.Enabled = True
+            GVAdditional.OptionsBehavior.Editable = True
+            TEPrimaryName.Enabled = True
             LESampleOrign.Enabled = True
             LERetCode.Enabled = False
             DERetDate.Enabled = False
@@ -1127,6 +1135,8 @@
             'TxtFabrication.Enabled = False
             SBFabricationBrowse.Enabled = False
             SLUECoolStorage.Enabled = False
+            GVAdditional.OptionsBehavior.Editable = False
+            TEPrimaryName.Enabled = False
             BtnGetLastCount.Enabled = False
             SLEDesign.Enabled = False
             GCCode.Enabled = False
@@ -1155,6 +1165,8 @@
                 'TxtFabrication.Enabled = True
                 SBFabricationBrowse.Enabled = True
                 SLUECoolStorage.Enabled = True
+                GVAdditional.OptionsBehavior.Editable = True
+                TEPrimaryName.Enabled = True
                 SLEDesign.Enabled = True
                 GCCodeDsg.Enabled = True
                 MEDetail.ReadOnly = False
@@ -1172,6 +1184,8 @@
                 'TxtFabrication.Enabled = False
                 SBFabricationBrowse.Enabled = False
                 SLUECoolStorage.Enabled = False
+                'GVAdditional.OptionsBehavior.Editable = False
+                'TEPrimaryName.Enabled = False
                 SLEDesign.Enabled = False
                 GCCodeDsg.Enabled = False
                 MEDetail.ReadOnly = True
@@ -1227,6 +1241,8 @@
             'TxtFabrication.Enabled = False
             SBFabricationBrowse.Enabled = False
             SLUECoolStorage.Enabled = False
+            GVAdditional.OptionsBehavior.Editable = False
+            TEPrimaryName.Enabled = False
             BtnGetLastCount.Enabled = False
             SLEDesign.Enabled = False
             GCCode.Enabled = False
@@ -1260,6 +1276,8 @@
                 'TxtFabrication.Enabled = False
                 SBFabricationBrowse.Enabled = False
                 SLUECoolStorage.Enabled = False
+                'GVAdditional.OptionsBehavior.Editable = False
+                'TEPrimaryName.Enabled = False
                 SLEDesign.Enabled = False
                 GCCodeDsg.Enabled = False
                 BtnAddSeaason.Enabled = False
@@ -1330,6 +1348,8 @@
                     'TxtFabrication.Enabled = True
                     SBFabricationBrowse.Enabled = True
                     SLUECoolStorage.Enabled = True
+                    GVAdditional.OptionsBehavior.Editable = True
+                    TEPrimaryName.Enabled = True
                     SLEDesign.Enabled = True
                     MEDetail.ReadOnly = False
                     TxtCodeImport.Enabled = True
@@ -1350,6 +1370,8 @@
                     'TxtFabrication.Enabled = True
                     SBFabricationBrowse.Enabled = True
                     SLUECoolStorage.Enabled = True
+                    GVAdditional.OptionsBehavior.Editable = True
+                    TEPrimaryName.Enabled = True
                     SLEDesign.Enabled = True
                     GCCodeDsg.Enabled = True
                     MEDetail.ReadOnly = False
