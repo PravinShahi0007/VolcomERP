@@ -49,18 +49,21 @@ SELECT id_tax_report,tax_report,id_type FROM tb_lookup_tax_report"
     End Sub
 
     Sub load_unit()
-        Dim query As String = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        Dim query As String = "SELECT 0 AS id_coa_tag,'ALL' AS tag_code,'ALL' AS tag_description 
 UNION ALL
-SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
-INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
-GROUP BY ad.id_comp"
-        viewSearchLookupQuery(SLEUnit, query, "id_comp", "comp_number", "id_comp")
+SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'UNION ALL
+        'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
+        'GROUP BY ad.id_comp"
+        viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
     End Sub
 
     Sub CreateNodes(ByVal tl As DevExpress.XtraTreeList.TreeList, ByVal opt As String, ByVal date_var As Date, ByVal unit As String)
         Dim unit_var As String = ""
         If Not unit = "0" Then
-            unit_var = " AND atd.id_comp='" & unit & "'"
+            unit_var = " AND comp.id_coa_tag='" & unit & "'"
         End If
         tl.ClearNodes()
         tl.BeginUnboundLoad()
@@ -77,6 +80,7 @@ GROUP BY ad.id_comp"
 ,SUM(IF(IFNULL(at.date_reference,at.date_created) < DATE_FORMAT('" & Date.Parse(date_var.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') AND IFNULL(at.date_reference,at.date_created) >= DATE_FORMAT(DATE_SUB('" & Date.Parse(date_var.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH) ,'%Y-%m-01'),IF(acc.id_dc='2',atd.credit-atd.debit,atd.debit-atd.credit),0)) AS prev_month
 ,SUM(IF(DATE_FORMAT(IFNULL(at.date_reference,at.date_created),'%m-%Y')=DATE_FORMAT('" & Date.Parse(date_var.ToString).ToString("yyyy-MM-dd") & "','%m-%Y'),IF(acc.id_dc='2',atd.credit-atd.debit,atd.debit-atd.credit),0)) AS this_month
 FROM tb_a_acc_trans_det atd 
+INNER JOIN tb_m_comp comp ON comp.id_comp=atd.id_comp
 INNER JOIN tb_a_acc acc ON acc.id_acc=atd.id_acc
 INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.date_created)<=DATE('" & Date.Parse(date_var.ToString).ToString("yyyy-MM-dd") & "') " & unit_var & " GROUP BY atd.id_acc"
         query += " ) entry ON entry.id_acc=a.id_acc"
