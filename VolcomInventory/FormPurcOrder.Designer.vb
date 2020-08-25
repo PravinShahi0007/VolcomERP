@@ -912,9 +912,10 @@ Partial Class FormPurcOrder
         '
         Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn89, Me.GridColumn4, Me.GridColumn5, Me.GridColumnCountPO, Me.GridColumnTotPO, Me.GridColumnRecAmo, Me.GridColumn59, Me.GridColumn53, Me.GridColumn54, Me.GridColumn58, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56})
         Me.GVPO.GridControl = Me.GCPO
-        Me.GVPO.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, "")})
+        Me.GVPO.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "last_update", Me.GridColumnCountPO, "Total PO : {0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_po", Me.GridColumnTotPO, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.GridColumnRecAmo, "{0:N2}")})
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsView.ColumnAutoWidth = False
+        Me.GVPO.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVPO.OptionsView.ShowFooter = True
         Me.GVPO.OptionsView.ShowGroupPanel = False
         '

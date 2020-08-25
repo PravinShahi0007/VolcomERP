@@ -53,9 +53,13 @@
                                 UNION
                                 SELECT '2' AS `id_status`,'PO on Process' AS `status`
                                 UNION
-                                SELECT '3' AS `id_status`,'Partial Receiving' AS `status`
+                                SELECT '3' AS `id_status`,'PO complete, waiting to receive' AS `status`
                                 UNION
-                                SELECT '4' AS `id_status`,'Complete' AS `status`"
+                                SELECT '4' AS `id_status`,'Partial receiving' AS `status`
+                                UNION
+                                SELECT '5' AS `id_status`,'Complete' AS `status`
+                                UNION 
+                                SELECT '6' AS `id_status`,'Unable to fulfill' AS `status`"
         viewSearchLookupQuery(SLEStatus, query, "id_status", "status", "id_status")
     End Sub
 
@@ -63,13 +67,17 @@
         Dim query_where As String = ""
         '
         If SLEStatus.EditValue.ToString = "1" Then 'waiting PO
-            query_where = " WHERE IFNULL(po.qty,0) = 0 "
+            query_where = " WHERE IFNULL(po.qty,0) = 0 AND prd.is_unable_fulfill!=1 "
         ElseIf SLEStatus.EditValue.ToString = "2" Then 'PO On Process
-            query_where = " WHERE IFNULL(po.qty,0) > 0 AND IFNULL(rec.qty,0)=0 "
-        ElseIf SLEStatus.EditValue.ToString = "3" Then 'Partial Receiving
-            query_where = " WHERE IFNULL(rec.qty,0) >'0' AND prd.qty<IFNULL(rec.qty,0) "
-        ElseIf SLEStatus.EditValue.ToString = "4" Then 'complete
-            query_where = " WHERE IFNULL(rec.qty,0)>=prd.qty "
+            query_where = " WHERE IFNULL(po.qty,0) > 0 AND IFNULL(po_complete.qty,0)=0 AND prd.is_unable_fulfill!=1 "
+        ElseIf SLEStatus.EditValue.ToString = "3" Then 'PO complete, waiting to receive
+            query_where = " WHERE IFNULL(po_complete.qty,0) > 0 AND IFNULL(rec.qty,0)=0 AND prd.is_unable_fulfill!=1 "
+        ElseIf SLEStatus.EditValue.ToString = "4" Then 'Partial Receiving
+            query_where = " WHERE IFNULL(rec.qty,0) >'0' AND prd.qty<IFNULL(rec.qty,0) AND prd.is_unable_fulfill!=1 "
+        ElseIf SLEStatus.EditValue.ToString = "5" Then 'complete
+            query_where = " WHERE IFNULL(rec.qty,0)>=prd.qty AND prd.is_unable_fulfill!=1 "
+        ElseIf SLEStatus.EditValue.ToString = "6" Then 'unable to fulfill
+            query_where = " WHERE prd.is_unable_fulfill=1 "
         End If
         '
         If Not SLEDepartement.EditValue.ToString = "0" Then
@@ -82,38 +90,46 @@
         End If
         '
         Dim query As String = "SELECT 'no' AS is_check,prd.`id_purc_req_det`,prd.value AS val_pr,dep.departement,pr.date_created,prd.`id_purc_req`,prd.qty AS qty_pr,pr.`purc_req_number`,it.id_item,it.item_desc,uom.uom,cat.item_cat
-                                ,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS rec_qty, IFNULL(po.qty,0) AS po_qty,prd.is_unable_fulfill, IF(prd.is_unable_fulfill=1,'yes','no') AS unable_fulfill,prd.unable_fulfill_reason
-                                ,IF(IFNULL(po.qty,0)=0,'Waiting for PO',IF(IFNULL(rec.qty,0)=0,'PO On Process',IF(IFNULL(rec.qty,0)>=prd.qty,'Complete','Partial Receiving'))) AS workstatus
-                                FROM tb_purc_req_det prd
-                                INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req` AND pr.`id_report_status`='6'
-                                INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
-                                INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
-                                INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='3'
-                                INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
-                                INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
-                                LEFT JOIN 
-                                (
-	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty FROM tb_purc_order_det pod
-	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
-	                                WHERE po.`id_report_status`!='5'
-                                    GROUP BY pod.`id_purc_req_det`
-                                )po ON po.id_purc_req_det=prd.`id_purc_req_det`
-                                LEFT JOIN 
-                                (
-	                                SELECT pod.`id_purc_req_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd
-                                    INNER JOIN tb_purc_order_det pod ON recd.id_purc_order_det=pod.id_purc_order_det
-	                                INNER JOIN tb_purc_rec rec ON recd.`id_purc_rec`=rec.id_purc_rec
-	                                WHERE rec.`id_report_status`!='5'
-                                    GROUP BY pod.`id_purc_req_det`
-                                )rec ON rec.id_purc_req_det=prd.`id_purc_req_det`
-                                LEFT JOIN 
-                                (
-                                    SELECT pod.`id_purc_req_det`,SUM(prd.`qty`) AS qty FROM `tb_purc_return_det` prd
-                                    INNER JOIN `tb_purc_return` pr ON pr.id_purc_return=prd.id_purc_return AND pr.id_report_status!='5'
-                                    INNER JOIN tb_purc_order_det pod ON prd.id_purc_order_det=pod.id_purc_order_det
-                                    INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
-                                    GROUP BY pod.`id_purc_req_det`
-                                )ret ON ret.id_purc_req_det=prd.`id_purc_req_det`  " & query_where
+,po.po_date,po.est_rec_date
+,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS rec_qty, IFNULL(po.qty,0) AS po_qty,prd.is_unable_fulfill, IF(prd.is_unable_fulfill=1,'yes','no') AS unable_fulfill,prd.unable_fulfill_reason
+,IF(prd.is_unable_fulfill=1,'Unable to fulfill',IF(IFNULL(po.qty,0)=0,'Waiting for PO',IF(IFNULL(po_complete.qty,0)=0,'PO On Process',IF(IFNULL(rec.qty,0)=0,'PO Complete, waiting to receive',IF(IFNULL(rec.qty,0)>=prd.qty,'Complete','Partial Receiving'))))) AS workstatus
+FROM tb_purc_req_det prd
+INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req` AND pr.`id_report_status`='6'
+INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
+INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
+INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='3'
+INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
+INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty,po.date_created AS po_date,po.est_date_receive AS est_rec_date FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	WHERE po.`id_report_status`!='5'
+    GROUP BY pod.`id_purc_req_det`
+)po ON po.id_purc_req_det=prd.`id_purc_req_det`
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	WHERE po.`id_report_status`='6'
+    GROUP BY pod.`id_purc_req_det`
+)po_complete ON po_complete.id_purc_req_det=prd.`id_purc_req_det`
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_req_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd
+    INNER JOIN tb_purc_order_det pod ON recd.id_purc_order_det=pod.id_purc_order_det
+	INNER JOIN tb_purc_rec rec ON recd.`id_purc_rec`=rec.id_purc_rec
+	WHERE rec.`id_report_status`!='5'
+    GROUP BY pod.`id_purc_req_det`
+)rec ON rec.id_purc_req_det=prd.`id_purc_req_det`
+LEFT JOIN 
+(
+    SELECT pod.`id_purc_req_det`,SUM(prd.`qty`) AS qty FROM `tb_purc_return_det` prd
+    INNER JOIN `tb_purc_return` pr ON pr.id_purc_return=prd.id_purc_return AND pr.id_report_status!='5'
+    INNER JOIN tb_purc_order_det pod ON prd.id_purc_order_det=pod.id_purc_order_det
+    INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
+    GROUP BY pod.`id_purc_req_det`
+)ret ON ret.id_purc_req_det=prd.`id_purc_req_det`  " & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemReqList.DataSource = data
         GVItemReqList.BestFitColumns()
@@ -127,6 +143,11 @@
                                SELECT id_departement,departement FROM tb_m_departement"
         Else
             query = "SELECT id_departement,departement FROM tb_m_departement WHERE id_departement='" & id_departement_user & "'"
+            query += " UNION ALL "
+            query += " SELECT dep.`id_departement`,dep.`departement`
+FROM `tb_purc_req_extra_dep` ext 
+INNER JOIN tb_m_departement dep ON dep.`id_departement`=ext.`id_departement`
+WHERE ext.id_user='" & id_user & "' "
         End If
 
         viewSearchLookupQuery(SLEDepartement, query, "id_departement", "departement", "id_departement")
@@ -229,5 +250,10 @@ WHERE bex.`id_b_expense` = '" & GVItemReqList.GetRowCellValue(i, "id_b_expense")
             End If
         Next
         GVItemReqList.ActiveFilterString = ""
+    End Sub
+
+    Private Sub GVPurcReq_DoubleClick(sender As Object, e As EventArgs) Handles GVPurcReq.DoubleClick
+        FormPurcReqDet.id_req = GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
+        FormPurcReqDet.ShowDialog()
     End Sub
 End Class
