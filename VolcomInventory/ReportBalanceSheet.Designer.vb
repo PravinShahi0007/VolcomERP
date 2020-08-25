@@ -43,7 +43,7 @@ Partial Public Class ReportBalanceSheet
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LUntil1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable6 = New DevExpress.XtraReports.UI.XRTable()
@@ -70,7 +70,7 @@ Partial Public Class ReportBalanceSheet
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LUntil2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         CType(Me.XTablePasiva, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -324,7 +324,7 @@ Partial Public Class ReportBalanceSheet
         '
         'XrTableRow1
         '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell13, Me.XrTableCell3, Me.XrTableCell14})
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell13, Me.LUntil1, Me.XrTableCell14})
         Me.XrTableRow1.Name = "XrTableRow1"
         Me.XrTableRow1.Weight = 1.0R
         '
@@ -354,18 +354,18 @@ Partial Public Class ReportBalanceSheet
         Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell13.Weight = 0.91904276158423781R
         '
-        'XrTableCell3
+        'LUntil1
         '
-        Me.XrTableCell3.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.LUntil1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell3.Name = "XrTableCell3"
-        Me.XrTableCell3.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 5, 0, 0, 100.0!)
-        Me.XrTableCell3.StylePriority.UseBorders = False
-        Me.XrTableCell3.StylePriority.UsePadding = False
-        Me.XrTableCell3.StylePriority.UseTextAlignment = False
-        Me.XrTableCell3.Text = "PREV. MONTH"
-        Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell3.Weight = 0.39958380748639089R
+        Me.LUntil1.Name = "LUntil1"
+        Me.LUntil1.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 5, 0, 0, 100.0!)
+        Me.LUntil1.StylePriority.UseBorders = False
+        Me.LUntil1.StylePriority.UsePadding = False
+        Me.LUntil1.StylePriority.UseTextAlignment = False
+        Me.LUntil1.Text = "PREV. MONTH"
+        Me.LUntil1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LUntil1.Weight = 0.39958380748639089R
         '
         'XrTableCell14
         '
@@ -609,7 +609,7 @@ Partial Public Class ReportBalanceSheet
         '
         'XrTableRow2
         '
-        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell2, Me.XrTableCell4, Me.XrTableCell15, Me.XrTableCell16})
+        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell2, Me.XrTableCell4, Me.LUntil2, Me.XrTableCell16})
         Me.XrTableRow2.Name = "XrTableRow2"
         Me.XrTableRow2.Weight = 1.0R
         '
@@ -638,18 +638,18 @@ Partial Public Class ReportBalanceSheet
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell4.Weight = 0.91904276158423781R
         '
-        'XrTableCell15
+        'LUntil2
         '
-        Me.XrTableCell15.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.LUntil2.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell15.Name = "XrTableCell15"
-        Me.XrTableCell15.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 5, 0, 0, 100.0!)
-        Me.XrTableCell15.StylePriority.UseBorders = False
-        Me.XrTableCell15.StylePriority.UsePadding = False
-        Me.XrTableCell15.StylePriority.UseTextAlignment = False
-        Me.XrTableCell15.Text = "PREV MONTH"
-        Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell15.Weight = 0.39958380748639089R
+        Me.LUntil2.Name = "LUntil2"
+        Me.LUntil2.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 5, 0, 0, 100.0!)
+        Me.LUntil2.StylePriority.UseBorders = False
+        Me.LUntil2.StylePriority.UsePadding = False
+        Me.LUntil2.StylePriority.UseTextAlignment = False
+        Me.LUntil2.Text = "PREV MONTH"
+        Me.LUntil2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LUntil2.Weight = 0.39958380748639089R
         '
         'XrTableCell16
         '
@@ -697,7 +697,7 @@ Partial Public Class ReportBalanceSheet
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents LUntil1 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable4 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
@@ -713,7 +713,7 @@ Partial Public Class ReportBalanceSheet
     Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents LUntil2 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable6 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow6 As DevExpress.XtraReports.UI.XRTableRow
