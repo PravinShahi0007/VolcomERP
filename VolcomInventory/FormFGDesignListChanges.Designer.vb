@@ -84,6 +84,9 @@ Partial Class FormFGDesignListChanges
         Me.gridBandColor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncolor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncolor_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandCoolStorage = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnCoolStorage = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnCoolStorage_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_prod_demand = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_prod_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -393,8 +396,8 @@ Partial Class FormFGDesignListChanges
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.AppearancePrint.Row.ForeColor = System.Drawing.Color.Black
         Me.GVData.AppearancePrint.Row.Options.UseForeColor = True
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new, Me.BandedGridColumnNo, Me.BandedGridColumnPDView})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor, Me.gridBandCoolStorage})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new, Me.BandedGridColumnNo, Me.BandedGridColumnPDView, Me.BandedGridColumnCoolStorage, Me.BandedGridColumnCoolStorage_new})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Nothing, "{0:n2}", "b"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng", Nothing, "{0:n2}", "b_mng"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_sale", Nothing, "{0:n2}", "b_sale"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng_sale", Nothing, "{0:n2}", "b_mng_sale")})
         Me.GVData.LevelIndent = 0
@@ -801,6 +804,33 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumncolor_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumncolor_new.Visible = True
         '
+        'gridBandCoolStorage
+        '
+        Me.gridBandCoolStorage.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandCoolStorage.AppearanceHeader.Options.UseFont = True
+        Me.gridBandCoolStorage.Caption = "Cool Storage"
+        Me.gridBandCoolStorage.Columns.Add(Me.BandedGridColumnCoolStorage)
+        Me.gridBandCoolStorage.Columns.Add(Me.BandedGridColumnCoolStorage_new)
+        Me.gridBandCoolStorage.Name = "gridBandCoolStorage"
+        Me.gridBandCoolStorage.VisibleIndex = 11
+        Me.gridBandCoolStorage.Width = 150
+        '
+        'BandedGridColumnCoolStorage
+        '
+        Me.BandedGridColumnCoolStorage.Caption = "From"
+        Me.BandedGridColumnCoolStorage.FieldName = "is_cold_storage"
+        Me.BandedGridColumnCoolStorage.Name = "BandedGridColumnCoolStorage"
+        Me.BandedGridColumnCoolStorage.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnCoolStorage.Visible = True
+        '
+        'BandedGridColumnCoolStorage_new
+        '
+        Me.BandedGridColumnCoolStorage_new.Caption = "To"
+        Me.BandedGridColumnCoolStorage_new.FieldName = "is_cold_storage_new"
+        Me.BandedGridColumnCoolStorage_new.Name = "BandedGridColumnCoolStorage_new"
+        Me.BandedGridColumnCoolStorage_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnCoolStorage_new.Visible = True
+        '
         'BandedGridColumnid_prod_demand
         '
         Me.BandedGridColumnid_prod_demand.AppearanceCell.Options.UseTextOptions = True
@@ -979,6 +1009,7 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents RepoLinkPD As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BandedGridColumnNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnPDView As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandCodeImport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandName As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -990,5 +1021,7 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents gridBandSubCat As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandClass As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandColor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents gridBandCoolStorage As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnCoolStorage As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnCoolStorage_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

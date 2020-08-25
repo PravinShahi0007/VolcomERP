@@ -1816,6 +1816,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSalesBranchDet.action = "ins"
                 FormSalesBranchDet.ShowDialog()
             End If
+        ElseIf formName = "FormMasterDesignFabrication" Then
+            FormMasterDesignFabricationDet.id_design_fabrication = "0"
+            FormMasterDesignFabricationDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3012,6 +3015,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSalesBranchDet.id = FormSalesBranch.GVData.GetFocusedRowCellValue("id_sales_branch").ToString
                 FormSalesBranchDet.action = "upd"
                 FormSalesBranchDet.ShowDialog()
+            ElseIf formName = "FormMasterDesignFabrication" Then
+                Try
+                    FormMasterDesignFabricationDet.id_design_fabrication = FormMasterDesignFabrication.GVFabrication.GetFocusedRowCellValue("id_design_fabrication").ToString
+                    FormMasterDesignFabricationDet.ShowDialog()
+                Catch ex As Exception
+                End Try
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6368,6 +6377,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
                 FormLetterOfStatement.form_load()
             End If
+        ElseIf formName = "FormMasterDesignFabrication" Then
+            Try
+                FormMasterDesignFabricationDet.id_design_fabrication = FormMasterDesignFabrication.GVFabrication.GetFocusedRowCellValue("id_design_fabrication").ToString
+                FormMasterDesignFabricationDet.delete()
+            Catch ex As Exception
+            End Try
         Else
             RPSubMenu.Visible = False
         End If
@@ -9210,6 +9225,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormVerificationMasterOL" Then
             FormVerificationMasterOL.Close()
             FormVerificationMasterOL.Dispose()
+        ElseIf formName = "FormMasterDesignFabrication" Then
+            FormMasterDesignFabrication.Close()
+            FormMasterDesignFabrication.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10147,6 +10165,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPayoutReport.viewData()
         ElseIf formName = "FormSalesBranch" Then
             FormSalesBranch.viewData()
+        ElseIf formName = "FormMasterDesignFabrication" Then
+            FormMasterDesignFabrication.load_form()
         End If
     End Sub
     'Switch
@@ -15179,6 +15199,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormVerificationMasterOL.Show()
             FormVerificationMasterOL.WindowState = FormWindowState.Maximized
             FormVerificationMasterOL.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBFabrication_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFabrication.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterDesignFabrication.MdiParent = Me
+            FormMasterDesignFabrication.Show()
+            FormMasterDesignFabrication.WindowState = FormWindowState.Maximized
+            FormMasterDesignFabrication.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
