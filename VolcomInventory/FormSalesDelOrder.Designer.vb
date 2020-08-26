@@ -99,6 +99,9 @@ Partial Class FormSalesDelOrder
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
+        Me.GridColumnindeks_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -131,6 +134,7 @@ Partial Class FormSalesDelOrder
         CType(Me.PanelControlNavNewProd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavNewProd.SuspendLayout()
         CType(Me.TxtNoParam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSalesDelOrder
@@ -469,7 +473,7 @@ Partial Class FormSalesDelOrder
         '
         Me.GCSalesOrder.ContextMenuStrip = Me.ViewMenu
         Me.GCSalesOrder.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 0)
+        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 22)
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
         Me.GCSalesOrder.Name = "GCSalesOrder"
         Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
@@ -509,13 +513,12 @@ Partial Class FormSalesDelOrder
         '
         'GVSalesOrder
         '
-        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnCreatedProcess, Me.GridColumnReference, Me.GridColumnOLStoreOrderList, Me.GridColumnEmpCode, Me.GridColumnEmpName, Me.GridColumnPrintedBy, Me.GridColumnPrintedDate, Me.GridColumnOLStoreDate, Me.GridColumnorder_type})
+        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnCreatedProcess, Me.GridColumnReference, Me.GridColumnOLStoreOrderList, Me.GridColumnEmpCode, Me.GridColumnEmpName, Me.GridColumnPrintedBy, Me.GridColumnPrintedDate, Me.GridColumnOLStoreDate, Me.GridColumnorder_type, Me.GridColumnindeks_order})
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.Name = "GVSalesOrder"
         Me.GVSalesOrder.OptionsBehavior.ReadOnly = True
         Me.GVSalesOrder.OptionsView.ColumnAutoWidth = False
         Me.GVSalesOrder.OptionsView.ShowGroupPanel = False
-        Me.GVSalesOrder.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdSalesOrder, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnSalesTargetNumb
         '
@@ -710,7 +713,7 @@ Partial Class FormSalesDelOrder
         Me.PanelControl1.Controls.Add(Me.BtnShowUniform)
         Me.PanelControl1.Controls.Add(Me.BtnShowAll)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 403)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 425)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(793, 31)
         Me.PanelControl1.TabIndex = 141
@@ -793,9 +796,11 @@ Partial Class FormSalesDelOrder
         '
         'PanelControlNavPrepare
         '
+        Me.PanelControlNavPrepare.Controls.Add(Me.LabelControl4)
+        Me.PanelControlNavPrepare.Controls.Add(Me.PanelControl2)
         Me.PanelControlNavPrepare.Controls.Add(Me.CheckEditRefresh)
-        Me.PanelControlNavPrepare.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlNavPrepare.Location = New System.Drawing.Point(0, 434)
+        Me.PanelControlNavPrepare.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNavPrepare.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNavPrepare.Name = "PanelControlNavPrepare"
         Me.PanelControlNavPrepare.Size = New System.Drawing.Size(793, 22)
         Me.PanelControlNavPrepare.TabIndex = 4
@@ -876,6 +881,36 @@ Partial Class FormSalesDelOrder
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
         '
+        'GridColumnindeks_order
+        '
+        Me.GridColumnindeks_order.Caption = "indeks_order"
+        Me.GridColumnindeks_order.FieldName = "indeks_order"
+        Me.GridColumnindeks_order.Name = "GridColumnindeks_order"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Appearance.BackColor = System.Drawing.Color.Yellow
+        Me.PanelControl2.Appearance.BorderColor = System.Drawing.Color.White
+        Me.PanelControl2.Appearance.Options.UseBackColor = True
+        Me.PanelControl2.Appearance.Options.UseBorderColor = True
+        Me.PanelControl2.Location = New System.Drawing.Point(9, 5)
+        Me.PanelControl2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Yellow
+        Me.PanelControl2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.PanelControl2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(24, 13)
+        Me.PanelControl2.TabIndex = 143
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Segoe UI", 6.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl4.Location = New System.Drawing.Point(35, 5)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(64, 12)
+        Me.LabelControl4.TabIndex = 144
+        Me.LabelControl4.Text = "Priority Orders"
+        '
         'FormSalesDelOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -915,6 +950,7 @@ Partial Class FormSalesDelOrder
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavPrepare.ResumeLayout(False)
+        Me.PanelControlNavPrepare.PerformLayout()
         CType(Me.CheckEditRefresh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSORef.ResumeLayout(False)
         CType(Me.GCNewPrepare, System.ComponentModel.ISupportInitialize).EndInit()
@@ -923,6 +959,7 @@ Partial Class FormSalesDelOrder
         Me.PanelControlNavNewProd.ResumeLayout(False)
         Me.PanelControlNavNewProd.PerformLayout()
         CType(Me.TxtNoParam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1005,4 +1042,7 @@ Partial Class FormSalesDelOrder
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnSyncOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumntotal_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnindeks_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class
