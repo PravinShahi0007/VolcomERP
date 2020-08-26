@@ -2073,6 +2073,8 @@
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=14
         ) col ON col.id_design = dr.id_design
+        LEFT JOIN tb_lookup_cool_storage AS cst ON d.is_cold_storage = cst.id_cool_storage
+        LEFT JOIN tb_lookup_cool_storage AS cstdr ON dr.is_cold_storage = cstdr.id_cool_storage
         WHERE det.id_changes=" + id + " "
         Return query
     End Function

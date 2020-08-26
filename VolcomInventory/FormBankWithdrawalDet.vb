@@ -1184,6 +1184,10 @@ SELECT 1 AS id,'Yes' AS auto_debet"
     End Sub
 
     Private Sub FormBankWithdrawalDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If report_mark_type = "139" Or report_mark_type = "202" Then
+            id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString
+        End If
+
         form_load()
     End Sub
 
@@ -1221,6 +1225,11 @@ WHERE pnd.id_pn='" & id_payment & "'"
 
     Sub load_pay_from()
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        If id_coa_tag = "1" Then
+            query += " AND id_coa_type='1' "
+        Else
+            query += " AND id_coa_type='2' "
+        End If
         viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
 

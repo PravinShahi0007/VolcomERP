@@ -230,6 +230,13 @@
         End Try
 
     End Sub
+
+    'cool storage
+    Sub view_cool_storage()
+        Dim query As String = "SELECT id_cool_storage, cool_storage FROM tb_lookup_cool_storage ORDER BY id_cool_storage DESC "
+        viewSearchLookupQuery(SLUECoolStorage, query, "id_cool_storage", "cool_storage", "id_cool_storage")
+    End Sub
+
     Sub load_isi_param(ByVal id_type As String)
         Cursor = Cursors.WaitCursor
 
@@ -399,6 +406,7 @@
         viewSeasonOrign(SLESeasonOrigin)
         viewSampleOrign(LESampleOrign)
         view_ret_code(LERetCode)
+        view_cool_storage()
         load_isi_param("1")
         load_isi_param("2")
         load_isi_param("3")
@@ -443,7 +451,11 @@
 
         'for super admin
         If id_role_login = get_setup_field("id_role_super_admin").ToString Then
-            TxtFabrication.Enabled = True
+            'TxtFabrication.Enabled = True
+            SBFabricationBrowse.Enabled = True
+            SLUECoolStorage.Enabled = True
+            GVAdditional.OptionsBehavior.Editable = True
+            TEPrimaryName.Enabled = True
             LESampleOrign.Enabled = True
         End If
 
@@ -539,6 +551,12 @@
                 Else
                     SLEActive.EditValue = "1"
                 End If
+
+                'cool storage
+                SLUECoolStorage.EditValue = data.Rows(0)("is_cold_storage").ToString
+
+                'primary name
+                TEPrimaryName.EditValue = data.Rows(0)("primary_name").ToString
 
                 'from sample
                 pre_viewImages("2", PictureEdit1, id_design, False)
@@ -980,7 +998,11 @@
             BRefreshCodeDsg.Enabled = False
             BGenerateDesc.Enabled = False
             LESampleOrign.Enabled = False
-            TxtFabrication.Enabled = False
+            'TxtFabrication.Enabled = False
+            SBFabricationBrowse.Enabled = False
+            SLUECoolStorage.Enabled = False
+            GVAdditional.OptionsBehavior.Editable = False
+            TEPrimaryName.Enabled = False
             SLEDesign.Enabled = False
             GCCodeDsg.Enabled = False
             XTPPrice.PageVisible = False
@@ -1057,7 +1079,11 @@
             TEDisplayName.Enabled = False
             LEPlanStatus.Enabled = False
             LESampleOrign.Enabled = True
-            TxtFabrication.Enabled = True
+            'TxtFabrication.Enabled = True
+            SBFabricationBrowse.Enabled = True
+            SLUECoolStorage.Enabled = True
+            GVAdditional.OptionsBehavior.Editable = True
+            TEPrimaryName.Enabled = True
             BtnGetLastCount.Enabled = False
             SLEDesign.Enabled = False
             GCCode.Enabled = False
@@ -1072,7 +1098,11 @@
             PanelControlComment.Visible = False
 
         ElseIf id_pop_up = "3" Then 'non merch
-            TxtFabrication.Enabled = True
+            'TxtFabrication.Enabled = True
+            SBFabricationBrowse.Enabled = True
+            SLUECoolStorage.Enabled = True
+            GVAdditional.OptionsBehavior.Editable = True
+            TEPrimaryName.Enabled = True
             LESampleOrign.Enabled = True
             LERetCode.Enabled = False
             DERetDate.Enabled = False
@@ -1102,7 +1132,11 @@
             TEDisplayName.Enabled = False
             LEPlanStatus.Enabled = False
             LESampleOrign.Enabled = False
-            TxtFabrication.Enabled = False
+            'TxtFabrication.Enabled = False
+            SBFabricationBrowse.Enabled = False
+            SLUECoolStorage.Enabled = False
+            GVAdditional.OptionsBehavior.Editable = False
+            TEPrimaryName.Enabled = False
             BtnGetLastCount.Enabled = False
             SLEDesign.Enabled = False
             GCCode.Enabled = False
@@ -1128,7 +1162,11 @@
                 BRefreshCodeDsg.Enabled = True
                 BGenerateDesc.Enabled = True
                 LESampleOrign.Enabled = True
-                TxtFabrication.Enabled = True
+                'TxtFabrication.Enabled = True
+                SBFabricationBrowse.Enabled = True
+                SLUECoolStorage.Enabled = True
+                GVAdditional.OptionsBehavior.Editable = True
+                TEPrimaryName.Enabled = True
                 SLEDesign.Enabled = True
                 GCCodeDsg.Enabled = True
                 MEDetail.ReadOnly = False
@@ -1143,7 +1181,11 @@
                 BRefreshCodeDsg.Enabled = False
                 BGenerateDesc.Enabled = False
                 LESampleOrign.Enabled = False
-                TxtFabrication.Enabled = False
+                'TxtFabrication.Enabled = False
+                SBFabricationBrowse.Enabled = False
+                SLUECoolStorage.Enabled = False
+                'GVAdditional.OptionsBehavior.Editable = False
+                'TEPrimaryName.Enabled = False
                 SLEDesign.Enabled = False
                 GCCodeDsg.Enabled = False
                 MEDetail.ReadOnly = True
@@ -1196,7 +1238,11 @@
             TEDisplayName.Enabled = False
             LEPlanStatus.Enabled = False
             LESampleOrign.Enabled = False
-            TxtFabrication.Enabled = False
+            'TxtFabrication.Enabled = False
+            SBFabricationBrowse.Enabled = False
+            SLUECoolStorage.Enabled = False
+            GVAdditional.OptionsBehavior.Editable = False
+            TEPrimaryName.Enabled = False
             BtnGetLastCount.Enabled = False
             SLEDesign.Enabled = False
             GCCode.Enabled = False
@@ -1227,7 +1273,11 @@
                 BRefreshCodeDsg.Enabled = False
                 BGenerateDesc.Enabled = False
                 LESampleOrign.Enabled = False
-                TxtFabrication.Enabled = False
+                'TxtFabrication.Enabled = False
+                SBFabricationBrowse.Enabled = False
+                SLUECoolStorage.Enabled = False
+                'GVAdditional.OptionsBehavior.Editable = False
+                'TEPrimaryName.Enabled = False
                 SLEDesign.Enabled = False
                 GCCodeDsg.Enabled = False
                 BtnAddSeaason.Enabled = False
@@ -1295,7 +1345,11 @@
 
                     TEName.Enabled = True
                     LESampleOrign.Enabled = True
-                    TxtFabrication.Enabled = True
+                    'TxtFabrication.Enabled = True
+                    SBFabricationBrowse.Enabled = True
+                    SLUECoolStorage.Enabled = True
+                    GVAdditional.OptionsBehavior.Editable = True
+                    TEPrimaryName.Enabled = True
                     SLEDesign.Enabled = True
                     MEDetail.ReadOnly = False
                     TxtCodeImport.Enabled = True
@@ -1313,7 +1367,11 @@
                     BRefreshCodeDsg.Enabled = True
                     BGenerateDesc.Enabled = True
                     LESampleOrign.Enabled = True
-                    TxtFabrication.Enabled = True
+                    'TxtFabrication.Enabled = True
+                    SBFabricationBrowse.Enabled = True
+                    SLUECoolStorage.Enabled = True
+                    GVAdditional.OptionsBehavior.Editable = True
+                    TEPrimaryName.Enabled = True
                     SLEDesign.Enabled = True
                     GCCodeDsg.Enabled = True
                     MEDetail.ReadOnly = False
@@ -1803,7 +1861,7 @@
                                 is_process = "2"
                             End If
 
-                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design, is_process, id_design_rev_from) "
+                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design, is_process, id_design_rev_from, is_cold_storage, primary_name) "
                             query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                             If design_eos = "-1" Then
                                 query += "NULL, "
@@ -1827,7 +1885,7 @@
                                 query += "'" + id_design_ref + "', "
                             End If
                             query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
-                            query += ", '" + is_old_design + "', " + is_process + ", " + id_design_rev_from + ");SELECT LAST_INSERT_ID(); "
+                            query += ", '" + is_old_design + "', " + is_process + ", " + id_design_rev_from + ", " + SLUECoolStorage.EditValue.ToString + ", '" + addSlashes(TEPrimaryName.EditValue.ToString) + "');SELECT LAST_INSERT_ID(); "
                             id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
                             'save detil propose change design
@@ -1951,7 +2009,9 @@
                             End If
                             query += "id_active='" + id_active + "', "
                             query += "design_detail='" + design_detail + "', 
-                            id_fg_line_plan='" + id_fg_line_plan + "' "
+                            id_fg_line_plan='" + id_fg_line_plan + "', "
+                            query += "is_cold_storage = '" + SLUECoolStorage.EditValue.ToString + "',"
+                            query += "primary_name = '" + addSlashes(TEPrimaryName.EditValue.ToString) + "'"
                             query += "WHERE id_design='{5}' "
                             query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
                             execute_non_query(query, True, "", "", "", "")
@@ -2042,7 +2102,7 @@
                             approved = "1"
                         End If
 
-                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design) "
+                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design, is_cold_storage, primary_name) "
                         query += "VALUES('" + namex + "','" + display_name + "','" + code + "'," + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                         If design_eos = "-1" Then
                             query += "NULL, "
@@ -2066,6 +2126,8 @@
                             query += "'" + id_design_ref + "', "
                         End If
                         query += "'" + id_lookup_status_order + "', '" + design_detail + "', '" + approved + "' , '" + is_old_design + "' "
+                        query += SLUECoolStorage.EditValue.ToString + ","
+                        query += "'" + addSlashes(TEPrimaryName.EditValue.ToString) + "'"
                         query += ");SELECT LAST_INSERT_ID(); "
                         id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
@@ -3156,6 +3218,7 @@
 	            LEFT JOIN tb_design_column ON tb_m_design_information.id_design_column = tb_design_column.id_design_column
 	            WHERE tb_m_design_information.id_design = '" + id_design + "'
             ) AS v ON c.id_design_column = v.id_design_column
+            ORDER BY c.id_design_column ASC
         ", -1, True, "", "", "", "")
 
         GCAdditional.DataSource = data
@@ -3235,5 +3298,9 @@
                 FormMasterDesignLookUp.ShowDialog()
             End If
         End If
+    End Sub
+
+    Private Sub SBFabricationBrowse_Click(sender As Object, e As EventArgs) Handles SBFabricationBrowse.Click
+        FormMasterDesignFabricationLookup.ShowDialog()
     End Sub
 End Class
