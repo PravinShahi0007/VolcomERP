@@ -19,9 +19,10 @@ Partial Class FormMasterDesignSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterDesignSingle))
         Me.RILEValNon = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.EPMasterDesign = New System.Windows.Forms.ErrorProvider()
+        Me.EPMasterDesign = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.DNCode = New DevExpress.XtraEditors.DataNavigator()
         Me.GCCode = New DevExpress.XtraGrid.GridControl()
         Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -168,7 +169,7 @@ Partial Class FormMasterDesignSingle
         Me.TEDisplayName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCDesign = New DevExpress.XtraTab.XtraTabControl()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
         Me.PanC3 = New DevExpress.XtraEditors.PanelControl()
         Me.XTPCode = New DevExpress.XtraTab.XtraTabControl()
@@ -288,9 +289,9 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment = New DevExpress.XtraEditors.PanelControl()
         Me.BDelComment = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddComment = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EPChanges = New System.Windows.Forms.ErrorProvider()
+        Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -666,12 +667,12 @@ Partial Class FormMasterDesignSingle
         'BtnReviseStyle
         '
         Me.BtnReviseStyle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnReviseStyle.Location = New System.Drawing.Point(768, 2)
+        Me.BtnReviseStyle.Location = New System.Drawing.Point(761, 2)
         Me.BtnReviseStyle.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnReviseStyle.Name = "BtnReviseStyle"
-        Me.BtnReviseStyle.Size = New System.Drawing.Size(71, 27)
+        Me.BtnReviseStyle.Size = New System.Drawing.Size(78, 27)
         Me.BtnReviseStyle.TabIndex = 124
-        Me.BtnReviseStyle.Text = "Revise"
+        Me.BtnReviseStyle.Text = "Revise PD"
         Me.BtnReviseStyle.Visible = False
         '
         'CheckEditApproved
