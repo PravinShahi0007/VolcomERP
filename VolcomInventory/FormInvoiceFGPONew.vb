@@ -56,7 +56,7 @@ LEFT JOIN
 (
 	SELECT pnd.`id_report`,SUM(pnd.`qty`) AS qty_rec_paid FROM tb_pn_fgpo_det pnd 
 	INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-	WHERE pn.`type`='2' AND pn.`id_report_status`!=5 AND pnd.`report_mark_type`='28'
+	WHERE pn.`type`!='1' AND pn.`id_report_status`!=5 AND pnd.`report_mark_type`='28'
 	GROUP BY pnd.`id_report`
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
