@@ -17,7 +17,7 @@ WHERE pns.`id_pn_summary`='" & id_sum & "' GROUP BY pns.`id_pn_summary` "
 
         'set invocie value info
         If data_head.Rows(0)("id_currency").ToString = "1" Then
-            LTotal.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(data_head.Rows(0)("val_bef_kurs").ToString).ToString("N0")
+            LTotal.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(data_head.Rows(0)("val_bef_kurs").ToString).ToString("N2")
             LTotSay.Text = "Say : " + ConvertCurrencyToIndonesian(data_head.Rows(0)("val_bef_kurs"))
         Else
             LTotal.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(data_head.Rows(0)("val_bef_kurs").ToString).ToString("N2")
@@ -56,6 +56,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         For j = 0 To dt_det.Rows.Count - 1
             Dim row_det As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
             row_det.HeightF = 15
+            row_det.Padding = 2
             'no
             Dim no As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
             no.Text = (j + 1).ToString
@@ -92,7 +93,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
             'value
             Dim price As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
             If data_head.Rows(0)("id_currency").ToString = "1" Then
-                price.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("value").ToString).ToString("N0")
+                price.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("value").ToString).ToString("N2")
             Else
                 price.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("value").ToString).ToString("N2")
             End If
@@ -107,7 +108,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
             'total
             Dim amo As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
             If data_head.Rows(0)("id_currency").ToString = "1" Then
-                amo.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("val_total").ToString).ToString("N0")
+                amo.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("val_total").ToString).ToString("N2")
             Else
                 amo.Text = data_head.Rows(0)("currency").ToString & " " & Decimal.Parse(dt_det.Rows(j)("val_total").ToString).ToString("N2")
             End If
