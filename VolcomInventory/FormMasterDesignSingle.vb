@@ -3218,6 +3218,7 @@
 	            LEFT JOIN tb_design_column ON tb_m_design_information.id_design_column = tb_design_column.id_design_column
 	            WHERE tb_m_design_information.id_design = '" + id_design + "'
             ) AS v ON c.id_design_column = v.id_design_column
+            ORDER BY c.id_design_column ASC
         ", -1, True, "", "", "", "")
 
         GCAdditional.DataSource = data
