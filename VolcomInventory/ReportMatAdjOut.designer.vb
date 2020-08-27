@@ -443,7 +443,7 @@ Partial Public Class ReportMatAdjOut
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 19.0!
+        Me.BottomMargin.HeightF = 45.13779!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -554,7 +554,7 @@ Partial Public Class ReportMatAdjOut
         'ReportMatAdjOut
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter, Me.ReportFooter, Me.PageHeader})
-        Me.Margins = New System.Drawing.Printing.Margins(37, 23, 24, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(37, 23, 24, 45)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
