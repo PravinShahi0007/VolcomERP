@@ -47,10 +47,11 @@ Partial Class FormAccountingWorksheet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,13 +64,13 @@ Partial Class FormAccountingWorksheet
         CType(Me.GCAccountingWorksheet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAccountingWorksheet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraScrollableControl1.SuspendLayout()
-        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(912, 17)
+        Me.LabelControl4.Location = New System.Drawing.Point(772, 17)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl4.TabIndex = 8
@@ -77,11 +78,11 @@ Partial Class FormAccountingWorksheet
         '
         'SLUETo
         '
-        Me.SLUETo.Location = New System.Drawing.Point(922, 14)
+        Me.SLUETo.Location = New System.Drawing.Point(782, 14)
         Me.SLUETo.Name = "SLUETo"
         Me.SLUETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUETo.Properties.View = Me.GridView1
-        Me.SLUETo.Size = New System.Drawing.Size(200, 20)
+        Me.SLUETo.Size = New System.Drawing.Size(161, 20)
         Me.SLUETo.TabIndex = 7
         '
         'GridView1
@@ -115,7 +116,7 @@ Partial Class FormAccountingWorksheet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(656, 17)
+        Me.LabelControl3.Location = New System.Drawing.Point(566, 17)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl3.TabIndex = 6
@@ -123,7 +124,7 @@ Partial Class FormAccountingWorksheet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(17, 17)
+        Me.LabelControl2.Location = New System.Drawing.Point(198, 17)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(30, 13)
         Me.LabelControl2.TabIndex = 5
@@ -131,7 +132,7 @@ Partial Class FormAccountingWorksheet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(219, 17)
+        Me.LabelControl1.Location = New System.Drawing.Point(400, 17)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl1.TabIndex = 4
@@ -140,7 +141,7 @@ Partial Class FormAccountingWorksheet
         'DETo
         '
         Me.DETo.EditValue = Nothing
-        Me.DETo.Location = New System.Drawing.Point(229, 14)
+        Me.DETo.Location = New System.Drawing.Point(410, 14)
         Me.DETo.Name = "DETo"
         Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -156,7 +157,7 @@ Partial Class FormAccountingWorksheet
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(63, 14)
+        Me.DEFrom.Location = New System.Drawing.Point(244, 14)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -171,7 +172,7 @@ Partial Class FormAccountingWorksheet
         '
         'SBView
         '
-        Me.SBView.Location = New System.Drawing.Point(1133, 12)
+        Me.SBView.Location = New System.Drawing.Point(949, 12)
         Me.SBView.Name = "SBView"
         Me.SBView.Size = New System.Drawing.Size(75, 23)
         Me.SBView.TabIndex = 1
@@ -179,11 +180,11 @@ Partial Class FormAccountingWorksheet
         '
         'SLUEFrom
         '
-        Me.SLUEFrom.Location = New System.Drawing.Point(706, 14)
+        Me.SLUEFrom.Location = New System.Drawing.Point(616, 14)
         Me.SLUEFrom.Name = "SLUEFrom"
         Me.SLUEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEFrom.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUEFrom.Size = New System.Drawing.Size(200, 20)
+        Me.SLUEFrom.Size = New System.Drawing.Size(150, 20)
         Me.SLUEFrom.TabIndex = 0
         '
         'SearchLookUpEdit1View
@@ -218,10 +219,10 @@ Partial Class FormAccountingWorksheet
         'GCAccountingWorksheet
         '
         Me.GCAccountingWorksheet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAccountingWorksheet.Location = New System.Drawing.Point(0, 80)
+        Me.GCAccountingWorksheet.Location = New System.Drawing.Point(0, 68)
         Me.GCAccountingWorksheet.MainView = Me.GVAccountingWorksheet
         Me.GCAccountingWorksheet.Name = "GCAccountingWorksheet"
-        Me.GCAccountingWorksheet.Size = New System.Drawing.Size(1008, 649)
+        Me.GCAccountingWorksheet.Size = New System.Drawing.Size(1198, 661)
         Me.GCAccountingWorksheet.TabIndex = 2
         Me.GCAccountingWorksheet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccountingWorksheet})
         '
@@ -352,7 +353,7 @@ Partial Class FormAccountingWorksheet
         '
         'XtraScrollableControl1
         '
-        Me.XtraScrollableControl1.Controls.Add(Me.SLUEType)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEUnit)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl5)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
         Me.XtraScrollableControl1.Controls.Add(Me.DEFrom)
@@ -367,21 +368,21 @@ Partial Class FormAccountingWorksheet
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
         Me.XtraScrollableControl1.Padding = New System.Windows.Forms.Padding(5)
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1008, 80)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1198, 68)
         Me.XtraScrollableControl1.TabIndex = 3
         '
-        'SLUEType
+        'SLEUnit
         '
-        Me.SLUEType.Location = New System.Drawing.Point(445, 14)
-        Me.SLUEType.Name = "SLUEType"
-        Me.SLUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEType.Properties.View = Me.GridView2
-        Me.SLUEType.Size = New System.Drawing.Size(200, 20)
-        Me.SLUEType.TabIndex = 11
+        Me.SLEUnit.Location = New System.Drawing.Point(45, 14)
+        Me.SLEUnit.Name = "SLEUnit"
+        Me.SLEUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEUnit.Properties.View = Me.GridView2
+        Me.SLEUnit.Size = New System.Drawing.Size(138, 20)
+        Me.SLEUnit.TabIndex = 12
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -389,31 +390,45 @@ Partial Class FormAccountingWorksheet
         '
         'GridColumn25
         '
-        Me.GridColumn25.Caption = "GridColumn25"
-        Me.GridColumn25.FieldName = "id_coa_type"
+        Me.GridColumn25.Caption = "id_coa_tag"
+        Me.GridColumn25.FieldName = "id_comp"
         Me.GridColumn25.Name = "GridColumn25"
         '
         'GridColumn26
         '
-        Me.GridColumn26.Caption = "COA Type"
-        Me.GridColumn26.FieldName = "coa_type"
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn26.Caption = "Number"
+        Me.GridColumn26.FieldName = "tag_code"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 0
+        Me.GridColumn26.Width = 281
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Unit"
+        Me.GridColumn27.FieldName = "tag_description"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 1
+        Me.GridColumn27.Width = 1351
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(390, 17)
+        Me.LabelControl5.Location = New System.Drawing.Point(20, 17)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
-        Me.LabelControl5.TabIndex = 12
-        Me.LabelControl5.Text = "COA Type"
+        Me.LabelControl5.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl5.TabIndex = 11
+        Me.LabelControl5.Text = "Unit"
         '
         'FormAccountingWorksheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.ClientSize = New System.Drawing.Size(1198, 729)
         Me.Controls.Add(Me.GCAccountingWorksheet)
         Me.Controls.Add(Me.XtraScrollableControl1)
         Me.Name = "FormAccountingWorksheet"
@@ -430,7 +445,7 @@ Partial Class FormAccountingWorksheet
         CType(Me.GVAccountingWorksheet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraScrollableControl1.ResumeLayout(False)
         Me.XtraScrollableControl1.PerformLayout()
-        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -463,9 +478,10 @@ Partial Class FormAccountingWorksheet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
-    Friend WithEvents SLUEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEUnit As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class
