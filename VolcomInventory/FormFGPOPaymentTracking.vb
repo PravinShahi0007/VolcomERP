@@ -95,4 +95,26 @@ GROUP BY po.`id_prod_order`"
         GCRec.DataSource = data
         BGVRec.BestFitColumns()
     End Sub
+
+    Private Sub VDItemList_Click(sender As Object, e As EventArgs) Handles VDItemList.Click
+        If Not BGVRec.GetFocusedRowCellValue("bbk_number").ToString = "" Then
+            Dim query As String = "SELECT py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+FROM tb_pn py
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN `tb_lookup_report_mark_type` rm ON rm.`report_mark_type`=py.`report_mark_type`
+INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
+INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
+WHERE py.`id_pn` IN (" & BGVRec.GetFocusedRowCellValue("id_bbk").ToString & ") 
+ORDER BY py.id_pn DESC"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            FormBankWithdrawal.GCList.DataSource = data
+            FormBankWithdrawal.GVList.BestFitColumns()
+            FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 0
+            FormBankWithdrawal.XTCBBKList.SelectedTabPageIndex = 0
+            Close()
+        End If
+    End Sub
 End Class

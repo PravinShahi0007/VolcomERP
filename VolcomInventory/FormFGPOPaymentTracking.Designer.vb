@@ -19,6 +19,7 @@ Partial Class FormFGPOPaymentTracking
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
         Me.SLEFGPO = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -52,6 +53,8 @@ Partial Class FormFGPOPaymentTracking
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSummary.SuspendLayout()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,6 +63,7 @@ Partial Class FormFGPOPaymentTracking
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewBPL.SuspendLayout()
         Me.SuspendLayout()
         '
         'PCSummary
@@ -167,6 +171,7 @@ Partial Class FormFGPOPaymentTracking
         '
         'GCRec
         '
+        Me.GCRec.ContextMenuStrip = Me.ViewBPL
         Me.GCRec.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCRec.Location = New System.Drawing.Point(2, 20)
         Me.GCRec.MainView = Me.BGVRec
@@ -181,6 +186,8 @@ Partial Class FormFGPOPaymentTracking
         Me.BGVRec.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn13, Me.BandedGridColumn12, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn16, Me.BandedGridColumn15, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumnQtyRecGrade, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn14, Me.BandedGridColumn11})
         Me.BGVRec.GridControl = Me.GCRec
         Me.BGVRec.Name = "BGVRec"
+        Me.BGVRec.OptionsBehavior.Editable = False
+        Me.BGVRec.OptionsBehavior.ReadOnly = True
         Me.BGVRec.OptionsView.ShowFooter = True
         Me.BGVRec.OptionsView.ShowGroupPanel = False
         '
@@ -348,14 +355,14 @@ Partial Class FormFGPOPaymentTracking
         'BandedGridColumn15
         '
         Me.BandedGridColumn15.Caption = "BBK Payment Date"
-        Me.BandedGridColumn15.FieldName = "date_payment"
+        Me.BandedGridColumn15.FieldName = "bbk_pay_date"
         Me.BandedGridColumn15.Name = "BandedGridColumn15"
         Me.BandedGridColumn15.Visible = True
         '
         'BandedGridColumn16
         '
         Me.BandedGridColumn16.Caption = "BBK Number"
-        Me.BandedGridColumn16.FieldName = "number"
+        Me.BandedGridColumn16.FieldName = "bbk_number"
         Me.BandedGridColumn16.Name = "BandedGridColumn16"
         Me.BandedGridColumn16.Visible = True
         '
@@ -398,6 +405,18 @@ Partial Class FormFGPOPaymentTracking
         Me.gridBand3.VisibleIndex = 2
         Me.gridBand3.Width = 300
         '
+        'ViewBPL
+        '
+        Me.ViewBPL.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VDItemList})
+        Me.ViewBPL.Name = "ContextMenuStripYM"
+        Me.ViewBPL.Size = New System.Drawing.Size(128, 26)
+        '
+        'VDItemList
+        '
+        Me.VDItemList.Name = "VDItemList"
+        Me.VDItemList.Size = New System.Drawing.Size(152, 22)
+        Me.VDItemList.Text = "Show BBK"
+        '
         'FormFGPOPaymentTracking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -421,6 +440,7 @@ Partial Class FormFGPOPaymentTracking
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCRec, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVRec, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewBPL.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -458,4 +478,6 @@ Partial Class FormFGPOPaymentTracking
     Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents ViewBPL As ContextMenuStrip
+    Friend WithEvents VDItemList As ToolStripMenuItem
 End Class
