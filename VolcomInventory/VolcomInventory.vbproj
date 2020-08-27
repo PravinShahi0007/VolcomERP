@@ -1058,6 +1058,12 @@
     <Compile Include="FormDesignColumnDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDesignColumnMapping.Designer.vb">
+      <DependentUpon>FormDesignColumnMapping.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignColumnMapping.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDesignColumnValue.Designer.vb">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
     </Compile>
@@ -8899,6 +8905,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignColumnDet.resx">
       <DependentUpon>FormDesignColumnDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignColumnMapping.resx">
+      <DependentUpon>FormDesignColumnMapping.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignColumnValue.resx">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
