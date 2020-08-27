@@ -53,6 +53,7 @@
 
             LECOAType.Properties.ReadOnly = True
             SLEParentAccount.Properties.ReadOnly = True
+            TEAccountDetail.Properties.ReadOnly = True
             LEAccCat.Properties.ReadOnly = True
             MEAccDesc.Properties.ReadOnly = True
             LEDetail.Properties.ReadOnly = True
@@ -108,10 +109,15 @@
 
     'View Parent
     Private Sub viewParent(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
+        Dim id_coa_type As String = "-1"
+        Try
+            id_coa_type = LECOAType.EditValue.ToString
+        Catch ex As Exception
+        End Try
         Dim query As String = "SELECT '-1' AS id_acc,'No Parent Account' AS acc_name,'' AS acc_description,'-1' AS id_acc_cat,'' AS acc_cat UNION "
         query += "SELECT a.id_acc,acc_name,a.acc_description,a.id_acc_cat,b.acc_cat FROM tb_a_acc a "
         query += "INNER JOIN tb_lookup_acc_cat b ON a.id_acc_cat=b.id_acc_cat "
-        query += "WHERE a.id_is_det='1' AND a.id_status='1'"
+        query += "WHERE a.id_is_det='1' AND a.id_status='1' AND a.id_coa_type='" + id_coa_type + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         lookup.Properties.DataSource = Nothing
@@ -225,5 +231,10 @@
 
     Private Sub TEAccountDetail_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEAccountDetail.Validating
         check()
+    End Sub
+
+    Private Sub LECOAType_EditValueChanged(sender As Object, e As EventArgs) Handles LECOAType.EditValueChanged
+        viewParent(SLEParentAccount)
+        TEAccountDetail.Text = ""
     End Sub
 End Class
