@@ -253,7 +253,7 @@
 
             execute_non_query("DELETE FROM tb_design_column_mapping WHERE id_design_column_list = " + id_design_column_list + " AND column_type_front = " + column_type_front + " AND column_type_end = " + column_type_end, True, "", "", "", "")
 
-            execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_type_front, column_type_end, column_mapping) VALUES (" + id_design_column_list + ", " + column_type_front + ", " + column_type_end + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i))) + "')", True, "", "", "", "")
+            execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_type_front, column_type_end, column_mapping) VALUES (" + id_design_column_list + ", " + column_type_front + ", " + column_type_end + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i)).ToString) + "')", True, "", "", "", "")
 
             in_design_column_list += id_design_column_list + ", "
         Next
