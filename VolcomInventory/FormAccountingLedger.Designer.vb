@@ -19,6 +19,8 @@ Partial Class FormAccountingLedger
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLUETo = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -37,7 +39,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAccountingLedger = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewReffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewJournalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -61,12 +63,14 @@ Partial Class FormAccountingLedger
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,14 +82,32 @@ Partial Class FormAccountingLedger
         CType(Me.GCAccountingLedger, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVAccountingLedger, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraScrollableControl1.SuspendLayout()
-        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SLEUnit)
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
+        Me.PanelControl1.Controls.Add(Me.LabelControl4)
+        Me.PanelControl1.Controls.Add(Me.SLUETo)
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.DETo)
+        Me.PanelControl1.Controls.Add(Me.DEFrom)
+        Me.PanelControl1.Controls.Add(Me.SBView)
+        Me.PanelControl1.Controls.Add(Me.SLUEFrom)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1160, 44)
+        Me.PanelControl1.TabIndex = 0
+        '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(913, 20)
+        Me.LabelControl4.Location = New System.Drawing.Point(806, 15)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl4.TabIndex = 8
@@ -93,7 +115,7 @@ Partial Class FormAccountingLedger
         '
         'SLUETo
         '
-        Me.SLUETo.Location = New System.Drawing.Point(923, 17)
+        Me.SLUETo.Location = New System.Drawing.Point(816, 12)
         Me.SLUETo.Name = "SLUETo"
         Me.SLUETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUETo.Properties.View = Me.GridView1
@@ -131,7 +153,7 @@ Partial Class FormAccountingLedger
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(662, 20)
+        Me.LabelControl3.Location = New System.Drawing.Point(550, 15)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl3.TabIndex = 6
@@ -139,7 +161,7 @@ Partial Class FormAccountingLedger
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(18, 20)
+        Me.LabelControl2.Location = New System.Drawing.Point(187, 15)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(30, 13)
         Me.LabelControl2.TabIndex = 5
@@ -147,7 +169,7 @@ Partial Class FormAccountingLedger
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(215, 20)
+        Me.LabelControl1.Location = New System.Drawing.Point(384, 15)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl1.TabIndex = 4
@@ -156,7 +178,7 @@ Partial Class FormAccountingLedger
         'DETo
         '
         Me.DETo.EditValue = Nothing
-        Me.DETo.Location = New System.Drawing.Point(225, 17)
+        Me.DETo.Location = New System.Drawing.Point(394, 12)
         Me.DETo.Name = "DETo"
         Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -172,7 +194,7 @@ Partial Class FormAccountingLedger
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(59, 17)
+        Me.DEFrom.Location = New System.Drawing.Point(228, 12)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -187,7 +209,7 @@ Partial Class FormAccountingLedger
         '
         'SBView
         '
-        Me.SBView.Location = New System.Drawing.Point(1134, 15)
+        Me.SBView.Location = New System.Drawing.Point(1027, 10)
         Me.SBView.Name = "SBView"
         Me.SBView.Size = New System.Drawing.Size(75, 23)
         Me.SBView.TabIndex = 1
@@ -195,7 +217,7 @@ Partial Class FormAccountingLedger
         '
         'SLUEFrom
         '
-        Me.SLUEFrom.Location = New System.Drawing.Point(707, 17)
+        Me.SLUEFrom.Location = New System.Drawing.Point(600, 12)
         Me.SLUEFrom.Name = "SLUEFrom"
         Me.SLUEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEFrom.Properties.View = Me.SearchLookUpEdit1View
@@ -235,10 +257,10 @@ Partial Class FormAccountingLedger
         '
         Me.GCAccountingLedger.ContextMenuStrip = Me.ViewMenu
         Me.GCAccountingLedger.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAccountingLedger.Location = New System.Drawing.Point(0, 80)
+        Me.GCAccountingLedger.Location = New System.Drawing.Point(0, 44)
         Me.GCAccountingLedger.MainView = Me.GVAccountingLedger
         Me.GCAccountingLedger.Name = "GCAccountingLedger"
-        Me.GCAccountingLedger.Size = New System.Drawing.Size(1008, 649)
+        Me.GCAccountingLedger.Size = New System.Drawing.Size(1160, 685)
         Me.GCAccountingLedger.TabIndex = 1
         Me.GCAccountingLedger.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccountingLedger})
         '
@@ -464,38 +486,18 @@ Partial Class FormAccountingLedger
         Me.GridColumncomp_group.Visible = True
         Me.GridColumncomp_group.VisibleIndex = 3
         '
-        'XtraScrollableControl1
+        'SLEUnit
         '
-        Me.XtraScrollableControl1.Controls.Add(Me.SLUEType)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl5)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl2)
-        Me.XtraScrollableControl1.Controls.Add(Me.SLUETo)
-        Me.XtraScrollableControl1.Controls.Add(Me.SLUEFrom)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl3)
-        Me.XtraScrollableControl1.Controls.Add(Me.SBView)
-        Me.XtraScrollableControl1.Controls.Add(Me.DEFrom)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl1)
-        Me.XtraScrollableControl1.Controls.Add(Me.DETo)
-        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Padding = New System.Windows.Forms.Padding(5)
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1008, 80)
-        Me.XtraScrollableControl1.TabIndex = 2
-        '
-        'SLUEType
-        '
-        Me.SLUEType.Location = New System.Drawing.Point(446, 17)
-        Me.SLUEType.Name = "SLUEType"
-        Me.SLUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEType.Properties.View = Me.GridView2
-        Me.SLUEType.Size = New System.Drawing.Size(200, 20)
-        Me.SLUEType.TabIndex = 9
+        Me.SLEUnit.Location = New System.Drawing.Point(43, 12)
+        Me.SLEUnit.Name = "SLEUnit"
+        Me.SLEUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEUnit.Properties.View = Me.GridView2
+        Me.SLEUnit.Size = New System.Drawing.Size(138, 20)
+        Me.SLEUnit.TabIndex = 10
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -503,38 +505,55 @@ Partial Class FormAccountingLedger
         '
         'GridColumn25
         '
-        Me.GridColumn25.Caption = "GridColumn25"
-        Me.GridColumn25.FieldName = "id_coa_type"
+        Me.GridColumn25.Caption = "id_coa_tag"
+        Me.GridColumn25.FieldName = "id_comp"
         Me.GridColumn25.Name = "GridColumn25"
         '
         'GridColumn26
         '
-        Me.GridColumn26.Caption = "COA Type"
-        Me.GridColumn26.FieldName = "coa_type"
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn26.Caption = "Number"
+        Me.GridColumn26.FieldName = "tag_code"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 0
+        Me.GridColumn26.Width = 281
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Unit"
+        Me.GridColumn27.FieldName = "tag_description"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 1
+        Me.GridColumn27.Width = 1351
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(391, 20)
+        Me.LabelControl5.Location = New System.Drawing.Point(18, 15)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
-        Me.LabelControl5.TabIndex = 10
-        Me.LabelControl5.Text = "COA Type"
+        Me.LabelControl5.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl5.TabIndex = 9
+        Me.LabelControl5.Text = "Unit"
         '
         'FormAccountingLedger
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.ClientSize = New System.Drawing.Size(1160, 729)
         Me.Controls.Add(Me.GCAccountingLedger)
-        Me.Controls.Add(Me.XtraScrollableControl1)
+        Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingLedger"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Buku Besar"
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -546,13 +565,13 @@ Partial Class FormAccountingLedger
         CType(Me.GCAccountingLedger, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVAccountingLedger, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraScrollableControl1.ResumeLayout(False)
-        Me.XtraScrollableControl1.PerformLayout()
-        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCAccountingLedger As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVAccountingLedger As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -595,10 +614,10 @@ Partial Class FormAccountingLedger
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ViewJournalToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
-    Friend WithEvents SLUEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEUnit As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class
