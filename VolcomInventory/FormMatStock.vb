@@ -589,6 +589,7 @@
         Next
         GCFGStock.DataSource = data
         dt_sum = data
+
         'hide bom
         band_qty_bom.Visible = False
 
