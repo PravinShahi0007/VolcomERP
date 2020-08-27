@@ -32,6 +32,8 @@
     Sub load_form()
         'col
         Dim cols As DataTable = execute_query("
+            SELECT alias_name AS column_name FROM tb_design_column_additional
+            UNION ALL
             SELECT column_name FROM tb_design_column
         ", -1, True, "", "", "", "")
 
@@ -93,15 +95,27 @@
         Dispose()
     End Sub
 
-    Sub generate_query()
+    Function generate_query(id_store As String, type_front As String, type_end As String, in_design As String) As String
         'select
         Dim q_select As String = ""
 
-        For i = 0 To GVColumn.Columns.Count - 1
+        Dim data_column As DataTable = execute_query("
+            SELECT cl.column_list, cm.column_mapping
+            FROM tb_design_column_list AS cl
+            LEFT JOIN (
+	            SELECT cm.id_design_column_list, cm.column_mapping
+	            FROM tb_design_column_mapping AS cm
+	            LEFT JOIN tb_design_column_list AS cl ON cm.id_design_column_list = cl.id_design_column_list
+	            WHERE cl.id_design_column_type = " + id_store + " AND cm.column_type_front = " + type_front + " AND cm.column_type_end = " + type_end + "
+            ) AS cm ON cl.id_design_column_list = cm.id_design_column_list
+            WHERE cl.id_design_column_type = " + id_store + "
+        ", -1, True, "", "", "", "")
+
+        For i = 0 To data_column.Rows.Count - 1
             Dim q_concat As String = "CONCAT("
 
             'split value by line
-            Dim value As String = GVColumn.GetRowCellValue(0, GVColumn.Columns(i).FieldName).ToString
+            Dim value As String = data_column.Rows(i)("column_mapping").ToString
 
             value = value.Replace(vbCr, "")
 
@@ -146,7 +160,7 @@
                 End If
             Next
 
-            q_concat = q_concat.Substring(0, q_concat.Length - 2) + ") AS `" + GVColumn.Columns(i).FieldName + "`"
+            q_concat = q_concat.Substring(0, q_concat.Length - 2) + ") AS `" + data_column.Rows(i)("column_list").ToString + "`"
 
             q_select += q_concat + ", "
         Next
@@ -160,11 +174,14 @@
             q_column += "MAX(CASE WHEN col.id_design_column = " + columns.Rows(i)("id_design_column").ToString + " THEN i.value END) AS `" + columns.Rows(i)("column_name").ToString + "`, "
         Next
 
+        'column additional
+        Dim a_column As String = execute_query("SELECT GROUP_CONCAT(CONCAT(column_name, ' AS `', alias_name, '`')) AS `column` FROM tb_design_column_additional", 0, True, "", "", "", "")
+
         'query
         Dim query As String = "
             SELECT " + q_select.Substring(0, q_select.Length - 2) + "
             FROM (
-	            SELECT p.product_full_code AS `SKU`, d.design_code AS `Design Code`, d.design_display_name AS `Design Name`, cd.code_detail_name AS `Size`,
+	            SELECT " + a_column + ",
 	            " + q_column.Substring(0, q_column.Length - 2) + "
 	            FROM tb_m_product AS p
 	            INNER JOIN tb_m_product_code AS pc ON pc.id_product = p.id_product
@@ -172,13 +189,13 @@
 	            INNER JOIN tb_m_design AS d ON d.id_design = p.id_design
 	            LEFT JOIN tb_m_design_information AS i ON i.id_design = d.id_design
 	            LEFT JOIN tb_design_column AS col ON col.id_design_column = i.id_design_column
-	            WHERE d.id_design = 1543
+	            WHERE d.id_design IN (" + in_design + ")
 	            GROUP BY p.id_product
             ) tb
         "
 
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-    End Sub
+        Return query
+    End Function
 
     Private Sub GVCol_DoubleClick(sender As Object, e As EventArgs) Handles GVCol.DoubleClick
         Dim value As String = GVColumn.GetFocusedRowCellValue(GVColumn.FocusedColumn) + "`" + GVCol.GetFocusedRowCellValue("column_name").ToString + "`"
