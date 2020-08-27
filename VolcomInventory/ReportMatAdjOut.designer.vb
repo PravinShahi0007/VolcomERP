@@ -274,8 +274,6 @@ Partial Public Class ReportMatAdjOut
         Me.GridColumnCompName.Name = "GridColumnCompName"
         Me.GridColumnCompName.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCompName.OptionsColumn.ShowInCustomizationForm = False
-        Me.GridColumnCompName.Visible = True
-        Me.GridColumnCompName.VisibleIndex = 3
         Me.GridColumnCompName.Width = 115
         '
         'GridColumnWHLoactor
@@ -284,8 +282,6 @@ Partial Public Class ReportMatAdjOut
         Me.GridColumnWHLoactor.FieldName = "wh_locator"
         Me.GridColumnWHLoactor.Name = "GridColumnWHLoactor"
         Me.GridColumnWHLoactor.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnWHLoactor.Visible = True
-        Me.GridColumnWHLoactor.VisibleIndex = 4
         Me.GridColumnWHLoactor.Width = 76
         '
         'GridColumnWHRack
@@ -294,8 +290,6 @@ Partial Public Class ReportMatAdjOut
         Me.GridColumnWHRack.FieldName = "wh_rack"
         Me.GridColumnWHRack.Name = "GridColumnWHRack"
         Me.GridColumnWHRack.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnWHRack.Visible = True
-        Me.GridColumnWHRack.VisibleIndex = 5
         Me.GridColumnWHRack.Width = 76
         '
         'GridColumnWHDrawer
@@ -304,8 +298,6 @@ Partial Public Class ReportMatAdjOut
         Me.GridColumnWHDrawer.FieldName = "wh_drawer"
         Me.GridColumnWHDrawer.Name = "GridColumnWHDrawer"
         Me.GridColumnWHDrawer.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnWHDrawer.Visible = True
-        Me.GridColumnWHDrawer.VisibleIndex = 6
         Me.GridColumnWHDrawer.Width = 76
         '
         'GridColumnUOM
@@ -331,7 +323,7 @@ Partial Public Class ReportMatAdjOut
         Me.GridColumnAdjPrice.FieldName = "adj_out_mat_det_price"
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
         Me.GridColumnAdjPrice.Visible = True
-        Me.GridColumnAdjPrice.VisibleIndex = 7
+        Me.GridColumnAdjPrice.VisibleIndex = 3
         Me.GridColumnAdjPrice.Width = 59
         '
         'GridColumnQty
@@ -342,20 +334,21 @@ Partial Public Class ReportMatAdjOut
         Me.GridColumnQty.FieldName = "adj_out_mat_det_qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_mat_det_qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 8
+        Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 44
         '
         'GridColumnAmount
         '
         Me.GridColumnAmount.Caption = "Amount"
-        Me.GridColumnAmount.DisplayFormat.FormatString = "n2"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "N4"
         Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmount.FieldName = "adj_out_mat_det_amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_mat_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 9
+        Me.GridColumnAmount.VisibleIndex = 5
         '
         'TopMargin
         '

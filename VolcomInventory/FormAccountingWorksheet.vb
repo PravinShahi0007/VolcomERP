@@ -5,7 +5,7 @@
 
         DETo.Properties.MinValue = Now
 
-        view_coa_type()
+        load_unit()
 
         view_acc_from()
 
@@ -31,6 +31,16 @@
 
         'clear datasource
         GCAccountingWorksheet.DataSource = Nothing
+        '
+        Dim where_coa_type As String = ""
+
+        If SLEUnit.EditValue.ToString = "0" Then
+            where_coa_type = ""
+        ElseIf SLEUnit.EditValue.ToString = "1" Then
+            where_coa_type = " id_coa_type = 1 AND "
+        Else
+            where_coa_type = " id_coa_type = 2 AND "
+        End If
 
         Dim is_char As Boolean = False
 
@@ -45,7 +55,7 @@
         If is_char Then
             acc_name += "acc.acc_name LIKE \'" + SLUEFrom.EditValue.ToString + "\'"
         Else
-            Dim acc_range As DataTable = execute_query("SELECT acc_name FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " AND CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CAST(acc_name AS UNSIGNED) <= " + SLUETo.EditValue.ToString + "", -1, True, "", "", "", "")
+            Dim acc_range As DataTable = execute_query("SELECT acc_name FROM tb_a_acc WHERE " & where_coa_type & " CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CAST(acc_name AS UNSIGNED) <= " + SLUETo.EditValue.ToString + "", -1, True, "", "", "", "")
 
             For i = 0 To acc_range.Rows.Count - 1
                 acc_name += "acc.acc_name LIKE \'" + acc_range.Rows(i)("acc_name").ToString + "%\' OR "
@@ -54,12 +64,12 @@
             acc_name = "(" + acc_name.Substring(0, acc_name.Length - 4) + ")"
         End If
 
-        Dim query As String = "CALL view_acc_worksheet('" + Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + acc_name + "', '" + SLUEType.EditValue.ToString + "')"
+        Dim query As String = "CALL view_acc_worksheet('" + Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + acc_name + "', '" + SLEUnit.EditValue.ToString + "')"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         'parent
-        Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " AND CHAR_LENGTH(acc_name) IN (2, 4) ORDER BY acc_name ASC"
+        Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc WHERE " & where_coa_type & " CHAR_LENGTH(acc_name) IN (2, 4) ORDER BY acc_name ASC"
 
         Dim data_parent As DataTable = execute_query(query_parent, -1, True, "", "", "", "")
 
@@ -126,7 +136,17 @@
     End Sub
 
     Sub view_acc_from()
-        viewSearchLookupQuery(SLUEFrom, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
+        Dim where_coa_type As String = ""
+
+        If SLEUnit.EditValue.ToString = "0" Then
+            where_coa_type = ""
+        ElseIf SLEUnit.EditValue.ToString = "1" Then
+            where_coa_type = " id_coa_type = 1 "
+        Else
+            where_coa_type = " id_coa_type = 2 "
+        End If
+
+        viewSearchLookupQuery(SLUEFrom, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE " & where_coa_type & " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
     End Sub
 
     Sub view_acc_to()
@@ -139,10 +159,20 @@
                 End If
             Next
 
-            If is_char Then
-                viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " AND acc_name = '" + SLUEFrom.EditValue.ToString + "'", "acc_name", "acc_name_description", "acc_name")
+            Dim where_coa_type As String = ""
+
+            If SLEUnit.EditValue.ToString = "0" Then
+                where_coa_type = ""
+            ElseIf SLEUnit.EditValue.ToString = "1" Then
+                where_coa_type = " id_coa_type = 1 AND "
             Else
-                viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " AND CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CHAR_LENGTH(acc_name) = " + SLUEFrom.EditValue.ToString.Length.ToString + " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
+                where_coa_type = " id_coa_type = 2 AND "
+            End If
+
+            If is_char Then
+                viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE " & where_coa_type & " acc_name = '" + SLUEFrom.EditValue.ToString + "'", "acc_name", "acc_name_description", "acc_name")
+            Else
+                viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE " & where_coa_type & " CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CHAR_LENGTH(acc_name) = " + SLUEFrom.EditValue.ToString.Length.ToString + " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
             End If
         Catch ex As Exception
             SLUETo.Properties.DataSource = Nothing
@@ -175,11 +205,19 @@
         DETo.Properties.MinValue = DEFrom.EditValue
     End Sub
 
-    Sub view_coa_type()
-        viewSearchLookupQuery(SLUEType, "SELECT id_coa_type, coa_type FROM tb_coa_type", "id_coa_type", "coa_type", "id_coa_type")
+    Sub load_unit()
+        Dim query As String = "SELECT 0 AS id_coa_tag,'ALL' AS tag_code,'ALL' AS tag_description 
+UNION ALL
+SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'UNION ALL
+        'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
+        'GROUP BY ad.id_comp"
+        viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
     End Sub
 
-    Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEType.EditValueChanged
+    Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs)
         view_acc_from()
 
         view_acc_to()
