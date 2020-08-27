@@ -5,7 +5,9 @@
 
         DETo.Properties.MinValue = Now
 
-        viewSearchLookupQuery(SLUEFrom, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
+        view_coa_type()
+
+        view_acc_from()
 
         view_acc_to()
     End Sub
@@ -43,7 +45,7 @@
         If is_char Then
             acc_name += "acc.acc_name LIKE \'" + SLUEFrom.EditValue.ToString + "\'"
         Else
-            Dim acc_range As DataTable = execute_query("SELECT acc_name FROM tb_a_acc WHERE CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CAST(acc_name AS UNSIGNED) <= " + SLUETo.EditValue.ToString + "", -1, True, "", "", "", "")
+            Dim acc_range As DataTable = execute_query("SELECT acc_name FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " AND CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CAST(acc_name AS UNSIGNED) <= " + SLUETo.EditValue.ToString + "", -1, True, "", "", "", "")
 
             For i = 0 To acc_range.Rows.Count - 1
                 acc_name += "acc.acc_name LIKE \'" + acc_range.Rows(i)("acc_name").ToString + "%\' OR "
@@ -52,12 +54,12 @@
             acc_name = "(" + acc_name.Substring(0, acc_name.Length - 4) + ")"
         End If
 
-        Dim query As String = "CALL view_acc_worksheet('" + Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + acc_name + "')"
+        Dim query As String = "CALL view_acc_worksheet('" + Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + acc_name + "', '" + SLUEType.EditValue.ToString + "')"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         'parent
-        Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc WHERE CHAR_LENGTH(acc_name) IN (2, 4) ORDER BY acc_name ASC"
+        Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " AND CHAR_LENGTH(acc_name) IN (2, 4) ORDER BY acc_name ASC"
 
         Dim data_parent As DataTable = execute_query(query_parent, -1, True, "", "", "", "")
 
@@ -123,20 +125,28 @@
         End Try
     End Sub
 
+    Sub view_acc_from()
+        viewSearchLookupQuery(SLUEFrom, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
+    End Sub
+
     Sub view_acc_to()
-        Dim is_char As Boolean = False
+        Try
+            Dim is_char As Boolean = False
 
-        For i = 0 To SLUEFrom.EditValue.ToString.Length - 1
-            If Char.IsLetter(SLUEFrom.EditValue.ToString.Chars(i)) Then
-                is_char = True
+            For i = 0 To SLUEFrom.EditValue.ToString.Length - 1
+                If Char.IsLetter(SLUEFrom.EditValue.ToString.Chars(i)) Then
+                    is_char = True
+                End If
+            Next
+
+            If is_char Then
+                viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " AND acc_name = '" + SLUEFrom.EditValue.ToString + "'", "acc_name", "acc_name_description", "acc_name")
+            Else
+                viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_coa_type = " + SLUEType.EditValue.ToString + " AND CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CHAR_LENGTH(acc_name) = " + SLUEFrom.EditValue.ToString.Length.ToString + " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
             End If
-        Next
-
-        If is_char Then
-            viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", "acc_name", "acc_name_description", "acc_name")
-        Else
-            viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CHAR_LENGTH(acc_name) = " + SLUEFrom.EditValue.ToString.Length.ToString + " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
-        End If
+        Catch ex As Exception
+            SLUETo.Properties.DataSource = Nothing
+        End Try
     End Sub
 
     Private Sub SLUEFrom_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEFrom.EditValueChanged
@@ -144,7 +154,11 @@
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
-        view_form()
+        If Not SLUEFrom.EditValue Is Nothing Then
+            view_form()
+        Else
+            stopCustom("Please select account.")
+        End If
     End Sub
 
     Private Sub GVAccountingLedger_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVAccountingWorksheet.CustomSummaryCalculate
@@ -159,5 +173,15 @@
 
     Private Sub DEFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEFrom.EditValueChanged
         DETo.Properties.MinValue = DEFrom.EditValue
+    End Sub
+
+    Sub view_coa_type()
+        viewSearchLookupQuery(SLUEType, "SELECT id_coa_type, coa_type FROM tb_coa_type", "id_coa_type", "coa_type", "id_coa_type")
+    End Sub
+
+    Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEType.EditValueChanged
+        view_acc_from()
+
+        view_acc_to()
     End Sub
 End Class
