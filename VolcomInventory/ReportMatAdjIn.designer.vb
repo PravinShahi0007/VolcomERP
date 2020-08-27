@@ -569,6 +569,7 @@ Partial Public Class ReportMatAdjIn
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrPanel2})
         Me.ReportFooter.HeightF = 72.29169!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'ReportMatAdjIn

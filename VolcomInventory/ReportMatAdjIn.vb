@@ -19,7 +19,7 @@
         viewDetailReturn()
 
         'Mark
-        load_mark_horz("26", id_adj_in_mat, "2", "1", XrTable1)
+        pre_load_mark_horz("26", id_adj_in_mat, "2", "1", XrTable1)
     End Sub
 
     Sub viewDetailReturn()
