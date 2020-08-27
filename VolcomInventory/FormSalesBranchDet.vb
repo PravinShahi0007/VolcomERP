@@ -194,12 +194,12 @@ Public Class FormSalesBranchDet
 
     Sub calculate()
         'normal ppn
-        TxtRevNormal.EditValue = (100 / (100 + TxtProsPPNNormal.EditValue)) * TxtRevGrossNormal.EditValue
-        TxtPPNNormal.EditValue = TxtRevNormal.EditValue * (TxtProsPPNNormal.EditValue / 100)
+        'TxtRevNormal.EditValue = (100 / (100 + TxtProsPPNNormal.EditValue)) * TxtRevGrossNormal.EditValue
+        'TxtPPNNormal.EditValue = TxtRevNormal.EditValue * (TxtProsPPNNormal.EditValue / 100)
 
-        TxtRevSale.EditValue = (100 / (100 + TxtProsPPNSale.EditValue)) * TxtRevGrossSale.EditValue
-        TxtPPNSale.EditValue = TxtRevSale.EditValue * (TxtProsPPNSale.EditValue / 100)
-        TxtTotal.EditValue = TxtRevGrossNormal.EditValue + TxtAPNormal.EditValue + TxtRevGrossSale.EditValue + TxtAPSale.EditValue
+        'TxtRevSale.EditValue = (100 / (100 + TxtProsPPNSale.EditValue)) * TxtRevGrossSale.EditValue
+        'TxtPPNSale.EditValue = TxtRevSale.EditValue * (TxtProsPPNSale.EditValue / 100)
+        'TxtTotal.EditValue = TxtRevGrossNormal.EditValue + TxtAPNormal.EditValue + TxtRevGrossSale.EditValue + TxtAPSale.EditValue
     End Sub
 
     Sub viewDetail()
