@@ -40,7 +40,7 @@ Public Class FormSalesBranchDet
     End Sub
 
     Sub viewCOA()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description AS `acc_description` FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        Dim query As String = "SELECT id_acc,acc_name,acc_description AS `acc_description` FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' AND id_coa_type=2 "
         viewSearchLookupQuery(SLEAccPPNNormal, query, "id_acc", "acc_name", "id_acc")
         viewSearchLookupQuery(SLEAccRevNormal, query, "id_acc", "acc_name", "id_acc")
         viewSearchLookupQuery(SLEAccAPNormal, query, "id_acc", "acc_name", "id_acc")
