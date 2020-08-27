@@ -1,5 +1,6 @@
 ﻿Public Class FormBankWithdrawalAdd
     Public action As String = "-1"
+    Dim id_coa_tag As String = FormBankWithdrawalDet.id_coa_tag
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         Close()
@@ -63,6 +64,11 @@
         Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
         a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
         FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 "
+        If id_coa_tag = "1" Then
+            query += " AND a.id_coa_type='1' "
+        Else
+            query += " AND a.id_coa_type='2' "
+        End If
         viewSearchLookupQuery(SLECOA, query, "id_acc", "acc_description", "id_acc")
     End Sub
 

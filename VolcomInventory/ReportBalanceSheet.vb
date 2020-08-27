@@ -5,7 +5,7 @@
         Dim sub_this_month_value As Decimal = 0.0
         Dim sub_prev_month_value As Decimal = 0.0
 
-        Dim font_row_style As New Font("Segoe UI", 7, FontStyle.Regular)
+        Dim font_row_style As New Font("Segoe UI", 6.5, FontStyle.Regular)
         '
         For i = 0 To FormReportBalanceSheet.GVAktiva.RowCount - 1 - GetGroupRowCount(FormReportBalanceSheet.GVAktiva)
             'header/sub header or footer
@@ -199,7 +199,7 @@
     End Sub
 
     Sub add_row(ByVal xtb As DevExpress.XtraReports.UI.XRTable, ByVal acc_name As String, ByVal acc_desc As String, ByVal pad As Integer, ByVal border_all As Boolean, ByVal prev_month_value As String, ByVal this_month_value As String)
-        Dim font_row_style As New Font("Segoe UI", 7, FontStyle.Regular)
+        Dim font_row_style As New Font("Segoe UI", 6.5, FontStyle.Regular)
         Dim pad_info As New DevExpress.XtraPrinting.PaddingInfo(pad, 5, 0, 0, 100.0F)
         'insert header
         Dim row_header As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow

@@ -225,7 +225,7 @@
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
             Dim code As String = addSlashes(TxtCompID.Text)
-            Dim data As DataTable = get_company_by_code_no_limit(code, "AND !ISNULL(comp.id_drawer_def) ")
+            Dim data As DataTable = get_company_by_code_no_limit(code, "AND !ISNULL(comp.id_drawer_def) AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) ")
             If data.Rows.Count = 0 Or code = "" Then
                 stopCustom("Account not found!")
                 id_comp_selected = "-1"

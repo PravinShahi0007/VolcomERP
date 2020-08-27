@@ -200,7 +200,7 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             If XTCProfitAndLoss.SelectedTabPageIndex = 0 Then
                 print_treelist(TLProfitAndLoss, "Profit And Loss")
             ElseIf XTCProfitAndLoss.SelectedTabPageIndex = 1 Then
-                print(GCProfitAndLoss, "Profit And Loss")
+                print_custom(GCProfitAndLoss, "Profit And Loss " & vbNewLine & " Until : " & Date.Parse(DEUntil.EditValue.ToString).ToString("MMMM yyyy"))
             End If
         End If
     End Sub
@@ -208,6 +208,9 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
     Sub print_bs()
         Cursor = Cursors.WaitCursor
         Dim Report As New ReportBalanceSheet()
+
+        Report.LUntil1.Text = " Until : " & Date.DaysInMonth(Date.Parse(DEUntil.EditValue.ToString).AddMonths(-1).Year, Date.Parse(DEUntil.EditValue.ToString).AddMonths(-1).Month).ToString & " " & Date.Parse(DEUntil.EditValue.ToString).AddMonths(-1).ToString("MMMM yyyy")
+        Report.LUntil2.Text = " Until : " & Date.DaysInMonth(Date.Parse(DEUntil.EditValue.ToString).AddMonths(-1).Year, Date.Parse(DEUntil.EditValue.ToString).AddMonths(-1).Month).ToString & " " & Date.Parse(DEUntil.EditValue.ToString).AddMonths(-1).ToString("MMMM yyyy")
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
