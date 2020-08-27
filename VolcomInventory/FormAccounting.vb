@@ -55,12 +55,19 @@ Public Class FormAccounting
             XTCGeneral.SelectedTabPage = t
         Next t
         XTCGeneral.SelectedTabPage = XTCGeneral.TabPages(0)
+        viewCoaType()
         view_acc()
         viewCategory()
         CreateNodes(TreeList1)
 
         'tab general
         actionLoadGeneralSetup()
+    End Sub
+
+    Sub viewCoaType()
+        Dim query As String = "SELECT * FROM tb_coa_type t ORDER BY t.id_coa_type ASC "
+        viewLookupQuery(LECOAType, query, 0, "coa_type", "id_coa_type")
+        viewLookupQuery(LECOATypeLedger, query, 0, "coa_type", "id_coa_type")
     End Sub
 
     Sub viewCompany()
@@ -133,12 +140,20 @@ Public Class FormAccounting
     End Sub
 
     Sub view_acc()
+        Cursor = Cursors.WaitCursor
+        Dim id_coa_type As String = "-1"
+        Try
+            id_coa_type = LECOAType.EditValue.ToString
+        Catch ex As Exception
+        End Try
         Dim query As String = ""
         query += "SELECT a.id_acc,acc_name,a.acc_description,a.id_acc_cat,b.acc_cat,a.id_status,c.status,a.id_is_det,d.is_det,comp.id_comp,comp.comp_name,comp.comp_number,e.dc FROM tb_a_acc a "
         query += "INNER JOIN tb_lookup_acc_cat b ON a.id_acc_cat=b.id_acc_cat INNER JOIN tb_lookup_status c ON a.id_status=c.id_status INNER JOIN tb_lookup_is_det d ON a.id_is_det=d.id_is_det INNER JOIN tb_lookup_dc AS e ON a.id_dc = e.id_dc "
         query += "LEFT JOIN tb_m_comp comp ON comp.id_comp=a.id_comp "
+        query += "WHERE a.id_coa_type='" + id_coa_type + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCAcc.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub CreateNodes(ByVal tl As DevExpress.XtraTreeList.TreeList)
@@ -146,6 +161,7 @@ Public Class FormAccounting
         tl.BeginUnboundLoad()
         ' Create a root node .
         Dim parentForRootNodes As DevExpress.XtraTreeList.Nodes.TreeListNode = Nothing
+        Dim id_coa_type As String = LECOATypeLedger.EditValue.ToString
         'root
         Dim query As String = "SELECT a.id_acc,acc_name,a.id_acc_parent,a.acc_description,CAST(IFNULL(entry.debit,0) AS DECIMAL(13,2)) AS debit,CAST(IFNULL(entry.credit,0) AS DECIMAL(13,2)) AS credit,a.id_acc_cat,b.acc_cat,a.id_status,c.status,a.id_is_det,d.is_det,a.id_status,'' as id_all_child,comp.id_comp,comp.comp_name,comp.comp_number FROM tb_a_acc a"
         query += " INNER JOIN tb_lookup_acc_cat b ON a.id_acc_cat=b.id_acc_cat "
@@ -158,6 +174,7 @@ Public Class FormAccounting
         query += " SELECT id_acc,SUM(debit) AS debit,SUM(credit) AS credit FROM tb_a_acc_trans_det GROUP BY id_acc"
         query += " ) a GROUP BY id_acc"
         query += " ) entry ON entry.id_acc=a.id_acc"
+        query += " WHERE a.id_coa_type='" + id_coa_type + "' "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim data_filter As DataRow() = data.Select("[id_acc_parent] is NULL AND [id_status]='1'")
@@ -359,4 +376,19 @@ Public Class FormAccounting
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub LECOAType_EditValueChanged(sender As Object, e As EventArgs) Handles LECOAType.EditValueChanged
+        GCAcc.DataSource = Nothing
+    End Sub
+
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        view_acc()
+    End Sub
+
+    Private Sub LECOATypeLedger_EditValueChanged(sender As Object, e As EventArgs) Handles LECOATypeLedger.EditValueChanged
+        TreeList1.Nodes.Clear()
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        CreateNodes(TreeList1)
+    End Sub
 End Class

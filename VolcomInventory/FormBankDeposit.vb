@@ -518,6 +518,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         If GVSales.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
             FormBankDepositDet.id_coa_tag = SLEUnit.EditValue.ToString
+            FormBankDepositDet.id_coa_type = "2"
             FormBankDepositDet.type_rec = "3"
             FormBankDepositDet.ShowDialog()
             Cursor = Cursors.Default

@@ -286,6 +286,7 @@ Public Class FormSalesBranchDet
         If id = "-1" Then
             Cursor = Cursors.WaitCursor
             FormBankDepositAdd.id_pop_up = "1"
+            FormBankDepositAdd.id_coa_type = "2"
             FormBankDepositAdd.action = "ins"
             FormBankDepositAdd.ShowDialog()
             Cursor = Cursors.Default
@@ -610,6 +611,7 @@ Public Class FormSalesBranchDet
             If GVData.GetFocusedRowCellValue("id_report") = "0" Then
                 Cursor = Cursors.WaitCursor
                 FormBankDepositAdd.id_pop_up = "1"
+                FormBankDepositAdd.id_coa_type = "2"
                 FormBankDepositAdd.action = "upd"
                 FormBankDepositAdd.ShowDialog()
                 Cursor = Cursors.Default
