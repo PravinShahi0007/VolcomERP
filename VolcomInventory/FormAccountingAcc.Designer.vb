@@ -25,6 +25,8 @@ Partial Class FormAccountingAcc
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECOAType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.MEAccDesc = New DevExpress.XtraEditors.MemoEdit()
@@ -47,12 +49,11 @@ Partial Class FormAccountingAcc
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.EPACC = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.LECOAType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LECOAType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAccDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,7 +65,6 @@ Partial Class FormAccountingAcc
         CType(Me.TEAccountDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPACC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LECOAType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -120,6 +120,23 @@ Partial Class FormAccountingAcc
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(665, 296)
         Me.PanelControl3.TabIndex = 54
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(18, 14)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(51, 15)
+        Me.LabelControl4.TabIndex = 124
+        Me.LabelControl4.Text = "COA Type"
+        '
+        'LECOAType
+        '
+        Me.LECOAType.Location = New System.Drawing.Point(130, 12)
+        Me.LECOAType.Name = "LECOAType"
+        Me.LECOAType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECOAType.Size = New System.Drawing.Size(134, 20)
+        Me.LECOAType.TabIndex = 123
         '
         'LEType
         '
@@ -339,23 +356,6 @@ Partial Class FormAccountingAcc
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
-        'LECOAType
-        '
-        Me.LECOAType.Location = New System.Drawing.Point(130, 12)
-        Me.LECOAType.Name = "LECOAType"
-        Me.LECOAType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LECOAType.Size = New System.Drawing.Size(134, 20)
-        Me.LECOAType.TabIndex = 123
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(18, 14)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(51, 15)
-        Me.LabelControl4.TabIndex = 124
-        Me.LabelControl4.Text = "COA Type"
-        '
         'FormAccountingAcc
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -375,6 +375,7 @@ Partial Class FormAccountingAcc
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.LECOAType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAccDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -386,7 +387,6 @@ Partial Class FormAccountingAcc
         CType(Me.TEAccountDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPACC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LECOAType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
