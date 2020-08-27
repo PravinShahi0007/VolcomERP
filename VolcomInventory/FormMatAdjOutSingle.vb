@@ -41,7 +41,6 @@
             If check_edit_report_status(id_report_status, "27", id_adj_out_mat) Then
                 BMark.Enabled = True
                 BtnSave.Enabled = True
-                BtnPrint.Enabled = False
                 MENote.Properties.ReadOnly = False
                 BtnAdd.Enabled = True
                 BtnEdit.Enabled = True
@@ -49,18 +48,13 @@
             Else
                 BMark.Enabled = True
                 BtnSave.Enabled = False
-                BtnPrint.Enabled = False
                 MENote.Properties.ReadOnly = True
                 BtnAdd.Enabled = False
                 BtnEdit.Enabled = False
                 BtnDel.Enabled = False
             End If
 
-            If check_print_report_status(id_report_status) Then
-                BtnPrint.Enabled = True
-            Else
-                BtnPrint.Enabled = False
-            End If
+            BtnPrint.Enabled = True
 
             'Fetch db detail
             viewDetailReturn()
