@@ -52,10 +52,10 @@ Partial Class FormMatAdjOutSingle
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
@@ -338,8 +338,6 @@ Partial Class FormMatAdjOutSingle
         Me.GridColumnWHDrawer.FieldName = "wh_drawer"
         Me.GridColumnWHDrawer.Name = "GridColumnWHDrawer"
         Me.GridColumnWHDrawer.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnWHDrawer.Visible = True
-        Me.GridColumnWHDrawer.VisibleIndex = 3
         Me.GridColumnWHDrawer.Width = 110
         '
         'GridColumnUOM
@@ -369,7 +367,7 @@ Partial Class FormMatAdjOutSingle
         Me.GridColumnAdjPrice.FieldName = "adj_out_mat_det_price"
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
         Me.GridColumnAdjPrice.Visible = True
-        Me.GridColumnAdjPrice.VisibleIndex = 4
+        Me.GridColumnAdjPrice.VisibleIndex = 3
         Me.GridColumnAdjPrice.Width = 110
         '
         'GridColumnQty
@@ -387,7 +385,7 @@ Partial Class FormMatAdjOutSingle
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_mat_det_qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 86
         '
         'RepositoryItemSpinEdit1
@@ -405,13 +403,13 @@ Partial Class FormMatAdjOutSingle
         Me.GridColumnAmount.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnAmount.Caption = "Amount"
-        Me.GridColumnAmount.DisplayFormat.FormatString = "n2"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "N4"
         Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmount.FieldName = "adj_out_mat_det_amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
-        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_mat_det_amount", "{0:n2}")})
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_mat_det_amount", "{0:N2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 6
+        Me.GridColumnAmount.VisibleIndex = 5
         Me.GridColumnAmount.Width = 131
         '
         'GridView1
@@ -433,6 +431,25 @@ Partial Class FormMatAdjOutSingle
         Me.PanelControl2.Size = New System.Drawing.Size(806, 44)
         Me.PanelControl2.TabIndex = 18
         '
+        'BtnDel
+        '
+        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDel.ImageIndex = 1
+        Me.BtnDel.ImageList = Me.LargeImageCollection
+        Me.BtnDel.Location = New System.Drawing.Point(533, 0)
+        Me.BtnDel.Name = "BtnDel"
+        Me.BtnDel.Size = New System.Drawing.Size(91, 44)
+        Me.BtnDel.TabIndex = 17
+        Me.BtnDel.Text = "Delete"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        '
         'BtnEdit
         '
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
@@ -444,14 +461,6 @@ Partial Class FormMatAdjOutSingle
         Me.BtnEdit.TabIndex = 19
         Me.BtnEdit.Text = "Edit"
         '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
@@ -462,17 +471,6 @@ Partial Class FormMatAdjOutSingle
         Me.BtnAdd.Size = New System.Drawing.Size(91, 44)
         Me.BtnAdd.TabIndex = 18
         Me.BtnAdd.Text = "Add"
-        '
-        'BtnDel
-        '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.ImageIndex = 1
-        Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(533, 0)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(91, 44)
-        Me.BtnDel.TabIndex = 17
-        Me.BtnDel.Text = "Delete"
         '
         'GroupGeneralFooter
         '
