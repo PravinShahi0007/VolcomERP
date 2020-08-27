@@ -137,6 +137,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn84 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEAttachment = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn225 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XPOListNonActive = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPOListNonActive = New DevExpress.XtraGrid.GridControl()
         Me.GVPOListNonActive = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -471,7 +472,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn225 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BInfoFGPO = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -1810,6 +1811,21 @@ Partial Class FormBankWithdrawal
         Me.RICEAttachment.PictureChecked = CType(resources.GetObject("RICEAttachment.PictureChecked"), System.Drawing.Image)
         Me.RICEAttachment.PictureGrayed = CType(resources.GetObject("RICEAttachment.PictureGrayed"), System.Drawing.Image)
         Me.RICEAttachment.PictureUnchecked = CType(resources.GetObject("RICEAttachment.PictureUnchecked"), System.Drawing.Image)
+        '
+        'GridColumn225
+        '
+        Me.GridColumn225.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn225.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn225.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn225.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn225.Caption = "Gross Up Value"
+        Me.GridColumn225.DisplayFormat.FormatString = "N2"
+        Me.GridColumn225.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn225.FieldName = "gross_up_value"
+        Me.GridColumn225.Name = "GridColumn225"
+        Me.GridColumn225.Visible = True
+        Me.GridColumn225.VisibleIndex = 17
+        Me.GridColumn225.Width = 103
         '
         'XPOListNonActive
         '
@@ -3165,6 +3181,7 @@ Partial Class FormBankWithdrawal
         '
         'PanelControl6
         '
+        Me.PanelControl6.Controls.Add(Me.BInfoFGPO)
         Me.PanelControl6.Controls.Add(Me.TEKurs)
         Me.PanelControl6.Controls.Add(Me.LabelControl9)
         Me.PanelControl6.Controls.Add(Me.SLEFGPOVendor)
@@ -5148,20 +5165,15 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
-        'GridColumn225
+        'BInfoFGPO
         '
-        Me.GridColumn225.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn225.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn225.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn225.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn225.Caption = "Gross Up Value"
-        Me.GridColumn225.DisplayFormat.FormatString = "N2"
-        Me.GridColumn225.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn225.FieldName = "gross_up_value"
-        Me.GridColumn225.Name = "GridColumn225"
-        Me.GridColumn225.Visible = True
-        Me.GridColumn225.VisibleIndex = 17
-        Me.GridColumn225.Width = 103
+        Me.BInfoFGPO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BInfoFGPO.Image = CType(resources.GetObject("BInfoFGPO.Image"), System.Drawing.Image)
+        Me.BInfoFGPO.Location = New System.Drawing.Point(930, 2)
+        Me.BInfoFGPO.Name = "BInfoFGPO"
+        Me.BInfoFGPO.Size = New System.Drawing.Size(159, 40)
+        Me.BInfoFGPO.TabIndex = 8921
+        Me.BInfoFGPO.Text = "Payment Tracking"
         '
         'FormBankWithdrawal
         '
@@ -5792,4 +5804,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn223 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn224 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn225 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BInfoFGPO As DevExpress.XtraEditors.SimpleButton
 End Class

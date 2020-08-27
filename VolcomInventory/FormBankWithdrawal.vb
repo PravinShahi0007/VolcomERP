@@ -1304,4 +1304,8 @@ GROUP BY pns.`id_pn_summary`"
     Private Sub BBuyValas_Click(sender As Object, e As EventArgs) Handles BBuyValas.Click
 
     End Sub
+
+    Private Sub BInfoFGPO_Click(sender As Object, e As EventArgs) Handles BInfoFGPO.Click
+        FormFGPOPaymentTracking.ShowDialog()
+    End Sub
 End Class

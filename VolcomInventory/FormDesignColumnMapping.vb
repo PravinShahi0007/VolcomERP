@@ -179,9 +179,9 @@
 
         'query
         Dim query As String = "
-            SELECT " + q_select.Substring(0, q_select.Length - 2) + "
+            SELECT id_design, id_product, " + q_select.Substring(0, q_select.Length - 2) + "
             FROM (
-	            SELECT " + a_column + ",
+	            SELECT d.id_design, p.id_product, " + a_column + ",
 	            " + q_column.Substring(0, q_column.Length - 2) + "
 	            FROM tb_m_product AS p
 	            INNER JOIN tb_m_product_code AS pc ON pc.id_product = p.id_product
