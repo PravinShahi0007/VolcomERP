@@ -292,6 +292,7 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2589,11 +2590,14 @@ Partial Class FormMasterDesignSingle
         '
         'GVAdditional
         '
-        Me.GVAdditional.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn57, Me.GridColumn56})
+        Me.GVAdditional.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn60, Me.GridColumn54, Me.GridColumn55, Me.GridColumn57, Me.GridColumn56})
         Me.GVAdditional.GridControl = Me.GCAdditional
+        Me.GVAdditional.GroupCount = 1
         Me.GVAdditional.Name = "GVAdditional"
+        Me.GVAdditional.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVAdditional.OptionsView.RowAutoHeight = True
         Me.GVAdditional.OptionsView.ShowGroupPanel = False
+        Me.GVAdditional.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn60, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn53
         '
@@ -3112,6 +3116,14 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
         '
+        'GridColumn60
+        '
+        Me.GridColumn60.Caption = "Category"
+        Me.GridColumn60.FieldName = "category"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 1
+        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3543,4 +3555,5 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPrimaryName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SBFabricationBrowse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

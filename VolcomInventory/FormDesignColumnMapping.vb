@@ -177,22 +177,26 @@
         'column additional
         Dim a_column As String = execute_query("SELECT GROUP_CONCAT(CONCAT(column_name, ' AS `', alias_name, '`')) AS `column` FROM tb_design_column_additional", 0, True, "", "", "", "")
 
-        'query
-        Dim query As String = "
-            SELECT id_design, id_product, " + q_select.Substring(0, q_select.Length - 2) + "
-            FROM (
-	            SELECT d.id_design, p.id_product, " + a_column + ",
-	            " + q_column.Substring(0, q_column.Length - 2) + "
-	            FROM tb_m_product AS p
-	            INNER JOIN tb_m_product_code AS pc ON pc.id_product = p.id_product
-	            INNER JOIN tb_m_code_detail AS cd ON cd.id_code_detail = pc.id_code_detail
-	            INNER JOIN tb_m_design AS d ON d.id_design = p.id_design
-	            LEFT JOIN tb_m_design_information AS i ON i.id_design = d.id_design
-	            LEFT JOIN tb_design_column AS col ON col.id_design_column = i.id_design_column
-	            WHERE d.id_design IN (" + in_design + ")
-	            GROUP BY p.id_product
-            ) tb
-        "
+        Dim query As String = ""
+
+        If Not q_select = "" Then
+            'query
+            query = "
+                SELECT id_design, id_product, " + q_select.Substring(0, q_select.Length - 2) + "
+                FROM (
+	                SELECT d.id_design, p.id_product, " + a_column + ",
+	                " + q_column.Substring(0, q_column.Length - 2) + "
+	                FROM tb_m_product AS p
+	                INNER JOIN tb_m_product_code AS pc ON pc.id_product = p.id_product
+	                INNER JOIN tb_m_code_detail AS cd ON cd.id_code_detail = pc.id_code_detail
+	                INNER JOIN tb_m_design AS d ON d.id_design = p.id_design
+	                LEFT JOIN tb_m_design_information AS i ON i.id_design = d.id_design
+	                LEFT JOIN tb_design_column AS col ON col.id_design_column = i.id_design_column
+	                WHERE d.id_design IN (" + in_design + ")
+	                GROUP BY p.id_product
+                ) tb
+            "
+        End If
 
         Return query
     End Function
