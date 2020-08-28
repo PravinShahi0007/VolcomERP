@@ -413,7 +413,10 @@ Public Class FormBankDepositDet
     End Sub
 
     Sub load_receive_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' "
+        If id_deposit = "-1" Then
+            query += "AND id_coa_type='" + id_coa_type + "' "
+        End If
         viewSearchLookupQuery(SLEPayRecTo, query, "id_acc", "acc_description", "id_acc")
     End Sub
     '
