@@ -238,6 +238,7 @@ Partial Class FormMasterDesignSingle
         Me.GCAdditional = New DevExpress.XtraGrid.GridControl()
         Me.GVAdditional = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMEValue = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
@@ -292,7 +293,6 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -668,12 +668,12 @@ Partial Class FormMasterDesignSingle
         'BtnReviseStyle
         '
         Me.BtnReviseStyle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnReviseStyle.Location = New System.Drawing.Point(761, 2)
+        Me.BtnReviseStyle.Location = New System.Drawing.Point(734, 2)
         Me.BtnReviseStyle.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnReviseStyle.Name = "BtnReviseStyle"
-        Me.BtnReviseStyle.Size = New System.Drawing.Size(78, 27)
+        Me.BtnReviseStyle.Size = New System.Drawing.Size(105, 27)
         Me.BtnReviseStyle.TabIndex = 124
-        Me.BtnReviseStyle.Text = "Revise PD"
+        Me.BtnReviseStyle.Text = "Revise Master PD"
         Me.BtnReviseStyle.Visible = False
         '
         'CheckEditApproved
@@ -2605,6 +2605,14 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.OptionsColumn.AllowEdit = False
         '
+        'GridColumn60
+        '
+        Me.GridColumn60.Caption = "Category"
+        Me.GridColumn60.FieldName = "category"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 1
+        '
         'GridColumn54
         '
         Me.GridColumn54.Caption = "Column"
@@ -3115,14 +3123,6 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
-        '
-        'GridColumn60
-        '
-        Me.GridColumn60.Caption = "Category"
-        Me.GridColumn60.FieldName = "category"
-        Me.GridColumn60.Name = "GridColumn60"
-        Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 1
         '
         'FormMasterDesignSingle
         '
