@@ -179,9 +179,9 @@
 
         'query
         Dim query As String = "
-            SELECT " + q_select.Substring(0, q_select.Length - 2) + "
+            SELECT id_design, id_product, " + q_select.Substring(0, q_select.Length - 2) + "
             FROM (
-	            SELECT " + a_column + ",
+	            SELECT d.id_design, p.id_product, " + a_column + ",
 	            " + q_column.Substring(0, q_column.Length - 2) + "
 	            FROM tb_m_product AS p
 	            INNER JOIN tb_m_product_code AS pc ON pc.id_product = p.id_product
@@ -253,7 +253,7 @@
 
             execute_non_query("DELETE FROM tb_design_column_mapping WHERE id_design_column_list = " + id_design_column_list + " AND column_type_front = " + column_type_front + " AND column_type_end = " + column_type_end, True, "", "", "", "")
 
-            execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_type_front, column_type_end, column_mapping) VALUES (" + id_design_column_list + ", " + column_type_front + ", " + column_type_end + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i))) + "')", True, "", "", "", "")
+            execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_type_front, column_type_end, column_mapping) VALUES (" + id_design_column_list + ", " + column_type_front + ", " + column_type_end + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i)).ToString) + "')", True, "", "", "", "")
 
             in_design_column_list += id_design_column_list + ", "
         Next

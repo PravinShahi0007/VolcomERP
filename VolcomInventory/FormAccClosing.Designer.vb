@@ -52,6 +52,8 @@ Partial Class FormAccClosing
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewMenuBottom = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.TSViewReport = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +69,7 @@ Partial Class FormAccClosing
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCReport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenuBottom.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -303,7 +306,7 @@ Partial Class FormAccClosing
         '
         'GCReport
         '
-        Me.GCReport.ContextMenuStrip = Me.ViewMenu
+        Me.GCReport.ContextMenuStrip = Me.ViewMenuBottom
         Me.GCReport.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCReport.Location = New System.Drawing.Point(2, 20)
         Me.GCReport.MainView = Me.GVReport
@@ -392,6 +395,18 @@ Partial Class FormAccClosing
         Me.GridColumn19.VisibleIndex = 3
         Me.GridColumn19.Width = 324
         '
+        'ViewMenuBottom
+        '
+        Me.ViewMenuBottom.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSViewReport})
+        Me.ViewMenuBottom.Name = "ContextMenuStripYM"
+        Me.ViewMenuBottom.Size = New System.Drawing.Size(138, 26)
+        '
+        'TSViewReport
+        '
+        Me.TSViewReport.Name = "TSViewReport"
+        Me.TSViewReport.Size = New System.Drawing.Size(137, 22)
+        Me.TSViewReport.Text = "View Report"
+        '
         'FormAccClosing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -420,6 +435,7 @@ Partial Class FormAccClosing
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCReport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVReport, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenuBottom.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -456,4 +472,6 @@ Partial Class FormAccClosing
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenuBottom As ContextMenuStrip
+    Friend WithEvents TSViewReport As ToolStripMenuItem
 End Class

@@ -182,4 +182,21 @@ GROUP BY trxd.id_comp"
         set_min_date_reference(DEUntil)
         BClosing.Visible = False
     End Sub
+
+
+    Private Sub TSViewReport_Click(sender As Object, e As EventArgs) Handles TSViewReport.Click
+        Cursor = Cursors.WaitCursor
+
+        Try
+            Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+            showpopup.opt = "Buku Besar"
+            showpopup.report_mark_type = GVReport.GetFocusedRowCellValue("report_mark_type").ToString
+            showpopup.id_report = GVReport.GetFocusedRowCellValue("id_report").ToString
+            showpopup.show()
+        Catch ex As Exception
+            stopCustom("Document Not Found")
+        End Try
+
+        Cursor = Cursors.Default
+    End Sub
 End Class

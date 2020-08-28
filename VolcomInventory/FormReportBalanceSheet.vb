@@ -40,6 +40,7 @@ SELECT id_tax_report,tax_report,id_type FROM tb_lookup_tax_report"
         load_unit()
         load_tag_coa()
         load_tax_type()
+        SLETaxCat.EditValue = Nothing
         '
         Try
             CreateNodes(TLLedger, "", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
