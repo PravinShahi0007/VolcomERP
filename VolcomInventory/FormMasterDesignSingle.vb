@@ -3210,8 +3210,9 @@
 
     Sub load_additional()
         Dim data As DataTable = execute_query("
-            SELECT c.id_design_column, c.column_name, v.value, c.is_lookup
+            SELECT c.id_design_column, t.category, c.column_name, v.value, c.is_lookup
             FROM tb_design_column AS c
+            LEFT JOIN tb_design_column_category AS t ON c.id_design_column_category = t.id_design_column_category
             LEFT JOIN (
 	            SELECT tb_m_design_information.id_design_column, tb_m_design_information.value
 	            FROM tb_m_design_information

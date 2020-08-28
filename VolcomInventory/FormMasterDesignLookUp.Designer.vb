@@ -56,6 +56,7 @@ Partial Class FormMasterDesignLookUp
         Me.GVBrowse.GridControl = Me.GCBrowse
         Me.GVBrowse.Name = "GVBrowse"
         Me.GVBrowse.OptionsBehavior.Editable = False
+        Me.GVBrowse.OptionsFind.AlwaysVisible = True
         Me.GVBrowse.OptionsView.RowAutoHeight = True
         Me.GVBrowse.OptionsView.ShowGroupPanel = False
         '
