@@ -760,6 +760,8 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             Else
                 view_list_cn()
             End If
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPVS" Then
+            view_vs()
         End If
     End Sub
 
@@ -1319,19 +1321,21 @@ GROUP BY pns.`id_pn_summary`"
     End Sub
 
     Private Sub BtnViewSales_Click(sender As Object, e As EventArgs) Handles BtnViewSales.Click
-        load_vs()
+        view_vs()
     End Sub
 
-    Sub load_vs()
+    Sub view_vs()
         Cursor = Cursors.WaitCursor
         Dim id_coa_tag As String = SLEUnit.EditValue.ToString
         Dim query As String = "SELECT *, 'no' AS `is_check` 
         FROM (
 	        SELECT b.id_sales_branch, b.number, b.id_coa_tag,b.comp_rev_normal_note AS `note`,
-	        b.comp_rev_normal-IFNULL(pyd.total_pay,0)-IFNULL(cn.amount_cn,0.00) AS `amount`, c.comp_number, c.comp_name,
-	        IFNULL(pyd.on_process,0) AS `on_process`
+	        IFNULL(pyd.total_pay,0) AS `total_pay`,b.comp_rev_normal-IFNULL(pyd.total_pay,0)-IFNULL(cn.amount_cn,0.00) AS `amount`, c.id_comp, c.comp_number, c.comp_name,
+	        IFNULL(pyd.on_process,0) AS `on_process`, b.report_mark_type,
+            coa.id_acc, coa.acc_name, coa.acc_description
 	        FROM tb_sales_branch b 
 	        INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp_normal
+            INNER JOIN tb_a_acc coa ON coa.id_acc = comp_rev_normal_acc
 	        LEFT JOIN (
 	          SELECT rd.id_report, rd.vendor , SUM(rd.value) AS `total_pay`, 
 	          COUNT(IF(r.id_report_status<5,1,NULL)) AS `on_process`
@@ -1352,10 +1356,12 @@ GROUP BY pns.`id_pn_summary`"
 	        GROUP BY b.id_sales_branch
 	        UNION ALL
 	        SELECT b.id_sales_branch,b.number, b.id_coa_tag, b.comp_rev_normal_note AS `note`,
-	        b.comp_rev_sale-IFNULL(pyd.total_pay,0)-IFNULL(cn.amount_cn,0.00) AS `amount`, c.comp_number, c.comp_name,
-	        IFNULL(pyd.on_process,0) AS `on_process`
+	        IFNULL(pyd.total_pay,0) AS `total_pay`, b.comp_rev_sale-IFNULL(pyd.total_pay,0)-IFNULL(cn.amount_cn,0.00) AS `amount`, c.id_comp, c.comp_number, c.comp_name,
+	        IFNULL(pyd.on_process,0) AS `on_process`,b.report_mark_type,
+            coa.id_acc, coa.acc_name, coa.acc_description
 	        FROM tb_sales_branch b 
 	        INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp_sale
+            INNER JOIN tb_a_acc coa ON coa.id_acc = comp_rev_sale_acc
 	        LEFT JOIN (
 	          SELECT rd.id_report, rd.vendor , SUM(rd.value) AS `total_pay`, 
 	          COUNT(IF(r.id_report_status<5,1,NULL)) AS `on_process`
@@ -1375,7 +1381,7 @@ GROUP BY pns.`id_pn_summary`"
 	        WHERE b.id_report_status=6 AND b.id_memo_type=1
 	        GROUP BY b.id_sales_branch
         ) a 
-        HAVING amount>0
+        HAVING id_coa_tag='" + id_coa_tag + "' AND amount>0
         ORDER BY id_sales_branch ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSales.DataSource = data
