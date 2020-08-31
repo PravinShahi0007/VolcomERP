@@ -141,12 +141,12 @@
         If SLEUnit.EditValue.ToString = "0" Then
             where_coa_type = ""
         ElseIf SLEUnit.EditValue.ToString = "1" Then
-            where_coa_type = " id_coa_type = 1 "
+            where_coa_type = " WHERE id_coa_type = 1 "
         Else
-            where_coa_type = " id_coa_type = 2 "
+            where_coa_type = " WHERE id_coa_type = 2 "
         End If
 
-        viewSearchLookupQuery(SLUEFrom, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE " & where_coa_type & " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
+        viewSearchLookupQuery(SLUEFrom, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc " & where_coa_type & " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
     End Sub
 
     Sub view_acc_to()
@@ -221,5 +221,13 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         view_acc_from()
 
         view_acc_to()
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        Try
+            view_acc_from()
+            view_acc_to()
+        Catch ex As Exception
+        End Try
     End Sub
 End Class
