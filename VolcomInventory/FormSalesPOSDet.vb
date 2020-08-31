@@ -1119,7 +1119,7 @@ Public Class FormSalesPOSDet
     Private Sub BtnBrowseContactTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowseContactFrom.Click
         FormPopUpContact.id_pop_up = "42"
 
-        FormPopUpContact.id_cat = id_comp_cat_store
+        'FormPopUpContact.id_cat = id_comp_cat_store
         FormPopUpContact.ShowDialog()
     End Sub
 
@@ -1789,13 +1789,19 @@ Public Class FormSalesPOSDet
     Dim is_valid_from As Boolean = True
     Sub actionCompFrom()
         is_valid_from = True
+        Dim cond_cat As String = ""
+        If id_menu <> "4" Then
+            cond_cat = "And c.id_comp_cat='6' "
+        Else
+            cond_cat = "And (c.id_comp_cat='5' OR c.id_comp_cat=6) "
+        End If
         Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
         query += " From tb_m_comp_contact cc "
         query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
         query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
         query += " INNER JOIN tb_m_wh_rack rack ON rack.id_wh_rack=dr.id_wh_rack"
         query += " INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator=rack.id_wh_locator"
-        query += " where cc.is_default=1 And c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + addSlashes(TxtCodeCompFrom.Text) + "'"
+        query += " where cc.is_default=1 " + cond_cat + " AND c.is_active=1 AND c.is_only_for_alloc=2 AND c.comp_number='" + addSlashes(TxtCodeCompFrom.Text) + "'"
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
         If data.Rows.Count <= 0 Then
@@ -1805,7 +1811,7 @@ Public Class FormSalesPOSDet
             is_valid_from = False
         ElseIf data.Rows.Count > 1 Then
             FormPopUpContact.id_pop_up = "42"
-            FormPopUpContact.id_cat = id_comp_cat_store
+            'FormPopUpContact.id_cat = id_comp_cat_store
             FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeCompFrom.Text) + "'"
             FormPopUpContact.ShowDialog()
         Else

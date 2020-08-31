@@ -112,10 +112,12 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     End Sub
 
     Sub load_vendor_po()
-        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,sts.comp_status
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='8' or c.id_comp_cat='1'"
+                                INNER JOIN tb_lookup_comp_status sts ON sts.id_comp_status=c.is_active
+                                WHERE (c.id_comp_cat='8' or c.id_comp_cat='1')
+                                AND (c.is_active='1' OR c.is_active='2') "
         viewSearchLookupQuery(SLEVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
@@ -282,7 +284,7 @@ LEFT JOIN tb_a_acc coa ON coa.id_acc=po.pph_account
 INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_purc_req_det prd ON pod.id_purc_req_det = prd.id_purc_req_det
-INNER JOIN tb_m_comp c_tag ON prd.ship_to = c_tag.id_comp
+INNER JOIN tb_m_comp c_tag ON IF(prd.ship_to=0,1,prd.ship_to) = c_tag.id_comp
 INNER JOIN tb_coa_tag tag ON c_tag.id_coa_tag = tag.id_coa_tag
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
 INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
