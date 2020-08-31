@@ -256,6 +256,7 @@ Public Class FormSalesPOSDet
             BtnViewJournal.Enabled = True
             BMark.Enabled = True
             GridColumnNote.Visible = False
+            BtnGetKurs.Enabled = False
 
             'query view based on edit id's
             Dim query As String = ""
@@ -2099,6 +2100,9 @@ Public Class FormSalesPOSDet
 
     Private Sub DEEnd_EditValueChanged(sender As Object, e As EventArgs) Handles DEEnd.EditValueChanged
         'viewDetail()
+        If action = "ins" Then
+            load_kurs()
+        End If
     End Sub
 
     Private Sub LEInvType_KeyDown(sender As Object, e As KeyEventArgs) Handles LEInvType.KeyDown
@@ -2689,5 +2693,31 @@ Public Class FormSalesPOSDet
             warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Sub load_kurs()
+        If action = "ins" Then
+            Cursor = Cursors.WaitCursor
+            'check kurs first
+            Dim end_period As String = "1991-01-01"
+            Try
+                end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Dim query_kurs As String = "SELECT * FROM tb_kurs_trans a WHERE DATE(a.created_date) <= '" + end_period + "' ORDER BY a.created_date DESC LIMIT 1"
+            Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+            If Not data_kurs.Rows.Count > 0 Then
+                warningCustom("Get kurs error.")
+                TEKurs.EditValue = 0.00
+            Else
+                TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnGetKurs_Click(sender As Object, e As EventArgs) Handles BtnGetKurs.Click
+        load_kurs()
     End Sub
 End Class
