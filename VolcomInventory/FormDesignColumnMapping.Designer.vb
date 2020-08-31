@@ -129,13 +129,13 @@ Partial Class FormDesignColumnMapping
         '
         Me.LabelControl1.Location = New System.Drawing.Point(275, 20)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl1.TabIndex = 3
-        Me.LabelControl1.Text = "Store"
+        Me.LabelControl1.Text = "Template"
         '
         'SLUEStore
         '
-        Me.SLUEStore.Location = New System.Drawing.Point(317, 17)
+        Me.SLUEStore.Location = New System.Drawing.Point(330, 17)
         Me.SLUEStore.Name = "SLUEStore"
         Me.SLUEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEStore.Properties.View = Me.SearchLookUpEdit1View
@@ -158,7 +158,7 @@ Partial Class FormDesignColumnMapping
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Store"
+        Me.GridColumn2.Caption = "Template"
         Me.GridColumn2.FieldName = "column_type"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True

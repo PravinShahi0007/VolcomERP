@@ -643,19 +643,21 @@
 
                     Dim q_generate As String = FormDesignColumnMapping.generate_query("1", list_code(i).Rows(0)("column_type_front").ToString, list_code(i).Rows(0)("column_type_end").ToString, in_design.Substring(0, in_design.Length - 2))
 
-                    Dim data_insert As DataTable = execute_query(q_generate, -1, True, "", "", "", "")
+                    If Not q_generate = "" Then
+                        Dim data_insert As DataTable = execute_query(q_generate, -1, True, "", "", "", "")
 
-                    For j = 0 To data_insert.Rows.Count - 1
-                        For k = 0 To GVDesign.RowCount - 1
-                            If data_insert.Rows(j)("id_design").ToString = GVDesign.GetRowCellValue(k, "id_design").ToString Then
-                                For l = 0 To data_insert.Columns.Count - 1
-                                    GVDesign.SetRowCellValue(k, data_insert.Columns(l).ColumnName, data_insert.Rows(j)(data_insert.Columns(l).ColumnName).ToString)
-                                Next
+                        For j = 0 To data_insert.Rows.Count - 1
+                            For k = 0 To GVDesign.RowCount - 1
+                                If data_insert.Rows(j)("id_design").ToString = GVDesign.GetRowCellValue(k, "id_design").ToString Then
+                                    For l = 0 To data_insert.Columns.Count - 1
+                                        GVDesign.SetRowCellValue(k, data_insert.Columns(l).ColumnName, data_insert.Rows(j)(data_insert.Columns(l).ColumnName).ToString)
+                                    Next
 
-                                Exit For
-                            End If
+                                    Exit For
+                                End If
+                            Next
                         Next
-                    Next
+                    End If
                 Next
             End If
 

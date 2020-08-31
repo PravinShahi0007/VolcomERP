@@ -266,6 +266,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         'get company tag
         Dim id_comp_tag As String = execute_query("SELECT id_comp FROM tb_coa_tag WHERE id_coa_tag='" + SLEUnit.EditValue.ToString + "'", 0, True, "", "", "", "")
 
+        Dim id_acc_exclude As String = execute_query("SELECT GROUP_CONCAT(DISTINCT a.id_acc) FROM tb_sales_branch_coa_exclude_bbm a", 0, True, "", "", "", "")
         Dim query As String = "SELECT 'no' AS `is_select`,d.id_sales_branch_det AS `id_report_det`,d.id_sales_branch AS `id_report`,rmt.report_mark_type, rmt.report_mark_type_name, m.number AS `report_number`,
         d.id_acc, coa.acc_name , coa.acc_description, d.id_comp, comp.comp_number, d.vendor, 2 AS `id_dc`, 'K' AS `dc_code`, d.note,
         d.value AS `amount`, IFNULL(pyd.total_rec,0.00) AS `total_rec`, IFNULL(cn.amount_cn,0.00) AS `total_cn`, (d.value - IFNULL(pyd.total_rec,0) - IFNULL(cn.amount_cn,0.00)) AS `total_due`, IFNULL(pyd.on_process,0) AS `total_pending`,IFNULL(cn.total_cn_pending,0) AS `total_cn_pending`
@@ -288,7 +289,9 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
            WHERE m.id_report_status!=5 
            GROUP BY d.id_sales_branch_ref_det
         ) cn ON cn.id_sales_branch_ref_det = d.id_sales_branch_det
-        WHERE m.id_report_status=6 AND d.id_dc=1 AND d.is_close='" + SLEStatusSales.EditValue.ToString + "' AND m.id_coa_tag='" + SLEUnit.EditValue.ToString + "' "
+        WHERE m.id_report_status=6 AND d.id_dc=1 AND d.is_close='" + SLEStatusSales.EditValue.ToString + "' 
+        AND m.id_coa_tag='" + SLEUnit.EditValue.ToString + "' 
+        AND d.id_acc NOT IN (" + id_acc_exclude + ") "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSales.DataSource = data
         GVSales.ExpandAllGroups()
