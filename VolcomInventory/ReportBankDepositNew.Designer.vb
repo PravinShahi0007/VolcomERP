@@ -406,7 +406,7 @@ Partial Public Class ReportBankDepositNew
         Me.LabelUnit.LocationFloat = New DevExpress.Utils.PointFloat(0!, 24.39583!)
         Me.LabelUnit.Name = "LabelUnit"
         Me.LabelUnit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelUnit.SizeF = New System.Drawing.SizeF(233.4583!, 23.0!)
+        Me.LabelUnit.SizeF = New System.Drawing.SizeF(511.4581!, 23.0!)
         Me.LabelUnit.StylePriority.UseFont = False
         Me.LabelUnit.StylePriority.UseTextAlignment = False
         Me.LabelUnit.Text = "UNIT NAME"
