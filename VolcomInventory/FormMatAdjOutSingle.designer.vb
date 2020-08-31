@@ -407,7 +407,7 @@ Partial Class FormMatAdjOutSingle
         Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmount.FieldName = "adj_out_mat_det_amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
-        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_mat_det_amount", "{0:N2}")})
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_mat_det_amount", "{0:N4}")})
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 5
         Me.GridColumnAmount.Width = 131
