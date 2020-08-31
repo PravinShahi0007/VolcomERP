@@ -157,6 +157,7 @@ Public Class FormSalesBranchDet
             SLEUnit.EditValue = data.Rows(0)("id_coa_tag").ToString
             DESalesDate.EditValue = data.Rows(0)("transaction_date")
             DEDueDate.EditValue = data.Rows(0)("due_date")
+            TEKurs.EditValue = data.Rows(0)("kurs_trans")
             id_report_status = data.Rows(0)("id_report_status")
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             MENote.Text = data.Rows(0)("note").ToString
@@ -283,6 +284,7 @@ Public Class FormSalesBranchDet
         PanelControlNav.Visible = False
         SLEUnit.Enabled = False
         DESalesDate.Enabled = False
+        BtnGetKurs.Enabled = False
         GVData.OptionsBehavior.ReadOnly = True
         GroupControlNormalAccount.Enabled = False
         GroupControlSaleAccount.Enabled = False
@@ -675,8 +677,8 @@ Public Class FormSalesBranchDet
         Dim cond_bal As Boolean = True
         XTCData.SelectedTabPageIndex = 1
         makeSafeGV(GVDraft)
-        Console.WriteLine(GVDraft.Columns("debit").SummaryItem.SummaryValue)
-        Console.WriteLine(GVDraft.Columns("credit").SummaryItem.SummaryValue)
+        'Console.WriteLine(GVDraft.Columns("debit").SummaryItem.SummaryValue)
+        'Console.WriteLine(GVDraft.Columns("credit").SummaryItem.SummaryValue)
         If GVDraft.Columns("debit").SummaryItem.SummaryValue = GVDraft.Columns("credit").SummaryItem.SummaryValue Then
             cond_bal = True
             XTCData.SelectedTabPageIndex = 0
@@ -733,12 +735,15 @@ Public Class FormSalesBranchDet
         ElseIf Not cond_allow_limit Then
             warningCustom("Can't exceed amount limit")
             GridColumnamount_limit.VisibleIndex = 20
+        ElseIf TEKurs.EditValue = 0.00 Then
+            warningCustom("Kurs can't blank")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim id_coa_tag As String = SLEUnit.EditValue.ToString
                 Dim transaction_date As String = DateTime.Parse(DESalesDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim due_date As String = DateTime.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim kurs_trans As String = decimalSQL(TEKurs.EditValue.ToString)
                 Dim note As String = addSlashes(MENote.Text)
                 Dim value As String = decimalSQL(TxtTotal.EditValue.ToString)
                 Dim id_comp_normal As String = SLEStoreNormal.EditValue.ToString
@@ -778,6 +783,7 @@ Public Class FormSalesBranchDet
                 `created_date`,
                 `transaction_date`,
                 `due_date`,
+                `kurs_trans`,
                 `id_report_status`,
                 `note`,
                 `value` ,
@@ -816,6 +822,7 @@ Public Class FormSalesBranchDet
                 NOW(),
                 '" + transaction_date + "',
                 '" + due_date + "',
+                '" + kurs_trans + "',
                 '" + id_report_status + "',
                 '" + note + "',
                 '" + value + "' ,
@@ -969,5 +976,35 @@ Public Class FormSalesBranchDet
 
     Private Sub TxtSaleSales_EditValueChanged(sender As Object, e As EventArgs) Handles TxtSaleSales.EditValueChanged
         calculate()
+    End Sub
+
+    Private Sub BtnGetKurs_Click(sender As Object, e As EventArgs) Handles BtnGetKurs.Click
+        load_kurs()
+    End Sub
+
+    Sub load_kurs()
+        If action = "ins" Then
+            Cursor = Cursors.WaitCursor
+            'check kurs first
+            Dim end_period As String = "1991-01-01"
+            Try
+                end_period = DateTime.Parse(DESalesDate.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Dim query_kurs As String = "SELECT * FROM tb_kurs_trans a WHERE DATE(a.created_date) <= '" + end_period + "' ORDER BY a.created_date DESC LIMIT 1"
+            Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+            If Not data_kurs.Rows.Count > 0 Then
+                warningCustom("Get kurs error.")
+                TEKurs.EditValue = 0.00
+            Else
+                TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DESalesDate_EditValueChanged(sender As Object, e As EventArgs) Handles DESalesDate.EditValueChanged
+        load_kurs()
     End Sub
 End Class

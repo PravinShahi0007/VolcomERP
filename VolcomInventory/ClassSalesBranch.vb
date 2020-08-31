@@ -21,7 +21,7 @@
         store_sale.id_comp AS `id_store_sale`, b.sale_sales,b.pros_sale, b.pros_sale_comp, b.rev_sale, 
         b.rev_sale_ppn_pros, b.rev_sale_ppn, b.rev_sale_ppn_acc AS `id_coa_ppn_sale`, coa_ppn_sale.acc_name AS `coa_ppn_sale`, coa_ppn_sale.acc_description AS `coa_ppn_sale_desc`, b.rev_sale_ppn_note,
         b.rev_sale_net,  b.rev_sale_net_acc AS `id_coa_pend_sale`, coa_pend_sale.acc_name AS `coa_pend_sale`, coa_pend_sale.acc_description AS `coa_pend_sale_desc`, b.rev_sale_net_note,
-        b.comp_rev_sale, b.comp_rev_sale_acc AS `id_coa_hd_sale`,coa_hd_sale.acc_name AS `coa_hd_sale`, coa_hd_sale.acc_description AS `coa_hd_sale_desc`, b.comp_rev_sale_note
+        b.comp_rev_sale, b.comp_rev_sale_acc AS `id_coa_hd_sale`,coa_hd_sale.acc_name AS `coa_hd_sale`, coa_hd_sale.acc_description AS `coa_hd_sale_desc`, b.comp_rev_sale_note, b.kurs_trans
         FROM tb_sales_branch b
         INNER JOIN tb_coa_tag ct ON ct.id_coa_tag = b.id_coa_tag
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = b.id_report_status

@@ -78,9 +78,10 @@ Partial Class FormSalesPOSDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
@@ -176,7 +177,9 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnGetKurs = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -252,6 +255,7 @@ Partial Class FormSalesPOSDet
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -513,6 +517,9 @@ Partial Class FormSalesPOSDet
         'PanelControlTopMiddle
         '
         Me.PanelControlTopMiddle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopMiddle.Controls.Add(Me.BtnGetKurs)
+        Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl20)
+        Me.PanelControlTopMiddle.Controls.Add(Me.TEKurs)
         Me.PanelControlTopMiddle.Controls.Add(Me.BDO)
         Me.PanelControlTopMiddle.Controls.Add(Me.CheckEditInvType)
         Me.PanelControlTopMiddle.Controls.Add(Me.DEDueDate)
@@ -964,18 +971,6 @@ Partial Class FormSalesPOSDet
         Me.BtnDraftJournal.TabStop = False
         Me.BtnDraftJournal.Text = "Draft Journal"
         '
-        'BtnAttachment
-        '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 16
-        Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(933, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(103, 34)
-        Me.BtnAttachment.TabIndex = 13
-        Me.BtnAttachment.TabStop = False
-        Me.BtnAttachment.Text = "Attachment"
-        '
         'SimpleButton1
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
@@ -998,6 +993,31 @@ Partial Class FormSalesPOSDet
         Me.BMark.TabIndex = 11
         Me.BMark.TabStop = False
         Me.BMark.Text = "Mark"
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.ImageIndex = 13
+        Me.BtnViewJournal.ImageList = Me.LargeImageCollection
+        Me.BtnViewJournal.Location = New System.Drawing.Point(824, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(109, 34)
+        Me.BtnViewJournal.TabIndex = 26
+        Me.BtnViewJournal.TabStop = False
+        Me.BtnViewJournal.Text = "View Journal"
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 16
+        Me.BtnAttachment.ImageList = Me.LargeImageCollection
+        Me.BtnAttachment.Location = New System.Drawing.Point(933, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 34)
+        Me.BtnAttachment.TabIndex = 13
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
         '
         'BtnCancel
         '
@@ -1964,18 +1984,37 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
-        'BtnViewJournal
+        'TEKurs
         '
-        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.ImageIndex = 13
-        Me.BtnViewJournal.ImageList = Me.LargeImageCollection
-        Me.BtnViewJournal.Location = New System.Drawing.Point(824, 2)
-        Me.BtnViewJournal.Name = "BtnViewJournal"
-        Me.BtnViewJournal.Size = New System.Drawing.Size(109, 34)
-        Me.BtnViewJournal.TabIndex = 26
-        Me.BtnViewJournal.TabStop = False
-        Me.BtnViewJournal.Text = "View Journal"
+        Me.TEKurs.Location = New System.Drawing.Point(68, 62)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.SaveLiteral = False
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Properties.ReadOnly = True
+        Me.TEKurs.Size = New System.Drawing.Size(187, 20)
+        Me.TEKurs.TabIndex = 8938
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl20.Location = New System.Drawing.Point(11, 65)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl20.TabIndex = 8939
+        Me.LabelControl20.Text = "Kurs ($)"
+        '
+        'BtnGetKurs
+        '
+        Me.BtnGetKurs.Location = New System.Drawing.Point(261, 62)
+        Me.BtnGetKurs.Name = "BtnGetKurs"
+        Me.BtnGetKurs.Size = New System.Drawing.Size(59, 20)
+        Me.BtnGetKurs.TabIndex = 8940
+        Me.BtnGetKurs.Text = "Get Kurs"
         '
         'FormSalesPOSDet
         '
@@ -2075,6 +2114,7 @@ Partial Class FormSalesPOSDet
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2234,4 +2274,7 @@ Partial Class FormSalesPOSDet
     Friend WithEvents BtnLoadFromReturnCentre As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnid_ol_store_ret_list As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnGetKurs As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
 End Class
