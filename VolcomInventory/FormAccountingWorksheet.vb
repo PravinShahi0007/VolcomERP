@@ -215,6 +215,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
         'GROUP BY ad.id_comp"
         viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnit.EditValue = "1"
     End Sub
 
     Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs)
