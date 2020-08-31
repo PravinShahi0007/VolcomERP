@@ -33,7 +33,12 @@ Partial Class FormAccounting
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.LECOAType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPTreeList = New DevExpress.XtraTab.XtraTabPage()
         Me.TreeList1 = New DevExpress.XtraTreeList.TreeList()
         Me.id_acc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
@@ -46,6 +51,10 @@ Partial Class FormAccounting
         Me.TreeListColumn1 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TreeListColumn2 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TreeListColumn3 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LECOATypeLedger = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPARAP = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCompany = New DevExpress.XtraGrid.GridControl()
         Me.GVCompany = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -90,7 +99,6 @@ Partial Class FormAccounting
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -98,8 +106,14 @@ Partial Class FormAccounting
         CType(Me.GVAcc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.is_active_company, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.LECOAType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPTreeList.SuspendLayout()
         CType(Me.TreeList1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.LECOATypeLedger.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPARAP.SuspendLayout()
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCompany, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,6 +152,7 @@ Partial Class FormAccounting
         'XTPAccount
         '
         Me.XTPAccount.Controls.Add(Me.GCAcc)
+        Me.XTPAccount.Controls.Add(Me.PanelControl2)
         Me.XTPAccount.Name = "XTPAccount"
         Me.XTPAccount.Size = New System.Drawing.Size(708, 360)
         Me.XTPAccount.Text = "Chart Of Account"
@@ -145,11 +160,11 @@ Partial Class FormAccounting
         'GCAcc
         '
         Me.GCAcc.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAcc.Location = New System.Drawing.Point(0, 0)
+        Me.GCAcc.Location = New System.Drawing.Point(0, 38)
         Me.GCAcc.MainView = Me.GVAcc
         Me.GCAcc.Name = "GCAcc"
         Me.GCAcc.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.is_active_company, Me.RepositoryItemCheckEdit1})
-        Me.GCAcc.Size = New System.Drawing.Size(708, 360)
+        Me.GCAcc.Size = New System.Drawing.Size(708, 322)
         Me.GCAcc.TabIndex = 4
         Me.GCAcc.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAcc})
         '
@@ -228,6 +243,14 @@ Partial Class FormAccounting
         Me.GridColumn3.FieldName = "id_comp"
         Me.GridColumn3.Name = "GridColumn3"
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Debit / Credit"
+        Me.GridColumn11.FieldName = "dc"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 3
+        '
         'is_active_company
         '
         Me.is_active_company.AutoHeight = False
@@ -235,9 +258,46 @@ Partial Class FormAccounting
         Me.is_active_company.DisplayValueUnchecked = "0"
         Me.is_active_company.Name = "is_active_company"
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BtnView)
+        Me.PanelControl2.Controls.Add(Me.LECOAType)
+        Me.PanelControl2.Controls.Add(Me.LabelControl5)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(708, 38)
+        Me.PanelControl2.TabIndex = 5
+        '
+        'BtnView
+        '
+        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
+        Me.BtnView.Location = New System.Drawing.Point(238, 7)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(75, 23)
+        Me.BtnView.TabIndex = 2
+        Me.BtnView.Text = "View"
+        '
+        'LECOAType
+        '
+        Me.LECOAType.Location = New System.Drawing.Point(70, 9)
+        Me.LECOAType.Name = "LECOAType"
+        Me.LECOAType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECOAType.Size = New System.Drawing.Size(162, 20)
+        Me.LECOAType.TabIndex = 1
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(15, 12)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl5.TabIndex = 0
+        Me.LabelControl5.Text = "COA Type"
+        '
         'XTPTreeList
         '
         Me.XTPTreeList.Controls.Add(Me.TreeList1)
+        Me.XTPTreeList.Controls.Add(Me.PanelControl3)
         Me.XTPTreeList.Name = "XTPTreeList"
         Me.XTPTreeList.Size = New System.Drawing.Size(708, 360)
         Me.XTPTreeList.Text = "View Ledger"
@@ -247,7 +307,7 @@ Partial Class FormAccounting
         Me.TreeList1.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.id_acc, Me.id_acc_parent, Me.ColAccName, Me.ColAccDesc, Me.ColDebit, Me.ColCredit, Me.ColIdAllChild, Me.TreeListColumn1, Me.TreeListColumn2, Me.TreeListColumn3})
         Me.TreeList1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TreeList1.KeyFieldName = "id_acc"
-        Me.TreeList1.Location = New System.Drawing.Point(0, 0)
+        Me.TreeList1.Location = New System.Drawing.Point(0, 38)
         Me.TreeList1.Name = "TreeList1"
         Me.TreeList1.OptionsBehavior.AutoPopulateColumns = False
         Me.TreeList1.OptionsBehavior.Editable = False
@@ -257,7 +317,7 @@ Partial Class FormAccounting
         Me.TreeList1.OptionsView.EnableAppearanceEvenRow = True
         Me.TreeList1.ParentFieldName = "id_acc_parent"
         Me.TreeList1.RootValue = "0"
-        Me.TreeList1.Size = New System.Drawing.Size(708, 360)
+        Me.TreeList1.Size = New System.Drawing.Size(708, 322)
         Me.TreeList1.TabIndex = 0
         '
         'id_acc
@@ -358,6 +418,42 @@ Partial Class FormAccounting
         Me.TreeListColumn3.FieldName = "id_comp"
         Me.TreeListColumn3.Name = "TreeListColumn3"
         Me.TreeListColumn3.OptionsColumn.ReadOnly = True
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl3.Controls.Add(Me.LECOATypeLedger)
+        Me.PanelControl3.Controls.Add(Me.LabelControl6)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(708, 38)
+        Me.PanelControl3.TabIndex = 6
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(238, 7)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
+        Me.SimpleButton1.TabIndex = 2
+        Me.SimpleButton1.Text = "View"
+        '
+        'LECOATypeLedger
+        '
+        Me.LECOATypeLedger.Location = New System.Drawing.Point(70, 9)
+        Me.LECOATypeLedger.Name = "LECOATypeLedger"
+        Me.LECOATypeLedger.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECOATypeLedger.Size = New System.Drawing.Size(162, 20)
+        Me.LECOATypeLedger.TabIndex = 1
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(15, 12)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl6.TabIndex = 0
+        Me.LabelControl6.Text = "COA Type"
         '
         'XTPARAP
         '
@@ -766,21 +862,13 @@ Partial Class FormAccounting
         '
         Me.BalanceMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewTransaction})
         Me.BalanceMenu.Name = "ContextMenuStripYM"
-        Me.BalanceMenu.Size = New System.Drawing.Size(136, 26)
+        Me.BalanceMenu.Size = New System.Drawing.Size(135, 26)
         '
         'SMViewTransaction
         '
         Me.SMViewTransaction.Name = "SMViewTransaction"
-        Me.SMViewTransaction.Size = New System.Drawing.Size(135, 22)
+        Me.SMViewTransaction.Size = New System.Drawing.Size(134, 22)
         Me.SMViewTransaction.Text = "Transaction"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Debit / Credit"
-        Me.GridColumn11.FieldName = "dc"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
         '
         'FormAccounting
         '
@@ -802,8 +890,16 @@ Partial Class FormAccounting
         CType(Me.GVAcc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.is_active_company, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.LECOAType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPTreeList.ResumeLayout(False)
         CType(Me.TreeList1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.LECOATypeLedger.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPARAP.ResumeLayout(False)
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCompany, System.ComponentModel.ISupportInitialize).EndInit()
@@ -900,4 +996,12 @@ Partial Class FormAccounting
     Friend WithEvents TEClaimAccount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LECOAType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LECOATypeLedger As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class

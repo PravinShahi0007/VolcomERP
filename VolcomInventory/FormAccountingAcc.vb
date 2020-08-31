@@ -12,6 +12,7 @@
     End Sub
 
     Private Sub FormAccountingAcc_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        viewCoaType()
         viewParent(SLEParentAccount)
         view_acc_category(LEAccCat)
         view_active(LEActive)
@@ -43,18 +44,26 @@
                 TEAccountDetail.Text = acc_name.Substring(SLEParentAccount.Text.Length, acc_name.Length - SLEParentAccount.Text.Length)
             End If
 
+            LECOAType.ItemIndex = LECOAType.Properties.GetDataSourceRowIndex("id_coa_type", data.Rows(0)("id_coa_type").ToString)
             LEAccCat.ItemIndex = LEAccCat.Properties.GetDataSourceRowIndex("id_acc_cat", data.Rows(0)("id_acc_cat").ToString)
             LEActive.ItemIndex = LEActive.Properties.GetDataSourceRowIndex("id_status", data.Rows(0)("id_status").ToString)
             LEDetail.ItemIndex = LEDetail.Properties.GetDataSourceRowIndex("id_is_det", data.Rows(0)("id_is_det").ToString)
             LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_dc", data.Rows(0)("id_dc").ToString)
             MEAccDesc.Text = data.Rows(0)("acc_description").ToString
 
+            LECOAType.Properties.ReadOnly = True
             SLEParentAccount.Properties.ReadOnly = True
+            TEAccountDetail.Properties.ReadOnly = True
             LEAccCat.Properties.ReadOnly = True
             MEAccDesc.Properties.ReadOnly = True
             LEDetail.Properties.ReadOnly = True
             LEType.Properties.ReadOnly = True
         End If
+    End Sub
+
+    Sub viewCoaType()
+        Dim query As String = "SELECT * FROM tb_coa_type t ORDER BY t.id_coa_type ASC "
+        viewLookupQuery(LECOAType, query, 0, "coa_type", "id_coa_type")
     End Sub
 
     Private Sub view_acc_category(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -100,10 +109,15 @@
 
     'View Parent
     Private Sub viewParent(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
+        Dim id_coa_type As String = "-1"
+        Try
+            id_coa_type = LECOAType.EditValue.ToString
+        Catch ex As Exception
+        End Try
         Dim query As String = "SELECT '-1' AS id_acc,'No Parent Account' AS acc_name,'' AS acc_description,'-1' AS id_acc_cat,'' AS acc_cat UNION "
         query += "SELECT a.id_acc,acc_name,a.acc_description,a.id_acc_cat,b.acc_cat FROM tb_a_acc a "
         query += "INNER JOIN tb_lookup_acc_cat b ON a.id_acc_cat=b.id_acc_cat "
-        query += "WHERE a.id_is_det='1' AND a.id_status='1'"
+        query += "WHERE a.id_is_det='1' AND a.id_status='1' AND a.id_coa_type='" + id_coa_type + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         lookup.Properties.DataSource = Nothing
@@ -136,9 +150,9 @@
             If id_acc = "-1" Then
                 'new
                 If SLEParentAccount.EditValue = "-1" Then
-                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString)
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
                 Else
-                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6});SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString)
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6}, '{7}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
                 End If
 
                 id_acc = execute_query(query, 0, True, "", "", "", "")
@@ -148,6 +162,8 @@
 
                     FormPopUpMasterCOA.GVAcc.FocusedRowHandle = find_row(FormPopUpMasterCOA.GVAcc, "id_acc", id_acc)
                 Else
+                    FormAccounting.LECOAType.ItemIndex = FormAccounting.LECOAType.Properties.GetDataSourceRowIndex("id_coa_type", LECOAType.EditValue.ToString)
+                    FormAccounting.LECOATypeLedger.ItemIndex = FormAccounting.LECOATypeLedger.Properties.GetDataSourceRowIndex("id_coa_type", LECOAType.EditValue.ToString)
                     FormAccounting.view_acc()
                     FormAccounting.CreateNodes(FormAccounting.TreeList1)
                     FormAccounting.XTCGeneral.SelectedTabPageIndex = 0
@@ -199,7 +215,7 @@
 
     Sub check()
         Dim query_jml As String
-        query_jml = String.Format("SELECT COUNT(id_acc) FROM tb_a_acc WHERE acc_name='{0}' AND id_acc!='{1}'", TEAccount.Text, id_acc)
+        query_jml = String.Format("SELECT COUNT(id_acc) FROM tb_a_acc WHERE acc_name='{0}' AND id_acc!='{1}' AND id_coa_type='{2}' ", TEAccount.Text, id_acc, LECOAType.EditValue.ToString)
         Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
         If Not jml < 1 Then
             EP_TE_already_used(EPACC, TEAccountDetail, "1")
@@ -215,5 +231,10 @@
 
     Private Sub TEAccountDetail_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEAccountDetail.Validating
         check()
+    End Sub
+
+    Private Sub LECOAType_EditValueChanged(sender As Object, e As EventArgs) Handles LECOAType.EditValueChanged
+        viewParent(SLEParentAccount)
+        TEAccountDetail.Text = ""
     End Sub
 End Class

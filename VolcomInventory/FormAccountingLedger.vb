@@ -5,10 +5,24 @@
 
         DETo.Properties.MinValue = Now
 
-        viewSearchLookupQuery(SLUEFrom, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
-
-        view_acc_to()
         load_unit()
+
+        view_acc_from()
+        view_acc_to()
+    End Sub
+
+    Sub view_acc_from()
+        Dim where_coa_type As String = ""
+
+        If SLEUnit.EditValue.ToString = "0" Then
+            where_coa_type = ""
+        ElseIf SLEUnit.EditValue.ToString = "1" Then
+            where_coa_type = " WHERE id_coa_type = 1 "
+        Else
+            where_coa_type = " WHERE id_coa_type = 2 "
+        End If
+
+        viewSearchLookupQuery(SLUEFrom, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc " & where_coa_type & " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
     End Sub
 
     Sub load_unit()
@@ -21,6 +35,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
         'GROUP BY ad.id_comp"
         viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnit.EditValue = "1"
     End Sub
 
     Private Sub FormAccountingLedger_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -146,10 +161,20 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             End If
         Next
 
-        If is_char Then
-            viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE acc_name = '" + SLUEFrom.EditValue.ToString + "'", "acc_name", "acc_name_description", "acc_name")
+        Dim where_coa_type As String = ""
+
+        If SLEUnit.EditValue.ToString = "0" Then
+            where_coa_type = ""
+        ElseIf SLEUnit.EditValue.ToString = "1" Then
+            where_coa_type = " id_coa_type = 1 AND "
         Else
-            viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CHAR_LENGTH(acc_name) = " + SLUEFrom.EditValue.ToString.Length.ToString + " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
+            where_coa_type = " id_coa_type = 2 AND "
+        End If
+
+        If is_char Then
+            viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE " & where_coa_type & " acc_name = '" + SLUEFrom.EditValue.ToString + "'", "acc_name", "acc_name_description", "acc_name")
+        Else
+            viewSearchLookupQuery(SLUETo, "SELECT acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE " & where_coa_type & " CAST(acc_name AS UNSIGNED) >= " + SLUEFrom.EditValue.ToString + " AND CHAR_LENGTH(acc_name) = " + SLUEFrom.EditValue.ToString.Length.ToString + " ORDER BY acc_name ASC", "acc_name", "acc_name_description", "acc_name")
         End If
     End Sub
 
@@ -215,5 +240,13 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         End If
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        Try
+            view_acc_from()
+            view_acc_to()
+        Catch ex As Exception
+        End Try
     End Sub
 End Class
