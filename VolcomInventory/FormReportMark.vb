@@ -1884,6 +1884,10 @@
             query = String.Format("UPDATE tb_adj_in_mat SET id_report_status='{0}' WHERE id_adj_in_mat='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
 
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_mat_det_price,price,id_stock_status,report_mark_type,id_report)
 SELECT adjd.id_wh_drawer,1,adjd.id_mat_det,adjd.adj_in_mat_det_qty,NOW(),adj.adj_in_mat_note,adjd.id_mat_det_price,adjd.adj_in_mat_det_price,1,26,adjd.id_adj_in_mat
@@ -1915,6 +1919,11 @@ WHERE adjd.id_adj_in_mat='" & id_report & "'"
         ElseIf report_mark_type = "27" Then
             'Material Adj Out
             Cursor = Cursors.WaitCursor
+
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = 5 Then 'Cancel
                 Dim query_cancel As String = "SELECT * FROM tb_adj_out_mat a "
                 query_cancel += "INNER JOIN tb_adj_out_mat_det b ON a.id_adj_out_mat = b.id_adj_out_mat "
