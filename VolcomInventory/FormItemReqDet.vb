@@ -292,7 +292,8 @@
         If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
             id_dep = FormItemReq.SLEDepartement.EditValue.ToString
         Else
-            id_dep = id_departement_user
+            'id_dep = id_departement_user
+            id_dep = FormItemReq.SLEDepartement.EditValue.ToString
         End If
 
         Dim biaya_ok As Boolean = True
