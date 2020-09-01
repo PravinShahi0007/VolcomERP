@@ -5803,8 +5803,8 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
-            FormItemReq.viewData()
-            FormItemReq.GVData.FocusedRowHandle = find_row(FormItemReq.GVData, "id_item_req", id_report)
+            'FormItemReq.viewData()
+            'FormItemReq.GVData.FocusedRowHandle = find_row(FormItemReq.GVData, "id_item_req", id_report)
         ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
             'Item del
             If id_status_reportx = "3" Then
