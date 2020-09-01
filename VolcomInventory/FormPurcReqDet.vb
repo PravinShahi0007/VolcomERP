@@ -51,14 +51,14 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             DEDateCreated.EditValue = Now
             TEReqNUmber.Text = "[auto generate]"
 
-            DERequirementDate.EditValue = Now
+            DERequirementDate.EditValue = Date.Parse(Now).AddDays(7)
             '
             GVItemList.OptionsBehavior.Editable = True
             BtnAttachment.Visible = False
             '
             Dim query As String = "SELECT NOW() as time_server"
             Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
-            DERequirementDate.Properties.MinValue = Date.Parse(dt.Rows(0)("time_server"))
+            DERequirementDate.Properties.MinValue = Date.Parse(dt.Rows(0)("time_server")).AddDays(7)
         Else 'edit
             BtnAttachment.Visible = True
             BSetShipping.Visible = False
@@ -131,8 +131,10 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
                 LStoreRequest.Visible = False
                 CEStoreRequest.Visible = False
             End If
+            BtnSave.Visible = False
         Else
             BMark.Text = "Submit"
+            BtnSave.Visible = True
         End If
     End Sub
 

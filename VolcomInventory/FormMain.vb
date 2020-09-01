@@ -10105,6 +10105,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPurcReqList" Then
             'Purchase request IC
             FormPurcReqList.load_req()
+        ElseIf formName = "FormPurcReq" Then
+            FormPurcReq.load_dep()
+            FormPurcReq.load_req()
+            FormPurcReq.load_status()
+            '
+            FormPurcReq.check_menu()
         ElseIf formName = "FormBuktiPickup" Then
             FormBuktiPickup.load_form()
         ElseIf formName = "FormTrackingReturn" Then
@@ -15216,5 +15222,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBABGRoyaltyZone_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBABGRoyaltyZone.LinkClicked
+        Try
+            FormABGRoyaltyZone.MdiParent = Me
+            FormABGRoyaltyZone.Show()
+            FormABGRoyaltyZone.WindowState = FormWindowState.Maximized
+            FormABGRoyaltyZone.Focus()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
