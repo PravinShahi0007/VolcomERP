@@ -183,7 +183,7 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & id_user & "',NOW(),'1'); SELECT
                 execute_non_query(q, True, "", "", "", "")
 
                 For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Completing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
                     Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
                     stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
                 Next
@@ -210,12 +210,13 @@ INNER JOIN tb_m_user usr ON usr.id_user=sc.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 WHERE sc.id_report_status!=5"
         viewSearchLookupQuery(SLEScanList, q, "id_odm_sc", "number", "id_odm_sc")
+        SLEScanList.EditValue = Nothing
     End Sub
 
     Sub load_odm_det()
         Dim q As String = "SELECT *
 FROM (
-    SELECT 0 AS NO,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
+    SELECT 0 AS NO,sts.id_report_status,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
@@ -244,7 +245,59 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         GVListHistory.BestFitColumns()
     End Sub
 
+    'complete or print
+    Sub load_button()
+        Dim q As String = "SELECT *
+FROM (
+    SELECT 0 AS NO,sts.id_report_status,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
+    c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
+    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
+    FROM tb_del_manifest_det AS mdet
+    INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
+    INNER JOIN tb_odm_sc_det scd ON scd.`id_del_manifest`=md.`id_del_manifest` 
+    INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` AND sc.`id_report_status`!=5
+    LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
+    LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
+    LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
+    LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
+    LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
+    LEFT JOIN tb_lookup_report_status sts ON sts.id_report_status=pdel.id_report_status
+    LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pdel.id_combine = pdelc.id_combine
+    LEFT JOIN (
+	    SELECT z3.combine_number, SUM(pl_sales_order_del_det_qty) AS qty
+	    FROM tb_pl_sales_order_del_det AS z1
+	    LEFT JOIN tb_pl_sales_order_del AS z2 ON z1.id_pl_sales_order_del = z2.id_pl_sales_order_del
+	    LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
+	    GROUP BY z2.id_combine
+    ) AS z ON pdelc.combine_number = z.combine_number
+    WHERE sc.`id_odm_sc`='" & SLEScanList.EditValue.ToString & "'
+) AS tb
+ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+    End Sub
+
     Private Sub BViewHistory_Click(sender As Object, e As EventArgs) Handles BViewHistory.Click
+        L3PL.Text = SLEScanList.Properties.View.GetFocusedRowCellValue("comp_name").ToString
         load_odm_det()
+    End Sub
+
+    Private Sub BCompleteHistory_Click(sender As Object, e As EventArgs) Handles BCompleteHistory.Click
+        Try
+            FormMain.SplashScreenManager1.ShowWaitForm()
+            For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                If GVListHistory.GetRowCellValue(i, "").ToString Then
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+                    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                End If
+            Next
+            FormMain.SplashScreenManager1.CloseWaitForm()
+
+            'recheck
+            load_odm_det()
+        Catch ex As Exception
+            warningCustom(ex.ToString)
+            FormMain.SplashScreenManager1.CloseWaitForm()
+        End Try
     End Sub
 End Class

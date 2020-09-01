@@ -226,6 +226,8 @@ Partial Class FormODM
         Me.GVList.LevelIndent = 1
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVList.OptionsBehavior.Editable = False
+        Me.GVList.OptionsBehavior.ReadOnly = True
         Me.GVList.OptionsFind.AllowFindPanel = False
         Me.GVList.OptionsView.AllowCellMerge = True
         Me.GVList.OptionsView.ColumnAutoWidth = False
@@ -571,6 +573,8 @@ Partial Class FormODM
         Me.GVListHistory.LevelIndent = 1
         Me.GVListHistory.Name = "GVListHistory"
         Me.GVListHistory.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVListHistory.OptionsBehavior.Editable = False
+        Me.GVListHistory.OptionsBehavior.ReadOnly = True
         Me.GVListHistory.OptionsFind.AllowFindPanel = False
         Me.GVListHistory.OptionsView.AllowCellMerge = True
         Me.GVListHistory.OptionsView.ColumnAutoWidth = False
@@ -614,8 +618,6 @@ Partial Class FormODM
         Me.GridColumn12.Caption = "Report Status"
         Me.GridColumn12.FieldName = "report_status"
         Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 3
         '
         'GridColumn13
         '
@@ -640,7 +642,7 @@ Partial Class FormODM
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 16
+        Me.GridColumn15.VisibleIndex = 15
         '
         'GridColumn16
         '
@@ -661,7 +663,7 @@ Partial Class FormODM
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 4
+        Me.GridColumn17.VisibleIndex = 3
         '
         'GridColumn18
         '
@@ -686,7 +688,7 @@ Partial Class FormODM
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 5
+        Me.GridColumn20.VisibleIndex = 4
         '
         'GridColumn21
         '
@@ -696,7 +698,7 @@ Partial Class FormODM
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.VisibleIndex = 5
         Me.GridColumn21.Width = 78
         '
         'GridColumn22
@@ -707,7 +709,7 @@ Partial Class FormODM
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 7
+        Me.GridColumn22.VisibleIndex = 6
         '
         'GridColumn23
         '
@@ -719,7 +721,7 @@ Partial Class FormODM
         Me.GridColumn23.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 8
+        Me.GridColumn23.VisibleIndex = 7
         Me.GridColumn23.Width = 50
         '
         'GridColumn24
@@ -730,7 +732,7 @@ Partial Class FormODM
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 9
+        Me.GridColumn24.VisibleIndex = 8
         Me.GridColumn24.Width = 77
         '
         'GridColumn25
@@ -743,7 +745,7 @@ Partial Class FormODM
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 10
+        Me.GridColumn25.VisibleIndex = 9
         '
         'GridColumn26
         '
@@ -755,7 +757,7 @@ Partial Class FormODM
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 11
+        Me.GridColumn26.VisibleIndex = 10
         '
         'GridColumn27
         '
@@ -767,7 +769,7 @@ Partial Class FormODM
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 12
+        Me.GridColumn27.VisibleIndex = 11
         '
         'GridColumn28
         '
@@ -779,7 +781,7 @@ Partial Class FormODM
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 13
+        Me.GridColumn28.VisibleIndex = 12
         '
         'GridColumn29
         '
@@ -791,7 +793,7 @@ Partial Class FormODM
         Me.GridColumn29.OptionsColumn.AllowEdit = False
         Me.GridColumn29.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 14
+        Me.GridColumn29.VisibleIndex = 13
         '
         'GridColumn30
         '
@@ -803,7 +805,7 @@ Partial Class FormODM
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 15
+        Me.GridColumn30.VisibleIndex = 14
         '
         'GridColumn31
         '
@@ -812,7 +814,7 @@ Partial Class FormODM
         Me.GridColumn31.OptionsColumn.AllowEdit = False
         Me.GridColumn31.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 17
+        Me.GridColumn31.VisibleIndex = 16
         '
         'RepositoryItemCheckEdit1
         '
@@ -838,8 +840,7 @@ Partial Class FormODM
         Me.BCompleteHistory.Name = "BCompleteHistory"
         Me.BCompleteHistory.Size = New System.Drawing.Size(1072, 32)
         Me.BCompleteHistory.TabIndex = 15
-        Me.BCompleteHistory.Text = "COMPLETE + PRINT"
-        Me.BCompleteHistory.Visible = False
+        Me.BCompleteHistory.Text = "COMPLETE"
         '
         'PanelControl2
         '
