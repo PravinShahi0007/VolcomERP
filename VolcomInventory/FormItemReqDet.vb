@@ -335,8 +335,9 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
                 GVData.SetRowCellValue(i, "stt", "Product not found;")
                 cond_data = False
             Else
+                'If GVData.GetRowCellValue(i, "qty") > dt(0)("qty") And GVData.GetRowCellValue(i, "is_store_request") = "no" Then
                 If GVData.GetRowCellValue(i, "qty") > dt(0)("qty") And GVData.GetRowCellValue(i, "is_store_request") = "no" Then
-                    GVData.SetRowCellValue(i, "stt", "Qty can't exceed " + dt(0)("qty").ToString + ";")
+                    GVData.SetRowCellValue(i, "stt", "Qty available : " + dt(0)("qty").ToString + ";")
                     cond_data = False
                 Else
                     GVData.SetRowCellValue(i, "stt", "")
@@ -353,7 +354,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
         ElseIf Not cond_data Then
             GridColumnStt.VisibleIndex = 20
             GVData.BestFitColumns()
-            warningCustom("Can't save, some item exceed limit qty")
+            warningCustom("Can't save, some item qty not available")
         ElseIf Not biaya_ok Then
             warningCustom("Please contact accounting to setup : " & biaya_ok_note)
         Else
