@@ -148,6 +148,7 @@ Public Class FormSalesPOSDet
             TxtVatTot.EditValue = 0.0
             TxtTaxBase.EditValue = 0.0
             TxtPotPenjualan.EditValue = 0.0
+            TEKurs.EditValue = 0.00
 
 
             'get vat default
@@ -256,6 +257,7 @@ Public Class FormSalesPOSDet
             BtnViewJournal.Enabled = True
             BMark.Enabled = True
             GridColumnNote.Visible = False
+            BtnGetKurs.Enabled = False
 
             'query view based on edit id's
             Dim query As String = ""
@@ -264,7 +266,7 @@ Public Class FormSalesPOSDet
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name,a.kurs_trans "
             If id_menu = "5" Then
                 query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`, sor.customer_name AS `customer_name_ref` "
             End If
@@ -365,6 +367,7 @@ Public Class FormSalesPOSDet
             id_comp_contact_bill = data.Rows(0)("id_comp_contact_bill").ToString
             TxtCodeBillTo.Text = data.Rows(0)("comp_number_bill").ToString
             TxtNameBillTo.Text = data.Rows(0)("comp_name_bill").ToString
+            TEKurs.EditValue = data.Rows(0)("kurs_trans")
 
             ''detail2
             viewDetail()
@@ -565,6 +568,8 @@ Public Class FormSalesPOSDet
             stopCustom("Some items have problems. Please see note and check these items.")
         ElseIf id_acc_ar = "-1" Or id_acc_sales = "-1" Or id_acc_sales_return = "-1" Then
             stopCustom("Please mapping COA AR/Sales for this store first.")
+        ElseIf TEKurs.EditValue = 0.00 Then
+            stopCustom("Kurs can't blank")
         Else
             Dim bof_number As String = addSlashes(TxtBOF.Text)
             Dim bof_date As String = ""
@@ -583,6 +588,7 @@ Public Class FormSalesPOSDet
             Dim sales_pos_potongan As String = decimalSQL(TxtPotPenjualan.EditValue.ToString)
             Dim sales_pos_vat As String = decimalSQL(SPVat.EditValue.ToString)
             total_amount = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
+            Dim kurs_trans As String = decimalSQL(TEKurs.EditValue.ToString)
             Dim id_memo_type As String = ""
             Dim sales_pos_number As String = ""
             If id_menu = "1" Then
@@ -739,8 +745,8 @@ Public Class FormSalesPOSDet
 
                     'Main tbale
                     BtnSave.Enabled = False
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date, kurs_trans) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + ", '" + kurs_trans + "'); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
                     'gen number
                     execute_non_query("CALL gen_number(" + id_sales_pos + ", " + report_mark_type + ");", True, "", "", "", "")
@@ -1119,7 +1125,7 @@ Public Class FormSalesPOSDet
     Private Sub BtnBrowseContactTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowseContactFrom.Click
         FormPopUpContact.id_pop_up = "42"
 
-        FormPopUpContact.id_cat = id_comp_cat_store
+        'FormPopUpContact.id_cat = id_comp_cat_store
         FormPopUpContact.ShowDialog()
     End Sub
 
@@ -1789,13 +1795,19 @@ Public Class FormSalesPOSDet
     Dim is_valid_from As Boolean = True
     Sub actionCompFrom()
         is_valid_from = True
+        Dim cond_cat As String = ""
+        If id_menu <> "4" Then
+            cond_cat = "And c.id_comp_cat='6' "
+        Else
+            cond_cat = "And (c.id_comp_cat='5' OR c.id_comp_cat=6) "
+        End If
         Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
         query += " From tb_m_comp_contact cc "
         query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
         query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
         query += " INNER JOIN tb_m_wh_rack rack ON rack.id_wh_rack=dr.id_wh_rack"
         query += " INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator=rack.id_wh_locator"
-        query += " where cc.is_default=1 And c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + addSlashes(TxtCodeCompFrom.Text) + "'"
+        query += " where cc.is_default=1 " + cond_cat + " AND c.is_active=1 AND c.is_only_for_alloc=2 AND c.comp_number='" + addSlashes(TxtCodeCompFrom.Text) + "'"
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
         If data.Rows.Count <= 0 Then
@@ -1805,7 +1817,7 @@ Public Class FormSalesPOSDet
             is_valid_from = False
         ElseIf data.Rows.Count > 1 Then
             FormPopUpContact.id_pop_up = "42"
-            FormPopUpContact.id_cat = id_comp_cat_store
+            'FormPopUpContact.id_cat = id_comp_cat_store
             FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeCompFrom.Text) + "'"
             FormPopUpContact.ShowDialog()
         Else
@@ -2099,6 +2111,9 @@ Public Class FormSalesPOSDet
 
     Private Sub DEEnd_EditValueChanged(sender As Object, e As EventArgs) Handles DEEnd.EditValueChanged
         'viewDetail()
+        If action = "ins" Then
+            load_kurs()
+        End If
     End Sub
 
     Private Sub LEInvType_KeyDown(sender As Object, e As KeyEventArgs) Handles LEInvType.KeyDown
@@ -2689,5 +2704,31 @@ Public Class FormSalesPOSDet
             warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Sub load_kurs()
+        If action = "ins" Then
+            Cursor = Cursors.WaitCursor
+            'check kurs first
+            Dim end_period As String = "1991-01-01"
+            Try
+                end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Dim query_kurs As String = "SELECT * FROM tb_kurs_trans a WHERE DATE(a.created_date) <= '" + end_period + "' ORDER BY a.created_date DESC LIMIT 1"
+            Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+            If Not data_kurs.Rows.Count > 0 Then
+                warningCustom("Get kurs error.")
+                TEKurs.EditValue = 0.00
+            Else
+                TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnGetKurs_Click(sender As Object, e As EventArgs) Handles BtnGetKurs.Click
+        load_kurs()
     End Sub
 End Class

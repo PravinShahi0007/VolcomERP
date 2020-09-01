@@ -1036,6 +1036,33 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                 Next
 
                 calculate_amount()
+            ElseIf report_mark_type = "254" Then
+                For i As Integer = 0 To FormBankWithdrawal.GVSales.RowCount - 1
+                    'id_report,number,total,balance due
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "id_sales_branch").ToString
+                    newRow("report_mark_type") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "report_mark_type").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "acc_description").ToString
+                    newRow("note") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "note").ToString
+                    newRow("vendor") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "comp_number").ToString
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "id_comp").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "comp_number").ToString
+                    newRow("number") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "number").ToString
+                    newRow("total_pay") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "total_pay")
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "amount")
+                    newRow("value") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "amount")
+                    newRow("value_view") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "amount")
+                    newRow("balance_due") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "amount")
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate_amount()
             End If
         Else
             'PCAddDel.Visible = False

@@ -25,6 +25,8 @@ Partial Class FormAccountingAcc
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECOAType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.MEAccDesc = New DevExpress.XtraEditors.MemoEdit()
@@ -51,6 +53,7 @@ Partial Class FormAccountingAcc
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LECOAType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAccDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +72,7 @@ Partial Class FormAccountingAcc
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 251)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 296)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(665, 39)
         Me.PanelControl1.TabIndex = 0
@@ -96,6 +99,8 @@ Partial Class FormAccountingAcc
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.LECOAType)
         Me.PanelControl3.Controls.Add(Me.LEType)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
         Me.PanelControl3.Controls.Add(Me.MEAccDesc)
@@ -113,12 +118,29 @@ Partial Class FormAccountingAcc
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(665, 251)
+        Me.PanelControl3.Size = New System.Drawing.Size(665, 296)
         Me.PanelControl3.TabIndex = 54
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(18, 14)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(51, 15)
+        Me.LabelControl4.TabIndex = 124
+        Me.LabelControl4.Text = "COA Type"
+        '
+        'LECOAType
+        '
+        Me.LECOAType.Location = New System.Drawing.Point(130, 12)
+        Me.LECOAType.Name = "LECOAType"
+        Me.LECOAType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECOAType.Size = New System.Drawing.Size(134, 20)
+        Me.LECOAType.TabIndex = 123
         '
         'LEType
         '
-        Me.LEType.Location = New System.Drawing.Point(130, 214)
+        Me.LEType.Location = New System.Drawing.Point(130, 244)
         Me.LEType.Name = "LEType"
         Me.LEType.Properties.Appearance.Options.UseTextOptions = True
         Me.LEType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -132,7 +154,7 @@ Partial Class FormAccountingAcc
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(18, 216)
+        Me.LabelControl2.Location = New System.Drawing.Point(18, 246)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(73, 15)
         Me.LabelControl2.TabIndex = 121
@@ -140,14 +162,14 @@ Partial Class FormAccountingAcc
         '
         'MEAccDesc
         '
-        Me.MEAccDesc.Location = New System.Drawing.Point(130, 85)
+        Me.MEAccDesc.Location = New System.Drawing.Point(130, 115)
         Me.MEAccDesc.Name = "MEAccDesc"
         Me.MEAccDesc.Size = New System.Drawing.Size(492, 45)
         Me.MEAccDesc.TabIndex = 120
         '
         'TEAccount
         '
-        Me.TEAccount.Location = New System.Drawing.Point(130, 51)
+        Me.TEAccount.Location = New System.Drawing.Point(130, 81)
         Me.TEAccount.Name = "TEAccount"
         Me.TEAccount.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEAccount.Properties.Appearance.Options.UseFont = True
@@ -158,7 +180,7 @@ Partial Class FormAccountingAcc
         'SLEParentAccount
         '
         Me.SLEParentAccount.EditValue = "No Parent Account"
-        Me.SLEParentAccount.Location = New System.Drawing.Point(270, 52)
+        Me.SLEParentAccount.Location = New System.Drawing.Point(270, 82)
         Me.SLEParentAccount.Name = "SLEParentAccount"
         Me.SLEParentAccount.Properties.Appearance.Options.UseTextOptions = True
         Me.SLEParentAccount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -217,7 +239,7 @@ Partial Class FormAccountingAcc
         '
         'LEActive
         '
-        Me.LEActive.Location = New System.Drawing.Point(130, 180)
+        Me.LEActive.Location = New System.Drawing.Point(130, 210)
         Me.LEActive.Name = "LEActive"
         Me.LEActive.Properties.Appearance.Options.UseTextOptions = True
         Me.LEActive.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -231,7 +253,7 @@ Partial Class FormAccountingAcc
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(18, 182)
+        Me.LabelControl8.Location = New System.Drawing.Point(18, 212)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(33, 15)
         Me.LabelControl8.TabIndex = 116
@@ -239,7 +261,7 @@ Partial Class FormAccountingAcc
         '
         'LEAccCat
         '
-        Me.LEAccCat.Location = New System.Drawing.Point(130, 16)
+        Me.LEAccCat.Location = New System.Drawing.Point(130, 46)
         Me.LEAccCat.Name = "LEAccCat"
         Me.LEAccCat.Properties.Appearance.Options.UseTextOptions = True
         Me.LEAccCat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -253,7 +275,7 @@ Partial Class FormAccountingAcc
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(18, 18)
+        Me.LabelControl6.Location = New System.Drawing.Point(18, 48)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(48, 15)
         Me.LabelControl6.TabIndex = 114
@@ -261,7 +283,7 @@ Partial Class FormAccountingAcc
         '
         'LEDetail
         '
-        Me.LEDetail.Location = New System.Drawing.Point(130, 145)
+        Me.LEDetail.Location = New System.Drawing.Point(130, 175)
         Me.LEDetail.Name = "LEDetail"
         Me.LEDetail.Properties.Appearance.Options.UseTextOptions = True
         Me.LEDetail.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -275,7 +297,7 @@ Partial Class FormAccountingAcc
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(18, 87)
+        Me.LabelControl5.Location = New System.Drawing.Point(18, 117)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(64, 15)
         Me.LabelControl5.TabIndex = 53
@@ -284,7 +306,7 @@ Partial Class FormAccountingAcc
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(18, 54)
+        Me.LabelControl1.Location = New System.Drawing.Point(18, 84)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(44, 15)
         Me.LabelControl1.TabIndex = 46
@@ -292,7 +314,7 @@ Partial Class FormAccountingAcc
         '
         'TEAccountDetail
         '
-        Me.TEAccountDetail.Location = New System.Drawing.Point(444, 51)
+        Me.TEAccountDetail.Location = New System.Drawing.Point(444, 81)
         Me.TEAccountDetail.Name = "TEAccountDetail"
         Me.TEAccountDetail.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEAccountDetail.Properties.Appearance.Options.UseFont = True
@@ -302,7 +324,7 @@ Partial Class FormAccountingAcc
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(18, 147)
+        Me.LabelControl3.Location = New System.Drawing.Point(18, 177)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(33, 15)
         Me.LabelControl3.TabIndex = 48
@@ -338,7 +360,7 @@ Partial Class FormAccountingAcc
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(665, 290)
+        Me.ClientSize = New System.Drawing.Size(665, 335)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -353,6 +375,7 @@ Partial Class FormAccountingAcc
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.LECOAType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAccDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -393,4 +416,6 @@ Partial Class FormAccountingAcc
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents LEType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LECOAType As DevExpress.XtraEditors.LookUpEdit
 End Class

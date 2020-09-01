@@ -139,6 +139,15 @@
             End If
         End If
 
+        'invoice/cn/missing sales
+        If id_pop_up = "42" Then
+            If FormSalesPOSDet.id_menu <> "4" Then
+                query += "AND (tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 AND tb_m_comp.is_only_for_alloc=2 "
+            Else
+                query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 AND tb_m_comp.is_only_for_alloc=2 "
+            End If
+        End If
+
         If id_pop_up = "62" Then
             If FormSalesOrderDet.is_transfer_data = "2" Then
                 query += "AND tb_m_comp.is_only_for_alloc=2 "

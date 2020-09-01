@@ -43,21 +43,15 @@
                 BMark.Enabled = True
                 BAttach.Enabled = True
                 BtnSave.Enabled = True
-                BtnPrint.Enabled = False
                 MENote.Properties.ReadOnly = False
             Else
                 BMark.Enabled = True
                 BAttach.Enabled = True
                 BtnSave.Enabled = False
-                BtnPrint.Enabled = False
                 MENote.Properties.ReadOnly = True
             End If
 
-            If check_print_report_status(id_report_status) Then
-                BtnPrint.Enabled = True
-            Else
-                BtnPrint.Enabled = False
-            End If
+            BtnPrint.Enabled = True
 
             'Fetch db detail
             viewDetailReturn()

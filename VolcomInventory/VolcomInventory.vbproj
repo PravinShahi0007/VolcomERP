@@ -1058,6 +1058,12 @@
     <Compile Include="FormDesignColumnDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDesignColumnMapping.Designer.vb">
+      <DependentUpon>FormDesignColumnMapping.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignColumnMapping.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDesignColumnValue.Designer.vb">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
     </Compile>
@@ -2034,6 +2040,12 @@
       <DependentUpon>FormFGPOCloseDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGPOCloseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGPOPaymentTracking.Designer.vb">
+      <DependentUpon>FormFGPOPaymentTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGPOPaymentTracking.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGProposePriceCOPList.Designer.vb">
@@ -8906,6 +8918,9 @@
     <EmbeddedResource Include="FormDesignColumnDet.resx">
       <DependentUpon>FormDesignColumnDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignColumnMapping.resx">
+      <DependentUpon>FormDesignColumnMapping.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDesignColumnValue.resx">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
     </EmbeddedResource>
@@ -9405,6 +9420,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGPOCloseDet.resx">
       <DependentUpon>FormFGPOCloseDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGPOPaymentTracking.resx">
+      <DependentUpon>FormFGPOPaymentTracking.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceCOPList.resx">
       <DependentUpon>FormFGProposePriceCOPList.vb</DependentUpon>

@@ -26,7 +26,7 @@
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         INNER JOIN tb_m_design d ON d.id_design = p.id_design
-        WHERE pdd.id_prod_demand=" + id + " AND pdp.prod_demand_product_qty>0
+        WHERE pdd.id_prod_demand=" + id + " AND pdp.prod_demand_product_qty>0 AND pdd.is_void=2
         ORDER BY pdd.id_prod_demand_design ASC, cd.id_code_detail ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data

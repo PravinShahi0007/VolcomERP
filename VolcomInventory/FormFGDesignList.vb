@@ -41,7 +41,15 @@
     Sub viewData()
         GridColumnPic.Visible = False
         CheckImg.EditValue = False
+        CEAddColumns.EditValue = False
         GVDesign.RowHeight = 10
+
+        'remove column
+        Dim data_column As DataTable = execute_query("SELECT id_design_column_list, column_list FROM tb_design_column_list WHERE id_design_column_type = 1", -1, True, "", "", "", "")
+
+        For i = 0 To data_column.Rows.Count - 1
+            GVDesign.Columns.Remove(GVDesign.Columns(data_column.Rows(i)("column_list").ToString.Replace(" ", "")))
+        Next
 
         Dim id_ss As String = SLESeason.EditValue.ToString
         Dim cond As String = ""
@@ -83,9 +91,11 @@
         If GVDesign.RowCount > 0 Then
             PanelOpt.Visible = True
             PanelControlFreeze.Visible = True
+            PCAddColumns.Visible = True
         Else
             PanelOpt.Visible = False
             PanelControlFreeze.Visible = False
+            PCAddColumns.Visible = False
         End If
 
         If id_pop_up = "1" Then 'approve
@@ -252,6 +262,7 @@
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         PanelOpt.Visible = False
         PanelControlFreeze.Visible = False
+        PCAddColumns.Visible = False
         GCDesign.DataSource = Nothing
         If id_pop_up = "1" Then 'approve
             PanelApp.Visible = False
@@ -544,6 +555,130 @@
     Private Sub GVPropose_DoubleClick(sender As Object, e As EventArgs) Handles GVPropose.DoubleClick
         If GVPropose.RowCount > 0 And GVPropose.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
+        End If
+    End Sub
+
+    Private Sub CEAddColumns_EditValueChanged(sender As Object, e As EventArgs) Handles CEAddColumns.EditValueChanged
+        If CEAddColumns.Checked Then
+            Cursor = Cursors.WaitCursor
+
+            Dim in_design_all As String = ""
+
+            For i = 0 To GVDesign.RowCount - 1
+                in_design_all += GVDesign.GetRowCellValue(i, "id_design").ToString + ", "
+            Next
+
+            If Not in_design_all = "" Then
+                'get code detail
+                Dim code_details As DataTable = execute_query("
+                    SELECT *
+                    FROM (
+                        SELECT dc.id_design, GROUP_CONCAT(cd.id_code_detail ORDER BY cd.id_code DESC) AS `code`
+                        FROM tb_m_design_code AS dc
+                        LEFT JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail
+                        LEFT JOIN tb_m_code AS c ON cd.id_code = c.id_code
+                        WHERE dc.id_design IN (" + in_design_all.Substring(0, in_design_all.Length - 2) + ") AND c.id_code IN (32, 31)
+                        GROUP BY dc.id_design
+                    ) AS tb
+                    ORDER BY tb.code
+                ", -1, True, "", "", "", "")
+
+                'separate by code detail
+                Dim list_code As List(Of DataTable) = New List(Of DataTable)
+
+                Dim last_code As String = ""
+
+                For i = 0 To code_details.Rows.Count - 1
+                    If Not last_code = code_details.Rows(i)("code").ToString Then
+                        Dim data_code As DataTable = New DataTable
+
+                        list_code.Add(data_code)
+
+                        list_code(list_code.Count - 1).Columns.Add("id_design", GetType(String))
+                        list_code(list_code.Count - 1).Columns.Add("column_type_front", GetType(String))
+                        list_code(list_code.Count - 1).Columns.Add("column_type_end", GetType(String))
+                    End If
+
+                    Dim r As DataRow = list_code(list_code.Count - 1).NewRow
+
+                    r("id_design") = code_details.Rows(i)("id_design").ToString
+                    r("column_type_front") = code_details.Rows(i)("code").ToString.Split(",")(0)
+                    r("column_type_end") = code_details.Rows(i)("code").ToString.Split(",")(1)
+
+                    list_code(list_code.Count - 1).Rows.Add(r)
+
+                    last_code = code_details.Rows(i)("code").ToString
+                Next
+
+                'insert column
+                Dim data_column As DataTable = execute_query("SELECT id_design_column_list, column_list FROM tb_design_column_list WHERE id_design_column_type = 1", -1, True, "", "", "", "")
+
+                Dim dt As DataTable = GCDesign.DataSource
+
+                For i = 0 To data_column.Rows.Count - 1
+                    GVDesign.Columns.Remove(GVDesign.Columns(data_column.Rows(i)("column_list").ToString.Replace(" ", "")))
+
+                    Dim column As DevExpress.XtraGrid.Columns.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn
+
+                    column.Caption = data_column.Rows(i)("column_list").ToString
+                    column.FieldName = data_column.Rows(i)("column_list").ToString.Replace(" ", "")
+                    column.ColumnEdit = RepositoryItemMemoEdit1
+                    column.OptionsColumn.AllowEdit = False
+                    column.Visible = True
+
+                    GVDesign.Columns.Add(column)
+
+                    dt.Columns.Add(data_column.Rows(i)("column_list").ToString.Replace(" ", ""), GetType(String))
+                Next
+
+                GCDesign.DataSource = dt
+
+                'insert data
+                For i = 0 To list_code.Count - 1
+                    Dim in_design As String = ""
+
+                    For j = 0 To list_code(i).Rows.Count - 1
+                        in_design += list_code(i).Rows(j)("id_design").ToString + ", "
+                    Next
+
+                    Dim q_generate As String = FormDesignColumnMapping.generate_query("1", list_code(i).Rows(0)("column_type_front").ToString, list_code(i).Rows(0)("column_type_end").ToString, in_design.Substring(0, in_design.Length - 2))
+
+                    If Not q_generate = "" Then
+                        Dim data_insert As DataTable = execute_query(q_generate, -1, True, "", "", "", "")
+
+                        For j = 0 To data_insert.Rows.Count - 1
+                            For k = 0 To GVDesign.RowCount - 1
+                                If data_insert.Rows(j)("id_design").ToString = GVDesign.GetRowCellValue(k, "id_design").ToString Then
+                                    For l = 0 To data_insert.Columns.Count - 1
+                                        GVDesign.SetRowCellValue(k, data_insert.Columns(l).ColumnName, data_insert.Rows(j)(data_insert.Columns(l).ColumnName).ToString)
+                                    Next
+
+                                    Exit For
+                                End If
+                            Next
+                        Next
+                    End If
+                Next
+            End If
+
+            GVDesign.BestFitColumns()
+
+            Cursor = Cursors.Default
+        Else
+            Dim data_column As DataTable = execute_query("SELECT id_design_column_list, column_list FROM tb_design_column_list WHERE id_design_column_type = 1", -1, True, "", "", "", "")
+
+            Dim dt As DataTable = GCDesign.DataSource
+
+            For i = 0 To data_column.Rows.Count - 1
+                GVDesign.Columns.Remove(GVDesign.Columns(data_column.Rows(i)("column_list").ToString.Replace(" ", "")))
+
+                Try
+                    dt.Columns.Remove(data_column.Rows(i)("column_list").ToString.Replace(" ", ""))
+                Catch ex As Exception
+                End Try
+            Next
+
+            GCDesign.DataSource = dt
         End If
     End Sub
 End Class

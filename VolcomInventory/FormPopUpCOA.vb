@@ -5,6 +5,7 @@ Imports DevExpress.XtraVerticalGrid
 Public Class FormPopUpCOA
     Public id_coa As String = "-1"
     Public id_pop_up As String = "-1'"
+    Public id_coa_type As String = "1"
 
     Private helperx As MyTreeListSearchHelper
     Private helpery As MyTreeListSearchHelper
@@ -48,7 +49,7 @@ Public Class FormPopUpCOA
         'root
         Dim query As String = "SELECT a.id_acc,acc_name,a.id_acc_parent,a.acc_description,a.id_acc_cat,b.acc_cat,a.id_status,c.status,a.id_is_det,d.is_det,a.id_status FROM tb_a_acc a "
         query += "INNER JOIN tb_lookup_acc_cat b ON a.id_acc_cat=b.id_acc_cat INNER JOIN tb_lookup_status c ON a.id_status=c.id_status INNER JOIN tb_lookup_is_det d ON a.id_is_det=d.id_is_det"
-        'query += " WHERE a.id_acc_parent=a.id_acc"
+        query += " WHERE a.id_coa_type='" + id_coa_type + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim data_filter As DataRow() = data.Select("[id_acc_parent] is NULL AND [id_status]='1'")
 
@@ -448,7 +449,7 @@ Public Class FormPopUpCOA
         query += "SELECT a.id_acc,acc_name,a.acc_description,a.id_acc_cat,b.acc_cat,a.id_status,c.status,a.id_is_det,d.is_det,comp.id_comp,comp.comp_name,comp.comp_number FROM tb_a_acc a "
         query += "INNER JOIN tb_lookup_acc_cat b ON a.id_acc_cat=b.id_acc_cat INNER JOIN tb_lookup_status c ON a.id_status=c.id_status INNER JOIN tb_lookup_is_det d ON a.id_is_det=d.id_is_det "
         query += "LEFT JOIN tb_m_comp comp ON comp.id_comp=a.id_comp 
-        WHERE a.id_status=1 "
+        WHERE a.id_status=1 AND a.id_coa_type='" + id_coa_type + "' "
 
         If id_pop_up = "8" Or id_pop_up = "9" Or id_pop_up = "10" Or id_pop_up = "6" Then
             query += "AND a.id_is_det=2 "

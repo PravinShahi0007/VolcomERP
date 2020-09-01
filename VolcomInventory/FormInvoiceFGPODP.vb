@@ -274,7 +274,7 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
                     newRowh("report_number") = ""
                     newRowh("note") = MENote.Text
                     newRowh("debit") = 0
-                    newRowh("credit") = TETotal.EditValue + TEVat.EditValue
+                    newRowh("credit") = TETotal.EditValue + TEVat.EditValue - TETotalPPH.EditValue
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
                     GCDraft.RefreshDataSource()
                     GVDraft.RefreshData()

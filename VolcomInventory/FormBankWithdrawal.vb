@@ -51,6 +51,9 @@
         load_group_store_cn()
         load_vendor_dpkhusus()
 
+        'VS sales
+        viewCoaTag()
+
         DECAFrom.EditValue = Date.Parse(Now)
         DECATo.EditValue = Date.Parse(Now)
     End Sub
@@ -109,10 +112,12 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     End Sub
 
     Sub load_vendor_po()
-        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,sts.comp_status
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='8' or c.id_comp_cat='1'"
+                                INNER JOIN tb_lookup_comp_status sts ON sts.id_comp_status=c.is_active
+                                WHERE (c.id_comp_cat='8' or c.id_comp_cat='1')
+                                AND (c.is_active='1' OR c.is_active='2') "
         viewSearchLookupQuery(SLEVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
@@ -178,6 +183,12 @@ WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToS
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
+    End Sub
+
+    Sub viewCoaTag()
+        Dim query As String = "SELECT ct.id_coa_tag, ct.tag_code, ct.tag_description, CONCAT(ct.tag_code,' - ', ct.tag_description)  AS `coa_tag`
+        FROM tb_coa_tag ct WHERE ct.id_coa_tag>1 ORDER BY ct.id_coa_tag ASC "
+        viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
     End Sub
     '
     Sub load_fgpo()
@@ -273,7 +284,7 @@ LEFT JOIN tb_a_acc coa ON coa.id_acc=po.pph_account
 INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_purc_req_det prd ON pod.id_purc_req_det = prd.id_purc_req_det
-INNER JOIN tb_m_comp c_tag ON prd.ship_to = c_tag.id_comp
+INNER JOIN tb_m_comp c_tag ON IF(prd.ship_to=0,1,prd.ship_to) = c_tag.id_comp
 INNER JOIN tb_coa_tag tag ON c_tag.id_coa_tag = tag.id_coa_tag
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
 INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
@@ -751,6 +762,8 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             Else
                 view_list_cn()
             End If
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPVS" Then
+            view_vs()
         End If
     End Sub
 
@@ -1303,5 +1316,93 @@ GROUP BY pns.`id_pn_summary`"
 
     Private Sub BBuyValas_Click(sender As Object, e As EventArgs) Handles BBuyValas.Click
 
+    End Sub
+
+    Private Sub BInfoFGPO_Click(sender As Object, e As EventArgs) Handles BInfoFGPO.Click
+        FormFGPOPaymentTracking.ShowDialog()
+    End Sub
+
+    Private Sub BtnViewSales_Click(sender As Object, e As EventArgs) Handles BtnViewSales.Click
+        view_vs()
+    End Sub
+
+    Sub view_vs()
+        Cursor = Cursors.WaitCursor
+        Dim id_coa_tag As String = SLEUnit.EditValue.ToString
+        Dim query As String = "SELECT *, 'no' AS `is_check` 
+        FROM (
+	        SELECT b.id_sales_branch, b.number, b.id_coa_tag,b.comp_rev_normal_note AS `note`,
+	        IFNULL(pyd.total_pay,0) AS `total_pay`,b.comp_rev_normal-IFNULL(pyd.total_pay,0)-IFNULL(cn.amount_cn,0.00) AS `amount`, c.id_comp, c.comp_number, c.comp_name,
+	        IFNULL(pyd.on_process,0) AS `on_process`, b.report_mark_type,
+            coa.id_acc, coa.acc_name, coa.acc_description
+	        FROM tb_sales_branch b 
+	        INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp_normal
+            INNER JOIN tb_a_acc coa ON coa.id_acc = comp_rev_normal_acc
+	        LEFT JOIN (
+	          SELECT rd.id_report, rd.vendor , SUM(rd.value) AS `total_pay`, 
+	          COUNT(IF(r.id_report_status<5,1,NULL)) AS `on_process`
+	          FROM tb_pn_det rd
+	          INNER JOIN tb_pn r ON r.id_pn = rd.id_pn
+	          WHERE r.id_report_status!=5 AND rd.report_mark_type=254 
+	          GROUP BY rd.id_report, rd.vendor
+	        ) pyd ON pyd.id_report = b.id_sales_branch AND pyd.vendor = c.comp_number
+	        LEFT JOIN (
+	          SELECT m.id_sales_branch_ref, c.comp_number, SUM(m.comp_rev_normal) AS `amount_cn`, 
+	          COUNT(IF(m.id_report_status<5,1,NULL)) AS `total_cn_pending`
+	          FROM tb_sales_branch m
+	          INNER JOIN tb_m_comp c ON c.id_comp = m.id_comp_normal
+	          WHERE m.id_report_status!=5 
+	          GROUP BY m.id_sales_branch_ref, c.comp_number
+	        ) cn ON cn.id_sales_branch_ref = b.id_sales_branch AND cn.comp_number = c.comp_number
+	        WHERE b.id_report_status=6 AND b.id_memo_type=1
+	        GROUP BY b.id_sales_branch
+	        UNION ALL
+	        SELECT b.id_sales_branch,b.number, b.id_coa_tag, b.comp_rev_normal_note AS `note`,
+	        IFNULL(pyd.total_pay,0) AS `total_pay`, b.comp_rev_sale-IFNULL(pyd.total_pay,0)-IFNULL(cn.amount_cn,0.00) AS `amount`, c.id_comp, c.comp_number, c.comp_name,
+	        IFNULL(pyd.on_process,0) AS `on_process`,b.report_mark_type,
+            coa.id_acc, coa.acc_name, coa.acc_description
+	        FROM tb_sales_branch b 
+	        INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp_sale
+            INNER JOIN tb_a_acc coa ON coa.id_acc = comp_rev_sale_acc
+	        LEFT JOIN (
+	          SELECT rd.id_report, rd.vendor , SUM(rd.value) AS `total_pay`, 
+	          COUNT(IF(r.id_report_status<5,1,NULL)) AS `on_process`
+	          FROM tb_pn_det rd
+	          INNER JOIN tb_pn r ON r.id_pn = rd.id_pn
+	          WHERE r.id_report_status!=5 AND rd.report_mark_type=254 
+	          GROUP BY rd.id_report, rd.vendor
+	        ) pyd ON pyd.id_report = b.id_sales_branch AND pyd.vendor = c.comp_number
+	        LEFT JOIN (
+	          SELECT m.id_sales_branch_ref, c.comp_number, SUM(m.comp_rev_sale) AS `amount_cn`, 
+	          COUNT(IF(m.id_report_status<5,1,NULL)) AS `total_cn_pending`
+	          FROM tb_sales_branch m
+	          INNER JOIN tb_m_comp c ON c.id_comp = m.id_comp_sale
+	          WHERE m.id_report_status!=5 
+	          GROUP BY m.id_sales_branch_ref, c.comp_number
+	        ) cn ON cn.id_sales_branch_ref = b.id_sales_branch AND cn.comp_number = c.comp_number
+	        WHERE b.id_report_status=6 AND b.id_memo_type=1
+	        GROUP BY b.id_sales_branch
+        ) a 
+        HAVING id_coa_tag='" + id_coa_tag + "' AND amount>0
+        ORDER BY id_sales_branch ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSales.DataSource = data
+        GVSales.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCreateBBKVS_Click(sender As Object, e As EventArgs) Handles BtnCreateBBKVS.Click
+        GVSales.ActiveFilterString = ""
+        GVSales.ActiveFilterString = "[is_check]='yes'"
+
+        If GVSales.RowCount > 0 Then
+            FormBankWithdrawalDet.id_coa_tag = SLEUnit.EditValue.ToString
+            FormBankWithdrawalDet.report_mark_type = "254"
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("Please select item first.")
+        End If
+
+        GVSales.ActiveFilterString = ""
     End Sub
 End Class

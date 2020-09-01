@@ -86,7 +86,7 @@
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         If CEStoreRequest.Checked = True Then
             is_from_storage = True
-            GridColumnQty.Visible = False
+            GridColumnQty.VisibleIndex = 3
         Else
             is_from_storage = False
             GridColumnQty.VisibleIndex = 3
@@ -104,8 +104,9 @@
             Dim rh As Integer = e.RowHandle
             If e.Value >= 0 Then
                 Dim old_value As Decimal = GVSOH.ActiveEditor.OldEditValue
-                If e.Value > GVSOH.GetRowCellValue(rh, "qty") And is_from_storage = False Then
-                    warningCustom("Can't exceed " + GVSOH.GetRowCellValue(rh, "qty").ToString)
+                'If e.Value > GVSOH.GetRowCellValue(rh, "qty") And is_from_storage = False Then
+                If e.Value > GVSOH.GetRowCellValue(rh, "qty") Then
+                    warningCustom("Qty not available. Only " + GVSOH.GetRowCellValue(rh, "qty").ToString + " remaining.")
                     GVSOH.SetRowCellValue(rh, "qty_req", old_value)
                 End If
             Else

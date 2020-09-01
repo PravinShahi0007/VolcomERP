@@ -19,7 +19,6 @@ Partial Class FormFGDesignList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGDesignList))
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
@@ -45,9 +44,9 @@ Partial Class FormFGDesignList
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnApproveUS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewApprovalUSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CMSChanges = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CMSChanges = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewHistoryProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -99,6 +98,10 @@ Partial Class FormFGDesignList
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCRequestChangesBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCRequestChangesDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_receive_qc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPProposeChanges = New DevExpress.XtraTab.XtraTabPage()
@@ -109,10 +112,8 @@ Partial Class FormFGDesignList
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpd_number = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpd_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpd_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumntotal_receive_qc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCAddColumns = New DevExpress.XtraEditors.PanelControl()
+        Me.CEAddColumns = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,6 +153,9 @@ Partial Class FormFGDesignList
         Me.XTPProposeChanges.SuspendLayout()
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCAddColumns, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddColumns.SuspendLayout()
+        CType(Me.CEAddColumns.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -170,6 +174,7 @@ Partial Class FormFGDesignList
         'PCNavLineList
         '
         Me.PCNavLineList.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCNavLineList.Controls.Add(Me.PCAddColumns)
         Me.PCNavLineList.Controls.Add(Me.SLESeason)
         Me.PCNavLineList.Controls.Add(Me.LabelControl4)
         Me.PCNavLineList.Dock = System.Windows.Forms.DockStyle.Fill
@@ -901,6 +906,44 @@ Partial Class FormFGDesignList
         Me.GCRequestChangesDate.Name = "GCRequestChangesDate"
         Me.GCRequestChangesDate.OptionsColumn.AllowEdit = False
         '
+        'GridColumnpd_number
+        '
+        Me.GridColumnpd_number.Caption = "PD"
+        Me.GridColumnpd_number.FieldName = "pd_number"
+        Me.GridColumnpd_number.Name = "GridColumnpd_number"
+        Me.GridColumnpd_number.Visible = True
+        Me.GridColumnpd_number.VisibleIndex = 15
+        '
+        'GridColumnpd_created_date
+        '
+        Me.GridColumnpd_created_date.Caption = "PD Created Date"
+        Me.GridColumnpd_created_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnpd_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnpd_created_date.FieldName = "pd_created_date"
+        Me.GridColumnpd_created_date.Name = "GridColumnpd_created_date"
+        Me.GridColumnpd_created_date.Visible = True
+        Me.GridColumnpd_created_date.VisibleIndex = 16
+        '
+        'GridColumnpd_status
+        '
+        Me.GridColumnpd_status.Caption = "PD Status"
+        Me.GridColumnpd_status.FieldName = "pd_status"
+        Me.GridColumnpd_status.Name = "GridColumnpd_status"
+        Me.GridColumnpd_status.Visible = True
+        Me.GridColumnpd_status.VisibleIndex = 17
+        '
+        'GridColumntotal_receive_qc
+        '
+        Me.GridColumntotal_receive_qc.Caption = "Total Received in QC"
+        Me.GridColumntotal_receive_qc.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_receive_qc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_receive_qc.FieldName = "total_receive_qc"
+        Me.GridColumntotal_receive_qc.Name = "GridColumntotal_receive_qc"
+        Me.GridColumntotal_receive_qc.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", "{0:N0}")})
+        Me.GridColumntotal_receive_qc.Visible = True
+        Me.GridColumntotal_receive_qc.VisibleIndex = 19
+        Me.GridColumntotal_receive_qc.Width = 71
+        '
         'XTPDesign
         '
         Me.XTPDesign.Dock = System.Windows.Forms.DockStyle.Fill
@@ -988,43 +1031,24 @@ Partial Class FormFGDesignList
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 3
         '
-        'GridColumnpd_number
+        'PCAddColumns
         '
-        Me.GridColumnpd_number.Caption = "PD"
-        Me.GridColumnpd_number.FieldName = "pd_number"
-        Me.GridColumnpd_number.Name = "GridColumnpd_number"
-        Me.GridColumnpd_number.Visible = True
-        Me.GridColumnpd_number.VisibleIndex = 15
+        Me.PCAddColumns.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCAddColumns.Controls.Add(Me.CEAddColumns)
+        Me.PCAddColumns.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PCAddColumns.Location = New System.Drawing.Point(244, 0)
+        Me.PCAddColumns.Name = "PCAddColumns"
+        Me.PCAddColumns.Size = New System.Drawing.Size(149, 36)
+        Me.PCAddColumns.TabIndex = 108
+        Me.PCAddColumns.Visible = False
         '
-        'GridColumnpd_created_date
+        'CEAddColumns
         '
-        Me.GridColumnpd_created_date.Caption = "PD Created Date"
-        Me.GridColumnpd_created_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnpd_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnpd_created_date.FieldName = "pd_created_date"
-        Me.GridColumnpd_created_date.Name = "GridColumnpd_created_date"
-        Me.GridColumnpd_created_date.Visible = True
-        Me.GridColumnpd_created_date.VisibleIndex = 16
-        '
-        'GridColumnpd_status
-        '
-        Me.GridColumnpd_status.Caption = "PD Status"
-        Me.GridColumnpd_status.FieldName = "pd_status"
-        Me.GridColumnpd_status.Name = "GridColumnpd_status"
-        Me.GridColumnpd_status.Visible = True
-        Me.GridColumnpd_status.VisibleIndex = 17
-        '
-        'GridColumntotal_receive_qc
-        '
-        Me.GridColumntotal_receive_qc.Caption = "Total Received in QC"
-        Me.GridColumntotal_receive_qc.DisplayFormat.FormatString = "N0"
-        Me.GridColumntotal_receive_qc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntotal_receive_qc.FieldName = "total_receive_qc"
-        Me.GridColumntotal_receive_qc.Name = "GridColumntotal_receive_qc"
-        Me.GridColumntotal_receive_qc.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", "{0:N0}")})
-        Me.GridColumntotal_receive_qc.Visible = True
-        Me.GridColumntotal_receive_qc.VisibleIndex = 19
-        Me.GridColumntotal_receive_qc.Width = 71
+        Me.CEAddColumns.Location = New System.Drawing.Point(6, 7)
+        Me.CEAddColumns.Name = "CEAddColumns"
+        Me.CEAddColumns.Properties.Caption = "Show Additional Columns"
+        Me.CEAddColumns.Size = New System.Drawing.Size(140, 19)
+        Me.CEAddColumns.TabIndex = 0
         '
         'FormFGDesignList
         '
@@ -1078,6 +1102,9 @@ Partial Class FormFGDesignList
         Me.XTPProposeChanges.ResumeLayout(False)
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCAddColumns, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddColumns.ResumeLayout(False)
+        CType(Me.CEAddColumns.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1174,4 +1201,6 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumnpd_created_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnpd_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotal_receive_qc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCAddColumns As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEAddColumns As DevExpress.XtraEditors.CheckEdit
 End Class

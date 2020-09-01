@@ -238,6 +238,7 @@ Partial Class FormMasterDesignSingle
         Me.GCAdditional = New DevExpress.XtraGrid.GridControl()
         Me.GVAdditional = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMEValue = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
@@ -667,12 +668,12 @@ Partial Class FormMasterDesignSingle
         'BtnReviseStyle
         '
         Me.BtnReviseStyle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnReviseStyle.Location = New System.Drawing.Point(761, 2)
+        Me.BtnReviseStyle.Location = New System.Drawing.Point(734, 2)
         Me.BtnReviseStyle.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnReviseStyle.Name = "BtnReviseStyle"
-        Me.BtnReviseStyle.Size = New System.Drawing.Size(78, 27)
+        Me.BtnReviseStyle.Size = New System.Drawing.Size(105, 27)
         Me.BtnReviseStyle.TabIndex = 124
-        Me.BtnReviseStyle.Text = "Revise PD"
+        Me.BtnReviseStyle.Text = "Revise Master PD"
         Me.BtnReviseStyle.Visible = False
         '
         'CheckEditApproved
@@ -2589,17 +2590,28 @@ Partial Class FormMasterDesignSingle
         '
         'GVAdditional
         '
-        Me.GVAdditional.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn57, Me.GridColumn56})
+        Me.GVAdditional.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn60, Me.GridColumn54, Me.GridColumn55, Me.GridColumn57, Me.GridColumn56})
         Me.GVAdditional.GridControl = Me.GCAdditional
+        Me.GVAdditional.GroupCount = 1
         Me.GVAdditional.Name = "GVAdditional"
+        Me.GVAdditional.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVAdditional.OptionsView.RowAutoHeight = True
         Me.GVAdditional.OptionsView.ShowGroupPanel = False
+        Me.GVAdditional.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn60, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn53
         '
         Me.GridColumn53.FieldName = "id_design_column"
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.Caption = "Category"
+        Me.GridColumn60.FieldName = "category"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 1
         '
         'GridColumn54
         '
@@ -3543,4 +3555,5 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPrimaryName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SBFabricationBrowse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

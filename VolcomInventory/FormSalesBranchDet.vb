@@ -40,7 +40,7 @@ Public Class FormSalesBranchDet
     End Sub
 
     Sub viewCOA()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description AS `acc_description` FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        Dim query As String = "SELECT id_acc,acc_name,acc_description AS `acc_description` FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' AND id_coa_type=2 "
         viewSearchLookupQuery(SLEAccPPNNormal, query, "id_acc", "acc_name", "id_acc")
         viewSearchLookupQuery(SLEAccRevNormal, query, "id_acc", "acc_name", "id_acc")
         viewSearchLookupQuery(SLEAccAPNormal, query, "id_acc", "acc_name", "id_acc")
@@ -78,19 +78,24 @@ Public Class FormSalesBranchDet
             TxtPPNNormal.EditValue = 0.00
             TxtRevNormal.EditValue = 0.00
             TxtAPNormal.EditValue = 0.00
+            TxtNormalSales.EditValue = 0.00
+            TxtProsStoreNormal.EditValue = 0.00
+            TxtProsHutangNormal.EditValue = 0.00
             'iniital sale
             TxtRevGrossSale.EditValue = 0.00
             TxtProsPPNSale.EditValue = 0.00
             TxtPPNSale.EditValue = 0.00
             TxtRevSale.EditValue = 0.00
             TxtAPSale.EditValue = 0.00
+            TxtSaleSales.EditValue = 0.00
+            TxtProsStoreSale.EditValue = 0.00
+            TxtProsHutangSale.EditValue = 0.00
 
             'load opt
             Dim query_opt As String = "SELECT vat_inv_default FROM tb_opt;"
             Dim data_opt As DataTable = execute_query(query_opt, -1, True, "", "", "", "")
             TxtProsPPNNormal.EditValue = data_opt.Rows(0)("vat_inv_default")
             TxtProsPPNSale.EditValue = data_opt.Rows(0)("vat_inv_default")
-            calculate()
 
             'load default coa
             Dim query_opt_acc As String = "SELECT IFNULL(a.id_acc_hutang_ppn_cabang,0) AS `id_acc_ppn`, ppn.acc_description AS `acc_ppn_description`, 
@@ -152,6 +157,7 @@ Public Class FormSalesBranchDet
             SLEUnit.EditValue = data.Rows(0)("id_coa_tag").ToString
             DESalesDate.EditValue = data.Rows(0)("transaction_date")
             DEDueDate.EditValue = data.Rows(0)("due_date")
+            TEKurs.EditValue = data.Rows(0)("kurs_trans")
             id_report_status = data.Rows(0)("id_report_status")
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             MENote.Text = data.Rows(0)("note").ToString
@@ -169,6 +175,10 @@ Public Class FormSalesBranchDet
             TxtAPNormal.EditValue = data.Rows(0)("comp_rev_normal")
             SLEAccAPNormal.EditValue = data.Rows(0)("id_coa_hd_normal")
             TxtAPNoteNormal.Text = data.Rows(0)("comp_rev_normal_note").ToString
+            TxtNormalSales.EditValue = data.Rows(0)("normal_sales")
+            TxtProsStoreNormal.EditValue = data.Rows(0)("pros_normal")
+            TxtProsHutangNormal.EditValue = data.Rows(0)("pros_normal_comp")
+
             'sale
             SLEStoreSale.EditValue = data.Rows(0)("id_store_sale").ToString
             TxtRevGrossSale.EditValue = data.Rows(0)("rev_sale")
@@ -182,9 +192,14 @@ Public Class FormSalesBranchDet
             TxtAPSale.EditValue = data.Rows(0)("comp_rev_sale")
             SLEAccAPSale.EditValue = data.Rows(0)("id_coa_hd_sale")
             TxtAPNoteSale.Text = data.Rows(0)("comp_rev_sale_note").ToString
+            TxtSaleSales.EditValue = data.Rows(0)("sale_sales")
+            TxtProsStoreSale.EditValue = data.Rows(0)("pros_sale")
+            TxtProsHutangSale.EditValue = data.Rows(0)("pros_sale_comp")
+
             rmt = data.Rows(0)("report_mark_type").ToString
             id_memo_type = data.Rows(0)("id_memo_type").ToString
             id_sales_branch_ref = data.Rows(0)("id_sales_branch_ref").ToString
+
 
             'detail
             viewDetail()
@@ -193,13 +208,23 @@ Public Class FormSalesBranchDet
     End Sub
 
     Sub calculate()
-        'normal ppn
-        TxtRevNormal.EditValue = (100 / (100 + TxtProsPPNNormal.EditValue)) * TxtRevGrossNormal.EditValue
-        TxtPPNNormal.EditValue = TxtRevNormal.EditValue * (TxtProsPPNNormal.EditValue / 100)
+        Cursor = Cursors.WaitCursor
+        Try
+            'normal ppn
+            TxtRevGrossNormal.EditValue = (TxtProsStoreNormal.EditValue / 100) * TxtNormalSales.EditValue
+            TxtRevNormal.EditValue = (100 / (100 + TxtProsPPNNormal.EditValue)) * TxtRevGrossNormal.EditValue
+            TxtPPNNormal.EditValue = TxtRevNormal.EditValue * (TxtProsPPNNormal.EditValue / 100)
+            TxtAPNormal.EditValue = (TxtProsHutangNormal.EditValue / 100) * TxtNormalSales.EditValue
 
-        TxtRevSale.EditValue = (100 / (100 + TxtProsPPNSale.EditValue)) * TxtRevGrossSale.EditValue
-        TxtPPNSale.EditValue = TxtRevSale.EditValue * (TxtProsPPNSale.EditValue / 100)
-        TxtTotal.EditValue = TxtRevGrossNormal.EditValue + TxtAPNormal.EditValue + TxtRevGrossSale.EditValue + TxtAPSale.EditValue
+            TxtRevGrossSale.EditValue = (TxtProsStoreSale.EditValue / 100) * TxtSaleSales.EditValue
+            TxtRevSale.EditValue = (100 / (100 + TxtProsPPNSale.EditValue)) * TxtRevGrossSale.EditValue
+            TxtPPNSale.EditValue = TxtRevSale.EditValue * (TxtProsPPNSale.EditValue / 100)
+            TxtAPSale.EditValue = (TxtProsHutangSale.EditValue / 100) * TxtSaleSales.EditValue
+
+            TxtTotal.EditValue = TxtRevGrossNormal.EditValue + TxtAPNormal.EditValue + TxtRevGrossSale.EditValue + TxtAPSale.EditValue
+        Catch ex As Exception
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDetail()
@@ -259,6 +284,7 @@ Public Class FormSalesBranchDet
         PanelControlNav.Visible = False
         SLEUnit.Enabled = False
         DESalesDate.Enabled = False
+        BtnGetKurs.Enabled = False
         GVData.OptionsBehavior.ReadOnly = True
         GroupControlNormalAccount.Enabled = False
         GroupControlSaleAccount.Enabled = False
@@ -286,6 +312,7 @@ Public Class FormSalesBranchDet
         If id = "-1" Then
             Cursor = Cursors.WaitCursor
             FormBankDepositAdd.id_pop_up = "1"
+            FormBankDepositAdd.id_coa_type = "2"
             FormBankDepositAdd.action = "ins"
             FormBankDepositAdd.ShowDialog()
             Cursor = Cursors.Default
@@ -293,8 +320,10 @@ Public Class FormSalesBranchDet
     End Sub
 
     Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
-        getStoreAccount()
-        viewDetail()
+        If action = "ins" Then
+            getStoreAccount()
+            viewDetail()
+        End If
     End Sub
 
     Sub getStoreAccount()
@@ -304,37 +333,45 @@ Public Class FormSalesBranchDet
             id_coa_tag_sel = SLEUnit.EditValue.ToString
         Catch ex As Exception
         End Try
-        Dim query As String = "SELECT c.id_comp,c.id_store_type FROM tb_m_comp c WHERE c.id_comp_cat=6 AND c.id_coa_tag='" + id_coa_tag_sel + "' "
+        Dim query As String = "SELECT c.id_comp,c.id_store_type, c.comp_commission AS `store_disc` FROM tb_m_comp c WHERE c.id_comp_cat=6 AND c.id_coa_tag='" + id_coa_tag_sel + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'normal
         Dim data_filter_normal As DataRow() = data.Select("[id_store_type]='1' ")
         SLEStoreNormal.EditValue = data_filter_normal(0)("id_comp").ToString
+        TxtProsStoreNormal.EditValue = data_filter_normal(0)("store_disc")
+        TxtProsHutangNormal.EditValue = 100 - data_filter_normal(0)("store_disc")
+
+        'sale
         Dim data_filter_sale As DataRow() = data.Select("[id_store_type]='2' ")
         SLEStoreSale.EditValue = data_filter_sale(0)("id_comp").ToString
+        TxtProsStoreSale.EditValue = data_filter_sale(0)("store_disc")
+        TxtProsHutangSale.EditValue = 100 - data_filter_sale(0)("store_disc")
         Cursor = Cursors.Default
     End Sub
 
     Private Sub TxtRevGrossNormal_EditValueChanged(sender As Object, e As EventArgs) Handles TxtRevGrossNormal.EditValueChanged
-        calculate()
+        'calculate()
     End Sub
 
     Private Sub TxtProsPPNNormal_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProsPPNNormal.EditValueChanged
-        calculate()
+        'calculate()
     End Sub
 
     Private Sub TxtRevGrossSale_EditValueChanged(sender As Object, e As EventArgs) Handles TxtRevGrossSale.EditValueChanged
-        calculate()
+        'calculate()
     End Sub
 
     Private Sub TxtProsPPNSale_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProsPPNSale.EditValueChanged
-        calculate()
+        'calculate()
     End Sub
 
     Private Sub TxtAPNormal_EditValueChanged(sender As Object, e As EventArgs) Handles TxtAPNormal.EditValueChanged
-        calculate()
+        'calculate()
     End Sub
 
     Private Sub TxtAPSale_EditValueChanged(sender As Object, e As EventArgs) Handles TxtAPSale.EditValueChanged
-        calculate()
+        'calculate()
     End Sub
 
     Function getCOADescription(ByVal SLE As DevExpress.XtraEditors.SearchLookUpEdit) As String
@@ -610,6 +647,7 @@ Public Class FormSalesBranchDet
             If GVData.GetFocusedRowCellValue("id_report") = "0" Then
                 Cursor = Cursors.WaitCursor
                 FormBankDepositAdd.id_pop_up = "1"
+                FormBankDepositAdd.id_coa_type = "2"
                 FormBankDepositAdd.action = "upd"
                 FormBankDepositAdd.ShowDialog()
                 Cursor = Cursors.Default
@@ -639,8 +677,8 @@ Public Class FormSalesBranchDet
         Dim cond_bal As Boolean = True
         XTCData.SelectedTabPageIndex = 1
         makeSafeGV(GVDraft)
-        Console.WriteLine(GVDraft.Columns("debit").SummaryItem.SummaryValue)
-        Console.WriteLine(GVDraft.Columns("credit").SummaryItem.SummaryValue)
+        'Console.WriteLine(GVDraft.Columns("debit").SummaryItem.SummaryValue)
+        'Console.WriteLine(GVDraft.Columns("credit").SummaryItem.SummaryValue)
         If GVDraft.Columns("debit").SummaryItem.SummaryValue = GVDraft.Columns("credit").SummaryItem.SummaryValue Then
             cond_bal = True
             XTCData.SelectedTabPageIndex = 0
@@ -697,15 +735,21 @@ Public Class FormSalesBranchDet
         ElseIf Not cond_allow_limit Then
             warningCustom("Can't exceed amount limit")
             GridColumnamount_limit.VisibleIndex = 20
+        ElseIf TEKurs.EditValue = 0.00 Then
+            warningCustom("Kurs can't blank")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim id_coa_tag As String = SLEUnit.EditValue.ToString
                 Dim transaction_date As String = DateTime.Parse(DESalesDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim due_date As String = DateTime.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim kurs_trans As String = decimalSQL(TEKurs.EditValue.ToString)
                 Dim note As String = addSlashes(MENote.Text)
                 Dim value As String = decimalSQL(TxtTotal.EditValue.ToString)
                 Dim id_comp_normal As String = SLEStoreNormal.EditValue.ToString
+                Dim normal_sales As String = decimalSQL(TxtNormalSales.EditValue.ToString)
+                Dim pros_normal As String = decimalSQL(TxtProsStoreNormal.EditValue.ToString)
+                Dim pros_normal_comp As String = decimalSQL(TxtProsHutangNormal.EditValue.ToString)
                 Dim rev_normal As String = decimalSQL(TxtRevGrossNormal.EditValue.ToString)
                 Dim rev_normal_ppn_pros As String = decimalSQL(TxtProsPPNNormal.EditValue.ToString)
                 Dim rev_normal_ppn As String = decimalSQL(TxtPPNNormal.EditValue.ToString)
@@ -718,6 +762,9 @@ Public Class FormSalesBranchDet
                 Dim comp_rev_normal_acc As String = SLEAccAPNormal.EditValue.ToString
                 Dim comp_rev_normal_note As String = addSlashes(TxtAPNoteNormal.Text)
                 Dim id_comp_sale As String = SLEStoreSale.EditValue.ToString
+                Dim sale_sales As String = decimalSQL(TxtSaleSales.EditValue.ToString)
+                Dim pros_sale As String = decimalSQL(TxtProsStoreSale.EditValue.ToString)
+                Dim pros_sale_comp As String = decimalSQL(TxtProsHutangSale.EditValue.ToString)
                 Dim rev_sale As String = decimalSQL(TxtRevGrossSale.EditValue.ToString)
                 Dim rev_sale_ppn_pros As String = decimalSQL(TxtProsPPNSale.EditValue.ToString)
                 Dim rev_sale_ppn As String = decimalSQL(TxtPPNSale.EditValue.ToString)
@@ -736,10 +783,12 @@ Public Class FormSalesBranchDet
                 `created_date`,
                 `transaction_date`,
                 `due_date`,
+                `kurs_trans`,
                 `id_report_status`,
                 `note`,
                 `value` ,
                 `id_comp_normal`,
+                `normal_sales`,
                 `pros_normal`,
                 `pros_normal_comp`,
                 `rev_normal`,
@@ -754,6 +803,7 @@ Public Class FormSalesBranchDet
                 `comp_rev_normal_acc`,
                 `comp_rev_normal_note`,
                 `id_comp_sale`,
+                `sale_sales`,
                 `pros_sale`,
                 `pros_sale_comp`,
                 `rev_sale`,
@@ -772,12 +822,14 @@ Public Class FormSalesBranchDet
                 NOW(),
                 '" + transaction_date + "',
                 '" + due_date + "',
+                '" + kurs_trans + "',
                 '" + id_report_status + "',
                 '" + note + "',
                 '" + value + "' ,
                 '" + id_comp_normal + "',
-                '0',
-                '0',
+                '" + normal_sales + "',
+                '" + pros_normal + "',
+                '" + pros_normal_comp + "',
                 ROUND('" + rev_normal + "',2),
                 '" + rev_normal_ppn_pros + "',
                 ROUND('" + rev_normal_ppn + "',2),
@@ -790,8 +842,9 @@ Public Class FormSalesBranchDet
                 '" + comp_rev_normal_acc + "',
                 '" + comp_rev_normal_note + "',
                 '" + id_comp_sale + "',
-                '0',
-                '0',
+                '" + sale_sales + "',
+                '" + pros_sale + "',
+                '" + pros_sale_comp + "',
                 ROUND('" + rev_sale + "',2),
                 '" + rev_sale_ppn_pros + "',
                 ROUND('" + rev_sale_ppn + "',2),
@@ -915,5 +968,43 @@ Public Class FormSalesBranchDet
         FormReportMark.is_view = is_view
         FormReportMark.id_report = id
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub TxtNormalSales_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNormalSales.EditValueChanged
+        calculate()
+    End Sub
+
+    Private Sub TxtSaleSales_EditValueChanged(sender As Object, e As EventArgs) Handles TxtSaleSales.EditValueChanged
+        calculate()
+    End Sub
+
+    Private Sub BtnGetKurs_Click(sender As Object, e As EventArgs) Handles BtnGetKurs.Click
+        load_kurs()
+    End Sub
+
+    Sub load_kurs()
+        If action = "ins" Then
+            Cursor = Cursors.WaitCursor
+            'check kurs first
+            Dim end_period As String = "1991-01-01"
+            Try
+                end_period = DateTime.Parse(DESalesDate.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Dim query_kurs As String = "SELECT * FROM tb_kurs_trans a WHERE DATE(a.created_date) <= '" + end_period + "' ORDER BY a.created_date DESC LIMIT 1"
+            Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+            If Not data_kurs.Rows.Count > 0 Then
+                warningCustom("Get kurs error.")
+                TEKurs.EditValue = 0.00
+            Else
+                TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DESalesDate_EditValueChanged(sender As Object, e As EventArgs) Handles DESalesDate.EditValueChanged
+        load_kurs()
     End Sub
 End Class
