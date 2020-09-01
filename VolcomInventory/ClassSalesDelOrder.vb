@@ -400,11 +400,12 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
 
-        removeAppList("43", id_report_par, id_status_reportx_par)
-        insertFinalComment("43", id_report_par, id_status_reportx_par, "Complete by scan")
-        sendEmailConfirmation(dts.Rows(0)("id_commerce_type").ToString, id_report_par, id_status_reportx_par)
-        sendEmailConfirmationforConceptStore(dts.Rows(0)("is_use_unique_code").ToString, id_report_par, "43", id_status_reportx_par)
-        updateStatusOnlineStore(dts.Rows(0)("id_commerce_type").ToString, dts.Rows(0)("id_comp").ToString, id_report_par, dts.Rows(0)("id_sales_order_ol_shop").ToString)
+        'removeAppList("43", id_report_par, id_status_reportx_par)
+        'insertFinalComment("43", id_report_par, id_status_reportx_par, "Complete by scan")
+        'sendEmailConfirmation(dts.Rows(0)("id_commerce_type").ToString, id_report_par, id_status_reportx_par)
+        'sendEmailConfirmationforConceptStore(dts.Rows(0)("is_use_unique_code").ToString, id_report_par, "43", id_status_reportx_par)
+        'updateStatusOnlineStore(dts.Rows(0)("id_commerce_type").ToString, dts.Rows(0)("id_comp").ToString, id_report_par, dts.Rows(0)("id_sales_order_ol_shop").ToString)
+
         '
         Dim query As String = String.Format("UPDATE tb_pl_sales_order_del SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_sales_order_del ='{1}'", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")

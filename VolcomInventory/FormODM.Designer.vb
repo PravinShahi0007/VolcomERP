@@ -101,6 +101,7 @@ Partial Class FormODM
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -494,7 +495,7 @@ Partial Class FormODM
         Me.BComplete.Name = "BComplete"
         Me.BComplete.Size = New System.Drawing.Size(1072, 32)
         Me.BComplete.TabIndex = 14
-        Me.BComplete.Text = "COMPLETE + PRINT"
+        Me.BComplete.Text = "COMPLETE"
         Me.BComplete.Visible = False
         '
         'BReset
@@ -546,6 +547,7 @@ Partial Class FormODM
         'XTPHistory
         '
         Me.XTPHistory.Controls.Add(Me.GCListHistory)
+        Me.XTPHistory.Controls.Add(Me.BPrint)
         Me.XTPHistory.Controls.Add(Me.BCompleteHistory)
         Me.XTPHistory.Controls.Add(Me.PanelControl2)
         Me.XTPHistory.Name = "XTPHistory"
@@ -559,7 +561,7 @@ Partial Class FormODM
         Me.GCListHistory.MainView = Me.GVListHistory
         Me.GCListHistory.Name = "GCListHistory"
         Me.GCListHistory.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCListHistory.Size = New System.Drawing.Size(1072, 480)
+        Me.GCListHistory.Size = New System.Drawing.Size(1072, 448)
         Me.GCListHistory.TabIndex = 17
         Me.GCListHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListHistory})
         '
@@ -960,6 +962,26 @@ Partial Class FormODM
         Me.LabelControl3.TabIndex = 0
         Me.LabelControl3.Text = "Document Number"
         '
+        'BPrint
+        '
+        Me.BPrint.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrint.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrint.Appearance.Options.UseBackColor = True
+        Me.BPrint.Appearance.Options.UseFont = True
+        Me.BPrint.Appearance.Options.UseForeColor = True
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BPrint.Location = New System.Drawing.Point(0, 492)
+        Me.BPrint.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrint.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrint.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrint.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(1072, 32)
+        Me.BPrint.TabIndex = 18
+        Me.BPrint.Text = "PRINT"
+        Me.BPrint.Visible = False
+        '
         'FormODM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1084,4 +1106,5 @@ Partial Class FormODM
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class

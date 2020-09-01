@@ -217,7 +217,7 @@ WHERE sc.id_report_status!=5"
         Dim q As String = "SELECT *
 FROM (
     SELECT 0 AS NO,sts.id_report_status,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
-    c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
+    c.id_comp_group, md.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
@@ -243,6 +243,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListHistory.DataSource = dt
         GVListHistory.BestFitColumns()
+        load_button()
     End Sub
 
     'complete or print
@@ -250,8 +251,8 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim q As String = "SELECT *
 FROM (
     SELECT 0 AS NO,sts.id_report_status,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
-    c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
-    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
+    c.id_comp_group, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
+    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weigh, md.awbill_no
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
     INNER JOIN tb_odm_sc_det scd ON scd.`id_del_manifest`=md.`id_del_manifest` 
@@ -270,10 +271,17 @@ FROM (
 	    LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
 	    GROUP BY z2.id_combine
     ) AS z ON pdelc.combine_number = z.combine_number
-    WHERE sc.`id_odm_sc`='" & SLEScanList.EditValue.ToString & "'
+    WHERE sc.`id_odm_sc`='" & SLEScanList.EditValue.ToString & "' AND pdel.id_report_status!=6
 ) AS tb
 ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            BPrint.Visible = False
+            BCompleteHistory.Visible = True
+        Else
+            BPrint.Visible = True
+            BCompleteHistory.Visible = False
+        End If
     End Sub
 
     Private Sub BViewHistory_Click(sender As Object, e As EventArgs) Handles BViewHistory.Click
@@ -284,15 +292,14 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     Private Sub BCompleteHistory_Click(sender As Object, e As EventArgs) Handles BCompleteHistory.Click
         Try
             FormMain.SplashScreenManager1.ShowWaitForm()
-            For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
-                If GVListHistory.GetRowCellValue(i, "").ToString Then
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+            For i As Integer = 0 To GVListHistory.RowCount - 1 - GetGroupRowCount(GVListHistory)
+                If GVListHistory.GetRowCellValue(i, "id_report_status").ToString = "3" Then
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVListHistory.RowCount - 1 - GetGroupRowCount(GVListHistory)).ToString)
                     Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                    stt.changeStatus(GVListHistory.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
                 End If
             Next
             FormMain.SplashScreenManager1.CloseWaitForm()
-
             'recheck
             load_odm_det()
         Catch ex As Exception
