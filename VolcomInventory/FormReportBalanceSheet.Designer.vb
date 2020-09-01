@@ -138,7 +138,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPPNPPH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTarif = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -146,7 +146,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAlamatNPWP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCPajak = New DevExpress.XtraEditors.PanelControl()
         Me.SLETaxCat = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -1204,10 +1204,11 @@ Partial Class FormReportBalanceSheet
         '
         'GVTaxReport
         '
-        Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnTaxCat, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn24, Me.GridColumnDesc, Me.GridColumn9, Me.GridColumn23, Me.GridColumnPPNPPH, Me.GridColumnTarif, Me.GridColumnDPP, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
+        Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnTaxCat, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn24, Me.GridColumnDesc, Me.GridColumnVendorCode, Me.GridColumn23, Me.GridColumnPPNPPH, Me.GridColumnTarif, Me.GridColumnDPP, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumnAlamatNPWP, Me.GridColumn17})
         Me.GVTaxReport.GridControl = Me.GCTaxReport
         Me.GVTaxReport.GroupCount = 1
         Me.GVTaxReport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", Me.GridColumnTarif, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dpp", Me.GridColumnDPP, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Max, "tax_report", Me.GridColumnDesc, "Total {0} :")})
+        Me.GVTaxReport.LevelIndent = 0
         Me.GVTaxReport.Name = "GVTaxReport"
         Me.GVTaxReport.OptionsView.ColumnAutoWidth = False
         Me.GVTaxReport.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
@@ -1219,6 +1220,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridColumnTaxCat.Caption = "Tax Category"
         Me.GridColumnTaxCat.FieldName = "tax_report"
+        Me.GridColumnTaxCat.MinWidth = 55
         Me.GridColumnTaxCat.Name = "GridColumnTaxCat"
         Me.GridColumnTaxCat.OptionsColumn.AllowEdit = False
         Me.GridColumnTaxCat.OptionsColumn.ReadOnly = True
@@ -1237,28 +1239,33 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridColumn5.Caption = "Journal No."
         Me.GridColumn5.FieldName = "jurnal_no"
+        Me.GridColumn5.MinWidth = 55
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.Width = 81
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Date Reference"
-        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn6.Caption = "Date Reff"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn6.FieldName = "date_reference"
+        Me.GridColumn6.MinWidth = 70
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 80
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Refference"
+        Me.GridColumn7.Caption = "Reff"
         Me.GridColumn7.FieldName = "number"
+        Me.GridColumn7.MinWidth = 60
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ReadOnly = True
@@ -1267,13 +1274,15 @@ Partial Class FormReportBalanceSheet
         '
         'GridColumn24
         '
-        Me.GridColumn24.Caption = "Invoice Number"
+        Me.GridColumn24.Caption = "Inv Number"
         Me.GridColumn24.FieldName = "inv_number"
+        Me.GridColumn24.MinWidth = 100
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.OptionsColumn.ReadOnly = True
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 3
+        Me.GridColumn24.Width = 100
         '
         'GridColumnDesc
         '
@@ -1285,37 +1294,38 @@ Partial Class FormReportBalanceSheet
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 4
         '
-        'GridColumn9
+        'GridColumnVendorCode
         '
-        Me.GridColumn9.Caption = "Vendor Code"
-        Me.GridColumn9.FieldName = "comp_number"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.OptionsColumn.ReadOnly = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumnVendorCode.Caption = "Vendor Code"
+        Me.GridColumnVendorCode.FieldName = "comp_number"
+        Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
+        Me.GridColumnVendorCode.OptionsColumn.AllowEdit = False
+        Me.GridColumnVendorCode.OptionsColumn.ReadOnly = True
         '
         'GridColumn23
         '
         Me.GridColumn23.Caption = "Vendor"
         Me.GridColumn23.FieldName = "comp_name"
+        Me.GridColumn23.MinWidth = 140
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.OptionsColumn.ReadOnly = True
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 6
+        Me.GridColumn23.VisibleIndex = 5
+        Me.GridColumn23.Width = 160
         '
         'GridColumnPPNPPH
         '
-        Me.GridColumnPPNPPH.Caption = "PPH (%)"
-        Me.GridColumnPPNPPH.DisplayFormat.FormatString = "N1"
+        Me.GridColumnPPNPPH.Caption = "(%)"
+        Me.GridColumnPPNPPH.DisplayFormat.FormatString = "{0:N1} %"
         Me.GridColumnPPNPPH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPPNPPH.FieldName = "pph_percent"
+        Me.GridColumnPPNPPH.MinWidth = 35
         Me.GridColumnPPNPPH.Name = "GridColumnPPNPPH"
         Me.GridColumnPPNPPH.OptionsColumn.AllowEdit = False
         Me.GridColumnPPNPPH.OptionsColumn.ReadOnly = True
         Me.GridColumnPPNPPH.Visible = True
-        Me.GridColumnPPNPPH.VisibleIndex = 7
+        Me.GridColumnPPNPPH.VisibleIndex = 6
         '
         'GridColumnTarif
         '
@@ -1323,12 +1333,14 @@ Partial Class FormReportBalanceSheet
         Me.GridColumnTarif.DisplayFormat.FormatString = "N2"
         Me.GridColumnTarif.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTarif.FieldName = "pph"
+        Me.GridColumnTarif.MinWidth = 70
         Me.GridColumnTarif.Name = "GridColumnTarif"
         Me.GridColumnTarif.OptionsColumn.AllowEdit = False
         Me.GridColumnTarif.OptionsColumn.ReadOnly = True
         Me.GridColumnTarif.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", "{0:N2}")})
         Me.GridColumnTarif.Visible = True
-        Me.GridColumnTarif.VisibleIndex = 8
+        Me.GridColumnTarif.VisibleIndex = 7
+        Me.GridColumnTarif.Width = 80
         '
         'GridColumnDPP
         '
@@ -1336,22 +1348,26 @@ Partial Class FormReportBalanceSheet
         Me.GridColumnDPP.DisplayFormat.FormatString = "N2"
         Me.GridColumnDPP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDPP.FieldName = "dpp"
+        Me.GridColumnDPP.MinWidth = 70
         Me.GridColumnDPP.Name = "GridColumnDPP"
         Me.GridColumnDPP.OptionsColumn.AllowEdit = False
         Me.GridColumnDPP.OptionsColumn.ReadOnly = True
         Me.GridColumnDPP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dpp", "{0:N2}")})
         Me.GridColumnDPP.Visible = True
-        Me.GridColumnDPP.VisibleIndex = 9
+        Me.GridColumnDPP.VisibleIndex = 8
+        Me.GridColumnDPP.Width = 80
         '
         'GridColumn13
         '
         Me.GridColumn13.Caption = "NPWP"
         Me.GridColumn13.FieldName = "npwp"
+        Me.GridColumn13.MinWidth = 80
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 10
+        Me.GridColumn13.VisibleIndex = 9
+        Me.GridColumn13.Width = 80
         '
         'GridColumn14
         '
@@ -1364,21 +1380,23 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridColumn15.Caption = "Nama di Identitas"
         Me.GridColumn15.FieldName = "npwp_name"
+        Me.GridColumn15.MinWidth = 140
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.ReadOnly = True
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 11
+        Me.GridColumn15.VisibleIndex = 10
+        Me.GridColumn15.Width = 140
         '
-        'GridColumn16
+        'GridColumnAlamatNPWP
         '
-        Me.GridColumn16.Caption = "Alamat"
-        Me.GridColumn16.FieldName = "npwp_address"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.AllowEdit = False
-        Me.GridColumn16.OptionsColumn.ReadOnly = True
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 12
+        Me.GridColumnAlamatNPWP.Caption = "Alamat"
+        Me.GridColumnAlamatNPWP.FieldName = "npwp_address"
+        Me.GridColumnAlamatNPWP.Name = "GridColumnAlamatNPWP"
+        Me.GridColumnAlamatNPWP.OptionsColumn.AllowEdit = False
+        Me.GridColumnAlamatNPWP.OptionsColumn.ReadOnly = True
+        Me.GridColumnAlamatNPWP.Visible = True
+        Me.GridColumnAlamatNPWP.VisibleIndex = 11
         '
         'GridColumn17
         '
@@ -1748,14 +1766,14 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVendorCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPPNPPH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTarif As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDPP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAlamatNPWP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SLETaxTagCOA As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
