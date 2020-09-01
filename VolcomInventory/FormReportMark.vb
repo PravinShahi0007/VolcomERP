@@ -5825,7 +5825,8 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
                 INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.`id_item_req_det`
                 INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
-                WHERE d.id_item_del=" + id_report + " AND rd.is_store_request='2'
+                WHERE d.id_item_del=" + id_report + " 
+                -- AND rd.is_store_request='2'
                 UNION ALL
                 SELECT IF(rd.is_store_request=1,'" & id_purc_store & "',r.id_departement) AS id_departement, 2, dd.id_item, getAvgCost(dd.id_item), " + report_mark_type + " AS rmt, d.id_item_del, dd.qty, NOW(), 1
                 FROM tb_item_del d
