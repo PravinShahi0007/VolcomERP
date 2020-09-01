@@ -95,7 +95,7 @@
         Dispose()
     End Sub
 
-    Function generate_query(id_store As String, type_front As String, type_end As String, in_design As String) As String
+    Function generate_column(id_store As String, type_front As String, type_end As String, in_design As String) As DataTable
         'select
         Dim q_select As String = ""
 
@@ -177,11 +177,11 @@
         'column additional
         Dim a_column As String = execute_query("SELECT GROUP_CONCAT(CONCAT(column_name, ' AS `', alias_name, '`')) AS `column` FROM tb_design_column_additional", 0, True, "", "", "", "")
 
-        Dim query As String = ""
+        Dim data As DataTable = New DataTable
 
         If Not q_select = "" Then
             'query
-            query = "
+            Dim query As String = "
                 SELECT id_design, id_product, " + q_select.Substring(0, q_select.Length - 2) + "
                 FROM (
 	                SELECT d.id_design, p.id_product, " + a_column + ",
@@ -196,9 +196,40 @@
 	                GROUP BY p.id_product
                 ) tb
             "
+
+            data = execute_query(query, -1, True, "", "", "", "")
+
+            If data.Rows.Count > 0 Then
+                'remove blank
+                For i = 0 To data.Rows.Count - 1
+                    For j = 0 To data.Columns.Count - 1
+                        If Not data.Columns(j).ColumnName.ToString = "id_design" And Not data.Columns(j).ColumnName.ToString = "id_product" Then
+                            Dim value() As String = data.Rows(i)(data.Columns(j)).ToString.Split(vbLf)
+
+                            Dim new_value As List(Of String) = New List(Of String)
+
+                            For k = 0 To value.Count - 1
+                                If Not value(k).ToString = "" Then
+                                    new_value.Add(value(k).ToString)
+                                End If
+                            Next
+
+                            data.Rows(i)(data.Columns(j)) = ""
+
+                            For k = 0 To new_value.Count - 1
+                                data.Rows(i)(data.Columns(j)) += new_value(k).ToString
+
+                                If k < (new_value.Count - 1) Then
+                                    data.Rows(i)(data.Columns(j)) += vbLf
+                                End If
+                            Next
+                        End If
+                    Next
+                Next
+            End If
         End If
 
-        Return query
+        Return data
     End Function
 
     Private Sub GVCol_DoubleClick(sender As Object, e As EventArgs) Handles GVCol.DoubleClick
@@ -257,7 +288,43 @@
 
             execute_non_query("DELETE FROM tb_design_column_mapping WHERE id_design_column_list = " + id_design_column_list + " AND column_type_front = " + column_type_front + " AND column_type_end = " + column_type_end, True, "", "", "", "")
 
-            execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_type_front, column_type_end, column_mapping) VALUES (" + id_design_column_list + ", " + column_type_front + ", " + column_type_end + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i)).ToString) + "')", True, "", "", "", "")
+            'insert to all type
+            Dim data_division As DataTable = execute_query("
+                SELECT id_code_detail, `code`
+                FROM tb_m_code_detail
+                WHERE id_code = 32 AND id_code_detail NOT IN (15553, 15624)
+                ORDER BY id_code_detail ASC
+            ", -1, True, "", "", "", "")
+
+            Dim data_subcategory As DataTable = execute_query("
+                SELECT id_code_detail, `code`
+                FROM tb_m_code_detail
+                WHERE id_code = 31
+                ORDER BY id_code_detail ASC
+            ", -1, True, "", "", "", "")
+
+            'combine
+            Dim data As DataTable = New DataTable
+
+            data.Columns.Add("code", GetType(String))
+            data.Columns.Add("id_code_detail_front", GetType(Integer))
+            data.Columns.Add("id_code_detail_end", GetType(Integer))
+
+            For j = 0 To data_division.Rows.Count - 1
+                For k = 0 To data_subcategory.Rows.Count - 1
+                    data.Rows.Add(
+                        data_division.Rows(j)("code").ToString + " " + data_subcategory.Rows(k)("code").ToString,
+                        data_division.Rows(j)("id_code_detail").ToString,
+                        data_subcategory.Rows(k)("id_code_detail").ToString()
+                    )
+                Next
+            Next
+
+            For j = 0 To data.Rows.Count - 1
+                execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_type_front, column_type_end, column_mapping) VALUES (" + id_design_column_list + ", " + data.Rows(j)("id_code_detail_front").ToString + ", " + data.Rows(j)("id_code_detail_end").ToString + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i)).ToString) + "')", True, "", "", "", "")
+            Next
+
+            'execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_type_front, column_type_end, column_mapping) VALUES (" + id_design_column_list + ", " + column_type_front + ", " + column_type_end + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i)).ToString) + "')", True, "", "", "", "")
 
             in_design_column_list += id_design_column_list + ", "
         Next
