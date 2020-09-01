@@ -26,7 +26,7 @@
             If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
                 TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
             Else
-                TxtDept.Text = get_departement_x(id_departement_user, "1")
+                TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
             End If
 
             TxtRequestedBy.Text = get_user_identify(id_user, "1")
