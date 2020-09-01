@@ -208,7 +208,7 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        If id_report_status = "6" Then
+        If id_report_status = "2" Then
             Dim title As String = ""
             Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
             Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
