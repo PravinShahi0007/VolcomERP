@@ -26,7 +26,7 @@
             If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
                 TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
             Else
-                TxtDept.Text = get_departement_x(id_departement_user, "1")
+                TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
             End If
 
             TxtRequestedBy.Text = get_user_identify(id_user, "1")
@@ -67,7 +67,11 @@
                 XTPDetail.PageVisible = False
                 rmt = "154"
             End If
-
+            '
+            If is_view = "1" Then
+                BtnCancell.Visible = False
+            End If
+            '
             viewDetail()
             allow_status()
         End If
@@ -366,7 +370,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
                 Dim note As String = addSlashes(MENote.Text)
 
                 'query main
-                Dim qm As String = "INSERT INTO tb_item_req(id_departement, created_date, created_by, note, id_report_status, is_for_store) VALUES (" + id_dep + ", NOW(), " + id_user + ", '" + note + "', 6, '" + is_for_store + "'); SELECT LAST_INSERT_ID(); "
+                Dim qm As String = "INSERT INTO tb_item_req(id_departement, created_date, created_by, note, id_report_status, is_for_store) VALUES (" + id_dep + ", NOW(), " + id_user + ", '" + note + "', 1, '" + is_for_store + "'); SELECT LAST_INSERT_ID(); "
                 id = execute_query(qm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + "," + rmt + "); ", True, "", "", "", "")
 

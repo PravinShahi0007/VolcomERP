@@ -15223,4 +15223,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBABGRoyaltyZone_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBABGRoyaltyZone.LinkClicked
+        Try
+            FormABGRoyaltyZone.MdiParent = Me
+            FormABGRoyaltyZone.Show()
+            FormABGRoyaltyZone.WindowState = FormWindowState.Maximized
+            FormABGRoyaltyZone.Focus()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
