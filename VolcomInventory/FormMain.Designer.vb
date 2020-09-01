@@ -225,6 +225,7 @@ Partial Class FormMain
         Me.NBProductForBOF = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPriceForSync = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBDesignColumn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFabrication = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGTransaction = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBSampleBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSample = New DevExpress.XtraNavBar.NavBarItem()
@@ -492,7 +493,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBFabrication = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1573,13 +1573,13 @@ Partial Class FormMain
         '
         'NBPurcReq
         '
-        Me.NBPurcReq.Caption = "Purchase Request"
+        Me.NBPurcReq.Caption = "Purchase Request (Admin)"
         Me.NBPurcReq.Name = "NBPurcReq"
         Me.NBPurcReq.SmallImage = CType(resources.GetObject("NBPurcReq.SmallImage"), System.Drawing.Image)
         '
         'NBItemRequest
         '
-        Me.NBItemRequest.Caption = "Item Request"
+        Me.NBItemRequest.Caption = "Item Request (Admin)"
         Me.NBItemRequest.Name = "NBItemRequest"
         Me.NBItemRequest.SmallImage = CType(resources.GetObject("NBItemRequest.SmallImage"), System.Drawing.Image)
         '
@@ -1930,7 +1930,6 @@ Partial Class FormMain
         'NBGMaster
         '
         Me.NBGMaster.Caption = "Master"
-        Me.NBGMaster.Expanded = True
         Me.NBGMaster.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
         Me.NBGMaster.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSeason), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSeasonDelivery), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSeasonNonMerch), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBArea), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOVH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUom), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCode), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCodeTemplate), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRawMatCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProduct), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetCode), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPrintBarcode), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGCodeReplace), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCodeReplacementPrint), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCodeReplacementVerify), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMasterPrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPriceList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMasterSamplePrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProductForBOF), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPriceForSync), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignColumn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFabrication)})
         Me.NBGMaster.LargeImage = CType(resources.GetObject("NBGMaster.LargeImage"), System.Drawing.Image)
@@ -2080,6 +2079,12 @@ Partial Class FormMain
         Me.NBDesignColumn.Caption = "Design Column"
         Me.NBDesignColumn.Name = "NBDesignColumn"
         Me.NBDesignColumn.SmallImage = CType(resources.GetObject("NBDesignColumn.SmallImage"), System.Drawing.Image)
+        '
+        'NBFabrication
+        '
+        Me.NBFabrication.Caption = "Fabrication"
+        Me.NBFabrication.Name = "NBFabrication"
+        Me.NBFabrication.SmallImage = CType(resources.GetObject("NBFabrication.SmallImage"), System.Drawing.Image)
         '
         'NBGTransaction
         '
@@ -2327,7 +2332,7 @@ Partial Class FormMain
         '
         'NBPurcReqAdmin
         '
-        Me.NBPurcReqAdmin.Caption = "Purchase Request (Admin)"
+        Me.NBPurcReqAdmin.Caption = "Purchase Request (Purchasing)"
         Me.NBPurcReqAdmin.Name = "NBPurcReqAdmin"
         Me.NBPurcReqAdmin.SmallImage = CType(resources.GetObject("NBPurcReqAdmin.SmallImage"), System.Drawing.Image)
         '
@@ -3820,12 +3825,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBFabrication
-        '
-        Me.NBFabrication.Caption = "Fabrication"
-        Me.NBFabrication.Name = "NBFabrication"
-        Me.NBFabrication.SmallImage = CType(resources.GetObject("NBFabrication.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '

@@ -10105,6 +10105,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPurcReqList" Then
             'Purchase request IC
             FormPurcReqList.load_req()
+        ElseIf formName = "FormPurcReq" Then
+            FormPurcReq.load_dep()
+            FormPurcReq.load_req()
+            FormPurcReq.load_status()
+            '
+            FormPurcReq.check_menu()
         ElseIf formName = "FormBuktiPickup" Then
             FormBuktiPickup.load_form()
         ElseIf formName = "FormTrackingReturn" Then
