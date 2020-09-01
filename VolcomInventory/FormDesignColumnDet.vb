@@ -39,24 +39,31 @@
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
         If Not TEColumnName.Text = "" Then
-            If id_design_column = "-1" Then
-                'insert
-                id_design_column = execute_query("
+            'check database
+            Dim total As String = execute_query("SELECT COUNT(*) AS total FROM tb_design_column WHERE column_name = '" + TEColumnName.EditValue.ToString + "' AND id_design_column_category = " + id_design_column_category + " AND id_design_column <> " + id_design_column, 0, True, "", "", "", "")
+
+            If total = "0" Then
+                If id_design_column = "-1" Then
+                    'insert
+                    id_design_column = execute_query("
                     INSERT INTO tb_design_column (id_design_column_category, column_name, id_dependency, is_lookup) VALUES (" + id_design_column_category + ", '" + addSlashes(TEColumnName.EditValue) + "', " + If(SLUEDependency.EditValue.ToString = "", "NULL", SLUEDependency.EditValue.ToString) + ", " + If(CEIsLookUp.Checked, "1", "2") + "); SELECT LAST_INSERT_ID();
                 ", 0, True, "", "", "", "")
 
-                infoCustom("Saved.")
+                    infoCustom("Saved.")
 
-                Close()
-            Else
-                'update
-                execute_non_query("
+                    Close()
+                Else
+                    'update
+                    execute_non_query("
                     UPDATE tb_design_column SET id_design_column_category = '" + id_design_column_category + "', column_name = '" + addSlashes(TEColumnName.EditValue) + "', id_dependency = " + If(SLUEDependency.EditValue.ToString = "", "NULL", SLUEDependency.EditValue.ToString) + ", is_lookup = " + If(CEIsLookUp.Checked, "1", "2") + " WHERE id_design_column = " + id_design_column + "
                 ", True, "", "", "", "")
 
-                infoCustom("Saved.")
+                    infoCustom("Saved.")
 
-                Close()
+                    Close()
+                End If
+            Else
+                errorCustom("Column name can't be same.")
             End If
         Else
             errorCustom("Column name can't be blank.")

@@ -53,6 +53,7 @@ Partial Class FormAccountingWorksheet
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -260,9 +261,9 @@ Partial Class FormAccountingWorksheet
         Me.GVAccountingWorksheet.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVAccountingWorksheet.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVAccountingWorksheet.AppearancePrint.Row.Options.UseFont = True
-        Me.GVAccountingWorksheet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn4, Me.GridColumn3, Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVAccountingWorksheet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.GVAccountingWorksheet.GridControl = Me.GCAccountingWorksheet
-        Me.GVAccountingWorksheet.GroupCount = 2
+        Me.GVAccountingWorksheet.GroupCount = 3
         Me.GVAccountingWorksheet.GroupFormat = "[#image]{1} {2}"
         Me.GVAccountingWorksheet.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "beginning", Me.GridColumn2, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ending", Me.GridColumn9, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "acc_name", Me.GridColumn1, "")})
         Me.GVAccountingWorksheet.LevelIndent = 0
@@ -273,7 +274,7 @@ Partial Class FormAccountingWorksheet
         Me.GVAccountingWorksheet.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVAccountingWorksheet.OptionsView.ShowFooter = True
         Me.GVAccountingWorksheet.OptionsView.ShowGroupPanel = False
-        Me.GVAccountingWorksheet.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVAccountingWorksheet.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn5, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn16
         '
@@ -424,6 +425,14 @@ Partial Class FormAccountingWorksheet
         Me.LabelControl5.TabIndex = 11
         Me.LabelControl5.Text = "Unit"
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Unit"
+        Me.GridColumn5.FieldName = "tag_description"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        '
         'FormAccountingWorksheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -484,4 +493,5 @@ Partial Class FormAccountingWorksheet
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

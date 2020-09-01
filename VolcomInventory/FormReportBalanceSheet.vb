@@ -481,7 +481,27 @@ WHERE DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).
     End Sub
 
     Private Sub BPrintPajak_Click(sender As Object, e As EventArgs) Handles BPrintPajak.Click
+        GridColumnAlamatNPWP.Visible = False
+        Dim font_row_default As New Font(GVTaxReport.AppearancePrint.Row.Font.FontFamily, GVTaxReport.AppearancePrint.Row.Font.Size, GVTaxReport.AppearancePrint.Row.Font.Style)
+        Dim font_row_style As New Font("Segoe UI", 6.5, FontStyle.Regular)
+        Dim font_row_name As New Font("Segoe UI", 6, FontStyle.Regular)
+
+        GVTaxReport.AppearancePrint.HeaderPanel.Font = font_row_style
+        GVTaxReport.AppearancePrint.FooterPanel.Font = font_row_style
+        GVTaxReport.AppearancePrint.GroupFooter.Font = font_row_style
+        GVTaxReport.AppearancePrint.Row.Font = font_row_style
+        GVTaxReport.Columns("comp_name").AppearanceCell.Font = font_row_name
+        GVTaxReport.Columns("npwp_name").AppearanceCell.Font = font_row_name
+        '
         print_raw(GCTaxReport, SLETaxCat.Text & " (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+        '
+        GVTaxReport.AppearancePrint.Row.Font = font_row_default
+        GVTaxReport.AppearancePrint.HeaderPanel.Font = font_row_default
+        GVTaxReport.AppearancePrint.FooterPanel.Font = font_row_default
+        GVTaxReport.AppearancePrint.GroupFooter.Font = font_row_default
+        GVTaxReport.Columns("comp_name").AppearanceCell.Font = font_row_default
+        GVTaxReport.Columns("npwp_name").AppearanceCell.Font = font_row_default
+        GridColumnAlamatNPWP.Visible = True
     End Sub
 
     Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click

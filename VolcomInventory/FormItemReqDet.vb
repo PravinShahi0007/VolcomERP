@@ -26,7 +26,7 @@
             If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
                 TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
             Else
-                TxtDept.Text = get_departement_x(id_departement_user, "1")
+                TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
             End If
 
             TxtRequestedBy.Text = get_user_identify(id_user, "1")
@@ -292,7 +292,8 @@
         If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
             id_dep = FormItemReq.SLEDepartement.EditValue.ToString
         Else
-            id_dep = id_departement_user
+            'id_dep = id_departement_user
+            id_dep = FormItemReq.SLEDepartement.EditValue.ToString
         End If
 
         Dim biaya_ok As Boolean = True
@@ -335,8 +336,9 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
                 GVData.SetRowCellValue(i, "stt", "Product not found;")
                 cond_data = False
             Else
+                'If GVData.GetRowCellValue(i, "qty") > dt(0)("qty") And GVData.GetRowCellValue(i, "is_store_request") = "no" Then
                 If GVData.GetRowCellValue(i, "qty") > dt(0)("qty") And GVData.GetRowCellValue(i, "is_store_request") = "no" Then
-                    GVData.SetRowCellValue(i, "stt", "Qty can't exceed " + dt(0)("qty").ToString + ";")
+                    GVData.SetRowCellValue(i, "stt", "Qty available : " + dt(0)("qty").ToString + ";")
                     cond_data = False
                 Else
                     GVData.SetRowCellValue(i, "stt", "")
@@ -353,7 +355,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
         ElseIf Not cond_data Then
             GridColumnStt.VisibleIndex = 20
             GVData.BestFitColumns()
-            warningCustom("Can't save, some item exceed limit qty")
+            warningCustom("Can't save, some item qty not available")
         ElseIf Not biaya_ok Then
             warningCustom("Please contact accounting to setup : " & biaya_ok_note)
         Else
