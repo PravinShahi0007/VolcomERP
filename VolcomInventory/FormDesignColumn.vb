@@ -276,4 +276,10 @@
             stopCustom("Category " + SLUECategory.Text + " does not require column mapping.")
         End If
     End Sub
+
+    Private Sub GVDesignColumn_EndSorting(sender As Object, e As EventArgs) Handles GVDesignColumn.EndSorting
+        For i = 0 To GVDesignColumn.SortedColumns.Count - 1
+            GVDesignColumn.FocusedColumn = GVDesignColumn.SortedColumns.Item(i)
+        Next
+    End Sub
 End Class

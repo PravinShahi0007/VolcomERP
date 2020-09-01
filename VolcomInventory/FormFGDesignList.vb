@@ -641,11 +641,9 @@
                         in_design += list_code(i).Rows(j)("id_design").ToString + ", "
                     Next
 
-                    Dim q_generate As String = FormDesignColumnMapping.generate_query("1", list_code(i).Rows(0)("column_type_front").ToString, list_code(i).Rows(0)("column_type_end").ToString, in_design.Substring(0, in_design.Length - 2))
+                    Dim data_insert As DataTable = FormDesignColumnMapping.generate_column("1", list_code(i).Rows(0)("column_type_front").ToString, list_code(i).Rows(0)("column_type_end").ToString, in_design.Substring(0, in_design.Length - 2))
 
-                    If Not q_generate = "" Then
-                        Dim data_insert As DataTable = execute_query(q_generate, -1, True, "", "", "", "")
-
+                    If data_insert.Rows.Count > 0 Then
                         For j = 0 To data_insert.Rows.Count - 1
                             For k = 0 To GVDesign.RowCount - 1
                                 If data_insert.Rows(j)("id_design").ToString = GVDesign.GetRowCellValue(k, "id_design").ToString Then

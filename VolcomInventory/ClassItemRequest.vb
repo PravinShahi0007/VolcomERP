@@ -31,7 +31,8 @@
         SELECT IF(rd.is_store_request=2,r.id_departement,'" & id_purc_store & "'), " & id_storage_cat & ", rd.id_item, getAvgCost(rd.id_item), " & rmt & ", r.id_item_req, rd.qty, NOW(), 1
         FROM tb_item_req r
         INNER JOIN tb_item_req_det rd ON rd.id_item_req = r.id_item_req
-        WHERE r.id_item_req=" + id_item_req + " AND rd.is_store_request='2'"
+        WHERE r.id_item_req=" + id_item_req
+        'query += " AND rd.is_store_request='2' "
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
