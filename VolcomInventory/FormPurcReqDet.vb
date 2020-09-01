@@ -124,13 +124,13 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
         '
         If is_submit = "1" Then
             BMark.Text = "Mark"
-            If FormPurcReq.is_purc_dep = "1" Then
-                LStoreRequest.Visible = True
-                CEStoreRequest.Visible = True
-            Else
-                LStoreRequest.Visible = False
-                CEStoreRequest.Visible = False
-            End If
+            'If FormPurcReq.is_purc_dep = "1" Then
+            '    LStoreRequest.Visible = True
+            '    CEStoreRequest.Visible = True
+            'Else
+            '    LStoreRequest.Visible = False
+            '    CEStoreRequest.Visible = False
+            'End If
             BtnSave.Visible = False
         Else
             BMark.Text = "Submit"
