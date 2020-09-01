@@ -28,7 +28,7 @@
     Sub load_tax_type()
         Dim q As String = "SELECT '0' AS id_tax_report,'ALL PPH' AS tax_report,'1' AS id_type
 UNION ALL 
-SELECT '0' AS id_tax_report,'ALL PPN' AS tax_report,'2' AS id_type
+SELECT '-1' AS id_tax_report,'ALL PPN' AS tax_report,'2' AS id_type
 UNION ALL 
 SELECT id_tax_report,tax_report,id_type FROM tb_lookup_tax_report"
         viewSearchLookupQuery(SLETaxCat, q, "id_tax_report", "tax_report", "id_tax_report")
@@ -234,7 +234,7 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             GridColumnPPNPPH.Caption = "PPN (%)"
             Dim q_where As String = ""
             Dim q_where_atx As String = ""
-            If Not SLETaxCat.EditValue.ToString = "0" Then
+            If Not SLETaxCat.EditValue.ToString = "0" And Not SLETaxCat.EditValue.ToString = "-1" Then
                 q_where += " AND acc_pph.id_tax_report='" & SLETaxCat.EditValue.ToString & "' "
                 q_where_atx += " AND a.id_tax_report='" & SLETaxCat.EditValue.ToString & "'"
             End If
@@ -250,7 +250,7 @@ SELECT rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.id_acc AND acc_pph.`is_tax_report`=1
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -270,7 +270,7 @@ SELECT rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=(SELECT acc_coa_vat_in FROM tb_opt_purchasing)
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -289,7 +289,7 @@ SELECT rpt.tax_report,189 AS report_mark_type,atx.id_acc_trans,ied.inv_number AS
 FROM tb_pn_fgpo_det ied
 INNER JOIN tb_pn_fgpo ie ON ie.`id_pn_fgpo`=ied.`id_pn_fgpo` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ie.`id_acc_vat`
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -313,7 +313,7 @@ INNER JOIN tb_purc_order_det ied ON ied.id_purc_order_det=recd.id_purc_order_det
 INNER JOIN tb_purc_req_det rd ON rd.id_purc_req_det=ied.id_purc_req_det
 INNER JOIN `tb_purc_order` ie ON ie.id_purc_order=ied.id_purc_order AND ie.`vat_percent` > 0 
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=(SELECT acc_coa_vat_in FROM tb_opt_purchasing) AND ie.`id_report_status`=6 AND ie.is_close_rec=1
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ie.id_comp_contact
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN
@@ -338,7 +338,7 @@ SELECT rpt.tax_report,36 AS report_mark_type,tr.id_acc_trans,atx.`report_number_
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans`
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND tr.`id_bill_type`=25
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
 WHERE DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
 -- BBM
@@ -346,7 +346,7 @@ SELECT rpt.tax_report,162 AS report_mark_type,atx.id_acc_trans,ied.number AS inv
 FROM tb_rec_payment_det ied
 INNER JOIN tb_rec_payment ie ON ie.`id_rec_payment`=ied.`id_rec_payment` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc` AND acc_pph.`is_tax_report`='1'
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
 -- INNER JOIN tb_sales_pos pos ON ied.`id_report`=pos.`id_sales_pos`
 -- INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pos.`id_store_contact_from`
 -- INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -370,7 +370,7 @@ WHERE DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).
             Dim q_where As String = ""
             Dim q_where_atx As String = ""
 
-            If Not SLETaxCat.EditValue.ToString = "0" Then
+            If Not SLETaxCat.EditValue.ToString = "0" And Not SLETaxCat.EditValue.ToString = "-1" Then
                 q_where += " AND acc_pph.id_tax_report='" & SLETaxCat.EditValue.ToString & "' "
                 q_where_atx += " AND a.id_tax_report='" & SLETaxCat.EditValue.ToString & "'"
             End If
@@ -385,7 +385,7 @@ SELECT rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph`
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -397,14 +397,14 @@ LEFT JOIN
 	GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
 WHERE DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
-GROUP BY ie.id_item_expense,ied.pph_percent,ied.id_acc_pph
+GROUP BY ie.id_item_expense,ied.id_acc
 UNION ALL
 -- bpl
 SELECT rpt.tax_report,189 AS report_mark_type,atx.id_acc_trans,ied.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_pn_fgpo` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.info_design AS description,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,ied.`value` AS dpp,ied.`pph` AS pph 
 FROM tb_pn_fgpo_det ied
 INNER JOIN tb_pn_fgpo ie ON ie.`id_pn_fgpo`=ied.`id_pn_fgpo` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph`
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -425,7 +425,7 @@ INNER JOIN tb_purc_order_det ied ON ied.id_purc_order_det=recd.id_purc_order_det
 INNER JOIN tb_purc_req_det rd ON rd.id_purc_req_det=ied.id_purc_req_det
 INNER JOIN `tb_purc_order` ie ON ie.id_purc_order=ied.id_purc_order AND ied.`pph_percent` > 0 
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ie.`pph_account` AND ie.`id_report_status`=6 AND ie.is_close_rec=1
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ie.id_comp_contact
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN
@@ -449,7 +449,7 @@ SELECT rpt.tax_report,36 AS report_mark_type,tr.id_acc_trans,atx.`report_number_
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans`
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND tr.`id_bill_type`=25
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
 WHERE DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
 -- BBM
@@ -457,7 +457,7 @@ SELECT rpt.tax_report,162 AS report_mark_type,atx.id_acc_trans,ied.number AS inv
 FROM tb_rec_payment_det ied
 INNER JOIN tb_rec_payment ie ON ie.`id_rec_payment`=ied.`id_rec_payment` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc` AND acc_pph.`is_tax_report`='1' 
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
 -- INNER JOIN tb_sales_pos pos ON ied.`id_report`=pos.`id_sales_pos`
 -- INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pos.`id_store_contact_from`
 -- INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -476,6 +476,8 @@ WHERE DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).
             GCTaxReport.DataSource = dt
             GVTaxReport.BestFitColumns()
         End If
+        GVTaxReport.BestFitColumns()
+        GVTaxReport.ExpandAllGroups()
     End Sub
 
     Private Sub BPrintPajak_Click(sender As Object, e As EventArgs) Handles BPrintPajak.Click
