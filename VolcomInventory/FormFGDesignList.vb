@@ -44,12 +44,12 @@
         CEAddColumns.EditValue = False
         GVDesign.RowHeight = 10
 
-        'remove column
-        Dim data_column As DataTable = execute_query("SELECT id_design_column_list, column_list FROM tb_design_column_list WHERE id_design_column_type = 1", -1, True, "", "", "", "")
+        ''remove column
+        'Dim data_column As DataTable = execute_query("SELECT id_design_column_list, column_list FROM tb_design_column_list WHERE id_design_column_type = 1", -1, True, "", "", "", "")
 
-        For i = 0 To data_column.Rows.Count - 1
-            GVDesign.Columns.Remove(GVDesign.Columns(data_column.Rows(i)("column_list").ToString.Replace(" ", "")))
-        Next
+        'For i = 0 To data_column.Rows.Count - 1
+        '    GVDesign.Columns.Remove(GVDesign.Columns(data_column.Rows(i)("column_list").ToString.Replace(" ", "")))
+        'Next
 
         Dim id_ss As String = SLESeason.EditValue.ToString
         Dim cond As String = ""
@@ -58,7 +58,7 @@
         Else
             cond = "And f1.id_season=" + id_ss + " "
         End If
-        Dim query As String = "CALL view_all_design_param('" + cond + "')"
+        Dim query As String = "CALL view_all_design_param_addition('" + cond + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         data.Columns.Add("request_changes_by")
@@ -91,11 +91,11 @@
         If GVDesign.RowCount > 0 Then
             PanelOpt.Visible = True
             PanelControlFreeze.Visible = True
-            PCAddColumns.Visible = True
+            'PCAddColumns.Visible = True
         Else
             PanelOpt.Visible = False
             PanelControlFreeze.Visible = False
-            PCAddColumns.Visible = False
+            'PCAddColumns.Visible = False
         End If
 
         If id_pop_up = "1" Then 'approve
@@ -262,7 +262,7 @@
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         PanelOpt.Visible = False
         PanelControlFreeze.Visible = False
-        PCAddColumns.Visible = False
+        'PCAddColumns.Visible = False
         GCDesign.DataSource = Nothing
         If id_pop_up = "1" Then 'approve
             PanelApp.Visible = False
