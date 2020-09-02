@@ -62,7 +62,7 @@ Partial Class FormODM
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListHistory = New DevExpress.XtraGrid.GridControl()
         Me.GVListHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnISCheckHistory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHChecklist = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,7 +74,7 @@ Partial Class FormODM
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHStoreAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,6 +86,7 @@ Partial Class FormODM
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCompleteHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -101,7 +102,6 @@ Partial Class FormODM
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -568,7 +568,7 @@ Partial Class FormODM
         'GVListHistory
         '
         Me.GVListHistory.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnISCheckHistory, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
+        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHChecklist, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GCHStoreAccount, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
         Me.GVListHistory.GridControl = Me.GCListHistory
         Me.GVListHistory.GroupCount = 1
         Me.GVListHistory.GroupFormat = "[#image]{1} {2}"
@@ -585,18 +585,18 @@ Partial Class FormODM
         Me.GVListHistory.OptionsView.ShowGroupPanel = False
         Me.GVListHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn8, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'GridColumnISCheckHistory
+        'GCHChecklist
         '
-        Me.GridColumnISCheckHistory.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnISCheckHistory.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnISCheckHistory.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnISCheckHistory.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnISCheckHistory.Caption = "Checklist"
-        Me.GridColumnISCheckHistory.FieldName = "is_check"
-        Me.GridColumnISCheckHistory.Name = "GridColumnISCheckHistory"
-        Me.GridColumnISCheckHistory.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnISCheckHistory.Visible = True
-        Me.GridColumnISCheckHistory.VisibleIndex = 0
+        Me.GCHChecklist.AppearanceCell.Options.UseTextOptions = True
+        Me.GCHChecklist.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCHChecklist.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCHChecklist.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCHChecklist.Caption = "Checklist"
+        Me.GCHChecklist.FieldName = "is_check"
+        Me.GCHChecklist.Name = "GCHChecklist"
+        Me.GCHChecklist.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCHChecklist.Visible = True
+        Me.GCHChecklist.VisibleIndex = 0
         '
         'GridColumn8
         '
@@ -692,16 +692,16 @@ Partial Class FormODM
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 4
         '
-        'GridColumn21
+        'GCHStoreAccount
         '
-        Me.GridColumn21.Caption = "Store Account"
-        Me.GridColumn21.FieldName = "comp_number"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.OptionsColumn.AllowEdit = False
-        Me.GridColumn21.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 5
-        Me.GridColumn21.Width = 78
+        Me.GCHStoreAccount.Caption = "Store Account"
+        Me.GCHStoreAccount.FieldName = "comp_number"
+        Me.GCHStoreAccount.Name = "GCHStoreAccount"
+        Me.GCHStoreAccount.OptionsColumn.AllowEdit = False
+        Me.GCHStoreAccount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCHStoreAccount.Visible = True
+        Me.GCHStoreAccount.VisibleIndex = 5
+        Me.GCHStoreAccount.Width = 78
         '
         'GridColumn22
         '
@@ -824,6 +824,26 @@ Partial Class FormODM
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'BPrint
+        '
+        Me.BPrint.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrint.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrint.Appearance.Options.UseBackColor = True
+        Me.BPrint.Appearance.Options.UseFont = True
+        Me.BPrint.Appearance.Options.UseForeColor = True
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BPrint.Location = New System.Drawing.Point(0, 492)
+        Me.BPrint.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrint.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrint.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrint.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(1072, 32)
+        Me.BPrint.TabIndex = 18
+        Me.BPrint.Text = "PRINT"
+        Me.BPrint.Visible = False
         '
         'BCompleteHistory
         '
@@ -962,26 +982,6 @@ Partial Class FormODM
         Me.LabelControl3.TabIndex = 0
         Me.LabelControl3.Text = "Document Number"
         '
-        'BPrint
-        '
-        Me.BPrint.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BPrint.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BPrint.Appearance.Options.UseBackColor = True
-        Me.BPrint.Appearance.Options.UseFont = True
-        Me.BPrint.Appearance.Options.UseForeColor = True
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BPrint.Location = New System.Drawing.Point(0, 492)
-        Me.BPrint.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BPrint.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BPrint.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BPrint.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(1072, 32)
-        Me.BPrint.TabIndex = 18
-        Me.BPrint.Text = "PRINT"
-        Me.BPrint.Visible = False
-        '
         'FormODM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1067,7 +1067,7 @@ Partial Class FormODM
     Friend WithEvents XTPHistory As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCListHistory As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVListHistory As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnISCheckHistory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHChecklist As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1079,7 +1079,7 @@ Partial Class FormODM
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHStoreAccount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn

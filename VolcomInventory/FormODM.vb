@@ -8,8 +8,7 @@
     End Sub
 
     Sub view()
-        Dim q As String = "
-SELECT *
+        Dim q As String = "SELECT *
 FROM (
     SELECT 0 AS NO,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
@@ -17,7 +16,7 @@ FROM (
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
     LEFT JOIN (
-        SELECT id_odm_sc,id_del_manifest
+        SELECT odmd.id_odm_sc,odmd.id_del_manifest
         FROM tb_odm_sc_det odmd
         INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmd.id_odm_sc AND odm.id_report_status!=5 
     ) odm ON odm.id_del_manifest=md.id_del_manifest
@@ -34,7 +33,7 @@ FROM (
 	    LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
 	    GROUP BY z2.id_combine
     ) AS z ON pdelc.combine_number = z.combine_number
-    WHERE md.id_comp = " + SLUE3PL.EditValue.ToString + " AND ISNULL(od.id_odm_sc)
+    WHERE md.id_comp = " + SLUE3PL.EditValue.ToString + " AND ISNULL(odm.id_odm_sc)
 ) AS tb
 ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -309,6 +308,13 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Dim report As ReportODMScan = New ReportODMScan
 
+        report.dt = GCListHistory.DataSource
+        report.XrLabelNumber.Text = SLEScanList.Text
+        report.XrLabel3PL.Text = L3PL.Text
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        tool.ShowPreview()
     End Sub
 End Class
