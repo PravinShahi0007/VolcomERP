@@ -19,9 +19,12 @@ Partial Class FormFGDesignList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGDesignList))
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddColumns = New DevExpress.XtraEditors.PanelControl()
+        Me.CEAddColumns = New DevExpress.XtraEditors.CheckEdit()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,9 +47,9 @@ Partial Class FormFGDesignList
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnApproveUS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewApprovalUSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CMSChanges = New System.Windows.Forms.ContextMenuStrip()
+        Me.CMSChanges = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewHistoryProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -112,12 +115,18 @@ Partial Class FormFGDesignList
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PCAddColumns = New DevExpress.XtraEditors.PanelControl()
-        Me.CEAddColumns = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumnSpesifikasi = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBahan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPetunjukPerawatan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUkuran = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnModelInfo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNavLineList.SuspendLayout()
+        CType(Me.PCAddColumns, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddColumns.SuspendLayout()
+        CType(Me.CEAddColumns.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,9 +162,6 @@ Partial Class FormFGDesignList
         Me.XTPProposeChanges.SuspendLayout()
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PCAddColumns, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCAddColumns.SuspendLayout()
-        CType(Me.CEAddColumns.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -182,6 +188,25 @@ Partial Class FormFGDesignList
         Me.PCNavLineList.Name = "PCNavLineList"
         Me.PCNavLineList.Size = New System.Drawing.Size(393, 36)
         Me.PCNavLineList.TabIndex = 105
+        '
+        'PCAddColumns
+        '
+        Me.PCAddColumns.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCAddColumns.Controls.Add(Me.CEAddColumns)
+        Me.PCAddColumns.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PCAddColumns.Location = New System.Drawing.Point(244, 0)
+        Me.PCAddColumns.Name = "PCAddColumns"
+        Me.PCAddColumns.Size = New System.Drawing.Size(149, 36)
+        Me.PCAddColumns.TabIndex = 108
+        Me.PCAddColumns.Visible = False
+        '
+        'CEAddColumns
+        '
+        Me.CEAddColumns.Location = New System.Drawing.Point(6, 7)
+        Me.CEAddColumns.Name = "CEAddColumns"
+        Me.CEAddColumns.Properties.Caption = "Show Additional Columns"
+        Me.CEAddColumns.Size = New System.Drawing.Size(140, 19)
+        Me.CEAddColumns.TabIndex = 0
         '
         'SLESeason
         '
@@ -522,7 +547,7 @@ Partial Class FormFGDesignList
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVDesign.Appearance.Row.Options.UseTextOptions = True
         Me.GVDesign.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate, Me.GridColumnpd_number, Me.GridColumnpd_created_date, Me.GridColumnpd_status, Me.GridColumntotal_receive_qc})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate, Me.GridColumnpd_number, Me.GridColumnpd_created_date, Me.GridColumnpd_status, Me.GridColumntotal_receive_qc, Me.GridColumnSpesifikasi, Me.GridColumnBahan, Me.GridColumnPetunjukPerawatan, Me.GridColumnUkuran, Me.GridColumnModelInfo})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", Me.GridColumntotal_receive_qc, "{0:N0}")})
         Me.GVDesign.Name = "GVDesign"
@@ -1031,24 +1056,55 @@ Partial Class FormFGDesignList
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 3
         '
-        'PCAddColumns
+        'GridColumnSpesifikasi
         '
-        Me.PCAddColumns.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCAddColumns.Controls.Add(Me.CEAddColumns)
-        Me.PCAddColumns.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PCAddColumns.Location = New System.Drawing.Point(244, 0)
-        Me.PCAddColumns.Name = "PCAddColumns"
-        Me.PCAddColumns.Size = New System.Drawing.Size(149, 36)
-        Me.PCAddColumns.TabIndex = 108
-        Me.PCAddColumns.Visible = False
+        Me.GridColumnSpesifikasi.Caption = "Spesifikasi"
+        Me.GridColumnSpesifikasi.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnSpesifikasi.FieldName = "Spesifikasi"
+        Me.GridColumnSpesifikasi.Name = "GridColumnSpesifikasi"
+        Me.GridColumnSpesifikasi.OptionsColumn.AllowEdit = False
+        Me.GridColumnSpesifikasi.Visible = True
+        Me.GridColumnSpesifikasi.VisibleIndex = 26
         '
-        'CEAddColumns
+        'GridColumnBahan
         '
-        Me.CEAddColumns.Location = New System.Drawing.Point(6, 7)
-        Me.CEAddColumns.Name = "CEAddColumns"
-        Me.CEAddColumns.Properties.Caption = "Show Additional Columns"
-        Me.CEAddColumns.Size = New System.Drawing.Size(140, 19)
-        Me.CEAddColumns.TabIndex = 0
+        Me.GridColumnBahan.Caption = "Bahan"
+        Me.GridColumnBahan.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnBahan.FieldName = "Bahan"
+        Me.GridColumnBahan.Name = "GridColumnBahan"
+        Me.GridColumnBahan.OptionsColumn.AllowEdit = False
+        Me.GridColumnBahan.Visible = True
+        Me.GridColumnBahan.VisibleIndex = 27
+        '
+        'GridColumnPetunjukPerawatan
+        '
+        Me.GridColumnPetunjukPerawatan.Caption = "Petunjuk Perawatan"
+        Me.GridColumnPetunjukPerawatan.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnPetunjukPerawatan.FieldName = "Petunjuk Perawatan"
+        Me.GridColumnPetunjukPerawatan.Name = "GridColumnPetunjukPerawatan"
+        Me.GridColumnPetunjukPerawatan.OptionsColumn.AllowEdit = False
+        Me.GridColumnPetunjukPerawatan.Visible = True
+        Me.GridColumnPetunjukPerawatan.VisibleIndex = 28
+        '
+        'GridColumnUkuran
+        '
+        Me.GridColumnUkuran.Caption = "Ukuran"
+        Me.GridColumnUkuran.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnUkuran.FieldName = "Ukuran"
+        Me.GridColumnUkuran.Name = "GridColumnUkuran"
+        Me.GridColumnUkuran.OptionsColumn.AllowEdit = False
+        Me.GridColumnUkuran.Visible = True
+        Me.GridColumnUkuran.VisibleIndex = 29
+        '
+        'GridColumnModelInfo
+        '
+        Me.GridColumnModelInfo.Caption = "Model Info"
+        Me.GridColumnModelInfo.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnModelInfo.FieldName = "Model Info"
+        Me.GridColumnModelInfo.Name = "GridColumnModelInfo"
+        Me.GridColumnModelInfo.OptionsColumn.AllowEdit = False
+        Me.GridColumnModelInfo.Visible = True
+        Me.GridColumnModelInfo.VisibleIndex = 30
         '
         'FormFGDesignList
         '
@@ -1066,6 +1122,9 @@ Partial Class FormFGDesignList
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCNavLineList.ResumeLayout(False)
         Me.PCNavLineList.PerformLayout()
+        CType(Me.PCAddColumns, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddColumns.ResumeLayout(False)
+        CType(Me.CEAddColumns.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1102,9 +1161,6 @@ Partial Class FormFGDesignList
         Me.XTPProposeChanges.ResumeLayout(False)
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PCAddColumns, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCAddColumns.ResumeLayout(False)
-        CType(Me.CEAddColumns.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1203,4 +1259,9 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumntotal_receive_qc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCAddColumns As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CEAddColumns As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnSpesifikasi As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBahan As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPetunjukPerawatan As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnUkuran As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnModelInfo As DevExpress.XtraGrid.Columns.GridColumn
 End Class
