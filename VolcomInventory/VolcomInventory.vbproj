@@ -7828,6 +7828,12 @@
     <Compile Include="ReportOlStoreRetCust.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportOutboundLabel.Designer.vb">
+      <DependentUpon>ReportOutboundLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOutboundLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportOutboundManifest.Designer.vb">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </Compile>
