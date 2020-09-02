@@ -208,7 +208,7 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        If id_report_status = "6" Then
+        If id_report_status = "2" Then
             Dim title As String = ""
             Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
             Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
@@ -427,7 +427,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
                 rs.updateStock(id, 2, rmt)
 
                 'submit
-                submit_who_prepared(rmt, id, id_user)
+                submit_who_prepared_pr(rmt, id, id_user, id_dep)
 
                 'refresh
                 FormItemReq.viewData()
@@ -445,7 +445,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
         If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
             FormItemReqAdd.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
         Else
-            FormItemReqAdd.id_departement = id_departement_user
+            FormItemReqAdd.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
         End If
         FormItemReqAdd.ShowDialog()
         Cursor = Cursors.Default
@@ -484,7 +484,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
         If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
             FormItemReqAddStore.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
         Else
-            FormItemReqAddStore.id_departement = id_departement_user
+            FormItemReqAddStore.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
         End If
         FormItemReqAddStore.ShowDialog()
         Cursor = Cursors.Default
