@@ -366,6 +366,7 @@ Partial Class FormOutboundListDet
         Me.GVDO.OptionsCustomization.CustomizationFormSearchBoxVisible = True
         Me.GVDO.OptionsView.ShowFooter = True
         Me.GVDO.OptionsView.ShowGroupPanel = False
+        Me.GVDO.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdDelERP, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn4
         '

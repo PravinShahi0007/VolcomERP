@@ -19,9 +19,12 @@ Partial Class FormOutboundList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.XTCOutbound = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPending = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOutbound = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVOutbound = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -37,6 +40,7 @@ Partial Class FormOutboundList
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
         CType(Me.GCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -67,6 +71,7 @@ Partial Class FormOutboundList
         '
         'GCOutbound
         '
+        Me.GCOutbound.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCOutbound.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCOutbound.Location = New System.Drawing.Point(0, 46)
         Me.GCOutbound.MainView = Me.GVOutbound
@@ -75,11 +80,25 @@ Partial Class FormOutboundList
         Me.GCOutbound.TabIndex = 1
         Me.GCOutbound.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOutbound})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'ViewDocumentToolStripMenuItem
+        '
+        Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
+        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDocumentToolStripMenuItem.Text = "Print"
+        '
         'GVOutbound
         '
         Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn3})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
+        Me.GVOutbound.OptionsBehavior.Editable = False
+        Me.GVOutbound.OptionsBehavior.ReadOnly = True
         Me.GVOutbound.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -186,6 +205,7 @@ Partial Class FormOutboundList
         Me.XTCOutbound.ResumeLayout(False)
         Me.XTPPending.ResumeLayout(False)
         CType(Me.GCOutbound, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVOutbound, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -211,4 +231,6 @@ Partial Class FormOutboundList
     Friend WithEvents TEOutboundNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewDocumentToolStripMenuItem As ToolStripMenuItem
 End Class

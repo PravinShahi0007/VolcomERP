@@ -2939,7 +2939,7 @@
       <DependentUpon>FormOutboundLabel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOutboundLabel.vb">
-        <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOutboundList.Designer.vb">
       <DependentUpon>FormOutboundList.vb</DependentUpon>
@@ -12794,6 +12794,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOlStoreRetCust.resx">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOutboundLabel.resx">
+      <DependentUpon>ReportOutboundLabel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
