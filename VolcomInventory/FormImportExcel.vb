@@ -3122,12 +3122,12 @@ Public Class FormImportExcel
             GVData.Columns("status").Caption = "Description"
         ElseIf id_pop_up = "50" Then
             Dim queryx As String = "SELECT ol.id_list_payout, ol.id AS `id_order`, ol.checkout_id,ol.sales_order_ol_shop_number, ol.payment AS curr_payout,
-            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`))+IFNULL(sh.ship_amo,0) AS amount,
+            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`))+IFNULL(sh.ship_amo,0)+IFNULL(ol.other_price,0.00) AS amount,IFNULL(ol.other_price,0.00) AS `other_price`
             GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,
             GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`
             FROM
             (
-	            SELECT ol.*,lp.`payment`,lp.`trans_fee`,lp.pay_type, lp.id_list_payout
+	            SELECT ol.*,lp.`payment`,lp.`trans_fee`,lp.pay_type, lp.id_list_payout, ol.other_price
 	            FROM tb_ol_store_order ol
 	            LEFT JOIN tb_list_payout lp ON lp.id=ol.`id`
 	            WHERE NOT ISNULL(ol.`checkout_id`)
@@ -3179,6 +3179,7 @@ Public Class FormImportExcel
                                 .fee = table1("Transaction Fee"),
                                 .amount_inv = If(y1 Is Nothing, 0, y1("amount")),
                                 .calc_fee = If(f1 Is Nothing, 0, If((If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")))),
+                                .other_price = If(y1 Is Nothing, 0.00, y1("other_price")),
                                 .settle_datetime = Date.Parse(table1("Settlement Time").ToString.Split(",")(0).Trim & " " & table1("Settlement Time").ToString.Split(",")(1).Trim),
                                 .Status = If(f1 Is Nothing, "Fee type not found", If(y1 Is Nothing, "Checkout id Not Found", If(y1("curr_fee").ToString = "", If(table1("Amount") = If(y1 Is Nothing, 0, y1("amount")), If(Decimal.Parse(table1("Transaction Fee").ToString) = Decimal.Parse((If(f1 Is Nothing, 0, If((If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add")) <= f1("minimum"), f1("minimum"), (If(y1 Is Nothing, 0, y1("amount")) * f1("payout_multiply") + f1("payout_add"))))).ToString), "OK", "Fee Not Match"), "Amount not match"), "Already imported")))
                                 }
@@ -3227,6 +3228,8 @@ Public Class FormImportExcel
             GVData.Columns("curr_fee").DisplayFormat.FormatString = "N2"
             GVData.Columns("amount_inv").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("amount_inv").DisplayFormat.FormatString = "N2"
+            GVData.Columns("other_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("other_price").DisplayFormat.FormatString = "N2"
 
             'summary
             GVData.OptionsView.ShowFooter = True
@@ -3238,6 +3241,8 @@ Public Class FormImportExcel
             GVData.Columns("amount_inv").SummaryItem.DisplayFormat = "{0:n2}"
             GVData.Columns("calc_fee").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("calc_fee").SummaryItem.DisplayFormat = "{0:n2}"
+            GVData.Columns("other_price").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("other_price").SummaryItem.DisplayFormat = "{0:n2}"
         ElseIf id_pop_up = "51" Then
             Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
             Dim query_prod As String = "SELECT d.id_design, prod.id_product, d.design_code AS `code`, prod.product_full_code AS `sku`, 
@@ -5702,7 +5707,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             Dim id_list_payout_trans As String = execute_query(query_main, 0, True, "", "", "", "")
 
                             'detail data
-                            Dim q As String = "INSERT INTO tb_list_payout(id_list_payout_trans,`settlement_date`, `id_pay_type`,`pay_type`, `bank`,`id`,`sales_order_ol_shop_number`,`checkout_id`,`payment`,`trans_fee`, `invoice_amount`, `calculate_fee`) VALUES"
+                            Dim q As String = "INSERT INTO tb_list_payout(id_list_payout_trans,`settlement_date`, `id_pay_type`,`pay_type`, `bank`,`id`,`sales_order_ol_shop_number`,`checkout_id`,`payment`,`trans_fee`, `invoice_amount`, `calculate_fee`, `other_price`) VALUES"
                             Dim id_sales_pos As String = ""
                             Dim id_invoice_ship As String = ""
                             For i As Integer = 0 To GVData.RowCount - 1
@@ -5712,7 +5717,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                                     id_invoice_ship += ","
                                 End If
                                 '
-                                q += "('" + id_list_payout_trans + "', '" + DateTime.Parse(GVData.GetRowCellValue(i, "settle_datetime").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "','" + GVData.GetRowCellValue(i, "id_pay_type").ToString + "', '" + addSlashes(GVData.GetRowCellValue(i, "pay_type").ToString) + "','" + addSlashes(GVData.GetRowCellValue(i, "bank").ToString) + "', '" + GVData.GetRowCellValue(i, "id_order").ToString + "','" + addSlashes(GVData.GetRowCellValue(i, "order_ol_shop_number").ToString) + "','" + addSlashes(GVData.GetRowCellValue(i, "checkout_id").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "payout").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "fee").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount_inv").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "calc_fee").ToString) + "') "
+                                q += "('" + id_list_payout_trans + "', '" + DateTime.Parse(GVData.GetRowCellValue(i, "settle_datetime").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "','" + GVData.GetRowCellValue(i, "id_pay_type").ToString + "', '" + addSlashes(GVData.GetRowCellValue(i, "pay_type").ToString) + "','" + addSlashes(GVData.GetRowCellValue(i, "bank").ToString) + "', '" + GVData.GetRowCellValue(i, "id_order").ToString + "','" + addSlashes(GVData.GetRowCellValue(i, "order_ol_shop_number").ToString) + "','" + addSlashes(GVData.GetRowCellValue(i, "checkout_id").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "payout").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "fee").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount_inv").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "calc_fee").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "other_price").ToString) + "') "
                                 id_sales_pos += GVData.GetRowCellValue(i, "id_sales_pos").ToString
                                 id_invoice_ship += GVData.GetRowCellValue(i, "id_invoice_ship").ToString
 
