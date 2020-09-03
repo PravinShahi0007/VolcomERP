@@ -350,4 +350,14 @@
 
         viewSearchLookupQuery(SLUEDivision, query, "id_code_detail", "code", "id_code_detail")
     End Sub
+
+    Private Sub FormDesignColumnMapping_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+        button_main("0", "0", "0")
+    End Sub
+
+    Private Sub FormDesignColumnMapping_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
 End Class
