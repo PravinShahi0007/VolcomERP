@@ -10178,6 +10178,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMasterDesignFabrication.load_form()
         ElseIf formName = "FormDesignColumnMapping" Then
             FormDesignColumnMapping.load_form()
+        ElseIf formName = "FormPurcOrder" Then
+            If FormPurcOrder.XTCPO.SelectedTabPage.Name = "XTPCloseReceiving" Then
+                FormPurcOrder.load_close_receiving()
+            End If
         End If
     End Sub
     'Switch
