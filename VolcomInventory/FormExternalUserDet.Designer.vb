@@ -141,7 +141,6 @@ Partial Class FormExternalUserDet
         '
         Me.TEPassword.Location = New System.Drawing.Point(16, 170)
         Me.TEPassword.Name = "TEPassword"
-        Me.TEPassword.Properties.UseSystemPasswordChar = True
         Me.TEPassword.Size = New System.Drawing.Size(250, 20)
         Me.TEPassword.TabIndex = 18
         '

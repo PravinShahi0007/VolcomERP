@@ -1306,7 +1306,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridColumn23.Caption = "Vendor"
         Me.GridColumn23.FieldName = "comp_name"
-        Me.GridColumn23.MinWidth = 140
+        Me.GridColumn23.MinWidth = 70
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.OptionsColumn.ReadOnly = True
@@ -1380,7 +1380,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridColumn15.Caption = "Nama di Identitas"
         Me.GridColumn15.FieldName = "npwp_name"
-        Me.GridColumn15.MinWidth = 140
+        Me.GridColumn15.MinWidth = 110
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.ReadOnly = True

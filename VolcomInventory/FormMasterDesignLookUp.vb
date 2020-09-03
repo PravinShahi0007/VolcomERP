@@ -12,8 +12,10 @@
 
         If has_dependency <> "-1" Then
             For i = 0 To FormMasterDesignSingle.GVAdditional.RowCount - 1
-                If FormMasterDesignSingle.GVAdditional.GetRowCellValue(i, "id_design_column").ToString = has_dependency Then
-                    value_dependency = FormMasterDesignSingle.GVAdditional.GetRowCellValue(i, "value").ToString
+                If FormMasterDesignSingle.GVAdditional.IsValidRowHandle(i) Then
+                    If FormMasterDesignSingle.GVAdditional.GetRowCellValue(i, "id_design_column").ToString = has_dependency Then
+                        value_dependency = FormMasterDesignSingle.GVAdditional.GetRowCellValue(i, "value").ToString
+                    End If
                 End If
             Next
         End If
