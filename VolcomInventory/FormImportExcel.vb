@@ -3381,13 +3381,13 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             'Customize column
             GVData.Columns("id_sub_district").Visible = False
         ElseIf id_pop_up = "53" Then 'import VA BBM
-            Dim queryx As String = "SELECT ol.id_virtual_acc_trans, ol.id AS `id_order`, ol.checkout_id,ol.sales_order_ol_shop_number,
-            SUM(CAST(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`) AS DECIMAL(15,2)))+IFNULL(sh.ship_amo,0) AS amount,
+            Dim queryx As String = "SELECT ol.id_virtual_acc_trans, ol.id AS `id_order`, ol.checkout_id, IFNULL(ol.other_price,0.00) AS `other_price`,ol.sales_order_ol_shop_number,
+            SUM(CAST(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`) AS DECIMAL(15,2)))+IFNULL(sh.ship_amo,0)+IFNULL(ol.other_price,0.00) AS amount,
             GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,
             GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`
             FROM (
 	            SELECT ol.id, ol.checkout_id,ol.sales_order_ol_shop_number,
-	            IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`
+	            IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, ol.other_price
 	            FROM tb_ol_store_order ol
 	            LEFT JOIN tb_virtual_acc_trans_det lp ON lp.id =ol.`id`
 	            WHERE NOT ISNULL(ol.`checkout_id`)
@@ -3426,6 +3426,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             .transaction_time = table1("Transaction time").ToString,
                             .amount = table1("Amount"),
                             .amount_inv = If(y1 Is Nothing, 0, y1("amount")),
+                            .other_price = If(y1 Is Nothing, 0, y1("other_price")),
                             .Status = If(y1 Is Nothing Or If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString) <> "0" Or table1("Amount") <> If(y1 Is Nothing, 0, y1("amount")), If(y1 Is Nothing, "Checkout id not found;", "") + If(If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString) <> "0", "Already imported;", "") + If(table1("Amount") <> If(y1 Is Nothing, 0, y1("amount")), "Amount not match;", ""), "OK")
                         }
             GCData.DataSource = Nothing
@@ -3444,11 +3445,14 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("order_ol_shop_number").Caption = "Order#"
             GVData.Columns("inv_number").Caption = "Invoice Number"
             GVData.Columns("ship_inv_number").Caption = "Shipping Invoice"
-            GVData.Columns("amount_inv").Caption = "Amount Invoice"
+            GVData.Columns("other_price").Caption = "Other Income/Expense"
+            GVData.Columns("amount_inv").Caption = "Amount Invoice (Include Other Income/Expense)"
             GVData.Columns("amount").Caption = "Amount Payment Gateway"
             GVData.Columns("payment_type").Caption = "Payment Type"
 
             'display form
+            GVData.Columns("other_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("other_price").DisplayFormat.FormatString = "N2"
             GVData.Columns("amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("amount").DisplayFormat.FormatString = "N2"
             GVData.Columns("amount_inv").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -3456,6 +3460,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
 
             'summary
             GVData.OptionsView.ShowFooter = True
+            GVData.Columns("other_price").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("other_price").SummaryItem.DisplayFormat = "{0:n2}"
             GVData.Columns("amount").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("amount").SummaryItem.DisplayFormat = "{0:n2}"
             GVData.Columns("amount_inv").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
@@ -5808,7 +5814,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             Dim id_virtual_acc_trans As String = execute_query(query_main, 0, True, "", "", "", "")
 
                             'detail data
-                            Dim q As String = "INSERT INTO tb_virtual_acc_trans_det(id_virtual_acc_trans, id, sales_order_ol_shop_number, checkout_id, payment_type, amount, amount_inv, transaction_status, transaction_time, virtual_acc_no) VALUES "
+                            Dim q As String = "INSERT INTO tb_virtual_acc_trans_det(id_virtual_acc_trans, id, sales_order_ol_shop_number, checkout_id, payment_type, amount, amount_inv, transaction_status, transaction_time, virtual_acc_no, other_price) VALUES "
                             Dim id_sales_pos As String = ""
                             Dim id_invoice_ship As String = ""
                             For i As Integer = 0 To GVData.RowCount - 1
@@ -5818,7 +5824,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                                     id_invoice_ship += ","
                                 End If
                                 '
-                                q += "('" + id_virtual_acc_trans + "', '" + GVData.GetRowCellValue(i, "id_order").ToString + "', '" + GVData.GetRowCellValue(i, "order_ol_shop_number").ToString + "', '" + GVData.GetRowCellValue(i, "checkout_id").ToString + "', '" + GVData.GetRowCellValue(i, "payment_type").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount_inv").ToString) + "', '" + GVData.GetRowCellValue(i, "transaction_status").ToString + "', '" + DateTime.Parse(GVData.GetRowCellValue(i, "transaction_time").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + GVData.GetRowCellValue(i, "virtual_acc_no").ToString + "') "
+                                q += "('" + id_virtual_acc_trans + "', '" + GVData.GetRowCellValue(i, "id_order").ToString + "', '" + GVData.GetRowCellValue(i, "order_ol_shop_number").ToString + "', '" + GVData.GetRowCellValue(i, "checkout_id").ToString + "', '" + GVData.GetRowCellValue(i, "payment_type").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount_inv").ToString) + "', '" + GVData.GetRowCellValue(i, "transaction_status").ToString + "', '" + DateTime.Parse(GVData.GetRowCellValue(i, "transaction_time").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + GVData.GetRowCellValue(i, "virtual_acc_no").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "other_price").ToString) + "') "
                                 id_sales_pos += GVData.GetRowCellValue(i, "id_sales_pos").ToString
                                 id_invoice_ship += GVData.GetRowCellValue(i, "id_invoice_ship").ToString
 
