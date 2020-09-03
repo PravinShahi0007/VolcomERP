@@ -3,6 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Public is_for_store As String = "2"
+    Public is_for_purchasing As String = "2"
 
     Private Sub FormItemReq_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_dep()
@@ -13,7 +14,7 @@
         Dim query As String = ""
         Dim can_all_dep As String = get_opt_purchasing_field("is_can_all_dep")
 
-        If can_all_dep = "1" Then
+        If can_all_dep = "1" Or is_for_purchasing = "1" Then
             query = "SELECT '0' AS id_departement,'ALL' AS departement 
                     UNION
                     SELECT id_departement,departement FROM tb_m_departement"
