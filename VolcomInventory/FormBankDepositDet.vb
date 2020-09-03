@@ -143,7 +143,40 @@ Public Class FormBankDepositDet
                     JOIN tb_opt_accounting a 
                     INNER JOIN tb_a_acc coa ON coa.id_acc = a.id_acc_payout_fee
                     WHERE p.id_list_payout_trans='" + id_list_payout_trans + "'
-                    GROUP BY p.id_list_payout_trans "
+                    GROUP BY p.id_list_payout_trans 
+                    UNION 
+                    /*other income & expense*/
+                    SELECT 0 AS `id_report`,0 AS `id_report_det`,
+                    0 AS `report_mark_type`, '' AS `report_mark_type_name`,'' AS `number`,
+                    cf.id_comp AS `id_comp`, 
+                    coa.id_acc AS `id_acc`, coa.acc_name, coa.acc_description,
+                    cf.comp_number AS `comp_number`,'' AS `vendor`, 0 AS `total_rec`,
+                    SUM(p.other_price) AS `value`,
+                    SUM(p.other_price) AS `balance_due`,
+                    CONCAT(coa.acc_description,' (Order No : ',p.sales_order_ol_shop_number,')') AS `note`, '2' AS `id_dc`, 'K' AS `dc_code`,
+                    SUM(p.other_price) AS `value_view` 
+                    FROM  tb_list_payout p 
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    JOIN tb_opt_accounting a 
+                    INNER JOIN tb_a_acc coa ON coa.id_acc = a.id_acc_payout_other_income
+                    WHERE p.id_list_payout_trans='" + id_list_payout_trans + "'  AND p.other_price>0
+                    GROUP  BY p.id
+                    UNION 
+                    SELECT 0 AS `id_report`,0 AS `id_report_det`,
+                    0 AS `report_mark_type`, '' AS `report_mark_type_name`,'' AS `number`,
+                    cf.id_comp AS `id_comp`, 
+                    coa.id_acc AS `id_acc`, coa.acc_name, coa.acc_description,
+                    cf.comp_number AS `comp_number`,'' AS `vendor`, 0 AS `total_rec`,
+                    SUM(p.other_price) AS `value`,
+                    SUM(p.other_price) AS `balance_due`,
+                    CONCAT(coa.acc_description,' (Order No : ',p.sales_order_ol_shop_number,')') AS `note`, '1' AS `id_dc`, 'D' AS `dc_code`,
+                    SUM(p.other_price)*-1 AS `value_view` 
+                    FROM tb_list_payout p 
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    JOIN tb_opt_accounting a 
+                    INNER JOIN tb_a_acc coa ON coa.id_acc = a.id_acc_payout_other_expense
+                    WHERE p.id_list_payout_trans='" + id_list_payout_trans + "' AND p.other_price<0
+                    GROUP  BY p.id "
                     Dim data_view_payout As DataTable = execute_query(query_view_payout, -1, True, "", "", "", "")
                     GCList.DataSource = data_view_payout
                     GVList.OptionsBehavior.ReadOnly = True
