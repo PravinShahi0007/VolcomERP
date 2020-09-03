@@ -641,7 +641,7 @@
                         in_design += list_code(i).Rows(j)("id_design").ToString + ", "
                     Next
 
-                    Dim data_insert As DataTable = FormDesignColumnMapping.generate_column("1", list_code(i).Rows(0)("column_type_front").ToString, list_code(i).Rows(0)("column_type_end").ToString, in_design.Substring(0, in_design.Length - 2))
+                    Dim data_insert As DataTable = FormDesignColumnMapping.generate_column("1")
 
                     If data_insert.Rows.Count > 0 Then
                         For j = 0 To data_insert.Rows.Count - 1
