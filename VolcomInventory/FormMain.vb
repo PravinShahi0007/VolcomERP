@@ -9228,6 +9228,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMasterDesignFabrication" Then
             FormMasterDesignFabrication.Close()
             FormMasterDesignFabrication.Dispose()
+        ElseIf formName = "FormDesignColumnMapping" Then
+            FormDesignColumnMapping.Close()
+            FormDesignColumnMapping.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10173,6 +10176,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesBranch.viewData()
         ElseIf formName = "FormMasterDesignFabrication" Then
             FormMasterDesignFabrication.load_form()
+        ElseIf formName = "FormDesignColumnMapping" Then
+            FormDesignColumnMapping.load_form()
         End If
     End Sub
     'Switch
@@ -15249,6 +15254,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemReq.Show()
             FormItemReq.WindowState = FormWindowState.Maximized
             FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDesignTemplate_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDesignTemplate.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDesignColumnMapping.MdiParent = Me
+            FormDesignColumnMapping.Show()
+            FormDesignColumnMapping.WindowState = FormWindowState.Maximized
+            FormDesignColumnMapping.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

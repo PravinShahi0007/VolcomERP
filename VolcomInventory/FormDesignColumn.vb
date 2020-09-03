@@ -262,14 +262,6 @@
         FormMain.hide_rb()
     End Sub
 
-    Private Sub SBMapping_Click(sender As Object, e As EventArgs) Handles SBMapping.Click
-        If SLUECategory.EditValue.ToString = "1" Then
-            FormDesignColumnMapping.ShowDialog()
-        Else
-            stopCustom("Category " + SLUECategory.Text + " does not require column mapping.")
-        End If
-    End Sub
-
     Private Sub GVDesignColumn_EndSorting(sender As Object, e As EventArgs) Handles GVDesignColumn.EndSorting
         For i = 0 To GVDesignColumn.SortedColumns.Count - 1
             GVDesignColumn.FocusedColumn = GVDesignColumn.SortedColumns.Item(i)
