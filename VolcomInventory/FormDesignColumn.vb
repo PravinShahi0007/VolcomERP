@@ -264,14 +264,7 @@
 
     Private Sub SBMapping_Click(sender As Object, e As EventArgs) Handles SBMapping.Click
         If SLUECategory.EditValue.ToString = "1" Then
-            If Not column_type_front = "" And Not column_type_end = "" Then
-                FormDesignColumnMapping.column_type_front = column_type_front
-                FormDesignColumnMapping.column_type_end = column_type_end
-
-                FormDesignColumnMapping.ShowDialog()
-            Else
-                stopCustom("Type " + SLUEType.Text + " does not require column mapping.")
-            End If
+            FormDesignColumnMapping.ShowDialog()
         Else
             stopCustom("Category " + SLUECategory.Text + " does not require column mapping.")
         End If
