@@ -1095,6 +1095,11 @@
                     Dim query_upd_stored As String = "UPDATE tb_sample_purc_rec_det SET sample_purc_rec_det_qty_stored = sample_purc_rec_det_qty WHERE id_sample_purc_rec_det='" & id_sample_purc_rec_det & "' "
                     execute_non_query(query_upd_stored, True, "", "", "", "")
                 Next
+
+                'email notifikasi
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = report_mark_type
+                mail.send_mail_complete(report_mark_type, id_report, report_number)
             ElseIf id_status_reportx = "5" Then
                 query = String.Format("SELECT id_report_status FROM tb_sample_purc_rec WHERE id_sample_purc_rec ='{0}' AND id_report_status='6'", id_report)
                 Dim dt_c As DataTable = execute_query(query, -1, True, "", "", "", "")
