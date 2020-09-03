@@ -7816,10 +7816,22 @@
     <Compile Include="ReportMemoUnpaidLeave.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportODMScan.Designer.vb">
+      <DependentUpon>ReportODMScan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportODMScan.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportOlStoreRetCust.Designer.vb">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportOlStoreRetCust.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportOutboundLabel.Designer.vb">
+      <DependentUpon>ReportOutboundLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOutboundLabel.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportOutboundManifest.Designer.vb">
@@ -12767,6 +12779,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportODMScan.resx">
+      <DependentUpon>ReportODMScan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOlStoreRetCust.resx">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
