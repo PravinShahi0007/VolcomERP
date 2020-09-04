@@ -644,6 +644,8 @@ GROUP BY p.sku"
                         Dim value As String = ""
                         Dim once_per_customer As String = ""
                         Dim usage_limit As String = ""
+                        Dim start_period As String = ""
+                        Dim end_period As String = ""
 
                         'get discount code
                         Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/price_rules/" + price_rule_id + "/discount_codes.json"
@@ -675,8 +677,10 @@ GROUP BY p.sku"
                                             usage_limit = decimalSQL(row("usage_limit").ToString)
                                         Catch ex As Exception
                                         End Try
-                                        Dim query_prm_head As String = "INSERT INTO tb_ol_promo_collection(id_promo, price_rule_id, promo_name, discount_title, value_type, value, once_per_customer,usage_limit,is_use_discount_code) 
-                                        VALUES('0', '" + price_rule_id + "', '" + discount_title + "', '" + discount_title + "', '" + value_type + "', '" + value + "', '" + once_per_customer + "', '" + usage_limit + "', '1');SELECT LAST_INSERT_ID(); "
+                                        start_period = DateTime.Parse(row("starts_at").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                                        end_period = DateTime.Parse(row("ends_at").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                                        Dim query_prm_head As String = "INSERT INTO tb_ol_promo_collection(id_promo, price_rule_id, promo_name, discount_title, value_type, value, once_per_customer,usage_limit,is_use_discount_code, created_date, start_period, end_period, id_report_status, is_confirm) 
+                                        VALUES('0', '" + price_rule_id + "', '" + discount_title + "', '" + discount_title + "', '" + value_type + "', '" + value + "', '" + once_per_customer + "', '" + usage_limit + "', '1', NOW(), '" + start_period + "', '" + end_period + "','6','1');SELECT LAST_INSERT_ID(); "
                                         id_ol_promo_collection = execute_query(query_prm_head, 0, True, "", "", "", "")
                                         Dim rmt As String = "250"
                                         execute_non_query("CALL gen_number(" + id_ol_promo_collection + ", " + rmt + ")", True, "", "", "", "")
