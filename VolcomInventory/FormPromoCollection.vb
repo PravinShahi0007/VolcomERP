@@ -98,4 +98,16 @@
     Private Sub XTCPromo_Click(sender As Object, e As EventArgs) Handles XTCPromo.Click
 
     End Sub
+
+    Private Sub BtnSync_Click(sender As Object, e As EventArgs) Handles BtnSync.Click
+        Cursor = Cursors.WaitCursor
+        Try
+            Dim s As New ClassShopifyApi()
+            s.get_discount_code()
+            infoCustom("Sync completed")
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
