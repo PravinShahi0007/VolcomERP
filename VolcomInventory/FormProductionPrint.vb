@@ -222,6 +222,57 @@ UPDATE tb_prod_order_kp SET `id_prod_order_kp_reff`='" & id_kp & "',number=@repo
     End Sub
 
     Private Sub BGenerateCopyProto2Order_Click(sender As Object, e As EventArgs) Handles BGenerateCopyProto2Order.Click
+        Dim is_ok As Boolean = True
 
+        If GVProd.RowCount > 1 Then
+            For i As Integer = 0 To GVProd.RowCount - 1
+                If Not GVProd.GetRowCellValue(0, "id_comp_contact").ToString = GVProd.GetRowCellValue(i, "id_comp_contact").ToString Then
+                    is_ok = False
+                    warningCustom("Different vendor contact selected")
+                    Exit For
+                End If
+            Next
+            '
+        ElseIf GVProd.RowCount < 1 Then
+            is_ok = False
+            warningCustom("No FGPO selected")
+        End If
+
+        If is_ok Then
+            '
+            Dim id_user_purc_mngr As String = execute_query("SELECT usr.id_user 
+FROM tb_m_departement dep
+INNER JOIN tb_m_user usr ON usr.`id_user`=dep.id_user_head
+WHERE dep.id_departement=4", 0, True, "", "", "", "")
+
+            Dim id_user_sample_mngr As String = get_opt_prod_field("id_user_sample_manager")
+            Dim id_user_sample As String = get_opt_prod_field("id_user_sample")
+
+            Dim query_copy_proto2 As String = "INSERT INTO tb_prod_order_cps2(`revision`,`id_comp_contact`,`date_created`,`created_by`,id_user_purc_mngr,id_user_sample,id_user_sample_mngr) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "',NOW(),'" & id_user & "','" & id_user_purc_mngr & "','" & id_user_sample & "','" & id_user_sample_mngr & "'); SELECT LAST_INSERT_ID(); "
+            Dim id_copy_proto2 As String = execute_query(query_copy_proto2, 0, True, "", "", "", "")
+            'insert po
+            Dim query_kpd As String = "INSERT INTO tb_prod_order_cps2_det(`id_prod_order_cps2`,`revision`,`id_prod_order`,`eta_copy_proto_2`) VALUES"
+            For i As Integer = 0 To GVProd.RowCount - 1
+                If Not i = 0 Then
+                    query_kpd += ","
+                End If
+                '
+                query_kpd += "('" & id_copy_proto2 & "','0','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "',DATE(NOW()),NULL)"
+            Next
+
+            execute_non_query(query_kpd, True, "", "", "", "")
+            'generate KP number
+            query_copy_proto2 = "SELECT COUNT(*)+1+IF(YEAR(CURRENT_DATE())<'2020',1,0) 
+INTO @number_report 
+FROM 
+(SELECT * FROM `tb_prod_order_cps2` WHERE YEAR(date_created) = YEAR(CURRENT_DATE()) GROUP BY id_prod_order_cps2_reff) kp
+WHERE kp.id_prod_order_cps2_reff < '" & id_copy_proto2 & "' AND kp.id_prod_order_cps2_reff != 0;
+SELECT CONCAT(LPAD(@number_report,3,'0'),'/EXT/PRL-SR/',convert_romawi(DATE_FORMAT(NOW(),'%m')),'/',DATE_FORMAT(NOW(),'%y')) INTO @report_number;
+UPDATE tb_prod_order_cps2 SET `id_prod_order_cps2_reff`='" & id_copy_proto2 & "',number=@report_number WHERE id_prod_order_cps2_reff='" & id_copy_proto2 & "'"
+            execute_non_query(query_copy_proto2, True, "", "", "", "")
+            'show KP form
+            FormProductionSampleOrder.id = id_copy_proto2
+            FormProductionSampleOrder.ShowDialog()
+        End If
     End Sub
 End Class

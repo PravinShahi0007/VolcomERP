@@ -252,15 +252,6 @@ Partial Class FormProduction
         Me.BViewKP = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPCopyProto2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.GCCopyProto2 = New DevExpress.XtraGrid.GridControl()
         Me.GVCopyProto2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -270,6 +261,15 @@ Partial Class FormProduction
         Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn86 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar4 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BEditCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEVendorCopyProto2 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -345,13 +345,13 @@ Partial Class FormProduction
         CType(Me.SLEVendorKP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCopyProto2.SuspendLayout()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl7.SuspendLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCopyProto2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCopyProto2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCTabProduction
@@ -2546,90 +2546,6 @@ Partial Class FormProduction
         Me.XTPCopyProto2.Size = New System.Drawing.Size(992, 327)
         Me.XTPCopyProto2.Text = "Copy Proto 2 Sample Order"
         '
-        'PanelControl7
-        '
-        Me.PanelControl7.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl7.Controls.Add(Me.SearchLookUpEdit1)
-        Me.PanelControl7.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl7.Controls.Add(Me.LabelControl13)
-        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl7.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(992, 38)
-        Me.PanelControl7.TabIndex = 12
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.ImageIndex = 2
-        Me.SimpleButton1.ImageList = Me.LargeImageCollection
-        Me.SimpleButton1.Location = New System.Drawing.Point(900, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(90, 34)
-        Me.SimpleButton1.TabIndex = 8906
-        Me.SimpleButton1.Text = "Edit"
-        Me.SimpleButton1.Visible = False
-        '
-        'SearchLookUpEdit1
-        '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(51, 8)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SearchLookUpEdit1.Properties.Appearance.Options.UseFont = True
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView8
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(148, 20)
-        Me.SearchLookUpEdit1.TabIndex = 8905
-        '
-        'GridView8
-        '
-        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn78, Me.GridColumn79, Me.GridColumn80})
-        Me.GridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView8.Name = "GridView8"
-        Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView8.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn78
-        '
-        Me.GridColumn78.Caption = "Id Comp"
-        Me.GridColumn78.FieldName = "id_comp"
-        Me.GridColumn78.Name = "GridColumn78"
-        '
-        'GridColumn79
-        '
-        Me.GridColumn79.Caption = "Comp Number"
-        Me.GridColumn79.FieldName = "comp_number"
-        Me.GridColumn79.Name = "GridColumn79"
-        Me.GridColumn79.Visible = True
-        Me.GridColumn79.VisibleIndex = 0
-        Me.GridColumn79.Width = 188
-        '
-        'GridColumn80
-        '
-        Me.GridColumn80.Caption = "Comp Name"
-        Me.GridColumn80.FieldName = "comp_name"
-        Me.GridColumn80.Name = "GridColumn80"
-        Me.GridColumn80.Visible = True
-        Me.GridColumn80.VisibleIndex = 1
-        Me.GridColumn80.Width = 504
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Location = New System.Drawing.Point(205, 6)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(59, 23)
-        Me.SimpleButton2.TabIndex = 8903
-        Me.SimpleButton2.Text = "Search"
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(11, 11)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl13.TabIndex = 8901
-        Me.LabelControl13.Text = "Vendor"
-        '
         'GCCopyProto2
         '
         Me.GCCopyProto2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -2714,6 +2630,90 @@ Partial Class FormProduction
         Me.RepositoryItemProgressBar4.ShowTitle = True
         Me.RepositoryItemProgressBar4.StartColor = System.Drawing.Color.Green
         Me.RepositoryItemProgressBar4.Step = 1
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.Controls.Add(Me.BEditCopyProto2)
+        Me.PanelControl7.Controls.Add(Me.SLEVendorCopyProto2)
+        Me.PanelControl7.Controls.Add(Me.BSearchCopyProto2)
+        Me.PanelControl7.Controls.Add(Me.LabelControl13)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl7.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(992, 38)
+        Me.PanelControl7.TabIndex = 12
+        '
+        'BEditCopyProto2
+        '
+        Me.BEditCopyProto2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEditCopyProto2.ImageIndex = 2
+        Me.BEditCopyProto2.ImageList = Me.LargeImageCollection
+        Me.BEditCopyProto2.Location = New System.Drawing.Point(900, 2)
+        Me.BEditCopyProto2.Name = "BEditCopyProto2"
+        Me.BEditCopyProto2.Size = New System.Drawing.Size(90, 34)
+        Me.BEditCopyProto2.TabIndex = 8906
+        Me.BEditCopyProto2.Text = "Edit"
+        Me.BEditCopyProto2.Visible = False
+        '
+        'SLEVendorCopyProto2
+        '
+        Me.SLEVendorCopyProto2.Location = New System.Drawing.Point(51, 8)
+        Me.SLEVendorCopyProto2.Name = "SLEVendorCopyProto2"
+        Me.SLEVendorCopyProto2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEVendorCopyProto2.Properties.Appearance.Options.UseFont = True
+        Me.SLEVendorCopyProto2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorCopyProto2.Properties.View = Me.GridView8
+        Me.SLEVendorCopyProto2.Size = New System.Drawing.Size(148, 20)
+        Me.SLEVendorCopyProto2.TabIndex = 8905
+        '
+        'GridView8
+        '
+        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn78, Me.GridColumn79, Me.GridColumn80})
+        Me.GridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView8.Name = "GridView8"
+        Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView8.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn78
+        '
+        Me.GridColumn78.Caption = "Id Comp"
+        Me.GridColumn78.FieldName = "id_comp"
+        Me.GridColumn78.Name = "GridColumn78"
+        '
+        'GridColumn79
+        '
+        Me.GridColumn79.Caption = "Comp Number"
+        Me.GridColumn79.FieldName = "comp_number"
+        Me.GridColumn79.Name = "GridColumn79"
+        Me.GridColumn79.Visible = True
+        Me.GridColumn79.VisibleIndex = 0
+        Me.GridColumn79.Width = 188
+        '
+        'GridColumn80
+        '
+        Me.GridColumn80.Caption = "Comp Name"
+        Me.GridColumn80.FieldName = "comp_name"
+        Me.GridColumn80.Name = "GridColumn80"
+        Me.GridColumn80.Visible = True
+        Me.GridColumn80.VisibleIndex = 1
+        Me.GridColumn80.Width = 504
+        '
+        'BSearchCopyProto2
+        '
+        Me.BSearchCopyProto2.Location = New System.Drawing.Point(205, 6)
+        Me.BSearchCopyProto2.Name = "BSearchCopyProto2"
+        Me.BSearchCopyProto2.Size = New System.Drawing.Size(59, 23)
+        Me.BSearchCopyProto2.TabIndex = 8903
+        Me.BSearchCopyProto2.Text = "Search"
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(11, 11)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl13.TabIndex = 8901
+        Me.LabelControl13.Text = "Vendor"
         '
         'FormProduction
         '
@@ -2810,14 +2810,14 @@ Partial Class FormProduction
         CType(Me.SLEVendorKP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCopyProto2.ResumeLayout(False)
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl7.ResumeLayout(False)
-        Me.PanelControl7.PerformLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCopyProto2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCopyProto2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        Me.PanelControl7.PerformLayout()
+        CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3062,12 +3062,12 @@ Partial Class FormProduction
     Friend WithEvents GridColumn86 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemProgressBar4 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents BEditCopyProto2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEVendorCopyProto2 As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView8 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn78 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn79 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn80 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSearchCopyProto2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
 End Class
