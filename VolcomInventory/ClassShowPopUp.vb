@@ -365,6 +365,9 @@
             FormBankWithdrawalSum.Close()
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             FormSalesBranchDet.Close()
+        ElseIf report_mark_type = "259" Then
+            'close receiving
+            FormPurcOrderCloseReceiving.Close()
         End If
     End Sub
     Sub show()
@@ -1263,6 +1266,10 @@ GROUP BY rec.`id_prod_order`"
             FormSalesBranchDet.id = id_report
             FormSalesBranchDet.is_view = "1"
             FormSalesBranchDet.ShowDialog()
+        ElseIf report_mark_type = "259" Then
+            'close receiving
+            FormPurcOrderCloseReceiving.id_close_receiving = id_report
+            FormPurcOrderCloseReceiving.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2262,6 +2269,12 @@ GROUP BY rec.`id_prod_order`"
             'sales volcom store
             table_name = "tb_sales_branch"
             field_id = "id_sales_branch"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "259" Then
+            'close receiving
+            table_name = "tb_purc_order_close"
+            field_id = "id_close_receiving"
             field_number = "number"
             field_date = "created_date"
         Else
