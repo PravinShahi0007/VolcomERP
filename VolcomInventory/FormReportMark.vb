@@ -334,7 +334,7 @@
             'GENERATE SO
             query = String.Format("SELECT id_report_status, sales_order_gen_reff as report_number FROM tb_sales_order_gen WHERE id_sales_order_gen = '{0}'", id_report)
         ElseIf report_mark_type = "89" Then
-            'Return Internal Sale
+            'Receive local sample
             query = String.Format("SELECT id_report_status, sample_pl_ret_number as report_number FROM tb_sample_pl_ret WHERE id_sample_pl_ret = '{0}'", id_report)
         ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'REPAIR
@@ -1098,8 +1098,9 @@
 
                 'email notifikasi
                 Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.id_report = id_report
                 mail.report_mark_type = report_mark_type
-                mail.send_mail_complete(report_mark_type, id_report, report_number)
+                mail.send_email()
             ElseIf id_status_reportx = "5" Then
                 query = String.Format("SELECT id_report_status FROM tb_sample_purc_rec WHERE id_sample_purc_rec ='{0}' AND id_report_status='6'", id_report)
                 Dim dt_c As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -3768,7 +3769,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 FormSalesOrder.GVGen.FocusedRowHandle = find_row(FormSalesOrder.GVGen, "id_sales_order_gen", id_report)
             End If
         ElseIf report_mark_type = "89" Then
-            'SAMPLE PL
+            'SAMPLE Receive Local Sample
             If id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassSampleReturnPL = New ClassSampleReturnPL()
@@ -3777,14 +3778,22 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 
             query = String.Format("UPDATE tb_sample_pl_ret SET id_report_status='{0}' WHERE id_sample_pl_ret ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+
+            If id_status_reportx = "6" Then
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = report_mark_type
+                mail.id_report = id_report
+                mail.send_email()
+            End If
+
             'infoCustom("Status changed.")
 
             If form_origin = "FormSampleReturnPLDet" Then
                 FormSampleReturnPLDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSampleReturnPLDet.check_but()
                 FormSampleReturnPLDet.actionLoad()
-                FormSampleReturnPL.viewSamplePL()
-                FormSampleReturnPL.GVSamplePL.FocusedRowHandle = find_row(FormSampleReturnPL.GVSamplePL, "id_sample_pl_ret", id_report)
+                'FormSampleReturnPL.viewSamplePL()
+                'FormSampleReturnPL.GVSamplePL.FocusedRowHandle = find_row(FormSampleReturnPL.GVSamplePL, "id_sample_pl_ret", id_report)
             Else
                 'code here
             End If

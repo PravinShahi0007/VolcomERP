@@ -19,10 +19,7 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        Dim mail As ClassSendEmail = New ClassSendEmail()
-        mail.report_mark_type = "2"
-        mail.id_report = "29"
-        mail.send_email()
+
         'manual fullfilled
         'Dim q As String = "SELECT d.id_pl_sales_order_del AS `id_report`,c.id_commerce_type, c.id_comp AS `id_store`, so.id_sales_order_ol_shop AS `id_web_order`
         'FROM tb_pl_sales_order_del d 
