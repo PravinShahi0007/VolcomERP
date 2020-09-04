@@ -2,11 +2,17 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Dim id_role_admin As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormPromoCollection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+
+        'discount code list
+        If id_role_login = id_role_admin Then
+            XTPDiscountCodes.PageVisible = True
+        End If
     End Sub
 
     Sub viewPropose()
@@ -23,7 +29,7 @@
             date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        Dim cond As String = "AND (p.created_date>='" + date_from_selected + "' AND p.created_date<='" + date_until_selected + "') "
+        Dim cond As String = "AND p.is_use_discount_code=2 AND (p.created_date>='" + date_from_selected + "' AND p.created_date<='" + date_until_selected + "') "
 
         Dim query_c As ClassPromoCollection = New ClassPromoCollection()
         Dim query As String = query_c.queryMain(cond, "2")
@@ -87,5 +93,9 @@
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
         End If
+    End Sub
+
+    Private Sub XTCPromo_Click(sender As Object, e As EventArgs) Handles XTCPromo.Click
+
     End Sub
 End Class
