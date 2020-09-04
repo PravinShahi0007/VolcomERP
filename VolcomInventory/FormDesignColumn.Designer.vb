@@ -19,23 +19,21 @@ Partial Class FormDesignColumn
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDesignColumn))
         Me.GCDesignColumn = New DevExpress.XtraGrid.GridControl()
         Me.GVDesignColumn = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemMemoEdit = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBMapping = New DevExpress.XtraEditors.SimpleButton()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SLUECategory = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DropDownButtonValue = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenuValue = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.PopupMenuValue = New DevExpress.XtraBars.PopupMenu()
         Me.BarButtonItemAddValue = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItemEditValue = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager = New DevExpress.XtraBars.BarManager()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -43,7 +41,7 @@ Partial Class FormDesignColumn
         Me.BarButtonItemAddColumn = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItemEditColumn = New DevExpress.XtraBars.BarButtonItem()
         Me.DropDownButtonColumn = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenuColumn = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.PopupMenuColumn = New DevExpress.XtraBars.PopupMenu()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -90,7 +88,6 @@ Partial Class FormDesignColumn
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SBMapping)
         Me.PanelControl1.Controls.Add(Me.Label2)
         Me.PanelControl1.Controls.Add(Me.SLUECategory)
         Me.PanelControl1.Controls.Add(Me.DropDownButtonValue)
@@ -102,16 +99,6 @@ Partial Class FormDesignColumn
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1008, 52)
         Me.PanelControl1.TabIndex = 1
-        '
-        'SBMapping
-        '
-        Me.SBMapping.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBMapping.Image = CType(resources.GetObject("SBMapping.Image"), System.Drawing.Image)
-        Me.SBMapping.Location = New System.Drawing.Point(659, 14)
-        Me.SBMapping.Name = "SBMapping"
-        Me.SBMapping.Size = New System.Drawing.Size(119, 23)
-        Me.SBMapping.TabIndex = 8
-        Me.SBMapping.Text = "Column Mapping"
         '
         'Label2
         '
@@ -355,5 +342,4 @@ Partial Class FormDesignColumn
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SBMapping As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -176,6 +176,9 @@ Partial Class FormSalesBranchDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl34 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnGetKurs = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.PanelControlPreview, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -257,6 +260,7 @@ Partial Class FormSalesBranchDet
         Me.XTPDraftJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl7
@@ -405,7 +409,7 @@ Partial Class FormSalesBranchDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(986, 129)
+        Me.PanelControl2.Size = New System.Drawing.Size(986, 134)
         Me.PanelControl2.TabIndex = 6
         '
         'PanelControl6
@@ -422,7 +426,7 @@ Partial Class FormSalesBranchDet
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(683, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(301, 125)
+        Me.PanelControl6.Size = New System.Drawing.Size(301, 130)
         Me.PanelControl6.TabIndex = 166
         '
         'LabelControl24
@@ -512,6 +516,9 @@ Partial Class FormSalesBranchDet
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BtnGetKurs)
+        Me.PanelControl3.Controls.Add(Me.TEKurs)
+        Me.PanelControl3.Controls.Add(Me.LabelControl34)
         Me.PanelControl3.Controls.Add(Me.LabelControl25)
         Me.PanelControl3.Controls.Add(Me.DEDueDate)
         Me.PanelControl3.Controls.Add(Me.SLEUnit)
@@ -521,13 +528,13 @@ Partial Class FormSalesBranchDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(375, 125)
+        Me.PanelControl3.Size = New System.Drawing.Size(375, 130)
         Me.PanelControl3.TabIndex = 165
         '
         'LabelControl25
         '
         Me.LabelControl25.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl25.Location = New System.Drawing.Point(16, 67)
+        Me.LabelControl25.Location = New System.Drawing.Point(16, 93)
         Me.LabelControl25.Name = "LabelControl25"
         Me.LabelControl25.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl25.TabIndex = 8916
@@ -536,7 +543,7 @@ Partial Class FormSalesBranchDet
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Location = New System.Drawing.Point(93, 64)
+        Me.DEDueDate.Location = New System.Drawing.Point(93, 90)
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -648,7 +655,7 @@ Partial Class FormSalesBranchDet
         Me.GroupControlNormalAccount.Controls.Add(Me.TxtProsPPNNormal)
         Me.GroupControlNormalAccount.Controls.Add(Me.LabelControl9)
         Me.GroupControlNormalAccount.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControlNormalAccount.Location = New System.Drawing.Point(0, -241)
+        Me.GroupControlNormalAccount.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlNormalAccount.Name = "GroupControlNormalAccount"
         Me.GroupControlNormalAccount.Size = New System.Drawing.Size(963, 262)
         Me.GroupControlNormalAccount.TabIndex = 8909
@@ -1084,7 +1091,7 @@ Partial Class FormSalesBranchDet
         Me.GroupControlSaleAccount.Controls.Add(Me.TxtProsPPNSale)
         Me.GroupControlSaleAccount.Controls.Add(Me.LabelControl23)
         Me.GroupControlSaleAccount.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControlSaleAccount.Location = New System.Drawing.Point(0, 21)
+        Me.GroupControlSaleAccount.Location = New System.Drawing.Point(0, 262)
         Me.GroupControlSaleAccount.Name = "GroupControlSaleAccount"
         Me.GroupControlSaleAccount.Size = New System.Drawing.Size(963, 272)
         Me.GroupControlSaleAccount.TabIndex = 8911
@@ -1478,7 +1485,7 @@ Partial Class FormSalesBranchDet
         Me.GroupControl4.Controls.Add(Me.GCData)
         Me.GroupControl4.Controls.Add(Me.PanelControlNav)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 293)
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 534)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.Size = New System.Drawing.Size(963, 272)
         Me.GroupControl4.TabIndex = 8912
@@ -1672,10 +1679,10 @@ Partial Class FormSalesBranchDet
         'XTCData
         '
         Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCData.Location = New System.Drawing.Point(0, 129)
+        Me.XTCData.Location = New System.Drawing.Point(0, 134)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPDetail
-        Me.XTCData.Size = New System.Drawing.Size(986, 309)
+        Me.XTCData.Size = New System.Drawing.Size(986, 304)
         Me.XTCData.TabIndex = 8913
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPDraftJournal})
         '
@@ -1683,7 +1690,7 @@ Partial Class FormSalesBranchDet
         '
         Me.XTPDetail.Controls.Add(Me.XtraScrollableControl2)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(980, 281)
+        Me.XTPDetail.Size = New System.Drawing.Size(980, 276)
         Me.XTPDetail.Text = "Detail Transaction"
         '
         'XtraScrollableControl2
@@ -1694,7 +1701,7 @@ Partial Class FormSalesBranchDet
         Me.XtraScrollableControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl2.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl2.Name = "XtraScrollableControl2"
-        Me.XtraScrollableControl2.Size = New System.Drawing.Size(980, 281)
+        Me.XtraScrollableControl2.Size = New System.Drawing.Size(980, 276)
         Me.XtraScrollableControl2.TabIndex = 8913
         '
         'XTPDraftJournal
@@ -1798,6 +1805,38 @@ Partial Class FormSalesBranchDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
+        'LabelControl34
+        '
+        Me.LabelControl34.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl34.Location = New System.Drawing.Point(16, 67)
+        Me.LabelControl34.Name = "LabelControl34"
+        Me.LabelControl34.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl34.TabIndex = 8940
+        Me.LabelControl34.Text = "Kurs ($)"
+        '
+        'TEKurs
+        '
+        Me.TEKurs.Location = New System.Drawing.Point(93, 64)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.SaveLiteral = False
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Properties.ReadOnly = True
+        Me.TEKurs.Size = New System.Drawing.Size(199, 20)
+        Me.TEKurs.TabIndex = 8941
+        '
+        'BtnGetKurs
+        '
+        Me.BtnGetKurs.Location = New System.Drawing.Point(298, 64)
+        Me.BtnGetKurs.Name = "BtnGetKurs"
+        Me.BtnGetKurs.Size = New System.Drawing.Size(59, 20)
+        Me.BtnGetKurs.TabIndex = 8942
+        Me.BtnGetKurs.Text = "Get Kurs"
+        '
         'FormSalesBranchDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1898,6 +1937,7 @@ Partial Class FormSalesBranchDet
         Me.XTPDraftJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2057,4 +2097,7 @@ Partial Class FormSalesBranchDet
     Friend WithEvents TxtProsStoreSale As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl30 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtSaleSales As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl34 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnGetKurs As DevExpress.XtraEditors.SimpleButton
 End Class

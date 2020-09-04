@@ -304,6 +304,12 @@
     <Compile Include="Form3plRateDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormABGRoyaltyZone.Designer.vb">
+      <DependentUpon>FormABGRoyaltyZone.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormABGRoyaltyZone.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAccClosing.Designer.vb">
       <DependentUpon>FormAccClosing.vb</DependentUpon>
     </Compile>
@@ -1062,6 +1068,12 @@
       <DependentUpon>FormDesignColumnMapping.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDesignColumnMapping.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDesignColumnMappingTemplate.Designer.vb">
+      <DependentUpon>FormDesignColumnMappingTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignColumnMappingTemplate.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDesignColumnValue.Designer.vb">
@@ -3295,6 +3307,12 @@
     <Compile Include="FormProductionRecTargetHO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionSampleOrder.Designer.vb">
+      <DependentUpon>FormProductionSampleOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionSampleOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </Compile>
@@ -3461,6 +3479,18 @@
       <DependentUpon>FormPurcOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceiving.Designer.vb">
+      <DependentUpon>FormPurcOrderCloseReceiving.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceiving.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceivingList.Designer.vb">
+      <DependentUpon>FormPurcOrderCloseReceivingList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceivingList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcOrderDet.Designer.vb">
@@ -7810,10 +7840,22 @@
     <Compile Include="ReportMemoUnpaidLeave.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportODMScan.Designer.vb">
+      <DependentUpon>ReportODMScan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportODMScan.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportOlStoreRetCust.Designer.vb">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportOlStoreRetCust.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportOutboundLabel.Designer.vb">
+      <DependentUpon>ReportOutboundLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOutboundLabel.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportOutboundManifest.Designer.vb">
@@ -8500,6 +8542,9 @@
     <EmbeddedResource Include="Form3plRateDet.resx">
       <DependentUpon>Form3plRateDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormABGRoyaltyZone.resx">
+      <DependentUpon>FormABGRoyaltyZone.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAccClosing.resx">
       <DependentUpon>FormAccClosing.vb</DependentUpon>
     </EmbeddedResource>
@@ -8914,6 +8959,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignColumnMapping.resx">
       <DependentUpon>FormDesignColumnMapping.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignColumnMappingTemplate.resx">
+      <DependentUpon>FormDesignColumnMappingTemplate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignColumnValue.resx">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
@@ -10047,6 +10095,9 @@
     <EmbeddedResource Include="FormProductionRecTargetHO.resx">
       <DependentUpon>FormProductionRecTargetHO.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionSampleOrder.resx">
+      <DependentUpon>FormProductionSampleOrder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </EmbeddedResource>
@@ -10130,6 +10181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrder.resx">
       <DependentUpon>FormPurcOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcOrderCloseReceiving.resx">
+      <DependentUpon>FormPurcOrderCloseReceiving.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcOrderCloseReceivingList.resx">
+      <DependentUpon>FormPurcOrderCloseReceivingList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrderDet.resx">
       <DependentUpon>FormPurcOrderDet.vb</DependentUpon>
@@ -12758,6 +12815,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportODMScan.resx">
+      <DependentUpon>ReportODMScan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOlStoreRetCust.resx">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>

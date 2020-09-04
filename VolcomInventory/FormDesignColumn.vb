@@ -262,14 +262,9 @@
         FormMain.hide_rb()
     End Sub
 
-    Private Sub SBMapping_Click(sender As Object, e As EventArgs) Handles SBMapping.Click
-        If Not column_type_front = "" And Not column_type_end = "" Then
-            FormDesignColumnMapping.column_type_front = column_type_front
-            FormDesignColumnMapping.column_type_end = column_type_end
-
-            FormDesignColumnMapping.ShowDialog()
-        Else
-            stopCustom("Type all does not require column mapping.")
-        End If
+    Private Sub GVDesignColumn_EndSorting(sender As Object, e As EventArgs) Handles GVDesignColumn.EndSorting
+        For i = 0 To GVDesignColumn.SortedColumns.Count - 1
+            GVDesignColumn.FocusedColumn = GVDesignColumn.SortedColumns.Item(i)
+        Next
     End Sub
 End Class

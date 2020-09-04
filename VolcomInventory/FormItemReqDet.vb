@@ -26,7 +26,7 @@
             If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
                 TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
             Else
-                TxtDept.Text = get_departement_x(id_departement_user, "1")
+                TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
             End If
 
             TxtRequestedBy.Text = get_user_identify(id_user, "1")
@@ -67,7 +67,11 @@
                 XTPDetail.PageVisible = False
                 rmt = "154"
             End If
-
+            '
+            If is_view = "1" Then
+                BtnCancell.Visible = False
+            End If
+            '
             viewDetail()
             allow_status()
         End If
@@ -204,7 +208,7 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        If id_report_status = "6" Then
+        If id_report_status = "2" Then
             Dim title As String = ""
             Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
             Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
@@ -292,7 +296,8 @@
         If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
             id_dep = FormItemReq.SLEDepartement.EditValue.ToString
         Else
-            id_dep = id_departement_user
+            'id_dep = id_departement_user
+            id_dep = FormItemReq.SLEDepartement.EditValue.ToString
         End If
 
         Dim biaya_ok As Boolean = True
@@ -305,8 +310,9 @@ INNER JOIN tb_item_cat cat ON cat.id_item_cat=ic.id_item_cat
 INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & id_dep & "' AND i.id_item='" & GVData.GetRowCellValue(k, "id_item").ToString & "'"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
             If dtc.Rows.Count <= 0 Then
+                Dim select_note As String = execute_query("SELECT cat.item_cat FROM tb_item_coa ic INNER JOIN tb_item_cat cat ON cat.id_item_cat = ic.id_item_cat INNER JOIN tb_item i ON ic.id_item_cat = i.id_item_cat AND i.id_item = '" & GVData.GetRowCellValue(k, "id_item").ToString & "'", 0, True, "", "", "", "")
                 biaya_ok = False
-                biaya_ok_note += Environment.NewLine & "- Mapping " & dtc.Rows(0)("item_cat").ToString & " Departement " & TxtDept.Text
+                biaya_ok_note += Environment.NewLine & "- Mapping " & select_note & " Departement " & TxtDept.Text
                 Exit For
             End If
         Next
@@ -335,8 +341,9 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
                 GVData.SetRowCellValue(i, "stt", "Product not found;")
                 cond_data = False
             Else
+                'If GVData.GetRowCellValue(i, "qty") > dt(0)("qty") And GVData.GetRowCellValue(i, "is_store_request") = "no" Then
                 If GVData.GetRowCellValue(i, "qty") > dt(0)("qty") And GVData.GetRowCellValue(i, "is_store_request") = "no" Then
-                    GVData.SetRowCellValue(i, "stt", "Qty can't exceed " + dt(0)("qty").ToString + ";")
+                    GVData.SetRowCellValue(i, "stt", "Qty available : " + dt(0)("qty").ToString + ";")
                     cond_data = False
                 Else
                     GVData.SetRowCellValue(i, "stt", "")
@@ -353,7 +360,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
         ElseIf Not cond_data Then
             GridColumnStt.VisibleIndex = 20
             GVData.BestFitColumns()
-            warningCustom("Can't save, some item exceed limit qty")
+            warningCustom("Can't save, some item qty not available")
         ElseIf Not biaya_ok Then
             warningCustom("Please contact accounting to setup : " & biaya_ok_note)
         Else
@@ -364,7 +371,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
                 Dim note As String = addSlashes(MENote.Text)
 
                 'query main
-                Dim qm As String = "INSERT INTO tb_item_req(id_departement, created_date, created_by, note, id_report_status, is_for_store) VALUES (" + id_dep + ", NOW(), " + id_user + ", '" + note + "', 6, '" + is_for_store + "'); SELECT LAST_INSERT_ID(); "
+                Dim qm As String = "INSERT INTO tb_item_req(id_departement, created_date, created_by, note, id_report_status, is_for_store) VALUES (" + id_dep + ", NOW(), " + id_user + ", '" + note + "', 1, '" + is_for_store + "'); SELECT LAST_INSERT_ID(); "
                 id = execute_query(qm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + "," + rmt + "); ", True, "", "", "", "")
 
@@ -421,7 +428,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
                 rs.updateStock(id, 2, rmt)
 
                 'submit
-                submit_who_prepared(rmt, id, id_user)
+                submit_who_prepared_pr(rmt, id, id_user, id_dep)
 
                 'refresh
                 FormItemReq.viewData()
@@ -439,7 +446,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
         If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
             FormItemReqAdd.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
         Else
-            FormItemReqAdd.id_departement = id_departement_user
+            FormItemReqAdd.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
         End If
         FormItemReqAdd.ShowDialog()
         Cursor = Cursors.Default
@@ -478,7 +485,7 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
         If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
             FormItemReqAddStore.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
         Else
-            FormItemReqAddStore.id_departement = id_departement_user
+            FormItemReqAddStore.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
         End If
         FormItemReqAddStore.ShowDialog()
         Cursor = Cursors.Default

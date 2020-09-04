@@ -9228,6 +9228,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMasterDesignFabrication" Then
             FormMasterDesignFabrication.Close()
             FormMasterDesignFabrication.Dispose()
+        ElseIf formName = "FormDesignColumnMapping" Then
+            FormDesignColumnMapping.Close()
+            FormDesignColumnMapping.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10105,6 +10108,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPurcReqList" Then
             'Purchase request IC
             FormPurcReqList.load_req()
+        ElseIf formName = "FormPurcReq" Then
+            FormPurcReq.load_dep()
+            FormPurcReq.load_req()
+            FormPurcReq.load_status()
+            '
+            FormPurcReq.check_menu()
         ElseIf formName = "FormBuktiPickup" Then
             FormBuktiPickup.load_form()
         ElseIf formName = "FormTrackingReturn" Then
@@ -10167,6 +10176,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesBranch.viewData()
         ElseIf formName = "FormMasterDesignFabrication" Then
             FormMasterDesignFabrication.load_form()
+        ElseIf formName = "FormDesignColumnMapping" Then
+            FormDesignColumnMapping.load_form()
+        ElseIf formName = "FormPurcOrder" Then
+            If FormPurcOrder.XTCPO.SelectedTabPage.Name = "XTPCloseReceiving" Then
+                FormPurcOrder.load_close_receiving()
+            End If
         End If
     End Sub
     'Switch
@@ -15212,6 +15227,50 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMasterDesignFabrication.Show()
             FormMasterDesignFabrication.WindowState = FormWindowState.Maximized
             FormMasterDesignFabrication.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBABGRoyaltyZone_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBABGRoyaltyZone.LinkClicked
+        Try
+            FormABGRoyaltyZone.MdiParent = Me
+            FormABGRoyaltyZone.Show()
+            FormABGRoyaltyZone.WindowState = FormWindowState.Maximized
+            FormABGRoyaltyZone.Focus()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub NBItemRequestPurchasing_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemRequestPurchasing.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemReq.Close()
+            FormItemReq.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
+            FormItemReq.is_for_purchasing = "1"
+            FormItemReq.MdiParent = Me
+            FormItemReq.Show()
+            FormItemReq.WindowState = FormWindowState.Maximized
+            FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDesignTemplate_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDesignTemplate.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDesignColumnMapping.MdiParent = Me
+            FormDesignColumnMapping.Show()
+            FormDesignColumnMapping.WindowState = FormWindowState.Maximized
+            FormDesignColumnMapping.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

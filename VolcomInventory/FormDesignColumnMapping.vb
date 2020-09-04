@@ -1,32 +1,18 @@
 ﻿Public Class FormDesignColumnMapping
-    Public column_type_front As String = ""
-    Public column_type_end As String = ""
-
-    Private loaded As Boolean = False
+    Public edited As Boolean = False
 
     Private Sub FormDesignColumnMapping_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewSearchLookupQuery(SLUEStore, "SELECT id_design_column_type, column_type FROM tb_design_column_type", "id_design_column_type", "column_type", "id_design_column_type")
+        view_template()
 
-        TEType.EditValue = execute_query("
-            SELECT CONCAT(column_front.display_name, ' ', column_end.display_name) AS `code`
-            FROM (
-	            SELECT display_name
-	            FROM tb_m_code_detail
-	            WHERE id_code_detail = '" + column_type_front + "'
-            ) AS column_front, (
-	            SELECT display_name
-	            FROM tb_m_code_detail
-	            WHERE id_code_detail = '" + column_type_end + "'
-            ) AS column_end
+        view_division()
 
-            UNION
-
-            SELECT 'ALL' AS `code`
-        ", 0, True, "", "", "", "")
+        view_season()
 
         load_form()
+    End Sub
 
-        loaded = True
+    Sub view_template()
+        viewSearchLookupQuery(SLUEStore, "SELECT id_design_column_type, column_type FROM tb_design_column_type", "id_design_column_type", "column_type", "id_design_column_type")
     End Sub
 
     Sub load_form()
@@ -34,12 +20,17 @@
         Dim cols As DataTable = execute_query("
             SELECT alias_name AS column_name FROM tb_design_column_additional
             UNION ALL
-            SELECT column_name FROM tb_design_column
+            SELECT 'Spesifikasi' AS column_name
+            UNION ALL
+            SELECT column_name FROM tb_design_column WHERE id_design_column_category = 1
         ", -1, True, "", "", "", "")
 
         GCCol.DataSource = cols
 
         GVCol.BestFitColumns()
+
+        GVDesign.Columns.Clear()
+        GCDesign.DataSource = Nothing
 
         'column
         GVColumn.Columns.Clear()
@@ -51,7 +42,7 @@
 	            SELECT cm.id_design_column_list, cm.column_mapping
 	            FROM tb_design_column_mapping AS cm
 	            LEFT JOIN tb_design_column_list AS cl ON cm.id_design_column_list = cl.id_design_column_list
-	            WHERE cl.id_design_column_type = " + SLUEStore.EditValue.ToString + " AND cm.column_type_front = " + column_type_front + " AND cm.column_type_end = " + column_type_end + "
+	            WHERE cl.id_design_column_type = " + SLUEStore.EditValue.ToString + "
             ) AS cm ON cl.id_design_column_list = cm.id_design_column_list
             WHERE cl.id_design_column_type = " + SLUEStore.EditValue.ToString + "
         ", -1, True, "", "", "", "")
@@ -95,7 +86,7 @@
         Dispose()
     End Sub
 
-    Function generate_query(id_store As String, type_front As String, type_end As String, in_design As String) As String
+    Function generate_column(id_store As String) As DataTable
         'select
         Dim q_select As String = ""
 
@@ -106,7 +97,7 @@
 	            SELECT cm.id_design_column_list, cm.column_mapping
 	            FROM tb_design_column_mapping AS cm
 	            LEFT JOIN tb_design_column_list AS cl ON cm.id_design_column_list = cl.id_design_column_list
-	            WHERE cl.id_design_column_type = " + id_store + " AND cm.column_type_front = " + type_front + " AND cm.column_type_end = " + type_end + "
+	            WHERE cl.id_design_column_type = " + id_store + "
             ) AS cm ON cl.id_design_column_list = cm.id_design_column_list
             WHERE cl.id_design_column_type = " + id_store + "
         ", -1, True, "", "", "", "")
@@ -165,50 +156,56 @@
             q_select += q_concat + ", "
         Next
 
-        'column dynamic
-        Dim q_column As String = ""
-
-        Dim columns As DataTable = execute_query("SELECT * FROM tb_design_column", -1, True, "", "", "", "")
-
-        For i = 0 To columns.Rows.Count - 1
-            q_column += "MAX(CASE WHEN col.id_design_column = " + columns.Rows(i)("id_design_column").ToString + " THEN i.value END) AS `" + columns.Rows(i)("column_name").ToString + "`, "
-        Next
-
-        'column additional
-        Dim a_column As String = execute_query("SELECT GROUP_CONCAT(CONCAT(column_name, ' AS `', alias_name, '`')) AS `column` FROM tb_design_column_additional", 0, True, "", "", "", "")
-
-        Dim query As String = ""
+        Dim data As DataTable = New DataTable
 
         If Not q_select = "" Then
             'query
-            query = "
-                SELECT id_design, id_product, " + q_select.Substring(0, q_select.Length - 2) + "
-                FROM (
-	                SELECT d.id_design, p.id_product, " + a_column + ",
-	                " + q_column.Substring(0, q_column.Length - 2) + "
-	                FROM tb_m_product AS p
-	                INNER JOIN tb_m_product_code AS pc ON pc.id_product = p.id_product
-	                INNER JOIN tb_m_code_detail AS cd ON cd.id_code_detail = pc.id_code_detail
-	                INNER JOIN tb_m_design AS d ON d.id_design = p.id_design
-	                LEFT JOIN tb_m_design_information AS i ON i.id_design = d.id_design
-	                LEFT JOIN tb_design_column AS col ON col.id_design_column = i.id_design_column
-	                WHERE d.id_design IN (" + in_design + ")
-	                GROUP BY p.id_product
-                ) tb
-            "
+            Dim query As String = "CALL view_all_design_mapping(" + SLUEStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ")"
+
+            data = execute_query(query, -1, True, "", "", "", "")
+
+            If data.Rows.Count > 0 Then
+                'remove blank
+                For i = 0 To data.Rows.Count - 1
+                    For j = 0 To data.Columns.Count - 1
+                        If Not data.Columns(j).ColumnName.ToString = "id_design" And Not data.Columns(j).ColumnName.ToString = "id_product" Then
+                            Dim value() As String = data.Rows(i)(data.Columns(j)).ToString.Split(vbLf)
+
+                            Dim new_value As List(Of String) = New List(Of String)
+
+                            For k = 0 To value.Count - 1
+                                If Not value(k).ToString = "" Then
+                                    new_value.Add(value(k).ToString)
+                                End If
+                            Next
+
+                            data.Rows(i)(data.Columns(j)) = ""
+
+                            For k = 0 To new_value.Count - 1
+                                data.Rows(i)(data.Columns(j)) += new_value(k).ToString
+
+                                If k < (new_value.Count - 1) Then
+                                    data.Rows(i)(data.Columns(j)) += vbLf
+                                End If
+                            Next
+                        End If
+                    Next
+                Next
+
+                data.Columns.Remove(data.Columns("id_design"))
+                data.Columns.Remove(data.Columns("id_product"))
+            End If
         End If
 
-        Return query
+        Return data
     End Function
 
     Private Sub GVCol_DoubleClick(sender As Object, e As EventArgs) Handles GVCol.DoubleClick
         Dim value As String = GVColumn.GetFocusedRowCellValue(GVColumn.FocusedColumn) + "`" + GVCol.GetFocusedRowCellValue("column_name").ToString + "`"
 
         GVColumn.SetFocusedRowCellValue(GVColumn.FocusedColumn, value)
-    End Sub
 
-    Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
-        Close()
+        edited = True
     End Sub
 
     Private Sub SLUEStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEStore.EditValueChanged
@@ -239,12 +236,16 @@
             GVColumn.BestFitColumns()
 
             TEAdd.EditValue = ""
+
+            edited = True
         Else
             stopCustom("Please add column name.")
         End If
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
+        Cursor = Cursors.WaitCursor
+
         Dim in_design_column_list As String = ""
 
         For i = 0 To GVColumn.Columns.Count - 1
@@ -255,9 +256,9 @@
                 id_design_column_list = execute_query("INSERT INTO tb_design_column_list (id_design_column_type, column_list) VALUES (" + SLUEStore.EditValue.ToString + ", '" + addSlashes(GVColumn.Columns(i).Caption) + "'); SELECT LAST_INSERT_ID();", 0, True, "", "", "", "")
             End If
 
-            execute_non_query("DELETE FROM tb_design_column_mapping WHERE id_design_column_list = " + id_design_column_list + " AND column_type_front = " + column_type_front + " AND column_type_end = " + column_type_end, True, "", "", "", "")
+            execute_non_query("DELETE FROM tb_design_column_mapping WHERE id_design_column_list = " + id_design_column_list, True, "", "", "", "")
 
-            execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_type_front, column_type_end, column_mapping) VALUES (" + id_design_column_list + ", " + column_type_front + ", " + column_type_end + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i)).ToString) + "')", True, "", "", "", "")
+            execute_non_query("INSERT INTO tb_design_column_mapping (id_design_column_list, column_mapping) VALUES (" + id_design_column_list + ", '" + addSlashes(GVColumn.GetRowCellValue(0, GVColumn.Columns(i)).ToString) + "')", True, "", "", "", "")
 
             in_design_column_list += id_design_column_list + ", "
         Next
@@ -265,6 +266,13 @@
         If Not in_design_column_list = "" Then
             execute_non_query("DELETE FROM tb_design_column_list WHERE id_design_column_list NOT IN (" + in_design_column_list.Substring(0, in_design_column_list.Length - 2) + ") AND id_design_column_type = " + SLUEStore.EditValue.ToString, True, "", "", "", "")
         End If
+
+        GVDesign.Columns.Clear()
+        GCDesign.DataSource = Nothing
+
+        edited = False
+
+        Cursor = Cursors.Default
 
         infoCustom("Saved.")
     End Sub
@@ -278,15 +286,126 @@
         GVColumn.Columns.Remove(GVColumn.FocusedColumn)
 
         GCColumn.DataSource = data
+
+        edited = True
     End Sub
 
     Private Sub SLUEStore_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles SLUEStore.EditValueChanging
-        If loaded Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to move, or save first ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If edited Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to move and discard changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
             If confirm = DialogResult.No Then
                 e.Cancel = True
             End If
         End If
+    End Sub
+
+    Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
+        Cursor = Cursors.WaitCursor
+
+        GVDesign.Columns.Clear()
+        GCDesign.DataSource = Nothing
+
+        Dim data As DataTable = generate_column(SLUEStore.EditValue.ToString)
+
+        GCDesign.DataSource = data
+
+        'add memo edit
+        For i = 0 To GVDesign.Columns.Count - 1
+            GVDesign.Columns(i).Width = 150
+            GVDesign.Columns(i).ColumnEdit = RepositoryItemMemoEdit1
+        Next
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBExportXLSX_Click(sender As Object, e As EventArgs) Handles SBExportXLSX.Click
+        If GVDesign.RowCount > 0 Then
+            Dim save As SaveFileDialog = New SaveFileDialog
+
+            save.Filter = "Excel File | *.xlsx"
+            save.ShowDialog()
+
+            If Not save.FileName = "" Then
+                GCDesign.ExportToXlsx(save.FileName)
+
+                infoCustom("File saved.")
+            End If
+        Else
+            stopCustom("No product in the list.")
+        End If
+    End Sub
+
+    Sub view_season()
+        Dim query As String = "
+            (SELECT 0 AS id_season, 'ALL' AS season, 0 AS id_range, 'ALL' AS `range`)
+            UNION ALL
+            (SELECT a.id_season, a.season, b.id_range, b.range
+            FROM tb_season a 
+            INNER JOIN tb_range b ON a.id_range = b.id_range 
+            ORDER BY b.range DESC)
+        "
+        viewSearchLookupQuery(SLUESeason, query, "id_season", "season", "id_season")
+    End Sub
+
+    Sub view_division()
+        Dim query As String = "
+            (SELECT 0 AS id_code_detail, 'ALL' AS code)
+            UNION ALL
+            (SELECT id_code_detail, `code`
+            FROM tb_m_code_detail
+            WHERE id_code = 32
+            ORDER BY id_code_detail ASC)
+        "
+
+        viewSearchLookupQuery(SLUEDivision, query, "id_code_detail", "code", "id_code_detail")
+    End Sub
+
+    Private Sub FormDesignColumnMapping_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+        button_main("0", "0", "0")
+    End Sub
+
+    Private Sub FormDesignColumnMapping_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
+
+    Private Sub SBEditType_Click(sender As Object, e As EventArgs) Handles SBEditType.Click
+        Dim cnt As Boolean = True
+
+        If edited Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to move and discard changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.No Then
+                cnt = False
+            End If
+        End If
+
+        If cnt Then
+            FormDesignColumnMappingTemplate.id_design_column_type = SLUEStore.EditValue.ToString
+            FormDesignColumnMappingTemplate.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub SBAddType_Click(sender As Object, e As EventArgs) Handles SBAddType.Click
+        Dim cnt As Boolean = True
+
+        If edited Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to move and discard changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.No Then
+                cnt = False
+            End If
+        End If
+
+        If cnt Then
+            FormDesignColumnMappingTemplate.id_design_column_type = "0"
+            FormDesignColumnMappingTemplate.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub RepositoryItemMemoEdit_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemMemoEdit.KeyUp
+        edited = True
     End Sub
 End Class
