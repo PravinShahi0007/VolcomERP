@@ -541,6 +541,7 @@ GROUP BY pod.id_purc_order_det"
     End Sub
 
     Private Sub SBCreateNewClose_Click(sender As Object, e As EventArgs) Handles SBCreateNewClose.Click
+        FormPurcOrderCloseReceiving.change_type = "close"
         FormPurcOrderCloseReceiving.id_close_receiving = "0"
 
         FormPurcOrderCloseReceiving.ShowDialog()
@@ -561,14 +562,47 @@ GROUP BY pod.id_purc_order_det"
         GVCloseReceiving.BestFitColumns()
     End Sub
 
+    Sub load_receive_date()
+        GCReceiveDate.DataSource = execute_query("
+            SELECT m.id_receive_date, m.number, GROUP_CONCAT(p.purc_order_number SEPARATOR ', ') AS purc_order_number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, e.employee_name AS created_by, l.report_status
+            FROM tb_purc_order_move_date_det AS md
+            LEFT JOIN tb_purc_order AS p ON md.id_purc_order = p.id_purc_order
+            LEFT JOIN tb_purc_order_move_date AS m ON md.id_receive_date = m.id_receive_date
+            LEFT JOIN tb_lookup_report_status AS l ON m.id_report_status = l.id_report_status
+            LEFT JOIN tb_m_employee AS e ON m.created_by = e.id_employee
+            GROUP BY md.id_receive_date
+            ORDER BY md.id_receive_date DESC
+        ", -1, True, "", "", "", "")
+
+        GVReceiveDate.BestFitColumns()
+    End Sub
+
     Private Sub XTCPO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPO.SelectedPageChanged
         If XTCPO.SelectedTabPage.Name = "XTPCloseReceiving" Then
             load_close_receiving()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPReceiveDate" Then
+            load_receive_date()
         End If
     End Sub
 
     Private Sub GVCloseReceiving_DoubleClick(sender As Object, e As EventArgs) Handles GVCloseReceiving.DoubleClick
+        FormPurcOrderCloseReceiving.change_type = "close"
         FormPurcOrderCloseReceiving.id_close_receiving = GVCloseReceiving.GetFocusedRowCellValue("id_close_receiving").ToString
+
+        FormPurcOrderCloseReceiving.ShowDialog()
+    End Sub
+
+    Private Sub GVReceiveDate_DoubleClick(sender As Object, e As EventArgs) Handles GVReceiveDate.DoubleClick
+        FormPurcOrderCloseReceiving.change_type = "move"
+        FormPurcOrderCloseReceiving.id_receive_date = GVReceiveDate.GetFocusedRowCellValue("id_receive_date").ToString
+
+        FormPurcOrderCloseReceiving.ShowDialog()
+    End Sub
+
+    Private Sub SBReceiveDateCreateNew_Click(sender As Object, e As EventArgs) Handles SBReceiveDateCreateNew.Click
+        FormPurcOrderCloseReceiving.change_type = "move"
+        FormPurcOrderCloseReceiving.id_receive_date = "0"
+
         FormPurcOrderCloseReceiving.ShowDialog()
     End Sub
 End Class

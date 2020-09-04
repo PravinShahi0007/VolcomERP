@@ -368,6 +368,9 @@
         ElseIf report_mark_type = "259" Then
             'close receiving
             FormPurcOrderCloseReceiving.Close()
+        ElseIf report_mark_type = "260" Then
+            'move est. date receive
+            FormPurcOrderCloseReceiving.Close()
         End If
     End Sub
     Sub show()
@@ -1269,6 +1272,10 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "259" Then
             'close receiving
             FormPurcOrderCloseReceiving.id_close_receiving = id_report
+            FormPurcOrderCloseReceiving.ShowDialog()
+        ElseIf report_mark_type = "260" Then
+            'move est. date receive
+            FormPurcOrderCloseReceiving.id_receive_date = id_report
             FormPurcOrderCloseReceiving.ShowDialog()
         Else
             'MsgBox(id_report)
@@ -2275,6 +2282,12 @@ GROUP BY rec.`id_prod_order`"
             'close receiving
             table_name = "tb_purc_order_close"
             field_id = "id_close_receiving"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "260" Then
+            'move est. receive date
+            table_name = "tb_purc_order_move_date"
+            field_id = "id_receive_date"
             field_number = "number"
             field_date = "created_date"
         Else
