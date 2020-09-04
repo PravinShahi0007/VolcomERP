@@ -257,7 +257,7 @@ WHERE dep.id_departement=4", 0, True, "", "", "", "")
                     query_kpd += ","
                 End If
                 '
-                query_kpd += "('" & id_copy_proto2 & "','0','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "',DATE(NOW()),NULL)"
+                query_kpd += "('" & id_copy_proto2 & "','0','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "',DATE(NOW()))"
             Next
 
             execute_non_query(query_kpd, True, "", "", "", "")
@@ -268,7 +268,7 @@ FROM
 (SELECT * FROM `tb_prod_order_cps2` WHERE YEAR(date_created) = YEAR(CURRENT_DATE()) GROUP BY id_prod_order_cps2_reff) kp
 WHERE kp.id_prod_order_cps2_reff < '" & id_copy_proto2 & "' AND kp.id_prod_order_cps2_reff != 0;
 SELECT CONCAT(LPAD(@number_report,3,'0'),'/EXT/PRL-SR/',convert_romawi(DATE_FORMAT(NOW(),'%m')),'/',DATE_FORMAT(NOW(),'%y')) INTO @report_number;
-UPDATE tb_prod_order_cps2 SET `id_prod_order_cps2_reff`='" & id_copy_proto2 & "',number=@report_number WHERE id_prod_order_cps2_reff='" & id_copy_proto2 & "'"
+UPDATE tb_prod_order_cps2 SET `id_prod_order_cps2_reff`='" & id_copy_proto2 & "',number=@number_report WHERE id_prod_order_cps2='" & id_copy_proto2 & "'"
             execute_non_query(query_copy_proto2, True, "", "", "", "")
             'show KP form
             FormProductionSampleOrder.id = id_copy_proto2

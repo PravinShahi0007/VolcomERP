@@ -2570,7 +2570,7 @@ Partial Class FormProduction
         'GridColumn81
         '
         Me.GridColumn81.Caption = "ID KO"
-        Me.GridColumn81.FieldName = "id_prod_order_ko"
+        Me.GridColumn81.FieldName = "id_prod_order_cps2"
         Me.GridColumn81.Name = "GridColumn81"
         '
         'GridColumn82
