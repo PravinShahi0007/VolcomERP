@@ -10181,6 +10181,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPurcOrder" Then
             If FormPurcOrder.XTCPO.SelectedTabPage.Name = "XTPCloseReceiving" Then
                 FormPurcOrder.load_close_receiving()
+            ElseIf FormPurcOrder.XTCPO.SelectedTabPage.Name = "XTPReceiveDate" Then
+                FormPurcOrder.load_receive_date()
             End If
         End If
     End Sub

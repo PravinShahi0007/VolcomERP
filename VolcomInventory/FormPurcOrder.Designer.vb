@@ -19,6 +19,7 @@ Partial Class FormPurcOrder
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcOrder))
         Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPRequest = New DevExpress.XtraTab.XtraTabPage()
@@ -88,7 +89,7 @@ Partial Class FormPurcOrder
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPO = New DevExpress.XtraGrid.GridControl()
-        Me.MenuGCPO = New System.Windows.Forms.ContextMenuStrip()
+        Me.MenuGCPO = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CloseReceivingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -167,11 +168,11 @@ Partial Class FormPurcOrder
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMClose = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BBDropPOItem = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -185,7 +186,7 @@ Partial Class FormPurcOrder
         Me.BBSubEstPrice = New DevExpress.XtraBars.BarSubItem()
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTPCloseReceiving = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCloseReceiving = New DevExpress.XtraGrid.GridControl()
         Me.GVCloseReceiving = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -199,6 +200,19 @@ Partial Class FormPurcOrder
         Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SBCreateNewClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPReceiveDate = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCReceiveDate = New DevExpress.XtraGrid.GridControl()
+        Me.GVReceiveDate = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn92 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn95 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn96 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn97 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn98 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemProgressBar3 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBReceiveDateCreateNew = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -258,6 +272,13 @@ Partial Class FormPurcOrder
         CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        Me.XTPReceiveDate.SuspendLayout()
+        CType(Me.GCReceiveDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReceiveDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -269,7 +290,7 @@ Partial Class FormPurcOrder
         Me.XTCPO.SelectedTabPage = Me.XTPRequest
         Me.XTCPO.Size = New System.Drawing.Size(1151, 498)
         Me.XTCPO.TabIndex = 0
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPPO, Me.XTPPOList, Me.XTPCloseReceiving})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPPO, Me.XTPPOList, Me.XTPCloseReceiving, Me.XTPReceiveDate})
         '
         'XTPRequest
         '
@@ -1931,6 +1952,117 @@ Partial Class FormPurcOrder
         Me.SBCreateNewClose.TabIndex = 8914
         Me.SBCreateNewClose.Text = "create new"
         '
+        'XTPReceiveDate
+        '
+        Me.XTPReceiveDate.Controls.Add(Me.GCReceiveDate)
+        Me.XTPReceiveDate.Controls.Add(Me.PanelControl5)
+        Me.XTPReceiveDate.Name = "XTPReceiveDate"
+        Me.XTPReceiveDate.Size = New System.Drawing.Size(1145, 470)
+        Me.XTPReceiveDate.Text = "Move Est. Receive Date"
+        '
+        'GCReceiveDate
+        '
+        Me.GCReceiveDate.ContextMenuStrip = Me.MenuGCPO
+        Me.GCReceiveDate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReceiveDate.Location = New System.Drawing.Point(0, 42)
+        Me.GCReceiveDate.MainView = Me.GVReceiveDate
+        Me.GCReceiveDate.Name = "GCReceiveDate"
+        Me.GCReceiveDate.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemProgressBar3})
+        Me.GCReceiveDate.Size = New System.Drawing.Size(1145, 428)
+        Me.GCReceiveDate.TabIndex = 10
+        Me.GCReceiveDate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReceiveDate})
+        '
+        'GVReceiveDate
+        '
+        Me.GVReceiveDate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn92, Me.GridColumn93, Me.GridColumn95, Me.GridColumn96, Me.GridColumn97, Me.GridColumn98})
+        Me.GVReceiveDate.GridControl = Me.GCReceiveDate
+        Me.GVReceiveDate.Name = "GVReceiveDate"
+        Me.GVReceiveDate.OptionsBehavior.Editable = False
+        Me.GVReceiveDate.OptionsView.ColumnAutoWidth = False
+        Me.GVReceiveDate.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVReceiveDate.OptionsView.ShowFooter = True
+        Me.GVReceiveDate.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn92
+        '
+        Me.GridColumn92.Caption = "GridColumn6"
+        Me.GridColumn92.FieldName = "id_receive_date"
+        Me.GridColumn92.Name = "GridColumn92"
+        '
+        'GridColumn93
+        '
+        Me.GridColumn93.Caption = "Number"
+        Me.GridColumn93.FieldName = "number"
+        Me.GridColumn93.Name = "GridColumn93"
+        Me.GridColumn93.Visible = True
+        Me.GridColumn93.VisibleIndex = 0
+        '
+        'GridColumn95
+        '
+        Me.GridColumn95.Caption = "PO List"
+        Me.GridColumn95.FieldName = "purc_order_number"
+        Me.GridColumn95.Name = "GridColumn95"
+        Me.GridColumn95.Visible = True
+        Me.GridColumn95.VisibleIndex = 1
+        '
+        'GridColumn96
+        '
+        Me.GridColumn96.Caption = "Created Date"
+        Me.GridColumn96.FieldName = "created_date"
+        Me.GridColumn96.Name = "GridColumn96"
+        Me.GridColumn96.Visible = True
+        Me.GridColumn96.VisibleIndex = 2
+        '
+        'GridColumn97
+        '
+        Me.GridColumn97.Caption = "Created By"
+        Me.GridColumn97.FieldName = "created_by"
+        Me.GridColumn97.Name = "GridColumn97"
+        Me.GridColumn97.Visible = True
+        Me.GridColumn97.VisibleIndex = 3
+        '
+        'GridColumn98
+        '
+        Me.GridColumn98.Caption = "Report Status"
+        Me.GridColumn98.FieldName = "report_status"
+        Me.GridColumn98.Name = "GridColumn98"
+        Me.GridColumn98.Visible = True
+        Me.GridColumn98.VisibleIndex = 4
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        Me.RepositoryItemCheckEdit3.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit3.ValueUnchecked = "no"
+        '
+        'RepositoryItemProgressBar3
+        '
+        Me.RepositoryItemProgressBar3.EndColor = System.Drawing.Color.LawnGreen
+        Me.RepositoryItemProgressBar3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.RepositoryItemProgressBar3.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RepositoryItemProgressBar3.Name = "RepositoryItemProgressBar3"
+        Me.RepositoryItemProgressBar3.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
+        Me.RepositoryItemProgressBar3.ShowTitle = True
+        Me.RepositoryItemProgressBar3.Step = 1
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.SBReceiveDateCreateNew)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(1145, 42)
+        Me.PanelControl5.TabIndex = 9
+        '
+        'SBReceiveDateCreateNew
+        '
+        Me.SBReceiveDateCreateNew.Location = New System.Drawing.Point(11, 9)
+        Me.SBReceiveDateCreateNew.Name = "SBReceiveDateCreateNew"
+        Me.SBReceiveDateCreateNew.Size = New System.Drawing.Size(87, 23)
+        Me.SBReceiveDateCreateNew.TabIndex = 8914
+        Me.SBReceiveDateCreateNew.Text = "create new"
+        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2009,6 +2141,13 @@ Partial Class FormPurcOrder
         CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        Me.XTPReceiveDate.ResumeLayout(False)
+        CType(Me.GCReceiveDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReceiveDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2193,4 +2332,17 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn90 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn94 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn91 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPReceiveDate As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCReceiveDate As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVReceiveDate As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn92 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn93 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn95 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn96 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn97 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn98 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemProgressBar3 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBReceiveDateCreateNew As DevExpress.XtraEditors.SimpleButton
 End Class

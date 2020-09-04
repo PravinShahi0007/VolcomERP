@@ -44,6 +44,7 @@ Partial Class FormPurcOrderCloseReceiving
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
@@ -52,6 +53,7 @@ Partial Class FormPurcOrderCloseReceiving
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.SBRemove = New DevExpress.XtraEditors.SimpleButton()
+        Me.RepositoryItemDateEdit = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +72,8 @@ Partial Class FormPurcOrderCloseReceiving
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.RepositoryItemDateEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -186,14 +190,14 @@ Partial Class FormPurcOrderCloseReceiving
         Me.GCPO.Location = New System.Drawing.Point(2, 2)
         Me.GCPO.MainView = Me.GVPO
         Me.GCPO.Name = "GCPO"
-        Me.GCPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RPBRec, Me.RepositoryItemTextEdit})
+        Me.GCPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RPBRec, Me.RepositoryItemTextEdit, Me.RepositoryItemDateEdit})
         Me.GCPO.Size = New System.Drawing.Size(776, 333)
         Me.GCPO.TabIndex = 3
         Me.GCPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPO})
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn35, Me.GridColumn3, Me.GridColumnTotPO, Me.GridColumnRecAmo, Me.GridColumn53, Me.GridColumn54, Me.GridColumn58, Me.GridColumn5})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn35, Me.GridColumn3, Me.GridColumnTotPO, Me.GridColumnRecAmo, Me.GridColumn53, Me.GridColumn54, Me.GridColumn58, Me.GridColumn5, Me.GridColumn2})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_po", Me.GridColumnTotPO, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.GridColumnRecAmo, "{0:N2}")})
         Me.GVPO.Name = "GVPO"
@@ -319,6 +323,15 @@ Partial Class FormPurcOrderCloseReceiving
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 8
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "To Est. Receive Date"
+        Me.GridColumn2.ColumnEdit = Me.RepositoryItemDateEdit
+        Me.GridColumn2.FieldName = "to_est_date_receive"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 9
+        '
         'RepositoryItemTextEdit
         '
         Me.RepositoryItemTextEdit.AutoHeight = False
@@ -394,6 +407,18 @@ Partial Class FormPurcOrderCloseReceiving
         Me.SBRemove.Size = New System.Drawing.Size(40, 40)
         Me.SBRemove.TabIndex = 0
         '
+        'RepositoryItemDateEdit
+        '
+        Me.RepositoryItemDateEdit.AutoHeight = False
+        Me.RepositoryItemDateEdit.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.RepositoryItemDateEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.RepositoryItemDateEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit.Mask.EditMask = "dd MMMM yyyy"
+        Me.RepositoryItemDateEdit.Name = "RepositoryItemDateEdit"
+        '
         'FormPurcOrderCloseReceiving
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -425,6 +450,8 @@ Partial Class FormPurcOrderCloseReceiving
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.RepositoryItemDateEdit.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -461,4 +488,6 @@ Partial Class FormPurcOrderCloseReceiving
     Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemDateEdit As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class
