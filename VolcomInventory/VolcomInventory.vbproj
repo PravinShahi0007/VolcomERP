@@ -3475,6 +3475,18 @@
     <Compile Include="FormPurcOrder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcOrderCloseReceiving.Designer.vb">
+      <DependentUpon>FormPurcOrderCloseReceiving.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceiving.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceivingList.Designer.vb">
+      <DependentUpon>FormPurcOrderCloseReceivingList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceivingList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcOrderDet.Designer.vb">
       <DependentUpon>FormPurcOrderDet.vb</DependentUpon>
     </Compile>
@@ -10160,6 +10172,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrder.resx">
       <DependentUpon>FormPurcOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcOrderCloseReceiving.resx">
+      <DependentUpon>FormPurcOrderCloseReceiving.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcOrderCloseReceivingList.resx">
+      <DependentUpon>FormPurcOrderCloseReceivingList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrderDet.resx">
       <DependentUpon>FormPurcOrderDet.vb</DependentUpon>
