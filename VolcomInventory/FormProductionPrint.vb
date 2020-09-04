@@ -220,4 +220,8 @@ UPDATE tb_prod_order_kp SET `id_prod_order_kp_reff`='" & id_kp & "',number=@repo
             FormProductionKP.ShowDialog()
         End If
     End Sub
+
+    Private Sub BGenerateCopyProto2Order_Click(sender As Object, e As EventArgs) Handles BGenerateCopyProto2Order.Click
+
+    End Sub
 End Class

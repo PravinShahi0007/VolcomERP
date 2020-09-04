@@ -1070,6 +1070,12 @@
     <Compile Include="FormDesignColumnMapping.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDesignColumnMappingTemplate.Designer.vb">
+      <DependentUpon>FormDesignColumnMappingTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignColumnMappingTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDesignColumnValue.Designer.vb">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
     </Compile>
@@ -3299,6 +3305,12 @@
       <DependentUpon>FormProductionRecTargetHO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionRecTargetHO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionSampleOrder.Designer.vb">
+      <DependentUpon>FormProductionSampleOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionSampleOrder.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
@@ -8948,6 +8960,9 @@
     <EmbeddedResource Include="FormDesignColumnMapping.resx">
       <DependentUpon>FormDesignColumnMapping.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignColumnMappingTemplate.resx">
+      <DependentUpon>FormDesignColumnMappingTemplate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDesignColumnValue.resx">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
     </EmbeddedResource>
@@ -10079,6 +10094,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionRecTargetHO.resx">
       <DependentUpon>FormProductionRecTargetHO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionSampleOrder.resx">
+      <DependentUpon>FormProductionSampleOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
