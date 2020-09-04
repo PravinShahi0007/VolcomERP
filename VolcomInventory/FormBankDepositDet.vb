@@ -479,9 +479,14 @@ Public Class FormBankDepositDet
     End Sub
 
     Sub load_receive_from()
+        Dim id_unit As String = "-1"
+        Try
+            id_unit = SLEUnit.EditValue.ToString
+        Catch ex As Exception
+        End Try
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' "
-        If id_deposit = "-1" Then
-            query += "AND id_coa_type='" + id_coa_type + "' "
+        If id_unit <> "1" Then
+            query += "AND id_coa_type='2' "
         End If
         viewSearchLookupQuery(SLEPayRecTo, query, "id_acc", "acc_description", "id_acc")
     End Sub
@@ -814,5 +819,9 @@ Public Class FormBankDepositDet
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        load_receive_from()
     End Sub
 End Class
