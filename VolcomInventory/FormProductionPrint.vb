@@ -222,69 +222,6 @@ UPDATE tb_prod_order_kp SET `id_prod_order_kp_reff`='" & id_kp & "',number=@repo
     End Sub
 
     Private Sub BGenerateCopyProto2Order_Click(sender As Object, e As EventArgs) Handles BGenerateCopyProto2Order.Click
-        'infoCustom("Still on progress")
-        Dim is_ok As Boolean = True
 
-        If GVProd.RowCount > 1 Then
-            For i As Integer = 0 To GVProd.RowCount - 1
-                If Not GVProd.GetRowCellValue(0, "id_comp_contact").ToString = GVProd.GetRowCellValue(i, "id_comp_contact").ToString Then
-                    is_ok = False
-                    warningCustom("Different vendor contact selected")
-                    Exit For
-                End If
-            Next
-            '
-        ElseIf GVProd.RowCount < 1 Then
-            is_ok = False
-            warningCustom("No FGPO selected")
-        End If
-        '
-        If is_ok Then
-            '
-            Dim id_user_purc_mngr As String = execute_query("SELECT usr.id_user 
-FROM tb_m_departement dep
-INNER JOIN tb_m_user usr ON usr.`id_user`=dep.id_user_head
-WHERE dep.id_departement=4", 0, True, "", "", "", "")
-            '
-
-            Dim query_kp As String = "INSERT INTO tb_prod_order_kp(`revision`,`id_comp_contact`,`date_created`,`created_by`,id_user_purc_mngr,id_user_asst_prod_mngr) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "',NOW(),'" & id_user & "','" & id_user_purc_mngr & "','" & id_user_asst_prod_mngr & "'); SELECT LAST_INSERT_ID(); "
-            Dim id_kp As String = execute_query(query_kp, 0, True, "", "", "", "")
-            'insert po
-            Dim query_kpd As String = "INSERT INTO tb_prod_order_kp_det(`id_prod_order_kp`,`revision`,`id_prod_order`,`lead_time_prod`,`sample_proto_2`) VALUES"
-            For i As Integer = 0 To GVProd.RowCount - 1
-                If Not i = 0 Then
-                    query_kpd += ","
-                End If
-                'get latest leadtime from KO
-                Dim lead_time As String = ""
-                '
-                Dim q_lead_time As String = "SELECT lead_time_prod FROM (
-                                                SELECT * FROM tb_prod_order_ko_det
-                                                WHERE id_prod_order='" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "'
-                                                ORDER BY id_prod_order_ko_det DESC
-                                            )ko GROUP BY ko.id_prod_order"
-                Dim data_lead_time As DataTable = execute_query(q_lead_time, -1, True, "", "", "", "")
-                If data_lead_time.Rows.Count > 0 Then
-                    lead_time = data_lead_time.Rows(0)("lead_time_prod").ToString
-                Else
-                    lead_time = GVProd.GetRowCellValue(i, "lead_time").ToString
-                End If
-                '
-                query_kpd += "('" & id_kp & "','0','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & lead_time & "',NULL)"
-            Next
-            execute_non_query(query_kpd, True, "", "", "", "")
-            'generate KP number
-            query_kp = "SELECT COUNT(*)+1+IF(YEAR(CURRENT_DATE())<'2020',(SELECT last_no_kp FROM tb_opt_prod),0) 
-INTO @number_report 
-FROM 
-(SELECT * FROM `tb_prod_order_kp` WHERE YEAR(date_created) = YEAR(CURRENT_DATE()) GROUP BY id_prod_order_kp_reff) kp
-WHERE kp.id_prod_order_kp_reff < '" & id_kp & "' AND kp.id_prod_order_kp_reff != 0;
-SELECT CONCAT(LPAD(@number_report,3,'0'),'/EXT/PRL-SR/',convert_romawi(DATE_FORMAT(NOW(),'%m')),'/',DATE_FORMAT(NOW(),'%y')) INTO @report_number;
-UPDATE tb_prod_order_kp SET `id_prod_order_kp_reff`='" & id_kp & "',number=@report_number WHERE id_prod_order_kp='" & id_kp & "'"
-            execute_non_query(query_kp, True, "", "", "", "")
-            'show KP form
-            FormProductionKP.id_kp = id_kp
-            FormProductionKP.ShowDialog()
-        End If
     End Sub
 End Class
