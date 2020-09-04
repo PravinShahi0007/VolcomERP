@@ -1,16 +1,18 @@
 ﻿Public Class FormDesignColumnMapping
-    Private loaded As Boolean = False
+    Public edited As Boolean = False
 
     Private Sub FormDesignColumnMapping_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewSearchLookupQuery(SLUEStore, "SELECT id_design_column_type, column_type FROM tb_design_column_type", "id_design_column_type", "column_type", "id_design_column_type")
+        view_template()
 
         view_division()
 
         view_season()
 
         load_form()
+    End Sub
 
-        loaded = True
+    Sub view_template()
+        viewSearchLookupQuery(SLUEStore, "SELECT id_design_column_type, column_type FROM tb_design_column_type", "id_design_column_type", "column_type", "id_design_column_type")
     End Sub
 
     Sub load_form()
@@ -158,7 +160,7 @@
 
         If Not q_select = "" Then
             'query
-            Dim query As String = "CALL view_all_design_mapping(""" + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ")"
+            Dim query As String = "CALL view_all_design_mapping(" + SLUEStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ")"
 
             data = execute_query(query, -1, True, "", "", "", "")
 
@@ -202,6 +204,8 @@
         Dim value As String = GVColumn.GetFocusedRowCellValue(GVColumn.FocusedColumn) + "`" + GVCol.GetFocusedRowCellValue("column_name").ToString + "`"
 
         GVColumn.SetFocusedRowCellValue(GVColumn.FocusedColumn, value)
+
+        edited = True
     End Sub
 
     Private Sub SLUEStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEStore.EditValueChanged
@@ -232,6 +236,8 @@
             GVColumn.BestFitColumns()
 
             TEAdd.EditValue = ""
+
+            edited = True
         Else
             stopCustom("Please add column name.")
         End If
@@ -264,6 +270,8 @@
         GVDesign.Columns.Clear()
         GCDesign.DataSource = Nothing
 
+        edited = False
+
         Cursor = Cursors.Default
 
         infoCustom("Saved.")
@@ -278,11 +286,13 @@
         GVColumn.Columns.Remove(GVColumn.FocusedColumn)
 
         GCColumn.DataSource = data
+
+        edited = True
     End Sub
 
     Private Sub SLUEStore_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles SLUEStore.EditValueChanging
-        If loaded Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to move, or save first ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If edited Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to move and discard changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
             If confirm = DialogResult.No Then
                 e.Cancel = True
@@ -359,5 +369,43 @@
 
     Private Sub FormDesignColumnMapping_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Private Sub SBEditType_Click(sender As Object, e As EventArgs) Handles SBEditType.Click
+        Dim cnt As Boolean = True
+
+        If edited Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to move and discard changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.No Then
+                cnt = False
+            End If
+        End If
+
+        If cnt Then
+            FormDesignColumnMappingTemplate.id_design_column_type = SLUEStore.EditValue.ToString
+            FormDesignColumnMappingTemplate.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub SBAddType_Click(sender As Object, e As EventArgs) Handles SBAddType.Click
+        Dim cnt As Boolean = True
+
+        If edited Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to move and discard changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.No Then
+                cnt = False
+            End If
+        End If
+
+        If cnt Then
+            FormDesignColumnMappingTemplate.id_design_column_type = "0"
+            FormDesignColumnMappingTemplate.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub RepositoryItemMemoEdit_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemMemoEdit.KeyUp
+        edited = True
     End Sub
 End Class
