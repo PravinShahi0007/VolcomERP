@@ -600,6 +600,9 @@
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             ' sales volcom store
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_branch WHERE id_sales_branch = '{0}'", id_report)
+        ElseIf report_mark_type = "259" Then
+            'close receiving
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_purc_order_close WHERE id_close_receiving = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -8531,6 +8534,80 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 FormSalesBranch.GVData.FocusedRowHandle = find_row(FormSalesBranch.GVData, "id_sales_branch", id_report)
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "259" Then
+            'close receiving
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim data_odr As DataTable = execute_query("SELECT id_purc_order, close_rec_reason FROM tb_purc_order_close_det WHERE id_close_receiving = " + id_report, -1, True, "", "", "", "")
+
+                For i = 0 To data_odr.Rows.Count - 1
+                    Dim query_ss As String = "SELECT IFNULL(SUM(IF(id_report_status = 6, 1, 0)), 0) AS report_6 FROM tb_purc_rec WHERE id_purc_order = " + data_odr.Rows(i)("id_purc_order").ToString
+
+                    Dim data_ss As DataTable = execute_query(query_ss, -1, True, "", "", "", "")
+
+                    Dim query_pay As String = If(data_ss.Rows(0)("report_6").ToString = "0", ", is_close_pay = 1", "")
+
+                    Dim query_update As String = "UPDATE tb_purc_order SET is_close_rec = 1, close_rec_reason = '" + addSlashes(data_odr.Rows(i)("close_rec_reason").ToString) + "'" + query_pay + " WHERE id_purc_order = " + data_odr.Rows(i)("id_purc_order").ToString
+
+                    execute_non_query(query_update, True, "", "", "", "")
+
+                    'reverse budget
+                    Dim id_expense_type As String = execute_query("SELECT id_expense_type FROM tb_purc_order WHERE id_purc_order = " + data_odr.Rows(i)("id_purc_order").ToString, 0, True, "", "", "", "")
+
+                    Dim query_budget As String = ""
+
+                    If id_expense_type = "1" Then
+                        'opex
+                        query_budget = "
+                        INSERT INTO tb_b_expense_opex_trans (id_b_expense_opex, id_departement, date_trans, `value`, id_item, id_report, report_mark_type, note)
+                        SELECT *
+                        FROM (
+	                        SELECT p_det.id_b_expense_opex, p.id_departement, NOW() AS date_trans, (IFNULL(r.qty, 0) * o_det.value) - (o_det.qty * o_det.value) AS `value`, p_det.id_item, o_det.id_purc_order AS id_report, 202 AS report_mark_type, 'Close Receiving Reverse' AS note
+	                        FROM tb_purc_order_det AS o_det
+	                        LEFT JOIN tb_purc_req_det AS p_det ON o_det.id_purc_req_det = p_det.id_purc_req_det
+	                        LEFT JOIN tb_purc_req AS p ON p_det.id_purc_req = p.id_purc_req
+	                        LEFT JOIN (
+		                        SELECT r_det.id_purc_order_det, r_det.qty
+		                        FROM tb_purc_rec_det AS r_det
+		                        LEFT JOIN tb_purc_rec AS r ON r_det.id_purc_rec = r.id_purc_rec
+		                        WHERE r.id_report_status = 6
+	                        ) AS r ON o_det.id_purc_order_det = r.id_purc_order_det
+	                        WHERE o_det.id_purc_order = " + data_odr.Rows(i)("id_purc_order").ToString + "
+                        ) AS tb
+                        WHERE `value` < 0
+                    "
+                    Else
+                        'capex
+                        query_budget = "
+                        INSERT INTO tb_b_expense_trans (id_b_expense, id_departement, date_trans, `value`, id_item, id_report, report_mark_type, note)
+                        SELECT *
+                        FROM (
+	                        SELECT p_det.id_b_expense, p.id_departement, NOW() AS date_trans, (IFNULL(r.qty, 0) * o_det.value) - (o_det.qty * o_det.value) AS `value`, p_det.id_item, o_det.id_purc_order AS id_report, 139 AS report_mark_type, 'Close Receiving Reverse' AS note
+	                        FROM tb_purc_order_det AS o_det
+	                        LEFT JOIN tb_purc_req_det AS p_det ON o_det.id_purc_req_det = p_det.id_purc_req_det
+	                        LEFT JOIN tb_purc_req AS p ON p_det.id_purc_req = p.id_purc_req
+	                        LEFT JOIN (
+		                        SELECT r_det.id_purc_order_det, r_det.qty
+		                        FROM tb_purc_rec_det AS r_det
+		                        LEFT JOIN tb_purc_rec AS r ON r_det.id_purc_rec = r.id_purc_rec
+		                        WHERE r.id_report_status = 6
+	                        ) AS r ON o_det.id_purc_order_det = r.id_purc_order_det
+	                        WHERE o_det.id_purc_order = " + data_odr.Rows(i)("id_purc_order").ToString + "
+                        ) AS tb
+                        WHERE `value` < 0
+                    "
+                    End If
+
+                    execute_non_query(query_budget, True, "", "", "", "")
+                Next
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_purc_order_close SET id_report_status='{0}' WHERE id_close_receiving ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
             'adding lead time

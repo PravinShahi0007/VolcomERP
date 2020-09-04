@@ -536,5 +536,39 @@ GROUP BY pod.id_purc_order_det"
         Else
             CloseReceivingToolStripMenuItem.Visible = False
         End If
+
+        CloseReceivingToolStripMenuItem.Visible = False
+    End Sub
+
+    Private Sub SBCreateNewClose_Click(sender As Object, e As EventArgs) Handles SBCreateNewClose.Click
+        FormPurcOrderCloseReceiving.id_close_receiving = "0"
+
+        FormPurcOrderCloseReceiving.ShowDialog()
+    End Sub
+
+    Sub load_close_receiving()
+        GCCloseReceiving.DataSource = execute_query("
+            SELECT c.id_close_receiving, c.number, GROUP_CONCAT(p.purc_order_number SEPARATOR ', ') AS purc_order_number, DATE_FORMAT(c.created_date, '%d %M %Y %H:%i:%s') AS created_date, e.employee_name AS created_by, l.report_status
+            FROM tb_purc_order_close_det AS cd
+            LEFT JOIN tb_purc_order AS p ON cd.id_purc_order = p.id_purc_order
+            LEFT JOIN tb_purc_order_close AS c ON cd.id_close_receiving = c.id_close_receiving
+            LEFT JOIN tb_lookup_report_status AS l ON c.id_report_status = l.id_report_status
+            LEFT JOIN tb_m_employee AS e ON c.created_by = e.id_employee
+            GROUP BY cd.id_close_receiving
+            ORDER BY cd.id_close_receiving DESC
+        ", -1, True, "", "", "", "")
+
+        GVCloseReceiving.BestFitColumns()
+    End Sub
+
+    Private Sub XTCPO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPO.SelectedPageChanged
+        If XTCPO.SelectedTabPage.Name = "XTPCloseReceiving" Then
+            load_close_receiving()
+        End If
+    End Sub
+
+    Private Sub GVCloseReceiving_DoubleClick(sender As Object, e As EventArgs) Handles GVCloseReceiving.DoubleClick
+        FormPurcOrderCloseReceiving.id_close_receiving = GVCloseReceiving.GetFocusedRowCellValue("id_close_receiving").ToString
+        FormPurcOrderCloseReceiving.ShowDialog()
     End Sub
 End Class
