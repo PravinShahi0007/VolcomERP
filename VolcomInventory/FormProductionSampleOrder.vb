@@ -142,7 +142,7 @@ ORDER BY po.`id_prod_order` ASC"
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
-        Dim query As String = "UPDATE tb_prod_order_cps2 SET is_locked='1' WHERE id_prod_order_cps='" & id & "'"
+        Dim query As String = "UPDATE tb_prod_order_cps2 SET is_locked='1' WHERE id_prod_order_cps2='" & id & "'"
         execute_non_query(query, True, "", "", "", "")
         infoCustom("Order locked")
         load_head()
@@ -213,5 +213,38 @@ VALUES" + query
         Else
             warningCustom("Order locked")
         End If
+    End Sub
+
+    Private Sub BPrintKP_Click(sender As Object, e As EventArgs) Handles BPrintKP.Click
+        Dim query As String = "SELECT c.phone,c.fax,cps2.number,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,DATE_FORMAT(cps2.`date_created`,'%d %M %Y') AS date_created,LPAD(cps2.`revision`,2,'0') AS revision
+,emp_created.employee_name AS emp_name_created,emp_created.`employee_position` AS created_pos
+,emp_purc_mngr.employee_name AS emp_name_purc_mngr,emp_purc_mngr.`employee_position` AS purc_mngr_pos
+,emp_sample_mngr.employee_name AS emp_name_sample_mngr,emp_sample_mngr.`employee_position` AS sample_mngr_pos
+FROM tb_prod_order_cps2 cps2
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=cps2.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_m_user usr_created ON usr_created.`id_user`=cps2.`id_user_sample`
+INNER JOIN tb_m_user usr_purc_mngr ON usr_purc_mngr.`id_user`=cps2.`id_user_purc_mngr`
+INNER JOIN tb_m_user usr_sample_mngr ON usr_sample_mngr.`id_user`=cps2.`id_user_sample_mngr`
+INNER JOIN tb_m_employee emp_created ON emp_created.`id_employee`=usr_created.`id_employee`
+INNER JOIN tb_m_employee emp_purc_mngr ON emp_purc_mngr.`id_employee`=usr_purc_mngr.`id_employee`
+INNER JOIN tb_m_employee emp_sample_mngr ON emp_sample_mngr.`id_employee`=usr_sample_mngr.`id_employee`
+WHERE id_prod_order_cps2='" & SLERevision.EditValue.ToString & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        ReportProductionKP.dt_head = data
+        '
+        ReportProductionKP.dt_det = GCProd.DataSource
+
+
+        Dim Report As New ReportProductionKP()
+        Report.LQtyOrder.Text = Decimal.Parse(GVProd.Columns("qty_order").SummaryItem.SummaryValue.ToString).ToString("N0")
+        '
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        If Not is_locked = "1" Then
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.Print, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.PrintDirect, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+        End If
+        Tool.ShowPreview()
     End Sub
 End Class

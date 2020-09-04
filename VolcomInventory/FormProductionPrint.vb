@@ -245,7 +245,7 @@ FROM tb_m_departement dep
 INNER JOIN tb_m_user usr ON usr.`id_user`=dep.id_user_head
 WHERE dep.id_departement=4", 0, True, "", "", "", "")
 
-            Dim id_user_sample_mngr As String = get_opt_prod_field("id_user_sample_manager")
+            Dim id_user_sample_mngr As String = get_opt_prod_field("id_user_sample_mngr")
             Dim id_user_sample As String = get_opt_prod_field("id_user_sample")
 
             Dim query_copy_proto2 As String = "INSERT INTO tb_prod_order_cps2(`revision`,`id_comp_contact`,`date_created`,`created_by`,id_user_purc_mngr,id_user_sample,id_user_sample_mngr) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "',NOW(),'" & id_user & "','" & id_user_purc_mngr & "','" & id_user_sample & "','" & id_user_sample_mngr & "'); SELECT LAST_INSERT_ID(); "
