@@ -8074,6 +8074,12 @@
     <Compile Include="ReportProductionRetOut.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionSampleProto2Order.Designer.vb">
+      <DependentUpon>ReportProductionSampleProto2Order.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionSampleProto2Order.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionWO.Designer.vb">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
     </Compile>
@@ -12944,6 +12950,9 @@
     <EmbeddedResource Include="ReportProductionRetOut.resx">
       <DependentUpon>ReportProductionRetOut.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionSampleProto2Order.resx">
+      <DependentUpon>ReportProductionSampleProto2Order.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionWO.resx">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>

@@ -204,6 +204,7 @@
                 TryCast(FormSalesBranchDet.GCData.DataSource, DataTable).Rows.Add(newRow)
                 FormSalesBranchDet.GCData.RefreshDataSource()
                 FormSalesBranchDet.GVData.RefreshData()
+                FormSalesBranchDet.calculate()
                 actionLoad()
             Else
                 FormSalesBranchDet.GVData.SetFocusedRowCellValue("id_acc", SLECOA.EditValue.ToString)
@@ -225,6 +226,7 @@
                 FormSalesBranchDet.GVData.SetFocusedRowCellValue("vendor", TxtSupplier.Text)
                 FormSalesBranchDet.GCData.RefreshDataSource()
                 FormSalesBranchDet.GVData.RefreshData()
+                FormSalesBranchDet.calculate()
                 Close()
             End If
         End If

@@ -221,7 +221,15 @@ Public Class FormSalesBranchDet
             TxtPPNSale.EditValue = TxtRevSale.EditValue * (TxtProsPPNSale.EditValue / 100)
             TxtAPSale.EditValue = (TxtProsHutangSale.EditValue / 100) * TxtSaleSales.EditValue
 
-            TxtTotal.EditValue = TxtRevGrossNormal.EditValue + TxtAPNormal.EditValue + TxtRevGrossSale.EditValue + TxtAPSale.EditValue
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+            GVData.ActiveFilterString = "[id_dc]=2"
+            Dim jum_credit As Decimal = 0.00
+            If GVData.RowCount > 0 Then
+                jum_credit = GVData.Columns("value").SummaryItem.SummaryValue
+            End If
+            GVData.ActiveFilterString = ""
+            TxtTotal.EditValue = TxtRevGrossNormal.EditValue + TxtAPNormal.EditValue + TxtRevGrossSale.EditValue + TxtAPSale.EditValue + jum_credit
         Catch ex As Exception
         End Try
         Cursor = Cursors.Default
