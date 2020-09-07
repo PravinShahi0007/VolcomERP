@@ -1144,9 +1144,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesOrder" Then
             'SALES OrDEER
             If FormSalesOrder.XTCSOGeneral.SelectedTabPageIndex = 0 Then
-                FormSalesOrderDet.action = "ins"
-                FormSalesOrderDet.id_sales_order = "-1"
-                FormSalesOrderDet.ShowDialog()
+                If FormSalesOrder.check_created() Then
+                    FormSalesOrderDet.action = "ins"
+                    FormSalesOrderDet.id_sales_order = "-1"
+                    FormSalesOrderDet.ShowDialog()
+                Else
+                    stopCustom("Please complete all transaction.")
+                End If
             ElseIf FormSalesOrder.XTCSOGeneral.SelectedTabPageIndex = 1 Then
                 FormSalesOrderGen.action = "ins"
                 FormSalesOrderGen.id_sales_order_gen = "-1"

@@ -6275,10 +6275,12 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
 
                     'det journal
                     Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
-                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, 1,  0 AS `qty`,
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, cc.id_comp,  0 AS `qty`,
                     py.value AS `debit`, 0 AS `credit`,
                     py.note AS `note`,162,py.id_rec_payment, py.number, NULL, NULL, NULL, '' AS `vendor`
                     FROM tb_rec_payment py
+                    INNER JOIN tb_coa_tag ct ON ct.id_coa_tag = py.id_coa_tag
+                    INNER JOIN tb_m_comp cc ON cc.id_comp = ct.id_comp
                     WHERE py.id_rec_payment=" + id_report + " AND py.`value` > 0
                     UNION ALL
                     SELECT '" & id_acc_trans & "' AS id_acc_trans,pyd.id_acc AS `id_acc`, pyd.id_comp,0 AS `qty`, 
@@ -7277,7 +7279,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 	                GROUP BY pnd.id_pn_fgpo_det
 	                UNION ALL
                     /* Per row PPH */
-	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`, cf.id_comp,SUM(pnd.`qty`) AS `qty`,IF(SUM(pnd.pph)>0,0,-SUM(pnd.pph)) AS `debit`,IF(SUM(pnd.pph)<0,0,SUM(pnd.pph)) AS `credit`,pnd.id_currency,pnd.kurs,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)<0,0,SUM(pnd.value_bef_kurs))) AS `debit_valas`,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)>0,0,-SUM(pnd.value_bef_kurs))) AS `credit_valas`,CONCAT(pnd.`info_design`,' (Invoice no : ',pnd.inv_number,')') AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc_pph AS `id_acc`, cf.id_comp,SUM(pnd.`qty`) AS `qty`,IF(SUM(pnd.pph)>0,0,-SUM(pnd.pph)) AS `debit`,IF(SUM(pnd.pph)<0,0,SUM(pnd.pph)) AS `credit`,pnd.id_currency,pnd.kurs,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)<0,0,SUM(pnd.value_bef_kurs))) AS `debit_valas`,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)>0,0,-SUM(pnd.value_bef_kurs))) AS `credit_valas`,CONCAT(pnd.`info_design`,' (Invoice no : ',pnd.inv_number,')') AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
 	                FROM tb_pn_fgpo_det pnd
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
 	                INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
