@@ -193,7 +193,7 @@ Partial Class FormPromoCollection
         'GridColumnpromo
         '
         Me.GridColumnpromo.Caption = "Promo Name"
-        Me.GridColumnpromo.FieldName = "promo"
+        Me.GridColumnpromo.FieldName = "promo_name"
         Me.GridColumnpromo.Name = "GridColumnpromo"
         Me.GridColumnpromo.Visible = True
         Me.GridColumnpromo.VisibleIndex = 1

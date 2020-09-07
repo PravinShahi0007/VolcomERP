@@ -1,7 +1,7 @@
 ﻿Public Class FormPromoCollectionNew
 
     Sub viewPromoType()
-        Dim query As String = "SELECT p.id_promo, p.promo FROM tb_promo p ORDER BY p.promo DESC "
+        Dim query As String = "SELECT p.id_promo, p.promo FROM tb_promo p ORDER BY p.id_promo ASC "
         viewSearchLookupQuery(SLEPromoType, query, "id_promo", "promo", "id_promo")
     End Sub
 
@@ -56,9 +56,10 @@
                 Dim start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
                 Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
                 Dim note As String = addSlashes(MENote.Text)
+                Dim promo_name As String = addSlashes(TxtPromoName.Text)
 
-                Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, tag, created_date, created_by, start_period, end_period, id_report_status, note)
-                VALUES('" + id_promo + "','" + tag + "', NOW(), '" + id_user + "', '" + start_period + "', '" + end_period + "',1, '" + note + "');SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, tag, created_date, created_by, start_period, end_period, id_report_status, note, promo_name)
+                VALUES('" + id_promo + "','" + tag + "', NOW(), '" + id_user + "', '" + start_period + "', '" + end_period + "',1, '" + note + "', '" + promo_name + "');SELECT LAST_INSERT_ID(); "
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
                 Dim rmt As String = "250"
                 execute_non_query("CALL gen_number(" + id + ", " + rmt + ")", True, "", "", "", "")
