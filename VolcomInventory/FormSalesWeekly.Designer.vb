@@ -619,7 +619,7 @@ Partial Class FormSalesWeekly
         Me.GridColumnsales_pos_potongan.Caption = "POT. PENJUALAN"
         Me.GridColumnsales_pos_potongan.DisplayFormat.FormatString = "N2"
         Me.GridColumnsales_pos_potongan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnsales_pos_potongan.FieldName = "sales_pos_potongan"
+        Me.GridColumnsales_pos_potongan.FieldName = "sales_pos_potongan_value"
         Me.GridColumnsales_pos_potongan.Name = "GridColumnsales_pos_potongan"
         Me.GridColumnsales_pos_potongan.Visible = True
         Me.GridColumnsales_pos_potongan.VisibleIndex = 12
