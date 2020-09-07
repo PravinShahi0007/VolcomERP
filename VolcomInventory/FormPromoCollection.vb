@@ -11,7 +11,7 @@
 
         'discount code list
         If id_role_login = id_role_admin Then
-            XTPDiscountCodes.PageVisible = True
+            BtnSync.Visible = True
         End If
     End Sub
 
@@ -109,5 +109,25 @@
             stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
+        viewDiscountList()
+    End Sub
+
+    Sub viewDiscountList()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT c.id_ol_promo_collection,c.discount_title, dc.disc_code, c.start_period, c.end_period ,
+        IF(NOW()>=c.start_period AND NOW()<=c.end_period,'Active','Expired') AS `status`
+        FROM tb_ol_promo_collection c 
+        INNER JOIN tb_ol_promo_collection_disc_code dc ON dc.id_ol_promo_collection = c.id_ol_promo_collection
+        WHERE c.is_use_discount_code=1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDC.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        print(GCDC, "Discount Code List")
     End Sub
 End Class
