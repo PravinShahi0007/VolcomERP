@@ -34,10 +34,15 @@
             TxtCOA.Text = execute_query("SELECT acc_name FROM tb_a_acc WHERE id_acc='" + id_acc + "' ", 0, True, "", "", "", "")
 
             'comp
-            If id_pop_up = "-1" Then
+            If id_pop_up = "-1" Then 'BBM
                 SLEComp.EditValue = "-1"
                 TxtComp.Text = ""
-                SLEComp.EditValue = "1"
+                If FormBankDepositDet.SLEUnit.EditValue.ToString = "1" Then
+                    SLEComp.EditValue = "1"
+                Else
+                    Dim id_comp_tag_selected As String = execute_query("SELECT id_comp FROM tb_coa_tag WHERE id_coa_tag='" + FormBankDepositDet.SLEUnit.EditValue.ToString + "' ", 0, True, "", "", "", "")
+                    SLEComp.EditValue = id_comp_tag_selected
+                End If
             End If
             TxtComp.Text = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + SLEComp.EditValue.ToString + "' ", 0, True, "", "", "", "")
 
