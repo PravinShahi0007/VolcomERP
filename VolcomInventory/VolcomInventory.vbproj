@@ -2479,6 +2479,12 @@
     <Compile Include="FormLetterOfStatementDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormLetterOfStatementEmployee.Designer.vb">
+      <DependentUpon>FormLetterOfStatementEmployee.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormLetterOfStatementEmployee.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormLineList.Designer.vb">
       <DependentUpon>FormLineList.vb</DependentUpon>
     </Compile>
@@ -5677,6 +5683,12 @@
     <Compile Include="FormSampleDevelopmentDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleDevelopmentVerifyCPS2.Designer.vb">
+      <DependentUpon>FormSampleDevelopmentVerifyCPS2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleDevelopmentVerifyCPS2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleExpense.Designer.vb">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
     </Compile>
@@ -7676,6 +7688,12 @@
       <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportMasterEmployeeSuratPerjanjianKerja.Designer.vb">
+      <DependentUpon>ReportMasterEmployeeSuratPerjanjianKerja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterEmployeeSuratPerjanjianKerja.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportMasterEmployeeSuratReferensi.Designer.vb">
@@ -9686,6 +9704,9 @@
     <EmbeddedResource Include="FormLetterOfStatementDet.resx">
       <DependentUpon>FormLetterOfStatementDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormLetterOfStatementEmployee.resx">
+      <DependentUpon>FormLetterOfStatementEmployee.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLineList.resx">
       <DependentUpon>FormLineList.vb</DependentUpon>
     </EmbeddedResource>
@@ -11562,6 +11583,9 @@
     <EmbeddedResource Include="FormSampleDevelopmentDet.resx">
       <DependentUpon>FormSampleDevelopmentDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleDevelopmentVerifyCPS2.resx">
+      <DependentUpon>FormSampleDevelopmentVerifyCPS2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSampleExpense.resx">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
     </EmbeddedResource>
@@ -12721,6 +12745,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.resx">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterEmployeeSuratPerjanjianKerja.resx">
+      <DependentUpon>ReportMasterEmployeeSuratPerjanjianKerja.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterEmployeeSuratReferensi.resx">
       <DependentUpon>ReportMasterEmployeeSuratReferensi.vb</DependentUpon>
