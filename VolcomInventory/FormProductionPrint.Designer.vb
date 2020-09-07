@@ -130,6 +130,7 @@ Partial Class FormProductionPrint
         Me.BGenerateCopyProto2Order.Size = New System.Drawing.Size(227, 33)
         Me.BGenerateCopyProto2Order.TabIndex = 7
         Me.BGenerateCopyProto2Order.Text = "Generate Copy Proto Sample 2 Order"
+        Me.BGenerateCopyProto2Order.Visible = False
         '
         'BGenKP
         '

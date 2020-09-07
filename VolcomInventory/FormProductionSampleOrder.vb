@@ -231,13 +231,12 @@ INNER JOIN tb_m_employee emp_purc_mngr ON emp_purc_mngr.`id_employee`=usr_purc_m
 INNER JOIN tb_m_employee emp_sample_mngr ON emp_sample_mngr.`id_employee`=usr_sample_mngr.`id_employee`
 WHERE id_prod_order_cps2='" & SLERevision.EditValue.ToString & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        ReportProductionKP.dt_head = data
+        ReportProductionSampleProto2Order.dt_head = data
         '
-        ReportProductionKP.dt_det = GCProd.DataSource
+        ReportProductionSampleProto2Order.dt_det = GCProd.DataSource
 
 
-        Dim Report As New ReportProductionKP()
-        Report.LQtyOrder.Text = Decimal.Parse(GVProd.Columns("qty_order").SummaryItem.SummaryValue.ToString).ToString("N0")
+        Dim Report As New ReportProductionSampleProto2Order()
         '
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         If Not is_locked = "1" Then
