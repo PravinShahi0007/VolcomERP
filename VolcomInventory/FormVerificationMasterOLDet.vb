@@ -32,6 +32,12 @@
                     FROM tb_verification_master_blibli
                     WHERE id_verification_master = '" + id_verification_master + "'
                 "
+            ElseIf id_comp = "1212" Then
+                query = "
+                    SELECT Option1Value, VariantSKU, VariantPrice, VariantCompareAtPrice, VariantBarcode, Option1Value_erp, VariantSKU_erp, VariantPrice_erp, VariantCompareAtPrice_erp, VariantBarcode_erp
+                    FROM tb_verification_master_volcom
+                    WHERE id_verification_master = '" + id_verification_master + "'
+                "
             End If
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -89,10 +95,21 @@
                 End If
             Next
 
+            'selected column
+            Dim selected_column As String = ""
+
+            If id_comp = "653" Then
+                selected_column = "SellerSKU"
+            ElseIf id_comp = "1177" Then
+                selected_column = "SellerSKU"
+            ElseIf id_comp = "1212" Then
+                selected_column = "VariantSKU"
+            End If
+
             'validation
             For i = 0 To data_excel.Rows.Count - 1
                 For j = 0 To data_erp.Rows.Count - 1
-                    If data_excel.Rows(i)("SellerSku").ToString = data_erp.Rows(j)("SellerSku").ToString Then
+                    If data_excel.Rows(i)(selected_column).ToString = data_erp.Rows(j)(selected_column).ToString Then
                         For k = 0 To data.Columns.Count - 1
                             Dim column_name As String = data.Columns(k).ColumnName
 
@@ -109,7 +126,7 @@
             'combine data is valid
             For i = 0 To data_erp.Rows.Count - 1
                 For j = 0 To data_excel.Rows.Count - 1
-                    If data_erp.Rows(i)("SellerSku").ToString = data_excel.Rows(j)("SellerSku").ToString Then
+                    If data_erp.Rows(i)(selected_column).ToString = data_excel.Rows(j)(selected_column).ToString Then
                         For k = 0 To data.Columns.Count - 1
                             Dim column_name As String = data.Columns(k).ColumnName
 
@@ -167,10 +184,20 @@
     End Sub
 
     Sub view_slue_online_store()
+        Dim query_in As String = ""
+
+        If id_departement_user = "11" Then
+            query_in = "653, 1177"
+        ElseIf id_departement_user = "9" Then
+            query_in = "1212"
+        Else
+            query_in = "0"
+        End If
+
         Dim query As String = "
             SELECT 0 AS id_comp, '' AS comp_name
             UNION ALL
-            SELECT id_comp, comp_name FROM tb_m_comp WHERE id_comp IN (653, 1177)
+            SELECT id_comp, REPLACE(comp_name, '(NORMAL)', '') AS comp_name FROM tb_m_comp WHERE id_comp IN (" + query_in + ")
         "
 
         viewSearchLookupQuery(SLUEOnlineStore, query, "id_comp", "comp_name", "id_comp")
@@ -208,6 +235,8 @@
                     check_zalora(file_dialog.FileName)
                 ElseIf SLUEOnlineStore.EditValue.ToString = "1177" Then
                     check_blibli(file_dialog.FileName)
+                ElseIf SLUEOnlineStore.EditValue.ToString = "1212" Then
+                    check_volcom(file_dialog.FileName)
                 End If
             Else
                 errorCustom("File name already imported.")
@@ -896,6 +925,320 @@
                         End Try
 
                         query += "('" + id_verification_master + "', '" + NamaProduk + "', '" + SellerSKU + "', '" + Ukuran + "', '" + Warna + "', '" + Parent + "', '" + KodeTokoGudang + "', '" + HargaRp + "', '" + HargaPenjualanRp + "', '" + NamaProduk_erp + "', '" + SellerSKU_erp + "', '" + Ukuran_erp + "', '" + Warna_erp + "', '" + Parent_erp + "', '" + KodeTokoGudang_erp + "', '" + HargaRp_erp + "', '" + HargaPenjualanRp_erp + "'), "
+                    Next
+
+                    query = query.Substring(0, query.Length - 2)
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
+                'warning message
+                If is_valid_all Then
+                    infoCustom("Excel data is correct.")
+
+                    'controls
+                    SLUEOnlineStore.ReadOnly = True
+                    SLUEDivision.ReadOnly = True
+                    TEFileName.ReadOnly = True
+                    SBImportExcel.Enabled = False
+                Else
+                    errorCustom("There are some excel data wrong.")
+                End If
+            Catch ex As Exception
+                errorCustom(ex.ToString)
+            End Try
+
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub check_volcom(file_name As String)
+        Dim app As New Microsoft.Office.Interop.Excel.Application
+        Dim worksheet As Microsoft.Office.Interop.Excel.Worksheet
+        Dim workbook As Microsoft.Office.Interop.Excel.Workbook
+
+        If Not file_name = "" Then
+            Cursor = Cursors.WaitCursor
+
+            Try
+                workbook = app.Workbooks.Open(file_name)
+                worksheet = workbook.Worksheets("Sheet2")
+
+                Dim data_excel As DataTable = New DataTable
+
+                Dim row As Integer = 0
+                Dim column As Integer = 0
+
+                Dim continue_loop As Boolean = False
+
+                Dim column_check As List(Of String) = New List(Of String)
+
+                column_check.Add("Option1Value")
+                column_check.Add("VariantSKU")
+                column_check.Add("VariantPrice")
+                column_check.Add("VariantCompareAtPrice")
+                column_check.Add("VariantBarcode")
+
+                'column
+                row = 1
+                column = 1
+
+                continue_loop = True
+
+                While continue_loop
+                    Dim column_name As String = worksheet.Cells(row, column).Value
+
+                    If Not column_name = "" Then
+                        column_name = System.Text.RegularExpressions.Regex.Replace(column_name, "[^\w\\]", "")
+
+                        data_excel.Columns.Add(column_name, GetType(String))
+                    Else
+                        continue_loop = False
+                    End If
+
+                    column += 1
+                End While
+
+                'row
+                Dim id_product_in As String = ""
+
+                row = 2
+                column = 1
+
+                continue_loop = True
+
+                While continue_loop
+                    Dim empty_all As Boolean = False
+
+                    Dim data_excel_row As DataRow = data_excel.NewRow
+
+                    For i = 0 To data_excel.Columns.Count - 1
+                        Dim column_name As String = data_excel.Columns(i).ColumnName
+                        Dim value As String = worksheet.Cells(row, i + 1).Value
+
+                        data_excel_row(column_name) = value
+
+                        If column_name = "VariantSKU" Then
+                            If Not value = "" Then
+                                id_product_in += value + ", "
+                            End If
+                        End If
+
+                        If Not value = "" Then
+                            empty_all = True
+                        End If
+                    Next
+
+                    If empty_all Then
+                        data_excel.Rows.Add(data_excel_row)
+                    Else
+                        continue_loop = False
+                    End If
+
+                    row += 1
+                End While
+
+                workbook.Close()
+
+                app.Quit()
+
+                'remove column
+                column = 0
+
+                continue_loop = True
+
+                While continue_loop
+                    Dim column_name As String = ""
+
+                    Try
+                        column_name = data_excel.Columns(column).ColumnName
+                    Catch ex As Exception
+                        continue_loop = False
+                    End Try
+
+                    If Not column_name = "" Then
+                        If column_check.IndexOf(column_name) < 0 Then
+                            data_excel.Columns.Remove(column_name)
+                        Else
+                            column += 1
+                        End If
+                    End If
+                End While
+
+                'add column
+                For i = 0 To column_check.Count - 1
+                    data_excel.Columns.Add("IsValid" + column_check(i), GetType(String))
+                Next
+
+                'add column value
+                For i = 0 To data_excel.Rows.Count - 1
+                    For j = 0 To column_check.Count - 1
+                        data_excel.Rows(i)("IsValid" + column_check(j)) = "0"
+                    Next
+                Next
+
+                'data erp
+                Dim column_is_valid As String = ""
+
+                For i = 0 To column_check.Count - 1
+                    column_is_valid += ", 0 AS IsValid" + column_check(i) + ""
+                Next
+
+                Dim data_erp As DataTable = execute_query("
+                    SELECT cd_det.display_name AS Option1Value, pro.product_full_code AS VariantSKU, de.design_display_name AS VariantBarcode, FLOOR(de_pn.design_price) AS VariantCompareAtPrice, FLOOR(de_pc.design_price) AS VariantPrice " + column_is_valid + "
+                    FROM tb_m_product AS pro
+                    LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                    LEFT JOIN (
+                        SELECT id_design, design_price, id_design_price_type
+                        FROM tb_m_design_price
+                        WHERE id_design_price IN (
+                            SELECT MAX(id_design_price) AS id_design_price
+                            FROM tb_m_design_price
+                            WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0
+                            GROUP BY id_design
+                        )
+                    ) AS de_pc ON de.id_design = de_pc.id_design
+                    LEFT JOIN (
+                        SELECT id_design, design_price
+                        FROM tb_m_design_price
+                        WHERE id_design_price IN (
+                            SELECT MAX(id_design_price) AS id_design_price
+                            FROM tb_m_design_price
+                            WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                            GROUP BY id_design
+                        )
+                    ) AS de_pn ON de.id_design = de_pn.id_design
+                    LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
+                    LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
+                    WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
+                    ORDER BY pro.product_full_code ASC
+                ", -1, True, "", "", "", "")
+
+                'validation
+                For i = 0 To data_excel.Rows.Count - 1
+                    For j = 0 To data_erp.Rows.Count - 1
+                        If data_excel.Rows(i)("VariantSKU").ToString = data_erp.Rows(j)("VariantSKU").ToString Then
+                            For k = 0 To column_check.Count - 1
+                                If data_excel.Rows(i)(column_check(k)).ToString = data_erp.Rows(j)(column_check(k)).ToString Then
+                                    data_excel.Rows(i)("IsValid" + column_check(k)) = "1"
+                                End If
+                            Next
+                        End If
+                    Next
+                Next
+
+                'combine data is valid
+                For i = 0 To data_erp.Rows.Count - 1
+                    For j = 0 To data_excel.Rows.Count - 1
+                        If data_erp.Rows(i)("VariantSKU").ToString = data_excel.Rows(j)("VariantSKU").ToString Then
+                            For k = 0 To column_check.Count - 1
+                                data_erp.Rows(i)("IsValid" + column_check(k)) = data_excel.Rows(j)("IsValid" + column_check(k))
+                            Next
+
+                            Exit For
+                        End If
+                    Next
+                Next
+
+                'check is valid all
+                Dim is_valid_all As Boolean = True
+
+                For i = 0 To data_excel.Rows.Count - 1
+                    For j = 0 To column_check.Count - 1
+                        If data_excel.Rows(i)("IsValid" + column_check(j)).ToString = "0" Then
+                            is_valid_all = False
+
+                            Exit For
+                        End If
+                    Next
+
+                    If Not is_valid_all Then
+                        Exit For
+                    End If
+                Next
+
+                'sorting
+                Dim data_view As DataView = New DataView(data_excel)
+                data_view.Sort = "VariantSKU ASC"
+                data_excel = data_view.ToTable
+
+                'set datasource
+                GCVerification.DataSource = data_excel
+                GCERP.DataSource = data_erp
+
+                'bestfit
+                GVVerification.BestFitColumns()
+                GVERP.BestFitColumns()
+
+                'hide column
+                For i = 0 To GVVerification.Columns.Count - 1
+                    Dim gv_column As DevExpress.XtraGrid.Columns.GridColumn = GVVerification.Columns(i)
+
+                    If gv_column.Name.Contains("IsValid") Then
+                        gv_column.Visible = False
+                    End If
+                Next
+
+                For i = 0 To GVERP.Columns.Count - 1
+                    Dim gv_column As DevExpress.XtraGrid.Columns.GridColumn = GVERP.Columns(i)
+
+                    If gv_column.Name.Contains("IsValid") Then
+                        gv_column.Visible = False
+                    End If
+                Next
+
+                'store data if valid
+                If is_valid_all Then
+                    'save to database
+                    Dim query As String = ""
+
+                    'header
+                    query = "INSERT INTO tb_verification_master (id_comp, file_name, id_code_detail, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", '" + addSlashes(TEFileName.EditValue.ToString) + "', " + SLUEDivision.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
+
+                    id_verification_master = execute_query(query, 0, True, "", "", "", "")
+
+                    'detail
+                    query = "INSERT INTO tb_verification_master_blibli (id_verification_master, NamaProduk, SellerSKU, Ukuran, Warna, Parent, KodeTokoGudang, HargaRp, HargaPenjualanRp, NamaProduk_erp, SellerSKU_erp, Ukuran_erp, Warna_erp, Parent_erp, KodeTokoGudang_erp, HargaRp_erp, HargaPenjualanRp_erp) VALUES "
+
+                    For i = 0 To data_excel.Rows.Count - 1
+                        Dim Option1Value As String = data_excel.Rows(i)("Option1Value").ToString
+                        Dim VariantSKU As String = data_excel.Rows(i)("VariantSKU").ToString
+                        Dim VariantPrice As String = data_excel.Rows(i)("VariantPrice").ToString
+                        Dim VariantCompareAtPrice As String = data_excel.Rows(i)("VariantCompareAtPrice").ToString
+                        Dim VariantBarcode As String = data_excel.Rows(i)("VariantBarcode").ToString
+
+                        Dim Option1Value_erp As String = ""
+                        Dim VariantSKU_erp As String = ""
+                        Dim VariantPrice_erp As String = ""
+                        Dim VariantCompareAtPrice_erp As String = ""
+                        Dim VariantBarcode_erp As String = ""
+
+                        Try
+                            Option1Value_erp = data_erp.Rows(i)("Option1Value").ToString
+                        Catch ex As Exception
+                        End Try
+
+                        Try
+                            VariantSKU_erp = data_erp.Rows(i)("VariantSKU").ToString
+                        Catch ex As Exception
+                        End Try
+
+                        Try
+                            VariantPrice_erp = data_erp.Rows(i)("VariantPrice").ToString
+                        Catch ex As Exception
+                        End Try
+
+                        Try
+                            VariantCompareAtPrice_erp = data_erp.Rows(i)("VariantCompareAtPrice").ToString
+                        Catch ex As Exception
+                        End Try
+
+                        Try
+                            VariantBarcode_erp = data_erp.Rows(i)("VariantBarcode").ToString
+                        Catch ex As Exception
+                        End Try
+
+                        query += "('" + id_verification_master + "', '" + Option1Value + "', '" + VariantSKU + "', '" + VariantPrice + "', '" + VariantCompareAtPrice + "', '" + VariantBarcode + "', '" + Option1Value_erp + "', '" + VariantSKU_erp + "', '" + VariantPrice_erp + "', '" + VariantCompareAtPrice_erp + "', '" + VariantBarcode_erp + "'), "
                     Next
 
                     query = query.Substring(0, query.Length - 2)
