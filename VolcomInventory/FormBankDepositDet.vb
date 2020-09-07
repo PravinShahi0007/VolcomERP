@@ -805,6 +805,9 @@ Public Class FormBankDepositDet
         If id_deposit = "-1" Then
             Cursor = Cursors.WaitCursor
             FormBankDepositAdd.action = "ins"
+            If SLEUnit.EditValue.ToString <> "1" Then
+                FormBankDepositAdd.id_coa_type = "2"
+            End If
             FormBankDepositAdd.ShowDialog()
             Cursor = Cursors.Default
         End If
@@ -823,5 +826,8 @@ Public Class FormBankDepositDet
 
     Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
         load_receive_from()
+        If id_deposit = "-1" Then
+            load_det()
+        End If
     End Sub
 End Class
