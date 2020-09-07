@@ -2543,6 +2543,7 @@ Partial Class FormProduction
         Me.XTPCopyProto2.Controls.Add(Me.GCCopyProto2)
         Me.XTPCopyProto2.Controls.Add(Me.PanelControl7)
         Me.XTPCopyProto2.Name = "XTPCopyProto2"
+        Me.XTPCopyProto2.PageVisible = False
         Me.XTPCopyProto2.Size = New System.Drawing.Size(992, 327)
         Me.XTPCopyProto2.Text = "Copy Proto 2 Sample Order"
         '
