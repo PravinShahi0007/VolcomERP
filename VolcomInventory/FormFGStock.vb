@@ -1653,7 +1653,9 @@
                 str.Seek(0, System.IO.SeekOrigin.Begin)
                 For i As Integer = 0 To GVSOHCode.Columns.Count - 1
                     Try
-                        GVSOHCode.Columns(i).Caption = GVSOHCode.Columns(i).FieldName.ToString
+                        If Not GVSOHCode.Columns(i).OwnerBand.Caption = "" Then
+                            GVSOHCode.Columns(i).Caption = GVSOHCode.Columns(i).OwnerBand.Caption + " / " + GVSOHCode.Columns(i).Caption
+                        End If
                     Catch ex As Exception
                     End Try
                 Next
