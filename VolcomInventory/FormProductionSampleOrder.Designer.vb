@@ -44,8 +44,6 @@ Partial Class FormProductionSampleOrder
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BRevise = New DevExpress.XtraEditors.SimpleButton()
-        Me.TETermOrder = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.SLERevision = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -107,7 +105,6 @@ Partial Class FormProductionSampleOrder
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.TETermOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLERevision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -360,8 +357,6 @@ Partial Class FormProductionSampleOrder
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl3.Controls.Add(Me.BRevise)
-        Me.PanelControl3.Controls.Add(Me.TETermOrder)
-        Me.PanelControl3.Controls.Add(Me.LabelControl7)
         Me.PanelControl3.Controls.Add(Me.DEDateCreated)
         Me.PanelControl3.Controls.Add(Me.LabelControl5)
         Me.PanelControl3.Controls.Add(Me.SLERevision)
@@ -383,25 +378,6 @@ Partial Class FormProductionSampleOrder
         Me.BRevise.TabIndex = 8914
         Me.BRevise.TabStop = False
         Me.BRevise.Text = "Revise"
-        '
-        'TETermOrder
-        '
-        Me.TETermOrder.EditValue = ""
-        Me.TETermOrder.Location = New System.Drawing.Point(109, 59)
-        Me.TETermOrder.Name = "TETermOrder"
-        Me.TETermOrder.Properties.EditValueChangedDelay = 1
-        Me.TETermOrder.Properties.ReadOnly = True
-        Me.TETermOrder.Size = New System.Drawing.Size(330, 20)
-        Me.TETermOrder.TabIndex = 8913
-        Me.TETermOrder.TabStop = False
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(14, 62)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(55, 13)
-        Me.LabelControl7.TabIndex = 8912
-        Me.LabelControl7.Text = "Term Order"
         '
         'DEDateCreated
         '
@@ -446,13 +422,13 @@ Partial Class FormProductionSampleOrder
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Id Ko"
-        Me.GridColumn6.FieldName = "id_prod_order_ko"
+        Me.GridColumn6.FieldName = "id_prod_order_cps2"
         Me.GridColumn6.Name = "GridColumn6"
         '
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Reff"
-        Me.GridColumn19.FieldName = "id_prod_order_ko_reff"
+        Me.GridColumn19.FieldName = "id_prod_order_cps2_reff"
         Me.GridColumn19.Name = "GridColumn19"
         '
         'GridColumn8
@@ -525,7 +501,7 @@ Partial Class FormProductionSampleOrder
         'GridColumn18
         '
         Me.GridColumn18.Caption = "ID Ko Det"
-        Me.GridColumn18.FieldName = "id_prod_order_kp_det"
+        Me.GridColumn18.FieldName = "id_prod_order_cps2_det"
         Me.GridColumn18.Name = "GridColumn18"
         '
         'GridColumnNo
@@ -815,7 +791,7 @@ Partial Class FormProductionSampleOrder
         Me.GridColumnProto2Sample.ColumnEdit = Me.RIDESampleProto2
         Me.GridColumnProto2Sample.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnProto2Sample.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnProto2Sample.FieldName = "sample_proto_2"
+        Me.GridColumnProto2Sample.FieldName = "eta_copy_proto_2"
         Me.GridColumnProto2Sample.Name = "GridColumnProto2Sample"
         Me.GridColumnProto2Sample.Visible = True
         Me.GridColumnProto2Sample.VisibleIndex = 4
@@ -866,7 +842,6 @@ Partial Class FormProductionSampleOrder
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.TETermOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLERevision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -905,8 +880,6 @@ Partial Class FormProductionSampleOrder
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BRevise As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TETermOrder As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLERevision As DevExpress.XtraEditors.SearchLookUpEdit
