@@ -152,7 +152,7 @@
                 If SLEParentAccount.EditValue = "-1" Then
                     query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
                 Else
-                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6}, '{7}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6}, '{7}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
                 End If
 
                 id_acc = execute_query(query, 0, True, "", "", "", "")
