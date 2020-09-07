@@ -59,6 +59,7 @@
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
+            TxtPromoName.Text = data.Rows(0)("promo_name").ToString
 
             'properti
             If is_confirm = "2" Then
@@ -202,6 +203,7 @@
             SLEPromoType.Enabled = True
             DEStart.Enabled = True
             DEEnd.Enabled = True
+            TxtPromoName.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -215,6 +217,7 @@
             SLEPromoType.Enabled = False
             DEStart.Enabled = False
             DEEnd.Enabled = False
+            TxtPromoName.Enabled = False
         End If
 
         'reset propose
@@ -242,6 +245,7 @@
             SLEPromoType.Enabled = False
             DEStart.Enabled = False
             DEEnd.Enabled = False
+            TxtPromoName.Enabled = False
         End If
     End Sub
 
@@ -263,6 +267,7 @@
         Dim start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim note As String = addSlashes(MENote.Text)
+        Dim promo_name As String = addSlashes(TxtPromoName.Text)
         If action = "ins" Then
             'Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, created_date, created_by, start_period, end_period, id_report_status, note)
             'VALUES('" + id_promo + "', NOW(), '" + id_user + "', '" + start_period + "', '" + end_period + "',1, '" + note + "');SELECT LAST_INSERT_ID(); "
@@ -271,7 +276,7 @@
             ''refresh
             'refreshData()
         ElseIf action = "upd" Then
-            Dim query_head As String = "UPDATE tb_ol_promo_collection SET id_promo='" + id_promo + "',start_period='" + start_period + "', end_period='" + end_period + "', tag='" + tag + "',note='" + note + "'
+            Dim query_head As String = "UPDATE tb_ol_promo_collection SET id_promo='" + id_promo + "',start_period='" + start_period + "', end_period='" + end_period + "', tag='" + tag + "',note='" + note + "',promo_name='" + promo_name + "'
             WHERE id_ol_promo_collection='" + id + "' "
             execute_non_query(query_head, True, "", "", "", "")
             'refresh
@@ -452,7 +457,7 @@
             Report.GVData.OptionsPrint.PrintDetails = True
             Report.GVData.OptionsPrint.PrintFooter = True
 
-            Report.LabelPromoTyoe.Text = SLEPromoType.Text.ToUpper
+            Report.LabelPromoTyoe.Text = TxtPromoName.Text
             Report.LabelTag.Text = TxtTag.Text.ToUpper
             Report.LabelStartPeriod.Text = DEStart.Text.ToUpper
             Report.LabelEndPeriod.Text = DEEnd.Text.ToUpper
