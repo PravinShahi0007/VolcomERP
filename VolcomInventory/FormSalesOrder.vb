@@ -356,12 +356,16 @@
     End Sub
 
     Private Sub BtnCreateNewAlloc_Click(sender As Object, e As EventArgs) Handles BtnCreateNewAlloc.Click
-        Cursor = Cursors.WaitCursor
-        FormSalesOrderDet.action = "ins"
-        FormSalesOrderDet.is_transfer_data = "1"
-        FormSalesOrderDet.id_sales_order = "-1"
-        FormSalesOrderDet.ShowDialog()
-        Cursor = Cursors.Default
+        If check_created() Then
+            Cursor = Cursors.WaitCursor
+            FormSalesOrderDet.action = "ins"
+            FormSalesOrderDet.is_transfer_data = "1"
+            FormSalesOrderDet.id_sales_order = "-1"
+            FormSalesOrderDet.ShowDialog()
+            Cursor = Cursors.Default
+        Else
+            stopCustom("Please complete all transaction.")
+        End If
     End Sub
 
     Private Sub BtnAllocHist_Click(sender As Object, e As EventArgs) Handles BtnAllocHist.Click
@@ -375,4 +379,16 @@
         FormPromoReplace.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Function check_created() As Boolean
+        Dim out As Boolean = True
+
+        Dim tot As String = execute_query("SELECT COUNT(*) AS total FROM tb_sales_order WHERE id_report_status NOT IN (5, 6) AND id_user_created = " + id_user, 0, True, "", "", "", "")
+
+        If Not tot = "0" Then
+            out = False
+        End If
+
+        Return out
+    End Function
 End Class
