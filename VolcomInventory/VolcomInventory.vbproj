@@ -5677,6 +5677,12 @@
     <Compile Include="FormSampleDevelopmentDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleDevelopmentVerifyCPS2.Designer.vb">
+      <DependentUpon>FormSampleDevelopmentVerifyCPS2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleDevelopmentVerifyCPS2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleExpense.Designer.vb">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
     </Compile>
@@ -11561,6 +11567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleDevelopmentDet.resx">
       <DependentUpon>FormSampleDevelopmentDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleDevelopmentVerifyCPS2.resx">
+      <DependentUpon>FormSampleDevelopmentVerifyCPS2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleExpense.resx">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
