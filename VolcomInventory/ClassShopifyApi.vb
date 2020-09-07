@@ -389,6 +389,17 @@
                     Dim tracking_code As String = ""
                     Dim financial_status As String = ""
 
+                    'discount codes
+                    Dim discount_code As String = ""
+                    If row("discount_codes").Count > 0 Then
+                        For Each row_disc_codes In row("discount_codes").ToList
+                            discount_code = row_disc_codes("code").ToString
+                            Exit For
+                        Next
+                    Else
+                        discount_code = ""
+                    End If
+
                     id = row("id").ToString
                     sales_order_ol_shop_number = row("order_number").ToString
                     sales_order_ol_shop_date = DateTime.Parse(row("created_at").ToString).ToString("yyyy-MM-dd HH:mm:ss")
@@ -464,7 +475,7 @@
 
                     'detail line item
                     Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
-                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, sales_order_det_qty, grams, financial_status, shipping_price) VALUES "
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, sales_order_det_qty, grams, financial_status, shipping_price, discount_code) VALUES "
                     Dim ol_store_sku As String = ""
                     Dim ol_store_id As String = ""
                     Dim sku As String = ""
@@ -484,7 +495,7 @@
                             qins += ","
                         End If
                         qins += "('" + id + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + addSlashes(customer_name) + "', '" + addSlashes(shipping_name) + "', '" + addSlashes(shipping_address) + "','" + addSlashes(shipping_address1) + "','" + addSlashes(shipping_address2) + "', '" + shipping_phone + "', 
-                        '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + shipping_price + "') "
+                        '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + shipping_price + "', '" + discount_code + "') "
                         i += 1
                     Next
 
