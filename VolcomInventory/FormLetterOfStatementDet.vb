@@ -28,11 +28,23 @@
 
         SLUEEmployee.EditValue = "1"
 
+        viewSearchLookupQuery(SLUEDepartement, "
+            SELECT id_departement, departement, is_store FROM tb_m_departement
+        ", "id_departement", "departement", "id_departement")
+
+        SLUEDepartement.EditValue = "1"
+
         DEDate.EditValue = Now
     End Sub
 
     Private Sub SBSavePrint_Click(sender As Object, e As EventArgs) Handles SBSavePrint.Click
-        Dim query As String = "INSERT INTO tb_letter_of_statement (id_popup, number, date, id_employee, created_date, created_by) VALUES (" + SLUEType.EditValue.ToString + ", '" + TENumberFront.EditValue.ToString + TENumberBack.EditValue.ToString + "', '" + Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', " + SLUEEmployee.EditValue.ToString + ", NOW(), " + id_user + "); SELECT LAST_INSERT_ID();"
+        Dim query_contract As String = "NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL"
+
+        If SLUEType.EditValue.ToString = "6" Then
+            query_contract = "'" + addSlashes(TEEmployee.EditValue.ToString) + "', '" + addSlashes(TEPosition.EditValue.ToString) + "', " + SLUEDepartement.EditValue.ToString + ", '" + addSlashes(TEAddress.EditValue.ToString) + "', '" + Date.Parse(DEStartDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DEEndDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', " + TEBasicSalary.EditValue.ToString + ", " + TEAllowJob.EditValue.ToString + ", " + TEAllowMeal.EditValue.ToString + ", " + TEAllowTrans.EditValue.ToString + ", " + TEAllowHouse.EditValue.ToString + ", " + TEAllowCar.EditValue.ToString + ""
+        End If
+
+        Dim query As String = "INSERT INTO tb_letter_of_statement (id_popup, number, date, id_employee, created_date, created_by, employee_name, employee_position, id_departement, address_primary, start_period, end_period, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car) VALUES (" + SLUEType.EditValue.ToString + ", '" + TENumberFront.EditValue.ToString + TENumberBack.EditValue.ToString + "', '" + Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', " + SLUEEmployee.EditValue.ToString + ", NOW(), " + id_user + ", " + query_contract + "); SELECT LAST_INSERT_ID();"
 
         id_letter_of_statement = execute_query(query, 0, True, "", "", "", "")
 
@@ -51,6 +63,16 @@
                 DEDate.Visible = False
             End If
 
+            If execute_query("SELECT is_contract FROM tb_letter_of_statement_popup WHERE id_letter_of_statement_popup = " + SLUEType.EditValue.ToString, 0, True, "", "", "", "") Then
+                PCContract.Visible = True
+                PCEmployee.Visible = False
+                Size = New Size(600, 507)
+            Else
+                PCContract.Visible = False
+                PCEmployee.Visible = True
+                Size = New Size(600, 222)
+            End If
+
             Dim month As String = execute_query("SELECT `code` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW())", 0, True, "", "", "", "")
 
             If SLUEType.EditValue.ToString = "1" Then
@@ -63,8 +85,42 @@
                 TENumberBack.EditValue = "/EXT/HRD-SK/" + month + "/" + Date.Now.ToString("yy")
             ElseIf SLUEType.EditValue.ToString = "5" Then
                 TENumberBack.EditValue = "/EXT/HRD-SR/" + month + "/" + Date.Now.ToString("yy")
+            ElseIf SLUEType.EditValue.ToString = "6" Then
+                TENumberBack.EditValue = "/INT/HRD-KK/" + month + "/" + Date.Now.ToString("yy")
             End If
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub SBBrowse_Click(sender As Object, e As EventArgs) Handles SBBrowse.Click
+        FormLetterOfStatementEmployee.ShowDialog()
+    End Sub
+
+    Sub calculate_total_salary()
+        TETotalSalary.EditValue = TEBasicSalary.EditValue + TEAllowJob.EditValue + TEAllowMeal.EditValue + TEAllowTrans.EditValue + TEAllowHouse.EditValue + TEAllowCar.EditValue
+    End Sub
+
+    Private Sub TEBasicSalary_EditValueChanged(sender As Object, e As EventArgs) Handles TEBasicSalary.EditValueChanged
+        calculate_total_salary()
+    End Sub
+
+    Private Sub TEAllowJob_EditValueChanged(sender As Object, e As EventArgs) Handles TEAllowJob.EditValueChanged
+        calculate_total_salary()
+    End Sub
+
+    Private Sub TEAllowMeal_EditValueChanged(sender As Object, e As EventArgs) Handles TEAllowMeal.EditValueChanged
+        calculate_total_salary()
+    End Sub
+
+    Private Sub TEAllowTrans_EditValueChanged(sender As Object, e As EventArgs) Handles TEAllowTrans.EditValueChanged
+        calculate_total_salary()
+    End Sub
+
+    Private Sub TEAllowHouse_EditValueChanged(sender As Object, e As EventArgs) Handles TEAllowHouse.EditValueChanged
+        calculate_total_salary()
+    End Sub
+
+    Private Sub TEAllowCar_EditValueChanged(sender As Object, e As EventArgs) Handles TEAllowCar.EditValueChanged
+        calculate_total_salary()
     End Sub
 End Class
