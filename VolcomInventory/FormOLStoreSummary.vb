@@ -112,7 +112,7 @@
         Dim query As String = "SELECT 0 AS id_ol_promo_collection, 0 AS id_promo, 'All' AS promo, '' AS `number`,
         NOW() AS start_period, NOW() AS end_period
         UNION ALL 
-        SELECT p.id_ol_promo_collection, prm.id_promo, prm.promo, p.`number`,
+        SELECT p.id_ol_promo_collection, prm.id_promo, p.promo_name AS `promo`, p.`number`,
         p.start_period, p.end_period
         FROM tb_ol_promo_collection p
         INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
@@ -126,11 +126,11 @@
     Sub viewPromoNotAll()
         Cursor = Cursors.WaitCursor
         Dim prm As New ClassPromoCollection()
-        Dim query As String = "SELECT p.id_ol_promo_collection, prm.id_promo, prm.promo, p.`number`,
+        Dim query As String = "SELECT p.id_ol_promo_collection, prm.id_promo, p.promo_name AS `promo`, p.`number`,
         p.start_period, p.end_period
         FROM tb_ol_promo_collection p
         INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
-        WHERE p.id_report_status=6
+        WHERE p.id_report_status=6 AND p.is_use_discount_code=2
         ORDER BY id_ol_promo_collection DESC "
         viewSearchLookupQuery(SLEPromoDetail, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection")
         Cursor = Cursors.Default
@@ -403,7 +403,7 @@
         ret_request.`id_ret_request`, ret_request.`ret_request_awb`,ret_request.`ret_request_number`, ret_request.`ret_request_created_date`,ret_request.`ret_request_date`, ret_request.`ret_request_status`,
         refund.`id_bbk`, refund.`bbk_number`, refund.`bbk_created_date`, refund.`bbk_status`,
         ish.id_invoice_ship, ish.`invoice_ship_number`, 
-        ish.`invoice_ship_status`, ish.`invoice_ship_date`,
+        ish.`invoice_ship_status`, ish.`invoice_ship_date`, IFNULL(ish.invoice_ship_value,0.00) AS `invoice_ship_value`,
         '0' AS `report_mark_type`, 
         IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         IFNULL(stt_internal.`status`, '-') AS `ol_store_status_internal`, IFNULL(stt_internal.status_date, sales_order_ol_shop_date) AS `ol_store_date_internal`,
@@ -587,7 +587,7 @@
         ) refund ON refund.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
             SELECT ish.id_report,ish.id_invoice_ship, ish.`number` AS `invoice_ship_number`, 
-            stt.report_status AS `invoice_ship_status`, ish.created_date AS `invoice_ship_date`
+            stt.report_status AS `invoice_ship_status`, ish.created_date AS `invoice_ship_date`, ish.value AS `invoice_ship_value`
             FROM tb_invoice_ship ish
             INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ish.id_report_status
             WHERE ish.id_report_status=6 
@@ -867,17 +867,17 @@
         sod.sales_order_det_qty, sod.design_price, (sod.sales_order_det_qty * sod.design_price) AS `amount`, sod.discount, ((SELECT amount) - sod.discount)  AS `nett`,
         p.id_ol_promo_collection,prm.promo, p.`number` AS `proposed_number`, p.start_period, p.end_period,
         so.id_sales_order_ol_shop, so.sales_order_ol_shop_number, so.sales_order_ol_shop_date, 
-        so.id_sales_order, so.sales_order_number, so.sales_order_date, so.customer_name, so.shipping_name, so.shipping_address, so.shipping_city, so.shipping_region, so.shipping_phone
+        so.id_sales_order, so.sales_order_number, so.sales_order_date, so.customer_name, so.shipping_name, so.shipping_address, so.shipping_city, so.shipping_region, so.shipping_phone, sod.discount_code
         FROM tb_sales_order_det sod
         INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
-        INNER JOIN tb_ol_promo_collection_sku pd ON pd.id_ol_promo_collection_sku = sod.id_ol_promo_collection_sku
-        INNER JOIN tb_ol_promo_collection p ON p.id_ol_promo_collection = pd.id_ol_promo_collection
+        LEFT JOIN tb_ol_promo_collection_sku pd ON pd.id_ol_promo_collection_sku = sod.id_ol_promo_collection_sku
+        LEFT JOIN tb_ol_promo_collection p ON p.id_ol_promo_collection = sod.id_ol_promo_collection
         INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
-        WHERE so.id_report_status=6 AND !ISNULL(sod.id_ol_promo_collection_sku)
+        WHERE so.id_report_status=6 AND !ISNULL(sod.id_ol_promo_collection)
         " + cond_promo + "
         ORDER BY so.id_sales_order_ol_shop "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
