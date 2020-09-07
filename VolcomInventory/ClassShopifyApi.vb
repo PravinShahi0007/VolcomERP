@@ -234,7 +234,7 @@
                         Dim discount_code As String = ""
                         If row("discount_codes").Count > 0 Then
                             For Each row_disc_codes In row("discount_codes").ToList
-                                discount_code = decimalSQL(row_disc_codes("code").ToString)
+                                discount_code = row_disc_codes("code").ToString
                                 Exit For
                             Next
                         Else
@@ -393,7 +393,7 @@
                     Dim discount_code As String = ""
                     If row("discount_codes").Count > 0 Then
                         For Each row_disc_codes In row("discount_codes").ToList
-                            discount_code = decimalSQL(row_disc_codes("code").ToString)
+                            discount_code = row_disc_codes("code").ToString
                             Exit For
                         Next
                     Else
