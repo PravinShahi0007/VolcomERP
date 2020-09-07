@@ -159,6 +159,7 @@ RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,LENGTH(d.desi
 ,py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,IF(ISNULL(ko.lead_time_prod),NULL,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)) AS est_del_date_ko,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date,prod_order_wo_top AS lead_time_pay 
 ,wo_price.prod_order_wo_vat AS vat,wo_price.wo_price AS po_amount_rp,wo_price.wo_price_no_kurs AS po_amount,wo_price.currency AS po_curr,wo_price.prod_order_wo_kurs AS po_kurs,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit 
 ,IF(ISNULL(kp.sample_proto_2),a.sample_proto_2,kp.sample_proto_2) AS sample_proto_2 
+,cps.id_prod_order_cps2,cps.number AS cps_number,cps.revision AS cps_revision,cps.eta_copy_proto_2
 FROM tb_prod_order a 
 INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
 INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -198,6 +199,19 @@ LEFT JOIN (
 	    ORDER BY id_prod_order_kp_det DESC
     )kp GROUP BY kp.id_prod_order
 ) kp ON kp.id_prod_order=a.id_prod_order 
+LEFT JOIN
+(
+    SELECT cps.number,cps.`id_prod_order_cps2`,cps.`revision`,cpsd.`eta_copy_proto_2` ,cpsd.id_prod_order
+    FROM 
+    (
+        SELECT MAX(cps2d.id_prod_order_cps2_det) AS id_prod_order_cps2_det
+        FROM `tb_prod_order_cps2_det` cps2d
+        INNER JOIN `tb_prod_order_cps2` cps2 ON cps2.`id_prod_order_cps2`=cps2d.`id_prod_order_cps2` AND cps2.`is_locked`=1
+        GROUP BY cps2d.id_prod_order
+    )det
+    INNER JOIN tb_prod_order_cps2_det cpsd ON cpsd.`id_prod_order_cps2_det`=det.id_prod_order_cps2_det
+    INNER JOIN tb_prod_order_cps2 cps ON cpsd.id_prod_order_cps2=cps.id_prod_order_cps2
+)cps ON cps.id_prod_order=a.id_prod_order
 WHERE 1=1 " & query_where & "
 GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -318,6 +332,17 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
                     GVProd.SetRowCellValue(i, "is_check", "yes")
                 End If
             Next
+        End If
+    End Sub
+
+    Private Sub BVerifyCPS2_Click(sender As Object, e As EventArgs) Handles BVerifyCPS2.Click
+        If GVCopyProto2.RowCount > 0 Then
+            If Not GVCopyProto2.GetFocusedRowCellValue("id_prod_order_cps2").ToString = "" Then
+                'verify popup
+
+            Else
+                warningCustom("Please create and lock Copy Prototype Sample 2 Order first.")
+            End If
         End If
     End Sub
 End Class

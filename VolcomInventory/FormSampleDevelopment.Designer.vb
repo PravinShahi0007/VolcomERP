@@ -110,7 +110,6 @@ Partial Class FormSampleDevelopment
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCFilterDate = New DevExpress.XtraEditors.PanelControl()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -135,15 +134,6 @@ Partial Class FormSampleDevelopment
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPCopyProto2Order = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.BEditCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEVendorCopyProto2 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.GCCopyProto2 = New DevExpress.XtraGrid.GridControl()
         Me.GVCopyProto2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -153,6 +143,20 @@ Partial Class FormSampleDevelopment
         Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn86 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar4 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BEditCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEVendorCopyProto2 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMVerifySample = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.BVerifyCPS2 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,13 +205,14 @@ Partial Class FormSampleDevelopment
         CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCopyProto2Order.SuspendLayout()
+        CType(Me.GCCopyProto2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCopyProto2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCCopyProto2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVCopyProto2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemProgressBar4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMVerifySample.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -320,7 +325,7 @@ Partial Class FormSampleDevelopment
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
         Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1, Me.RepositoryItemCheckEdit3, Me.RepositoryItemMemoEdit2, Me.RepositoryItemMemoEdit3, Me.RepositoryItemMemoEdit4})
-        Me.GCDesign.Size = New System.Drawing.Size(1117, 518)
+        Me.GCDesign.Size = New System.Drawing.Size(1117, 397)
         Me.GCDesign.TabIndex = 107
         Me.GCDesign.TabStop = False
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign, Me.GridView2})
@@ -729,7 +734,7 @@ Partial Class FormSampleDevelopment
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPSampleDev
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1123, 586)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1123, 465)
         Me.XtraTabControl1.TabIndex = 108
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSampleDev, Me.XTPFGPO})
         '
@@ -738,14 +743,14 @@ Partial Class FormSampleDevelopment
         Me.XTPSampleDev.Controls.Add(Me.GCDesign)
         Me.XTPSampleDev.Controls.Add(Me.PanelControlNavLineList)
         Me.XTPSampleDev.Name = "XTPSampleDev"
-        Me.XTPSampleDev.Size = New System.Drawing.Size(1117, 558)
+        Me.XTPSampleDev.Size = New System.Drawing.Size(1117, 437)
         Me.XTPSampleDev.Text = "Sample Development"
         '
         'XTPFGPO
         '
         Me.XTPFGPO.Controls.Add(Me.XtraTabControl2)
         Me.XTPFGPO.Name = "XTPFGPO"
-        Me.XTPFGPO.Size = New System.Drawing.Size(1117, 558)
+        Me.XTPFGPO.Size = New System.Drawing.Size(1117, 437)
         Me.XTPFGPO.Text = "F. G. Purchase Order"
         '
         'XtraTabControl2
@@ -755,7 +760,7 @@ Partial Class FormSampleDevelopment
         Me.XtraTabControl2.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl2.Name = "XtraTabControl2"
         Me.XtraTabControl2.SelectedTabPage = Me.XTPFGPOList
-        Me.XtraTabControl2.Size = New System.Drawing.Size(1117, 558)
+        Me.XtraTabControl2.Size = New System.Drawing.Size(1117, 437)
         Me.XtraTabControl2.TabIndex = 0
         Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGPOList, Me.XTPCopyProto2Order})
         '
@@ -765,23 +770,24 @@ Partial Class FormSampleDevelopment
         Me.XTPFGPOList.Controls.Add(Me.PCFilterDate)
         Me.XTPFGPOList.Controls.Add(Me.PanelControl1)
         Me.XTPFGPOList.Name = "XTPFGPOList"
-        Me.XTPFGPOList.Size = New System.Drawing.Size(1111, 530)
+        Me.XTPFGPOList.Size = New System.Drawing.Size(1111, 409)
         Me.XTPFGPOList.Text = "FGPO List"
         '
         'GCProd
         '
+        Me.GCProd.ContextMenuStrip = Me.CMVerifySample
         Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCProd.Location = New System.Drawing.Point(0, 38)
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit, Me.RepositoryItemCheckEdit4})
-        Me.GCProd.Size = New System.Drawing.Size(1111, 454)
+        Me.GCProd.Size = New System.Drawing.Size(1111, 333)
         Me.GCProd.TabIndex = 6
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumn55, Me.GridColumn58, Me.GridColumn57, Me.GridColumn56, Me.GridColumnIdReportStatus, Me.GridColumn64, Me.GridColumn65, Me.GridColumnProdDate, Me.GridColumn53, Me.GridColumn52, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnIdPO, Me.GridColumn2, Me.GridColumnSeasonView, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumn77, Me.GridColumn76, Me.GridColumn5})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumn55, Me.GridColumn58, Me.GridColumn57, Me.GridColumn56, Me.GridColumnIdReportStatus, Me.GridColumn64, Me.GridColumn65, Me.GridColumnProdDate, Me.GridColumn53, Me.GridColumn52, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnIdPO, Me.GridColumn2, Me.GridColumnSeasonView, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumn77, Me.GridColumn76, Me.GridColumn3, Me.GridColumn14, Me.GridColumn13})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -1050,21 +1056,14 @@ Partial Class FormSampleDevelopment
         Me.GridColumn76.FieldName = "sample_proto_2"
         Me.GridColumn76.Name = "GridColumn76"
         Me.GridColumn76.Visible = True
-        Me.GridColumn76.VisibleIndex = 15
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "ETA Bali Copy Proto Sample 2 Date"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 14
+        Me.GridColumn76.VisibleIndex = 14
         '
         'PCFilterDate
         '
         Me.PCFilterDate.Controls.Add(Me.PCSelAll)
         Me.PCFilterDate.Controls.Add(Me.BPrint)
         Me.PCFilterDate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCFilterDate.Location = New System.Drawing.Point(0, 492)
+        Me.PCFilterDate.Location = New System.Drawing.Point(0, 371)
         Me.PCFilterDate.Name = "PCFilterDate"
         Me.PCFilterDate.Size = New System.Drawing.Size(1111, 38)
         Me.PCFilterDate.TabIndex = 5
@@ -1280,8 +1279,93 @@ Partial Class FormSampleDevelopment
         Me.XTPCopyProto2Order.Controls.Add(Me.GCCopyProto2)
         Me.XTPCopyProto2Order.Controls.Add(Me.PanelControl7)
         Me.XTPCopyProto2Order.Name = "XTPCopyProto2Order"
-        Me.XTPCopyProto2Order.Size = New System.Drawing.Size(1111, 530)
+        Me.XTPCopyProto2Order.Size = New System.Drawing.Size(1111, 409)
         Me.XTPCopyProto2Order.Text = "Copy Prototype Sample 2 Order"
+        '
+        'GCCopyProto2
+        '
+        Me.GCCopyProto2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCopyProto2.Location = New System.Drawing.Point(0, 44)
+        Me.GCCopyProto2.MainView = Me.GVCopyProto2
+        Me.GCCopyProto2.Name = "GCCopyProto2"
+        Me.GCCopyProto2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar4})
+        Me.GCCopyProto2.Size = New System.Drawing.Size(1111, 365)
+        Me.GCCopyProto2.TabIndex = 14
+        Me.GCCopyProto2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCopyProto2})
+        '
+        'GVCopyProto2
+        '
+        Me.GVCopyProto2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn81, Me.GridColumn82, Me.GridColumn83, Me.GridColumn84, Me.GridColumn85, Me.GridColumn86})
+        Me.GVCopyProto2.GridControl = Me.GCCopyProto2
+        Me.GVCopyProto2.Name = "GVCopyProto2"
+        Me.GVCopyProto2.OptionsBehavior.Editable = False
+        Me.GVCopyProto2.OptionsFind.AlwaysVisible = True
+        Me.GVCopyProto2.OptionsView.ColumnAutoWidth = False
+        Me.GVCopyProto2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn81
+        '
+        Me.GridColumn81.Caption = "ID KO"
+        Me.GridColumn81.FieldName = "id_prod_order_cps2"
+        Me.GridColumn81.Name = "GridColumn81"
+        '
+        'GridColumn82
+        '
+        Me.GridColumn82.Caption = "Number"
+        Me.GridColumn82.FieldName = "number"
+        Me.GridColumn82.Name = "GridColumn82"
+        Me.GridColumn82.Visible = True
+        Me.GridColumn82.VisibleIndex = 0
+        '
+        'GridColumn83
+        '
+        Me.GridColumn83.Caption = "Revision"
+        Me.GridColumn83.FieldName = "revision"
+        Me.GridColumn83.Name = "GridColumn83"
+        Me.GridColumn83.Visible = True
+        Me.GridColumn83.VisibleIndex = 1
+        '
+        'GridColumn84
+        '
+        Me.GridColumn84.Caption = "Vendor"
+        Me.GridColumn84.FieldName = "comp_name"
+        Me.GridColumn84.Name = "GridColumn84"
+        Me.GridColumn84.Visible = True
+        Me.GridColumn84.VisibleIndex = 2
+        '
+        'GridColumn85
+        '
+        Me.GridColumn85.Caption = "Created Date"
+        Me.GridColumn85.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn85.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn85.FieldName = "date_created"
+        Me.GridColumn85.Name = "GridColumn85"
+        Me.GridColumn85.Visible = True
+        Me.GridColumn85.VisibleIndex = 3
+        '
+        'GridColumn86
+        '
+        Me.GridColumn86.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn86.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn86.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn86.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn86.Caption = "Status"
+        Me.GridColumn86.FieldName = "status"
+        Me.GridColumn86.Name = "GridColumn86"
+        Me.GridColumn86.Visible = True
+        Me.GridColumn86.VisibleIndex = 4
+        '
+        'RepositoryItemProgressBar4
+        '
+        Me.RepositoryItemProgressBar4.Appearance.BackColor = System.Drawing.Color.Lime
+        Me.RepositoryItemProgressBar4.EndColor = System.Drawing.Color.Green
+        Me.RepositoryItemProgressBar4.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.RepositoryItemProgressBar4.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RepositoryItemProgressBar4.Name = "RepositoryItemProgressBar4"
+        Me.RepositoryItemProgressBar4.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
+        Me.RepositoryItemProgressBar4.ShowTitle = True
+        Me.RepositoryItemProgressBar4.StartColor = System.Drawing.Color.Green
+        Me.RepositoryItemProgressBar4.Step = 1
         '
         'PanelControl7
         '
@@ -1367,96 +1451,50 @@ Partial Class FormSampleDevelopment
         Me.LabelControl13.TabIndex = 8901
         Me.LabelControl13.Text = "Vendor"
         '
-        'GCCopyProto2
+        'GridColumn3
         '
-        Me.GCCopyProto2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCCopyProto2.Location = New System.Drawing.Point(0, 44)
-        Me.GCCopyProto2.MainView = Me.GVCopyProto2
-        Me.GCCopyProto2.Name = "GCCopyProto2"
-        Me.GCCopyProto2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar4})
-        Me.GCCopyProto2.Size = New System.Drawing.Size(1111, 486)
-        Me.GCCopyProto2.TabIndex = 14
-        Me.GCCopyProto2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCopyProto2})
+        Me.GridColumn3.Caption = "Copy Proto Sample 2 Order #"
+        Me.GridColumn3.FieldName = "cps_number"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 15
         '
-        'GVCopyProto2
+        'GridColumn13
         '
-        Me.GVCopyProto2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn81, Me.GridColumn82, Me.GridColumn83, Me.GridColumn84, Me.GridColumn85, Me.GridColumn86})
-        Me.GVCopyProto2.GridControl = Me.GCCopyProto2
-        Me.GVCopyProto2.Name = "GVCopyProto2"
-        Me.GVCopyProto2.OptionsBehavior.Editable = False
-        Me.GVCopyProto2.OptionsFind.AlwaysVisible = True
-        Me.GVCopyProto2.OptionsView.ColumnAutoWidth = False
-        Me.GVCopyProto2.OptionsView.ShowGroupPanel = False
+        Me.GridColumn13.Caption = "Copy Proto Sample 2 Order ETA Bali"
+        Me.GridColumn13.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn13.FieldName = "eta_copy_proto_2"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 17
         '
-        'GridColumn81
+        'GridColumn14
         '
-        Me.GridColumn81.Caption = "ID KO"
-        Me.GridColumn81.FieldName = "id_prod_order_cps2"
-        Me.GridColumn81.Name = "GridColumn81"
+        Me.GridColumn14.Caption = "Revision"
+        Me.GridColumn14.FieldName = "cps_revision"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 16
+        Me.GridColumn14.Width = 63
         '
-        'GridColumn82
+        'CMVerifySample
         '
-        Me.GridColumn82.Caption = "Number"
-        Me.GridColumn82.FieldName = "number"
-        Me.GridColumn82.Name = "GridColumn82"
-        Me.GridColumn82.Visible = True
-        Me.GridColumn82.VisibleIndex = 0
+        Me.CMVerifySample.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BVerifyCPS2})
+        Me.CMVerifySample.Name = "ContextMenuStripYM"
+        Me.CMVerifySample.Size = New System.Drawing.Size(242, 48)
         '
-        'GridColumn83
+        'BVerifyCPS2
         '
-        Me.GridColumn83.Caption = "Revision"
-        Me.GridColumn83.FieldName = "revision"
-        Me.GridColumn83.Name = "GridColumn83"
-        Me.GridColumn83.Visible = True
-        Me.GridColumn83.VisibleIndex = 1
-        '
-        'GridColumn84
-        '
-        Me.GridColumn84.Caption = "Vendor"
-        Me.GridColumn84.FieldName = "comp_name"
-        Me.GridColumn84.Name = "GridColumn84"
-        Me.GridColumn84.Visible = True
-        Me.GridColumn84.VisibleIndex = 2
-        '
-        'GridColumn85
-        '
-        Me.GridColumn85.Caption = "Created Date"
-        Me.GridColumn85.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn85.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn85.FieldName = "date_created"
-        Me.GridColumn85.Name = "GridColumn85"
-        Me.GridColumn85.Visible = True
-        Me.GridColumn85.VisibleIndex = 3
-        '
-        'GridColumn86
-        '
-        Me.GridColumn86.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn86.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn86.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn86.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn86.Caption = "Status"
-        Me.GridColumn86.FieldName = "status"
-        Me.GridColumn86.Name = "GridColumn86"
-        Me.GridColumn86.Visible = True
-        Me.GridColumn86.VisibleIndex = 4
-        '
-        'RepositoryItemProgressBar4
-        '
-        Me.RepositoryItemProgressBar4.Appearance.BackColor = System.Drawing.Color.Lime
-        Me.RepositoryItemProgressBar4.EndColor = System.Drawing.Color.Green
-        Me.RepositoryItemProgressBar4.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.RepositoryItemProgressBar4.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.RepositoryItemProgressBar4.Name = "RepositoryItemProgressBar4"
-        Me.RepositoryItemProgressBar4.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
-        Me.RepositoryItemProgressBar4.ShowTitle = True
-        Me.RepositoryItemProgressBar4.StartColor = System.Drawing.Color.Green
-        Me.RepositoryItemProgressBar4.Step = 1
+        Me.BVerifyCPS2.Name = "BVerifyCPS2"
+        Me.BVerifyCPS2.Size = New System.Drawing.Size(241, 22)
+        Me.BVerifyCPS2.Text = "Verify Copy Prototype Sample 2"
         '
         'FormSampleDevelopment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1123, 586)
+        Me.ClientSize = New System.Drawing.Size(1123, 465)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -1514,14 +1552,15 @@ Partial Class FormSampleDevelopment
         CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCopyProto2Order.ResumeLayout(False)
+        CType(Me.GCCopyProto2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCopyProto2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
         Me.PanelControl7.PerformLayout()
         CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCCopyProto2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVCopyProto2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemProgressBar4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMVerifySample.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1639,7 +1678,6 @@ Partial Class FormSampleDevelopment
     Friend WithEvents RIPictureEdit As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
     Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn76 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BEditCopyProto2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEVendorCopyProto2 As DevExpress.XtraEditors.SearchLookUpEdit
@@ -1658,4 +1696,9 @@ Partial Class FormSampleDevelopment
     Friend WithEvents GridColumn85 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn86 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemProgressBar4 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMVerifySample As ContextMenuStrip
+    Friend WithEvents BVerifyCPS2 As ToolStripMenuItem
 End Class
