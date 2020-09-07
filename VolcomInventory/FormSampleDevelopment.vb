@@ -160,6 +160,7 @@ RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,LENGTH(d.desi
 ,wo_price.prod_order_wo_vat AS vat,wo_price.wo_price AS po_amount_rp,wo_price.wo_price_no_kurs AS po_amount,wo_price.currency AS po_curr,wo_price.prod_order_wo_kurs AS po_kurs,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit 
 ,IF(ISNULL(kp.sample_proto_2),a.sample_proto_2,kp.sample_proto_2) AS sample_proto_2 
 ,cps.id_prod_order_cps2,cps.number AS cps_number,cps.revision AS cps_revision,cps.eta_copy_proto_2
+,NOW() as date_now
 FROM tb_prod_order a 
 INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
 INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -336,10 +337,17 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
     End Sub
 
     Private Sub BVerifyCPS2_Click(sender As Object, e As EventArgs) Handles BVerifyCPS2.Click
-        If GVCopyProto2.RowCount > 0 Then
-            If Not GVCopyProto2.GetFocusedRowCellValue("id_prod_order_cps2").ToString = "" Then
+        If GVProd.RowCount > 0 Then
+            If Not GVProd.GetFocusedRowCellValue("id_prod_order_cps2").ToString = "" Then
                 'verify popup
-
+                FormSampleDevelopmentVerifyCPS2.TEFGPO.Text = GVProd.GetFocusedRowCellValue("prod_order_number").ToString
+                FormSampleDevelopmentVerifyCPS2.DEVerifyDate.EditValue = GVProd.GetFocusedRowCellValue("date_now")
+                '
+                FormSampleDevelopmentVerifyCPS2.TEDesignCode.Text = GVProd.GetFocusedRowCellValue("design_code").ToString
+                FormSampleDevelopmentVerifyCPS2.TEDesignName.Text = GVProd.GetFocusedRowCellValue("design_display_name").ToString
+                FormSampleDevelopmentVerifyCPS2.TEVendor.Text = GVProd.GetFocusedRowCellValue("comp_name").ToString
+                '
+                FormSampleDevelopmentVerifyCPS2.ShowDialog()
             Else
                 warningCustom("Please create and lock Copy Prototype Sample 2 Order first.")
             End If
