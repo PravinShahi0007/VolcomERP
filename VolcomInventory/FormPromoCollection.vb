@@ -2,11 +2,17 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Dim id_role_admin As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormPromoCollection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+
+        'discount code list
+        If id_role_login = id_role_admin Then
+            BtnSync.Visible = True
+        End If
     End Sub
 
     Sub viewPropose()
@@ -23,7 +29,7 @@
             date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        Dim cond As String = "AND (p.created_date>='" + date_from_selected + "' AND p.created_date<='" + date_until_selected + "') "
+        Dim cond As String = "AND p.is_use_discount_code=2 AND (p.created_date>='" + date_from_selected + "' AND p.created_date<='" + date_until_selected + "') "
 
         Dim query_c As ClassPromoCollection = New ClassPromoCollection()
         Dim query As String = query_c.queryMain(cond, "2")
@@ -87,5 +93,41 @@
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
         End If
+    End Sub
+
+    Private Sub XTCPromo_Click(sender As Object, e As EventArgs) Handles XTCPromo.Click
+
+    End Sub
+
+    Private Sub BtnSync_Click(sender As Object, e As EventArgs) Handles BtnSync.Click
+        Cursor = Cursors.WaitCursor
+        Try
+            Dim s As New ClassShopifyApi()
+            s.get_discount_code()
+            infoCustom("Sync completed")
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
+        viewDiscountList()
+    End Sub
+
+    Sub viewDiscountList()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT c.id_ol_promo_collection,c.discount_title, dc.disc_code, c.start_period, c.end_period ,
+        IF(NOW()>=c.start_period AND NOW()<=c.end_period,'Active','Expired') AS `status`
+        FROM tb_ol_promo_collection c 
+        INNER JOIN tb_ol_promo_collection_disc_code dc ON dc.id_ol_promo_collection = c.id_ol_promo_collection
+        WHERE c.is_use_discount_code=1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDC.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        print(GCDC, "Discount Code List")
     End Sub
 End Class
