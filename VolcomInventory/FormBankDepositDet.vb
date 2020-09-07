@@ -436,6 +436,16 @@ Public Class FormBankDepositDet
             Dim jum_row As Integer = 0
 
             'header
+            Dim cc_draft As String = ""
+            If SLEUnit.EditValue.ToString = "1" Then
+                cc_draft = "000"
+            Else
+                Dim query_draft As String = "SELECT c.comp_number 
+                FROM tb_coa_tag t
+                INNER JOIN tb_m_comp c ON c.id_comp = t.id_comp
+                WHERE t.id_coa_tag='" + SLEUnit.EditValue.ToString + "' "
+                cc_draft = execute_query(query_draft, 0, True, "", "", "", "")
+            End If
             jum_row += 1
             Dim qh As String = "SELECT * FROM tb_a_acc WHERE id_acc='" + SLEPayRecTo.EditValue.ToString + "' "
             Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
@@ -443,7 +453,7 @@ Public Class FormBankDepositDet
             newRowh("no") = jum_row
             newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
             newRowh("acc_description") = dh.Rows(0)("acc_description").ToString
-            newRowh("cc") = "000"
+            newRowh("cc") = cc_draft
             newRowh("report_number") = ""
             newRowh("note") = MENote.Text
             newRowh("debit") = TETotal.EditValue

@@ -6275,10 +6275,12 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
 
                     'det journal
                     Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
-                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, 1,  0 AS `qty`,
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, cc.id_comp,  0 AS `qty`,
                     py.value AS `debit`, 0 AS `credit`,
                     py.note AS `note`,162,py.id_rec_payment, py.number, NULL, NULL, NULL, '' AS `vendor`
                     FROM tb_rec_payment py
+                    INNER JOIN tb_coa_tag ct ON ct.id_coa_tag = py.id_coa_tag
+                    INNER JOIN tb_m_comp cc ON cc.id_comp = ct.id_comp
                     WHERE py.id_rec_payment=" + id_report + " AND py.`value` > 0
                     UNION ALL
                     SELECT '" & id_acc_trans & "' AS id_acc_trans,pyd.id_acc AS `id_acc`, pyd.id_comp,0 AS `qty`, 
