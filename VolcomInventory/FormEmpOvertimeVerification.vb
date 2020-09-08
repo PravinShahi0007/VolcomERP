@@ -448,6 +448,7 @@
             RITEHours.ReadOnly = If(is_hrd = "1", False, True)
             RITENote.ReadOnly = False
             RICEValid.ReadOnly = False
+            SLUEPayroll.Properties.ReadOnly = False
             SBReset.Enabled = False
         Else
             Dim query_ver As String = "
@@ -491,6 +492,7 @@
                 RITEHours.ReadOnly = If(is_hrd = "1", False, True)
                 RITENote.ReadOnly = If(is_hrd = "1", False, True)
                 RICEValid.ReadOnly = If(is_hrd = "1", False, True)
+                SLUEPayroll.Properties.ReadOnly = True
                 SBReset.Enabled = True
             Else
                 SBSave.Enabled = False
@@ -503,7 +505,8 @@
                 RITEHours.ReadOnly = True
                 RITENote.ReadOnly = True
                 RICEValid.ReadOnly = True
-                SBReset.Enabled = False
+                SLUEPayroll.Properties.ReadOnly = True
+                SBReset.Enabled = True
             End If
         End If
 
@@ -868,28 +871,51 @@
     End Sub
 
     Private Sub SBReset_Click(sender As Object, e As EventArgs) Handles SBReset.Click
-        Dim confirm As DialogResult
+        Dim report_status_payroll As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + SLUEPayroll.EditValue.ToString, 0, True, "", "", "", "")
 
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All approval will be reset. Are you sure want to reset overtime verification ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If Not report_status_payroll = "6" Then
+            Dim confirm As DialogResult
 
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All approval will be reset. Are you sure want to reset overtime verification ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            Dim query As String = ""
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
 
-            query = "DELETE FROM tb_ot_verification_det WHERE id_ot_verification = " + id
+                Dim query As String = ""
 
-            execute_non_query(query, True, "", "", "", "")
+                Dim data_det As DataTable = execute_query("SELECT id_ot_verification_det FROM tb_ot_verification_det WHERE id_ot_verification = " + id, -1, True, "", "", "", "")
 
-            query = "DELETE FROM tb_ot_verification WHERE id_ot_verification = " + id
+                For i = 0 To data_det.Rows.Count - 1
+                    'payroll
+                    query = "DELETE FROM tb_emp_payroll_ot WHERE id_ot_verification_det = " + data_det.Rows(i)("id_ot_verification_det").ToString
 
-            execute_non_query(query, True, "", "", "", "")
+                    execute_non_query(query, True, "", "", "", "")
 
-            query = "DELETE FROM tb_report_mark WHERE report_mark_type = " + report_mark_type + " AND id_report = " + id
+                    'dp
+                    query = "DELETE FROM tb_emp_stock_leave WHERE id_ot_verification_det = " + data_det.Rows(i)("id_ot_verification_det").ToString
 
-            execute_non_query(query, True, "", "", "", "")
+                    execute_non_query(query, True, "", "", "", "")
+                Next
 
-            SBView_Click(SBView, New EventArgs)
+                'verification det
+                query = "DELETE FROM tb_ot_verification_det WHERE id_ot_verification = " + id
+
+                execute_non_query(query, True, "", "", "", "")
+
+                'verification
+                query = "DELETE FROM tb_ot_verification WHERE id_ot_verification = " + id
+
+                execute_non_query(query, True, "", "", "", "")
+
+                'report mark
+                query = "DELETE FROM tb_report_mark WHERE report_mark_type = " + report_mark_type + " AND id_report = " + id
+
+                execute_non_query(query, True, "", "", "", "")
+
+                SBView_Click(SBView, New EventArgs)
+            End If
+        Else
+            stopCustom("Payroll already completed.")
         End If
     End Sub
 
