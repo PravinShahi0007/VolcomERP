@@ -2029,6 +2029,9 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                         execute_non_query(query_del, True, "", "", "", "")
                     End If
                 Next
+                '
+                query = String.Format("UPDATE tb_prod_order_rec SET complete_date=NOW() WHERE id_prod_order_rec='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
@@ -2149,6 +2152,11 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 execute_non_query(query_del, True, "", "", "", "")
             End If
 
+            If id_status_reportx = "6" Then
+                query = String.Format("UPDATE tb_prod_order_ret_out SET complete_date=NOW() WHERE id_prod_order_ret_out ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
             Try
                 If form_origin = "FormProductionRetOutSingle" Then
                     FormProductionRetOutSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2169,6 +2177,12 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
             query = String.Format("UPDATE tb_prod_order_ret_in SET id_report_status='{0}' WHERE id_prod_order_ret_in ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
+            '
+            If id_status_reportx = "6" Then
+                query = String.Format("UPDATE tb_prod_order_ret_in SET complete_date=NOW() WHERE id_prod_order_ret_in ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+            '
             Try
                 If form_origin = "FormProductionRetInSingle" Then
                     FormProductionRetInSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2190,6 +2204,12 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
             query = String.Format("UPDATE tb_pl_prod_order SET id_report_status='{0}' WHERE id_pl_prod_order ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
+            '
+            If id_status_reportx = "6" Then
+                query = String.Format("UPDATE tb_pl_prod_order SET complete_date=NOW() WHERE id_pl_prod_order ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
             Try
                 If form_origin = "FormProductionPLToWHDet" Then
                     FormProductionPLToWHDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3357,6 +3377,11 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
 
+            If id_status_reportx = "6" Then
+                query = String.Format("UPDATE tb_prod_order_qc_adj_in SET complete_date=NOW() WHERE id_prod_order_qc_adj_in ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
             If form_origin = "FormProdQCAdjIn" Then
                 FormProdQCAdjIn.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormProdQCAdjIn.actionLoad()
@@ -3370,6 +3395,11 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             query = String.Format("UPDATE tb_prod_order_qc_adj_out SET id_report_status='{0}' WHERE id_prod_order_qc_adj_out ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
+
+            If id_status_reportx = "6" Then
+                query = String.Format("UPDATE tb_prod_order_qc_adj_out SET complete_date=NOW() WHERE id_prod_order_qc_adj_out ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
 
             If form_origin = "FormProdQCAdjOut" Then
                 FormProdQCAdjOut.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -4001,6 +4031,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         ) sod ON sod.id_design = d.id_design 
                         WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
                 execute_non_query(quniq, True, "", "", "", "")
+                '
+                query = String.Format("UPDATE tb_fg_repair_return SET complete_date=NOW() WHERE id_fg_repair_return ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
+                '
             ElseIf id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairReturn()
                 compl.completedStock(id_report, report_mark_type)
@@ -4082,6 +4116,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         ) sod ON sod.id_design = d.id_design 
                         WHERE t.id_fg_repair_return_rec=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
                 execute_non_query(quniq, True, "", "", "", "")
+                '
+                query = String.Format("UPDATE tb_fg_repair_return_rec SET complete_date=NOW() WHERE id_fg_repair_return_rec ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
+                '
             ElseIf id_status_reportx = "5" Then
                 'cancel reserved unique
                 'Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique` ,`id_fg_repair_return_rec_det`,`id_type`,`unique_code`,
