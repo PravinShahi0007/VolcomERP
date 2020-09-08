@@ -264,6 +264,8 @@
         DEUntilTrf.EditValue = data_dt.Rows(0)("dt")
         DEFromNonStock.EditValue = data_dt.Rows(0)("dt")
         DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
+
+        load_surat_jalan()
     End Sub
 
     Sub viewPackingStatus()
@@ -1080,5 +1082,29 @@
             End If
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub load_surat_jalan()
+        Try
+            FormTrackingReturn.Dispose()
+        Catch ex As Exception
+        End Try
+
+        FormTrackingReturn.TopLevel = False
+
+        XTPClosingSuratJalan.Controls.Clear()
+        XTPClosingSuratJalan.Controls.Add(FormTrackingReturn)
+
+        FormTrackingReturn.for_update = True
+
+        FormTrackingReturn.Show()
+
+        FormTrackingReturn.FormBorderStyle = FormBorderStyle.None
+        FormTrackingReturn.Dock = DockStyle.Fill
+    End Sub
+
+    Private Sub FormSalesOrderSvcLevel_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+        FormTrackingReturn.Close()
     End Sub
 End Class
