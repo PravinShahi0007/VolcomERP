@@ -1,4 +1,6 @@
 ﻿Public Class FormTrackingReturn
+    Public for_update As Boolean = False
+
     Private Sub FormTrackingReturn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEFrom.EditValue = Now
         DETo.EditValue = Now
@@ -6,6 +8,14 @@
         viewSearchLookupQuery(SLEStoreGroup, "SELECT 0 AS id_comp_group, 'All' AS comp_group, 'All Group' AS description UNION SELECT cg.id_comp_group, cg.comp_group, cg.description FROM tb_m_comp_group cg", "id_comp_group", "comp_group", "id_comp_group")
 
         viewSearchLookupQuery(SLUEStore, "SELECT 0 AS id_comp, '' AS comp_number, 'All Store' AS comp_name, 'All Store' AS comp_combine UNION SELECT id_comp, comp_number, comp_name, CONCAT(comp_number, ' - ', comp_name) AS comp_combine FROM tb_m_comp WHERE id_comp_cat = 6", "id_comp", "comp_combine", "id_comp")
+
+        If for_update Then
+            SBUpdate.Visible = True
+            GBSelect.Visible = True
+        Else
+            SBUpdate.Visible = False
+            GBSelect.Visible = False
+        End If
     End Sub
 
     Private Sub FormTrackingReturn_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -56,5 +66,28 @@
         End If
 
         viewSearchLookupQuery(SLUEStore, "SELECT 0 AS id_comp, '' AS comp_number, 'All Store' AS comp_name, 'All Store' AS comp_combine UNION SELECT id_comp, comp_number, comp_name, CONCAT(comp_number, ' - ', comp_name) AS comp_combine FROM tb_m_comp WHERE id_comp_cat = 6" + where_group, "id_comp", "comp_combine", "id_comp")
+    End Sub
+
+    Private Sub SBUpdate_Click(sender As Object, e As EventArgs) Handles SBUpdate.Click
+        GVList.FindFilterText = ""
+        GVList.ActiveFilterString = "[is_select] = 'yes'"
+
+        If GVList.RowCount > 0 Then
+            For i = 0 To GVList.RowCount - 1
+                If GVList.IsValidRowHandle(i) Then
+                    Dim query As String = "UPDATE tb_wh_awbill_det_in SET is_active = 2, updated_date = NOW(), updated_by = " + id_user + " WHERE id_wh_awb_det = " + GVList.GetRowCellValue(i, "id_wh_awb_det").ToString
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+            Next
+
+            infoCustom("Status updated.")
+
+            load_form()
+        Else
+            stopCustom("Please select surat jalan.")
+        End If
+
+        GVList.ActiveFilterString = ""
     End Sub
 End Class
