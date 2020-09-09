@@ -80,6 +80,7 @@ Partial Class FormProductionMRS
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMRSNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPickPO = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPProdOrderMRS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -530,6 +531,7 @@ Partial Class FormProductionMRS
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.BPickPO)
         Me.GroupGeneralHeader.Controls.Add(Me.BReqFrom)
         Me.GroupGeneralHeader.Controls.Add(Me.TEDesignCode)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl5)
@@ -628,7 +630,7 @@ Partial Class FormProductionMRS
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(244, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(215, 20)
         Me.TEPONumber.TabIndex = 167
         '
         'LabelControl16
@@ -754,6 +756,14 @@ Partial Class FormProductionMRS
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "MRS Number"
         '
+        'BPickPO
+        '
+        Me.BPickPO.Location = New System.Drawing.Point(327, 61)
+        Me.BPickPO.Name = "BPickPO"
+        Me.BPickPO.Size = New System.Drawing.Size(23, 20)
+        Me.BPickPO.TabIndex = 177
+        Me.BPickPO.Text = "..."
+        '
         'FormProductionMRS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -863,4 +873,5 @@ Partial Class FormProductionMRS
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BReqFrom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCancelReport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPickPO As DevExpress.XtraEditors.SimpleButton
 End Class

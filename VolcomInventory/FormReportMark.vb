@@ -2066,6 +2066,9 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 FormMatMRSDet.allow_status()
                 FormMatMRSDet.view_mrs()
                 FormMatMRS.GVMRS.FocusedRowHandle = find_row(FormMatMRS.GVMRS, "id_prod_order_mrs", id_report)
+                '
+                FormMaterialRequisition.view_mrs()
+                FormMaterialRequisition.GVMRS.FocusedRowHandle = find_row(FormMaterialRequisition.GVMRS, "id_prod_order_mrs", id_report)
             Catch ex As Exception
             End Try
         ElseIf report_mark_type = "30" Then
