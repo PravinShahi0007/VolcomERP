@@ -2785,6 +2785,12 @@
     <Compile Include="FormMasterStoreDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMaterialRequisition.Designer.vb">
+      <DependentUpon>FormMaterialRequisition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMaterialRequisition.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMatPurchasePD.Designer.vb">
       <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
     </Compile>
@@ -2873,6 +2879,12 @@
       <DependentUpon>FormOLStoreDetCheckStockvb.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLStoreDetCheckStockvb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreDiscountCode.Designer.vb">
+      <DependentUpon>FormOLStoreDiscountCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreDiscountCode.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOLStoreOrderId.Designer.vb">
@@ -3299,6 +3311,12 @@
       <DependentUpon>FormProductionKP.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionKP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionMRSPickPO.Designer.vb">
+      <DependentUpon>FormProductionMRSPickPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionMRSPickPO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionPrint.Designer.vb">
@@ -9857,6 +9875,9 @@
     <EmbeddedResource Include="FormMasterStoreDet.resx">
       <DependentUpon>FormMasterStoreDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMaterialRequisition.resx">
+      <DependentUpon>FormMaterialRequisition.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurchasePD.resx">
       <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
     </EmbeddedResource>
@@ -9901,6 +9922,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreDetCheckStockvb.resx">
       <DependentUpon>FormOLStoreDetCheckStockvb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreDiscountCode.resx">
+      <DependentUpon>FormOLStoreDiscountCode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreOrderId.resx">
       <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
@@ -10115,6 +10139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionKP.resx">
       <DependentUpon>FormProductionKP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionMRSPickPO.resx">
+      <DependentUpon>FormProductionMRSPickPO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionPrint.resx">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
