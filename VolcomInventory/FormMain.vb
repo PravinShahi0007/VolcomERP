@@ -7680,6 +7680,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 End If
                 Dim period As String = "Period : " + awal + " until " + akhir
                 print(FormSalesOrderSvcLevel.GCFGTrf, "Transfer" + System.Environment.NewLine + period)
+            ElseIf FormSalesOrderSvcLevel.XTCSvcLevel.SelectedTabPageIndex = 8 Then
+                'Tracking Return
+                Dim sg As String = "Store Group : " + FormTrackingReturn.SLEStoreGroup.Text
+                Dim st As String = "Store : " + FormTrackingReturn.SLUEStore.Text
+                Dim awal As String = FormTrackingReturn.DEFrom.Text
+                If awal = "" Then
+                    awal = "-"
+                End If
+                Dim akhir As String = FormTrackingReturn.DETo.Text
+                If akhir = "" Then
+                    akhir = "-"
+                End If
+                Dim period As String = "Period : " + awal + " until " + akhir
+                print(FormTrackingReturn.GCList, "Tracking Return" + System.Environment.NewLine + period)
             End If
         ElseIf formName = "FormMasterComputer" Then
             'MASTER COMPUTER
@@ -9822,6 +9836,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormSalesOrderSvcLevel.XTCSvcLevel.SelectedTabPageIndex = 6 Then
                 'TRF
                 FormSalesOrderSvcLevel.viewTrf()
+            ElseIf FormSalesOrderSvcLevel.XTCSvcLevel.SelectedTabPageIndex = 8 Then
+                'Tracking Return
+                FormTrackingReturn.load_form()
             End If
         ElseIf formName = "FormMasterComputer" Then
             'MASTER COMPUTER
