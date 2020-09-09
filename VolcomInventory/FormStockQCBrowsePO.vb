@@ -24,7 +24,7 @@
             LEFT JOIN tb_m_ovh_price AS ovh_p ON ovh_p.id_ovh_price = wo.id_ovh_price 
             LEFT JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = ovh_p.id_comp_contact
             LEFT JOIN tb_m_comp AS comp ON comp.id_comp = cc.id_comp
-            WHERE a.id_report_status " + query_where + "
+            WHERE a.id_report_status = 6 " + query_where + "
             GROUP BY a.id_prod_order
         "
 
