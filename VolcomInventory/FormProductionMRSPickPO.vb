@@ -1,9 +1,9 @@
-﻿Public Class FormStockQCBrowsePO
-    Private Sub FormStockQCBrowsePO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+﻿Public Class FormProductionMRSPickPO
+    Private Sub FormProductionMRSPickPO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewVendor()
     End Sub
 
-    Private Sub FormStockQCBrowsePO_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+    Private Sub FormProductionMRSPickPO_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
 
@@ -15,7 +15,7 @@
         End If
 
         Dim query As String = "
-            SELECT CONCAT(comp.comp_number, '-', comp.comp_name) AS vendor, a.prod_order_number, d.design_code, d.design_display_name, a.prod_order_date
+            SELECT a.id_prod_order, CONCAT(comp.comp_number, '-', comp.comp_name) AS vendor, a.prod_order_number, d.design_code, d.design_display_name, a.prod_order_date
             FROM tb_prod_order AS a
             INNER JOIN tb_prod_order_det AS pod ON pod.id_prod_order = a.id_prod_order
             INNER JOIN tb_prod_demand_design AS b ON a.id_prod_demand_design = b.id_prod_demand_design
@@ -26,6 +26,7 @@
             LEFT JOIN tb_m_comp AS comp ON comp.id_comp = cc.id_comp
             WHERE a.id_report_status = 6 " + query_where + "
             GROUP BY a.id_prod_order
+            ORDER BY a.id_prod_order DESC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -54,12 +55,12 @@
     End Sub
 
     Private Sub GVProd_DoubleClick(sender As Object, e As EventArgs) Handles GVProd.DoubleClick
-        If Not GVProd.GetFocusedRowCellValue("prod_order_number").ToString = "" Then
-            FormStockQC.TxtProductSC.EditValue = GVProd.GetFocusedRowCellValue("prod_order_number").ToString
+        FormProductionMRS.id_prod_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
 
-            FormStockQC.view_stock_card()
+        FormProductionMRS.TEDesign.EditValue = GVProd.GetFocusedRowCellValue("design_display_name").ToString
+        FormProductionMRS.TEDesignCode.EditValue = GVProd.GetFocusedRowCellValue("design_code").ToString
+        FormProductionMRS.TEPONumber.EditValue = GVProd.GetFocusedRowCellValue("prod_order_number").ToString
 
-            Close()
-        End If
+        Close()
     End Sub
 End Class

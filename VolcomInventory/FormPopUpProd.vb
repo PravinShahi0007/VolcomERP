@@ -110,6 +110,7 @@
                 FormProductionRecDet.PEView.Enabled = True
                 FormProductionRecDet.BtnInfoSrs.Enabled = True
                 FormProductionRecDet.mainVendor()
+                FormProductionRecDet.SLERecType.ReadOnly = True
                 Close()
             Else
                 stopCustom("Data is empty.")

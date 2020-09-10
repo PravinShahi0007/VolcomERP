@@ -88,6 +88,7 @@
                             (
 	                            SELECT id_departement,id_storage_category,id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty
 	                            FROM `tb_storage_item` si
+                                WHERE si.id_storage_item NOT IN (SELECT id_storage_item FROM tb_storage_item WHERE id_report=" & id_req & " AND (report_mark_type=163 OR report_mark_type=154))
 	                            GROUP BY si.`id_item`,si.`id_departement`
                             ) si ON si.id_departement=IF(rd.`is_store_request`=1," & id_purc_store & ",r.`id_departement`) AND si.id_item=rd.`id_item`
                             INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = rd.id_prepare_status

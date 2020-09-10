@@ -74,39 +74,39 @@
 	        SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS  prod_order_rec_det_qty
 	        FROM tb_prod_order_rec_det b1
 	        INNER JOIN tb_prod_order_rec b2 ON b1.id_prod_order_rec = b2.id_prod_order_rec
-	        WHERE b2.id_report_status =6 AND b2.prod_order_rec_date<='" + date_filter + "'
+	        WHERE b2.id_report_status =6 AND b2.complete_date<='" + date_filter + "'
 	        GROUP BY b1.id_prod_order_det
         ) prec ON prec.id_prod_order_det = pod.id_prod_order_det
         LEFT JOIN (
 	        SELECT d1.id_prod_order_det, d2.id_prod_order_ret_out, SUM(d1.prod_order_ret_out_det_qty) AS tot_ret_out FROM tb_prod_order_ret_out_det d1 
 	        INNER JOIN tb_prod_order_ret_out d2 ON d1.id_prod_order_ret_out = d2.id_prod_order_ret_out 
-	        WHERE d2.id_report_status !=5 AND d2.prod_order_ret_out_date <= '" + date_filter + "'
+	        WHERE d2.id_report_status !=5 AND d2.complete_date <= '" + date_filter + "'
 	        GROUP BY d1.id_prod_order_det
         ) rout ON rout.id_prod_order_det = pod.id_prod_order_det
         LEFT JOIN(
 	        SELECT e1.id_prod_order_det, e2.id_prod_order_ret_in,SUM(e1.prod_order_ret_in_det_qty) AS tot_ret_in FROM tb_prod_order_ret_in_det e1 
 	        INNER JOIN tb_prod_order_ret_in e2 ON e1.id_prod_order_ret_in = e2.id_prod_order_ret_in 
-	        WHERE e2.id_report_status =6 AND e2.prod_order_ret_in_date<='" + date_filter + "'
+	        WHERE e2.id_report_status =6 AND e2.complete_date<='" + date_filter + "'
 	        GROUP BY e1.id_prod_order_det
         ) rin ON rin.id_prod_order_det = pod.id_prod_order_det
         LEFT JOIN(
 	        SELECT j1.id_prod_order_det, j2.id_pl_prod_order,SUM(j1.pl_prod_order_det_qty) AS tot_pl FROM tb_pl_prod_order_det j1 
 	        INNER JOIN tb_pl_prod_order j2 ON j1.id_pl_prod_order = j2.id_pl_prod_order 
-	        WHERE j2.id_report_status !=5 AND j2.pl_prod_order_date<='" + date_filter + "'
+	        WHERE j2.id_report_status !=5 AND j2.complete_date<='" + date_filter + "'
 	        GROUP BY j1.id_prod_order_det
         ) pl ON pl.id_prod_order_det = pod.id_prod_order_det
         LEFT JOIN(
 	        SELECT adj_in_d.id_prod_order_det, adj_in_d.id_prod_order_qc_adj_in_det,SUM(adj_in_d.prod_order_qc_adj_in_det_qty) AS tot_adj_in
 	        FROM tb_prod_order_qc_adj_in_det adj_in_d
 	        INNER JOIN tb_prod_order_qc_adj_in adj_in ON adj_in_d.id_prod_order_qc_adj_in = adj_in.id_prod_order_qc_adj_in 
-	        WHERE adj_in.id_report_status =6 AND adj_in.prod_order_qc_adj_in_date<='" + date_filter + "'
+	        WHERE adj_in.id_report_status =6 AND adj_in.complete_date<='" + date_filter + "'
 	        GROUP BY adj_in_d.id_prod_order_det
         ) adj_in ON adj_in.id_prod_order_det = pod.id_prod_order_det 
         LEFT JOIN (
 	        SELECT adj_out_d.id_prod_order_det, adj_out_d.id_prod_order_qc_adj_out_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
 	        FROM tb_prod_order_qc_adj_out_det adj_out_d
 	        INNER JOIN tb_prod_order_qc_adj_out adj_out ON adj_out_d.id_prod_order_qc_adj_out = adj_out.id_prod_order_qc_adj_out 
-	        WHERE adj_out.id_report_status !=5 AND adj_out.prod_order_qc_adj_out_date<='" + date_filter + "'
+	        WHERE adj_out.id_report_status !=5 AND adj_out.complete_date<='" + date_filter + "'
 	        GROUP BY adj_out_d.id_prod_order_det
         ) adj_out ON adj_out.id_prod_order_det = pod.id_prod_order_det 
         LEFT JOIN (
@@ -114,7 +114,7 @@
 	        FROM tb_prod_ass_comp_det acd
 	        INNER JOIN tb_prod_ass_det ad ON ad.id_prod_ass_det = acd.id_prod_ass_det
 	        INNER JOIN tb_prod_ass a ON a.id_prod_ass = ad.id_prod_ass
-	        WHERE a.id_report_status!=5 AND a.prod_ass_date<='" + date_filter + "'
+	        WHERE a.id_report_status!=5 AND a.complete_date<='" + date_filter + "'
 	        GROUP BY acd.id_prod_order_det
         ) ass ON ass.id_prod_order_det = pod.id_prod_order_det
         WHERE po.id_report_status=6  

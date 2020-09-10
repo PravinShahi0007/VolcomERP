@@ -121,6 +121,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty0 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsize_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_block_view_stp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TxtPromoName = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,11 +157,13 @@ Partial Class FormPromoCollectionDet
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCBySizeType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBySizeType, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.TxtPromoName)
         Me.GroupControlHead.Controls.Add(Me.TxtTag)
         Me.GroupControlHead.Controls.Add(Me.LabelControl8)
         Me.GroupControlHead.Controls.Add(Me.LabelControl6)
@@ -258,9 +261,9 @@ Partial Class FormPromoCollectionDet
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Location = New System.Drawing.Point(33, 17)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(30, 13)
         Me.LabelControl3.TabIndex = 153
-        Me.LabelControl3.Text = "Promo Type"
+        Me.LabelControl3.Text = "Promo"
         '
         'SLEPromoType
         '
@@ -270,7 +273,7 @@ Partial Class FormPromoCollectionDet
         Me.SLEPromoType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPromoType.Properties.ShowClearButton = False
         Me.SLEPromoType.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEPromoType.Size = New System.Drawing.Size(301, 20)
+        Me.SLEPromoType.Size = New System.Drawing.Size(61, 20)
         Me.SLEPromoType.TabIndex = 152
         '
         'SearchLookUpEdit1View
@@ -1148,6 +1151,13 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnis_block_view_stp.Visible = True
         Me.GridColumnis_block_view_stp.VisibleIndex = 18
         '
+        'TxtPromoName
+        '
+        Me.TxtPromoName.Location = New System.Drawing.Point(178, 14)
+        Me.TxtPromoName.Name = "TxtPromoName"
+        Me.TxtPromoName.Size = New System.Drawing.Size(234, 20)
+        Me.TxtPromoName.TabIndex = 160
+        '
         'FormPromoCollectionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1199,6 +1209,7 @@ Partial Class FormPromoCollectionDet
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCBySizeType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBySizeType, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1304,4 +1315,5 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents RICReplace As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnis_block_view_sku As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_block_view_stp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtPromoName As DevExpress.XtraEditors.TextEdit
 End Class
