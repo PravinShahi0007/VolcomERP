@@ -147,10 +147,22 @@ ORDER BY po.`id_prod_order` ASC"
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
-        Dim query As String = "UPDATE tb_prod_order_cps2 SET is_locked='1' WHERE id_prod_order_cps2='" & id & "'"
-        execute_non_query(query, True, "", "", "", "")
-        infoCustom("Order locked")
-        load_head()
+        'check size
+        Dim size_ok As Boolean = True
+        For i As Integer = 0 To GVProd.RowCount - 1
+            If GVProd.GetRowCellValue(i, "size").ToString = "" Then
+                size_ok = False
+                Exit For
+            End If
+        Next
+        If size_ok Then
+            Dim query As String = "UPDATE tb_prod_order_cps2 SET is_locked='1' WHERE id_prod_order_cps2='" & id & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Order locked")
+            load_head()
+        Else
+            warningCustom("Please fill all data")
+        End If
     End Sub
 
     Private Sub SLERevision_EditValueChanged(sender As Object, e As EventArgs) Handles SLERevision.EditValueChanged
