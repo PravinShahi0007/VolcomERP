@@ -751,7 +751,7 @@ Partial Class FormSampleDevelopment
         Me.XTPFGPO.Controls.Add(Me.XtraTabControl2)
         Me.XTPFGPO.Name = "XTPFGPO"
         Me.XTPFGPO.Size = New System.Drawing.Size(1117, 437)
-        Me.XTPFGPO.Text = "F. G. Purchase Order"
+        Me.XTPFGPO.Text = "Copy Proto Sample 2"
         '
         'XtraTabControl2
         '
