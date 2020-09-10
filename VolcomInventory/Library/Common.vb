@@ -7276,4 +7276,16 @@ SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
         Next
 
     End Function
+
+    Public Function AllowOpenMark(ByVal rmt As String, ByVal id As String, ByVal id_stt As String) As Boolean
+        Dim res As Boolean = Nothing
+        Dim query As String = "SELECT * FROM tb_report_mark WHERE id_report='" + id + "' AND report_mark_type='" + rmt + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count <= 0 And (id_stt = "5" Or id_stt = "6") Then
+            res = False
+        Else
+            res = True
+        End If
+        Return res
+    End Function
 End Module
