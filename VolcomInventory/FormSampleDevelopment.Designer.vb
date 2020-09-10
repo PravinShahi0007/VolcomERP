@@ -803,8 +803,6 @@ Partial Class FormSampleDevelopment
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
-        Me.GVProd.OptionsBehavior.Editable = False
-        Me.GVProd.OptionsBehavior.ReadOnly = True
         Me.GVProd.OptionsFind.AlwaysVisible = True
         Me.GVProd.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVProd.OptionsView.ColumnAutoWidth = False
@@ -837,6 +835,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnCompName.FieldName = "comp_name"
         Me.GridColumnCompName.Name = "GridColumnCompName"
         Me.GridColumnCompName.OptionsColumn.AllowEdit = False
+        Me.GridColumnCompName.OptionsColumn.ReadOnly = True
         Me.GridColumnCompName.ToolTip = "Return Out - Return In - Return Claim"
         Me.GridColumnCompName.Visible = True
         Me.GridColumnCompName.VisibleIndex = 1
@@ -848,6 +847,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnProdNo.FieldName = "prod_order_number"
         Me.GridColumnProdNo.Name = "GridColumnProdNo"
         Me.GridColumnProdNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnProdNo.OptionsColumn.ReadOnly = True
         Me.GridColumnProdNo.Visible = True
         Me.GridColumnProdNo.VisibleIndex = 2
         Me.GridColumnProdNo.Width = 74
@@ -858,6 +858,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnReportStatus.FieldName = "report_status"
         Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
         Me.GridColumnReportStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnReportStatus.OptionsColumn.ReadOnly = True
         Me.GridColumnReportStatus.Visible = True
         Me.GridColumnReportStatus.VisibleIndex = 12
         Me.GridColumnReportStatus.Width = 106
@@ -867,24 +868,32 @@ Partial Class FormSampleDevelopment
         Me.GridColumn55.Caption = "ID Comp Contact"
         Me.GridColumn55.FieldName = "id_comp_contact"
         Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.OptionsColumn.AllowEdit = False
+        Me.GridColumn55.OptionsColumn.ReadOnly = True
         '
         'GridColumn58
         '
         Me.GridColumn58.Caption = "ID Comp"
         Me.GridColumn58.FieldName = "id_comp"
         Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.OptionsColumn.AllowEdit = False
+        Me.GridColumn58.OptionsColumn.ReadOnly = True
         '
         'GridColumn57
         '
         Me.GridColumn57.Caption = "VAT"
         Me.GridColumn57.FieldName = "vat"
         Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.OptionsColumn.AllowEdit = False
+        Me.GridColumn57.OptionsColumn.ReadOnly = True
         '
         'GridColumn56
         '
         Me.GridColumn56.Caption = "ID Term Of Production"
         Me.GridColumn56.FieldName = "id_term_production"
         Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.OptionsColumn.AllowEdit = False
+        Me.GridColumn56.OptionsColumn.ReadOnly = True
         '
         'GridColumnIdReportStatus
         '
@@ -892,6 +901,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnIdReportStatus.FieldName = "id_report_status"
         Me.GridColumnIdReportStatus.Name = "GridColumnIdReportStatus"
         Me.GridColumnIdReportStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnIdReportStatus.OptionsColumn.ReadOnly = True
         '
         'GridColumn64
         '
@@ -900,6 +910,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn64.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn64.FieldName = "est_del_date"
         Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.OptionsColumn.AllowEdit = False
+        Me.GridColumn64.OptionsColumn.ReadOnly = True
         Me.GridColumn64.Visible = True
         Me.GridColumn64.VisibleIndex = 10
         '
@@ -910,6 +922,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn65.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn65.FieldName = "est_del_date_ko"
         Me.GridColumn65.Name = "GridColumn65"
+        Me.GridColumn65.OptionsColumn.AllowEdit = False
+        Me.GridColumn65.OptionsColumn.ReadOnly = True
         Me.GridColumn65.Visible = True
         Me.GridColumn65.VisibleIndex = 11
         '
@@ -921,6 +935,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnProdDate.FieldName = "prod_order_date"
         Me.GridColumnProdDate.Name = "GridColumnProdDate"
         Me.GridColumnProdDate.OptionsColumn.AllowEdit = False
+        Me.GridColumnProdDate.OptionsColumn.ReadOnly = True
         Me.GridColumnProdDate.Visible = True
         Me.GridColumnProdDate.VisibleIndex = 9
         Me.GridColumnProdDate.Width = 78
@@ -933,6 +948,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumn53.FieldName = "delivery_date"
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.OptionsColumn.AllowEdit = False
+        Me.GridColumn53.OptionsColumn.ReadOnly = True
         Me.GridColumn53.Visible = True
         Me.GridColumn53.VisibleIndex = 6
         Me.GridColumn53.Width = 94
@@ -945,6 +961,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumn52.FieldName = "est_wh_date"
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.OptionsColumn.AllowEdit = False
+        Me.GridColumn52.OptionsColumn.ReadOnly = True
         Me.GridColumn52.Visible = True
         Me.GridColumn52.VisibleIndex = 5
         Me.GridColumn52.Width = 93
@@ -955,6 +972,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnPOType.FieldName = "po_type"
         Me.GridColumnPOType.Name = "GridColumnPOType"
         Me.GridColumnPOType.OptionsColumn.AllowEdit = False
+        Me.GridColumnPOType.OptionsColumn.ReadOnly = True
         Me.GridColumnPOType.Visible = True
         Me.GridColumnPOType.VisibleIndex = 7
         Me.GridColumnPOType.Width = 78
@@ -965,6 +983,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnTerm.FieldName = "term_production"
         Me.GridColumnTerm.Name = "GridColumnTerm"
         Me.GridColumnTerm.OptionsColumn.AllowEdit = False
+        Me.GridColumnTerm.OptionsColumn.ReadOnly = True
         Me.GridColumnTerm.Visible = True
         Me.GridColumnTerm.VisibleIndex = 8
         Me.GridColumnTerm.Width = 78
@@ -975,6 +994,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnDesign.FieldName = "design_display_name"
         Me.GridColumnDesign.Name = "GridColumnDesign"
         Me.GridColumnDesign.OptionsColumn.AllowEdit = False
+        Me.GridColumnDesign.OptionsColumn.ReadOnly = True
         Me.GridColumnDesign.Visible = True
         Me.GridColumnDesign.VisibleIndex = 4
         Me.GridColumnDesign.Width = 121
@@ -985,6 +1005,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnCode.FieldName = "design_code"
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
+        Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 3
         Me.GridColumnCode.Width = 78
@@ -1001,6 +1022,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnOrderQty.FieldName = "qty_order"
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnOrderQty.OptionsColumn.ReadOnly = True
         Me.GridColumnOrderQty.Visible = True
         Me.GridColumnOrderQty.VisibleIndex = 13
         Me.GridColumnOrderQty.Width = 89
@@ -1011,6 +1033,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnIdPO.FieldName = "id_prod_order"
         Me.GridColumnIdPO.Name = "GridColumnIdPO"
         Me.GridColumnIdPO.OptionsColumn.AllowEdit = False
+        Me.GridColumnIdPO.OptionsColumn.ReadOnly = True
         '
         'GridColumn2
         '
@@ -1018,6 +1041,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumn2.FieldName = "id_season"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
         '
         'GridColumnSeasonView
         '
@@ -1026,6 +1050,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnSeasonView.FieldNameSortGroup = "id_season"
         Me.GridColumnSeasonView.Name = "GridColumnSeasonView"
         Me.GridColumnSeasonView.OptionsColumn.AllowEdit = False
+        Me.GridColumnSeasonView.OptionsColumn.ReadOnly = True
         '
         'GridColumnIdDelivery
         '
@@ -1033,6 +1058,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnIdDelivery.FieldName = "id_delivery"
         Me.GridColumnIdDelivery.Name = "GridColumnIdDelivery"
         Me.GridColumnIdDelivery.OptionsColumn.AllowEdit = False
+        Me.GridColumnIdDelivery.OptionsColumn.ReadOnly = True
         '
         'GridColumnDelivery
         '
@@ -1041,6 +1067,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumnDelivery.FieldNameSortGroup = "id_delivery"
         Me.GridColumnDelivery.Name = "GridColumnDelivery"
         Me.GridColumnDelivery.OptionsColumn.AllowEdit = False
+        Me.GridColumnDelivery.OptionsColumn.ReadOnly = True
         '
         'GridColumn4
         '
@@ -1049,6 +1076,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumn4.FieldName = "images"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Width = 100
         '
         'RIPictureEdit
@@ -1061,6 +1089,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn77.Caption = "Design Code Import"
         Me.GridColumn77.FieldName = "design_code_import"
         Me.GridColumn77.Name = "GridColumn77"
+        Me.GridColumn77.OptionsColumn.AllowEdit = False
+        Me.GridColumn77.OptionsColumn.ReadOnly = True
         '
         'GridColumn76
         '
@@ -1069,6 +1099,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn76.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn76.FieldName = "sample_proto_2"
         Me.GridColumn76.Name = "GridColumn76"
+        Me.GridColumn76.OptionsColumn.AllowEdit = False
+        Me.GridColumn76.OptionsColumn.ReadOnly = True
         Me.GridColumn76.Visible = True
         Me.GridColumn76.VisibleIndex = 14
         '
@@ -1077,6 +1109,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn3.Caption = "Copy Proto Sample 2 Order #"
         Me.GridColumn3.FieldName = "cps_number"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 15
         '
@@ -1085,6 +1119,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn14.Caption = "Revision"
         Me.GridColumn14.FieldName = "cps_revision"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 16
         Me.GridColumn14.Width = 63
@@ -1096,6 +1132,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn13.FieldName = "eta_copy_proto_2"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 17
         '
