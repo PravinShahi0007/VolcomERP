@@ -192,7 +192,7 @@ SELECT `id_prod_order_cps2_reff`,`number`,(SELECT COUNT(id_prod_order_cps2) FROM
                 Dim new_id_cps2 As String = execute_query(query, 0, True, "", "", "", "")
                 'det
                 'loop
-                Dim q_det As String = "SELECT cps2d.`revision`,cps2d.`id_prod_order`,cps2d.`id_purc_order`,2 AS qty_order,cps2d.`eta_copy_proto_2`
+                Dim q_det As String = "SELECT cps2d.`revision`,cps2d.`id_prod_order`,cps2d.`id_purc_order`,2 AS qty_order,cps2d.size,cps2d.`eta_copy_proto_2`
 FROM tb_prod_order_cps2_det cps2d
 WHERE id_prod_order_cps2='" & id & "'"
                 Dim data_det As DataTable = execute_query(q_det, -1, True, "", "", "", "")
@@ -201,11 +201,11 @@ WHERE id_prod_order_cps2='" & id & "'"
                     If Not i = 0 Then
                         query += ","
                     End If
-                    query += "('" & new_id_cps2 & "','" & data_det.Rows(i)("revision").ToString & "','" & data_det.Rows(i)("id_prod_order").ToString & "','" & data_det.Rows(i)("id_purc_order").ToString & "','" & data_det.Rows(i)("qty_order").ToString & "','" & Date.Parse(data_det.Rows(i)("eta_copy_proto_2").ToString).ToString("yyyy-MM-dd") & "')"
+                    query += "('" & new_id_cps2 & "','" & data_det.Rows(i)("revision").ToString & "','" & data_det.Rows(i)("id_prod_order").ToString & "','" & data_det.Rows(i)("id_purc_order").ToString & "','" & data_det.Rows(i)("size").ToString & "','" & data_det.Rows(i)("qty_order").ToString & "','" & Date.Parse(data_det.Rows(i)("eta_copy_proto_2").ToString).ToString("yyyy-MM-dd") & "')"
                 Next
 
                 If Not query = "" Then
-                    query = "INSERT INTO tb_prod_order_cps2_det(`id_prod_order_cps2`,`revision`,`id_prod_order`,`id_purc_order`,`qty_order`,`eta_copy_proto_2`)
+                    query = "INSERT INTO tb_prod_order_cps2_det(`id_prod_order_cps2`,`revision`,`id_prod_order`,`id_purc_order`,`size`,`qty_order`,`eta_copy_proto_2`)
 VALUES" + query
                     execute_non_query(query, True, "", "", "", "")
                 End If
