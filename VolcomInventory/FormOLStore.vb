@@ -396,7 +396,7 @@
                             Dim dog As DataTable = execute_query(qog, -1, True, "", "", "", "")
                             For j As Integer = 0 To dog.Rows.Count - 1
                                 FormMain.SplashScreenManager1.SetWaitFormDescription("Processing GWP order : " + (j + 1).ToString + " of " + dog.Rows.Count.ToString)
-                                execute_non_query_long("CALL create_ol_gwp_order(" + dog.Rows(j)("id_comp_group") + ", '" + dog.Rows(j)("order_no").ToString + "')", True, "", "", "", "")
+                                execute_non_query_long("CALL create_ol_gwp_order(" + dog.Rows(j)("id_comp_group").ToString + ", '" + dog.Rows(j)("order_no").ToString + "')", True, "", "", "", "")
                             Next
                         End If
                     Catch ex As Exception
