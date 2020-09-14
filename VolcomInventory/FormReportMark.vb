@@ -6322,10 +6322,10 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     increase_inc_acc("1")
 
                     'det journal
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor, id_coa_tag)
                     SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, cc.id_comp,  0 AS `qty`,
                     py.value AS `debit`, 0 AS `credit`,
-                    py.note AS `note`,162,py.id_rec_payment, py.number, NULL, NULL, NULL, '' AS `vendor`
+                    py.note AS `note`,162,py.id_rec_payment, py.number, NULL, NULL, NULL, '' AS `vendor`, py.id_coa_tag
                     FROM tb_rec_payment py
                     INNER JOIN tb_coa_tag ct ON ct.id_coa_tag = py.id_coa_tag
                     INNER JOIN tb_m_comp cc ON cc.id_comp = ct.id_comp
@@ -6335,7 +6335,7 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     IF(pyd.id_dc=1, ABS(pyd.value), 0) AS `debit`, IF(pyd.id_dc=2, pyd.value, 0) AS `credit`,
                     pyd.note AS `note`, 
                     162, py.id_rec_payment, py.number,
-                    pyd.report_mark_type, pyd.id_report, pyd.number, pyd.vendor
+                    pyd.report_mark_type, pyd.id_report, pyd.number, pyd.vendor, py.id_coa_tag
                     FROM tb_rec_payment_det pyd
                     INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
                     INNER JOIN tb_lookup_dc dc ON dc.id_dc = pyd.id_dc
