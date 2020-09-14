@@ -752,8 +752,13 @@ WHERE DATE(ie.`date_payment`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToS
         Try
             Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
             showpopup.opt = "Buku Besar"
-            showpopup.report_mark_type = GVTaxReport.GetFocusedRowCellValue("report_mark_type").ToString
-            showpopup.id_report = GVTaxReport.GetFocusedRowCellValue("id_report").ToString
+            If XTPTaxDetail.SelectedTabPageIndex = 0 Then
+                showpopup.report_mark_type = GVTaxReport.GetFocusedRowCellValue("report_mark_type").ToString
+                showpopup.id_report = GVTaxReport.GetFocusedRowCellValue("id_report").ToString
+            Else
+                showpopup.report_mark_type = GVTaxPending.GetFocusedRowCellValue("report_mark_type").ToString
+                showpopup.id_report = GVTaxPending.GetFocusedRowCellValue("id_report").ToString
+            End If
             showpopup.show()
         Catch ex As Exception
             stopCustom("Document Not Found")
@@ -764,19 +769,22 @@ WHERE DATE(ie.`date_payment`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToS
 
     Private Sub ViewJournalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewJournalToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
+        If XTPTaxDetail.SelectedTabPageIndex = 0 Then
+            Dim id_acc_trans As String = GVTaxReport.GetFocusedRowCellValue("id_acc_trans").ToString
 
-        Dim id_acc_trans As String = GVTaxReport.GetFocusedRowCellValue("id_acc_trans").ToString
+            If id_acc_trans <> "0" Then
+                Dim s As New ClassShowPopUp()
 
-        If id_acc_trans <> "0" Then
-            Dim s As New ClassShowPopUp()
+                FormViewJournal.is_enable_view_doc = False
+                FormViewJournal.BMark.Visible = False
 
-            FormViewJournal.is_enable_view_doc = False
-            FormViewJournal.BMark.Visible = False
+                s.id_report = id_acc_trans
+                s.report_mark_type = "36"
 
-            s.id_report = id_acc_trans
-            s.report_mark_type = "36"
-
-            s.show()
+                s.show()
+            Else
+                warningCustom("Journal not found.")
+            End If
         Else
             warningCustom("Journal not found.")
         End If
