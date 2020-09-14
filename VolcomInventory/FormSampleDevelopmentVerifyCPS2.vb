@@ -17,6 +17,12 @@
             If dtc.Rows.Count > 0 Then
                 Dim q As String = "UPDATE tb_prod_order SET cps2_verify='1',cps2_verify_by='" & id_user & "',cps2_verify_note='" & addSlashes(MENote.Text) & "',cps2_verify_date=NOW() WHERE id_prod_order='" & id_po & "'"
                 execute_non_query(q, True, "", "", "", "")
+                '
+                Dim nm As New ClassSendEmail
+                nm.id_report = id_po
+                nm.report_mark_type = "263"
+                nm.send_email()
+                '
                 Close()
             Else
                 warningCustom("Already verified.")

@@ -161,7 +161,7 @@ RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,LENGTH(d.desi
 ,IF(ISNULL(kp.sample_proto_2),a.sample_proto_2,kp.sample_proto_2) AS sample_proto_2 
 ,cps.id_prod_order_cps2,cps.number AS cps_number,cps.revision AS cps_revision,cps.eta_copy_proto_2
 ,NOW() as date_now
-,IF(a.cps2_verify=2,'Not verified','Verified') AS sts_verify,a.cps2_verify_note,a.cps_verify_date
+,IF(a.cps2_verify=2,'Not verified','Verified') AS sts_verify,a.cps2_verify_note,a.cps2_verify_date
 FROM tb_prod_order a 
 INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
 INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
