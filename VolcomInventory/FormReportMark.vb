@@ -2345,6 +2345,13 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
 
             query = String.Format("UPDATE tb_sales_order SET id_report_status='{0}' WHERE id_sales_order ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+
+            'jika online store cek GWP
+            If FormSalesOrderDet.id_commerce_type = "2" And id_status_reportx = "6" Then
+                Dim id_store_group As String = execute_query("SELECT id_comp_group FROM tb_m_comp WHERE id_comp='" + FormSalesOrderDet.id_store + "'", 0, True, "", "", "", "")
+                execute_non_query("CALL create_ol_gwp_order(" + id_store_group + ", '" + addSlashes(FormSalesOrderDet.TxtOLShopNumber.Text) + "')", True, "", "", "", "")
+            End If
+
             'infoCustom("Status changed.")
             'Try
             If form_origin = "FormSalesOrderDet" Then
