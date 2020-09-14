@@ -436,6 +436,16 @@ Public Class FormBankDepositDet
             Dim jum_row As Integer = 0
 
             'header
+            Dim cc_draft As String = ""
+            If SLEUnit.EditValue.ToString = "1" Then
+                cc_draft = "000"
+            Else
+                Dim query_draft As String = "SELECT c.comp_number 
+                FROM tb_coa_tag t
+                INNER JOIN tb_m_comp c ON c.id_comp = t.id_comp
+                WHERE t.id_coa_tag='" + SLEUnit.EditValue.ToString + "' "
+                cc_draft = execute_query(query_draft, 0, True, "", "", "", "")
+            End If
             jum_row += 1
             Dim qh As String = "SELECT * FROM tb_a_acc WHERE id_acc='" + SLEPayRecTo.EditValue.ToString + "' "
             Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
@@ -443,7 +453,7 @@ Public Class FormBankDepositDet
             newRowh("no") = jum_row
             newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
             newRowh("acc_description") = dh.Rows(0)("acc_description").ToString
-            newRowh("cc") = "000"
+            newRowh("cc") = cc_draft
             newRowh("report_number") = ""
             newRowh("note") = MENote.Text
             newRowh("debit") = TETotal.EditValue
@@ -479,9 +489,18 @@ Public Class FormBankDepositDet
     End Sub
 
     Sub load_receive_from()
+        Dim id_unit As String = "-1"
+        Try
+            id_unit = SLEUnit.EditValue.ToString
+        Catch ex As Exception
+        End Try
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' "
         If id_deposit = "-1" Then
-            query += "AND id_coa_type='" + id_coa_type + "' "
+            If id_unit <> "1" Then
+                query += "AND id_coa_type='2' "
+            Else
+                query += "AND id_coa_type='1' "
+            End If
         End If
         viewSearchLookupQuery(SLEPayRecTo, query, "id_acc", "acc_description", "id_acc")
     End Sub
@@ -800,6 +819,9 @@ Public Class FormBankDepositDet
         If id_deposit = "-1" Then
             Cursor = Cursors.WaitCursor
             FormBankDepositAdd.action = "ins"
+            If SLEUnit.EditValue.ToString <> "1" Then
+                FormBankDepositAdd.id_coa_type = "2"
+            End If
             FormBankDepositAdd.ShowDialog()
             Cursor = Cursors.Default
         End If
@@ -813,6 +835,13 @@ Public Class FormBankDepositDet
                 FormBankDepositAdd.ShowDialog()
                 Cursor = Cursors.Default
             End If
+        End If
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        If id_deposit = "-1" Then
+            load_receive_from()
+            load_det()
         End If
     End Sub
 End Class

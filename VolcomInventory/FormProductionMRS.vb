@@ -1,4 +1,6 @@
 ﻿Public Class FormProductionMRS
+    Public id_pop_up As String = "-1"
+
     Public id_mrs As String = "-1"
     Public id_prod_order As String = "-1"
     Public id_comp_req_from As String = "-1"
@@ -71,6 +73,16 @@
         Else
             PCAddDel.Visible = True
             BSave.Visible = True
+        End If
+
+        If id_pop_up = "1" Then
+            If id_report_status_g = "1" Then
+                BPickPO.Enabled = True
+            Else
+                BPickPO.Enabled = False
+            End If
+        Else
+            BPickPO.Enabled = False
         End If
     End Sub
     Sub allow_status()
@@ -149,129 +161,145 @@
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
-        Dim query As String = ""
+        Dim cnt As Boolean = True
 
-        'check first
-        Dim more_qty As Boolean = False
-        Dim proceed As Boolean = True
-        For i As Integer = 0 To GVMat.RowCount - 1
-            If GVMat.GetRowCellValue(i, "qty") > GVMat.GetRowCellValue(i, "qty_all_mat") Then
-                more_qty = True
-            End If
-        Next
+        If id_pop_up = "1" And id_prod_order = "-1" Then
+            cnt = False
+        End If
 
-        ValidateChildren()
+        If cnt Then
+            Dim query As String = ""
 
-        If id_mrs = "-1" Then
-            'new
-            TEPONumber.Text = header_number_prod("6")
-
-            If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_comp_req_to = "-1" Or id_comp_req_from = "-1" Then
-                stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Request From not blank" & vbNewLine & "- Request To not blank")
-            Else
-                If more_qty = True Then
-                    'warn
-                    Dim confirm As DialogResult
-                    confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Insufficient quantity on some material, do you want to proceed?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-                    If confirm = Windows.Forms.DialogResult.Yes Then
-                        proceed = True
-                    Else
-                        proceed = False
-                    End If
-                    'end warn
+            'check first
+            Dim more_qty As Boolean = False
+            Dim proceed As Boolean = True
+            For i As Integer = 0 To GVMat.RowCount - 1
+                If GVMat.GetRowCellValue(i, "qty") > GVMat.GetRowCellValue(i, "qty_all_mat") Then
+                    more_qty = True
                 End If
+            Next
 
-                If proceed = True Then
-                    query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,prod_order_mrs_number,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}');SELECT LAST_INSERT_ID()", id_prod_order, TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text)
-                    Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
+            ValidateChildren()
 
-                    If GVMat.RowCount > 0 Then
+            If id_mrs = "-1" Then
+                'new
+                TEPONumber.Text = header_number_prod("6")
+
+                If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_comp_req_to = "-1" Or id_comp_req_from = "-1" Then
+                    stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Request From not blank" & vbNewLine & "- Request To not blank")
+                Else
+                    If more_qty = True Then
+                        'warn
+                        Dim confirm As DialogResult
+                        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Insufficient quantity on some material, do you want to proceed?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            proceed = True
+                        Else
+                            proceed = False
+                        End If
+                        'end warn
+                    End If
+
+                    If proceed = True Then
+                        query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,prod_order_mrs_number,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}');SELECT LAST_INSERT_ID()", id_prod_order, TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text)
+                        Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
+
+                        If GVMat.RowCount > 0 Then
+                            For i As Integer = 0 To GVMat.RowCount - 1
+                                If Not GVMat.GetRowCellValue(i, "id_mat_det").ToString = "" Then
+                                    'dp
+                                    query = String.Format("INSERT INTO tb_prod_order_mrs_det(id_prod_order_mrs,id_mat_det,prod_order_mrs_det_qty,prod_order_mrs_det_note,id_mat_det_price) VALUES('{0}','{1}','{2}','{3}','{4}')", last_id, GVMat.GetRowCellValue(i, "id_mat_det").ToString(), decimalSQL(GVMat.GetRowCellValue(i, "qty").ToString()), GVMat.GetRowCellValue(i, "note").ToString(), GVMat.GetRowCellValue(i, "id_mat_det_price").ToString())
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Next
+                        End If
+
+                        'insert who prepared
+                        insert_who_prepared("29", last_id, id_user)
+                        'end insert who prepared
+                        increase_inc_prod("6")
+
+                        FormMaterialRequisition.view_mrs()
+
+                        FormProductionDet.XTCPageProduction.SelectedTabPageIndex = 2
+                        FormProductionDet.view_mrs()
+                        FormProductionDet.GVMRS.FocusedRowHandle = find_row(FormProductionDet.GVMRS, "id_prod_order_mrs", last_id)
+                        Close()
+                    End If
+                End If
+            Else
+                'edit
+                If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_comp_req_from = "-1" Or id_comp_req_to = "-1" Then
+                    stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Request From not blank" & vbNewLine & "- Request To not blank")
+                Else
+                    If more_qty = True Then
+                        'warn
+                        Dim confirm As DialogResult
+                        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Insufficient quantity on some material, do you want to proceed?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            proceed = True
+                        Else
+                            proceed = False
+                        End If
+                        'end warn
+                    End If
+
+                    If proceed = True Then
+                        query = String.Format("UPDATE tb_prod_order_mrs SET prod_order_mrs_number='{0}',id_comp_contact_req_to='{1}',id_comp_contact_req_from='{2}',prod_order_mrs_note='{3}' WHERE id_prod_order_mrs='{4}'", TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text, id_mrs)
+                        execute_non_query(query, True, "", "", "", "")
+
+                        'delete first
+                        Dim sp_check As Boolean = False
+                        Dim query_del As String = "SELECT id_prod_order_mrs_det FROM tb_prod_order_mrs_det WHERE id_prod_order_mrs='" & id_mrs & "'"
+                        Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
+                        If data_del.Rows.Count > 0 Then
+                            For i As Integer = 0 To data_del.Rows.Count - 1
+                                sp_check = False
+                                ' false mean not found, believe me
+                                For j As Integer = 0 To GVMat.RowCount - 1
+                                    If Not GVMat.GetRowCellValue(j, "id_prod_order_mrs_det").ToString = "" Then
+                                        '
+                                        If GVMat.GetRowCellValue(j, "id_prod_order_mrs_det").ToString = data_del.Rows(i)("id_prod_order_mrs_det").ToString() Then
+                                            sp_check = True
+                                        End If
+                                    End If
+                                Next
+                                'end loop check on gv
+                                If sp_check = False Then
+                                    'Because not found, it's only mean already deleted
+                                    query = String.Format("DELETE FROM tb_prod_order_mrs_det WHERE id_prod_order_mrs_det='{0}'", data_del.Rows(i)("id_prod_order_mrs_det").ToString())
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Next
+                        End If
+
                         For i As Integer = 0 To GVMat.RowCount - 1
                             If Not GVMat.GetRowCellValue(i, "id_mat_det").ToString = "" Then
-                                'dp
-                                query = String.Format("INSERT INTO tb_prod_order_mrs_det(id_prod_order_mrs,id_mat_det,prod_order_mrs_det_qty,prod_order_mrs_det_note,id_mat_det_price) VALUES('{0}','{1}','{2}','{3}','{4}')", last_id, GVMat.GetRowCellValue(i, "id_mat_det").ToString(), decimalSQL(GVMat.GetRowCellValue(i, "qty").ToString()), GVMat.GetRowCellValue(i, "note").ToString(), GVMat.GetRowCellValue(i, "id_mat_det_price").ToString())
-                                execute_non_query(query, True, "", "", "", "")
+                                If GVMat.GetRowCellValue(i, "id_prod_order_mrs_det").ToString = "" Then
+                                    'insert new
+                                    query = String.Format("INSERT INTO tb_prod_order_mrs_det(id_prod_order_mrs,id_mat_det,prod_order_mrs_det_qty,prod_order_mrs_det_note,id_mat_det_price) VALUES('{0}','{1}','{2}','{3}','{4}')", id_mrs, GVMat.GetRowCellValue(i, "id_mat_det").ToString(), decimalSQL(GVMat.GetRowCellValue(i, "qty").ToString()), GVMat.GetRowCellValue(i, "note").ToString(), GVMat.GetRowCellValue(i, "id_mat_det_price").ToString())
+                                    execute_non_query(query, True, "", "", "", "")
+                                Else
+                                    'update
+                                    query = String.Format("UPDATE tb_prod_order_mrs_det SET id_mat_det='{0}',prod_order_mrs_det_qty='{1}',prod_order_mrs_det_note='{2}',id_mat_det_price='{4}' WHERE id_prod_order_mrs_det='{3}'", GVMat.GetRowCellValue(i, "id_mat_det").ToString(), decimalSQL(GVMat.GetRowCellValue(i, "qty").ToString()), GVMat.GetRowCellValue(i, "note").ToString(), GVMat.GetRowCellValue(i, "id_prod_order_mrs_det").ToString(), GVMat.GetRowCellValue(i, "id_mat_det_price").ToString())
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
                             End If
                         Next
-                    End If
 
-                    'insert who prepared
-                    insert_who_prepared("29", last_id, id_user)
-                    'end insert who prepared
-                    increase_inc_prod("6")
-                    FormProductionDet.XTCPageProduction.SelectedTabPageIndex = 2
-                    FormProductionDet.view_mrs()
-                    FormProductionDet.GVMRS.FocusedRowHandle = find_row(FormProductionDet.GVMRS, "id_prod_order_mrs", last_id)
-                    Close()
+                        FormMaterialRequisition.view_mrs()
+
+                        FormProductionDet.XTCPageProduction.SelectedTabPageIndex = 2
+                        FormProductionDet.view_mrs()
+                        FormProductionDet.GVMRS.FocusedRowHandle = find_row(FormProductionDet.GVMRS, "id_prod_order_mrs", id_mrs)
+                        Close()
+                    End If
                 End If
             End If
         Else
-            'edit
-            If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_comp_req_from = "-1" Or id_comp_req_to = "-1" Then
-                stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Request From not blank" & vbNewLine & "- Request To not blank")
-            Else
-                If more_qty = True Then
-                    'warn
-                    Dim confirm As DialogResult
-                    confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Insufficient quantity on some material, do you want to proceed?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-                    If confirm = Windows.Forms.DialogResult.Yes Then
-                        proceed = True
-                    Else
-                        proceed = False
-                    End If
-                    'end warn
-                End If
-
-                If proceed = True Then
-                    query = String.Format("UPDATE tb_prod_order_mrs SET prod_order_mrs_number='{0}',id_comp_contact_req_to='{1}',id_comp_contact_req_from='{2}',prod_order_mrs_note='{3}' WHERE id_prod_order_mrs='{4}'", TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text, id_mrs)
-                    execute_non_query(query, True, "", "", "", "")
-
-                    'delete first
-                    Dim sp_check As Boolean = False
-                    Dim query_del As String = "SELECT id_prod_order_mrs_det FROM tb_prod_order_mrs_det WHERE id_prod_order_mrs='" & id_mrs & "'"
-                    Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
-                    If data_del.Rows.Count > 0 Then
-                        For i As Integer = 0 To data_del.Rows.Count - 1
-                            sp_check = False
-                            ' false mean not found, believe me
-                            For j As Integer = 0 To GVMat.RowCount - 1
-                                If Not GVMat.GetRowCellValue(j, "id_prod_order_mrs_det").ToString = "" Then
-                                    '
-                                    If GVMat.GetRowCellValue(j, "id_prod_order_mrs_det").ToString = data_del.Rows(i)("id_prod_order_mrs_det").ToString() Then
-                                        sp_check = True
-                                    End If
-                                End If
-                            Next
-                            'end loop check on gv
-                            If sp_check = False Then
-                                'Because not found, it's only mean already deleted
-                                query = String.Format("DELETE FROM tb_prod_order_mrs_det WHERE id_prod_order_mrs_det='{0}'", data_del.Rows(i)("id_prod_order_mrs_det").ToString())
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Next
-                    End If
-
-                    For i As Integer = 0 To GVMat.RowCount - 1
-                        If Not GVMat.GetRowCellValue(i, "id_mat_det").ToString = "" Then
-                            If GVMat.GetRowCellValue(i, "id_prod_order_mrs_det").ToString = "" Then
-                                'insert new
-                                query = String.Format("INSERT INTO tb_prod_order_mrs_det(id_prod_order_mrs,id_mat_det,prod_order_mrs_det_qty,prod_order_mrs_det_note,id_mat_det_price) VALUES('{0}','{1}','{2}','{3}','{4}')", id_mrs, GVMat.GetRowCellValue(i, "id_mat_det").ToString(), decimalSQL(GVMat.GetRowCellValue(i, "qty").ToString()), GVMat.GetRowCellValue(i, "note").ToString(), GVMat.GetRowCellValue(i, "id_mat_det_price").ToString())
-                                execute_non_query(query, True, "", "", "", "")
-                            Else
-                                'update
-                                query = String.Format("UPDATE tb_prod_order_mrs_det SET id_mat_det='{0}',prod_order_mrs_det_qty='{1}',prod_order_mrs_det_note='{2}',id_mat_det_price='{4}' WHERE id_prod_order_mrs_det='{3}'", GVMat.GetRowCellValue(i, "id_mat_det").ToString(), decimalSQL(GVMat.GetRowCellValue(i, "qty").ToString()), GVMat.GetRowCellValue(i, "note").ToString(), GVMat.GetRowCellValue(i, "id_prod_order_mrs_det").ToString(), GVMat.GetRowCellValue(i, "id_mat_det_price").ToString())
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        End If
-                    Next
-                    FormProductionDet.XTCPageProduction.SelectedTabPageIndex = 2
-                    FormProductionDet.view_mrs()
-                    FormProductionDet.GVMRS.FocusedRowHandle = find_row(FormProductionDet.GVMRS, "id_prod_order_mrs", id_mrs)
-                    Close()
-                End If
-            End If
+            stopCustom("Please select PO.")
         End If
     End Sub
 
@@ -358,5 +386,9 @@
             delete_all_mark_related("29", id_mrs)
             load_mrs()
         End If
+    End Sub
+
+    Private Sub BPickPO_Click(sender As Object, e As EventArgs) Handles BPickPO.Click
+        FormProductionMRSPickPO.ShowDialog()
     End Sub
 End Class

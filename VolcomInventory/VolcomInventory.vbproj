@@ -1070,6 +1070,12 @@
     <Compile Include="FormDesignColumnMapping.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDesignColumnMappingTemplate.Designer.vb">
+      <DependentUpon>FormDesignColumnMappingTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignColumnMappingTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDesignColumnValue.Designer.vb">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
     </Compile>
@@ -2473,6 +2479,12 @@
     <Compile Include="FormLetterOfStatementDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormLetterOfStatementEmployee.Designer.vb">
+      <DependentUpon>FormLetterOfStatementEmployee.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormLetterOfStatementEmployee.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormLineList.Designer.vb">
       <DependentUpon>FormLineList.vb</DependentUpon>
     </Compile>
@@ -2773,6 +2785,12 @@
     <Compile Include="FormMasterStoreDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMaterialRequisition.Designer.vb">
+      <DependentUpon>FormMaterialRequisition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMaterialRequisition.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMatPurchasePD.Designer.vb">
       <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
     </Compile>
@@ -2861,6 +2879,12 @@
       <DependentUpon>FormOLStoreDetCheckStockvb.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLStoreDetCheckStockvb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreDiscountCode.Designer.vb">
+      <DependentUpon>FormOLStoreDiscountCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreDiscountCode.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOLStoreOrderId.Designer.vb">
@@ -3289,6 +3313,12 @@
     <Compile Include="FormProductionKP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionMRSPickPO.Designer.vb">
+      <DependentUpon>FormProductionMRSPickPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionMRSPickPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionPrint.Designer.vb">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
     </Compile>
@@ -3299,6 +3329,12 @@
       <DependentUpon>FormProductionRecTargetHO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionRecTargetHO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionSampleOrder.Designer.vb">
+      <DependentUpon>FormProductionSampleOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionSampleOrder.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
@@ -3467,6 +3503,18 @@
       <DependentUpon>FormPurcOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceiving.Designer.vb">
+      <DependentUpon>FormPurcOrderCloseReceiving.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceiving.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceivingList.Designer.vb">
+      <DependentUpon>FormPurcOrderCloseReceivingList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcOrderCloseReceivingList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcOrderDet.Designer.vb">
@@ -5653,6 +5701,12 @@
     <Compile Include="FormSampleDevelopmentDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleDevelopmentVerifyCPS2.Designer.vb">
+      <DependentUpon>FormSampleDevelopmentVerifyCPS2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleDevelopmentVerifyCPS2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleExpense.Designer.vb">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
     </Compile>
@@ -7654,6 +7708,12 @@
     <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterEmployeeSuratPerjanjianKerja.Designer.vb">
+      <DependentUpon>ReportMasterEmployeeSuratPerjanjianKerja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterEmployeeSuratPerjanjianKerja.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterEmployeeSuratReferensi.Designer.vb">
       <DependentUpon>ReportMasterEmployeeSuratReferensi.vb</DependentUpon>
     </Compile>
@@ -8050,6 +8110,12 @@
     <Compile Include="ReportProductionRetOut.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionSampleProto2Order.Designer.vb">
+      <DependentUpon>ReportProductionSampleProto2Order.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionSampleProto2Order.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionWO.Designer.vb">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
     </Compile>
@@ -8072,6 +8138,12 @@
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPurcOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPurcOrderCloseReceiving.Designer.vb">
+      <DependentUpon>ReportPurcOrderCloseReceiving.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPurcOrderCloseReceiving.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportPurcReceive.Designer.vb">
@@ -8936,6 +9008,9 @@
     <EmbeddedResource Include="FormDesignColumnMapping.resx">
       <DependentUpon>FormDesignColumnMapping.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignColumnMappingTemplate.resx">
+      <DependentUpon>FormDesignColumnMappingTemplate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDesignColumnValue.resx">
       <DependentUpon>FormDesignColumnValue.vb</DependentUpon>
     </EmbeddedResource>
@@ -9653,6 +9728,9 @@
     <EmbeddedResource Include="FormLetterOfStatementDet.resx">
       <DependentUpon>FormLetterOfStatementDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormLetterOfStatementEmployee.resx">
+      <DependentUpon>FormLetterOfStatementEmployee.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLineList.resx">
       <DependentUpon>FormLineList.vb</DependentUpon>
     </EmbeddedResource>
@@ -9803,6 +9881,9 @@
     <EmbeddedResource Include="FormMasterStoreDet.resx">
       <DependentUpon>FormMasterStoreDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMaterialRequisition.resx">
+      <DependentUpon>FormMaterialRequisition.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurchasePD.resx">
       <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
     </EmbeddedResource>
@@ -9847,6 +9928,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreDetCheckStockvb.resx">
       <DependentUpon>FormOLStoreDetCheckStockvb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreDiscountCode.resx">
+      <DependentUpon>FormOLStoreDiscountCode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreOrderId.resx">
       <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
@@ -10062,11 +10146,17 @@
     <EmbeddedResource Include="FormProductionKP.resx">
       <DependentUpon>FormProductionKP.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionMRSPickPO.resx">
+      <DependentUpon>FormProductionMRSPickPO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionPrint.resx">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionRecTargetHO.resx">
       <DependentUpon>FormProductionRecTargetHO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionSampleOrder.resx">
+      <DependentUpon>FormProductionSampleOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
@@ -10151,6 +10241,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrder.resx">
       <DependentUpon>FormPurcOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcOrderCloseReceiving.resx">
+      <DependentUpon>FormPurcOrderCloseReceiving.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcOrderCloseReceivingList.resx">
+      <DependentUpon>FormPurcOrderCloseReceivingList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrderDet.resx">
       <DependentUpon>FormPurcOrderDet.vb</DependentUpon>
@@ -11520,6 +11616,9 @@
     <EmbeddedResource Include="FormSampleDevelopmentDet.resx">
       <DependentUpon>FormSampleDevelopmentDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleDevelopmentVerifyCPS2.resx">
+      <DependentUpon>FormSampleDevelopmentVerifyCPS2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSampleExpense.resx">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
     </EmbeddedResource>
@@ -12680,6 +12779,9 @@
     <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.resx">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterEmployeeSuratPerjanjianKerja.resx">
+      <DependentUpon>ReportMasterEmployeeSuratPerjanjianKerja.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterEmployeeSuratReferensi.resx">
       <DependentUpon>ReportMasterEmployeeSuratReferensi.vb</DependentUpon>
     </EmbeddedResource>
@@ -12909,6 +13011,9 @@
       <DependentUpon>ReportProductionRetOut.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionSampleProto2Order.resx">
+      <DependentUpon>ReportProductionSampleProto2Order.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionWO.resx">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -12921,6 +13026,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcOrder.resx">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPurcOrderCloseReceiving.resx">
+      <DependentUpon>ReportPurcOrderCloseReceiving.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReceive.resx">
       <DependentUpon>ReportPurcReceive.vb</DependentUpon>

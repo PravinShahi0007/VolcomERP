@@ -41,6 +41,20 @@ Partial Class FormPromoCollection
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCPromo = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPPromoProposed = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDiscountCodes = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDC = New DevExpress.XtraGrid.GridControl()
+        Me.GVDC = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnid_ol_promo_collection_dc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiscount_title = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndisc_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstart_period_dc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnend_period_dc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,6 +63,14 @@ Partial Class FormPromoCollection
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCPromo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPromo.SuspendLayout()
+        Me.XTPPromoProposed.SuspendLayout()
+        Me.XTPDiscountCodes.SuspendLayout()
+        CType(Me.GCDC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -64,7 +86,7 @@ Partial Class FormPromoCollection
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(805, 45)
+        Me.GCFilter.Size = New System.Drawing.Size(799, 45)
         Me.GCFilter.TabIndex = 8
         '
         'BtnViewList
@@ -147,7 +169,7 @@ Partial Class FormPromoCollection
         Me.GCData.Location = New System.Drawing.Point(0, 45)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(805, 433)
+        Me.GCData.Size = New System.Drawing.Size(799, 405)
         Me.GCData.TabIndex = 9
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -176,7 +198,7 @@ Partial Class FormPromoCollection
         'GridColumnpromo
         '
         Me.GridColumnpromo.Caption = "Promo Name"
-        Me.GridColumnpromo.FieldName = "promo"
+        Me.GridColumnpromo.FieldName = "promo_name"
         Me.GridColumnpromo.Name = "GridColumnpromo"
         Me.GridColumnpromo.Visible = True
         Me.GridColumnpromo.VisibleIndex = 1
@@ -247,13 +269,145 @@ Partial Class FormPromoCollection
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
         '
+        'XTCPromo
+        '
+        Me.XTCPromo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCPromo.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCPromo.Location = New System.Drawing.Point(0, 0)
+        Me.XTCPromo.Name = "XTCPromo"
+        Me.XTCPromo.SelectedTabPage = Me.XTPPromoProposed
+        Me.XTCPromo.Size = New System.Drawing.Size(805, 478)
+        Me.XTCPromo.TabIndex = 10
+        Me.XTCPromo.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPromoProposed, Me.XTPDiscountCodes})
+        '
+        'XTPPromoProposed
+        '
+        Me.XTPPromoProposed.Controls.Add(Me.GCData)
+        Me.XTPPromoProposed.Controls.Add(Me.GCFilter)
+        Me.XTPPromoProposed.Name = "XTPPromoProposed"
+        Me.XTPPromoProposed.Size = New System.Drawing.Size(799, 450)
+        Me.XTPPromoProposed.Text = "Proposed List"
+        '
+        'XTPDiscountCodes
+        '
+        Me.XTPDiscountCodes.Controls.Add(Me.GCDC)
+        Me.XTPDiscountCodes.Controls.Add(Me.PanelControl1)
+        Me.XTPDiscountCodes.Name = "XTPDiscountCodes"
+        Me.XTPDiscountCodes.Size = New System.Drawing.Size(799, 450)
+        Me.XTPDiscountCodes.Text = "Discount Code List"
+        '
+        'GCDC
+        '
+        Me.GCDC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDC.Location = New System.Drawing.Point(0, 46)
+        Me.GCDC.MainView = Me.GVDC
+        Me.GCDC.Name = "GCDC"
+        Me.GCDC.Size = New System.Drawing.Size(799, 404)
+        Me.GCDC.TabIndex = 1
+        Me.GCDC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDC})
+        '
+        'GVDC
+        '
+        Me.GVDC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_promo_collection_dc, Me.GridColumndiscount_title, Me.GridColumndisc_code, Me.GridColumnstart_period_dc, Me.GridColumnend_period_dc})
+        Me.GVDC.GridControl = Me.GCDC
+        Me.GVDC.GroupCount = 1
+        Me.GVDC.Name = "GVDC"
+        Me.GVDC.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDC.OptionsBehavior.ReadOnly = True
+        Me.GVDC.OptionsFind.AlwaysVisible = True
+        Me.GVDC.OptionsView.ShowGroupPanel = False
+        Me.GVDC.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndiscount_title, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnSync)
+        Me.PanelControl1.Controls.Add(Me.BtnRefresh)
+        Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(799, 46)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'BtnSync
+        '
+        Me.BtnSync.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnSync.Image = CType(resources.GetObject("BtnSync.Image"), System.Drawing.Image)
+        Me.BtnSync.Location = New System.Drawing.Point(2, 2)
+        Me.BtnSync.Name = "BtnSync"
+        Me.BtnSync.Size = New System.Drawing.Size(97, 42)
+        Me.BtnSync.TabIndex = 1
+        Me.BtnSync.Text = "Sync"
+        Me.BtnSync.Visible = False
+        '
+        'BtnRefresh
+        '
+        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
+        Me.BtnRefresh.Location = New System.Drawing.Point(616, 2)
+        Me.BtnRefresh.Name = "BtnRefresh"
+        Me.BtnRefresh.Size = New System.Drawing.Size(90, 42)
+        Me.BtnRefresh.TabIndex = 0
+        Me.BtnRefresh.Text = "View"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(706, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(91, 42)
+        Me.BtnPrint.TabIndex = 2
+        Me.BtnPrint.Text = "Print"
+        '
+        'GridColumnid_ol_promo_collection_dc
+        '
+        Me.GridColumnid_ol_promo_collection_dc.Caption = "id_ol_promo_collection"
+        Me.GridColumnid_ol_promo_collection_dc.FieldName = "id_ol_promo_collection"
+        Me.GridColumnid_ol_promo_collection_dc.Name = "GridColumnid_ol_promo_collection_dc"
+        '
+        'GridColumndiscount_title
+        '
+        Me.GridColumndiscount_title.Caption = "Title"
+        Me.GridColumndiscount_title.FieldName = "discount_title"
+        Me.GridColumndiscount_title.Name = "GridColumndiscount_title"
+        Me.GridColumndiscount_title.Visible = True
+        Me.GridColumndiscount_title.VisibleIndex = 0
+        '
+        'GridColumndisc_code
+        '
+        Me.GridColumndisc_code.Caption = "Discount Code"
+        Me.GridColumndisc_code.FieldName = "disc_code"
+        Me.GridColumndisc_code.Name = "GridColumndisc_code"
+        Me.GridColumndisc_code.Visible = True
+        Me.GridColumndisc_code.VisibleIndex = 0
+        '
+        'GridColumnstart_period_dc
+        '
+        Me.GridColumnstart_period_dc.Caption = "Start"
+        Me.GridColumnstart_period_dc.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnstart_period_dc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnstart_period_dc.FieldName = "start_period"
+        Me.GridColumnstart_period_dc.Name = "GridColumnstart_period_dc"
+        Me.GridColumnstart_period_dc.Visible = True
+        Me.GridColumnstart_period_dc.VisibleIndex = 1
+        '
+        'GridColumnend_period_dc
+        '
+        Me.GridColumnend_period_dc.Caption = "End"
+        Me.GridColumnend_period_dc.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnend_period_dc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnend_period_dc.FieldName = "end_period"
+        Me.GridColumnend_period_dc.Name = "GridColumnend_period_dc"
+        Me.GridColumnend_period_dc.Visible = True
+        Me.GridColumnend_period_dc.VisibleIndex = 2
+        '
         'FormPromoCollection
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(805, 478)
-        Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.GCFilter)
+        Me.Controls.Add(Me.XTCPromo)
         Me.Name = "FormPromoCollection"
         Me.Text = "Propose Promo Collection"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
@@ -265,6 +419,14 @@ Partial Class FormPromoCollection
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCPromo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPromo.ResumeLayout(False)
+        Me.XTPPromoProposed.ResumeLayout(False)
+        Me.XTPDiscountCodes.ResumeLayout(False)
+        CType(Me.GCDC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -290,4 +452,18 @@ Partial Class FormPromoCollection
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCPromo As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPPromoProposed As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDiscountCodes As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDC As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDC As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnSync As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_ol_promo_collection_dc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiscount_title As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndisc_code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstart_period_dc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnend_period_dc As DevExpress.XtraGrid.Columns.GridColumn
 End Class

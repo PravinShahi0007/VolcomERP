@@ -23,6 +23,8 @@ Partial Class FormProductionPrint
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionPrint))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BGenerateCopyProto2Order = New DevExpress.XtraEditors.SimpleButton()
+        Me.BGenKP = New DevExpress.XtraEditors.SimpleButton()
         Me.BToggleView = New DevExpress.XtraEditors.SimpleButton()
         Me.BGenKO = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -69,7 +71,6 @@ Partial Class FormProductionPrint
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BGenKP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -107,6 +108,7 @@ Partial Class FormProductionPrint
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BGenerateCopyProto2Order)
         Me.PanelControl3.Controls.Add(Me.BGenKP)
         Me.PanelControl3.Controls.Add(Me.BToggleView)
         Me.PanelControl3.Controls.Add(Me.BGenKO)
@@ -117,6 +119,29 @@ Partial Class FormProductionPrint
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(904, 37)
         Me.PanelControl3.TabIndex = 10
+        '
+        'BGenerateCopyProto2Order
+        '
+        Me.BGenerateCopyProto2Order.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BGenerateCopyProto2Order.ImageIndex = 19
+        Me.BGenerateCopyProto2Order.ImageList = Me.LargeImageCollection
+        Me.BGenerateCopyProto2Order.Location = New System.Drawing.Point(420, 2)
+        Me.BGenerateCopyProto2Order.Name = "BGenerateCopyProto2Order"
+        Me.BGenerateCopyProto2Order.Size = New System.Drawing.Size(227, 33)
+        Me.BGenerateCopyProto2Order.TabIndex = 7
+        Me.BGenerateCopyProto2Order.Text = "Generate Copy Proto Sample 2 Order"
+        Me.BGenerateCopyProto2Order.Visible = False
+        '
+        'BGenKP
+        '
+        Me.BGenKP.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BGenKP.ImageIndex = 19
+        Me.BGenKP.ImageList = Me.LargeImageCollection
+        Me.BGenKP.Location = New System.Drawing.Point(208, 2)
+        Me.BGenKP.Name = "BGenKP"
+        Me.BGenKP.Size = New System.Drawing.Size(212, 33)
+        Me.BGenKP.TabIndex = 6
+        Me.BGenKP.Text = "Generate Konfirmasi Produksi (SKP)"
         '
         'BToggleView
         '
@@ -543,17 +568,6 @@ Partial Class FormProductionPrint
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Season"
         '
-        'BGenKP
-        '
-        Me.BGenKP.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BGenKP.ImageIndex = 19
-        Me.BGenKP.ImageList = Me.LargeImageCollection
-        Me.BGenKP.Location = New System.Drawing.Point(208, 2)
-        Me.BGenKP.Name = "BGenKP"
-        Me.BGenKP.Size = New System.Drawing.Size(212, 33)
-        Me.BGenKP.TabIndex = 6
-        Me.BGenKP.Text = "Generate Konfirmasi Produksi (SKP)"
-        '
         'FormProductionPrint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -630,4 +644,5 @@ Partial Class FormProductionPrint
     Friend WithEvents GCDesignCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BToggleView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BGenKP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BGenerateCopyProto2Order As DevExpress.XtraEditors.SimpleButton
 End Class

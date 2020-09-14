@@ -27,6 +27,8 @@ Partial Class FormDesignColumnMapping
         Me.GVCol = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBEditType = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAddType = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLUEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -45,20 +47,20 @@ Partial Class FormDesignColumnMapping
         Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBExportXLSX = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLUESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SLUEDivision = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.SLUESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SBExportXLSX = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCColumn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVColumn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,10 +84,10 @@ Partial Class FormDesignColumnMapping
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCColumn
@@ -141,6 +143,8 @@ Partial Class FormDesignColumnMapping
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBEditType)
+        Me.PanelControl1.Controls.Add(Me.SBAddType)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SLUEStore)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -148,6 +152,26 @@ Partial Class FormDesignColumnMapping
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1008, 52)
         Me.PanelControl1.TabIndex = 5
+        '
+        'SBEditType
+        '
+        Me.SBEditType.Image = CType(resources.GetObject("SBEditType.Image"), System.Drawing.Image)
+        Me.SBEditType.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.SBEditType.Location = New System.Drawing.Point(314, 14)
+        Me.SBEditType.Name = "SBEditType"
+        Me.SBEditType.Size = New System.Drawing.Size(37, 23)
+        Me.SBEditType.TabIndex = 5
+        Me.SBEditType.Text = "Edit"
+        '
+        'SBAddType
+        '
+        Me.SBAddType.Image = CType(resources.GetObject("SBAddType.Image"), System.Drawing.Image)
+        Me.SBAddType.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.SBAddType.Location = New System.Drawing.Point(271, 14)
+        Me.SBAddType.Name = "SBAddType"
+        Me.SBAddType.Size = New System.Drawing.Size(37, 23)
+        Me.SBAddType.TabIndex = 4
+        Me.SBAddType.Text = "Add"
         '
         'LabelControl1
         '
@@ -324,52 +348,6 @@ Partial Class FormDesignColumnMapping
         Me.PanelControl4.Size = New System.Drawing.Size(759, 42)
         Me.PanelControl4.TabIndex = 5
         '
-        'SBExportXLSX
-        '
-        Me.SBExportXLSX.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBExportXLSX.Image = CType(resources.GetObject("SBExportXLSX.Image"), System.Drawing.Image)
-        Me.SBExportXLSX.Location = New System.Drawing.Point(562, 8)
-        Me.SBExportXLSX.Name = "SBExportXLSX"
-        Me.SBExportXLSX.Size = New System.Drawing.Size(115, 23)
-        Me.SBExportXLSX.TabIndex = 5
-        Me.SBExportXLSX.Text = "Export to XLSX"
-        '
-        'SBView
-        '
-        Me.SBView.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
-        Me.SBView.Location = New System.Drawing.Point(683, 8)
-        Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(64, 23)
-        Me.SBView.TabIndex = 3
-        Me.SBView.Text = "View"
-        '
-        'SLUESeason
-        '
-        Me.SLUESeason.Location = New System.Drawing.Point(60, 10)
-        Me.SLUESeason.Name = "SLUESeason"
-        Me.SLUESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUESeason.Properties.View = Me.GridView1
-        Me.SLUESeason.Size = New System.Drawing.Size(144, 20)
-        Me.SLUESeason.TabIndex = 6
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 13)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(42, 13)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Season"
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -395,6 +373,46 @@ Partial Class FormDesignColumnMapping
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "GridColumn7"
+        Me.GridColumn7.FieldName = "id_code_detail"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Division"
+        Me.GridColumn8.FieldName = "code"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 13)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(42, 13)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "Season"
+        '
+        'SLUESeason
+        '
+        Me.SLUESeason.Location = New System.Drawing.Point(60, 10)
+        Me.SLUESeason.Name = "SLUESeason"
+        Me.SLUESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUESeason.Properties.View = Me.GridView1
+        Me.SLUESeason.Size = New System.Drawing.Size(144, 20)
+        Me.SLUESeason.TabIndex = 6
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'GridColumn3
         '
@@ -424,19 +442,25 @@ Partial Class FormDesignColumnMapping
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
         '
-        'GridColumn7
+        'SBExportXLSX
         '
-        Me.GridColumn7.Caption = "GridColumn7"
-        Me.GridColumn7.FieldName = "id_code_detail"
-        Me.GridColumn7.Name = "GridColumn7"
+        Me.SBExportXLSX.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBExportXLSX.Image = CType(resources.GetObject("SBExportXLSX.Image"), System.Drawing.Image)
+        Me.SBExportXLSX.Location = New System.Drawing.Point(562, 8)
+        Me.SBExportXLSX.Name = "SBExportXLSX"
+        Me.SBExportXLSX.Size = New System.Drawing.Size(115, 23)
+        Me.SBExportXLSX.TabIndex = 5
+        Me.SBExportXLSX.Text = "Export to XLSX"
         '
-        'GridColumn8
+        'SBView
         '
-        Me.GridColumn8.Caption = "Division"
-        Me.GridColumn8.FieldName = "code"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
+        Me.SBView.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
+        Me.SBView.Location = New System.Drawing.Point(683, 8)
+        Me.SBView.Name = "SBView"
+        Me.SBView.Size = New System.Drawing.Size(64, 23)
+        Me.SBView.TabIndex = 3
+        Me.SBView.Text = "View"
         '
         'FormDesignColumnMapping
         '
@@ -475,10 +499,10 @@ Partial Class FormDesignColumnMapping
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -521,4 +545,6 @@ Partial Class FormDesignColumnMapping
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBEditType As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBAddType As DevExpress.XtraEditors.SimpleButton
 End Class

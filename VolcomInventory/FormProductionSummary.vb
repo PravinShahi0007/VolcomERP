@@ -34,8 +34,8 @@
             id_season = SLESeason.EditValue.ToString
         End If
 
-        If Not SLEVendor.EditValue.ToString = "0" Then
-            id_comp = SLEVendor.EditValue.ToString
+        If Not SLEVendorAppOrder.EditValue.ToString = "0" Then
+            id_comp = SLEVendorAppOrder.EditValue.ToString
         End If
 
         Dim query As String = "CALL view_po_approved('" + id_design + "', '" + id_season + "', '" + id_comp + "', '" + id_user + "','-1')"
