@@ -171,7 +171,6 @@ Partial Class FormReportBalanceSheet
         Me.GVTaxPending = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1604,7 +1603,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPPendingTransaction.Controls.Add(Me.GCTaxPending)
         Me.XTPPendingTransaction.Name = "XTPPendingTransaction"
         Me.XTPPendingTransaction.Size = New System.Drawing.Size(888, 368)
-        Me.XTPPendingTransaction.Text = "Pending Transaction"
+        Me.XTPPendingTransaction.Text = "Pending Tax Transaction"
         '
         'GCTaxPending
         '
@@ -1619,7 +1618,7 @@ Partial Class FormReportBalanceSheet
         '
         'GVTaxPending
         '
-        Me.GVTaxPending.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn16, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35})
+        Me.GVTaxPending.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn16, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35})
         Me.GVTaxPending.GridControl = Me.GCTaxPending
         Me.GVTaxPending.GroupCount = 1
         Me.GVTaxPending.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", Me.GridColumn29, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dpp", Me.GridColumn30, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Max, "tax_report", Me.GridColumn25, "Total {0} :")})
@@ -1649,18 +1648,6 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Journal No."
-        Me.GridColumn10.FieldName = "jurnal_no"
-        Me.GridColumn10.MinWidth = 55
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.OptionsColumn.ReadOnly = True
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        Me.GridColumn10.Width = 81
         '
         'GridColumn11
         '
@@ -2044,7 +2031,6 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents GVTaxPending As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
