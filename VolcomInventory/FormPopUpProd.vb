@@ -82,41 +82,41 @@
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Cursor = Cursors.WaitCursor
         If id_pop_up = "1" Then
-            If GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
-                warningCustom("Copy Prototype Sample 2 still not verified. Please contact sample.")
+            'If GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
+            '    warningCustom("Copy Prototype Sample 2 still not verified. Please contact sample.")
+            'Else
+            'End If
+            Dim query As String = String.Format("SELECT id_report_status,id_delivery,prod_order_number,id_po_type,DATE_FORMAT(prod_order_date,'%Y-%m-%d') as prod_order_datex,prod_order_lead_time,prod_order_note FROM tb_prod_order WHERE id_prod_order = '{0}'", GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim date_created As String = ""
+
+            If data.Rows.Count > 0 Then
+                FormProductionRecDet.id_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                FormProductionRecDet.TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
+
+                date_created = data.Rows(0)("prod_order_datex").ToString
+                FormProductionRecDet.TEOrderDate.Text = view_date_from(date_created, 0)
+                FormProductionRecDet.TEEstRecDate.Text = view_date_from(date_created, Integer.Parse(data.Rows(0)("prod_order_lead_time").ToString))
+
+                FormProductionRecDet.GConListPurchase.Enabled = True
+                FormProductionRecDet.GroupControlListBarcode.Enabled = True
+                FormProductionRecDet.view_list_purchase()
+                FormProductionRecDet.view_barcode_list()
+
+
+                FormProductionRecDet.id_design = GVProd.GetFocusedRowCellValue("id_design").ToString
+                FormProductionRecDet.TEDesign.Text = GVProd.GetFocusedRowCellValue("design_name").ToString
+                FormProductionRecDet.TxtPOType.Text = GVProd.GetFocusedRowCellValue("po_type").ToString
+                FormProductionRecDet.id_comp_from = "-1"
+                FormProductionRecDet.TECompName.Text = ""
+                pre_viewImages("2", FormProductionRecDet.PEView, GVProd.GetFocusedRowCellValue("id_design").ToString, False)
+                FormProductionRecDet.PEView.Enabled = True
+                FormProductionRecDet.BtnInfoSrs.Enabled = True
+                FormProductionRecDet.mainVendor()
+                FormProductionRecDet.SLERecType.ReadOnly = True
+                Close()
             Else
-                Dim query As String = String.Format("SELECT id_report_status,id_delivery,prod_order_number,id_po_type,DATE_FORMAT(prod_order_date,'%Y-%m-%d') as prod_order_datex,prod_order_lead_time,prod_order_note FROM tb_prod_order WHERE id_prod_order = '{0}'", GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                Dim date_created As String = ""
-
-                If data.Rows.Count > 0 Then
-                    FormProductionRecDet.id_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                    FormProductionRecDet.TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
-
-                    date_created = data.Rows(0)("prod_order_datex").ToString
-                    FormProductionRecDet.TEOrderDate.Text = view_date_from(date_created, 0)
-                    FormProductionRecDet.TEEstRecDate.Text = view_date_from(date_created, Integer.Parse(data.Rows(0)("prod_order_lead_time").ToString))
-
-                    FormProductionRecDet.GConListPurchase.Enabled = True
-                    FormProductionRecDet.GroupControlListBarcode.Enabled = True
-                    FormProductionRecDet.view_list_purchase()
-                    FormProductionRecDet.view_barcode_list()
-
-
-                    FormProductionRecDet.id_design = GVProd.GetFocusedRowCellValue("id_design").ToString
-                    FormProductionRecDet.TEDesign.Text = GVProd.GetFocusedRowCellValue("design_name").ToString
-                    FormProductionRecDet.TxtPOType.Text = GVProd.GetFocusedRowCellValue("po_type").ToString
-                    FormProductionRecDet.id_comp_from = "-1"
-                    FormProductionRecDet.TECompName.Text = ""
-                    pre_viewImages("2", FormProductionRecDet.PEView, GVProd.GetFocusedRowCellValue("id_design").ToString, False)
-                    FormProductionRecDet.PEView.Enabled = True
-                    FormProductionRecDet.BtnInfoSrs.Enabled = True
-                    FormProductionRecDet.mainVendor()
-                    FormProductionRecDet.SLERecType.ReadOnly = True
-                    Close()
-                Else
-                    stopCustom("Data is empty.")
-                End If
+                stopCustom("Data is empty.")
             End If
         ElseIf id_pop_up = "2" Then
             Dim query As String = String.Format("SELECT id_report_status,id_delivery,prod_order_number,id_po_type,DATE_FORMAT(prod_order_date,'%Y-%m-%d') as prod_order_datex,prod_order_lead_time,prod_order_note FROM tb_prod_order WHERE id_prod_order = '{0}'", GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
