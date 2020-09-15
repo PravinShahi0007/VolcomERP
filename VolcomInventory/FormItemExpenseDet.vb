@@ -473,7 +473,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
                     If CEPayLater.EditValue = True Then
                         is_pay_later = "1"
                         due_date = "'" + Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
-                        date_reff = "'" + Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+                        date_reff = "" + Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") + ""
                         is_open = "1"
                     Else
                         is_pay_later = "2"
