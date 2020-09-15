@@ -1055,12 +1055,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormProductionRecDet.ShowDialog()
             Else 'based on PO
                 If FormProductionRec.GVProd.RowCount > 0 And FormProductionRec.GVProd.FocusedRowHandle >= 0 Then
-                    If FormProductionRec.GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And FormProductionRec.GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
-                        warningCustom("Copy Prototype Sample 2 still not verified. Please contact Sample Departement.")
-                    Else
-                        FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                        FormProductionRecDet.ShowDialog()
-                    End If
+                    'If FormProductionRec.GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And FormProductionRec.GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
+                    '    warningCustom("Copy Prototype Sample 2 still not verified. Please contact Sample Departement.")
+                    'Else
+                    '    FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    '    FormProductionRecDet.ShowDialog()
+                    'End If
+                    FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionRecDet.ShowDialog()
                 End If
             End If
         ElseIf formName = "FormProductionRet" Then
