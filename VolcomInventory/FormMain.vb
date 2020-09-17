@@ -8372,6 +8372,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormPayoutReport.GCData, "Payout Report")
         ElseIf formName = "FormSalesBranch" Then
             print(FormSalesBranch.GCData, "Volcom Store Sales")
+        ElseIf formName = "FormABGRoyaltyZone" Then
+            print(FormABGRoyaltyZone.GCData, "ABG Royalty Zone")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9297,6 +9299,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMaterialRequisition" Then
             FormMaterialRequisition.Close()
             FormMaterialRequisition.Dispose()
+        ElseIf formName = "FormABGRoyaltyZone" Then
+            FormABGRoyaltyZone.Close()
+            FormABGRoyaltyZone.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10256,6 +10261,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMaterialRequisition" Then
             FormMaterialRequisition.view_mrs()
             FormMaterialRequisition.show_but_mrs()
+        ElseIf formName = "FormABGRoyaltyZone" Then
+            FormABGRoyaltyZone.viewData()
         End If
     End Sub
     'Switch
