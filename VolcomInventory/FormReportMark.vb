@@ -3934,9 +3934,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 compl.completedStock(id_report)
                 'put unique code wh drawer to
                 Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_fg_repair_rec_det`,`id_type`,`unique_code`,
-                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`, report_mark_type, id_report, id_report_status) 
                         SELECT c.id_comp, t.`id_wh_drawer_to`, td.id_product, td.id_pl_prod_order_rec_det_unique,  td.id_fg_repair_rec_det, '9', 
-                        CONCAT(p.product_full_code,td.fg_repair_rec_det_counting), sod.id_design_price, sod.design_price, 1, 1, NOW() 
+                        CONCAT(p.product_full_code,td.fg_repair_rec_det_counting), sod.id_design_price, sod.design_price, 1, 1, NOW(), 92,t.id_fg_repair_rec, '6' 
                         FROM tb_fg_repair_rec_det td
                         INNER JOIN tb_fg_repair_rec t ON t.id_fg_repair_rec = td.id_fg_repair_rec
                         INNER JOIN tb_m_wh_drawer drw_frm ON drw_frm.id_wh_drawer = t.id_wh_drawer_to  
@@ -4015,9 +4015,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 End If
                 'cancel reserved unique
                 Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_fg_repair_return_det`,`id_type`,`unique_code`,
-                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`, report_mark_type, id_report, id_report_status) 
                         SELECT c.id_comp, t.`id_wh_drawer_from`, td.id_product, td.id_pl_prod_order_rec_det_unique, td.id_fg_repair_return_det, '10', 
-                        CONCAT(p.product_full_code,td.fg_repair_return_det_counting), sod.id_design_price, sod.design_price, 1, 1, NOW() 
+                        CONCAT(p.product_full_code,td.fg_repair_return_det_counting), sod.id_design_price, sod.design_price, 1, 1, NOW(), '" + report_mark_type + "', td.id_fg_repair_return, 5
                         FROM tb_fg_repair_return_det td
                         INNER JOIN tb_fg_repair_return t ON t.id_fg_repair_return = td.id_fg_repair_return
                         INNER JOIN tb_m_wh_drawer drw_frm ON drw_frm.id_wh_drawer = t.id_wh_drawer_from  
