@@ -21,6 +21,7 @@ Partial Class FormABGRoyaltyZone
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormABGRoyaltyZone))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEQuarter = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -45,6 +46,17 @@ Partial Class FormABGRoyaltyZone
         Me.GridColumngross_sales_usd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_tax_or_disc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_tax_usd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnallowance_mkd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnet_sales = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnet_sales_usd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnroyalty_rate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnearned_royalty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncmf_rate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnearned_cmf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_earned_royalties = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnexemption_reason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfob = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEQuarter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +69,7 @@ Partial Class FormABGRoyaltyZone
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl1.Controls.Add(Me.SLEQuarter)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.BtnView)
@@ -67,6 +80,15 @@ Partial Class FormABGRoyaltyZone
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(764, 51)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(395, 14)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(101, 23)
+        Me.BtnExportToXLS.TabIndex = 9
+        Me.BtnExportToXLS.Text = "Export to XLS"
         '
         'SLEQuarter
         '
@@ -139,7 +161,7 @@ Partial Class FormABGRoyaltyZone
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnquarter, Me.GridColumninvoice_date, Me.GridColumncustomer, Me.GridColumnsku, Me.GridColumnteritory, Me.GridColumndistribution_method, Me.GridColumnproperty, Me.GridColumncategory, Me.GridColumnqty, Me.GridColumnunit_price, Me.GridColumnunit_price_usd, Me.GridColumngross_sales, Me.GridColumngross_sales_usd, Me.GridColumnsales_tax_or_disc, Me.GridColumnsales_tax_usd})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnquarter, Me.GridColumninvoice_date, Me.GridColumncustomer, Me.GridColumnsku, Me.GridColumnteritory, Me.GridColumndistribution_method, Me.GridColumnproperty, Me.GridColumncategory, Me.GridColumnqty, Me.GridColumnunit_price, Me.GridColumnunit_price_usd, Me.GridColumngross_sales, Me.GridColumngross_sales_usd, Me.GridColumnsales_tax_or_disc, Me.GridColumnsales_tax_usd, Me.GridColumnallowance_mkd, Me.GridColumnnet_sales, Me.GridColumnnet_sales_usd, Me.GridColumnroyalty_rate, Me.GridColumnearned_royalty, Me.GridColumncmf_rate, Me.GridColumnearned_cmf, Me.GridColumntotal_earned_royalties, Me.GridColumnexemption_reason, Me.GridColumnfob, Me.GridColumncurrency})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -160,6 +182,8 @@ Partial Class FormABGRoyaltyZone
         'GridColumninvoice_date
         '
         Me.GridColumninvoice_date.Caption = "Invoice Date"
+        Me.GridColumninvoice_date.DisplayFormat.FormatString = "dd-MM-yyy"
+        Me.GridColumninvoice_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumninvoice_date.FieldName = "invoice_date"
         Me.GridColumninvoice_date.Name = "GridColumninvoice_date"
         Me.GridColumninvoice_date.Visible = True
@@ -199,7 +223,7 @@ Partial Class FormABGRoyaltyZone
         '
         'GridColumnproperty
         '
-        Me.GridColumnproperty.Caption = "Property"
+        Me.GridColumnproperty.Caption = "PROPERTY"
         Me.GridColumnproperty.FieldName = "property"
         Me.GridColumnproperty.Name = "GridColumnproperty"
         Me.GridColumnproperty.Visible = True
@@ -207,7 +231,7 @@ Partial Class FormABGRoyaltyZone
         '
         'GridColumncategory
         '
-        Me.GridColumncategory.Caption = "Category"
+        Me.GridColumncategory.Caption = "CATEGORY"
         Me.GridColumncategory.FieldName = "category"
         Me.GridColumncategory.Name = "GridColumncategory"
         Me.GridColumncategory.Visible = True
@@ -215,7 +239,7 @@ Partial Class FormABGRoyaltyZone
         '
         'GridColumnqty
         '
-        Me.GridColumnqty.Caption = "Quantity"
+        Me.GridColumnqty.Caption = "Qty"
         Me.GridColumnqty.DisplayFormat.FormatString = "N0"
         Me.GridColumnqty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty.FieldName = "qty"
@@ -231,8 +255,6 @@ Partial Class FormABGRoyaltyZone
         Me.GridColumnunit_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnunit_price.FieldName = "unit_price"
         Me.GridColumnunit_price.Name = "GridColumnunit_price"
-        Me.GridColumnunit_price.Visible = True
-        Me.GridColumnunit_price.VisibleIndex = 9
         '
         'GridColumnunit_price_usd
         '
@@ -242,7 +264,8 @@ Partial Class FormABGRoyaltyZone
         Me.GridColumnunit_price_usd.FieldName = "unit_price_usd"
         Me.GridColumnunit_price_usd.Name = "GridColumnunit_price_usd"
         Me.GridColumnunit_price_usd.Visible = True
-        Me.GridColumnunit_price_usd.VisibleIndex = 10
+        Me.GridColumnunit_price_usd.VisibleIndex = 9
+        Me.GridColumnunit_price_usd.Width = 104
         '
         'GridColumngross_sales
         '
@@ -252,8 +275,6 @@ Partial Class FormABGRoyaltyZone
         Me.GridColumngross_sales.FieldName = "gross_sales"
         Me.GridColumngross_sales.Name = "GridColumngross_sales"
         Me.GridColumngross_sales.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gross_sales", "{0:N0}")})
-        Me.GridColumngross_sales.Visible = True
-        Me.GridColumngross_sales.VisibleIndex = 11
         '
         'GridColumngross_sales_usd
         '
@@ -264,7 +285,8 @@ Partial Class FormABGRoyaltyZone
         Me.GridColumngross_sales_usd.Name = "GridColumngross_sales_usd"
         Me.GridColumngross_sales_usd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gross_sales_usd", "{0:N2}")})
         Me.GridColumngross_sales_usd.Visible = True
-        Me.GridColumngross_sales_usd.VisibleIndex = 12
+        Me.GridColumngross_sales_usd.VisibleIndex = 10
+        Me.GridColumngross_sales_usd.Width = 99
         '
         'GridColumnsales_tax_or_disc
         '
@@ -274,8 +296,7 @@ Partial Class FormABGRoyaltyZone
         Me.GridColumnsales_tax_or_disc.FieldName = "sales_tax_or_disc"
         Me.GridColumnsales_tax_or_disc.Name = "GridColumnsales_tax_or_disc"
         Me.GridColumnsales_tax_or_disc.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_tax_or_disc", "{0:N0}")})
-        Me.GridColumnsales_tax_or_disc.Visible = True
-        Me.GridColumnsales_tax_or_disc.VisibleIndex = 13
+        Me.GridColumnsales_tax_or_disc.Width = 119
         '
         'GridColumnsales_tax_usd
         '
@@ -286,7 +307,100 @@ Partial Class FormABGRoyaltyZone
         Me.GridColumnsales_tax_usd.Name = "GridColumnsales_tax_usd"
         Me.GridColumnsales_tax_usd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_tax_usd", "{0:N2}")})
         Me.GridColumnsales_tax_usd.Visible = True
-        Me.GridColumnsales_tax_usd.VisibleIndex = 14
+        Me.GridColumnsales_tax_usd.VisibleIndex = 11
+        Me.GridColumnsales_tax_usd.Width = 110
+        '
+        'GridColumnallowance_mkd
+        '
+        Me.GridColumnallowance_mkd.Caption = "Allowance/Markdowns"
+        Me.GridColumnallowance_mkd.FieldName = "allowance_mkd"
+        Me.GridColumnallowance_mkd.Name = "GridColumnallowance_mkd"
+        Me.GridColumnallowance_mkd.Visible = True
+        Me.GridColumnallowance_mkd.VisibleIndex = 12
+        '
+        'GridColumnnet_sales
+        '
+        Me.GridColumnnet_sales.Caption = "Net Sales"
+        Me.GridColumnnet_sales.DisplayFormat.FormatString = "N2"
+        Me.GridColumnnet_sales.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnnet_sales.FieldName = "net_sales"
+        Me.GridColumnnet_sales.Name = "GridColumnnet_sales"
+        Me.GridColumnnet_sales.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "net_sales", "{0:N2}")})
+        '
+        'GridColumnnet_sales_usd
+        '
+        Me.GridColumnnet_sales_usd.Caption = "Net Sales (USD)"
+        Me.GridColumnnet_sales_usd.DisplayFormat.FormatString = "N2"
+        Me.GridColumnnet_sales_usd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnnet_sales_usd.FieldName = "net_sales_usd"
+        Me.GridColumnnet_sales_usd.Name = "GridColumnnet_sales_usd"
+        Me.GridColumnnet_sales_usd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "net_sales_usd", "{0:N2}")})
+        Me.GridColumnnet_sales_usd.Visible = True
+        Me.GridColumnnet_sales_usd.VisibleIndex = 13
+        '
+        'GridColumnroyalty_rate
+        '
+        Me.GridColumnroyalty_rate.Caption = "Royalty Rate"
+        Me.GridColumnroyalty_rate.FieldName = "royalty_rate"
+        Me.GridColumnroyalty_rate.Name = "GridColumnroyalty_rate"
+        Me.GridColumnroyalty_rate.Visible = True
+        Me.GridColumnroyalty_rate.VisibleIndex = 14
+        '
+        'GridColumnearned_royalty
+        '
+        Me.GridColumnearned_royalty.Caption = "Earned Royalties "
+        Me.GridColumnearned_royalty.FieldName = "earned_royalty"
+        Me.GridColumnearned_royalty.Name = "GridColumnearned_royalty"
+        Me.GridColumnearned_royalty.Visible = True
+        Me.GridColumnearned_royalty.VisibleIndex = 15
+        '
+        'GridColumncmf_rate
+        '
+        Me.GridColumncmf_rate.Caption = "CMF Rate"
+        Me.GridColumncmf_rate.FieldName = "cmf_rate"
+        Me.GridColumncmf_rate.Name = "GridColumncmf_rate"
+        Me.GridColumncmf_rate.Visible = True
+        Me.GridColumncmf_rate.VisibleIndex = 16
+        '
+        'GridColumnearned_cmf
+        '
+        Me.GridColumnearned_cmf.Caption = "Earned CMF"
+        Me.GridColumnearned_cmf.FieldName = "earned_cmf"
+        Me.GridColumnearned_cmf.Name = "GridColumnearned_cmf"
+        Me.GridColumnearned_cmf.Visible = True
+        Me.GridColumnearned_cmf.VisibleIndex = 17
+        '
+        'GridColumntotal_earned_royalties
+        '
+        Me.GridColumntotal_earned_royalties.Caption = "Total Earned Royalties)"
+        Me.GridColumntotal_earned_royalties.FieldName = "total_earned_royalties"
+        Me.GridColumntotal_earned_royalties.Name = "GridColumntotal_earned_royalties"
+        Me.GridColumntotal_earned_royalties.Visible = True
+        Me.GridColumntotal_earned_royalties.VisibleIndex = 18
+        '
+        'GridColumnexemption_reason
+        '
+        Me.GridColumnexemption_reason.Caption = "Exemption Reason"
+        Me.GridColumnexemption_reason.FieldName = "exemption_reason"
+        Me.GridColumnexemption_reason.Name = "GridColumnexemption_reason"
+        Me.GridColumnexemption_reason.Visible = True
+        Me.GridColumnexemption_reason.VisibleIndex = 19
+        '
+        'GridColumnfob
+        '
+        Me.GridColumnfob.Caption = "FOB"
+        Me.GridColumnfob.FieldName = "fob"
+        Me.GridColumnfob.Name = "GridColumnfob"
+        Me.GridColumnfob.Visible = True
+        Me.GridColumnfob.VisibleIndex = 20
+        '
+        'GridColumncurrency
+        '
+        Me.GridColumncurrency.Caption = "Currency"
+        Me.GridColumncurrency.FieldName = "currency"
+        Me.GridColumncurrency.Name = "GridColumncurrency"
+        Me.GridColumncurrency.Visible = True
+        Me.GridColumncurrency.VisibleIndex = 21
         '
         'FormABGRoyaltyZone
         '
@@ -337,4 +451,16 @@ Partial Class FormABGRoyaltyZone
     Friend WithEvents GridColumngross_sales_usd As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsales_tax_or_disc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsales_tax_usd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnallowance_mkd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnet_sales As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnet_sales_usd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnroyalty_rate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnearned_royalty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncmf_rate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnearned_cmf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_earned_royalties As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnexemption_reason As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfob As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncurrency As DevExpress.XtraGrid.Columns.GridColumn
 End Class
