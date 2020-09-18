@@ -25,7 +25,7 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "INSERT INTO tb_list_payout_ver_det(id_list_payout_ver, id_acc, id_dc, value)
         VALUES('" + FormPayoutVerDet.id + "', '" + SLECOA.EditValue.ToString + "', '" + LEDK.EditValue.ToString + "', '" + decimalSQL(TxtAmount.EditValue.ToString) + "');"
-        execute_non_query(query, -1, True, "", "", "", "")
+        execute_non_query(query, True, "", "", "", "")
         FormPayoutVerDet.viewDetail()
         resetForm()
         Cursor = Cursors.Default
