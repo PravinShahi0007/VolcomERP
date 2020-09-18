@@ -3036,7 +3036,7 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
                 id_user_mark = data.Rows(i)("id_user").ToString
             End If
             '
-            If Not id_user_mark = "" Then
+            If Not id_user_mark = "" And Not id_user_mark = "0" Then
                 If data.Rows(i)("id_report_status").ToString() = data.Rows(0)("id_report_status").ToString() Then
                     'set lead time
                     If data.Rows(i)("level").ToString() = "1" Then
