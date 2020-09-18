@@ -117,7 +117,9 @@
             showAttach()
         Else
             'add
-
+            Cursor = Cursors.WaitCursor
+            FormPayoutVerAdd.ShowDialog()
+            Cursor = Cursors.Default
         End If
     End Sub
 
