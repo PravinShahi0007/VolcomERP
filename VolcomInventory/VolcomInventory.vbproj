@@ -3026,6 +3026,12 @@
     <Compile Include="FormPayoutReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPayoutVerAdd.Designer.vb">
+      <DependentUpon>FormPayoutVerAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayoutVerAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPayoutVerDet.Designer.vb">
       <DependentUpon>FormPayoutVerDet.vb</DependentUpon>
     </Compile>
@@ -10010,6 +10016,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutReport.resx">
       <DependentUpon>FormPayoutReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayoutVerAdd.resx">
+      <DependentUpon>FormPayoutVerAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutVerDet.resx">
       <DependentUpon>FormPayoutVerDet.vb</DependentUpon>
