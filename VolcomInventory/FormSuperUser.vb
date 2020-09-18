@@ -30,7 +30,7 @@
         'INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order
         'INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
         'INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-        'WHERE d.pl_sales_order_del_number='SDO81473' "
+        'WHERE d.pl_sales_order_del_number='" + addSlashes(TextEdit1.Text.ToString) + "' "
         'Dim data As DataTable = execute_query(q, -1, True, "", "", "", "")
         'Dim f As New FormChangeStatus()
         'f.id_pop_up = "2"
