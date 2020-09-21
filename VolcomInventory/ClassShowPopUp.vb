@@ -371,6 +371,9 @@
         ElseIf report_mark_type = "260" Then
             'move est. date receive
             FormPurcOrderCloseReceiving.Close()
+        ElseIf report_mark_type = "264" Then
+            'payout
+            FormPayoutHistoryDetail.Close()
         End If
     End Sub
     Sub show()
@@ -1279,6 +1282,9 @@ GROUP BY rec.`id_prod_order`"
             FormPurcOrderCloseReceiving.change_type = "move"
             FormPurcOrderCloseReceiving.id_receive_date = id_report
             FormPurcOrderCloseReceiving.ShowDialog()
+        ElseIf report_mark_type = "264" Then
+            FormPayoutVerDet.id = id_report
+            FormPayoutVerDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2292,6 +2298,11 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_receive_date"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "264" Then
+            table_name = "tb_list_payout_trans"
+            field_id = "id_list_payout_trans"
+            field_number = "number"
+            field_date = "generate_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
