@@ -25,6 +25,8 @@ Partial Class FormPayoutVerDet
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
@@ -38,8 +40,6 @@ Partial Class FormPayoutVerDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.GridColumnid_list_payout_ver_det = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_list_payout_ver = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_acc = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,6 +54,7 @@ Partial Class FormPayoutVerDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,7 +64,6 @@ Partial Class FormPayoutVerDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -123,6 +123,22 @@ Partial Class FormPayoutVerDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(297, 95)
         Me.PanelControl3.TabIndex = 4
+        '
+        'TxtNumber
+        '
+        Me.TxtNumber.Location = New System.Drawing.Point(86, 7)
+        Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Properties.ReadOnly = True
+        Me.TxtNumber.Size = New System.Drawing.Size(201, 20)
+        Me.TxtNumber.TabIndex = 5
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 10)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl5.TabIndex = 7
+        Me.LabelControl5.Text = "Number"
         '
         'LabelControl4
         '
@@ -241,22 +257,6 @@ Partial Class FormPayoutVerDet
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 10)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl5.TabIndex = 7
-        Me.LabelControl5.Text = "Number"
-        '
-        'TxtNumber
-        '
-        Me.TxtNumber.Location = New System.Drawing.Point(86, 7)
-        Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Properties.ReadOnly = True
-        Me.TxtNumber.Size = New System.Drawing.Size(201, 20)
-        Me.TxtNumber.TabIndex = 5
-        '
         'GridColumnid_list_payout_ver_det
         '
         Me.GridColumnid_list_payout_ver_det.Caption = "id_list_payout_ver_det"
@@ -327,7 +327,7 @@ Partial Class FormPayoutVerDet
         Me.MinimizeBox = False
         Me.Name = "FormPayoutVerDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Payout Verification"
+        Me.Text = "Payout Reconcile"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -336,6 +336,7 @@ Partial Class FormPayoutVerDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -345,7 +346,6 @@ Partial Class FormPayoutVerDet
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

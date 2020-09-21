@@ -13,12 +13,12 @@
         Dim pv As New ClassPayoutVer()
         Dim query As String = pv.queryMain("AND v.id_list_payout_ver='" + id + "'", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        type_ver = data.Rows("type_ver").ToString
-        TxtOrderNumber.Text = data.Rows("order_number").ToString
-        TxtCheckoutId.Text = data.Rows("checkout_id").ToString
-        TxtNumber.Text = data.Rows("number").ToString
-        DECreated.EditValue = data.Rows("created_date")
-        TxtCreatedBy.Text = data.Rows("created_by_name").ToString
+        type_ver = data.Rows(0)("type_ver").ToString
+        TxtOrderNumber.Text = data.Rows(0)("order_number").ToString
+        TxtCheckoutId.Text = data.Rows(0)("checkout_id").ToString
+        TxtNumber.Text = data.Rows(0)("number").ToString
+        DECreated.EditValue = data.Rows(0)("created_date")
+        TxtCreatedBy.Text = data.Rows(0)("created_by_name").ToString
 
         'detail
         viewDetail()
@@ -33,7 +33,7 @@
         If Not allowEdit() Then
             PanelControlNav.Visible = False
         End If
-        Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDetail()
@@ -41,8 +41,9 @@
         d.id_dc, dc.dc_code, d.value 
         FROM tb_list_payout_ver_det d
         INNER JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
-        INNER JOIN tb_lookup_dc dc ON dc.id_dc
-        WHERE d.id_list_payout_ver_det=" + id + " "
+        INNER JOIN tb_lookup_dc dc ON dc.id_dc = d.id_dc
+        WHERE d.id_list_payout_ver=" + id + " 
+        ORDER BY d.id_list_payout_ver_det ASC "
         Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
         GCData.DataSource = dd
         GVData.BestFitColumns()
@@ -67,7 +68,7 @@
             LEFT JOIN tb_rec_payment bbm ON bbm.id_list_payout_trans = pd.id_list_payout_trans
             WHERE v.id_list_payout_ver=" + id + " AND ISNULL(bbm.id_list_payout_trans) "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count <= 0 Then
+            If data.Rows.Count > 0 Then
                 Return True
             Else
                 Return False
@@ -80,7 +81,7 @@
             LEFT JOIN tb_rec_payment bbm ON bbm.id_virtual_acc_trans = pd.id_virtual_acc_trans
             WHERE v.id_list_payout_ver=" + id + " AND ISNULL(bbm.id_list_payout_trans) "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count <= 0 Then
+            If data.Rows.Count > 0 Then
                 Return True
             Else
                 Return False
@@ -107,7 +108,7 @@
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.report_mark_type = rmt
-        FormDocumentUpload.Show()
+        FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 

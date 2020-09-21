@@ -21,8 +21,8 @@ Partial Class FormPayoutVerAdd
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPayoutVerAdd))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECOA = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -51,16 +51,6 @@ Partial Class FormPayoutVerAdd
         Me.PanelControl1.Size = New System.Drawing.Size(301, 42)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(224, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 38)
-        Me.BtnAdd.TabIndex = 0
-        Me.BtnAdd.Text = "Add"
-        '
         'BtnClose
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
@@ -70,6 +60,16 @@ Partial Class FormPayoutVerAdd
         Me.BtnClose.Size = New System.Drawing.Size(75, 38)
         Me.BtnClose.TabIndex = 1
         Me.BtnClose.Text = "Close"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(224, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(75, 38)
+        Me.BtnAdd.TabIndex = 0
+        Me.BtnAdd.Text = "Add"
         '
         'LabelControl1
         '
