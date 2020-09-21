@@ -65,16 +65,28 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
 
     Sub CreateNodes(ByVal tl As DevExpress.XtraTreeList.TreeList, ByVal opt As String, ByVal date_var As Date, ByVal unit As String)
         Dim unit_var As String = ""
+        Dim type_var As String = ""
+
         If Not unit = "0" Then
             unit_var = " AND comp.id_coa_tag='" & unit & "'"
         End If
+
+        If unit = "0" Then
+            type_var = " "
+        ElseIf unit = "1" Then
+            type_var = " AND a.id_coa_type='1'"
+        Else
+            type_var = " AND a.id_coa_type='2'"
+        End If
+        '
+
         tl.ClearNodes()
         tl.BeginUnboundLoad()
         ' Create a root node .
         Dim parentForRootNodes As DevExpress.XtraTreeList.Nodes.TreeListNode = Nothing
         'root
         Dim query As String = "SELECT a.id_acc,acc_name,a.id_acc_parent,a.acc_description,CAST(IFNULL(entry.debit,0) AS DECIMAL(13,2)) AS debit,CAST(IFNULL(entry.credit,0) AS DECIMAL(13,2)) AS credit,IFNULL(entry.this_month,0.00) AS this_month,IFNULL(entry.prev_month,0.00) AS prev_month,a.id_acc_cat,b.acc_cat,a.id_status,c.status,a.id_is_det,d.is_det,a.id_status,'' as id_all_child,comp.id_comp,comp.comp_name,comp.comp_number FROM tb_a_acc a"
-        query += " INNER JOIN tb_lookup_acc_cat b ON a.id_acc_cat=b.id_acc_cat"
+        query += " INNER JOIN tb_lookup_acc_cat b ON a.id_acc_cat=b.id_acc_cat " & type_var
         query += " INNER JOIN tb_lookup_status c ON a.id_status=c.id_status "
         query += " INNER JOIN tb_lookup_is_det d ON a.id_is_det=d.id_is_det"
         query += " LEFT JOIN tb_m_comp comp ON comp.id_comp=a.id_comp "
