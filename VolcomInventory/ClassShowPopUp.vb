@@ -1283,8 +1283,8 @@ GROUP BY rec.`id_prod_order`"
             FormPurcOrderCloseReceiving.id_receive_date = id_report
             FormPurcOrderCloseReceiving.ShowDialog()
         ElseIf report_mark_type = "264" Then
-            FormPayoutVerDet.id = id_report
-            FormPayoutVerDet.ShowDialog()
+            FormPayoutHistoryDetail.id = id_report
+            FormPayoutHistoryDetail.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")

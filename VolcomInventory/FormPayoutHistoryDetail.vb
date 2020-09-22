@@ -107,11 +107,8 @@
             Cursor = Cursors.WaitCursor
             Dim id_ver As String = GVData.GetFocusedRowCellValue("id_list_payout_ver").ToString
             If id_ver <> "0" Then
-                Dim rmt As String = "264"
-                Dim m As New ClassShowPopUp()
-                m.report_mark_type = rmt
-                m.id_report = id_ver
-                m.show()
+                FormPayoutVerDet.id = id_ver
+                FormPayoutVerDet.ShowDialog()
             End If
             Cursor = Cursors.Default
         End If
