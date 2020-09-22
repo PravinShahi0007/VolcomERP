@@ -5772,7 +5772,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             INSERT INTO tb_list_payout_det(id_list_payout_trans, id_list_payout_ver) 
                             SELECT '" + id_list_payout_trans + "',v.id_list_payout_ver 
                             FROM tb_list_payout_ver v
-                            WHERE v.is_existing_order=2 AND v.id_list_payout_ver IN(" + id_list_payout_ver + ");"
+                            WHERE v.id_list_payout_ver IN(" + id_list_payout_ver + ");"
                             execute_non_query(query_det_pos, True, "", "", "", "")
 
                             'perlu approval FC
