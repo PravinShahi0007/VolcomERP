@@ -147,8 +147,8 @@ Public Class FormBankDepositDet
                     UNION 
                     /*other income & expense*/
                     (SELECT 
-                    0 AS `id_report`,0 AS `id_report_det`,
-                    0 AS `report_mark_type`, '' AS `report_mark_type_name`,'' AS `number`,
+                    v.id_list_payout_ver AS `id_report`,0 AS `id_report_det`,
+                    rmt.`report_mark_type`, rmt.`report_mark_type_name`,v.`number`,
                     cf.id_comp AS `id_comp`, 
                     coa.id_acc AS `id_acc`, coa.acc_name, coa.acc_description,
                     cf.comp_number AS `comp_number`,'' AS `vendor`, 0 AS `total_rec`,
@@ -164,6 +164,7 @@ Public Class FormBankDepositDet
                     INNER JOIN tb_list_payout_ver_det vd ON vd.id_list_payout_ver = v.id_list_payout_ver 
                     INNER JOIN tb_a_acc coa ON coa.id_acc = vd.id_acc
                     INNER JOIN tb_lookup_dc dc ON dc.id_dc = vd.id_dc
+                    JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=264
                     WHERE p.id_list_payout_trans='" + id_list_payout_trans + "' 
                     GROUP BY v.order_number, vd.id_list_payout_ver_det
                     ORDER BY v.order_number ASC, id_dc ASC) "
