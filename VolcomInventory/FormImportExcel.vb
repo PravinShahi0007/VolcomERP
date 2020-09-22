@@ -3410,10 +3410,10 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             'Customize column
             GVData.Columns("id_sub_district").Visible = False
         ElseIf id_pop_up = "53" Then 'import VA BBM
-            Dim queryx As String = "SELECT ol.id_virtual_acc_trans, ol.id AS `id_order`, ol.checkout_id, IFNULL(ol.other_price_sum,0.00) AS `other_price`,ol.sales_order_ol_shop_number,
-            SUM(CAST(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`) AS DECIMAL(15,2)))+IFNULL(sh.ship_amo,0)+IFNULL(ol.other_price_sum,0.00) AS amount,
-            GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,
-            GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`
+            Dim queryx As String = "(SELECT ol.id_virtual_acc_trans, ol.id AS `id_order`, ol.checkout_id, IFNULL(v.value,0.00) AS `other_price`,ol.sales_order_ol_shop_number,
+            SUM(CAST(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`) AS DECIMAL(15,2)))+IFNULL(sh.ship_amo,0)+IFNULL(v.value,0.00) AS amount,
+            GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,v.number AS `ver_number`,
+            GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`,  IFNULL(v.id_list_payout_ver,0) AS `id_list_payout_ver`
             FROM (
 	            SELECT ol.id, ol.checkout_id,ol.sales_order_ol_shop_number,
 	            IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
@@ -3431,7 +3431,29 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                 WHERE s.id_report_status=6
                 GROUP BY s.id_report
             ) sh ON sh.id_report = ol.id
-            GROUP BY ol.id "
+            LEFT JOIN (
+                SELECT v.id_list_payout_ver, v.id_web_order, v.number, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
+                FROM tb_list_payout_ver_det d
+                INNER JOIN tb_list_payout_ver v ON v.id_list_payout_ver = d.id_list_payout_ver
+                WHERE v.is_existing_order=1
+                GROUP BY v.checkout_id
+            ) v ON v.id_web_order = ol.id
+            GROUP BY ol.id) 
+            UNION ALL
+            (SELECT ol.id_virtual_acc_trans, 0 AS `id_order`, ol.checkout_id AS `checkout_id`, IFNULL(ol.value,0.00) AS `other_price`,ol.order_number AS sales_order_ol_shop_number,
+            SUM(IFNULL(ol.value,0.00)) AS amount,
+            '' AS inv_number, '' AS `ship_inv_number`, ol.number AS `ver_number`,
+            0 AS id_sales_pos, 0 AS `id_invoice_ship`, IFNULL(ol.id_list_payout_ver,0) AS `id_list_payout_ver`
+            FROM (
+                SELECT v.*,lp.`amount`,
+                lp.id_virtual_acc_trans, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
+                FROM tb_list_payout_ver v 
+                INNER JOIN tb_list_payout_ver_det d ON d.id_list_payout_ver = v.id_list_payout_ver
+                LEFT JOIN tb_virtual_acc_trans_det lp ON lp.checkout_id = v.checkout_id
+                WHERE v.is_existing_order=2 
+                GROUP BY v.checkout_id
+            ) ol
+            GROUP BY ol.checkout_id) "
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
             Dim tb2 = dt.AsEnumerable()
@@ -3447,6 +3469,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             .id_virtual_acc_trans = If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString),
                             .id_sales_pos = If(y1 Is Nothing, "0", y1("id_sales_pos").ToString),
                             .id_invoice_ship = If(y1 Is Nothing, "0", y1("id_invoice_ship").ToString),
+                            .id_list_payout_ver = If(y1 Is Nothing, "0", y1("id_list_payout_ver").ToString),
                             .order_ol_shop_number = If(y1 Is Nothing, "0", y1("sales_order_ol_shop_number").ToString),
                             .inv_number = If(y1 Is Nothing, "0", y1("inv_number").ToString),
                             .ship_inv_number = If(y1 Is Nothing, "0", y1("ship_inv_number").ToString),
@@ -3466,6 +3489,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             'Customize column
             GVData.Columns("id_sales_pos").Visible = False
             GVData.Columns("id_invoice_ship").Visible = False
+            GVData.Columns("id_list_payout_ver").Visible = False
             GVData.Columns("id_virtual_acc_trans").Visible = False
             GVData.Columns("id_order").Visible = False
 
@@ -3474,8 +3498,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("order_ol_shop_number").Caption = "Order#"
             GVData.Columns("inv_number").Caption = "Invoice Number"
             GVData.Columns("ship_inv_number").Caption = "Shipping Invoice"
-            GVData.Columns("other_price").Caption = "Other Income/Expense"
-            GVData.Columns("amount_inv").Caption = "Amount Invoice (Include Other Income/Expense)"
+            GVData.Columns("other_price").Caption = "Other Price"
+            GVData.Columns("amount_inv").Caption = "Amount Invoice (Include Other Price)"
             GVData.Columns("amount").Caption = "Amount Payment Gateway"
             GVData.Columns("payment_type").Caption = "Payment Type"
 
@@ -5861,21 +5885,25 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             'main
                             Dim query_main As String = "INSERT INTO tb_virtual_acc_trans(id_virtual_acc, transaction_date, generate_date) VALUES('" + FormBankDeposit.SLEBank.EditValue.ToString + "','" + DateTime.Parse(FormBankDeposit.DEVA.EditValue.ToString).ToString("yyyy-MM-dd") + "', NOW()); SELECT LAST_INSERT_ID(); "
                             Dim id_virtual_acc_trans As String = execute_query(query_main, 0, True, "", "", "", "")
+                            execute_non_query("CALL gen_number(" + id_virtual_acc_trans + ", 265)", True, "", "", "", "")
 
                             'detail data
                             Dim q As String = "INSERT INTO tb_virtual_acc_trans_det(id_virtual_acc_trans, id, sales_order_ol_shop_number, checkout_id, payment_type, amount, amount_inv, transaction_status, transaction_time, virtual_acc_no, other_price) VALUES "
                             Dim id_sales_pos As String = ""
                             Dim id_invoice_ship As String = ""
+                            Dim id_list_payout_ver As String = ""
                             For i As Integer = 0 To GVData.RowCount - 1
                                 If Not i = 0 Then
                                     q += ","
                                     id_sales_pos += ","
                                     id_invoice_ship += ","
+                                    id_list_payout_ver += ","
                                 End If
                                 '
                                 q += "('" + id_virtual_acc_trans + "', '" + GVData.GetRowCellValue(i, "id_order").ToString + "', '" + GVData.GetRowCellValue(i, "order_ol_shop_number").ToString + "', '" + GVData.GetRowCellValue(i, "checkout_id").ToString + "', '" + GVData.GetRowCellValue(i, "payment_type").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount_inv").ToString) + "', '" + GVData.GetRowCellValue(i, "transaction_status").ToString + "', '" + DateTime.Parse(GVData.GetRowCellValue(i, "transaction_time").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + GVData.GetRowCellValue(i, "virtual_acc_no").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "other_price").ToString) + "') "
                                 id_sales_pos += GVData.GetRowCellValue(i, "id_sales_pos").ToString
                                 id_invoice_ship += GVData.GetRowCellValue(i, "id_invoice_ship").ToString
+                                id_list_payout_ver += GVData.GetRowCellValue(i, "id_list_payout_ver").ToString
 
                                 '
                                 PBC.PerformStep()
@@ -5892,8 +5920,20 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             INSERT INTO tb_virtual_acc_trans_inv(id_virtual_acc_trans, id_invoice_ship) 
                             SELECT '" + id_virtual_acc_trans + "', sh.id_invoice_ship 
                             FROM tb_invoice_ship sh 
-                            WHERE sh.id_invoice_ship IN(" + id_invoice_ship + "); "
+                            WHERE sh.id_invoice_ship IN(" + id_invoice_ship + "); 
+                            INSERT INTO tb_virtual_acc_trans_inv(id_virtual_acc_trans, id_list_payout_ver) 
+                            SELECT '" + id_virtual_acc_trans + "',v.id_list_payout_ver 
+                            FROM tb_list_payout_ver v
+                            WHERE v.id_list_payout_ver IN(" + id_list_payout_ver + ");"
                             execute_non_query(query_det_pos, True, "", "", "", "")
+
+                            'perlu approval FC
+                            GVData.ActiveFilterString = "[other_price]>0"
+                            If GVData.RowCount > 0 Then
+                                submit_who_prepared(265, id_virtual_acc_trans, id_user)
+                            Else
+                                execute_non_query("UPDATE tb_virtual_acc_trans SET id_report_status=6 WHERE id_virtual_acc_trans='" + id_virtual_acc_trans + "'", True, "", "", "", "")
+                            End If
 
                             FormBankDeposit.TEPayoutNumber.Text = ""
                             FormBankDeposit.load_vacc()
@@ -5954,7 +5994,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
         End If
 
         'enable dropmenu
-        If id_pop_up = "50" Then
+        If id_pop_up = "50" Or id_pop_up = "53" Then
             GCData.ContextMenuStrip = CMSImport
             OtherActionToolStripMenuItem.Text = "Reconcile && Upload BAP"
         End If
@@ -5979,7 +6019,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
     End Sub
 
     Private Sub OtherActionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OtherActionToolStripMenuItem.Click
-        If id_pop_up = "50" Then
+        If id_pop_up = "50" Or id_pop_up = "53" Then
             'cek delivery
             Dim id_sales_pos As String = GVData.GetFocusedRowCellValue("id_sales_pos").ToString
             Dim id_web_order As String = GVData.GetFocusedRowCellValue("id_order").ToString
@@ -5988,6 +6028,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             Dim type_ver As String = ""
             If id_pop_up = "50" Then
                 type_ver = "1"
+            ElseIf id_pop_up = "53" Then
+                type_ver = "2"
             End If
             Dim is_existing_order As String = ""
             If id_web_order = "0" Then
@@ -6013,9 +6055,9 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to verify this order?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                         If confirm = Windows.Forms.DialogResult.Yes Then
                             Dim query As String = "INSERT INTO tb_list_payout_ver(id_web_order, order_number, checkout_id, created_date, created_by, type_ver, is_existing_order) 
-                        VALUES('" + id_web_order + "', '" + order_number + "','" + checkout_id + "', NOW(), '" + id_user + "', '" + type_ver + "', '" + is_existing_order + "'); SELECT LAST_INSERT_ID(); "
+                            VALUES('" + id_web_order + "', '" + order_number + "','" + checkout_id + "', NOW(), '" + id_user + "', '" + type_ver + "', '" + is_existing_order + "'); SELECT LAST_INSERT_ID(); "
                             Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
-                            execute_non_query("CALL gen_number(" + id_new + ", 264)", True, "", "", "", "")
+                            execute_non_query("CALL gen_number(" + id_new + ", 266)", True, "", "", "", "")
                             FormPayoutVerDet.id = id_new
                             FormPayoutVerDet.ShowDialog()
                         End If

@@ -15,7 +15,7 @@
         LEFT JOIN tb_rec_payment b ON b.id_list_payout_trans = t.id_list_payout_trans AND b.id_report_status!=5
         LEFT JOIN (
             SELECT d.id_list_payout_trans,COUNT(d.id_list_payout_trans) AS `jum_bap`
-            FROM tb_list_payout_det d WHERE d.id_list_payout_trans=22 AND !ISNULL(d.id_list_payout_ver)
+            FROM tb_list_payout_det d WHERE !ISNULL(d.id_list_payout_ver)
             GROUP BY d.id_list_payout_trans
         ) bap ON bap.id_list_payout_trans = t.id_list_payout_trans
         GROUP BY p.id_list_payout_trans "

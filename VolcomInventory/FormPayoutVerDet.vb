@@ -1,7 +1,7 @@
 ﻿Public Class FormPayoutVerDet
     Public id As String = "-1"
     Dim type_ver As String = "-1"
-    Dim rmt As String = "264"
+    Dim rmt As String = "266"
 
     Private Sub FormPayoutVerDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
