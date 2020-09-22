@@ -5995,28 +5995,33 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             Else
                 is_existing_order = "1"
             End If
+            Dim status_import As String = GVData.GetFocusedRowCellValue("Status").ToString
 
             'cek sudah ada ato belum
             Dim qex As String = "SELECT * FROM tb_list_payout_ver v WHERE v.order_number='" + order_number + "' "
             Dim dex As DataTable = execute_query(qex, -1, True, "", "", "", "")
             If dex.Rows.Count <= 0 Then
-                Dim query_cek As String = "SELECT so.* FROM tb_sales_order so 
-                LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order
-                WHERE so.id_report_status=6 AND so.id_sales_order_ol_shop=" + id_web_order + " 
-                AND (so.id_prepare_status=1 OR (so.id_prepare_status=2 AND !ISNULL(del.id_sales_order))) "
-                Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
-                If data_cek.Rows.Count > 0 And id_sales_pos = "0" Then
-                    stopCustom("Order on process")
-                Else
-                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to verify this order?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                    If confirm = Windows.Forms.DialogResult.Yes Then
-                        Dim query As String = "INSERT INTO tb_list_payout_ver(id_web_order, order_number, checkout_id, created_date, created_by, type_ver, is_existing_order) 
+                If status_import <> "OK" Then
+                    Dim query_cek As String = "SELECT so.* FROM tb_sales_order so 
+                    LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order
+                    WHERE so.id_report_status=6 AND so.id_sales_order_ol_shop=" + id_web_order + " 
+                    AND (so.id_prepare_status=1 OR (so.id_prepare_status=2 AND !ISNULL(del.id_sales_order))) "
+                    Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+                    If data_cek.Rows.Count > 0 And id_sales_pos = "0" Then
+                        stopCustom("Order on process")
+                    Else
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to verify this order?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Dim query As String = "INSERT INTO tb_list_payout_ver(id_web_order, order_number, checkout_id, created_date, created_by, type_ver, is_existing_order) 
                         VALUES('" + id_web_order + "', '" + order_number + "','" + checkout_id + "', NOW(), '" + id_user + "', '" + type_ver + "', '" + is_existing_order + "'); SELECT LAST_INSERT_ID(); "
-                        Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
-                        execute_non_query("CALL gen_number(" + id_new + ", 264)", True, "", "", "", "")
-                        FormPayoutVerDet.id = id_new
-                        FormPayoutVerDet.ShowDialog()
+                            Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+                            execute_non_query("CALL gen_number(" + id_new + ", 264)", True, "", "", "", "")
+                            FormPayoutVerDet.id = id_new
+                            FormPayoutVerDet.ShowDialog()
+                        End If
                     End If
+                Else
+                    stopCustom("Only for problem order")
                 End If
             Else
                 FormPayoutVerDet.id = dex.Rows(0)("id_list_payout_ver").ToString
