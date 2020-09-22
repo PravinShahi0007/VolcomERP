@@ -3499,7 +3499,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("inv_number").Caption = "Invoice Number"
             GVData.Columns("ship_inv_number").Caption = "Shipping Invoice"
             GVData.Columns("other_price").Caption = "Other Price"
-            GVData.Columns("amount_inv").Caption = "Amount Invoice (Include Other Income/Expense)"
+            GVData.Columns("amount_inv").Caption = "Amount Invoice (Include Other Price)"
             GVData.Columns("amount").Caption = "Amount Payment Gateway"
             GVData.Columns("payment_type").Caption = "Payment Type"
 

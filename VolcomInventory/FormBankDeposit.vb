@@ -451,7 +451,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         INNER JOIN tb_virtual_acc va ON va.id_virtual_acc = a.id_virtual_acc
         INNER JOIN tb_virtual_acc_trans_det d ON d.id_virtual_acc_trans = a.id_virtual_acc_trans
         LEFT JOIN tb_rec_payment b ON b.id_virtual_acc_trans = a.id_virtual_acc_trans AND b.id_report_status!=5
-        WHERE ISNULL(b.id_rec_payment)
+        WHERE ISNULL(b.id_rec_payment) AND a.id_report_status=6
         GROUP BY a.id_virtual_acc_trans "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCVA.DataSource = data
