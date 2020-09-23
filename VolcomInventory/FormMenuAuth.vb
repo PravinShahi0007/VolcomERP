@@ -74,6 +74,8 @@
                 FormFGTransList.GridColumntotal_cost_sal_main.VisibleIndex = 101
             ElseIf type = "7" Then
                 FormSalesReturnDet.BMark.Enabled = True
+            ElseIf type = "8" Then
+                FormSalesReturnQCDet.BMark.Enabled = True
             End If
             Close()
         Else
