@@ -82,6 +82,8 @@
                 FormFGRepairReturnRecDet.BMark.Enabled = True
             ElseIf type = "11" Then
                 FormProductionPLToWHRecDet.BMark.Enabled = True
+            ElseIf type = "12" Then
+                FormFGTrfNewDet.BMark.Enabled = True
             End If
             Close()
         Else
