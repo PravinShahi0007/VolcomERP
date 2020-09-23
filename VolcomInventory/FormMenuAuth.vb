@@ -84,6 +84,8 @@
                 FormProductionPLToWHRecDet.BMark.Enabled = True
             ElseIf type = "12" Then
                 FormFGTrfNewDet.BMark.Enabled = True
+            ElseIf type = "13" Then
+                FormSalesDelOrderDet.BMark.Enabled = True
             End If
             Close()
         Else
