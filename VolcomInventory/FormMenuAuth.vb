@@ -76,6 +76,8 @@
                 FormSalesReturnDet.BMark.Enabled = True
             ElseIf type = "8" Then
                 FormSalesReturnQCDet.BMark.Enabled = True
+            ElseIf type = "9" Then
+                FormFGRepairDet.BMark.Enabled = True
             End If
             Close()
         Else
