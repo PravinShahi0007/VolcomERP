@@ -72,6 +72,8 @@
                 FormFGTransList.GridColumntotal_cost_sal.VisibleIndex = 101
                 FormFGTransList.GridColumnunit_cost_sal_main.VisibleIndex = 100
                 FormFGTransList.GridColumntotal_cost_sal_main.VisibleIndex = 101
+            ElseIf type = "7" Then
+                FormSalesReturnDet.BMark.Enabled = True
             End If
             Close()
         Else

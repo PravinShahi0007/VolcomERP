@@ -113,7 +113,7 @@ Public Class FormSalesReturnDet
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BtnBrowseRO.Enabled = False
             BtnInfoSrs.Enabled = True
-            BMark.Enabled = True
+            BMark.Enabled = False
             BtnCreateReturn.Visible = True
             BtnCreateReturnNonList.Visible = True
             BtnCreateNonStock.Visible = True
@@ -2972,5 +2972,12 @@ Public Class FormSalesReturnDet
         "
 
         viewLookupQuery(LUETypeScan, query, 0, "scan_type", "id_scan_type")
+    End Sub
+
+    Private Sub FormSalesReturnDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F7 Then
+            FormMenuAuth.type = "7"
+            FormMenuAuth.ShowDialog()
+        End If
     End Sub
 End Class
