@@ -21,14 +21,14 @@ Partial Class FormReportBalanceSheetTax
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportBalanceSheetTax))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.DETaxMonth = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETaxMonth.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETaxMonth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -41,23 +41,15 @@ Partial Class FormReportBalanceSheetTax
         Me.PanelControl1.Size = New System.Drawing.Size(436, 41)
         Me.PanelControl1.TabIndex = 0
         '
-        'LabelControl1
+        'BClose
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 23)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(87, 13)
-        Me.LabelControl1.TabIndex = 1
-        Me.LabelControl1.Text = "Tax Report Month"
-        '
-        'DateEdit1
-        '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(118, 20)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Size = New System.Drawing.Size(306, 20)
-        Me.DateEdit1.TabIndex = 2
+        Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
+        Me.BClose.Location = New System.Drawing.Point(253, 2)
+        Me.BClose.Name = "BClose"
+        Me.BClose.Size = New System.Drawing.Size(85, 37)
+        Me.BClose.TabIndex = 1
+        Me.BClose.Text = "Close"
         '
         'BSave
         '
@@ -69,22 +61,34 @@ Partial Class FormReportBalanceSheetTax
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Choose"
         '
-        'BClose
+        'LabelControl1
         '
-        Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
-        Me.BClose.Location = New System.Drawing.Point(253, 2)
-        Me.BClose.Name = "BClose"
-        Me.BClose.Size = New System.Drawing.Size(85, 37)
-        Me.BClose.TabIndex = 1
-        Me.BClose.Text = "Close"
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 23)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(87, 13)
+        Me.LabelControl1.TabIndex = 1
+        Me.LabelControl1.Text = "Tax Report Month"
+        '
+        'DETaxMonth
+        '
+        Me.DETaxMonth.EditValue = Nothing
+        Me.DETaxMonth.Location = New System.Drawing.Point(118, 20)
+        Me.DETaxMonth.Name = "DETaxMonth"
+        Me.DETaxMonth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxMonth.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxMonth.Properties.DisplayFormat.FormatString = "MMMM yyyy"
+        Me.DETaxMonth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETaxMonth.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView
+        Me.DETaxMonth.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
+        Me.DETaxMonth.Size = New System.Drawing.Size(306, 20)
+        Me.DETaxMonth.TabIndex = 2
         '
         'FormReportBalanceSheetTax
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(436, 99)
-        Me.Controls.Add(Me.DateEdit1)
+        Me.Controls.Add(Me.DETaxMonth)
         Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -95,8 +99,8 @@ Partial Class FormReportBalanceSheetTax
         Me.Text = "Choose Tax Month"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETaxMonth.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETaxMonth.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -104,7 +108,7 @@ Partial Class FormReportBalanceSheetTax
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DETaxMonth As DevExpress.XtraEditors.DateEdit
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
 End Class
