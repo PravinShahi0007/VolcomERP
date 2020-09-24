@@ -209,6 +209,7 @@
     <Compile Include="ClassAccounting.vb" />
     <Compile Include="ClassAPIZalora.vb" />
     <Compile Include="ClassAREvaluation.vb" />
+    <Compile Include="ClassBliBliApi.vb" />
     <Compile Include="ClassBudgetExpense.Designer.vb">
       <DependentUpon>ClassBudgetExpense.vb</DependentUpon>
     </Compile>
@@ -294,6 +295,7 @@
     <Compile Include="ClassSampleReturnPL.vb" />
     <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassShipInvoice.vb" />
+    <Compile Include="ClassZaloraApi.vb" />
     <Compile Include="ClassShopifyApi.vb" />
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
@@ -3638,6 +3640,12 @@
     <Compile Include="FormReportBalanceSheet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReportBalanceSheetTax.Designer.vb">
+      <DependentUpon>FormReportBalanceSheetTax.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBalanceSheetTax.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormReportBudget.Designer.vb">
       <DependentUpon>FormReportBudget.vb</DependentUpon>
     </Compile>
@@ -5204,6 +5212,12 @@
     <Compile Include="FormSalesOrderRef.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesOrderShippingLabelPdf.Designer.vb">
+      <DependentUpon>FormSalesOrderShippingLabelPdf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderShippingLabelPdf.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderReport.Designer.vb">
       <DependentUpon>FormSalesOrderReport.vb</DependentUpon>
     </Compile>
@@ -6360,6 +6374,12 @@
       <DependentUpon>FormTrackingReturn.vb</DependentUpon>
     </Compile>
     <Compile Include="FormTrackingReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTrackingReturnClosingReason.Designer.vb">
+      <DependentUpon>FormTrackingReturnClosingReason.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTrackingReturnClosingReason.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormUniqueCode.Designer.vb">
@@ -10324,6 +10344,9 @@
     <EmbeddedResource Include="FormReportBalanceSheet.resx">
       <DependentUpon>FormReportBalanceSheet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBalanceSheetTax.resx">
+      <DependentUpon>FormReportBalanceSheetTax.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportBudget.resx">
       <DependentUpon>FormReportBudget.vb</DependentUpon>
     </EmbeddedResource>
@@ -11319,6 +11342,9 @@
       <DependentUpon>FormReportMarkTime.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderShippingLabelPdf.resx">
+      <DependentUpon>FormSalesOrderShippingLabelPdf.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesCreditNotePopInv.resx">
       <DependentUpon>FormSalesCreditNotePopInv.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -12031,6 +12057,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTrackingReturn.resx">
       <DependentUpon>FormTrackingReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTrackingReturnClosingReason.resx">
+      <DependentUpon>FormTrackingReturnClosingReason.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueCode.resx">
       <DependentUpon>FormUniqueCode.vb</DependentUpon>
