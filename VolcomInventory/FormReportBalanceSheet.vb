@@ -1123,7 +1123,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             GVActiveTax.Columns("comp_name").AppearanceCell.Font = font_row_name
             GVActiveTax.Columns("npwp_name").AppearanceCell.Font = font_row_name
             '
-            print_raw(GCTaxReport, SLETaxCat.Text & " (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+            print_raw(GVActiveTax, SLETaxCat.Text & " (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
             '
             GVActiveTax.AppearancePrint.Row.Font = font_row_default
             GVActiveTax.AppearancePrint.HeaderPanel.Font = font_row_default
