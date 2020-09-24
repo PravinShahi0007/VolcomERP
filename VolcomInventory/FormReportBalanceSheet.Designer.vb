@@ -1507,6 +1507,11 @@ Partial Class FormReportBalanceSheet
         '
         'BReported
         '
+        Me.BReported.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BReported.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BReported.Appearance.Options.UseBackColor = True
+        Me.BReported.Appearance.Options.UseForeColor = True
+        Me.BReported.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.BReported.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BReported.Location = New System.Drawing.Point(118, 2)
         Me.BReported.Name = "BReported"
@@ -1993,6 +1998,11 @@ Partial Class FormReportBalanceSheet
         '
         'BMoveActiveTax
         '
+        Me.BMoveActiveTax.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BMoveActiveTax.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BMoveActiveTax.Appearance.Options.UseBackColor = True
+        Me.BMoveActiveTax.Appearance.Options.UseForeColor = True
+        Me.BMoveActiveTax.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.BMoveActiveTax.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BMoveActiveTax.Location = New System.Drawing.Point(118, 2)
         Me.BMoveActiveTax.Name = "BMoveActiveTax"

@@ -1077,7 +1077,9 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
     End Sub
 
     Private Sub BViewPajak_Click(sender As Object, e As EventArgs) Handles BViewPajak.Click
-        view_pajak()
+        If Not SLETaxCat.EditValue = Nothing Then
+            view_pajak()
+        End If
     End Sub
 
     Private Sub BPrintPajak_Click(sender As Object, e As EventArgs) Handles BPrintPajak.Click
@@ -1212,5 +1214,13 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
     Private Sub BMoveActiveTax_Click(sender As Object, e As EventArgs) Handles BMoveActiveTax.Click
         FormReportBalanceSheetTax.ShowDialog()
+    End Sub
+
+    Private Sub DETaxFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DETaxFrom.EditValueChanged
+        DETaxUntil.Properties.MinValue = DETaxFrom.EditValue
+    End Sub
+
+    Private Sub DETaxUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DETaxUntil.EditValueChanged
+        DETaxFrom.Properties.MaxValue = DETaxUntil.EditValue
     End Sub
 End Class
