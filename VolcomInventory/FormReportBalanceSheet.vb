@@ -1123,7 +1123,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             GVActiveTax.Columns("comp_name").AppearanceCell.Font = font_row_name
             GVActiveTax.Columns("npwp_name").AppearanceCell.Font = font_row_name
             '
-            print_raw(GVActiveTax, SLETaxCat.Text & " (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+            print_raw(GCActiveTax, SLETaxCat.Text & " (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
             '
             GVActiveTax.AppearancePrint.Row.Font = font_row_default
             GVActiveTax.AppearancePrint.HeaderPanel.Font = font_row_default
@@ -1201,7 +1201,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
     Private Sub CESelAllActiveTax_CheckedChanged(sender As Object, e As EventArgs) Handles CESelAllActiveTax.CheckedChanged
         If GVActiveTax.RowCount > 0 Then
-            Dim cek As String = CheckEditSelAll.EditValue.ToString
+            Dim cek As String = CESelAllActiveTax.EditValue.ToString
             For i As Integer = 0 To ((GVActiveTax.RowCount - 1) - GetGroupRowCount(GVActiveTax))
                 If cek Then
                     GVActiveTax.SetRowCellValue(i, "is_check", "yes")
