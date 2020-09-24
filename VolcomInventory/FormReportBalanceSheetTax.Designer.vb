@@ -76,6 +76,10 @@ Partial Class FormReportBalanceSheetTax
         Me.DETaxMonth.Name = "DETaxMonth"
         Me.DETaxMonth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETaxMonth.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxMonth.Properties.DisplayFormat.FormatString = "MMMM yyyy"
+        Me.DETaxMonth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETaxMonth.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView
+        Me.DETaxMonth.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
         Me.DETaxMonth.Size = New System.Drawing.Size(306, 20)
         Me.DETaxMonth.TabIndex = 2
         '

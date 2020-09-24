@@ -150,6 +150,10 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAlamatNPWP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BReported = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.XTPPendingTransaction = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTaxPending = New DevExpress.XtraGrid.GridControl()
         Me.GVTaxPending = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -173,6 +177,8 @@ Partial Class FormReportBalanceSheet
         Me.GCActiveTax = New DevExpress.XtraGrid.GridControl()
         Me.GVActiveTax = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEActiveTax = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnActiveTaxCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -189,6 +195,10 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BMoveActiveTax = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAllActiveTax = New DevExpress.XtraEditors.CheckEdit()
         Me.PCPajak = New DevExpress.XtraEditors.PanelControl()
         Me.SLETaxCat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -249,12 +259,23 @@ Partial Class FormReportBalanceSheet
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVTaxReport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICETaxReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPendingTransaction.SuspendLayout()
         CType(Me.GCTaxPending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTaxPending, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPLapor.SuspendLayout()
         CType(Me.GCActiveTax, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVActiveTax, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEActiveTax, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.CESelAllActiveTax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCPajak, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCPajak.SuspendLayout()
         CType(Me.SLETaxCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1217,6 +1238,7 @@ Partial Class FormReportBalanceSheet
         'XTPPendingLapor
         '
         Me.XTPPendingLapor.Controls.Add(Me.GCTaxReport)
+        Me.XTPPendingLapor.Controls.Add(Me.PanelControl1)
         Me.XTPPendingLapor.Name = "XTPPendingLapor"
         Me.XTPPendingLapor.Size = New System.Drawing.Size(888, 368)
         Me.XTPPendingLapor.Text = "Pending Lapor"
@@ -1229,7 +1251,7 @@ Partial Class FormReportBalanceSheet
         Me.GCTaxReport.MainView = Me.GVTaxReport
         Me.GCTaxReport.Name = "GCTaxReport"
         Me.GCTaxReport.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICETaxReport})
-        Me.GCTaxReport.Size = New System.Drawing.Size(888, 368)
+        Me.GCTaxReport.Size = New System.Drawing.Size(888, 328)
         Me.GCTaxReport.TabIndex = 2
         Me.GCTaxReport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTaxReport})
         '
@@ -1473,6 +1495,42 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BReported)
+        Me.PanelControl1.Controls.Add(Me.PanelControl2)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 328)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(888, 40)
+        Me.PanelControl1.TabIndex = 5
+        '
+        'BReported
+        '
+        Me.BReported.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BReported.Location = New System.Drawing.Point(118, 2)
+        Me.BReported.Name = "BReported"
+        Me.BReported.Size = New System.Drawing.Size(768, 36)
+        Me.BReported.TabIndex = 4
+        Me.BReported.Text = "Rekap"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.CheckEditSelAll)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(116, 36)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'CheckEditSelAll
+        '
+        Me.CheckEditSelAll.Location = New System.Drawing.Point(8, 8)
+        Me.CheckEditSelAll.Name = "CheckEditSelAll"
+        Me.CheckEditSelAll.Properties.Caption = "Select All Item"
+        Me.CheckEditSelAll.Size = New System.Drawing.Size(109, 19)
+        Me.CheckEditSelAll.TabIndex = 103
+        '
         'XTPPendingTransaction
         '
         Me.XTPPendingTransaction.Controls.Add(Me.GCTaxPending)
@@ -1685,9 +1743,10 @@ Partial Class FormReportBalanceSheet
         'XTPLapor
         '
         Me.XTPLapor.Controls.Add(Me.GCActiveTax)
+        Me.XTPLapor.Controls.Add(Me.PanelControl3)
         Me.XTPLapor.Name = "XTPLapor"
         Me.XTPLapor.Size = New System.Drawing.Size(888, 368)
-        Me.XTPLapor.Text = "Tax Report"
+        Me.XTPLapor.Text = "Rekap Tax"
         '
         'GCActiveTax
         '
@@ -1696,13 +1755,14 @@ Partial Class FormReportBalanceSheet
         Me.GCActiveTax.Location = New System.Drawing.Point(0, 0)
         Me.GCActiveTax.MainView = Me.GVActiveTax
         Me.GCActiveTax.Name = "GCActiveTax"
-        Me.GCActiveTax.Size = New System.Drawing.Size(888, 368)
+        Me.GCActiveTax.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEActiveTax})
+        Me.GCActiveTax.Size = New System.Drawing.Size(888, 328)
         Me.GCActiveTax.TabIndex = 3
         Me.GCActiveTax.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActiveTax})
         '
         'GVActiveTax
         '
-        Me.GVActiveTax.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51})
+        Me.GVActiveTax.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumnActiveTaxCat, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51})
         Me.GVActiveTax.GridControl = Me.GCActiveTax
         Me.GVActiveTax.GroupCount = 1
         Me.GVActiveTax.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", Me.GridColumn45, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dpp", Me.GridColumn46, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Max, "tax_report", Me.GridColumn41, "Total {0} :")})
@@ -1712,18 +1772,36 @@ Partial Class FormReportBalanceSheet
         Me.GVActiveTax.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVActiveTax.OptionsView.ShowFooter = True
         Me.GVActiveTax.OptionsView.ShowGroupPanel = False
-        Me.GVActiveTax.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn10, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVActiveTax.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnActiveTaxCat, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Tax Category"
-        Me.GridColumn10.FieldName = "tax_report"
-        Me.GridColumn10.MinWidth = 55
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.Caption = "*"
+        Me.GridColumn10.ColumnEdit = Me.RICEActiveTax
+        Me.GridColumn10.FieldName = "is_check"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
+        '
+        'RICEActiveTax
+        '
+        Me.RICEActiveTax.AutoHeight = False
+        Me.RICEActiveTax.Name = "RICEActiveTax"
+        Me.RICEActiveTax.ValueChecked = "yes"
+        Me.RICEActiveTax.ValueUnchecked = "no"
+        '
+        'GridColumnActiveTaxCat
+        '
+        Me.GridColumnActiveTaxCat.Caption = "Tax Category"
+        Me.GridColumnActiveTaxCat.FieldName = "tax_report"
+        Me.GridColumnActiveTaxCat.MinWidth = 55
+        Me.GridColumnActiveTaxCat.Name = "GridColumnActiveTaxCat"
+        Me.GridColumnActiveTaxCat.OptionsColumn.AllowEdit = False
+        Me.GridColumnActiveTaxCat.OptionsColumn.ReadOnly = True
+        Me.GridColumnActiveTaxCat.Visible = True
+        Me.GridColumnActiveTaxCat.VisibleIndex = 0
         '
         'GridColumn36
         '
@@ -1742,7 +1820,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn37.OptionsColumn.AllowEdit = False
         Me.GridColumn37.OptionsColumn.ReadOnly = True
         Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 0
+        Me.GridColumn37.VisibleIndex = 1
         Me.GridColumn37.Width = 81
         '
         'GridColumn38
@@ -1756,7 +1834,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn38.OptionsColumn.AllowEdit = False
         Me.GridColumn38.OptionsColumn.ReadOnly = True
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 1
+        Me.GridColumn38.VisibleIndex = 2
         Me.GridColumn38.Width = 80
         '
         'GridColumn39
@@ -1768,7 +1846,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn39.OptionsColumn.AllowEdit = False
         Me.GridColumn39.OptionsColumn.ReadOnly = True
         Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 2
+        Me.GridColumn39.VisibleIndex = 3
         '
         'GridColumn40
         '
@@ -1779,7 +1857,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn40.OptionsColumn.AllowEdit = False
         Me.GridColumn40.OptionsColumn.ReadOnly = True
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 3
+        Me.GridColumn40.VisibleIndex = 4
         Me.GridColumn40.Width = 100
         '
         'GridColumn41
@@ -1790,7 +1868,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn41.OptionsColumn.AllowEdit = False
         Me.GridColumn41.OptionsColumn.ReadOnly = True
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 4
+        Me.GridColumn41.VisibleIndex = 5
         '
         'GridColumn42
         '
@@ -1809,7 +1887,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn43.OptionsColumn.AllowEdit = False
         Me.GridColumn43.OptionsColumn.ReadOnly = True
         Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 5
+        Me.GridColumn43.VisibleIndex = 6
         Me.GridColumn43.Width = 160
         '
         'GridColumn44
@@ -1823,7 +1901,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn44.OptionsColumn.AllowEdit = False
         Me.GridColumn44.OptionsColumn.ReadOnly = True
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 6
+        Me.GridColumn44.VisibleIndex = 7
         '
         'GridColumn45
         '
@@ -1837,7 +1915,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", "{0:N2}")})
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 7
+        Me.GridColumn45.VisibleIndex = 8
         Me.GridColumn45.Width = 80
         '
         'GridColumn46
@@ -1852,7 +1930,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn46.OptionsColumn.ReadOnly = True
         Me.GridColumn46.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dpp", "{0:N2}")})
         Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 8
+        Me.GridColumn46.VisibleIndex = 9
         Me.GridColumn46.Width = 80
         '
         'GridColumn47
@@ -1864,7 +1942,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn47.OptionsColumn.AllowEdit = False
         Me.GridColumn47.OptionsColumn.ReadOnly = True
         Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 9
+        Me.GridColumn47.VisibleIndex = 10
         Me.GridColumn47.Width = 80
         '
         'GridColumn48
@@ -1883,7 +1961,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn49.OptionsColumn.AllowEdit = False
         Me.GridColumn49.OptionsColumn.ReadOnly = True
         Me.GridColumn49.Visible = True
-        Me.GridColumn49.VisibleIndex = 10
+        Me.GridColumn49.VisibleIndex = 11
         Me.GridColumn49.Width = 140
         '
         'GridColumn50
@@ -1894,7 +1972,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn50.OptionsColumn.AllowEdit = False
         Me.GridColumn50.OptionsColumn.ReadOnly = True
         Me.GridColumn50.Visible = True
-        Me.GridColumn50.VisibleIndex = 11
+        Me.GridColumn50.VisibleIndex = 12
         '
         'GridColumn51
         '
@@ -1902,6 +1980,42 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn51.Name = "GridColumn51"
         Me.GridColumn51.OptionsColumn.AllowEdit = False
         Me.GridColumn51.OptionsColumn.ReadOnly = True
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BMoveActiveTax)
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 328)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(888, 40)
+        Me.PanelControl3.TabIndex = 6
+        '
+        'BMoveActiveTax
+        '
+        Me.BMoveActiveTax.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BMoveActiveTax.Location = New System.Drawing.Point(118, 2)
+        Me.BMoveActiveTax.Name = "BMoveActiveTax"
+        Me.BMoveActiveTax.Size = New System.Drawing.Size(768, 36)
+        Me.BMoveActiveTax.TabIndex = 4
+        Me.BMoveActiveTax.Text = "Move"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.CESelAllActiveTax)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(116, 36)
+        Me.PanelControl4.TabIndex = 0
+        '
+        'CESelAllActiveTax
+        '
+        Me.CESelAllActiveTax.Location = New System.Drawing.Point(8, 8)
+        Me.CESelAllActiveTax.Name = "CESelAllActiveTax"
+        Me.CESelAllActiveTax.Properties.Caption = "Select All Item"
+        Me.CESelAllActiveTax.Size = New System.Drawing.Size(109, 19)
+        Me.CESelAllActiveTax.TabIndex = 103
         '
         'PCPajak
         '
@@ -2130,12 +2244,23 @@ Partial Class FormReportBalanceSheet
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVTaxReport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICETaxReport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPendingTransaction.ResumeLayout(False)
         CType(Me.GCTaxPending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVTaxPending, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPLapor.ResumeLayout(False)
         CType(Me.GCActiveTax, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVActiveTax, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEActiveTax, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.CESelAllActiveTax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCPajak, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCPajak.ResumeLayout(False)
         Me.PCPajak.PerformLayout()
@@ -2321,7 +2446,7 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents RICETaxReport As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GCActiveTax As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVActiveTax As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnActiveTaxCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2338,4 +2463,14 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BReported As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BMoveActiveTax As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelAllActiveTax As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEActiveTax As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
