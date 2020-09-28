@@ -191,6 +191,7 @@
                 newRow("id_prod_over_memo") = "0"
                 newRow("id_prod_order") = GVProd.GetRowCellValue(i, "id_prod_order").ToString
                 newRow("prod_order_number") = GVProd.GetRowCellValue(i, "prod_order_number").ToString
+                newRow("vendor") = GVProd.GetRowCellValue(i, "comp_name").ToString
                 newRow("code") = GVProd.GetRowCellValue(i, "design_code").ToString
                 newRow("name") = GVProd.GetRowCellValue(i, "design_display_name").ToString
                 newRow("qty") = GVProd.GetRowCellValue(i, "qty")

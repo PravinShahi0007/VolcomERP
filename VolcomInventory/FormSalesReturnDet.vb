@@ -113,11 +113,16 @@ Public Class FormSalesReturnDet
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BtnBrowseRO.Enabled = False
             BtnInfoSrs.Enabled = True
-            BMark.Enabled = False
             BtnCreateReturn.Visible = True
             BtnCreateReturnNonList.Visible = True
             BtnCreateNonStock.Visible = True
             DDBPrint.Enabled = True
+            'mark
+            If is_view = "1" Then
+                BMark.Enabled = True
+            Else
+                BMark.Enabled = False
+            End If
 
 
             'query view based on edit id's
