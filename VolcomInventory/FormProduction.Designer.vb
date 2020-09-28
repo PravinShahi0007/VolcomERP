@@ -270,6 +270,10 @@ Partial Class FormProduction
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -352,6 +356,8 @@ Partial Class FormProduction
         Me.PanelControl7.SuspendLayout()
         CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCTabProduction
@@ -2198,19 +2204,20 @@ Partial Class FormProduction
         Me.GCKO.Location = New System.Drawing.Point(0, 38)
         Me.GCKO.MainView = Me.GVKO
         Me.GCKO.Name = "GCKO"
-        Me.GCKO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2})
+        Me.GCKO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RepositoryItemMemoEdit2})
         Me.GCKO.Size = New System.Drawing.Size(992, 289)
         Me.GCKO.TabIndex = 10
         Me.GCKO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKO})
         '
         'GVKO
         '
-        Me.GVKO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn49, Me.GridColumn50, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn66})
+        Me.GVKO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn49, Me.GridColumn50, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn88, Me.GridColumn66})
         Me.GVKO.GridControl = Me.GCKO
         Me.GVKO.Name = "GVKO"
         Me.GVKO.OptionsBehavior.Editable = False
         Me.GVKO.OptionsFind.AlwaysVisible = True
         Me.GVKO.OptionsView.ColumnAutoWidth = False
+        Me.GVKO.OptionsView.RowAutoHeight = True
         Me.GVKO.OptionsView.ShowGroupPanel = False
         '
         'GridColumn49
@@ -2263,7 +2270,7 @@ Partial Class FormProduction
         Me.GridColumn66.FieldName = "status"
         Me.GridColumn66.Name = "GridColumn66"
         Me.GridColumn66.Visible = True
-        Me.GridColumn66.VisibleIndex = 4
+        Me.GridColumn66.VisibleIndex = 5
         '
         'RepositoryItemProgressBar2
         '
@@ -2375,19 +2382,20 @@ Partial Class FormProduction
         Me.GCKP.Location = New System.Drawing.Point(0, 38)
         Me.GCKP.MainView = Me.GVKP
         Me.GCKP.Name = "GCKP"
-        Me.GCKP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar3})
+        Me.GCKP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar3, Me.RepositoryItemMemoEdit1})
         Me.GCKP.Size = New System.Drawing.Size(992, 289)
         Me.GCKP.TabIndex = 12
         Me.GCKP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKP})
         '
         'GVKP
         '
-        Me.GVKP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn67, Me.GridColumn68, Me.GridColumn69, Me.GridColumn70, Me.GridColumn71, Me.GridColumn72})
+        Me.GVKP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn67, Me.GridColumn68, Me.GridColumn69, Me.GridColumn70, Me.GridColumn87, Me.GridColumn71, Me.GridColumn72})
         Me.GVKP.GridControl = Me.GCKP
         Me.GVKP.Name = "GVKP"
         Me.GVKP.OptionsBehavior.Editable = False
         Me.GVKP.OptionsFind.AlwaysVisible = True
         Me.GVKP.OptionsView.ColumnAutoWidth = False
+        Me.GVKP.OptionsView.RowAutoHeight = True
         Me.GVKP.OptionsView.ShowGroupPanel = False
         '
         'GridColumn67
@@ -2440,7 +2448,7 @@ Partial Class FormProduction
         Me.GridColumn72.FieldName = "status"
         Me.GridColumn72.Name = "GridColumn72"
         Me.GridColumn72.Visible = True
-        Me.GridColumn72.VisibleIndex = 4
+        Me.GridColumn72.VisibleIndex = 5
         '
         'RepositoryItemProgressBar3
         '
@@ -2716,6 +2724,40 @@ Partial Class FormProduction
         Me.LabelControl13.TabIndex = 8901
         Me.LabelControl13.Text = "Vendor"
         '
+        'GridColumn87
+        '
+        Me.GridColumn87.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn87.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn87.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn87.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn87.Caption = "Design List"
+        Me.GridColumn87.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumn87.FieldName = "design_list"
+        Me.GridColumn87.Name = "GridColumn87"
+        Me.GridColumn87.Visible = True
+        Me.GridColumn87.VisibleIndex = 4
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumn88
+        '
+        Me.GridColumn88.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn88.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn88.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn88.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn88.Caption = "Design List"
+        Me.GridColumn88.ColumnEdit = Me.RepositoryItemMemoEdit2
+        Me.GridColumn88.FieldName = "design_list"
+        Me.GridColumn88.Name = "GridColumn88"
+        Me.GridColumn88.Visible = True
+        Me.GridColumn88.VisibleIndex = 4
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'FormProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2819,6 +2861,8 @@ Partial Class FormProduction
         Me.PanelControl7.PerformLayout()
         CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3071,4 +3115,8 @@ Partial Class FormProduction
     Friend WithEvents GridColumn80 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BSearchCopyProto2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn87 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents GridColumn88 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
