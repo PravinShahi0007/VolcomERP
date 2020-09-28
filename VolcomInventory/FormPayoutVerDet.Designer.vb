@@ -48,6 +48,7 @@ Partial Class FormPayoutVerDet
         Me.GridColumnid_dc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndc_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvalue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnUpdate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +99,7 @@ Partial Class FormPayoutVerDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BtnUpdate)
         Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.TxtCheckoutId)
@@ -198,7 +200,7 @@ Partial Class FormPayoutVerDet
         Me.TxtOrderNumber.Location = New System.Drawing.Point(101, 9)
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.ReadOnly = True
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(175, 20)
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(123, 20)
         Me.TxtOrderNumber.TabIndex = 1
         '
         'LabelControl1
@@ -315,6 +317,14 @@ Partial Class FormPayoutVerDet
         Me.GridColumnvalue.Visible = True
         Me.GridColumnvalue.VisibleIndex = 3
         '
+        'BtnUpdate
+        '
+        Me.BtnUpdate.Location = New System.Drawing.Point(226, 7)
+        Me.BtnUpdate.Name = "BtnUpdate"
+        Me.BtnUpdate.Size = New System.Drawing.Size(50, 23)
+        Me.BtnUpdate.TabIndex = 3
+        Me.BtnUpdate.Text = "update"
+        '
         'FormPayoutVerDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -378,4 +388,5 @@ Partial Class FormPayoutVerDet
     Friend WithEvents GridColumnid_dc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndc_code As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnvalue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnUpdate As DevExpress.XtraEditors.SimpleButton
 End Class

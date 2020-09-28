@@ -686,12 +686,17 @@ Public Class FormProduction
             query_where += " AND c.id_comp='" & SLEVendorKO.EditValue.ToString & "'"
         End If
         '
-        Dim query As String = "SELECT ko.*,IF(ko.is_void='1','Void','-') AS status,c.`comp_name` FROM tb_prod_order_ko ko
+        Dim query As String = "SELECT ko.*,IF(ko.is_void='1','Void','-') AS status,c.`comp_name` ,GROUP_CONCAT(dsg.design_code,' - ',dsg.design_display_name SEPARATOR '\n') AS design_list
+FROM tb_prod_order_ko ko
+INNER JOIN tb_prod_order_ko_det kod ON kod.id_prod_order_ko=ko.id_prod_order_ko
+INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ko.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE ko.id_prod_order_ko 
 IN (SELECT MAX(id_prod_order_ko) AS id FROM `tb_prod_order_ko`
-GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " ORDER BY ko.id_prod_order_ko DESC"
+GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " GROUP BY ko.id_prod_order_ko ORDER BY ko.id_prod_order_ko DESC"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCKO.DataSource = data
@@ -728,12 +733,19 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " ORDER BY k
             query_where += " AND c.id_comp='" & SLEVendorKP.EditValue.ToString & "'"
         End If
         '
-        Dim query As String = "SELECT kp.*,IF(kp.is_void='1','Void','-') AS status,c.`comp_name` FROM tb_prod_order_kp kp
+        Dim query As String = "SELECT kp.*,IF(kp.is_void='1','Void','-') AS status,c.`comp_name` ,GROUP_CONCAT(dsg.design_code,' - ',dsg.design_display_name SEPARATOR '\n') AS design_list
+FROM tb_prod_order_kp kp
+INNER JOIN tb_prod_order_kp_det kpd ON kpd.id_prod_order_kp=kp.id_prod_order_kp
+INNER JOIN tb_prod_order po ON po.id_prod_order=kpd.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=kp.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE kp.id_prod_order_kp 
-IN (SELECT MAX(id_prod_order_kp) AS id FROM `tb_prod_order_kp`
-GROUP BY id_prod_order_kp_reff) AND is_purc_mat=2 " & query_where & " ORDER BY kp.id_prod_order_kp DESC"
+IN (SELECT MAX(id_prod_order_kp) AS id FROM `tb_prod_order_kp` GROUP BY id_prod_order_kp_reff ) 
+AND is_purc_mat=2 " & query_where & "
+GROUP BY kp.id_prod_order_kp
+ORDER BY kp.id_prod_order_kp DESC"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCKP.DataSource = data
