@@ -45,6 +45,9 @@
     End Function
 
     Sub get_order_list()
+        'delete is_process =2
+        execute_non_query_long("DELETE FROM tb_ol_store_order WHERE id_comp_group='" + id_store_group + "' AND is_process=2", True, "", "", "", "")
+
         Dim page As Integer = get_page()
         For i As Integer = 0 To page - 1
             Dim auth As String = Convert.ToBase64String(Text.Encoding.UTF8.GetBytes(username + ":" + password))
@@ -97,66 +100,124 @@
             Dim responseFromServer As String = reader.ReadToEnd()
             Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
             If json("success").ToString = True And json("value").Count > 0 Then
-                For Each row In json("value").ToList
-                    Dim id As String = ""
-                    Dim id_comp_group As String = ""
-                    Dim sales_order_ol_shop_number As String = ""
-                    Dim sales_order_ol_shop_date As String = ""
-                    Dim customer_name As String = ""
-                    Dim shipping_name As String = ""
-                    Dim shipping_address As String = ""
-                    Dim shipping_address1 As String = ""
-                    Dim shipping_address2 As String = ""
-                    Dim shipping_phone As String = ""
-                    Dim shipping_city As String = ""
-                    Dim shipping_post_code As String = ""
-                    Dim shipping_region As String = ""
-                    Dim shipping_district As String = ""
-                    Dim payment_method As String = ""
-                    Dim tracking_code As String = ""
-                    Dim ol_store_sku As String = ""
-                    Dim ol_store_id As String = ""
-                    Dim checkout_id As String = ""
-                    Dim sku As String = ""
-                    Dim design_price As String = ""
-                    Dim sales_order_det_qty As String = ""
-                    Dim shipping_price As String = ""
-                    Dim other_price As String = ""
-                    Dim grams As String = ""
-                    Dim total_disc_order As String = ""
-                    Dim discount_allocations_amo As String = ""
-                    Dim financial_status As String = ""
+                Dim id As String = ""
+                Dim id_comp_group As String = ""
+                Dim sales_order_ol_shop_number As String = ""
+                Dim sales_order_ol_shop_date As String = ""
+                Dim customer_name As String = ""
+                Dim shipping_name As String = ""
+                Dim shipping_address As String = ""
+                Dim shipping_address1 As String = ""
+                Dim shipping_address2 As String = ""
+                Dim shipping_phone As String = ""
+                Dim shipping_city As String = ""
+                Dim shipping_post_code As String = ""
+                Dim shipping_region As String = ""
+                Dim shipping_district As String = ""
+                Dim payment_method As String = ""
+                Dim tracking_code As String = ""
+                Dim ol_store_sku As String = ""
+                Dim ol_store_id As String = ""
+                Dim checkout_id As String = ""
+                Dim sku As String = ""
+                Dim design_price As String = ""
+                Dim sales_order_det_qty As String = ""
+                Dim shipping_price As String = ""
+                Dim other_price As String = ""
+                Dim grams As String = ""
+                Dim total_disc_order As String = ""
+                Dim discount_allocations_amo As String = ""
+                Dim financial_status As String = ""
 
-                    id = row("orderNo").ToString
-                    id_comp_group = id_store_group
-                    sales_order_ol_shop_number = row("orderNo").ToString
-                    sales_order_ol_shop_date = DateTime.Parse(unixMiliSecondsToDatetime(row("orderDate")).ToString).ToString("yyyy-MM-dd HH:mm:ss")
-                    customer_name = row("").ToString
-                    shipping_name = row("").ToString
-                    shipping_address = row("").ToString
-                    shipping_address1 = row("").ToString
-                    shipping_address2 = row("").ToString
-                    shipping_phone = row("").ToString
-                    shipping_city = row("").ToString
-                    shipping_post_code = row("").ToString
-                    shipping_region = row("").ToString
-                    shipping_district = row("").ToString
-                    payment_method = row("").ToString
-                    tracking_code = row("").ToString
-                    ol_store_sku = row("").ToString
-                    ol_store_id = row("orderItemNo").ToString
-                    checkout_id = row("").ToString
-                    sku = row("").ToString
-                    design_price = row("").ToString
-                    sales_order_det_qty = row("").ToString
-                    shipping_price = row("").ToString
-                    other_price = row("").ToString
-                    grams = row("").ToString
-                    total_disc_order = row("").ToString
-                    discount_allocations_amo = row("").ToString
-                    financial_status = row("").ToString
+                id = json("value")("orderNo").ToString
+                id_comp_group = id_store_group
+                sales_order_ol_shop_number = json("value")("orderNo").ToString
+                sales_order_ol_shop_date = DateTime.Parse(unixMiliSecondsToDatetime(json("value")("orderDate")).ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                customer_name = addSlashes(json("value")("custName").ToString)
+                shipping_name = addSlashes(json("value")("shippingRecipientName").ToString)
+                shipping_address = addSlashes(json("value")("shippingStreetAddress").ToString)
+                shipping_address1 = addSlashes(json("value")("shippingStreetAddress").ToString)
+                shipping_address2 = addSlashes(json("value")("shippingStreetAddress").ToString)
+                shipping_phone = json("value")("shippingMobile").ToString
+                shipping_city = addSlashes(json("value")("shippingCity").ToString)
+                shipping_post_code = json("value")("shippingZipCode").ToString
+                shipping_region = addSlashes(json("value")("shippingProvince").ToString)
+                shipping_district = addSlashes(json("value")("shippingDistrict").ToString)
+                payment_method = ""
+                tracking_code = addSlashes(json("value")("awbNumber").ToString)
+                ol_store_sku = json("value")("gdnItemSku").ToString
+                ol_store_id = json("value")("orderItemNo").ToString
+                checkout_id = ""
+                sku = json("value")("merchantSku").ToString
+                design_price = decimalSQL(json("value")("productPrice").ToString)
+                sales_order_det_qty = decimalSQL(json("value")("qty").ToString)
+                shipping_price = "0"
+                other_price = "0"
+                grams = decimalSQL(Decimal.Parse(json("value")("itemWeightInKg").ToString) * 1000)
+                total_disc_order = "0"
+                discount_allocations_amo = "0"
+                financial_status = ""
 
-                Next
+                Dim query As String = "INSERT INTO tb_ol_store_order(
+                id, 
+                id_comp_group, 
+                sales_order_ol_shop_number ,
+                sales_order_ol_shop_date ,
+                customer_name ,
+                shipping_name ,
+                shipping_address, 
+                shipping_address1, 
+                shipping_address2 ,
+                shipping_phone ,
+                shipping_city ,
+                shipping_post_code, 
+                shipping_region ,
+                shipping_district, 
+                payment_method ,
+                tracking_code ,
+                ol_store_sku ,
+                ol_store_id ,
+                checkout_id ,
+                sku ,
+                design_price, 
+                sales_order_det_qty, 
+                shipping_price ,
+                other_price ,
+                grams ,
+                total_disc_order ,
+                discount_allocations_amo ,
+                financial_status 
+                ) VALUES(
+                '" + id + "',
+                '" + id_comp_group + "',
+                '" + sales_order_ol_shop_number + "',
+                '" + sales_order_ol_shop_date + "',
+                '" + customer_name + "',
+                '" + shipping_name + "',
+                '" + shipping_address + "',
+                '" + shipping_address1 + "',
+                '" + shipping_address2 + "',
+                '" + shipping_phone + "',
+                '" + shipping_city + "',
+                '" + shipping_post_code + "', 
+                '" + shipping_region + "',
+                '" + shipping_district + "',
+                '" + payment_method + "',
+                '" + tracking_code + "',
+                '" + ol_store_sku + "',
+                '" + ol_store_id + "',
+                '" + checkout_id + "',
+                '" + sku + "',
+                '" + design_price + "', 
+                '" + sales_order_det_qty + "', 
+                '" + shipping_price + "',
+                '" + other_price + "',
+                '" + grams + "',
+                '" + total_disc_order + "', 
+                '" + discount_allocations_amo + "', 
+                '" + financial_status + "'    
+                );"
+                execute_non_query_long(query, True, "", "", "", "")
             End If
         End Using
         response.Close()
