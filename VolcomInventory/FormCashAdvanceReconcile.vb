@@ -41,12 +41,12 @@
     End Sub
 
     Sub load_acc()
-        Dim query As String = "SELECT id_acc, acc_name, acc_description FROM tb_a_acc WHERE id_is_det='2'"
-        viewSearchLookupRepositoryQuery(RSLECOA, query, 0, "acc_name", "id_acc")
-        viewSearchLookupRepositoryQuery(RSLECOABW, query, 0, "acc_name", "id_acc")
-        viewSearchLookupRepositoryQuery(RSLECOABD, query, 0, "acc_name", "id_acc")
-        viewSearchLookupRepositoryQuery(RSLECOABCFROM, query, 0, "acc_name", "id_acc")
-        viewSearchLookupRepositoryQuery(RSLECOABCTO, query, 0, "acc_name", "id_acc")
+        Dim query As String = "SELECT id_acc, acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_is_det='2'"
+        viewSearchLookupRepositoryQuery(RSLECOA, query, 0, "acc_name_description", "id_acc")
+        viewSearchLookupRepositoryQuery(RSLECOABW, query, 0, "acc_name_description", "id_acc")
+        viewSearchLookupRepositoryQuery(RSLECOABD, query, 0, "acc_name_description", "id_acc")
+        viewSearchLookupRepositoryQuery(RSLECOABCFROM, query, 0, "acc_name_description", "id_acc")
+        viewSearchLookupRepositoryQuery(RSLECOABCTO, query, 0, "acc_name_description", "id_acc")
     End Sub
 
     Sub load_comp()
