@@ -299,12 +299,18 @@ UPDATE tb_prod_order_cps2 SET `id_prod_order_cps2_reff`='" & id_copy_proto2 & "'
             query_where += " AND c.id_comp='" & SLEVendorCopyProto2.EditValue.ToString & "'"
         End If
         '
-        Dim query As String = "SELECT kp.*,IF(kp.is_void='1','Void','-') AS status,c.`comp_name` FROM tb_prod_order_cps2 kp
+        Dim query As String = "SELECT kp.*,IF(kp.is_void='1','Void','-') AS status,c.`comp_name` ,GROUP_CONCAT(dsg.design_code,' - ',dsg.design_display_name SEPARATOR '\n') AS design_list
+FROM tb_prod_order_cps2 kp
+INNER JOIN tb_prod_order_cps2_det kpd ON kpd.id_prod_order_cps2=kp.id_prod_order_cps2
+INNER JOIN tb_prod_order po ON po.id_prod_order=kpd.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=kp.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE kp.id_prod_order_cps2 
 IN (SELECT MAX(id_prod_order_cps2) AS id FROM `tb_prod_order_cps2`
-GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY kp.id_prod_order_cps2 DESC"
+GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " GROUP BY kp.id_prod_order_cps2
+ORDER BY kp.id_prod_order_cps2 DESC"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCopyProto2.DataSource = data

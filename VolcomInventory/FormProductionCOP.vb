@@ -84,6 +84,9 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                     '
                     BUpdateCOP.Enabled = False
                 Else
+                    If TEAddCost.EditValue = 0 Then
+                        TEAddCost.EditValue = data.Rows(0)("prod_order_cop_pd_addcost")
+                    End If
                     BApprove.Text = "Lock + Approve"
                     '
                     SLECurrentBOM.Enabled = True

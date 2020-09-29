@@ -1911,7 +1911,7 @@ Partial Class FormReportBalanceSheet
         'GridColumn45
         '
         Me.GridColumn45.Caption = "Tarif"
-        Me.GridColumn45.DisplayFormat.FormatString = "N2"
+        Me.GridColumn45.DisplayFormat.FormatString = "N0"
         Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn45.FieldName = "pph"
         Me.GridColumn45.MinWidth = 70
@@ -1926,7 +1926,7 @@ Partial Class FormReportBalanceSheet
         'GridColumn46
         '
         Me.GridColumn46.Caption = "DPP"
-        Me.GridColumn46.DisplayFormat.FormatString = "N2"
+        Me.GridColumn46.DisplayFormat.FormatString = "N0"
         Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn46.FieldName = "dpp"
         Me.GridColumn46.MinWidth = 70
