@@ -22,6 +22,8 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOSBrowseInvoice))
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItemViewDetail = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,28 +34,46 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPick = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItemViewDetail = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEProductCode = New DevExpress.XtraEditors.TextEdit()
+        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBViewAll = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        Me.ContextMenuStrip.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCInvoice
         '
         Me.GCInvoice.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCInvoice.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCInvoice.Location = New System.Drawing.Point(0, 0)
+        Me.GCInvoice.Location = New System.Drawing.Point(0, 52)
         Me.GCInvoice.MainView = Me.GVInvoice
         Me.GCInvoice.Name = "GCInvoice"
-        Me.GCInvoice.Size = New System.Drawing.Size(784, 516)
+        Me.GCInvoice.Size = New System.Drawing.Size(784, 464)
         Me.GCInvoice.TabIndex = 0
         Me.GCInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoice})
+        '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemViewDetail})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(133, 26)
+        '
+        'ToolStripMenuItemViewDetail
+        '
+        Me.ToolStripMenuItemViewDetail.Name = "ToolStripMenuItemViewDetail"
+        Me.ToolStripMenuItemViewDetail.Size = New System.Drawing.Size(132, 22)
+        Me.ToolStripMenuItemViewDetail.Text = "View Detail"
         '
         'GVInvoice
         '
@@ -146,6 +166,12 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 7
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "GridColumn10"
+        Me.GridColumn10.FieldName = "report_mark_type"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SBPick)
@@ -164,23 +190,48 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.SBPick.TabIndex = 0
         Me.SBPick.Text = "Pick"
         '
-        'ContextMenuStrip
+        'PanelControl2
         '
-        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemViewDetail})
-        Me.ContextMenuStrip.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(133, 26)
+        Me.PanelControl2.Controls.Add(Me.SBViewAll)
+        Me.PanelControl2.Controls.Add(Me.SBView)
+        Me.PanelControl2.Controls.Add(Me.TEProductCode)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(784, 52)
+        Me.PanelControl2.TabIndex = 2
         '
-        'ToolStripMenuItemViewDetail
+        'LabelControl1
         '
-        Me.ToolStripMenuItemViewDetail.Name = "ToolStripMenuItemViewDetail"
-        Me.ToolStripMenuItemViewDetail.Size = New System.Drawing.Size(152, 22)
-        Me.ToolStripMenuItemViewDetail.Text = "View Detail"
+        Me.LabelControl1.Location = New System.Drawing.Point(14, 19)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Product Code"
         '
-        'GridColumn10
+        'TEProductCode
         '
-        Me.GridColumn10.Caption = "GridColumn10"
-        Me.GridColumn10.FieldName = "report_mark_type"
-        Me.GridColumn10.Name = "GridColumn10"
+        Me.TEProductCode.Location = New System.Drawing.Point(89, 16)
+        Me.TEProductCode.Name = "TEProductCode"
+        Me.TEProductCode.Size = New System.Drawing.Size(210, 20)
+        Me.TEProductCode.TabIndex = 1
+        '
+        'SBView
+        '
+        Me.SBView.Location = New System.Drawing.Point(305, 14)
+        Me.SBView.Name = "SBView"
+        Me.SBView.Size = New System.Drawing.Size(75, 23)
+        Me.SBView.TabIndex = 2
+        Me.SBView.Text = "View"
+        '
+        'SBViewAll
+        '
+        Me.SBViewAll.Location = New System.Drawing.Point(386, 14)
+        Me.SBViewAll.Name = "SBViewAll"
+        Me.SBViewAll.Size = New System.Drawing.Size(75, 23)
+        Me.SBViewAll.TabIndex = 3
+        Me.SBViewAll.Text = "View All"
         '
         'FormSalesPOSBrowseInvoice
         '
@@ -188,16 +239,21 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.GCInvoice)
+        Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormSalesPOSBrowseInvoice"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Browse Invoice"
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        Me.ContextMenuStrip.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -218,4 +274,9 @@ Partial Class FormSalesPOSBrowseInvoice
     Friend WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents ToolStripMenuItemViewDetail As ToolStripMenuItem
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBViewAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEProductCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class
