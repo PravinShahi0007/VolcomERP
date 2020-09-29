@@ -99,6 +99,13 @@ Public Class FormSalesPOSDet
             CheckEditInvType.Text = "Credit Note Missing"
             TxtCodeCompFrom.Focus()
             print_title = "CREDIT NOTE SLIP"
+            PanelCN.Visible = True
+            SBBrowseInvoice.Enabled = True
+            BtnListProduct.Visible = True
+            BtnImport.Visible = False
+            BtnImportOLStore.Visible = False
+            BtnLoadFromBOF.Visible = False
+            BtnSelectDiscount.Enabled = False
         ElseIf id_menu = "3" Then
             Text = "Invoice Missing Promo"
             LEInvType.Enabled = False
@@ -258,6 +265,7 @@ Public Class FormSalesPOSDet
             BMark.Enabled = True
             GridColumnNote.Visible = False
             BtnGetKurs.Enabled = False
+            SBBrowseInvoice.Enabled = False
 
             'query view based on edit id's
             Dim query As String = ""
@@ -269,6 +277,9 @@ Public Class FormSalesPOSDet
             query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name,a.kurs_trans "
             If id_menu = "5" Then
                 query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`, sor.customer_name AS `customer_name_ref` "
+            End If
+            If id_menu = "2" Then
+                query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref` "
             End If
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
@@ -287,6 +298,16 @@ Public Class FormSalesPOSDet
                     INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = pdr.id_pl_sales_order_del_det
                     INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
                     INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                    WHERE pd.id_sales_pos=" + id_sales_pos + "
+                    GROUP BY pd.id_sales_pos
+                ) sor ON sor.id_sales_pos = a.id_sales_pos "
+            End If
+            If id_menu = "2" Then
+                query += "LEFT JOIN (
+                    SELECT pd.id_sales_pos, pr.sales_pos_number 
+                    FROM tb_sales_pos_det pd
+                    INNER JOIN tb_sales_pos_det pdr ON pdr.id_sales_pos_det = pd.id_sales_pos_det_ref
+                    INNER JOIN tb_sales_pos pr ON pr.id_sales_pos = pdr.id_sales_pos
                     WHERE pd.id_sales_pos=" + id_sales_pos + "
                     GROUP BY pd.id_sales_pos
                 ) sor ON sor.id_sales_pos = a.id_sales_pos "
@@ -315,6 +336,8 @@ Public Class FormSalesPOSDet
                 TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number_ref").ToString
                 TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
                 TXTName.Text = data.Rows(0)("customer_name_ref").ToString
+            ElseIf id_menu = "2" Then
+                TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
             Else
                 TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
                 TXTName.Text = data.Rows(0)("customer_name").ToString
@@ -2730,5 +2753,13 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnGetKurs_Click(sender As Object, e As EventArgs) Handles BtnGetKurs.Click
         load_kurs()
+    End Sub
+
+    Private Sub SBBrowseInvoice_Click(sender As Object, e As EventArgs) Handles SBBrowseInvoice.Click
+        If Not id_comp = "-1" Then
+            FormSalesPOSBrowseInvoice.ShowDialog()
+        Else
+            stopCustom("Please select store.")
+        End If
     End Sub
 End Class

@@ -10263,6 +10263,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMaterialRequisition.show_but_mrs()
         ElseIf formName = "FormABGRoyaltyZone" Then
             FormABGRoyaltyZone.viewData()
+        ElseIf formName = "FormMasterCompany" Then
+            FormMasterCompany.view_company()
         End If
     End Sub
     'Switch
