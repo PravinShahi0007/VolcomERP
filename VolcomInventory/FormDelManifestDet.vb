@@ -755,6 +755,15 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
         '
         If id_del_manifest = "0" Then
             Dim q_weight As String = ""
+            'get all awbill
+            Dim id_awb As String = ""
+            For i As Integer = 0 To GVList.RowCount - 1
+                If Not i = 0 Then
+                    id_awb += ","
+                End If
+                id_awb += GVList.GetRowCellValue(i, "id_awbill").ToString
+            Next
+
             If SLEOnlineShop.EditValue.ToString = "1" Then
                 'online
                 q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
@@ -762,7 +771,7 @@ FROM
 (
 SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height,SUM(awb.`weight_calc`) AS volume
 FROM tb_wh_awbill_det awbd
-INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
 INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
@@ -777,7 +786,7 @@ FROM
 (
 	SELECT awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
 	FROM tb_wh_awbill_det awbd
-	INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5
+	INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
 	INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
 	INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
 	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
@@ -885,6 +894,23 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
         Else
             e.Merge = False
             e.Handled = True
+        End If
+    End Sub
+
+    Private Sub BBRemove_Click(sender As Object, e As EventArgs) Handles BBRemove.Click
+        If GVList.RowCount > 0 Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to remove this koli ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id_awb As String = GVList.GetFocusedRowCellValue("id_awbill").ToString
+                For i = GVList.RowCount - 1 To 0 Step -1
+                    If GVList.GetRowCellValue(i, "id_awbill").ToString = id_awb Then
+                        GVList.DeleteRow(i)
+                    End If
+                Next
+                load_cargo_rate()
+            End If
         End If
     End Sub
 End Class

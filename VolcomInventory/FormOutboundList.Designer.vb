@@ -84,12 +84,12 @@ Partial Class FormOutboundList
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(100, 26)
         '
         'ViewDocumentToolStripMenuItem
         '
         Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
-        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
         Me.ViewDocumentToolStripMenuItem.Text = "Print"
         '
         'GVOutbound
@@ -178,6 +178,7 @@ Partial Class FormOutboundList
         '
         Me.XTPHistory.Controls.Add(Me.PanelControl2)
         Me.XTPHistory.Name = "XTPHistory"
+        Me.XTPHistory.PageVisible = False
         Me.XTPHistory.Size = New System.Drawing.Size(910, 494)
         Me.XTPHistory.Text = "History"
         '

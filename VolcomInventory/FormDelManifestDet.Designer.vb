@@ -134,6 +134,8 @@ Partial Class FormDelManifestDet
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGenOffline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.BBRemove = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,6 +177,7 @@ Partial Class FormDelManifestDet
         Me.PCOffline.SuspendLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label7
@@ -696,6 +699,7 @@ Partial Class FormDelManifestDet
         '
         'GCList
         '
+        Me.GCList.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCList.Location = New System.Drawing.Point(0, 159)
         Me.GCList.MainView = Me.GVList
@@ -1261,6 +1265,18 @@ Partial Class FormDelManifestDet
         Me.LabelControl2.TabIndex = 19
         Me.LabelControl2.Text = "Store"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BBRemove})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(141, 26)
+        '
+        'BBRemove
+        '
+        Me.BBRemove.Name = "BBRemove"
+        Me.BBRemove.Size = New System.Drawing.Size(152, 22)
+        Me.BBRemove.Text = "Remove Koli"
+        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1322,6 +1338,7 @@ Partial Class FormDelManifestDet
         Me.PCOffline.PerformLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1439,4 +1456,6 @@ Partial Class FormDelManifestDet
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TERemarkDiff As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LRemarkDiff As Label
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents BBRemove As ToolStripMenuItem
 End Class
