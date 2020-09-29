@@ -5248,6 +5248,12 @@
     <Compile Include="FormSalesOrderSvcLevel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSBrowseInvoice.Designer.vb">
+      <DependentUpon>FormSalesPOSBrowseInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSBrowseInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSCheck.Designer.vb">
       <DependentUpon>FormSalesPOSCheck.vb</DependentUpon>
     </Compile>
@@ -11381,6 +11387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSBrowseInvoice.resx">
+      <DependentUpon>FormSalesPOSBrowseInvoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSCheck.resx">
       <DependentUpon>FormSalesPOSCheck.vb</DependentUpon>
