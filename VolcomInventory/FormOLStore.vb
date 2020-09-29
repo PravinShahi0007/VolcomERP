@@ -2,12 +2,22 @@
     Private Sub FormOLStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         setDateNow()
         viewComp()
+        viewOLStore()
     End Sub
 
     Sub setDateNow()
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
+    End Sub
+
+    Sub viewOLStore()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT cg.id_comp_group, cg.description 
+        FROM tb_m_comp_group cg WHERE cg.is_use_api=1
+        ORDER BY cg.idx_prior_order ASC "
+        viewSearchLookupQuery(SLEOLStore, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewComp()
@@ -464,10 +474,13 @@
         Cursor = Cursors.WaitCursor
 
         'cek freeze
-        Dim qf As String = "SELECT c.id_comp ,cm.comp_number, cm.comp_name
-        FROM tb_m_comp_volcom_ol c
-        INNER JOIN tb_m_comp cm ON cm.id_comp = c.id_comp
-        WHERE cm.is_active=2 "
+        Dim id_comp_group As String = SLEOLStore.EditValue.ToString
+        Dim id_comp_in As String = execute_query("SELECT CONCAT(cc1.id_comp, ',',cc2.id_comp) AS `id_comp_all` 
+        FROM tb_m_comp_group c 
+        INNER JOIN tb_m_comp_contact cc1 ON cc1.id_comp_contact = c.id_wh_order_contact_normal
+        INNER JOIN tb_m_comp_contact cc2 ON cc2.id_comp_contact = c.id_wh_order_contact_sale
+        WHERE c.id_comp_group=64", 0, True, "", "", "", "")
+        Dim qf As String = "SELECT * FROM tb_m_comp c WHERE c.id_comp IN (" + id_comp_in + ") AND c.is_active=2 "
         Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
         If df.Rows.Count > 0 Then
             Cursor = Cursors.Default

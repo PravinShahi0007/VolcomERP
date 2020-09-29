@@ -201,6 +201,7 @@ Partial Class FormOLStore
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFailReason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote_promo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SBCloseOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -212,7 +213,12 @@ Partial Class FormOLStore
         Me.BtnAllOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnnote_promo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEOLStore = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -277,6 +283,10 @@ Partial Class FormOLStore
         Me.PanelControl3.SuspendLayout()
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripOwnOlStore.SuspendLayout()
+        CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -1901,8 +1911,17 @@ Partial Class FormOLStore
         Me.GridColumnFailReason.Visible = True
         Me.GridColumnFailReason.VisibleIndex = 25
         '
+        'GridColumnnote_promo
+        '
+        Me.GridColumnnote_promo.Caption = "Note Promo"
+        Me.GridColumnnote_promo.FieldName = "note_promo"
+        Me.GridColumnnote_promo.Name = "GridColumnnote_promo"
+        Me.GridColumnnote_promo.Visible = True
+        Me.GridColumnnote_promo.VisibleIndex = 20
+        '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.CEAllow)
         Me.PanelControl4.Controls.Add(Me.SBCloseOrder)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl4.Location = New System.Drawing.Point(0, 433)
@@ -1922,12 +1941,12 @@ Partial Class FormOLStore
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.CEAllow)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.BtnSyncOrder)
         Me.PanelControl3.Controls.Add(Me.BtnConfirmedOrder)
         Me.PanelControl3.Controls.Add(Me.BtnPendingOrder)
         Me.PanelControl3.Controls.Add(Me.BtnAllOrder)
+        Me.PanelControl3.Controls.Add(Me.PanelControl5)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
@@ -1936,7 +1955,7 @@ Partial Class FormOLStore
         '
         'CEAllow
         '
-        Me.CEAllow.Location = New System.Drawing.Point(112, 12)
+        Me.CEAllow.Location = New System.Drawing.Point(10, 14)
         Me.CEAllow.Name = "CEAllow"
         Me.CEAllow.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CEAllow.Properties.Appearance.ForeColor = System.Drawing.Color.DarkRed
@@ -1961,7 +1980,7 @@ Partial Class FormOLStore
         '
         Me.BtnSyncOrder.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnSyncOrder.Image = CType(resources.GetObject("BtnSyncOrder.Image"), System.Drawing.Image)
-        Me.BtnSyncOrder.Location = New System.Drawing.Point(2, 2)
+        Me.BtnSyncOrder.Location = New System.Drawing.Point(250, 2)
         Me.BtnSyncOrder.Name = "BtnSyncOrder"
         Me.BtnSyncOrder.Size = New System.Drawing.Size(104, 39)
         Me.BtnSyncOrder.TabIndex = 0
@@ -2009,13 +2028,56 @@ Partial Class FormOLStore
         Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
         '
-        'GridColumnnote_promo
+        'SLEOLStore
         '
-        Me.GridColumnnote_promo.Caption = "Note Promo"
-        Me.GridColumnnote_promo.FieldName = "note_promo"
-        Me.GridColumnnote_promo.Name = "GridColumnnote_promo"
-        Me.GridColumnnote_promo.Visible = True
-        Me.GridColumnnote_promo.VisibleIndex = 20
+        Me.SLEOLStore.Location = New System.Drawing.Point(53, 10)
+        Me.SLEOLStore.Name = "SLEOLStore"
+        Me.SLEOLStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEOLStore.Properties.ShowClearButton = False
+        Me.SLEOLStore.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEOLStore.Size = New System.Drawing.Size(181, 20)
+        Me.SLEOLStore.TabIndex = 5
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumndescription})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.SLEOLStore)
+        Me.PanelControl5.Controls.Add(Me.LabelControl1)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl5.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(248, 39)
+        Me.PanelControl5.TabIndex = 5
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(8, 13)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "OL Store"
+        '
+        'GridColumnid_comp_group
+        '
+        Me.GridColumnid_comp_group.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
+        '
+        'GridColumndescription
+        '
+        Me.GridColumndescription.Caption = "Store"
+        Me.GridColumndescription.FieldName = "description"
+        Me.GridColumndescription.Name = "GridColumndescription"
+        Me.GridColumndescription.Visible = True
+        Me.GridColumndescription.VisibleIndex = 0
         '
         'FormOLStore
         '
@@ -2092,6 +2154,11 @@ Partial Class FormOLStore
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripOwnOlStore.ResumeLayout(False)
+        CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2288,4 +2355,10 @@ Partial Class FormOLStore
     Friend WithEvents SBCloseOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnFailReason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote_promo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLEOLStore As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
 End Class
