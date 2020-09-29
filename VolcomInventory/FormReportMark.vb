@@ -1830,6 +1830,14 @@
             End If
             '
             'infoCustom("Status changed.")
+            '
+            If id_status_reportx = "6" Then
+                Dim nm As New ClassSendEmail
+                nm.id_report = id_report
+                nm.report_mark_type = report_mark_type
+                nm.send_email()
+            End If
+
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
                 FormProductionDet.allow_status()
