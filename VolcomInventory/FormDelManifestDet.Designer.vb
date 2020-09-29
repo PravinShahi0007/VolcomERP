@@ -773,7 +773,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnCombinedNumber.FieldName = "combine_number"
         Me.GridColumnCombinedNumber.Name = "GridColumnCombinedNumber"
         Me.GridColumnCombinedNumber.OptionsColumn.AllowEdit = False
-        Me.GridColumnCombinedNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnCombinedNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCombinedNumber.Visible = True
         Me.GridColumnCombinedNumber.VisibleIndex = 2
         '
@@ -828,7 +828,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnQty.MaxWidth = 50
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
-        Me.GridColumnQty.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnQty.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 5
@@ -853,7 +853,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnWeight.FieldName = "weight"
         Me.GridColumnWeight.Name = "GridColumnWeight"
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
-        Me.GridColumnWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnWeight.Visible = True
         Me.GridColumnWeight.VisibleIndex = 7
         '
@@ -865,7 +865,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnP.FieldName = "width"
         Me.GridColumnP.Name = "GridColumnP"
         Me.GridColumnP.OptionsColumn.AllowEdit = False
-        Me.GridColumnP.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnP.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnP.Visible = True
         Me.GridColumnP.VisibleIndex = 8
         '
@@ -877,7 +877,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnL.FieldName = "length"
         Me.GridColumnL.Name = "GridColumnL"
         Me.GridColumnL.OptionsColumn.AllowEdit = False
-        Me.GridColumnL.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnL.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnL.Visible = True
         Me.GridColumnL.VisibleIndex = 9
         '
@@ -889,7 +889,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnT.FieldName = "height"
         Me.GridColumnT.Name = "GridColumnT"
         Me.GridColumnT.OptionsColumn.AllowEdit = False
-        Me.GridColumnT.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnT.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnT.Visible = True
         Me.GridColumnT.VisibleIndex = 10
         '
@@ -901,7 +901,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnDim.FieldName = "volume"
         Me.GridColumnDim.Name = "GridColumnDim"
         Me.GridColumnDim.OptionsColumn.AllowEdit = False
-        Me.GridColumnDim.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnDim.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnDim.Visible = True
         Me.GridColumnDim.VisibleIndex = 11
         '

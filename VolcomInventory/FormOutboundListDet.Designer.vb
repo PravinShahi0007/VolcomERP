@@ -59,6 +59,7 @@ Partial Class FormOutboundListDet
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.BNotApprove = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintLabel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,7 +152,7 @@ Partial Class FormOutboundListDet
         Me.PanelControl2.Controls.Add(Me.SLEDelType)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 305)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 304)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(508, 71)
         Me.PanelControl2.TabIndex = 1
@@ -217,7 +218,7 @@ Partial Class FormOutboundListDet
         Me.PCWeight.Controls.Add(Me.LabelControl3)
         Me.PCWeight.Controls.Add(Me.TEPanjang)
         Me.PCWeight.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCWeight.Location = New System.Drawing.Point(0, 376)
+        Me.PCWeight.Location = New System.Drawing.Point(0, 375)
         Me.PCWeight.Name = "PCWeight"
         Me.PCWeight.Size = New System.Drawing.Size(508, 60)
         Me.PCWeight.TabIndex = 2
@@ -336,7 +337,7 @@ Partial Class FormOutboundListDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 109)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(508, 196)
+        Me.GroupControl1.Size = New System.Drawing.Size(508, 195)
         Me.GroupControl1.TabIndex = 3
         Me.GroupControl1.Text = "SDO List"
         '
@@ -346,7 +347,7 @@ Partial Class FormOutboundListDet
         Me.GCDO.Location = New System.Drawing.Point(2, 20)
         Me.GCDO.MainView = Me.GVDO
         Me.GCDO.Name = "GCDO"
-        Me.GCDO.Size = New System.Drawing.Size(504, 174)
+        Me.GCDO.Size = New System.Drawing.Size(504, 173)
         Me.GCDO.TabIndex = 2
         Me.GCDO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDO})
         '
@@ -408,12 +409,13 @@ Partial Class FormOutboundListDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BPrintLabel)
         Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 436)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 435)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(508, 100)
+        Me.PanelControl3.Size = New System.Drawing.Size(508, 129)
         Me.PanelControl3.TabIndex = 4
         '
         'MENote
@@ -440,7 +442,7 @@ Partial Class FormOutboundListDet
         Me.BApprove.Appearance.Options.UseFont = True
         Me.BApprove.Appearance.Options.UseForeColor = True
         Me.BApprove.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BApprove.Location = New System.Drawing.Point(0, 568)
+        Me.BApprove.Location = New System.Drawing.Point(0, 596)
         Me.BApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -459,7 +461,7 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.Appearance.Options.UseFont = True
         Me.BNotApprove.Appearance.Options.UseForeColor = True
         Me.BNotApprove.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BNotApprove.Location = New System.Drawing.Point(0, 536)
+        Me.BNotApprove.Location = New System.Drawing.Point(0, 564)
         Me.BNotApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BNotApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BNotApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -469,11 +471,30 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.TabIndex = 21
         Me.BNotApprove.Text = "Not Approve"
         '
+        'BPrintLabel
+        '
+        Me.BPrintLabel.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen
+        Me.BPrintLabel.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintLabel.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintLabel.Appearance.Options.UseBackColor = True
+        Me.BPrintLabel.Appearance.Options.UseFont = True
+        Me.BPrintLabel.Appearance.Options.UseForeColor = True
+        Me.BPrintLabel.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BPrintLabel.Location = New System.Drawing.Point(2, 95)
+        Me.BPrintLabel.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintLabel.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintLabel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintLabel.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintLabel.Name = "BPrintLabel"
+        Me.BPrintLabel.Size = New System.Drawing.Size(504, 32)
+        Me.BPrintLabel.TabIndex = 21
+        Me.BPrintLabel.Text = "Print Label"
+        '
         'FormOutboundListDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(508, 600)
+        Me.ClientSize = New System.Drawing.Size(508, 628)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PCWeight)
@@ -558,4 +579,5 @@ Partial Class FormOutboundListDet
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEStore As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BPrintLabel As DevExpress.XtraEditors.SimpleButton
 End Class

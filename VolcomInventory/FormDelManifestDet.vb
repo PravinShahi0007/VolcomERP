@@ -306,12 +306,20 @@ GROUP BY cg.`id_comp_group`"
     End Sub
 
     Sub save(ByVal type As String)
+        'check awb
+        Dim qc As String = "SELECT awbill_no FROM tb_wh_awbill WHERE awbill_no='" & TEAwb.Text & "' AND id_report_status!=5
+UNION ALL
+SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & TEAwb.Text & "' AND id_report_status!=5 AND id_del_manifest!='" & id_del_manifest & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+
         If GVList.RowCount < 1 Then
             stopCustom("DO not found.")
         ElseIf TERemarkDiff.Visible = True And TERemarkDiff.Text = "" Then
             stopCustom("Please put remark why choose this 3PL.")
         ElseIf TEAwb.Text = "" Then
             stopCustom("Please put awb/resi number.")
+        ElseIf dtc.Rows.Count > 0 Then
+            stopCustom("AWB number already used.")
         Else
             Dim continue_save As Boolean = True
             If type = "save" Or type = "cancel" Then
@@ -741,9 +749,9 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
     End Sub
     '
     Sub load_cargo_rate()
-        Dim berat_terpakai As Decimal = 0.0
-        Dim berat_dim As Decimal = 0.0
-        Dim berat_aktual As Decimal = 0.0
+        Dim berat_terpakai As Decimal = 0.00
+        Dim berat_dim As Decimal = 0.00
+        Dim berat_aktual As Decimal = 0.00
         '
         If id_del_manifest = "0" Then
             Dim q_weight As String = ""
@@ -868,5 +876,15 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
         TECWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
         TERate.EditValue = GVCargoRate.GetFocusedRowCellValue("cargo_rate")
         TETotalRate.EditValue = GVCargoRate.GetFocusedRowCellValue("amount")
+    End Sub
+
+    Private Sub GVList_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVList.CellMerge
+        If GVList.GetRowCellValue(e.RowHandle1, "id_awbill").ToString = GVList.GetRowCellValue(e.RowHandle2, "id_awbill").ToString Then
+            e.Merge = True
+            e.Handled = True
+        Else
+            e.Merge = False
+            e.Handled = True
+        End If
     End Sub
 End Class
