@@ -82,7 +82,7 @@
         FROM tb_sales_branch m 
         INNER JOIN tb_a_acc coa ON coa.id_acc = m.rev_sale_net_acc
         LEFT JOIN tb_m_comp c ON c.id_comp = m.id_comp_sale
-        WHERE m.id_sales_branch=" + id + " AND m.rev_normal_net>0
+        WHERE m.id_sales_branch=" + id + " AND m.rev_sale_net>0
         UNION ALL
         -- ppn sale
         SELECT coa.acc_name, c.comp_number, m.rev_sale_ppn_note AS `note`, 'K', m.rev_sale_ppn AS `amount`

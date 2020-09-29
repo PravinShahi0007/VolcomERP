@@ -57,11 +57,12 @@ Partial Class FormSalesDelOrder
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSOList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesOrder = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DownloadShippingLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesTargetNumb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -84,6 +85,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnindeks_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
@@ -91,6 +93,8 @@ Partial Class FormSalesDelOrder
         Me.BtnShowUniform = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnShowAll = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlNavPrepare = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditRefresh = New DevExpress.XtraEditors.CheckEdit()
         Me.XTPSORef = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNewPrepare = New DevExpress.XtraGrid.GridControl()
@@ -99,7 +103,7 @@ Partial Class FormSalesDelOrder
         Me.TxtNoParam = New DevExpress.XtraEditors.ButtonEdit()
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
+        Me.TimerMonitor = New System.Windows.Forms.Timer()
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
@@ -126,6 +130,7 @@ Partial Class FormSalesDelOrder
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavPrepare.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditRefresh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSORef.SuspendLayout()
         CType(Me.GCNewPrepare, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -493,33 +498,40 @@ Partial Class FormSalesDelOrder
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint, Me.FileAttachmentToolStripMenuItem})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint, Me.FileAttachmentToolStripMenuItem, Me.DownloadShippingLabelToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(204, 92)
+        Me.ViewMenu.Size = New System.Drawing.Size(210, 136)
         '
         'ViewCombinedDeliveryToolStripMenuItem
         '
         Me.ViewCombinedDeliveryToolStripMenuItem.Name = "ViewCombinedDeliveryToolStripMenuItem"
-        Me.ViewCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ViewCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
         Me.ViewCombinedDeliveryToolStripMenuItem.Text = "View Combined Delivery"
         '
         'SMPrePrint
         '
         Me.SMPrePrint.Name = "SMPrePrint"
-        Me.SMPrePrint.Size = New System.Drawing.Size(203, 22)
+        Me.SMPrePrint.Size = New System.Drawing.Size(209, 22)
         Me.SMPrePrint.Text = "Pre Printing"
         '
         'SMPrint
         '
         Me.SMPrint.Name = "SMPrint"
-        Me.SMPrint.Size = New System.Drawing.Size(203, 22)
+        Me.SMPrint.Size = New System.Drawing.Size(209, 22)
         Me.SMPrint.Text = "Print"
         '
         'FileAttachmentToolStripMenuItem
         '
         Me.FileAttachmentToolStripMenuItem.Name = "FileAttachmentToolStripMenuItem"
-        Me.FileAttachmentToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.FileAttachmentToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
         Me.FileAttachmentToolStripMenuItem.Text = "File Attachment"
+        '
+        'DownloadShippingLabelToolStripMenuItem
+        '
+        Me.DownloadShippingLabelToolStripMenuItem.Name = "DownloadShippingLabelToolStripMenuItem"
+        Me.DownloadShippingLabelToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.DownloadShippingLabelToolStripMenuItem.Text = "Download Shipping Label"
+        Me.DownloadShippingLabelToolStripMenuItem.Visible = False
         '
         'GVSalesOrder
         '
@@ -712,6 +724,12 @@ Partial Class FormSalesDelOrder
         Me.GridColumnorder_type.Visible = True
         Me.GridColumnorder_type.VisibleIndex = 1
         '
+        'GridColumnindeks_order
+        '
+        Me.GridColumnindeks_order.Caption = "indeks_order"
+        Me.GridColumnindeks_order.FieldName = "indeks_order"
+        Me.GridColumnindeks_order.Name = "GridColumnindeks_order"
+        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
@@ -813,6 +831,30 @@ Partial Class FormSalesDelOrder
         Me.PanelControlNavPrepare.Name = "PanelControlNavPrepare"
         Me.PanelControlNavPrepare.Size = New System.Drawing.Size(793, 22)
         Me.PanelControlNavPrepare.TabIndex = 4
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Segoe UI", 6.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl4.Location = New System.Drawing.Point(35, 5)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(64, 12)
+        Me.LabelControl4.TabIndex = 144
+        Me.LabelControl4.Text = "Priority Orders"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Appearance.BackColor = System.Drawing.Color.Yellow
+        Me.PanelControl2.Appearance.BorderColor = System.Drawing.Color.White
+        Me.PanelControl2.Appearance.Options.UseBackColor = True
+        Me.PanelControl2.Appearance.Options.UseBorderColor = True
+        Me.PanelControl2.Location = New System.Drawing.Point(9, 5)
+        Me.PanelControl2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Yellow
+        Me.PanelControl2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.PanelControl2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(24, 13)
+        Me.PanelControl2.TabIndex = 143
         '
         'CheckEditRefresh
         '
@@ -929,6 +971,8 @@ Partial Class FormSalesDelOrder
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavPrepare.ResumeLayout(False)
+        Me.PanelControlNavPrepare.PerformLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditRefresh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSORef.ResumeLayout(False)
         CType(Me.GCNewPrepare, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1020,4 +1064,8 @@ Partial Class FormSalesDelOrder
     Friend WithEvents BtnSyncOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumntotal_amount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BOutboundLabel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnindeks_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DownloadShippingLabelToolStripMenuItem As ToolStripMenuItem
 End Class

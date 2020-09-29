@@ -104,7 +104,16 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             Next
 
             'parent
-            Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc WHERE CHAR_LENGTH(acc_name) IN (4) ORDER BY acc_name ASC"
+            Dim where_coa_type As String = ""
+            If SLEUnit.EditValue.ToString = "0" Then
+                where_coa_type = ""
+            ElseIf SLEUnit.EditValue.ToString = "1" Then
+                where_coa_type = " AND id_coa_type = 1 "
+            Else
+                where_coa_type = " AND id_coa_type = 2 "
+            End If
+
+            Dim query_parent As String = "SELECT id_acc, id_acc_parent, acc_name, acc_description FROM tb_a_acc WHERE CHAR_LENGTH(acc_name) IN (4) " & where_coa_type & " ORDER BY acc_name ASC"
 
             Dim data_parent As DataTable = execute_query(query_parent, -1, True, "", "", "", "")
 

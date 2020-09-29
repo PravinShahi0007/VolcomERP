@@ -19,7 +19,6 @@ Partial Class FormSalesOrderSvcLevel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesOrderSvcLevel))
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.PanelSelect = New DevExpress.XtraEditors.PanelControl()
@@ -65,7 +64,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewDetailOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintPrepareOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -120,7 +119,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPRec = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPL = New DevExpress.XtraGrid.GridControl()
-        Me.ViewRevProduct = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewRevProduct = New System.Windows.Forms.ContextMenuStrip()
         Me.PrintUniqueCodeToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPL = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -164,7 +163,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPDelOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesDelOrder = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CancellCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -195,6 +194,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnid_del_manifest = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmanifest_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LinkManifest = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.GridColumnawbill_no = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateDO = New DevExpress.XtraEditors.SimpleButton()
@@ -212,7 +212,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPReturn = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesReturn = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreReturn = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreReturn = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CancelCombineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesReturn = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -251,7 +251,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPReturnQC = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesReturnQC = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreReturnTransfer = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreReturnTransfer = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesReturnQC = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesReturnQCNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -283,7 +283,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPTrf = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGTrf = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreTransfer = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreTransfer = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGTrf = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnFGTrfNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -343,7 +343,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnawbill_no = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPClosingSuratJalan = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -956,7 +956,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTCSvcLevel.SelectedTabPage = Me.XTPPrepareOrder
         Me.XTCSvcLevel.Size = New System.Drawing.Size(1030, 416)
         Me.XTCSvcLevel.TabIndex = 4
-        Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv})
+        Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv, Me.XTPClosingSuratJalan})
         '
         'XTPPrepareOrder
         '
@@ -2108,6 +2108,14 @@ Partial Class FormSalesOrderSvcLevel
         '
         Me.LinkManifest.AutoHeight = False
         Me.LinkManifest.Name = "LinkManifest"
+        '
+        'GridColumnawbill_no
+        '
+        Me.GridColumnawbill_no.Caption = "AWB"
+        Me.GridColumnawbill_no.FieldName = "awbill_no"
+        Me.GridColumnawbill_no.Name = "GridColumnawbill_no"
+        Me.GridColumnawbill_no.Visible = True
+        Me.GridColumnawbill_no.VisibleIndex = 15
         '
         'GridView6
         '
@@ -3526,13 +3534,11 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
         '
-        'GridColumnawbill_no
+        'XTPClosingSuratJalan
         '
-        Me.GridColumnawbill_no.Caption = "AWB"
-        Me.GridColumnawbill_no.FieldName = "awbill_no"
-        Me.GridColumnawbill_no.Name = "GridColumnawbill_no"
-        Me.GridColumnawbill_no.Visible = True
-        Me.GridColumnawbill_no.VisibleIndex = 15
+        Me.XTPClosingSuratJalan.Name = "XTPClosingSuratJalan"
+        Me.XTPClosingSuratJalan.Size = New System.Drawing.Size(1024, 388)
+        Me.XTPClosingSuratJalan.Text = "Closing Surat Jalan"
         '
         'FormSalesOrderSvcLevel
         '
@@ -4001,4 +4007,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumnmanifest_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LinkManifest As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumnawbill_no As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPClosingSuratJalan As DevExpress.XtraTab.XtraTabPage
 End Class

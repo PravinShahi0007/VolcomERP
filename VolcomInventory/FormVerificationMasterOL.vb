@@ -8,6 +8,16 @@
     End Sub
 
     Sub form_load()
+        Dim query_in As String = ""
+
+        If id_departement_user = "11" Then
+            query_in = "653, 1177"
+        ElseIf id_departement_user = "9" Then
+            query_in = "1212"
+        Else
+            query_in = "0"
+        End If
+
         Dim query As String = "
             SELECT vm.id_verification_master, c.comp_name, cd.display_name, vm.file_name, IF(m.is_match = 0, 'Not Matched', 'Matched') AS is_match, vm.created_date, e.employee_name AS created_by
             FROM tb_verification_master AS vm
@@ -42,8 +52,21 @@
                     MIN(IF(Variation <> Variation_erp, 0, 1))
                 ) AS is_match
                 FROM tb_verification_master_zalora
+                GROUP BY id_verification_master)
+                
+                UNION ALL
+
+                (SELECT id_verification_master, LEAST(
+                    MIN(IF(Option1Value <> Option1Value_erp, 0, 1)),
+                    MIN(IF(VariantSKU <> VariantSKU_erp, 0, 1)),
+                    MIN(IF(VariantPrice <> VariantPrice_erp, 0, 1)),
+                    MIN(IF(VariantCompareAtPrice <> VariantCompareAtPrice_erp, 0, 1)),
+                    MIN(IF(VariantBarcode <> VariantBarcode_erp, 0, 1))
+                ) AS is_match
+                FROM tb_verification_master_volcom
                 GROUP BY id_verification_master)   
             ) AS m ON vm.id_verification_master = m.id_verification_master
+            WHERE vm.id_comp IN (" + query_in + ")
             ORDER BY vm.created_date DESC
         "
 

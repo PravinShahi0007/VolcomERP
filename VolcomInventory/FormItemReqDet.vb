@@ -310,8 +310,9 @@ INNER JOIN tb_item_cat cat ON cat.id_item_cat=ic.id_item_cat
 INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & id_dep & "' AND i.id_item='" & GVData.GetRowCellValue(k, "id_item").ToString & "'"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
             If dtc.Rows.Count <= 0 Then
+                Dim select_note As String = execute_query("SELECT cat.item_cat FROM tb_item_coa ic INNER JOIN tb_item_cat cat ON cat.id_item_cat = ic.id_item_cat INNER JOIN tb_item i ON ic.id_item_cat = i.id_item_cat AND i.id_item = '" & GVData.GetRowCellValue(k, "id_item").ToString & "'", 0, True, "", "", "", "")
                 biaya_ok = False
-                biaya_ok_note += Environment.NewLine & "- Mapping " & dtc.Rows(0)("item_cat").ToString & " Departement " & TxtDept.Text
+                biaya_ok_note += Environment.NewLine & "- Mapping " & select_note & " Departement " & TxtDept.Text
                 Exit For
             End If
         Next

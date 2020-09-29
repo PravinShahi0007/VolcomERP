@@ -143,7 +143,31 @@ Public Class FormBankDepositDet
                     JOIN tb_opt_accounting a 
                     INNER JOIN tb_a_acc coa ON coa.id_acc = a.id_acc_payout_fee
                     WHERE p.id_list_payout_trans='" + id_list_payout_trans + "'
-                    GROUP BY p.id_list_payout_trans "
+                    GROUP BY p.id_list_payout_trans 
+                    UNION 
+                    /*other income & expense*/
+                    (SELECT 
+                    v.id_list_payout_ver AS `id_report`,0 AS `id_report_det`,
+                    rmt.`report_mark_type`, rmt.`report_mark_type_name`,v.`number`,
+                    cf.id_comp AS `id_comp`, 
+                    coa.id_acc AS `id_acc`, coa.acc_name, coa.acc_description,
+                    cf.comp_number AS `comp_number`,'' AS `vendor`, 0 AS `total_rec`,
+                    SUM(vd.value)*IF(vd.id_dc=1,-1,1) AS `value`,
+                    SUM(vd.value)*IF(vd.id_dc=1,-1,1) AS `balance_due`,
+                    CONCAT(coa.acc_description,' (Order No : ',v.order_number,')') AS `note`, vd.id_dc AS `id_dc`, dc.dc_code AS `dc_code`,
+                    SUM(vd.value) AS `value_view` 
+                    FROM  tb_list_payout_trans p 
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    JOIN tb_opt_accounting a 
+                    INNER JOIN tb_list_payout_det pd ON pd.id_list_payout_trans = p.id_list_payout_trans 
+                    INNER JOIN tb_list_payout_ver v ON v.id_list_payout_ver = pd.id_list_payout_ver
+                    INNER JOIN tb_list_payout_ver_det vd ON vd.id_list_payout_ver = v.id_list_payout_ver 
+                    INNER JOIN tb_a_acc coa ON coa.id_acc = vd.id_acc
+                    INNER JOIN tb_lookup_dc dc ON dc.id_dc = vd.id_dc
+                    JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=264
+                    WHERE p.id_list_payout_trans='" + id_list_payout_trans + "' 
+                    GROUP BY v.order_number, vd.id_list_payout_ver_det
+                    ORDER BY v.order_number ASC, id_dc ASC) "
                     Dim data_view_payout As DataTable = execute_query(query_view_payout, -1, True, "", "", "", "")
                     GCList.DataSource = data_view_payout
                     GVList.OptionsBehavior.ReadOnly = True
@@ -211,7 +235,31 @@ Public Class FormBankDepositDet
                     ) pyd ON pyd.id_report = sp.id_invoice_ship AND pyd.report_mark_type = sp.report_mark_type
                     LEFT JOIN tb_a_acc coa ON coa.id_acc = sp.id_acc_ar
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
-                    WHERE d.id_virtual_acc_trans=" + id_virtual_acc_trans + " "
+                    WHERE d.id_virtual_acc_trans=" + id_virtual_acc_trans + " 
+                    UNION
+                    /*other income & expense*/
+                    (SELECT 
+                    v.id_list_payout_ver AS `id_report`,0 AS `id_report_det`,
+                    rmt.report_mark_type AS `report_mark_type`, rmt.report_mark_type_name AS `report_mark_type_name`,v.number AS `number`,
+                    cf.id_comp AS `id_comp`, 
+                    coa.id_acc AS `id_acc`, coa.acc_name, coa.acc_description,
+                    cf.comp_number AS `comp_number`,'' AS `vendor`, 0 AS `total_rec`,
+                    SUM(vd.value)*IF(vd.id_dc=1,-1,1) AS `value`,
+                    SUM(vd.value)*IF(vd.id_dc=1,-1,1) AS `balance_due`,
+                    CONCAT(coa.acc_description,' (Order No : ',v.order_number,')') AS `note`, vd.id_dc AS `id_dc`, dc.dc_code AS `dc_code`,
+                    SUM(vd.value) AS `value_view` 
+                    FROM  tb_virtual_acc_trans p 
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    JOIN tb_opt_accounting a 
+                    INNER JOIN tb_virtual_acc_trans_inv pd ON pd.id_virtual_acc_trans = p.id_virtual_acc_trans 
+                    INNER JOIN tb_list_payout_ver v ON v.id_list_payout_ver = pd.id_list_payout_ver
+                    INNER JOIN tb_list_payout_ver_det vd ON vd.id_list_payout_ver = v.id_list_payout_ver 
+                    INNER JOIN tb_a_acc coa ON coa.id_acc = vd.id_acc
+                    INNER JOIN tb_lookup_dc dc ON dc.id_dc = vd.id_dc
+                    JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=265
+                    WHERE p.id_virtual_acc_trans='" + id_virtual_acc_trans + "' 
+                    GROUP BY v.order_number, vd.id_list_payout_ver_det
+                    ORDER BY v.order_number ASC, id_dc ASC) "
                     Dim data_view_trans As DataTable = execute_query(query_view_trans, -1, True, "", "", "", "")
                     GCList.DataSource = data_view_trans
                     GVList.OptionsBehavior.ReadOnly = True
@@ -370,6 +418,16 @@ Public Class FormBankDepositDet
             Dim jum_row As Integer = 0
 
             'header
+            Dim cc_draft As String = ""
+            If SLEUnit.EditValue.ToString = "1" Then
+                cc_draft = "000"
+            Else
+                Dim query_draft As String = "SELECT c.comp_number 
+                FROM tb_coa_tag t
+                INNER JOIN tb_m_comp c ON c.id_comp = t.id_comp
+                WHERE t.id_coa_tag='" + SLEUnit.EditValue.ToString + "' "
+                cc_draft = execute_query(query_draft, 0, True, "", "", "", "")
+            End If
             jum_row += 1
             Dim qh As String = "SELECT * FROM tb_a_acc WHERE id_acc='" + SLEPayRecTo.EditValue.ToString + "' "
             Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
@@ -377,7 +435,7 @@ Public Class FormBankDepositDet
             newRowh("no") = jum_row
             newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
             newRowh("acc_description") = dh.Rows(0)("acc_description").ToString
-            newRowh("cc") = "000"
+            newRowh("cc") = cc_draft
             newRowh("report_number") = ""
             newRowh("note") = MENote.Text
             newRowh("debit") = TETotal.EditValue
@@ -413,9 +471,18 @@ Public Class FormBankDepositDet
     End Sub
 
     Sub load_receive_from()
+        Dim id_unit As String = "-1"
+        Try
+            id_unit = SLEUnit.EditValue.ToString
+        Catch ex As Exception
+        End Try
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' "
         If id_deposit = "-1" Then
-            query += "AND id_coa_type='" + id_coa_type + "' "
+            If id_unit <> "1" Then
+                query += "AND id_coa_type='2' "
+            Else
+                query += "AND id_coa_type='1' "
+            End If
         End If
         viewSearchLookupQuery(SLEPayRecTo, query, "id_acc", "acc_description", "id_acc")
     End Sub
@@ -734,6 +801,9 @@ Public Class FormBankDepositDet
         If id_deposit = "-1" Then
             Cursor = Cursors.WaitCursor
             FormBankDepositAdd.action = "ins"
+            If SLEUnit.EditValue.ToString <> "1" Then
+                FormBankDepositAdd.id_coa_type = "2"
+            End If
             FormBankDepositAdd.ShowDialog()
             Cursor = Cursors.Default
         End If
@@ -747,6 +817,13 @@ Public Class FormBankDepositDet
                 FormBankDepositAdd.ShowDialog()
                 Cursor = Cursors.Default
             End If
+        End If
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        If id_deposit = "-1" Then
+            load_receive_from()
+            load_det()
         End If
     End Sub
 End Class

@@ -45,7 +45,7 @@ Public Class FormFGRepairReturnRecDet
             XTPSummary.PageVisible = True
             XtraTabControl1.SelectedTabPageIndex = 1
             GVScan.OptionsBehavior.AutoExpandAllGroups = True
-            BMark.Enabled = True
+            BMark.Enabled = False
             DDBPrint.Enabled = True
 
             'query view based on edit id's
@@ -444,6 +444,7 @@ Public Class FormFGRepairReturnRecDet
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
+                    BtnSave.Enabled = False
                     'main query
                     Dim query As String = "INSERT INTO tb_fg_repair_return_rec(id_fg_repair_return,id_wh_drawer_from, id_wh_drawer_to, id_wh_drawer_dest, fg_repair_return_rec_number, fg_repair_return_rec_date, fg_repair_return_rec_note, id_report_status, is_use_unique_code) 
                                            VALUES('" + id_fg_repair_return_select + "','" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + id_wh_drawer_dest + "','" + header_number_sales("30") + "', NOW(), '" + fg_repair_return_rec_note + "', '1', '" + is_use_unique_code_wh + "'); SELECT LAST_INSERT_ID(); "
@@ -811,5 +812,12 @@ Public Class FormFGRepairReturnRecDet
         FormPopUpContact.id_departement = id_departement_user
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormFGRepairReturnRecDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F7 Then
+            FormMenuAuth.type = "10"
+            FormMenuAuth.ShowDialog()
+        End If
     End Sub
 End Class

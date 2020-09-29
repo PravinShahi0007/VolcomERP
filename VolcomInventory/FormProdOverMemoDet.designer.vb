@@ -31,6 +31,21 @@ Partial Class FormProdOverMemoDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlMiddle = New DevExpress.XtraEditors.GroupControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumnId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnIdPO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnPONumber = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnvendor_acc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnvendor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_max_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_total = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -47,19 +62,7 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridColumnId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnIdPO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnPONumber = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnqty_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnqty_max_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnqty_total = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnvendorcomb = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -75,6 +78,7 @@ Partial Class FormProdOverMemoDet
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +89,6 @@ Partial Class FormProdOverMemoDet
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelBottomRight.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlTop
@@ -207,6 +210,142 @@ Partial Class FormProdOverMemoDet
         Me.GCData.Size = New System.Drawing.Size(957, 328)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumn1, Me.GridColumnQty, Me.GridColumnno, Me.BandedGridColumnqty_order, Me.BandedGridColumnqty_max_order, Me.BandedGridColumnqty_total, Me.BandedGridColumnvendor_acc, Me.BandedGridColumnvendor, Me.BandedGridColumnvendorcomb})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnId
+        '
+        Me.GridColumnId.Caption = "Id"
+        Me.GridColumnId.FieldName = "id_prod_over_memo_det"
+        Me.GridColumnId.Name = "GridColumnId"
+        Me.GridColumnId.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnIdPO
+        '
+        Me.GridColumnIdPO.Caption = "Id PO"
+        Me.GridColumnIdPO.FieldName = "id_prod_order"
+        Me.GridColumnIdPO.Name = "GridColumnIdPO"
+        Me.GridColumnIdPO.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.OptionsColumn.AllowEdit = False
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.Width = 59
+        '
+        'GridColumnPONumber
+        '
+        Me.GridColumnPONumber.Caption = "FGPO#"
+        Me.GridColumnPONumber.FieldName = "prod_order_number"
+        Me.GridColumnPONumber.Name = "GridColumnPONumber"
+        Me.GridColumnPONumber.OptionsColumn.AllowEdit = False
+        Me.GridColumnPONumber.Visible = True
+        Me.GridColumnPONumber.Width = 147
+        '
+        'BandedGridColumnvendor_acc
+        '
+        Me.BandedGridColumnvendor_acc.Caption = "Vendor Acc."
+        Me.BandedGridColumnvendor_acc.FieldName = "vendor_acc"
+        Me.BandedGridColumnvendor_acc.Name = "BandedGridColumnvendor_acc"
+        Me.BandedGridColumnvendor_acc.Width = 91
+        '
+        'BandedGridColumnvendor
+        '
+        Me.BandedGridColumnvendor.Caption = "Vendor Description"
+        Me.BandedGridColumnvendor.FieldName = "vendor_desc"
+        Me.BandedGridColumnvendor.Name = "BandedGridColumnvendor"
+        Me.BandedGridColumnvendor.Width = 147
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.OptionsColumn.AllowEdit = False
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.Width = 199
+        '
+        'GridColumnDescription
+        '
+        Me.GridColumnDescription.Caption = "Description"
+        Me.GridColumnDescription.FieldName = "name"
+        Me.GridColumnDescription.Name = "GridColumnDescription"
+        Me.GridColumnDescription.OptionsColumn.AllowEdit = False
+        Me.GridColumnDescription.Visible = True
+        Me.GridColumnDescription.Width = 858
+        '
+        'BandedGridColumnqty_order
+        '
+        Me.BandedGridColumnqty_order.Caption = "FGPO"
+        Me.BandedGridColumnqty_order.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_order.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_order.FieldName = "qty_order"
+        Me.BandedGridColumnqty_order.Name = "BandedGridColumnqty_order"
+        Me.BandedGridColumnqty_order.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnqty_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
+        Me.BandedGridColumnqty_order.Visible = True
+        '
+        'BandedGridColumnqty_max_order
+        '
+        Me.BandedGridColumnqty_max_order.Caption = "Max Tolerance"
+        Me.BandedGridColumnqty_max_order.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_max_order.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_max_order.FieldName = "qty_max_order"
+        Me.BandedGridColumnqty_max_order.Name = "BandedGridColumnqty_max_order"
+        Me.BandedGridColumnqty_max_order.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnqty_max_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_max_order", "{0:N0}")})
+        Me.BandedGridColumnqty_max_order.Visible = True
+        Me.BandedGridColumnqty_max_order.Width = 95
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Over Tolerance"
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.Width = 64
+        '
+        'BandedGridColumnqty_total
+        '
+        Me.BandedGridColumnqty_total.Caption = "Total"
+        Me.BandedGridColumnqty_total.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_total.FieldName = "qty_total"
+        Me.BandedGridColumnqty_total.Name = "BandedGridColumnqty_total"
+        Me.BandedGridColumnqty_total.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnqty_total.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_total", "{0:N0}")})
+        Me.BandedGridColumnqty_total.UnboundExpression = "[qty_max_order] + [qty]"
+        Me.BandedGridColumnqty_total.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnqty_total.Visible = True
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Discount (%)"
+        Me.GridColumn1.DisplayFormat.FormatString = "N0"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "discount"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.Width = 127
+        '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.Width = 178
         '
         'PanelControlNav
         '
@@ -377,127 +516,12 @@ Partial Class FormProdOverMemoDet
         Me.LabelControl21.TabIndex = 144
         Me.LabelControl21.Text = "Status"
         '
-        'GVData
+        'BandedGridColumnvendorcomb
         '
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumn1, Me.GridColumnQty, Me.GridColumnno, Me.BandedGridColumnqty_order, Me.BandedGridColumnqty_max_order, Me.BandedGridColumnqty_total})
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsView.ColumnAutoWidth = False
-        Me.GVData.OptionsView.ShowFooter = True
-        Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnId
-        '
-        Me.GridColumnId.Caption = "Id"
-        Me.GridColumnId.FieldName = "id_prod_over_memo_det"
-        Me.GridColumnId.Name = "GridColumnId"
-        Me.GridColumnId.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnIdPO
-        '
-        Me.GridColumnIdPO.Caption = "Id PO"
-        Me.GridColumnIdPO.FieldName = "id_prod_order"
-        Me.GridColumnIdPO.Name = "GridColumnIdPO"
-        Me.GridColumnIdPO.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnPONumber
-        '
-        Me.GridColumnPONumber.Caption = "FGPO#"
-        Me.GridColumnPONumber.FieldName = "prod_order_number"
-        Me.GridColumnPONumber.Name = "GridColumnPONumber"
-        Me.GridColumnPONumber.OptionsColumn.AllowEdit = False
-        Me.GridColumnPONumber.Visible = True
-        Me.GridColumnPONumber.Width = 147
-        '
-        'GridColumnCode
-        '
-        Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.FieldName = "code"
-        Me.GridColumnCode.Name = "GridColumnCode"
-        Me.GridColumnCode.OptionsColumn.AllowEdit = False
-        Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.Width = 199
-        '
-        'GridColumnDescription
-        '
-        Me.GridColumnDescription.Caption = "Description"
-        Me.GridColumnDescription.FieldName = "name"
-        Me.GridColumnDescription.Name = "GridColumnDescription"
-        Me.GridColumnDescription.OptionsColumn.AllowEdit = False
-        Me.GridColumnDescription.Visible = True
-        Me.GridColumnDescription.Width = 858
-        '
-        'GridColumnRemark
-        '
-        Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "remark"
-        Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.Width = 178
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Discount (%)"
-        Me.GridColumn1.DisplayFormat.FormatString = "N0"
-        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn1.FieldName = "discount"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.Width = 127
-        '
-        'GridColumnQty
-        '
-        Me.GridColumnQty.Caption = "Over Tolerance"
-        Me.GridColumnQty.FieldName = "qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.Width = 64
-        '
-        'GridColumnno
-        '
-        Me.GridColumnno.Caption = "No"
-        Me.GridColumnno.FieldName = "no"
-        Me.GridColumnno.Name = "GridColumnno"
-        Me.GridColumnno.OptionsColumn.AllowEdit = False
-        Me.GridColumnno.Visible = True
-        Me.GridColumnno.Width = 59
-        '
-        'BandedGridColumnqty_order
-        '
-        Me.BandedGridColumnqty_order.Caption = "FGPO"
-        Me.BandedGridColumnqty_order.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnqty_order.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnqty_order.FieldName = "qty_order"
-        Me.BandedGridColumnqty_order.Name = "BandedGridColumnqty_order"
-        Me.BandedGridColumnqty_order.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumnqty_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
-        Me.BandedGridColumnqty_order.Visible = True
-        '
-        'BandedGridColumnqty_max_order
-        '
-        Me.BandedGridColumnqty_max_order.Caption = "Max Tolerance"
-        Me.BandedGridColumnqty_max_order.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnqty_max_order.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnqty_max_order.FieldName = "qty_max_order"
-        Me.BandedGridColumnqty_max_order.Name = "BandedGridColumnqty_max_order"
-        Me.BandedGridColumnqty_max_order.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumnqty_max_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_max_order", "{0:N0}")})
-        Me.BandedGridColumnqty_max_order.Visible = True
-        Me.BandedGridColumnqty_max_order.Width = 95
-        '
-        'BandedGridColumnqty_total
-        '
-        Me.BandedGridColumnqty_total.Caption = "Total"
-        Me.BandedGridColumnqty_total.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnqty_total.FieldName = "qty_total"
-        Me.BandedGridColumnqty_total.Name = "BandedGridColumnqty_total"
-        Me.BandedGridColumnqty_total.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumnqty_total.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_total", "{0:N0}")})
-        Me.BandedGridColumnqty_total.UnboundExpression = "[qty_max_order] + [qty]"
-        Me.BandedGridColumnqty_total.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumnqty_total.Visible = True
+        Me.BandedGridColumnvendorcomb.Caption = "Vendor"
+        Me.BandedGridColumnvendorcomb.FieldName = "vendor"
+        Me.BandedGridColumnvendorcomb.Name = "BandedGridColumnvendorcomb"
+        Me.BandedGridColumnvendorcomb.Visible = True
         '
         'GridBand1
         '
@@ -505,11 +529,14 @@ Partial Class FormProdOverMemoDet
         Me.GridBand1.Columns.Add(Me.GridColumnIdPO)
         Me.GridBand1.Columns.Add(Me.GridColumnno)
         Me.GridBand1.Columns.Add(Me.GridColumnPONumber)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnvendor_acc)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnvendor)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnvendorcomb)
         Me.GridBand1.Columns.Add(Me.GridColumnCode)
         Me.GridBand1.Columns.Add(Me.GridColumnDescription)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 1263
+        Me.GridBand1.Width = 1338
         '
         'gridBand2
         '
@@ -556,6 +583,7 @@ Partial Class FormProdOverMemoDet
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlMiddle.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
@@ -568,7 +596,6 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight.ResumeLayout(False)
         Me.PanelBottomRight.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -612,8 +639,11 @@ Partial Class FormProdOverMemoDet
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnqty_order As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnqty_max_order As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnqty_total As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnvendor_acc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnvendor As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnvendorcomb As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

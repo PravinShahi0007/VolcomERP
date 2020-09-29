@@ -1055,6 +1055,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormProductionRecDet.ShowDialog()
             Else 'based on PO
                 If FormProductionRec.GVProd.RowCount > 0 And FormProductionRec.GVProd.FocusedRowHandle >= 0 Then
+                    'If FormProductionRec.GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And FormProductionRec.GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
+                    '    warningCustom("Copy Prototype Sample 2 still not verified. Please contact Sample Departement.")
+                    'Else
+                    '    FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    '    FormProductionRecDet.ShowDialog()
+                    'End If
                     FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
                     FormProductionRecDet.ShowDialog()
                 End If
@@ -1144,9 +1150,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesOrder" Then
             'SALES OrDEER
             If FormSalesOrder.XTCSOGeneral.SelectedTabPageIndex = 0 Then
-                FormSalesOrderDet.action = "ins"
-                FormSalesOrderDet.id_sales_order = "-1"
-                FormSalesOrderDet.ShowDialog()
+                If FormSalesOrder.check_created() Then
+                    FormSalesOrderDet.action = "ins"
+                    FormSalesOrderDet.id_sales_order = "-1"
+                    FormSalesOrderDet.ShowDialog()
+                Else
+                    stopCustom("Please complete all transaction.")
+                End If
             ElseIf FormSalesOrder.XTCSOGeneral.SelectedTabPageIndex = 1 Then
                 FormSalesOrderGen.action = "ins"
                 FormSalesOrderGen.id_sales_order_gen = "-1"
@@ -1819,6 +1829,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMasterDesignFabrication" Then
             FormMasterDesignFabricationDet.id_design_fabrication = "0"
             FormMasterDesignFabricationDet.ShowDialog()
+        ElseIf formName = "FormMaterialRequisition" Then
+            FormProductionMRS.id_pop_up = "1"
+
+            FormProductionMRS.id_mrs = "-1"
+            FormProductionMRS.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3021,6 +3036,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormMasterDesignFabricationDet.ShowDialog()
                 Catch ex As Exception
                 End Try
+            ElseIf formName = "FormMaterialRequisition" Then
+                FormProductionMRS.id_pop_up = "1"
+
+                FormProductionMRS.id_prod_order = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("id_prod_order").ToString
+                FormProductionMRS.id_mrs = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("id_prod_order_mrs").ToString
+                FormProductionMRS.id_comp_req_from = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("id_comp_name_req_from").ToString
+                FormProductionMRS.id_comp_req_to = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("id_comp_name_req_to").ToString
+                FormProductionMRS.TEMRSNumber.Text = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("prod_order_mrs_number").ToString
+                FormProductionMRS.TEWONumber.Text = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("prod_order_wo_number").ToString
+                FormProductionMRS.TEPONumber.Text = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("prod_order_number").ToString
+                FormProductionMRS.TEDesign.Text = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("design_display_name").ToString
+                FormProductionMRS.TEDesignCode.Text = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("design_code").ToString
+                FormProductionMRS.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6383,6 +6411,27 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormMasterDesignFabricationDet.delete()
             Catch ex As Exception
             End Try
+        ElseIf formName = "FormMaterialRequisition" Then
+            Dim query_delm As String
+            If Not check_edit_report_status(FormMaterialRequisition.GVMRS.GetFocusedRowCellDisplayText("id_report_status").ToString, "29", FormMaterialRequisition.GVMRS.GetFocusedRowCellDisplayText("id_prod_order_mrs").ToString) Or FormMaterialRequisition.GVMRS.GetFocusedRowCellDisplayText("id_report_status").ToString = "5" Then
+                stopCustom("This data already locked.")
+            Else
+                Dim confirm_delm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this request ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim id_mrs As String = FormMaterialRequisition.GVMRS.GetFocusedRowCellDisplayText("id_prod_order_mrs").ToString
+                If confirm_delm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    Try
+                        query_delm = String.Format("DELETE FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_mrs)
+                        execute_non_query(query_delm, True, "", "", "", "")
+                        delete_all_mark_related("29", id_mrs)
+                        FormMaterialRequisition.view_mrs()
+                        FormMaterialRequisition.show_but_mrs()
+                    Catch ex As Exception
+                        DevExpress.XtraEditors.XtraMessageBox.Show("This request already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                    Cursor = Cursors.Default
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7676,6 +7725,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 End If
                 Dim period As String = "Period : " + awal + " until " + akhir
                 print(FormSalesOrderSvcLevel.GCFGTrf, "Transfer" + System.Environment.NewLine + period)
+            ElseIf FormSalesOrderSvcLevel.XTCSvcLevel.SelectedTabPageIndex = 8 Then
+                'Tracking Return
+                Dim sg As String = "Store Group : " + FormTrackingReturn.SLEStoreGroup.Text
+                Dim st As String = "Store : " + FormTrackingReturn.SLUEStore.Text
+                Dim awal As String = FormTrackingReturn.DEFrom.Text
+                If awal = "" Then
+                    awal = "-"
+                End If
+                Dim akhir As String = FormTrackingReturn.DETo.Text
+                If akhir = "" Then
+                    akhir = "-"
+                End If
+                Dim period As String = "Period : " + awal + " until " + akhir
+                print(FormTrackingReturn.GCList, "Tracking Return" + System.Environment.NewLine + period)
             End If
         ElseIf formName = "FormMasterComputer" Then
             'MASTER COMPUTER
@@ -8309,6 +8372,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormPayoutReport.GCData, "Payout Report")
         ElseIf formName = "FormSalesBranch" Then
             print(FormSalesBranch.GCData, "Volcom Store Sales")
+        ElseIf formName = "FormABGRoyaltyZone" Then
+            print(FormABGRoyaltyZone.GCData, "ABG Royalty Zone")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9228,6 +9293,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMasterDesignFabrication" Then
             FormMasterDesignFabrication.Close()
             FormMasterDesignFabrication.Dispose()
+        ElseIf formName = "FormDesignColumnMapping" Then
+            FormDesignColumnMapping.Close()
+            FormDesignColumnMapping.Dispose()
+        ElseIf formName = "FormMaterialRequisition" Then
+            FormMaterialRequisition.Close()
+            FormMaterialRequisition.Dispose()
+        ElseIf formName = "FormABGRoyaltyZone" Then
+            FormABGRoyaltyZone.Close()
+            FormABGRoyaltyZone.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9815,6 +9889,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormSalesOrderSvcLevel.XTCSvcLevel.SelectedTabPageIndex = 6 Then
                 'TRF
                 FormSalesOrderSvcLevel.viewTrf()
+            ElseIf FormSalesOrderSvcLevel.XTCSvcLevel.SelectedTabPageIndex = 8 Then
+                'Tracking Return
+                FormTrackingReturn.load_form()
             End If
         ElseIf formName = "FormMasterComputer" Then
             'MASTER COMPUTER
@@ -10173,6 +10250,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesBranch.viewData()
         ElseIf formName = "FormMasterDesignFabrication" Then
             FormMasterDesignFabrication.load_form()
+        ElseIf formName = "FormDesignColumnMapping" Then
+            FormDesignColumnMapping.load_form()
+        ElseIf formName = "FormPurcOrder" Then
+            If FormPurcOrder.XTCPO.SelectedTabPage.Name = "XTPCloseReceiving" Then
+                FormPurcOrder.load_close_receiving()
+            ElseIf FormPurcOrder.XTCPO.SelectedTabPage.Name = "XTPReceiveDate" Then
+                FormPurcOrder.load_receive_date()
+            End If
+        ElseIf formName = "FormMaterialRequisition" Then
+            FormMaterialRequisition.view_mrs()
+            FormMaterialRequisition.show_but_mrs()
+        ElseIf formName = "FormABGRoyaltyZone" Then
+            FormABGRoyaltyZone.viewData()
         End If
     End Sub
     'Switch
@@ -15249,6 +15339,32 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemReq.Show()
             FormItemReq.WindowState = FormWindowState.Maximized
             FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDesignTemplate_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDesignTemplate.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDesignColumnMapping.MdiParent = Me
+            FormDesignColumnMapping.Show()
+            FormDesignColumnMapping.WindowState = FormWindowState.Maximized
+            FormDesignColumnMapping.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBMaterialRequisition_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMaterialRequisition.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMaterialRequisition.MdiParent = Me
+            FormMaterialRequisition.Show()
+            FormMaterialRequisition.WindowState = FormWindowState.Maximized
+            FormMaterialRequisition.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
