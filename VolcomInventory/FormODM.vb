@@ -4,17 +4,17 @@
     Dim bdel_active As String = "1"
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        view()
+        'view()
     End Sub
 
     Sub view()
         Dim q As String = "SELECT *
 FROM (
-    SELECT 0 AS NO,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
+    SELECT 0 AS NO,md.id_comp AS id_3pl,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
-    INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
+    INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`) 
     LEFT JOIN (
         SELECT odmd.id_odm_sc,odmd.id_del_manifest
         FROM tb_odm_sc_det odmd
@@ -33,7 +33,7 @@ FROM (
 	    LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
 	    GROUP BY z2.id_combine
     ) AS z ON pdelc.combine_number = z.combine_number
-    WHERE md.id_comp = " + SLUE3PL.EditValue.ToString + " AND ISNULL(odm.id_odm_sc)
+    WHERE md.awbill_no='" & addSlashes(TEAWB.Text) & "' AND ISNULL(odm.id_odm_sc)
 ) AS tb
 ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -41,8 +41,12 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         GVList.BestFitColumns()
         '
         If Not GVList.RowCount > 0 Then
-            warningCustom("No waiting manifest found for this 3PL, please choose different 3PL")
+            warningCustom("AWB not found.")
+            TEAWB.Text = ""
         Else
+            SLUE3PL.EditValue = GVList.GetRowCellValue(0, "id_3pl").ToString
+
+            TEAWB.Enabled = False
             SLUE3PL.Properties.ReadOnly = True
             BView.Visible = False
             BComplete.Visible = True
@@ -159,8 +163,8 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             Try
                 FormMain.SplashScreenManager1.ShowWaitForm()
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Creating report header..")
-                Dim q As String = "INSERT INTO `tb_odm_sc`(id_3pl,created_by,created_date,id_report_status)
-VALUES('" & SLUE3PL.EditValue.ToString & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID(); "
+                Dim q As String = "INSERT INTO `tb_odm_sc`(id_3pl,awbill_no,created_by,created_date,id_report_status)
+VALUES('" & SLUE3PL.EditValue.ToString & "','" & addSlashes(TEAWB.Text) & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID(); "
                 Dim id_odm_sc As String = execute_query(q, 0, True, "", "", "", "")
 
                 q = "CALL gen_number('" & id_odm_sc & "','258')"
@@ -316,5 +320,11 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
         tool.ShowPreview()
+    End Sub
+
+    Private Sub TEAWB_KeyUp(sender As Object, e As KeyEventArgs) Handles TEAWB.KeyUp
+        If e.KeyCode = Keys.Enter Then
+            view()
+        End If
     End Sub
 End Class

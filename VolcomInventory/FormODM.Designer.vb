@@ -20,6 +20,8 @@ Partial Class FormODM
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEAWB = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -104,6 +106,7 @@ Partial Class FormODM
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEAWB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCManifestScan, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,6 +132,8 @@ Partial Class FormODM
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TEAWB)
+        Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.SLUE3PL)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -138,11 +143,27 @@ Partial Class FormODM
         Me.PanelControl1.Size = New System.Drawing.Size(1072, 44)
         Me.PanelControl1.TabIndex = 0
         '
+        'TEAWB
+        '
+        Me.TEAWB.Location = New System.Drawing.Point(43, 13)
+        Me.TEAWB.Name = "TEAWB"
+        Me.TEAWB.Size = New System.Drawing.Size(232, 20)
+        Me.TEAWB.TabIndex = 12
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(14, 16)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl6.TabIndex = 11
+        Me.LabelControl6.Text = "AWB"
+        '
         'SLUE3PL
         '
-        Me.SLUE3PL.Location = New System.Drawing.Point(37, 13)
+        Me.SLUE3PL.Location = New System.Drawing.Point(304, 13)
         Me.SLUE3PL.Name = "SLUE3PL"
         Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUE3PL.Properties.ReadOnly = True
         Me.SLUE3PL.Properties.View = Me.SearchLookUpEdit1View
         Me.SLUE3PL.Size = New System.Drawing.Size(211, 20)
         Me.SLUE3PL.TabIndex = 10
@@ -170,15 +191,16 @@ Partial Class FormODM
         '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(254, 11)
+        Me.BView.Location = New System.Drawing.Point(521, 11)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(54, 23)
         Me.BView.TabIndex = 9
         Me.BView.Text = "view"
+        Me.BView.Visible = False
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(14, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(281, 16)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(17, 13)
         Me.LabelControl1.TabIndex = 0
@@ -996,6 +1018,7 @@ Partial Class FormODM
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TEAWB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCManifestScan, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1107,4 +1130,6 @@ Partial Class FormODM
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEAWB As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
