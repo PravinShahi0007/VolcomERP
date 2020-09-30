@@ -112,6 +112,7 @@
 
     Private Sub BPickCompTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPickCompTo.Click
         FormPopUpContact.id_pop_up = "22"
+        FormPopUpContact.id_cat = "5"
         FormPopUpContact.ShowDialog()
     End Sub
 
