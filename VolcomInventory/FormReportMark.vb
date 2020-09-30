@@ -1830,6 +1830,14 @@
             End If
             '
             'infoCustom("Status changed.")
+            '
+            If id_status_reportx = "6" Then
+                Dim nm As New ClassSendEmail
+                nm.id_report = id_report
+                nm.report_mark_type = report_mark_type
+                nm.send_email()
+            End If
+
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
                 FormProductionDet.allow_status()
@@ -6372,7 +6380,7 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=pos.`id_sales_pos` AND pyd.`report_mark_type`=pos.`report_mark_type`
                     SET pos.`is_close_rec_payment`=1
                     WHERE pyd.`id_rec_payment`='" & id_report & "'
-                    AND pyd.`value`=balance_due AND pyd.`value` != 0;
+                    AND pyd.`value`=balance_due;
                     /*closing invoice ship*/
                     UPDATE tb_invoice_ship ps
                     INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=ps.id_invoice_ship AND pyd.`report_mark_type`=ps.`report_mark_type`
