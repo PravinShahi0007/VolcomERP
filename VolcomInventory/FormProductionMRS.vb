@@ -371,6 +371,7 @@
 
     Private Sub BReqFrom_Click(sender As Object, e As EventArgs) Handles BReqFrom.Click
         FormPopUpContact.id_pop_up = "22f"
+        FormPopUpContact.id_cat = "5"
         FormPopUpContact.ShowDialog()
     End Sub
 
