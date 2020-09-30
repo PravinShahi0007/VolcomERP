@@ -470,8 +470,11 @@
         Cursor = Cursors.Default
     End Sub
 
+    Dim err As String = ""
     Private Sub BtnSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnSyncOrder.Click
         Cursor = Cursors.WaitCursor
+        'initial general
+        err = ""
 
         'cek freeze
         Dim id_comp_group As String = SLEOLStore.EditValue.ToString
@@ -479,7 +482,7 @@
         FROM tb_m_comp_group c 
         INNER JOIN tb_m_comp_contact cc1 ON cc1.id_comp_contact = c.id_wh_order_contact_normal
         INNER JOIN tb_m_comp_contact cc2 ON cc2.id_comp_contact = c.id_wh_order_contact_sale
-        WHERE c.id_comp_group=64", 0, True, "", "", "", "")
+        WHERE c.id_comp_group='" + id_comp_group + "'", 0, True, "", "", "", "")
         Dim qf As String = "SELECT * FROM tb_m_comp c WHERE c.id_comp IN (" + id_comp_in + ") AND c.is_active=2 "
         Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
         If df.Rows.Count > 0 Then
@@ -493,6 +496,9 @@
             stopCustom("Sync still running")
         Else
             SplashScreenManager1.ShowWaitForm()
+            Dim ord As New ClassSalesOrder()
+            ord.setProceccedWebOrder("1")
+            ord.insertLogWebOrder("0", "Start", id_comp_group)
 
             'cek allow
             Dim is_must_ok_stock As String = "2"
@@ -502,42 +508,34 @@
                 is_must_ok_stock = "2"
             End If
 
-            Dim ord As New ClassSalesOrder()
-            ord.setProceccedWebOrder("1")
-            ord.insertLogWebOrder("0", "Start")
-
             'get order from web
-            Dim err As String = ""
             Try
                 Dim shop As New ClassShopifyApi()
                 shop.get_order_erp()
             Catch ex As Exception
                 err = ex.ToString
             End Try
-            ord.insertLogWebOrder("0", "Get order from website. " + err)
+            ord.insertLogWebOrder("0", "Get order from website. " + err, id_comp_group)
 
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
-            WHERE o.is_process=2
+            WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "'
             GROUP BY o.id "
             Dim dord As DataTable = execute_query(qord, -1, True, "", "", "", "")
             If dord.Rows.Count > 0 Then
                 Try
                     For i As Integer = 0 To dord.Rows.Count - 1
                         SplashScreenManager1.SetWaitFormDescription("Checking order #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
-                        execute_non_query_long("CALL create_web_order(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ");", True, "", "", "", "")
+                        execute_non_query_long("CALL create_web_order_grp(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "');", True, "", "", "", "")
                     Next
                 Catch ex As Exception
-                    ord.insertLogWebOrder("0", ex.ToString)
+                    ord.insertLogWebOrder("0", ex.ToString, id_comp_group)
                     stopCustom(ex.ToString)
                 End Try
-                ord.setProceccedWebOrder("2")
-                ord.insertLogWebOrder("0", "End")
-            Else
-                ord.setProceccedWebOrder("2")
-                ord.insertLogWebOrder("0", "End")
             End If
 
+            ord.insertLogWebOrder("0", "End", "0")
+            ord.setProceccedWebOrder("2")
             SplashScreenManager1.CloseWaitForm()
             If err = "" Then
                 infoCustom("Sync completed.")
@@ -552,6 +550,10 @@
         End If
         CEAllow.EditValue = False
         Cursor = Cursors.Default
+    End Sub
+
+    Sub proceedOrder(ByVal id_comp_group_par As String)
+
     End Sub
 
     Function orderNotProcessed()
