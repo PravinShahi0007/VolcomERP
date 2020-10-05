@@ -438,11 +438,12 @@
         vo.note_price, vo.id_design_cat, vo.id_design_price, vo.id_product, vo.note_stock, vo.note_promo,
         vo.id_report_trf_order, vo.rmt_trf_order, trf_order.sales_order_number AS `trf_order_number`,
         vo.id_report_trf, vo.rmt_trf, trf.fg_trf_number AS `trf_number`,
-        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number, vo.fail_reason
+        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number, vo.fail_reason, vo.id_comp_group, cg.comp_group, cg.description AS `comp_group_name`
         FROM tb_ol_store_order vo
         LEFT JOIN tb_sales_order trf_order ON trf_order.id_sales_order = vo.id_report_trf_order
         LEFT JOIN tb_sales_order actual_order ON actual_order.id_sales_order = vo.id_report_order
         LEFT JOIN tb_fg_trf trf ON trf.id_fg_trf = vo.id_report_trf
+        LEFT JOIN tb_m_comp_group cg ON cg.id_comp_group = vo.id_comp_group
         WHERE 1=1 " + cond
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCVolcom.DataSource = data

@@ -203,22 +203,23 @@ Partial Class FormOLStore
         Me.GridColumnFailReason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote_promo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.SBCloseOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirmedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPendingOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEOLStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -279,14 +280,14 @@ Partial Class FormOLStore
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStripOwnOlStore.SuspendLayout()
-        CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
+        CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStripOwnOlStore.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -1569,7 +1570,7 @@ Partial Class FormOLStore
         '
         'GVVolcom
         '
-        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsCheck, Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39, Me.GridColumn, Me.GridColumnFailReason, Me.GridColumnnote_promo})
+        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsCheck, Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39, Me.GridColumn, Me.GridColumnFailReason, Me.GridColumnnote_promo, Me.GridColumncomp_group_name})
         Me.GVVolcom.GridControl = Me.GCVolcom
         Me.GVVolcom.Name = "GVVolcom"
         Me.GVVolcom.OptionsBehavior.AutoExpandAllGroups = True
@@ -1608,7 +1609,7 @@ Partial Class FormOLStore
         Me.GridColumnsales_order_ol_shop_number.Name = "GridColumnsales_order_ol_shop_number"
         Me.GridColumnsales_order_ol_shop_number.OptionsColumn.ReadOnly = True
         Me.GridColumnsales_order_ol_shop_number.Visible = True
-        Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 1
+        Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 2
         '
         'GridColumnsales_order_ol_shop_date
         '
@@ -1619,7 +1620,7 @@ Partial Class FormOLStore
         Me.GridColumnsales_order_ol_shop_date.Name = "GridColumnsales_order_ol_shop_date"
         Me.GridColumnsales_order_ol_shop_date.OptionsColumn.ReadOnly = True
         Me.GridColumnsales_order_ol_shop_date.Visible = True
-        Me.GridColumnsales_order_ol_shop_date.VisibleIndex = 2
+        Me.GridColumnsales_order_ol_shop_date.VisibleIndex = 3
         '
         'GridColumncustomer_name
         '
@@ -1628,7 +1629,7 @@ Partial Class FormOLStore
         Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
         Me.GridColumncustomer_name.OptionsColumn.ReadOnly = True
         Me.GridColumncustomer_name.Visible = True
-        Me.GridColumncustomer_name.VisibleIndex = 3
+        Me.GridColumncustomer_name.VisibleIndex = 4
         '
         'GridColumnshipping_name
         '
@@ -1637,7 +1638,7 @@ Partial Class FormOLStore
         Me.GridColumnshipping_name.Name = "GridColumnshipping_name"
         Me.GridColumnshipping_name.OptionsColumn.ReadOnly = True
         Me.GridColumnshipping_name.Visible = True
-        Me.GridColumnshipping_name.VisibleIndex = 4
+        Me.GridColumnshipping_name.VisibleIndex = 5
         '
         'GridColumnshipping_address
         '
@@ -1646,7 +1647,7 @@ Partial Class FormOLStore
         Me.GridColumnshipping_address.Name = "GridColumnshipping_address"
         Me.GridColumnshipping_address.OptionsColumn.ReadOnly = True
         Me.GridColumnshipping_address.Visible = True
-        Me.GridColumnshipping_address.VisibleIndex = 5
+        Me.GridColumnshipping_address.VisibleIndex = 6
         '
         'GridColumnshipping_phone
         '
@@ -1655,7 +1656,7 @@ Partial Class FormOLStore
         Me.GridColumnshipping_phone.Name = "GridColumnshipping_phone"
         Me.GridColumnshipping_phone.OptionsColumn.ReadOnly = True
         Me.GridColumnshipping_phone.Visible = True
-        Me.GridColumnshipping_phone.VisibleIndex = 6
+        Me.GridColumnshipping_phone.VisibleIndex = 7
         '
         'GridColumnshipping_city
         '
@@ -1664,7 +1665,7 @@ Partial Class FormOLStore
         Me.GridColumnshipping_city.Name = "GridColumnshipping_city"
         Me.GridColumnshipping_city.OptionsColumn.ReadOnly = True
         Me.GridColumnshipping_city.Visible = True
-        Me.GridColumnshipping_city.VisibleIndex = 7
+        Me.GridColumnshipping_city.VisibleIndex = 8
         '
         'GridColumnshipping_post_code
         '
@@ -1673,7 +1674,7 @@ Partial Class FormOLStore
         Me.GridColumnshipping_post_code.Name = "GridColumnshipping_post_code"
         Me.GridColumnshipping_post_code.OptionsColumn.ReadOnly = True
         Me.GridColumnshipping_post_code.Visible = True
-        Me.GridColumnshipping_post_code.VisibleIndex = 8
+        Me.GridColumnshipping_post_code.VisibleIndex = 9
         '
         'GridColumnshipping_region
         '
@@ -1682,7 +1683,7 @@ Partial Class FormOLStore
         Me.GridColumnshipping_region.Name = "GridColumnshipping_region"
         Me.GridColumnshipping_region.OptionsColumn.ReadOnly = True
         Me.GridColumnshipping_region.Visible = True
-        Me.GridColumnshipping_region.VisibleIndex = 9
+        Me.GridColumnshipping_region.VisibleIndex = 10
         '
         'GridColumnpayment_method
         '
@@ -1691,7 +1692,7 @@ Partial Class FormOLStore
         Me.GridColumnpayment_method.Name = "GridColumnpayment_method"
         Me.GridColumnpayment_method.OptionsColumn.ReadOnly = True
         Me.GridColumnpayment_method.Visible = True
-        Me.GridColumnpayment_method.VisibleIndex = 10
+        Me.GridColumnpayment_method.VisibleIndex = 11
         '
         'GridColumntracking_code
         '
@@ -1700,7 +1701,7 @@ Partial Class FormOLStore
         Me.GridColumntracking_code.Name = "GridColumntracking_code"
         Me.GridColumntracking_code.OptionsColumn.ReadOnly = True
         Me.GridColumntracking_code.Visible = True
-        Me.GridColumntracking_code.VisibleIndex = 11
+        Me.GridColumntracking_code.VisibleIndex = 12
         '
         'GridColumnol_store_sku
         '
@@ -1709,7 +1710,7 @@ Partial Class FormOLStore
         Me.GridColumnol_store_sku.Name = "GridColumnol_store_sku"
         Me.GridColumnol_store_sku.OptionsColumn.ReadOnly = True
         Me.GridColumnol_store_sku.Visible = True
-        Me.GridColumnol_store_sku.VisibleIndex = 12
+        Me.GridColumnol_store_sku.VisibleIndex = 13
         '
         'GridColumnol_store_id
         '
@@ -1718,7 +1719,7 @@ Partial Class FormOLStore
         Me.GridColumnol_store_id.Name = "GridColumnol_store_id"
         Me.GridColumnol_store_id.OptionsColumn.ReadOnly = True
         Me.GridColumnol_store_id.Visible = True
-        Me.GridColumnol_store_id.VisibleIndex = 13
+        Me.GridColumnol_store_id.VisibleIndex = 14
         '
         'GridColumnsku
         '
@@ -1727,7 +1728,7 @@ Partial Class FormOLStore
         Me.GridColumnsku.Name = "GridColumnsku"
         Me.GridColumnsku.OptionsColumn.ReadOnly = True
         Me.GridColumnsku.Visible = True
-        Me.GridColumnsku.VisibleIndex = 14
+        Me.GridColumnsku.VisibleIndex = 15
         '
         'GridColumndesign_price
         '
@@ -1738,7 +1739,7 @@ Partial Class FormOLStore
         Me.GridColumndesign_price.Name = "GridColumndesign_price"
         Me.GridColumndesign_price.OptionsColumn.ReadOnly = True
         Me.GridColumndesign_price.Visible = True
-        Me.GridColumndesign_price.VisibleIndex = 15
+        Me.GridColumndesign_price.VisibleIndex = 16
         '
         'GridColumnsales_order_det_qty
         '
@@ -1750,7 +1751,7 @@ Partial Class FormOLStore
         Me.GridColumnsales_order_det_qty.OptionsColumn.ReadOnly = True
         Me.GridColumnsales_order_det_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:N0}")})
         Me.GridColumnsales_order_det_qty.Visible = True
-        Me.GridColumnsales_order_det_qty.VisibleIndex = 16
+        Me.GridColumnsales_order_det_qty.VisibleIndex = 17
         '
         'GridColumnis_process
         '
@@ -1766,7 +1767,7 @@ Partial Class FormOLStore
         Me.GridColumnnote_price.Name = "GridColumnnote_price"
         Me.GridColumnnote_price.OptionsColumn.ReadOnly = True
         Me.GridColumnnote_price.Visible = True
-        Me.GridColumnnote_price.VisibleIndex = 18
+        Me.GridColumnnote_price.VisibleIndex = 19
         '
         'GridColumnid_design_cat
         '
@@ -1796,7 +1797,7 @@ Partial Class FormOLStore
         Me.GridColumnnote_stock.Name = "GridColumnnote_stock"
         Me.GridColumnnote_stock.OptionsColumn.ReadOnly = True
         Me.GridColumnnote_stock.Visible = True
-        Me.GridColumnnote_stock.VisibleIndex = 19
+        Me.GridColumnnote_stock.VisibleIndex = 20
         '
         'GridColumnid_report_trf_order
         '
@@ -1848,7 +1849,7 @@ Partial Class FormOLStore
         Me.GridColumntrf_order_number.Name = "GridColumntrf_order_number"
         Me.GridColumntrf_order_number.OptionsColumn.ReadOnly = True
         Me.GridColumntrf_order_number.Visible = True
-        Me.GridColumntrf_order_number.VisibleIndex = 21
+        Me.GridColumntrf_order_number.VisibleIndex = 22
         '
         'LinkTrfOrder
         '
@@ -1863,7 +1864,7 @@ Partial Class FormOLStore
         Me.GridColumntrf_number.Name = "GridColumntrf_number"
         Me.GridColumntrf_number.OptionsColumn.ReadOnly = True
         Me.GridColumntrf_number.Visible = True
-        Me.GridColumntrf_number.VisibleIndex = 22
+        Me.GridColumntrf_number.VisibleIndex = 23
         '
         'LinkTrf
         '
@@ -1878,7 +1879,7 @@ Partial Class FormOLStore
         Me.GridColumnsales_order_number.Name = "GridColumnsales_order_number"
         Me.GridColumnsales_order_number.OptionsColumn.ReadOnly = True
         Me.GridColumnsales_order_number.Visible = True
-        Me.GridColumnsales_order_number.VisibleIndex = 23
+        Me.GridColumnsales_order_number.VisibleIndex = 24
         '
         'LinkSalesOrder
         '
@@ -1892,7 +1893,7 @@ Partial Class FormOLStore
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.OptionsColumn.ReadOnly = True
         Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 24
+        Me.GridColumn39.VisibleIndex = 25
         '
         'GridColumn
         '
@@ -1900,7 +1901,7 @@ Partial Class FormOLStore
         Me.GridColumn.Name = "GridColumn"
         Me.GridColumn.OptionsColumn.ReadOnly = True
         Me.GridColumn.Visible = True
-        Me.GridColumn.VisibleIndex = 17
+        Me.GridColumn.VisibleIndex = 18
         '
         'GridColumnFailReason
         '
@@ -1909,7 +1910,7 @@ Partial Class FormOLStore
         Me.GridColumnFailReason.Name = "GridColumnFailReason"
         Me.GridColumnFailReason.OptionsColumn.ReadOnly = True
         Me.GridColumnFailReason.Visible = True
-        Me.GridColumnFailReason.VisibleIndex = 25
+        Me.GridColumnFailReason.VisibleIndex = 26
         '
         'GridColumnnote_promo
         '
@@ -1917,7 +1918,7 @@ Partial Class FormOLStore
         Me.GridColumnnote_promo.FieldName = "note_promo"
         Me.GridColumnnote_promo.Name = "GridColumnnote_promo"
         Me.GridColumnnote_promo.Visible = True
-        Me.GridColumnnote_promo.VisibleIndex = 20
+        Me.GridColumnnote_promo.VisibleIndex = 21
         '
         'PanelControl4
         '
@@ -1928,6 +1929,19 @@ Partial Class FormOLStore
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(994, 48)
         Me.PanelControl4.TabIndex = 2
+        '
+        'CEAllow
+        '
+        Me.CEAllow.Location = New System.Drawing.Point(10, 14)
+        Me.CEAllow.Name = "CEAllow"
+        Me.CEAllow.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEAllow.Properties.Appearance.ForeColor = System.Drawing.Color.DarkRed
+        Me.CEAllow.Properties.Appearance.Options.UseFont = True
+        Me.CEAllow.Properties.Appearance.Options.UseForeColor = True
+        Me.CEAllow.Properties.Caption = "Lewati item yang tidak memiliki stok"
+        Me.CEAllow.Size = New System.Drawing.Size(232, 19)
+        Me.CEAllow.TabIndex = 5
+        Me.CEAllow.Visible = False
         '
         'SBCloseOrder
         '
@@ -1952,19 +1966,6 @@ Partial Class FormOLStore
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(994, 43)
         Me.PanelControl3.TabIndex = 0
-        '
-        'CEAllow
-        '
-        Me.CEAllow.Location = New System.Drawing.Point(10, 14)
-        Me.CEAllow.Name = "CEAllow"
-        Me.CEAllow.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CEAllow.Properties.Appearance.ForeColor = System.Drawing.Color.DarkRed
-        Me.CEAllow.Properties.Appearance.Options.UseFont = True
-        Me.CEAllow.Properties.Appearance.Options.UseForeColor = True
-        Me.CEAllow.Properties.Caption = "Lewati item yang tidak memiliki stok"
-        Me.CEAllow.Size = New System.Drawing.Size(232, 19)
-        Me.CEAllow.TabIndex = 5
-        Me.CEAllow.Visible = False
         '
         'BtnPrint
         '
@@ -2016,17 +2017,16 @@ Partial Class FormOLStore
         Me.BtnAllOrder.TabIndex = 4
         Me.BtnAllOrder.Text = "All Orders"
         '
-        'ContextMenuStripOwnOlStore
+        'PanelControl5
         '
-        Me.ContextMenuStripOwnOlStore.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CantProceedToolStripMenuItem})
-        Me.ContextMenuStripOwnOlStore.Name = "ContextMenuStripOwnOlStore"
-        Me.ContextMenuStripOwnOlStore.Size = New System.Drawing.Size(149, 26)
-        '
-        'CantProceedToolStripMenuItem
-        '
-        Me.CantProceedToolStripMenuItem.Name = "CantProceedToolStripMenuItem"
-        Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
-        Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.SLEOLStore)
+        Me.PanelControl5.Controls.Add(Me.LabelControl1)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl5.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(248, 39)
+        Me.PanelControl5.TabIndex = 5
         '
         'SLEOLStore
         '
@@ -2046,25 +2046,6 @@ Partial Class FormOLStore
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl5
-        '
-        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl5.Controls.Add(Me.SLEOLStore)
-        Me.PanelControl5.Controls.Add(Me.LabelControl1)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl5.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(248, 39)
-        Me.PanelControl5.TabIndex = 5
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(8, 13)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(42, 13)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "OL Store"
-        '
         'GridColumnid_comp_group
         '
         Me.GridColumnid_comp_group.Caption = "id_comp_group"
@@ -2078,6 +2059,35 @@ Partial Class FormOLStore
         Me.GridColumndescription.Name = "GridColumndescription"
         Me.GridColumndescription.Visible = True
         Me.GridColumndescription.VisibleIndex = 0
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(8, 13)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "OL Store"
+        '
+        'ContextMenuStripOwnOlStore
+        '
+        Me.ContextMenuStripOwnOlStore.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CantProceedToolStripMenuItem})
+        Me.ContextMenuStripOwnOlStore.Name = "ContextMenuStripOwnOlStore"
+        Me.ContextMenuStripOwnOlStore.Size = New System.Drawing.Size(149, 26)
+        '
+        'CantProceedToolStripMenuItem
+        '
+        Me.CantProceedToolStripMenuItem.Name = "CantProceedToolStripMenuItem"
+        Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
+        '
+        'GridColumncomp_group_name
+        '
+        Me.GridColumncomp_group_name.Caption = "Store"
+        Me.GridColumncomp_group_name.FieldName = "comp_group_name"
+        Me.GridColumncomp_group_name.Name = "GridColumncomp_group_name"
+        Me.GridColumncomp_group_name.OptionsColumn.ReadOnly = True
+        Me.GridColumncomp_group_name.Visible = True
+        Me.GridColumncomp_group_name.VisibleIndex = 1
         '
         'FormOLStore
         '
@@ -2150,15 +2160,15 @@ Partial Class FormOLStore
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStripOwnOlStore.ResumeLayout(False)
-        CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
+        CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStripOwnOlStore.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2361,4 +2371,5 @@ Partial Class FormOLStore
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class
