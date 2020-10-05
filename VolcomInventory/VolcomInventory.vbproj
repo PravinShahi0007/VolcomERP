@@ -7255,6 +7255,12 @@
     <Compile Include="ReportCashAdvanceReconcile.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportCashAdvanceSummary.Designer.vb">
+      <DependentUpon>ReportCashAdvanceSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCashAdvanceSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDebitNote.Designer.vb">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </Compile>
@@ -12582,6 +12588,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportCashAdvanceReconcile.resx">
       <DependentUpon>ReportCashAdvanceReconcile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportCashAdvanceSummary.resx">
+      <DependentUpon>ReportCashAdvanceSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
