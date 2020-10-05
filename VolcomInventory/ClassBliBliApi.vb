@@ -46,7 +46,7 @@
 
     Sub get_order_list()
         'delete is_process =2
-        execute_non_query_long("DELETE FROM tb_ol_store_order WHERE id_comp_group='" + id_store_group + "' AND is_process=2", True, "", "", "", "")
+        'execute_non_query_long("DELETE FROM tb_ol_store_order WHERE id_comp_group='" + id_store_group + "' AND is_process=2", True, "", "", "", "")
 
         Dim page As Integer = get_page()
         For i As Integer = 0 To page - 1
