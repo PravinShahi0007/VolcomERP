@@ -470,11 +470,11 @@
         Cursor = Cursors.Default
     End Sub
 
-    Dim err As String = ""
+
     Private Sub BtnSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnSyncOrder.Click
         Cursor = Cursors.WaitCursor
         'initial general
-        err = ""
+        Dim err As String = ""
 
         'cek freeze
         Dim id_comp_group As String = SLEOLStore.EditValue.ToString
@@ -498,7 +498,7 @@
             SplashScreenManager1.ShowWaitForm()
             Dim ord As New ClassSalesOrder()
             ord.setProceccedWebOrder("1")
-            ord.insertLogWebOrder("0", "Start", id_comp_group)
+            ord.insertLogWebOrder("0", "Start", "0")
 
             'cek allow
             Dim is_must_ok_stock As String = "2"
@@ -508,14 +508,32 @@
                 is_must_ok_stock = "2"
             End If
 
+            'get api type
+            Dim dt_grp As DataTable = execute_query("SELECT cg.id_api_type, cg.comp_group FROM tb_m_comp_group cg WHERE cg.id_comp_group='" + id_comp_group + "' ", -1, True, "", "", "", "")
+            Dim id_api_type As String = dt_grp.Rows(0)("id_api_type").ToString
+            Dim comp_group As String = dt_grp.Rows(0)("comp_group").ToString.ToUpper
+
             'get order from web
-            Try
-                Dim shop As New ClassShopifyApi()
-                shop.get_order_erp()
-            Catch ex As Exception
-                err = ex.ToString
-            End Try
             ord.insertLogWebOrder("0", "Get order from website. " + err, id_comp_group)
+            If id_api_type = "1" Then
+                'SHOPIFY
+                Try
+                    Dim shop As New ClassShopifyApi()
+                    shop.get_order_erp()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
+            ElseIf id_api_type = "2" Then
+                'ZALORA
+            ElseIf id_api_type = "3" Then
+                'BLIBLI
+                Try
+                    Dim shop As New ClassBliBliApi()
+                    shop.get_order_list()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
+            End If
 
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
@@ -525,7 +543,7 @@
             If dord.Rows.Count > 0 Then
                 Try
                     For i As Integer = 0 To dord.Rows.Count - 1
-                        SplashScreenManager1.SetWaitFormDescription("Checking order #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
+                        SplashScreenManager1.SetWaitFormDescription(comp_group + " ORDER : #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
                         execute_non_query_long("CALL create_web_order_grp(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "');", True, "", "", "", "")
                     Next
                 Catch ex As Exception
@@ -552,9 +570,6 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub proceedOrder(ByVal id_comp_group_par As String)
-
-    End Sub
 
     Function orderNotProcessed()
         Dim query As String="SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 "

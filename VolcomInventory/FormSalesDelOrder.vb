@@ -456,13 +456,16 @@
         Else
             FormMain.SplashScreenManager1.ShowWaitForm()
 
+            'grup
+            Dim id_comp_group As String = get_setup_field("shopify_comp_group")
+
             'cek allow
             Dim is_must_ok_stock As String = "2"
             is_must_ok_stock = "1"
 
             Dim ord As New ClassSalesOrder()
             ord.setProceccedWebOrder("1")
-            ord.insertLogWebOrder("0", "Start")
+            ord.insertLogWebOrder("0", "Start", id_comp_group)
 
             'get order from web
             Dim err As String = ""
@@ -472,7 +475,7 @@
             Catch ex As Exception
                 err = ex.ToString
             End Try
-            ord.insertLogWebOrder("0", "Get order from website. " + err)
+            ord.insertLogWebOrder("0", "Get order from website. " + err, id_comp_group)
 
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
@@ -483,17 +486,17 @@
                 Try
                     For i As Integer = 0 To dord.Rows.Count - 1
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Checking order #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
-                        execute_non_query_long("CALL create_web_order(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ");", True, "", "", "", "")
+                        execute_non_query_long("CALL create_web_order_grp(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "');", True, "", "", "", "")
                     Next
                 Catch ex As Exception
-                    ord.insertLogWebOrder("0", ex.ToString)
+                    ord.insertLogWebOrder("0", ex.ToString, id_comp_group)
                     stopCustom(ex.ToString)
                 End Try
                 ord.setProceccedWebOrder("2")
-                ord.insertLogWebOrder("0", "End")
+                ord.insertLogWebOrder("0", "End", id_comp_group)
             Else
                 ord.setProceccedWebOrder("2")
-                ord.insertLogWebOrder("0", "End")
+                ord.insertLogWebOrder("0", "End", id_comp_group)
             End If
 
             FormMain.SplashScreenManager1.SetWaitFormDescription("Loading order")
