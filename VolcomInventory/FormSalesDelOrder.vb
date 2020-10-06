@@ -535,7 +535,7 @@
 
         If id_cg = "75" Then
             Dim item_id As String = execute_query("
-                SELECT item_id
+                SELECT ol_store_id
                 FROM tb_sales_order_det
                 WHERE id_sales_order = " + GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString + "
                 LIMIT 1
