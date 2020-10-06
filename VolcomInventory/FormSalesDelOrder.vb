@@ -479,7 +479,7 @@
 
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
-            WHERE o.is_process=2
+            WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "'
             GROUP BY o.id "
             Dim dord As DataTable = execute_query(qord, -1, True, "", "", "", "")
             If dord.Rows.Count > 0 Then
