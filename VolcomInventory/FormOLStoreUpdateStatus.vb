@@ -21,4 +21,11 @@
     Private Sub BtnDiscard_Click(sender As Object, e As EventArgs) Handles BtnDiscard.Click
         Close()
     End Sub
+
+    Private Sub BtnUpdateStatus_Click(sender As Object, e As EventArgs) Handles BtnUpdateStatus.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_comp_group As String = "75"
+
+        Cursor = Cursors.Default
+    End Sub
 End Class

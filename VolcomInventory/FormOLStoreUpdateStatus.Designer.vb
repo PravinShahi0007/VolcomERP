@@ -26,10 +26,10 @@ Partial Class FormOLStoreUpdateStatus
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +91,24 @@ Partial Class FormOLStoreUpdateStatus
         Me.PanelControl1.Size = New System.Drawing.Size(487, 45)
         Me.PanelControl1.TabIndex = 7
         '
+        'BtnDiscard
+        '
+        Me.BtnDiscard.Image = CType(resources.GetObject("BtnDiscard.Image"), System.Drawing.Image)
+        Me.BtnDiscard.Location = New System.Drawing.Point(351, 11)
+        Me.BtnDiscard.Name = "BtnDiscard"
+        Me.BtnDiscard.Size = New System.Drawing.Size(78, 23)
+        Me.BtnDiscard.TabIndex = 8
+        Me.BtnDiscard.Text = "Discard"
+        '
+        'BtnUpdateStatus
+        '
+        Me.BtnUpdateStatus.Image = CType(resources.GetObject("BtnUpdateStatus.Image"), System.Drawing.Image)
+        Me.BtnUpdateStatus.Location = New System.Drawing.Point(240, 11)
+        Me.BtnUpdateStatus.Name = "BtnUpdateStatus"
+        Me.BtnUpdateStatus.Size = New System.Drawing.Size(105, 23)
+        Me.BtnUpdateStatus.TabIndex = 7
+        Me.BtnUpdateStatus.Text = "Update Status"
+        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
@@ -107,26 +125,7 @@ Partial Class FormOLStoreUpdateStatus
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.ReadOnly = True
-        Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'BtnUpdateStatus
-        '
-        Me.BtnUpdateStatus.Image = CType(resources.GetObject("BtnUpdateStatus.Image"), System.Drawing.Image)
-        Me.BtnUpdateStatus.Location = New System.Drawing.Point(240, 11)
-        Me.BtnUpdateStatus.Name = "BtnUpdateStatus"
-        Me.BtnUpdateStatus.Size = New System.Drawing.Size(105, 23)
-        Me.BtnUpdateStatus.TabIndex = 7
-        Me.BtnUpdateStatus.Text = "Update Status"
-        '
-        'BtnDiscard
-        '
-        Me.BtnDiscard.Image = CType(resources.GetObject("BtnDiscard.Image"), System.Drawing.Image)
-        Me.BtnDiscard.Location = New System.Drawing.Point(351, 11)
-        Me.BtnDiscard.Name = "BtnDiscard"
-        Me.BtnDiscard.Size = New System.Drawing.Size(78, 23)
-        Me.BtnDiscard.TabIndex = 8
-        Me.BtnDiscard.Text = "Discard"
         '
         'FormOLStoreUpdateStatus
         '
