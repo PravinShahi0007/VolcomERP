@@ -248,4 +248,42 @@
 
         Return page
     End Function
+
+    Function get_status(ByVal order_no_par As String, ByVal ol_store_id_par As String) As DataTable
+        Dim dt As DataTable = New DataTable
+        dt.Columns.Add("order_status", GetType(String))
+        dt.Columns.Add("order_status_date", GetType(DateTime))
+
+        Dim auth As String = Convert.ToBase64String(Text.Encoding.UTF8.GetBytes(username + ":" + password))
+        Dim request As Net.HttpWebRequest = Net.WebRequest.Create("https://api.blibli.com/v2/proxy/mta/api/businesspartner/v1/order/orderDetail?storeId=" + store_id + "&requestId=" + request_id + "&businessPartnerCode=" + business_partner + "&channelId=" + channel_id + "&orderNo=" + order_no_par + "&orderItemNo=" + ol_store_id_par)
+        request.Method = "GET"
+        request.Accept = "application/json"
+        request.ContentType = "application/json"
+        request.Headers.Add("Authorization", "Basic " + auth)
+        request.Headers.Add("API-Seller-Key", api_seller_key)
+        Dim response As Net.HttpWebResponse = request.GetResponse()
+        Using dataStream As IO.Stream = response.GetResponseStream()
+            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+            Dim responseFromServer As String = reader.ReadToEnd()
+            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+            If json("success").ToString = True And json("value").Count > 0 Then
+                For Each row In json("value")("orderHistory").ToList
+                    Dim stt As String = ""
+                    If row("orderStatus").ToString = "D" Then
+                        stt = "delivered"
+                    ElseIf row("orderStatus").ToString = "X" Then
+                        stt = "cancelled"
+                    Else
+                        stt = "on_process"
+                    End If
+                    dt.Rows.Add(stt, unixMiliSecondsToDatetime(row("createdTimestamp")))
+                    Exit For
+                Next
+            Else
+                dt = Nothing
+            End If
+        End Using
+        response.Close()
+        Return dt
+    End Function
 End Class
