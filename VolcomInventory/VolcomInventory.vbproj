@@ -6336,6 +6336,12 @@
     <Compile Include="FormStockQCBrowsePO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockQCStockReportSummary.Designer.vb">
+      <DependentUpon>FormStockQCStockReportSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockQCStockReportSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockUniS78New.Designer.vb">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
     </Compile>
@@ -8579,6 +8585,12 @@
       <DependentUpon>ReportShipInvoice.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportShipInvoice.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportStockQCStockReportSummary.Designer.vb">
+      <DependentUpon>ReportStockQCStockReportSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStockQCStockReportSummary.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportStockQCSummary.Designer.vb">
@@ -12071,6 +12083,9 @@
     <EmbeddedResource Include="FormStockQCBrowsePO.resx">
       <DependentUpon>FormStockQCBrowsePO.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockQCStockReportSummary.resx">
+      <DependentUpon>FormStockQCStockReportSummary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockUniS78New.resx">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
     </EmbeddedResource>
@@ -13341,6 +13356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportShipInvoice.resx">
       <DependentUpon>ReportShipInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStockQCStockReportSummary.resx">
+      <DependentUpon>ReportStockQCStockReportSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportStockQCSummary.resx">
       <DependentUpon>ReportStockQCSummary.vb</DependentUpon>

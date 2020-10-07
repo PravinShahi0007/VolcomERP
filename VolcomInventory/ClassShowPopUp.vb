@@ -377,6 +377,9 @@
         ElseIf report_mark_type = "265" Then
             'payout VA
             FormVAHistoryDetail.Close()
+        ElseIf report_mark_type = "268" Then
+            'WIP Stock Summary Report
+            FormStockQCStockReportSummary.Close()
         End If
     End Sub
     Sub show()
@@ -1292,6 +1295,10 @@ GROUP BY rec.`id_prod_order`"
             'payout VA
             FormVAHistoryDetail.id = id_report
             FormVAHistoryDetail.ShowDialog()
+        ElseIf report_mark_type = "268" Then
+            'WIP Stock Summary Report
+            FormStockQCStockReportSummary.id_wip_summary = id_report
+            FormStockQCStockReportSummary.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2315,6 +2322,11 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_virtual_acc_trans"
             field_number = "number"
             field_date = "generate_date"
+        ElseIf report_mark_type = "268" Then
+            table_name = "tb_wip_summary"
+            field_id = "id_wip_summary"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
