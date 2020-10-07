@@ -380,6 +380,9 @@
         ElseIf report_mark_type = "268" Then
             'WIP Stock Summary Report
             FormStockQCStockReportSummary.Close()
+        ElseIf report_mark_type = "269" Then
+            'Material & Trims Stock Summary Report
+            FormMatStockSummary.Close()
         End If
     End Sub
     Sub show()
@@ -1299,6 +1302,10 @@ GROUP BY rec.`id_prod_order`"
             'WIP Stock Summary Report
             FormStockQCStockReportSummary.id_wip_summary = id_report
             FormStockQCStockReportSummary.ShowDialog()
+        ElseIf report_mark_type = "269" Then
+            'Material & Trims Stock Summary Report
+            FormMatStockSummary.id_mat_summary = id_report
+            FormMatStockSummary.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2325,6 +2332,11 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "268" Then
             table_name = "tb_wip_summary"
             field_id = "id_wip_summary"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "269" Then
+            table_name = "tb_mat_summary"
+            field_id = "id_mat_summary"
             field_number = "number"
             field_date = "created_date"
         Else

@@ -615,6 +615,9 @@
         ElseIf report_mark_type = "268" Then
             'WIP Stock Summary Report
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_wip_summary WHERE id_wip_summary = '{0}'", id_report)
+        ElseIf report_mark_type = "269" Then
+            'Material & Trims Stock Summary Report
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_mat_summary WHERE id_mat_summary = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -8719,6 +8722,15 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_wip_summary SET id_report_status='{0}' WHERE id_wip_summary ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "269" Then
+            'Material & Trims Stock Summary Report
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_mat_summary SET id_report_status='{0}' WHERE id_mat_summary ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

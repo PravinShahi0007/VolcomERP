@@ -2850,6 +2850,12 @@
     <Compile Include="FormMatPurcView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatStockSummary.Designer.vb">
+      <DependentUpon>FormMatStockSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatStockSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMenuAuth.Designer.vb">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </Compile>
@@ -7947,6 +7953,12 @@
     <Compile Include="ReportMatStockSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMatStockSummary.Designer.vb">
+      <DependentUpon>ReportMatStockSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMatStockSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMatStockWO.designer.vb">
       <DependentUpon>ReportMatStockWO.vb</DependentUpon>
     </Compile>
@@ -9993,6 +10005,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurcView.resx">
       <DependentUpon>FormMatPurcView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatStockSummary.resx">
+      <DependentUpon>FormMatStockSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
@@ -12995,6 +13010,9 @@
     <EmbeddedResource Include="ReportMatStockSum.resx">
       <DependentUpon>ReportMatStockSum.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMatStockSummary.resx">
+      <DependentUpon>ReportMatStockSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMatStockWO.resx">
       <DependentUpon>ReportMatStockWO.vb</DependentUpon>

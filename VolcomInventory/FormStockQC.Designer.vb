@@ -1111,7 +1111,7 @@ Partial Class FormStockQC
         Me.XTPSummary.Controls.Add(Me.PanelControl5)
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(1066, 500)
-        Me.XTPSummary.Text = "Stock Summary"
+        Me.XTPSummary.Text = "Summary Report"
         '
         'GridControlSummary
         '
