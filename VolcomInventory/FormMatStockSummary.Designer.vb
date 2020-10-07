@@ -171,7 +171,6 @@ Partial Class FormMatStockSummary
         '
         'LabelControl6
         '
-        Me.LabelControl6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl6.Location = New System.Drawing.Point(13, 15)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(37, 13)
@@ -180,7 +179,6 @@ Partial Class FormMatStockSummary
         '
         'TENumber
         '
-        Me.TENumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TENumber.Location = New System.Drawing.Point(84, 12)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.ReadOnly = True
@@ -304,25 +302,31 @@ Partial Class FormMatStockSummary
         '
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
-        Me.BandedGridViewSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridViewSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseBorderColor = True
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseFont = True
@@ -330,8 +334,10 @@ Partial Class FormMatStockSummary
         Me.BandedGridViewSummary.AppearancePrint.Lines.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.Row.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseFont = True
         Me.BandedGridViewSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.gridBand9})
         Me.BandedGridViewSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12})
         Me.BandedGridViewSummary.GridControl = Me.GridControlSummary
@@ -556,6 +562,7 @@ Partial Class FormMatStockSummary
         Me.Name = "FormMatStockSummary"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material & Trims - Stock Summary Report"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

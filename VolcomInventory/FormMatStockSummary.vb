@@ -91,6 +91,8 @@
     End Sub
 
     Sub generate_summary()
+        Cursor = Cursors.WaitCursor
+
         Dim material As DataTable = execute_query("SELECT id_mat_cat, mat_cat FROM tb_m_mat_cat", -1, True, "", "", "", "")
 
         Dim data_stock As DataTable = execute_query("CALL view_stock_report_mat('" + Date.Parse(DEStartPeriod.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DEEndPeriod.EditValue.ToString).ToString("yyyy-MM-dd") + "')", -1, True, "", "", "", "")
@@ -139,6 +141,8 @@
         Next
 
         GridControlSummary.DataSource = data
+
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click

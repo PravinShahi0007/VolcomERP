@@ -24,7 +24,6 @@ Partial Public Class ReportMatStockSummary
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XLNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
@@ -41,6 +40,7 @@ Partial Public Class ReportMatStockSummary
         Me.XLEndPeriod = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -101,12 +101,6 @@ Partial Public Class ReportMatStockSummary
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLNumber, Me.XrLabel1, Me.XrPictureBox1, Me.XrLine1, Me.XrLabel3, Me.XrLabel6, Me.XrLabel5, Me.XrLabel9, Me.XrLabel14, Me.XrLabel13, Me.XLCreatedDate, Me.XLStartPeriod, Me.XLCreatedBy, Me.XLEndPeriod, Me.XrLabel4, Me.XrLabel2})
         Me.ReportHeader.HeightF = 133.15!
         Me.ReportHeader.Name = "ReportHeader"
-        '
-        'ReportFooter
-        '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
-        Me.ReportFooter.HeightF = 25.0!
-        Me.ReportFooter.Name = "ReportFooter"
         '
         'XLNumber
         '
@@ -268,6 +262,12 @@ Partial Public Class ReportMatStockSummary
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.Text = "End Period"
         '
+        'ReportFooter
+        '
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
+        Me.ReportFooter.HeightF = 25.0!
+        Me.ReportFooter.Name = "ReportFooter"
+        '
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 7.25!)
@@ -305,25 +305,31 @@ Partial Public Class ReportMatStockSummary
         '
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
-        Me.BandedGridViewSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridViewSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseBorderColor = True
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseFont = True
@@ -331,8 +337,10 @@ Partial Public Class ReportMatStockSummary
         Me.BandedGridViewSummary.AppearancePrint.Lines.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.Row.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseFont = True
         Me.BandedGridViewSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.gridBand9})
         Me.BandedGridViewSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12})
         Me.BandedGridViewSummary.GridControl = Me.GridControlSummary

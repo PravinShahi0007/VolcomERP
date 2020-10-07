@@ -91,6 +91,8 @@
     End Sub
 
     Sub generate_summary()
+        Cursor = Cursors.WaitCursor
+
         Dim cop_status As DataTable = execute_query("SELECT id_cop_status, cop_status FROM tb_lookup_cop_status", -1, True, "", "", "", "")
 
         Dim data As DataTable = CType(GridControlSummary.DataSource, DataTable).Clone
@@ -129,6 +131,8 @@
         Next
 
         GridControlSummary.DataSource = data
+
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click

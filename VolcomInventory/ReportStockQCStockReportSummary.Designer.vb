@@ -24,11 +24,9 @@ Partial Public Class ReportStockQCStockReportSummary
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLNumber = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLEndPeriod = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLCreatedBy = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLStartPeriod = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLCreatedDate = New DevExpress.XtraReports.UI.XRLabel()
@@ -38,9 +36,11 @@ Partial Public Class ReportStockQCStockReportSummary
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLEndPeriod = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLNumber = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -95,50 +95,35 @@ Partial Public Class ReportStockQCStockReportSummary
         Me.ReportHeader.HeightF = 133.15!
         Me.ReportHeader.Name = "ReportHeader"
         '
-        'ReportFooter
+        'XrLabel2
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
-        Me.ReportFooter.HeightF = 25.0!
-        Me.ReportFooter.Name = "ReportFooter"
+        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 8.25!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 87.15!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.Text = "End Period"
         '
-        'XrPictureBox1
+        'XrLabel4
         '
-        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 8.25!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 87.15!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.Text = ":"
         '
-        'XrLabel1
+        'XLEndPeriod
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 9.000015!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(635.0001!, 23.0!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "WIP - STOCK SUMMARY REPORT"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
-        'XLNumber
-        '
-        Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(855.0001!, 9.000015!)
-        Me.XLNumber.Name = "XLNumber"
-        Me.XLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLNumber.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
-        Me.XLNumber.StylePriority.UseFont = False
-        Me.XLNumber.StylePriority.UseTextAlignment = False
-        Me.XLNumber.Text = "[number]"
-        Me.XLNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        '
-        'XrLine1
-        '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 41.15!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(1074.0!, 23.0!)
+        Me.XLEndPeriod.Font = New System.Drawing.Font("Tahoma", 8.25!)
+        Me.XLEndPeriod.LocationFloat = New DevExpress.Utils.PointFloat(115.0!, 87.15!)
+        Me.XLEndPeriod.Name = "XLEndPeriod"
+        Me.XLEndPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLEndPeriod.SizeF = New System.Drawing.SizeF(275.0!, 23.0!)
+        Me.XLEndPeriod.StylePriority.UseFont = False
+        Me.XLEndPeriod.Text = "[end_period]"
         '
         'XLCreatedBy
         '
@@ -231,35 +216,50 @@ Partial Public Class ReportStockQCStockReportSummary
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.Text = "Start Period"
         '
-        'XrLabel2
+        'XrLine1
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 87.15!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.Text = "End Period"
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 41.15!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(1074.0!, 23.0!)
         '
-        'XrLabel4
+        'XrPictureBox1
         '
-        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 87.15!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.Text = ":"
+        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
         '
-        'XLEndPeriod
+        'XrLabel1
         '
-        Me.XLEndPeriod.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XLEndPeriod.LocationFloat = New DevExpress.Utils.PointFloat(115.0!, 87.15!)
-        Me.XLEndPeriod.Name = "XLEndPeriod"
-        Me.XLEndPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLEndPeriod.SizeF = New System.Drawing.SizeF(275.0!, 23.0!)
-        Me.XLEndPeriod.StylePriority.UseFont = False
-        Me.XLEndPeriod.Text = "[end_period]"
+        Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 9.000015!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(635.0001!, 23.0!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "WIP - STOCK SUMMARY REPORT"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XLNumber
+        '
+        Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(855.0001!, 9.000015!)
+        Me.XLNumber.Name = "XLNumber"
+        Me.XLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLNumber.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
+        Me.XLNumber.StylePriority.UseFont = False
+        Me.XLNumber.StylePriority.UseTextAlignment = False
+        Me.XLNumber.Text = "[number]"
+        Me.XLNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'ReportFooter
+        '
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
+        Me.ReportFooter.HeightF = 25.0!
+        Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable1
         '
@@ -290,7 +290,7 @@ Partial Public Class ReportStockQCStockReportSummary
         Me.GridControlSummary.Location = New System.Drawing.Point(0, 96)
         Me.GridControlSummary.MainView = Me.BandedGridViewSummary
         Me.GridControlSummary.Name = "GridControlSummary"
-        Me.GridControlSummary.Size = New System.Drawing.Size(1031, 100)
+        Me.GridControlSummary.Size = New System.Drawing.Size(1032, 100)
         Me.GridControlSummary.TabIndex = 1
         Me.GridControlSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridViewSummary})
         '
@@ -298,25 +298,31 @@ Partial Public Class ReportStockQCStockReportSummary
         '
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
-        Me.BandedGridViewSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridViewSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseBorderColor = True
         Me.BandedGridViewSummary.AppearancePrint.BandPanel.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.GroupFooter.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.GroupRow.Options.UseFont = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
         Me.BandedGridViewSummary.AppearancePrint.HeaderPanel.Options.UseFont = True
@@ -324,8 +330,10 @@ Partial Public Class ReportStockQCStockReportSummary
         Me.BandedGridViewSummary.AppearancePrint.Lines.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.Row.BackColor = System.Drawing.Color.White
         Me.BandedGridViewSummary.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridViewSummary.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseBackColor = True
         Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseFont = True
         Me.BandedGridViewSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
         Me.BandedGridViewSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
         Me.BandedGridViewSummary.GridControl = Me.GridControlSummary
@@ -479,7 +487,7 @@ Partial Public Class ReportStockQCStockReportSummary
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1074.0!, 104.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1075.0!, 104.0!)
         Me.WinControlContainer1.WinControl = Me.GridControlSummary
         '
         'ReportStockQCStockReportSummary
