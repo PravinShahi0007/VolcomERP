@@ -65,7 +65,7 @@
                 Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
                 Dim responseFromServer As String = reader.ReadToEnd()
                 Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
-                If json("success").ToString = True And json("content").Count > 0 Then
+                If json("success").ToString = True AndAlso json("content").Count > 0 Then
                     For Each row In json("content").ToList
                         'awb number
                         Dim packageCreated As String = ""
@@ -99,7 +99,7 @@
             Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
             Dim responseFromServer As String = reader.ReadToEnd()
             Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
-            If json("success").ToString = True And json("value").Count > 0 Then
+            If json("success").ToString = True AndAlso json("value").Count > 0 Then
                 Dim id As String = ""
                 Dim id_comp_group As String = ""
                 Dim sales_order_ol_shop_number As String = ""
@@ -240,7 +240,7 @@
             Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
             Dim responseFromServer As String = reader.ReadToEnd()
             Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
-            If json("success").ToString = True And json("pageMetaData").Count > 0 Then
+            If json("success").ToString = True AndAlso json("pageMetaData").Count > 0 Then
                 page = Math.Ceiling(Decimal.Parse(json("pageMetaData")("totalRecords")) / 10)
             End If
         End Using
@@ -266,7 +266,7 @@
             Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
             Dim responseFromServer As String = reader.ReadToEnd()
             Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
-            If json("success").ToString = True And json("value").Count > 0 Then
+            If json("success").ToString = True AndAlso json("value").Count > 0 Then
                 For Each row In json("value")("orderHistory").ToList
                     Dim stt As String = ""
                     If row("orderStatus").ToString = "D" Then
