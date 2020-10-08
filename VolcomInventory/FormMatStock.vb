@@ -1054,4 +1054,36 @@
 
         Cursor = Cursors.Default
     End Sub
+
+    Sub view_stock_summary()
+        Dim query As String = "
+            SELECT s.id_mat_summary, s.number, s.start_period, s.end_period, s.created_date, e.employee_name AS created_by, r.report_status
+            FROM tb_mat_summary AS s
+            LEFT JOIN tb_m_employee AS e ON s.created_by = e.id_employee
+            LEFT JOIN tb_lookup_report_status AS r ON s.id_report_status = r.id_report_status
+            ORDER BY s.created_date DESC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GridControlSummary.DataSource = data
+
+        GridViewSummary.BestFitColumns()
+    End Sub
+
+    Private Sub XTCFGStock_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCFGStock.SelectedPageChanged
+        If XTCFGStock.SelectedTabPage.Name = "XTPSummaryReport" Then
+            view_stock_summary()
+        End If
+    End Sub
+
+    Private Sub SBCreateSummary_Click(sender As Object, e As EventArgs) Handles SBCreateSummary.Click
+        FormMatStockSummary.id_mat_summary = "-1"
+        FormMatStockSummary.ShowDialog()
+    End Sub
+
+    Private Sub GridViewSummary_DoubleClick(sender As Object, e As EventArgs) Handles GridViewSummary.DoubleClick
+        FormMatStockSummary.id_mat_summary = GridViewSummary.GetFocusedRowCellValue("id_mat_summary").ToString
+        FormMatStockSummary.ShowDialog()
+    End Sub
 End Class
