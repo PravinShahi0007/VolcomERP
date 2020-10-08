@@ -1046,7 +1046,11 @@
 
         Dim data As DataTable = execute_query("CALL view_stock_report_mat('" + d_from + "', '" + d_to + "')", -1, True, "", "", "", "")
 
-        GCStockReport.DataSource = data
+        Dim dv As DataView = New DataView(data)
+
+        dv.RowFilter = "qty_beg > 0 OR qty_receive > 0 OR qty_mrs > 0 OR qty_retur > 0 OR qty_adj > 0 OR qty_ending > 0"
+
+        GCStockReport.DataSource = dv.ToTable
 
         GVStockReport.BestFitColumns()
 
