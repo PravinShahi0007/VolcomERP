@@ -265,6 +265,8 @@
         Dim worksheet As Microsoft.Office.Interop.Excel.Worksheet
         Dim workbook As Microsoft.Office.Interop.Excel.Workbook
 
+        app.DisplayAlerts = False
+
         If Not file_name = "" Then
             Cursor = Cursors.WaitCursor
 
@@ -625,6 +627,8 @@
         Dim worksheet As Microsoft.Office.Interop.Excel.Worksheet
         Dim workbook As Microsoft.Office.Interop.Excel.Workbook
 
+        app.DisplayAlerts = False
+
         If Not file_name = "" Then
             Cursor = Cursors.WaitCursor
 
@@ -970,6 +974,8 @@
         Dim app As New Microsoft.Office.Interop.Excel.Application
         Dim worksheet As Microsoft.Office.Interop.Excel.Worksheet
         Dim workbook As Microsoft.Office.Interop.Excel.Workbook
+
+        app.DisplayAlerts = False
 
         If Not file_name = "" Then
             Cursor = Cursors.WaitCursor
