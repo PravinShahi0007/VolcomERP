@@ -3,6 +3,14 @@
     Public user_id As String = get_setup_field("zalora_user_id")
     Dim id_store_group As String = get_setup_field("zalora_comp_group")
 
+    Dim data_size As New DataTable
+
+    Sub New()
+        Dim id_code_detail_size As String = get_setup_field("id_code_product_size")
+        Dim query As String = "SELECT cd.id_code_detail,cd.code, cd.code_detail_name FROM tb_m_code_detail cd WHERE cd.id_code=" + id_code_detail_size + " "
+        data_size = execute_query(query, -1, True, "", "", "", "")
+    End Sub
+
     Function get_signature(ByVal parameter As DataTable) As String
         Dim url As String = ""
 
@@ -196,7 +204,11 @@
                         Dim q_check As String = "SELECT * FROM tb_ol_store_order WHERE id='" & row("OrderId").ToString & "' AND id_comp_group='" + id_store_group + "' "
                         Dim dt_check As DataTable = execute_query(q_check, -1, True, "", "", "", "")
                         If Not dt_check.Rows.Count > 0 Then
-                            get_order_detail(row("OrderId").ToString)
+                            Dim id As String = ""
+                            id = row("OrderId").ToString
+
+                            'detail items
+
                         End If
                     Next
                 End If
@@ -206,7 +218,58 @@
         Next
     End Sub
 
-    Sub get_order_detail(ByVal order_par As String)
+    Function get_order_detail(ByVal id As String) As DataTable
+        Dim dt As DataTable
+        dt.Columns.Add("ol_store_id", GetType(String))
+        dt.Columns.Add("item_id", GetType(String))
+        dt.Columns.Add("sku", GetType(String))
+        dt.Columns.Add("ol_store_sku", GetType(String))
+        dt.Columns.Add("design_price", GetType(Decimal))
+        dt.Columns.Add("tracking_code", GetType(String))
+        dt.Columns.Add("sales_order_ol_shop_date", GetType(DateTime))
 
-    End Sub
+        Dim parameter_det As DataTable = New DataTable
+
+        parameter_det.Columns.Add("key", GetType(String))
+        parameter_det.Columns.Add("value", GetType(String))
+
+        parameter_det.Rows.Add("Action", "GetOrderItems")
+        parameter_det.Rows.Add("Format", "JSON")
+        parameter_det.Rows.Add("OrderId", id)
+        parameter_det.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
+        parameter_det.Rows.Add("UserID", Uri.EscapeDataString(user_id))
+        parameter_det.Rows.Add("Version", "1.0")
+
+        Dim signature_det As String = get_signature(parameter_det)
+
+        parameter_det.Rows.Add("Signature", signature_det)
+
+        Dim url_det As String = "https://sellercenter-api.zalora.co.id?"
+
+        For i = 0 To parameter_det.Rows.Count - 1
+            url_det += parameter_det.Rows(i)("key").ToString + "=" + parameter_det.Rows(i)("value").ToString + "&"
+        Next
+
+        url_det = url_det.Substring(0, url_det.Length - 1)
+
+        Dim request_det As Net.HttpWebRequest = Net.WebRequest.Create(url_det)
+
+        request_det.Method = "GET"
+        Dim response_det As Net.HttpWebResponse = request_det.GetResponse()
+        Using dataStreamDet As IO.Stream = response_det.GetResponseStream()
+            Dim reader_det As IO.StreamReader = New IO.StreamReader(dataStreamDet)
+
+            Dim responseFromServerDet As String = reader_det.ReadToEnd()
+
+            Dim json_det As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServerDet)
+            If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").Count > 0 Then
+                For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
+                    Dim code9 As String = row_det("Sku").ToString.Substring(0, 9)
+                    'dt.Rows.Add(row_det("ShopId").ToString, )
+                Next
+            End If
+        End Using
+        response_det.Close()
+        Return dt
+    End Function
 End Class
