@@ -26,6 +26,7 @@
         INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat 
         ORDER BY i.item_desc ASC "
         viewSearchLookupQuery(SLEITem, query, "id_item", "item_desc", "id_item")
+        SearchLookUpEdit1View.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
