@@ -434,7 +434,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
         'cek multiple currency
         For i As Integer = 0 To GVData.RowCount - 1
-            If Not GVData.GetRowCellValue(i, "id_currency").ToString = GVData.GetRowCellValue(0, "id_currency").ToString Or Not GVData.GetRowCellValue(i, "kurs").ToString = GVData.GetRowCellValue(0, "kurs").ToString Then
+            If Not GVData.GetRowCellValue(i, "id_currency").ToString = GVData.GetRowCellValue(0, "id_currency").ToString Or Not Decimal.Parse(GVData.GetRowCellValue(i, "kurs").ToString) = Decimal.Parse(GVData.GetRowCellValue(0, "kurs").ToString) Then
                 multiple_curr = True
                 Exit For
             End If
@@ -572,6 +572,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
                         Dim qd As String = ""
                         'delete first
                         qd = "DELETE FROM tb_item_expense_det WHERE id_item_expense='" & id & "'"
+                        execute_non_query(qd, True, "", "", "", "")
                         'input details
                         qd = "INSERT INTO tb_item_expense_det(id_item_expense, id_acc,cc, description, tax_percent, tax_value, id_currency,kurs,amount_before, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph) VALUES "
                         For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
