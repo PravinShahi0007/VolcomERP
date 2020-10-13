@@ -1,6 +1,13 @@
 ﻿Public Class FormLetterOfStatementDet
     Public id_letter_of_statement As String = "0"
 
+    Public basic_salary As String = "0"
+    Public allow_job As String = "0"
+    Public allow_meal As String = "0"
+    Public allow_trans As String = "0"
+    Public allow_house As String = "0"
+    Public allow_car As String = "0"
+
     Private Sub FormLetterOfStatementDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         form_load()
     End Sub
@@ -92,11 +99,11 @@
             If execute_query("SELECT is_contract FROM tb_letter_of_statement_popup WHERE id_letter_of_statement_popup = " + SLUEType.EditValue.ToString, 0, True, "", "", "", "") Then
                 PCContract.Visible = True
                 PCEmployee.Visible = False
-                Size = New Size(600, 507)
+                Size = New Size(615, 507)
             Else
                 PCContract.Visible = False
                 PCEmployee.Visible = True
-                Size = New Size(600, 222)
+                Size = New Size(615, 222)
             End If
 
             Dim month As String = execute_query("SELECT `code` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW())", 0, True, "", "", "", "")
@@ -148,5 +155,53 @@
 
     Private Sub TEAllowCar_EditValueChanged(sender As Object, e As EventArgs) Handles TEAllowCar.EditValueChanged
         calculate_total_salary()
+    End Sub
+
+    Private Sub TEBasicSalary_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEBasicSalary.Validating
+        If TEBasicSalary.EditValue.ToString = basic_salary Then
+            ErrorProvider.SetError(TEBasicSalary, "")
+        Else
+            ErrorProvider.SetError(TEBasicSalary, "Salary changed.")
+        End If
+    End Sub
+
+    Private Sub TEAllowJob_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEAllowJob.Validating
+        If TEAllowJob.EditValue.ToString = allow_job Then
+            ErrorProvider.SetError(TEAllowJob, "")
+        Else
+            ErrorProvider.SetError(TEAllowJob, "Salary changed.")
+        End If
+    End Sub
+
+    Private Sub TEAllowMeal_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEAllowMeal.Validating
+        If TEAllowMeal.EditValue.ToString = allow_meal Then
+            ErrorProvider.SetError(TEAllowMeal, "")
+        Else
+            ErrorProvider.SetError(TEAllowMeal, "Salary changed.")
+        End If
+    End Sub
+
+    Private Sub TEAllowTrans_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEAllowTrans.Validating
+        If TEAllowTrans.EditValue.ToString = allow_trans Then
+            ErrorProvider.SetError(TEAllowTrans, "")
+        Else
+            ErrorProvider.SetError(TEAllowTrans, "Salary changed.")
+        End If
+    End Sub
+
+    Private Sub TEAllowHouse_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEAllowHouse.Validating
+        If TEAllowHouse.EditValue.ToString = allow_house Then
+            ErrorProvider.SetError(TEAllowHouse, "")
+        Else
+            ErrorProvider.SetError(TEAllowHouse, "Salary changed.")
+        End If
+    End Sub
+
+    Private Sub TEAllowCar_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEAllowCar.Validating
+        If TEAllowCar.EditValue.ToString = allow_car Then
+            ErrorProvider.SetError(TEAllowCar, "")
+        Else
+            ErrorProvider.SetError(TEAllowCar, "Salary changed.")
+        End If
     End Sub
 End Class
