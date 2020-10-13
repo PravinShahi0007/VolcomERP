@@ -167,7 +167,7 @@
 
             parameter.Rows.Add("Action", "GetOrders")
             parameter.Rows.Add("Format", "JSON")
-            parameter.Rows.Add("Limit", "1")
+            parameter.Rows.Add("Limit", "1000")
             parameter.Rows.Add("Offset", p.ToString)
             parameter.Rows.Add("Status", "pending")
             parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
@@ -195,32 +195,118 @@
                 Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
 
                 Dim responseFromServer As String = reader.ReadToEnd()
-                'Console.WriteLine(responseFromServer.ToString)
-                If responseFromServer.Contains("""Order"":[") Then
-                    'array
-                    Console.WriteLine("Array")
-                Else
-                    'no array
-                    Console.WriteLine("Bukan Array")
+
+                'set into datatable
+                Dim dt_order As New DataTable
+                dt_order.Columns.Add("id", GetType(String))
+                dt_order.Columns.Add("sales_order_ol_shop_number", GetType(String))
+                dt_order.Columns.Add("sales_order_ol_shop_date", GetType(DateTime))
+                dt_order.Columns.Add("customer_name", GetType(String))
+                dt_order.Columns.Add("shipping_name", GetType(String))
+                dt_order.Columns.Add("shipping_address", GetType(String))
+                dt_order.Columns.Add("shipping_address1", GetType(String))
+                dt_order.Columns.Add("shipping_address2", GetType(String))
+                dt_order.Columns.Add("shipping_phone", GetType(String))
+                dt_order.Columns.Add("shipping_city", GetType(String))
+                dt_order.Columns.Add("shipping_post_code", GetType(String))
+                dt_order.Columns.Add("shipping_region", GetType(String))
+                dt_order.Columns.Add("payment_method", GetType(String))
+
+                'var
+                Dim id As String = ""
+                Dim sales_order_ol_shop_number As String = ""
+                Dim sales_order_ol_shop_date As DateTime = Nothing
+                Dim customer_name As String = ""
+                Dim shipping_name As String = ""
+                Dim shipping_address As String = ""
+                Dim shipping_address1 As String = ""
+                Dim shipping_address2 As String = ""
+                Dim shipping_phone As String = ""
+                Dim shipping_city As String = ""
+                Dim shipping_post_code As String = ""
+                Dim shipping_region As String = ""
+                Dim payment_method As String = ""
+
+
+                Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+                If json("SuccessResponse")("Body")("Orders")("Order").Count > 0 Then
+                    If responseFromServer.Contains("""Order"":[") Then
+                        'array
+                        For Each row In json("SuccessResponse")("Body")("Orders")("Order").ToList
+                            'check first
+                            Dim q_check As String = "SELECT * FROM tb_ol_store_order WHERE id='" & row("OrderId").ToString & "' AND id_comp_group='" + id_store_group + "' "
+                            Dim dt_check As DataTable = execute_query(q_check, -1, True, "", "", "", "")
+                            If Not dt_check.Rows.Count > 0 Then
+                                'reset
+                                id = ""
+                                sales_order_ol_shop_number = ""
+                                sales_order_ol_shop_date = Nothing
+                                customer_name = ""
+                                shipping_name = ""
+                                shipping_address = ""
+                                shipping_address1 = ""
+                                shipping_address2 = ""
+                                shipping_phone = ""
+                                shipping_city = ""
+                                shipping_post_code = ""
+                                shipping_region = ""
+                                payment_method = ""
+
+                                'clear dan isi dt_order 1 dimensi
+                                Try
+                                    dt_order.Clear()
+                                Catch ex As Exception
+                                End Try
+                                id = row("OrderId").ToString
+                                sales_order_ol_shop_number = row("OrderNumber").ToString
+                                sales_order_ol_shop_date = row("CreatedAt")
+                                customer_name = row("CustomerFirstName").ToString + " " + row("CustomerLastName").ToString
+                                shipping_name = row("AddressShipping")("FirstName").ToString + " " + row("AddressShipping")("LastName").ToString
+                                shipping_address = row("AddressShipping")("Address1").ToString + " " + row("AddressShipping")("Address2").ToString
+                                shipping_address1 = row("AddressShipping")("Address1").ToString
+                                shipping_address2 = row("AddressShipping")("Address2").ToString
+                                shipping_phone = row("AddressShipping")("Phone").ToString
+                                shipping_city = row("AddressShipping")("City").ToString
+                                shipping_post_code = row("AddressShipping")("PostCode").ToString
+                                shipping_region = row("AddressShipping")("Region").ToString
+                                payment_method = row("PaymentMethod").ToString
+                                dt_order.Rows.Add(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address, shipping_address1, shipping_address2, shipping_phone, shipping_city, shipping_post_code, shipping_region, payment_method)
+
+                                'detail items
+                                proceed_order_detail(dt_order)
+                            End If
+                        Next
+                    Else
+                        'no array
+                        'check first
+                        Dim q_check As String = "SELECT * FROM tb_ol_store_order WHERE id='" & json("SuccessResponse")("Body")("Orders")("Order")("OrderId").ToString & "' AND id_comp_group='" + id_store_group + "' "
+                        Dim dt_check As DataTable = execute_query(q_check, -1, True, "", "", "", "")
+                        If Not dt_check.Rows.Count > 0 Then
+                            Try
+                                dt_order.Clear()
+                            Catch ex As Exception
+                            End Try
+                            id = json("SuccessResponse")("Body")("Orders")("Order")("OrderId").ToString
+                            sales_order_ol_shop_number = json("SuccessResponse")("Body")("Orders")("Order")("OrderNumber").ToString
+                            sales_order_ol_shop_date = json("SuccessResponse")("Body")("Orders")("Order")("CreatedAt")
+                            customer_name = json("SuccessResponse")("Body")("Orders")("Order")("CustomerFirstName").ToString + " " + json("SuccessResponse")("Body")("Orders")("Order")("CustomerLastName").ToString
+                            shipping_name = json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("FirstName").ToString + " " + json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("LastName").ToString
+                            shipping_address = json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("Address1").ToString + " " + json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("Address2").ToString
+                            shipping_address1 = json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("Address1").ToString
+                            shipping_address2 = json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("Address2").ToString
+                            shipping_phone = json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("Phone").ToString
+                            shipping_city = json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("City").ToString
+                            shipping_post_code = json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("PostCode").ToString
+                            shipping_region = json("SuccessResponse")("Body")("Orders")("Order")("AddressShipping")("Region").ToString
+                            payment_method = json("SuccessResponse")("Body")("Orders")("Order")("PaymentMethod").ToString
+                            dt_order.Rows.Add(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address, shipping_address1, shipping_address2, shipping_phone, shipping_city, shipping_post_code, shipping_region, payment_method)
+
+                            'detail items
+                            proceed_order_detail(dt_order)
+                        End If
+                    End If
                 End If
 
-
-                'Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
-                'Console.WriteLine(json("SuccessResponse")("Body")("Orders")("Order").ToList.Count)
-                'If json("SuccessResponse")("Body")("Orders")("Order").Count > 0 Then
-                '    For Each row In json("SuccessResponse")("Body")("Orders")("Order").ToList
-                '        'check first
-                '        Dim q_check As String = "SELECT * FROM tb_ol_store_order WHERE id='" & row("OrderId").ToString & "' AND id_comp_group='" + id_store_group + "' "
-                '        Dim dt_check As DataTable = execute_query(q_check, -1, True, "", "", "", "")
-                '        If Not dt_check.Rows.Count > 0 Then
-                '            Dim id As String = ""
-                '            id = row("OrderId").ToString
-
-                '            'detail items
-                '            proceed_order_detail(id, row)
-                '        End If
-                '    Next
-                'End If
 
             End Using
 
@@ -228,7 +314,8 @@
         Next
     End Sub
 
-    Sub proceed_order_detail(ByVal id_order As String, ByVal row_par As Newtonsoft.Json.Linq.JObject)
+    Sub proceed_order_detail(ByVal dtx As DataTable)
+        Dim id_order As String = dtx.Rows(0)("id").ToString
         Dim dtd As DataTable = get_order_detail(id_order)
         If dtd.Rows.Count > 0 Then
             If dtd.Rows(0)("tracking_code").ToString <> "" Then 'sudah ada awb
@@ -242,9 +329,9 @@
                     Dim financial_status As String = ""
                     Dim total_discounts As String = ""
                     Dim discount_code As String = ""
-                    sales_order_ol_shop_number = row_par("OrderNumber").ToString
-                    sales_order_ol_shop_date = DateTime.Parse(row_par("CreatedAt").ToString).ToString("yyyy-MM-dd HH:mm:ss")
-                    payment_method = row_par("PaymentMethod").ToString
+                    sales_order_ol_shop_number = dtx.Rows(0)("sales_order_ol_shop_number").ToString
+                    sales_order_ol_shop_date = DateTime.Parse(dtx.Rows(0)("sales_order_ol_shop_date").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                    payment_method = dtx.Rows(0)("payment_method").ToString
                     checkout_id = ""
                     tracking_code = dtd.Rows(d)("tracking_code").ToString
                     financial_status = ""
@@ -253,17 +340,16 @@
 
                     'data customer
                     Dim customer_name As String = ""
-                    customer_name = row_par("CustomerFirstName").ToString + " " + row_par("CustomerLastName").ToString
+                    customer_name = dtx.Rows(0)("customer_name").ToString
                     Console.WriteLine(customer_name)
                 Next
-
+            Else
 
             End If
         End If
     End Sub
 
     Function get_order_detail(ByVal id As String) As DataTable
-        Console.WriteLine("ID ORDER : " + id.ToString)
         Dim dt As New DataTable
         dt.Columns.Add("ol_store_id", GetType(String))
         dt.Columns.Add("item_id", GetType(String))
@@ -305,30 +391,51 @@
 
             Dim responseFromServerDet As String = reader_det.ReadToEnd()
 
+            'array
             Dim json_det As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServerDet)
             If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").Count > 0 Then
-                For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
-                    'Dim code9 As String = row_det("Sku").ToString.Substring(0, 9)
-                    Dim code9 As String = ""
-                    Dim variation As String = row_det("Variation").ToString
-                    If Not isNumber(variation) Then
-                        variation = variation
-                    Else
-                        variation = variation.PadLeft(2, "0")
-                    End If
-                    Dim data_size_cek As DataRow() = data_size.Select("[code_detail_name]='" + variation + "' ")
-                    Dim code_size As String = ""
-                    If data_size_cek.Length <= 0 Then
-                        code_size = ""
-                    Else
-                        code_size = data_size_cek(0)("code").ToString
-                    End If
-                    Dim sku As String = code9 + code_size
-                    dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString)
-                Next
+                Dim sku As String = ""
+
+                If responseFromServerDet.Contains("""OrderItem"":[") Then
+                    'array
+                    For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
+                        sku = ""
+                        sku = getSKU(row_det("Sku").ToString.Substring(0, 9), row_det("Variation").ToString)
+                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString)
+                    Next
+                Else
+                    'non array
+                    sku = ""
+                    sku = getSKU(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Sku").ToString.Substring(0, 9), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Variation").ToString)
+                    dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString)
+                End If
             End If
         End Using
         response_det.Close()
         Return dt
+    End Function
+
+    Function getSKU(ByVal design_code_par As String, ByVal size_par As String) As String
+        Dim code9 As String = design_code_par
+        Dim variation As String = size_par
+        If Not isNumber(variation) Then
+            variation = variation
+        Else
+            variation = variation.PadLeft(2, "0")
+        End If
+        If variation < "10" Then
+            variation = variation
+        Else
+            variation = If(variation = "One Size", "ALL", variation.Replace("in", ""))
+        End If
+        Dim data_size_cek As DataRow() = data_size.Select("[code_detail_name]='" + variation + "' ")
+        Dim code_size As String = ""
+        If data_size_cek.Length <= 0 Then
+            code_size = ""
+        Else
+            code_size = data_size_cek(0)("code").ToString
+        End If
+        Dim sku As String = code9 + code_size
+        Return sku
     End Function
 End Class
