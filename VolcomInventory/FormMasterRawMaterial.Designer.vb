@@ -59,6 +59,23 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCMaterialType, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMaterialType.SuspendLayout()
         Me.XTPRawMaterial.SuspendLayout()
@@ -76,6 +93,11 @@ Partial Class FormMasterRawMaterial
         Me.XTPListMat.SuspendLayout()
         CType(Me.GCListMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListMat, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPropose.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMaterialType
@@ -290,9 +312,9 @@ Partial Class FormMasterRawMaterial
         Me.XTCList.Location = New System.Drawing.Point(0, 0)
         Me.XTCList.Name = "XTCList"
         Me.XTCList.SelectedTabPage = Me.XTPMasterMat
-        Me.XTCList.Size = New System.Drawing.Size(705, 309)
+        Me.XTCList.Size = New System.Drawing.Size(1071, 544)
         Me.XTCList.TabIndex = 1
-        Me.XTCList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMasterMat, Me.XTPListMat})
+        Me.XTCList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMasterMat, Me.XTPListMat, Me.XTPPropose})
         '
         'XTPMasterMat
         '
@@ -305,7 +327,7 @@ Partial Class FormMasterRawMaterial
         '
         Me.XTPListMat.Controls.Add(Me.GCListMat)
         Me.XTPListMat.Name = "XTPListMat"
-        Me.XTPListMat.Size = New System.Drawing.Size(699, 281)
+        Me.XTPListMat.Size = New System.Drawing.Size(1065, 516)
         Me.XTPListMat.Text = "List"
         '
         'GCListMat
@@ -314,7 +336,7 @@ Partial Class FormMasterRawMaterial
         Me.GCListMat.Location = New System.Drawing.Point(0, 0)
         Me.GCListMat.MainView = Me.GVListMat
         Me.GCListMat.Name = "GCListMat"
-        Me.GCListMat.Size = New System.Drawing.Size(699, 281)
+        Me.GCListMat.Size = New System.Drawing.Size(1065, 516)
         Me.GCListMat.TabIndex = 4
         Me.GCListMat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListMat})
         '
@@ -417,11 +439,152 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn12.FieldName = "mat_code"
         Me.GridColumn12.Name = "GridColumn12"
         '
+        'XTPPropose
+        '
+        Me.XTPPropose.Controls.Add(Me.GridControl1)
+        Me.XTPPropose.Controls.Add(Me.PanelControl3)
+        Me.XTPPropose.Controls.Add(Me.PanelControl2)
+        Me.XTPPropose.Name = "XTPPropose"
+        Me.XTPPropose.Size = New System.Drawing.Size(1065, 516)
+        Me.XTPPropose.Text = "Propose"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 473)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1065, 43)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1065, 43)
+        Me.PanelControl3.TabIndex = 1
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl1.Location = New System.Drawing.Point(0, 43)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(1065, 430)
+        Me.GridControl1.TabIndex = 5
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn23, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsFind.AlwaysVisible = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Sub Category"
+        Me.GridColumn10.FieldName = "mat_display_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID"
+        Me.GridColumn13.FieldName = "id_mat_det"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Code"
+        Me.GridColumn14.FieldName = "mat_det_code"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 2
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Name"
+        Me.GridColumn15.FieldName = "mat_det_name"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 3
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Display Name"
+        Me.GridColumn16.FieldName = "mat_det_display_name"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 4
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Method"
+        Me.GridColumn17.FieldName = "method"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 5
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.GridColumn18.Caption = "Lifetime (day)"
+        Me.GridColumn18.FieldName = "lifetime"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 6
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Date Created"
+        Me.GridColumn19.FieldName = "mat_det_date"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 7
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "FOB Price"
+        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "mat_det_price"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 8
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "ID Mat"
+        Me.GridColumn21.FieldName = "id_mat"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Mat Code"
+        Me.GridColumn22.FieldName = "mat_code"
+        Me.GridColumn22.Name = "GridColumn22"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Number"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
+        '
         'FormMasterRawMaterial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(705, 309)
+        Me.ClientSize = New System.Drawing.Size(1071, 544)
         Me.Controls.Add(Me.XTCList)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -448,6 +611,11 @@ Partial Class FormMasterRawMaterial
         Me.XTPListMat.ResumeLayout(False)
         CType(Me.GCListMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListMat, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPropose.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -491,4 +659,21 @@ Partial Class FormMasterRawMaterial
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPPropose As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
