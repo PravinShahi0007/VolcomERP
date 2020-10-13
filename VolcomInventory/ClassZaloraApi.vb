@@ -342,6 +342,48 @@
                     Dim customer_name As String = ""
                     customer_name = dtx.Rows(0)("customer_name").ToString
                     Console.WriteLine(customer_name)
+
+                    'data shipping
+                    Dim shipping_name As String = ""
+                    Dim shipping_address As String = ""
+                    Dim shipping_address1 As String = ""
+                    Dim shipping_address2 As String = ""
+                    Dim shipping_phone As String = ""
+                    Dim shipping_city As String = ""
+                    Dim shipping_post_code As String = ""
+                    Dim shipping_region As String = ""
+                    shipping_name = dtx.Rows(0)("shipping_name").ToString
+                    shipping_address = dtx.Rows(0)("shipping_address1").ToString
+                    shipping_address += dtx.Rows(0)("shipping_address2").ToString + " "
+                    shipping_address += dtx.Rows(0)("shipping_city").ToString + " "
+                    shipping_address += dtx.Rows(0)("shipping_region").ToString + " "
+                    shipping_address += dtx.Rows(0)("shipping_post_code").ToString + " "
+                    shipping_address += "Phone : " + dtx.Rows(0)("shipping_phone").ToString
+                    shipping_address1 = dtx.Rows(0)("shipping_address1").ToString
+                    shipping_address2 = dtx.Rows(0)("shipping_address2").ToString
+                    shipping_phone = dtx.Rows(0)("shipping_phone").ToString
+                    shipping_city = dtx.Rows(0)("shipping_city").ToString
+                    shipping_post_code = dtx.Rows(0)("shipping_post_code").ToString
+                    shipping_region = dtx.Rows(0)("shipping_region").ToString
+
+                    'detail shipping
+                    Dim shipping_price As String = "0"
+
+                    'detail item
+                    Dim ol_store_sku As String = ""
+                    Dim ol_store_id As String = ""
+                    Dim sku As String = ""
+                    Dim design_price As String = ""
+                    Dim sales_order_det_qty As String = ""
+                    Dim grams As String = ""
+                    Dim discount_allocations_amo As String = "0"
+                    ol_store_sku = dtd.Rows(d)("ol_store_sku").ToString
+                    ol_store_id = dtd.Rows(d)("ol_store_id").ToString
+                    sku = dtd.Rows(d)("sku").ToString
+                    design_price = decimalSQL(dtd.Rows(d)("design_price").ToString)
+                    sales_order_det_qty = decimalSQL(dtd.Rows(d)("sales_order_det_qty").ToString)
+                    grams = decimalSQL(dtd.Rows(d)("grams").ToString)
+                    discount_allocations_amo = "0"
                 Next
             Else
 
@@ -357,6 +399,8 @@
         dt.Columns.Add("ol_store_sku", GetType(String))
         dt.Columns.Add("design_price", GetType(Decimal))
         dt.Columns.Add("tracking_code", GetType(String))
+        dt.Columns.Add("sales_order_det_qty", GetType(Decimal))
+        dt.Columns.Add("grams", GetType(Decimal))
 
         Dim parameter_det As DataTable = New DataTable
 
