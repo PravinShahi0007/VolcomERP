@@ -445,7 +445,7 @@
                     For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
                         sku = ""
                         sku = getSKU(row_det("Sku").ToString.Substring(0, 9), row_det("Variation").ToString)
-                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString)
+                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, 1,)
                     Next
                 Else
                     'non array
