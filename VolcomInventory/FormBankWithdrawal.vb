@@ -629,6 +629,12 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             BView.Location = New Point(438, 9)
 
             BCreatePO.Visible = False
+
+            PanelControl1.Enabled = True
+            BCreatePO.Enabled = True
+        ElseIf XTPPOList.SelectedTabPageIndex = 2 Then
+            PanelControl1.Enabled = False
+            BCreatePO.Enabled = False
         Else
             LabelControl5.Visible = True
             SLEStatusPayment.Visible = True
@@ -636,6 +642,9 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             BCreatePO.Visible = True
 
             BView.Location = New Point(649, 9)
+
+            PanelControl1.Enabled = True
+            BCreatePO.Enabled = True
         End If
     End Sub
 
