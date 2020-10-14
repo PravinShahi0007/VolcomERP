@@ -180,7 +180,7 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom` "
             BViewImage.Enabled = True
 
             'image
-            If System.IO.File.Exists(material_image_path_pps & id_pps & ".jpg") Then
+            If IO.File.Exists(material_image_path_pps & id_pps & ".jpg") Then
                 PictureEdit1.LoadAsync(material_image_path_pps & id_pps & ".jpg")
             Else
                 PictureEdit1.LoadAsync(material_image_path_pps & "default" & ".jpg")
@@ -189,12 +189,14 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom` "
             'material detail
             Dim query As String = "SELECT * FROM tb_m_mat_det_pps WHERE id_mat_det_pps = '" + id_pps + "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            SLEMaterialCategory.EditValue = data.Rows(0)("id_mat").ToString
             TxtName.Text = data.Rows(0)("mat_det_name").ToString
             TxtDisplayName.Text = data.Rows(0)("mat_det_display_name").ToString
             TxtMaterialFullCode.Text = data.Rows(0)("mat_det_code").ToString
             TxtLifetime.Text = data.Rows(0)("lifetime").ToString
             id_method = data.Rows(0)("id_method").ToString
             SLERange.EditValue = data.Rows(0)("id_range").ToString
+            TEFOBPrice.EditValue = data.Rows(0)("fob_price")
             'code
             'code prepare
             query = String.Format("SELECT cd.id_code as id_code,cd.id_code_detail as id_code_detail FROM tb_m_mat_det_pps_code mdpc
@@ -293,6 +295,10 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
         validatingFullCode()
         If Not EPMaterial.GetError(TxtMaterialFullCode).ToString = "" Or Not formIsValidInPanel(EPMaterial, PanC1) Then
             errorInput()
+        ElseIf SLEMaterialCategory.EditValue = Nothing Then
+            warningCustom("Please select material category.")
+        ElseIf TEFOBPrice.EditValue = 0 Then
+            warningCustom("Please put FOB price.")
         Else
             Dim query As String
             Dim mat_det_display_name As String = addSlashes(TxtDisplayName.Text)
@@ -344,8 +350,8 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
                 Try
                     'update db
                     query = "UPDATE tb_m_mat_det_pps SET mat_det_display_name = '{0}', mat_det_name='{1}', mat_det_code='{2}', id_method='{3}', "
-                    query += "lifetime = '{4}', allow_design='{6}',id_fab_type='{7}',gramasi='{8}',id_range='{9}',id_mat='{10}',last_update_date=NOW(),last_update_by='{11}'  WHERE id_mat_det_pps = '{5}'"
-                    query = String.Format(query, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, id_pps, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, SLEMaterialCategory.EditValue.ToString, id_user)
+                    query += "lifetime = '{4}', allow_design='{6}',id_fab_type='{7}',gramasi='{8}',id_range='{9}',id_mat='{10}',last_update_date=NOW(),last_update_by='{11}',fob_price='{12}'  WHERE id_mat_det_pps = '{5}'"
+                    query = String.Format(query, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, id_pps, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, SLEMaterialCategory.EditValue.ToString, id_user, decimalSQL(TEFOBPrice.EditValue.ToString))
                     execute_non_query(query, True, "", "", "", "")
 
                     'cek image

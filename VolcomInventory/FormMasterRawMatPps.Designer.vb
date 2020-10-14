@@ -55,6 +55,7 @@ Partial Class FormMasterRawMatPps
         Me.TxtName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControlUpdateName = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtMaterialFullCode = New DevExpress.XtraEditors.TextEdit()
         Me.GCCodeMaterial = New DevExpress.XtraGrid.GridControl()
@@ -71,7 +72,6 @@ Partial Class FormMasterRawMatPps
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtMaterialTypeCode = New DevExpress.XtraEditors.TextEdit()
-        Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLotTitle.SuspendLayout()
@@ -210,6 +210,7 @@ Partial Class FormMasterRawMatPps
         Me.TEUOM.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEUOM.Properties.Appearance.Options.UseFont = True
         Me.TEUOM.Properties.MaxLength = 50
+        Me.TEUOM.Properties.ReadOnly = True
         Me.TEUOM.Size = New System.Drawing.Size(191, 22)
         Me.TEUOM.TabIndex = 105
         Me.TEUOM.ToolTip = "Max : 30 character."
@@ -457,6 +458,14 @@ Partial Class FormMasterRawMatPps
         Me.PanelControl2.Size = New System.Drawing.Size(462, 359)
         Me.PanelControl2.TabIndex = 16
         '
+        'BGenerate
+        '
+        Me.BGenerate.Location = New System.Drawing.Point(344, 328)
+        Me.BGenerate.Name = "BGenerate"
+        Me.BGenerate.Size = New System.Drawing.Size(106, 23)
+        Me.BGenerate.TabIndex = 98
+        Me.BGenerate.Text = "Generate Code"
+        '
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -611,14 +620,6 @@ Partial Class FormMasterRawMatPps
         Me.TxtMaterialTypeCode.Properties.ReadOnly = True
         Me.TxtMaterialTypeCode.Size = New System.Drawing.Size(138, 22)
         Me.TxtMaterialTypeCode.TabIndex = 4
-        '
-        'BGenerate
-        '
-        Me.BGenerate.Location = New System.Drawing.Point(344, 328)
-        Me.BGenerate.Name = "BGenerate"
-        Me.BGenerate.Size = New System.Drawing.Size(106, 23)
-        Me.BGenerate.TabIndex = 98
-        Me.BGenerate.Text = "Generate Code"
         '
         'EPMaterial
         '

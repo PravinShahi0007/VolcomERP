@@ -166,7 +166,9 @@ LEFT JOIN tb_m_employee emp_u ON emp_u.`id_employee`=usr_u.`id_employee`"
 
     Private Sub GVPropose_DoubleClick(sender As Object, e As EventArgs) Handles GVPropose.DoubleClick
         If GVPropose.RowCount > 0 Then
-
+            FormMasterRawMatPps.action = "upd"
+            FormMasterRawMatPps.id_pps = GVPropose.GetFocusedRowCellValue("id_mat_det_pps").ToString
+            FormMasterRawMatPps.ShowDialog()
         End If
     End Sub
 End Class
