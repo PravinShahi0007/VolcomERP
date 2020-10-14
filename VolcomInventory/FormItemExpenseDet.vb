@@ -246,10 +246,10 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         BtnMark.Visible = True
         BtnAttachment.Visible = True
         '
-        If check_already_submit("157", id) And Not is_view = "1" Then
-            'msh belum submit
+        If check_edit_report_status(id_report_status, "157", id) And Not is_view = "1" Then
+            'msh bisa edit
         Else
-            'sudah submit
+            'tidak bisa edit
             BtnPrint.Visible = True
 
             GVData.OptionsBehavior.Editable = False
@@ -534,7 +534,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
                         End If
 
                         'submit
-                        'submit_who_prepared(157, id, id_user)
+                        submit_who_prepared(157, id, id_user)
 
                         'refresh
                         action = "upd"
