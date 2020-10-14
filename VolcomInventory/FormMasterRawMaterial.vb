@@ -135,4 +135,14 @@
     Private Sub XTCList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCList.SelectedPageChanged
         pageChanged()
     End Sub
+
+    Private Sub BProposeMat_Click(sender As Object, e As EventArgs) Handles BProposeMat.Click
+        FormMasterRawMaterialDetSingle.action = "ins"
+
+        'FormMasterRawMaterialDetSingle.id_mat = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellValue("id_mat").ToString
+        'FormMasterRawMaterialDetSingle.LabelPrintedName.Text = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellDisplayText("mat_display_name").ToString
+        'FormMasterRawMaterialDetSingle.TxtMaterialTypeCode.Text = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellDisplayText("mat_code").ToString
+
+        FormMasterRawMaterialDetSingle.ShowDialog()
+    End Sub
 End Class

@@ -60,11 +60,10 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GCPropose = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,7 +74,9 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BProposeMat = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCMaterialType, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMaterialType.SuspendLayout()
         Me.XTPRawMaterial.SuspendLayout()
@@ -94,10 +95,11 @@ Partial Class FormMasterRawMaterial
         CType(Me.GCListMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPropose.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCMaterialType
@@ -109,7 +111,7 @@ Partial Class FormMasterRawMaterial
         Me.XTCMaterialType.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XTCMaterialType.Name = "XTCMaterialType"
         Me.XTCMaterialType.SelectedTabPage = Me.XTPRawMaterial
-        Me.XTCMaterialType.Size = New System.Drawing.Size(699, 281)
+        Me.XTCMaterialType.Size = New System.Drawing.Size(1065, 516)
         Me.XTCMaterialType.TabIndex = 0
         Me.XTCMaterialType.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRawMaterial, Me.XTPMaterialDetail})
         '
@@ -117,7 +119,7 @@ Partial Class FormMasterRawMaterial
         '
         Me.XTPRawMaterial.Controls.Add(Me.GCRawMat)
         Me.XTPRawMaterial.Name = "XTPRawMaterial"
-        Me.XTPRawMaterial.Size = New System.Drawing.Size(673, 278)
+        Me.XTPRawMaterial.Size = New System.Drawing.Size(1039, 513)
         Me.XTPRawMaterial.Text = "Sub Category"
         '
         'GCRawMat
@@ -126,7 +128,7 @@ Partial Class FormMasterRawMaterial
         Me.GCRawMat.Location = New System.Drawing.Point(0, 0)
         Me.GCRawMat.MainView = Me.GVRawMat
         Me.GCRawMat.Name = "GCRawMat"
-        Me.GCRawMat.Size = New System.Drawing.Size(673, 278)
+        Me.GCRawMat.Size = New System.Drawing.Size(1039, 513)
         Me.GCRawMat.TabIndex = 2
         Me.GCRawMat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRawMat, Me.GridView2})
         '
@@ -195,7 +197,7 @@ Partial Class FormMasterRawMaterial
         Me.XTPMaterialDetail.Controls.Add(Me.GCMatDetail)
         Me.XTPMaterialDetail.Controls.Add(Me.PanelControl1)
         Me.XTPMaterialDetail.Name = "XTPMaterialDetail"
-        Me.XTPMaterialDetail.Size = New System.Drawing.Size(673, 278)
+        Me.XTPMaterialDetail.Size = New System.Drawing.Size(1039, 513)
         Me.XTPMaterialDetail.Text = "Raw Material"
         '
         'GCMatDetail
@@ -204,7 +206,7 @@ Partial Class FormMasterRawMaterial
         Me.GCMatDetail.Location = New System.Drawing.Point(0, 44)
         Me.GCMatDetail.MainView = Me.GVMatDetail
         Me.GCMatDetail.Name = "GCMatDetail"
-        Me.GCMatDetail.Size = New System.Drawing.Size(673, 234)
+        Me.GCMatDetail.Size = New System.Drawing.Size(1039, 469)
         Me.GCMatDetail.TabIndex = 3
         Me.GCMatDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMatDetail})
         '
@@ -284,7 +286,7 @@ Partial Class FormMasterRawMaterial
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(673, 44)
+        Me.PanelControl1.Size = New System.Drawing.Size(1039, 44)
         Me.PanelControl1.TabIndex = 2
         '
         'LabelMatContent
@@ -320,7 +322,7 @@ Partial Class FormMasterRawMaterial
         '
         Me.XTPMasterMat.Controls.Add(Me.XTCMaterialType)
         Me.XTPMasterMat.Name = "XTPMasterMat"
-        Me.XTPMasterMat.Size = New System.Drawing.Size(699, 281)
+        Me.XTPMasterMat.Size = New System.Drawing.Size(1065, 516)
         Me.XTPMasterMat.Text = "Master"
         '
         'XTPListMat
@@ -441,43 +443,27 @@ Partial Class FormMasterRawMaterial
         '
         'XTPPropose
         '
-        Me.XTPPropose.Controls.Add(Me.GridControl1)
+        Me.XTPPropose.Controls.Add(Me.GCPropose)
         Me.XTPPropose.Controls.Add(Me.PanelControl3)
         Me.XTPPropose.Controls.Add(Me.PanelControl2)
         Me.XTPPropose.Name = "XTPPropose"
         Me.XTPPropose.Size = New System.Drawing.Size(1065, 516)
         Me.XTPPropose.Text = "Propose"
         '
-        'PanelControl2
+        'GCPropose
         '
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 473)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1065, 43)
-        Me.PanelControl2.TabIndex = 0
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1065, 43)
-        Me.PanelControl3.TabIndex = 1
-        '
-        'GridControl1
-        '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 43)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1065, 430)
-        Me.GridControl1.TabIndex = 5
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCPropose.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPropose.Location = New System.Drawing.Point(0, 37)
+        Me.GCPropose.MainView = Me.GridView1
+        Me.GCPropose.Name = "GCPropose"
+        Me.GCPropose.Size = New System.Drawing.Size(1065, 436)
+        Me.GCPropose.TabIndex = 5
+        Me.GCPropose.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn23, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
-        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.GridControl = Me.GCPropose
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsFind.AlwaysVisible = True
@@ -489,7 +475,15 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn10.FieldName = "mat_display_name"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Status"
+        Me.GridColumn23.FieldName = "report_status"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 8
         '
         'GridColumn13
         '
@@ -503,7 +497,7 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn14.FieldName = "mat_det_code"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 2
+        Me.GridColumn14.VisibleIndex = 1
         '
         'GridColumn15
         '
@@ -511,7 +505,7 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn15.FieldName = "mat_det_name"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 3
+        Me.GridColumn15.VisibleIndex = 2
         '
         'GridColumn16
         '
@@ -519,12 +513,12 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn16.FieldName = "mat_det_display_name"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 4
+        Me.GridColumn16.VisibleIndex = 3
         '
         'GridColumn17
         '
-        Me.GridColumn17.Caption = "Method"
-        Me.GridColumn17.FieldName = "method"
+        Me.GridColumn17.Caption = "Propose By"
+        Me.GridColumn17.FieldName = "employee_name"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 5
@@ -533,11 +527,11 @@ Partial Class FormMasterRawMaterial
         '
         Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.GridColumn18.Caption = "Lifetime (day)"
-        Me.GridColumn18.FieldName = "lifetime"
+        Me.GridColumn18.Caption = "UOM"
+        Me.GridColumn18.FieldName = "uom"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.VisibleIndex = 4
         '
         'GridColumn19
         '
@@ -545,7 +539,7 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn19.FieldName = "mat_det_date"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 7
+        Me.GridColumn19.VisibleIndex = 6
         '
         'GridColumn20
         '
@@ -559,7 +553,7 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn20.FieldName = "mat_det_price"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 8
+        Me.GridColumn20.VisibleIndex = 7
         '
         'GridColumn21
         '
@@ -573,12 +567,36 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn22.FieldName = "mat_code"
         Me.GridColumn22.Name = "GridColumn22"
         '
-        'GridColumn23
+        'PanelControl3
         '
-        Me.GridColumn23.Caption = "Number"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 0
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1065, 37)
+        Me.PanelControl3.TabIndex = 1
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BProposeMat)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 473)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1065, 43)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'BProposeMat
+        '
+        Me.BProposeMat.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BProposeMat.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BProposeMat.Appearance.Options.UseBackColor = True
+        Me.BProposeMat.Appearance.Options.UseForeColor = True
+        Me.BProposeMat.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BProposeMat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BProposeMat.Location = New System.Drawing.Point(2, 2)
+        Me.BProposeMat.Name = "BProposeMat"
+        Me.BProposeMat.Size = New System.Drawing.Size(1061, 39)
+        Me.BProposeMat.TabIndex = 0
+        Me.BProposeMat.Text = "Propose Material"
         '
         'FormMasterRawMaterial
         '
@@ -612,10 +630,11 @@ Partial Class FormMasterRawMaterial
         CType(Me.GCListMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListMat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPropose.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -662,7 +681,7 @@ Partial Class FormMasterRawMaterial
     Friend WithEvents XTPPropose As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GCPropose As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
@@ -676,4 +695,5 @@ Partial Class FormMasterRawMaterial
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BProposeMat As DevExpress.XtraEditors.SimpleButton
 End Class
