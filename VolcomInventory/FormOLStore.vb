@@ -526,6 +526,12 @@
                 End Try
             ElseIf id_api_type = "2" Then
                 'ZALORA
+                Try
+                    Dim shop As New ClassZaloraApi()
+                    shop.get_order_list()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
             ElseIf id_api_type = "3" Then
                 'BLIBLI
                 Try

@@ -2,7 +2,7 @@
     Public api_key As String = get_setup_field("zalora_api_key")
     Public user_id As String = get_setup_field("zalora_user_id")
     Dim id_store_group As String = get_setup_field("zalora_comp_group")
-
+    Dim status_order As String = "pending"
     Dim data_size As New DataTable
 
     Sub New()
@@ -114,7 +114,7 @@
         parameter.Rows.Add("Format", "JSON")
         parameter.Rows.Add("Limit", "1")
         parameter.Rows.Add("Offset", "0")
-        parameter.Rows.Add("Status", "pending")
+        parameter.Rows.Add("Status", status_order)
         parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
         parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
         parameter.Rows.Add("Version", "1.0")
@@ -169,7 +169,7 @@
             parameter.Rows.Add("Format", "JSON")
             parameter.Rows.Add("Limit", "1000")
             parameter.Rows.Add("Offset", p.ToString)
-            parameter.Rows.Add("Status", "pending")
+            parameter.Rows.Add("Status", status_order)
             parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
             parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
             parameter.Rows.Add("Version", "1.0")
@@ -341,7 +341,6 @@
                     'data customer
                     Dim customer_name As String = ""
                     customer_name = dtx.Rows(0)("customer_name").ToString
-                    Console.WriteLine(customer_name)
 
                     'data shipping
                     Dim shipping_name As String = ""
@@ -372,6 +371,7 @@
                     'detail item
                     Dim ol_store_sku As String = ""
                     Dim ol_store_id As String = ""
+                    Dim item_id As String = ""
                     Dim sku As String = ""
                     Dim design_price As String = ""
                     Dim sales_order_det_qty As String = ""
@@ -379,11 +379,19 @@
                     Dim discount_allocations_amo As String = "0"
                     ol_store_sku = dtd.Rows(d)("ol_store_sku").ToString
                     ol_store_id = dtd.Rows(d)("ol_store_id").ToString
+                    item_id = dtd.Rows(d)("item_id").ToString
                     sku = dtd.Rows(d)("sku").ToString
                     design_price = decimalSQL(dtd.Rows(d)("design_price").ToString)
-                    sales_order_det_qty = decimalSQL(dtd.Rows(d)("sales_order_det_qty").ToString)
-                    grams = decimalSQL(dtd.Rows(d)("grams").ToString)
+                    sales_order_det_qty = "1"
+                    grams = "0"
                     discount_allocations_amo = "0"
+
+                    'insert
+                    Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, item_id, sku, design_price, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group) VALUES "
+                    qins += "('" + id_order + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + addSlashes(customer_name) + "', '" + addSlashes(shipping_name) + "', '" + addSlashes(shipping_address) + "','" + addSlashes(shipping_address1) + "','" + addSlashes(shipping_address2) + "', '" + addSlashes(shipping_phone) + "', 
+                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "') "
+                    execute_non_query(qins, True, "", "", "", "")
                 Next
             Else
 
@@ -399,8 +407,6 @@
         dt.Columns.Add("ol_store_sku", GetType(String))
         dt.Columns.Add("design_price", GetType(Decimal))
         dt.Columns.Add("tracking_code", GetType(String))
-        dt.Columns.Add("sales_order_det_qty", GetType(Decimal))
-        dt.Columns.Add("grams", GetType(Decimal))
 
         Dim parameter_det As DataTable = New DataTable
 
@@ -445,7 +451,7 @@
                     For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
                         sku = ""
                         sku = getSKU(row_det("Sku").ToString.Substring(0, 9), row_det("Variation").ToString)
-                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, 1,)
+                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString)
                     Next
                 Else
                     'non array
