@@ -187,7 +187,15 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom` "
             End If
 
             'material detail
-            Dim query As String = "SELECT * FROM tb_m_mat_det_pps WHERE id_mat_det_pps = '" + id_pps + "'"
+            Dim query As String = "SELECT mat.mat_code,mat.`mat_display_name`,uom.`uom`,emp.`employee_name`,emp_u.`employee_name` AS emp_update,pps.*
+FROM `tb_m_mat_det_pps` pps
+INNER JOIN tb_m_mat mat ON mat.`id_mat`=pps.`id_mat`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`
+LEFT JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
+LEFT JOIN tb_m_employee emp ON emp.`employee_name`=usr.`id_user`
+LEFT JOIN tb_m_user usr_u ON usr_u.`id_user`=pps.`last_update_by`
+LEFT JOIN tb_m_employee emp_u ON emp_u.`id_employee`=usr_u.`id_employee`
+WHERE pps.id_mat_det_pps='" + id_pps + "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             SLEMaterialCategory.EditValue = data.Rows(0)("id_mat").ToString
             TxtName.Text = data.Rows(0)("mat_det_name").ToString
@@ -197,6 +205,8 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom` "
             id_method = data.Rows(0)("id_method").ToString
             SLERange.EditValue = data.Rows(0)("id_range").ToString
             TEFOBPrice.EditValue = data.Rows(0)("fob_price")
+            TEUOM.Text = data.Rows(0)("uom").ToString
+            TxtMaterialTypeCode.Text = data.Rows(0)("mat_code").ToString
             'code
             'code prepare
             query = String.Format("SELECT cd.id_code as id_code,cd.id_code_detail as id_code_detail FROM tb_m_mat_det_pps_code mdpc
