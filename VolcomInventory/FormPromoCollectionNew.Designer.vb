@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormPromoCollectionNew
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormPromoCollectionNew
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPromoCollectionNew))
         Me.TxtTag = New DevExpress.XtraEditors.TextEdit()
@@ -35,10 +35,6 @@ Partial Class FormPromoCollectionNew
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtPromoName = New DevExpress.XtraEditors.TextEdit()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
-        Me.SLEPromo = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,14 +46,11 @@ Partial Class FormPromoCollectionNew
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEPromo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TxtTag
         '
-        Me.TxtTag.Location = New System.Drawing.Point(104, 93)
+        Me.TxtTag.Location = New System.Drawing.Point(105, 46)
         Me.TxtTag.Name = "TxtTag"
         Me.TxtTag.Size = New System.Drawing.Size(301, 20)
         Me.TxtTag.TabIndex = 169
@@ -65,7 +58,7 @@ Partial Class FormPromoCollectionNew
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(19, 96)
+        Me.LabelControl8.Location = New System.Drawing.Point(20, 49)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl8.TabIndex = 168
@@ -74,7 +67,7 @@ Partial Class FormPromoCollectionNew
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(19, 148)
+        Me.LabelControl6.Location = New System.Drawing.Point(20, 101)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl6.TabIndex = 167
@@ -83,7 +76,7 @@ Partial Class FormPromoCollectionNew
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(19, 173)
+        Me.LabelControl7.Location = New System.Drawing.Point(20, 126)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 160
@@ -92,7 +85,7 @@ Partial Class FormPromoCollectionNew
         'DEEnd
         '
         Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(104, 145)
+        Me.DEEnd.Location = New System.Drawing.Point(105, 98)
         Me.DEEnd.Name = "DEEnd"
         Me.DEEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -108,7 +101,7 @@ Partial Class FormPromoCollectionNew
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(104, 119)
+        Me.DEStart.Location = New System.Drawing.Point(105, 72)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -124,7 +117,7 @@ Partial Class FormPromoCollectionNew
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(19, 122)
+        Me.LabelControl5.Location = New System.Drawing.Point(20, 75)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl5.TabIndex = 164
@@ -150,7 +143,7 @@ Partial Class FormPromoCollectionNew
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(104, 171)
+        Me.MENote.Location = New System.Drawing.Point(105, 124)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(301, 41)
         Me.MENote.TabIndex = 161
@@ -161,7 +154,7 @@ Partial Class FormPromoCollectionNew
         Me.PanelControl1.Controls.Add(Me.BtnDiscard)
         Me.PanelControl1.Controls.Add(Me.BtnCreateNew)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 235)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 182)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(428, 48)
         Me.PanelControl1.TabIndex = 170
@@ -189,7 +182,7 @@ Partial Class FormPromoCollectionNew
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(19, 70)
+        Me.LabelControl1.Location = New System.Drawing.Point(20, 23)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl1.TabIndex = 171
@@ -197,54 +190,16 @@ Partial Class FormPromoCollectionNew
         '
         'TxtPromoName
         '
-        Me.TxtPromoName.Location = New System.Drawing.Point(104, 67)
+        Me.TxtPromoName.Location = New System.Drawing.Point(105, 20)
         Me.TxtPromoName.Name = "TxtPromoName"
         Me.TxtPromoName.Size = New System.Drawing.Size(301, 20)
         Me.TxtPromoName.TabIndex = 172
-        '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(260, 15)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckEdit1.Properties.Appearance.Options.UseFont = True
-        Me.CheckEdit1.Properties.Caption = "Use Discount Codes"
-        Me.CheckEdit1.Size = New System.Drawing.Size(155, 20)
-        Me.CheckEdit1.TabIndex = 173
-        '
-        'SLEPromo
-        '
-        Me.SLEPromo.Location = New System.Drawing.Point(104, 41)
-        Me.SLEPromo.Name = "SLEPromo"
-        Me.SLEPromo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEPromo.Properties.View = Me.GridView1
-        Me.SLEPromo.Size = New System.Drawing.Size(301, 20)
-        Me.SLEPromo.TabIndex = 174
-        '
-        'GridView1
-        '
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(19, 44)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(73, 13)
-        Me.LabelControl2.TabIndex = 175
-        Me.LabelControl2.Text = "Group Discount"
         '
         'FormPromoCollectionNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(428, 283)
-        Me.Controls.Add(Me.LabelControl2)
-        Me.Controls.Add(Me.SLEPromo)
-        Me.Controls.Add(Me.CheckEdit1)
+        Me.ClientSize = New System.Drawing.Size(428, 230)
         Me.Controls.Add(Me.TxtPromoName)
         Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.PanelControl1)
@@ -274,9 +229,6 @@ Partial Class FormPromoCollectionNew
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEPromo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -297,8 +249,4 @@ Partial Class FormPromoCollectionNew
     Friend WithEvents BtnCreateNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtPromoName As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents SLEPromo As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class
