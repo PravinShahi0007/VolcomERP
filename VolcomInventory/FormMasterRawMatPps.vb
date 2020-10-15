@@ -280,7 +280,7 @@ INNER JOIN tb_m_code_detail cd WHERE  mdpc.id_code_detail = cd.id_code_detail AN
         generateCode()
     End Sub
 
-    Sub validatingFullCode()
+    Function validatingFullCode()
         Dim query_jml As String
 
         query_jml = String.Format("SELECT SUM(jml.jml) AS jml
@@ -293,17 +293,16 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
 
         Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
         If Not jml < 1 Then
-            EP_TE_already_used(EPMaterial, TxtMaterialFullCode, "1")
+            Return False
         Else
-            EP_TE_cant_blank(EPMaterial, TxtMaterialFullCode)
+            Return True
         End If
-    End Sub
+    End Function
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         'validate
         Cursor = Cursors.WaitCursor
-        validatingFullCode()
-        If Not EPMaterial.GetError(TxtMaterialFullCode).ToString = "" Or Not formIsValidInPanel(EPMaterial, PanC1) Then
+        If validatingFullCode() Then
             errorInput()
         ElseIf SLEMaterialCategory.EditValue = Nothing Then
             warningCustom("Please select material category.")
@@ -366,12 +365,12 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
 
                     'cek image
                     save_image_ori(PictureEdit1, material_image_path_pps, id_pps & ".jpg")
-                    query = String.Format("DELETE FROM tb_m_mat_det_pps_code WHERE id_mat_det='" & id_pps & "'")
+                    query = String.Format("DELETE FROM tb_m_mat_det_pps_code WHERE id_mat_det_pps='" & id_pps & "'")
                     execute_non_query(query, True, "", "", "", "")
                     For i As Integer = 0 To GVCodeMaterial.RowCount - 1
                         Try
                             If Not GVCodeMaterial.GetRowCellValue(i, "value").ToString = "" Or GVCodeMaterial.GetRowCellValue(i, "value").ToString = 0 Then
-                                query = String.Format("INSERT INTO tb_m_mat_det_pps_code(id_mat_det, id_code_detail) VALUES('{0}','{1}')", id_pps, GVCodeMaterial.GetRowCellValue(i, "value").ToString)
+                                query = String.Format("INSERT INTO tb_m_mat_det_pps_code(id_mat_det_pps, id_code_detail) VALUES('{0}','{1}')", id_pps, GVCodeMaterial.GetRowCellValue(i, "value").ToString)
                                 execute_non_query(query, True, "", "", "", "")
                             End If
                         Catch ex As Exception
@@ -383,7 +382,7 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
                         'FormMatRecWODet.refresh_list()
                     Else
                         FormMasterRawMaterial.view_refresh_pps()
-                        FormMasterRawMaterial.GVPropose.FocusedRowHandle = find_row(FormMasterRawMaterial.GVPropose, "id_mat_det", id_pps)
+                        FormMasterRawMaterial.GVPropose.FocusedRowHandle = find_row(FormMasterRawMaterial.GVPropose, "id_mat_det_pps", id_pps)
                     End If
                     infoCustom("Raw material updated.")
                     load_form()
@@ -393,5 +392,13 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
             End If
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        '273
+        FormReportMark.id_report = id_pps
+        FormReportMark.report_mark_type = "273"
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
     End Sub
 End Class
