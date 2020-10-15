@@ -291,19 +291,19 @@ UNION ALL
 SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0}' AND id_mat_det_pps!='{1}'
 ) AS jml", TxtMaterialFullCode.Text, id_pps)
 
-        Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
-        If Not jml < 1 Then
-            Return False
-        Else
+        Dim jml As String = execute_query(query_jml, 0, True, "", "", "", "")
+        If jml = "0" Then
             Return True
+        Else
+            Return False
         End If
     End Function
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         'validate
         Cursor = Cursors.WaitCursor
-        If validatingFullCode() Then
-            errorInput()
+        If Not validatingFullCode() Then
+            warningCustom("Code already used")
         ElseIf SLEMaterialCategory.EditValue = Nothing Then
             warningCustom("Please select material category.")
         ElseIf TEFOBPrice.EditValue = 0 Then
