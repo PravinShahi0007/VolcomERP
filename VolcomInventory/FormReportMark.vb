@@ -8779,9 +8779,9 @@ WHERE pps.`id_mat_det_pps`='" & id_report & "';SELECT LAST_INSERT_ID() "
                 End If
 
                 qi = String.Format("DELETE FROM tb_m_mat_det_code WHERE id_mat_det='{0}'", id_mat_det)
-                execute_non_query(query, True, "", "", "", "")
-                qi = String.Format("INSERT INTO tb_m_mat_det_code(id_mat_det, id_code_detail) SELECT '{0}' AS id_mat_det,id_code_detail FROM tb_m_mat_det_code_pps WHERE id_mat_det_pps='{1}'", id_mat_det, id_report)
-                execute_non_query(query, True, "", "", "", "")
+                execute_non_query(qi, True, "", "", "", "")
+                qi = String.Format("INSERT INTO tb_m_mat_det_code(id_mat_det, id_code_detail) SELECT '{0}' AS id_mat_det,id_code_detail FROM tb_m_mat_det_pps_code WHERE id_mat_det_pps='{1}'", id_mat_det, id_report)
+                execute_non_query(qi, True, "", "", "", "")
             End If
 
             'update status
