@@ -11,6 +11,7 @@
     Private Sub FormPromoCollectionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewPromoType()
+        viewDiscountCodeList()
         actionLoad()
     End Sub
 
@@ -408,9 +409,12 @@
             ElseIf XTCData.SelectedTabPageIndex = 1 Then
                 gv = GVProduct
                 ReportPromoCollection.dt = GCProduct.DataSource
-            Else
+            ElseIf XTCData.SelectedTabPageIndex = 2 Then
                 gv = GVBySizeType
                 ReportPromoCollection.dt = GCBySizeType.DataSource
+            ElseIf XTCData.SelectedTabPageIndex = 3 Then
+                gv = GVDiscountCode
+                ReportPromoCollection.dt = GCDiscountCode.DataSource
             End If
             ReportPromoCollection.id = id
             If id_report_status <> "6" Then
@@ -576,5 +580,15 @@
         WHERE id_ol_promo_collection='" + id + "' "
         Dim dt_log As DataTable = execute_query(qlog, -1, True, "", "", "", "")
         showLog(dt_log)
+    End Sub
+
+    Sub viewDiscountCodeList()
+        Dim query As String = "SELECT disc_code FROM tb_ol_promo_collection_disc_code WHERE id_ol_promo_collection = " + id
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCDiscountCode.DataSource = data
+
+        GVDiscountCode.BestFitColumns()
     End Sub
 End Class
