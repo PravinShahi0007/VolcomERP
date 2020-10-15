@@ -206,8 +206,13 @@
             MENote.Enabled = True
             GVData.OptionsBehavior.ReadOnly = False
             SLEPromoType.Enabled = True
-            DEStart.Enabled = True
-            DEEnd.Enabled = True
+            If is_use_discount_code = "1" Then
+                DEStart.Enabled = False
+                DEEnd.Enabled = False
+            Else
+                DEStart.Enabled = True
+                DEEnd.Enabled = True
+            End If
             TxtPromoName.Enabled = True
         Else
             BtnConfirm.Visible = False
