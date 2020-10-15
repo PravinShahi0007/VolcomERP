@@ -6,6 +6,7 @@
     Dim is_confirm As String = "-1"
     Dim rmt As String = "250"
     Public dt As DataTable
+    Dim is_use_discount_code As String = "-1"
 
     Private Sub FormPromoCollectionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -62,6 +63,7 @@
             TxtPromoName.Text = data.Rows(0)("promo_name").ToString
             TxtUseDiscountCode.Text = data.Rows(0)("use_discount_code").ToString
             TxtDiscountTitle.Text = data.Rows(0)("discount_title").ToString
+            is_use_discount_code = data.Rows(0)("is_use_discount_code").ToString
 
             'properti
             If is_confirm = "2" Then
@@ -467,6 +469,7 @@
             Report.LabelDate.Text = DECreated.Text.ToUpper
             Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
             Report.LNote.Text = MENote.Text.ToUpper
+            Report.LabelDiscountCode.Text = TxtUseDiscountCode.Text + If(is_use_discount_code = "1", " - ", "") + TxtDiscountTitle.Text
 
             ' Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
