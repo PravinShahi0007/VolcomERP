@@ -41,6 +41,9 @@ Partial Class FormPromoCollection
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiscount_title_propose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_use_discount_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnuse_discount_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCPromo = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPromoProposed = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDiscountCodes = New DevExpress.XtraTab.XtraTabPage()
@@ -55,9 +58,7 @@ Partial Class FormPromoCollection
         Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumndiscount_title_propose = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnis_use_discount_code = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnuse_discount_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnCreateUseDiscount = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +80,7 @@ Partial Class FormPromoCollection
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.BtnCreateUseDiscount)
         Me.GCFilter.Controls.Add(Me.BtnViewList)
         Me.GCFilter.Controls.Add(Me.BHide)
         Me.GCFilter.Controls.Add(Me.BExpand)
@@ -272,6 +274,30 @@ Partial Class FormPromoCollection
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
         '
+        'GridColumndiscount_title_propose
+        '
+        Me.GridColumndiscount_title_propose.Caption = "Group Discount"
+        Me.GridColumndiscount_title_propose.FieldName = "discount_title"
+        Me.GridColumndiscount_title_propose.Name = "GridColumndiscount_title_propose"
+        Me.GridColumndiscount_title_propose.Visible = True
+        Me.GridColumndiscount_title_propose.VisibleIndex = 3
+        '
+        'GridColumnis_use_discount_code
+        '
+        Me.GridColumnis_use_discount_code.Caption = "is_use_discount_code"
+        Me.GridColumnis_use_discount_code.FieldName = "is_use_discount_code"
+        Me.GridColumnis_use_discount_code.Name = "GridColumnis_use_discount_code"
+        Me.GridColumnis_use_discount_code.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnis_use_discount_code.OptionsColumn.ReadOnly = True
+        '
+        'GridColumnuse_discount_code
+        '
+        Me.GridColumnuse_discount_code.Caption = "Use Discount Code"
+        Me.GridColumnuse_discount_code.FieldName = "use_discount_code"
+        Me.GridColumnuse_discount_code.Name = "GridColumnuse_discount_code"
+        Me.GridColumnuse_discount_code.Visible = True
+        Me.GridColumnuse_discount_code.VisibleIndex = 1
+        '
         'XTCPromo
         '
         Me.XTCPromo.Dock = System.Windows.Forms.DockStyle.Fill
@@ -405,29 +431,15 @@ Partial Class FormPromoCollection
         Me.BtnPrint.TabIndex = 2
         Me.BtnPrint.Text = "Print"
         '
-        'GridColumndiscount_title_propose
+        'BtnCreateUseDiscount
         '
-        Me.GridColumndiscount_title_propose.Caption = "Group Discount"
-        Me.GridColumndiscount_title_propose.FieldName = "discount_title"
-        Me.GridColumndiscount_title_propose.Name = "GridColumndiscount_title_propose"
-        Me.GridColumndiscount_title_propose.Visible = True
-        Me.GridColumndiscount_title_propose.VisibleIndex = 3
-        '
-        'GridColumnis_use_discount_code
-        '
-        Me.GridColumnis_use_discount_code.Caption = "is_use_discount_code"
-        Me.GridColumnis_use_discount_code.FieldName = "is_use_discount_code"
-        Me.GridColumnis_use_discount_code.Name = "GridColumnis_use_discount_code"
-        Me.GridColumnis_use_discount_code.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnis_use_discount_code.OptionsColumn.ReadOnly = True
-        '
-        'GridColumnuse_discount_code
-        '
-        Me.GridColumnuse_discount_code.Caption = "Use Discount Code"
-        Me.GridColumnuse_discount_code.FieldName = "use_discount_code"
-        Me.GridColumnuse_discount_code.Name = "GridColumnuse_discount_code"
-        Me.GridColumnuse_discount_code.Visible = True
-        Me.GridColumnuse_discount_code.VisibleIndex = 1
+        Me.BtnCreateUseDiscount.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCreateUseDiscount.Image = CType(resources.GetObject("BtnCreateUseDiscount.Image"), System.Drawing.Image)
+        Me.BtnCreateUseDiscount.Location = New System.Drawing.Point(612, 2)
+        Me.BtnCreateUseDiscount.Name = "BtnCreateUseDiscount"
+        Me.BtnCreateUseDiscount.Size = New System.Drawing.Size(185, 41)
+        Me.BtnCreateUseDiscount.TabIndex = 8899
+        Me.BtnCreateUseDiscount.Text = "Propose Use Discount Code"
         '
         'FormPromoCollection
         '
@@ -496,4 +508,5 @@ Partial Class FormPromoCollection
     Friend WithEvents GridColumndiscount_title_propose As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_use_discount_code As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnuse_discount_code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnCreateUseDiscount As DevExpress.XtraEditors.SimpleButton
 End Class
