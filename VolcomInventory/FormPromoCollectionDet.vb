@@ -60,6 +60,8 @@
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
             TxtPromoName.Text = data.Rows(0)("promo_name").ToString
+            TxtUseDiscountCode.Text = data.Rows(0)("use_discount_code").ToString
+            TxtDiscountTitle.Text = data.Rows(0)("discount_title").ToString
 
             'properti
             If is_confirm = "2" Then

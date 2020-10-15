@@ -29,7 +29,7 @@
             date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        Dim cond As String = "AND p.is_use_discount_code=2 AND (p.created_date>='" + date_from_selected + "' AND p.created_date<='" + date_until_selected + "') "
+        Dim cond As String = "AND (p.created_date>='" + date_from_selected + "' AND p.created_date<='" + date_until_selected + "') "
 
         Dim query_c As ClassPromoCollection = New ClassPromoCollection()
         Dim query As String = query_c.queryMain(cond, "2")
