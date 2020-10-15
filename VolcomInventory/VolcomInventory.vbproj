@@ -2796,6 +2796,12 @@
     <Compile Include="FormMasterRate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterRawMatPps.Designer.vb">
+      <DependentUpon>FormMasterRawMatPps.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterRawMatPps.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterRejectType.Designer.vb">
       <DependentUpon>FormMasterRejectType.vb</DependentUpon>
     </Compile>
@@ -9984,6 +9990,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterRate.resx">
       <DependentUpon>FormMasterRate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterRawMatPps.resx">
+      <DependentUpon>FormMasterRawMatPps.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterRejectType.resx">
       <DependentUpon>FormMasterRejectType.vb</DependentUpon>
