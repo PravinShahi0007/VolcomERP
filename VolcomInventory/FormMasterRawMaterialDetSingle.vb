@@ -612,4 +612,11 @@ Public Class FormMasterRawMaterialDetSingle
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BRevise_Click(sender As Object, e As EventArgs) Handles BRevise.Click
+        FormMasterRawMatPps.action = "ins"
+        FormMasterRawMatPps.id_mat_det_revise = id_mat_det
+        FormMasterRawMatPps.is_revise = "1"
+        FormMasterRawMatPps.ShowDialog()
+    End Sub
 End Class

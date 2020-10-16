@@ -42,6 +42,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.ColCodeParam = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCodeValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCSave = New DevExpress.XtraEditors.PanelControl()
+        Me.BRevise = New DevExpress.XtraEditors.SimpleButton()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanC1 = New DevExpress.XtraEditors.PanelControl()
@@ -177,6 +178,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.PCLotTitle.Appearance.BorderColor = System.Drawing.Color.White
         Me.PCLotTitle.Appearance.Options.UseBackColor = True
         Me.PCLotTitle.Appearance.Options.UseBorderColor = True
+        Me.PCLotTitle.Controls.Add(Me.BRevise)
         Me.PCLotTitle.Controls.Add(Me.LabelPrintedName)
         Me.PCLotTitle.Controls.Add(Me.LabelDetailMaterial)
         Me.PCLotTitle.Dock = System.Windows.Forms.DockStyle.Top
@@ -365,6 +367,16 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.PCSave.Name = "PCSave"
         Me.PCSave.Size = New System.Drawing.Size(458, 36)
         Me.PCSave.TabIndex = 10
+        '
+        'BRevise
+        '
+        Me.BRevise.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRevise.Image = CType(resources.GetObject("BRevise.Image"), System.Drawing.Image)
+        Me.BRevise.Location = New System.Drawing.Point(872, 2)
+        Me.BRevise.Name = "BRevise"
+        Me.BRevise.Size = New System.Drawing.Size(105, 42)
+        Me.BRevise.TabIndex = 10
+        Me.BRevise.Text = "Revise"
         '
         'BGenerate
         '
@@ -1126,4 +1138,5 @@ Partial Class FormMasterRawMaterialDetSingle
     Friend WithEvents GridColumnDescRange As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BSetPrice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BRevise As DevExpress.XtraEditors.SimpleButton
 End Class

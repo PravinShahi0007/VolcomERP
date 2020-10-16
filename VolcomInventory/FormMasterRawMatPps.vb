@@ -4,8 +4,12 @@
     Public id_pps As String
     Public id_method As String
     'Dim material_image_path As String = "\\192.168.1.30\dataapp\material\"
+    Dim material_image_path As String = get_setup_field("pic_path_mat") & "\"
     Dim material_image_path_pps As String = get_setup_field("pic_path_mat") & "\pps\"
     Public id_pop_up As String = "-1"
+    'revise
+    Public is_revise As String = "-1"
+    Public id_mat_det_revise As String = "-1"
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
         Close()
@@ -173,8 +177,35 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom` "
 
         If action = "ins" Then
             id_method = "0"
-            TxtName.Text = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellDisplayText("mat_name").ToString
-            TxtDisplayName.Text = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellDisplayText("mat_display_name").ToString
+            '
+            If is_revise = "1" Then
+                'revisi lgsg isi
+                Dim q As String = "SELECT matd.id_method,matd.`id_mat`,mat.`mat_display_name`,mat.`mat_code`,matd.`mat_det_code`,matd.`mat_det_display_name`,matd.`mat_det_name`,uom.`uom`,matd.`lifetime`,matd.`id_range` ,IFNULL(mdp.`mat_det_price`,0) AS fob_price
+FROM `tb_m_mat_det` matd
+INNER JOIN tb_m_mat mat ON mat.`id_mat`=matd.`id_mat_det`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`
+LEFT JOIN tb_m_mat_det_price mdp ON mdp.`id_mat_det`=matd.`id_mat_det` AND mdp.`is_default_po`=1
+WHERE matd.`id_mat_det`='" & id_mat_det_revise & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    If IO.File.Exists(material_image_path_pps & id_pps & ".jpg") Then
+                        PictureEdit1.LoadAsync(material_image_path & id_mat_det_revise & ".jpg")
+                    Else
+                        PictureEdit1.LoadAsync(material_image_path & "default" & ".jpg")
+                    End If
+                    '
+                    SLEMaterialCategory.EditValue = dt.Rows(0)("id_mat").ToString
+                    TxtName.Text = dt.Rows(0)("mat_det_name").ToString
+                    TxtDisplayName.Text = dt.Rows(0)("mat_det_display_name").ToString
+                    TxtMaterialFullCode.Text = dt.Rows(0)("mat_det_code").ToString
+                    TxtLifetime.Text = dt.Rows(0)("lifetime").ToString
+                    id_method = dt.Rows(0)("id_method").ToString
+                    SLERange.EditValue = dt.Rows(0)("id_range")
+                    TEFOBPrice.EditValue = dt.Rows(0)("fob_price")
+                    TEUOM.Text = dt.Rows(0)("uom").ToString
+                    TxtMaterialTypeCode.Text = dt.Rows(0)("mat_code").ToString
+                End If
+            End If
         ElseIf action = "upd" Then
             'others
             BViewImage.Enabled = True
