@@ -538,6 +538,8 @@ Partial Class FormMasterRawMaterial
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Date Created"
+        Me.GridColumn19.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn19.FieldName = "mat_det_date"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
@@ -562,6 +564,8 @@ Partial Class FormMasterRawMaterial
         'GridColumn25
         '
         Me.GridColumn25.Caption = "Last Update"
+        Me.GridColumn25.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn25.FieldName = "last_update_date"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
@@ -576,7 +580,7 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn20.Caption = "FOB Price"
         Me.GridColumn20.DisplayFormat.FormatString = "N2"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "mat_det_price"
+        Me.GridColumn20.FieldName = "fob_price"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 6

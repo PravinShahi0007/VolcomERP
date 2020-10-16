@@ -308,6 +308,8 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
             warningCustom("Please select material category.")
         ElseIf TEFOBPrice.EditValue = 0 Then
             warningCustom("Please put FOB price.")
+        ElseIf TxtMaterialFullCode.Text = "" Then
+            warningCustom("Please generate code or fill material code.")
         Else
             Dim query As String
             Dim mat_det_display_name As String = addSlashes(TxtDisplayName.Text)
