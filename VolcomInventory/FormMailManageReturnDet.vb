@@ -24,13 +24,14 @@
         Dim dt As New DataTable
         If rmt = "45" Then
             Dim qdet As String = "
-                SELECT 'no' AS is_check, a.id_sales_return_order, a.id_store_contact_to, CONCAT(d.comp_number, ' - ', d.comp_name) AS store_name_to, g.description AS group_store, d.comp_name AS group_company, a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, DATE_FORMAT(a.sales_return_order_date, '%d %M %Y') AS sales_return_order_date, DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date, ot.order_type, SUM(b.design_price * b.sales_return_order_det_qty) AS amount, 45 AS report_mark_type, d.address_primary AS store_address_to
+                SELECT 'no' AS is_check, a.id_sales_return_order, a.id_store_contact_to, CONCAT(d.comp_number, ' - ', d.comp_name) AS store_name_to, g.description AS group_store, d.comp_name AS group_company, a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, DATE_FORMAT(a.sales_return_order_date, '%d %M %Y') AS sales_return_order_date, DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date, ot.order_type, SUM(b.design_price * b.sales_return_order_det_qty) AS amount, 45 AS report_mark_type, d.address_primary AS store_address_to, p.comp_name AS store_company
                 FROM tb_sales_return_order a
                 INNER JOIN tb_sales_return_order_det b ON a.id_sales_return_order = b.id_sales_return_order
                 INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
                 INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
                 INNER JOIN tb_m_comp_group g ON g.id_comp_group = d.id_comp_group
                 LEFT JOIN tb_lookup_order_type ot ON ot.id_order_type = a.id_order_type
+                LEFT JOIN tb_m_comp AS p ON d.id_store_company = p.id_comp
                 WHERE a.id_sales_return_order IN (" + id_sales_return_order_par + ")
                 GROUP BY a.id_sales_return_order
                 ORDER BY a.id_sales_return_order ASC"
@@ -122,7 +123,7 @@
                 MESubject.Text = addSlashes(mail_subject)
 
                 'mail template
-                Dim html As String = email_body_sales_return(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
+                Dim html As String = email_body_sales_return(ddet, mail_title, mail_content_head + ddet.Rows(0)("store_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             End If
         ElseIf action = "upd" Then
@@ -201,7 +202,7 @@
                 MESubject.Text = addSlashes(mail_subject)
 
                 'mail template
-                Dim html As String = email_body_sales_return(ddet, mail_title, mail_content_head + ddet.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
+                Dim html As String = email_body_sales_return(ddet, mail_title, mail_content_head + ddet.Rows(0)("store_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
                 WebBrowser1.DocumentText = html
             End If
 
