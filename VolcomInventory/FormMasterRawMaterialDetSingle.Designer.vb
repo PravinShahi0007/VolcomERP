@@ -376,11 +376,13 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'BSave
         '
+        Me.BSave.Enabled = False
         Me.BSave.Location = New System.Drawing.Point(370, 0)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(70, 23)
         Me.BSave.TabIndex = 9
         Me.BSave.Text = "Save"
+        Me.BSave.Visible = False
         '
         'PanC1
         '
@@ -695,6 +697,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.BSetPrice.Size = New System.Drawing.Size(149, 44)
         Me.BSetPrice.TabIndex = 14
         Me.BSetPrice.Text = "Set Default PO Price"
+        Me.BSetPrice.Visible = False
         '
         'BSetDefault
         '
@@ -728,6 +731,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'BtnDelete
         '
+        Me.BtnDelete.Enabled = False
         Me.BtnDelete.ImageIndex = 4
         Me.BtnDelete.ImageList = Me.LargeImageCollection
         Me.BtnDelete.Location = New System.Drawing.Point(568, 12)
@@ -735,6 +739,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.BtnDelete.Size = New System.Drawing.Size(91, 44)
         Me.BtnDelete.TabIndex = 2
         Me.BtnDelete.Text = "Delete"
+        Me.BtnDelete.Visible = False
         '
         'XtraTabControl1
         '
