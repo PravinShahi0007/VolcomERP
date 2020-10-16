@@ -478,7 +478,7 @@
             Report.LabelDate.Text = DECreated.Text.ToUpper
             Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
             Report.LNote.Text = MENote.Text.ToUpper
-            Report.LabelDiscountCode.Text = TxtUseDiscountCode.Text + If(is_use_discount_code = "1", " - ", "") + TxtDiscountTitle.Text
+            Report.LabelDiscountCode.Text = TxtUseDiscountCode.Text.ToUpper + If(is_use_discount_code = "1", " - ", "") + TxtDiscountTitle.Text.ToUpper
 
             ' Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
