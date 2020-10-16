@@ -621,6 +621,9 @@
         ElseIf report_mark_type = "270" Then
             'propose ECOP
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_design_ecop_pps WHERE id_design_ecop_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "273" Then
+            'propose material
+            query = String.Format("SELECT id_report_status,mat_det_code as report_number FROM tb_m_mat_det_pps WHERE id_mat_det_pps = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
