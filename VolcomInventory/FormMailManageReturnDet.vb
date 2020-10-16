@@ -127,7 +127,7 @@
             End If
         ElseIf action = "upd" Then
             '-- main view
-            Dim mm As New ClassMailManage()
+            Dim mm As New ClassMailManageReturn()
             mm.id_mail_manage = id
             mm.rmt = rmt
             Dim query As String = mm.queryMain("AND m.id_mail_manage='" + id + "' ", "1")
