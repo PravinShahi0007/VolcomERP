@@ -380,7 +380,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'BGenerate
         '
-        Me.BGenerate.Location = New System.Drawing.Point(278, 0)
+        Me.BGenerate.Location = New System.Drawing.Point(278, 6)
         Me.BGenerate.Name = "BGenerate"
         Me.BGenerate.Size = New System.Drawing.Size(86, 23)
         Me.BGenerate.TabIndex = 8
@@ -389,7 +389,7 @@ Partial Class FormMasterRawMaterialDetSingle
         'BSave
         '
         Me.BSave.Enabled = False
-        Me.BSave.Location = New System.Drawing.Point(370, 0)
+        Me.BSave.Location = New System.Drawing.Point(370, 6)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(70, 23)
         Me.BSave.TabIndex = 9

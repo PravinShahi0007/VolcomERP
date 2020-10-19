@@ -204,7 +204,7 @@ LEFT JOIN tb_m_mat_det_price mdp ON mdp.`id_mat_det`=matd.`id_mat_det` AND mdp.`
 WHERE matd.`id_mat_det`='" & id_mat_det_revise & "'"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 If dt.Rows.Count > 0 Then
-                    If IO.File.Exists(material_image_path_pps & id_pps & ".jpg") Then
+                    If IO.File.Exists(material_image_path & id_mat_det_revise & ".jpg") Then
                         PictureEdit1.LoadAsync(material_image_path & id_mat_det_revise & ".jpg")
                     Else
                         PictureEdit1.LoadAsync(material_image_path & "default" & ".jpg")
@@ -250,6 +250,9 @@ INNER JOIN tb_m_code_detail cd WHERE  mdpc.id_code_detail = cd.id_code_detail AN
                         End If
                     End If
                 End If
+                LREvise.Visible = True
+            Else
+                LREvise.Visible = False
             End If
         ElseIf action = "upd" Then
             'others
@@ -287,6 +290,12 @@ WHERE pps.id_mat_det_pps='" + id_pps + "'"
             TEFOBPrice.EditValue = data.Rows(0)("fob_price")
             TEUOM.Text = data.Rows(0)("uom").ToString
             TxtMaterialTypeCode.Text = data.Rows(0)("mat_code").ToString
+            '
+            If is_revise = "1" Then
+                LREvise.Visible = True
+            Else
+                LREvise.Visible = False
+            End If
             'code
             'code prepare
             query = String.Format("SELECT cd.id_code as id_code,cd.id_code_detail as id_code_detail FROM tb_m_mat_det_pps_code mdpc
