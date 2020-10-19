@@ -182,7 +182,7 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom` "
                 'revisi lgsg isi
                 Dim q As String = "SELECT matd.id_method,matd.`id_mat`,mat.`mat_display_name`,mat.`mat_code`,matd.`mat_det_code`,matd.`mat_det_display_name`,matd.`mat_det_name`,uom.`uom`,matd.`lifetime`,matd.`id_range` ,IFNULL(mdp.`mat_det_price`,0) AS fob_price
 FROM `tb_m_mat_det` matd
-INNER JOIN tb_m_mat mat ON mat.`id_mat`=matd.`id_mat_det`
+INNER JOIN tb_m_mat mat ON mat.`id_mat`=matd.`id_mat`
 INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`
 LEFT JOIN tb_m_mat_det_price mdp ON mdp.`id_mat_det`=matd.`id_mat_det` AND mdp.`is_default_po`=1
 WHERE matd.`id_mat_det`='" & id_mat_det_revise & "'"
@@ -204,6 +204,33 @@ WHERE matd.`id_mat_det`='" & id_mat_det_revise & "'"
                     TEFOBPrice.EditValue = dt.Rows(0)("fob_price")
                     TEUOM.Text = dt.Rows(0)("uom").ToString
                     TxtMaterialTypeCode.Text = dt.Rows(0)("mat_code").ToString
+                    '
+                    q = String.Format("SELECT cd.id_code as id_code,cd.id_code_detail as id_code_detail FROM tb_m_mat_det_code mdpc
+INNER JOIN tb_m_code_detail cd WHERE  mdpc.id_code_detail = cd.id_code_detail AND mdpc.id_mat_det = '{0}'", id_mat_det_revise)
+                    Dim data_value As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                    If Not data_value.Rows.Count = 0 Then
+                        Dim id_check As String = "1"
+                        For i As Integer = 0 To data_value.Rows.Count - 1
+                            If data_insert_parameter.Select("code = '" + data_value.Rows(i)("id_code").ToString + "'").Length = 0 Then
+                                id_check = "2"
+                            End If
+                        Next
+                        If id_check = "2" Then 'old
+                            data_insert_parameter.Clear()
+                            For i As Integer = 0 To data_value.Rows.Count - 1
+                                data_insert_parameter.Rows.Add(data_value.Rows(i)("id_code").ToString, data_value.Rows(i)("id_code_detail").ToString)
+                            Next
+                        Else
+                            For x As Integer = 0 To data_insert_parameter.Rows.Count - 1
+                                For i As Integer = 0 To data_value.Rows.Count - 1
+                                    If data_insert_parameter.Rows(x)("code").ToString = data_value.Rows(i)("id_code").ToString Then
+                                        data_insert_parameter.Rows(x)("value") = data_value.Rows(i)("id_code_detail").ToString
+                                    End If
+                                Next
+                            Next
+                        End If
+                    End If
                 End If
             End If
         ElseIf action = "upd" Then
@@ -349,6 +376,9 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
             Dim id_method As String = "3" 'average
             Dim lifetime As String = TxtLifetime.Text
 
+            Dim is_rev As String = If(is_revise = "-1", "2", "1")
+            Dim id_mat_rev As String = If(id_mat_det_revise = "-1", "NULL", "'" & id_mat_det_revise & "'")
+
             Dim gramasi As String = "0"
 
             Dim id_fab_type As String = "0"
@@ -356,9 +386,9 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
             If action = "ins" Then
                 Try
                     'insert db
-                    query = "INSERT INTO tb_m_mat_det_pps(id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, mat_det_date, allow_design, id_fab_type, gramasi,id_range,fob_price,created_by) "
-                    query += "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', DATE(NOW()),'{6}','{7}','{8}','{9}','{10}','{11}');SELECT LAST_INSERT_ID() "
-                    query = String.Format(query, SLEMaterialCategory.EditValue.ToString, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, decimalSQL(TEFOBPrice.EditValue.ToString), id_user)
+                    query = "INSERT INTO tb_m_mat_det_pps(id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, mat_det_date, allow_design, id_fab_type, gramasi,id_range,fob_price,created_by,id_mat_det_revise,is_revise) "
+                    query += "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', DATE(NOW()),'{6}','{7}','{8}','{9}','{10}','{11}',{12},'{13}');SELECT LAST_INSERT_ID() "
+                    query = String.Format(query, SLEMaterialCategory.EditValue.ToString, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, decimalSQL(TEFOBPrice.EditValue.ToString), id_user, id_mat_rev, is_rev)
 
                     id_pps = execute_query(query, 0, True, "", "", "", "")
 
@@ -392,8 +422,8 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
                 Try
                     'update db
                     query = "UPDATE tb_m_mat_det_pps SET mat_det_display_name = '{0}', mat_det_name='{1}', mat_det_code='{2}', id_method='{3}', "
-                    query += "lifetime = '{4}', allow_design='{6}',id_fab_type='{7}',gramasi='{8}',id_range='{9}',id_mat='{10}',last_update_date=NOW(),last_update_by='{11}',fob_price='{12}'  WHERE id_mat_det_pps = '{5}'"
-                    query = String.Format(query, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, id_pps, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, SLEMaterialCategory.EditValue.ToString, id_user, decimalSQL(TEFOBPrice.EditValue.ToString))
+                    query += "lifetime = '{4}', allow_design='{6}',id_fab_type='{7}',gramasi='{8}',id_range='{9}',id_mat='{10}',last_update_date=NOW(),last_update_by='{11}',fob_price='{12}',id_mat_det_revise={13},is_revise='{14}'  WHERE id_mat_det_pps = '{5}'"
+                    query = String.Format(query, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, id_pps, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, SLEMaterialCategory.EditValue.ToString, id_user, decimalSQL(TEFOBPrice.EditValue.ToString), id_mat_rev, is_rev)
                     execute_non_query(query, True, "", "", "", "")
 
                     'cek image
