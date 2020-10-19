@@ -505,6 +505,9 @@ Public Class FormMasterRawMaterialDetSingle
             stopCustom("Material price already used on PO.")
         Else
             FormMasterRawMaterialPrcSingle.action = "upd"
+            If GVPrice.GetFocusedRowCellValue("is_default_po").ToString = "yes" Then
+                FormMasterRawMaterialPrcSingle.is_can_edit_price = False
+            End If
             FormMasterRawMaterialPrcSingle.id_mat_det_price = GVPrice.GetFocusedRowCellDisplayText("id_mat_det_price").ToString
             FormMasterRawMaterialPrcSingle.ShowDialog()
         End If

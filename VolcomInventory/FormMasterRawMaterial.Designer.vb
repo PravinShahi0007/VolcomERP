@@ -522,8 +522,6 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn17.Caption = "Propose By"
         Me.GridColumn17.FieldName = "employee_name"
         Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 4
         '
         'GridColumn18
         '
@@ -551,7 +549,7 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn24.FieldName = "employee_name"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 8
+        Me.GridColumn24.VisibleIndex = 4
         '
         'GridColumn26
         '
@@ -559,7 +557,7 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn26.FieldName = "emp_update"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 10
+        Me.GridColumn26.VisibleIndex = 9
         '
         'GridColumn25
         '
@@ -569,7 +567,7 @@ Partial Class FormMasterRawMaterial
         Me.GridColumn25.FieldName = "last_update_date"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 9
+        Me.GridColumn25.VisibleIndex = 8
         '
         'GridColumn20
         '

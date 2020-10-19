@@ -24,6 +24,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PCLotTitle = New DevExpress.XtraEditors.PanelControl()
+        Me.BRevise = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelPrintedName = New DevExpress.XtraEditors.LabelControl()
         Me.LabelDetailMaterial = New DevExpress.XtraEditors.LabelControl()
         Me.XTCDetSample = New DevExpress.XtraTab.XtraTabControl()
@@ -42,7 +43,6 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.ColCodeParam = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCodeValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCSave = New DevExpress.XtraEditors.PanelControl()
-        Me.BRevise = New DevExpress.XtraEditors.SimpleButton()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanC1 = New DevExpress.XtraEditors.PanelControl()
@@ -187,6 +187,16 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.PCLotTitle.Name = "PCLotTitle"
         Me.PCLotTitle.Size = New System.Drawing.Size(979, 46)
         Me.PCLotTitle.TabIndex = 12
+        '
+        'BRevise
+        '
+        Me.BRevise.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRevise.Image = CType(resources.GetObject("BRevise.Image"), System.Drawing.Image)
+        Me.BRevise.Location = New System.Drawing.Point(872, 2)
+        Me.BRevise.Name = "BRevise"
+        Me.BRevise.Size = New System.Drawing.Size(105, 42)
+        Me.BRevise.TabIndex = 10
+        Me.BRevise.Text = "Revise"
         '
         'LabelPrintedName
         '
@@ -367,16 +377,6 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.PCSave.Name = "PCSave"
         Me.PCSave.Size = New System.Drawing.Size(458, 36)
         Me.PCSave.TabIndex = 10
-        '
-        'BRevise
-        '
-        Me.BRevise.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRevise.Image = CType(resources.GetObject("BRevise.Image"), System.Drawing.Image)
-        Me.BRevise.Location = New System.Drawing.Point(872, 2)
-        Me.BRevise.Name = "BRevise"
-        Me.BRevise.Size = New System.Drawing.Size(105, 42)
-        Me.BRevise.TabIndex = 10
-        Me.BRevise.Text = "Revise"
         '
         'BGenerate
         '

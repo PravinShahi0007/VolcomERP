@@ -273,6 +273,8 @@ LEFT JOIN tb_m_user usr_u ON usr_u.`id_user`=pps.`last_update_by`
 LEFT JOIN tb_m_employee emp_u ON emp_u.`id_employee`=usr_u.`id_employee`
 WHERE pps.id_mat_det_pps='" + id_pps + "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            id_mat_det_revise = data.Rows(0)("id_mat_det_revise").ToString
+            is_revise = data.Rows(0)("is_revise").ToString
             SLECurrency.EditValue = data.Rows(0)("id_currency").ToString
             SLEVendor.EditValue = data.Rows(0)("id_comp_contact").ToString
             SLEMaterialCategory.EditValue = data.Rows(0)("id_mat").ToString
@@ -364,10 +366,10 @@ INNER JOIN tb_m_code_detail cd WHERE  mdpc.id_code_detail = cd.id_code_detail AN
         query_jml = String.Format("SELECT SUM(jml.jml) AS jml
 FROM
 (
-SELECT COUNT(id_mat_det) AS jml FROM tb_m_mat_det WHERE mat_det_code='{0}' 
+SELECT COUNT(id_mat_det) AS jml FROM tb_m_mat_det WHERE mat_det_code='{0}' AND id_mat_det!='{2}'
 UNION ALL
-SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0}' AND id_mat_det_pps!='{1}'
-) AS jml", TxtMaterialFullCode.Text, id_pps)
+SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0}' AND id_mat_det_pps!='{1}' AND id_report_status!=5 AND id_report_status!=6
+) AS jml", TxtMaterialFullCode.Text, id_pps, id_mat_det_revise)
 
         Dim jml As String = execute_query(query_jml, 0, True, "", "", "", "")
         If jml = "0" Then
@@ -381,7 +383,7 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
         'validate
         Cursor = Cursors.WaitCursor
         If Not validatingFullCode() Then
-            warningCustom("Code already used")
+            warningCustom("Code already used or already proposed")
         ElseIf SLEMaterialCategory.EditValue = Nothing Then
             warningCustom("Please select material category.")
         ElseIf TEFOBPrice.EditValue = 0 Then
