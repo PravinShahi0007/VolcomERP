@@ -8766,7 +8766,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 Dim id_mat_det As String = ""
                 Dim qi As String = ""
 
-                Dim qc As String = "SELECT pps.id_mat, pps.mat_det_display_name, pps.mat_det_name, pps.mat_det_code, pps.id_method, pps.lifetime, NOW() AS mat_det_date, 2 AS allow_design, NULL AS id_fab_type, 0 AS gramasi,pps.id_range,is_revise,id_mat_det_revise FROM tb_m_mat_det_pps pps WHERE pps.`id_mat_det_pps`='" & id_report & "'"
+                Dim qc As String = "SELECT pps.id_mat, pps.mat_det_display_name, pps.mat_det_name, pps.mat_det_code, pps.id_method, pps.lifetime, NOW() AS mat_det_date, 2 AS allow_design, NULL AS id_fab_type, 0 AS gramasi,pps.id_range,is_revise,id_mat_det_revise,id_comp_contact,id_currency,fob_price FROM tb_m_mat_det_pps pps WHERE pps.`id_mat_det_pps`='" & id_report & "'"
                 Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
                 If dtc.Rows.Count > 0 Then
@@ -8778,7 +8778,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                         'fob price
                         qi = String.Format("UPDATE tb_m_mat_det_price SET is_default_po='2' WHERE id_mat_det='{0}'", id_mat_det)
                         execute_non_query(qi, True, "", "", "", "")
-                        qi = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost,is_default_po) VALUES('{0}','Default Price','1',1,(SELECT fob_price FROM tb_m_mat_det_pps WHERE id_mat_det_pps='{1}'),DATE(NOW()),'2','1')", id_mat_det, id_report)
+                        qi = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost,is_default_po) VALUES('{0}','FOB Price','{1}','{2}','{3}',DATE(NOW()),'2','1')", id_mat_det, dtc.Rows(0)("id_currency").ToString, dtc.Rows(0)("id_comp_contact").ToString, decimalSQL(Decimal.Parse(dtc.Rows(0)("fob_price").ToString).ToString))
                         execute_non_query(qi, True, "", "", "", "")
 
                         'image
@@ -8800,7 +8800,7 @@ WHERE pps.`id_mat_det_pps`='" & id_report & "';SELECT LAST_INSERT_ID() "
                         id_mat_det = execute_query(qi, 0, True, "", "", "", "")
 
                         'fob price
-                        qi = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost,is_default_po) VALUES('{0}','Default Price','1',1,(SELECT fob_price FROM tb_m_mat_det_pps WHERE id_mat_det_pps='{1}'),DATE(NOW()),'2','1')", id_mat_det, id_report)
+                        qi = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost,is_default_po) VALUES('{0}','FOB Price','{1}','{2}','{3}',DATE(NOW()),'2','1')", id_mat_det, dtc.Rows(0)("id_currency").ToString, dtc.Rows(0)("id_comp_contact").ToString, decimalSQL(Decimal.Parse(dtc.Rows(0)("fob_price").ToString).ToString))
                         execute_non_query(qi, True, "", "", "", "")
 
                         'image

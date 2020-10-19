@@ -73,6 +73,19 @@ Partial Class FormMasterRawMatPps
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtMaterialTypeCode = New DevExpress.XtraEditors.TextEdit()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompAddress = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLECurrency = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLotTitle.SuspendLayout()
         CType(Me.PCSave, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +113,10 @@ Partial Class FormMasterRawMatPps
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMaterialTypeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCLotTitle
@@ -181,6 +198,8 @@ Partial Class FormMasterRawMatPps
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.SLECurrency)
+        Me.PanelControl1.Controls.Add(Me.SLEVendor)
         Me.PanelControl1.Controls.Add(Me.TEUOM)
         Me.PanelControl1.Controls.Add(Me.TEFOBPrice)
         Me.PanelControl1.Controls.Add(Me.LabelControl5)
@@ -219,7 +238,7 @@ Partial Class FormMasterRawMatPps
         '
         'TEFOBPrice
         '
-        Me.TEFOBPrice.Location = New System.Drawing.Point(12, 329)
+        Me.TEFOBPrice.Location = New System.Drawing.Point(270, 329)
         Me.TEFOBPrice.Name = "TEFOBPrice"
         Me.TEFOBPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEFOBPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -227,7 +246,7 @@ Partial Class FormMasterRawMatPps
         Me.TEFOBPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEFOBPrice.Properties.Mask.EditMask = "n2"
         Me.TEFOBPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEFOBPrice.Size = New System.Drawing.Size(400, 20)
+        Me.TEFOBPrice.Size = New System.Drawing.Size(142, 20)
         Me.TEFOBPrice.TabIndex = 104
         '
         'LabelControl5
@@ -626,6 +645,110 @@ Partial Class FormMasterRawMatPps
         Me.EPMaterial.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPMaterial.ContainerControl = Me
         '
+        'SLEVendor
+        '
+        Me.SLEVendor.Location = New System.Drawing.Point(12, 329)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.NullText = ""
+        Me.SLEVendor.Properties.ShowFooter = False
+        Me.SLEVendor.Properties.View = Me.GridView3
+        Me.SLEVendor.Size = New System.Drawing.Size(191, 20)
+        Me.SLEVendor.TabIndex = 106
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.ColIdComp, Me.ColCompNumber, Me.ColCompName, Me.ColCompAddress, Me.ColCompCat, Me.GridColumn7})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'ColIdComp
+        '
+        Me.ColIdComp.Caption = "Id Company"
+        Me.ColIdComp.FieldName = "id_comp"
+        Me.ColIdComp.Name = "ColIdComp"
+        '
+        'ColCompNumber
+        '
+        Me.ColCompNumber.Caption = "Code"
+        Me.ColCompNumber.FieldName = "comp_number"
+        Me.ColCompNumber.Name = "ColCompNumber"
+        Me.ColCompNumber.Visible = True
+        Me.ColCompNumber.VisibleIndex = 0
+        '
+        'ColCompName
+        '
+        Me.ColCompName.Caption = "Company"
+        Me.ColCompName.FieldName = "comp_name"
+        Me.ColCompName.Name = "ColCompName"
+        Me.ColCompName.Visible = True
+        Me.ColCompName.VisibleIndex = 1
+        '
+        'ColCompAddress
+        '
+        Me.ColCompAddress.Caption = "Address"
+        Me.ColCompAddress.FieldName = "address_primary"
+        Me.ColCompAddress.Name = "ColCompAddress"
+        Me.ColCompAddress.Visible = True
+        Me.ColCompAddress.VisibleIndex = 2
+        '
+        'ColCompCat
+        '
+        Me.ColCompCat.Caption = "Category"
+        Me.ColCompCat.FieldName = "comp_cat_name"
+        Me.ColCompCat.Name = "ColCompCat"
+        Me.ColCompCat.Visible = True
+        Me.ColCompCat.VisibleIndex = 3
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Contact Person"
+        Me.GridColumn7.FieldName = "contact_person"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID"
+        Me.GridColumn8.FieldName = "id_comp_contact"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'SLECurrency
+        '
+        Me.SLECurrency.Location = New System.Drawing.Point(209, 329)
+        Me.SLECurrency.Name = "SLECurrency"
+        Me.SLECurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECurrency.Properties.NullText = ""
+        Me.SLECurrency.Properties.ShowFooter = False
+        Me.SLECurrency.Properties.View = Me.GridView4
+        Me.SLECurrency.Size = New System.Drawing.Size(55, 20)
+        Me.SLECurrency.TabIndex = 107
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn13})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID"
+        Me.GridColumn9.FieldName = "id_currency"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Currency"
+        Me.GridColumn13.FieldName = "currency"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        '
         'FormMasterRawMatPps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -672,6 +795,10 @@ Partial Class FormMasterRawMatPps
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMaterialTypeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -728,4 +855,17 @@ Partial Class FormMasterRawMatPps
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGenerate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents EPMaterial As ErrorProvider
+    Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ColIdComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColCompNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColCompName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColCompAddress As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColCompCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLECurrency As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
