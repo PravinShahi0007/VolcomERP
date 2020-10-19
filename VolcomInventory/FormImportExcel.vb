@@ -129,9 +129,9 @@ Public Class FormImportExcel
             Dim col_name As String = execute_query("SELECT column_name FROM tb_virtual_acc WHERE id_virtual_acc='" + FormBankDeposit.SLEBank.EditValue.ToString + "' ", 0, True, "", "", "", "")
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not ([" + col_name + "]='') AND [Payment Type]='Bank Transfer' AND [Transaction status]='settlement' ", oledbconn)
         ElseIf id_pop_up = "54" Then
-            If FormOLStoreImportXLS.SLEOLStore.EditValue = "77" Then
+            If FormOLStore.SLEOLStore.EditValue = "77" Then
                 'shopee
-                MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not ([No. Pesanan]='')", oledbconn)
+                MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not ([No# Pesanan]='')", oledbconn)
             End If
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
@@ -3525,42 +3525,52 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("amount_inv").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("amount_inv").SummaryItem.DisplayFormat = "{0:n2}"
         ElseIf id_pop_up = "54" Then
-            If FormOLStoreImportXLS.SLEOLStore.EditValue = "77" Then
+            If FormOLStore.SLEOLStore.EditValue = "77" Then
                 'SHOPEE
                 'get size
                 Dim query_size As String = "SELECT d.id_code_detail, d.id_code, d.code, IF(d.code_detail_name='ALL', 'One Size', d.code_detail_name) AS  code_detail_name
                 FROM tb_m_code_detail d WHERE d.id_code IN (SELECT o.id_code_product_size FROM tb_opt o) "
                 Dim dt_size As DataTable = execute_query(query_size, -1, True, "", "", "", "")
+                'get order yang tersimpan
+                Dim query_order As String = "SELECT d.sales_order_ol_shop_number 
+                FROM tb_ol_store_order d WHERE d.id_comp_group=77
+                GROUP BY d.sales_order_ol_shop_number "
+                Dim dt_order As DataTable = execute_query(query_order, -1, True, "", "", "", "")
                 Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
                 Dim tb2 = dt_size.AsEnumerable()
+                Dim tb3 = dt_order.AsEnumerable()
                 Dim query = From table1 In tb1
-                            Group Join table_tmp In tb2 On table1("Nama Variasi").ToString Equals table_tmp("code_detail_name").ToString
+                            Group Join table_size In tb2 On table1("Nama Variasi").ToString Equals table_size("code_detail_name").ToString
                             Into join_size = Group
                             From s1 In join_size.DefaultIfEmpty()
+                            Group Join table_ord In tb3 On table_ord("sales_order_ol_shop_number").ToString Equals table1("No# Pesanan").ToString
+                            Into join_ord = Group
+                            From o1 In join_ord.DefaultIfEmpty()
                             Select New With {
-                            .id_comp_group = "77",
-                            .sales_order_ol_shop_number = table1("No. Pesanan").ToString,
-                            .ol_store_sku = table1("SKU Induk").ToString,
-                            .ol_store_id = "77" + table1("No. Pesanan").ToString,
-                            .tracking_code = table1("No. Resi").ToString,
-                            .sales_order_ol_shop_date = table1("Waktu Pesanan Dibuat").ToString,
-                            .main_code = table1("SKU Induk").ToString,
-                            .product_name = table1("Nama Produk").ToString,
-                            .size = table1("Nama Variasi").ToString,
-                            .sku = table1("SKU Induk").ToString + If(s1 Is Nothing, "", s1("code_detail_name").ToString),
-                            .design_price = Decimal.Parse(Trim(table1("Harga Awal").ToString.Replace("Rp", "").Replace(".", ""))),
-                            .sales_order_det_qty = Decimal.Parse(table1("Jumlah").ToString),
-                            .grams = Decimal.Parse(table1("Berat Produk").ToString),
-                            .total_disc_order = Decimal.Parse(Trim(table1("Total Diskon").ToString.Replace("Rp", "").Replace(".", ""))),
-                            .discount_allocations_amo = Decimal.Parse(Trim(table1("Diskon Dari Penjual").ToString.Replace("Rp", "").Replace(".", ""))),
-                            .customer_name = table1("Username (Pembeli)").ToString,
-                            .shipping_name = table1("Nama Penerima").ToString,
-                            .shipping_address = table1("Alamat Pengiriman").ToString,
-                            .shipping_phone = table1("No. Telepon").ToString,
-                            .shipping_city = table1("Kota/Kabupaten").ToString,
-                             .shipping_region = table1("Provinsi").ToString,
-                            .Status = If(s1 Is Nothing, "Size not found", "OK")
-                        }
+                                .id_comp_group = "77",
+                                .sales_order_ol_shop_number = table1("No# Pesanan").ToString,
+                                .ol_store_sku = table1("SKU Induk").ToString,
+                                .ol_store_id = "77" + table1("No# Pesanan").ToString,
+                                .tracking_code = table1("No# Resi").ToString,
+                                .sales_order_ol_shop_date = table1("Waktu Pesanan Dibuat").ToString,
+                                .main_code = table1("SKU Induk").ToString,
+                                .product_name = table1("Nama Produk").ToString,
+                                .size = table1("Nama Variasi").ToString,
+                                .sku = table1("SKU Induk").ToString + If(s1 Is Nothing, "", s1("code").ToString),
+                                .design_price = Decimal.Parse(Trim(table1("Harga Awal").ToString.Replace("Rp", "").Replace(".", ""))),
+                                .sales_order_det_qty = Decimal.Parse(table1("Jumlah").ToString),
+                                .grams = Decimal.Parse(table1("Berat Produk").ToString.Replace("gr", "").Trim),
+                                .total_disc_order = Decimal.Parse(Trim(table1("Total Diskon").ToString.Replace("Rp", "").Replace(".", ""))),
+                                .discount_allocations_amo = Decimal.Parse(Trim(table1("Diskon Dari Penjual").ToString.Replace("Rp", "").Replace(".", ""))),
+                                .discount_allocations_ol_shop = Decimal.Parse(Trim(table1("Diskon Dari Shopee").ToString.Replace("Rp", "").Replace(".", ""))),
+                                .customer_name = table1("Username (Pembeli)").ToString,
+                                .shipping_name = table1("Nama Penerima").ToString,
+                                .shipping_address = table1("Alamat Pengiriman").ToString,
+                                .shipping_phone = table1("No# Telepon").ToString,
+                                .shipping_city = table1("Kota/Kabupaten").ToString,
+                                .shipping_region = table1("Provinsi").ToString,
+                                .Status = If(s1 Is Nothing Or Not o1 Is Nothing, If(s1 Is Nothing, "Size not found;", "") + If(Not o1 Is Nothing, "Order already exist;", ""), "OK")
+                            }
                 GCData.DataSource = Nothing
                 GCData.DataSource = query.ToList()
                 GCData.RefreshDataSource()
@@ -3572,7 +3582,9 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("sales_order_ol_shop_date").Caption = "Order Date"
             GVData.Columns("sales_order_det_qty").Caption = "Qty"
             GVData.Columns("total_disc_order").Caption = "Total Discount"
-            GVData.Columns("discount_allocations_amo").Caption = "Discount Allocation"
+            GVData.Columns("discount_allocations_amo").Caption = "Discount Allocation (Seller)"
+            GVData.Columns("discount_allocations_ol_shop").Caption = "Discount Allocation (Shopee)"
+            GVData.Columns("Status").Caption = "Format Status"
             'display form
             GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("design_price").DisplayFormat.FormatString = "N2"
@@ -3582,6 +3594,16 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("total_disc_order").DisplayFormat.FormatString = "N2"
             GVData.Columns("discount_allocations_amo").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("discount_allocations_amo").DisplayFormat.FormatString = "N2"
+            GVData.Columns("discount_allocations_ol_shop").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("discount_allocations_ol_shop").DisplayFormat.FormatString = "N2"
+            'summary
+            GVData.OptionsView.ShowFooter = True
+            GVData.OptionsCustomization.AllowSort = False
+            GVData.OptionsCustomization.AllowFilter = False
+            GVData.OptionsView.ColumnAutoWidth = False
+            GVData.BestFitColumns()
+            GVData.Columns("sales_order_det_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("sales_order_det_qty").SummaryItem.DisplayFormat = "{0:n2}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3628,7 +3650,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon

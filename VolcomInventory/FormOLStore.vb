@@ -652,7 +652,8 @@
 
     Private Sub BtnXLSSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnXLSSyncOrder.Click
         Cursor = Cursors.WaitCursor
-
+        FormImportExcel.id_pop_up = "54"
+        FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
