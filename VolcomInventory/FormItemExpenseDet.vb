@@ -249,6 +249,23 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         '
         If check_edit_report_status(id_report_status, "157", id) And Not is_view = "1" Then
             'msh bisa edit
+            GridColumnAccountDescription.Visible = False
+            GridColumnaccount.VisibleIndex = 1
+            '
+            GridColumnPPHDesc.Visible = False
+            GridColumnPPHCOA.VisibleIndex = 12
+            '
+            GridColumnCurrView.Visible = False
+            GridColumnCurr.VisibleIndex = 6
+            '
+            GridColumnBudgetTypeDesc.Visible = False
+            GridColumnBudgetType.VisibleIndex = 2
+            '
+            GCCCDesc.Visible = False
+            GCCC.VisibleIndex = 2
+            '
+            GridColumnBudgetDesc.Visible = False
+            GridColumnBudget.VisibleIndex = 3
         Else
             'tidak bisa edit
             GVData.OptionsBehavior.Editable = False
@@ -327,7 +344,25 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         Dim Report As New ReportItemExpense()
 
         GridColumnPPHDesc.VisibleIndex = -1
-
+        '
+        GridColumnaccount.Visible = False
+        GridColumnAccountDescription.VisibleIndex = 1
+        '
+        GridColumnPPHCOA.Visible = False
+        GridColumnPPHDesc.VisibleIndex = 12
+        '
+        GridColumnCurr.Visible = False
+        GridColumnCurrView.VisibleIndex = 6
+        '
+        GridColumnBudgetType.Visible = False
+        GridColumnBudgetTypeDesc.VisibleIndex = 2
+        '
+        GCCC.Visible = False
+        GCCCDesc.VisibleIndex = 2
+        '
+        GridColumnBudget.Visible = False
+        GridColumnBudgetDesc.VisibleIndex = 3
+        '
         GVData.BestFitColumns()
 
         'creating and saving the view's layout to a new memory stream 
@@ -381,6 +416,8 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         'Else
         '    print_raw_no_export(GCData)
         'End If
+        '
+        allow_status()
         Cursor = Cursors.Default
     End Sub
 
