@@ -649,4 +649,10 @@
         FormOLStoreUpdateStatus.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnXLSSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnXLSSyncOrder.Click
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
+    End Sub
 End Class

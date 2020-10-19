@@ -128,6 +128,11 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "53" Then
             Dim col_name As String = execute_query("SELECT column_name FROM tb_virtual_acc WHERE id_virtual_acc='" + FormBankDeposit.SLEBank.EditValue.ToString + "' ", 0, True, "", "", "", "")
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not ([" + col_name + "]='') AND [Payment Type]='Bank Transfer' AND [Transaction status]='settlement' ", oledbconn)
+        ElseIf id_pop_up = "54" Then
+            If FormOLStoreImportXLS.SLEOLStore.EditValue = "77" Then
+                'shopee
+                MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not ([No. Pesanan]='')", oledbconn)
+            End If
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -3519,6 +3524,64 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("amount").SummaryItem.DisplayFormat = "{0:n2}"
             GVData.Columns("amount_inv").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("amount_inv").SummaryItem.DisplayFormat = "{0:n2}"
+        ElseIf id_pop_up = "54" Then
+            If FormOLStoreImportXLS.SLEOLStore.EditValue = "77" Then
+                'SHOPEE
+                'get size
+                Dim query_size As String = "SELECT d.id_code_detail, d.id_code, d.code, IF(d.code_detail_name='ALL', 'One Size', d.code_detail_name) AS  code_detail_name
+                FROM tb_m_code_detail d WHERE d.id_code IN (SELECT o.id_code_product_size FROM tb_opt o) "
+                Dim dt_size As DataTable = execute_query(query_size, -1, True, "", "", "", "")
+                Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+                Dim tb2 = dt_size.AsEnumerable()
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2 On table1("Nama Variasi").ToString Equals table_tmp("code_detail_name").ToString
+                            Into join_size = Group
+                            From s1 In join_size.DefaultIfEmpty()
+                            Select New With {
+                            .id_comp_group = "77",
+                            .sales_order_ol_shop_number = table1("No. Pesanan").ToString,
+                            .ol_store_sku = table1("SKU Induk").ToString,
+                            .ol_store_id = "77" + table1("No. Pesanan").ToString,
+                            .tracking_code = table1("No. Resi").ToString,
+                            .sales_order_ol_shop_date = table1("Waktu Pesanan Dibuat").ToString,
+                            .main_code = table1("SKU Induk").ToString,
+                            .product_name = table1("Nama Produk").ToString,
+                            .size = table1("Nama Variasi").ToString,
+                            .sku = table1("SKU Induk").ToString + If(s1 Is Nothing, "", s1("code_detail_name").ToString),
+                            .design_price = Decimal.Parse(Trim(table1("Harga Awal").ToString.Replace("Rp", "").Replace(".", ""))),
+                            .sales_order_det_qty = Decimal.Parse(table1("Jumlah").ToString),
+                            .grams = Decimal.Parse(table1("Berat Produk").ToString),
+                            .total_disc_order = Decimal.Parse(Trim(table1("Total Diskon").ToString.Replace("Rp", "").Replace(".", ""))),
+                            .discount_allocations_amo = Decimal.Parse(Trim(table1("Diskon Dari Penjual").ToString.Replace("Rp", "").Replace(".", ""))),
+                            .customer_name = table1("Username (Pembeli)").ToString,
+                            .shipping_name = table1("Nama Penerima").ToString,
+                            .shipping_address = table1("Alamat Pengiriman").ToString,
+                            .shipping_phone = table1("No. Telepon").ToString,
+                            .shipping_city = table1("Kota/Kabupaten").ToString,
+                             .shipping_region = table1("Provinsi").ToString,
+                            .Status = If(s1 Is Nothing, "Size not found", "OK")
+                        }
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+            End If
+            'Customize column
+            GVData.Columns("id_comp_group").Visible = False
+            GVData.Columns("sales_order_ol_shop_number").Caption = "Order No."
+            GVData.Columns("sales_order_ol_shop_date").Caption = "Order Date"
+            GVData.Columns("sales_order_det_qty").Caption = "Qty"
+            GVData.Columns("total_disc_order").Caption = "Total Discount"
+            GVData.Columns("discount_allocations_amo").Caption = "Discount Allocation"
+            'display form
+            GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("design_price").DisplayFormat.FormatString = "N2"
+            GVData.Columns("grams").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("grams").DisplayFormat.FormatString = "N2"
+            GVData.Columns("total_disc_order").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("total_disc_order").DisplayFormat.FormatString = "N2"
+            GVData.Columns("discount_allocations_amo").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("discount_allocations_amo").DisplayFormat.FormatString = "N2"
         End If
         data_temp.Dispose()
         oledbconn.Close()

@@ -221,6 +221,7 @@ Partial Class FormOLStore
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BtnXLSSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1975,6 +1976,7 @@ Partial Class FormOLStore
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnXLSSyncOrder)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.BtnSyncOrder)
         Me.PanelControl3.Controls.Add(Me.BtnConfirmedOrder)
@@ -2099,6 +2101,16 @@ Partial Class FormOLStore
         Me.CantProceedToolStripMenuItem.Name = "CantProceedToolStripMenuItem"
         Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
+        '
+        'BtnXLSSyncOrder
+        '
+        Me.BtnXLSSyncOrder.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnXLSSyncOrder.Image = CType(resources.GetObject("BtnXLSSyncOrder.Image"), System.Drawing.Image)
+        Me.BtnXLSSyncOrder.Location = New System.Drawing.Point(354, 2)
+        Me.BtnXLSSyncOrder.Name = "BtnXLSSyncOrder"
+        Me.BtnXLSSyncOrder.Size = New System.Drawing.Size(129, 39)
+        Me.BtnXLSSyncOrder.TabIndex = 6
+        Me.BtnXLSSyncOrder.Text = "Import XLS Order"
         '
         'FormOLStore
         '
@@ -2384,4 +2396,5 @@ Partial Class FormOLStore
     Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_group_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnUpdateStatusVIAAPI As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnXLSSyncOrder As DevExpress.XtraEditors.SimpleButton
 End Class
