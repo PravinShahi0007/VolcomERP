@@ -245,13 +245,12 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         BtnCancell.Visible = True
         BtnMark.Visible = True
         BtnAttachment.Visible = True
+        BtnPrint.Visible = True 'pindah permintaan bu mariati
         '
         If check_edit_report_status(id_report_status, "157", id) And Not is_view = "1" Then
             'msh bisa edit
         Else
             'tidak bisa edit
-            BtnPrint.Visible = True
-
             GVData.OptionsBehavior.Editable = False
             SLEPayFrom.Enabled = False
             LEPaymentMethod.Enabled = False
