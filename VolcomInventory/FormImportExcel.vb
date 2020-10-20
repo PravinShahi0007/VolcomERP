@@ -3549,8 +3549,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             Select New With {
                                 .id_comp_group = "77",
                                 .sales_order_ol_shop_number = table1("No# Pesanan").ToString,
-                                .ol_store_sku = table1("SKU Induk").ToString,
-                                .ol_store_id = "77" + table1("No# Pesanan").ToString,
+                                .ol_store_sku = table1("SKU Induk").ToString + If(s1 Is Nothing, "", s1("code").ToString),
+                                .ol_store_id = table1("No# Pesanan").ToString + table1("SKU Induk").ToString + If(s1 Is Nothing, "", s1("code").ToString),
                                 .item_id = "",
                                 .checkout_id = "",
                                 .tracking_code = table1("No# Resi").ToString,
