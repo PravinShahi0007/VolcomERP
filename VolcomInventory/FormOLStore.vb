@@ -700,5 +700,8 @@
 
     Private Sub SLEGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEGroup.EditValueChanged
         viewComp()
+        GCSummary.DataSource = Nothing
+        GCDetail.DataSource = Nothing
+        GCCancellOrder.DataSource = Nothing
     End Sub
 End Class
