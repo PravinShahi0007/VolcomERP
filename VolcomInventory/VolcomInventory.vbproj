@@ -1832,6 +1832,12 @@
     <Compile Include="FormExternalUserDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFabricConsumption.Designer.vb">
+      <DependentUpon>FormFabricConsumption.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFabricConsumption.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFabricTypeDet.Designer.vb">
       <DependentUpon>FormFabricTypeDet.vb</DependentUpon>
     </Compile>
@@ -9523,6 +9529,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormExternalUserDet.resx">
       <DependentUpon>FormExternalUserDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFabricConsumption.resx">
+      <DependentUpon>FormFabricConsumption.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFabricTypeDet.resx">
       <DependentUpon>FormFabricTypeDet.vb</DependentUpon>
