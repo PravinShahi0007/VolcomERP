@@ -210,7 +210,7 @@
 ,IFNULL(req.qty_used,0) AS qty_req,IFNULL(req.harga_satuan_used,0) AS harga_satuan_req,IFNULL(req.amount_used,0) AS amount_req
 ,IFNULL(used.qty_used,0) AS qty_used,IFNULL(used.harga_satuan_used,0) AS harga_satuan_used,IFNULL(used.amount_used,0) AS amount_used
 -- ,IFNULL(rem.qty_rem,0) AS qty_rem,IFNULL(rem.harga_satuan_rem,0) AS harga_satuan_rem,IFNULL(rem.amount_rem,0) AS amount_rem
-,IFNULL(rem.qty_rem,0) AS qty_rem,IFNULL(rem_book.harga_satuan_rem,0) AS harga_satuan_rem,IFNULL(rem.qty_rem,0)*IFNULL(rem_book.harga_satuan_rem,0) AS amount_rem
+,IFNULL(rem.qty_rem,0) AS qty_rem,(IF(IFNULL(beg.qty_beg,0)=0,0,IFNULL(beg.amount_beg,0))+IFNULL(rec.amount_rec,0)-IFNULL(used.amount_used,0))/IFNULL(rem.qty_rem,0) AS harga_satuan_rem,(IF(IFNULL(beg.qty_beg,0)=0,0,IFNULL(beg.amount_beg,0))+IFNULL(rec.amount_rec,0)-IFNULL(used.amount_used,0)) AS amount_rem
 ,IFNULL(rem_book.qty_rem,0) AS qty_rem_book,IFNULL(rem_book.harga_satuan_rem,0) AS harga_satuan_rem_book,IFNULL(rem_book.amount_rem,0) AS amount_rem_book
 ,itc.item_cat
 FROM tb_item it
