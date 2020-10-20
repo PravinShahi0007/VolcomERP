@@ -6059,12 +6059,18 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             'main
                             Dim last_order As String = ""
                             Dim id As String = ""
+                            Dim id_in As String = ""
                             For i As Integer = 0 To GVData.RowCount - 1
                                 Dim curr_order As String = GVData.GetRowCellValue(i, "sales_order_ol_shop_number").ToString
                                 If last_order <> curr_order Then
                                     last_order = curr_order
                                     Dim query_get_id As String = "UPDATE tb_opt SET xls_order_inc=xls_order_inc+1; SELECT xls_order_inc FROM tb_opt;"
                                     id = execute_query(query_get_id, 0, True, "", "", "", "")
+
+                                    If id_in <> "" Then
+                                        id_in += ","
+                                    End If
+                                    id_in += id
                                 End If
                                 Dim id_comp_group As String = FormOLStore.SLEOLStore.EditValue.ToString
                                 Dim sales_order_ol_shop_number As String = GVData.GetRowCellValue(i, "sales_order_ol_shop_number").ToString
@@ -6152,9 +6158,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                                 PBC.PerformStep()
                                 PBC.Update()
                             Next
+                            FormOLStore.syncOrder()
 
-
-                            infoCustom("Import Success")
                             Close()
                         End If
                     Else
