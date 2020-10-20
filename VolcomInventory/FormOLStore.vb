@@ -473,6 +473,10 @@
 
 
     Private Sub BtnSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnSyncOrder.Click
+        syncOrder()
+    End Sub
+
+    Sub syncOrder()
         Cursor = Cursors.WaitCursor
         'initial general
         Dim err As String = ""
@@ -570,7 +574,6 @@
         CEAllow.EditValue = False
         Cursor = Cursors.Default
     End Sub
-
 
     Function orderNotProcessed()
         Dim query As String="SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 "
