@@ -2965,6 +2965,12 @@
     <Compile Include="FormOLStoreDiscountCode.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreImportXLS.Designer.vb">
+      <DependentUpon>FormOLStoreImportXLS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreImportXLS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreOrderId.Designer.vb">
       <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
     </Compile>
@@ -10117,6 +10123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreDiscountCode.resx">
       <DependentUpon>FormOLStoreDiscountCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreImportXLS.resx">
+      <DependentUpon>FormOLStoreImportXLS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreOrderId.resx">
       <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
