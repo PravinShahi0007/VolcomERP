@@ -1832,6 +1832,12 @@
     <Compile Include="FormExternalUserDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFabricConsumption.Designer.vb">
+      <DependentUpon>FormFabricConsumption.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFabricConsumption.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFabricTypeDet.Designer.vb">
       <DependentUpon>FormFabricTypeDet.vb</DependentUpon>
     </Compile>
@@ -5441,6 +5447,12 @@
       <DependentUpon>FormSalesReturnDetProblem.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesReturnDetProblem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnInputTanggalPickup.Designer.vb">
+      <DependentUpon>FormSalesReturnInputTanggalPickup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnInputTanggalPickup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesReturnNonListDet.Designer.vb">
@@ -9518,6 +9530,9 @@
     <EmbeddedResource Include="FormExternalUserDet.resx">
       <DependentUpon>FormExternalUserDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFabricConsumption.resx">
+      <DependentUpon>FormFabricConsumption.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFabricTypeDet.resx">
       <DependentUpon>FormFabricTypeDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -11582,6 +11597,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnDetProblem.resx">
       <DependentUpon>FormSalesReturnDetProblem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnInputTanggalPickup.resx">
+      <DependentUpon>FormSalesReturnInputTanggalPickup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnNonListDet.resx">
       <DependentUpon>FormSalesReturnNonListDet.vb</DependentUpon>
