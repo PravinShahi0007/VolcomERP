@@ -1,6 +1,8 @@
 ﻿Public Class ClassZaloraApi
-    Public api_key As String = get_setup_field("zalora_api_key")
-    Public user_id As String = get_setup_field("zalora_user_id")
+    'Public api_key As String = get_setup_field("zalora_api_key")
+    'Public user_id As String = get_setup_field("zalora_user_id")
+    Public api_key As String = "769595ee282d1a51c09f7bf4921866c86d54125a"
+    Public user_id As String = "septian@volcom.co.id"
     Dim id_store_group As String = get_setup_field("zalora_comp_group")
     Dim status_order As String = "pending"
     Dim data_size As New DataTable
@@ -316,12 +318,24 @@
 
     Sub proceed_order_detail(ByVal dtx As DataTable)
         Dim id_order As String = dtx.Rows(0)("id").ToString
+        Dim order_number As String = dtx.Rows(0)("sales_order_ol_shop_number").ToString
+        'generate tracking number
+        Try
+            setTrackingNumber(id_order)
+        Catch ex As Exception
+            Dim od As New ClassSalesOrder()
+            od.insertLogWebOrder(id_order, "Failed set tracking number:" + ex.ToString, id_store_group)
+        End Try
+        'generate invoice
+        Try
+            setInvoiceNumber(id_order, "INV" + order_number)
+        Catch ex As Exception
+            Dim od As New ClassSalesOrder()
+            od.insertLogWebOrder(id_order, "Failed set invoice number:" + ex.ToString, id_store_group)
+        End Try
+
         Dim dtd As DataTable = get_order_detail(id_order)
         If dtd.Rows.Count > 0 Then
-            'generate tracking number
-
-            'generate invoice
-
             If dtd.Rows(0)("tracking_code").ToString <> "" Then 'sudah ada awb
                 For d As Integer = 0 To dtd.Rows.Count - 1
                     'general
@@ -491,12 +505,44 @@
         Return sku
     End Function
 
-    Sub getTrackingNumber(ByVal id_order_par As String)
+    Sub setTrackingNumber(ByVal id_order_par As String)
+        Dim dtd As DataTable = get_order_detail(id_order_par)
+        For y As Integer = 0 To dtd.Rows.Count - 1
 
+        Next
     End Sub
 
-    Sub setInvoiceNumber(ByVal id_order_par As String)
+    Sub setInvoiceNumber(ByVal id_order_par As String, ByVal order_number_par As String)
+        Dim dtd As DataTable = get_order_detail(id_order_par)
+        For y As Integer = 0 To dtd.Rows.Count - 1
+            Dim item_id As String = dtd.Rows(y)("item_id").ToString
 
+            Dim parameter As DataTable = New DataTable
+            parameter.Columns.Add("key", GetType(String))
+            parameter.Columns.Add("value", GetType(String))
+            parameter.Rows.Add("Action", "SetInvoiceNumber")
+            parameter.Rows.Add("Format", "JSON")
+            parameter.Rows.Add("InvoiceNumber", order_number_par)
+            parameter.Rows.Add("OrderItemId", item_id)
+            parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
+            parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
+            parameter.Rows.Add("Version", "1.0")
+            Dim signature As String = get_signature(parameter)
+            parameter.Rows.Add("Signature", signature)
+            Dim url As String = "https://sellercenter-api.zalora.co.id?"
+            For i = 0 To parameter.Rows.Count - 1
+                url += parameter.Rows(i)("key").ToString + "=" + parameter.Rows(i)("value").ToString + "&"
+            Next
+            url = url.Substring(0, url.Length - 1)
+            Dim request As Net.HttpWebRequest = Net.WebRequest.Create(url)
+            request.Method = "POST"
+            Dim response As Net.HttpWebResponse = request.GetResponse()
+            Using dataStream As IO.Stream = response.GetResponseStream()
+                Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+                Dim responseFromServer As String = reader.ReadToEnd()
+            End Using
+            response.Close()
+        Next
     End Sub
 
     Sub setReadyToShip()
