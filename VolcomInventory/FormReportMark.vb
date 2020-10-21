@@ -6296,6 +6296,13 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     'close cash advance
                     execute_non_query("UPDATE tb_cash_advance SET is_bbk = 1 WHERE id_cash_advance IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                 End If
+                'check compen rmt 117 183 then close
+                Dim qce As String = "SELECT id_report FROM tb_pn_det WHERE id_pn='" & id_report & "' AND (report_mark_type='117' OR  report_mark_type='183')"
+                Dim dtce As DataTable = execute_query(qce, -1, True, "", "", "", "")
+                For i As Integer = 0 To dtce.Rows.Count - 1
+                    Dim qe As String = "UPDATE tb_sales_pos SET is_close_rec_payment='1' WHERE id_sales_pos='" & dtce.Rows(i)("id_report").ToString & "'"
+                    execute_non_query(qe, True, "", "", "", "")
+                Next
                 '
             End If
 
