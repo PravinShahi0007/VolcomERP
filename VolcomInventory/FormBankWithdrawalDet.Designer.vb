@@ -130,6 +130,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCompen = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1117,6 +1118,7 @@ Partial Class FormBankWithdrawalDet
         '
         'PCAddDel
         '
+        Me.PCAddDel.Controls.Add(Me.BCompen)
         Me.PCAddDel.Controls.Add(Me.BPickDP)
         Me.PCAddDel.Controls.Add(Me.TEKurs)
         Me.PCAddDel.Controls.Add(Me.LabelControl4)
@@ -1304,6 +1306,18 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
+        '
+        'BCompen
+        '
+        Me.BCompen.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCompen.Enabled = False
+        Me.BCompen.Image = CType(resources.GetObject("BCompen.Image"), System.Drawing.Image)
+        Me.BCompen.Location = New System.Drawing.Point(540, 2)
+        Me.BCompen.Name = "BCompen"
+        Me.BCompen.Size = New System.Drawing.Size(124, 43)
+        Me.BCompen.TabIndex = 8910
+        Me.BCompen.Text = "Compensation"
+        Me.BCompen.Visible = False
         '
         'FormBankWithdrawalDet
         '
@@ -1497,4 +1511,5 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCompen As DevExpress.XtraEditors.SimpleButton
 End Class
