@@ -318,6 +318,10 @@
         Dim id_order As String = dtx.Rows(0)("id").ToString
         Dim dtd As DataTable = get_order_detail(id_order)
         If dtd.Rows.Count > 0 Then
+            'generate tracking number
+
+            'generate invoice
+
             If dtd.Rows(0)("tracking_code").ToString <> "" Then 'sudah ada awb
                 For d As Integer = 0 To dtd.Rows.Count - 1
                     'general
@@ -393,8 +397,6 @@
                     '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "') "
                     execute_non_query(qins, True, "", "", "", "")
                 Next
-            Else
-
             End If
         End If
     End Sub
@@ -488,4 +490,16 @@
         Dim sku As String = code9 + code_size
         Return sku
     End Function
+
+    Sub getTrackingNumber(ByVal id_order_par As String)
+
+    End Sub
+
+    Sub setInvoiceNumber(ByVal id_order_par As String)
+
+    End Sub
+
+    Sub setReadyToShip()
+
+    End Sub
 End Class
