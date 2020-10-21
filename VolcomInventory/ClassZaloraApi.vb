@@ -1,8 +1,8 @@
 ﻿Public Class ClassZaloraApi
-    'Public api_key As String = get_setup_field("zalora_api_key")
-    'Public user_id As String = get_setup_field("zalora_user_id")
-    Public api_key As String = "769595ee282d1a51c09f7bf4921866c86d54125a"
-    Public user_id As String = "septian@volcom.co.id"
+    Public api_key As String = get_setup_field("zalora_api_key")
+    Public user_id As String = get_setup_field("zalora_user_id")
+    'Public api_key As String = "769595ee282d1a51c09f7bf4921866c86d54125a"
+    'Public user_id As String = "septian@volcom.co.id"
     Dim id_store_group As String = get_setup_field("zalora_comp_group")
     Dim status_order As String = "pending"
     Dim data_size As New DataTable
@@ -423,6 +423,7 @@
         dt.Columns.Add("ol_store_sku", GetType(String))
         dt.Columns.Add("design_price", GetType(Decimal))
         dt.Columns.Add("tracking_code", GetType(String))
+        dt.Columns.Add("shipment_provider", GetType(String))
 
         Dim parameter_det As DataTable = New DataTable
 
@@ -467,13 +468,13 @@
                     For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
                         sku = ""
                         sku = getSKU(row_det("Sku").ToString.Substring(0, 9), row_det("Variation").ToString)
-                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString)
+                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString)
                     Next
                 Else
                     'non array
                     sku = ""
                     sku = getSKU(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Sku").ToString.Substring(0, 9), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Variation").ToString)
-                    dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString)
+                    dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString)
                 End If
             End If
         End Using
@@ -507,9 +508,41 @@
 
     Sub setTrackingNumber(ByVal id_order_par As String)
         Dim dtd As DataTable = get_order_detail(id_order_par)
+        Dim item_id_collect As String = ""
+        Dim shipment_provider As String = ""
         For y As Integer = 0 To dtd.Rows.Count - 1
-
+            If y > 0 Then
+                item_id_collect += ","
+            End If
+            item_id_collect += dtd.Rows(y)("item_id").ToString
+            shipment_provider = dtd.Rows(y)("shipment_provider").ToString
         Next
+        Dim parameter As DataTable = New DataTable
+        parameter.Columns.Add("key", GetType(String))
+        parameter.Columns.Add("value", GetType(String))
+        parameter.Rows.Add("Action", "SetStatusToPackedByMarketplace")
+        parameter.Rows.Add("DeliveryType", "dropship")
+        parameter.Rows.Add("Format", "JSON")
+        parameter.Rows.Add("OrderItemIds", "[" + item_id_collect + "]")
+        parameter.Rows.Add("ShippingProvider", shipment_provider)
+        parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
+        parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
+        parameter.Rows.Add("Version", "1.0")
+        Dim signature As String = get_signature(parameter)
+        parameter.Rows.Add("Signature", signature)
+        Dim url As String = "https://sellercenter-api.zalora.co.id?"
+        For i = 0 To parameter.Rows.Count - 1
+            url += parameter.Rows(i)("key").ToString + "=" + parameter.Rows(i)("value").ToString + "&"
+        Next
+        url = url.Substring(0, url.Length - 1)
+        Dim request As Net.HttpWebRequest = Net.WebRequest.Create(url)
+        request.Method = "POST"
+        Dim response As Net.HttpWebResponse = request.GetResponse()
+        Using dataStream As IO.Stream = response.GetResponseStream()
+            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+            Dim responseFromServer As String = reader.ReadToEnd()
+        End Using
+        response.Close()
     End Sub
 
     Sub setInvoiceNumber(ByVal id_order_par As String, ByVal order_number_par As String)

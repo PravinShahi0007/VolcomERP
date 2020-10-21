@@ -23,7 +23,9 @@
         'Dim bli As New ClassBliBliApi()
         'bli.get_order_list()
         Dim za As New ClassZaloraApi()
-        za.setInvoiceNumber("3668397", "INV228196879")
+
+        'za.setTrackingNumber("3727208")
+        'za.setInvoiceNumber("", "")
 
         'manual fullfilled
         'Dim q As String = "SELECT d.id_pl_sales_order_del AS `id_report`,c.id_commerce_type, c.id_comp AS `id_store`, so.id_sales_order_ol_shop AS `id_web_order`
