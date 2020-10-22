@@ -556,7 +556,7 @@
             parameter.Columns.Add("value", GetType(String))
             parameter.Rows.Add("Action", "SetInvoiceNumber")
             parameter.Rows.Add("Format", "JSON")
-            parameter.Rows.Add("InvoiceNumber", order_number_par)
+            parameter.Rows.Add("InvoiceNumber", "INV" + order_number_par)
             parameter.Rows.Add("OrderItemId", item_id)
             parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
             parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))

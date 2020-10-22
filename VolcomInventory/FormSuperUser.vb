@@ -24,8 +24,8 @@
         'bli.get_order_list()
         Dim za As New ClassZaloraApi()
 
-        za.setTrackingNumber("3729023")
-        'za.setInvoiceNumber("", "")
+        'za.setTrackingNumber("3729023")
+        'za.setInvoiceNumber("3729023", "258434379")
 
 
         'manual fullfilled
