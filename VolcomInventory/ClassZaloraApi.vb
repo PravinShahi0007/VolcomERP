@@ -515,15 +515,16 @@
                 item_id_collect += ","
             End If
             item_id_collect += dtd.Rows(y)("item_id").ToString
-            shipment_provider = dtd.Rows(y)("shipment_provider").ToString
+            shipment_provider = Uri.EscapeDataString(dtd.Rows(y)("shipment_provider").ToString)
         Next
+        Dim item_id_collect_encode As String = Uri.EscapeDataString("[" + item_id_collect + "]")
         Dim parameter As DataTable = New DataTable
         parameter.Columns.Add("key", GetType(String))
         parameter.Columns.Add("value", GetType(String))
         parameter.Rows.Add("Action", "SetStatusToPackedByMarketplace")
         parameter.Rows.Add("DeliveryType", "dropship")
         parameter.Rows.Add("Format", "JSON")
-        parameter.Rows.Add("OrderItemIds", "[" + item_id_collect + "]")
+        parameter.Rows.Add("OrderItemIds", item_id_collect_encode)
         parameter.Rows.Add("ShippingProvider", shipment_provider)
         parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
         parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
