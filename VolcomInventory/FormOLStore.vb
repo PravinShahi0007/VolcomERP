@@ -623,7 +623,7 @@
                 If data_item.Rows.Count > 0 Then
                     For t As Integer = 0 To data_item.Rows.Count - 1
                         Try
-                            SplashScreenManager1.SetWaitFormDescription("Set status (ready) : #" + dord.Rows(t)("order_number").ToString)
+                            SplashScreenManager1.SetWaitFormDescription("Set status (rts) : #" + dord.Rows(t)("order_number").ToString)
                             Dim zal_stt As New ClassZaloraApi()
                             zal_stt.setReadyToShip(data_item.Rows(t)("item_id").ToString, data_item.Rows(t)("shipment_provider").ToString, data_item.Rows(t)("tracking_code").ToString)
                         Catch ex As Exception
