@@ -19,11 +19,10 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        'cek blibli api
+        'cek api
         'Dim bli As New ClassBliBliApi()
         'bli.get_order_list()
-        Dim za As New ClassZaloraApi()
-
+        'Dim za As New ClassZaloraApi()
         'za.setTrackingNumber("3727702")
         'za.setInvoiceNumber("3727702", "218433179")
         'za.setReadyToShip("6214692", "RPX - MARKETPLACE", "799938234220")
