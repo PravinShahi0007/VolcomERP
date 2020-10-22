@@ -296,6 +296,8 @@
 
             If confirm = DialogResult.No Then
                 e.Cancel = True
+            Else
+                edited = False
             End If
         End If
     End Sub
