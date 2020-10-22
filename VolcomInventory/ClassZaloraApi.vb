@@ -1,8 +1,8 @@
 ﻿Public Class ClassZaloraApi
-    Public api_key As String = get_setup_field("zalora_api_key")
-    Public user_id As String = get_setup_field("zalora_user_id")
-    'Public api_key As String = "769595ee282d1a51c09f7bf4921866c86d54125a"
-    'Public user_id As String = "septian@volcom.co.id"
+    'Public api_key As String = get_setup_field("zalora_api_key")
+    'Public user_id As String = get_setup_field("zalora_user_id")
+    Public api_key As String = "769595ee282d1a51c09f7bf4921866c86d54125a"
+    Public user_id As String = "septian@volcom.co.id"
     Dim id_store_group As String = get_setup_field("zalora_comp_group")
     Dim status_order As String = "pending"
     Dim data_size As New DataTable
@@ -579,7 +579,36 @@
         Next
     End Sub
 
-    Sub setReadyToShip()
-
+    Sub setReadyToShip(ByVal item_id_par As String, ByVal shipment_provider_par As String, ByVal tracking_no_par As String)
+        Dim item_id_collect_encode As String = Uri.EscapeDataString("[" + item_id_par + "]")
+        Dim shipment_provider As String = Uri.EscapeDataString(shipment_provider_par)
+        Dim tracking_no As String = Uri.EscapeDataString(tracking_no_par)
+        Dim parameter As DataTable = New DataTable
+        parameter.Columns.Add("key", GetType(String))
+        parameter.Columns.Add("value", GetType(String))
+        parameter.Rows.Add("Action", "SetStatusToReadyToShip")
+        parameter.Rows.Add("DeliveryType", "dropship")
+        parameter.Rows.Add("Format", "JSON")
+        parameter.Rows.Add("OrderItemIds", item_id_collect_encode)
+        parameter.Rows.Add("ShippingProvider", shipment_provider)
+        parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
+        parameter.Rows.Add("TrackingNumber", tracking_no)
+        parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
+        parameter.Rows.Add("Version", "1.0")
+        Dim signature As String = get_signature(parameter)
+        parameter.Rows.Add("Signature", signature)
+        Dim url As String = "https://sellercenter-api.zalora.co.id?"
+        For i = 0 To parameter.Rows.Count - 1
+            url += parameter.Rows(i)("key").ToString + "=" + parameter.Rows(i)("value").ToString + "&"
+        Next
+        url = url.Substring(0, url.Length - 1)
+        Dim request As Net.HttpWebRequest = Net.WebRequest.Create(url)
+        request.Method = "POST"
+        Dim response As Net.HttpWebResponse = request.GetResponse()
+        Using dataStream As IO.Stream = response.GetResponseStream()
+            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+            Dim responseFromServer As String = reader.ReadToEnd()
+        End Using
+        response.Close()
     End Sub
 End Class
