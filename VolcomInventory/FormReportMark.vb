@@ -621,6 +621,9 @@
         ElseIf report_mark_type = "270" Then
             'propose ECOP
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_design_ecop_pps WHERE id_design_ecop_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "273" Then
+            'propose material
+            query = String.Format("SELECT id_report_status,mat_det_code as report_number FROM tb_m_mat_det_pps WHERE id_mat_det_pps = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5773,7 +5776,7 @@ HAVING debit!=credit"
                 'complete
                 query = "UPDATE tb_m_design dsg
 INNER JOIN `tb_design_cop_propose_det` copd ON copd.id_design=dsg.id_design AND copd.`id_design_cop_propose`='" & id_report & "'
-SET dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost`,dsg.is_cold_storage=copd.is_cold_storage ;
+SET dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost` ;
 UPDATE tb_m_design_cop SET is_active='2' WHERE id_design IN (SELECT id_design FROM tb_design_cop_propose_det WHERE id_design_cop_propose='" & id_report & "') AND is_production_dept=1;
 INSERT INTO `tb_m_design_cop`(description,id_design,date_created,id_currency,kurs,before_kurs,additional,is_active,is_production_dept)
 SELECT cmp.description,copd.id_design,NOW(),cmp.id_currency,cmp.kurs,cmp.before_kurs,cmp.additional,1,1 FROM tb_design_cop_propose_comp cmp
@@ -6293,6 +6296,13 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                     'close cash advance
                     execute_non_query("UPDATE tb_cash_advance SET is_bbk = 1 WHERE id_cash_advance IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                 End If
+                'check compen rmt 117 183 then close
+                Dim qce As String = "SELECT id_report FROM tb_pn_det WHERE id_pn='" & id_report & "' AND (report_mark_type='117' OR  report_mark_type='183')"
+                Dim dtce As DataTable = execute_query(qce, -1, True, "", "", "", "")
+                For i As Integer = 0 To dtce.Rows.Count - 1
+                    Dim qe As String = "UPDATE tb_sales_pos SET is_close_rec_payment='1' WHERE id_sales_pos='" & dtce.Rows(i)("id_report").ToString & "'"
+                    execute_non_query(qe, True, "", "", "", "")
+                Next
                 '
             End If
 
@@ -8751,6 +8761,70 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_purc_order_move_date SET id_report_status='{0}' WHERE id_receive_date ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "273" Then
+            '
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim material_image_path As String = get_setup_field("pic_path_mat") & "\"
+                Dim id_mat_det As String = ""
+                Dim qi As String = ""
+
+                Dim qc As String = "SELECT pps.id_mat, pps.mat_det_display_name, pps.mat_det_name, pps.mat_det_code, pps.id_method, pps.lifetime, NOW() AS mat_det_date, 2 AS allow_design, NULL AS id_fab_type, 0 AS gramasi,pps.id_range,is_revise,id_mat_det_revise,id_comp_contact,id_currency,fob_price FROM tb_m_mat_det_pps pps WHERE pps.`id_mat_det_pps`='" & id_report & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+
+                If dtc.Rows.Count > 0 Then
+                    If dtc.Rows(0)("is_revise").ToString = "1" Then 'revisi
+                        id_mat_det = dtc.Rows(0)("id_mat_det_revise").ToString
+                        '
+                        qi = String.Format("UPDATE tb_m_mat_det SET id_mat='{1}', mat_det_display_name='{2}', mat_det_name='{3}', mat_det_code='{4}', id_method='{5}', lifetime='{6}', mat_det_date=NOW(), allow_design=2, id_fab_type=NULL, gramasi=0,id_range='{7}' WHERE id_mat_det='{0}'", id_mat_det, dtc.Rows(0)("id_mat").ToString, dtc.Rows(0)("mat_det_display_name").ToString, dtc.Rows(0)("mat_det_name").ToString, dtc.Rows(0)("mat_det_code").ToString, dtc.Rows(0)("id_method").ToString, dtc.Rows(0)("lifetime").ToString, dtc.Rows(0)("id_range").ToString)
+                        execute_non_query(qi, True, "", "", "", "")
+                        'fob price
+                        qi = String.Format("UPDATE tb_m_mat_det_price SET is_default_po='2' WHERE id_mat_det='{0}'", id_mat_det)
+                        execute_non_query(qi, True, "", "", "", "")
+                        qi = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost,is_default_po) VALUES('{0}','FOB Price','{1}','{2}','{3}',DATE(NOW()),'2','1')", id_mat_det, dtc.Rows(0)("id_currency").ToString, dtc.Rows(0)("id_comp_contact").ToString, decimalSQL(Decimal.Parse(dtc.Rows(0)("fob_price").ToString).ToString))
+                        execute_non_query(qi, True, "", "", "", "")
+
+                        'image
+                        If Not FormMasterRawMatPps.PictureEdit1.EditValue Is Nothing Then
+                            save_image_ori(FormMasterRawMatPps.PictureEdit1, material_image_path, id_mat_det & ".jpg")
+                        End If
+
+                        'detail code
+                        qi = String.Format("DELETE FROM tb_m_mat_det_code WHERE id_mat_det='{0}'", id_mat_det)
+                        execute_non_query(qi, True, "", "", "", "")
+                        qi = String.Format("INSERT INTO tb_m_mat_det_code(id_mat_det, id_code_detail) SELECT '{0}' AS id_mat_det,id_code_detail FROM tb_m_mat_det_pps_code WHERE id_mat_det_pps='{1}'", id_mat_det, id_report)
+                        execute_non_query(qi, True, "", "", "", "")
+                    Else
+                        qi = "INSERT INTO tb_m_mat_det(id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, mat_det_date, allow_design, id_fab_type, gramasi,id_range) "
+                        qi += "SELECT pps.id_mat, pps.mat_det_display_name, pps.mat_det_name, pps.mat_det_code, pps.id_method, pps.lifetime, NOW() AS mat_det_date, 2 AS allow_design, NULL AS id_fab_type, 0 AS gramasi,pps.id_range
+FROM tb_m_mat_det_pps pps
+WHERE pps.`id_mat_det_pps`='" & id_report & "';SELECT LAST_INSERT_ID() "
+
+                        id_mat_det = execute_query(qi, 0, True, "", "", "", "")
+
+                        'fob price
+                        qi = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost,is_default_po) VALUES('{0}','FOB Price','{1}','{2}','{3}',DATE(NOW()),'2','1')", id_mat_det, dtc.Rows(0)("id_currency").ToString, dtc.Rows(0)("id_comp_contact").ToString, decimalSQL(Decimal.Parse(dtc.Rows(0)("fob_price").ToString).ToString))
+                        execute_non_query(qi, True, "", "", "", "")
+
+                        'image
+                        If Not FormMasterRawMatPps.PictureEdit1.EditValue Is Nothing Then
+                            save_image_ori(FormMasterRawMatPps.PictureEdit1, material_image_path, id_mat_det & ".jpg")
+                        End If
+
+                        qi = String.Format("DELETE FROM tb_m_mat_det_code WHERE id_mat_det='{0}'", id_mat_det)
+                        execute_non_query(qi, True, "", "", "", "")
+                        qi = String.Format("INSERT INTO tb_m_mat_det_code(id_mat_det, id_code_detail) SELECT '{0}' AS id_mat_det,id_code_detail FROM tb_m_mat_det_pps_code WHERE id_mat_det_pps='{1}'", id_mat_det, id_report)
+                        execute_non_query(qi, True, "", "", "", "")
+                    End If
+                End If
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_m_mat_det_pps SET id_report_status='{0}' WHERE id_mat_det_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

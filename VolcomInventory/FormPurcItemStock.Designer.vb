@@ -35,6 +35,7 @@ Partial Class FormPurcItemStock
         Me.GridColumnIdDept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCNav = New DevExpress.XtraEditors.PanelControl()
         Me.BStockFisik = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -68,6 +69,7 @@ Partial Class FormPurcItemStock
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DEUntilSC = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -81,20 +83,25 @@ Partial Class FormPurcItemStock
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPemakaian = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnQtyRec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnTotRec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnQtyReq = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnTotReq = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnQtyUsed = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnTotUsed = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnQtyRem = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnTotRem = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.LECatPemakaian = New DevExpress.XtraEditors.LookUpEdit()
@@ -105,13 +112,17 @@ Partial Class FormPurcItemStock
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnQtyRec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnTotRec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnQtyUsed = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnTotUsed = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnQtyRem = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnTotRem = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BToggleBooking = New DevExpress.XtraEditors.SimpleButton()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnQtyRemBook = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnTotRemBook = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandBooking = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandrembooking = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -156,7 +167,7 @@ Partial Class FormPurcItemStock
         Me.XTCStock.Location = New System.Drawing.Point(0, 0)
         Me.XTCStock.Name = "XTCStock"
         Me.XTCStock.SelectedTabPage = Me.XTPSOH
-        Me.XTCStock.Size = New System.Drawing.Size(967, 592)
+        Me.XTCStock.Size = New System.Drawing.Size(1064, 592)
         Me.XTCStock.TabIndex = 0
         Me.XTCStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSOH, Me.XTPStockCard, Me.XTPUsage})
         '
@@ -180,7 +191,7 @@ Partial Class FormPurcItemStock
         '
         'GVSOH
         '
-        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdItem, Me.GridColumn12, Me.GridColumnItemDesc, Me.GridColumnIdItemCat, Me.GridColumnItemCat, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnIdDept, Me.GridColumnDept, Me.GridColumnValue})
+        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdItem, Me.GridColumn12, Me.GridColumnItemDesc, Me.GridColumnIdItemCat, Me.GridColumnItemCat, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnIdDept, Me.GridColumnDept, Me.GridColumnValue, Me.GridColumn6})
         Me.GVSOH.GridControl = Me.GCSOH
         Me.GVSOH.GroupCount = 1
         Me.GVSOH.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:N2}")})
@@ -274,6 +285,18 @@ Partial Class FormPurcItemStock
         Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValue.FieldName = "value"
         Me.GridColumnValue.Name = "GridColumnValue"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.Caption = "UOM"
+        Me.GridColumn6.FieldName = "uom"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
         '
         'PCNav
         '
@@ -532,7 +555,7 @@ Partial Class FormPurcItemStock
         '
         'SearchLookUpEdit1View
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnItemId, Me.GridColumn13, Me.GridColumnDesc, Me.GridColumnCat})
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnItemId, Me.GridColumn13, Me.GridColumnDesc, Me.GridColumnCat, Me.GridColumn8})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -571,6 +594,18 @@ Partial Class FormPurcItemStock
         Me.GridColumnCat.Visible = True
         Me.GridColumnCat.VisibleIndex = 2
         Me.GridColumnCat.Width = 727
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "UOM"
+        Me.GridColumn8.FieldName = "uom"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 3
         '
         'DEUntilSC
         '
@@ -653,7 +688,7 @@ Partial Class FormPurcItemStock
         Me.XTPUsage.Controls.Add(Me.GCPemakaian)
         Me.XTPUsage.Controls.Add(Me.PanelControl2)
         Me.XTPUsage.Name = "XTPUsage"
-        Me.XTPUsage.Size = New System.Drawing.Size(961, 564)
+        Me.XTPUsage.Size = New System.Drawing.Size(1058, 564)
         Me.XTPUsage.Text = "Report Pemakaian"
         '
         'GCPemakaian
@@ -663,7 +698,7 @@ Partial Class FormPurcItemStock
         Me.GCPemakaian.Location = New System.Drawing.Point(0, 42)
         Me.GCPemakaian.MainView = Me.GVPemakaian
         Me.GCPemakaian.Name = "GCPemakaian"
-        Me.GCPemakaian.Size = New System.Drawing.Size(961, 522)
+        Me.GCPemakaian.Size = New System.Drawing.Size(1058, 522)
         Me.GCPemakaian.TabIndex = 1
         Me.GCPemakaian.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPemakaian})
         '
@@ -681,25 +716,14 @@ Partial Class FormPurcItemStock
         '
         'GVPemakaian
         '
-        Me.GVPemakaian.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5})
-        Me.GVPemakaian.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.BandedGridColumn5, Me.GridColumn2, Me.BandedGridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQtyRec, Me.GridColumn7, Me.GridColumnTotRec, Me.GridColumnQtyUsed, Me.GridColumn10, Me.GridColumnTotUsed, Me.BandedGridColumnQtyRem, Me.BandedGridColumn3, Me.BandedGridColumnTotRem})
+        Me.GVPemakaian.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBandBooking, Me.gridBandrembooking})
+        Me.GVPemakaian.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.BandedGridColumn5, Me.GridColumn2, Me.BandedGridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQtyRec, Me.GridColumn7, Me.GridColumnTotRec, Me.GridColumnQtyUsed, Me.GridColumn10, Me.GridColumnTotUsed, Me.BandedGridColumnQtyRem, Me.BandedGridColumn3, Me.BandedGridColumnTotRem, Me.BandedGridColumn2, Me.BandedGridColumnQtyReq, Me.BandedGridColumnTotReq, Me.BandedGridColumn4, Me.BandedGridColumnQtyRemBook, Me.BandedGridColumnTotRemBook})
         Me.GVPemakaian.GridControl = Me.GCPemakaian
-        Me.GVPemakaian.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rem", Me.BandedGridColumnQtyRem, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rem", Me.BandedGridColumnTotRem, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnQtyRec, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", Me.GridColumnTotRec, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_used", Me.GridColumnQtyUsed, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_used", Me.GridColumnTotUsed, "{0:N2}")})
+        Me.GVPemakaian.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rem", Me.BandedGridColumnQtyRem, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rem", Me.BandedGridColumnTotRem, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnQtyRec, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", Me.GridColumnTotRec, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_used", Me.GridColumnQtyUsed, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_used", Me.GridColumnTotUsed, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_req", Me.BandedGridColumnQtyReq, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_req", Me.BandedGridColumnTotReq, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rem_book", Me.BandedGridColumnQtyRemBook, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rem_book", Me.BandedGridColumnTotRemBook, "{0:N2}")})
         Me.GVPemakaian.Name = "GVPemakaian"
         Me.GVPemakaian.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVPemakaian.OptionsView.ShowFooter = True
         Me.GVPemakaian.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Deskripsi"
-        Me.GridBand1.Columns.Add(Me.GridColumn1)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn5)
-        Me.GridBand1.Columns.Add(Me.GridColumn2)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 300
         '
         'GridColumn1
         '
@@ -707,6 +731,13 @@ Partial Class FormPurcItemStock
         Me.GridColumn1.FieldName = "id_item"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "Category"
+        Me.BandedGridColumn5.FieldName = "item_cat"
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.Visible = True
         '
         'GridColumn2
         '
@@ -725,16 +756,6 @@ Partial Class FormPurcItemStock
         Me.BandedGridColumn1.FieldName = "uom"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
         Me.BandedGridColumn1.Visible = True
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "Stock Awal"
-        Me.gridBand2.Columns.Add(Me.GridColumn3)
-        Me.gridBand2.Columns.Add(Me.GridColumn4)
-        Me.gridBand2.Columns.Add(Me.GridColumn5)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 225
         '
         'GridColumn3
         '
@@ -764,15 +785,14 @@ Partial Class FormPurcItemStock
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_beg", "{0:N2}")})
         Me.GridColumn5.Visible = True
         '
-        'gridBand3
+        'GridColumnQtyRec
         '
-        Me.gridBand3.Caption = "Pembelian"
-        Me.gridBand3.Columns.Add(Me.GridColumnQtyRec)
-        Me.gridBand3.Columns.Add(Me.GridColumn7)
-        Me.gridBand3.Columns.Add(Me.GridColumnTotRec)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 225
+        Me.GridColumnQtyRec.Caption = "Pembelian"
+        Me.GridColumnQtyRec.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQtyRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyRec.FieldName = "qty_rec"
+        Me.GridColumnQtyRec.Name = "GridColumnQtyRec"
+        Me.GridColumnQtyRec.Visible = True
         '
         'GridColumn7
         '
@@ -783,15 +803,53 @@ Partial Class FormPurcItemStock
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         '
-        'gridBand4
+        'GridColumnTotRec
         '
-        Me.gridBand4.Caption = "Pemakaian"
-        Me.gridBand4.Columns.Add(Me.GridColumnQtyUsed)
-        Me.gridBand4.Columns.Add(Me.GridColumn10)
-        Me.gridBand4.Columns.Add(Me.GridColumnTotUsed)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 225
+        Me.GridColumnTotRec.Caption = "Total"
+        Me.GridColumnTotRec.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotRec.FieldName = "amount_rec"
+        Me.GridColumnTotRec.Name = "GridColumnTotRec"
+        Me.GridColumnTotRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", "{0:N2}")})
+        Me.GridColumnTotRec.Visible = True
+        '
+        'BandedGridColumnQtyReq
+        '
+        Me.BandedGridColumnQtyReq.Caption = "Requested"
+        Me.BandedGridColumnQtyReq.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnQtyReq.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyReq.FieldName = "qty_req"
+        Me.BandedGridColumnQtyReq.Name = "BandedGridColumnQtyReq"
+        Me.BandedGridColumnQtyReq.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_req", "{0:N2}")})
+        Me.BandedGridColumnQtyReq.Visible = True
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "Harga Satuan"
+        Me.BandedGridColumn2.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn2.FieldName = "harga_satuan_req"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        '
+        'BandedGridColumnTotReq
+        '
+        Me.BandedGridColumnTotReq.Caption = "Total"
+        Me.BandedGridColumnTotReq.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnTotReq.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnTotReq.FieldName = "amount_req"
+        Me.BandedGridColumnTotReq.Name = "BandedGridColumnTotReq"
+        Me.BandedGridColumnTotReq.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_req", "{0:N2}")})
+        Me.BandedGridColumnTotReq.Visible = True
+        '
+        'GridColumnQtyUsed
+        '
+        Me.GridColumnQtyUsed.Caption = "Pemakaian"
+        Me.GridColumnQtyUsed.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQtyUsed.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyUsed.FieldName = "qty_used"
+        Me.GridColumnQtyUsed.Name = "GridColumnQtyUsed"
+        Me.GridColumnQtyUsed.Visible = True
         '
         'GridColumn10
         '
@@ -802,15 +860,24 @@ Partial Class FormPurcItemStock
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         '
-        'gridBand5
+        'GridColumnTotUsed
         '
-        Me.gridBand5.Caption = "Stock Akhir"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnQtyRem)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn3)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnTotRem)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 4
-        Me.gridBand5.Width = 225
+        Me.GridColumnTotUsed.Caption = "Total"
+        Me.GridColumnTotUsed.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotUsed.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotUsed.FieldName = "amount_used"
+        Me.GridColumnTotUsed.Name = "GridColumnTotUsed"
+        Me.GridColumnTotUsed.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_used", "{0:N2}")})
+        Me.GridColumnTotUsed.Visible = True
+        '
+        'BandedGridColumnQtyRem
+        '
+        Me.BandedGridColumnQtyRem.Caption = "Stock Aktual"
+        Me.BandedGridColumnQtyRem.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnQtyRem.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyRem.FieldName = "qty_rem"
+        Me.BandedGridColumnQtyRem.Name = "BandedGridColumnQtyRem"
+        Me.BandedGridColumnQtyRem.Visible = True
         '
         'BandedGridColumn3
         '
@@ -821,8 +888,19 @@ Partial Class FormPurcItemStock
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.Visible = True
         '
+        'BandedGridColumnTotRem
+        '
+        Me.BandedGridColumnTotRem.Caption = "Total"
+        Me.BandedGridColumnTotRem.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnTotRem.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnTotRem.FieldName = "amount_rem"
+        Me.BandedGridColumnTotRem.Name = "BandedGridColumnTotRem"
+        Me.BandedGridColumnTotRem.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rem", "{0:N2}")})
+        Me.BandedGridColumnTotRem.Visible = True
+        '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BToggleBooking)
         Me.PanelControl2.Controls.Add(Me.SimpleButton1)
         Me.PanelControl2.Controls.Add(Me.LECatPemakaian)
         Me.PanelControl2.Controls.Add(Me.LabelControl10)
@@ -835,7 +913,7 @@ Partial Class FormPurcItemStock
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(961, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(1058, 42)
         Me.PanelControl2.TabIndex = 0
         '
         'SimpleButton1
@@ -919,75 +997,121 @@ Partial Class FormPurcItemStock
         Me.DEStart.Size = New System.Drawing.Size(165, 20)
         Me.DEStart.TabIndex = 0
         '
-        'BandedGridColumn5
+        'BToggleBooking
         '
-        Me.BandedGridColumn5.Caption = "Category"
-        Me.BandedGridColumn5.FieldName = "item_cat"
-        Me.BandedGridColumn5.Name = "BandedGridColumn5"
-        Me.BandedGridColumn5.Visible = True
+        Me.BToggleBooking.Location = New System.Drawing.Point(847, 9)
+        Me.BToggleBooking.Name = "BToggleBooking"
+        Me.BToggleBooking.Size = New System.Drawing.Size(113, 23)
+        Me.BToggleBooking.TabIndex = 26
+        Me.BToggleBooking.Text = "View Booking Stock"
         '
-        'GridColumnQtyRec
+        'BandedGridColumn4
         '
-        Me.GridColumnQtyRec.Caption = "Pembelian"
-        Me.GridColumnQtyRec.DisplayFormat.FormatString = "N2"
-        Me.GridColumnQtyRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyRec.FieldName = "qty_rec"
-        Me.GridColumnQtyRec.Name = "GridColumnQtyRec"
-        Me.GridColumnQtyRec.Visible = True
+        Me.BandedGridColumn4.Caption = "Harga Satuan"
+        Me.BandedGridColumn4.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn4.FieldName = "harga_satuan_rem_book"
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.Visible = True
         '
-        'GridColumnTotRec
+        'BandedGridColumnQtyRemBook
         '
-        Me.GridColumnTotRec.Caption = "Total"
-        Me.GridColumnTotRec.DisplayFormat.FormatString = "N2"
-        Me.GridColumnTotRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotRec.FieldName = "amount_rec"
-        Me.GridColumnTotRec.Name = "GridColumnTotRec"
-        Me.GridColumnTotRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", "{0:N2}")})
-        Me.GridColumnTotRec.Visible = True
+        Me.BandedGridColumnQtyRemBook.Caption = "Stock Akhir - Booking"
+        Me.BandedGridColumnQtyRemBook.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnQtyRemBook.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyRemBook.FieldName = "qty_rem_book"
+        Me.BandedGridColumnQtyRemBook.Name = "BandedGridColumnQtyRemBook"
+        Me.BandedGridColumnQtyRemBook.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rem_book", "{0:N2}")})
+        Me.BandedGridColumnQtyRemBook.Visible = True
         '
-        'GridColumnQtyUsed
+        'BandedGridColumnTotRemBook
         '
-        Me.GridColumnQtyUsed.Caption = "Pemakaian"
-        Me.GridColumnQtyUsed.DisplayFormat.FormatString = "N2"
-        Me.GridColumnQtyUsed.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyUsed.FieldName = "qty_used"
-        Me.GridColumnQtyUsed.Name = "GridColumnQtyUsed"
-        Me.GridColumnQtyUsed.Visible = True
+        Me.BandedGridColumnTotRemBook.Caption = "Total"
+        Me.BandedGridColumnTotRemBook.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnTotRemBook.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnTotRemBook.FieldName = "amount_rem_book"
+        Me.BandedGridColumnTotRemBook.Name = "BandedGridColumnTotRemBook"
+        Me.BandedGridColumnTotRemBook.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rem_book", "{0:N2}")})
+        Me.BandedGridColumnTotRemBook.Visible = True
         '
-        'GridColumnTotUsed
+        'GridBand1
         '
-        Me.GridColumnTotUsed.Caption = "Total"
-        Me.GridColumnTotUsed.DisplayFormat.FormatString = "N2"
-        Me.GridColumnTotUsed.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotUsed.FieldName = "amount_used"
-        Me.GridColumnTotUsed.Name = "GridColumnTotUsed"
-        Me.GridColumnTotUsed.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_used", "{0:N2}")})
-        Me.GridColumnTotUsed.Visible = True
+        Me.GridBand1.Caption = "Deskripsi"
+        Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn5)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 300
         '
-        'BandedGridColumnQtyRem
+        'gridBand2
         '
-        Me.BandedGridColumnQtyRem.Caption = "Stock Akhir"
-        Me.BandedGridColumnQtyRem.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumnQtyRem.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnQtyRem.FieldName = "qty_rem"
-        Me.BandedGridColumnQtyRem.Name = "BandedGridColumnQtyRem"
-        Me.BandedGridColumnQtyRem.Visible = True
+        Me.gridBand2.Caption = "Stock Awal"
+        Me.gridBand2.Columns.Add(Me.GridColumn3)
+        Me.gridBand2.Columns.Add(Me.GridColumn4)
+        Me.gridBand2.Columns.Add(Me.GridColumn5)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 225
         '
-        'BandedGridColumnTotRem
+        'gridBand3
         '
-        Me.BandedGridColumnTotRem.Caption = "Total"
-        Me.BandedGridColumnTotRem.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumnTotRem.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnTotRem.FieldName = "amount_rem"
-        Me.BandedGridColumnTotRem.Name = "BandedGridColumnTotRem"
-        Me.BandedGridColumnTotRem.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rem", "{0:N2}")})
-        Me.BandedGridColumnTotRem.Visible = True
+        Me.gridBand3.Caption = "Pembelian"
+        Me.gridBand3.Columns.Add(Me.GridColumnQtyRec)
+        Me.gridBand3.Columns.Add(Me.GridColumn7)
+        Me.gridBand3.Columns.Add(Me.GridColumnTotRec)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 225
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Pemakaian"
+        Me.gridBand4.Columns.Add(Me.GridColumnQtyUsed)
+        Me.gridBand4.Columns.Add(Me.GridColumn10)
+        Me.gridBand4.Columns.Add(Me.GridColumnTotUsed)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 225
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "Stock Aktual"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnQtyRem)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnTotRem)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 4
+        Me.gridBand5.Width = 225
+        '
+        'gridBandBooking
+        '
+        Me.gridBandBooking.Caption = "Booking Request"
+        Me.gridBandBooking.Columns.Add(Me.BandedGridColumnQtyReq)
+        Me.gridBandBooking.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBandBooking.Columns.Add(Me.BandedGridColumnTotReq)
+        Me.gridBandBooking.Name = "gridBandBooking"
+        Me.gridBandBooking.Visible = False
+        Me.gridBandBooking.VisibleIndex = -1
+        Me.gridBandBooking.Width = 225
+        '
+        'gridBandrembooking
+        '
+        Me.gridBandrembooking.Caption = "Stock - Booking"
+        Me.gridBandrembooking.Columns.Add(Me.BandedGridColumnQtyRemBook)
+        Me.gridBandrembooking.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBandrembooking.Columns.Add(Me.BandedGridColumnTotRemBook)
+        Me.gridBandrembooking.Name = "gridBandrembooking"
+        Me.gridBandrembooking.Visible = False
+        Me.gridBandrembooking.VisibleIndex = -1
+        Me.gridBandrembooking.Width = 225
         '
         'FormPurcItemStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(967, 592)
+        Me.ClientSize = New System.Drawing.Size(1064, 592)
         Me.Controls.Add(Me.XTCStock)
         Me.MinimizeBox = False
         Me.Name = "FormPurcItemStock"
@@ -1091,19 +1215,14 @@ Partial Class FormPurcItemStock
     Friend WithEvents XTPUsage As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCPemakaian As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPemakaian As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
@@ -1126,4 +1245,20 @@ Partial Class FormPurcItemStock
     Friend WithEvents GridColumnTotUsed As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnQtyRem As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnTotRem As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BandedGridColumnQtyReq As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnTotReq As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BToggleBooking As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandBooking As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandrembooking As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnQtyRemBook As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnTotRemBook As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

@@ -1,7 +1,8 @@
 ﻿Public Class FormOLStore
     Private Sub FormOLStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         setDateNow()
-        viewComp()
+        'viewComp()
+        viewOLStoreGroup()
         viewOLStore()
     End Sub
 
@@ -20,14 +21,37 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewOLStoreGroup()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_comp_group`, 'All Group' AS `description`
+        UNION ALL
+        SELECT cg.id_comp_group, cg.description 
+        FROM tb_m_comp_group cg 
+        INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group
+        WHERE c.id_commerce_type=2
+        GROUP BY cg.id_comp_group "
+        viewSearchLookupQuery(SLEGroup, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewComp()
+        Dim id_comp_group As String = "-1"
+        Try
+            id_comp_group = SLEGroup.EditValue.ToString
+        Catch ex As Exception
+            id_comp_group = "-1"
+        End Try
+        Dim cond_comp As String = ""
+        If id_comp_group <> "0" Then
+            cond_comp = "AND c.id_comp_group='" + id_comp_group + "' "
+        End If
         Dim query As String = "
         SELECT 0 AS `id_comp`, 0 AS `id_comp_contact`, 'ALL' AS `comp_number`, 'All Store' AS `comp_name`
         UNION ALL
         SELECT c.id_comp,cc.id_comp_contact, c.comp_number,c.comp_name 
         FROM tb_m_comp c 
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1 
-        WHERE c.id_commerce_type=2 AND c.is_active=1 "
+        WHERE c.id_commerce_type=2 AND c.is_active=1 " + cond_comp
         viewSearchLookupQuery(SLECompDetail, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
@@ -94,6 +118,13 @@
             comp = "AND c.id_comp='" + id_comp + "' "
         End If
 
+        'group
+        Dim id_comp_group As String = SLEGroup.EditValue.ToString
+        Dim comp_grp As String = ""
+        If id_comp_group <> "0" Then
+            comp_grp = "AND c.id_comp_group ='" + id_comp_group + "' "
+        End If
+
         Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
         CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`,
@@ -120,7 +151,7 @@
             GROUP BY d.id_report
         ) doc ON doc.id_report = so.id_sales_order
         WHERE so.id_sales_order>0 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
-        " + comp + " AND c.id_commerce_type=2
+        " + comp + " AND c.id_commerce_type=2 " + comp_grp + "
         GROUP BY so.id_sales_order 
         ORDER BY so.sales_order_ol_shop_date ASC, so.sales_order_ol_shop_number ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -151,6 +182,13 @@
             comp = "AND c.id_comp='" + id_comp + "' "
         End If
 
+        'group
+        Dim id_comp_group As String = SLEGroup.EditValue.ToString
+        Dim comp_grp As String = ""
+        If id_comp_group <> "0" Then
+            comp_grp = "AND c.id_comp_group ='" + id_comp_group + "' "
+        End If
+
         Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
         so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, cd.code_detail_name AS `size`,
@@ -176,7 +214,7 @@
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
-        WHERE so.id_report_status=6 " + comp + " AND c.id_commerce_type=2
+        WHERE so.id_report_status=6 " + comp + " AND c.id_commerce_type=2 " + comp_grp + "
         AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         If is_show_cancell Then
             query += "AND so.id_prepare_status=2 AND ISNULL(d.id_pl_sales_order_del) "
@@ -473,6 +511,10 @@
 
 
     Private Sub BtnSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnSyncOrder.Click
+        syncOrder()
+    End Sub
+
+    Sub syncOrder()
         Cursor = Cursors.WaitCursor
         'initial general
         Dim err As String = ""
@@ -526,6 +568,12 @@
                 End Try
             ElseIf id_api_type = "2" Then
                 'ZALORA
+                Try
+                    Dim shop As New ClassZaloraApi()
+                    shop.get_order_list()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
             ElseIf id_api_type = "3" Then
                 'BLIBLI
                 Try
@@ -553,13 +601,40 @@
                 End Try
             End If
 
+            'other action after created order
+            Dim err_other_act As String = ""
+            If id_api_type = "2" Then
+                'ZALORA
+                Dim query_item As String = "SELECT od.id,od.sales_order_ol_shop_number AS `order_number`, GROUP_CONCAT(DISTINCT od.item_id ORDER BY od.item_id ASC) AS `item_id`, od.tracking_code, od.shipment_provider
+                FROM tb_sales_order so
+                INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+                INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+                INNER JOIN tb_ol_store_order od ON od.id = so.id_sales_order_ol_shop AND od.id_comp_group= s.id_comp_group
+                WHERE so.id_report_status=1 AND s.id_commerce_type=2 AND !ISNULL(od.item_id) AND od.tracking_code!=''
+                AND s.id_comp_group IN (SELECT o.zalora_comp_group FROM tb_opt o)
+                GROUP BY od.sales_order_ol_shop_number "
+                Dim data_item As DataTable = execute_query(query_item, -1, True, "", "", "", "")
+                If data_item.Rows.Count > 0 Then
+                    For t As Integer = 0 To data_item.Rows.Count - 1
+                        Try
+                            SplashScreenManager1.SetWaitFormDescription("Set status (ready) : #" + dord.Rows(t)("order_number").ToString)
+                            Dim zal_stt As New ClassZaloraApi()
+                            zal_stt.setReadyToShip(data_item.Rows(t)("item_id").ToString, data_item.Rows(t)("shipment_provider").ToString, data_item.Rows(t)("tracking_code").ToString)
+                        Catch ex As Exception
+                            err_other_act = addSlashes(ex.ToString)
+                            ord.insertLogWebOrder(data_item.Rows(t)("id").ToString, "Error set rts : " + err_other_act, id_comp_group)
+                        End Try
+                    Next
+                End If
+            End If
+
             ord.insertLogWebOrder("0", "End", "0")
             ord.setProceccedWebOrder("2")
             SplashScreenManager1.CloseWaitForm()
-            If err = "" Then
+            If err = "" And err_other_act = "" Then
                 infoCustom("Sync completed.")
             Else
-                infoCustom("Problem get order from web. " + err)
+                infoCustom("Problem get order from web : " + System.Environment.NewLine + "- " + err + System.Environment.NewLine + "- " + err_other_act)
             End If
             GCVolcom.DataSource = Nothing
             If orderNotProcessed() Then
@@ -570,7 +645,6 @@
         CEAllow.EditValue = False
         Cursor = Cursors.Default
     End Sub
-
 
     Function orderNotProcessed()
         Dim query As String="SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 "
@@ -648,5 +722,19 @@
         Cursor = Cursors.WaitCursor
         FormOLStoreUpdateStatus.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnXLSSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnXLSSyncOrder.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "54"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEGroup.EditValueChanged
+        viewComp()
+        GCSummary.DataSource = Nothing
+        GCDetail.DataSource = Nothing
+        GCCancellOrder.DataSource = Nothing
     End Sub
 End Class

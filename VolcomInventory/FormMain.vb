@@ -658,13 +658,13 @@ Public Class FormMain
                 FormMasterRawMaterialSingle.action = "ins"
                 FormMasterRawMaterialSingle.ShowDialog()
             ElseIf FormMasterRawMaterial.XTCMaterialType.SelectedTabPageIndex = 1 Then 'new raw material detail
-                FormMasterRawMaterialDetSingle.action = "ins"
+                'FormMasterRawMaterialDetSingle.action = "ins"
 
-                FormMasterRawMaterialDetSingle.id_mat = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellValue("id_mat").ToString
-                FormMasterRawMaterialDetSingle.LabelPrintedName.Text = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellDisplayText("mat_display_name").ToString
-                FormMasterRawMaterialDetSingle.TxtMaterialTypeCode.Text = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellDisplayText("mat_code").ToString
+                'FormMasterRawMaterialDetSingle.id_mat = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellValue("id_mat").ToString
+                'FormMasterRawMaterialDetSingle.LabelPrintedName.Text = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellDisplayText("mat_display_name").ToString
+                'FormMasterRawMaterialDetSingle.TxtMaterialTypeCode.Text = FormMasterRawMaterial.GVRawMat.GetFocusedRowCellDisplayText("mat_code").ToString
 
-                FormMasterRawMaterialDetSingle.ShowDialog()
+                'FormMasterRawMaterialDetSingle.ShowDialog()
             End If
         ElseIf formName = "FormMasterOVH" Then
             'OVH
@@ -3049,6 +3049,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormProductionMRS.TEDesign.Text = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("design_display_name").ToString
                 FormProductionMRS.TEDesignCode.Text = FormMaterialRequisition.GVMRS.GetFocusedRowCellValue("design_code").ToString
                 FormProductionMRS.ShowDialog()
+            ElseIf formName = "FormMailManageReturn" Then
+                FormMailManageReturnDet.action = "upd"
+                FormMailManageReturnDet.id = FormMailManageReturn.GVData.GetFocusedRowCellValue("id_mail_manage").ToString
+                FormMailManageReturnDet.rmt = "45"
+                FormMailManageReturnDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8099,9 +8104,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormPurcAsset" Then
             If FormPurcAsset.XTCAsset.SelectedTabPageIndex = 0 Then
-                print_raw_no_export(FormPurcAsset.GCPending)
+                'print_raw_no_export(FormPurcAsset.GCPending)
+                'permintaan pak agung
+                print(FormPurcAsset.GCPending, "Fixed Asset (Pending Asset)")
             ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1 Then
-                print_raw_no_export(FormPurcAsset.GCActive)
+                'print_raw_no_export(FormPurcAsset.GCActive)
+                'permintaan pak agung
+                print(FormPurcAsset.GCActive, "Fixed Asset (Active Asset)")
             End If
         ElseIf formName = "FormItemExpense" Then
             print_raw_no_export(FormItemExpense.GCData)
@@ -8374,6 +8383,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormSalesBranch.GCData, "Volcom Store Sales")
         ElseIf formName = "FormABGRoyaltyZone" Then
             print(FormABGRoyaltyZone.GCData, "ABG Royalty Zone")
+        ElseIf formName = "FormMailManageReturn" Then
+            If FormMailManageReturn.XTCMailManage.SelectedTabPageIndex = 0 Then
+                print_raw(FormMailManageReturn.GCData, "")
+            ElseIf FormMailManageReturn.XTCMailManage.SelectedTabPageIndex = 1 Then
+                print_raw(FormMailManageReturn.GCReturnOrder, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -9302,6 +9317,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormABGRoyaltyZone" Then
             FormABGRoyaltyZone.Close()
             FormABGRoyaltyZone.Dispose()
+        ElseIf formName = "FormMailManageReturn" Then
+            FormMailManageReturn.Close()
+            FormMailManageReturn.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -15367,6 +15385,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMaterialRequisition.Show()
             FormMaterialRequisition.WindowState = FormWindowState.Maximized
             FormMaterialRequisition.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSendEmailReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSendEmailReturn.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMailManageReturn.MdiParent = Me
+            FormMailManageReturn.Show()
+            FormMailManageReturn.WindowState = FormWindowState.Maximized
+            FormMailManageReturn.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

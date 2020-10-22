@@ -271,6 +271,7 @@
     </Compile>
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
+    <Compile Include="ClassMailManageReturn.vb" />
     <Compile Include="ClassOLStoreRefund.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassPayout.Designer.vb">
@@ -427,6 +428,12 @@
       <DependentUpon>FormBankWithdrawalBuyValas.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBankWithdrawalBuyValas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBankWithdrawalCompen.Designer.vb">
+      <DependentUpon>FormBankWithdrawalCompen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalCompen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBankWithdrawalDP.Designer.vb">
@@ -1831,6 +1838,12 @@
     <Compile Include="FormExternalUserDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFabricConsumption.Designer.vb">
+      <DependentUpon>FormFabricConsumption.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFabricConsumption.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFabricTypeDet.Designer.vb">
       <DependentUpon>FormFabricTypeDet.vb</DependentUpon>
     </Compile>
@@ -2562,6 +2575,30 @@
     <Compile Include="FormMailManagePendingInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMailManageReturn.Designer.vb">
+      <DependentUpon>FormMailManageReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManageReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMailManageReturnCancel.Designer.vb">
+      <DependentUpon>FormMailManageReturnCancel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManageReturnCancel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMailManageReturnDet.Designer.vb">
+      <DependentUpon>FormMailManageReturnDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManageReturnDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMailManageReturnPendingInvoice.Designer.vb">
+      <DependentUpon>FormMailManageReturnPendingInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManageReturnPendingInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMappingStore.Designer.vb">
       <DependentUpon>FormMappingStore.vb</DependentUpon>
     </Compile>
@@ -2796,6 +2833,12 @@
     <Compile Include="FormMasterRate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterRawMatPps.Designer.vb">
+      <DependentUpon>FormMasterRawMatPps.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterRawMatPps.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterRejectType.Designer.vb">
       <DependentUpon>FormMasterRejectType.vb</DependentUpon>
     </Compile>
@@ -2926,6 +2969,12 @@
       <DependentUpon>FormOLStoreDiscountCode.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLStoreDiscountCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreImportXLS.Designer.vb">
+      <DependentUpon>FormOLStoreImportXLS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreImportXLS.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOLStoreOrderId.Designer.vb">
@@ -3430,6 +3479,12 @@
       <DependentUpon>FormPromoCollectionDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPromoCollectionDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPromoCollectionDiscCode.Designer.vb">
+      <DependentUpon>FormPromoCollectionDiscCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoCollectionDiscCode.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPromoCollectionLog.Designer.vb">
@@ -5404,6 +5459,12 @@
       <DependentUpon>FormSalesReturnDetProblem.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesReturnDetProblem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnInputTanggalPickup.Designer.vb">
+      <DependentUpon>FormSalesReturnInputTanggalPickup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnInputTanggalPickup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesReturnNonListDet.Designer.vb">
@@ -8751,6 +8812,9 @@
     <EmbeddedResource Include="FormBankWithdrawalBuyValas.resx">
       <DependentUpon>FormBankWithdrawalBuyValas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalCompen.resx">
+      <DependentUpon>FormBankWithdrawalCompen.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalDP.resx">
       <DependentUpon>FormBankWithdrawalDP.vb</DependentUpon>
     </EmbeddedResource>
@@ -9481,6 +9545,9 @@
     <EmbeddedResource Include="FormExternalUserDet.resx">
       <DependentUpon>FormExternalUserDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFabricConsumption.resx">
+      <DependentUpon>FormFabricConsumption.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFabricTypeDet.resx">
       <DependentUpon>FormFabricTypeDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -9868,6 +9935,18 @@
     <EmbeddedResource Include="FormMailManagePendingInvoice.resx">
       <DependentUpon>FormMailManagePendingInvoice.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManageReturn.resx">
+      <DependentUpon>FormMailManageReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManageReturnCancel.resx">
+      <DependentUpon>FormMailManageReturnCancel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManageReturnDet.resx">
+      <DependentUpon>FormMailManageReturnDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManageReturnPendingInvoice.resx">
+      <DependentUpon>FormMailManageReturnPendingInvoice.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMappingStore.resx">
       <DependentUpon>FormMappingStore.vb</DependentUpon>
     </EmbeddedResource>
@@ -9985,6 +10064,9 @@
     <EmbeddedResource Include="FormMasterRate.resx">
       <DependentUpon>FormMasterRate.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterRawMatPps.resx">
+      <DependentUpon>FormMasterRawMatPps.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMasterRejectType.resx">
       <DependentUpon>FormMasterRejectType.vb</DependentUpon>
     </EmbeddedResource>
@@ -10050,6 +10132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreDiscountCode.resx">
       <DependentUpon>FormOLStoreDiscountCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreImportXLS.resx">
+      <DependentUpon>FormOLStoreImportXLS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreOrderId.resx">
       <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
@@ -10303,6 +10388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollectionDet.resx">
       <DependentUpon>FormPromoCollectionDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollectionDiscCode.resx">
+      <DependentUpon>FormPromoCollectionDiscCode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollectionLog.resx">
       <DependentUpon>FormPromoCollectionLog.vb</DependentUpon>
@@ -11527,6 +11615,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnDetProblem.resx">
       <DependentUpon>FormSalesReturnDetProblem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnInputTanggalPickup.resx">
+      <DependentUpon>FormSalesReturnInputTanggalPickup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnNonListDet.resx">
       <DependentUpon>FormSalesReturnNonListDet.vb</DependentUpon>
