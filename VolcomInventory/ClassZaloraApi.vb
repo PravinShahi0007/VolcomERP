@@ -1,11 +1,13 @@
 ﻿Public Class ClassZaloraApi
-    'Public api_key As String = get_setup_field("zalora_api_key")
-    'Public user_id As String = get_setup_field("zalora_user_id")
-    Public api_key As String = "769595ee282d1a51c09f7bf4921866c86d54125a"
-    Public user_id As String = "septian@volcom.co.id"
-    Dim id_store_group As String = get_setup_field("zalora_comp_group")
+    Public api_key As String = get_setup_field("zalora_api_key")
+    Public user_id As String = get_setup_field("zalora_user_id")
     Dim status_order As String = "pending"
+    Dim id_store_group As String = get_setup_field("zalora_comp_group")
     Dim data_size As New DataTable
+    'testing environment
+    'Public api_key As String = "769595ee282d1a51c09f7bf4921866c86d54125a"
+    'Public user_id As String = "septian@volcom.co.id"
+    'Dim status_order As String = "ready_to_ship"
 
     Sub New()
         Dim id_code_detail_size As String = get_setup_field("id_code_product_size")
@@ -328,7 +330,7 @@
         End Try
         'generate invoice
         Try
-            setInvoiceNumber(id_order, "INV" + order_number)
+            setInvoiceNumber(id_order, order_number)
         Catch ex As Exception
             Dim od As New ClassSalesOrder()
             od.insertLogWebOrder(id_order, "Failed set invoice number:" + ex.ToString, id_store_group)
@@ -344,6 +346,7 @@
                     Dim payment_method As String = ""
                     Dim checkout_id As String = ""
                     Dim tracking_code As String = ""
+                    Dim shipment_provider As String = ""
                     Dim financial_status As String = ""
                     Dim total_discounts As String = ""
                     Dim discount_code As String = ""
@@ -352,6 +355,7 @@
                     payment_method = dtx.Rows(0)("payment_method").ToString
                     checkout_id = ""
                     tracking_code = dtd.Rows(d)("tracking_code").ToString
+                    shipment_provider = addSlashes(dtd.Rows(d)("shipment_provider").ToString)
                     financial_status = ""
                     total_discounts = "0"
                     discount_code = ""
@@ -406,9 +410,9 @@
 
                     'insert
                     Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
-                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, item_id, sku, design_price, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group) VALUES "
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, shipment_provider, ol_store_sku, ol_store_id, item_id, sku, design_price, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group) VALUES "
                     qins += "('" + id_order + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + addSlashes(customer_name) + "', '" + addSlashes(shipping_name) + "', '" + addSlashes(shipping_address) + "','" + addSlashes(shipping_address1) + "','" + addSlashes(shipping_address2) + "', '" + addSlashes(shipping_phone) + "', 
-                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "') "
+                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + shipment_provider + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "') "
                     execute_non_query(qins, True, "", "", "", "")
                 Next
             End If
