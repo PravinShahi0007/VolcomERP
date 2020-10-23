@@ -101,6 +101,7 @@
 	            WHERE cl.id_design_column_type = " + id_store + "
             ) AS cm ON cl.id_design_column_list = cm.id_design_column_list
             WHERE cl.id_design_column_type = " + id_store + "
+            ORDER BY cl.sort ASC, cl.id_design_column_list ASC
         ", -1, True, "", "", "", "")
 
         For i = 0 To data_column.Rows.Count - 1
