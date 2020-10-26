@@ -489,6 +489,8 @@
         dt.Columns.Add("design_price", GetType(Decimal))
         dt.Columns.Add("tracking_code", GetType(String))
         dt.Columns.Add("shipment_provider", GetType(String))
+        dt.Columns.Add("status", GetType(String))
+        dt.Columns.Add("updated_at", GetType(String))
 
         Dim parameter_det As DataTable = New DataTable
 
@@ -533,13 +535,13 @@
                     For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
                         sku = ""
                         sku = getSKU(row_det("Sku").ToString.Substring(0, 9), row_det("Variation").ToString)
-                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString)
+                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString, row_det("Status").ToString, row_det("UpdatedAt").ToString)
                     Next
                 Else
                     'non array
                     sku = ""
                     sku = getSKU(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Sku").ToString.Substring(0, 9), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Variation").ToString)
-                    dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString)
+                    dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("UpdatedAt").ToString)
                 End If
             End If
         End Using
@@ -676,4 +678,22 @@
         End Using
         response.Close()
     End Sub
+
+    Function get_status_update(ByVal id_order_par As String, ByVal item_id_par As String) As DataTable
+        Dim dt As New DataTable
+        dt.Columns.Add("order_status", GetType(String))
+        dt.Columns.Add("order_status_date", GetType(String))
+        Dim data As DataTable = get_order_detail(id_order_par)
+        If data.Rows.Count > 0 Then
+            Dim data_filter_cek As DataRow() = data.Select("[item_id]='" + item_id_par + "' ")
+            If data_filter_cek.Length <= 0 Then
+                dt = Nothing
+            Else
+                dt.Rows.Add(data_filter_cek(0)("status").ToString, data_filter_cek(0)("updated_at").ToString)
+            End If
+        Else
+            dt = Nothing
+        End If
+        Return dt
+    End Function
 End Class
