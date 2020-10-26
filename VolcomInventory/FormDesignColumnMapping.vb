@@ -45,6 +45,7 @@
 	            WHERE cl.id_design_column_type = " + SLUEStore.EditValue.ToString + "
             ) AS cm ON cl.id_design_column_list = cm.id_design_column_list
             WHERE cl.id_design_column_type = " + SLUEStore.EditValue.ToString + "
+            ORDER BY cl.sort ASC, cl.id_design_column_list ASC
         ", -1, True, "", "", "", "")
 
         Dim data As DataTable = New DataTable
@@ -100,6 +101,7 @@
 	            WHERE cl.id_design_column_type = " + id_store + "
             ) AS cm ON cl.id_design_column_list = cm.id_design_column_list
             WHERE cl.id_design_column_type = " + id_store + "
+            ORDER BY cl.sort ASC, cl.id_design_column_list ASC
         ", -1, True, "", "", "", "")
 
         For i = 0 To data_column.Rows.Count - 1
@@ -214,30 +216,43 @@
 
     Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
         If Not TEAdd.Text = "" Then
-            'column
-            Dim col As DevExpress.XtraGrid.Columns.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn
+            'check duplicate
+            Dim is_duplicate As Boolean = False
 
-            col.Caption = TEAdd.EditValue.ToString
-            col.FieldName = TEAdd.EditValue.ToString.Replace(" ", "")
-            col.Tag = "0"
-            col.MinWidth = 200
-            col.ColumnEdit = RepositoryItemMemoEdit
-            col.Visible = True
+            For i = 0 To GVColumn.Columns.Count - 1
+                If GVColumn.Columns(i).Caption = TEAdd.EditValue.ToString Then
+                    is_duplicate = True
+                End If
+            Next
 
-            GVColumn.Columns.Add(col)
+            If Not is_duplicate Then
+                'column
+                Dim col As DevExpress.XtraGrid.Columns.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn
 
-            'datasource
-            Dim data As DataTable = GCColumn.DataSource
+                col.Caption = TEAdd.EditValue.ToString
+                col.FieldName = TEAdd.EditValue.ToString.Replace(" ", "")
+                col.Tag = "0"
+                col.MinWidth = 200
+                col.ColumnEdit = RepositoryItemMemoEdit
+                col.Visible = True
 
-            data.Columns.Add(TEAdd.EditValue.ToString.Replace(" ", ""), GetType(String))
+                GVColumn.Columns.Add(col)
 
-            GCColumn.DataSource = data
+                'datasource
+                Dim data As DataTable = GCColumn.DataSource
 
-            GVColumn.BestFitColumns()
+                data.Columns.Add(TEAdd.EditValue.ToString.Replace(" ", ""), GetType(String))
 
-            TEAdd.EditValue = ""
+                GCColumn.DataSource = data
 
-            edited = True
+                GVColumn.BestFitColumns()
+
+                TEAdd.EditValue = ""
+
+                edited = True
+            Else
+                stopCustom("Duplicate column '" + TEAdd.EditValue.ToString + "'")
+            End If
         Else
             stopCustom("Please add column name.")
         End If
@@ -253,7 +268,10 @@
 
             If id_design_column_list = "0" Then
                 'add column list
-                id_design_column_list = execute_query("INSERT INTO tb_design_column_list (id_design_column_type, column_list) VALUES (" + SLUEStore.EditValue.ToString + ", '" + addSlashes(GVColumn.Columns(i).Caption) + "'); SELECT LAST_INSERT_ID();", 0, True, "", "", "", "")
+                id_design_column_list = execute_query("INSERT INTO tb_design_column_list (id_design_column_type, column_list, sort) VALUES (" + SLUEStore.EditValue.ToString + ", '" + addSlashes(GVColumn.Columns(i).Caption) + "', " + GVColumn.Columns(i).AbsoluteIndex.ToString + "); SELECT LAST_INSERT_ID();", 0, True, "", "", "", "")
+            Else
+                'update sort
+                execute_non_query("UPDATE tb_design_column_list SET sort = " + GVColumn.Columns(i).AbsoluteIndex.ToString + " WHERE id_design_column_list = " + id_design_column_list, True, "", "", "", "")
             End If
 
             execute_non_query("DELETE FROM tb_design_column_mapping WHERE id_design_column_list = " + id_design_column_list, True, "", "", "", "")
@@ -296,6 +314,8 @@
 
             If confirm = DialogResult.No Then
                 e.Cancel = True
+            Else
+                edited = False
             End If
         End If
     End Sub
@@ -406,6 +426,14 @@
     End Sub
 
     Private Sub RepositoryItemMemoEdit_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemMemoEdit.KeyUp
+        edited = True
+    End Sub
+
+    Private Sub GVColumn_ColumnPositionChanged(sender As Object, e As EventArgs) Handles GVColumn.ColumnPositionChanged
+        Dim column As DevExpress.XtraGrid.Columns.GridColumn = CType(sender, DevExpress.XtraGrid.Columns.GridColumn)
+
+        GVColumn.Columns(column.FieldName).AbsoluteIndex = column.VisibleIndex
+
         edited = True
     End Sub
 End Class
