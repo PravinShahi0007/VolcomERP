@@ -86,26 +86,87 @@
     End Function
 
     Sub getOrder2020()
-        Dim url As String = "https://sellercenter-api.zalora.co.id?Action=GetOrders&CreatedAfter=2019-12-31T00%3A00%3A00&Format=JSON&Timestamp=2020-10-09T15%3A04%3A40%2B07%3A00&UserID=catur%40volcom.co.id&Version=1.0&Signature=7a8a4e84e2fdd4237d7d725e242453f49dd563e3078828c8cddb50355c938567"
-        Dim request As Net.HttpWebRequest = Net.WebRequest.Create(url)
+        'from july
+        Dim page As Integer = 4
+        For p As Integer = 0 To page - 1
+            Console.WriteLine("Page : " + (p + 1).ToString)
+            Dim parameter As DataTable = New DataTable
 
-        request.Method = "GET"
+            parameter.Columns.Add("key", GetType(String))
+            parameter.Columns.Add("value", GetType(String))
 
-        Dim response As Net.HttpWebResponse = request.GetResponse()
+            parameter.Rows.Add("Action", "GetOrders")
+            parameter.Rows.Add("CreatedAfter", "2020-07-01")
+            parameter.Rows.Add("Format", "JSON")
+            parameter.Rows.Add("Limit", "1000")
+            parameter.Rows.Add("Offset", (p * 1000).ToString)
+            parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
+            parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
+            parameter.Rows.Add("Version", "1.0")
 
-        Using dataStream As IO.Stream = response.GetResponseStream()
-            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+            Dim signature As String = get_signature(parameter)
 
-            Dim responseFromServer As String = reader.ReadToEnd()
+            parameter.Rows.Add("Signature", signature)
 
-            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+            Dim url As String = "https://sellercenter-api.zalora.co.id?"
 
-            If json("SuccessResponse")("Body")("Orders")("Order").Count > 0 Then
-                Console.WriteLine(json("SuccessResponse")("Body")("Orders")("Order").Count.ToString)
-            End If
-        End Using
+            For i = 0 To parameter.Rows.Count - 1
+                url += parameter.Rows(i)("key").ToString + "=" + parameter.Rows(i)("value").ToString + "&"
+            Next
 
-        response.Close()
+            url = url.Substring(0, url.Length - 1)
+
+            Dim request As Net.HttpWebRequest = Net.WebRequest.Create(url)
+
+            request.Method = "GET"
+
+            Dim response As Net.HttpWebResponse = request.GetResponse()
+            Using dataStream As IO.Stream = response.GetResponseStream()
+                Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+
+                Dim responseFromServer As String = reader.ReadToEnd()
+
+                'var
+                Dim id As String = ""
+                Dim sales_order_ol_shop_number As String = ""
+                Dim customer_name As String = ""
+
+                Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+                If json("SuccessResponse")("Body")("Orders")("Order").Count > 0 Then
+                    'array
+                    Dim query As String = "INSERT INTO tb_temp_order_zalora(id, order_number, customer) VALUES "
+                    Dim ix As Integer = 0
+                    For Each row In json("SuccessResponse")("Body")("Orders")("Order").ToList
+                        If ix > 0 Then
+                            query += ","
+                        End If
+
+                        'reset
+                        id = ""
+                        sales_order_ol_shop_number = ""
+                        customer_name = ""
+
+
+                        id = row("OrderId").ToString
+                        sales_order_ol_shop_number = row("OrderNumber").ToString
+                        customer_name = row("CustomerFirstName").ToString + " " + row("CustomerLastName").ToString
+
+
+                        'detail items
+                        query += "('" + id + "', '" + sales_order_ol_shop_number + "', '" + addSlashes(customer_name) + "') "
+                        ix += 1
+                        'execute_non_query(query, True, "", "", "", "")
+                    Next
+                    If (ix + 1) > 0 Then
+                        execute_non_query_long(query, True, "", "", "", "")
+                    End If
+                End If
+
+
+            End Using
+
+            response.Close()
+        Next
     End Sub
 
     Function get_page_order() As Integer
@@ -172,7 +233,7 @@
             parameter.Rows.Add("Action", "GetOrders")
             parameter.Rows.Add("Format", "JSON")
             parameter.Rows.Add("Limit", "1000")
-            parameter.Rows.Add("Offset", p.ToString)
+            parameter.Rows.Add("Offset", (p * 1000).ToString)
             parameter.Rows.Add("Status", status_order)
             parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
             parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
