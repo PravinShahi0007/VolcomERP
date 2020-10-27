@@ -48,7 +48,13 @@
                             Dim za As New ClassZaloraApi()
                             Dim dt As DataTable = za.get_status_update(GVData.GetRowCellValue(i, "id_order").ToString, GVData.GetRowCellValue(i, "item_id").ToString)
                             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                                Console.WriteLine(dt.Rows(0)("order_status").ToString + "/" + dt.Rows(0)("order_status_date").ToString)
+                                Dim id_sales_order_det As String = GVData.GetRowCellValue(i, "id_sales_order_det").ToString
+                                Dim status As String = dt.Rows(0)("order_status").ToString
+                                Dim status_date As String = dt.Rows(0)("order_status_date").ToString
+
+                                Dim query_ins As String = "INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, status, status_date, input_status_date) 
+                                VALUES('" + id_sales_order_det + "', '" + status + "', '" + status_date + "', NOW()) "
+                                execute_non_query(query_ins, True, "", "", "", "")
                             End If
                         Catch ex As Exception
                             err += addSlashes(ex.ToString) + ";"
@@ -79,7 +85,7 @@
                 Close()
             Else
                 Dim qlog As String = "INSERT INTO tb_ol_store_status_log(id_comp_group, log_time, log) VALUES('" + id_comp_group + "', NOW(), '" + addSlashes(err.ToString) + "'); "
-                stopCustom("Problem sync : " + err)
+                stopCustom("Problem sync : (Invalid order number/ol_store_id/item_id)" + System.Environment.NewLine + "Detail error : " + err)
                 Close()
             End If
         Else
