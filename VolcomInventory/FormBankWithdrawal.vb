@@ -326,9 +326,9 @@ WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY c_tag.i
         If XTPPOList.SelectedTabPageIndex = 0 Then
             'active
             If SLEPayType.EditValue.ToString = "1" Then 'DP
-                query = query.Replace("{query_active}", "")
+                query = query.Replace("{query_active}", "AND payment_purc.is_dp = 1")
             Else
-                query = query.Replace("{query_active}", "AND po.is_active_payment = 1")
+                query = query.Replace("{query_active}", "AND payment_purc.is_dp = 1 AND po.is_active_payment = 1")
             End If
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
