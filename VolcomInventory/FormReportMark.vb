@@ -6239,6 +6239,22 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                                                 SET is_open='2'
                                                 WHERE id_debit_note='" & dt.Rows(i)("id_report").ToString & "'"
                             execute_non_query(qc, True, "", "", "", "")
+                            'update claim reject / late
+                            Dim quc As String = "SELECT id_dn_type FROM tb_debit_note WHERE id_debit_note='" & dt.Rows(i)("id_report").ToString & "'"
+                            Dim dtc As DataTable = execute_query(quc, -1, True, "", "", "", "")
+                            If dtc.Rows(0)("id_dn_type").ToString = "1" Then 'claim reject
+                                query = String.Format("UPDATE tb_debit_note_det dnd
+                                                        INNER JOIN tb_prod_order po ON po.id_prod_order=dnd.id_report AND dnd.report_mark_type='22' 
+                                                        SET po.is_claimed_reject='1'
+                                                        WHERE dnd.id_debit_note='{0}'", dt.Rows(i)("id_report").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            ElseIf dtc.Rows(0)("id_dn_type").ToString = "2" Then 'claim terlambat
+                                query = String.Format("UPDATE tb_debit_note_det dnd
+                                                        INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=dnd.id_report AND dnd.report_mark_type='28' 
+                                                        SET rec.is_claimed_late='1'
+                                                        WHERE dnd.id_debit_note='{0}'", dt.Rows(i)("id_report").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
                         ElseIf dt.Rows(i)("report_mark_type").ToString = "231" Then 'inv mat
                             Dim qc As String = "UPDATE tb_inv_mat 
                                                 SET is_open='2'
@@ -7733,10 +7749,6 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
-            'update
-            query = String.Format("UPDATE tb_debit_note SET id_report_status='{0}' WHERE id_debit_note ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-
             If id_status_reportx = "6" Then
                 Dim dn_date As String = ""
                 Dim ref_date As String = ""
@@ -7768,7 +7780,7 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                     ,CONCAT('KLAIM ',dnd.description,' - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
                     FROM tb_debit_note_det dnd
                     INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
-                    WHERE dnd.id_debit_note='" & id_report & "'
+                    WHERE dnd.id_debit_note='" & id_report & "' AND dnd.unit_price>0
                     UNION
                     -- lawannya DP
                     SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
@@ -7786,7 +7798,7 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                     ,CONCAT('KLAIM TERLAMBAT - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
                     FROM tb_debit_note_det dnd
                     INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
-                    WHERE dnd.id_debit_note='" & id_report & "'
+                    WHERE dnd.id_debit_note='" & id_report & "'  AND dnd.unit_price>0
                     UNION 
                     -- lawannya DP
                     SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
@@ -7813,6 +7825,10 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                 '    execute_non_query(query, True, "", "", "", "")
                 'End If
             End If
+
+            'update
+            query = String.Format("UPDATE tb_debit_note SET id_report_status='{0}' WHERE id_debit_note ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
 
             'refresh view
             FormDebitNoteDet.load_form()
