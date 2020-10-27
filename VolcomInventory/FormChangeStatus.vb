@@ -440,17 +440,19 @@
     End Sub
 
     Sub sendEmailConfirmationforConceptStore(ByVal is_use_unique_code As String, ByVal id_report As String, ByVal rmt As String)
-        If id_pop_up = "2" Then
-            If is_use_unique_code = "1" And SLEStatusRec.EditValue.ToString = "6" Then
-                Dim d As New ClassSalesDelOrder()
-                d.sendDeliveryConfirmationOfflineStore(id_report, rmt)
-            End If
-        End If
+        'sementara belum dipake
+        'If id_pop_up = "2" Then
+        '    If is_use_unique_code = "1" And SLEStatusRec.EditValue.ToString = "6" Then
+        '        Dim d As New ClassSalesDelOrder()
+        '        d.sendDeliveryConfirmationOfflineStore(id_report, rmt)
+        '    End If
+        'End If
     End Sub
 
     Sub updateStatusOnlineStore(ByVal id_commerce_type As String, ByVal id_store As String, ByVal id_report As String, ByVal id_web_order As String)
         If id_pop_up = "2" And id_commerce_type = "2" And (id_store = id_volcomstore_normal Or id_store = id_volcomstore_sale) Then
             Dim so As New ClassSalesOrder
+            Dim shopify_comp_group As String = get_setup_field("shopify_comp_group")
             Try
                 Dim shopify_tracking_comp As String = get_setup_field("shopify_tracking_comp")
                 Dim shopify_tracking_url As String = get_setup_field("shopify_tracking_url")
@@ -480,7 +482,7 @@
                     shop.set_fullfill(id_web_order, location_id, track_number, val, shopify_tracking_comp, shopify_tracking_url)
                 End If
             Catch ex As Exception
-                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString)
+                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString, shopify_comp_group)
             End Try
 
             Try
@@ -494,7 +496,7 @@
                 WHERE d.id_pl_sales_order_del=" + id_report + " AND sod.is_additional=2 "
                 execute_non_query(qstt, True, "", "", "", "")
             Catch ex As Exception
-                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString)
+                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString, shopify_comp_group)
             End Try
         End If
     End Sub

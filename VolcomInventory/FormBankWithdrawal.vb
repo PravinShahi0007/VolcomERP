@@ -221,6 +221,8 @@ WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToS
         Dim q_join_acc As String = ""
         Dim having_string As String = ""
 
+        Dim q_dp As String = ""
+
         If Not SLEVendor.EditValue.ToString = "0" Then
             where_string += " AND po.id_comp_contact='" & SLEVendor.EditValue.ToString & "'"
         End If
@@ -229,9 +231,11 @@ WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToS
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap "
             where_string += " AND po.is_close_rec='1'"
+            q_dp = "-IFNULL(payment.value,0)"
         ElseIf SLEPayType.EditValue.ToString = "1" Then 'DP
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_dp "
+            q_dp = "*(payment_purc.dp_percent/100)"
         End If
 
         id_pay_type_po = SLEPayType.EditValue.ToString
@@ -261,7 +265,7 @@ WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToS
         Dim query As String = "SELECT 'no' AS is_check
 ,po.inv_number
 ,po.report_mark_type,po.is_close_pay,po.pay_due_date,po.due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
-,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value)*(po.vat_percent/100))) AS total_po
+,SUM(pod.qty) AS qty_po,((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value)*(po.vat_percent/100)))" + q_dp + ") AS total_po
 ,SUM(pod.qty*(pod.value-pod.discount))-po.disc_value AS amo_po
 ,((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value)*(po.vat_percent/100)) AS amo_vat
 ,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value)*(po.vat_percent/100)))) AS total_rec
@@ -271,7 +275,7 @@ WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToS
 ,IF(po.pph_account=(SELECT id_acc_skbp FROM tb_opt_accounting),0,po.pph_total) AS pph_total,IFNULL(po.pph_account,'') AS pph_account,coa.acc_name AS pph_acc_name,coa.acc_description AS pph_acc_description
 ,IF(po.is_close_rec=1,
 	IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value)*(po.vat_percent/100))))
-	,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value)*(po.vat_percent/100))))-IFNULL(payment.value,0)-IF(po.pph_account=(SELECT id_acc_skbp FROM tb_opt_accounting),0,po.pph_total) AS total_due
+	,((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+((SUM(pod.qty*(pod.value-pod.discount))-po.disc_value)*(po.vat_percent/100))))" + q_dp + ")-IFNULL(payment.value,0)-IF(po.pph_account=(SELECT id_acc_skbp FROM tb_opt_accounting),0,po.pph_total) AS total_due
 ,IFNULL(payment_dp.value,0) as total_dp
 ,IFNULL(payment_pending.jml,0) as total_pending
 ,DATEDIFF(po.`due_date`,NOW()) AS due_days
@@ -317,13 +321,14 @@ LEFT JOIN
 	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report, py.id_coa_tag
 )payment_pending ON payment_pending.id_report=po.id_purc_order AND payment_pending.id_coa_tag = tag.id_coa_tag
+LEFT JOIN tb_lookup_payment_purchasing AS payment_purc ON po.id_payment_purchasing = payment_purc.id_payment_purchasing
 WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY c_tag.id_coa_tag, po.id_purc_order " & having_string
         If XTPPOList.SelectedTabPageIndex = 0 Then
             'active
             If SLEPayType.EditValue.ToString = "1" Then 'DP
-                query = query.Replace("{query_active}", "")
+                query = query.Replace("{query_active}", "AND payment_purc.is_dp = 1")
             Else
-                query = query.Replace("{query_active}", "AND po.is_active_payment = 1")
+                query = query.Replace("{query_active}", "AND payment_purc.is_dp = 1 AND po.is_active_payment = 1")
             End If
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -624,6 +629,12 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             BView.Location = New Point(438, 9)
 
             BCreatePO.Visible = False
+
+            PanelControl1.Enabled = True
+            BCreatePO.Enabled = True
+        ElseIf XTPPOList.SelectedTabPageIndex = 2 Then
+            PanelControl1.Enabled = False
+            BCreatePO.Enabled = False
         Else
             LabelControl5.Visible = True
             SLEStatusPayment.Visible = True
@@ -631,6 +642,9 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             BCreatePO.Visible = True
 
             BView.Location = New Point(649, 9)
+
+            PanelControl1.Enabled = True
+            BCreatePO.Enabled = True
         End If
     End Sub
 
@@ -705,14 +719,14 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
                 End Try
             Next
 
-            'cooperative
-            Dim data_cooperative As DataTable = execute_query("CALL view_payroll_sum('" + data.Rows(i)("id_payroll").ToString + "')", -1, True, "", "", "", "")
+            Dim data_salary As DataTable = execute_query("CALL view_payroll_sum('" + data.Rows(i)("id_payroll").ToString + "')", -1, True, "", "", "", "")
 
+            'cooperative
             Dim total_cooperative As Integer = 0
 
-            For j = 0 To data_cooperative.Rows.Count - 1
+            For j = 0 To data_salary.Rows.Count - 1
                 Try
-                    total_cooperative += data_cooperative.Rows(j)("d_cooperative_contribution") + data_cooperative.Rows(j)("d_cooperative_loan")
+                    total_cooperative += data_salary.Rows(j)("d_cooperative_contribution") + data_salary.Rows(j)("d_cooperative_loan")
                 Catch ex As Exception
                 End Try
             Next
@@ -734,11 +748,35 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
                 row_cooperative("amount") = total_cooperative
 
                 data.Rows.Add(row_cooperative)
+            End If
 
-                'data.Rows.InsertAt(row_cooperative, i + 1)
+            'cash
+            Dim total_cash As Integer = 0
 
-                'i += 1
-                'r += 2
+            For j = 0 To data_salary.Rows.Count - 1
+                Try
+                    total_cash += data_salary.Rows(j)("total_cash")
+                Catch ex As Exception
+                End Try
+            Next
+
+            If total_cash > 0 Then
+                total = total - total_cash
+            End If
+
+            data.Rows(i)("amount") = total
+
+            If total_cash > 0 Then
+                Dim row_cash As DataRow = data.NewRow
+
+                row_cash("is_check") = "no"
+                row_cash("id_payroll") = data.Rows(i)("id_payroll")
+                row_cash("report_number") = data.Rows(i)("report_number").ToString
+                row_cash("payroll_periode") = data.Rows(i)("payroll_periode").ToString
+                row_cash("payroll_type") = data.Rows(i)("payroll_type").ToString + " (Cash)"
+                row_cash("amount") = total_cash
+
+                data.Rows.Add(row_cash)
             End If
 
             i += 1
@@ -954,7 +992,7 @@ GROUP BY sr.`id_sales_return`"
 
     Sub view_jamsostek()
         Dim query As String = "
-            SELECT 'no' AS is_check, p.id_payroll, p.report_number, DATE_FORMAT(p.periode_end, '%M %Y') AS payroll_periode, t.payroll_type, 0 AS amount, l.bpjstk
+            SELECT 'no' AS is_check, p.id_payroll, p.report_number, DATE_FORMAT(p.periode_end, '%M %Y') AS payroll_periode, t.payroll_type, 0 AS amount, l.bpjstk, l.id_bpjs_location
             FROM tb_emp_payroll AS p
             LEFT JOIN tb_emp_payroll_type AS t ON p.id_payroll_type = t.id_payroll_type
             LEFT JOIN tb_emp_payroll_det AS d ON p.id_payroll = d.id_payroll

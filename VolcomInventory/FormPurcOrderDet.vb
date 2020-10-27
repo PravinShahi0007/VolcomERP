@@ -341,7 +341,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     End Sub
 
     Sub load_payment_term()
-        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing,val_day FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
+        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing,val_day,is_can_cash_purchase FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
         viewSearchLookupQuery(LEPaymentTerm, query, "id_payment_purchasing", "payment_purchasing", "id_payment_purchasing")
         LEPaymentTerm.EditValue = Nothing
     End Sub
@@ -874,6 +874,23 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     Private Sub TEDPPPercent_EditValueChanged(sender As Object, e As EventArgs) Handles TEDPPPercent.EditValueChanged
         Try
             calculate_grand_total()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub LEPaymentTerm_Click(sender As Object, e As EventArgs) Handles LEPaymentTerm.Click
+        If CECashPurchase.EditValue Then
+            LEPaymentTermView.ActiveFilterString = "[is_can_cash_purchase] = '1'"
+        Else
+            LEPaymentTermView.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub CECashPurchase_EditValueChanged(sender As Object, e As EventArgs) Handles CECashPurchase.EditValueChanged
+        Try
+            If CECashPurchase.EditValue And LEPaymentTermView.GetFocusedRowCellValue("is_can_cash_purchase").ToString = "2" Then
+                LEPaymentTerm.EditValue = Nothing
+            End If
         Catch ex As Exception
         End Try
     End Sub

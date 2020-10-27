@@ -21,7 +21,7 @@
     Sub load_form()
         'show prod order detail
         If Not id_design = "-1" Then
-            Dim query As String = String.Format("SELECT `pp_cop_rate_cat`,`pp_cop_kurs`,`pp_cop_value`,`pp_cop_mng_kurs`,`pp_cop_mng_value`,`pp_is_approve`,`final_cop_rate_cat`,`final_cop_kurs`,`final_cop_value`,`final_cop_mng_kurs`,`final_cop_mng_value`,`final_is_approve`,
+            Dim query As String = String.Format("SELECT prod_order_cop_pd_addcost,`pp_cop_rate_cat`,`pp_cop_kurs`,`pp_cop_value`,`pp_cop_mng_kurs`,`pp_cop_mng_value`,`pp_is_approve`,`final_cop_rate_cat`,`final_cop_kurs`,`final_cop_value`,`final_cop_mng_kurs`,`final_cop_mng_value`,`final_is_approve`,
 rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_addcost,design_name,design_display_name,design_code,id_cop_status,cop_pre_percent_bea_masuk,cop_pre_remark,design_cop,design_cop_addcost FROM tb_m_design WHERE id_design = '{0}'", id_design)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
@@ -84,6 +84,9 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                     '
                     BUpdateCOP.Enabled = False
                 Else
+                    If TEAddCost.EditValue = 0 Then
+                        TEAddCost.EditValue = data.Rows(0)("prod_order_cop_pd_addcost")
+                    End If
                     BApprove.Text = "Lock + Approve"
                     '
                     SLECurrentBOM.Enabled = True

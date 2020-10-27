@@ -377,7 +377,7 @@ Partial Public Class ReportSalesInvoiceNew
         Me.XrLabel18.SizeF = New System.Drawing.SizeF(143.8751!, 12.58334!)
         Me.XrLabel18.StylePriority.UseFont = False
         Me.XrLabel18.StylePriority.UseTextAlignment = False
-        Me.XrLabel18.Text = "[bof_date]"
+        Me.XrLabel18.Text = "[sales_pos_date_ref]"
         Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'XrLabel17
@@ -413,7 +413,7 @@ Partial Public Class ReportSalesInvoiceNew
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(143.8751!, 12.58334!)
         Me.XrLabel12.StylePriority.UseFont = False
         Me.XrLabel12.StylePriority.UseTextAlignment = False
-        Me.XrLabel12.Text = "[bof_number]"
+        Me.XrLabel12.Text = "[sales_pos_number_ref]"
         Me.XrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'XrLabel11

@@ -14,7 +14,6 @@
 
     Private Sub FormMasterDesignCOPPD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_currency_grid()
-        load_cold_storage()
 
         Dim id_season As Integer = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
 
@@ -32,7 +31,7 @@
         TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
         TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
         TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
-        SLEColdStorage.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("is_cold_storage").ToString
+
         '
         LECurrency.EditValue = Nothing
         LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
@@ -87,11 +86,6 @@ WHERE dsg.id_design='" & id_design & "'"
         End If
     End Sub
 
-    Sub load_cold_storage()
-        Dim q As String = "SELECT id_cool_storage AS id,cool_storage AS cold_desc FROM tb_lookup_cool_storage ORDER BY id_cool_storage DESC"
-        viewSearchLookupQuery(SLEColdStorage, q, "id", "cold_desc", "id")
-    End Sub
-
     Function get_use_target_cost()
         'look season if use target cost
         Dim id_season As Integer = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
@@ -105,7 +99,7 @@ WHERE dsg.id_design='" & id_design & "'"
     End Function
 
     Sub load_det_current()
-        Dim query As String = "SELECT description,id_currency,kurs,before_kurs,additional FROM tb_m_design_cop WHERE is_active='1' AND id_design='" & id_design & "'"
+        Dim query As String = "SELECT description,id_currency,kurs,before_kurs,additional FROM tb_m_design_cop WHERE is_active='1' AND is_production_dept=1 AND id_design='" & id_design & "'"
         Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCOPCurrent.DataSource = dt
         GVCOPComponent.BestFitColumns()
@@ -214,9 +208,20 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
                 Else
                     id_c = "'" & id_comp_contact & "'"
                 End If
-                query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_pd_addcost='{5}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}',is_cold_storage='{6}' WHERE id_design='{0}'", id_design, decimalSQL((TEEcop.EditValue + TEAdditionalCost.EditValue).ToString), decimalSQL(TEKurs.EditValue.ToString), id_c, LECurrency.EditValue.ToString, decimalSQL(TEAdditionalCost.EditValue.ToString), SLEColdStorage.EditValue.ToString)
+                query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_pd_addcost='{5}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL((TEEcop.EditValue + TEAdditionalCost.EditValue).ToString), decimalSQL(TEKurs.EditValue.ToString), id_c, LECurrency.EditValue.ToString, decimalSQL(TEAdditionalCost.EditValue.ToString))
                 execute_non_query(query, True, "", "", "", "")
                 infoCustom("ECOP entry success.")
+                'send email
+                'Try
+                '    Dim nm As New ClassSendEmail
+                '    nm.par1 = id_design
+                '    nm.report_mark_type = "267"
+                '    nm.send_email()
+                'Catch ex As Exception
+                '    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send COP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                'End Try
+
+
                 FormMasterDesignCOP.view_design()
                 FormMasterDesignCOP.BGVDesign.FocusedRowHandle = find_row_as_is(FormMasterDesignCOP.BGVDesign, "id_design", id_design)
                 Close()
@@ -315,7 +320,7 @@ INNER JOIN tb_m_code_detail cd ON dsgc.`id_code_detail`=cd.`id_code_detail` AND 
     End Sub
 
     Sub load_det_input()
-        Dim query As String = "SELECT description,id_currency," & decimalSQL(TETodayKurs.EditValue.ToString) & " AS kurs,before_kurs,additional FROM tb_m_design_cop WHERE is_active='1' AND id_design='" & id_design & "'"
+        Dim query As String = "SELECT description,id_currency," & decimalSQL(TETodayKurs.EditValue.ToString) & " AS kurs,before_kurs,additional FROM tb_m_design_cop WHERE is_active='1' AND is_production_dept=1 AND id_design='" & id_design & "'"
         Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCOPComponent.DataSource = dt
         GVCOPComponent.BestFitColumns()
@@ -380,7 +385,7 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
                 End If
 
                 'detail first
-                query = "UPDATE tb_m_design_cop SET is_active=2 WHERE id_design='" & id_design & "';INSERT INTO tb_m_design_cop(id_design,description,date_created,id_currency,kurs,before_kurs,additional,is_active) VALUES"
+                query = "UPDATE tb_m_design_cop SET is_active=2 WHERE id_design='" & id_design & "' AND is_production_dept=1;INSERT INTO tb_m_design_cop(id_design,description,date_created,id_currency,kurs,before_kurs,additional,is_active) VALUES"
                 For i As Integer = 0 To GVCOPComponent.RowCount - 1
                     If Not i = 0 Then
                         query += ","
@@ -391,6 +396,15 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
                 'header
                 query += String.Format(";UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_pd_addcost='{5}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL((cop_non_additional + additional).ToString), decimalSQL(TETodayKurs.EditValue.ToString), id_c, curr, decimalSQL(additional.ToString))
                 execute_non_query(query, True, "", "", "", "")
+                'send email
+                Try
+                    Dim nm As New ClassSendEmail
+                    nm.par1 = id_design
+                    nm.report_mark_type = "267"
+                    nm.send_email()
+                Catch ex As Exception
+                    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send COP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                End Try
                 infoCustom("ECOP entry success.")
                 FormMasterDesignCOP.view_design()
                 FormMasterDesignCOP.BGVDesign.FocusedRowHandle = find_row_as_is(FormMasterDesignCOP.BGVDesign, "id_design", id_design)

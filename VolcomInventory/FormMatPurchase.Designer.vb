@@ -102,13 +102,20 @@ Partial Class FormMatPurchase
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReport = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPD = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenuReport = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewPOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPD = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BSearchReport = New DevExpress.XtraEditors.SimpleButton()
@@ -135,13 +142,9 @@ Partial Class FormMatPurchase
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewMenuReport = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViewPOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPurcMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcMat.SuspendLayout()
         Me.XTPPurchaseMat.SuspendLayout()
@@ -176,6 +179,7 @@ Partial Class FormMatPurchase
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPReport.SuspendLayout()
         CType(Me.GCPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenuReport.SuspendLayout()
         CType(Me.GVPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,7 +194,6 @@ Partial Class FormMatPurchase
         Me.PanelControl5.SuspendLayout()
         CType(Me.SLEVendorKO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenuReport.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPurcMat
@@ -226,7 +229,7 @@ Partial Class FormMatPurchase
         '
         'GVMatPurchase
         '
-        Me.GVMatPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMatPurchase, Me.GridColumn2, Me.ColSeason, Me.ColDelivery, Me.ColPONumber, Me.ColShipFrom, Me.ColShipTo, Me.ColSamplePurcDate, Me.ColRecDate, Me.ColDueDate, Me.ColPayment, Me.ColStatus, Me.ColIDStatus, Me.ColIdDelivery, Me.ColIdSeason, Me.GridColumn5, Me.GridColumn1})
+        Me.GVMatPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMatPurchase, Me.GridColumn2, Me.ColSeason, Me.ColDelivery, Me.ColPONumber, Me.ColShipFrom, Me.ColShipTo, Me.ColSamplePurcDate, Me.ColRecDate, Me.ColDueDate, Me.ColPayment, Me.ColStatus, Me.ColIDStatus, Me.ColIdDelivery, Me.ColIdSeason, Me.GridColumn5, Me.GridColumn1, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43})
         Me.GVMatPurchase.GridControl = Me.GCMatPurchase
         Me.GVMatPurchase.GroupCount = 2
         Me.GVMatPurchase.Name = "GVMatPurchase"
@@ -606,7 +609,7 @@ Partial Class FormMatPurchase
         Me.XTPList.Controls.Add(Me.BCreatePO)
         Me.XTPList.Name = "XTPList"
         Me.XTPList.Size = New System.Drawing.Size(784, 319)
-        Me.XTPList.Text = "List"
+        Me.XTPList.Text = "Final Raw Material List"
         '
         'GCListMatPD
         '
@@ -852,11 +855,11 @@ Partial Class FormMatPurchase
         Me.BGenerateFromPD.Dock = System.Windows.Forms.DockStyle.Right
         Me.BGenerateFromPD.ImageIndex = 4
         Me.BGenerateFromPD.ImageList = Me.LargeImageCollection
-        Me.BGenerateFromPD.Location = New System.Drawing.Point(625, 2)
+        Me.BGenerateFromPD.Location = New System.Drawing.Point(538, 2)
         Me.BGenerateFromPD.Name = "BGenerateFromPD"
-        Me.BGenerateFromPD.Size = New System.Drawing.Size(157, 40)
+        Me.BGenerateFromPD.Size = New System.Drawing.Size(244, 40)
         Me.BGenerateFromPD.TabIndex = 8910
-        Me.BGenerateFromPD.Text = "Create new list from PD"
+        Me.BGenerateFromPD.Text = "Create Final raw material list from PD"
         '
         'LargeImageCollection
         '
@@ -979,6 +982,24 @@ Partial Class FormMatPurchase
         Me.GCPD.TabIndex = 3
         Me.GCPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPD})
         '
+        'ViewMenuReport
+        '
+        Me.ViewMenuReport.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ViewPOToolStripMenuItem})
+        Me.ViewMenuReport.Name = "ContextMenuStripYM"
+        Me.ViewMenuReport.Size = New System.Drawing.Size(121, 48)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(120, 22)
+        Me.ToolStripMenuItem1.Text = "View List"
+        '
+        'ViewPOToolStripMenuItem
+        '
+        Me.ViewPOToolStripMenuItem.Name = "ViewPOToolStripMenuItem"
+        Me.ViewPOToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.ViewPOToolStripMenuItem.Text = "View PO"
+        '
         'GVPD
         '
         Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn35, Me.GridColumn39, Me.GridColumn38, Me.GridColumn34, Me.GridColumn40, Me.GridColumn33})
@@ -1042,6 +1063,20 @@ Partial Class FormMatPurchase
         Me.GridColumn35.VisibleIndex = 3
         Me.GridColumn35.Width = 210
         '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "List Number"
+        Me.GridColumn39.FieldName = "list_group"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 4
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "ID List Group"
+        Me.GridColumn38.FieldName = "id_list_group"
+        Me.GridColumn38.Name = "GridColumn38"
+        '
         'GridColumn34
         '
         Me.GridColumn34.AppearanceCell.Options.UseTextOptions = True
@@ -1058,6 +1093,20 @@ Partial Class FormMatPurchase
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 5
         Me.GridColumn34.Width = 196
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "PO Number"
+        Me.GridColumn40.FieldName = "po_group"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 6
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "ID PO"
+        Me.GridColumn33.FieldName = "id_po_group"
+        Me.GridColumn33.Name = "GridColumn33"
         '
         'RepositoryItemCheckEdit1
         '
@@ -1295,51 +1344,49 @@ Partial Class FormMatPurchase
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
-        'GridColumn33
+        'GridColumn41
         '
-        Me.GridColumn33.Caption = "ID PO"
-        Me.GridColumn33.FieldName = "id_po_group"
-        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn41.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.Caption = "Qty Order"
+        Me.GridColumn41.DisplayFormat.FormatString = "N4"
+        Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn41.FieldName = "qty_po"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 10
         '
-        'GridColumn38
+        'GridColumn42
         '
-        Me.GridColumn38.Caption = "ID List Group"
-        Me.GridColumn38.FieldName = "id_list_group"
-        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn42.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn42.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn42.Caption = "Qty Receiving"
+        Me.GridColumn42.DisplayFormat.FormatString = "N4"
+        Me.GridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn42.FieldName = "qty_rec"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 11
         '
-        'ViewMenuReport
+        'GridColumn43
         '
-        Me.ViewMenuReport.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ViewPOToolStripMenuItem})
-        Me.ViewMenuReport.Name = "ContextMenuStripYM"
-        Me.ViewMenuReport.Size = New System.Drawing.Size(153, 70)
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.ToolStripMenuItem1.Text = "View List"
-        '
-        'ViewPOToolStripMenuItem
-        '
-        Me.ViewPOToolStripMenuItem.Name = "ViewPOToolStripMenuItem"
-        Me.ViewPOToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ViewPOToolStripMenuItem.Text = "View PO"
-        '
-        'GridColumn39
-        '
-        Me.GridColumn39.Caption = "List Number"
-        Me.GridColumn39.FieldName = "list_group"
-        Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 4
-        '
-        'GridColumn40
-        '
-        Me.GridColumn40.Caption = "PO Number"
-        Me.GridColumn40.FieldName = "po_group"
-        Me.GridColumn40.Name = "GridColumn40"
-        Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 6
+        Me.GridColumn43.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn43.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn43.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn43.Caption = "Different"
+        Me.GridColumn43.DisplayFormat.FormatString = "N4"
+        Me.GridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn43.FieldName = "qty_diff"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.UnboundExpression = "[qty_po] - [qty_rec]"
+        Me.GridColumn43.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 12
         '
         'FormMatPurchase
         '
@@ -1391,6 +1438,7 @@ Partial Class FormMatPurchase
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPReport.ResumeLayout(False)
         CType(Me.GCPD, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenuReport.ResumeLayout(False)
         CType(Me.GVPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1407,7 +1455,6 @@ Partial Class FormMatPurchase
         Me.PanelControl5.PerformLayout()
         CType(Me.SLEVendorKO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenuReport.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1532,4 +1579,7 @@ Partial Class FormMatPurchase
     Friend WithEvents ViewPOToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

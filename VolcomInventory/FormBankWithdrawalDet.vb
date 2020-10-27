@@ -160,7 +160,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                     newRow("kurs") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "kurs")
                     newRow("id_currency") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_currency").ToString
                     newRow("currency") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "currency").ToString
-                    newRow("val_bef_kurs") = If(FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVExpense.GetRowCellValue(i, "amount_before"))
+                    newRow("val_bef_kurs") = If(FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance") / FormBankWithdrawal.GVExpense.GetRowCellValue(i, "kurs"))
                     newRow("value") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("value_view") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
@@ -175,6 +175,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                     Dim id_comp_contact As String = get_company_x(id_comp, 6)
                     SLEVendor.EditValue = id_comp_contact
                     SLEReportType.EditValue = report_mark_type
+                    SLEPayType.EditValue = "2"
                     SLEPayType.Visible = False
                     Dim selisih_kurs As Decimal = 0.00
                     'load detail
@@ -496,41 +497,41 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                 Next
 
                 'selisih kerugian
-                Dim selisih As Decimal = total_actual - total_before
+                'Dim selisih As Decimal = total_actual - total_before
 
-                If selisih > 0 Then
-                    Dim query_s As String = "
-                        SELECT acc.id_acc, acc.acc_name, acc.acc_description, comp.id_comp, comp.comp_number, comp.comp_name AS vendor
-                        FROM tb_a_acc AS acc
-                        LEFT JOIN tb_m_comp AS comp ON comp.id_comp = 1
-                        WHERE acc.id_acc = 2968
-                    "
+                'If selisih > 0 Then
+                '    Dim query_s As String = "
+                '        SELECT acc.id_acc, acc.acc_name, acc.acc_description, comp.id_comp, comp.comp_number, comp.comp_name AS vendor
+                '        FROM tb_a_acc AS acc
+                '        LEFT JOIN tb_m_comp AS comp ON comp.id_comp = 1
+                '        WHERE acc.id_acc = 2968
+                '    "
 
-                    Dim data_s As DataTable = execute_query(query_s, -1, True, "", "", "", "")
+                '    Dim data_s As DataTable = execute_query(query_s, -1, True, "", "", "", "")
 
-                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                    newRow("id_report") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(0, "id_pay_bpjs_kesehatan").ToString
-                    newRow("report_mark_type") = "223"
-                    newRow("id_acc") = data_s.Rows(0)("id_acc")
-                    newRow("acc_name") = data_s.Rows(0)("acc_name").ToString
-                    newRow("acc_description") = data_s.Rows(0)("acc_description").ToString
-                    newRow("vendor") = data_s.Rows(0)("vendor").ToString
-                    newRow("id_dc") = "1"
-                    newRow("dc_code") = "D"
-                    newRow("id_comp") = data_s.Rows(0)("id_comp")
-                    newRow("comp_number") = data_s.Rows(0)("comp_number").ToString
-                    newRow("number") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(0, "number").ToString
-                    newRow("total_pay") = 0
-                    newRow("value") = selisih
-                    newRow("kurs") = 1
-                    newRow("id_currency") = "1"
-                    newRow("currency") = "Rp"
-                    newRow("val_bef_kurs") = selisih
-                    newRow("value_view") = selisih
-                    newRow("balance_due") = selisih
-                    newRow("note") = "Pembulatan"
-                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-                End If
+                '    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                '    newRow("id_report") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(0, "id_pay_bpjs_kesehatan").ToString
+                '    newRow("report_mark_type") = "223"
+                '    newRow("id_acc") = data_s.Rows(0)("id_acc")
+                '    newRow("acc_name") = data_s.Rows(0)("acc_name").ToString
+                '    newRow("acc_description") = data_s.Rows(0)("acc_description").ToString
+                '    newRow("vendor") = data_s.Rows(0)("vendor").ToString
+                '    newRow("id_dc") = "1"
+                '    newRow("dc_code") = "D"
+                '    newRow("id_comp") = data_s.Rows(0)("id_comp")
+                '    newRow("comp_number") = data_s.Rows(0)("comp_number").ToString
+                '    newRow("number") = FormBankWithdrawal.GVBPJSKesehatan.GetRowCellValue(0, "number").ToString
+                '    newRow("total_pay") = 0
+                '    newRow("value") = selisih
+                '    newRow("kurs") = 1
+                '    newRow("id_currency") = "1"
+                '    newRow("currency") = "Rp"
+                '    newRow("val_bef_kurs") = selisih
+                '    newRow("value_view") = selisih
+                '    newRow("balance_due") = selisih
+                '    newRow("note") = "Pembulatan"
+                '    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                'End If
 
                 calculate_amount()
             ElseIf report_mark_type = "192" Then 'payroll
@@ -988,6 +989,55 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                     newRowTJp("balance_due") = balance_t_jp
                     newRowTJp("note") = "J Pensiun " + period + " (dibayar karyawan)"
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRowTJp)
+
+                    'adjustment
+                    Dim adjustment As String = execute_query("
+                        SELECT IFNULL((SELECT total_adjustment FROM tb_emp_payroll_bpjstk_adj WHERE id_payroll = " + FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString + " AND id_bpjs_location = " + FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_bpjs_location").ToString + " LIMIT 1), 0) AS adjustment
+                    ", 0, True, "", "", "", "")
+
+                    If Not adjustment = "0" Then
+                        Dim data_adj As DataTable = execute_query("
+                            SELECT adj.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, adj.id_comp, comp.comp_number, IFNULL(adj.acc_adjustment, 0) AS acc_adjustment, adj.note
+                            FROM tb_emp_payroll_bpjstk_adj AS adj
+                            LEFT JOIN tb_a_acc AS acc ON adj.id_acc = acc.id_acc
+                            LEFT JOIN tb_m_comp AS comp ON adj.id_comp = comp.id_comp
+                            WHERE adj.id_payroll = " + FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString + " AND adj.id_bpjs_location = " + FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_bpjs_location").ToString + "
+                        ", -1, True, "", "", "", "")
+
+                        For k = 0 To data_adj.Rows.Count - 1
+                            Dim id_acc_adj As Integer = data_adj.Rows(k)("id_acc")
+                            Dim acc_name_adj As String = data_adj.Rows(k)("acc_name").ToString
+                            Dim acc_description_adj As String = data_adj.Rows(k)("acc_description").ToString
+                            Dim vendor_adj As String = data_adj.Rows(k)("vendor").ToString
+                            Dim id_comp_adj As Integer = data_adj.Rows(k)("id_comp")
+                            Dim comp_number_adj As String = data_adj.Rows(k)("comp_number").ToString
+                            Dim balance_adj As Integer = data_adj.Rows(k)("acc_adjustment")
+                            Dim note As String = data_adj.Rows(k)("note").ToString
+
+                            Dim newRowAdj As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                            newRowAdj("id_report") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "id_payroll").ToString
+                            newRowAdj("report_mark_type") = "247"
+                            newRowAdj("id_acc") = id_acc_adj
+                            newRowAdj("acc_name") = acc_name_adj
+                            newRowAdj("acc_description") = acc_description_adj
+                            newRowAdj("vendor") = vendor_adj
+                            newRowAdj("id_dc") = "2"
+                            newRowAdj("dc_code") = If(balance_adj < 0, "K", "D")
+                            newRowAdj("id_comp") = id_comp_adj
+                            newRowAdj("comp_number") = comp_number_adj
+                            newRowAdj("number") = FormBankWithdrawal.GVJamsostek.GetRowCellValue(i, "report_number").ToString
+                            newRowAdj("total_pay") = 0
+                            newRowAdj("value") = balance_adj
+                            newRowAdj("kurs") = 1
+                            newRowAdj("id_currency") = "1"
+                            newRowAdj("currency") = "Rp"
+                            newRowAdj("val_bef_kurs") = balance_adj
+                            newRowAdj("value_view") = balance_adj
+                            newRowAdj("balance_due") = balance_adj
+                            newRowAdj("note") = note
+                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRowAdj)
+                        Next
+                    End If
                 Next
 
                 MENote.Text = me_note
@@ -1624,5 +1674,25 @@ VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue
         FormBankWithdrawalDP.report_mark_type = "139"
         FormBankWithdrawalDP.id_comp_contact = SLEVendor.EditValue.ToString
         FormBankWithdrawalDP.ShowDialog()
+    End Sub
+
+    Private Sub BCompen_Click(sender As Object, e As EventArgs) Handles BCompen.Click
+        'FormBankWithdrawalCompen.id_comp = SLEVendor.EditValue.ToString
+        FormBankWithdrawalCompen.id_comp = "444"
+        FormBankWithdrawalCompen.ShowDialog()
+    End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        If GVList.RowCount > 0 Then
+            Try
+                Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+                showpopup.opt = "Buku Besar"
+                showpopup.report_mark_type = GVList.GetFocusedRowCellValue("report_mark_type").ToString
+                showpopup.id_report = GVList.GetFocusedRowCellValue("id_report").ToString
+                showpopup.show()
+            Catch ex As Exception
+                warningCustom("No details")
+            End Try
+        End If
     End Sub
 End Class

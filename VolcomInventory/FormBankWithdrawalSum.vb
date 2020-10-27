@@ -22,10 +22,10 @@
             BGenerate.Visible = False
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
-            Dim q As String = "SELECT pns.id_report_status,pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`id_currency`,cur.`currency`,SUM(pnd.`val_bef_kurs`) AS val_bef_kurs, pns.note
+            Dim q As String = "SELECT pns.id_report_status,pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`id_currency`,cur.`currency`,IFNULL(SUM(pnd.`val_bef_kurs`),0) AS val_bef_kurs, pns.note
 FROM tb_pn_summary pns
-INNER JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
-INNER JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
+LEFT JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
+LEFT JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
 INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pns.`id_currency`
 INNER JOIN tb_m_user usr ON usr.`id_user`=pns.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -114,7 +114,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
 
     Sub generate()
         'check if already
-        Dim qc As String = "SELECT id_pn_summary FROM tb_pn_summary WHERE id_pn_summary!='" & id_sum & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=5 AND DATE(date_payment)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        Dim qc As String = "SELECT id_pn_summary FROM tb_pn_summary WHERE id_pn_summary!='" & id_sum & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=5 AND id_report_status!=6 AND DATE(date_payment)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count = 0 Then
             Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment

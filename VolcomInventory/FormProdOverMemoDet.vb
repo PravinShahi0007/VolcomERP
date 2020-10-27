@@ -45,9 +45,14 @@
 
     Sub viewDetail()
         Dim query As String = "SELECT md.discount,md.id_prod_over_memo_det, md.id_prod_over_memo, md.id_prod_order, po.prod_order_number, d.design_code AS `code`, d.design_display_name AS `name`, md.remark, 
-        md.qty, get_total_po(po.id_prod_order, 1) AS `qty_order`, get_total_po(po.id_prod_order, 3) AS `qty_max_order`
+        md.qty, get_total_po(po.id_prod_order, 1) AS `qty_order`, get_total_po(po.id_prod_order, 3) AS `qty_max_order`,
+        c.id_comp AS `id_vendor`, c.comp_number AS `vendor_acc`, c.comp_name AS `vendor_desc`, CONCAT(c.comp_number,' - ',c.comp_name) AS `vendor`
         FROM tb_prod_over_memo_det md
         INNER JOIN tb_prod_order po ON po.id_prod_order = md.id_prod_order
+        INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
+        INNER JOIN tb_m_ovh_price op ON op.id_ovh_price = wo.id_ovh_price
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = op.id_comp_contact
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
         INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
         INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
         WHERE md.id_prod_over_memo=" + id_prod_over_memo + " "

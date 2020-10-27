@@ -2,6 +2,7 @@
     Public id As String = "-1"
     Dim type_ver As String = "-1"
     Dim rmt As String = "266"
+    Dim is_existing_order As String = "-1"
 
     Private Sub FormPayoutVerDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -19,6 +20,14 @@
         TxtNumber.Text = data.Rows(0)("number").ToString
         DECreated.EditValue = data.Rows(0)("created_date")
         TxtCreatedBy.Text = data.Rows(0)("created_by_name").ToString
+        is_existing_order = data.Rows(0)("is_existing_order").ToString
+        If is_existing_order = "2" Then
+            TxtNumber.Properties.ReadOnly = False
+            BtnUpdate.Enabled = True
+        Else
+            TxtNumber.Properties.ReadOnly = True
+            BtnUpdate.Enabled = False
+        End If
 
         'detail
         viewDetail()
@@ -31,6 +40,8 @@
 
         'check
         If Not allowEdit() Then
+            TxtNumber.Properties.ReadOnly = True
+            BtnUpdate.Enabled = False
             PanelControlNav.Visible = False
         End If
         Cursor = Cursors.Default
@@ -119,7 +130,12 @@
         Else
             'add
             Cursor = Cursors.WaitCursor
-            FormPayoutVerAdd.ShowDialog()
+            actionLoad()
+            If TxtNumber.Text = "0" Or TxtNumber.Text = "" Then
+                stopCustom("Please input order number")
+            Else
+                FormPayoutVerAdd.ShowDialog()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub
@@ -133,5 +149,12 @@
                 viewDetail()
             End If
         End If
+    End Sub
+
+    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "UPDATE tb_list_payout_ver v SET number='" + addSlashes(TxtNumber.Text) + "' WHERE id_list_payout_ver='" + id + "' "
+        execute_non_query(query, True, "", "", "", "")
+        Cursor = Cursors.Default
     End Sub
 End Class
