@@ -7798,7 +7798,7 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                     ,CONCAT('KLAIM TERLAMBAT - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
                     FROM tb_debit_note_det dnd
                     INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
-                    WHERE dnd.id_debit_note='" & id_report & "'  AND dnd.unit_price>0
+                    WHERE dnd.id_debit_note='" & id_report & "' AND dnd.unit_price>0 AND dnd.claim_percent>0
                     UNION ALL
                     -- lawannya DP
                     SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
