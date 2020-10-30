@@ -5485,6 +5485,18 @@
     <Compile Include="FormSalesReturnOrderDetEdit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnOrderMail.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderMail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderMail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderMailDet.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderMailDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderMailDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderOL.Designer.vb">
       <DependentUpon>FormSalesReturnOrderOL.vb</DependentUpon>
     </Compile>
@@ -11627,6 +11639,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderDetEdit.resx">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderMail.resx">
+      <DependentUpon>FormSalesReturnOrderMail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderMailDet.resx">
+      <DependentUpon>FormSalesReturnOrderMailDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderOL.resx">
       <DependentUpon>FormSalesReturnOrderOL.vb</DependentUpon>
