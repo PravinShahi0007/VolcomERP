@@ -358,6 +358,18 @@
     <Compile Include="FormAccountingWorksheet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAdditionalCost.Designer.vb">
+      <DependentUpon>FormAdditionalCost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdditionalCost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdditionalCostDet.Designer.vb">
+      <DependentUpon>FormAdditionalCostDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdditionalCostDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAllocationHist.Designer.vb">
       <DependentUpon>FormAllocationHist.vb</DependentUpon>
     </Compile>
@@ -8787,6 +8799,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingWorksheet.resx">
       <DependentUpon>FormAccountingWorksheet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdditionalCost.resx">
+      <DependentUpon>FormAdditionalCost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdditionalCostDet.resx">
+      <DependentUpon>FormAdditionalCostDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAllocationHist.resx">
       <DependentUpon>FormAllocationHist.vb</DependentUpon>
