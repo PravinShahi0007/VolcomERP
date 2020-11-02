@@ -468,6 +468,8 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
             warningCustom("This vendor AP account is not set.")
         ElseIf Not is_cur_ok Then
             warningCustom("Make sure currency and kurs is same")
+        ElseIf TETotal.EditValue < 0 Then
+            warningCustom("Value cant be negative.")
         Else
             If id_invoice = "-1" Then
                 'header
