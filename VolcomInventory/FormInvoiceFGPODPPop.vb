@@ -202,7 +202,7 @@ WHERE pn.`id_report_status`= '6' AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor
                 FROM tb_pn_fgpo pn
                 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-                INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+                INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp` AND c.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
                 INNER JOIN (
                     SELECT id_pn_fgpo,SUM(`value`) AS amount,GROUP_CONCAT(pnd.report_number) AS report_number,GROUP_CONCAT(pnd.inv_number) AS inv_number, GROUP_CONCAT(DISTINCT(id_acc)) AS id_acc, SUM(qty) AS qty, GROUP_CONCAT(DISTINCT(id_currency)) AS id_currency, GROUP_CONCAT(DISTINCT(kurs)) AS kurs,GROUP_CONCAT(DISTINCT(info_design)) AS info_design
                     FROM tb_pn_fgpo_det pnd 
