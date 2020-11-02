@@ -173,7 +173,6 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                     'load header
                     Dim id_comp As String = FormBankWithdrawal.SLEFGPOVendor.EditValue
                     Dim id_comp_contact As String = get_company_x(id_comp, 6)
-                    TEKurs.EditValue = FormBankWithdrawal.TEKurs.EditValue
 
                     SLEVendor.EditValue = id_comp_contact
                     SLEReportType.EditValue = report_mark_type
