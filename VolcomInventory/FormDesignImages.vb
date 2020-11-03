@@ -1,6 +1,14 @@
 ﻿Public Class FormDesignImages
+    Private cloud_host As String = get_setup_field("cloud_host").ToString
+    Private cloud_username As String = get_setup_field("cloud_username").ToString
+    Private cloud_password As String = get_setup_field("cloud_password").ToString
+    Private cloud_port As String = get_setup_field("cloud_port").ToString
+
+    Private cloud_image_path As String = get_setup_field("cloud_image_path").ToString
+    Private cloud_image_url As String = get_setup_field("cloud_image_url").ToString
+
     Private Sub FormDesignImages_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        view_images()
+        view_season()
     End Sub
 
     Private Sub FormDesignImages_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -17,13 +25,16 @@
     End Sub
 
     Sub view_images()
+        Dim where_season As String = "AND d.id_season = " + SLUESeason.EditValue.ToString
+
         Dim query As String = "
-            SELECT d.design_code, d.design_display_name, i.file_name, i.created_at, e.employee_name AS created_by, '' AS image
+            SELECT i.id_design_images, d.design_code, i.store, d.design_display_name, i.file_name, i.sort, CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.created_at, e.employee_name AS created_by, '' AS image
             FROM tb_design_images AS i
             LEFT JOIN tb_m_design AS d ON d.id_design = i.id_design
             LEFT JOIN tb_m_user AS u ON i.created_by = u.id_user
             LEFT JOIN tb_m_employee AS e ON u.id_employee = e.id_employee
-            ORDER BY i.id_design_images DESC
+            WHERE 1 " + where_season + "
+            ORDER BY d.design_display_name ASC, i.sort ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -43,13 +54,42 @@
 
             Dim file() As String = IO.Directory.GetFiles(browse.SelectedPath)
 
+            Array.Sort(file)
+
             Dim is_valid As String = ""
 
-            Dim uploaded_image As DataTable = execute_query("SELECT SUBSTRING(file_name, 1, (POSITION('.' IN file_name) - 1)) AS file_name FROM tb_design_images", -1, True, "", "", "", "")
+            Dim uploaded_image As DataTable = execute_query("SELECT store, SUBSTRING(file_name, 1, (POSITION('.' IN file_name) - 1)) AS file_name, sort FROM tb_design_images", -1, True, "", "", "", "")
+
+            'get max sort
+            Dim data_max_sort As DataTable = New DataTable
+
+            data_max_sort.Columns.Add("store", GetType(String))
+            data_max_sort.Columns.Add("file_name", GetType(String))
+            data_max_sort.Columns.Add("sort", GetType(Integer))
+
+            Dim view_uploaded_image As DataView = New DataView(uploaded_image)
+
+            view_uploaded_image.Sort = "file_name DESC, sort DESC"
+
+            For i = 0 To view_uploaded_image.Count - 1
+                Dim array_image() As String = view_uploaded_image(i)("file_name").ToString.Split("_")
+
+                Dim dv_max_sort As DataView = New DataView(data_max_sort)
+
+                dv_max_sort.RowFilter = "store = '" + array_image(0) + "' And file_name = '" + array_image(1) + "'"
+
+                If dv_max_sort.Count = 0 Then
+                    Dim array_name() As String = view_uploaded_image(i)("file_name").ToString.Split("_")
+
+                    data_max_sort.Rows.Add(array_name(0), array_name(1), Integer.Parse(view_uploaded_image(i)("sort").ToString))
+                End If
+            Next
 
             Dim store_code As DataTable = execute_query("SELECT id_comp_group, design_images_code FROM tb_m_comp_group WHERE design_images_code IS NOT NULL", -1, True, "", "", "", "")
 
             Dim design_code As DataTable = execute_query("SELECT id_design, design_code FROM tb_m_design WHERE design_code <> '' ORDER BY id_design DESC", -1, True, "", "", "", "")
+
+            Dim code_detail As DataTable = execute_query("SELECT d.design_code, c.id_code_detail FROM tb_m_design_code AS c LEFT JOIN tb_m_design AS d ON c.id_design = d.id_design", -1, True, "", "", "", "")
 
             For i = 0 To file.Count - 1
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Checking file " + (i + 1).ToString + " of " + file.Count.ToString)
@@ -80,6 +120,13 @@
                         If dv_design.Count < 1 Then
                             is_valid += IO.Path.GetFileName(file(i)) + " design code not found." + Environment.NewLine
                         End If
+
+                        'check file number
+                        Try
+                            Integer.Parse(array_name(2))
+                        Catch ex As Exception
+                            is_valid += IO.Path.GetFileName(file(i)) + " file number is not valid." + Environment.NewLine
+                        End Try
                     Else
                         is_valid += IO.Path.GetFileName(file(i)) + " is not valid." + Environment.NewLine
                     End If
@@ -88,15 +135,155 @@
                 End If
             Next
 
+            'check file sort
             If is_valid = "" Then
+                Dim data_file As DataTable = New DataTable
+
+                data_file.Columns.Add("store", GetType(String))
+                data_file.Columns.Add("file_name", GetType(String))
+                data_file.Columns.Add("sort", GetType(Integer))
+
+                For i = 0 To file.Count - 1
+                    Dim array_name() As String = IO.Path.GetFileNameWithoutExtension(file(i)).Split("_")
+
+                    data_file.Rows.Add(array_name(0), array_name(1), Integer.Parse(array_name(2)))
+                Next
+
+                Dim view_file As DataView = New DataView(data_file)
+
+                view_file.Sort = "store ASC, file_name ASC, sort ASC"
+
+                Dim last_store As String = ""
+                Dim last_file_name As String = ""
+                Dim last_sort As String = 0
+
+                For i = 0 To view_file.Count - 1
+                    If i = 0 Then
+                        last_store = view_file(i)("store").ToString
+                        last_file_name = view_file(i)("file_name").ToString
+                        last_sort = view_file(i)("sort")
+
+                        'check max sort
+                        Dim dv_max_sort As DataView = New DataView(data_max_sort)
+
+                        dv_max_sort.RowFilter = "store = '" + view_file(i)("store").ToString + "' And file_name = '" + view_file(i)("file_name").ToString + "'"
+
+                        If dv_max_sort.Count > 0 Then
+                            If Not (dv_max_sort(0)("sort") + 1) = view_file(i)("sort") Then
+                                is_valid += view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString + " please start numbering from " + (dv_max_sort(0)("sort") + 1).ToString + "." + Environment.NewLine
+                            End If
+                        Else
+                            If Not 1 = view_file(i)("sort") Then
+                                is_valid += view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString + " please start numbering from 1." + Environment.NewLine
+                            End If
+                        End If
+                    End If
+
+                    If last_store = view_file(i)("store").ToString And last_file_name = view_file(i)("file_name").ToString Then
+                        If i > 0 Then
+                            If Not view_file(i)("sort") = (last_sort + 1) Then
+                                is_valid += view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString + " numbering is not valid." + Environment.NewLine
+                            End If
+                        End If
+                    End If
+
+                    'check max sort
+                    If Not last_store = view_file(i)("store").ToString Or Not last_file_name = view_file(i)("file_name").ToString Then
+                        Dim dv_max_sort As DataView = New DataView(data_max_sort)
+
+                        dv_max_sort.RowFilter = "store = '" + view_file(i)("store").ToString + "' And file_name = '" + view_file(i)("file_name").ToString + "'"
+
+                        If dv_max_sort.Count > 0 Then
+                            If Not (dv_max_sort(0)("sort") + 1) = view_file(i)("sort") Then
+                                is_valid += view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString + " please start numbering from " + (dv_max_sort(0)("sort") + 1).ToString + "." + Environment.NewLine
+                            End If
+                        Else
+                            If Not 1 = view_file(i)("sort") Then
+                                is_valid += view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString + " please start numbering from 1." + Environment.NewLine
+                            End If
+                        End If
+                    End If
+
+                    last_store = view_file(i)("store").ToString
+                    last_file_name = view_file(i)("file_name").ToString
+                    last_sort = view_file(i)("sort")
+                Next
+            End If
+
+            'check number of files
+            If is_valid = "" Then
+                Dim data_limit As DataTable = execute_query("SELECT * FROM tb_design_images_limit", -1, True, "", "", "", "")
+
+                Dim total_file As DataTable = New DataTable
+
+                total_file.Columns.Add("store", GetType(String))
+                total_file.Columns.Add("file_name", GetType(String))
+                total_file.Columns.Add("total", GetType(Integer))
+
+                Dim last_store As String = ""
+                Dim last_file_name As String = ""
+
+                Dim n As Integer = 0
+
+                For i = 0 To file.Count - 1
+                    Dim array_name() As String = IO.Path.GetFileNameWithoutExtension(file(i)).Split("_")
+
+                    If i = 0 Then
+                        last_store = array_name(0)
+                        last_file_name = array_name(1)
+                    End If
+
+                    If Not last_store = array_name(0) Or Not last_file_name = array_name(1) Then
+                        Dim array_name_before() As String = IO.Path.GetFileNameWithoutExtension(file(i - 1)).Split("_")
+
+                        total_file.Rows.Add(array_name_before(0), array_name_before(1), n)
+
+                        n = 0
+                    End If
+
+                    n = n + 1
+
+                    If i = (file.Count - 1) Then
+                        total_file.Rows.Add(array_name(0), array_name(1), n)
+                    End If
+
+                    last_store = array_name(0)
+                    last_file_name = array_name(1)
+                Next
+
+                For i = 0 To total_file.Rows.Count - 1
+                    Dim dv_uploaded_image As DataView = New DataView(uploaded_image)
+
+                    dv_uploaded_image.RowFilter = "store = '" + total_file.Rows(i)("store").ToString + "' And file_name Like '" + total_file.Rows(i)("store").ToString + "_" + total_file.Rows(i)("file_name").ToString + "_%'"
+
+                    If dv_uploaded_image.Count = 0 Then
+                        Dim limit As Integer = Integer.Parse(data_limit.Rows(0)("limit").ToString)
+
+                        Dim dv_code_detail As DataView = New DataView(code_detail)
+
+                        dv_code_detail.RowFilter = "design_code = '" + total_file.Rows(i)("file_name").ToString + "'"
+
+                        For j = 0 To dv_code_detail.Count - 1
+                            Dim dv_limit As DataView = New DataView(data_limit)
+
+                            dv_limit.RowFilter = "id_code_detail = " + dv_code_detail(j)("id_code_detail").ToString
+
+                            If dv_limit.Count > 0 Then
+                                limit = Integer.Parse(dv_limit(0)("limit").ToString)
+                            End If
+                        Next
+
+                        If total_file(i)("total") < limit Then
+                            is_valid += total_file.Rows(i)("store").ToString + "_" + total_file.Rows(i)("file_name").ToString + " minimum total number of image upload is " + limit.ToString + "." + Environment.NewLine
+                        End If
+                    End If
+                Next
+            End If
+
+            If is_valid = "" Then
+                Dim last_id_design As String = ""
+
                 'upload
-                Dim cloud_host As String = get_setup_field("cloud_host").ToString
-                Dim cloud_username As String = get_setup_field("cloud_username").ToString
-                Dim cloud_password As String = get_setup_field("cloud_password").ToString
-                Dim cloud_port As String = get_setup_field("cloud_port").ToString
-
-                Dim cloud_image_path As String = get_setup_field("cloud_image_path").ToString
-
                 Dim sftp As Renci.SshNet.SftpClient = New Renci.SshNet.SftpClient(cloud_host, cloud_username, cloud_password)
 
                 sftp.Connect()
@@ -109,7 +296,8 @@
 
                         sftp.UploadFile(file_stream, cloud_image_path + "/" + IO.Path.GetFileName(file(i)))
 
-                        Dim id_design As String = ""
+                        file_stream.Close()
+                        file_stream.Dispose()
 
                         'check design code
                         Dim array_name() As String = IO.Path.GetFileNameWithoutExtension(file(i)).Split("_")
@@ -119,18 +307,22 @@
                         dv_design.RowFilter = "design_code = '" + array_name(1) + "'"
 
                         'store database
-                        execute_non_query("INSERT INTO tb_design_images (id_design, file_name, created_at, created_by) VALUES (" + dv_design(0)("id_design").ToString + ", '" + IO.Path.GetFileName(file(i)) + "', NOW(), " + id_user + ")", True, "", "", "", "")
+                        execute_non_query("INSERT INTO tb_design_images (id_design, store, file_name, sort, created_at, created_by) VALUES (" + dv_design(0)("id_design").ToString + ", '" + array_name(0) + "', '" + IO.Path.GetFileName(file(i)) + "', " + array_name(2) + ", NOW(), " + id_user + ")", True, "", "", "", "")
+
+                        last_id_design = dv_design(0)("id_design").ToString
                     Next
                 End If
 
                 sftp.Disconnect()
                 sftp.Dispose()
 
+                SLUESeason.EditValue = execute_query("SELECT id_season FROM tb_m_design WHERE id_design = " + last_id_design, 0, True, "", "", "", "")
+
                 view_images()
             Else
                 FormMain.SplashScreenManager1.CloseWaitForm()
 
-                stopCustom("Some files could not be uploaded: " + Environment.NewLine + is_valid)
+                stopCustom("Could not be uploaded: " + Environment.NewLine + is_valid)
             End If
 
             If FormMain.SplashScreenManager1.IsSplashFormVisible Then
@@ -140,7 +332,36 @@
     End Sub
 
     Sub delete_images()
+        Dim id_design_images As String = ""
+        Dim file_name As String = ""
 
+        Try
+            id_design_images = GVImageList.GetFocusedRowCellValue("id_design_images").ToString
+            file_name = GVImageList.GetFocusedRowCellValue("file_name").ToString
+        Catch ex As Exception
+        End Try
+
+        If Not file_name = "" Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this image ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                'delete from server
+                Dim sftp As Renci.SshNet.SftpClient = New Renci.SshNet.SftpClient(cloud_host, cloud_username, cloud_password)
+
+                sftp.Connect()
+
+                If sftp.IsConnected Then
+                    sftp.DeleteFile(cloud_image_path + "/" + file_name)
+                End If
+
+                'delete database
+                execute_non_query("DELETE FROM tb_design_images WHERE id_design_images = " + id_design_images, True, "", "", "", "")
+
+                view_images()
+            End If
+        Else
+            stopCustom("No file selected.")
+        End If
     End Sub
 
     Sub print_images()
@@ -165,7 +386,7 @@
             System.IO.Directory.CreateDirectory(path)
         End If
 
-        client.DownloadFile("http://103.58.101.112/" + file, path + file)
+        client.DownloadFile(cloud_image_url + "/" + file, path + file)
 
         'open file
         Dim process_info As ProcessStartInfo = New ProcessStartInfo()
@@ -185,5 +406,25 @@
 
     Private Sub RepositoryItemCheckEdit_MouseLeave(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit.MouseLeave
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit.Click
+        Process.Start(GVImageList.GetFocusedRowCellValue("url").ToString)
+    End Sub
+
+    Sub view_season()
+        Dim query As String = "
+            SELECT a.id_season, b.range, a.season
+            FROM tb_season AS a 
+            INNER JOIN tb_range b ON a.id_range = b.id_range 
+            WHERE b.id_range > 0 AND b.is_md = 1 
+            ORDER BY b.range DESC
+        "
+
+        viewSearchLookupQuery(SLUESeason, query, "id_season", "season", "id_season")
+    End Sub
+
+    Private Sub SLUESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLUESeason.EditValueChanged
+        GCImageList.DataSource = Nothing
     End Sub
 End Class
