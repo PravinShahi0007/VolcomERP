@@ -384,6 +384,7 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
             GVProdRec.FocusedRowHandle = 0
         End If
         check_menu()
+        GVProdRec.ExpandAllGroups()
     End Sub
 
     Private Sub BSearchByCode_Click(sender As Object, e As EventArgs) Handles BSearchByCode.Click
@@ -432,6 +433,7 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
             GVProdRec.FocusedRowHandle = 0
         End If
         check_menu()
+        GVProdRec.ExpandAllGroups()
     End Sub
 
     Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
@@ -513,5 +515,6 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
             GVProdRec.FocusedRowHandle = 0
         End If
         check_menu()
+        GVProdRec.ExpandAllGroups()
     End Sub
 End Class
