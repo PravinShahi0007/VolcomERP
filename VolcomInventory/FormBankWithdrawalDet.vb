@@ -173,6 +173,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                     'load header
                     Dim id_comp As String = FormBankWithdrawal.SLEFGPOVendor.EditValue
                     Dim id_comp_contact As String = get_company_x(id_comp, 6)
+
                     SLEVendor.EditValue = id_comp_contact
                     SLEReportType.EditValue = report_mark_type
                     SLEPayType.EditValue = "2"
@@ -1346,7 +1347,7 @@ WHERE pnd.id_pn='" & id_payment & "'"
         GridColumnCurrencyHide.VisibleIndex = -1
 
         'Parse val
-        Dim query As String = "Select py.number,If(py.is_auto_debet=1,'- Auto Debet','') AS auto_debet,FORMAT(py.`trf_fee`,2,'id_ID') AS trf_fee,py.kurs,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
+        Dim query As String = "Select py.number,If(py.is_auto_debet=1,'- Auto Debet','') AS auto_debet,FORMAT(py.`trf_fee`,2,'id_ID') AS trf_fee,FORMAT(py.`kurs`,2,'id_ID') AS kurs,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
 ,'" & ConvertCurrencyToIndonesian(TETotal.EditValue) & "' AS tot_say, CONCAT(tag.tag_code, ' - ', tag.tag_description) AS tag
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
