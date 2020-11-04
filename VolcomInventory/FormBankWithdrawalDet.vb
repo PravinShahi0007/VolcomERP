@@ -201,7 +201,6 @@ INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo` AND pn.`is_open`='1
 INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pnd.`id_currency`
 INNER JOIN tb_m_comp c ON c.id_comp=pn.id_comp 
 INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap
-INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
 GROUP BY pnd.kurs"
                         Dim dtd As DataTable = execute_query(qd, -1, True, "", "", "", "")
                         For k = 0 To dtd.Rows.Count - 1
