@@ -21,21 +21,26 @@ Partial Class FormDesignImagesDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDesignImagesDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBUpload = New DevExpress.XtraEditors.SimpleButton()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SBUpload = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SBBrowseFolder = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SBCancel)
+        Me.PanelControl1.Controls.Add(Me.SBBrowseFolder)
         Me.PanelControl1.Controls.Add(Me.SBUpload)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 516)
@@ -43,23 +48,15 @@ Partial Class FormDesignImagesDet
         Me.PanelControl1.Size = New System.Drawing.Size(784, 45)
         Me.PanelControl1.TabIndex = 0
         '
-        'GCList
+        'SBCancel
         '
-        Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 0)
-        Me.GCList.MainView = Me.GVList
-        Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(784, 516)
-        Me.GCList.TabIndex = 1
-        Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
-        '
-        'GVList
-        '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
-        Me.GVList.GridControl = Me.GCList
-        Me.GVList.Name = "GVList"
-        Me.GVList.OptionsBehavior.ReadOnly = True
-        Me.GVList.OptionsView.ShowGroupPanel = False
+        Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
+        Me.SBCancel.Location = New System.Drawing.Point(461, 2)
+        Me.SBCancel.Name = "SBCancel"
+        Me.SBCancel.Size = New System.Drawing.Size(100, 41)
+        Me.SBCancel.TabIndex = 1
+        Me.SBCancel.Text = "Cancel"
         '
         'SBUpload
         '
@@ -71,15 +68,24 @@ Partial Class FormDesignImagesDet
         Me.SBUpload.TabIndex = 0
         Me.SBUpload.Text = "Upload"
         '
-        'SBCancel
+        'GCList
         '
-        Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
-        Me.SBCancel.Location = New System.Drawing.Point(582, 2)
-        Me.SBCancel.Name = "SBCancel"
-        Me.SBCancel.Size = New System.Drawing.Size(100, 41)
-        Me.SBCancel.TabIndex = 1
-        Me.SBCancel.Text = "Cancel"
+        Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCList.Location = New System.Drawing.Point(0, 0)
+        Me.GCList.MainView = Me.GVList
+        Me.GCList.Name = "GCList"
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit})
+        Me.GCList.Size = New System.Drawing.Size(784, 516)
+        Me.GCList.TabIndex = 1
+        Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
+        '
+        'GVList
+        '
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVList.GridControl = Me.GCList
+        Me.GVList.Name = "GVList"
+        Me.GVList.OptionsBehavior.ReadOnly = True
+        Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -97,6 +103,34 @@ Partial Class FormDesignImagesDet
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         '
+        'SBBrowseFolder
+        '
+        Me.SBBrowseFolder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBBrowseFolder.Image = CType(resources.GetObject("SBBrowseFolder.Image"), System.Drawing.Image)
+        Me.SBBrowseFolder.Location = New System.Drawing.Point(561, 2)
+        Me.SBBrowseFolder.Name = "SBBrowseFolder"
+        Me.SBBrowseFolder.Size = New System.Drawing.Size(121, 41)
+        Me.SBBrowseFolder.TabIndex = 2
+        Me.SBBrowseFolder.Text = "Browse Folder"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Open File Location"
+        Me.GridColumn3.ColumnEdit = Me.RepositoryItemCheckEdit
+        Me.GridColumn3.FieldName = "open_file_location"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'RepositoryItemCheckEdit
+        '
+        Me.RepositoryItemCheckEdit.AutoHeight = False
+        Me.RepositoryItemCheckEdit.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit.Name = "RepositoryItemCheckEdit"
+        Me.RepositoryItemCheckEdit.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit.PictureGrayed"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureUnchecked"), System.Drawing.Image)
+        '
         'FormDesignImagesDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -111,6 +145,7 @@ Partial Class FormDesignImagesDet
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -122,4 +157,7 @@ Partial Class FormDesignImagesDet
     Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBBrowseFolder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
