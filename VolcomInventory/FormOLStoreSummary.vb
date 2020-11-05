@@ -1169,10 +1169,10 @@
     End Sub
 
     Private Sub BtnViewExpiredOrder_Click(sender As Object, e As EventArgs) Handles BtnViewExpiredOrder.Click
-        viewExpiredOrder()
+        viewExpiredOrder(1)
     End Sub
 
-    Sub viewExpiredOrder()
+    Sub viewExpiredOrder(ByVal id_type As String)
         Cursor = Cursors.WaitCursor
         'Prepare paramater date
         Dim cond_date As String = ""
@@ -1186,10 +1186,16 @@
             date_until_selected = DateTime.Parse(DEExUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+        Dim par_date As String = ""
+        If id_type = "1" Then
+            par_date = "f.order_date>='" + date_from_selected + "' AND f.order_date<='" + date_until_selected + "'"
+        Else
+            par_date = "DATE(f.input_date)>='" + date_from_selected + "' AND DATE(f.input_date)<='" + date_until_selected + "'"
+        End If
         Dim query As String = "SELECT f.id, f.checkout_id, f.order_date, f.order_number, f.customer_name, SUM(f.quantity) AS `total_qty_order`,
         f.input_date, f.process_date, f.error_process
         FROM tb_ol_store_order_fail f 
-        WHERE (f.order_date>='" + date_from_selected + "' AND f.order_date<='" + date_until_selected + "')
+        WHERE (" + par_date + ")
         GROUP BY f.id
         ORDER BY f.id ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1210,5 +1216,9 @@
             exportToXLS(path, "expired order", GCExpiredOrder)
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnViewExpiredOrderBySyncDate_Click(sender As Object, e As EventArgs) Handles BtnViewExpiredOrderBySyncDate.Click
+        viewExpiredOrder(2)
     End Sub
 End Class
