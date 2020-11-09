@@ -132,7 +132,7 @@
         End If
 
         If data.Rows(0)("allow_car") > 0 Then
-            salary_list += template_salary_list.Replace("[list_name]", "Uang Kehadiran").Replace("[allow_car]", Format(data.Rows(0)("allow_house"), "##,##0"))
+            salary_list += template_salary_list.Replace("[list_name]", "Uang Kehadiran").Replace("[list_total]", Format(data.Rows(0)("allow_car"), "##,##0"))
         End If
 
         'include missing
