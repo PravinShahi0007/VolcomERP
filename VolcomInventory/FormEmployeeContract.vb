@@ -57,10 +57,11 @@
             WHERE c.id_emp_contract = " + id_emp_contract + "
         ", -1, True, "", "", "", "")
 
-        Dim data_template As DataTable = execute_query("SELECT template, template_include_missing FROM tb_emp_contract_template WHERE id_contract_type = (SELECT id_contract_type FROM tb_emp_contract WHERE id_emp_contract = " + id_emp_contract + ")", -1, True, "", "", "", "")
+        Dim data_template As DataTable = execute_query("SELECT template, template_include_missing, template_salary_list FROM tb_emp_contract_template WHERE id_contract_type = (SELECT id_contract_type FROM tb_emp_contract WHERE id_emp_contract = " + id_emp_contract + ")", -1, True, "", "", "", "")
 
         Dim template As String = data_template.Rows(0)("template").ToString
         Dim template_include_missing As String = data_template.Rows(0)("template_include_missing").ToString
+        Dim template_salary_list As String = data_template.Rows(0)("template_salary_list").ToString
 
         'length contract
         Dim length_contract As String = ""
@@ -111,63 +112,27 @@
         Dim salary_list As String = ""
 
         If data.Rows(0)("basic_salary") > 0 Then
-            salary_list += "
-                <tr>
-                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Gaji pokok</p></td>
-                    <td><p style =""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"" >:   </p></td>
-                    <td><p style = ""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"" > Rp. " + Format(data.Rows(0)("basic_salary"), "##,##0") + ",-</p></td>
-                </tr>
-            "
+            salary_list += template_salary_list.Replace("[list_name]", "Gaji Pokok").Replace("[list_total]", Format(data.Rows(0)("basic_salary"), "##,##0"))
         End If
 
         If data.Rows(0)("allow_job") > 0 Then
-            salary_list += "
-                <tr>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Tunj. Jabatan</p></td>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_job"), "##,##0") + ",-</p></td>
-                </tr>
-            "
+            salary_list += template_salary_list.Replace("[list_name]", "Tunj. Jabatan").Replace("[list_total]", Format(data.Rows(0)("allow_job"), "##,##0"))
         End If
 
         If data.Rows(0)("allow_meal") > 0 Then
-            salary_list += "
-                <tr>
-                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Uang Makan</p></td>
-                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
-                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_meal"), "##,##0") + ",-</p></td>
-                </tr>
-            "
+            salary_list += template_salary_list.Replace("[list_name]", "Uang Makan").Replace("[list_total]", Format(data.Rows(0)("allow_meal"), "##,##0"))
         End If
 
         If data.Rows(0)("allow_trans") > 0 Then
-            salary_list += "
-                <tr>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Uang Transport</p></td>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_trans"), "##,##0") + ",-</p></td>
-                </tr>
-            "
+            salary_list += template_salary_list.Replace("[list_name]", "Uang Transport").Replace("[list_total]", Format(data.Rows(0)("allow_trans"), "##,##0"))
         End If
 
         If data.Rows(0)("allow_house") > 0 Then
-            salary_list += "
-                <tr>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Uang Perumahan</p></td>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
-                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_house"), "##,##0") + ",-</p></td>
-                </tr>
-            "
+            salary_list += template_salary_list.Replace("[list_name]", "Uang Perumahan").Replace("[list_total]", Format(data.Rows(0)("allow_house"), "##,##0"))
         End If
 
         If data.Rows(0)("allow_car") > 0 Then
-            salary_list += "
-                <tr>
-                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Uang Kehadiran</p></td>
-                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
-                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_car"), "##,##0") + ",-</p></td>
-                </tr>
-            "
+            salary_list += template_salary_list.Replace("[list_name]", "Uang Kehadiran").Replace("[allow_car]", Format(data.Rows(0)("allow_house"), "##,##0"))
         End If
 
         'include missing
