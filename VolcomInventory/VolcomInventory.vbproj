@@ -7331,6 +7331,12 @@
     <Compile Include="ReportAccountingWorksheet.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAdditionalCost.Designer.vb">
+      <DependentUpon>ReportAdditionalCost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAdditionalCost.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportAttnSum.Designer.vb">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </Compile>
@@ -7500,6 +7506,12 @@
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportEmpLeaveStock.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmployeeContract.Designer.vb">
+      <DependentUpon>ReportEmployeeContract.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmployeeContract.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportEmpOvertime.Designer.vb">
@@ -12794,6 +12806,9 @@
     <EmbeddedResource Include="ReportAccountingWorksheet.resx">
       <DependentUpon>ReportAccountingWorksheet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAdditionalCost.resx">
+      <DependentUpon>ReportAdditionalCost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </EmbeddedResource>
@@ -12880,6 +12895,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmployeeContract.resx">
+      <DependentUpon>ReportEmployeeContract.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpOvertime.resx">
       <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
