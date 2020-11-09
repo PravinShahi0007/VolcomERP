@@ -6183,7 +6183,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`,ccvendor.id_comp  AS id_vendor, pnd.id_comp,  0 AS `qty`,IF(pnd.id_dc=2,0,ABS(pnd.value)) AS `debit`, IF(pnd.id_dc=2,ABS(pnd.value),0) AS `credit`, pnd.id_currency, pnd.kurs, IF(pnd.id_dc=2,0,ABS(pnd.val_bef_kurs)) AS debit_valas, IF(pnd.id_dc=2,ABS(pnd.val_bef_kurs),0) AS credit_valas,pnd.note AS `note`,159 AS report_mark_type,pn.id_pn AS id_report, pn.number AS report_number,pnd.report_mark_type,pnd.id_report,pnd.number,pnd.vendor
 	                                    FROM tb_pn_det pnd
 	                                    INNER JOIN tb_pn pn ON pnd.id_pn=pn.id_pn
-                                        INNER JOIN tb_m_comp_contact ccvendor ON ccvendor.id_comp_contact=py.id_comp_contact
+                                        INNER JOIN tb_m_comp_contact ccvendor ON ccvendor.id_comp_contact=pn.id_comp_contact
 	                                    WHERE pn.id_pn=" & id_report & "                 
                                     )trx WHERE trx.debit != 0 OR trx.credit != 0"
                 execute_non_query(qjd, True, "", "", "", "")
@@ -8860,6 +8860,33 @@ WHERE pps.`id_mat_det_pps`='" & id_report & "';SELECT LAST_INSERT_ID() "
             'update status
             query = String.Format("UPDATE tb_m_mat_det_pps SET id_report_status='{0}' WHERE id_mat_det_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "274" Then
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim q As String = "SELECT pps.`id_type`,SUM(ppsd.`qty`*ppsd.`value`) AS amount,SUM(ppsd.`qty_est`*ppsd.`value_est`) AS amount_est,ppsdsg.qty_order,SUM(ppsd.`qty`*ppsd.`value`)/ppsdsg.qty_order AS cost,SUM(ppsd.`qty_est`*ppsd.`value_est`)/ppsdsg.qty_order AS cost_est
+FROM `tb_additional_cost_pps_det` ppsd
+INNER JOIN `tb_additional_cost_pps` pps ON pps.`id_additional_cost_pps`=ppsd.`id_additional_cost_pps`
+LEFT JOIN 
+(
+	SELECT SUM(qty_order) AS qty_order ,id_additional_cost_pps
+	FROM `tb_additional_cost_pps_design`
+	GROUP BY id_additional_cost_pps
+)ppsdsg ON ppsdsg.id_additional_cost_pps=pps.id_additional_cost_pps
+WHERE pps.id_additional_cost_pps='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    If dt.Rows(0)("id_type").ToString = "1" Then
+                        'ecop
+
+                    ElseIf dt.Rows(0)("id_type").ToString = "2" Then
+                        'realization
+
+                    End If
+                End If
+            End If
         End If
 
         'adding lead time
