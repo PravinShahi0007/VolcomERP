@@ -33,7 +33,176 @@
     End Sub
 
     Sub print(id_emp_contract As String)
+        Dim report As ReportEmployeeContract = New ReportEmployeeContract
 
+        Dim director As DataTable = execute_query("
+            SELECT tb_m_employee.employee_name AS director_name, tb_m_employee.employee_position AS director_position
+            FROM tb_m_employee 
+            WHERE tb_m_employee.id_employee = (SELECT id_emp_director FROM tb_opt LIMIT 1)
+        ", -1, True, "", "", "", "")
+
+        Dim hrd_manager As DataTable = execute_query("
+            SELECT tb_m_employee.employee_name AS hrd_manager_name, tb_m_employee.employee_position AS hrd_manager_position
+            FROM tb_m_departement 
+            LEFT JOIN tb_m_user ON tb_m_departement.id_user_head = tb_m_user.id_user 
+            LEFT JOIN tb_m_employee ON tb_m_user.id_employee = tb_m_employee.id_employee
+            WHERE tb_m_departement.id_departement = 8
+        ", -1, True, "", "", "", "")
+
+        Dim data As DataTable = execute_query("
+            SELECT c.number, c.employee_name, c.employee_position, c.employee_code, c.employee_ktp, c.address_primary, IF(c.id_departement = 17, s.departement_sub, d.departement) AS departement, IF(d.is_store = 1, '7 (tujuh) jam', '8 (delapan) jam') AS working_hours, c.basic_salary, c.allow_job, c.allow_meal, c.allow_trans, c.allow_house, c.allow_car, (c.basic_salary + c.allow_job + c.allow_meal + c.allow_trans + c.allow_house + c.allow_car) AS total_salary, IFNULL((FLOOR((TIMESTAMPDIFF(DAY, c.start_period, c.end_period)) / 30)), 0) AS length_contract, DATE_FORMAT(c.start_period, '%d %M %Y') AS start_period, DATE_FORMAT(c.end_period, '%d %M %Y') AS end_period, DATE_FORMAT(c.created_at, '%d %M %Y') AS created_at, IF((SELECT list_departement_include_missing FROM tb_emp_contract_template WHERE id_contract_type = c.id_contract_type) LIKE CONCAT('%[', c.id_departement, ']%'), 1, 2) AS include_missing
+            FROM tb_emp_contract AS c
+            LEFT JOIN tb_m_departement AS d ON c.id_departement = d.id_departement
+            LEFT JOIN tb_m_departement_sub AS s ON c.id_departement_sub = s.id_departement_sub
+            WHERE c.id_emp_contract = " + id_emp_contract + "
+        ", -1, True, "", "", "", "")
+
+        Dim data_template As DataTable = execute_query("SELECT template, template_include_missing FROM tb_emp_contract_template WHERE id_contract_type = (SELECT id_contract_type FROM tb_emp_contract WHERE id_emp_contract = " + id_emp_contract + ")", -1, True, "", "", "", "")
+
+        Dim template As String = data_template.Rows(0)("template").ToString
+        Dim template_include_missing As String = data_template.Rows(0)("template_include_missing").ToString
+
+        'length contract
+        Dim length_contract As String = ""
+
+        If data.Rows(0)("length_contract") > 0 Then
+            If data.Rows(0)("length_contract") < 12 Then
+                length_contract = data.Rows(0)("length_contract").ToString + " (" + execute_query("SELECT `string` FROM tb_lookup_number_to_string WHERE `number` = " + data.Rows(0)("length_contract").ToString, 0, True, "", "", "", "") + ") bulan"
+            Else
+                Dim yr As String = Math.Round(data.Rows(0)("length_contract") / 12, 0).ToString
+                Dim mr As String = (data.Rows(0)("length_contract") Mod 12).ToString
+
+                length_contract = yr + " (" + execute_query("SELECT `string` FROM tb_lookup_number_to_string WHERE `number` = " + yr, 0, True, "", "", "", "") + ") tahun"
+
+                If mr > 0 Then
+                    length_contract += " " + mr + " (" + execute_query("SELECT `string` FROM tb_lookup_number_to_string WHERE `number` = " + mr, 0, True, "", "", "", "") + ") bulan"
+                End If
+            End If
+        End If
+
+        'salary detail
+        Dim salary_detail As String = ""
+
+        If data.Rows(0)("basic_salary") > 0 Then
+            salary_detail += "Gaji pokok Rp. " + Format(data.Rows(0)("basic_salary"), "##,##0") + ",-, "
+        End If
+
+        If data.Rows(0)("allow_job") > 0 Then
+            salary_detail += "Tunjangan jabatan Rp. " + Format(data.Rows(0)("allow_job"), "##,##0") + ",-, "
+        End If
+
+        If data.Rows(0)("allow_meal") > 0 Then
+            salary_detail += "Uang makan Rp. " + Format(data.Rows(0)("allow_meal"), "##,##0") + ",-, "
+        End If
+
+        If data.Rows(0)("allow_trans") > 0 Then
+            salary_detail += "Uang transport Rp. " + Format(data.Rows(0)("allow_trans"), "##,##0") + ",-, "
+        End If
+
+        If data.Rows(0)("allow_house") > 0 Then
+            salary_detail += "Uang perumahan Rp. " + Format(data.Rows(0)("allow_house"), "##,##0") + ",-, "
+        End If
+
+        If data.Rows(0)("allow_car") > 0 Then
+            salary_detail += "Uang kehadiran Rp. " + Format(data.Rows(0)("allow_car"), "##,##0") + ",-"
+        End If
+
+        'salary list
+        Dim salary_list As String = ""
+
+        If data.Rows(0)("basic_salary") > 0 Then
+            salary_list += "
+                <tr>
+                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Gaji pokok</p></td>
+                    <td><p style =""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"" >:   </p></td>
+                    <td><p style = ""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"" > Rp. " + Format(data.Rows(0)("basic_salary"), "##,##0") + ",-</p></td>
+                </tr>
+            "
+        End If
+
+        If data.Rows(0)("allow_job") > 0 Then
+            salary_list += "
+                <tr>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Tunj. Jabatan</p></td>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_job"), "##,##0") + ",-</p></td>
+                </tr>
+            "
+        End If
+
+        If data.Rows(0)("allow_meal") > 0 Then
+            salary_list += "
+                <tr>
+                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Uang Makan</p></td>
+                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
+                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_meal"), "##,##0") + ",-</p></td>
+                </tr>
+            "
+        End If
+
+        If data.Rows(0)("allow_trans") > 0 Then
+            salary_list += "
+                <tr>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Uang Transport</p></td>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_trans"), "##,##0") + ",-</p></td>
+                </tr>
+            "
+        End If
+
+        If data.Rows(0)("allow_house") > 0 Then
+            salary_list += "
+                <tr>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Uang Perumahan</p></td>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
+                  <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_house"), "##,##0") + ",-</p></td>
+                </tr>
+            "
+        End If
+
+        If data.Rows(0)("allow_car") > 0 Then
+            salary_list += "
+                <tr>
+                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Uang Kehadiran</p></td>
+                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">:</p></td>
+                    <td><p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt;"">Rp. " + Format(data.Rows(0)("allow_car"), "##,##0") + ",-</p></td>
+                </tr>
+            "
+        End If
+
+        'include missing
+        Dim include_missing As String = ""
+
+        If data.Rows(0)("include_missing").ToString = "1" Then
+            include_missing = template_include_missing
+        End If
+
+        template = template.Replace("[number]", data.Rows(0)("number").ToString)
+        template = template.Replace("[hrd_manager_name]", hrd_manager.Rows(0)("hrd_manager_name").ToString)
+        template = template.Replace("[hrd_manager_position]", hrd_manager.Rows(0)("hrd_manager_position").ToString)
+        template = template.Replace("[director_name]", director.Rows(0)("director_name").ToString)
+        template = template.Replace("[director_position]", director.Rows(0)("director_position").ToString)
+        template = template.Replace("[employee_name]", data.Rows(0)("employee_name").ToString)
+        template = template.Replace("[address_primary]", data.Rows(0)("address_primary").ToString)
+        template = template.Replace("[employee_position]", data.Rows(0)("employee_position").ToString)
+        template = template.Replace("[employee_code]", data.Rows(0)("employee_code").ToString)
+        template = template.Replace("[employee_ktp]", data.Rows(0)("employee_ktp").ToString)
+        template = template.Replace("[departement]", data.Rows(0)("departement").ToString)
+        template = template.Replace("[working_hours]", data.Rows(0)("working_hours").ToString)
+        template = template.Replace("[total_salary]", Format(data.Rows(0)("total_salary"), "##,##0"))
+        template = template.Replace("[salary_detail]", salary_detail)
+        template = template.Replace("[salary_list]", salary_list)
+        template = template.Replace("[length_contract]", length_contract)
+        template = template.Replace("[start_period]", data.Rows(0)("start_period").ToString)
+        template = template.Replace("[end_period]", data.Rows(0)("end_period").ToString)
+        template = template.Replace("[include_missing]", include_missing)
+        template = template.Replace("[created_at]", data.Rows(0)("created_at").ToString)
+
+        report.XrRichText.Html = template
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        Tool.ShowPreviewDialog()
     End Sub
 
     Private Sub PrintToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrintToolStripMenuItem.Click

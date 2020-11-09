@@ -7508,6 +7508,12 @@
     <Compile Include="ReportEmpLeaveStock.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmployeeContract.Designer.vb">
+      <DependentUpon>ReportEmployeeContract.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmployeeContract.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpOvertime.Designer.vb">
       <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
     </Compile>
@@ -12889,6 +12895,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmployeeContract.resx">
+      <DependentUpon>ReportEmployeeContract.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpOvertime.resx">
       <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
