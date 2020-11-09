@@ -12800,6 +12800,9 @@
     <EmbeddedResource Include="ReportAccountingWorksheet.resx">
       <DependentUpon>ReportAccountingWorksheet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAdditionalCost.resx">
+      <DependentUpon>ReportAdditionalCost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </EmbeddedResource>
