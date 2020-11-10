@@ -1843,6 +1843,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmployeeContractDet.ShowDialog()
         ElseIf formName = "FormSalesReturnOrderMail" Then
             FormSalesReturnOrderMailDet.ShowDialog()
+        ElseIf formName = "FormInbound3PL" Then
+            FormInboundAWB.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
