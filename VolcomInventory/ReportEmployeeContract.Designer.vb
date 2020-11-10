@@ -21,11 +21,11 @@ Partial Public Class ReportEmployeeContract
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportEmployeeContract))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrRichText = New DevExpress.XtraReports.UI.XRRichText()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrRichText = New DevExpress.XtraReports.UI.XRRichText()
         CType(Me.XrRichText, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -37,6 +37,15 @@ Partial Public Class ReportEmployeeContract
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrRichText
+        '
+        Me.XrRichText.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XrRichText.KeepTogether = True
+        Me.XrRichText.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrRichText.Name = "XrRichText"
+        Me.XrRichText.SerializableRtfString = resources.GetString("XrRichText.SerializableRtfString")
+        Me.XrRichText.SizeF = New System.Drawing.SizeF(687.0!, 22.99999!)
+        '
         'TopMargin
         '
         Me.TopMargin.HeightF = 100.0!
@@ -46,7 +55,7 @@ Partial Public Class ReportEmployeeContract
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 100.0!
+        Me.BottomMargin.HeightF = 90.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -62,21 +71,15 @@ Partial Public Class ReportEmployeeContract
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(689.9998!, 115.0!)
-        '
-        'XrRichText
-        '
-        Me.XrRichText.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.XrRichText.KeepTogether = True
-        Me.XrRichText.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrRichText.Name = "XrRichText"
-        Me.XrRichText.SerializableRtfString = resources.GetString("XrRichText.SerializableRtfString")
-        Me.XrRichText.SizeF = New System.Drawing.SizeF(689.9999!, 22.99999!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(687.0!, 115.0!)
         '
         'ReportEmployeeContract
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
-        Me.Margins = New System.Drawing.Printing.Margins(80, 80, 100, 100)
+        Me.Margins = New System.Drawing.Printing.Margins(70, 70, 100, 90)
+        Me.PageHeight = 1169
+        Me.PageWidth = 827
+        Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
         CType(Me.XrRichText, System.ComponentModel.ISupportInitialize).EndInit()
