@@ -10,6 +10,8 @@
     'revise
     Public is_revise As String = "-1"
     Public id_mat_det_revise As String = "-1"
+    Public is_view As String = "-1"
+    Public id_report_status As String = "-1"
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
         Close()
@@ -290,6 +292,7 @@ WHERE pps.id_mat_det_pps='" + id_pps + "'"
             TEFOBPrice.EditValue = data.Rows(0)("fob_price")
             TEUOM.Text = data.Rows(0)("uom").ToString
             TxtMaterialTypeCode.Text = data.Rows(0)("mat_code").ToString
+            id_report_status = data.Rows(0)("id_report_status").ToString
             '
             If is_revise = "1" Then
                 LREvise.Visible = True
@@ -322,6 +325,15 @@ INNER JOIN tb_m_code_detail cd WHERE  mdpc.id_code_detail = cd.id_code_detail AN
                             End If
                         Next
                     Next
+                End If
+            End If
+            If is_view = "1" Then
+                BSave.Visible = False
+            Else
+                If id_report_status = "6" Or id_report_status = "5" Then
+                    BSave.Visible = False
+                Else
+                    BSave.Visible = True
                 End If
             End If
         End If
@@ -490,6 +502,7 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         '273
+        FormReportMark.is_view = is_view
         FormReportMark.id_report = id_pps
         FormReportMark.report_mark_type = "273"
         FormReportMark.form_origin = Name
