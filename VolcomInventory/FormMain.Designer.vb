@@ -417,6 +417,7 @@ Partial Class FormMain
         Me.NBPromoCollection = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBVerificationMasterOL = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSendEmailReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInboundAwb = New DevExpress.XtraNavBar.NavBarItem()
         Me.NB3PLMailReturn = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
@@ -502,7 +503,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBInboundAwb = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3298,6 +3298,12 @@ Partial Class FormMain
         Me.NBSendEmailReturn.Name = "NBSendEmailReturn"
         Me.NBSendEmailReturn.SmallImage = CType(resources.GetObject("NBSendEmailReturn.SmallImage"), System.Drawing.Image)
         '
+        'NBInboundAwb
+        '
+        Me.NBInboundAwb.Caption = "Inbound"
+        Me.NBInboundAwb.Name = "NBInboundAwb"
+        Me.NBInboundAwb.SmallImage = CType(resources.GetObject("NBInboundAwb.SmallImage"), System.Drawing.Image)
+        '
         'NB3PLMailReturn
         '
         Me.NB3PLMailReturn.Caption = "Propose Return Mail"
@@ -3889,12 +3895,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBInboundAwb
-        '
-        Me.NBInboundAwb.Caption = "Inbound "
-        Me.NBInboundAwb.Name = "NBInboundAwb"
-        Me.NBInboundAwb.SmallImage = CType(resources.GetObject("NBInboundAwb.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '

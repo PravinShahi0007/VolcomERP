@@ -2353,6 +2353,12 @@
     <Compile Include="FormInbound3PL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInboundAWB.Designer.vb">
+      <DependentUpon>FormInboundAWB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInboundAWB.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormInvMat.Designer.vb">
       <DependentUpon>FormInvMat.vb</DependentUpon>
     </Compile>
@@ -9907,6 +9913,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInbound3PL.resx">
       <DependentUpon>FormInbound3PL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInboundAWB.resx">
+      <DependentUpon>FormInboundAWB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvMat.resx">
       <DependentUpon>FormInvMat.vb</DependentUpon>
