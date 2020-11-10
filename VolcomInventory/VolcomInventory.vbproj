@@ -143,6 +143,14 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySqlBackup.NET.2.0.12\lib\net40\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -2337,6 +2345,12 @@
       <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
     </Compile>
     <Compile Include="FormHistoryProposeChanges.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInbound3PL.Designer.vb">
+      <DependentUpon>FormInbound3PL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInbound3PL.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormInvMat.Designer.vb">
@@ -9890,6 +9904,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistoryProposeChanges.resx">
       <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInbound3PL.resx">
+      <DependentUpon>FormInbound3PL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvMat.resx">
       <DependentUpon>FormInvMat.vb</DependentUpon>

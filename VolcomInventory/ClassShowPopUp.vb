@@ -1314,7 +1314,9 @@ GROUP BY rec.`id_prod_order`"
             FormMatStockSummary.ShowDialog()
         ElseIf report_mark_type = "273" Then
             'raw material propose
+            FormMasterRawMatPps.action = "upd"
             FormMasterRawMatPps.id_pps = id_report
+            FormMasterRawMatPps.is_view = "1"
             FormMasterRawMatPps.ShowDialog()
         ElseIf report_mark_type = "274" Then
             'Propose additional cost
