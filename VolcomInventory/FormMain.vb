@@ -1843,6 +1843,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmployeeContractDet.ShowDialog()
         ElseIf formName = "FormSalesReturnOrderMail" Then
             FormSalesReturnOrderMailDet.ShowDialog()
+        ElseIf formName = "FormInbound3PL" Then
+            FormInboundAWB.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -15513,6 +15515,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesReturnOrderMail.Show()
             FormSalesReturnOrderMail.WindowState = FormWindowState.Maximized
             FormSalesReturnOrderMail.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInboundAwb_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInboundAwb.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormInbound3PL.MdiParent = Me
+            FormInbound3PL.Show()
+            FormInbound3PL.WindowState = FormWindowState.Maximized
+            FormInbound3PL.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
