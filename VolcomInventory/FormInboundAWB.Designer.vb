@@ -29,46 +29,48 @@ Partial Class FormInboundAWB
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEAwb = New DevExpress.XtraEditors.TextEdit()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCdetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPToko = New DevExpress.XtraTab.XtraTabPage()
         Me.GCStore = New DevExpress.XtraGrid.GridControl()
         Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BUpdateStore = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDelStore = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddStore = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPKoli = New DevExpress.XtraTab.XtraTabPage()
         Me.GCKoli = New DevExpress.XtraGrid.GridControl()
         Me.GVKoli = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.BSubmitAwb = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BUpdateKoli = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelKoli = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddKoli = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BNext = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSubmitAwb = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEAwb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCdetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCdetail.SuspendLayout()
         Me.XTPToko.SuspendLayout()
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +99,7 @@ Partial Class FormInboundAWB
         '
         'SLEDelType
         '
-        Me.SLEDelType.Location = New System.Drawing.Point(112, 38)
+        Me.SLEDelType.Location = New System.Drawing.Point(112, 12)
         Me.SLEDelType.Name = "SLEDelType"
         Me.SLEDelType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDelType.Properties.View = Me.GridView1
@@ -113,7 +115,7 @@ Partial Class FormInboundAWB
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(13, 41)
+        Me.LabelControl3.Location = New System.Drawing.Point(13, 15)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 4
@@ -121,7 +123,7 @@ Partial Class FormInboundAWB
         '
         'SLEVendor
         '
-        Me.SLEVendor.Location = New System.Drawing.Point(112, 12)
+        Me.SLEVendor.Location = New System.Drawing.Point(112, 38)
         Me.SLEVendor.Name = "SLEVendor"
         Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEVendor.Properties.View = Me.SearchLookUpEdit1View
@@ -137,7 +139,7 @@ Partial Class FormInboundAWB
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(13, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(13, 41)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(17, 13)
         Me.LabelControl2.TabIndex = 1
@@ -151,31 +153,33 @@ Partial Class FormInboundAWB
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "AWB / Resi Number"
         '
-        'TextEdit1
+        'TEAwb
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(112, 11)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(417, 20)
-        Me.TextEdit1.TabIndex = 2
+        Me.TEAwb.Location = New System.Drawing.Point(112, 11)
+        Me.TEAwb.Name = "TEAwb"
+        Me.TEAwb.Size = New System.Drawing.Size(417, 20)
+        Me.TEAwb.TabIndex = 2
         '
         'EPMaterial
         '
         Me.EPMaterial.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPMaterial.ContainerControl = Me
         '
-        'XtraTabControl1
+        'XTCdetail
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 113)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPToko
-        Me.XtraTabControl1.Size = New System.Drawing.Size(990, 431)
-        Me.XtraTabControl1.TabIndex = 2
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPToko, Me.XTPKoli})
+        Me.XTCdetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCdetail.Enabled = False
+        Me.XTCdetail.Location = New System.Drawing.Point(0, 113)
+        Me.XTCdetail.Name = "XTCdetail"
+        Me.XTCdetail.SelectedTabPage = Me.XTPToko
+        Me.XTCdetail.Size = New System.Drawing.Size(990, 431)
+        Me.XTCdetail.TabIndex = 2
+        Me.XTCdetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPToko, Me.XTPKoli})
         '
         'XTPToko
         '
         Me.XTPToko.Controls.Add(Me.GCStore)
+        Me.XTPToko.Controls.Add(Me.BUpdateStore)
         Me.XTPToko.Controls.Add(Me.PanelControl3)
         Me.XTPToko.Name = "XTPToko"
         Me.XTPToko.Size = New System.Drawing.Size(984, 403)
@@ -187,7 +191,7 @@ Partial Class FormInboundAWB
         Me.GCStore.Location = New System.Drawing.Point(0, 42)
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
-        Me.GCStore.Size = New System.Drawing.Size(984, 361)
+        Me.GCStore.Size = New System.Drawing.Size(984, 329)
         Me.GCStore.TabIndex = 1
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -222,39 +226,54 @@ Partial Class FormInboundAWB
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 1271
         '
+        'BUpdateStore
+        '
+        Me.BUpdateStore.Appearance.BackColor = System.Drawing.Color.DodgerBlue
+        Me.BUpdateStore.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUpdateStore.Appearance.Options.UseBackColor = True
+        Me.BUpdateStore.Appearance.Options.UseForeColor = True
+        Me.BUpdateStore.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BUpdateStore.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BUpdateStore.Location = New System.Drawing.Point(0, 371)
+        Me.BUpdateStore.Name = "BUpdateStore"
+        Me.BUpdateStore.Size = New System.Drawing.Size(984, 32)
+        Me.BUpdateStore.TabIndex = 2
+        Me.BUpdateStore.Text = "Update Store List"
+        '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.SimpleButton3)
-        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl3.Controls.Add(Me.BDelStore)
+        Me.PanelControl3.Controls.Add(Me.BAddStore)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(984, 42)
         Me.PanelControl3.TabIndex = 0
         '
-        'SimpleButton3
+        'BDelStore
         '
-        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton3.Image = CType(resources.GetObject("SimpleButton3.Image"), System.Drawing.Image)
-        Me.SimpleButton3.Location = New System.Drawing.Point(809, 2)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(84, 38)
-        Me.SimpleButton3.TabIndex = 2
-        Me.SimpleButton3.Text = "Delete"
+        Me.BDelStore.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelStore.Image = CType(resources.GetObject("BDelStore.Image"), System.Drawing.Image)
+        Me.BDelStore.Location = New System.Drawing.Point(809, 2)
+        Me.BDelStore.Name = "BDelStore"
+        Me.BDelStore.Size = New System.Drawing.Size(84, 38)
+        Me.BDelStore.TabIndex = 2
+        Me.BDelStore.Text = "Delete"
         '
-        'SimpleButton1
+        'BAddStore
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(893, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(89, 38)
-        Me.SimpleButton1.TabIndex = 0
-        Me.SimpleButton1.Text = "Add"
+        Me.BAddStore.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddStore.Image = CType(resources.GetObject("BAddStore.Image"), System.Drawing.Image)
+        Me.BAddStore.Location = New System.Drawing.Point(893, 2)
+        Me.BAddStore.Name = "BAddStore"
+        Me.BAddStore.Size = New System.Drawing.Size(89, 38)
+        Me.BAddStore.TabIndex = 0
+        Me.BAddStore.Text = "Add"
         '
         'XTPKoli
         '
         Me.XTPKoli.Controls.Add(Me.GCKoli)
+        Me.XTPKoli.Controls.Add(Me.BUpdateKoli)
         Me.XTPKoli.Controls.Add(Me.PanelControl2)
         Me.XTPKoli.Name = "XTPKoli"
         Me.XTPKoli.Size = New System.Drawing.Size(984, 403)
@@ -266,7 +285,7 @@ Partial Class FormInboundAWB
         Me.GCKoli.Location = New System.Drawing.Point(0, 42)
         Me.GCKoli.MainView = Me.GVKoli
         Me.GCKoli.Name = "GCKoli"
-        Me.GCKoli.Size = New System.Drawing.Size(984, 361)
+        Me.GCKoli.Size = New System.Drawing.Size(984, 329)
         Me.GCKoli.TabIndex = 2
         Me.GCKoli.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKoli})
         '
@@ -290,7 +309,7 @@ Partial Class FormInboundAWB
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
-        Me.GridColumn5.Width = 453
+        Me.GridColumn5.Width = 433
         '
         'GridColumn6
         '
@@ -301,65 +320,7 @@ Partial Class FormInboundAWB
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
-        Me.GridColumn6.Width = 213
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.SimpleButton4)
-        Me.PanelControl2.Controls.Add(Me.SimpleButton5)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(984, 42)
-        Me.PanelControl2.TabIndex = 1
-        '
-        'SimpleButton4
-        '
-        Me.SimpleButton4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton4.Image = CType(resources.GetObject("SimpleButton4.Image"), System.Drawing.Image)
-        Me.SimpleButton4.Location = New System.Drawing.Point(809, 2)
-        Me.SimpleButton4.Name = "SimpleButton4"
-        Me.SimpleButton4.Size = New System.Drawing.Size(84, 38)
-        Me.SimpleButton4.TabIndex = 2
-        Me.SimpleButton4.Text = "Delete"
-        '
-        'SimpleButton5
-        '
-        Me.SimpleButton5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton5.Image = CType(resources.GetObject("SimpleButton5.Image"), System.Drawing.Image)
-        Me.SimpleButton5.Location = New System.Drawing.Point(893, 2)
-        Me.SimpleButton5.Name = "SimpleButton5"
-        Me.SimpleButton5.Size = New System.Drawing.Size(89, 38)
-        Me.SimpleButton5.TabIndex = 0
-        Me.SimpleButton5.Text = "Add"
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl4.Controls.Add(Me.BSubmitAwb)
-        Me.PanelControl4.Controls.Add(Me.LabelControl1)
-        Me.PanelControl4.Controls.Add(Me.TextEdit1)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 70)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(990, 43)
-        Me.PanelControl4.TabIndex = 3
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Location = New System.Drawing.Point(605, 9)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(64, 23)
-        Me.SimpleButton2.TabIndex = 4
-        Me.SimpleButton2.Text = "Next"
-        '
-        'BSubmitAwb
-        '
-        Me.BSubmitAwb.Location = New System.Drawing.Point(535, 9)
-        Me.BSubmitAwb.Name = "BSubmitAwb"
-        Me.BSubmitAwb.Size = New System.Drawing.Size(64, 23)
-        Me.BSubmitAwb.TabIndex = 3
-        Me.BSubmitAwb.Text = "Submit"
+        Me.GridColumn6.Width = 203
         '
         'GridColumn7
         '
@@ -370,7 +331,7 @@ Partial Class FormInboundAWB
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 230
+        Me.GridColumn7.Width = 219
         '
         'GridColumn8
         '
@@ -381,7 +342,7 @@ Partial Class FormInboundAWB
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 230
+        Me.GridColumn8.Width = 219
         '
         'GridColumn9
         '
@@ -391,8 +352,8 @@ Partial Class FormInboundAWB
         Me.GridColumn9.FieldName = "berat"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
-        Me.GridColumn9.Width = 230
+        Me.GridColumn9.VisibleIndex = 6
+        Me.GridColumn9.Width = 215
         '
         'GridColumn10
         '
@@ -402,14 +363,8 @@ Partial Class FormInboundAWB
         Me.GridColumn10.FieldName = "berat_dimensi"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 4
-        Me.GridColumn10.Width = 276
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Divide By"
-        Me.GridColumn11.FieldName = "divide_by"
-        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn10.VisibleIndex = 5
+        Me.GridColumn10.Width = 251
         '
         'GridColumn12
         '
@@ -417,12 +372,94 @@ Partial Class FormInboundAWB
         Me.GridColumn12.FieldName = "uom"
         Me.GridColumn12.Name = "GridColumn12"
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Divide By"
+        Me.GridColumn11.FieldName = "divide_by"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 92
+        '
+        'BUpdateKoli
+        '
+        Me.BUpdateKoli.Appearance.BackColor = System.Drawing.Color.DodgerBlue
+        Me.BUpdateKoli.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUpdateKoli.Appearance.Options.UseBackColor = True
+        Me.BUpdateKoli.Appearance.Options.UseForeColor = True
+        Me.BUpdateKoli.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BUpdateKoli.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BUpdateKoli.Location = New System.Drawing.Point(0, 371)
+        Me.BUpdateKoli.Name = "BUpdateKoli"
+        Me.BUpdateKoli.Size = New System.Drawing.Size(984, 32)
+        Me.BUpdateKoli.TabIndex = 3
+        Me.BUpdateKoli.Text = "Update Koli"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BDelKoli)
+        Me.PanelControl2.Controls.Add(Me.BAddKoli)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(984, 42)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'BDelKoli
+        '
+        Me.BDelKoli.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelKoli.Image = CType(resources.GetObject("BDelKoli.Image"), System.Drawing.Image)
+        Me.BDelKoli.Location = New System.Drawing.Point(809, 2)
+        Me.BDelKoli.Name = "BDelKoli"
+        Me.BDelKoli.Size = New System.Drawing.Size(84, 38)
+        Me.BDelKoli.TabIndex = 2
+        Me.BDelKoli.Text = "Delete"
+        '
+        'BAddKoli
+        '
+        Me.BAddKoli.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddKoli.Image = CType(resources.GetObject("BAddKoli.Image"), System.Drawing.Image)
+        Me.BAddKoli.Location = New System.Drawing.Point(893, 2)
+        Me.BAddKoli.Name = "BAddKoli"
+        Me.BAddKoli.Size = New System.Drawing.Size(89, 38)
+        Me.BAddKoli.TabIndex = 0
+        Me.BAddKoli.Text = "Add"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.BNext)
+        Me.PanelControl4.Controls.Add(Me.BSubmitAwb)
+        Me.PanelControl4.Controls.Add(Me.LabelControl1)
+        Me.PanelControl4.Controls.Add(Me.TEAwb)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 70)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(990, 43)
+        Me.PanelControl4.TabIndex = 3
+        '
+        'BNext
+        '
+        Me.BNext.Enabled = False
+        Me.BNext.Location = New System.Drawing.Point(605, 9)
+        Me.BNext.Name = "BNext"
+        Me.BNext.Size = New System.Drawing.Size(64, 23)
+        Me.BNext.TabIndex = 4
+        Me.BNext.Text = "Next AWB"
+        '
+        'BSubmitAwb
+        '
+        Me.BSubmitAwb.Location = New System.Drawing.Point(535, 9)
+        Me.BSubmitAwb.Name = "BSubmitAwb"
+        Me.BSubmitAwb.Size = New System.Drawing.Size(64, 23)
+        Me.BSubmitAwb.TabIndex = 3
+        Me.BSubmitAwb.Text = "Submit"
+        '
         'FormInboundAWB
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(990, 544)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCdetail)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -438,10 +475,10 @@ Partial Class FormInboundAWB
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEAwb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCdetail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCdetail.ResumeLayout(False)
         Me.XTPToko.ResumeLayout(False)
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).EndInit()
@@ -460,7 +497,7 @@ Partial Class FormInboundAWB
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEAwb As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
@@ -469,7 +506,7 @@ Partial Class FormInboundAWB
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents EPMaterial As ErrorProvider
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCdetail As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPToko As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCStore As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVStore As DevExpress.XtraGrid.Views.Grid.GridView
@@ -478,8 +515,8 @@ Partial Class FormInboundAWB
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XTPKoli As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BDelStore As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddStore As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCKoli As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVKoli As DevExpress.XtraGrid.Views.Grid.GridView
@@ -487,9 +524,9 @@ Partial Class FormInboundAWB
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton5 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BDelKoli As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddKoli As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BNext As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSubmitAwb As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
@@ -497,4 +534,6 @@ Partial Class FormInboundAWB
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BUpdateStore As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BUpdateKoli As DevExpress.XtraEditors.SimpleButton
 End Class
