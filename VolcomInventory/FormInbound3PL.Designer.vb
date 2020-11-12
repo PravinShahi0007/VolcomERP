@@ -31,6 +31,11 @@ Partial Class FormInbound3PL
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -41,6 +46,7 @@ Partial Class FormInbound3PL
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCAwb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAwb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -116,15 +122,19 @@ Partial Class FormInbound3PL
         Me.GCAwb.Location = New System.Drawing.Point(0, 47)
         Me.GCAwb.MainView = Me.GVAwb
         Me.GCAwb.Name = "GCAwb"
+        Me.GCAwb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
         Me.GCAwb.Size = New System.Drawing.Size(1041, 544)
         Me.GCAwb.TabIndex = 1
         Me.GCAwb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAwb})
         '
         'GVAwb
         '
-        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn6, Me.GridColumn3, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5})
         Me.GVAwb.GridControl = Me.GCAwb
         Me.GVAwb.Name = "GVAwb"
+        Me.GVAwb.OptionsBehavior.Editable = False
+        Me.GVAwb.OptionsBehavior.ReadOnly = True
+        Me.GVAwb.OptionsView.RowAutoHeight = True
         Me.GVAwb.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -160,6 +170,43 @@ Partial Class FormInbound3PL
         Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 214
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Store"
+        Me.GridColumn7.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumn7.FieldName = "store_list"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Total Koli"
+        Me.GridColumn8.FieldName = "total_koli"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 5
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Total Berat"
+        Me.GridColumn9.FieldName = "total_berat"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 6
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Total Berat Dimensi"
+        Me.GridColumn10.FieldName = "total_berat_dimensi"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 7
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Created By"
@@ -177,7 +224,7 @@ Partial Class FormInbound3PL
         Me.GridColumn5.FieldName = "created_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 8
         Me.GridColumn5.Width = 222
         '
         'FormInbound3PL
@@ -201,6 +248,7 @@ Partial Class FormInbound3PL
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCAwb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAwb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -219,4 +267,9 @@ Partial Class FormInbound3PL
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
