@@ -24,9 +24,14 @@ Partial Class FormInboundAWB
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEDelType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TEAwb = New DevExpress.XtraEditors.TextEdit()
@@ -35,9 +40,11 @@ Partial Class FormInboundAWB
         Me.XTPToko = New DevExpress.XtraTab.XtraTabPage()
         Me.GCStore = New DevExpress.XtraGrid.GridControl()
         Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLECompany = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BUpdateStore = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDelStore = New DevExpress.XtraEditors.SimpleButton()
@@ -74,6 +81,8 @@ Partial Class FormInboundAWB
         Me.XTPToko.SuspendLayout()
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLECompany, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         Me.XTPKoli.SuspendLayout()
@@ -108,10 +117,25 @@ Partial Class FormInboundAWB
         '
         'GridView1
         '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID"
+        Me.GridColumn13.FieldName = "id_del_type"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Delivery Type"
+        Me.GridColumn14.FieldName = "del_type"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
         '
         'LabelControl3
         '
@@ -132,10 +156,33 @@ Partial Class FormInboundAWB
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "ID"
+        Me.GridColumn15.FieldName = "id_comp"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Code"
+        Me.GridColumn16.FieldName = "comp_number"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Vendor"
+        Me.GridColumn17.FieldName = "comp_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
         '
         'LabelControl2
         '
@@ -191,40 +238,56 @@ Partial Class FormInboundAWB
         Me.GCStore.Location = New System.Drawing.Point(0, 42)
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
+        Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLECompany})
         Me.GCStore.Size = New System.Drawing.Size(984, 329)
         Me.GCStore.TabIndex = 1
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
         'GVStore
         '
-        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2})
         Me.GVStore.GridControl = Me.GCStore
         Me.GVStore.Name = "GVStore"
         Me.GVStore.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_comp"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Company Code"
-        Me.GridColumn2.FieldName = "comp_number"
+        Me.GridColumn2.Caption = "Store"
+        Me.GridColumn2.ColumnEdit = Me.RISLECompany
+        Me.GridColumn2.FieldName = "id_comp"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 361
         '
-        'GridColumn3
+        'RISLECompany
         '
-        Me.GridColumn3.Caption = "Company Name"
-        Me.GridColumn3.FieldName = "comp_name"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 1271
+        Me.RISLECompany.AutoHeight = False
+        Me.RISLECompany.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLECompany.Name = "RISLECompany"
+        Me.RISLECompany.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn20})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "ID "
+        Me.GridColumn18.FieldName = "id_comp"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Store"
+        Me.GridColumn20.FieldName = "comp_name"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
         '
         'BUpdateStore
         '
@@ -362,6 +425,10 @@ Partial Class FormInboundAWB
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "berat_dimensi"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.AllowFocus = False
+        Me.GridColumn10.UnboundExpression = "[lebar] * [panjang] * [tinggi] / [divide_by]"
+        Me.GridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 5
         Me.GridColumn10.Width = 251
@@ -374,9 +441,11 @@ Partial Class FormInboundAWB
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Divide By"
+        Me.GridColumn11.Caption = "Pembagi"
         Me.GridColumn11.FieldName = "divide_by"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 4
         Me.GridColumn11.Width = 92
@@ -482,6 +551,8 @@ Partial Class FormInboundAWB
         Me.XTPToko.ResumeLayout(False)
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLECompany, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.XTPKoli.ResumeLayout(False)
@@ -510,9 +581,7 @@ Partial Class FormInboundAWB
     Friend WithEvents XTPToko As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCStore As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVStore As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XTPKoli As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BDelStore As DevExpress.XtraEditors.SimpleButton
@@ -536,4 +605,13 @@ Partial Class FormInboundAWB
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BUpdateStore As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BUpdateKoli As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISLECompany As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

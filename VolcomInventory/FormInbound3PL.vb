@@ -43,12 +43,31 @@
     End Sub
 
     Sub load_view()
-        Dim q As String = "SELECT awb.`id_inbound_awb`,awb.`id_comp`,c.`comp_name`,emp.`employee_name`,del.`del_type`,awb.`awb_number`,awb.`created_date`
+        Dim date_start As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_until As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        Dim q As String = "SELECT awb.`id_inbound_awb`,awb.`id_comp`,c.`comp_name`,emp.`employee_name`,del.`del_type`,awb.`awb_number`,awb.`created_date`,st_list.store AS store_list
+,koli_list.total_koli,koli_list.total_berat_dimensi,koli_list.total_berat
 FROM tb_inbound_awb awb
 INNER JOIN tb_m_comp c ON c.`id_comp`=awb.`id_comp`
 INNER JOIN tb_lookup_del_type del ON del.`id_del_type`=awb.`id_del_type`
 INNER JOIN tb_m_user usr ON usr.id_user=awb.`created_by`
-INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+LEFT JOIN
+(
+    SELECT st.`id_inbound_awb`,GROUP_CONCAT(DISTINCT CONCAT(c.comp_number,' - ',c.comp_name) ORDER BY c.`comp_number` ASC SEPARATOR '\n') AS store
+    FROM tb_inbound_store st
+    INNER JOIN tb_m_comp c ON c.id_comp=st.id_comp
+    GROUP BY st.`id_inbound_awb`
+)st_list ON st_list.id_inbound_awb=awb.id_inbound_awb
+LEFT JOIN
+(
+    SELECT id_inbound_awb,COUNT(id_inbound_koli) AS total_koli, SUM(berat_dimensi) AS total_berat_dimensi,SUM(berat) AS total_berat
+    FROM tb_inbound_koli
+    GROUP BY id_inbound_awb
+)koli_list ON koli_list.id_inbound_awb=awb.id_inbound_awb
+WHERE DATE(awb.`created_date`)>='" & date_start & "' AND DATE(awb.`created_date`)<='" & date_until & "'
+ORDER BY awb.id_inbound_awb DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCAwb.DataSource = dt
         GVAwb.BestFitColumns()
@@ -56,5 +75,10 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
 
     Private Sub FormInbound3PL_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub GVAwb_DoubleClick(sender As Object, e As EventArgs) Handles GVAwb.DoubleClick
+        FormInboundAWB.id_awb_inbound = GVAwb.GetFocusedRowCellValue("id_inbound_awb").ToString
+        FormInboundAWB.ShowDialog()
     End Sub
 End Class
