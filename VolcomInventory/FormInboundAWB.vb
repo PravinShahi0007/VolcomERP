@@ -168,18 +168,31 @@ VALUES('" & SLEVendor.EditValue.ToString & "','" & SLEDelType.EditValue.ToString
         If id_awb_inbound = "-1" Then
             Close()
         Else
-            Dim q As String = ""
-            q = "DELETE FROM tb_inbound_store WHERE id_inbound_awb='" & id_awb_inbound & "'"
-            execute_non_query(q, True, "", "", "", "")
-            q = "INSERT INTO `tb_inbound_store`(id_inbound_awb,id_comp)
-VALUES"
-            For i As Integer = 0 To GVStore.RowCount - 1
-                If Not i = 0 Then
-                    q += ","
+            Dim is_ok As Boolean = True
+
+            For i = 0 To GVKoli.RowCount - 1
+                If GVStore.GetRowCellValue(i, "koli_notes") = Nothing Then
+                    is_ok = False
                 End If
-                q += "('" & id_awb_inbound & "','" & GVStore.GetRowCellValue(i, "id_comp").ToString & "')"
             Next
-            execute_non_query(q, True, "", "", "", "")
+
+            If is_ok Then
+                Dim q As String = ""
+                q = "DELETE FROM tb_inbound_store WHERE id_inbound_awb='" & id_awb_inbound & "'"
+                execute_non_query(q, True, "", "", "", "")
+                q = "INSERT INTO `tb_inbound_store`(id_inbound_awb,id_comp)
+VALUES"
+                For i As Integer = 0 To GVStore.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_awb_inbound & "','" & GVStore.GetRowCellValue(i, "id_comp").ToString & "')"
+                Next
+                execute_non_query(q, True, "", "", "", "")
+                infoCustom("Update success")
+            Else
+                warningCustom("Please check your input.")
+            End If
         End If
     End Sub
 
@@ -187,19 +200,33 @@ VALUES"
         If id_awb_inbound = "-1" Then
             Close()
         Else
-            Dim q As String = ""
-            q = "DELETE FROM tb_inbound_koli WHERE id_inbound_awb='" & id_awb_inbound & "'"
-            execute_non_query(q, True, "", "", "", "")
-            q = "INSERT INTO `tb_inbound_koli`(id_inbound_awb,koli_notes,divide_by,panjang,lebar,tinggi,berat,berat_dimensi)
-VALUES"
-            For i As Integer = 0 To GVKoli.RowCount - 1
-                If Not i = 0 Then
-                    q += ","
-                End If
-                q += "('" & id_awb_inbound & "','" & GVKoli.GetRowCellValue(i, "koli_notes").ToString & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "divide_by").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "panjang").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "lebar").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "tinggi").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "berat").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "berat_dimensi").ToString).ToString) & "')"
+            'check null
+            Dim is_ok As Boolean = True
 
+            For i = 0 To GVKoli.RowCount - 1
+                If GVKoli.GetRowCellValue(i, "koli_notes").ToString = "" Or GVKoli.GetRowCellValue(i, "berat") = 0 Then
+                    is_ok = False
+                End If
             Next
-            execute_non_query(q, True, "", "", "", "")
+
+            If is_ok Then
+                Dim q As String = ""
+                q = "DELETE FROM tb_inbound_koli WHERE id_inbound_awb='" & id_awb_inbound & "'"
+                execute_non_query(q, True, "", "", "", "")
+                q = "INSERT INTO `tb_inbound_koli`(id_inbound_awb,koli_notes,divide_by,panjang,lebar,tinggi,berat,berat_dimensi)
+VALUES"
+                For i As Integer = 0 To GVKoli.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_awb_inbound & "','" & GVKoli.GetRowCellValue(i, "koli_notes").ToString & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "divide_by").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "panjang").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "lebar").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "tinggi").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "berat").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVKoli.GetRowCellValue(i, "berat_dimensi").ToString).ToString) & "')"
+
+                Next
+                execute_non_query(q, True, "", "", "", "")
+                infoCustom("Update success")
+            Else
+                warningCustom("Please check your input.")
+            End If
         End If
     End Sub
 
@@ -209,10 +236,24 @@ VALUES"
 
     Private Sub BAddStore_Click(sender As Object, e As EventArgs) Handles BAddStore.Click
         GVStore.AddNewRow()
+        check_but()
     End Sub
 
     Private Sub BAddKoli_Click(sender As Object, e As EventArgs) Handles BAddKoli.Click
-        GVKoli.AddNewRow()
-        GVKoli.SetRowCellValue(GVKoli.RowCount - 1, "divide_by", divide_by)
+        Try
+            GVKoli.AddNewRow()
+            GVKoli.RefreshData()
+
+            GVKoli.SetRowCellValue(GVKoli.RowCount - 1, "divide_by", divide_by)
+            GVKoli.SetRowCellValue(GVKoli.RowCount - 1, "panjang", 0.00)
+            GVKoli.SetRowCellValue(GVKoli.RowCount - 1, "lebar", 0.00)
+            GVKoli.SetRowCellValue(GVKoli.RowCount - 1, "tinggi", 0.00)
+            GVKoli.SetRowCellValue(GVKoli.RowCount - 1, "berat", 0.00)
+
+            check_but()
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+
+        End Try
     End Sub
 End Class

@@ -425,7 +425,10 @@ Partial Class FormInboundAWB
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "berat_dimensi"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.AllowFocus = False
         Me.GridColumn10.UnboundExpression = "[lebar] * [panjang] * [tinggi] / [divide_by]"
+        Me.GridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 5
         Me.GridColumn10.Width = 251
