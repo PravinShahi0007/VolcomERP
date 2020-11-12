@@ -102,14 +102,14 @@
     End Sub
 
     Private Sub SBBrowseFolder_Click(sender As Object, e As EventArgs) Handles SBBrowseFolder.Click
-        Dim browse As FolderBrowserDialog = New FolderBrowserDialog
+        Dim browse As Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog = New Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog
 
-        browse.ShowDialog()
+        browse.IsFolderPicker = True
 
-        If Not browse.SelectedPath = "" Then
+        If browse.ShowDialog() = Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.Ok Then
             FormMain.SplashScreenManager1.ShowWaitForm()
 
-            Dim data_validation As DataTable = FormDesignImages.get_validation(browse.SelectedPath)
+            Dim data_validation As DataTable = FormDesignImages.get_validation(browse.FileName)
 
             FormMain.SplashScreenManager1.CloseWaitForm()
 

@@ -22,13 +22,13 @@ Partial Class FormSalesReturnOrderMail
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -57,6 +57,11 @@ Partial Class FormSalesReturnOrderMail
         '
         Me.GridColumn1.FieldName = "id_mail_3pl"
         Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.FieldName = "id_store"
+        Me.GridColumn8.Name = "GridColumn8"
         '
         'GridColumn7
         '
@@ -107,11 +112,6 @@ Partial Class FormSalesReturnOrderMail
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.FieldName = "id_store"
-        Me.GridColumn8.Name = "GridColumn8"
         '
         'FormSalesReturnOrderMail
         '

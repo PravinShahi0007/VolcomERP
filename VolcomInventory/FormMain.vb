@@ -1841,6 +1841,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDesignImages.browse_images()
         ElseIf formName = "FormEmployeeContract" Then
             FormEmployeeContractDet.ShowDialog()
+        ElseIf formName = "FormSalesReturnOrderMail" Then
+            FormSalesReturnOrderMailDet.ShowDialog()
+        ElseIf formName = "FormInbound3PL" Then
+            FormInboundAWB.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3064,6 +3068,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormAdditionalCost" Then
                 FormAdditionalCostDet.id_pps = "upd"
                 FormAdditionalCostDet.ShowDialog()
+            ElseIf formName = "FormSalesReturnOrderMail" Then
+                FormSalesReturnOrderMailDet.id_mail_3pl = FormSalesReturnOrderMail.GVDetail.GetFocusedRowCellValue("id_mail_3pl").ToString
+                FormSalesReturnOrderMailDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8426,6 +8433,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDesignImages.print_images()
         ElseIf formName = "FormEmployeeContract" Then
             print(FormEmployeeContract.GCEmployeeContract, "Employee Contract")
+        ElseIf formName = "FormSalesReturnOrderMail" Then
+            print(FormSalesReturnOrderMail.GCDetail, "Propose Return Mail")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9366,6 +9375,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmployeeContract" Then
             FormEmployeeContract.Close()
             FormEmployeeContract.Dispose()
+        ElseIf formName = "FormSalesReturnOrderMail" Then
+            FormSalesReturnOrderMail.Close()
+            FormSalesReturnOrderMail.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10335,6 +10347,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDesignImages.view_images()
         ElseIf formName = "FormEmployeeContract" Then
             FormEmployeeContract.form_load()
+        ElseIf formName = "FormSalesReturnOrderMail" Then
+            FormSalesReturnOrderMail.form_load()
         End If
     End Sub
     'Switch
@@ -15488,6 +15502,32 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmployeeContract.Show()
             FormEmployeeContract.WindowState = FormWindowState.Maximized
             FormEmployeeContract.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NB3PLMailReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NB3PLMailReturn.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesReturnOrderMail.MdiParent = Me
+            FormSalesReturnOrderMail.Show()
+            FormSalesReturnOrderMail.WindowState = FormWindowState.Maximized
+            FormSalesReturnOrderMail.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInboundAwb_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInboundAwb.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormInbound3PL.MdiParent = Me
+            FormInbound3PL.Show()
+            FormInbound3PL.WindowState = FormWindowState.Maximized
+            FormInbound3PL.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

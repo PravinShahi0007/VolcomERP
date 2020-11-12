@@ -3,6 +3,10 @@
         form_load()
     End Sub
 
+    Private Sub FormSalesReturnOrderMail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
     Private Sub GVDetail_DoubleClick(sender As Object, e As EventArgs) Handles GVDetail.DoubleClick
         FormSalesReturnOrderMailDet.id_mail_3pl = GVDetail.GetFocusedRowCellValue("id_mail_3pl").ToString
         FormSalesReturnOrderMailDet.id_store = GVDetail.GetFocusedRowCellValue("id_store").ToString
@@ -25,5 +29,14 @@
         GCDetail.DataSource = data
 
         GVDetail.BestFitColumns()
+    End Sub
+
+    Private Sub FormSalesReturnOrderMail_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+    End Sub
+
+    Private Sub FormSalesReturnOrderMail_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
     End Sub
 End Class
