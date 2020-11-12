@@ -302,7 +302,7 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
-        If formName = "FormEmpLeave" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
     End Sub
