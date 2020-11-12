@@ -3889,6 +3889,18 @@
     <Compile Include="FormRetOLStoreDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReturnNote.Designer.vb">
+      <DependentUpon>FormReturnNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReturnNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReturnNoteDet.Designer.vb">
+      <DependentUpon>FormReturnNoteDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReturnNoteDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRevenue.Designer.vb">
       <DependentUpon>FormRevenue.vb</DependentUpon>
     </Compile>
@@ -10682,6 +10694,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOLStoreDet.resx">
       <DependentUpon>FormRetOLStoreDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReturnNote.resx">
+      <DependentUpon>FormReturnNote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>

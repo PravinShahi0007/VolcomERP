@@ -302,7 +302,7 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
-        If formName = "FormEmpLeave" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
     End Sub
@@ -3071,6 +3071,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormSalesReturnOrderMail" Then
                 FormSalesReturnOrderMailDet.id_mail_3pl = FormSalesReturnOrderMail.GVDetail.GetFocusedRowCellValue("id_mail_3pl").ToString
                 FormSalesReturnOrderMailDet.ShowDialog()
+            ElseIf formName = "FormInbound3PL" Then
+                FormInboundAWB.id_awb_inbound = FormInbound3PL.GVAwb.GetFocusedRowCellValue("id_inbound_awb").ToString
+                FormInboundAWB.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8435,6 +8438,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormEmployeeContract.GCEmployeeContract, "Employee Contract")
         ElseIf formName = "FormSalesReturnOrderMail" Then
             print(FormSalesReturnOrderMail.GCDetail, "Propose Return Mail")
+        ElseIf formName = "FormInbound3PL" Then
+            print(FormInbound3PL.GCAwb, "AWB Inbound dengan 3PL")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9378,6 +9383,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesReturnOrderMail" Then
             FormSalesReturnOrderMail.Close()
             FormSalesReturnOrderMail.Dispose()
+        ElseIf formName = "FormInbound3PL" Then
+            FormInbound3PL.Close()
+            FormInbound3PL.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10349,6 +10357,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmployeeContract.form_load()
         ElseIf formName = "FormSalesReturnOrderMail" Then
             FormSalesReturnOrderMail.form_load()
+        ElseIf formName = "FormInbound3PL" Then
+            FormInbound3PL.load_view()
         End If
     End Sub
     'Switch
