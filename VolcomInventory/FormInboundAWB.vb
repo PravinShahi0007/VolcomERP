@@ -23,7 +23,7 @@ GROUP BY rate.id_comp"
     End Sub
 
     Sub load_repo_store()
-        Dim q As String = "SELECT id_comp,comp_number,CONCAT(comp_number, '-',comp_name) AS comp_name
+        Dim q As String = "SELECT id_comp,comp_number,CONCAT(comp_number, ' - ',comp_name) AS comp_name
 FROM tb_m_comp 
 WHERE id_comp_cat='6' AND is_active='1'"
         viewSearchLookupRepositoryQuery(RISLECompany, q, 0, "comp_name", "id_comp")
@@ -36,8 +36,27 @@ WHERE id_comp_cat='6' AND is_active='1'"
         load_koli()
         load_store()
         load_repo_store()
-
-        MsgBox("woke")
+        '
+        If Not id_awb_inbound = "-1" Then
+            Dim q As String = "SELECT inb.id_comp,inb.id_del_type,inb.awb_number,dt.volume_divide_by
+FROM `tb_inbound_awb` inb
+INNER JOIN tb_lookup_del_type dt ON dt.id_del_type=inb.id_del_type
+WHERE inb.id_inbound_awb='" & id_awb_inbound & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                SLEDelType.EditValue = dt.Rows(0)("id_del_type").ToString
+                SLEVendor.EditValue = dt.Rows(0)("id_comp").ToString
+                TEAwb.Text = dt.Rows(0)("awb_number").ToString
+                '
+                divide_by = dt.Rows(0)("volume_divide_by")
+                '
+                XTCdetail.Enabled = True
+                TEAwb.Enabled = False
+                BNext.Enabled = True
+                BSubmitAwb.Enabled = False
+            End If
+        End If
+        '
     End Sub
 
     Sub load_koli()
@@ -170,8 +189,10 @@ VALUES('" & SLEVendor.EditValue.ToString & "','" & SLEDelType.EditValue.ToString
         Else
             Dim is_ok As Boolean = True
 
-            For i = 0 To GVKoli.RowCount - 1
-                If GVStore.GetRowCellValue(i, "koli_notes") = Nothing Then
+            GVStore.RefreshData()
+
+            For i = 0 To GVStore.RowCount - 1
+                If GVStore.GetRowCellValue(i, "id_comp").ToString = "" Then
                     is_ok = False
                 End If
             Next
@@ -191,7 +212,7 @@ VALUES"
                 execute_non_query(q, True, "", "", "", "")
                 infoCustom("Update success")
             Else
-                warningCustom("Please check your input.")
+                warningCustom("Please choose vendor.")
             End If
         End If
     End Sub
@@ -202,6 +223,8 @@ VALUES"
         Else
             'check null
             Dim is_ok As Boolean = True
+
+            GVKoli.RefreshData()
 
             For i = 0 To GVKoli.RowCount - 1
                 If GVKoli.GetRowCellValue(i, "koli_notes").ToString = "" Or GVKoli.GetRowCellValue(i, "berat") = 0 Then
