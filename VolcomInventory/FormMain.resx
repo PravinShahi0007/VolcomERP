@@ -4509,7 +4509,7 @@
   <data name="NBPOList.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAAA90RVh0VGl0bGUAQm9vaztSZWFky8MmvQAAAGZJREFUOE+lkkEOgDAIBPsn3uFr
+        DgAACw4BQL7hQQAAAA90RVh0VGl0bGUAQm9vaztSZWFky8MmvQAAAGZJREFUOE+lkkEOgDAIBPsn3uFr
         fSAqkYN1Nummh6HJAsOlIzO3wNChSkSk4Hih3r36FTzvTA9jjwTnRA9TjgIHFNAllaPAAQV0SeUocEAB
         XVI5Chx+AmL5Jyp6mHq1W2UHDNfJcQFkR7DWidF8nwAAAABJRU5ErkJggg==
 </value>
@@ -5503,6 +5503,16 @@
         igkcIQ36WTq3A+EYj20683aURyj6qy1C86zO0GPDuRZ5jUdJRb0JW0EOoR0Bwe0UhS/A/N8JRXi5/lTt
         sCJQ1TjmqGuZRF2zFbWUmqYJ1GgnUK0dR5VG4azGgjONFlSqqVU9RaXKgtMXhl9SgXIK3SWbhZBjJThe
         ghMFy14uK3nD/h6QnxfMuqZly5fqAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="NBReturnNote.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAEHRFWHRUaXRsZQBIaWdobGln
+        aHQ7eEeyWAAAAMlJREFUOE+dkDEOwjAMRS1xr9KhKwsrMJVzUBXlNhUTC1skDpAVToOxoyRtnLSkRHqK
+        7PS/pAalFBag320DRE2go0ZEsIIfSxMyHCRBYIyxt/HOy/WXwpbkBb6mXROLYSZ5gauLwsT4C2KHQ3er
+        MoEpLB+HKF4Au+sD9/39LEJRmElmQMsOjgUzkhBmrEAAp8tQeYGQRGEG+DbJq20+FGqnEjeTKDwroIMn
+        S47dsJUBSVbA0OHGf+TqCN+LQv+Qba4h21xDtlkOwhfq76CAFc8tlAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="NBInboundAwb.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

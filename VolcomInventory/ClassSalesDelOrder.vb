@@ -244,6 +244,8 @@
                 query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
                 query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0; "
                 execute_non_query(query_complete, True, "", "", "", "")
+                'create invoice langsung jika online
+                execute_non_query_long("CALL create_inv_ol_store('" + id_report_par + "')", True, "", "", "", "")
             Else
                 'pure wholesale
                 Dim query_complete As String = "

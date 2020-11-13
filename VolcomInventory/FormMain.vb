@@ -302,7 +302,7 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
-        If formName = "FormEmpLeave" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
     End Sub
@@ -418,7 +418,7 @@ Public Class FormMain
             RGAreaPrint.Visible = True
         End If
 
-        If formName = "FormEmpLeave" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
         ''mapping COA
@@ -1845,6 +1845,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesReturnOrderMailDet.ShowDialog()
         ElseIf formName = "FormInbound3PL" Then
             FormInboundAWB.ShowDialog()
+        ElseIf formName = "FormReturnNote" Then
+            FormReturnNoteDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3074,6 +3076,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormInbound3PL" Then
                 FormInboundAWB.id_awb_inbound = FormInbound3PL.GVAwb.GetFocusedRowCellValue("id_inbound_awb").ToString
                 FormInboundAWB.ShowDialog()
+            ElseIf formName = "FormReturnNote" Then
+                FormReturnNoteDet.id_return_note = FormReturnNote.GVAwb.GetFocusedRowCellValue("id_return_note").ToString
+                FormReturnNoteDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8440,6 +8445,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormSalesReturnOrderMail.GCDetail, "Propose Return Mail")
         ElseIf formName = "FormInbound3PL" Then
             print(FormInbound3PL.GCAwb, "AWB Inbound dengan 3PL")
+        ElseIf formName = "FormReturnNote" Then
+            print(FormReturnNote.GCAwb, "Return Note List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9386,6 +9393,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormInbound3PL" Then
             FormInbound3PL.Close()
             FormInbound3PL.Dispose()
+        ElseIf formName = "FormReturnNote" Then
+            FormReturnNote.Close()
+            FormReturnNote.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10359,6 +10369,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalesReturnOrderMail.form_load()
         ElseIf formName = "FormInbound3PL" Then
             FormInbound3PL.load_view()
+        ElseIf formName = "FormReturnNote" Then
+            FormReturnNote.load_view()
         End If
     End Sub
     'Switch
@@ -15538,6 +15550,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInbound3PL.Show()
             FormInbound3PL.WindowState = FormWindowState.Maximized
             FormInbound3PL.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBReturnNote_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBReturnNote.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormRetOLStoreDet.MdiParent = Me
+            FormRetOLStoreDet.Show()
+            FormRetOLStoreDet.WindowState = FormWindowState.Maximized
+            FormRetOLStoreDet.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
