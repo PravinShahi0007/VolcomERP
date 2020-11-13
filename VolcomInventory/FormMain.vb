@@ -15566,10 +15566,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBReturnNote_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBReturnNote.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            FormRetOLStoreDet.MdiParent = Me
-            FormRetOLStoreDet.Show()
-            FormRetOLStoreDet.WindowState = FormWindowState.Maximized
-            FormRetOLStoreDet.Focus()
+            FormReturnNote.MdiParent = Me
+            FormReturnNote.Show()
+            FormReturnNote.WindowState = FormWindowState.Maximized
+            FormReturnNote.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
