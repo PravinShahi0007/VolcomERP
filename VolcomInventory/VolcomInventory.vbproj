@@ -10698,6 +10698,9 @@
     <EmbeddedResource Include="FormReturnNote.resx">
       <DependentUpon>FormReturnNote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReturnNoteDet.resx">
+      <DependentUpon>FormReturnNoteDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>
     </EmbeddedResource>

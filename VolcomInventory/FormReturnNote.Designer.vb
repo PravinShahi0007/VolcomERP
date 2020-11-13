@@ -31,13 +31,12 @@ Partial Class FormReturnNote
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,7 +128,7 @@ Partial Class FormReturnNote
         '
         'GVAwb
         '
-        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn6, Me.GridColumn3, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5})
+        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn6, Me.GridColumn3, Me.GridColumn11, Me.GridColumn7, Me.GridColumn5, Me.GridColumn9, Me.GridColumn4})
         Me.GVAwb.GridControl = Me.GCAwb
         Me.GVAwb.Name = "GVAwb"
         Me.GVAwb.OptionsBehavior.Editable = False
@@ -145,30 +144,39 @@ Partial Class FormReturnNote
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "3PL"
-        Me.GridColumn2.FieldName = "comp_name"
+        Me.GridColumn2.Caption = "Type"
+        Me.GridColumn2.FieldName = "type"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 236
+        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 116
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Type"
-        Me.GridColumn6.FieldName = "del_type"
+        Me.GridColumn6.Caption = "Label Number"
+        Me.GridColumn6.FieldName = "label_number"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 137
+        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 199
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "AWB/Resi"
-        Me.GridColumn3.FieldName = "awb_number"
+        Me.GridColumn3.Caption = "Created Date"
+        Me.GridColumn3.FieldName = "created_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 214
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 183
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Created By"
+        Me.GridColumn11.FieldName = "employee_name"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 2
+        Me.GridColumn11.Width = 163
         '
         'GridColumn7
         '
@@ -178,54 +186,36 @@ Partial Class FormReturnNote
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.Width = 264
         '
         'RepositoryItemMemoEdit1
         '
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
-        'GridColumn8
+        'GridColumn5
         '
-        Me.GridColumn8.Caption = "Total Koli"
-        Me.GridColumn8.FieldName = "total_koli"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 5
+        Me.GridColumn5.Caption = "Return Note Number"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.Width = 222
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "Total Berat"
+        Me.GridColumn9.Caption = "Qty"
         Me.GridColumn9.FieldName = "total_berat"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 6
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Total Berat Dimensi"
-        Me.GridColumn10.FieldName = "total_berat_dimensi"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
+        Me.GridColumn9.Width = 222
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Created By"
-        Me.GridColumn4.FieldName = "employee_name"
+        Me.GridColumn4.Caption = "Return Note Date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 214
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Created Date"
-        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "created_date"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 8
-        Me.GridColumn5.Width = 222
+        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.Width = 247
         '
         'FormReturnNote
         '
@@ -268,9 +258,8 @@ Partial Class FormReturnNote
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
