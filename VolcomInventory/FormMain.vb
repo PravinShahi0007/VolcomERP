@@ -280,7 +280,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Or formName = "FormInvMat" Or formName = "FormWork" Or formName = "FormSOHSum" Or formName = "FormPurcAsset" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Or formName = "FormLineList" Then
+        If formName = "FormListStore" Or formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Or formName = "FormInvMat" Or formName = "FormWork" Or formName = "FormSOHSum" Or formName = "FormPurcAsset" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Or formName = "FormLineList" Then
             RGAreaManage.Visible = False
         End If
 
@@ -354,7 +354,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormDebitNote" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Or formName = "FormLineList" Then
+        If formName = "FormListStore" Or formName = "FormWork" Or formName = "FormDebitNote" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Or formName = "FormLineList" Then
             RGAreaManage.Visible = True
         End If
 
@@ -8447,6 +8447,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormInbound3PL.GCAwb, "AWB Inbound dengan 3PL")
         ElseIf formName = "FormReturnNote" Then
             print(FormReturnNote.GCAwb, "Return Note List")
+        ElseIf formName = "FormListStore" Then
+            print(FormListStore.GCCompany, "Store List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9396,6 +9398,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormReturnNote" Then
             FormReturnNote.Close()
             FormReturnNote.Dispose()
+        ElseIf formName = "FormListStore" Then
+            FormListStore.Close()
+            FormListStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10371,6 +10376,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInbound3PL.load_view()
         ElseIf formName = "FormReturnNote" Then
             FormReturnNote.load_view()
+        ElseIf formName = "FormListStore" Then
+            FormListStore.view_company()
         End If
     End Sub
     'Switch
@@ -15563,6 +15570,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRetOLStoreDet.Show()
             FormRetOLStoreDet.WindowState = FormWindowState.Maximized
             FormRetOLStoreDet.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBListStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBListStore.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormListStore.MdiParent = Me
+            FormListStore.Show()
+            FormListStore.WindowState = FormWindowState.Maximized
+            FormListStore.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

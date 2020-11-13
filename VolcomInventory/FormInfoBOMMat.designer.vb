@@ -43,6 +43,7 @@ Partial Class FormInfoBOMMat
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCBomDetMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBomDetMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RCIsCOP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,7 +66,7 @@ Partial Class FormInfoBOMMat
         '
         'GVBomDetMat
         '
-        Me.GVBomDetMat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn11, Me.GridColumn10, Me.GridColumn6, Me.GridColumn3, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumnColor, Me.GridColumnUOM, Me.GridColumnIsCOP, Me.GridColumn8, Me.GridColumnQtyLeft, Me.GridColumn9})
+        Me.GVBomDetMat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn11, Me.GridColumn10, Me.GridColumn6, Me.GridColumn3, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumnColor, Me.GridColumnUOM, Me.GridColumnIsCOP, Me.GridColumn8, Me.GridColumnQtyLeft, Me.GridColumn9, Me.GridColumn12})
         Me.GVBomDetMat.CustomizationFormBounds = New System.Drawing.Rectangle(885, 289, 216, 178)
         Me.GVBomDetMat.GridControl = Me.GCBomDetMat
         Me.GVBomDetMat.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn7, "{0:N2}")})
@@ -287,6 +288,14 @@ Partial Class FormInfoBOMMat
         Me.BAddMat.TabIndex = 21
         Me.BAddMat.Text = "Add To MRS"
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Notes"
+        Me.GridColumn12.FieldName = "bom_note"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 10
+        '
         'FormInfoBOMMat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -333,4 +342,5 @@ Partial Class FormInfoBOMMat
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
