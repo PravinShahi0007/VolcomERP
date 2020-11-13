@@ -39,11 +39,11 @@ Partial Class FormInfoBOMMat
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyLeft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCBomDetMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBomDetMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RCIsCOP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +73,7 @@ Partial Class FormInfoBOMMat
         Me.GVBomDetMat.Name = "GVBomDetMat"
         Me.GVBomDetMat.OptionsBehavior.Editable = False
         Me.GVBomDetMat.OptionsFind.AlwaysVisible = True
+        Me.GVBomDetMat.OptionsView.ColumnAutoWidth = False
         Me.GVBomDetMat.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         Me.GVBomDetMat.OptionsView.ShowFooter = True
         Me.GVBomDetMat.OptionsView.ShowGroupPanel = False
@@ -101,7 +102,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumn6.FieldName = "mat_det_code"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.VisibleIndex = 1
         Me.GridColumn6.Width = 53
         '
         'GridColumn3
@@ -110,7 +111,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumn3.FieldName = "mat_det_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 151
         '
         'GridColumn2
@@ -123,7 +124,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumn2.FieldName = "size"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.VisibleIndex = 4
         Me.GridColumn2.Width = 34
         '
         'GridColumn4
@@ -151,7 +152,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumn5.FieldName = "price"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 8
+        Me.GridColumn5.VisibleIndex = 9
         Me.GridColumn5.Width = 64
         '
         'GridColumn7
@@ -167,7 +168,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 9
+        Me.GridColumn7.VisibleIndex = 10
         Me.GridColumn7.Width = 82
         '
         'GridColumnColor
@@ -180,7 +181,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 2
+        Me.GridColumnColor.VisibleIndex = 3
         Me.GridColumnColor.Width = 45
         '
         'GridColumnUOM
@@ -193,7 +194,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumnUOM.FieldName = "uom"
         Me.GridColumnUOM.Name = "GridColumnUOM"
         Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 7
+        Me.GridColumnUOM.VisibleIndex = 8
         Me.GridColumnUOM.Width = 40
         '
         'GridColumnIsCOP
@@ -225,7 +226,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumn8.FieldName = "qty_all_mat"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 7
         Me.GridColumn8.Width = 40
         '
         'GridColumnQtyLeft
@@ -238,7 +239,7 @@ Partial Class FormInfoBOMMat
         Me.GridColumnQtyLeft.FieldName = "qty_left"
         Me.GridColumnQtyLeft.Name = "GridColumnQtyLeft"
         Me.GridColumnQtyLeft.Visible = True
-        Me.GridColumnQtyLeft.VisibleIndex = 5
+        Me.GridColumnQtyLeft.VisibleIndex = 6
         Me.GridColumnQtyLeft.Width = 52
         '
         'GridColumn9
@@ -251,8 +252,16 @@ Partial Class FormInfoBOMMat
         Me.GridColumn9.FieldName = "qty"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
+        Me.GridColumn9.VisibleIndex = 5
         Me.GridColumn9.Width = 59
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Notes"
+        Me.GridColumn12.FieldName = "bom_note"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
         '
         'GridView3
         '
@@ -287,14 +296,6 @@ Partial Class FormInfoBOMMat
         Me.BAddMat.Size = New System.Drawing.Size(105, 34)
         Me.BAddMat.TabIndex = 21
         Me.BAddMat.Text = "Add To MRS"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Notes"
-        Me.GridColumn12.FieldName = "bom_note"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 10
         '
         'FormInfoBOMMat
         '
