@@ -21,21 +21,20 @@ Partial Class FormReturnNoteDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReturnNoteDet))
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCReturnNote = New DevExpress.XtraEditors.PanelControl()
+        Me.DEReturnNote = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit7 = New DevExpress.XtraEditors.TextEdit()
+        Me.TELabelNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton7 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSaveAndPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton8 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton9 = New DevExpress.XtraEditors.SimpleButton()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEQtyReturnNote = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEReturnNoteNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCLeft = New DevExpress.XtraEditors.PanelControl()
         Me.GCStore = New DevExpress.XtraGrid.GridControl()
         Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,7 +51,10 @@ Partial Class FormReturnNoteDet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PCReturnStaff = New DevExpress.XtraEditors.PanelControl()
         Me.SLEEmp = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -61,22 +63,22 @@ Partial Class FormReturnNoteDet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BDelTypeNext = New DevExpress.XtraEditors.SimpleButton()
+        Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
+        CType(Me.PCReturnNote, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCReturnNote.SuspendLayout()
+        CType(Me.DEReturnNote.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEReturnNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TELabelNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl9.SuspendLayout()
+        CType(Me.TEQtyReturnNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEReturnNoteNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCLeft.SuspendLayout()
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLECompany, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +91,7 @@ Partial Class FormReturnNoteDet
         CType(Me.PCReturnStaff, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCReturnStaff.SuspendLayout()
         CType(Me.SLEEmp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,33 +102,48 @@ Partial Class FormReturnNoteDet
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.PanelControl5)
+        Me.PanelControl3.Controls.Add(Me.PCReturnNote)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl3.Location = New System.Drawing.Point(431, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(420, 410)
         Me.PanelControl3.TabIndex = 1
         '
-        'PanelControl5
+        'PCReturnNote
         '
-        Me.PanelControl5.Controls.Add(Me.PanelControl4)
-        Me.PanelControl5.Controls.Add(Me.PanelControl8)
-        Me.PanelControl5.Controls.Add(Me.DateEdit1)
-        Me.PanelControl5.Controls.Add(Me.TextEdit5)
-        Me.PanelControl5.Controls.Add(Me.LabelControl8)
-        Me.PanelControl5.Controls.Add(Me.TextEdit6)
-        Me.PanelControl5.Controls.Add(Me.LabelControl9)
-        Me.PanelControl5.Controls.Add(Me.LabelControl10)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl5.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(416, 406)
-        Me.PanelControl5.TabIndex = 8919
+        Me.PCReturnNote.Controls.Add(Me.DEReturnNote)
+        Me.PCReturnNote.Controls.Add(Me.PanelControl4)
+        Me.PCReturnNote.Controls.Add(Me.PanelControl8)
+        Me.PCReturnNote.Controls.Add(Me.TEQtyReturnNote)
+        Me.PCReturnNote.Controls.Add(Me.LabelControl8)
+        Me.PCReturnNote.Controls.Add(Me.TEReturnNoteNumber)
+        Me.PCReturnNote.Controls.Add(Me.LabelControl9)
+        Me.PCReturnNote.Controls.Add(Me.LabelControl10)
+        Me.PCReturnNote.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PCReturnNote.Location = New System.Drawing.Point(2, 2)
+        Me.PCReturnNote.Name = "PCReturnNote"
+        Me.PCReturnNote.Size = New System.Drawing.Size(416, 406)
+        Me.PCReturnNote.TabIndex = 8919
+        '
+        'DEReturnNote
+        '
+        Me.DEReturnNote.EditValue = Nothing
+        Me.DEReturnNote.Location = New System.Drawing.Point(115, 100)
+        Me.DEReturnNote.Name = "DEReturnNote"
+        Me.DEReturnNote.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReturnNote.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReturnNote.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEReturnNote.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReturnNote.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEReturnNote.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReturnNote.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEReturnNote.Size = New System.Drawing.Size(271, 20)
+        Me.DEReturnNote.TabIndex = 8919
         '
         'PanelControl4
         '
         Me.PanelControl4.Controls.Add(Me.LabelControl11)
-        Me.PanelControl4.Controls.Add(Me.TextEdit7)
+        Me.PanelControl4.Controls.Add(Me.TELabelNumber)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl4.Name = "PanelControl4"
@@ -141,33 +158,33 @@ Partial Class FormReturnNoteDet
         Me.LabelControl11.TabIndex = 2
         Me.LabelControl11.Text = "Label Number"
         '
-        'TextEdit7
+        'TELabelNumber
         '
-        Me.TextEdit7.Location = New System.Drawing.Point(113, 16)
-        Me.TextEdit7.Name = "TextEdit7"
-        Me.TextEdit7.Size = New System.Drawing.Size(271, 20)
-        Me.TextEdit7.TabIndex = 3
+        Me.TELabelNumber.EditValue = "[Auto Generate]"
+        Me.TELabelNumber.Location = New System.Drawing.Point(113, 16)
+        Me.TELabelNumber.Name = "TELabelNumber"
+        Me.TELabelNumber.Size = New System.Drawing.Size(271, 20)
+        Me.TELabelNumber.TabIndex = 3
         '
         'PanelControl8
         '
-        Me.PanelControl8.Controls.Add(Me.SimpleButton7)
+        Me.PanelControl8.Controls.Add(Me.BSaveAndPrint)
         Me.PanelControl8.Controls.Add(Me.SimpleButton8)
-        Me.PanelControl8.Controls.Add(Me.SimpleButton9)
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl8.Location = New System.Drawing.Point(2, 361)
         Me.PanelControl8.Name = "PanelControl8"
         Me.PanelControl8.Size = New System.Drawing.Size(412, 43)
         Me.PanelControl8.TabIndex = 8917
         '
-        'SimpleButton7
+        'BSaveAndPrint
         '
-        Me.SimpleButton7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton7.Image = CType(resources.GetObject("SimpleButton7.Image"), System.Drawing.Image)
-        Me.SimpleButton7.Location = New System.Drawing.Point(162, 2)
-        Me.SimpleButton7.Name = "SimpleButton7"
-        Me.SimpleButton7.Size = New System.Drawing.Size(116, 39)
-        Me.SimpleButton7.TabIndex = 4
-        Me.SimpleButton7.Text = "Save and Print"
+        Me.BSaveAndPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSaveAndPrint.Image = CType(resources.GetObject("BSaveAndPrint.Image"), System.Drawing.Image)
+        Me.BSaveAndPrint.Location = New System.Drawing.Point(162, 2)
+        Me.BSaveAndPrint.Name = "BSaveAndPrint"
+        Me.BSaveAndPrint.Size = New System.Drawing.Size(116, 39)
+        Me.BSaveAndPrint.TabIndex = 4
+        Me.BSaveAndPrint.Text = "Save and Print"
         '
         'SimpleButton8
         '
@@ -179,37 +196,15 @@ Partial Class FormReturnNoteDet
         Me.SimpleButton8.TabIndex = 3
         Me.SimpleButton8.Text = "Next Return Note"
         '
-        'SimpleButton9
+        'TEQtyReturnNote
         '
-        Me.SimpleButton9.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton9.Image = CType(resources.GetObject("SimpleButton9.Image"), System.Drawing.Image)
-        Me.SimpleButton9.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton9.Name = "SimpleButton9"
-        Me.SimpleButton9.Size = New System.Drawing.Size(86, 39)
-        Me.SimpleButton9.TabIndex = 2
-        Me.SimpleButton9.Text = "Back"
-        '
-        'DateEdit1
-        '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(115, 100)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DateEdit1.Size = New System.Drawing.Size(271, 20)
-        Me.DateEdit1.TabIndex = 8916
-        '
-        'TextEdit5
-        '
-        Me.TextEdit5.Location = New System.Drawing.Point(115, 132)
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Size = New System.Drawing.Size(271, 20)
-        Me.TextEdit5.TabIndex = 9
+        Me.TEQtyReturnNote.Location = New System.Drawing.Point(115, 132)
+        Me.TEQtyReturnNote.Name = "TEQtyReturnNote"
+        Me.TEQtyReturnNote.Properties.Mask.EditMask = "N0"
+        Me.TEQtyReturnNote.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQtyReturnNote.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQtyReturnNote.Size = New System.Drawing.Size(271, 20)
+        Me.TEQtyReturnNote.TabIndex = 9
         '
         'LabelControl8
         '
@@ -219,12 +214,12 @@ Partial Class FormReturnNoteDet
         Me.LabelControl8.TabIndex = 8
         Me.LabelControl8.Text = "Return Note Qty"
         '
-        'TextEdit6
+        'TEReturnNoteNumber
         '
-        Me.TextEdit6.Location = New System.Drawing.Point(115, 68)
-        Me.TextEdit6.Name = "TextEdit6"
-        Me.TextEdit6.Size = New System.Drawing.Size(271, 20)
-        Me.TextEdit6.TabIndex = 7
+        Me.TEReturnNoteNumber.Location = New System.Drawing.Point(115, 68)
+        Me.TEReturnNoteNumber.Name = "TEReturnNoteNumber"
+        Me.TEReturnNoteNumber.Size = New System.Drawing.Size(271, 20)
+        Me.TEReturnNoteNumber.TabIndex = 7
         '
         'LabelControl9
         '
@@ -242,19 +237,19 @@ Partial Class FormReturnNoteDet
         Me.LabelControl10.TabIndex = 4
         Me.LabelControl10.Text = "Return Note Number"
         '
-        'PanelControl9
+        'PCLeft
         '
-        Me.PanelControl9.Controls.Add(Me.GCStore)
-        Me.PanelControl9.Controls.Add(Me.PCButton)
-        Me.PanelControl9.Controls.Add(Me.PCAWB)
-        Me.PanelControl9.Controls.Add(Me.PCReturnStaff)
-        Me.PanelControl9.Controls.Add(Me.PanelControl2)
-        Me.PanelControl9.Controls.Add(Me.PanelControl1)
-        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl9.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl9.Name = "PanelControl9"
-        Me.PanelControl9.Size = New System.Drawing.Size(431, 410)
-        Me.PanelControl9.TabIndex = 2
+        Me.PCLeft.Controls.Add(Me.GCStore)
+        Me.PCLeft.Controls.Add(Me.PCButton)
+        Me.PCLeft.Controls.Add(Me.PCAWB)
+        Me.PCLeft.Controls.Add(Me.PCReturnStaff)
+        Me.PCLeft.Controls.Add(Me.PanelControl2)
+        Me.PCLeft.Controls.Add(Me.PanelControl1)
+        Me.PCLeft.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PCLeft.Location = New System.Drawing.Point(0, 0)
+        Me.PCLeft.Name = "PCLeft"
+        Me.PCLeft.Size = New System.Drawing.Size(431, 410)
+        Me.PCLeft.TabIndex = 2
         '
         'GCStore
         '
@@ -394,16 +389,41 @@ Partial Class FormReturnNoteDet
         Me.SLEEmp.Location = New System.Drawing.Point(85, 10)
         Me.SLEEmp.Name = "SLEEmp"
         Me.SLEEmp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEEmp.Properties.View = Me.GridView1
+        Me.SLEEmp.Properties.View = Me.GVEmployee
         Me.SLEEmp.Size = New System.Drawing.Size(337, 20)
         Me.SLEEmp.TabIndex = 1
         '
-        'GridView1
+        'GVEmployee
         '
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCEmployee, Me.GridColumn5, Me.GridColumn6})
+        Me.GVEmployee.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GVEmployee.Name = "GVEmployee"
+        Me.GVEmployee.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GVEmployee.OptionsView.ShowGroupPanel = False
+        '
+        'GCEmployee
+        '
+        Me.GCEmployee.Caption = "ID"
+        Me.GCEmployee.FieldName = "id_employee"
+        Me.GCEmployee.Name = "GCEmployee"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "NIP"
+        Me.GridColumn5.FieldName = "employee_number"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.Width = 371
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Employee"
+        Me.GridColumn6.FieldName = "employee_name"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 1245
         '
         'LabelControl2
         '
@@ -443,6 +463,7 @@ Partial Class FormReturnNoteDet
         'GridColumn1
         '
         Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "id_type"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -450,6 +471,7 @@ Partial Class FormReturnNoteDet
         'GridColumn3
         '
         Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.FieldName = "type"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -464,30 +486,29 @@ Partial Class FormReturnNoteDet
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BDelTypeNext)
+        Me.PanelControl1.Controls.Add(Me.BReset)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(2, 365)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(427, 43)
         Me.PanelControl1.TabIndex = 1
         '
-        'BDelTypeNext
+        'BReset
         '
-        Me.BDelTypeNext.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDelTypeNext.Image = CType(resources.GetObject("BDelTypeNext.Image"), System.Drawing.Image)
-        Me.BDelTypeNext.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleRight
-        Me.BDelTypeNext.Location = New System.Drawing.Point(336, 2)
-        Me.BDelTypeNext.Name = "BDelTypeNext"
-        Me.BDelTypeNext.Size = New System.Drawing.Size(89, 39)
-        Me.BDelTypeNext.TabIndex = 1
-        Me.BDelTypeNext.Text = "Next"
+        Me.BReset.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BReset.Image = CType(resources.GetObject("BReset.Image"), System.Drawing.Image)
+        Me.BReset.Location = New System.Drawing.Point(336, 2)
+        Me.BReset.Name = "BReset"
+        Me.BReset.Size = New System.Drawing.Size(89, 39)
+        Me.BReset.TabIndex = 4
+        Me.BReset.Text = "Reset"
         '
         'FormReturnNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(851, 410)
-        Me.Controls.Add(Me.PanelControl9)
+        Me.Controls.Add(Me.PCLeft)
         Me.Controls.Add(Me.PanelControl3)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -496,21 +517,21 @@ Partial Class FormReturnNoteDet
         Me.Text = "Return Note Detail"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        Me.PanelControl5.PerformLayout()
+        CType(Me.PCReturnNote, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCReturnNote.ResumeLayout(False)
+        Me.PCReturnNote.PerformLayout()
+        CType(Me.DEReturnNote.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEReturnNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TELabelNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl9.ResumeLayout(False)
+        CType(Me.TEQtyReturnNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEReturnNoteNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCLeft.ResumeLayout(False)
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLECompany, System.ComponentModel.ISupportInitialize).EndInit()
@@ -525,7 +546,7 @@ Partial Class FormReturnNoteDet
         Me.PCReturnStaff.ResumeLayout(False)
         Me.PCReturnStaff.PerformLayout()
         CType(Me.SLEEmp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -538,21 +559,19 @@ Partial Class FormReturnNoteDet
     End Sub
 
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCReturnNote As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit7 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TELabelNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton7 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSaveAndPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton8 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton9 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEQtyReturnNote As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit6 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEReturnNoteNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCLeft As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCStore As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVStore As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
@@ -568,7 +587,7 @@ Partial Class FormReturnNoteDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PCReturnStaff As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEEmp As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
@@ -577,6 +596,10 @@ Partial Class FormReturnNoteDet
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BDelTypeNext As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BResetAWB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCEmployee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEReturnNote As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
 End Class
