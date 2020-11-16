@@ -1130,9 +1130,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAccountingJournalBill.ShowDialog()
         ElseIf formName = "FormProductionPLToWHRec" Then
             If FormProductionPLToWHRec.XTCPL.SelectedTabPageIndex = 0 Then
-                FormProductionPLToWHRecDet.action = "ins"
-                FormProductionPLToWHRecDet.id_pl_prod_order_rec = "0"
-                FormProductionPLToWHRecDet.ShowDialog()
+                'FormProductionPLToWHRecDet.action = "ins"
+                'FormProductionPLToWHRecDet.id_pl_prod_order_rec = "0"
+                'FormProductionPLToWHRecDet.ShowDialog()
             Else
                 FormProductionPLToWHRecDet.action = "ins"
                 FormProductionPLToWHRecDet.id_pl_prod_order_rec = "0"
