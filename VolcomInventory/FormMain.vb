@@ -1130,9 +1130,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAccountingJournalBill.ShowDialog()
         ElseIf formName = "FormProductionPLToWHRec" Then
             If FormProductionPLToWHRec.XTCPL.SelectedTabPageIndex = 0 Then
-                FormProductionPLToWHRecDet.action = "ins"
-                FormProductionPLToWHRecDet.id_pl_prod_order_rec = "0"
-                FormProductionPLToWHRecDet.ShowDialog()
+                'FormProductionPLToWHRecDet.action = "ins"
+                'FormProductionPLToWHRecDet.id_pl_prod_order_rec = "0"
+                'FormProductionPLToWHRecDet.ShowDialog()
             Else
                 FormProductionPLToWHRecDet.action = "ins"
                 FormProductionPLToWHRecDet.id_pl_prod_order_rec = "0"
@@ -1165,8 +1165,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesDelOrder" Then
             'SALES DELIVERY ORDER
             If FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 0 Then
-                FormSalesDelOrderDet.action = "ins"
-                FormSalesDelOrderDet.ShowDialog()
+                'FormSalesDelOrderDet.action = "ins"
+                'FormSalesDelOrderDet.ShowDialog()
             ElseIf FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 1 Then
                 FormSalesDelOrderDet.id_sales_order = FormSalesDelOrder.GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
                 FormSalesDelOrderDet.action = "ins"
@@ -1194,8 +1194,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
-                FormSalesReturnDet.action = "ins"
-                FormSalesReturnDet.ShowDialog()
+                'FormSalesReturnDet.action = "ins"
+                'FormSalesReturnDet.ShowDialog()
             ElseIf FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 1 Then
                 FormSalesReturnDetNew.ShowDialog()
             End If
@@ -1216,8 +1216,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
-                FormSalesReturnQCDet.action = "ins"
-                FormSalesReturnQCDet.ShowDialog()
+                'FormSalesReturnQCDet.action = "ins"
+                'FormSalesReturnQCDet.ShowDialog()
             Else
                 FormSalesReturnQCDet.action = "ins"
                 FormSalesReturnQCDet.id_sales_return = FormSalesReturnQC.GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
@@ -1287,8 +1287,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGTrfNew" Then
             'FG Transfer
             If FormFGTrfNew.XTCTrf.SelectedTabPageIndex = 0 Then
-                FormFGTrfNewDet.action = "ins"
-                FormFGTrfNewDet.ShowDialog()
+                'FormFGTrfNewDet.action = "ins"
+                'FormFGTrfNewDet.ShowDialog()
             ElseIf FormFGTrfNew.XTCTrf.SelectedTabPageIndex = 1 Then
                 FormFGTrfNewDet.id_sales_order = FormFGTrfNew.GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
                 FormFGTrfNewDet.action = "ins"

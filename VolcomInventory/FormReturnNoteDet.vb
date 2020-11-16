@@ -52,17 +52,27 @@ WHERE id_inbound_awb='" & id_inbound_awb & "'"
         check_but()
     End Sub
 
+    Sub load_repo_store()
+        Dim q As String = "SELECT id_comp,comp_number,CONCAT(comp_number, ' - ',comp_name) AS comp_name
+FROM tb_m_comp 
+WHERE id_comp_cat='6' AND is_active='1'"
+        viewSearchLookupRepositoryQuery(RISLECompany, q, 0, "comp_name", "id_comp")
+    End Sub
+
     Private Sub FormReturnNoteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_emp()
+        load_type()
+        load_store()
+        load_repo_store()
     End Sub
 
     Sub load_type()
-        Dim q As String = "SELECT '1' AS id_type,'WH INBOUND DELIVERY' AS type UNION ALL SELECT '2' AS id_type,'3PL' AS type"
-        viewSearchLookupQuery(SLEEmp, q, "id_type", "type", "id_type")
+        Dim q As String = "SELECT '1' AS id_type,'WH INBOUND DELIVERY' AS type UNION ALL SELECT '2' AS id_type,'3PL OFFLINE' AS type"
+        viewSearchLookupQuery(SLEType, q, "id_type", "type", "id_type")
     End Sub
 
     Sub load_emp()
-        Dim q As String = "SELECT id_employee,employee_number,employee_name FROM tb_m_employee WHERE id_employee_status='1' AND id_departement='6'"
+        Dim q As String = "SELECT id_employee,employee_code,employee_name FROM tb_m_employee WHERE id_employee_status='1' AND id_departement='6'"
         viewSearchLookupQuery(SLEEmp, q, "id_employee", "employee_name", "id_employee")
     End Sub
 
@@ -82,10 +92,29 @@ WHERE id_inbound_awb='" & id_inbound_awb & "'"
         Else
             BDelStore.Visible = False
         End If
+        '
+        If SLEType.EditValue.ToString = "1" Then
+            'wh inbound
+            empty_store()
+            PCReturnStaff.Visible = True
+            PCAWB.Visible = False
+            PCButton.Visible = True
+            '
+            GVStore.OptionsBehavior.ReadOnly = False
+            GVStore.OptionsBehavior.Editable = True
+        Else
+            '3pl offline
+            empty_store()
+            PCReturnStaff.Visible = False
+            PCAWB.Visible = True
+            PCButton.Visible = False
+            '
+            GVStore.OptionsBehavior.ReadOnly = True
+            GVStore.OptionsBehavior.Editable = False
+        End If
     End Sub
 
     Private Sub BResetAWB_Click(sender As Object, e As EventArgs) Handles BResetAWB.Click
-        empty_store()
         TEAWB.Enabled = True
         TEAWB.Text = ""
         id_inbound_awb = "-1"
@@ -111,5 +140,35 @@ WHERE id_inbound_awb='" & id_inbound_awb & "'"
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub SLEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEType.EditValueChanged
+        check_but()
+    End Sub
+
+    Private Sub BSaveAndPrint_Click(sender As Object, e As EventArgs) Handles BSaveAndPrint.Click
+        Dim q As String = ""
+
+        If SLEType.EditValue.ToString = "1" And GVStore.RowCount = 0 Then
+            warningCustom("Please input store first")
+        End If
+
+        If id_return_note = "-1" Then
+            'new
+            q = "INSERT INTO tb_return_note(`id_type`,`id_emp_driver`,`id_inbound_awb`,`date_created`,`number_return_note`,`qty`,`date_return_note`
+) VALUES('" & SLEType.EditValue.ToString & "','" & If(SLEType.EditValue.ToString = "1", SLEEmp.EditValue.ToString, "0") & "',NOW(),'" & addSlashes(TEReturnNoteNumber.Text) & "','" & TEQtyReturnNote.EditValue.ToString & "','" & Date.Parse(DEReturnNote.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID();"
+            id_return_note = execute_query(q, 0, True, "", "", "", "")
+            '
+            q = "CALL gen_label_return_note('" & id_return_note & "')"
+            execute_non_query(q, True, "", "", "", "")
+            'store
+            q = "DELETE FROM tb_return_note_store WHERE id_return_note='" & id_return_note & "'"
+            execute_non_query(q, True, "", "", "", "")
+            q = "INSERT INTO tb_return_note_store(id_return_note,id_comp) VALUES()"
+        Else
+            'update
+
+        End If
+
     End Sub
 End Class
