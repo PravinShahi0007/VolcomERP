@@ -1165,8 +1165,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesDelOrder" Then
             'SALES DELIVERY ORDER
             If FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 0 Then
-                FormSalesDelOrderDet.action = "ins"
-                FormSalesDelOrderDet.ShowDialog()
+                'FormSalesDelOrderDet.action = "ins"
+                'FormSalesDelOrderDet.ShowDialog()
             ElseIf FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 1 Then
                 FormSalesDelOrderDet.id_sales_order = FormSalesDelOrder.GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
                 FormSalesDelOrderDet.action = "ins"
