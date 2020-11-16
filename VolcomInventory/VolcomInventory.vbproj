@@ -2611,6 +2611,12 @@
     <Compile Include="FormListPOMat.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormListStore.Designer.vb">
+      <DependentUpon>FormListStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormListStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMailManage.Designer.vb">
       <DependentUpon>FormMailManage.vb</DependentUpon>
     </Compile>
@@ -3887,6 +3893,18 @@
       <DependentUpon>FormRetOLStoreDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormRetOLStoreDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReturnNote.Designer.vb">
+      <DependentUpon>FormReturnNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReturnNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReturnNoteDet.Designer.vb">
+      <DependentUpon>FormReturnNoteDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReturnNoteDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRevenue.Designer.vb">
@@ -10043,6 +10061,9 @@
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormListStore.resx">
+      <DependentUpon>FormListStore.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMailManage.resx">
       <DependentUpon>FormMailManage.vb</DependentUpon>
     </EmbeddedResource>
@@ -10682,6 +10703,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOLStoreDet.resx">
       <DependentUpon>FormRetOLStoreDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReturnNote.resx">
+      <DependentUpon>FormReturnNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReturnNoteDet.resx">
+      <DependentUpon>FormReturnNoteDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>
