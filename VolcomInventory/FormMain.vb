@@ -1216,8 +1216,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
-                FormSalesReturnQCDet.action = "ins"
-                FormSalesReturnQCDet.ShowDialog()
+                'FormSalesReturnQCDet.action = "ins"
+                'FormSalesReturnQCDet.ShowDialog()
             Else
                 FormSalesReturnQCDet.action = "ins"
                 FormSalesReturnQCDet.id_sales_return = FormSalesReturnQC.GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
