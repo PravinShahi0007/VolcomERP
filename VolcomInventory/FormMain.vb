@@ -1287,8 +1287,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGTrfNew" Then
             'FG Transfer
             If FormFGTrfNew.XTCTrf.SelectedTabPageIndex = 0 Then
-                FormFGTrfNewDet.action = "ins"
-                FormFGTrfNewDet.ShowDialog()
+                'FormFGTrfNewDet.action = "ins"
+                'FormFGTrfNewDet.ShowDialog()
             ElseIf FormFGTrfNew.XTCTrf.SelectedTabPageIndex = 1 Then
                 FormFGTrfNewDet.id_sales_order = FormFGTrfNew.GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
                 FormFGTrfNewDet.action = "ins"
