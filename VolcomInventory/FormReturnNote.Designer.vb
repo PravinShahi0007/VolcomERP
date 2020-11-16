@@ -139,7 +139,7 @@ Partial Class FormReturnNote
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_inbound_awb"
+        Me.GridColumn1.FieldName = "id_return_note"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
@@ -163,7 +163,7 @@ Partial Class FormReturnNote
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Created Date"
-        Me.GridColumn3.FieldName = "created_date"
+        Me.GridColumn3.FieldName = "date_created"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 3
@@ -195,6 +195,7 @@ Partial Class FormReturnNote
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Return Note Number"
+        Me.GridColumn5.FieldName = "number_return_note"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 5
@@ -203,7 +204,7 @@ Partial Class FormReturnNote
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Qty"
-        Me.GridColumn9.FieldName = "total_berat"
+        Me.GridColumn9.FieldName = "qty"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 6
@@ -212,6 +213,9 @@ Partial Class FormReturnNote
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Return Note Date"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn4.FieldName = "date_return_note"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 7

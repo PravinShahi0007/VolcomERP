@@ -37,7 +37,6 @@ WHERE id_inbound_awb='" & id_inbound_awb & "'"
         For i = GVStore.RowCount - 1 To 0 Step -1
             GVStore.DeleteRow(i)
         Next
-        check_but()
     End Sub
 
     Private Sub BDelStore_Click_1(sender As Object, e As EventArgs) Handles BDelStore.Click
@@ -49,6 +48,8 @@ WHERE id_inbound_awb='" & id_inbound_awb & "'"
 
     Private Sub BAddStore_Click_1(sender As Object, e As EventArgs) Handles BAddStore.Click
         GVStore.AddNewRow()
+        GVStore.SetRowCellValue(GVStore.RowCount - 1, "id_comp", 388)
+        GVStore.RefreshData()
         check_but()
     End Sub
 
@@ -56,14 +57,39 @@ WHERE id_inbound_awb='" & id_inbound_awb & "'"
         Dim q As String = "SELECT id_comp,comp_number,CONCAT(comp_number, ' - ',comp_name) AS comp_name
 FROM tb_m_comp 
 WHERE id_comp_cat='6' AND is_active='1'"
-        viewSearchLookupRepositoryQuery(RISLECompany, q, 0, "comp_name", "id_comp")
+        viewSearchLookupRepositoryQuery(RISLECompany, q, 1, "comp_name", "id_comp")
     End Sub
 
     Private Sub FormReturnNoteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_Form()
+    End Sub
+
+    Sub load_Form()
+        DEReturnNote.EditValue = Now
+        '
         load_emp()
         load_type()
         load_store()
         load_repo_store()
+        '
+        If Not id_return_note = "-1" Then
+            Dim q As String = "SELECT rn.id_type,awb.awb_number,rn.id_emp_driver,rn.id_inbound_awb,rn.label_number,rn.date_created,rn.number_return_note,rn.qty,rn.date_return_note
+FROM `tb_return_note` rn
+LEFT JOIN tb_inbound_awb awb ON rn.id_inbound_awb=awb.id_inbound_awb
+WHERE rn.id_return_note='" & id_return_note & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                SLEType.EditValue = dt.Rows(0)("id_type").ToString
+                SLEEmp.EditValue = dt.Rows(0)("id_emp_driver").ToString
+                TEAWB.Text = dt.Rows(0)("awb_number").ToString
+                load_store()
+                '
+                TEReturnNoteNumber.Text = dt.Rows(0)("number_return_note").ToString
+                DEReturnNote.EditValue = dt.Rows(0)("date_return_note")
+                TEQtyReturnNote.EditValue = dt.Rows(0)("qty")
+                TELabelNumber.Text = dt.Rows(0)("label_number").ToString
+            End If
+        End If
     End Sub
 
     Sub load_type()
@@ -93,6 +119,14 @@ WHERE id_comp_cat='6' AND is_active='1'"
             BDelStore.Visible = False
         End If
         '
+        If id_return_note = "-1" Then
+            BNextReturnNote.Visible = False
+        Else
+            BNextReturnNote.Visible = True
+        End If
+    End Sub
+
+    Sub check_but_type()
         If SLEType.EditValue.ToString = "1" Then
             'wh inbound
             empty_store()
@@ -118,6 +152,7 @@ WHERE id_comp_cat='6' AND is_active='1'"
         TEAWB.Enabled = True
         TEAWB.Text = ""
         id_inbound_awb = "-1"
+        check_but_type()
         check_but()
     End Sub
 
@@ -143,32 +178,59 @@ WHERE id_comp_cat='6' AND is_active='1'"
     End Sub
 
     Private Sub SLEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEType.EditValueChanged
+        check_but_type()
         check_but()
     End Sub
 
     Private Sub BSaveAndPrint_Click(sender As Object, e As EventArgs) Handles BSaveAndPrint.Click
         Dim q As String = ""
-
+        '
+        GVStore.ActiveFilterString = "Not IsNullOrEmpty([id_comp])"
+        '
         If SLEType.EditValue.ToString = "1" And GVStore.RowCount = 0 Then
             warningCustom("Please input store first")
-        End If
-
-        If id_return_note = "-1" Then
-            'new
-            q = "INSERT INTO tb_return_note(`id_type`,`id_emp_driver`,`id_inbound_awb`,`date_created`,`number_return_note`,`qty`,`date_return_note`
-) VALUES('" & SLEType.EditValue.ToString & "','" & If(SLEType.EditValue.ToString = "1", SLEEmp.EditValue.ToString, "0") & "',NOW(),'" & addSlashes(TEReturnNoteNumber.Text) & "','" & TEQtyReturnNote.EditValue.ToString & "','" & Date.Parse(DEReturnNote.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID();"
-            id_return_note = execute_query(q, 0, True, "", "", "", "")
-            '
-            q = "CALL gen_label_return_note('" & id_return_note & "')"
-            execute_non_query(q, True, "", "", "", "")
-            'store
-            q = "DELETE FROM tb_return_note_store WHERE id_return_note='" & id_return_note & "'"
-            execute_non_query(q, True, "", "", "", "")
-            q = "INSERT INTO tb_return_note_store(id_return_note,id_comp) VALUES()"
+        ElseIf TEQtyReturnNote.EditValue = 0 Or TEReturnNoteNumber.Text = "" Then
+            warningCustom("Please fill return note detail")
         Else
-            'update
+            If id_return_note = "-1" Then
+                'new
+                q = "INSERT INTO tb_return_note(`id_type`,`id_emp_driver`,`id_inbound_awb`,`date_created`,`number_return_note`,`qty`,`date_return_note`,`craeted_by`
+) VALUES('" & SLEType.EditValue.ToString & "','" & If(SLEType.EditValue.ToString = "1", SLEEmp.EditValue.ToString, "0") & "','" & id_inbound_awb & "',NOW(),'" & addSlashes(TEReturnNoteNumber.Text) & "','" & TEQtyReturnNote.EditValue.ToString & "','" & Date.Parse(DEReturnNote.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "'); SELECT LAST_INSERT_ID();"
+                id_return_note = execute_query(q, 0, True, "", "", "", "")
+                '
+                q = "CALL gen_label_return_note('" & id_return_note & "')"
+                execute_non_query(q, True, "", "", "", "")
+                'store
+                q = "DELETE FROM tb_return_note_store WHERE id_return_note='" & id_return_note & "'"
+                execute_non_query(q, True, "", "", "", "")
+                q = "INSERT INTO tb_return_note_store(id_return_note,id_comp) VALUES"
+                For i As Integer = 0 To GVStore.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_return_note & "','" & GVStore.GetRowCellValue(i, "id_comp").ToString & "')"
+                Next
+                execute_non_query(q, True, "", "", "", "")
+                'print
+                infoCustom("Return label saved.")
+            Else
+                'update
 
+            End If
         End If
+        check_but()
+        GVStore.ActiveFilterString = ""
+    End Sub
 
+    Private Sub BReset_Click(sender As Object, e As EventArgs) Handles BReset.Click
+        check_but_type()
+    End Sub
+
+    Private Sub BNextReturnNote_Click(sender As Object, e As EventArgs) Handles BNextReturnNote.Click
+        TELabelNumber.Text = "[Auto Generate]"
+        DEReturnNote.EditValue = Now
+        TEQtyReturnNote.EditValue = 0
+        id_return_note = "-1"
+        check_but()
     End Sub
 End Class
