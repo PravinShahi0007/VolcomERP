@@ -2611,6 +2611,12 @@
     <Compile Include="FormListPOMat.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormListStore.Designer.vb">
+      <DependentUpon>FormListStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormListStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMailManage.Designer.vb">
       <DependentUpon>FormMailManage.vb</DependentUpon>
     </Compile>
@@ -10054,6 +10060,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListStore.resx">
+      <DependentUpon>FormListStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMailManage.resx">
       <DependentUpon>FormMailManage.vb</DependentUpon>

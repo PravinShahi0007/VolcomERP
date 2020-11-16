@@ -14,6 +14,7 @@
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBomDetMat.DataSource = data
+            GVBomDetMat.BestFitColumns()
         Catch ex As Exception
             errorConnection()
         End Try
