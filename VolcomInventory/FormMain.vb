@@ -1194,8 +1194,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
-                FormSalesReturnDet.action = "ins"
-                FormSalesReturnDet.ShowDialog()
+                'FormSalesReturnDet.action = "ins"
+                'FormSalesReturnDet.ShowDialog()
             ElseIf FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 1 Then
                 FormSalesReturnDetNew.ShowDialog()
             End If
