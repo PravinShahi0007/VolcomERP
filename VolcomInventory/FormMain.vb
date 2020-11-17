@@ -14724,6 +14724,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBCompanyEmailMapping_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompanyEmailMapping.LinkClicked
         Try
             FormCompanyEmailMapping.MdiParent = Me
+            FormCompanyEmailMapping.mail_dept = "acc"
             FormCompanyEmailMapping.Show()
             FormCompanyEmailMapping.WindowState = FormWindowState.Maximized
             FormCompanyEmailMapping.Focus()
@@ -15612,5 +15613,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCompanyEmailMappingWH_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompanyEmailMappingWH.LinkClicked
+        Try
+            FormCompanyEmailMapping.MdiParent = Me
+            FormCompanyEmailMapping.mail_dept = "wh"
+            FormCompanyEmailMapping.Show()
+            FormCompanyEmailMapping.WindowState = FormWindowState.Maximized
+            FormCompanyEmailMapping.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
     End Sub
 End Class
