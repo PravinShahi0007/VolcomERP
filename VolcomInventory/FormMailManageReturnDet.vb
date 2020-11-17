@@ -12,8 +12,12 @@
     Dim mail_content_to As String = ""
     Dim super_user As String = get_setup_field("id_role_super_admin")
 
+    Private loaded As Boolean = False
+
     Private Sub FormMailManageReturnDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
+
+        loaded = True
     End Sub
 
     Private Sub FormMailManageReturnDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -62,10 +66,11 @@
             If rmt = "45" Then 'RETURN ORDER
                 '-- mail type
                 TxtMailType.Text = execute_query("SELECT report_mark_type_name FROM tb_lookup_report_mark_type WHERE report_mark_type='45'", 0, True, "", "", "", "")
+                MEReason.EditValue = ""
 
                 '--- load member
                 Dim qf As String = "SELECT m.id_mail_manage_mapping_intern AS `index`,0 AS `id_mail_manage_member`,0 AS `id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type,m.id_user,0 AS `id_comp_contact`, 
-                e.employee_name AS `description`,e.email_external AS `mail_address` 
+                e.employee_name AS `description`,e.email_external AS `mail_address`, e.employee_position AS `position` 
                 FROM tb_mail_manage_mapping_intern m
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_user u ON u.id_user = m.id_user
@@ -73,7 +78,7 @@
                 WHERE e.email_external!='' AND m.report_mark_type='" + rmt + "' AND (ISNULL(m.id_comp_group) OR m.id_comp_group='" + FormMailManageReturn.SLEStoreGroup.EditValue.ToString + "')
                 UNION
                 SELECT m.id_mail_manage_mapping AS `index`,0 AS `id_mail_manage_member`,0 AS `id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type, 0 AS `id_user`, m.id_comp_contact,
-                cc.contact_person AS `description`, cc.email AS `mail_address`
+                cc.contact_person AS `description`, cc.email AS `mail_address`, '' AS `position`
                 FROM tb_mail_manage_mapping m
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
@@ -95,6 +100,9 @@
                 GCDetail.DataSource = ddet
                 GVDetail.BestFitColumns()
 
+                Dim employee_name_from As String = ""
+                Dim employee_position_from As String = ""
+
                 '-- load 'from/to/cc & html preview
                 GVMember.ActiveFilterString = ""
                 For j As Integer = 0 To ((GVMember.RowCount - 1) - GetGroupRowCount(GVMember))
@@ -103,6 +111,9 @@
 
                     If id_mail_member_type = "1" Then
                         MEFrom.Text += mail_address + "; "
+
+                        employee_name_from = GVMember.GetRowCellValue(j, "description").ToString
+                        employee_position_from = GVMember.GetRowCellValue(j, "position").ToString
                     ElseIf id_mail_member_type = "2" Then
                         METo.Text += mail_address + "; "
                     Else
@@ -123,7 +134,12 @@
                 MESubject.Text = addSlashes(mail_subject)
 
                 'mail template
-                Dim html As String = email_body_sales_return(ddet, mail_title, mail_content_head + ddet.Rows(0)("store_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
+                Dim html As String = execute_query("SELECT template FROM tb_mail_manage_template WHERE `type` = 'ret'", 0, True, "", "", "", "")
+
+                html = html.Replace("[return_reason]", MEReason.EditValue.ToString)
+                html = html.Replace("[employee_name]", employee_name_from)
+                html = html.Replace("[employee_position]", employee_position_from)
+
                 WebBrowser1.DocumentText = html
             End If
         ElseIf action = "upd" Then
@@ -143,11 +159,12 @@
             DEUpdatedDate.EditValue = data.Rows(0)("updated_date")
             TxtUpdatedBy.Text = data.Rows(0)("updated_by_name").ToString
             MESubject.Text = data.Rows(0)("mail_subject").ToString
+            MEReason.EditValue = data.Rows(0)("reason").ToString
 
             If rmt = "45" Then 'RETURN ORDER
                 '-- load member
                 Dim qf As String = "SELECT m.id_mail_manage_member AS `index`,m.`id_mail_manage_member`,m.`id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type,m.id_user, 0 AS `id_comp_contact`, 
-                e.employee_name AS `description`, m.mail_address AS `mail_address` 
+                e.employee_name AS `description`, m.mail_address AS `mail_address`, e.employee_position AS `position`
                 FROM tb_mail_manage_member m
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_user u ON u.id_user = m.id_user
@@ -155,7 +172,7 @@
                 WHERE m.id_mail_manage=" + id + " AND ISNULL(m.id_comp_contact)
                 UNION
                 SELECT m.id_mail_manage_member AS `index`,m.`id_mail_manage_member`,m.`id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type, 0 AS `id_user`, m.id_comp_contact,
-                cc.contact_person AS `description`, cc.email AS `mail_address`
+                cc.contact_person AS `description`, cc.email AS `mail_address`, '' AS `position`
                 FROM tb_mail_manage_member m
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
@@ -172,6 +189,9 @@
                 GVDetail.BestFitColumns()
 
                 '-- load 'from/to/cc & html preview
+                Dim employee_name_from As String = ""
+                Dim employee_position_from As String = ""
+
                 GVMember.ActiveFilterString = ""
                 MEFrom.Text = ""
                 METo.Text = ""
@@ -182,6 +202,9 @@
 
                     If id_mail_member_type = "1" Then
                         MEFrom.Text += mail_address + "; "
+
+                        employee_name_from = GVMember.GetRowCellValue(j, "description").ToString
+                        employee_position_from = GVMember.GetRowCellValue(j, "position").ToString
                     ElseIf id_mail_member_type = "2" Then
                         METo.Text += mail_address + "; "
                     Else
@@ -202,7 +225,12 @@
                 MESubject.Text = addSlashes(mail_subject)
 
                 'mail template
-                Dim html As String = email_body_sales_return(ddet, mail_title, mail_content_head + ddet.Rows(0)("store_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(ddet).ToString).ToString("N2"))
+                Dim html As String = execute_query("SELECT template FROM tb_mail_manage_template WHERE `type` = 'ret'", 0, True, "", "", "", "")
+
+                html = html.Replace("[return_reason]", MEReason.EditValue.ToString)
+                html = html.Replace("[employee_name]", employee_name_from)
+                html = html.Replace("[employee_position]", employee_position_from)
+
                 WebBrowser1.DocumentText = html
             End If
 
@@ -219,9 +247,11 @@
             If id_mail_status = "1" Or id_mail_status = "3" Then
                 BtnDraft.Visible = True
                 BtnCancel.Visible = True
+                MEReason.ReadOnly = False
             Else
                 BtnDraft.Visible = False
                 BtnCancel.Visible = False
+                MEReason.ReadOnly = True
             End If
 
             'jika cancel
@@ -268,10 +298,14 @@
 
     Private Sub BtnSend_Click(sender As Object, e As EventArgs) Handles BtnSend.Click
         Cursor = Cursors.WaitCursor
-        'ada konfirmasi
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to send this email ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            save("2", "")
+        If Not MEReason.Text = "" Then
+            'ada konfirmasi
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to send this email ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                save("2", "")
+            End If
+        Else
+            stopCustom("Please add reason.")
         End If
         Cursor = Cursors.Default
     End Sub
@@ -314,8 +348,8 @@
         Dim mail_subject As String = addSlashes(MESubject.Text)
         If action = "ins" Then
             'insert head
-            Dim query As String = "INSERT INTO tb_mail_manage(number, created_date, created_by, updated_date, updated_by, report_mark_type, id_mail_status, mail_status_note, mail_subject) VALUES
-            ('', NOW(), '" + id_user + "', NOW(), '" + id_user + "', '" + rmt + "', '1', '" + note_par + "', '" + mail_subject + "'); SELECT LAST_INSERT_ID(); "
+            Dim query As String = "INSERT INTO tb_mail_manage(number, created_date, created_by, updated_date, updated_by, report_mark_type, id_mail_status, mail_status_note, mail_subject, reason) VALUES
+            ('', NOW(), '" + id_user + "', NOW(), '" + id_user + "', '" + rmt + "', '1', '" + note_par + "', '" + mail_subject + "', '" + addSlashes(MEReason.EditValue.ToString) + "'); SELECT LAST_INSERT_ID(); "
             id = execute_query(query, 0, True, "", "", "", "")
             execute_non_query("UPDATE tb_mail_manage SET `number` = CONCAT((SELECT email_code_head FROM `tb_opt` LIMIT 1),LPAD(" + id + ",(SELECT email_code_digit FROM tb_opt LIMIT 1),'0')) WHERE id_mail_manage=" + id + ";", True, "", "", "", "")
 
@@ -690,4 +724,31 @@
         </table>"
         Return body_temp
     End Function
+
+    Private Sub MEReason_EditValueChanged(sender As Object, e As EventArgs) Handles MEReason.EditValueChanged
+        If loaded Then
+            '-- load 'from/to/cc & html preview
+            Dim employee_name_from As String = ""
+            Dim employee_position_from As String = ""
+
+            GVMember.ActiveFilterString = ""
+            For j As Integer = 0 To ((GVMember.RowCount - 1) - GetGroupRowCount(GVMember))
+                Dim id_mail_member_type As String = GVMember.GetRowCellValue(j, "id_mail_member_type").ToString
+
+                If id_mail_member_type = "1" Then
+                    employee_name_from = GVMember.GetRowCellValue(j, "description").ToString
+                    employee_position_from = GVMember.GetRowCellValue(j, "position").ToString
+                End If
+            Next
+
+            'mail template
+            Dim html As String = execute_query("SELECT template FROM tb_mail_manage_template WHERE `type` = 'ret'", 0, True, "", "", "", "")
+
+            html = html.Replace("[return_reason]", MEReason.EditValue.ToString)
+            html = html.Replace("[employee_name]", employee_name_from)
+            html = html.Replace("[employee_position]", employee_position_from)
+
+            WebBrowser1.DocumentText = html
+        End If
+    End Sub
 End Class
