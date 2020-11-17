@@ -74,6 +74,10 @@ WHERE rn.id_return_note='" & id_return_note & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 SLEType.EditValue = dt.Rows(0)("id_type").ToString
+                '
+                If dt.Rows(0)("id_type").ToString = "2" Then
+                    id_inbound_awb = dt.Rows(0)("id_inbound_awb").ToString
+                End If
                 SLEEmp.EditValue = dt.Rows(0)("id_emp_driver").ToString
                 TEAWB.Text = dt.Rows(0)("awb_number").ToString
                 load_store()
@@ -208,8 +212,9 @@ WHERE rn.id_return_note='" & id_return_note & "'"
                     q += "('" & id_return_note & "','" & GVStore.GetRowCellValue(i, "id_comp").ToString & "')"
                 Next
                 execute_non_query(q, True, "", "", "", "")
-                infoCustom("Return label saved.")
                 'print
+                print()
+                infoCustom("Return label saved.")
             Else
                 'update
                 q = "UPDATE tb_return_note SET `id_type`='" & SLEType.EditValue.ToString & "',`id_emp_driver`='" & If(SLEType.EditValue.ToString = "1", SLEEmp.EditValue.ToString, "0") & "',`id_inbound_awb`='" & id_inbound_awb & "',`number_return_note`='" & addSlashes(TEReturnNoteNumber.Text) & "',`qty`='" & TEQtyReturnNote.EditValue.ToString & "',`date_return_note`='" & Date.Parse(DEReturnNote.EditValue.ToString).ToString("yyyy-MM-dd") & "',update_by='" & id_user & "',update_date=NOW() WHERE id_return_note='" & id_return_note & "'"
@@ -225,13 +230,28 @@ WHERE rn.id_return_note='" & id_return_note & "'"
                     q += "('" & id_return_note & "','" & GVStore.GetRowCellValue(i, "id_comp").ToString & "')"
                 Next
                 execute_non_query(q, True, "", "", "", "")
-                '
-                infoCustom("Return label updated.")
                 'print
+                print()
+                infoCustom("Return label updated.")
             End If
         End If
         check_but()
         GVStore.ActiveFilterString = ""
+    End Sub
+
+    Sub print()
+        Cursor = Cursors.WaitCursor
+
+        Dim q As String = "SELECT label_number,number_return_note,FORMAT(qty, 0, 'id_ID') AS qty,DATE_FORMAT(date_return_note,'%d %M %Y') AS date_return_note,DATE_FORMAT(NOW(),'%d %M %Y %H:%i') as printed_date FROM tb_return_note WHERE id_return_note='" & id_return_note & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        ReportReturnNote.dt = dt
+        Dim Report As New ReportReturnNote()
+        Report.LBarcodeLabelNumber.BinaryData = System.Text.Encoding.Unicode.GetBytes(TEReturnNoteNumber.Text)
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BReset_Click(sender As Object, e As EventArgs) Handles BReset.Click

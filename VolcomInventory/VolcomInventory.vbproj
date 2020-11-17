@@ -8458,6 +8458,12 @@
     <Compile Include="ReportRetOLStoreDet.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportReturnNote.Designer.vb">
+      <DependentUpon>ReportReturnNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportReturnNote.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalarySlip.Designer.vb">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </Compile>
@@ -13452,6 +13458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRetOLStoreDet.resx">
       <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportReturnNote.resx">
+      <DependentUpon>ReportReturnNote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
