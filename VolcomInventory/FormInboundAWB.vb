@@ -25,7 +25,7 @@ GROUP BY rate.id_comp"
     Sub load_repo_store()
         Dim q As String = "SELECT id_comp,comp_number,CONCAT(comp_number, ' - ',comp_name) AS comp_name
 FROM tb_m_comp 
-WHERE id_comp_cat='6' AND is_active='1'"
+WHERE id_comp_cat='6' AND is_active='1' AND "
         viewSearchLookupRepositoryQuery(RISLECompany, q, 0, "comp_name", "id_comp")
     End Sub
 
@@ -137,7 +137,15 @@ VALUES('" & SLEVendor.EditValue.ToString & "','" & SLEDelType.EditValue.ToString
     End Sub
 
     Private Sub SLEVendor_EditValueChanged(sender As Object, e As EventArgs) Handles SLEVendor.EditValueChanged
+        load_rate()
+    End Sub
 
+    Sub load_rate()
+        Dim q As String = "SELECT rte.id_3pl_rate,ds.id_sub_district,ds.sub_district,rte.cargo_rate,rte.cargo_lead_time,rte.cargo_min_weight
+FROM `tb_3pl_rate` rte
+INNER JOIN tb_m_sub_district ds ON ds.id_sub_district=rte.id_sub_district
+WHERE rte.is_active=1 AND rte.id_del_type='" & SLEDelType.EditValue.ToString & "' AND rte.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        viewSearchLookupQuery(SLERate, q, "id_3pl_rate", "sub_district", "id_3pl_rate")
     End Sub
 
     Sub check_but()
@@ -278,5 +286,9 @@ VALUES"
             Console.WriteLine(ex.ToString)
 
         End Try
+    End Sub
+
+    Private Sub SLERate_EditValueChanged(sender As Object, e As EventArgs) Handles SLERate.EditValueChanged
+
     End Sub
 End Class

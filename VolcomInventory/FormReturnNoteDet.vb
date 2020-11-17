@@ -247,7 +247,6 @@ WHERE rn.id_return_note='" & id_return_note & "'"
 
         ReportReturnNote.dt = dt
         Dim Report As New ReportReturnNote()
-        Report.LBarcodeLabelNumber.BinaryData = System.Text.Encoding.Unicode.GetBytes(TEReturnNoteNumber.Text)
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
