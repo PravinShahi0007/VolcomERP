@@ -44,12 +44,26 @@
                 ) AS i ON i.id_sales_return_order = s.id_sales_return_order
                 WHERE s.id_sales_return_order = -1", -1, True, "", "", "", "")
 
+            Dim in_store As String = CCBEStore.EditValue.ToString
+
+            If in_store = "" Then
+                in_store = "0"
+            End If
+
             'from
             data_from = execute_query("
-                SELECT emp.employee_name AS name, emp.employee_position AS `position`, emp.email_external AS email
-                FROM tb_sales_return_order_mail_mapping AS map
-                LEFT JOIN tb_m_employee AS emp ON map.id_employee = emp.id_employee
-                WHERE map.use_in = '3pl' AND map.type = 'from'
+                SELECT e.employee_name AS name, e.employee_position AS `position`, e.email_external AS email
+                FROM tb_mail_manage_mapping_intern AS m
+                INNER JOIN tb_m_user AS u ON u.id_user = m.id_user
+                INNER JOIN tb_m_employee AS e ON e.id_employee = u.id_employee
+                WHERE m.report_mark_type = 276 AND m.id_mail_member_type = 1 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
+
+                UNION
+
+                SELECT c.contact_person AS name, c.position AS `position`, c.email
+                FROM tb_mail_manage_mapping AS m
+                INNER JOIN tb_m_comp_contact AS c ON c.id_comp_contact = m.id_comp_contact
+                WHERE m.report_mark_type = 276 AND m.id_mail_member_type = 1 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
             ", -1, True, "", "", "", "")
 
             'to
@@ -61,20 +75,26 @@
             End Try
 
             data_to = execute_query("
-                -- SELECT c.comp_name AS name, cc.email
-                -- FROM tb_m_comp_contact AS cc
-                -- LEFT JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
-                -- WHERE cc.id_comp = (SELECT id_comp FROM tb_3pl_rate WHERE id_3pl_rate = " + id_3pl_rate + ") AND cc.is_default = 1
-
-                SELECT 'Friastana' AS name, 'friastana@volcom.co.id' AS email
+                SELECT c.comp_name AS name, cc.email
+                FROM tb_m_comp_contact AS cc
+                LEFT JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+                WHERE cc.id_comp = (SELECT id_comp FROM tb_3pl_rate WHERE id_3pl_rate = " + id_3pl_rate + ") AND cc.is_default = 1
             ", -1, True, "", "", "", "")
 
             'cc
             data_cc = execute_query("
-                SELECT emp.employee_name AS name, emp.email_external AS email
-                FROM tb_sales_return_order_mail_mapping AS map
-                LEFT JOIN tb_m_employee AS emp ON map.id_employee = emp.id_employee
-                WHERE map.use_in = '3pl' AND map.type = 'cc'
+                SELECT e.employee_name AS name, e.employee_position AS `position`, e.email_external AS email
+                FROM tb_mail_manage_mapping_intern AS m
+                INNER JOIN tb_m_user AS u ON u.id_user = m.id_user
+                INNER JOIN tb_m_employee AS e ON e.id_employee = u.id_employee
+                WHERE m.report_mark_type = 276 AND m.id_mail_member_type = 3 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
+
+                UNION
+
+                SELECT c.contact_person AS name, c.position AS `position`, c.email
+                FROM tb_mail_manage_mapping AS m
+                INNER JOIN tb_m_comp_contact AS c ON c.id_comp_contact = m.id_comp_contact
+                WHERE m.report_mark_type = 276 AND m.id_mail_member_type = 3 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
             ", -1, True, "", "", "", "")
 
             'subject
@@ -249,20 +269,42 @@
 
             'submitted
             If data.Rows(0)("id_status").ToString = "7" Then
+                Dim in_store As String = CCBEStore.EditValue.ToString
+
+                If in_store = "" Then
+                    in_store = "0"
+                End If
+
                 'from
                 data_from = execute_query("
-                    SELECT emp.employee_name AS name, emp.employee_position AS `position`, emp.email_external AS email
-                    FROM tb_sales_return_order_mail_mapping AS map
-                    LEFT JOIN tb_m_employee AS emp ON map.id_employee = emp.id_employee
-                    WHERE map.use_in = 'skpp' AND map.type = 'from'
+                    SELECT e.employee_name AS name, e.employee_position AS `position`, e.email_external AS email
+                    FROM tb_mail_manage_mapping_intern AS m
+                    INNER JOIN tb_m_user AS u ON u.id_user = m.id_user
+                    INNER JOIN tb_m_employee AS e ON e.id_employee = u.id_employee
+                    WHERE m.report_mark_type = 275 AND m.id_mail_member_type = 1 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
+
+                    UNION
+
+                    SELECT c.contact_person AS name, c.position AS `position`, c.email
+                    FROM tb_mail_manage_mapping AS m
+                    INNER JOIN tb_m_comp_contact AS c ON c.id_comp_contact = m.id_comp_contact
+                    WHERE m.report_mark_type = 275 AND m.id_mail_member_type = 1 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
                 ", -1, True, "", "", "", "")
 
                 'cc
                 data_cc = execute_query("
-                    SELECT emp.employee_name AS name, emp.email_external AS email
-                    FROM tb_sales_return_order_mail_mapping AS map
-                    LEFT JOIN tb_m_employee AS emp ON map.id_employee = emp.id_employee
-                    WHERE map.use_in = 'skpp' AND map.type = 'cc'
+                    SELECT e.employee_name AS name, e.employee_position AS `position`, e.email_external AS email
+                    FROM tb_mail_manage_mapping_intern AS m
+                    INNER JOIN tb_m_user AS u ON u.id_user = m.id_user
+                    INNER JOIN tb_m_employee AS e ON e.id_employee = u.id_employee
+                    WHERE m.report_mark_type = 275 AND m.id_mail_member_type = 3 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
+
+                    UNION
+
+                    SELECT c.contact_person AS name, c.position AS `position`, c.email
+                    FROM tb_mail_manage_mapping AS m
+                    INNER JOIN tb_m_comp_contact AS c ON c.id_comp_contact = m.id_comp_contact
+                    WHERE m.report_mark_type = 275 AND m.id_mail_member_type = 3 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
                 ", -1, True, "", "", "", "")
 
                 'subject
@@ -525,8 +567,11 @@
             html = html.Replace("[estimate_qty]", TxtPackageQty.Text)
             html = html.Replace("[pick_up_date]", DEPickupDate.Text)
             html = html.Replace("[wh_receive_date]", DEWHReceive.Text)
-            html = html.Replace("[employee_name]", data_from(0)("name").ToString)
-            html = html.Replace("[employee_position]", data_from(0)("position").ToString)
+
+            If data_from.Rows.Count > 0 Then
+                html = html.Replace("[employee_name]", data_from(0)("name").ToString)
+                html = html.Replace("[employee_position]", data_from(0)("position").ToString)
+            End If
 
             WebBrowser.DocumentText = html
         Else
@@ -922,10 +967,7 @@
 
     Private Sub CCBEStore_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEStore.EditValueChanged
         If loaded Then
-            view_3pl()
-            view_store_address()
-            display_html("pps")
-
+            'reset detail
             Dim query_detail As String = "
                 SELECT s.id_sales_return_order, 0 AS `no`, s.sales_return_order_number, CONCAT(e.comp_number, ' - ', e.comp_name) AS store_name_to, IFNULL(i.return_qty, 0) AS return_qty, s.sales_return_order_note
                 FROM tb_sales_return_order_mail_3pl_det AS d
@@ -945,6 +987,50 @@
             Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
 
             GCDetail.DataSource = data_detail
+
+            Dim in_store As String = CCBEStore.EditValue.ToString
+
+            If in_store = "" Then
+                in_store = "0"
+            End If
+
+            'from
+            data_from = execute_query("
+                SELECT e.employee_name AS name, e.employee_position AS `position`, e.email_external AS email
+                FROM tb_mail_manage_mapping_intern AS m
+                INNER JOIN tb_m_user AS u ON u.id_user = m.id_user
+                INNER JOIN tb_m_employee AS e ON e.id_employee = u.id_employee
+                WHERE m.report_mark_type = 276 AND m.id_mail_member_type = 1 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
+
+                UNION
+
+                SELECT c.contact_person AS name, c.position AS `position`, c.email
+                FROM tb_mail_manage_mapping AS m
+                INNER JOIN tb_m_comp_contact AS c ON c.id_comp_contact = m.id_comp_contact
+                WHERE m.report_mark_type = 276 AND m.id_mail_member_type = 1 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
+            ", -1, True, "", "", "", "")
+
+            'cc
+            data_cc = execute_query("
+                SELECT e.employee_name AS name, e.employee_position AS `position`, e.email_external AS email
+                FROM tb_mail_manage_mapping_intern AS m
+                INNER JOIN tb_m_user AS u ON u.id_user = m.id_user
+                INNER JOIN tb_m_employee AS e ON e.id_employee = u.id_employee
+                WHERE m.report_mark_type = 276 AND m.id_mail_member_type = 3 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
+
+                UNION
+
+                SELECT c.contact_person AS name, c.position AS `position`, c.email
+                FROM tb_mail_manage_mapping AS m
+                INNER JOIN tb_m_comp_contact AS c ON c.id_comp_contact = m.id_comp_contact
+                WHERE m.report_mark_type = 276 AND m.id_mail_member_type = 3 AND (ISNULL(m.id_comp_group) OR m.id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_comp IN (" + in_store + ")))
+            ", -1, True, "", "", "", "")
+
+            display_recipient()
+
+            view_3pl()
+            view_store_address()
+            display_html("pps")
         End If
     End Sub
 
@@ -993,26 +1079,13 @@
             End Try
 
             data_to = execute_query("
-                -- SELECT c.comp_name AS name, cc.email
-                -- FROM tb_m_comp_contact AS cc
-                -- LEFT JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
-                -- WHERE cc.id_comp = (SELECT id_comp FROM tb_3pl_rate WHERE id_3pl_rate = " + id_3pl_rate + ") AND cc.is_default = 1
-
-                SELECT 'Friastana' AS name, 'friastana@volcom.co.id' AS email
+                SELECT c.comp_name AS name, cc.email
+                FROM tb_m_comp_contact AS cc
+                LEFT JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+                WHERE cc.id_comp = (SELECT id_comp FROM tb_3pl_rate WHERE id_3pl_rate = " + id_3pl_rate + ") AND cc.is_default = 1
             ", -1, True, "", "", "", "")
 
-            'list to
-            Dim list_to As String = ""
-
-            For i = 0 To data_to.Rows.Count - 1
-                list_to += data_to(i)("email").ToString + "; "
-            Next
-
-            If Not list_to = "" Then
-                list_to = list_to.Substring(0, list_to.Length - 2)
-            End If
-
-            METo.EditValue = list_to
+            display_recipient()
 
             display_html("pps")
             view_3pl_detail()
@@ -1294,8 +1367,12 @@
             html = html.Replace("[del_type]", SLUEDelType.Text)
             html = html.Replace("[cargo_rate]", Txt3PLRate.Text)
             html = html.Replace("[cargo_min_weight]", Txt3PLMinWeight.Text)
-            html = html.Replace("[employee_name]", data_from(0)("name").ToString)
-            html = html.Replace("[employee_position]", data_from(0)("position").ToString)
+
+            If (data_from.Rows.Count > 0) Then
+                html = html.Replace("[employee_name]", data_from(0)("name").ToString)
+                html = html.Replace("[employee_position]", data_from(0)("position").ToString)
+            End If
+
             html = html.Replace("[created_at]", Date.Parse(data_3pl.Rows(0)("created_at").ToString).ToString("dd MMMM yyyy"))
         End If
 
