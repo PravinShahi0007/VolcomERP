@@ -1848,7 +1848,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormReturnNote" Then
             FormReturnNoteDet.ShowDialog()
         ElseIf formName = "FormScanReturn" Then
-            FormScanReturn.ShowDialog()
+            FormScanReturnDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3081,9 +3081,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormReturnNote" Then
                 FormReturnNoteDet.id_return_note = FormReturnNote.GVAwb.GetFocusedRowCellValue("id_return_note").ToString
                 FormReturnNoteDet.ShowDialog()
-            ElseIf formName = "FormReturnNote" Then
-                FormScanReturn.id_scan_return = FormScanReturn.GVAwb.GetFocusedRowCellValue("id_scan_return").ToString
-                FormScanReturn.ShowDialog()
+            ElseIf formName = "FormScanReturn" Then
+                FormScanReturnDet.id_scan_return = FormScanReturn.GVAwb.GetFocusedRowCellValue("id_scan_return").ToString
+                FormScanReturnDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If

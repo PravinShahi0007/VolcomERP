@@ -1,6 +1,4 @@
 ﻿Public Class FormScanReturn
-    Public id_scan_return As String = "-1"
-
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"

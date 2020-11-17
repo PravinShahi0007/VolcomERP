@@ -25,7 +25,7 @@ GROUP BY rate.id_comp"
     Sub load_repo_store()
         Dim q As String = "SELECT id_comp,comp_number,CONCAT(comp_number, ' - ',comp_name) AS comp_name
 FROM tb_m_comp 
-WHERE id_comp_cat='6' AND is_active='1' AND "
+WHERE id_comp_cat='6' AND is_active='1' AND id_sub_district=(SELECT id_sub_district FROM tb_3pl_rate WHERE id_3pl_rate='" & SLERate.EditValue.ToString & "' LIMIT 1)"
         viewSearchLookupRepositoryQuery(RISLECompany, q, 0, "comp_name", "id_comp")
     End Sub
 
@@ -38,7 +38,7 @@ WHERE id_comp_cat='6' AND is_active='1' AND "
         load_repo_store()
         '
         If Not id_awb_inbound = "-1" Then
-            Dim q As String = "SELECT inb.id_comp,inb.id_del_type,inb.awb_number,dt.volume_divide_by
+            Dim q As String = "SELECT inb.id_comp,inb.id_del_type,inb.awb_number,dt.volume_divide_by,inb.id_3pl_rate
 FROM `tb_inbound_awb` inb
 INNER JOIN tb_lookup_del_type dt ON dt.id_del_type=inb.id_del_type
 WHERE inb.id_inbound_awb='" & id_awb_inbound & "'"
@@ -46,6 +46,7 @@ WHERE inb.id_inbound_awb='" & id_awb_inbound & "'"
             If dt.Rows.Count > 0 Then
                 SLEDelType.EditValue = dt.Rows(0)("id_del_type").ToString
                 SLEVendor.EditValue = dt.Rows(0)("id_comp").ToString
+                SLERate.EditValue = dt.Rows(0)("id_3pl_rate").ToString
                 TEAwb.Text = dt.Rows(0)("awb_number").ToString
                 '
                 divide_by = dt.Rows(0)("volume_divide_by")
@@ -99,8 +100,8 @@ WHERE id_comp='" & SLEVendor.EditValue.ToString & "' AND awb_number='" & addSlas
             If dtc.Rows.Count > 0 Then
                 warningCustom("AWB already exist.")
             Else
-                Dim q As String = "INSERT INTO `tb_inbound_awb`(id_comp,id_del_type,awb_number,created_by,created_date)
-VALUES('" & SLEVendor.EditValue.ToString & "','" & SLEDelType.EditValue.ToString & "','" & addSlashes(TEAwb.Text.ToString) & "','" & id_user & "',NOW());SELECT LAST_INSERT_ID()"
+                Dim q As String = "INSERT INTO `tb_inbound_awb`(id_comp,id_del_type,id_3pl_rate,awb_number,created_by,created_date)
+VALUES('" & SLEVendor.EditValue.ToString & "','" & SLEDelType.EditValue.ToString & "','" & SLERate.EditValue.ToString & "','" & addSlashes(TEAwb.Text.ToString) & "','" & id_user & "',NOW());SELECT LAST_INSERT_ID()"
                 id_awb_inbound = execute_query(q, 0, True, "", "", "", "")
                 '
                 empty_store()
@@ -289,6 +290,6 @@ VALUES"
     End Sub
 
     Private Sub SLERate_EditValueChanged(sender As Object, e As EventArgs) Handles SLERate.EditValueChanged
-
+        load_repo_store()
     End Sub
 End Class
