@@ -8311,8 +8311,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormCompanyEmailMapping" Then
             If FormCompanyEmailMapping.XtraTabControl.SelectedTabPageIndex = 0 Then
                 print(FormCompanyEmailMapping.GCListStoreGroup, "Store Group Mapping")
-            Else
+            ElseIf FormCompanyEmailMapping.XtraTabControl.SelectedTabPageIndex = 1 Then
                 print(FormCompanyEmailMapping.GCListInternal, "Internal Mapping")
+            Else
+                print(FormCompanyEmailMapping.GC3PL, "3PL Mapping")
             End If
         ElseIf formName = "FormMailManage" Then
             If FormMailManage.XTCMailManage.SelectedTabPageIndex = 0 Then
