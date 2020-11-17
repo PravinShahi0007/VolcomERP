@@ -5581,6 +5581,12 @@
     <Compile Include="FormSalesReturnOrderMailDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnOrderMailPick.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderMailPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderMailPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderOL.Designer.vb">
       <DependentUpon>FormSalesReturnOrderOL.vb</DependentUpon>
     </Compile>
@@ -8634,6 +8640,12 @@
       <DependentUpon>ReportSalesReturnOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesReturnOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesReturnOrderMailSKPP.Designer.vb">
+      <DependentUpon>ReportSalesReturnOrderMailSKPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesReturnOrderMailSKPP.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesReturnQC.Designer.vb">
@@ -11802,6 +11814,9 @@
     <EmbeddedResource Include="FormSalesReturnOrderMailDet.resx">
       <DependentUpon>FormSalesReturnOrderMailDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderMailPick.resx">
+      <DependentUpon>FormSalesReturnOrderMailPick.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderOL.resx">
       <DependentUpon>FormSalesReturnOrderOL.vb</DependentUpon>
     </EmbeddedResource>
@@ -13566,6 +13581,9 @@
     <EmbeddedResource Include="ReportSalesReturnOrder.resx">
       <DependentUpon>ReportSalesReturnOrder.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesReturnOrderMailSKPP.resx">
+      <DependentUpon>ReportSalesReturnOrderMailSKPP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesReturnQC.resx">
       <DependentUpon>ReportSalesReturnQC.vb</DependentUpon>

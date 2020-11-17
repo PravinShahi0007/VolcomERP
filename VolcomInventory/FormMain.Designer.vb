@@ -3321,7 +3321,7 @@ Partial Class FormMain
         '
         'NB3PLMailReturn
         '
-        Me.NB3PLMailReturn.Caption = "Propose Return Mail"
+        Me.NB3PLMailReturn.Caption = "Pickup Order"
         Me.NB3PLMailReturn.Name = "NB3PLMailReturn"
         Me.NB3PLMailReturn.SmallImage = CType(resources.GetObject("NB3PLMailReturn.SmallImage"), System.Drawing.Image)
         '
