@@ -43,6 +43,23 @@
     End Sub
 
     Sub load_view()
+        Dim date_start As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_until As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
 
+        Dim q As String = "SELECT rn.id_return_note,emp.employee_name,IF(rn.id_type=1,'WH Inbound','3PL') AS `type`,rn.id_emp_driver,rn.id_inbound_awb,rn.label_number,rn.date_created,rn.number_return_note,rn.qty,rn.date_return_note
+FROM `tb_return_note` rn
+INNER JOIN tb_m_user usr ON usr.id_user=rn.id_user
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE DATE(rn.`date_created`)>='" & date_start & "' AND DATE(rn.`date_created`)<='" & date_until & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCAwb.DataSource = dt
+        GVAwb.BestFitColumns()
+    End Sub
+
+    Private Sub GVAwb_DoubleClick(sender As Object, e As EventArgs) Handles GVAwb.DoubleClick
+        If GVAwb.RowCount > 0 Then
+            FormReturnNoteDet.id_return_note = GVAwb.GetFocusedRowCellValue("id_return_note").ToString
+            FormReturnNoteDet.ShowDialog()
+        End If
     End Sub
 End Class
