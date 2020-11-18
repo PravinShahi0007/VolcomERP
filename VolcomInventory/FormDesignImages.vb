@@ -102,7 +102,7 @@
             End If
         Next
 
-        Dim store_code As DataTable = execute_query("SELECT id_comp_group, design_images_code FROM tb_m_comp_group WHERE design_images_code IS NOT NULL", -1, True, "", "", "", "")
+        Dim store_code As DataTable = execute_query("SELECT store AS design_images_code FROM tb_design_images_store", -1, True, "", "", "", "")
 
         Dim design_code As DataTable = execute_query("SELECT id_design, design_code FROM tb_m_design WHERE design_code <> '' ORDER BY id_design DESC", -1, True, "", "", "", "")
 
@@ -136,7 +136,7 @@
                     If dv_store.Count < 1 Then
                         is_valid = False
 
-                        data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Error: store code not found."
+                        data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Error: type code not found."
                     End If
 
                     'check design code
@@ -303,6 +303,7 @@
         'check number of files
         If is_valid Then
             Dim data_limit As DataTable = execute_query("SELECT * FROM tb_design_images_limit", -1, True, "", "", "", "")
+            Dim store_limit As DataTable = execute_query("SELECT store, `limit` FROM tb_design_images_store WHERE `limit` IS NOT NULL", -1, True, "", "", "", "")
 
             Dim total_file As DataTable = New DataTable
 
@@ -360,6 +361,12 @@
 
                         If dv_limit.Count > 0 Then
                             limit = Integer.Parse(dv_limit(0)("limit").ToString)
+                        End If
+                    Next
+
+                    For j = 0 To store_limit.Rows.Count - 1
+                        If total_file.Rows(i)("store").ToString = store_limit.Rows(j)("store").ToString Then
+                            limit = store_limit.Rows(j)("limit")
                         End If
                     Next
 
