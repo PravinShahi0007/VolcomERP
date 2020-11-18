@@ -28,7 +28,7 @@ Partial Class FormReturnNoteDet
         Me.TELabelNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
         Me.BSaveAndPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton8 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNextReturnNote = New DevExpress.XtraEditors.SimpleButton()
         Me.TEQtyReturnNote = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReturnNoteNumber = New DevExpress.XtraEditors.TextEdit()
@@ -161,6 +161,7 @@ Partial Class FormReturnNoteDet
         'TELabelNumber
         '
         Me.TELabelNumber.EditValue = "[Auto Generate]"
+        Me.TELabelNumber.Enabled = False
         Me.TELabelNumber.Location = New System.Drawing.Point(113, 16)
         Me.TELabelNumber.Name = "TELabelNumber"
         Me.TELabelNumber.Size = New System.Drawing.Size(271, 20)
@@ -169,7 +170,7 @@ Partial Class FormReturnNoteDet
         'PanelControl8
         '
         Me.PanelControl8.Controls.Add(Me.BSaveAndPrint)
-        Me.PanelControl8.Controls.Add(Me.SimpleButton8)
+        Me.PanelControl8.Controls.Add(Me.BNextReturnNote)
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl8.Location = New System.Drawing.Point(2, 361)
         Me.PanelControl8.Name = "PanelControl8"
@@ -186,15 +187,15 @@ Partial Class FormReturnNoteDet
         Me.BSaveAndPrint.TabIndex = 4
         Me.BSaveAndPrint.Text = "Save and Print"
         '
-        'SimpleButton8
+        'BNextReturnNote
         '
-        Me.SimpleButton8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton8.Image = CType(resources.GetObject("SimpleButton8.Image"), System.Drawing.Image)
-        Me.SimpleButton8.Location = New System.Drawing.Point(278, 2)
-        Me.SimpleButton8.Name = "SimpleButton8"
-        Me.SimpleButton8.Size = New System.Drawing.Size(132, 39)
-        Me.SimpleButton8.TabIndex = 3
-        Me.SimpleButton8.Text = "Next Return Note"
+        Me.BNextReturnNote.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BNextReturnNote.Image = CType(resources.GetObject("BNextReturnNote.Image"), System.Drawing.Image)
+        Me.BNextReturnNote.Location = New System.Drawing.Point(278, 2)
+        Me.BNextReturnNote.Name = "BNextReturnNote"
+        Me.BNextReturnNote.Size = New System.Drawing.Size(132, 39)
+        Me.BNextReturnNote.TabIndex = 3
+        Me.BNextReturnNote.Text = "Next Return Note"
         '
         'TEQtyReturnNote
         '
@@ -410,7 +411,7 @@ Partial Class FormReturnNoteDet
         'GridColumn5
         '
         Me.GridColumn5.Caption = "NIP"
-        Me.GridColumn5.FieldName = "employee_number"
+        Me.GridColumn5.FieldName = "employee_code"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
@@ -462,19 +463,17 @@ Partial Class FormReturnNoteDet
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_type"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.Caption = "Type"
         Me.GridColumn3.FieldName = "type"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 0
         '
         'LabelControl1
         '
@@ -492,6 +491,7 @@ Partial Class FormReturnNoteDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(427, 43)
         Me.PanelControl1.TabIndex = 1
+        Me.PanelControl1.Visible = False
         '
         'BReset
         '
@@ -565,7 +565,7 @@ Partial Class FormReturnNoteDet
     Friend WithEvents TELabelNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BSaveAndPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton8 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BNextReturnNote As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEQtyReturnNote As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEReturnNoteNumber As DevExpress.XtraEditors.TextEdit

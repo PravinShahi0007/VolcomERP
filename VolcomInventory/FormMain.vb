@@ -302,7 +302,7 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
-        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
     End Sub
@@ -418,7 +418,7 @@ Public Class FormMain
             RGAreaPrint.Visible = True
         End If
 
-        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
         ''mapping COA
@@ -1847,6 +1847,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInboundAWB.ShowDialog()
         ElseIf formName = "FormReturnNote" Then
             FormReturnNoteDet.ShowDialog()
+        ElseIf formName = "FormScanReturn" Then
+            FormScanReturnDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3079,6 +3081,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormReturnNote" Then
                 FormReturnNoteDet.id_return_note = FormReturnNote.GVAwb.GetFocusedRowCellValue("id_return_note").ToString
                 FormReturnNoteDet.ShowDialog()
+            ElseIf formName = "FormScanReturn" Then
+                FormScanReturnDet.id_scan_return = FormScanReturn.GVAwb.GetFocusedRowCellValue("id_scan_return").ToString
+                FormScanReturnDet.ShowDialog()
+            ElseIf formName = "FormCompanyEmailMapping" Then
+                FormMasterCompanyContact.id_company = FormCompanyEmailMapping.GV3PL.GetFocusedRowCellValue("id_comp").ToString
+                FormMasterCompanyContact.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8306,8 +8314,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormCompanyEmailMapping" Then
             If FormCompanyEmailMapping.XtraTabControl.SelectedTabPageIndex = 0 Then
                 print(FormCompanyEmailMapping.GCListStoreGroup, "Store Group Mapping")
-            Else
+            ElseIf FormCompanyEmailMapping.XtraTabControl.SelectedTabPageIndex = 1 Then
                 print(FormCompanyEmailMapping.GCListInternal, "Internal Mapping")
+            Else
+                print(FormCompanyEmailMapping.GC3PL, "3PL Mapping")
             End If
         ElseIf formName = "FormMailManage" Then
             If FormMailManage.XTCMailManage.SelectedTabPageIndex = 0 Then
@@ -8449,6 +8459,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormReturnNote.GCAwb, "Return Note List")
         ElseIf formName = "FormListStore" Then
             print(FormListStore.GCCompany, "Store List")
+        ElseIf formName = "FormScanReturn" Then
+            print(FormScanReturn.GCAwb, "Scan Return List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9401,6 +9413,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormListStore" Then
             FormListStore.Close()
             FormListStore.Dispose()
+        ElseIf formName = "FormScanReturn" Then
+            FormScanReturn.Close()
+            FormScanReturn.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10378,6 +10393,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormReturnNote.load_view()
         ElseIf formName = "FormListStore" Then
             FormListStore.view_company()
+        ElseIf formName = "FormScanReturn" Then
+            FormScanReturn.load_view()
         End If
     End Sub
     'Switch
@@ -14712,6 +14729,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBCompanyEmailMapping_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompanyEmailMapping.LinkClicked
         Try
             FormCompanyEmailMapping.MdiParent = Me
+            FormCompanyEmailMapping.mail_dept = "acc"
             FormCompanyEmailMapping.Show()
             FormCompanyEmailMapping.WindowState = FormWindowState.Maximized
             FormCompanyEmailMapping.Focus()
@@ -15587,5 +15605,30 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBScanReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBScanReturn.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormScanReturn.MdiParent = Me
+            FormScanReturn.Show()
+            FormScanReturn.WindowState = FormWindowState.Maximized
+            FormScanReturn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCompanyEmailMappingWH_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompanyEmailMappingWH.LinkClicked
+        Try
+            FormCompanyEmailMapping.MdiParent = Me
+            FormCompanyEmailMapping.mail_dept = "wh"
+            FormCompanyEmailMapping.Show()
+            FormCompanyEmailMapping.WindowState = FormWindowState.Maximized
+            FormCompanyEmailMapping.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
     End Sub
 End Class
