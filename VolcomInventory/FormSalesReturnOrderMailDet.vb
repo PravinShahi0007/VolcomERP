@@ -757,6 +757,15 @@
                     load_form()
                 End If
             ElseIf id_status = "5" Then
+                If SLUEStatus.EditValue.ToString = "7" Then
+                    'update report mark
+                    Dim id_report_mark As String = execute_query("SELECT id_report_mark FROM tb_report_mark WHERE report_mark_type = 275 AND id_report = " + id_mail_3pl + " AND id_user = " + id_user + " AND id_report_status = 3", 0, True, "", "", "", "")
+
+                    reset_is_use_mark(id_report_mark, "2")
+
+                    execute_non_query("UPDATE tb_report_mark SET id_mark = 3, is_use = 1, report_mark_datetime = NOW() WHERE id_report_mark = " + id_report_mark, True, "", "", "", "")
+                End If
+
                 infoCustom("Pickup Order cancelled.")
 
                 load_form()
