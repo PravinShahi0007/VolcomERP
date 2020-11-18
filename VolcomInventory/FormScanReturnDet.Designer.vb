@@ -45,6 +45,8 @@ Partial Class FormScanReturnDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TEReturnNote = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.MEListStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,10 +59,13 @@ Partial Class FormScanReturnDet
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEReturnNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TEReturnNote)
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
         Me.PanelControl1.Controls.Add(Me.MEListStore)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.BReset)
@@ -71,12 +76,12 @@ Partial Class FormScanReturnDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(821, 95)
+        Me.PanelControl1.Size = New System.Drawing.Size(821, 117)
         Me.PanelControl1.TabIndex = 0
         '
         'MEListStore
         '
-        Me.MEListStore.Location = New System.Drawing.Point(123, 38)
+        Me.MEListStore.Location = New System.Drawing.Point(123, 64)
         Me.MEListStore.Name = "MEListStore"
         Me.MEListStore.Properties.ReadOnly = True
         Me.MEListStore.Size = New System.Drawing.Size(686, 43)
@@ -84,7 +89,7 @@ Partial Class FormScanReturnDet
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(16, 40)
+        Me.LabelControl4.Location = New System.Drawing.Point(16, 64)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl4.TabIndex = 4
@@ -92,7 +97,7 @@ Partial Class FormScanReturnDet
         '
         'BReset
         '
-        Me.BReset.Location = New System.Drawing.Point(734, 10)
+        Me.BReset.Location = New System.Drawing.Point(734, 36)
         Me.BReset.Name = "BReset"
         Me.BReset.Size = New System.Drawing.Size(75, 23)
         Me.BReset.TabIndex = 3
@@ -101,7 +106,7 @@ Partial Class FormScanReturnDet
         'TEQty
         '
         Me.TEQty.Enabled = False
-        Me.TEQty.Location = New System.Drawing.Point(608, 12)
+        Me.TEQty.Location = New System.Drawing.Point(608, 38)
         Me.TEQty.Name = "TEQty"
         Me.TEQty.Properties.ReadOnly = True
         Me.TEQty.Size = New System.Drawing.Size(120, 20)
@@ -109,7 +114,7 @@ Partial Class FormScanReturnDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(557, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(557, 41)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl2.TabIndex = 1
@@ -119,7 +124,7 @@ Partial Class FormScanReturnDet
         '
         Me.TEReturnLabel.Location = New System.Drawing.Point(123, 12)
         Me.TEReturnLabel.Name = "TEReturnLabel"
-        Me.TEReturnLabel.Size = New System.Drawing.Size(428, 20)
+        Me.TEReturnLabel.Size = New System.Drawing.Size(686, 20)
         Me.TEReturnLabel.TabIndex = 1
         '
         'LabelControl1
@@ -178,7 +183,7 @@ Partial Class FormScanReturnDet
         Me.PanelControl3.Controls.Add(Me.TEScan)
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 95)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 117)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(821, 43)
         Me.PanelControl3.TabIndex = 2
@@ -221,10 +226,10 @@ Partial Class FormScanReturnDet
         'GCListProduct
         '
         Me.GCListProduct.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCListProduct.Location = New System.Drawing.Point(0, 138)
+        Me.GCListProduct.Location = New System.Drawing.Point(0, 160)
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(821, 370)
+        Me.GCListProduct.Size = New System.Drawing.Size(821, 348)
         Me.GCListProduct.TabIndex = 3
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
@@ -238,7 +243,7 @@ Partial Class FormScanReturnDet
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_det"
+        Me.GridColumn1.FieldName = "id_scan_return_det"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
@@ -250,6 +255,7 @@ Partial Class FormScanReturnDet
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Code"
+        Me.GridColumn3.FieldName = "product_full_code"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
@@ -258,6 +264,7 @@ Partial Class FormScanReturnDet
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Product"
+        Me.GridColumn4.FieldName = "product_display_name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
@@ -270,6 +277,7 @@ Partial Class FormScanReturnDet
         Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn5.Caption = "Size"
+        Me.GridColumn5.FieldName = "size"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
@@ -278,10 +286,27 @@ Partial Class FormScanReturnDet
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Note"
+        Me.GridColumn6.FieldName = "notes"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 256
+        '
+        'TEReturnNote
+        '
+        Me.TEReturnNote.Location = New System.Drawing.Point(123, 38)
+        Me.TEReturnNote.Name = "TEReturnNote"
+        Me.TEReturnNote.Properties.ReadOnly = True
+        Me.TEReturnNote.Size = New System.Drawing.Size(428, 20)
+        Me.TEReturnNote.TabIndex = 7
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(16, 41)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl5.TabIndex = 6
+        Me.LabelControl5.Text = "Return Note"
         '
         'FormScanReturnDet
         '
@@ -312,6 +337,7 @@ Partial Class FormScanReturnDet
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCListProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEReturnNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -341,4 +367,6 @@ Partial Class FormScanReturnDet
     Friend WithEvents BInputManual As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BDeleteScan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEReturnNote As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class
