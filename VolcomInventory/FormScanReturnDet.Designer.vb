@@ -21,6 +21,8 @@ Partial Class FormScanReturnDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormScanReturnDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEReturnNote = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.MEListStore = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
@@ -45,10 +47,9 @@ Partial Class FormScanReturnDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TEReturnNote = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEReturnNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEListStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReturnLabel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,7 +60,6 @@ Partial Class FormScanReturnDet
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListProduct, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEReturnNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -78,6 +78,22 @@ Partial Class FormScanReturnDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(821, 117)
         Me.PanelControl1.TabIndex = 0
+        '
+        'TEReturnNote
+        '
+        Me.TEReturnNote.Location = New System.Drawing.Point(123, 38)
+        Me.TEReturnNote.Name = "TEReturnNote"
+        Me.TEReturnNote.Properties.ReadOnly = True
+        Me.TEReturnNote.Size = New System.Drawing.Size(428, 20)
+        Me.TEReturnNote.TabIndex = 7
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(16, 41)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl5.TabIndex = 6
+        Me.LabelControl5.Text = "Return Note"
         '
         'MEListStore
         '
@@ -292,22 +308,6 @@ Partial Class FormScanReturnDet
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 256
         '
-        'TEReturnNote
-        '
-        Me.TEReturnNote.Location = New System.Drawing.Point(123, 38)
-        Me.TEReturnNote.Name = "TEReturnNote"
-        Me.TEReturnNote.Properties.ReadOnly = True
-        Me.TEReturnNote.Size = New System.Drawing.Size(428, 20)
-        Me.TEReturnNote.TabIndex = 7
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(16, 41)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(59, 13)
-        Me.LabelControl5.TabIndex = 6
-        Me.LabelControl5.Text = "Return Note"
-        '
         'FormScanReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -326,6 +326,7 @@ Partial Class FormScanReturnDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TEReturnNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEListStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReturnLabel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -337,7 +338,6 @@ Partial Class FormScanReturnDet
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCListProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListProduct, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEReturnNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
