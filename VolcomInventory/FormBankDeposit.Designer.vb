@@ -174,6 +174,12 @@ Partial Class FormBankDeposit
         Me.GridColumnid_coa_tag = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncoa_tag = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPZalora = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCZalora = New DevExpress.XtraGrid.GridControl()
+        Me.GVZalora = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BtnCreateBBMZalora = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlZalora = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnZaloraPayoutList = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -226,6 +232,11 @@ Partial Class FormBankDeposit
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPZalora.SuspendLayout()
+        CType(Me.GCZalora, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVZalora, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlZalora, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlZalora.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -237,7 +248,7 @@ Partial Class FormBankDeposit
         Me.XTCPO.SelectedTabPage = Me.XTPInvoice
         Me.XTCPO.Size = New System.Drawing.Size(1192, 561)
         Me.XTCPO.TabIndex = 3
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout, Me.XTPVA, Me.XTPVS})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout, Me.XTPVA, Me.XTPVS, Me.XTPZalora})
         '
         'XTPInvoice
         '
@@ -999,7 +1010,7 @@ Partial Class FormBankDeposit
         Me.XTPPayout.Controls.Add(Me.SimpleButton1)
         Me.XTPPayout.Name = "XTPPayout"
         Me.XTPPayout.Size = New System.Drawing.Size(1186, 533)
-        Me.XTPPayout.Text = "Payout List"
+        Me.XTPPayout.Text = "VIOS - Payout List"
         '
         'GCPayout
         '
@@ -1139,7 +1150,7 @@ Partial Class FormBankDeposit
         Me.XTPVA.Controls.Add(Me.PanelControl4)
         Me.XTPVA.Name = "XTPVA"
         Me.XTPVA.Size = New System.Drawing.Size(1186, 533)
-        Me.XTPVA.Text = "Virtual Account List"
+        Me.XTPVA.Text = "VIOS - Virtual Account List"
         '
         'GCVA
         '
@@ -1676,6 +1687,74 @@ Partial Class FormBankDeposit
         Me.LabelControl11.TabIndex = 8915
         Me.LabelControl11.Text = "Unit"
         '
+        'XTPZalora
+        '
+        Me.XTPZalora.Controls.Add(Me.GCZalora)
+        Me.XTPZalora.Controls.Add(Me.BtnCreateBBMZalora)
+        Me.XTPZalora.Controls.Add(Me.PanelControlZalora)
+        Me.XTPZalora.Name = "XTPZalora"
+        Me.XTPZalora.Size = New System.Drawing.Size(1186, 533)
+        Me.XTPZalora.Text = "Zalora - Payout List"
+        '
+        'GCZalora
+        '
+        Me.GCZalora.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCZalora.Location = New System.Drawing.Point(0, 50)
+        Me.GCZalora.MainView = Me.GVZalora
+        Me.GCZalora.Name = "GCZalora"
+        Me.GCZalora.Size = New System.Drawing.Size(1186, 451)
+        Me.GCZalora.TabIndex = 1
+        Me.GCZalora.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVZalora})
+        '
+        'GVZalora
+        '
+        Me.GVZalora.GridControl = Me.GCZalora
+        Me.GVZalora.Name = "GVZalora"
+        Me.GVZalora.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVZalora.OptionsBehavior.ReadOnly = True
+        Me.GVZalora.OptionsFind.AlwaysVisible = True
+        Me.GVZalora.OptionsView.ColumnAutoWidth = False
+        Me.GVZalora.OptionsView.ShowFooter = True
+        Me.GVZalora.OptionsView.ShowGroupPanel = False
+        '
+        'BtnCreateBBMZalora
+        '
+        Me.BtnCreateBBMZalora.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnCreateBBMZalora.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnCreateBBMZalora.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnCreateBBMZalora.Appearance.Options.UseBackColor = True
+        Me.BtnCreateBBMZalora.Appearance.Options.UseFont = True
+        Me.BtnCreateBBMZalora.Appearance.Options.UseForeColor = True
+        Me.BtnCreateBBMZalora.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCreateBBMZalora.Location = New System.Drawing.Point(0, 501)
+        Me.BtnCreateBBMZalora.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnCreateBBMZalora.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnCreateBBMZalora.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnCreateBBMZalora.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateBBMZalora.Name = "BtnCreateBBMZalora"
+        Me.BtnCreateBBMZalora.Size = New System.Drawing.Size(1186, 32)
+        Me.BtnCreateBBMZalora.TabIndex = 24
+        Me.BtnCreateBBMZalora.Text = "Receive Payment"
+        '
+        'PanelControlZalora
+        '
+        Me.PanelControlZalora.Controls.Add(Me.BtnZaloraPayoutList)
+        Me.PanelControlZalora.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlZalora.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlZalora.Name = "PanelControlZalora"
+        Me.PanelControlZalora.Size = New System.Drawing.Size(1186, 50)
+        Me.PanelControlZalora.TabIndex = 0
+        '
+        'BtnZaloraPayoutList
+        '
+        Me.BtnZaloraPayoutList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnZaloraPayoutList.Image = CType(resources.GetObject("BtnZaloraPayoutList.Image"), System.Drawing.Image)
+        Me.BtnZaloraPayoutList.Location = New System.Drawing.Point(1066, 2)
+        Me.BtnZaloraPayoutList.Name = "BtnZaloraPayoutList"
+        Me.BtnZaloraPayoutList.Size = New System.Drawing.Size(118, 46)
+        Me.BtnZaloraPayoutList.TabIndex = 8930
+        Me.BtnZaloraPayoutList.Text = "Payout List"
+        '
         'FormBankDeposit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1745,6 +1824,11 @@ Partial Class FormBankDeposit
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPZalora.ResumeLayout(False)
+        CType(Me.GCZalora, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVZalora, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlZalora, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlZalora.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1903,4 +1987,10 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumnnote_vs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntransaction_fee As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnettva As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPZalora As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCZalora As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVZalora As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControlZalora As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnCreateBBMZalora As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnZaloraPayoutList As DevExpress.XtraEditors.SimpleButton
 End Class

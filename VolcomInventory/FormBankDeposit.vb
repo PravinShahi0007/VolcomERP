@@ -549,4 +549,10 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnViewSales.Click
         load_sales()
     End Sub
+
+    Private Sub BtnZaloraPayoutList_Click(sender As Object, e As EventArgs) Handles BtnZaloraPayoutList.Click
+        Cursor = Cursors.WaitCursor
+        FormPayoutZalora.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
