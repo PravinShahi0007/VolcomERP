@@ -698,8 +698,10 @@
     End Function
 
     Sub get_payout()
-        Dim dt_cek As DataTable = execute_query("SELECT DATE_SUB(DATE(NOW()),INTERVAL 3 MONTH) AS cek_date", -1, True, "", "", "", "")
+        Dim dt_cek As DataTable = execute_query("SELECT DATE_SUB(DATE(NOW()),INTERVAL 3 MONTH) AS cek_date, o.zalora_comm FROM tb_opt_accounting o", -1, True, "", "", "", "")
         Dim created_after As Date = dt_cek.Rows(0)("cek_date")
+        Dim default_comm As String = decimalSQL(dt_cek.Rows(0)("zalora_comm").ToString)
+
         Dim parameter_det As DataTable = New DataTable
         parameter_det.Columns.Add("key", GetType(String))
         parameter_det.Columns.Add("value", GetType(String))
@@ -744,9 +746,9 @@
                         Dim guarantee_deposit As String = decimalSQL(row_det("GuaranteeDeposit").ToString)
                         Dim total_payout As String = decimalSQL(row_det("Payout").ToString.Replace(" IDR", ""))
                         Dim qins As String = "INSERT INTO tb_payout_zalora(statement_number, zalora_created_at, opening_balance, sales_revenue, other_revenue, 
-                        total_fees, sales_refund, total_refund_fee, closing_balance, guarantee_deposit, total_payout, sync_date) VALUES
+                        total_fees, sales_refund, total_refund_fee, closing_balance, guarantee_deposit, total_payout, default_comm, sync_date) VALUES
                         ('" + statement_number + "', '" + zalora_created_at + "', '" + opening_balance + "', '" + sales_revenue + "', '" + other_revenue + "', 
-                        '" + total_fees + "', '" + sales_refund + "', '" + total_refund_fee + "', '" + closing_balance + "', '" + guarantee_deposit + "', '" + total_payout + "', NOW());"
+                        '" + total_fees + "', '" + sales_refund + "', '" + total_refund_fee + "', '" + closing_balance + "', '" + guarantee_deposit + "', '" + total_payout + "','" + default_comm + "', NOW());"
                         execute_non_query(qins, True, "", "", "", "")
                     End If
                 Next

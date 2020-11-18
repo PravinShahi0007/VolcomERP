@@ -38,7 +38,19 @@
         Catch ex As Exception
             stopCustom(ex.ToString)
         End Try
+        viewData()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_DragObjectDrop(sender As Object, e As DevExpress.XtraGrid.Views.Base.DragObjectDropEventArgs) Handles GVData.DragObjectDrop
+
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

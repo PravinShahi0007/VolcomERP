@@ -30,6 +30,7 @@ Partial Class FormPayoutZalora
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsync_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_payout = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_confirm_view = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,7 +79,7 @@ Partial Class FormPayoutZalora
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora, Me.GridColumnstatement_number, Me.GridColumn1, Me.GridColumnsync_date, Me.GridColumntotal_payout})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora, Me.GridColumnstatement_number, Me.GridColumn1, Me.GridColumnsync_date, Me.GridColumntotal_payout, Me.GridColumnis_confirm_view})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -133,6 +134,14 @@ Partial Class FormPayoutZalora
         Me.GridColumntotal_payout.Visible = True
         Me.GridColumntotal_payout.VisibleIndex = 3
         '
+        'GridColumnis_confirm_view
+        '
+        Me.GridColumnis_confirm_view.Caption = "Verify Status"
+        Me.GridColumnis_confirm_view.FieldName = "is_confirm_view"
+        Me.GridColumnis_confirm_view.Name = "GridColumnis_confirm_view"
+        Me.GridColumnis_confirm_view.Visible = True
+        Me.GridColumnis_confirm_view.VisibleIndex = 4
+        '
         'FormPayoutZalora
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -162,4 +171,5 @@ Partial Class FormPayoutZalora
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsync_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotal_payout As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_confirm_view As DevExpress.XtraGrid.Columns.GridColumn
 End Class
