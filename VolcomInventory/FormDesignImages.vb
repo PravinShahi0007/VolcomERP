@@ -18,6 +18,7 @@
     Private Sub FormDesignImages_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
+        button_main("1", "0", "0")
     End Sub
 
     Private Sub FormDesignImages_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
@@ -28,11 +29,16 @@
         Dim where_season As String = "AND d.id_season = " + SLUESeason.EditValue.ToString
 
         Dim query As String = "
-            SELECT i.id_design_images, d.design_code, i.store, d.design_display_name, i.file_name, i.sort, CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.created_at, e.employee_name AS created_by, '' AS image
+            SELECT i.id_design_images, d.design_code, i.store, d.design_display_name, i.file_name, i.sort, CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.created_at, e.employee_name AS created_by, '' AS image, IF(l.id_design_images IS NULL, 'no', 'yes') AS `log`
             FROM tb_design_images AS i
             LEFT JOIN tb_m_design AS d ON d.id_design = i.id_design
             LEFT JOIN tb_m_user AS u ON i.created_by = u.id_user
             LEFT JOIN tb_m_employee AS e ON u.id_employee = e.id_employee
+            LEFT JOIN (
+                SELECT id_design_images
+                FROM tb_design_images_log
+                GROUP BY id_design_images
+            ) AS l ON i.id_design_images = l.id_design_images
             WHERE 1 " + where_season + "
             ORDER BY d.design_display_name ASC, i.sort ASC
         "
@@ -69,7 +75,7 @@
 
         Dim is_valid As Boolean = True
 
-        Dim uploaded_image As DataTable = execute_query("SELECT store, SUBSTRING(file_name, 1, (POSITION('.' IN file_name) - 1)) AS file_name, sort FROM tb_design_images", -1, True, "", "", "", "")
+        Dim uploaded_image As DataTable = execute_query("SELECT id_design_images, store, SUBSTRING(file_name, 1, (POSITION('.' IN file_name) - 1)) AS file_name, sort FROM tb_design_images", -1, True, "", "", "", "")
 
         'get max sort
         Dim data_max_sort As DataTable = New DataTable
@@ -106,11 +112,12 @@
 
         data_validation.Columns.Add("file_name", GetType(String))
         data_validation.Columns.Add("status", GetType(String))
+        data_validation.Columns.Add("id_design_images", GetType(String))
 
         For i = 0 To file.Count - 1
             FormMain.SplashScreenManager1.SetWaitFormDescription("Checking file " + (i + 1).ToString + " of " + file.Count.ToString)
 
-            data_validation.Rows.Add(file(i), "OK")
+            data_validation.Rows.Add(file(i), "OK", "")
 
             'check already uploaded
             Dim dv_uploaded As DataView = New DataView(uploaded_image)
@@ -129,7 +136,7 @@
                     If dv_store.Count < 1 Then
                         is_valid = False
 
-                        data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Err: store code not found."
+                        data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Error: store code not found."
                     End If
 
                     'check design code
@@ -140,7 +147,7 @@
                     If dv_design.Count < 1 Then
                         is_valid = False
 
-                        data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Err: design code not found."
+                        data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Error: design code not found."
                     End If
 
                     'check file number
@@ -149,17 +156,16 @@
                     Catch ex As Exception
                         is_valid = False
 
-                        data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Err: file number is not valid."
+                        data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Error: file number is not valid."
                     End Try
                 Else
                     is_valid = False
 
-                    data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Err: file name is not valid."
+                    data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Error: file name is not valid."
                 End If
             Else
-                is_valid = False
-
-                data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Err: already uploaded."
+                data_validation.Rows(data_validation.Rows.Count - 1)("status") = "Warning: will replace."
+                data_validation.Rows(data_validation.Rows.Count - 1)("id_design_images") = dv_uploaded(0)("id_design_images").ToString
             End If
         Next
 
@@ -172,9 +178,15 @@
             data_file.Columns.Add("sort", GetType(Integer))
 
             For i = 0 To file.Count - 1
-                Dim array_name() As String = IO.Path.GetFileNameWithoutExtension(file(i)).Split("_")
+                For j = 0 To data_validation.Rows.Count - 1
+                    If data_validation.Rows(j)("id_design_images").ToString = "" Then
+                        If file(i) = data_validation.Rows(j)("file_name").ToString Then
+                            Dim array_name() As String = IO.Path.GetFileNameWithoutExtension(file(i)).Split("_")
 
-                data_file.Rows.Add(array_name(0), array_name(1), Integer.Parse(array_name(2)))
+                            data_file.Rows.Add(array_name(0), array_name(1), Integer.Parse(array_name(2)))
+                        End If
+                    End If
+                Next
             Next
 
             Dim view_file As DataView = New DataView(data_file)
@@ -203,8 +215,10 @@
                             Dim fl_name As String = view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString
 
                             For j = 0 To data_validation.Rows.Count - 1
-                                If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
-                                    data_validation.Rows(j)("status") = "Err: please start numbering from " + (dv_max_sort(0)("sort") + 1).ToString + "."
+                                If data_validation.Rows(j)("id_design_images").ToString = "" Then
+                                    If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
+                                        data_validation.Rows(j)("status") = "Error: please start numbering from " + (dv_max_sort(0)("sort") + 1).ToString + "."
+                                    End If
                                 End If
                             Next
                         End If
@@ -215,8 +229,10 @@
                             Dim fl_name As String = view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString
 
                             For j = 0 To data_validation.Rows.Count - 1
-                                If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
-                                    data_validation.Rows(j)("status") = "Err: please start numbering from 1."
+                                If data_validation.Rows(j)("id_design_images").ToString = "" Then
+                                    If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
+                                        data_validation.Rows(j)("status") = "Error: please start numbering from 1."
+                                    End If
                                 End If
                             Next
                         End If
@@ -231,8 +247,10 @@
                             Dim fl_name As String = view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString
 
                             For j = 0 To data_validation.Rows.Count - 1
-                                If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
-                                    data_validation.Rows(j)("status") = "Err: numbering is not valid."
+                                If data_validation.Rows(j)("id_design_images").ToString = "" Then
+                                    If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
+                                        data_validation.Rows(j)("status") = "Error: numbering is not valid."
+                                    End If
                                 End If
                             Next
                         End If
@@ -252,8 +270,10 @@
                             Dim fl_name As String = view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString
 
                             For j = 0 To data_validation.Rows.Count - 1
-                                If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
-                                    data_validation.Rows(j)("status") = "Err: please start numbering from " + (dv_max_sort(0)("sort") + 1).ToString + "."
+                                If data_validation.Rows(j)("id_design_images").ToString = "" Then
+                                    If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
+                                        data_validation.Rows(j)("status") = "Error: please start numbering from " + (dv_max_sort(0)("sort") + 1).ToString + "."
+                                    End If
                                 End If
                             Next
                         End If
@@ -264,8 +284,10 @@
                             Dim fl_name As String = view_file(i)("store").ToString + "_" + view_file(i)("file_name").ToString
 
                             For j = 0 To data_validation.Rows.Count - 1
-                                If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
-                                    data_validation.Rows(j)("status") = "Err: please start numbering from 1."
+                                If data_validation.Rows(j)("id_design_images").ToString = "" Then
+                                    If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
+                                        data_validation.Rows(j)("status") = "Error: please start numbering from 1."
+                                    End If
                                 End If
                             Next
                         End If
@@ -348,7 +370,7 @@
 
                         For j = 0 To data_validation.Rows.Count - 1
                             If data_validation.Rows(j)("file_name").ToString.Contains(fl_name) Then
-                                data_validation.Rows(j)("status") = "Err: minimum total number of image upload is " + limit.ToString + "."
+                                data_validation.Rows(j)("status") = "Error: minimum total number of image upload is " + limit.ToString + "."
                             End If
                         Next
                     End If
@@ -454,5 +476,19 @@
 
     Private Sub SLUESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLUESeason.EditValueChanged
         GCImageList.DataSource = Nothing
+    End Sub
+
+    Private Sub RepositoryItemCheckEditLog_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEditLog.Click
+        If GVImageList.GetFocusedRowCellValue("log").ToString = "yes" Then
+            FormDesignImagesLog.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub RepositoryItemCheckEditLog_MouseHover(sender As Object, e As EventArgs) Handles RepositoryItemCheckEditLog.MouseHover
+        Cursor = Cursors.Hand
+    End Sub
+
+    Private Sub RepositoryItemCheckEditLog_MouseLeave(sender As Object, e As EventArgs) Handles RepositoryItemCheckEditLog.MouseLeave
+        Cursor = Cursors.Default
     End Sub
 End Class
