@@ -8,6 +8,7 @@
             LEFT JOIN tb_m_user AS u ON l.created_by = u.id_user
             LEFT JOIN tb_m_employee AS e ON u.id_employee = e.id_employee
             WHERE id_design_images = " + FormDesignImages.GVImageList.GetFocusedRowCellValue("id_design_images").ToString + "
+            ORDER BY l.id_design_images_log DESC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
