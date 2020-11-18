@@ -183,11 +183,11 @@ INNER JOIN tb_m_comp com ON com.`id_comp`=pn.`id_comp`
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
 LEFT JOIN
 (
-    SELECT id_report FROM `tb_pn_fgpo_det` pnd
+    SELECT id_report,SUM(pnd.`value_bef_kurs`) AS val_bef_kurs FROM `tb_pn_fgpo_det` pnd
     INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
     WHERE pnd.`report_mark_type`='199' AND pn.id_report_status!=5 AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
 )used ON used.id_report=pnd.id_pn_fgpo
-WHERE pn.`id_report_status`= '6' AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "' AND pnd.report_mark_type!='199' AND pn.`type`='1' AND ISNULL(used.id_report) AND pn.doc_type!='2'"
+WHERE pn.`id_report_status`= '6' AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "' AND pnd.report_mark_type!='199' AND pn.`type`='1' AND (pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) > 0 AND pn.doc_type!='2'"
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
