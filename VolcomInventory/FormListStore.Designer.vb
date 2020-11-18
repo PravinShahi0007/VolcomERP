@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormMasterCompany
+Partial Class FormListStore
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -47,8 +47,8 @@ Partial Class FormMasterCompany
         Me.GCCompany.MainView = Me.GVCompany
         Me.GCCompany.Name = "GCCompany"
         Me.GCCompany.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.is_active_company, Me.RepositoryItemCheckEdit1})
-        Me.GCCompany.Size = New System.Drawing.Size(1008, 619)
-        Me.GCCompany.TabIndex = 3
+        Me.GCCompany.Size = New System.Drawing.Size(1100, 556)
+        Me.GCCompany.TabIndex = 4
         Me.GCCompany.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCompany})
         '
         'GVCompany
@@ -165,19 +165,18 @@ Partial Class FormMasterCompany
         Me.is_active_company.DisplayValueUnchecked = "0"
         Me.is_active_company.Name = "is_active_company"
         '
-        'FormMasterCompany
+        'FormListStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 619)
+        Me.ClientSize = New System.Drawing.Size(1100, 556)
         Me.Controls.Add(Me.GCCompany)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FormMasterCompany"
-        Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Company"
+        Me.Name = "FormListStore"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = "List Store"
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCompany, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -185,19 +184,20 @@ Partial Class FormMasterCompany
         Me.ResumeLayout(False)
 
     End Sub
+
     Friend WithEvents GCCompany As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVCompany As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents id_company As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CompanyCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents company As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents address_primary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents sub_district As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents is_active As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents Category As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents is_active_company As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GCStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents sub_district As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents is_active_company As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
