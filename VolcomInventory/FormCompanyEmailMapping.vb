@@ -12,6 +12,7 @@
     Private Sub FormCompanyEmailMapping_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
+        button_main("1", "0", "1")
     End Sub
 
     Private Sub FormCompanyEmailMapping_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
@@ -85,9 +86,11 @@
 
     Private Sub XtraTabControl_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl.SelectedPageChanged
         If XtraTabControl.SelectedTabPageIndex = 2 Then
-            button_main("0", "0", "0")
+            checkFormAccess(Name)
+            button_main("0", "1", "0")
         Else
             checkFormAccess(Name)
+            button_main("1", "0", "1")
         End If
     End Sub
 End Class

@@ -3084,6 +3084,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormScanReturn" Then
                 FormScanReturnDet.id_scan_return = FormScanReturn.GVAwb.GetFocusedRowCellValue("id_scan_return").ToString
                 FormScanReturnDet.ShowDialog()
+            ElseIf formName = "FormCompanyEmailMapping" Then
+                FormMasterCompanyContact.id_company = FormCompanyEmailMapping.GV3PL.GetFocusedRowCellValue("id_comp").ToString
+                FormMasterCompanyContact.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
