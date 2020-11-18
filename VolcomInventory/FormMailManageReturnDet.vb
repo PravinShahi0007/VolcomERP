@@ -3,13 +3,13 @@
     Public action As String = "-1"
     Public id As String = "-1"
     Dim id_mail_status As String = "-1"
-    Dim mail_head As String = ""
+    'Dim mail_head As String = ""
     Dim mail_subject As String = ""
-    Dim mail_title As String = ""
-    Dim mail_content_head As String = ""
-    Dim mail_content As String = ""
-    Dim mail_content_end As String = ""
-    Dim mail_content_to As String = ""
+    'Dim mail_title As String = ""
+    'Dim mail_content_head As String = ""
+    'Dim mail_content As String = ""
+    'Dim mail_content_end As String = ""
+    'Dim mail_content_to As String = ""
     Dim super_user As String = get_setup_field("id_role_super_admin")
 
     Private loaded As Boolean = False
@@ -125,12 +125,12 @@
                 Dim qopt As String = "SELECT mail_head_sales_return,mail_subject_sales_return, mail_title_sales_return , mail_content_head_sales_return, mail_content_sales_return ,mail_content_end_sales_return
                 FROM tb_opt "
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
-                mail_head = dopt.Rows(0)("mail_head_sales_return").ToString
+                'mail_head = dopt.Rows(0)("mail_head_sales_return").ToString
                 mail_subject = dopt.Rows(0)("mail_subject_sales_return").ToString + " - " + ddet.Rows(0)("group_store").ToString
-                mail_title = dopt.Rows(0)("mail_title_sales_return").ToString
-                mail_content_head = dopt.Rows(0)("mail_content_head_sales_return").ToString
-                mail_content = dopt.Rows(0)("mail_content_sales_return").ToString
-                mail_content_end = dopt.Rows(0)("mail_content_end_sales_return").ToString
+                'mail_title = dopt.Rows(0)("mail_title_sales_return").ToString
+                'mail_content_head = dopt.Rows(0)("mail_content_head_sales_return").ToString
+                'mail_content = dopt.Rows(0)("mail_content_sales_return").ToString
+                'mail_content_end = dopt.Rows(0)("mail_content_end_sales_return").ToString
                 MESubject.Text = addSlashes(mail_subject)
 
                 'mail template
@@ -216,12 +216,12 @@
                 Dim qopt As String = "SELECT mail_head_sales_return, mail_subject_sales_return, mail_title_sales_return , mail_content_head_sales_return, mail_content_sales_return, mail_content_end_sales_return
                 FROM tb_opt"
                 Dim dopt As DataTable = execute_query(qopt, -1, True, "", "", "", "")
-                mail_head = dopt.Rows(0)("mail_head_sales_return").ToString
+                'mail_head = dopt.Rows(0)("mail_head_sales_return").ToString
                 mail_subject = dopt.Rows(0)("mail_subject_sales_return").ToString + " - " + ddet.Rows(0)("group_store").ToString
-                mail_title = dopt.Rows(0)("mail_title_sales_return").ToString
-                mail_content_head = dopt.Rows(0)("mail_content_head_sales_return").ToString
-                mail_content = dopt.Rows(0)("mail_content_sales_return").ToString
-                mail_content_end = dopt.Rows(0)("mail_content_end_sales_return").ToString
+                'mail_title = dopt.Rows(0)("mail_title_sales_return").ToString
+                'mail_content_head = dopt.Rows(0)("mail_content_head_sales_return").ToString
+                'mail_content = dopt.Rows(0)("mail_content_sales_return").ToString
+                'mail_content_end = dopt.Rows(0)("mail_content_end_sales_return").ToString
                 MESubject.Text = addSlashes(mail_subject)
 
                 'mail template
@@ -467,9 +467,9 @@
             client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
         End If
 
-        Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
+        Dim mail_address As DataTable = execute_query("SELECT m.mail_address, IFNULL(e.employee_name, c.contact_person) AS mail_name FROM tb_mail_manage_member m LEFT JOIN tb_m_user u ON m.id_user = u.id_user LEFT JOIN tb_m_employee e ON u.id_employee = e.id_employee LEFT JOIN tb_m_comp_contact c ON m.id_comp_contact = c.id_comp_contact WHERE m.id_mail_manage=" + id + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", -1, True, "", "", "", "")
 
-        Dim from_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress(mail_address_from, mail_head)
+        Dim from_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress(mail_address.Rows(0)("mail_address").ToString, mail_address.Rows(0)("mail_name").ToString)
         Dim mail As Net.Mail.MailMessage = New Net.Mail.MailMessage()
         mail.From = from_mail
 
@@ -535,7 +535,7 @@
         Dim id_sales_return_order As String = getSavedInvoice()
         Dim dtx As DataTable = dtLoadDetail(id_sales_return_order)
 
-        Dim body_temp As String = email_body_sales_return(dtx, mail_title, mail_content_head + " " + dtx.Rows(0)("group_company").ToString, mail_content, mail_content_end, Double.Parse(getTotalAmo(dtx).ToString).ToString("N2"))
+        Dim body_temp As String = WebBrowser1.DocumentText
         Dim subject_mail As String = execute_query("SELECT m.mail_subject FROM tb_mail_manage m WHERE m.id_mail_manage=" + id + "", 0, True, "", "", "", "")
         mail.Subject = subject_mail
         mail.IsBodyHtml = True
