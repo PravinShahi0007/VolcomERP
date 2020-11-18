@@ -50,6 +50,8 @@
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
+            FormPayoutZaloraDet.id = GVData.GetFocusedRowCellValue("id_payout_zalora").ToString
+            FormPayoutZaloraDet.ShowDialog()
             Cursor = Cursors.Default
         End If
     End Sub
