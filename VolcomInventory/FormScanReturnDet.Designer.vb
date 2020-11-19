@@ -32,7 +32,6 @@ Partial Class FormScanReturnDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
-        Me.BLock = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteScan = New DevExpress.XtraEditors.SimpleButton()
@@ -154,7 +153,6 @@ Partial Class FormScanReturnDet
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BClose)
-        Me.PanelControl2.Controls.Add(Me.BLock)
         Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 508)
@@ -171,16 +169,6 @@ Partial Class FormScanReturnDet
         Me.BClose.Size = New System.Drawing.Size(109, 41)
         Me.BClose.TabIndex = 5
         Me.BClose.Text = "Close"
-        '
-        'BLock
-        '
-        Me.BLock.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BLock.Image = CType(resources.GetObject("BLock.Image"), System.Drawing.Image)
-        Me.BLock.Location = New System.Drawing.Point(2, 2)
-        Me.BLock.Name = "BLock"
-        Me.BLock.Size = New System.Drawing.Size(102, 41)
-        Me.BLock.TabIndex = 4
-        Me.BLock.Text = "Lock"
         '
         'BSave
         '
@@ -254,6 +242,9 @@ Partial Class FormScanReturnDet
         Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.Name = "GVListProduct"
+        Me.GVListProduct.OptionsBehavior.Editable = False
+        Me.GVListProduct.OptionsBehavior.ReadOnly = True
+        Me.GVListProduct.OptionsView.ShowFooter = True
         Me.GVListProduct.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -282,6 +273,7 @@ Partial Class FormScanReturnDet
         Me.GridColumn4.Caption = "Product"
         Me.GridColumn4.FieldName = "product_display_name"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "product_display_name", "Total Qty Scan")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
         Me.GridColumn4.Width = 278
@@ -295,6 +287,7 @@ Partial Class FormScanReturnDet
         Me.GridColumn5.Caption = "Size"
         Me.GridColumn5.FieldName = "size"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "size", "{0}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
         Me.GridColumn5.Width = 69
@@ -349,7 +342,6 @@ Partial Class FormScanReturnDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BLock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEScan As DevExpress.XtraEditors.TextEdit

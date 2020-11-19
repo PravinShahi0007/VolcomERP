@@ -6355,6 +6355,12 @@
     <Compile Include="FormScanReturnDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormScanReturnDetManual.Designer.vb">
+      <DependentUpon>FormScanReturnDetManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturnDetManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSearchDesign.Designer.vb">
       <DependentUpon>FormSearchDesign.vb</DependentUpon>
     </Compile>
@@ -12292,6 +12298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormScanReturnDet.resx">
       <DependentUpon>FormScanReturnDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturnDetManual.resx">
+      <DependentUpon>FormScanReturnDetManual.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSearchDesign.resx">
       <DependentUpon>FormSearchDesign.vb</DependentUpon>
