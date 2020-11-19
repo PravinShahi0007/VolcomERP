@@ -1160,6 +1160,12 @@
     <Compile Include="FormDesignImagesDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDesignImagesLog.Designer.vb">
+      <DependentUpon>FormDesignImagesLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignImagesLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDocTracking.Designer.vb">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
     </Compile>
@@ -9355,6 +9361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignImagesDet.resx">
       <DependentUpon>FormDesignImagesDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignImagesLog.resx">
+      <DependentUpon>FormDesignImagesLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocTracking.resx">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
