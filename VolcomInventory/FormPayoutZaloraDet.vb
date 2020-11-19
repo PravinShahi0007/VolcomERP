@@ -27,12 +27,23 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "UPDATE tb_payout_zalora SET default_comm='" + decimalSQL(TxtCommision.EditValue.ToString) + "' WHERE id_payout_zalora='" + id + "' "
         execute_non_query(query, True, "", "", "", "")
-        validate()
+        validate_payout()
         infoCustom("Commision updated")
         Cursor = Cursors.Default
     End Sub
 
-    Sub validate()
+    Sub validate_payout()
 
+    End Sub
+
+    Private Sub Btnrecalculate_Click(sender As Object, e As EventArgs) Handles Btnrecalculate.Click
+        validate_payout()
+    End Sub
+
+    Private Sub BtnImportXls_Click(sender As Object, e As EventArgs) Handles BtnImportXls.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "55"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
