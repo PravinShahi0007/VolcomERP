@@ -534,10 +534,9 @@ Partial Class FormDesignImages
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GVData.OptionsView.RowAutoHeight = True
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        Me.GVData.RowHeight = 30
+        Me.GVData.RowHeight = 100
         '
         'GridBandFreeze
         '
@@ -565,8 +564,10 @@ Partial Class FormDesignImages
         Me.BandedGridColumnImg.Caption = "IMG"
         Me.BandedGridColumnImg.ColumnEdit = Me.RepositoryItemPictureEdit1
         Me.BandedGridColumnImg.FieldName = "img"
+        Me.BandedGridColumnImg.MinWidth = 100
         Me.BandedGridColumnImg.Name = "BandedGridColumnImg"
         Me.BandedGridColumnImg.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
+        Me.BandedGridColumnImg.Width = 100
         '
         'RepositoryItemPictureEdit1
         '
@@ -587,16 +588,20 @@ Partial Class FormDesignImages
         Me.BandedGridColumnTh1.Caption = "TH 1"
         Me.BandedGridColumnTh1.ColumnEdit = Me.RepositoryItemPictureEdit1
         Me.BandedGridColumnTh1.FieldName = "th1"
+        Me.BandedGridColumnTh1.MinWidth = 100
         Me.BandedGridColumnTh1.Name = "BandedGridColumnTh1"
         Me.BandedGridColumnTh1.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
+        Me.BandedGridColumnTh1.Width = 100
         '
         'BandedGridColumnTh2
         '
         Me.BandedGridColumnTh2.Caption = "TH 2"
         Me.BandedGridColumnTh2.ColumnEdit = Me.RepositoryItemPictureEdit1
         Me.BandedGridColumnTh2.FieldName = "th2"
+        Me.BandedGridColumnTh2.MinWidth = 100
         Me.BandedGridColumnTh2.Name = "BandedGridColumnTh2"
         Me.BandedGridColumnTh2.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
+        Me.BandedGridColumnTh2.Width = 100
         '
         'BandedGridColumncode
         '
