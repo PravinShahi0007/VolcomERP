@@ -142,4 +142,8 @@
     Private Sub GVProd_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProd.FocusedRowChanged
         view_bom_mat()
     End Sub
+
+    Private Sub GVProd_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVProd.ColumnFilterChanged
+        view_bom_mat()
+    End Sub
 End Class
