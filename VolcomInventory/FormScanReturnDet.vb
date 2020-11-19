@@ -26,11 +26,11 @@ LEFT JOIN
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=prd.`id_design`
 WHERE dsg.`id_lookup_status_order`!=2"
         dt_product = execute_query(q, -1, True, "", "", "", "")
-        '
-        q = "SELECT scanned_code FROM 
-`tb_scan_return_det` srd
-INNER JOIN tb_scan_return sr ON sr.id_scan_return=srd.id_scan_return AND sr.id_report_status!=5"
-        dt_unique = execute_query(q, -1, True, "", "", "", "")
+        'karena produk bisa bolak balik return
+        '        q = "SELECT scanned_code FROM 
+        '`tb_scan_return_det` srd
+        'INNER JOIN tb_scan_return sr ON sr.id_scan_return=srd.id_scan_return AND sr.id_report_status!=5"
+        '        dt_unique = execute_query(q, -1, True, "", "", "", "")
     End Sub
 
     Sub load_det()
@@ -99,18 +99,22 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
 
                 'check duplicate unique
                 If TEScan.Text.Length = 16 Then
-                    Dim dt_unique_filter As DataRow() = dt_unique.Select("[scanned_code]='" + TEScan.Text + "' ")
-                    If dt_unique_filter.Length > 0 Then
-                        unique_duplicate = True
-                    Else
-                        For i As Integer = 0 To GVListProduct.RowCount - 1
-                            If GVListProduct.GetRowCellValue(i, "product_full_code").ToString = TEScan.Text Then
-                                unique_duplicate = True
-                                Exit For
-                            End If
-                        Next
-                    End If
+                    For i As Integer = 0 To GVListProduct.RowCount - 1
+                        If GVListProduct.GetRowCellValue(i, "product_full_code").ToString = TEScan.Text Then
+                            unique_duplicate = True
+                            Exit For
+                        End If
+                    Next
                 End If
+                'tidak dipakai karena produk bisa bolak balik return
+                'If TEScan.Text.Length = 16 Then
+                '    Dim dt_unique_filter As DataRow() = dt_unique.Select("[scanned_code]='" + TEScan.Text + "' ")
+                '    If dt_unique_filter.Length > 0 Then
+                '        unique_duplicate = True
+                '    Else
+
+                '    End If
+                'End If
 
                 If Not code_found Then
                     stopCustomDialog("Data not found !")
@@ -158,14 +162,52 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
     Private Sub BDeleteScan_Click(sender As Object, e As EventArgs) Handles BDeleteScan.Click
         If GVListProduct.RowCount > 0 Then
             GVListProduct.DeleteSelectedRows()
+            TEScan.Text = ""
+            TEScan.Focus()
         End If
     End Sub
 
     Private Sub BInputManual_Click(sender As Object, e As EventArgs) Handles BInputManual.Click
-
+        FormScanReturnDetManual.ShowDialog()
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
+        'check first
+        If id_return_note = "-1" Then
+            warningCustom("Please put the return note.")
+        ElseIf GVListProduct.RowCount = 0 Then
+            warningCustom("Please scan first")
+        Else
+            Dim is_ok As Boolean = True
 
+            If Not GVListProduct.Columns("size").SummaryItem.SummaryValue = TEQty.EditValue Then
+                Dim confirm As DialogResult
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Qty Return note vs Qty Scan not match, continue save ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    is_ok = True
+                Else
+                    is_ok = False
+                End If
+            End If
+
+            If is_ok Then
+                'save
+                Dim q As String = "INSERT INTO tb_scan_return(id_return_note) VALUES('" & id_return_note & "'); SELECT LAST_INSERT_ID();"
+                id_scan_return = execute_query(q, 0, True, "", "", "", "")
+                '
+                q = "INSERT INTO `tb_scan_return_det`(`id_scan_return`,`id_product`,`scanned_code`,`size`,`type`) VALUES"
+                For i = 0 To GVListProduct.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('','','','','')"
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
+        Close()
     End Sub
 End Class
