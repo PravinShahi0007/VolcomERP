@@ -367,7 +367,7 @@
     End Sub
 
     Private Sub BShowBOM_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BShowBOM.Click
-        FormInfoBOMMat.id_pd_design = get_prod_order_x(id_prod_order, "1")
+        'FormInfoBOMMat.id_pd_design = get_prod_order_x(id_prod_order, "1")
         FormInfoBOMMat.ShowDialog()
     End Sub
 
