@@ -41,6 +41,8 @@ Partial Class FormDesignImages
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEditLog = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,6 +53,7 @@ Partial Class FormDesignImages
         CType(Me.RepositoryItemDateEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEditLog, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -125,14 +128,14 @@ Partial Class FormDesignImages
         Me.GCImageList.Location = New System.Drawing.Point(0, 49)
         Me.GCImageList.MainView = Me.GVImageList
         Me.GCImageList.Name = "GCImageList"
-        Me.GCImageList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit, Me.RepositoryItemHyperLinkEdit, Me.RepositoryItemDateEdit})
+        Me.GCImageList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit, Me.RepositoryItemHyperLinkEdit, Me.RepositoryItemDateEdit, Me.RepositoryItemCheckEditLog})
         Me.GCImageList.Size = New System.Drawing.Size(1008, 680)
         Me.GCImageList.TabIndex = 1
         Me.GCImageList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVImageList})
         '
         'GVImageList
         '
-        Me.GVImageList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn11, Me.GridColumn2, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVImageList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn11, Me.GridColumn2, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn12})
         Me.GVImageList.GridControl = Me.GCImageList
         Me.GVImageList.GroupCount = 2
         Me.GVImageList.Name = "GVImageList"
@@ -151,7 +154,7 @@ Partial Class FormDesignImages
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Store"
+        Me.GridColumn11.Caption = "Type"
         Me.GridColumn11.FieldName = "store"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
@@ -237,6 +240,24 @@ Partial Class FormDesignImages
         Me.RepositoryItemCheckEdit.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit.PictureGrayed"), System.Drawing.Image)
         Me.RepositoryItemCheckEdit.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureUnchecked"), System.Drawing.Image)
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Log"
+        Me.GridColumn12.ColumnEdit = Me.RepositoryItemCheckEditLog
+        Me.GridColumn12.FieldName = "log"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 6
+        '
+        'RepositoryItemCheckEditLog
+        '
+        Me.RepositoryItemCheckEditLog.AutoHeight = False
+        Me.RepositoryItemCheckEditLog.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEditLog.Name = "RepositoryItemCheckEditLog"
+        Me.RepositoryItemCheckEditLog.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEditLog.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEditLog.ValueChecked = "yes"
+        Me.RepositoryItemCheckEditLog.ValueUnchecked = "no"
+        '
         'FormDesignImages
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -257,6 +278,7 @@ Partial Class FormDesignImages
         CType(Me.RepositoryItemDateEdit.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEditLog, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -282,4 +304,6 @@ Partial Class FormDesignImages
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEditLog As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
