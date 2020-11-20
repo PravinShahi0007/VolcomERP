@@ -9429,6 +9429,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormScanReturn" Then
             FormScanReturn.Close()
             FormScanReturn.Dispose()
+        ElseIf formName = "FormBatchUploadOnlineStore" Then
+            FormBatchUploadOnlineStore.Close()
+            FormBatchUploadOnlineStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10412,6 +10415,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Else
                 FormScanReturn.load_bap()
             End If
+        ElseIf formName = "FormBatchUploadOnlineStore" Then
+            FormBatchUploadOnlineStore.GCBatchUpload.DataSource = Nothing
+            FormBatchUploadOnlineStore.GVBatchUpload.Columns.Clear()
         End If
     End Sub
     'Switch
@@ -15644,6 +15650,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompanyEmailMapping.Show()
             FormCompanyEmailMapping.WindowState = FormWindowState.Maximized
             FormCompanyEmailMapping.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBBatchUpload_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBatchUpload.LinkClicked
+        Try
+            FormBatchUploadOnlineStore.MdiParent = Me
+            FormBatchUploadOnlineStore.Show()
+            FormBatchUploadOnlineStore.WindowState = FormWindowState.Maximized
+            FormBatchUploadOnlineStore.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
