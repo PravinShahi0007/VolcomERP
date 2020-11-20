@@ -19,6 +19,7 @@ Partial Class FormCashAdvanceReconcile
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormCashAdvanceReconcile))
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
@@ -52,7 +53,7 @@ Partial Class FormCashAdvanceReconcile
         Me.DEStartReconcile = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -66,6 +67,8 @@ Partial Class FormCashAdvanceReconcile
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCJournalDet = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -100,6 +103,12 @@ Partial Class FormCashAdvanceReconcile
         Me.XTCCA = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListExpense = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEPPNCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPPH = New DevExpress.XtraEditors.TextEdit()
@@ -169,12 +178,6 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.SLUEPPNCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,6 +206,7 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.PCExp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCExp.SuspendLayout()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RSLECOA, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -216,6 +220,8 @@ Partial Class FormCashAdvanceReconcile
         Me.XTPListExpense.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLUEPPNCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPPH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVATIN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -247,8 +253,6 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEPPNCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl4
@@ -731,6 +735,7 @@ Partial Class FormCashAdvanceReconcile
         '
         'GCJournalDet
         '
+        Me.GCJournalDet.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCJournalDet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCJournalDet.Location = New System.Drawing.Point(0, 48)
         Me.GCJournalDet.MainView = Me.GVJournalDet
@@ -739,6 +744,18 @@ Partial Class FormCashAdvanceReconcile
         Me.GCJournalDet.Size = New System.Drawing.Size(1002, 318)
         Me.GCJournalDet.TabIndex = 17
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
+        '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(153, 48)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Text = "Gross up PPH"
         '
         'GVJournalDet
         '
@@ -1047,6 +1064,54 @@ Partial Class FormCashAdvanceReconcile
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1002, 144)
         Me.PanelControl1.TabIndex = 19
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LabelControl10.Location = New System.Drawing.Point(634, 67)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(44, 13)
+        Me.LabelControl10.TabIndex = 8938
+        Me.LabelControl10.Text = "VAT COA"
+        '
+        'SLUEPPNCOA
+        '
+        Me.SLUEPPNCOA.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SLUEPPNCOA.Location = New System.Drawing.Point(695, 64)
+        Me.SLUEPPNCOA.Name = "SLUEPPNCOA"
+        Me.SLUEPPNCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEPPNCOA.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUEPPNCOA.Size = New System.Drawing.Size(295, 20)
+        Me.SLUEPPNCOA.TabIndex = 8937
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn62, Me.GridColumn63, Me.GridColumn64})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.FieldName = "id_acc"
+        Me.GridColumn62.Name = "GridColumn62"
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.Caption = "COA"
+        Me.GridColumn63.FieldName = "acc_name"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 0
+        '
+        'GridColumn64
+        '
+        Me.GridColumn64.Caption = "Description"
+        Me.GridColumn64.FieldName = "acc_description"
+        Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.Visible = True
+        Me.GridColumn64.VisibleIndex = 1
         '
         'TETotal
         '
@@ -1710,54 +1775,6 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit8.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit8.Name = "RepositoryItemTextEdit8"
         '
-        'SLUEPPNCOA
-        '
-        Me.SLUEPPNCOA.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLUEPPNCOA.Location = New System.Drawing.Point(695, 64)
-        Me.SLUEPPNCOA.Name = "SLUEPPNCOA"
-        Me.SLUEPPNCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEPPNCOA.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUEPPNCOA.Size = New System.Drawing.Size(295, 20)
-        Me.SLUEPPNCOA.TabIndex = 8937
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn62, Me.GridColumn63, Me.GridColumn64})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl10.Location = New System.Drawing.Point(634, 67)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(44, 13)
-        Me.LabelControl10.TabIndex = 8938
-        Me.LabelControl10.Text = "VAT COA"
-        '
-        'GridColumn62
-        '
-        Me.GridColumn62.FieldName = "id_acc"
-        Me.GridColumn62.Name = "GridColumn62"
-        '
-        'GridColumn63
-        '
-        Me.GridColumn63.Caption = "COA"
-        Me.GridColumn63.FieldName = "acc_name"
-        Me.GridColumn63.Name = "GridColumn63"
-        Me.GridColumn63.Visible = True
-        Me.GridColumn63.VisibleIndex = 0
-        '
-        'GridColumn64
-        '
-        Me.GridColumn64.Caption = "Description"
-        Me.GridColumn64.FieldName = "acc_description"
-        Me.GridColumn64.Name = "GridColumn64"
-        Me.GridColumn64.Visible = True
-        Me.GridColumn64.VisibleIndex = 1
-        '
         'FormCashAdvanceReconcile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1802,6 +1819,7 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.PCExp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCExp.ResumeLayout(False)
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RSLECOA, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1816,6 +1834,8 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLUEPPNCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPPH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVATIN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1847,8 +1867,6 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEPPNCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2008,4 +2026,6 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
 End Class
