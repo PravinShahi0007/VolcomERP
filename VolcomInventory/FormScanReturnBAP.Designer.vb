@@ -21,60 +21,73 @@ Partial Class FormScanReturnBAP
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormScanReturnBAP))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.DEBAP = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEStartBAP = New DevExpress.XtraEditors.DateEdit()
+        Me.TEBAPNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEAlasanLain = New DevExpress.XtraEditors.TextEdit()
+        Me.CEAlasanLain = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEBasah = New DevExpress.XtraEditors.CheckEdit()
+        Me.CELakbanRusak = New DevExpress.XtraEditors.CheckEdit()
+        Me.CELubang = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
-        Me.CheckEdit2 = New DevExpress.XtraEditors.CheckEdit()
-        Me.CheckEdit3 = New DevExpress.XtraEditors.CheckEdit()
-        Me.CheckEdit4 = New DevExpress.XtraEditors.CheckEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BDeleteScan = New DevExpress.XtraEditors.SimpleButton()
         Me.BInputManual = New DevExpress.XtraEditors.SimpleButton()
         Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVListProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLEReturnNote = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLEType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnListToko = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTypeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSuratjalanDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStartBAP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStartBAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBAP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBAPNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEAlasanLain.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEAlasanLain.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBasah.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CELakbanRusak.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CELubang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.GCListProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEReturnNote, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEType, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.DEStartBAP)
+        Me.PanelControl1.Controls.Add(Me.DEBAP)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
-        Me.PanelControl1.Controls.Add(Me.TextEdit1)
+        Me.PanelControl1.Controls.Add(Me.TEBAPNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -82,21 +95,20 @@ Partial Class FormScanReturnBAP
         Me.PanelControl1.Size = New System.Drawing.Size(932, 48)
         Me.PanelControl1.TabIndex = 0
         '
-        'LabelControl1
+        'DEBAP
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 16)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(59, 13)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "BAP Number"
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.EditValue = "[Atuo Generate]"
-        Me.TextEdit1.Location = New System.Drawing.Point(97, 13)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(462, 20)
-        Me.TextEdit1.TabIndex = 1
+        Me.DEBAP.EditValue = Nothing
+        Me.DEBAP.Location = New System.Drawing.Point(616, 13)
+        Me.DEBAP.Name = "DEBAP"
+        Me.DEBAP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBAP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBAP.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEBAP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEBAP.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEBAP.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEBAP.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEBAP.Size = New System.Drawing.Size(291, 20)
+        Me.DEBAP.TabIndex = 8921
         '
         'LabelControl2
         '
@@ -106,20 +118,22 @@ Partial Class FormScanReturnBAP
         Me.LabelControl2.TabIndex = 2
         Me.LabelControl2.Text = "BAP Date"
         '
-        'DEStartBAP
+        'TEBAPNumber
         '
-        Me.DEStartBAP.EditValue = Nothing
-        Me.DEStartBAP.Location = New System.Drawing.Point(616, 13)
-        Me.DEStartBAP.Name = "DEStartBAP"
-        Me.DEStartBAP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartBAP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartBAP.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEStartBAP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartBAP.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DEStartBAP.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartBAP.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEStartBAP.Size = New System.Drawing.Size(291, 20)
-        Me.DEStartBAP.TabIndex = 8921
+        Me.TEBAPNumber.EditValue = "[Atuo Generate]"
+        Me.TEBAPNumber.Enabled = False
+        Me.TEBAPNumber.Location = New System.Drawing.Point(97, 13)
+        Me.TEBAPNumber.Name = "TEBAPNumber"
+        Me.TEBAPNumber.Size = New System.Drawing.Size(462, 20)
+        Me.TEBAPNumber.TabIndex = 1
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 16)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "BAP Number"
         '
         'PanelControl2
         '
@@ -131,6 +145,16 @@ Partial Class FormScanReturnBAP
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(932, 45)
         Me.PanelControl2.TabIndex = 2
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
+        Me.BPrint.Location = New System.Drawing.Point(2, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(109, 41)
+        Me.BPrint.TabIndex = 6
+        Me.BPrint.Text = "Print"
         '
         'BClose
         '
@@ -154,17 +178,57 @@ Partial Class FormScanReturnBAP
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.TextEdit2)
-        Me.PanelControl3.Controls.Add(Me.CheckEdit4)
-        Me.PanelControl3.Controls.Add(Me.CheckEdit3)
-        Me.PanelControl3.Controls.Add(Me.CheckEdit2)
-        Me.PanelControl3.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl3.Controls.Add(Me.TEAlasanLain)
+        Me.PanelControl3.Controls.Add(Me.CEAlasanLain)
+        Me.PanelControl3.Controls.Add(Me.CEBasah)
+        Me.PanelControl3.Controls.Add(Me.CELakbanRusak)
+        Me.PanelControl3.Controls.Add(Me.CELubang)
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 48)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(932, 50)
         Me.PanelControl3.TabIndex = 3
+        '
+        'TEAlasanLain
+        '
+        Me.TEAlasanLain.Enabled = False
+        Me.TEAlasanLain.Location = New System.Drawing.Point(551, 14)
+        Me.TEAlasanLain.Name = "TEAlasanLain"
+        Me.TEAlasanLain.Size = New System.Drawing.Size(356, 20)
+        Me.TEAlasanLain.TabIndex = 6
+        '
+        'CEAlasanLain
+        '
+        Me.CEAlasanLain.Location = New System.Drawing.Point(453, 14)
+        Me.CEAlasanLain.Name = "CEAlasanLain"
+        Me.CEAlasanLain.Properties.Caption = "Alasan lainnya"
+        Me.CEAlasanLain.Size = New System.Drawing.Size(92, 19)
+        Me.CEAlasanLain.TabIndex = 5
+        '
+        'CEBasah
+        '
+        Me.CEBasah.Location = New System.Drawing.Point(349, 14)
+        Me.CEBasah.Name = "CEBasah"
+        Me.CEBasah.Properties.Caption = "Basah / Kotor"
+        Me.CEBasah.Size = New System.Drawing.Size(98, 19)
+        Me.CEBasah.TabIndex = 4
+        '
+        'CELakbanRusak
+        '
+        Me.CELakbanRusak.Location = New System.Drawing.Point(223, 14)
+        Me.CELakbanRusak.Name = "CELakbanRusak"
+        Me.CELakbanRusak.Properties.Caption = "Seal / Lakban rusak"
+        Me.CELakbanRusak.Size = New System.Drawing.Size(120, 19)
+        Me.CELakbanRusak.TabIndex = 3
+        '
+        'CELubang
+        '
+        Me.CELubang.Location = New System.Drawing.Point(97, 14)
+        Me.CELubang.Name = "CELubang"
+        Me.CELubang.Properties.Caption = "Berlubang / robek"
+        Me.CELubang.Size = New System.Drawing.Size(120, 19)
+        Me.CELubang.TabIndex = 2
         '
         'LabelControl3
         '
@@ -174,47 +238,9 @@ Partial Class FormScanReturnBAP
         Me.LabelControl3.TabIndex = 1
         Me.LabelControl3.Text = "BOX Condition"
         '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(97, 14)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Berlubang / robek"
-        Me.CheckEdit1.Size = New System.Drawing.Size(120, 19)
-        Me.CheckEdit1.TabIndex = 2
-        '
-        'CheckEdit2
-        '
-        Me.CheckEdit2.Location = New System.Drawing.Point(223, 14)
-        Me.CheckEdit2.Name = "CheckEdit2"
-        Me.CheckEdit2.Properties.Caption = "Seal / Lakban rusak"
-        Me.CheckEdit2.Size = New System.Drawing.Size(120, 19)
-        Me.CheckEdit2.TabIndex = 3
-        '
-        'CheckEdit3
-        '
-        Me.CheckEdit3.Location = New System.Drawing.Point(349, 14)
-        Me.CheckEdit3.Name = "CheckEdit3"
-        Me.CheckEdit3.Properties.Caption = "Basah / Kotor"
-        Me.CheckEdit3.Size = New System.Drawing.Size(120, 19)
-        Me.CheckEdit3.TabIndex = 4
-        '
-        'CheckEdit4
-        '
-        Me.CheckEdit4.Location = New System.Drawing.Point(453, 14)
-        Me.CheckEdit4.Name = "CheckEdit4"
-        Me.CheckEdit4.Properties.Caption = "Alasan lainnya"
-        Me.CheckEdit4.Size = New System.Drawing.Size(92, 19)
-        Me.CheckEdit4.TabIndex = 5
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.Location = New System.Drawing.Point(551, 14)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(356, 20)
-        Me.TextEdit2.TabIndex = 6
-        '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.LabelControl4)
         Me.PanelControl4.Controls.Add(Me.BDeleteScan)
         Me.PanelControl4.Controls.Add(Me.BInputManual)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
@@ -222,6 +248,15 @@ Partial Class FormScanReturnBAP
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(932, 44)
         Me.PanelControl4.TabIndex = 4
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.Green
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(188, 13)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Press F2 to add product from database"
         '
         'BDeleteScan
         '
@@ -249,17 +284,16 @@ Partial Class FormScanReturnBAP
         Me.GCListProduct.Location = New System.Drawing.Point(0, 142)
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Name = "GCListProduct"
+        Me.GCListProduct.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEReturnNote, Me.RISLEType})
         Me.GCListProduct.Size = New System.Drawing.Size(932, 400)
         Me.GCListProduct.TabIndex = 5
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
         'GVListProduct
         '
-        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn6})
+        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn9, Me.GridColumn8, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn6, Me.GridColumn10, Me.GridColumnListToko, Me.GridColumnTypeDesc, Me.GridColumnSuratjalanDesc})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.Name = "GVListProduct"
-        Me.GVListProduct.OptionsBehavior.Editable = False
-        Me.GVListProduct.OptionsBehavior.ReadOnly = True
         Me.GVListProduct.OptionsView.ShowFooter = True
         Me.GVListProduct.OptionsView.ShowGroupPanel = False
         '
@@ -268,12 +302,48 @@ Partial Class FormScanReturnBAP
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_det"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "ID Return Note"
         Me.GridColumn2.FieldName = "id_return_note"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID Product"
+        Me.GridColumn9.FieldName = "id_product"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Surat jalan"
+        Me.GridColumn8.ColumnEdit = Me.RISLEReturnNote
+        Me.GridColumn8.FieldName = "id_return_note"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 159
+        '
+        'RISLEReturnNote
+        '
+        Me.RISLEReturnNote.AutoHeight = False
+        Me.RISLEReturnNote.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEReturnNote.Name = "RISLEReturnNote"
+        Me.RISLEReturnNote.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'GridColumn3
         '
@@ -282,17 +352,17 @@ Partial Class FormScanReturnBAP
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 200
+        Me.GridColumn3.Width = 170
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Product"
         Me.GridColumn4.FieldName = "product_display_name"
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "product_display_name", "Total Qty Scan")})
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "product_display_name", "Total Qty BAP")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 278
+        Me.GridColumn4.Width = 238
         '
         'GridColumn5
         '
@@ -303,10 +373,25 @@ Partial Class FormScanReturnBAP
         Me.GridColumn5.Caption = "Size"
         Me.GridColumn5.FieldName = "size"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "size", "{0}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 69
+        Me.GridColumn5.Width = 58
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.Caption = "Qty"
+        Me.GridColumn7.DisplayFormat.FormatString = "N0"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "qty"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.Width = 63
         '
         'GridColumn6
         '
@@ -315,39 +400,51 @@ Partial Class FormScanReturnBAP
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
-        Me.GridColumn6.Width = 256
+        Me.GridColumn6.Width = 226
         '
-        'BPrint
+        'GridColumn10
         '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
-        Me.BPrint.Location = New System.Drawing.Point(2, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(109, 41)
-        Me.BPrint.TabIndex = 6
-        Me.BPrint.Text = "Print"
+        Me.GridColumn10.Caption = "Type"
+        Me.GridColumn10.ColumnEdit = Me.RISLEType
+        Me.GridColumn10.FieldName = "id_type"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
         '
-        'GridColumn7
+        'RISLEType
         '
-        Me.GridColumn7.Caption = "Qty"
-        Me.GridColumn7.FieldName = "qty"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
+        Me.RISLEType.AutoHeight = False
+        Me.RISLEType.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEType.Name = "RISLEType"
+        Me.RISLEType.View = Me.GridView1
         '
-        'GridColumn8
+        'GridView1
         '
-        Me.GridColumn8.Caption = "Surat jalan"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn9
+        'GridColumnListToko
         '
-        Me.GridColumn9.Caption = "List Toko"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumnListToko.Caption = "List Toko"
+        Me.GridColumnListToko.Name = "GridColumnListToko"
+        Me.GridColumnListToko.OptionsColumn.AllowEdit = False
+        Me.GridColumnListToko.OptionsColumn.ReadOnly = True
+        '
+        'GridColumnTypeDesc
+        '
+        Me.GridColumnTypeDesc.Caption = "GridColumn11"
+        Me.GridColumnTypeDesc.Name = "GridColumnTypeDesc"
+        Me.GridColumnTypeDesc.OptionsColumn.AllowEdit = False
+        Me.GridColumnTypeDesc.OptionsColumn.ReadOnly = True
+        '
+        'GridColumnSuratjalanDesc
+        '
+        Me.GridColumnSuratjalanDesc.Caption = "GridColumn12"
+        Me.GridColumnSuratjalanDesc.Name = "GridColumnSuratjalanDesc"
+        Me.GridColumnSuratjalanDesc.OptionsColumn.AllowEdit = False
+        Me.GridColumnSuratjalanDesc.OptionsColumn.ReadOnly = True
         '
         'FormScanReturnBAP
         '
@@ -359,49 +456,54 @@ Partial Class FormScanReturnBAP
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormScanReturnBAP"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Scan Return BAP"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStartBAP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStartBAP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBAP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBAP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBAPNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEAlasanLain.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEAlasanLain.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBasah.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CELakbanRusak.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CELubang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
         CType(Me.GCListProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEReturnNote, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEType, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEBAPNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEStartBAP As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEBAP As DevExpress.XtraEditors.DateEdit
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents CheckEdit4 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents CheckEdit3 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents CheckEdit2 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents TEAlasanLain As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CEAlasanLain As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEBasah As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CELakbanRusak As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CELubang As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDeleteScan As DevExpress.XtraEditors.SimpleButton
@@ -416,6 +518,15 @@ Partial Class FormScanReturnBAP
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnListToko As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISLEReturnNote As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISLEType As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnTypeDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSuratjalanDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
