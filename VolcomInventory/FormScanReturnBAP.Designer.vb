@@ -119,16 +119,16 @@ Partial Class FormScanReturnBAP
         '
         'TEBAPNumber
         '
-        Me.TEBAPNumber.EditValue = "[Atuo Generate]"
+        Me.TEBAPNumber.EditValue = "[Auto Generate]"
         Me.TEBAPNumber.Enabled = False
-        Me.TEBAPNumber.Location = New System.Drawing.Point(97, 13)
+        Me.TEBAPNumber.Location = New System.Drawing.Point(296, 13)
         Me.TEBAPNumber.Name = "TEBAPNumber"
-        Me.TEBAPNumber.Size = New System.Drawing.Size(462, 20)
+        Me.TEBAPNumber.Size = New System.Drawing.Size(263, 20)
         Me.TEBAPNumber.TabIndex = 1
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(231, 16)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(59, 13)
         Me.LabelControl1.TabIndex = 0

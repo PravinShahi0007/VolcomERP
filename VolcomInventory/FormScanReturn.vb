@@ -79,7 +79,7 @@
     Sub load_bap()
         Dim date_start As String = Date.Parse(DEStartBAP.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_until As String = Date.Parse(DEUntilBAP.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim q As String = "SELECT bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond` FROM tb_scan_return_bap bap WHERE DATE(bap.`created_date`)>='" & date_start & "' AND DATE(bap.`created_date`)<='" & date_until & "'"
+        Dim q As String = "SELECT id_scan_return_bap,bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond` FROM tb_scan_return_bap bap WHERE DATE(bap.`created_date`)>='" & date_start & "' AND DATE(bap.`created_date`)<='" & date_until & "'"
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCBAP.DataSource = dt

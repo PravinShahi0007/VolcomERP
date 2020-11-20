@@ -340,6 +340,8 @@ Partial Class FormScanReturn
         'GridColumn13
         '
         Me.GridColumn13.Caption = "BAP Date"
+        Me.GridColumn13.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn13.FieldName = "bap_date"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
