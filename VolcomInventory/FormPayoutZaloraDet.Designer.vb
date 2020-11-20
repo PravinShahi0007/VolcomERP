@@ -41,7 +41,7 @@ Partial Class FormPayoutZaloraDet
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPSalesRevenue = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.Btnrecalculate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -218,7 +218,6 @@ Partial Class FormPayoutZaloraDet
         'XTCData
         '
         Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCData.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCData.Location = New System.Drawing.Point(0, 178)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPSummary
@@ -260,7 +259,7 @@ Partial Class FormPayoutZaloraDet
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.Btnrecalculate)
+        Me.PanelControl3.Controls.Add(Me.BtnRefresh)
         Me.PanelControl3.Controls.Add(Me.BtnImportXls)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 136)
@@ -268,16 +267,16 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl3.Size = New System.Drawing.Size(794, 42)
         Me.PanelControl3.TabIndex = 3
         '
-        'Btnrecalculate
+        'BtnRefresh
         '
-        Me.Btnrecalculate.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Btnrecalculate.Image = CType(resources.GetObject("Btnrecalculate.Image"), System.Drawing.Image)
-        Me.Btnrecalculate.Location = New System.Drawing.Point(559, 2)
-        Me.Btnrecalculate.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Btnrecalculate.Name = "Btnrecalculate"
-        Me.Btnrecalculate.Size = New System.Drawing.Size(105, 38)
-        Me.Btnrecalculate.TabIndex = 1
-        Me.Btnrecalculate.Text = "Recalculate"
+        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
+        Me.BtnRefresh.Location = New System.Drawing.Point(559, 2)
+        Me.BtnRefresh.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtnRefresh.Name = "BtnRefresh"
+        Me.BtnRefresh.Size = New System.Drawing.Size(105, 38)
+        Me.BtnRefresh.TabIndex = 1
+        Me.BtnRefresh.Text = "Refresh"
         '
         'BtnImportXls
         '
@@ -348,6 +347,6 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents DESyncDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DECreatedAt As DevExpress.XtraEditors.DateEdit
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents Btnrecalculate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnImportXls As DevExpress.XtraEditors.SimpleButton
 End Class

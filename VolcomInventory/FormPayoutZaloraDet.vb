@@ -36,7 +36,7 @@
 
     End Sub
 
-    Private Sub Btnrecalculate_Click(sender As Object, e As EventArgs) Handles Btnrecalculate.Click
+    Private Sub Btnrecalculate_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
         validate_payout()
     End Sub
 
