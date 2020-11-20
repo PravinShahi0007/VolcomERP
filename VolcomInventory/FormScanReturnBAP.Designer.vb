@@ -43,7 +43,6 @@ Partial Class FormScanReturnBAP
         Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVListProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLEReturnNote = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
@@ -267,6 +266,7 @@ Partial Class FormScanReturnBAP
         Me.BDeleteScan.Size = New System.Drawing.Size(93, 40)
         Me.BDeleteScan.TabIndex = 7
         Me.BDeleteScan.Text = "Delete"
+        Me.BDeleteScan.Visible = False
         '
         'BInputManual
         '
@@ -291,7 +291,7 @@ Partial Class FormScanReturnBAP
         '
         'GVListProduct
         '
-        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn9, Me.GridColumn8, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn6, Me.GridColumn10, Me.GridColumnListToko, Me.GridColumnTypeDesc, Me.GridColumnSuratjalanDesc})
+        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn9, Me.GridColumn8, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn6, Me.GridColumn10, Me.GridColumnListToko, Me.GridColumnTypeDesc, Me.GridColumnSuratjalanDesc})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.Name = "GVListProduct"
         Me.GVListProduct.OptionsView.ShowFooter = True
@@ -304,14 +304,6 @@ Partial Class FormScanReturnBAP
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "ID Return Note"
-        Me.GridColumn2.FieldName = "id_return_note"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.OptionsColumn.ReadOnly = True
         '
         'GridColumn9
         '
@@ -348,7 +340,7 @@ Partial Class FormScanReturnBAP
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Code"
-        Me.GridColumn3.FieldName = "product_full_code"
+        Me.GridColumn3.FieldName = "code"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
@@ -357,7 +349,7 @@ Partial Class FormScanReturnBAP
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Product"
-        Me.GridColumn4.FieldName = "product_display_name"
+        Me.GridColumn4.FieldName = "description"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "product_display_name", "Total Qty BAP")})
         Me.GridColumn4.Visible = True
@@ -396,7 +388,7 @@ Partial Class FormScanReturnBAP
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Note"
-        Me.GridColumn6.FieldName = "notes"
+        Me.GridColumn6.FieldName = "note"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
@@ -456,6 +448,7 @@ Partial Class FormScanReturnBAP
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
+        Me.KeyPreview = True
         Me.MinimizeBox = False
         Me.Name = "FormScanReturnBAP"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -511,7 +504,6 @@ Partial Class FormScanReturnBAP
     Friend WithEvents GCListProduct As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVListProduct As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
