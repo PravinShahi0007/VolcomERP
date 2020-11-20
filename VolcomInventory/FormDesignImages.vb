@@ -479,6 +479,7 @@
         "
 
         viewSearchLookupQuery(SLUESeason, query, "id_season", "season", "id_season")
+        viewSearchLookupQuery(SLUESeasonLL, query, "id_season", "season", "id_season")
     End Sub
 
     Private Sub SLUESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLUESeason.EditValueChanged
@@ -497,5 +498,183 @@
 
     Private Sub RepositoryItemCheckEditLog_MouseLeave(sender As Object, e As EventArgs) Handles RepositoryItemCheckEditLog.MouseLeave
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XtraTabControl_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl.SelectedPageChanged
+        If XtraTabControl.SelectedTabPageIndex = 0 Then
+            checkFormAccess(Name)
+            button_main("1", "0", "0")
+        ElseIf XtraTabControl.SelectedTabPageIndex = 1 Then
+            checkFormAccess(Name)
+            button_main("0", "0", "0")
+        End If
+    End Sub
+
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        Dim id_ss As String = SLUESeasonLL.EditValue.ToString
+
+        Dim query As String = "CALL view_line_list_all_new_bz(" + id_ss + ", 2)"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCData.DataSource = data
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+    End Sub
+
+    Private Sub CheckImg_CheckedChanged(sender As Object, e As EventArgs) Handles CheckImg.CheckedChanged
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        If CheckImg.EditValue Then
+            BandedGridColumnImg.Visible = True
+            BandedGridColumnImg.VisibleIndex = 1
+
+            BandedGridColumnTh1.Visible = True
+            BandedGridColumnTh1.VisibleIndex = 2
+
+            BandedGridColumnTh2.Visible = True
+            BandedGridColumnTh2.VisibleIndex = 3
+        Else
+            BandedGridColumnImg.Visible = False
+            BandedGridColumnImg.VisibleIndex = -1
+
+            BandedGridColumnTh1.Visible = False
+            BandedGridColumnTh1.VisibleIndex = -1
+
+            BandedGridColumnTh2.Visible = False
+            BandedGridColumnTh2.VisibleIndex = -1
+        End If
+
+        GCData.RefreshDataSource()
+
+        GVData.RefreshData()
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+    End Sub
+
+    Private Sub BtnExportToXLSRec_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSRec.Click
+        If GVData.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+
+            Dim path As String = Application.StartupPath & "\download\"
+
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+
+            path = path + "line_list_" + SLUESeasonLL.Text.ToString + ".xlsx"
+
+            exportToXLS(path, "line_list_" + SLUESeasonLL.Text.ToString + "", GCData)
+
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        Dim path As String = path_par
+
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.AllowMultilineHeaders = True
+
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.WYSIWYG
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+
+            Process.Start(path)
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+            If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
+                Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
+
+                e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
+            Else
+                e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+            End If
+        End If
+    End Sub
+
+    Private imageDir As String = product_image_path
+
+    Private Sub GVData_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVData.CustomUnboundColumnData
+        If e.Column.FieldName = "img" AndAlso e.IsGetData And CheckImg.EditValue.ToString = "True" Then
+            Dim images As Hashtable = New Hashtable()
+
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "id_design"))
+
+            Dim fileName As String = id & ".jpg".ToLower
+
+            If (Not images.ContainsKey(fileName)) Then
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Try
+                    Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(imageDir, fileName, False)
+
+                    img = Image.FromFile(filePath)
+
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch
+                End Try
+
+                images.Add(fileName, resizeImg)
+            End If
+
+            e.Value = images(fileName)
+        End If
+
+        For i = 1 To 2
+            If e.Column.FieldName = "th" + i.ToString AndAlso e.IsGetData And CheckImg.EditValue.ToString = "True" Then
+                Dim images As Hashtable = New Hashtable()
+
+                Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+                Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "code"))
+
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Dim fileName As String = "/TH_" + id + "_" + i.ToString + ".jpg"
+
+                img = Image.FromFile(imageDir + "\default.jpg")
+
+                resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+
+                Try
+                    Dim filePath As String = cloud_image_url + fileName
+
+                    Dim t As Net.WebClient = New Net.WebClient
+
+                    img = Image.FromStream(New IO.MemoryStream(t.DownloadData(filePath)))
+
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch ex As Exception
+                End Try
+
+                images.Add(fileName, resizeImg)
+
+                e.Value = images(fileName)
+            End If
+        Next
     End Sub
 End Class
