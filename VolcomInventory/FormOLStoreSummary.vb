@@ -1193,7 +1193,7 @@
             par_date = "DATE(f.input_date)>='" + date_from_selected + "' AND DATE(f.input_date)<='" + date_until_selected + "'"
         End If
         Dim query As String = "SELECT f.id, f.schedule_time, f.checkout_id, f.order_date, f.order_number, f.customer_name, SUM(f.quantity) AS `total_qty_order`,
-        f.input_date, f.process_date, f.error_process
+        f.input_date, f.process_date, f.error_process,TIMESTAMPDIFF(MINUTE,f.order_date,f.schedule_time) AS `diff`
         FROM tb_ol_store_order_fail f 
         WHERE (" + par_date + ")
         GROUP BY f.id

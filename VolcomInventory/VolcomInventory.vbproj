@@ -6355,6 +6355,12 @@
     <Compile Include="FormScanReturn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormScanReturnBAP.Designer.vb">
+      <DependentUpon>FormScanReturnBAP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturnBAP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormScanReturnDet.Designer.vb">
       <DependentUpon>FormScanReturnDet.vb</DependentUpon>
     </Compile>
@@ -12304,6 +12310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormScanReturn.resx">
       <DependentUpon>FormScanReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturnBAP.resx">
+      <DependentUpon>FormScanReturnBAP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormScanReturnDet.resx">
       <DependentUpon>FormScanReturnDet.vb</DependentUpon>
