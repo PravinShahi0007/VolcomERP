@@ -40,7 +40,7 @@
                 "
             ElseIf id_comp = "1286" Then
                 query = "
-                    SELECT NamaProduk, DeskripsiProduk, SKUInduk, KodeIntegrasiVariasi, VarianuntukVariasi1, Harga, KodeVariasi, NamaProduk_erp, DeskripsiProduk_erp, SKUInduk_erp, KodeIntegrasiVariasi_erp, VarianuntukVariasi1_erp, Harga_erp, KodeVariasi_erp
+                    SELECT NamaProduk, SKUInduk, KodeIntegrasiVariasi, VarianuntukVariasi1, Harga, KodeVariasi, NamaProduk_erp, SKUInduk_erp, KodeIntegrasiVariasi_erp, VarianuntukVariasi1_erp, Harga_erp, KodeVariasi_erp
                     FROM tb_verification_master_shopee
                     WHERE id_verification_master = '" + id_verification_master + "'
                 "
@@ -1310,7 +1310,6 @@
                 Dim column_check As List(Of String) = New List(Of String)
 
                 column_check.Add("NamaProduk")
-                column_check.Add("DeskripsiProduk")
                 column_check.Add("SKUInduk")
                 column_check.Add("KodeIntegrasiVariasi")
                 column_check.Add("VarianuntukVariasi1")
@@ -1354,13 +1353,7 @@
                         Dim column_name As String = data_excel.Columns(i).ColumnName
                         Dim value As String = worksheet.Cells(row, i + 1).Value
 
-                        If column_name = "DeskripsiProduk" Then
-                            If value IsNot Nothing Then
-                                data_excel_row(column_name) = value.Split("-")(0) + "..."
-                            End If
-                        Else
-                            data_excel_row(column_name) = value
-                        End If
+                        data_excel_row(column_name) = value
 
                         If column_name = "KodeVariasi" Then
                             If Not value = "" Then
@@ -1429,7 +1422,7 @@
                 Next
 
                 Dim data_erp As DataTable = execute_query("
-                    SELECT CONCAT('VOLCOM - ', de.design_display_name) AS NamaProduk, CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3)), ' ...') AS DeskripsiProduk, LEFT(pro.product_full_code, 9) AS SKUInduk, LEFT(pro.product_full_code, 9) AS KodeIntegrasiVariasi, cd_det.display_name AS VarianuntukVariasi1, FLOOR(de_pc.design_price) AS Harga, pro.product_full_code AS KodeVariasi
+                    SELECT CONCAT('VOLCOM - ', de.design_display_name) AS NamaProduk, LEFT(pro.product_full_code, 9) AS SKUInduk, LEFT(pro.product_full_code, 9) AS KodeIntegrasiVariasi, cd_det.display_name AS VarianuntukVariasi1, FLOOR(de_pc.design_price) AS Harga, pro.product_full_code AS KodeVariasi
                     " + column_is_valid + "
                     FROM tb_m_product AS pro
                     LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
@@ -1543,11 +1536,10 @@
                     id_verification_master = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
-                    query = "INSERT INTO tb_verification_master_shopee (id_verification_master, NamaProduk, DeskripsiProduk, SKUInduk, KodeIntegrasiVariasi, VarianuntukVariasi1, Harga, KodeVariasi, NamaProduk_erp, DeskripsiProduk_erp, SKUInduk_erp, KodeIntegrasiVariasi_erp, VarianuntukVariasi1_erp, Harga_erp, KodeVariasi_erp) VALUES "
+                    query = "INSERT INTO tb_verification_master_shopee (id_verification_master, NamaProduk, SKUInduk, KodeIntegrasiVariasi, VarianuntukVariasi1, Harga, KodeVariasi, NamaProduk_erp, SKUInduk_erp, KodeIntegrasiVariasi_erp, VarianuntukVariasi1_erp, Harga_erp, KodeVariasi_erp) VALUES "
 
                     For i = 0 To data_excel.Rows.Count - 1
                         Dim NamaProduk As String = data_excel.Rows(i)("NamaProduk").ToString
-                        Dim DeskripsiProduk As String = data_excel.Rows(i)("DeskripsiProduk").ToString
                         Dim SKUInduk As String = data_excel.Rows(i)("SKUInduk").ToString
                         Dim KodeIntegrasiVariasi As String = data_excel.Rows(i)("KodeIntegrasiVariasi").ToString
                         Dim VarianuntukVariasi1 As String = data_excel.Rows(i)("VarianuntukVariasi1").ToString
@@ -1555,7 +1547,6 @@
                         Dim KodeVariasi As String = data_excel.Rows(i)("KodeVariasi").ToString
 
                         Dim NamaProduk_erp As String = ""
-                        Dim DeskripsiProduk_erp As String = ""
                         Dim SKUInduk_erp As String = ""
                         Dim KodeIntegrasiVariasi_erp As String = ""
                         Dim VarianuntukVariasi1_erp As String = ""
@@ -1564,11 +1555,6 @@
 
                         Try
                             NamaProduk_erp = data_erp.Rows(i)("NamaProduk").ToString
-                        Catch ex As Exception
-                        End Try
-
-                        Try
-                            DeskripsiProduk_erp = data_erp.Rows(i)("DeskripsiProduk").ToString
                         Catch ex As Exception
                         End Try
 
@@ -1597,7 +1583,7 @@
                         Catch ex As Exception
                         End Try
 
-                        query += "('" + id_verification_master + "', '" + NamaProduk + "', '" + DeskripsiProduk + "', '" + SKUInduk + "', '" + KodeIntegrasiVariasi + "', '" + VarianuntukVariasi1 + "', '" + Harga + "', '" + KodeVariasi + "', '" + NamaProduk_erp + "', '" + DeskripsiProduk_erp + "', '" + SKUInduk_erp + "', '" + KodeIntegrasiVariasi_erp + "', '" + VarianuntukVariasi1_erp + "', '" + Harga_erp + "', '" + KodeVariasi_erp + "'), "
+                        query += "('" + id_verification_master + "', '" + NamaProduk + "', '" + SKUInduk + "', '" + KodeIntegrasiVariasi + "', '" + VarianuntukVariasi1 + "', '" + Harga + "', '" + KodeVariasi + "', '" + NamaProduk_erp + "', '" + SKUInduk_erp + "', '" + KodeIntegrasiVariasi_erp + "', '" + VarianuntukVariasi1_erp + "', '" + Harga_erp + "', '" + KodeVariasi_erp + "'), "
                     Next
 
                     query = query.Substring(0, query.Length - 2)
