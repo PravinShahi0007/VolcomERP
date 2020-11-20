@@ -811,7 +811,7 @@
         End Try
 
         GVJournalDet.SetFocusedRowCellValue("ppn_amount", ppn_amount)
-        GVJournalDet.SetFocusedRowCellValue("pph_amount", pph_amount)
+        GVJournalDet.SetFocusedRowCellValue("pph_amount", Decimal.Round(pph_amount))
 
         TESubTotal.EditValue = GVJournalDet.Columns("value").SummaryItem.SummaryValue
         TEVATIN.EditValue = GVJournalDet.Columns("ppn_amount").SummaryItem.SummaryValue
@@ -826,6 +826,24 @@
             If e.Column.FieldName = "value" Or e.Column.FieldName = "ppn_ptc" Or e.Column.FieldName = "pph_ptc" Then
                 calculate_total()
             End If
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        If GVJournalDet.RowCount > 0 Then
+            Try
+                Dim dpp As Decimal = Decimal.Parse(GVJournalDet.GetFocusedRowCellValue("value").ToString)
+                Dim pph As Decimal = Decimal.Parse(GVJournalDet.GetFocusedRowCellValue("pph_ptc").ToString)
+
+                Dim grossup_val As Decimal = 0.00
+
+                grossup_val = (100 / (100 - pph)) * dpp
+
+                GVJournalDet.SetFocusedRowCellValue("value", Decimal.Round(grossup_val, 0))
+
+                calculate_total()
+            Catch ex As Exception
+            End Try
         End If
     End Sub
 End Class
