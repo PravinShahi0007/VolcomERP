@@ -499,7 +499,7 @@
 
     Sub viewPendingOrders()
         Cursor = Cursors.WaitCursor
-        viewVolcomOrder("AND vo.is_process=2")
+        viewVolcomOrder("AND vo.is_process=2 AND vo.is_follow_up=2 ")
         Cursor = Cursors.Default
     End Sub
 
@@ -654,7 +654,7 @@
     End Sub
 
     Function orderNotProcessed()
-        Dim query As String="SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 "
+        Dim query As String = "SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 AND od.is_follow_up=2 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             Return True
