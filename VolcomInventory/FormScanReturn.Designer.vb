@@ -41,23 +41,23 @@ Partial Class FormScanReturn
         Me.XTCScanReturn = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScanReturn = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPBAP = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCBAP = New DevExpress.XtraGrid.GridControl()
+        Me.GVBAP = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BViewBAP = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntilBAP = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStartBAP = New DevExpress.XtraEditors.DateEdit()
-        Me.GCBAP = New DevExpress.XtraGrid.GridControl()
-        Me.GVBAP = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,15 +71,15 @@ Partial Class FormScanReturn
         Me.XTCScanReturn.SuspendLayout()
         Me.XTPScanReturn.SuspendLayout()
         Me.XTPBAP.SuspendLayout()
+        CType(Me.GCBAP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBAP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntilBAP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilBAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartBAP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartBAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCBAP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVBAP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -287,6 +287,100 @@ Partial Class FormScanReturn
         Me.XTPBAP.Size = New System.Drawing.Size(897, 485)
         Me.XTPBAP.Text = "BAP"
         '
+        'GCBAP
+        '
+        Me.GCBAP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBAP.Location = New System.Drawing.Point(0, 45)
+        Me.GCBAP.MainView = Me.GVBAP
+        Me.GCBAP.Name = "GCBAP"
+        Me.GCBAP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit2})
+        Me.GCBAP.Size = New System.Drawing.Size(897, 440)
+        Me.GCBAP.TabIndex = 3
+        Me.GCBAP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBAP})
+        '
+        'GVBAP
+        '
+        Me.GVBAP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn15, Me.GridColumn16, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn19, Me.GridColumn20})
+        Me.GVBAP.GridControl = Me.GCBAP
+        Me.GVBAP.Name = "GVBAP"
+        Me.GVBAP.OptionsBehavior.Editable = False
+        Me.GVBAP.OptionsBehavior.ReadOnly = True
+        Me.GVBAP.OptionsView.RowAutoHeight = True
+        Me.GVBAP.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID"
+        Me.GridColumn11.FieldName = "id_scan_return_bap"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "ID Comp"
+        Me.GridColumn15.FieldName = "id_comp"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "3PL"
+        Me.GridColumn16.FieldName = "comp_name"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "BAP Number"
+        Me.GridColumn12.FieldName = "bap_number"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        Me.GridColumn12.Width = 236
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "BAP Date"
+        Me.GridColumn13.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn13.FieldName = "bap_date"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        Me.GridColumn13.Width = 137
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Condition"
+        Me.GridColumn14.FieldName = "package_condition"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 3
+        Me.GridColumn14.Width = 214
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Created By"
+        Me.GridColumn19.FieldName = "employee_name"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 4
+        Me.GridColumn19.Width = 214
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Created Date"
+        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn20.FieldName = "created_date"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 5
+        Me.GridColumn20.Width = 222
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BViewBAP)
@@ -354,98 +448,6 @@ Partial Class FormScanReturn
         Me.DEStartBAP.Size = New System.Drawing.Size(136, 20)
         Me.DEStartBAP.TabIndex = 8920
         '
-        'GCBAP
-        '
-        Me.GCBAP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBAP.Location = New System.Drawing.Point(0, 45)
-        Me.GCBAP.MainView = Me.GVBAP
-        Me.GCBAP.Name = "GCBAP"
-        Me.GCBAP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit2})
-        Me.GCBAP.Size = New System.Drawing.Size(897, 440)
-        Me.GCBAP.TabIndex = 3
-        Me.GCBAP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBAP})
-        '
-        'GVBAP
-        '
-        Me.GVBAP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn15, Me.GridColumn16, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn19, Me.GridColumn20})
-        Me.GVBAP.GridControl = Me.GCBAP
-        Me.GVBAP.Name = "GVBAP"
-        Me.GVBAP.OptionsBehavior.Editable = False
-        Me.GVBAP.OptionsBehavior.ReadOnly = True
-        Me.GVBAP.OptionsView.RowAutoHeight = True
-        Me.GVBAP.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "ID"
-        Me.GridColumn11.FieldName = "id_scan_return_bap"
-        Me.GridColumn11.Name = "GridColumn11"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "BAP Number"
-        Me.GridColumn12.FieldName = "bap_number"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 236
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "BAP Date"
-        Me.GridColumn13.FieldName = "bap_date"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 0
-        Me.GridColumn13.Width = 137
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Condition"
-        Me.GridColumn14.FieldName = "package_condition"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 214
-        '
-        'RepositoryItemMemoEdit2
-        '
-        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Created By"
-        Me.GridColumn19.FieldName = "employee_name"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 4
-        Me.GridColumn19.Width = 214
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Created Date"
-        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn20.FieldName = "created_date"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 5
-        Me.GridColumn20.Width = 222
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "ID Comp"
-        Me.GridColumn15.FieldName = "id_comp"
-        Me.GridColumn15.Name = "GridColumn15"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "3PL"
-        Me.GridColumn16.FieldName = "comp_name"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 2
-        '
         'FormScanReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -472,6 +474,9 @@ Partial Class FormScanReturn
         Me.XTCScanReturn.ResumeLayout(False)
         Me.XTPScanReturn.ResumeLayout(False)
         Me.XTPBAP.ResumeLayout(False)
+        CType(Me.GCBAP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBAP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -479,9 +484,6 @@ Partial Class FormScanReturn
         CType(Me.DEUntilBAP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartBAP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartBAP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCBAP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVBAP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

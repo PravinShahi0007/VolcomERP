@@ -1848,7 +1848,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormReturnNote" Then
             FormReturnNoteDet.ShowDialog()
         ElseIf formName = "FormScanReturn" Then
-            FormScanReturnDet.ShowDialog()
+            If FormScanReturn.XTCScanReturn.SelectedTabPageIndex = 0 Then
+                FormScanReturnDet.ShowDialog()
+            Else
+                FormScanReturnBAP.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -3082,8 +3086,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormReturnNoteDet.id_return_note = FormReturnNote.GVAwb.GetFocusedRowCellValue("id_return_note").ToString
                 FormReturnNoteDet.ShowDialog()
             ElseIf formName = "FormScanReturn" Then
-                FormScanReturnDet.id_scan_return = FormScanReturn.GVAwb.GetFocusedRowCellValue("id_scan_return").ToString
-                FormScanReturnDet.ShowDialog()
+                If FormScanReturn.XTCScanReturn.SelectedTabPageIndex = 0 Then
+                    FormScanReturnDet.id_scan_return = FormScanReturn.GVAwb.GetFocusedRowCellValue("id_scan_return").ToString
+                    FormScanReturnDet.ShowDialog()
+                Else
+                    FormScanReturnBAP.id_bap = FormScanReturn.GVBAP.GetFocusedRowCellValue("id_scan_return_bap").ToString
+                    FormScanReturnBAP.ShowDialog()
+                End If
             ElseIf formName = "FormCompanyEmailMapping" Then
                 FormMasterCompanyContact.id_company = FormCompanyEmailMapping.GV3PL.GetFocusedRowCellValue("id_comp").ToString
                 FormMasterCompanyContact.ShowDialog()
@@ -8460,7 +8469,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormListStore" Then
             print(FormListStore.GCCompany, "Store List")
         ElseIf formName = "FormScanReturn" Then
-            print(FormScanReturn.GCAwb, "Scan Return List")
+            If FormScanReturn.XTCScanReturn.SelectedTabPageIndex = 0 Then
+                print(FormScanReturn.GCAwb, "Scan Return List")
+            Else
+                print(FormScanReturn.GCBAP, "BAP List")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -9416,6 +9429,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormScanReturn" Then
             FormScanReturn.Close()
             FormScanReturn.Dispose()
+        ElseIf formName = "FormBatchUploadOnlineStore" Then
+            FormBatchUploadOnlineStore.Close()
+            FormBatchUploadOnlineStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10394,7 +10410,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormListStore" Then
             FormListStore.view_company()
         ElseIf formName = "FormScanReturn" Then
-            FormScanReturn.load_view()
+            If FormScanReturn.XTCScanReturn.SelectedTabPageIndex = 0 Then
+                FormScanReturn.load_view()
+            Else
+                FormScanReturn.load_bap()
+            End If
+        ElseIf formName = "FormBatchUploadOnlineStore" Then
+            FormBatchUploadOnlineStore.GCBatchUpload.DataSource = Nothing
+            FormBatchUploadOnlineStore.GVBatchUpload.Columns.Clear()
         End If
     End Sub
     'Switch
@@ -15627,6 +15650,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompanyEmailMapping.Show()
             FormCompanyEmailMapping.WindowState = FormWindowState.Maximized
             FormCompanyEmailMapping.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBBatchUpload_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBatchUpload.LinkClicked
+        Try
+            FormBatchUploadOnlineStore.MdiParent = Me
+            FormBatchUploadOnlineStore.Show()
+            FormBatchUploadOnlineStore.WindowState = FormWindowState.Maximized
+            FormBatchUploadOnlineStore.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

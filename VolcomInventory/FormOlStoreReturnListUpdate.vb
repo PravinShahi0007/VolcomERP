@@ -19,12 +19,26 @@ WHERE is_only_cs='1'"
         Dim cond_info As Boolean = True
         If SLEStatus.EditValue.ToString = "2" Then
             For i As Integer = 0 To FormOlStoreReturnList.GVList.RowCount - 1
-                If FormOlStoreReturnList.GVList.GetFocusedRowCellValue("rek_no").ToString = "" Then
+                If FormOlStoreReturnList.GVList.GetRowCellValue(i, "rek_no").ToString = "" Then
                     cond_info = False
                     warningCustom("Please complete bank information for refund process")
                     Exit For
                 End If
             Next
+        End If
+        'check attachment
+        If cond_info Then
+            If SLEStatus.EditValue.ToString = "2" Or SLEStatus.EditValue.ToString = "4" Then
+                For i As Integer = 0 To FormOlStoreReturnList.GVList.RowCount - 1
+                    Dim check_upload As String = execute_query("SELECT COUNT(*) AS total FROM tb_doc WHERE report_mark_type = 277 AND id_report = " + FormOlStoreReturnList.GVList.GetRowCellValue(i, "id_ol_store_ret_req").ToString, 0, True, "", "", "", "")
+
+                    If check_upload = "0" Then
+                        cond_info = False
+                        warningCustom("Please add attachment")
+                        Exit For
+                    End If
+                Next
+            End If
         End If
         If Not cond_info Then
             Exit Sub
