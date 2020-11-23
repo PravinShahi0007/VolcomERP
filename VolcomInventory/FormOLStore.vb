@@ -586,7 +586,7 @@
 
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
-            WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "'
+            WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "' AND o.is_follow_up=2
             GROUP BY o.id "
             Dim dord As DataTable = execute_query(qord, -1, True, "", "", "", "")
             Dim id_order_in As String = ""
@@ -744,5 +744,11 @@
         GCSummary.DataSource = Nothing
         GCDetail.DataSource = Nothing
         GCCancellOrder.DataSource = Nothing
+    End Sub
+
+    Private Sub BtnFollowUp_Click(sender As Object, e As EventArgs) Handles BtnFollowUp.Click
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
     End Sub
 End Class

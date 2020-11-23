@@ -208,7 +208,9 @@ Partial Class FormOLStore
         Me.GridColumnFailReason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote_promo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlFollowUp = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnFollowUp = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.CEAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.SBCloseOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -286,8 +288,10 @@ Partial Class FormOLStore
         CType(Me.LinkTrfOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LinkTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
+        CType(Me.PanelControlFollowUp, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlFollowUp.SuspendLayout()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -1602,7 +1606,7 @@ Partial Class FormOLStore
         'XTPVolcomOLStore
         '
         Me.XTPVolcomOLStore.Controls.Add(Me.GCVolcom)
-        Me.XTPVolcomOLStore.Controls.Add(Me.PanelControl4)
+        Me.XTPVolcomOLStore.Controls.Add(Me.PanelControlFollowUp)
         Me.XTPVolcomOLStore.Controls.Add(Me.PanelControl3)
         Me.XTPVolcomOLStore.Name = "XTPVolcomOLStore"
         Me.XTPVolcomOLStore.Size = New System.Drawing.Size(994, 481)
@@ -1615,7 +1619,7 @@ Partial Class FormOLStore
         Me.GCVolcom.MainView = Me.GVVolcom
         Me.GCVolcom.Name = "GCVolcom"
         Me.GCVolcom.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.LinkTrfOrder, Me.LinkTrf, Me.LinkSalesOrder, Me.RICEIsCheck})
-        Me.GCVolcom.Size = New System.Drawing.Size(994, 390)
+        Me.GCVolcom.Size = New System.Drawing.Size(994, 402)
         Me.GCVolcom.TabIndex = 1
         Me.GCVolcom.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVolcom})
         '
@@ -1980,19 +1984,50 @@ Partial Class FormOLStore
         Me.GridColumncomp_group_name.Visible = True
         Me.GridColumncomp_group_name.VisibleIndex = 1
         '
-        'PanelControl4
+        'PanelControlFollowUp
         '
-        Me.PanelControl4.Controls.Add(Me.CEAllow)
-        Me.PanelControl4.Controls.Add(Me.SBCloseOrder)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 433)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(994, 48)
-        Me.PanelControl4.TabIndex = 2
+        Me.PanelControlFollowUp.Controls.Add(Me.BtnFollowUp)
+        Me.PanelControlFollowUp.Controls.Add(Me.PanelControl6)
+        Me.PanelControlFollowUp.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControlFollowUp.Location = New System.Drawing.Point(0, 445)
+        Me.PanelControlFollowUp.Name = "PanelControlFollowUp"
+        Me.PanelControlFollowUp.Size = New System.Drawing.Size(994, 36)
+        Me.PanelControlFollowUp.TabIndex = 2
+        '
+        'BtnFollowUp
+        '
+        Me.BtnFollowUp.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnFollowUp.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnFollowUp.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnFollowUp.Appearance.Options.UseBackColor = True
+        Me.BtnFollowUp.Appearance.Options.UseFont = True
+        Me.BtnFollowUp.Appearance.Options.UseForeColor = True
+        Me.BtnFollowUp.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnFollowUp.Location = New System.Drawing.Point(12, 2)
+        Me.BtnFollowUp.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnFollowUp.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnFollowUp.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnFollowUp.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnFollowUp.Name = "BtnFollowUp"
+        Me.BtnFollowUp.Size = New System.Drawing.Size(980, 32)
+        Me.BtnFollowUp.TabIndex = 19
+        Me.BtnFollowUp.Text = "Follow Up Out of Stock Orders"
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.CEAllow)
+        Me.PanelControl6.Controls.Add(Me.SBCloseOrder)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl6.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(10, 32)
+        Me.PanelControl6.TabIndex = 7
+        Me.PanelControl6.Visible = False
         '
         'CEAllow
         '
-        Me.CEAllow.Location = New System.Drawing.Point(10, 14)
+        Me.CEAllow.Location = New System.Drawing.Point(8, 12)
         Me.CEAllow.Name = "CEAllow"
         Me.CEAllow.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CEAllow.Properties.Appearance.ForeColor = System.Drawing.Color.DarkRed
@@ -2007,9 +2042,9 @@ Partial Class FormOLStore
         '
         Me.SBCloseOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBCloseOrder.Image = CType(resources.GetObject("SBCloseOrder.Image"), System.Drawing.Image)
-        Me.SBCloseOrder.Location = New System.Drawing.Point(882, 2)
+        Me.SBCloseOrder.Location = New System.Drawing.Point(-28, 0)
         Me.SBCloseOrder.Name = "SBCloseOrder"
-        Me.SBCloseOrder.Size = New System.Drawing.Size(110, 44)
+        Me.SBCloseOrder.Size = New System.Drawing.Size(38, 32)
         Me.SBCloseOrder.TabIndex = 5
         Me.SBCloseOrder.Text = "Close Order"
         Me.SBCloseOrder.Visible = False
@@ -2223,8 +2258,10 @@ Partial Class FormOLStore
         CType(Me.LinkTrfOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LinkTrf, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PanelControlFollowUp, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlFollowUp.ResumeLayout(False)
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
@@ -2426,7 +2463,7 @@ Partial Class FormOLStore
     Friend WithEvents CantProceedToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnIsCheck As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEIsCheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlFollowUp As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBCloseOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnFailReason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote_promo As DevExpress.XtraGrid.Columns.GridColumn
@@ -2443,4 +2480,6 @@ Partial Class FormOLStore
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnFollowUp As DevExpress.XtraEditors.SimpleButton
 End Class
