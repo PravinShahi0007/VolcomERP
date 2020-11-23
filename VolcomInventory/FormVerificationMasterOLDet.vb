@@ -30,11 +30,19 @@
                     WHERE id_verification_master = '" + id_verification_master + "'
                 "
             ElseIf id_comp = "1177" Then
-                query = "
-                    SELECT NamaProduk, SellerSKU, Ukuran, Warna, Parent, KodeTokoGudang, HargaRp, HargaPenjualanRp, NamaProduk_erp, SellerSKU_erp, Ukuran_erp, Warna_erp, Parent_erp, KodeTokoGudang_erp, HargaRp_erp, HargaPenjualanRp_erp
-                    FROM tb_verification_master_blibli
-                    WHERE id_verification_master = '" + id_verification_master + "'
-                "
+                If id_template = "1" Then
+                    query = "
+                        SELECT NamaProduk, SellerSKU, Ukuran, Warna, Parent, KodeTokoGudang, HargaRp, HargaPenjualanRp, NamaProduk_erp, SellerSKU_erp, Ukuran_erp, Warna_erp, Parent_erp, KodeTokoGudang_erp, HargaRp_erp, HargaPenjualanRp_erp
+                        FROM tb_verification_master_blibli
+                        WHERE id_verification_master = '" + id_verification_master + "'
+                    "
+                ElseIf id_template = "2" Then
+                    query = "
+                        SELECT NamaProduk, SellerSKU, HargaRp, HargaPenjualanRp, TokoGudang, NamaProduk_erp, SellerSKU_erp, HargaRp_erp, HargaPenjualanRp_erp, TokoGudang_erp
+                        FROM tb_verification_master_blibli_update
+                        WHERE id_verification_master = '" + id_verification_master + "'
+                    "
+                End If
             ElseIf id_comp = "1212" Then
                 query = "
                     SELECT Option1Value, VariantSKU, VariantPrice, VariantCompareAtPrice, VariantBarcode, Option1Value_erp, VariantSKU_erp, VariantPrice_erp, VariantCompareAtPrice_erp, VariantBarcode_erp
@@ -661,18 +669,31 @@
 
                 Dim column_check As List(Of String) = New List(Of String)
 
-                column_check.Add("NamaProduk")
-                column_check.Add("SellerSKU")
-                column_check.Add("Ukuran")
-                column_check.Add("Warna")
-                column_check.Add("Parent")
-                column_check.Add("KodeTokoGudang")
-                column_check.Add("HargaRp")
-                column_check.Add("HargaPenjualanRp")
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    column_check.Add("NamaProduk")
+                    column_check.Add("SellerSKU")
+                    column_check.Add("Ukuran")
+                    column_check.Add("Warna")
+                    column_check.Add("Parent")
+                    column_check.Add("KodeTokoGudang")
+                    column_check.Add("HargaRp")
+                    column_check.Add("HargaPenjualanRp")
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    column_check.Add("NamaProduk")
+                    column_check.Add("SellerSKU")
+                    column_check.Add("HargaRp")
+                    column_check.Add("HargaPenjualanRp")
+                    column_check.Add("TokoGudang")
+                End If
 
                 'column
-                row = 2
-                column = 1
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    row = 2
+                    column = 1
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    row = 1
+                    column = 1
+                End If
 
                 continue_loop = True
 
@@ -693,8 +714,13 @@
                 'row
                 Dim id_product_in As String = ""
 
-                row = 3
-                column = 1
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    row = 3
+                    column = 1
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    row = 2
+                    column = 1
+                End If
 
                 continue_loop = True
 
@@ -773,53 +799,107 @@
                     column_is_valid += ", 0 AS IsValid" + column_check(i) + ""
                 Next
 
-                Dim data_erp As DataTable = execute_query("
-                    SELECT CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3))) AS NamaProduk, pro.product_full_code AS SellerSKU, cd_det.display_name AS Ukuran, color.code_detail_name AS Warna, CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3))) AS Parent, (SELECT code_toko_gudang_blibli FROM tb_opt LIMIT 1) AS KodeTokoGudang, FLOOR(de_pn.design_price) AS HargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp " + column_is_valid + "
-                    FROM tb_m_product AS pro
-                    LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
-                    LEFT JOIN (
-                        SELECT id_design, design_price, id_design_price_type
-                        FROM tb_m_design_price
-                        WHERE id_design_price IN (
-                            SELECT MAX(id_design_price) AS id_design_price
+                Dim query As String = ""
+
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    query = "
+                        SELECT CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3))) AS NamaProduk, pro.product_full_code AS SellerSKU, cd_det.display_name AS Ukuran, color.code_detail_name AS Warna, CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3))) AS Parent, (SELECT code_toko_gudang_blibli FROM tb_opt LIMIT 1) AS KodeTokoGudang, FLOOR(de_pn.design_price) AS HargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp " + column_is_valid + "
+                        FROM tb_m_product AS pro
+                        LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN (
+                            SELECT id_design, design_price, id_design_price_type
                             FROM tb_m_design_price
-                            WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0
-                            GROUP BY id_design
-                        )
-                    ) AS de_pc ON de.id_design = de_pc.id_design
-                    LEFT JOIN (
-                        SELECT id_design, design_price
-                        FROM tb_m_design_price
-                        WHERE id_design_price IN (
-                            SELECT MAX(id_design_price) AS id_design_price
+                            WHERE id_design_price IN (
+                                SELECT MAX(id_design_price) AS id_design_price
+                                FROM tb_m_design_price
+                                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0
+                                GROUP BY id_design
+                            )
+                        ) AS de_pc ON de.id_design = de_pc.id_design
+                        LEFT JOIN (
+                            SELECT id_design, design_price
                             FROM tb_m_design_price
-                            WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                            WHERE id_design_price IN (
+                                SELECT MAX(id_design_price) AS id_design_price
+                                FROM tb_m_design_price
+                                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                                GROUP BY id_design
+                            )
+                        ) AS de_pn ON de.id_design = de_pn.id_design
+                        LEFT JOIN (
+                            SELECT id_design, MIN(product_full_code) AS product_full_code
+                            FROM tb_m_product
                             GROUP BY id_design
-                        )
-                    ) AS de_pn ON de.id_design = de_pn.id_design
-                    LEFT JOIN (
-                        SELECT id_design, MIN(product_full_code) AS product_full_code
-                        FROM tb_m_product
-                        GROUP BY id_design
-                    ) AS pro_parent ON de.id_design = pro_parent.id_design
-                    LEFT JOIN (
-                        SELECT dc.id_design, cd.code_detail_name
-                        FROM tb_m_design_code AS dc
-                        INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
-                    ) AS color ON de.id_design = color.id_design
-                    LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
-                    LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
-                    WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
-                    ORDER BY pro.product_full_code ASC
-                ", -1, True, "", "", "", "")
+                        ) AS pro_parent ON de.id_design = pro_parent.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
+                        ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
+                        LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
+                        WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
+                        ORDER BY pro.product_full_code ASC
+                    "
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    query = "
+                        SELECT CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3))) AS NamaProduk, pro.product_full_code AS SellerSKU, FLOOR(de_pn.design_price) AS HargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp, (SELECT code_toko_gudang_blibli FROM tb_opt LIMIT 1) AS TokoGudang " + column_is_valid + "
+                        FROM tb_m_product AS pro
+                        LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN (
+                            SELECT id_design, design_price, id_design_price_type
+                            FROM tb_m_design_price
+                            WHERE id_design_price IN (
+                                SELECT MAX(id_design_price) AS id_design_price
+                                FROM tb_m_design_price
+                                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0
+                                GROUP BY id_design
+                            )
+                        ) AS de_pc ON de.id_design = de_pc.id_design
+                        LEFT JOIN (
+                            SELECT id_design, design_price
+                            FROM tb_m_design_price
+                            WHERE id_design_price IN (
+                                SELECT MAX(id_design_price) AS id_design_price
+                                FROM tb_m_design_price
+                                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                                GROUP BY id_design
+                            )
+                        ) AS de_pn ON de.id_design = de_pn.id_design
+                        LEFT JOIN (
+                            SELECT id_design, MIN(product_full_code) AS product_full_code
+                            FROM tb_m_product
+                            GROUP BY id_design
+                        ) AS pro_parent ON de.id_design = pro_parent.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
+                        ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
+                        LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
+                        WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
+                        ORDER BY pro.product_full_code ASC
+                    "
+                End If
+
+                Dim data_erp As DataTable = execute_query(query, -1, True, "", "", "", "")
 
                 'validation
                 For i = 0 To data_excel.Rows.Count - 1
                     For j = 0 To data_erp.Rows.Count - 1
                         If data_excel.Rows(i)("SellerSKU").ToString = data_erp.Rows(j)("SellerSKU").ToString Then
                             For k = 0 To column_check.Count - 1
-                                If data_excel.Rows(i)(column_check(k)).ToString = data_erp.Rows(j)(column_check(k)).ToString Then
-                                    data_excel.Rows(i)("IsValid" + column_check(k)) = "1"
+                                If column_check(k) = "NamaProduk" Then
+                                    If data_excel.Rows(i)(column_check(k)).ToString.Contains(data_erp.Rows(j)(column_check(k)).ToString) Then
+                                        data_excel.Rows(i)("IsValid" + column_check(k)) = "1"
+
+                                        data_excel.Rows(i)(column_check(k)) = data_erp.Rows(j)(column_check(k)).ToString
+                                    End If
+                                Else
+                                    If data_excel.Rows(i)(column_check(k)).ToString = data_erp.Rows(j)(column_check(k)).ToString Then
+                                        data_excel.Rows(i)("IsValid" + column_check(k)) = "1"
+                                    End If
                                 End If
                             Next
                         End If
@@ -889,77 +969,121 @@
                 'store data if valid
                 If is_valid_all Then
                     'save to database
-                    Dim query As String = ""
-
                     'header
-                    query = "INSERT INTO tb_verification_master (id_comp, file_name, id_code_detail, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", '" + addSlashes(TEFileName.EditValue.ToString) + "', " + SLUEDivision.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
+                    query = "INSERT INTO tb_verification_master (id_comp, id_template, file_name, id_code_detail, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", " + SLUETemplate.EditValue.ToString + ", '" + addSlashes(TEFileName.EditValue.ToString) + "', " + SLUEDivision.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
 
                     id_verification_master = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
-                    query = "INSERT INTO tb_verification_master_blibli (id_verification_master, NamaProduk, SellerSKU, Ukuran, Warna, Parent, KodeTokoGudang, HargaRp, HargaPenjualanRp, NamaProduk_erp, SellerSKU_erp, Ukuran_erp, Warna_erp, Parent_erp, KodeTokoGudang_erp, HargaRp_erp, HargaPenjualanRp_erp) VALUES "
+                    If SLUETemplate.EditValue.ToString = "1" Then
+                        query = "INSERT INTO tb_verification_master_blibli (id_verification_master, NamaProduk, SellerSKU, Ukuran, Warna, Parent, KodeTokoGudang, HargaRp, HargaPenjualanRp, NamaProduk_erp, SellerSKU_erp, Ukuran_erp, Warna_erp, Parent_erp, KodeTokoGudang_erp, HargaRp_erp, HargaPenjualanRp_erp) VALUES "
 
-                    For i = 0 To data_excel.Rows.Count - 1
-                        Dim NamaProduk As String = data_excel.Rows(i)("NamaProduk").ToString
-                        Dim SellerSKU As String = data_excel.Rows(i)("SellerSKU").ToString
-                        Dim Ukuran As String = data_excel.Rows(i)("Ukuran").ToString
-                        Dim Warna As String = data_excel.Rows(i)("Warna").ToString
-                        Dim Parent As String = data_excel.Rows(i)("Parent").ToString
-                        Dim KodeTokoGudang As String = data_excel.Rows(i)("KodeTokoGudang").ToString
-                        Dim HargaRp As String = data_excel.Rows(i)("HargaRp").ToString
-                        Dim HargaPenjualanRp As String = data_excel.Rows(i)("HargaPenjualanRp").ToString
+                        For i = 0 To data_excel.Rows.Count - 1
+                            Dim NamaProduk As String = data_excel.Rows(i)("NamaProduk").ToString
+                            Dim SellerSKU As String = data_excel.Rows(i)("SellerSKU").ToString
+                            Dim Ukuran As String = data_excel.Rows(i)("Ukuran").ToString
+                            Dim Warna As String = data_excel.Rows(i)("Warna").ToString
+                            Dim Parent As String = data_excel.Rows(i)("Parent").ToString
+                            Dim KodeTokoGudang As String = data_excel.Rows(i)("KodeTokoGudang").ToString
+                            Dim HargaRp As String = data_excel.Rows(i)("HargaRp").ToString
+                            Dim HargaPenjualanRp As String = data_excel.Rows(i)("HargaPenjualanRp").ToString
 
-                        Dim NamaProduk_erp As String = ""
-                        Dim SellerSKU_erp As String = ""
-                        Dim Ukuran_erp As String = ""
-                        Dim Warna_erp As String = ""
-                        Dim Parent_erp As String = ""
-                        Dim KodeTokoGudang_erp As String = ""
-                        Dim HargaRp_erp As String = ""
-                        Dim HargaPenjualanRp_erp As String = ""
+                            Dim NamaProduk_erp As String = ""
+                            Dim SellerSKU_erp As String = ""
+                            Dim Ukuran_erp As String = ""
+                            Dim Warna_erp As String = ""
+                            Dim Parent_erp As String = ""
+                            Dim KodeTokoGudang_erp As String = ""
+                            Dim HargaRp_erp As String = ""
+                            Dim HargaPenjualanRp_erp As String = ""
 
-                        Try
-                            NamaProduk_erp = data_erp.Rows(i)("NamaProduk").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                NamaProduk_erp = data_erp.Rows(i)("NamaProduk").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            SellerSKU_erp = data_erp.Rows(i)("SellerSKU").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                SellerSKU_erp = data_erp.Rows(i)("SellerSKU").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            Ukuran_erp = data_erp.Rows(i)("Ukuran").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                Ukuran_erp = data_erp.Rows(i)("Ukuran").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            Warna_erp = data_erp.Rows(i)("Warna").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                Warna_erp = data_erp.Rows(i)("Warna").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            Parent_erp = data_erp.Rows(i)("Parent").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                Parent_erp = data_erp.Rows(i)("Parent").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            KodeTokoGudang_erp = data_erp.Rows(i)("KodeTokoGudang").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                KodeTokoGudang_erp = data_erp.Rows(i)("KodeTokoGudang").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            HargaRp_erp = data_erp.Rows(i)("HargaRp").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                HargaRp_erp = data_erp.Rows(i)("HargaRp").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            HargaPenjualanRp_erp = data_erp.Rows(i)("HargaPenjualanRp").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                HargaPenjualanRp_erp = data_erp.Rows(i)("HargaPenjualanRp").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        query += "('" + id_verification_master + "', '" + NamaProduk + "', '" + SellerSKU + "', '" + Ukuran + "', '" + Warna + "', '" + Parent + "', '" + KodeTokoGudang + "', '" + HargaRp + "', '" + HargaPenjualanRp + "', '" + NamaProduk_erp + "', '" + SellerSKU_erp + "', '" + Ukuran_erp + "', '" + Warna_erp + "', '" + Parent_erp + "', '" + KodeTokoGudang_erp + "', '" + HargaRp_erp + "', '" + HargaPenjualanRp_erp + "'), "
-                    Next
+                            query += "('" + id_verification_master + "', '" + NamaProduk + "', '" + SellerSKU + "', '" + Ukuran + "', '" + Warna + "', '" + Parent + "', '" + KodeTokoGudang + "', '" + HargaRp + "', '" + HargaPenjualanRp + "', '" + NamaProduk_erp + "', '" + SellerSKU_erp + "', '" + Ukuran_erp + "', '" + Warna_erp + "', '" + Parent_erp + "', '" + KodeTokoGudang_erp + "', '" + HargaRp_erp + "', '" + HargaPenjualanRp_erp + "'), "
+                        Next
+                    ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                        query = "INSERT INTO tb_verification_master_blibli_update (id_verification_master, NamaProduk, SellerSKU, HargaRp, HargaPenjualanRp, TokoGudang, NamaProduk_erp, SellerSKU_erp, HargaRp_erp, HargaPenjualanRp_erp, TokoGudang_erp) VALUES "
+
+                        For i = 0 To data_excel.Rows.Count - 1
+                            Dim NamaProduk As String = data_excel.Rows(i)("NamaProduk").ToString
+                            Dim SellerSKU As String = data_excel.Rows(i)("SellerSKU").ToString
+                            Dim HargaRp As String = data_excel.Rows(i)("HargaRp").ToString
+                            Dim HargaPenjualanRp As String = data_excel.Rows(i)("HargaPenjualanRp").ToString
+                            Dim TokoGudang As String = data_excel.Rows(i)("TokoGudang").ToString
+
+                            Dim NamaProduk_erp As String = ""
+                            Dim SellerSKU_erp As String = ""
+                            Dim HargaRp_erp As String = ""
+                            Dim HargaPenjualanRp_erp As String = ""
+                            Dim TokoGudang_erp As String = ""
+
+                            Try
+                                NamaProduk_erp = data_erp.Rows(i)("NamaProduk").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            Try
+                                SellerSKU_erp = data_erp.Rows(i)("SellerSKU").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            Try
+                                HargaRp_erp = data_erp.Rows(i)("HargaRp").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            Try
+                                HargaPenjualanRp_erp = data_erp.Rows(i)("HargaPenjualanRp").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            Try
+                                TokoGudang_erp = data_erp.Rows(i)("TokoGudang").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            query += "('" + id_verification_master + "', '" + NamaProduk + "', '" + SellerSKU + "', '" + HargaRp + "', '" + HargaPenjualanRp + "', '" + TokoGudang + "', '" + NamaProduk_erp + "', '" + SellerSKU_erp + "', '" + HargaRp_erp + "', '" + HargaPenjualanRp_erp + "', '" + TokoGudang_erp + "'), "
+                        Next
+                    End If
+
 
                     query = query.Substring(0, query.Length - 2)
 
@@ -972,6 +1096,7 @@
 
                     'controls
                     SLUEOnlineStore.ReadOnly = True
+                    SLUETemplate.ReadOnly = True
                     SLUEDivision.ReadOnly = True
                     TEFileName.ReadOnly = True
                     SBImportExcel.Enabled = False
@@ -1808,7 +1933,7 @@
     End Sub
 
     Private Sub SLUEOnlineStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEOnlineStore.EditValueChanged
-        If SLUEOnlineStore.EditValue.ToString = "1286" Then
+        If SLUEOnlineStore.EditValue.ToString = "1177" Or SLUEOnlineStore.EditValue.ToString = "1286" Then
             SLUETemplate.Visible = True
         Else
             SLUETemplate.Visible = False
