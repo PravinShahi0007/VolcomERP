@@ -499,7 +499,7 @@
 
     Sub viewPendingOrders()
         Cursor = Cursors.WaitCursor
-        viewVolcomOrder("AND vo.is_process=2 AND vo.is_follow_up=2 ")
+        viewVolcomOrder("AND vo.is_process=2 AND ISNULL(vo.id_ol_store_oos) ")
         Cursor = Cursors.Default
     End Sub
 
@@ -538,7 +538,9 @@
         If is_processed_order = "1" Then
             stopCustom("Sync still running")
         Else
-            SplashScreenManager1.ShowWaitForm()
+            If Not SplashScreenManager1.IsSplashFormVisible Then
+                SplashScreenManager1.ShowWaitForm()
+            End If
             Dim ord As New ClassSalesOrder()
             ord.setProceccedWebOrder("1")
             ord.insertLogWebOrder("0", "Start", "0")
@@ -557,36 +559,37 @@
             Dim comp_group As String = dt_grp.Rows(0)("comp_group").ToString.ToUpper
 
             'get order from web
-            ord.insertLogWebOrder("0", "Get order from website. " + err, id_comp_group)
-            If id_api_type = "1" Then
-                'SHOPIFY
-                Try
-                    Dim shop As New ClassShopifyApi()
-                    shop.get_order_erp()
-                Catch ex As Exception
-                    err = ex.ToString
-                End Try
-            ElseIf id_api_type = "2" Then
-                'ZALORA
-                Try
-                    Dim shop As New ClassZaloraApi()
-                    shop.get_order_list()
-                Catch ex As Exception
-                    err = ex.ToString
-                End Try
-            ElseIf id_api_type = "3" Then
-                'BLIBLI
-                Try
-                    Dim shop As New ClassBliBliApi()
-                    shop.get_order_list()
-                Catch ex As Exception
-                    err = ex.ToString
-                End Try
-            End If
+            'hide when developed
+            'ord.insertLogWebOrder("0", "Get order from website. " + err, id_comp_group)
+            'If id_api_type = "1" Then
+            '    'SHOPIFY
+            '    Try
+            '        Dim shop As New ClassShopifyApi()
+            '        shop.get_order_erp()
+            '    Catch ex As Exception
+            '        err = ex.ToString
+            '    End Try
+            'ElseIf id_api_type = "2" Then
+            '    'ZALORA
+            '    Try
+            '        Dim shop As New ClassZaloraApi()
+            '        shop.get_order_list()
+            '    Catch ex As Exception
+            '        err = ex.ToString
+            '    End Try
+            'ElseIf id_api_type = "3" Then
+            '    'BLIBLI
+            '    Try
+            '        Dim shop As New ClassBliBliApi()
+            '        shop.get_order_list()
+            '    Catch ex As Exception
+            '        err = ex.ToString
+            '    End Try
+            'End If
 
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
-            WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "' AND o.is_follow_up=2
+            WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "' AND ISNULL(o.id_ol_store_oos)
             GROUP BY o.id "
             Dim dord As DataTable = execute_query(qord, -1, True, "", "", "", "")
             Dim id_order_in As String = ""
@@ -635,6 +638,20 @@
                 End If
             End If
 
+            'evaluasi
+            Dim query_eval As String = "SELECT od.id 
+            FROM tb_ol_store_order od 
+            WHERE od.id_comp_group='" + id_comp_group + "' AND od.is_process=2 AND od.note_price='OK' 
+            GROUP BY od.id "
+            Dim data_eval As DataTable = execute_query(query_eval, -1, True, "", "", "", "")
+            If data_eval.Rows.Count > 0 Then
+                For e As Integer = 0 To data_eval.Rows.Count - 1
+                    Dim id_order_eval As String = data_eval.Rows(e)("id").ToString
+                    SplashScreenManager1.SetWaitFormDescription("Evaluate order : " + (e + 1).ToString + "/" + data_eval.Rows.Count.ToString)
+                    execute_non_query_long("CALL check_oos_web_order_grp(" + id_order_eval + ", " + id_comp_group + ");", True, "", "", "", "")
+                Next
+            End If
+
             ord.insertLogWebOrder("0", "End", "0")
             ord.setProceccedWebOrder("2")
             SplashScreenManager1.CloseWaitForm()
@@ -654,7 +671,7 @@
     End Sub
 
     Function orderNotProcessed()
-        Dim query As String = "SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 AND od.is_follow_up=2 "
+        Dim query As String = "SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 AND ISNULL(od.id_ol_store_oos) "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             Return True
