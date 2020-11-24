@@ -838,7 +838,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumnaccount.Name = "GridColumnaccount"
         Me.GridColumnaccount.Visible = True
         Me.GridColumnaccount.VisibleIndex = 1
-        Me.GridColumnaccount.Width = 54
+        Me.GridColumnaccount.Width = 55
         '
         'RepositoryItemSearchLookUpEdit1
         '
@@ -890,7 +890,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumnDescription.Name = "GridColumnDescription"
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 5
-        Me.GridColumnDescription.Width = 114
+        Me.GridColumnDescription.Width = 116
         '
         'RepositoryItemMemoEdit1
         '
@@ -959,7 +959,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumnBudgetType.Name = "GridColumnBudgetType"
         Me.GridColumnBudgetType.Visible = True
         Me.GridColumnBudgetType.VisibleIndex = 3
-        Me.GridColumnBudgetType.Width = 54
+        Me.GridColumnBudgetType.Width = 55
         '
         'RISLEType
         '
@@ -998,7 +998,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumnBudget.Name = "GridColumnBudget"
         Me.GridColumnBudget.Visible = True
         Me.GridColumnBudget.VisibleIndex = 4
-        Me.GridColumnBudget.Width = 54
+        Me.GridColumnBudget.Width = 55
         '
         'RISLECatExpense
         '
@@ -1042,13 +1042,13 @@ Partial Class FormItemExpenseDet
         Me.GridColumnBefKurs.DisplayFormat.FormatString = "N2"
         Me.GridColumnBefKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBefKurs.FieldName = "amount_before"
-        Me.GridColumnBefKurs.MaxWidth = 80
-        Me.GridColumnBefKurs.MinWidth = 80
+        Me.GridColumnBefKurs.MaxWidth = 65
+        Me.GridColumnBefKurs.MinWidth = 65
         Me.GridColumnBefKurs.Name = "GridColumnBefKurs"
         Me.GridColumnBefKurs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_before", "{0:N2}")})
         Me.GridColumnBefKurs.Visible = True
         Me.GridColumnBefKurs.VisibleIndex = 7
-        Me.GridColumnBefKurs.Width = 80
+        Me.GridColumnBefKurs.Width = 65
         '
         'RepositoryItemTextEdit3
         '
@@ -1147,8 +1147,8 @@ Partial Class FormItemExpenseDet
         Me.GridColumnTaxValue.DisplayFormat.FormatString = "N2"
         Me.GridColumnTaxValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTaxValue.FieldName = "tax_value"
-        Me.GridColumnTaxValue.MaxWidth = 70
-        Me.GridColumnTaxValue.MinWidth = 70
+        Me.GridColumnTaxValue.MaxWidth = 60
+        Me.GridColumnTaxValue.MinWidth = 60
         Me.GridColumnTaxValue.Name = "GridColumnTaxValue"
         Me.GridColumnTaxValue.OptionsColumn.AllowEdit = False
         Me.GridColumnTaxValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tax_value", "{0:N2}")})
@@ -1156,7 +1156,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumnTaxValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnTaxValue.Visible = True
         Me.GridColumnTaxValue.VisibleIndex = 11
-        Me.GridColumnTaxValue.Width = 70
+        Me.GridColumnTaxValue.Width = 60
         '
         'GridColumnAmount
         '
@@ -1183,7 +1183,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumnPPHCOA.Name = "GridColumnPPHCOA"
         Me.GridColumnPPHCOA.Visible = True
         Me.GridColumnPPHCOA.VisibleIndex = 12
-        Me.GridColumnPPHCOA.Width = 223
+        Me.GridColumnPPHCOA.Width = 278
         '
         'RISLECOAPPH
         '
@@ -1255,8 +1255,8 @@ Partial Class FormItemExpenseDet
         Me.GridColumnPPH.DisplayFormat.FormatString = "N2"
         Me.GridColumnPPH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPPH.FieldName = "pph_value"
-        Me.GridColumnPPH.MaxWidth = 80
-        Me.GridColumnPPH.MinWidth = 80
+        Me.GridColumnPPH.MaxWidth = 60
+        Me.GridColumnPPH.MinWidth = 60
         Me.GridColumnPPH.Name = "GridColumnPPH"
         Me.GridColumnPPH.OptionsColumn.AllowEdit = False
         Me.GridColumnPPH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_value", "{0:N2}")})
@@ -1264,7 +1264,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumnPPH.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPPH.Visible = True
         Me.GridColumnPPH.VisibleIndex = 14
-        Me.GridColumnPPH.Width = 80
+        Me.GridColumnPPH.Width = 60
         '
         'GridColumnPPHDesc
         '
