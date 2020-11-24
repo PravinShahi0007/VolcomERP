@@ -56,7 +56,7 @@ WHERE is_only_cs='1'"
             Dim id_sales_order_det As String = FormOlStoreReturnList.GVList.GetRowCellValue(i, "id_sales_order_det").ToString
             If SLEStatus.EditValue.ToString <> "2" Then
                 q += "UPDATE tb_ol_store_ret_list SET id_ol_store_ret_stt='" & SLEStatus.EditValue.ToString & "',update_by='" & id_user & "',update_date=NOW() WHERE `id_ol_store_ret_list`='" & FormOlStoreReturnList.GVList.GetRowCellValue(i, "id_ol_store_ret_list").ToString & "';
-                INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal) VALUES 
+                INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal) VALUES 
                 ('" + id_sales_order_det + "', '" + addSlashes(SLEStatus.Text.ToString) + "', NOW(), NOW(), '1');"
             Else
                 'on process refund
@@ -79,7 +79,7 @@ WHERE is_only_cs='1'"
                     name_stt = stt7
                 End If
                 q += "UPDATE tb_ol_store_ret_list SET id_ol_store_ret_stt='" & id_stt & "',update_by='" & id_user & "',update_date=NOW() WHERE `id_ol_store_ret_list`='" & id_ol_store_ret_list & "';
-                INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal) VALUES 
+                INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal) VALUES 
                 ('" + id_sales_order_det + "', '" + addSlashes(name_stt) + "', NOW(), NOW(), 1);"
             End If
         Next
