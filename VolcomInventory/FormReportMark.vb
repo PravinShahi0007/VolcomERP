@@ -3205,7 +3205,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 	                        GROUP BY d.id_ol_store_ret_list
                         ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
                         SET main.id_ol_store_ret_stt=7;
-                        INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                        INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
                         SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
                         FROM tb_sales_pos_det d
                         INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
@@ -4533,7 +4533,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                        GROUP BY d.id_ol_store_ret_list
                     ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
                     SET main.id_ol_store_ret_stt=8;
-                    INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                    INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
                     SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
                     FROM tb_sales_return_order_det d
                     INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
@@ -6298,7 +6298,7 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                             ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
                             SET main.id_ol_store_ret_stt=3; 
                             -- update stt order
-                            INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                            INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
                             SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
                             FROM tb_sales_pos_det d
                             INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list
@@ -8339,7 +8339,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
                 'update status order
                 Try
-                    Dim query_upd_stt_order As String = "INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`)
+                    Dim query_upd_stt_order As String = "INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`)
                     SELECT d.id_sales_order_det, 'pre return', NOW(), NOW()
                     FROM tb_ol_store_ret_det d
                     WHERE d.id_ol_store_ret=" + id_report + "
@@ -8367,7 +8367,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 SET rl.`id_ol_store_ret_stt`='5'
                 WHERE rd.`id_ol_store_cust_ret`='" & id_report & "'; 
                 -- update status internal order
-                INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
                 SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
                 FROM tb_ol_store_cust_ret_det d
                 INNER JOIN tb_ol_store_ret_list rl ON rl.id_ol_store_ret_list = d.id_ol_store_ret_list

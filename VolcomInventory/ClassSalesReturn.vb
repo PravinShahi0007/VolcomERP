@@ -151,7 +151,7 @@
                             GROUP BY rod.id_ol_store_ret_list
                         ) src ON src.id_ol_store_ret_list = main.id_ol_store_ret_list
                         SET main.id_ol_store_ret_stt=9;
-                        INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
+                        INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, `status_date`, `input_status_date`, is_internal)
                         SELECT rd.id_sales_order_det, stt.ol_store_ret_stt, NOW(), NOW(),1
                         FROM tb_sales_return_det retdet  
                         INNER JOIN tb_sales_return_order_det d ON d.id_sales_return_order_det = retdet.id_sales_return_order_det
