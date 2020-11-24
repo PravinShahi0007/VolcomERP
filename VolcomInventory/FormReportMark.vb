@@ -6732,12 +6732,12 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                                     -- kas keluar
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, 1,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,ca.note,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
-                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
+                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` <> 0
                                     UNION ALL
                                     -- cash advance
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, 1,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,ca.note,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
-                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0"
+                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` <> 0"
                 execute_non_query(qjd, True, "", "", "", "")
             End If
 
@@ -6809,19 +6809,31 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                                     -- cash advance
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, 1,  0 AS `qty`,0 AS `debit`,ca.val_ca AS `credit`,ca.note AS `note`,174,ca.id_cash_advance,ca.number
                                     FROM tb_cash_advance ca
-                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
+                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` <> 0
                                     -- detail
                                     UNION ALL
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,car.id_acc AS `id_acc`, car.id_comp,  0 AS `qty`, car.value AS `debit`,0  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
                                     FROM tb_cash_advance ca
                                     INNER JOIN tb_cash_advance_report car ON ca.id_cash_advance = car.id_cash_advance
-                                    WHERE ca.id_cash_advance=" & id_report & " AND car.`value` > 0
+                                    WHERE ca.id_cash_advance=" & id_report & " AND car.`value` <> 0
                                     --
                                     UNION ALL
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,card.id_acc AS `id_acc`, 1,  0 AS `qty`, IF(card.id_bill_type = 21, card.value, 0) AS `debit`, IF(card.id_bill_type = 21, 0, card.value)  AS `credit`,card.description AS `note`,174,ca.id_cash_advance,ca.number
-                                FROM tb_cash_advance ca
-                                INNER JOIN tb_cash_advance_report_det card ON ca.id_cash_advance = card.id_cash_advance
-                                WHERE ca.id_cash_advance=" & id_report & " AND card.`value` > 0"
+                                    FROM tb_cash_advance ca
+                                    INNER JOIN tb_cash_advance_report_det card ON ca.id_cash_advance = card.id_cash_advance
+                                    WHERE ca.id_cash_advance=" & id_report & " AND card.`value` <> 0
+                                    -- pph
+                                    UNION ALL
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,car.pph_coa AS `id_acc`, car.id_comp,  0 AS `qty`, 0 AS `debit`,car.pph_amount  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
+                                    FROM tb_cash_advance ca
+                                    INNER JOIN tb_cash_advance_report car ON ca.id_cash_advance = car.id_cash_advance
+                                    WHERE ca.id_cash_advance=" & id_report & " AND car.`pph_amount` <> 0
+                                    -- ppn
+                                    UNION ALL
+                                    (SELECT '" & id_acc_trans & "' AS id_acc_trans,car.ppn_coa AS `id_acc`, car.id_comp,  0 AS `qty`, SUM(car.ppn_amount) AS `debit`,0  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
+                                    FROM tb_cash_advance ca
+                                    INNER JOIN tb_cash_advance_report car ON ca.id_cash_advance = car.id_cash_advance
+                                    WHERE ca.id_cash_advance=" & id_report & " AND car.`ppn_amount` <> 0 GROUP BY ppn_coa)"
                 execute_non_query(qjd, True, "", "", "", "")
             End If
 

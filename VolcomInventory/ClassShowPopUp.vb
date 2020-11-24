@@ -389,6 +389,9 @@
         ElseIf report_mark_type = "274" Then
             'Propose additional cost
             FormAdditionalCostDet.Close()
+        ElseIf report_mark_type = "275" Then
+            'propose return mail
+            FormSalesReturnOrderMailDet.Close()
         End If
     End Sub
     Sub show()
@@ -1322,6 +1325,10 @@ GROUP BY rec.`id_prod_order`"
             'Propose additional cost
             FormAdditionalCostDet.id_pps = id_report
             FormAdditionalCostDet.ShowDialog()
+        ElseIf report_mark_type = "275" Then
+            'propose return mail
+            FormSalesReturnOrderMailDet.id_mail_3pl = id_report
+            FormSalesReturnOrderMailDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2366,6 +2373,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_additional_cost_pps"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "275" Then
+            'propose return mail
+            table_name = "tb_sales_return_order_mail_3pl"
+            field_id = "id_mail_3pl"
+            field_number = "number"
+            field_date = "updated_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

@@ -478,6 +478,12 @@
     <Compile Include="FormBankWithdrawalSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBatchUploadOnlineStore.Designer.vb">
+      <DependentUpon>FormBatchUploadOnlineStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBatchUploadOnlineStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
     </Compile>
@@ -1158,6 +1164,12 @@
       <DependentUpon>FormDesignImagesDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDesignImagesDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDesignImagesLog.Designer.vb">
+      <DependentUpon>FormDesignImagesLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignImagesLog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDocTracking.Designer.vb">
@@ -5581,6 +5593,12 @@
     <Compile Include="FormSalesReturnOrderMailDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnOrderMailPick.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderMailPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderMailPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderOL.Designer.vb">
       <DependentUpon>FormSalesReturnOrderOL.vb</DependentUpon>
     </Compile>
@@ -6335,6 +6353,36 @@
       <DependentUpon>FormSampleTrf.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSampleTrf.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScanReturn.Designer.vb">
+      <DependentUpon>FormScanReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScanReturnBAP.Designer.vb">
+      <DependentUpon>FormScanReturnBAP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturnBAP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScanReturnBAPProduct.Designer.vb">
+      <DependentUpon>FormScanReturnBAPProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturnBAPProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScanReturnDet.Designer.vb">
+      <DependentUpon>FormScanReturnDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturnDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScanReturnDetManual.Designer.vb">
+      <DependentUpon>FormScanReturnDetManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturnDetManual.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSearchDesign.Designer.vb">
@@ -8458,6 +8506,12 @@
     <Compile Include="ReportRetOLStoreDet.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportReturnNote.Designer.vb">
+      <DependentUpon>ReportReturnNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportReturnNote.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalarySlip.Designer.vb">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </Compile>
@@ -8616,6 +8670,12 @@
       <DependentUpon>ReportSalesReturnOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesReturnOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesReturnOrderMailSKPP.Designer.vb">
+      <DependentUpon>ReportSalesReturnOrderMailSKPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesReturnOrderMailSKPP.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesReturnQC.Designer.vb">
@@ -8943,6 +9003,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalSum.resx">
       <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBatchUploadOnlineStore.resx">
+      <DependentUpon>FormBatchUploadOnlineStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
@@ -9319,6 +9382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignImagesDet.resx">
       <DependentUpon>FormDesignImagesDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignImagesLog.resx">
+      <DependentUpon>FormDesignImagesLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocTracking.resx">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
@@ -11784,6 +11850,9 @@
     <EmbeddedResource Include="FormSalesReturnOrderMailDet.resx">
       <DependentUpon>FormSalesReturnOrderMailDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderMailPick.resx">
+      <DependentUpon>FormSalesReturnOrderMailPick.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderOL.resx">
       <DependentUpon>FormSalesReturnOrderOL.vb</DependentUpon>
     </EmbeddedResource>
@@ -12253,6 +12322,21 @@
     <EmbeddedResource Include="FormSampleTrf.resx">
       <DependentUpon>FormSampleTrf.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturn.resx">
+      <DependentUpon>FormScanReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturnBAP.resx">
+      <DependentUpon>FormScanReturnBAP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturnBAPProduct.resx">
+      <DependentUpon>FormScanReturnBAPProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturnDet.resx">
+      <DependentUpon>FormScanReturnDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturnDetManual.resx">
+      <DependentUpon>FormScanReturnDetManual.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSearchDesign.resx">
       <DependentUpon>FormSearchDesign.vb</DependentUpon>
@@ -13453,6 +13537,9 @@
     <EmbeddedResource Include="ReportRetOLStoreDet.resx">
       <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportReturnNote.resx">
+      <DependentUpon>ReportReturnNote.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </EmbeddedResource>
@@ -13539,6 +13626,9 @@
     <EmbeddedResource Include="ReportSalesReturnOrder.resx">
       <DependentUpon>ReportSalesReturnOrder.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesReturnOrderMailSKPP.resx">
+      <DependentUpon>ReportSalesReturnOrderMailSKPP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesReturnQC.resx">
       <DependentUpon>ReportSalesReturnQC.vb</DependentUpon>
