@@ -44,7 +44,9 @@ WHERE is_only_cs='1'"
             Exit Sub
         End If
 
-        FormMain.SplashScreenManager1.ShowWaitForm()
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
 
         'get hide status
         Dim stt6 As String = execute_query("SELECT ol_store_ret_stt FROM tb_lookup_ol_store_ret_stt WHERE id_ol_store_ret_stt=6", 0, True, "", "", "", "")
