@@ -379,13 +379,13 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         '
         GridColumnNo.MaxWidth = 30
         GridColumnCurrView.MaxWidth = 30
-        GridColumnBefKurs.MaxWidth = 80
+        GridColumnBefKurs.MaxWidth = 65
         GridColumnKurs.MaxWidth = 50
         GridColumnAmount.MaxWidth = 80
         GridColumnTaxPercent.MaxWidth = 30
         GridColumnTaxValue.MaxWidth = 70
         GridColumnPPHPercent.MaxWidth = 30
-        GridColumnPPH.MaxWidth = 80
+        GridColumnPPH.MaxWidth = 60
 
         'creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
