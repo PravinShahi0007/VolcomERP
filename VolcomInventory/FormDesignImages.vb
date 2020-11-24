@@ -69,7 +69,28 @@
     End Sub
 
     Function get_validation(path As String) As DataTable
-        Dim file() As String = IO.Directory.GetFiles(path)
+        'exclude file
+        Dim exclude_file As DataTable = execute_query("SELECT file_exclude FROM tb_design_images_exclude", -1, True, "", "", "", "")
+
+        Dim tmp_file() As String = IO.Directory.GetFiles(path)
+
+        Dim file_list As List(Of String) = New List(Of String)
+
+        For i = 0 To tmp_file.Length - 1
+            Dim skip As Boolean = True
+
+            For j = 0 To exclude_file.Rows.Count - 1
+                If tmp_file(i).Contains(exclude_file.Rows(j)("file_exclude").ToString) Then
+                    skip = False
+                End If
+            Next
+
+            If skip Then
+                file_list.Add(tmp_file(i))
+            End If
+        Next
+
+        Dim file() As String = file_list.ToArray
 
         Array.Sort(file)
 

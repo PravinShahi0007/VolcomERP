@@ -358,6 +358,7 @@ Partial Class FormDesignImages
         Me.GVImageList.Name = "GVImageList"
         Me.GVImageList.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVImageList.OptionsBehavior.ReadOnly = True
+        Me.GVImageList.OptionsView.ShowGroupedColumns = True
         Me.GVImageList.OptionsView.ShowGroupPanel = False
         Me.GVImageList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn11, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -375,7 +376,7 @@ Partial Class FormDesignImages
         Me.GridColumn11.FieldName = "store"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.VisibleIndex = 1
         '
         'GridColumn2
         '
@@ -383,7 +384,7 @@ Partial Class FormDesignImages
         Me.GridColumn2.FieldName = "design_display_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 2
         '
         'GridColumn3
         '
@@ -391,7 +392,7 @@ Partial Class FormDesignImages
         Me.GridColumn3.FieldName = "file_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 3
         '
         'GridColumn7
         '
@@ -400,7 +401,7 @@ Partial Class FormDesignImages
         Me.GridColumn7.FieldName = "url"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.VisibleIndex = 4
         '
         'RepositoryItemHyperLinkEdit
         '
@@ -416,7 +417,7 @@ Partial Class FormDesignImages
         Me.GridColumn4.FieldName = "created_at"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 5
         '
         'RepositoryItemDateEdit
         '
@@ -437,7 +438,7 @@ Partial Class FormDesignImages
         Me.GridColumn5.FieldName = "created_by"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 6
         '
         'GridColumn6
         '
@@ -446,7 +447,7 @@ Partial Class FormDesignImages
         Me.GridColumn6.FieldName = "image"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 7
         '
         'RepositoryItemCheckEdit
         '
@@ -464,7 +465,7 @@ Partial Class FormDesignImages
         Me.GridColumn12.FieldName = "log"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.VisibleIndex = 8
         '
         'RepositoryItemCheckEditLog
         '
