@@ -640,7 +640,7 @@
 
             'evaluasi
             If id_api_type <> "1" Then 'selain VIOS
-                Dim query_eval As String = "SELECT od.id 
+                Dim query_eval As String = "SELECT od.id, od.sales_order_ol_shop_number AS `order_number`
                 FROM tb_ol_store_order od 
                 WHERE od.id_comp_group='" + id_comp_group + "'  AND od.note_price='OK' AND od.is_process=2 AND ISNULL(od.id_ol_store_oos)
                 GROUP BY od.id "
@@ -648,6 +648,7 @@
                 If data_eval.Rows.Count > 0 Then
                     For e As Integer = 0 To data_eval.Rows.Count - 1
                         Dim id_order_eval As String = data_eval.Rows(e)("id").ToString
+                        Dim no_eval As String = data_eval.Rows(e)("order_number").ToString
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Evaluate order : " + (e + 1).ToString + "/" + data_eval.Rows.Count.ToString)
                         'evaluate oos
                         Dim oos As New ClassOLStore()
@@ -658,7 +659,9 @@
                         If Not is_restock Then
                             'jika ndak ada yang bisa direstock langsung kirim email
                             oos.sendEmailOOS(id_order_eval, id_comp_group)
-                            ord.insertLogWebOrder(id_order_eval, "Send Email OOS", id_comp_group)
+                            ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS", id_comp_group)
+                        Else
+                            ord.insertLogWebOrder(id_order_eval, "Evaluate result : Restock process", id_comp_group)
                         End If
                     Next
                 End If
