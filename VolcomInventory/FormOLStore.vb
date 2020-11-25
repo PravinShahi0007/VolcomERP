@@ -538,8 +538,8 @@
         If is_processed_order = "1" Then
             stopCustom("Sync still running")
         Else
-            If Not SplashScreenManager1.IsSplashFormVisible Then
-                SplashScreenManager1.ShowWaitForm()
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
             End If
             Dim ord As New ClassSalesOrder()
             ord.setProceccedWebOrder("1")
@@ -596,7 +596,7 @@
             If dord.Rows.Count > 0 Then
                 Try
                     For i As Integer = 0 To dord.Rows.Count - 1
-                        SplashScreenManager1.SetWaitFormDescription(comp_group + " ORDER : #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
+                        FormMain.SplashScreenManager1.SetWaitFormDescription(comp_group + " ORDER : #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
                         execute_non_query_long("CALL create_web_order_grp(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "');", True, "", "", "", "")
                         If i > 0 Then
                             id_order_in += ","
@@ -626,7 +626,7 @@
                 If data_item.Rows.Count > 0 Then
                     For t As Integer = 0 To data_item.Rows.Count - 1
                         Try
-                            SplashScreenManager1.SetWaitFormDescription("Set status (rts) : #" + data_item.Rows(t)("order_number").ToString)
+                            FormMain.SplashScreenManager1.SetWaitFormDescription("Set status (rts) : #" + data_item.Rows(t)("order_number").ToString)
                             Dim zal_stt As New ClassZaloraApi()
                             zal_stt.setReadyToShip(data_item.Rows(t)("item_id").ToString, data_item.Rows(t)("shipment_provider").ToString, data_item.Rows(t)("tracking_code").ToString)
                             execute_non_query("UPDATE tb_ol_store_order od SET od.is_rts=1 WHERE od.id_comp_group='" + id_comp_group + "' AND od.id='" + data_item.Rows(t)("id").ToString + "' ", True, "", "", "", "")
@@ -641,20 +641,20 @@
             'evaluasi
             Dim query_eval As String = "SELECT od.id 
             FROM tb_ol_store_order od 
-            WHERE od.id_comp_group='" + id_comp_group + "' AND od.is_process=2 AND od.note_price='OK' 
+            WHERE od.id_comp_group='" + id_comp_group + "'  AND od.note_price='OK' AND od.is_process=2
             GROUP BY od.id "
             Dim data_eval As DataTable = execute_query(query_eval, -1, True, "", "", "", "")
             If data_eval.Rows.Count > 0 Then
                 For e As Integer = 0 To data_eval.Rows.Count - 1
                     Dim id_order_eval As String = data_eval.Rows(e)("id").ToString
-                    SplashScreenManager1.SetWaitFormDescription("Evaluate order : " + (e + 1).ToString + "/" + data_eval.Rows.Count.ToString)
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Evaluate order : " + (e + 1).ToString + "/" + data_eval.Rows.Count.ToString)
                     execute_non_query_long("CALL check_oos_web_order_grp(" + id_order_eval + ", " + id_comp_group + ");", True, "", "", "", "")
                 Next
             End If
 
             ord.insertLogWebOrder("0", "End", "0")
             ord.setProceccedWebOrder("2")
-            SplashScreenManager1.CloseWaitForm()
+            FormMain.SplashScreenManager1.CloseWaitForm()
             If err = "" And err_other_act = "" Then
                 infoCustom("Sync completed.")
             Else
