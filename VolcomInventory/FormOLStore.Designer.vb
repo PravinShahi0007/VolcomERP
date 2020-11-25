@@ -209,7 +209,6 @@ Partial Class FormOLStore
         Me.GridColumnnote_promo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlFollowUp = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnFollowUp = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.CEAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.SBCloseOrder = New DevExpress.XtraEditors.SimpleButton()
@@ -228,6 +227,7 @@ Partial Class FormOLStore
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XTPOOS = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1601,7 +1601,7 @@ Partial Class FormOLStore
         Me.XTCManageOnlineStore.SelectedTabPage = Me.XTPVolcomOLStore
         Me.XTCManageOnlineStore.Size = New System.Drawing.Size(1000, 509)
         Me.XTCManageOnlineStore.TabIndex = 0
-        Me.XTCManageOnlineStore.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPVolcomOLStore})
+        Me.XTCManageOnlineStore.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPVolcomOLStore, Me.XTPOOS})
         '
         'XTPVolcomOLStore
         '
@@ -1610,7 +1610,7 @@ Partial Class FormOLStore
         Me.XTPVolcomOLStore.Controls.Add(Me.PanelControl3)
         Me.XTPVolcomOLStore.Name = "XTPVolcomOLStore"
         Me.XTPVolcomOLStore.Size = New System.Drawing.Size(994, 481)
-        Me.XTPVolcomOLStore.Text = "Volcom Online Store"
+        Me.XTPVolcomOLStore.Text = "Sync Order"
         '
         'GCVolcom
         '
@@ -1986,32 +1986,12 @@ Partial Class FormOLStore
         '
         'PanelControlFollowUp
         '
-        Me.PanelControlFollowUp.Controls.Add(Me.BtnFollowUp)
         Me.PanelControlFollowUp.Controls.Add(Me.PanelControl6)
         Me.PanelControlFollowUp.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlFollowUp.Location = New System.Drawing.Point(0, 445)
         Me.PanelControlFollowUp.Name = "PanelControlFollowUp"
         Me.PanelControlFollowUp.Size = New System.Drawing.Size(994, 36)
         Me.PanelControlFollowUp.TabIndex = 2
-        '
-        'BtnFollowUp
-        '
-        Me.BtnFollowUp.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnFollowUp.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnFollowUp.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnFollowUp.Appearance.Options.UseBackColor = True
-        Me.BtnFollowUp.Appearance.Options.UseFont = True
-        Me.BtnFollowUp.Appearance.Options.UseForeColor = True
-        Me.BtnFollowUp.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnFollowUp.Location = New System.Drawing.Point(12, 2)
-        Me.BtnFollowUp.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnFollowUp.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnFollowUp.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnFollowUp.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnFollowUp.Name = "BtnFollowUp"
-        Me.BtnFollowUp.Size = New System.Drawing.Size(980, 32)
-        Me.BtnFollowUp.TabIndex = 19
-        Me.BtnFollowUp.Text = "Follow Up Out of Stock Orders"
         '
         'PanelControl6
         '
@@ -2186,6 +2166,12 @@ Partial Class FormOLStore
         Me.CantProceedToolStripMenuItem.Name = "CantProceedToolStripMenuItem"
         Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
+        '
+        'XTPOOS
+        '
+        Me.XTPOOS.Name = "XTPOOS"
+        Me.XTPOOS.Size = New System.Drawing.Size(994, 481)
+        Me.XTPOOS.Text = "OOS List"
         '
         'FormOLStore
         '
@@ -2481,5 +2467,5 @@ Partial Class FormOLStore
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnFollowUp As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPOOS As DevExpress.XtraTab.XtraTabPage
 End Class
