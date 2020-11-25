@@ -358,6 +358,7 @@ Partial Class FormDesignImages
         Me.GVImageList.Name = "GVImageList"
         Me.GVImageList.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVImageList.OptionsBehavior.ReadOnly = True
+        Me.GVImageList.OptionsFind.AlwaysVisible = True
         Me.GVImageList.OptionsView.ShowGroupedColumns = True
         Me.GVImageList.OptionsView.ShowGroupPanel = False
         Me.GVImageList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn11, DevExpress.Data.ColumnSortOrder.Ascending)})
