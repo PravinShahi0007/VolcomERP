@@ -596,7 +596,7 @@
             If dord.Rows.Count > 0 Then
                 Try
                     For i As Integer = 0 To dord.Rows.Count - 1
-                        FormMain.SplashScreenManager1.SetWaitFormDescription(comp_group + " ORDER : #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
+                        FormMain.SplashScreenManager1.SetWaitFormDescription(comp_group + " ORDER : " + (i + 1).ToString + "/" + dord.Rows.Count.ToString)
                         execute_non_query_long("CALL create_web_order_grp(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "');", True, "", "", "", "")
                         If i > 0 Then
                             id_order_in += ","
