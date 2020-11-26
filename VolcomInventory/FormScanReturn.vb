@@ -79,7 +79,12 @@
     Sub load_bap()
         Dim date_start As String = Date.Parse(DEStartBAP.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_until As String = Date.Parse(DEUntilBAP.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim q As String = "SELECT id_scan_return_bap,bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond` FROM tb_scan_return_bap bap WHERE DATE(bap.`created_date`)>='" & date_start & "' AND DATE(bap.`created_date`)<='" & date_until & "'"
+        Dim q As String = "SELECT IFNULL(c.comp_name,'Warehouse') AS comp_name,id_scan_return_bap,bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond`,emp.employee_name,bap.created_date
+FROM tb_scan_return_bap bap 
+LEFT JOIN tb_m_comp c ON c.id_comp=bap.id_3pl
+INNER JOIN tb_m_user usr ON usr.id_user=bap.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE DATE(bap.`created_date`)>='" & date_start & "' AND DATE(bap.`created_date`)<='" & date_until & "'"
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCBAP.DataSource = dt

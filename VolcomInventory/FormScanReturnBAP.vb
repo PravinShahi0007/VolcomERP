@@ -2,12 +2,12 @@
     Public id_bap As String = "-1"
     Private Sub FormScanReturnBAP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEBAP.EditValue = Now
-        load_surat_jalan()
         load_type()
         load_3pl()
+        load_surat_jalan()
         '
         If Not id_bap = "-1" Then
-            Dim q As String = "SELECT bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond` FROM tb_scan_return_bap WHERE id_scan_return_bap='" & id_bap & "'"
+            Dim q As String = "SELECT bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond`,id_3pl FROM tb_scan_return_bap WHERE id_scan_return_bap='" & id_bap & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 TEBAPNumber.Text = dt.Rows(0)("bap_number").ToString
@@ -32,6 +32,7 @@
                 Else
                     CEAlasanLain.Checked = False
                 End If
+                SLEVendor.EditValue = dt.Rows(0)("id_3pl").ToString
             End If
         End If
         '
@@ -40,7 +41,9 @@
     End Sub
 
     Sub load_3pl()
-        Dim q As String = "SELECT c.id_comp,c.comp_number,c.comp_name
+        Dim q As String = "SELECT 0 AS id_comp,'WAREHOUSE' AS comp_number,'WAREHOUSE' AS comp_name
+UNION ALL
+SELECT c.id_comp,c.comp_number,c.comp_name
 FROM tb_3pl_rate rate
 INNER JOIN tb_lookup_del_type del ON del.id_del_type=rate.id_del_type AND del.is_able_inbound=1
 INNER JOIN tb_m_comp c ON c.id_comp=rate.id_comp
@@ -64,8 +67,17 @@ FROM tb_scan_return_bap_det WHERE id_scan_return_bap='" & id_bap & "'"
     End Sub
 
     Sub load_surat_jalan()
+        Dim q_where As String = ""
+
+        If SLEVendor.EditValue.ToString = "0" Then
+            q_where = " AND rn.id_type='1'"
+        Else
+            q_where = " AND awb.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
         Dim q As String = "SELECT rn.`id_return_note`,rn.`label_number`,rn.`number_return_note`,rn.`qty`,IFNULL(sc.qty_scan,0) AS qty_scan
 FROM tb_return_note rn
+LEFT JOIN tb_inbound_awb awb ON awb.id_inbound_awb=rn.id_inbound_awb
 INNER JOIN
 (
 	SELECT st.`id_return_note`,GROUP_CONCAT(DISTINCT CONCAT(c.comp_number,' - ',c.comp_name) ORDER BY c.`comp_number` ASC SEPARATOR '\n') AS store
@@ -81,7 +93,7 @@ LEFT JOIN
 	WHERE sc.is_void=2
 	GROUP BY sc.id_scan_return
 )sc ON sc.id_return_note=rn.`id_return_note`
-WHERE rn.`is_lock`=2 AND rn.`is_void`=2"
+WHERE rn.`is_lock`=2 AND rn.`is_void`=2 " & q_where
         viewSearchLookupRepositoryQuery(RISLEReturnNote, q, 0, "number_return_note", "id_return_note")
     End Sub
 
@@ -137,7 +149,7 @@ VALUES"
                 Else 'edit
                     Dim q As String = ""
                     q = "UPDATE `tb_scan_return_bap` SET `bap_date`='" & Date.Parse(DEBAP.EditValue.ToString).ToString("yyyy-MM-dd") & "',`is_lubang`='" & If(CELubang.Checked = True, "1", "2") & "'
-,`is_seal_rusak`='" & If(CELakbanRusak.Checked = True, "1", "2") & "',`is_basah`='" & If(CEBasah.Checked = True, "1", "2") & "',`is_other_cond`='" & If(CEAlasanLain.Checked = True, "1", "2") & "',`other_cond`='" & addSlashes(TEAlasanLain.Text) & "',`update_date`=NOW(),`update_by`='" & id_user & "' WHERE id_scan_return_bap='" & id_bap & "'"
+,`is_seal_rusak`='" & If(CELakbanRusak.Checked = True, "1", "2") & "',`is_basah`='" & If(CEBasah.Checked = True, "1", "2") & "',`is_other_cond`='" & If(CEAlasanLain.Checked = True, "1", "2") & "',`other_cond`='" & addSlashes(TEAlasanLain.Text) & "',`update_date`=NOW(),`update_by`='" & id_user & "',id_3pl='" & SLEVendor.EditValue.ToString & "' WHERE id_scan_return_bap='" & id_bap & "'"
                     execute_non_query(q, True, "", "", "", "")
                     'detail
                     q = "DELETE FROM tb_scan_return_bap_det WHERE id_scan_return_bap='" & id_bap & "'"
@@ -202,5 +214,16 @@ VALUES"
                 FormScanReturnBAPProduct.ShowDialog()
             End If
         End If
+    End Sub
+
+    Private Sub SLEVendor_EditValueChanged(sender As Object, e As EventArgs) Handles SLEVendor.EditValueChanged
+        load_surat_jalan()
+        empty_grid()
+    End Sub
+
+    Sub empty_grid()
+        For i As Integer = GVListProduct.RowCount - 1 To 0 Step -1
+            GVListProduct.DeleteRow(i)
+        Next
     End Sub
 End Class
