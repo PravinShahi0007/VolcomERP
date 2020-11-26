@@ -41,6 +41,7 @@ Public Class FormSalesReturnDet
     Public id_ret_type As String = ""
     Public is_view As String = "-1"
     Dim id_store_type As String = "-1"
+    Public id_wh_type As String = "-1"
 
     Public is_use_unique_code As String = "2"
     Dim id_commerce_type As String = "-1"
@@ -259,7 +260,7 @@ Public Class FormSalesReturnDet
         query += "DATE_FORMAT(a.sales_return_order_date,'%d %M %Y') AS sales_return_order_date, "
         query += "DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date "
         If id_ret_type = "4" Then
-            query += ", wh.id_comp AS `id_wh`,wh.comp_number AS `wh_number`, wh.comp_name AS `wh_name`, wh.id_drawer_def AS `wh_drawer`, so.sales_order_ol_shop_number, wh.is_active AS `wh_is_active` "
+            query += ", wh.id_comp AS `id_wh`, wh.id_wh_type,wh.comp_number AS `wh_number`, wh.comp_name AS `wh_name`, wh.id_drawer_def AS `wh_drawer`, so.sales_order_ol_shop_number, wh.is_active AS `wh_is_active` "
         End If
         query += "FROM tb_sales_return_order a "
         'query += "INNER JOIN tb_sales_return_order_det b ON a.id_sales_return_order = b.id_sales_return_order "
@@ -310,6 +311,7 @@ Public Class FormSalesReturnDet
             id_comp_contact_to = data.Rows(0)("id_wh_contact_to").ToString
             TxtNameCompTo.Text = data.Rows(0)("wh_name").ToString
             TxtCodeCompTo.Text = data.Rows(0)("wh_number").ToString
+            id_wh_type = data.Rows(0)("id_wh_type").ToString
             If data.Rows(0)("wh_is_active").ToString <> "1" Then
                 stopCustom("WH already freeze")
                 Cursor = Cursors.Default
@@ -956,11 +958,15 @@ Public Class FormSalesReturnDet
     End Sub
 
     Private Sub BtnBrowseContactTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowseContactTo.Click
-        FormPopUpContact.id_pop_up = "41"
-        FormPopUpContact.is_must_active = "1"
-        FormPopUpContact.id_departement = id_departement_user
-        FormPopUpContact.id_cat = "5"
-        FormPopUpContact.ShowDialog()
+        If GVBarcode.RowCount = 0 Then
+            FormPopUpContact.id_pop_up = "41"
+            FormPopUpContact.is_must_active = "1"
+            FormPopUpContact.id_departement = id_departement_user
+            FormPopUpContact.id_cat = "5"
+            FormPopUpContact.ShowDialog()
+        Else
+            stopCustom("Scan already process for this destination. If you want to change destination, please discard this transaction")
+        End If
     End Sub
 
     Private Sub TxtSalesReturnOrderNumber_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TxtSalesReturnOrderNumber.Validating
@@ -1465,6 +1471,7 @@ Public Class FormSalesReturnDet
         BtnDel.Enabled = False
         BtnInfoSrs.Enabled = False
         TxtStoreReturnNumber.Enabled = False
+        BtnBrowseContactTo.Enabled = False
     End Sub
 
     Sub loadCodeDetail()
@@ -1512,10 +1519,14 @@ Public Class FormSalesReturnDet
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         action_scan_btn = "start"
         If GVItemList.RowCount > 0 Or is_non_list = "1" Then
-            loadCodeDetail()
-            verifyTrans()
-            disableControl()
-            newRowsBc()
+            If id_comp_contact_to <> "-1" Then
+                loadCodeDetail()
+                verifyTrans()
+                disableControl()
+                newRowsBc()
+            Else
+                errorCustom("Select destination first")
+            End If
         Else
             errorCustom("Item list can't blank")
         End If
@@ -1560,6 +1571,7 @@ Public Class FormSalesReturnDet
         TxtDeleteScan.Visible = False
         LabelScanProb.Visible = False
         TxtScanProb.Visible = False
+        BtnBrowseContactTo.Enabled = True
     End Sub
 
     Private Sub BDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelete.Click
@@ -1656,6 +1668,7 @@ Public Class FormSalesReturnDet
         Dim is_unique_report As String = "2"
         Dim ol_store_id As String = ""
         Dim item_id As String = ""
+        Dim prc As Decimal = 0
 
         'check in ro 
         Dim code_list_found As Boolean = False
@@ -1803,6 +1816,8 @@ Public Class FormSalesReturnDet
                 bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
                 is_old = dt_filter(0)("is_old_design").ToString
                 is_unique_report = dt_filter(0)("is_unique_report").ToString
+                id_design_cat = dt_filter(0)("id_design_cat").ToString
+                prc = dt_filter(0)("design_price").ToString
                 code_found = True
             End If
 
@@ -1836,6 +1851,21 @@ Public Class FormSalesReturnDet
             Catch ex As Exception
             End Try
             makeSafeGV(GVItemList)
+
+            'jika akun normal/sale
+            If (id_wh_type = "1" Or id_wh_type = "2") Then
+                If (id_wh_type <> id_design_cat) And prc > 0 Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    If id_wh_type = "1" Then
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for normal product. ")
+                    Else
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for sale product. ")
+                    End If
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+            End If
 
 
             If is_old = "1" Then 'old product
