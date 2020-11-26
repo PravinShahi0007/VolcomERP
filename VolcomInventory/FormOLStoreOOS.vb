@@ -20,7 +20,16 @@
     Sub viewData()
         Cursor = Cursors.WaitCursor
         Dim ooslist As New ClassOLStore()
-        'Dim data As DataTable = ooslist.viewListOOS()
+        Dim id_type As String = LEType.EditValue.ToString
+        Dim cond As String = ""
+        If id_type <> "1" Then
+            cond = "AND status='" + LEType.Text + "'"
+        Else
+            cond = ""
+        End If
+        Dim data As DataTable = ooslist.viewListOOS(cond)
+        GCData.DataSource = data
+        GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 

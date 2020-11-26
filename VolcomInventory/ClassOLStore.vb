@@ -17,30 +17,17 @@
 
     End Sub
 
-    Function viewListOOS(ByVal id_type_par As String) As DataTable
-        Dim cond As String = ""
-        If id_type_par = "1" Then
-            'all
-            cond = ""
-        ElseIf id_type_par = "2" Then
-            'restock
-            cond = "AND os.is_sent_email=2 AND os.is_closed=2 "
-        ElseIf id_type_par = "3" Then
-            'waiting confirmation
-            cond = "AND os.is_sent_email=1 AND os.is_closed=2 "
-        Else
-            'closed
-            cond = "AND os.is_closed=1 "
-        End If
+    Function viewListOOS(ByVal type_par As String) As DataTable
         Dim query As String = "SELECT os.id_ol_store_oos, os.number, os.id_comp_group, cg.comp_group, os.id_order, od.sales_order_ol_shop_number AS `order_number`, os.created_date,
         os.is_sent_email, os.manual_send_email_reason, os.sent_email_date,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 
-        SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty) AS `total_no_stock`
+        SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty) AS `total_no_stock`,
+        IF(os.is_closed=1, 'closed', IF(os.is_sent_email=2,'waiting for restock','waiting for confirmation')) AS `status`
         FROM tb_ol_store_oos os
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = os.id_comp_group
         INNER JOIN tb_ol_store_order od ON od.id_ol_store_oos = os.id_ol_store_oos
-        WHERE 1=1 " + cond + "
-        GROUP BY os.id_order "
+        GROUP BY os.id_order 
+        HAVING 1=1 " + type_par + ""
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function

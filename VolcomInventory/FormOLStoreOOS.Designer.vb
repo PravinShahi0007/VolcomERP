@@ -41,6 +41,7 @@ Partial Class FormOLStoreOOS
         Me.GridColumntotal_fill = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_no_stock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +59,7 @@ Partial Class FormOLStoreOOS
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(595, 45)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 45)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnPrint
@@ -114,13 +115,13 @@ Partial Class FormOLStoreOOS
         Me.GCData.Location = New System.Drawing.Point(0, 45)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(595, 351)
+        Me.GCData.Size = New System.Drawing.Size(784, 351)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_oos, Me.GridColumnnumber, Me.GridColumnid_comp_group, Me.GridColumncomp_group, Me.GridColumnid_order, Me.GridColumncreated_date, Me.GridColumnis_sent_email, Me.GridColumnsent_email_date, Me.GridColumncustomer_name, Me.GridColumntotal_order, Me.GridColumntotal_fill, Me.GridColumntotal_no_stock, Me.GridColumnorder_number})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_oos, Me.GridColumnnumber, Me.GridColumnid_comp_group, Me.GridColumncomp_group, Me.GridColumnid_order, Me.GridColumncreated_date, Me.GridColumnis_sent_email, Me.GridColumnsent_email_date, Me.GridColumncustomer_name, Me.GridColumntotal_order, Me.GridColumntotal_fill, Me.GridColumntotal_no_stock, Me.GridColumnorder_number, Me.GridColumnstatus})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -234,15 +235,24 @@ Partial Class FormOLStoreOOS
         Me.GridColumnorder_number.Visible = True
         Me.GridColumnorder_number.VisibleIndex = 2
         '
+        'GridColumnstatus
+        '
+        Me.GridColumnstatus.Caption = "Status"
+        Me.GridColumnstatus.FieldName = "status"
+        Me.GridColumnstatus.Name = "GridColumnstatus"
+        Me.GridColumnstatus.Visible = True
+        Me.GridColumnstatus.VisibleIndex = 8
+        '
         'FormOLStoreOOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(595, 396)
+        Me.ClientSize = New System.Drawing.Size(784, 396)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormOLStoreOOS"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Out of Stock"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -277,4 +287,5 @@ Partial Class FormOLStoreOOS
     Friend WithEvents GridColumntotal_fill As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotal_no_stock As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnorder_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class
