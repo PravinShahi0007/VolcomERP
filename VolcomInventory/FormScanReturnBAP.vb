@@ -133,7 +133,8 @@ SELECT '2' AS id_type,'Over' AS `type`"
 VALUES('" & Date.Parse(DEBAP.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & If(CELubang.Checked = True, "1", "2") & "','" & If(CELakbanRusak.Checked = True, "1", "2") & "','" & If(CEBasah.Checked = True, "1", "2") & "','" & If(CEAlasanLain.Checked = True, "1", "2") & "','" & addSlashes(TEAlasanLain.Text) & "',NOW(),'" & id_user & "',NOW(),'" & id_user & "','" & SLEVendor.EditValue.ToString & "');SELECT LAST_INSERT_ID();"
                     id_bap = execute_query(q, 0, True, "", "", "", "")
                     'gen number
-
+                    q = "CALL gen_bap_scan_return(2)"
+                    execute_non_query(q, True, "", "", "", "")
                     'detail
                     q = "INSERT INTO tb_scan_return_bap_det(`id_scan_return_bap`,`id_return_note`,`id_type`,`id_product`,`code`,`description`,`size`,`qty`,`note`)
 VALUES"
@@ -205,7 +206,21 @@ VALUES"
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-
+        Dim Report As New ReportScanReturnBAP()
+        Dim q As String = "SELECT rn.id_return_note,rn.number_return_note,GROUP_CONCAT(DISTINCT(CONCAT(c.`comp_number`,' - ',c.`comp_name`)) ORDER BY c.`comp_number` SEPARATOR '\n' ) AS store_list
+,bd.`code`,bd.description,bd.size,bd.qty,bd.note
+FROM `tb_scan_return_bap_det` bd
+INNER JOIN tb_return_note rn ON rn.id_return_note=bd.id_return_note
+INNER JOIN tb_return_note_store st ON st.id_return_note=st.id_return_note
+INNER JOIN tb_m_comp c ON c.`id_comp`=st.id_comp
+WHERE bd.id_scan_return_bap='" & id_bap & "'
+GROUP BY bd.id_scan_return_bap_det
+ORDER BY rn.id_return_note"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        Report.id_bap = id_bap
+        Report.data_det = dt
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
     End Sub
 
     Private Sub FormScanReturnBAP_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
