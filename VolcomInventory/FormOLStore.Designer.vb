@@ -213,8 +213,9 @@ Partial Class FormOLStore
         Me.CEAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.SBCloseOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnXLSSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnOOS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnXLSSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirmedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPendingOrder = New DevExpress.XtraEditors.SimpleButton()
@@ -227,7 +228,6 @@ Partial Class FormOLStore
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.XTPOOS = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1601,7 +1601,7 @@ Partial Class FormOLStore
         Me.XTCManageOnlineStore.SelectedTabPage = Me.XTPVolcomOLStore
         Me.XTCManageOnlineStore.Size = New System.Drawing.Size(1000, 509)
         Me.XTCManageOnlineStore.TabIndex = 0
-        Me.XTCManageOnlineStore.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPVolcomOLStore, Me.XTPOOS})
+        Me.XTCManageOnlineStore.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPVolcomOLStore})
         '
         'XTPVolcomOLStore
         '
@@ -2031,8 +2031,9 @@ Partial Class FormOLStore
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.BtnXLSSyncOrder)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
+        Me.PanelControl3.Controls.Add(Me.BtnOOS)
+        Me.PanelControl3.Controls.Add(Me.BtnXLSSyncOrder)
         Me.PanelControl3.Controls.Add(Me.BtnSyncOrder)
         Me.PanelControl3.Controls.Add(Me.BtnConfirmedOrder)
         Me.PanelControl3.Controls.Add(Me.BtnPendingOrder)
@@ -2044,6 +2045,26 @@ Partial Class FormOLStore
         Me.PanelControl3.Size = New System.Drawing.Size(994, 43)
         Me.PanelControl3.TabIndex = 0
         '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(557, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(78, 39)
+        Me.BtnPrint.TabIndex = 1
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnOOS
+        '
+        Me.BtnOOS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnOOS.Image = CType(resources.GetObject("BtnOOS.Image"), System.Drawing.Image)
+        Me.BtnOOS.Location = New System.Drawing.Point(635, 2)
+        Me.BtnOOS.Name = "BtnOOS"
+        Me.BtnOOS.Size = New System.Drawing.Size(78, 39)
+        Me.BtnOOS.TabIndex = 7
+        Me.BtnOOS.Text = "OOS"
+        '
         'BtnXLSSyncOrder
         '
         Me.BtnXLSSyncOrder.Dock = System.Windows.Forms.DockStyle.Left
@@ -2053,16 +2074,6 @@ Partial Class FormOLStore
         Me.BtnXLSSyncOrder.Size = New System.Drawing.Size(129, 39)
         Me.BtnXLSSyncOrder.TabIndex = 6
         Me.BtnXLSSyncOrder.Text = "Import XLS Order"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(548, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(85, 39)
-        Me.BtnPrint.TabIndex = 1
-        Me.BtnPrint.Text = "Print"
         '
         'BtnSyncOrder
         '
@@ -2078,31 +2089,31 @@ Partial Class FormOLStore
         '
         Me.BtnConfirmedOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirmedOrder.Image = CType(resources.GetObject("BtnConfirmedOrder.Image"), System.Drawing.Image)
-        Me.BtnConfirmedOrder.Location = New System.Drawing.Point(633, 2)
+        Me.BtnConfirmedOrder.Location = New System.Drawing.Point(713, 2)
         Me.BtnConfirmedOrder.Name = "BtnConfirmedOrder"
-        Me.BtnConfirmedOrder.Size = New System.Drawing.Size(139, 39)
+        Me.BtnConfirmedOrder.Size = New System.Drawing.Size(100, 39)
         Me.BtnConfirmedOrder.TabIndex = 3
-        Me.BtnConfirmedOrder.Text = "Confirmed Orders"
+        Me.BtnConfirmedOrder.Text = "Confirmed"
         '
         'BtnPendingOrder
         '
         Me.BtnPendingOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPendingOrder.Image = CType(resources.GetObject("BtnPendingOrder.Image"), System.Drawing.Image)
-        Me.BtnPendingOrder.Location = New System.Drawing.Point(772, 2)
+        Me.BtnPendingOrder.Location = New System.Drawing.Point(813, 2)
         Me.BtnPendingOrder.Name = "BtnPendingOrder"
-        Me.BtnPendingOrder.Size = New System.Drawing.Size(121, 39)
+        Me.BtnPendingOrder.Size = New System.Drawing.Size(88, 39)
         Me.BtnPendingOrder.TabIndex = 2
-        Me.BtnPendingOrder.Text = "Pending Orders"
+        Me.BtnPendingOrder.Text = "Pending"
         '
         'BtnAllOrder
         '
         Me.BtnAllOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAllOrder.Image = CType(resources.GetObject("BtnAllOrder.Image"), System.Drawing.Image)
-        Me.BtnAllOrder.Location = New System.Drawing.Point(893, 2)
+        Me.BtnAllOrder.Location = New System.Drawing.Point(901, 2)
         Me.BtnAllOrder.Name = "BtnAllOrder"
-        Me.BtnAllOrder.Size = New System.Drawing.Size(99, 39)
+        Me.BtnAllOrder.Size = New System.Drawing.Size(91, 39)
         Me.BtnAllOrder.TabIndex = 4
-        Me.BtnAllOrder.Text = "All Orders"
+        Me.BtnAllOrder.Text = "Show All"
         '
         'PanelControl5
         '
@@ -2166,12 +2177,6 @@ Partial Class FormOLStore
         Me.CantProceedToolStripMenuItem.Name = "CantProceedToolStripMenuItem"
         Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
-        '
-        'XTPOOS
-        '
-        Me.XTPOOS.Name = "XTPOOS"
-        Me.XTPOOS.Size = New System.Drawing.Size(994, 481)
-        Me.XTPOOS.Text = "OOS List"
         '
         'FormOLStore
         '
@@ -2467,5 +2472,5 @@ Partial Class FormOLStore
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents XTPOOS As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BtnOOS As DevExpress.XtraEditors.SimpleButton
 End Class

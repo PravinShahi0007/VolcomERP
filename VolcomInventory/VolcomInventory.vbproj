@@ -3062,6 +3062,12 @@
     <Compile Include="FormOLStoreImportXLS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreOOS.Designer.vb">
+      <DependentUpon>FormOLStoreOOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreOOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreOOSList.Designer.vb">
       <DependentUpon>FormOLStoreOOSList.vb</DependentUpon>
     </Compile>
@@ -10352,6 +10358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreImportXLS.resx">
       <DependentUpon>FormOLStoreImportXLS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreOOS.resx">
+      <DependentUpon>FormOLStoreOOS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreOOSList.resx">
       <DependentUpon>FormOLStoreOOSList.vb</DependentUpon>
