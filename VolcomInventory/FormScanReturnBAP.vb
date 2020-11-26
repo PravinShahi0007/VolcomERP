@@ -4,6 +4,7 @@
         DEBAP.EditValue = Now
         load_surat_jalan()
         load_type()
+        load_3pl()
         '
         If Not id_bap = "-1" Then
             Dim q As String = "SELECT bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond` FROM tb_scan_return_bap WHERE id_scan_return_bap='" & id_bap & "'"
@@ -36,6 +37,16 @@
         '
         load_det()
         check_but()
+    End Sub
+
+    Sub load_3pl()
+        Dim q As String = "SELECT c.id_comp,c.comp_number,c.comp_name
+FROM tb_3pl_rate rate
+INNER JOIN tb_lookup_del_type del ON del.id_del_type=rate.id_del_type AND del.is_able_inbound=1
+INNER JOIN tb_m_comp c ON c.id_comp=rate.id_comp
+WHERE rate.id_type='2' AND rate.is_active='1'
+GROUP BY rate.id_comp"
+        viewSearchLookupQuery(SLEVendor, q, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Private Sub BDeleteScan_Click(sender As Object, e As EventArgs) Handles BDeleteScan.Click
@@ -106,8 +117,8 @@ SELECT '2' AS id_type,'Over' AS `type`"
                 warningCustom("Please input on list")
             Else
                 If id_bap = "-1" Then 'new
-                    Dim q As String = "INSERT `tb_scan_return_bap`(`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond`,`created_date`,`created_by`,`update_date`,`update_by`)
-VALUES('" & Date.Parse(DEBAP.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & If(CELubang.Checked = True, "1", "2") & "','" & If(CELakbanRusak.Checked = True, "1", "2") & "','" & If(CEBasah.Checked = True, "1", "2") & "','" & If(CEAlasanLain.Checked = True, "1", "2") & "','" & addSlashes(TEAlasanLain.Text) & "',NOW(),'" & id_user & "',NOW(),'" & id_user & "');SELECT LAST_INSERT_ID();"
+                    Dim q As String = "INSERT `tb_scan_return_bap`(`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond`,`created_date`,`created_by`,`update_date`,`update_by`,`id_3pl`)
+VALUES('" & Date.Parse(DEBAP.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & If(CELubang.Checked = True, "1", "2") & "','" & If(CELakbanRusak.Checked = True, "1", "2") & "','" & If(CEBasah.Checked = True, "1", "2") & "','" & If(CEAlasanLain.Checked = True, "1", "2") & "','" & addSlashes(TEAlasanLain.Text) & "',NOW(),'" & id_user & "',NOW(),'" & id_user & "','" & SLEVendor.EditValue.ToString & "');SELECT LAST_INSERT_ID();"
                     id_bap = execute_query(q, 0, True, "", "", "", "")
                     'gen number
 
