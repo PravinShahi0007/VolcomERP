@@ -20,7 +20,7 @@
     Sub viewData()
         Cursor = Cursors.WaitCursor
         Dim ooslist As New ClassOLStore()
-        Dim data As DataTable = ooslist.viewListOOS
+        'Dim data As DataTable = ooslist.viewListOOS()
         Cursor = Cursors.Default
     End Sub
 
