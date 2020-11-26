@@ -24,7 +24,7 @@ Partial Class FormOLStoreOOS
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LEType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -45,7 +45,7 @@ Partial Class FormOLStoreOOS
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -84,7 +84,7 @@ Partial Class FormOLStoreOOS
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.LookUpEdit1)
+        Me.PanelControl2.Controls.Add(Me.LEType)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
@@ -92,13 +92,13 @@ Partial Class FormOLStoreOOS
         Me.PanelControl2.Size = New System.Drawing.Size(206, 41)
         Me.PanelControl2.TabIndex = 2
         '
-        'LookUpEdit1
+        'LEType
         '
-        Me.LookUpEdit1.Location = New System.Drawing.Point(50, 11)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Size = New System.Drawing.Size(144, 20)
-        Me.LookUpEdit1.TabIndex = 1
+        Me.LEType.Location = New System.Drawing.Point(50, 11)
+        Me.LEType.Name = "LEType"
+        Me.LEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEType.Size = New System.Drawing.Size(144, 20)
+        Me.LEType.TabIndex = 1
         '
         'LabelControl1
         '
@@ -249,7 +249,7 @@ Partial Class FormOLStoreOOS
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -258,7 +258,7 @@ Partial Class FormOLStoreOOS
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LEType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
