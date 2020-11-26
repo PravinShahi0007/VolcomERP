@@ -1088,7 +1088,7 @@ Partial Public Class ReportMatPD
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(277.0834!, 23.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "PRODUCTION DEPARTEMENT"
+        Me.XrLabel1.Text = "FINAL RAW MATERIAL LIST"
         Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportFooter

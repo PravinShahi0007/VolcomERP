@@ -256,6 +256,7 @@ INNER JOIN tb_m_code_detail cd WHERE  mdpc.id_code_detail = cd.id_code_detail AN
             Else
                 LREvise.Visible = False
             End If
+            BMark.Visible = False
         ElseIf action = "upd" Then
             'others
             BViewImage.Enabled = True
@@ -336,6 +337,7 @@ INNER JOIN tb_m_code_detail cd WHERE  mdpc.id_code_detail = cd.id_code_detail AN
                     BSave.Visible = True
                 End If
             End If
+            BMark.Visible = True
         End If
     End Sub
 
@@ -505,7 +507,6 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
         FormReportMark.is_view = is_view
         FormReportMark.id_report = id_pps
         FormReportMark.report_mark_type = "273"
-        FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
     End Sub
 End Class
