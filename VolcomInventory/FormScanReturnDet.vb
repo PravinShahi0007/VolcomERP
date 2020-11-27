@@ -193,16 +193,37 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
 
             If is_ok Then
                 'save
-                Dim q As String = "INSERT INTO tb_scan_return(id_return_note) VALUES('" & id_return_note & "'); SELECT LAST_INSERT_ID();"
-                id_scan_return = execute_query(q, 0, True, "", "", "", "")
-                '
-                q = "INSERT INTO `tb_scan_return_det`(`id_scan_return`,`id_product`,`scanned_code`,`size`,`type`) VALUES"
-                For i = 0 To GVListProduct.RowCount - 1
-                    If Not i = 0 Then
-                        q += ","
-                    End If
-                    q += "('','','','','')"
-                Next
+                If id_scan_return = "-1" Then
+                    'new
+                    Dim q As String = "INSERT INTO tb_scan_return(id_return_note) VALUES('" & id_return_note & "'); SELECT LAST_INSERT_ID();"
+                    id_scan_return = execute_query(q, 0, True, "", "", "", "")
+                    '
+                    q = "INSERT INTO `tb_scan_return_det`(`id_scan_return`,`id_product`,`scanned_code`,`size`,`type`) VALUES"
+                    For i = 0 To GVListProduct.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+                        q += "('" & id_scan_return & "','" & GVListProduct.GetRowCellValue(i, "id_product").ToString & "','" & GVListProduct.GetRowCellValue(i, "scanned_code").ToString & "','" & GVListProduct.GetRowCellValue(i, "size").ToString & "','" & GVListProduct.GetRowCellValue(i, "type").ToString & "')"
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+                    infoCustom("Scan saved.")
+                    Close()
+                Else
+                    'update
+                    Dim q As String = "DELETE FROM tb_scan_return_det WHERE id_scan_return='" & id_scan_return & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                    '
+                    q = "INSERT INTO `tb_scan_return_det`(`id_scan_return`,`id_product`,`scanned_code`,`size`,`type`) VALUES"
+                    For i = 0 To GVListProduct.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+                        q += "('" & id_scan_return & "','" & GVListProduct.GetRowCellValue(i, "id_product").ToString & "','" & GVListProduct.GetRowCellValue(i, "scanned_code").ToString & "','" & GVListProduct.GetRowCellValue(i, "size").ToString & "','" & GVListProduct.GetRowCellValue(i, "type").ToString & "')"
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+                    infoCustom("Scan updated.")
+                    Close()
+                End If
             End If
         End If
     End Sub
