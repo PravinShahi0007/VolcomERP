@@ -658,8 +658,15 @@
                         ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
                         If Not is_restock Then
                             'jika ndak ada yang bisa direstock langsung kirim email
-                            oos.sendEmailOOS(id_order_eval, id_comp_group)
-                            ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS", id_comp_group)
+                            Try
+                                oos.sendEmailOOS(id_order_eval, id_comp_group)
+                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS success", id_comp_group)
+                            Catch ex As Exception
+                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS failed", id_comp_group)
+                            End Try
+
+                            'check jika kosong langsung di closed
+                            oos.checkOOSEmptyOrder(id_order_eval, id_comp_group)
                         Else
                             ord.insertLogWebOrder(id_order_eval, "Evaluate result : Restock process", id_comp_group)
                         End If
