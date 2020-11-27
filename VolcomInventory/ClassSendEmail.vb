@@ -3132,6 +3132,42 @@ WHERE pps.`id_design_ecop_pps`='" & id_report & "'"
         </table> "
             mail.Body = body_temp
             client.Send(mail)
+        ElseIf report_mark_type = "278" Then
+            If opt = "1" Then
+                Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Out of Stock - Volcom ERP")
+                Dim mail As MailMessage = New MailMessage()
+                mail.From = from_mail
+
+                'Send to => design_code : email; design : contact person;
+                Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
+                FROM tb_mail_to md
+                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                WHERE is_to='1' AND md.report_mark_type=278 AND md.opt=1 "
+                Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+                For i As Integer = 0 To data_send_to.Rows.Count - 1
+                    Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                    mail.To.Add(to_mail)
+                Next
+
+                'Send CC
+                Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+                FROM tb_mail_to md
+                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                WHERE is_to='1' AND md.report_mark_type=278 AND md.opt=1 "
+                Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+                For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                    Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(to_mail_cc)
+                Next
+
+                Dim body_temp As String = ""
+                mail.Subject = "OOS-" + par1 + "" + date_string
+                mail.IsBodyHtml = True
+                mail.Body = body_temp
+                client.Send(mail)
+            End If
         End If
     End Sub
 

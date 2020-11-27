@@ -18,7 +18,26 @@
     End Function
 
     Sub sendEmailOOS(ByVal id_order_par As String, ByVal id_comp_group_par As String)
+        'get id oos
+        Dim query As String = "SELECT id_ol_store_oos,number, id_comp_group, description
+        FROM tb_ol_store_oos 
+        INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group = tb_ol_store_oos.id_comp_group
+        WHERE id_comp_group='" + id_comp_group_par + "' AND id_order='" + id_order_par + "' "
+        Dim data As DataTable = viewListOOS("", "AND os.id_comp_group='" + id_comp_group_par + "' AND os.id_order='" + id_order_par + "' ")
+        Dim id_report As String = data.Rows(0)("id_ol_store_oos").ToString
+        Dim id_comp_group As String = data.Rows(0)("id_comp_group").ToString
+        Dim comp_group As String = data.Rows(0)("comp_group").ToString
+        Dim number As String = data.Rows(0)("number").ToString
 
+
+        'send email
+        Dim m As New ClassSendEmail()
+        m.id_report = id_report
+        m.report_mark_type = "278"
+        m.opt = "1"
+        m.par1 = comp_group
+        m.par2 = number
+        m.send_email()
     End Sub
 
     Function viewListOOS(ByVal type_par As String, ByVal cond_par As String) As DataTable
