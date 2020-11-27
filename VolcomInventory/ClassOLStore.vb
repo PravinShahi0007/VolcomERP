@@ -21,7 +21,7 @@
 
     End Sub
 
-    Function viewListOOS(ByVal type_par As String) As DataTable
+    Function viewListOOS(ByVal type_par As String, ByVal cond_par As String) As DataTable
         Dim query As String = "SELECT os.id_ol_store_oos, os.number, os.id_comp_group, cg.comp_group, os.id_order, od.sales_order_ol_shop_number AS `order_number`, os.created_date,
         os.is_sent_email, os.manual_send_email_reason, os.sent_email_date,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 
@@ -30,6 +30,7 @@
         FROM tb_ol_store_oos os
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = os.id_comp_group
         INNER JOIN tb_ol_store_order od ON od.id_ol_store_oos = os.id_ol_store_oos
+        WHERE 1=1 " + cond_par + "
         GROUP BY os.id_order 
         HAVING 1=1 " + type_par + ""
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

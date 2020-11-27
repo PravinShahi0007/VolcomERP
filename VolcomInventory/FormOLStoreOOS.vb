@@ -5,7 +5,10 @@
         viewType()
 
         'menu type
-        LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_type", id_type)
+        If id_type <> "1" Then
+            LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_type", id_type)
+            viewData()
+        End If
     End Sub
 
     Private Sub FormOLStoreOOS_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -32,7 +35,7 @@
         Else
             cond = ""
         End If
-        Dim data As DataTable = ooslist.viewListOOS(cond)
+        Dim data As DataTable = ooslist.viewListOOS(cond, "")
         GCData.DataSource = data
         GVData.BestFitColumns()
         Cursor = Cursors.Default
@@ -54,6 +57,8 @@
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
+            FormOLStoreOOSDetail.id = GVData.GetFocusedRowCellValue("id_ol_store_oos").ToString
+            FormOLStoreOOSDetail.id_type = id_type
             FormOLStoreOOSDetail.ShowDialog()
             Cursor = Cursors.Default
         End If

@@ -35,9 +35,9 @@ Partial Class FormOLStoreOOSDetail
         Me.GCOrder = New DevExpress.XtraGrid.GridControl()
         Me.GVOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtOrderNo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtMarketplaceName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -46,6 +46,7 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnSendEmail = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClosedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
@@ -64,8 +65,8 @@ Partial Class FormOLStoreOOSDetail
         CType(Me.GVOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOrderNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMarketplaceName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOOSNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,9 +216,9 @@ Partial Class FormOLStoreOOSDetail
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.TextEdit4)
+        Me.PanelControl2.Controls.Add(Me.TxtCustomer)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Controls.Add(Me.TextEdit3)
+        Me.PanelControl2.Controls.Add(Me.TxtOrderNo)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.TxtMarketplaceName)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
@@ -229,36 +230,36 @@ Partial Class FormOLStoreOOSDetail
         Me.PanelControl2.Size = New System.Drawing.Size(980, 87)
         Me.PanelControl2.TabIndex = 2
         '
-        'TextEdit4
+        'TxtCustomer
         '
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Location = New System.Drawing.Point(454, 42)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit4.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit4.Properties.ReadOnly = True
-        Me.TextEdit4.Size = New System.Drawing.Size(283, 22)
-        Me.TextEdit4.TabIndex = 7
+        Me.TxtCustomer.EditValue = ""
+        Me.TxtCustomer.Location = New System.Drawing.Point(459, 42)
+        Me.TxtCustomer.Name = "TxtCustomer"
+        Me.TxtCustomer.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCustomer.Properties.Appearance.Options.UseFont = True
+        Me.TxtCustomer.Properties.ReadOnly = True
+        Me.TxtCustomer.Size = New System.Drawing.Size(283, 22)
+        Me.TxtCustomer.TabIndex = 7
         '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(364, 45)
+        Me.LabelControl4.Location = New System.Drawing.Point(369, 45)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(55, 16)
         Me.LabelControl4.TabIndex = 6
         Me.LabelControl4.Text = "Customer"
         '
-        'TextEdit3
+        'TxtOrderNo
         '
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Location = New System.Drawing.Point(89, 42)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit3.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit3.Properties.ReadOnly = True
-        Me.TextEdit3.Size = New System.Drawing.Size(269, 22)
-        Me.TextEdit3.TabIndex = 5
+        Me.TxtOrderNo.EditValue = ""
+        Me.TxtOrderNo.Location = New System.Drawing.Point(89, 42)
+        Me.TxtOrderNo.Name = "TxtOrderNo"
+        Me.TxtOrderNo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtOrderNo.Properties.Appearance.Options.UseFont = True
+        Me.TxtOrderNo.Properties.ReadOnly = True
+        Me.TxtOrderNo.Size = New System.Drawing.Size(269, 22)
+        Me.TxtOrderNo.TabIndex = 5
         '
         'LabelControl3
         '
@@ -272,7 +273,7 @@ Partial Class FormOLStoreOOSDetail
         'TxtMarketplaceName
         '
         Me.TxtMarketplaceName.EditValue = ""
-        Me.TxtMarketplaceName.Location = New System.Drawing.Point(454, 14)
+        Me.TxtMarketplaceName.Location = New System.Drawing.Point(459, 14)
         Me.TxtMarketplaceName.Name = "TxtMarketplaceName"
         Me.TxtMarketplaceName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtMarketplaceName.Properties.Appearance.Options.UseFont = True
@@ -283,7 +284,7 @@ Partial Class FormOLStoreOOSDetail
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(364, 17)
+        Me.LabelControl2.Location = New System.Drawing.Point(369, 17)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(80, 16)
         Me.LabelControl2.TabIndex = 2
@@ -313,24 +314,27 @@ Partial Class FormOLStoreOOSDetail
         '
         Me.BtnSendEmail.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSendEmail.Image = CType(resources.GetObject("BtnSendEmail.Image"), System.Drawing.Image)
-        Me.BtnSendEmail.Location = New System.Drawing.Point(875, 2)
+        Me.BtnSendEmail.Location = New System.Drawing.Point(826, 2)
         Me.BtnSendEmail.Name = "BtnSendEmail"
-        Me.BtnSendEmail.Size = New System.Drawing.Size(103, 41)
+        Me.BtnSendEmail.Size = New System.Drawing.Size(152, 41)
         Me.BtnSendEmail.TabIndex = 0
-        Me.BtnSendEmail.Text = "Send Email"
+        Me.BtnSendEmail.Text = "Manually Send Email"
+        Me.BtnSendEmail.Visible = False
         '
         'BtnClosedOrder
         '
         Me.BtnClosedOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClosedOrder.Image = CType(resources.GetObject("BtnClosedOrder.Image"), System.Drawing.Image)
-        Me.BtnClosedOrder.Location = New System.Drawing.Point(772, 2)
+        Me.BtnClosedOrder.Location = New System.Drawing.Point(723, 2)
         Me.BtnClosedOrder.Name = "BtnClosedOrder"
         Me.BtnClosedOrder.Size = New System.Drawing.Size(103, 41)
         Me.BtnClosedOrder.TabIndex = 1
         Me.BtnClosedOrder.Text = "Close Order"
+        Me.BtnClosedOrder.Visible = False
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnLog)
         Me.PanelControl1.Controls.Add(Me.BtnClosedOrder)
         Me.PanelControl1.Controls.Add(Me.BtnSendEmail)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -338,6 +342,16 @@ Partial Class FormOLStoreOOSDetail
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(980, 45)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnLog
+        '
+        Me.BtnLog.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnLog.Image = CType(resources.GetObject("BtnLog.Image"), System.Drawing.Image)
+        Me.BtnLog.Location = New System.Drawing.Point(2, 2)
+        Me.BtnLog.Name = "BtnLog"
+        Me.BtnLog.Size = New System.Drawing.Size(81, 41)
+        Me.BtnLog.TabIndex = 2
+        Me.BtnLog.Text = "Log"
         '
         'FormOLStoreOOSDetail
         '
@@ -371,8 +385,8 @@ Partial Class FormOLStoreOOSDetail
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOrderNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMarketplaceName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOOSNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -402,8 +416,9 @@ Partial Class FormOLStoreOOSDetail
     Friend WithEvents BtnSendEmail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnClosedOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCustomer As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtOrderNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
 End Class

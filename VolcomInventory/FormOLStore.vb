@@ -795,6 +795,7 @@
 
     Private Sub BtnOOS_Click(sender As Object, e As EventArgs) Handles BtnOOS.Click
         Cursor = Cursors.WaitCursor
+        FormOLStoreOOS.id_type = "2"
         FormOLStoreOOS.ShowDialog()
         Cursor = Cursors.Default
     End Sub
