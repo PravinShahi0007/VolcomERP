@@ -653,9 +653,11 @@
                         'evaluate oos
                         Dim oos As New ClassOLStore()
                         oos.evaluateOOS(id_order_eval, id_comp_group)
+                        ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
+
                         'cek apa ada yang bisa restok
                         Dim is_restock As Boolean = oos.checkOOSRestockOrder(id_order_eval, id_comp_group)
-                        ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
+                        ord.insertLogWebOrder(id_order_eval, "Evaluating restock", id_comp_group)
                         If Not is_restock Then
                             'jika ndak ada yang bisa direstock langsung kirim email
                             Try
