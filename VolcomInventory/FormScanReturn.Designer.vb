@@ -327,6 +327,7 @@ Partial Class FormScanReturn
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn16.Width = 141
         '
         'GridColumn12
         '
@@ -335,7 +336,7 @@ Partial Class FormScanReturn
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 236
+        Me.GridColumn12.Width = 185
         '
         'GridColumn13
         '
@@ -346,15 +347,13 @@ Partial Class FormScanReturn
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 0
-        Me.GridColumn13.Width = 137
+        Me.GridColumn13.Width = 136
         '
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Condition"
         Me.GridColumn14.FieldName = "package_condition"
         Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
         Me.GridColumn14.Width = 214
         '
         'GridColumn19
@@ -363,8 +362,8 @@ Partial Class FormScanReturn
         Me.GridColumn19.FieldName = "employee_name"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 4
-        Me.GridColumn19.Width = 214
+        Me.GridColumn19.VisibleIndex = 3
+        Me.GridColumn19.Width = 202
         '
         'GridColumn20
         '
@@ -374,8 +373,8 @@ Partial Class FormScanReturn
         Me.GridColumn20.FieldName = "created_date"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 5
-        Me.GridColumn20.Width = 222
+        Me.GridColumn20.VisibleIndex = 4
+        Me.GridColumn20.Width = 215
         '
         'RepositoryItemMemoEdit2
         '

@@ -7543,6 +7543,7 @@ GROUP BY pn.id_pn_fgpo"
             If id_status_reportx = "6" Then
                 FormEmpPayroll.insert_expense(id_report)
                 FormEmpPayroll.insert_jurnal(id_report)
+                FormEmpPayroll.remaining_leave(id_report)
             End If
 
             FormEmpPayroll.load_payroll()

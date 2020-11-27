@@ -1336,6 +1336,27 @@
         End If
     End Sub
 
+    Sub remaining_leave(ByVal id_payroll As String)
+        Dim data As DataTable = execute_query("
+            SELECT id_employee
+            FROM tb_emp_payroll_adj
+            WHERE id_salary_adj = 4 AND id_payroll = " + id_payroll + "
+        ", -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim query As String = "
+                INSERT INTO tb_emp_stock_leave(id_emp, qty, plus_minus, date_leave, date_expired, is_process_exp, `type`, note)
+                SELECT id_emp, SUM(IF(plus_minus = 1, qty, -qty)) AS qty, 2 AS plus_minus, NOW() AS date_leave, date_expired, 1 AS is_process_exp, `type`, 'Auto adjustment leave' AS note
+                FROM tb_emp_stock_leave
+                WHERE id_emp = " + data.Rows(i)("id_employee").ToString + "
+                GROUP BY id_emp, `type`, date_expired
+                HAVING SUM(IF(plus_minus = 1, qty, -qty)) > 0
+            "
+
+            execute_non_query(query, True, "", "", "", "")
+        Next
+    End Sub
+
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
         Cursor = Cursors.WaitCursor
         Dim id_acc_trans As String = ""

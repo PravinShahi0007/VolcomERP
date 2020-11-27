@@ -45,10 +45,10 @@ INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=pc.`id_code_detail` AND cd
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If Not SLEDesign.EditValue = Nothing Then
-            FormScanReturnBAP.GVListProduct.SetRowCellValue(FormScanReturnBAP.GVListProduct.RowCount - 1, "id_product", SearchLookUpEdit1View.GetFocusedRowCellValue("id_product").ToString())
-            FormScanReturnBAP.GVListProduct.SetRowCellValue(FormScanReturnBAP.GVListProduct.RowCount - 1, "code", SearchLookUpEdit1View.GetFocusedRowCellValue("product_full_code").ToString())
-            FormScanReturnBAP.GVListProduct.SetRowCellValue(FormScanReturnBAP.GVListProduct.RowCount - 1, "description", SearchLookUpEdit1View.GetFocusedRowCellValue("product_display_name").ToString())
-            FormScanReturnBAP.GVListProduct.SetRowCellValue(FormScanReturnBAP.GVListProduct.RowCount - 1, "size", SearchLookUpEdit1View.GetFocusedRowCellValue("size").ToString())
+            FormScanReturnBAP.GVListProduct.SetRowCellValue(FormScanReturnBAP.GVListProduct.FocusedRowHandle, "id_product", SearchLookUpEdit1View.GetFocusedRowCellValue("id_product").ToString())
+            FormScanReturnBAP.GVListProduct.SetRowCellValue(FormScanReturnBAP.GVListProduct.FocusedRowHandle, "code", SearchLookUpEdit1View.GetFocusedRowCellValue("product_full_code").ToString())
+            FormScanReturnBAP.GVListProduct.SetRowCellValue(FormScanReturnBAP.GVListProduct.FocusedRowHandle, "description", SearchLookUpEdit1View.GetFocusedRowCellValue("product_display_name").ToString())
+            FormScanReturnBAP.GVListProduct.SetRowCellValue(FormScanReturnBAP.GVListProduct.FocusedRowHandle, "size", SearchLookUpEdit1View.GetFocusedRowCellValue("size").ToString())
 
             Close()
         Else
