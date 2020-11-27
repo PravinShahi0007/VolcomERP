@@ -44,6 +44,14 @@
             LTotal3.Visible = True
             LTotal4.Visible = True
         Else
+            LNOMOQ.LocationF = LNO1.LocationF
+            LClassMOQ.LocationF = LClass1.LocationF
+            LDesignMOQ.LocationF = LDesign1.LocationF
+            LColorMOQ.LocationF = LColor1.LocationF
+            LQtyMOQ.LocationF = LQty1.LocationF
+            LConsMOQ.LocationF = LCons1.LocationF
+            LTotalMOQ.LocationF = LTotal1.LocationF
+            '
             LNO1.Visible = False
             LNO2.Visible = False
             LNO3.Visible = False
