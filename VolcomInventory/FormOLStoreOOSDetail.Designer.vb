@@ -21,8 +21,8 @@ Partial Class FormOLStoreOOSDetail
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPProduct = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPSync = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
@@ -41,22 +41,22 @@ Partial Class FormOLStoreOOSDetail
         Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCData.Location = New System.Drawing.Point(0, 0)
         Me.XTCData.Name = "XTCData"
-        Me.XTCData.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCData.SelectedTabPage = Me.XTPProduct
         Me.XTCData.Size = New System.Drawing.Size(700, 406)
         Me.XTCData.TabIndex = 1
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPProduct, Me.XTPSync})
         '
-        'XtraTabPage1
+        'XTPProduct
         '
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(694, 378)
-        Me.XtraTabPage1.Text = "XtraTabPage1"
+        Me.XTPProduct.Name = "XTPProduct"
+        Me.XTPProduct.Size = New System.Drawing.Size(694, 378)
+        Me.XTPProduct.Text = "Product List"
         '
-        'XtraTabPage2
+        'XTPSync
         '
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(294, 272)
-        Me.XtraTabPage2.Text = "XtraTabPage2"
+        Me.XTPSync.Name = "XTPSync"
+        Me.XTPSync.Size = New System.Drawing.Size(694, 378)
+        Me.XTPSync.Text = "Sync Info"
         '
         'FormOLStoreOOSDetail
         '
@@ -68,7 +68,7 @@ Partial Class FormOLStoreOOSDetail
         Me.MinimizeBox = False
         Me.Name = "FormOLStoreOOSDetail"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "OOS-Detail Information"
+        Me.Text = "OOS - Detail Information"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
@@ -78,6 +78,6 @@ Partial Class FormOLStoreOOSDetail
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPProduct As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPSync As DevExpress.XtraTab.XtraTabPage
 End Class
