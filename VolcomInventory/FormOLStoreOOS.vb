@@ -1,6 +1,11 @@
 ﻿Public Class FormOLStoreOOS
+    Public id_type As String = "1"
+
     Private Sub FormOLStoreOOS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewType()
+
+        'menu type
+        LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_type", id_type)
     End Sub
 
     Private Sub FormOLStoreOOS_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -14,7 +19,7 @@
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
-        viewData
+        viewData()
     End Sub
 
     Sub viewData()
@@ -44,5 +49,13 @@
         SELECT 4 AS `id_type`,'closed' AS `type` "
         viewLookupQuery(LEType, query, 0, "type", "id_type")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormOLStoreOOSDetail.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
