@@ -864,7 +864,7 @@ GROUP BY pl.`id_mat_purc_list`"
 ,ROUND((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk,2) AS total_qty_list_conv
 ,FORMAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk),0,'id_ID') AS total_qty_order_conv
 ,FORMAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk,0,'id_ID') AS total_order
-,mdp.moq
+,FORMAT(mdp.moq,0,'id_ID') AS moq
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list AND plp.`id_mat_purc_list`='" & GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString & "'
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.id_mat_det
