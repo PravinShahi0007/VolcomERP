@@ -16,7 +16,7 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
 
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
 
-        row.Font = New Font("Times New Roman", 7, FontStyle.Regular)
+        row.Font = New Font("Times New Roman", 6, FontStyle.Regular)
 
         For i = 0 To data_det.Rows.Count - 1
             'row
@@ -31,7 +31,7 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
             Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
 
             no.Text = i + 1.ToString
-            no.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
+            no.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             no.BackColor = Color.Transparent
 
@@ -39,36 +39,37 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
             Dim departement As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
             departement.Text = data_det.Rows(i)("number_return_note").ToString
-            departement.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
+            departement.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             departement.BackColor = Color.Transparent
 
             'list store
-            Dim list_store As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
 
             If Not id_current = data_det.Rows(i)("number_return_note").ToString Then
                 id_current = data_det.Rows(i)("number_return_note").ToString
+                '
+                Dim list_store As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+                list_store.Font = New Font("Times New Roman", 5.5, FontStyle.Regular)
+                list_store.WordWrap = True
+                list_store.Multiline = True
+                list_store.Text = data_det.Rows(i)("store_list").ToString
+                list_store.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+                list_store.BackColor = Color.Transparent
             Else
-                list_store.RowSpan = list_store.RowSpan + 1
-            End If
 
-            list_store.WordWrap = True
-            list_store.Multiline = True
-            list_store.Text = data_det.Rows(i)("store_list").ToString
-            list_store.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
-            list_store.BackColor = Color.Transparent
+            End If
 
             'kode barang
             Dim kode_barang As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
 
             kode_barang.Text = data_det.Rows(i)("code").ToString
-            kode_barang.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
+            kode_barang.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             kode_barang.BackColor = Color.Transparent
 
             'deskripsi barang
             Dim desc_barang As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
 
             desc_barang.Text = data_det.Rows(i)("description").ToString
-            desc_barang.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
+            desc_barang.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             desc_barang.BackColor = Color.Transparent
 
             'Size barang
@@ -76,7 +77,7 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
 
             size_barang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             size_barang.Text = data_det.Rows(i)("size").ToString
-            size_barang.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
+            size_barang.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             size_barang.BackColor = Color.Transparent
 
             'Qty barang
@@ -84,7 +85,7 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
 
             qty_barang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             qty_barang.Text = Decimal.Parse(data_det.Rows(i)("qty").ToString).ToString("N0")
-            qty_barang.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
+            qty_barang.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             qty_barang.BackColor = Color.Transparent
 
             'Notes 
@@ -93,7 +94,7 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
             notes.WordWrap = True
             notes.Multiline = True
             notes.Text = data_det.Rows(i)("note").ToString
-            notes.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right
+            notes.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
             notes.BackColor = Color.Transparent
         Next
     End Sub
