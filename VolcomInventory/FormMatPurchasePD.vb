@@ -2,6 +2,7 @@
     Public id_list As String = "-1"
 
     Private Sub FormMatPurchasePD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TEToleransi.EditValue = 2.5
         load_head()
         load_mat()
         load_break_down()

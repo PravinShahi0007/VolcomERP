@@ -90,7 +90,6 @@ Partial Public Class ReportMatPD
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
@@ -1039,14 +1038,14 @@ Partial Public Class ReportMatPD
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1})
-        Me.ReportHeader.HeightF = 109.375!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XrLabel3, Me.XrLabel1})
+        Me.ReportHeader.HeightF = 91.66666!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 68.99999!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 45.99999!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(77.08334!, 23.0!)
@@ -1058,7 +1057,7 @@ Partial Public Class ReportMatPD
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 46.0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 23.0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(277.0833!, 23.0!)
@@ -1066,18 +1065,6 @@ Partial Public Class ReportMatPD
         Me.XrLabel3.StylePriority.UseTextAlignment = False
         Me.XrLabel3.Text = "VENDOR : [comp_name]"
         Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel2
-        '
-        Me.XrLabel2.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 23.0!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(277.0833!, 23.0!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.StylePriority.UseTextAlignment = False
-        Me.XrLabel2.Text = "PURCHASE ORDER"
-        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel1
         '
@@ -1143,7 +1130,6 @@ Partial Public Class ReportMatPD
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
