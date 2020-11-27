@@ -21,6 +21,16 @@ Partial Class FormBatchUploadOnlineStore
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBatchUploadOnlineStore))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUEDivision = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLUESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CCBEProduct = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -34,27 +44,19 @@ Partial Class FormBatchUploadOnlineStore
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBatchUpload = New DevExpress.XtraGrid.GridControl()
         Me.GVBatchUpload = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SLUESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLUEDivision = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBEProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEOnlineStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCBatchUpload, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBatchUpload, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -74,6 +76,82 @@ Partial Class FormBatchUploadOnlineStore
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 124)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SLUEDivision
+        '
+        Me.SLUEDivision.Location = New System.Drawing.Point(91, 67)
+        Me.SLUEDivision.Name = "SLUEDivision"
+        Me.SLUEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEDivision.Properties.View = Me.GridView2
+        Me.SLUEDivision.Size = New System.Drawing.Size(200, 20)
+        Me.SLUEDivision.TabIndex = 11
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "GridColumn7"
+        Me.GridColumn5.FieldName = "id_code_detail"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Division"
+        Me.GridColumn6.FieldName = "code"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
+        'SLUESeason
+        '
+        Me.SLUESeason.Location = New System.Drawing.Point(91, 41)
+        Me.SLUESeason.Name = "SLUESeason"
+        Me.SLUESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUESeason.Properties.View = Me.GridView1
+        Me.SLUESeason.Size = New System.Drawing.Size(200, 20)
+        Me.SLUESeason.TabIndex = 10
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn7, Me.GridColumn8})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.FieldName = "id_season"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Season"
+        Me.GridColumn4.FieldName = "season"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "GridColumn5"
+        Me.GridColumn7.FieldName = "id_range"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Range"
+        Me.GridColumn8.FieldName = "range"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
         '
         'Label4
         '
@@ -176,92 +254,27 @@ Partial Class FormBatchUploadOnlineStore
         Me.GCBatchUpload.Location = New System.Drawing.Point(0, 124)
         Me.GCBatchUpload.MainView = Me.GVBatchUpload
         Me.GCBatchUpload.Name = "GCBatchUpload"
+        Me.GCBatchUpload.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit})
         Me.GCBatchUpload.Size = New System.Drawing.Size(784, 437)
         Me.GCBatchUpload.TabIndex = 1
         Me.GCBatchUpload.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBatchUpload})
         '
         'GVBatchUpload
         '
+        Me.GVBatchUpload.Appearance.Row.Options.UseTextOptions = True
+        Me.GVBatchUpload.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GVBatchUpload.GridControl = Me.GCBatchUpload
         Me.GVBatchUpload.Name = "GVBatchUpload"
+        Me.GVBatchUpload.OptionsBehavior.ReadOnly = True
+        Me.GVBatchUpload.OptionsPrint.PrintFooter = False
+        Me.GVBatchUpload.OptionsPrint.PrintHeader = False
         Me.GVBatchUpload.OptionsView.ColumnAutoWidth = False
+        Me.GVBatchUpload.OptionsView.RowAutoHeight = True
         Me.GVBatchUpload.OptionsView.ShowGroupPanel = False
         '
-        'SLUESeason
+        'RepositoryItemMemoEdit
         '
-        Me.SLUESeason.Location = New System.Drawing.Point(91, 41)
-        Me.SLUESeason.Name = "SLUESeason"
-        Me.SLUESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUESeason.Properties.View = Me.GridView1
-        Me.SLUESeason.Size = New System.Drawing.Size(200, 20)
-        Me.SLUESeason.TabIndex = 10
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn7, Me.GridColumn8})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "GridColumn3"
-        Me.GridColumn3.FieldName = "id_season"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Season"
-        Me.GridColumn4.FieldName = "season"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "GridColumn5"
-        Me.GridColumn7.FieldName = "id_range"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Range"
-        Me.GridColumn8.FieldName = "range"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
-        '
-        'SLUEDivision
-        '
-        Me.SLUEDivision.Location = New System.Drawing.Point(91, 67)
-        Me.SLUEDivision.Name = "SLUEDivision"
-        Me.SLUEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEDivision.Properties.View = Me.GridView2
-        Me.SLUEDivision.Size = New System.Drawing.Size(200, 20)
-        Me.SLUEDivision.TabIndex = 11
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "GridColumn7"
-        Me.GridColumn5.FieldName = "id_code_detail"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Division"
-        Me.GridColumn6.FieldName = "code"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.RepositoryItemMemoEdit.Name = "RepositoryItemMemoEdit"
         '
         'FormBatchUploadOnlineStore
         '
@@ -275,15 +288,16 @@ Partial Class FormBatchUploadOnlineStore
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBEProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEOnlineStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCBatchUpload, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBatchUpload, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -312,4 +326,5 @@ Partial Class FormBatchUploadOnlineStore
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
