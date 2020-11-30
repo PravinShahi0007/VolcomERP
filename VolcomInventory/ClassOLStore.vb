@@ -19,16 +19,17 @@
 
     Sub sendEmailOOS(ByVal id_order_par As String, ByVal id_comp_group_par As String)
         'get id oos
-        Dim query As String = "SELECT id_ol_store_oos,number, id_comp_group, description
-        FROM tb_ol_store_oos 
-        INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group = tb_ol_store_oos.id_comp_group
-        WHERE id_comp_group='" + id_comp_group_par + "' AND id_order='" + id_order_par + "' "
         Dim data As DataTable = viewListOOS("", "AND os.id_comp_group='" + id_comp_group_par + "' AND os.id_order='" + id_order_par + "' ")
         Dim id_report As String = data.Rows(0)("id_ol_store_oos").ToString
         Dim id_comp_group As String = data.Rows(0)("id_comp_group").ToString
         Dim comp_group As String = data.Rows(0)("comp_group").ToString
         Dim number As String = data.Rows(0)("number").ToString
+        Dim created_date As String = DateTime.Parse(data.Rows(0)("created_date").ToString).ToString("dd MMMM yyyy")
+        Dim customer_name As String = data.Rows(0)("customer_name").ToString
+        Dim order_no As String = data.Rows(0)("order_number").ToString
 
+        'detail oos
+        Dim data_det As DataTable = viewDetailOOS(id_report)
 
         'send email
         Dim m As New ClassSendEmail()
@@ -37,6 +38,10 @@
         m.opt = "1"
         m.par1 = comp_group
         m.par2 = number
+        m.date_string = created_date
+        m.design_code = order_no
+        m.design = customer_name
+        m.dt = data_det
         m.send_email()
     End Sub
 
@@ -56,4 +61,13 @@
         Return data
     End Function
 
+    Function viewDetailOOS(ByVal id_oos_par As String)
+        Dim query As String = "SELECT od.id_product, od.ol_store_sku, od.sku, od.ol_store_id, od.item_id, p.product_display_name AS `product_name`, 
+        od.ol_order_qty AS `order_qty`,od.sales_order_det_qty AS `so_qty`,(od.ol_order_qty-od.sales_order_det_qty) AS `oos_qty`
+        FROM tb_ol_store_order od
+        INNER JOIN tb_m_product p ON p.id_product = od.id_product
+        WHERE od.id_ol_store_oos='" + id_oos_par + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
 End Class

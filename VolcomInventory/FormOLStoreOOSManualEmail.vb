@@ -26,8 +26,10 @@
                     Dim oos As New ClassOLStore()
                     oos.sendEmailOOS(id_order, id_comp_group)
                     ord.insertLogWebOrder(id_order, "Send Email OOS success", id_comp_group)
+                    Close()
                 Catch ex As Exception
-                    ord.insertLogWebOrder(id_order, "Send Email OOS failed", id_comp_group)
+                    ord.insertLogWebOrder(id_order, "Send Email OOS failed. " + ex.ToString, id_comp_group)
+                    stopCustom("Send email failed")
                 End Try
             End If
         End If
