@@ -3138,6 +3138,12 @@ WHERE pps.`id_design_ecop_pps`='" & id_report & "'"
                 Dim mail As MailMessage = New MailMessage()
                 mail.From = from_mail
 
+                'send to mkt
+                Dim query_email_mktplace As String = "SELECT * FROM tb_m_comp_contact cc WHERE cc.id_comp='" + season + "' AND cc.is_default=1"
+                Dim data_email_mktplace As DataTable = execute_query(query_email_mktplace, -1, True, "", "", "", "")
+                Dim to_marketplace As MailAddress = New MailAddress(data_email_mktplace.Rows(0)("email").ToString, data_email_mktplace.Rows(0)("contact_person").ToString)
+                mail.To.Add(to_marketplace)
+
                 'Send to => design_code : email; design : contact person;
                 Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
                 FROM tb_mail_to md
@@ -3227,16 +3233,23 @@ WHERE pps.`id_design_ecop_pps`='" & id_report & "'"
                           <th>Ol. Store SKU</th>
                           <th>Product</th>
                           <th>Order</th>
+                          <th>Fullfilled</th>
                           <th>OOS</th>
                         </tr> "
 
                 For d As Integer = 0 To dt.Rows.Count - 1
-                    body_temp += "<tr>
+                    If dt.Rows(d)("oos_qty") > 0 Then
+                        body_temp += "<tr style='background-color: yellow;'>"
+                    Else
+                        body_temp += "<tr>"
+                    End If
+                    body_temp += "
                     <td>" + dt.Rows(d)("ol_store_id").ToString + "</td>
                     <td>" + dt.Rows(d)("item_id").ToString + "</td>
                     <td>" + dt.Rows(d)("ol_store_sku").ToString + "</td>
                     <td>" + dt.Rows(d)("product_name").ToString + "</td>
                     <td>" + dt.Rows(d)("order_qty").ToString + "</td>
+                    <td>" + dt.Rows(d)("so_qty").ToString + "</td>
                     <td>" + dt.Rows(d)("oos_qty").ToString + "</td>
                     </tr>"
                 Next

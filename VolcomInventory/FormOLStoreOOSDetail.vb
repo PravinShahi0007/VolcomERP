@@ -56,6 +56,7 @@
 
     Private Sub BtnSendEmail_Click(sender As Object, e As EventArgs) Handles BtnSendEmail.Click
         Cursor = Cursors.WaitCursor
+        FormOLStoreOOSManualEmail.id_ol_store_oos = id
         FormOLStoreOOSManualEmail.id_order = id_order
         FormOLStoreOOSManualEmail.id_comp_group = id_comp_group
         FormOLStoreOOSManualEmail.ShowDialog()

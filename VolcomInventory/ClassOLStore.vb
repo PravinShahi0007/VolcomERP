@@ -27,6 +27,7 @@
         Dim created_date As String = DateTime.Parse(data.Rows(0)("created_date").ToString).ToString("dd MMMM yyyy")
         Dim customer_name As String = data.Rows(0)("customer_name").ToString
         Dim order_no As String = data.Rows(0)("order_number").ToString
+        Dim id_comp As String = data.Rows(0)("id_comp").ToString
 
         'detail oos
         Dim data_det As DataTable = viewDetailOOS(id_report)
@@ -42,6 +43,7 @@
         m.design_code = order_no
         m.design = customer_name
         m.dt = data_det
+        m.season = id_comp
         m.send_email()
     End Sub
 
@@ -50,7 +52,7 @@
         os.is_sent_email, os.manual_send_email_reason, os.sent_email_date,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 
         SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty) AS `total_no_stock`,
-        IF(os.is_closed=1, 'closed', IF(os.is_sent_email=2,'waiting for restock','waiting for confirmation')) AS `status`
+        IF(os.is_closed=1, 'closed', IF(os.is_sent_email=2,'waiting for restock','waiting for confirmation')) AS `status`, cg.id_comp
         FROM tb_ol_store_oos os
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = os.id_comp_group
         INNER JOIN tb_ol_store_order od ON od.id_ol_store_oos = os.id_ol_store_oos
