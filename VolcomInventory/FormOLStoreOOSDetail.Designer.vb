@@ -19,6 +19,7 @@ Partial Class FormOLStoreOOSDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStoreOOSDetail))
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPProduct = New DevExpress.XtraTab.XtraTabPage()
@@ -47,6 +48,10 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnClosedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
@@ -127,6 +132,7 @@ Partial Class FormOLStoreOOSDetail
         '
         'GVProduct
         '
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.AutoExpandAllGroups = True
@@ -353,6 +359,33 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnLog.TabIndex = 2
         Me.BtnLog.Text = "Log"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 0
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 1
+        '
         'FormOLStoreOOSDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -421,4 +454,8 @@ Partial Class FormOLStoreOOSDetail
     Friend WithEvents TxtOrderNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
 End Class

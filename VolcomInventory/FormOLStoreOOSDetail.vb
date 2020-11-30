@@ -28,7 +28,26 @@
     End Sub
 
     Sub viewProductList()
-
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT od.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+        SUM(od.ol_order_qty) AS `order_qty`,SUM(od.sales_order_det_qty) AS `so_qty`, IFNULL(st.reserved_qty,0) AS `rsv_qty`,
+        (SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty)) AS `no_stock_qty`, od.od.is_poss_replace
+        FROM tb_ol_store_order od 
+        INNER JOIN tb_m_product p ON p.id_product = od.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        LEFT JOIN (
+	        SELECT f.id_product,SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `reserved_qty`
+	        FROM tb_storage_fg f
+	        WHERE f.report_mark_type=278 AND f.id_report=" + id + "
+	        GROUP BY f.id_product
+        ) st ON st.id_product = od.id_product
+        WHERE od.id_ol_store_oos=" + id + "
+        GROUP BY od.id_product "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProduct.DataSource = data
+        GVProduct.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewRestockList()
