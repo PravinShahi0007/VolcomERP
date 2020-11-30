@@ -123,13 +123,153 @@
     End Sub
 
     Sub column_zalora()
+        'select
+        Dim list_custom As List(Of String) = New List(Of String)
+
+        Dim q_select As String = ""
+
+        Dim data_column As DataTable = execute_query("
+            SELECT cl.column_list_1, cl.column_list_2, cl.column_list_3, IF(cf.id_design_column_list_custom_fixed IS NULL, cl.column_mapping, CONCAT('custom_', cf.id_design_column_list_fixed)) AS column_mapping
+            FROM tb_design_column_list_fixed AS cl
+            LEFT JOIN tb_design_column_list_custom_fixed AS cf ON cl.id_design_column_list_fixed = cf.id_design_column_list_fixed
+            WHERE cl.id_design_column_type = " + SLUEOnlineStore.EditValue.ToString + "
+            GROUP BY cl.id_design_column_list_fixed
+            ORDER BY cl.sort ASC, cl.id_design_column_list_fixed ASC
+        ", -1, True, "", "", "", "")
+
+        For i = 0 To data_column.Rows.Count - 1
+            Dim value As String = data_column.Rows(i)("column_mapping").ToString
+
+            If value.Contains("custom_") Then
+                q_select += value + " AS `" + data_column.Rows(i)("column_list_3").ToString + "`, "
+
+                list_custom.Add(value.Replace("custom_", ""))
+            Else
+                Dim q_concat As String = "CONCAT("
+
+                'split value by line
+                value = value.Replace(vbCr, "")
+
+                Dim s_line() As String = value.Split(vbLf)
+
+                For j = 0 To s_line.Count - 1
+                    'list all string
+                    Dim l_list_all As List(Of String) = New List(Of String)
+
+                    'split by string
+                    Dim matched As System.Text.RegularExpressions.MatchCollection = System.Text.RegularExpressions.Regex.Matches(s_line(j), "(.)")
+
+                    'combine `column`
+                    Dim is_new_line As Boolean = True
+
+                    For k = 0 To matched.Count - 1
+                        Dim vchar As String = matched(k).Value
+
+                        If is_new_line Then
+                            l_list_all.Add(vchar)
+                        Else
+                            l_list_all(l_list_all.Count - 1) += vchar
+                        End If
+
+                        If vchar = "`" Then
+                            If is_new_line Then
+                                is_new_line = False
+                            Else
+                                is_new_line = True
+                            End If
+                        End If
+                    Next
+
+                    'build concat
+                    For k = 0 To l_list_all.Count - 1
+                        If l_list_all(k).Contains("`") Then
+                            q_concat += "IFNULL(" + l_list_all(k) + ", ''), "
+                        Else
+                            q_concat += "'" + l_list_all(k) + "', "
+                        End If
+                    Next
+
+                    If j < (s_line.Count - 1) Then
+                        q_concat += "'\n', "
+                    End If
+                Next
+
+                q_concat = If(q_concat = "CONCAT(", "CONCAT(''", q_concat.Substring(0, q_concat.Length - 2)) + ") AS `" + data_column.Rows(i)("column_list_3").ToString + "`"
+
+                q_select += q_concat + ", "
+            End If
+        Next
+
         Dim data As DataTable = New DataTable
 
-        data.Columns.Add("Data", GetType(String))
+        'add header
+        For i = 0 To data_column.Rows.Count - 1
+            data.Columns.Add(data_column.Rows(i)("column_list_3").ToString, GetType(String))
+        Next
 
-        data.Rows.Add(SLUEOnlineStore.Text)
+        For x = 1 To 3
+            Dim row As DataRow = data.NewRow
+
+            For i = 0 To data_column.Rows.Count - 1
+                row(data_column.Rows(i)("column_list_3").ToString) = data_column.Rows(i)("column_list_" + x.ToString).ToString
+            Next
+
+            data.Rows.Add(row)
+        Next
+
+        'custom column
+        For i = 0 To list_custom.Count - 1
+            Dim data_custom As DataTable = execute_query("SELECT * FROM tb_design_column_list_custom_fixed WHERE id_design_column_list_fixed = " + list_custom(i), -1, True, "", "", "", "")
+
+            Dim q_custom As String = ""
+
+            For j = 0 To data_custom.Rows.Count - 1
+                Dim clm As String = data_custom.Rows(j)("column_check").ToString
+                Dim val As String = data_custom.Rows(j)("column_value").ToString
+                Dim res As String = data_custom.Rows(j)("column_result").ToString
+
+                If j = 0 Then
+                    q_custom = "IF(" + clm + " = '" + val + "', '" + res + "', [false])"
+                Else
+                    q_custom = q_custom.Replace("[false]", "IF(" + clm + " = '" + val + "', '" + res + "', [false])")
+                End If
+            Next
+
+            q_custom = q_custom.Replace("[false]", "''")
+
+            q_select = q_select.Replace("custom_" + list_custom(i), q_custom)
+        Next
+
+        If Not q_select = "" Then
+            'query
+            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + CCBEProduct.EditValue.ToString + """)"
+
+            Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            data.Merge(data_tmp)
+
+            If data.Rows.Count > 4 Then
+                'replace enter with new line
+                For i = 4 To data.Rows.Count - 1
+                    For j = 0 To data.Columns.Count - 1
+                        If data.Rows(i)(data.Columns(j)).ToString.Contains("[enter]") Then
+                            data.Rows(i)(data.Columns(j)) = data.Rows(i)(data.Columns(j)).ToString.Replace("[enter]", Environment.NewLine)
+                        End If
+                    Next
+                Next
+
+                data.Columns.Remove(data.Columns("id_design"))
+                data.Columns.Remove(data.Columns("id_product"))
+            End If
+        End If
 
         GCBatchUpload.DataSource = data
+
+        'add memo edit
+        For i = 0 To GVBatchUpload.Columns.Count - 1
+            GVBatchUpload.Columns(i).Width = 250
+            GVBatchUpload.Columns(i).ColumnEdit = RepositoryItemMemoEdit
+        Next
     End Sub
 
     Sub column_blibli()
@@ -277,7 +417,7 @@
 
         'add memo edit
         For i = 0 To GVBatchUpload.Columns.Count - 1
-            GVBatchUpload.Columns(i).Width = 200
+            GVBatchUpload.Columns(i).Width = 250
             GVBatchUpload.Columns(i).ColumnEdit = RepositoryItemMemoEdit
         Next
     End Sub
@@ -427,7 +567,7 @@
 
         'add memo edit
         For i = 0 To GVBatchUpload.Columns.Count - 1
-            GVBatchUpload.Columns(i).Width = 200
+            GVBatchUpload.Columns(i).Width = 250
             GVBatchUpload.Columns(i).ColumnEdit = RepositoryItemMemoEdit
         Next
     End Sub
@@ -493,6 +633,16 @@
         If SLUEOnlineStore.EditValue.ToString = "5" Then
             If e.RowHandle = 0 Or e.RowHandle = 1 Then
                 e.Appearance.BackColor = Color.Silver
+                e.Appearance.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+            End If
+        End If
+
+        If SLUEOnlineStore.EditValue.ToString = "4" Then
+            If e.RowHandle = 0 Or e.RowHandle = 1 Or e.RowHandle = 2 Then
+                e.Appearance.BackColor = Color.Silver
+            End If
+
+            If e.RowHandle = 2 Then
                 e.Appearance.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
             End If
         End If
