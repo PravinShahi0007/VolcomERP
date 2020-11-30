@@ -2,13 +2,19 @@
     Public data_det As DataTable
     Public id_bap As String = "-1"
     Private Sub ReportScanReturnBAP_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        XRHeader.Html = "Pada hari ini [day_s], tanggal [date_s], bulan [month_s], tahun [year_s], kami yang bertandatangan di bawah ini, telah melakukan serah terima kiriman produk sesuai prosedur yang berlaku pada <br /><b>PT. Volcom Indonesia</b>. Dari hasil serah terima produk tersebut, dapat kami sampaikan sebagai berikut:"
-        XRpoint2.Html = "Fisik produk <b>TIDAK SESUAI</b>  dengan Dokumen terkait yang terdapat di dalam paket / box.<br/>Adapun produk yang tidak sesuai adalah sebagai berikut :"
+        XRHeader.Html = "<p style='text-align: justify'>Pada hari ini <b><u>[day_s]</u></b>, tanggal <b><u>[date_s]</u></b>, bulan <b><u>[month_s]</u></b>, tahun <b><u>[year_s]</u></b>, kami yang bertandatangan di bawah ini, telah melakukan serah terima kiriman produk sesuai prosedur yang berlaku pada <br /><b>PT. Volcom Indonesia</b>. Dari hasil serah terima produk tersebut, dapat kami sampaikan sebagai berikut:</p>"
+        XRpoint2.Html = "Fisik produk <b><u>TIDAK SESUAI</u></b>  dengan Dokumen terkait yang terdapat di dalam paket / box.<br/>Adapun produk yang tidak sesuai adalah sebagai berikut :"
 
         '
-        Dim q As String = "SET @@lc_time_names = 'id_ID';SELECT bap_number,DAYNAME(bap_date) AS day_s,DATE_FORMAT(bap_date,'%d') AS date_s,DATE_FORMAT(bap_date,'%M') AS month_s,DATE_FORMAT(bap_date,'%Y') AS year_s,IF(`is_lubang`=1,'V','') AS is_lubang,IF(`is_seal_rusak`=1,'V','') AS `is_seal_rusak`,IF(`is_basah`=1,'V','') AS `is_basah`,IF(`is_other_cond`=1,'V','') AS `is_other_cond`,`other_cond`
-FROM `tb_scan_return_bap`
-WHERE `id_scan_return_bap` = '" & id_bap & "'"
+        Dim q As String = "SET @@lc_time_names = 'id_ID';
+SELECT IFNULL(c.`comp_name`,'Warehouse') AS comp_name,bap_number,emp_wh_mngr.employee_name AS wh_manager_name,emp_wh_mngr.employee_position AS wh_manager_position,emp.employee_name,emp.employee_position,DAYNAME(bap_date) AS day_s,DATE_FORMAT(bap_date,'%d') AS date_s,DATE_FORMAT(bap_date,'%M') AS month_s,DATE_FORMAT(bap_date,'%Y') AS year_s,IF(`is_lubang`=1,'V','') AS is_lubang,IF(`is_seal_rusak`=1,'V','') AS `is_seal_rusak`,IF(`is_basah`=1,'V','') AS `is_basah`,IF(`is_other_cond`=1,'V','') AS `is_other_cond`,`other_cond`
+FROM `tb_scan_return_bap` bap
+INNER JOIN tb_m_user usr ON usr.id_user=bap.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_m_user usr_wh_mngr ON usr_wh_mngr.id_user=(SELECT id_user_head FROM tb_m_departement WHERE id_departement='6' LIMIT 1)
+INNER JOIN tb_m_employee emp_wh_mngr ON  emp_wh_mngr.id_employee=usr_wh_mngr.id_employee
+LEFT JOIN tb_m_comp c ON c.`id_comp`=bap.`id_3pl`
+WHERE bap.`id_scan_return_bap` = '" & id_bap & "'"
         DataSource = execute_query(q, -1, True, "", "", "", "")
         '
 
@@ -16,7 +22,6 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
 
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
 
-        row.Font = New Font("Times New Roman", 6, FontStyle.Regular)
 
         For i = 0 To data_det.Rows.Count - 1
             'row
@@ -27,6 +32,8 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
                 row = XTDetail.InsertRowBelow(row)
             End If
 
+            row.Font = New Font("Tahoma", 7.5, FontStyle.Regular)
+
             'no
             Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
 
@@ -35,27 +42,36 @@ WHERE `id_scan_return_bap` = '" & id_bap & "'"
             no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             no.BackColor = Color.Transparent
 
-            'return Note number
-            Dim departement As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+            If Not id_current = data_det.Rows(i)("id_return_note").ToString Then
+                id_current = data_det.Rows(i)("id_return_note").ToString
 
-            departement.Text = data_det.Rows(i)("number_return_note").ToString
-            departement.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-            departement.BackColor = Color.Transparent
+                'return Note number
+                Dim rn_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
-            'list store
+                rn_number.Text = data_det.Rows(i)("number_return_note").ToString
+                rn_number.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+                rn_number.BackColor = Color.Transparent
+                'search how many rowspan
+                For j = i To data_det.Rows.Count - 1
+                    If id_current = data_det.Rows(i)("id_return_note").ToString Then
+                        rn_number.RowSpan += 1
+                    End If
+                Next
 
-            If Not id_current = data_det.Rows(i)("number_return_note").ToString Then
-                id_current = data_det.Rows(i)("number_return_note").ToString
-                '
+                'list store
                 Dim list_store As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
-                list_store.Font = New Font("Times New Roman", 5.5, FontStyle.Regular)
                 list_store.WordWrap = True
                 list_store.Multiline = True
                 list_store.Text = data_det.Rows(i)("store_list").ToString
                 list_store.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
                 list_store.BackColor = Color.Transparent
-            Else
 
+                'search how many rowspan
+                For j = i To data_det.Rows.Count - 1
+                    If id_current = data_det.Rows(i)("id_return_note").ToString Then
+                        list_store.RowSpan += 1
+                    End If
+                Next
             End If
 
             'kode barang
