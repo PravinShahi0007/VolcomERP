@@ -144,70 +144,80 @@
 
     Sub column_shopee()
         'select
+        Dim list_custom As List(Of String) = New List(Of String)
+
         Dim q_select As String = ""
 
         Dim data_column As DataTable = execute_query("
-            SELECT cl.column_list_1, cl.column_list_2, cl.column_list_3, cl.column_list_4, cl.column_list_5, cl.column_mapping
+            SELECT cl.column_list_1, cl.column_list_2, cl.column_list_3, cl.column_list_4, cl.column_list_5, IF(cf.id_design_column_list_custom_fixed IS NULL, cl.column_mapping, CONCAT('custom_', cf.id_design_column_list_custom_fixed)) AS column_mapping
             FROM tb_design_column_list_fixed AS cl
+            LEFT JOIN tb_design_column_list_custom_fixed AS cf ON cl.id_design_column_list_fixed = cf.id_design_column_list_fixed
             WHERE cl.id_design_column_type = " + SLUEOnlineStore.EditValue.ToString + "
+            GROUP BY cl.id_design_column_list_fixed
             ORDER BY cl.sort ASC, cl.id_design_column_list_fixed ASC
         ", -1, True, "", "", "", "")
 
         For i = 0 To data_column.Rows.Count - 1
-            Dim q_concat As String = "CONCAT("
-
-            'split value by line
             Dim value As String = data_column.Rows(i)("column_mapping").ToString
 
-            value = value.Replace(vbCr, "")
+            If value.Contains("custom_") Then
+                q_select += value + " AS `" + data_column.Rows(i)("column_list_2").ToString + "`, "
 
-            Dim s_line() As String = value.Split(vbLf)
+                list_custom.Add(value.Replace("custom_", ""))
+            Else
+                Dim q_concat As String = "CONCAT("
 
-            For j = 0 To s_line.Count - 1
-                'list all string
-                Dim l_list_all As List(Of String) = New List(Of String)
+                'split value by line
+                value = value.Replace(vbCr, "")
 
-                'split by string
-                Dim matched As System.Text.RegularExpressions.MatchCollection = System.Text.RegularExpressions.Regex.Matches(s_line(j), "(.)")
+                Dim s_line() As String = value.Split(vbLf)
 
-                'combine `column`
-                Dim is_new_line As Boolean = True
+                For j = 0 To s_line.Count - 1
+                    'list all string
+                    Dim l_list_all As List(Of String) = New List(Of String)
 
-                For k = 0 To matched.Count - 1
-                    Dim vchar As String = matched(k).Value
+                    'split by string
+                    Dim matched As System.Text.RegularExpressions.MatchCollection = System.Text.RegularExpressions.Regex.Matches(s_line(j), "(.)")
 
-                    If is_new_line Then
-                        l_list_all.Add(vchar)
-                    Else
-                        l_list_all(l_list_all.Count - 1) += vchar
-                    End If
+                    'combine `column`
+                    Dim is_new_line As Boolean = True
 
-                    If vchar = "`" Then
+                    For k = 0 To matched.Count - 1
+                        Dim vchar As String = matched(k).Value
+
                         If is_new_line Then
-                            is_new_line = False
+                            l_list_all.Add(vchar)
                         Else
-                            is_new_line = True
+                            l_list_all(l_list_all.Count - 1) += vchar
                         End If
+
+                        If vchar = "`" Then
+                            If is_new_line Then
+                                is_new_line = False
+                            Else
+                                is_new_line = True
+                            End If
+                        End If
+                    Next
+
+                    'build concat
+                    For k = 0 To l_list_all.Count - 1
+                        If l_list_all(k).Contains("`") Then
+                            q_concat += "IFNULL(" + l_list_all(k) + ", ''), "
+                        Else
+                            q_concat += "'" + l_list_all(k) + "', "
+                        End If
+                    Next
+
+                    If j < (s_line.Count - 1) Then
+                        q_concat += "'\n', "
                     End If
                 Next
 
-                'build concat
-                For k = 0 To l_list_all.Count - 1
-                    If l_list_all(k).Contains("`") Then
-                        q_concat += "IFNULL(" + l_list_all(k) + ", ''), "
-                    Else
-                        q_concat += "'" + l_list_all(k) + "', "
-                    End If
-                Next
+                q_concat = If(q_concat = "CONCAT(", "CONCAT(''", q_concat.Substring(0, q_concat.Length - 2)) + ") AS `" + data_column.Rows(i)("column_list_2").ToString + "`"
 
-                If j < (s_line.Count - 1) Then
-                    q_concat += "'\n', "
-                End If
-            Next
-
-            q_concat = If(q_concat = "CONCAT(", "CONCAT(''", q_concat.Substring(0, q_concat.Length - 2)) + ") AS `" + data_column.Rows(i)("column_list_2").ToString + "`"
-
-            q_select += q_concat + ", "
+                q_select += q_concat + ", "
+            End If
         Next
 
         Dim data As DataTable = New DataTable
@@ -225,6 +235,29 @@
             Next
 
             data.Rows.Add(row)
+        Next
+
+        'custom column
+        For i = 0 To list_custom.Count - 1
+            Dim data_custom As DataTable = execute_query("SELECT * FROM tb_design_column_list_custom_fixed WHERE id_design_column_list_fixed = " + list_custom(i), -1, True, "", "", "", "")
+
+            Dim q_custom As String = ""
+
+            For j = 0 To data_custom.Rows.Count - 1
+                Dim clm As String = data_custom.Rows(j)("column_check").ToString
+                Dim val As String = data_custom.Rows(j)("column_value").ToString
+                Dim res As String = data_custom.Rows(j)("column_result").ToString
+
+                If j = 0 Then
+                    q_custom = "IF(" + clm + " = '" + val + "', '" + res + "', [false])"
+                Else
+                    q_custom = q_custom.Replace("[false]", "IF(" + clm + " = '" + val + "', '" + res + "', [false])")
+                End If
+            Next
+
+            q_custom = q_custom.Replace("[false]", "''")
+
+            q_select = q_select.Replace("custom_" + list_custom(i), q_custom)
         Next
 
         If Not q_select = "" Then
