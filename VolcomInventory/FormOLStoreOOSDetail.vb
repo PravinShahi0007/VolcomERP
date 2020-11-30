@@ -31,7 +31,7 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT od.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
         SUM(od.ol_order_qty) AS `order_qty`,SUM(od.sales_order_det_qty) AS `so_qty`, IFNULL(st.reserved_qty,0) AS `rsv_qty`,
-        (SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty)) AS `no_stock_qty`, od.od.is_poss_replace
+        (SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty)) AS `no_stock_qty`, od.is_poss_replace
         FROM tb_ol_store_order od 
         INNER JOIN tb_m_product p ON p.id_product = od.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product

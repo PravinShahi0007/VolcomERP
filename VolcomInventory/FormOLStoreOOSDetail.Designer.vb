@@ -26,7 +26,19 @@ Partial Class FormOLStoreOOSDetail
         Me.SCCOOS = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControlProduct = New DevExpress.XtraEditors.GroupControl()
         Me.GCProduct = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RestockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnso_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnno_stock_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrsv_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_poss_replace = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_poss_replace_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnPrintProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlRestock = New DevExpress.XtraEditors.GroupControl()
         Me.GCRestock = New DevExpress.XtraGrid.GridControl()
@@ -48,10 +60,6 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnClosedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
@@ -60,6 +68,7 @@ Partial Class FormOLStoreOOSDetail
         CType(Me.GroupControlProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlProduct.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlRestock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlRestock.SuspendLayout()
@@ -105,7 +114,7 @@ Partial Class FormOLStoreOOSDetail
         Me.SCCOOS.Panel2.Controls.Add(Me.GroupControlRestock)
         Me.SCCOOS.Panel2.Text = "Panel2"
         Me.SCCOOS.Size = New System.Drawing.Size(974, 401)
-        Me.SCCOOS.SplitterPosition = 466
+        Me.SCCOOS.SplitterPosition = 492
         Me.SCCOOS.TabIndex = 0
         Me.SCCOOS.Text = "SplitContainerControl1"
         '
@@ -116,23 +125,36 @@ Partial Class FormOLStoreOOSDetail
         Me.GroupControlProduct.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlProduct.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlProduct.Name = "GroupControlProduct"
-        Me.GroupControlProduct.Size = New System.Drawing.Size(466, 401)
+        Me.GroupControlProduct.Size = New System.Drawing.Size(492, 401)
         Me.GroupControlProduct.TabIndex = 0
         Me.GroupControlProduct.Text = "Product List"
         '
         'GCProduct
         '
+        Me.GCProduct.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCProduct.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCProduct.Location = New System.Drawing.Point(2, 20)
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(462, 356)
+        Me.GCProduct.Size = New System.Drawing.Size(488, 356)
         Me.GCProduct.TabIndex = 0
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RestockToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(116, 26)
+        '
+        'RestockToolStripMenuItem
+        '
+        Me.RestockToolStripMenuItem.Name = "RestockToolStripMenuItem"
+        Me.RestockToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.RestockToolStripMenuItem.Text = "Restock"
+        '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnorder_qty, Me.GridColumnso_qty, Me.GridColumnno_stock_qty, Me.GridColumnrsv_qty, Me.GridColumnis_poss_replace, Me.GridColumnis_poss_replace_view})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.AutoExpandAllGroups = True
@@ -142,12 +164,101 @@ Partial Class FormOLStoreOOSDetail
         Me.GVProduct.OptionsView.ShowFooter = True
         Me.GVProduct.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 0
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 1
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 2
+        '
+        'GridColumnorder_qty
+        '
+        Me.GridColumnorder_qty.Caption = "Order Qty"
+        Me.GridColumnorder_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnorder_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnorder_qty.FieldName = "order_qty"
+        Me.GridColumnorder_qty.Name = "GridColumnorder_qty"
+        Me.GridColumnorder_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
+        Me.GridColumnorder_qty.Visible = True
+        Me.GridColumnorder_qty.VisibleIndex = 3
+        '
+        'GridColumnso_qty
+        '
+        Me.GridColumnso_qty.Caption = "Fulfillment Qty"
+        Me.GridColumnso_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnso_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnso_qty.FieldName = "so_qty"
+        Me.GridColumnso_qty.Name = "GridColumnso_qty"
+        Me.GridColumnso_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "so_qty", "{0:N0}")})
+        Me.GridColumnso_qty.Visible = True
+        Me.GridColumnso_qty.VisibleIndex = 4
+        '
+        'GridColumnno_stock_qty
+        '
+        Me.GridColumnno_stock_qty.Caption = "No Stock Qty"
+        Me.GridColumnno_stock_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnno_stock_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnno_stock_qty.FieldName = "no_stock_qty"
+        Me.GridColumnno_stock_qty.Name = "GridColumnno_stock_qty"
+        Me.GridColumnno_stock_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_qty", "{0:N0}")})
+        Me.GridColumnno_stock_qty.Visible = True
+        Me.GridColumnno_stock_qty.VisibleIndex = 5
+        '
+        'GridColumnrsv_qty
+        '
+        Me.GridColumnrsv_qty.Caption = "Booked Qty"
+        Me.GridColumnrsv_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnrsv_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnrsv_qty.FieldName = "rsv_qty"
+        Me.GridColumnrsv_qty.Name = "GridColumnrsv_qty"
+        Me.GridColumnrsv_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty", "{0:N0}")})
+        '
+        'GridColumnis_poss_replace
+        '
+        Me.GridColumnis_poss_replace.Caption = "is_poss_replace"
+        Me.GridColumnis_poss_replace.FieldName = "is_poss_replace"
+        Me.GridColumnis_poss_replace.Name = "GridColumnis_poss_replace"
+        '
+        'GridColumnis_poss_replace_view
+        '
+        Me.GridColumnis_poss_replace_view.Caption = "Restock Posibility"
+        Me.GridColumnis_poss_replace_view.FieldName = "is_poss_replace_view"
+        Me.GridColumnis_poss_replace_view.Name = "GridColumnis_poss_replace_view"
+        Me.GridColumnis_poss_replace_view.UnboundExpression = "Iif([is_poss_replace] = 1, 'Yes', 'No')"
+        Me.GridColumnis_poss_replace_view.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnis_poss_replace_view.Visible = True
+        Me.GridColumnis_poss_replace_view.VisibleIndex = 6
+        Me.GridColumnis_poss_replace_view.Width = 142
+        '
         'BtnPrintProduct
         '
         Me.BtnPrintProduct.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BtnPrintProduct.Location = New System.Drawing.Point(2, 376)
         Me.BtnPrintProduct.Name = "BtnPrintProduct"
-        Me.BtnPrintProduct.Size = New System.Drawing.Size(462, 23)
+        Me.BtnPrintProduct.Size = New System.Drawing.Size(488, 23)
         Me.BtnPrintProduct.TabIndex = 1
         Me.BtnPrintProduct.Text = "Print Product List"
         '
@@ -158,7 +269,7 @@ Partial Class FormOLStoreOOSDetail
         Me.GroupControlRestock.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlRestock.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlRestock.Name = "GroupControlRestock"
-        Me.GroupControlRestock.Size = New System.Drawing.Size(503, 401)
+        Me.GroupControlRestock.Size = New System.Drawing.Size(477, 401)
         Me.GroupControlRestock.TabIndex = 1
         Me.GroupControlRestock.Text = "Restock Detail"
         '
@@ -168,7 +279,7 @@ Partial Class FormOLStoreOOSDetail
         Me.GCRestock.Location = New System.Drawing.Point(2, 20)
         Me.GCRestock.MainView = Me.GVRestock
         Me.GCRestock.Name = "GCRestock"
-        Me.GCRestock.Size = New System.Drawing.Size(499, 356)
+        Me.GCRestock.Size = New System.Drawing.Size(473, 356)
         Me.GCRestock.TabIndex = 1
         Me.GCRestock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRestock})
         '
@@ -188,7 +299,7 @@ Partial Class FormOLStoreOOSDetail
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.SimpleButton1.Location = New System.Drawing.Point(2, 376)
         Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(499, 23)
+        Me.SimpleButton1.Size = New System.Drawing.Size(473, 23)
         Me.SimpleButton1.TabIndex = 2
         Me.SimpleButton1.Text = "Print Restock Detail"
         '
@@ -359,33 +470,6 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnLog.TabIndex = 2
         Me.BtnLog.Text = "Log"
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
-        '
-        'GridColumnid_product
-        '
-        Me.GridColumnid_product.Caption = "id_product"
-        Me.GridColumnid_product.FieldName = "id_product"
-        Me.GridColumnid_product.Name = "GridColumnid_product"
-        '
-        'GridColumncode
-        '
-        Me.GridColumncode.Caption = "Code"
-        Me.GridColumncode.FieldName = "code"
-        Me.GridColumncode.Name = "GridColumncode"
-        Me.GridColumncode.Visible = True
-        Me.GridColumncode.VisibleIndex = 0
-        '
-        'GridColumnname
-        '
-        Me.GridColumnname.Caption = "Description"
-        Me.GridColumnname.FieldName = "name"
-        Me.GridColumnname.Name = "GridColumnname"
-        Me.GridColumnname.Visible = True
-        Me.GridColumnname.VisibleIndex = 1
-        '
         'FormOLStoreOOSDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -407,6 +491,7 @@ Partial Class FormOLStoreOOSDetail
         CType(Me.GroupControlProduct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlProduct.ResumeLayout(False)
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlRestock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlRestock.ResumeLayout(False)
@@ -458,4 +543,12 @@ Partial Class FormOLStoreOOSDetail
     Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnso_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnno_stock_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrsv_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_poss_replace As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_poss_replace_view As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RestockToolStripMenuItem As ToolStripMenuItem
 End Class
