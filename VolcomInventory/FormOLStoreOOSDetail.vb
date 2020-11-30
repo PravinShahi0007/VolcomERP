@@ -3,6 +3,7 @@
     Public id_type As String = "-1"
     Dim is_sent_email As String = "-1"
     Dim id_comp_group As String = "-1"
+    Dim id_order As String = "-1"
 
 
     Private Sub FormOLStoreOOSDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -19,6 +20,7 @@
         TxtCustomer.Text = data.Rows(0)("customer_name").ToString
         is_sent_email = data.Rows(0)("is_sent_email").ToString
         id_comp_group = data.Rows(0)("id_comp_group").ToString
+        id_order = data.Rows(0)("id_order").ToString
         allowStatus()
         viewProductList()
         viewRestockList()
@@ -54,7 +56,7 @@
 
     Private Sub BtnSendEmail_Click(sender As Object, e As EventArgs) Handles BtnSendEmail.Click
         Cursor = Cursors.WaitCursor
-        FormOLStoreOOSManualEmail.id_order = id
+        FormOLStoreOOSManualEmail.id_order = id_order
         FormOLStoreOOSManualEmail.id_comp_group = id_comp_group
         FormOLStoreOOSManualEmail.ShowDialog()
         Cursor = Cursors.Default
@@ -62,6 +64,9 @@
 
     Private Sub BtnLog_Click(sender As Object, e As EventArgs) Handles BtnLog.Click
         Cursor = Cursors.WaitCursor
+        FormOLStoreLog.id_order = id_order
+        FormOLStoreLog.id_comp_group = id_comp_group
+        FormOLStoreLog.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

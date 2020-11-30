@@ -70,4 +70,13 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Function viewLogOrder(ByVal id_order_par As String, ByVal id_comp_group_par As String) As DataTable
+        Dim query As String = "SELECT l.id, l.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`, l.log_date, l.log_note
+        FROM tb_ol_store_order_log l 
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = l.id_comp_group
+        WHERE l.id_comp_group='" + id_comp_group_par + "' AND l.id='" + id_order_par + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
 End Class
