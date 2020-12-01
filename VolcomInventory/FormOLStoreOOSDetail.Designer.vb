@@ -61,6 +61,7 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnClosedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnConfirmRestock = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
@@ -462,7 +463,7 @@ Partial Class FormOLStoreOOSDetail
         '
         Me.BtnClosedOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClosedOrder.Image = CType(resources.GetObject("BtnClosedOrder.Image"), System.Drawing.Image)
-        Me.BtnClosedOrder.Location = New System.Drawing.Point(723, 2)
+        Me.BtnClosedOrder.Location = New System.Drawing.Point(595, 2)
         Me.BtnClosedOrder.Name = "BtnClosedOrder"
         Me.BtnClosedOrder.Size = New System.Drawing.Size(103, 41)
         Me.BtnClosedOrder.TabIndex = 1
@@ -473,6 +474,7 @@ Partial Class FormOLStoreOOSDetail
         '
         Me.PanelControl1.Controls.Add(Me.BtnLog)
         Me.PanelControl1.Controls.Add(Me.BtnClosedOrder)
+        Me.PanelControl1.Controls.Add(Me.BtnConfirmRestock)
         Me.PanelControl1.Controls.Add(Me.BtnSendEmail)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 516)
@@ -489,6 +491,17 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnLog.Size = New System.Drawing.Size(81, 41)
         Me.BtnLog.TabIndex = 2
         Me.BtnLog.Text = "Log"
+        '
+        'BtnConfirmRestock
+        '
+        Me.BtnConfirmRestock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnConfirmRestock.Image = CType(resources.GetObject("BtnConfirmRestock.Image"), System.Drawing.Image)
+        Me.BtnConfirmRestock.Location = New System.Drawing.Point(698, 2)
+        Me.BtnConfirmRestock.Name = "BtnConfirmRestock"
+        Me.BtnConfirmRestock.Size = New System.Drawing.Size(128, 41)
+        Me.BtnConfirmRestock.TabIndex = 3
+        Me.BtnConfirmRestock.Text = "Confirm Restock"
+        Me.BtnConfirmRestock.Visible = False
         '
         'FormOLStoreOOSDetail
         '
@@ -572,4 +585,5 @@ Partial Class FormOLStoreOOSDetail
     Friend WithEvents GridColumnid_design_cat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnbtn_restock As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoBtnRestock As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents BtnConfirmRestock As DevExpress.XtraEditors.SimpleButton
 End Class

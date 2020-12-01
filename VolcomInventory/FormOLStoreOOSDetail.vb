@@ -2,6 +2,7 @@
     Public id As String = "-1"
     Public id_type As String = "-1"
     Dim is_sent_email As String = "-1"
+    Dim is_confirm_restock As String = "-1"
     Dim id_comp_group As String = "-1"
     Dim id_order As String = "-1"
 
@@ -19,6 +20,7 @@
         TxtOrderNo.Text = data.Rows(0)("order_number").ToString
         TxtCustomer.Text = data.Rows(0)("customer_name").ToString
         is_sent_email = data.Rows(0)("is_sent_email").ToString
+        is_confirm_restock = data.Rows(0)("is_confirm_restock").ToString
         id_comp_group = data.Rows(0)("id_comp_group").ToString
         id_order = data.Rows(0)("id_order").ToString
         allowStatus()
@@ -56,12 +58,17 @@
 
     Sub allowStatus()
         'show button email
-        If is_sent_email = "2" And id_type = "2" Then
+        If is_confirm_restock = "1" Then
             BtnSendEmail.Visible = True
         End If
+
+        'show button confirm restock
+        If is_confirm_restock = "2" And id_type = "2" Then
+            BtnConfirmRestock.Visible = True
+        End If
         'show button close order
-        If is_sent_email = "1" And id_type = "3" Then
-            BtnSendEmail.Visible = True
+        If is_confirm_restock = "1" And id_type = "3" Then
+            BtnClosedOrder.Visible = True
         End If
     End Sub
 
@@ -108,6 +115,7 @@
                 FormOLStoreRestock.product_size = GVProduct.GetFocusedRowCellValue("size").ToString
                 FormOLStoreRestock.id_design_cat = GVProduct.GetFocusedRowCellValue("id_design_cat").ToString
                 FormOLStoreRestock.id_comp_group = id_comp_group
+                FormOLStoreRestock.id_web_order = id_order
                 FormOLStoreRestock.ShowDialog()
             Else
                 stopCustom("Can't restock")

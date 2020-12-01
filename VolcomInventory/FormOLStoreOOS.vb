@@ -46,10 +46,12 @@
         Dim query As String = "SELECT 1 AS `id_type`,'all' AS `type`
         UNION ALL
         SELECT 2 AS `id_type`,'waiting for restock' AS `type`
-        UNION ALL 
-        SELECT 3 AS `id_type`,'waiting for confirmation' AS `type`
         UNION ALL
-        SELECT 4 AS `id_type`,'closed' AS `type` "
+        SELECT 3 AS `id_type`,'on process restock' AS `type`
+        UNION ALL 
+        SELECT 4 AS `id_type`,'waiting for confirmation' AS `type`
+        UNION ALL
+        SELECT 5 AS `id_type`,'closed' AS `type` "
         viewLookupQuery(LEType, query, 0, "type", "id_type")
         Cursor = Cursors.Default
     End Sub

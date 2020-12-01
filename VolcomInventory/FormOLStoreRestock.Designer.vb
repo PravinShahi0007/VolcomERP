@@ -31,6 +31,9 @@ Partial Class FormOLStoreRestock
         Me.GridColumntotal_stock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoSP = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPOtherWH = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -40,22 +43,20 @@ Partial Class FormOLStoreRestock
         Me.TxtDescription = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPOnlineWH.SuspendLayout()
         CType(Me.GCOnlineWH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOnlineWH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoSP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCData
@@ -91,7 +92,7 @@ Partial Class FormOLStoreRestock
         '
         'GVOnlineWH
         '
-        Me.GVOnlineWH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_wh_drawer, Me.GridColumnid_comp, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumntotal_stock, Me.GridColumntotal_order})
+        Me.GVOnlineWH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_wh_drawer, Me.GridColumnid_comp, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumntotal_stock, Me.GridColumntotal_order, Me.GridColumnnote})
         Me.GVOnlineWH.GridControl = Me.GCOnlineWH
         Me.GVOnlineWH.Name = "GVOnlineWH"
         Me.GVOnlineWH.OptionsBehavior.AutoExpandAllGroups = True
@@ -159,7 +160,7 @@ Partial Class FormOLStoreRestock
         Me.GridColumntotal_order.Name = "GridColumntotal_order"
         Me.GridColumntotal_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:N0}")})
         Me.GridColumntotal_order.Visible = True
-        Me.GridColumntotal_order.VisibleIndex = 3
+        Me.GridColumntotal_order.VisibleIndex = 4
         Me.GridColumntotal_order.Width = 106
         '
         'RepoSP
@@ -171,6 +172,36 @@ Partial Class FormOLStoreRestock
         Me.RepoSP.Mask.EditMask = "N0"
         Me.RepoSP.MaxValue = New Decimal(New Integer() {-1486618625, 232830643, 0, 0})
         Me.RepoSP.Name = "RepoSP"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BtnPrint)
+        Me.PanelControl2.Controls.Add(Me.BtnRefresh)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(728, 44)
+        Me.PanelControl2.TabIndex = 20
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(543, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(83, 40)
+        Me.BtnPrint.TabIndex = 1
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnRefresh
+        '
+        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
+        Me.BtnRefresh.Location = New System.Drawing.Point(626, 2)
+        Me.BtnRefresh.Name = "BtnRefresh"
+        Me.BtnRefresh.Size = New System.Drawing.Size(100, 40)
+        Me.BtnRefresh.TabIndex = 0
+        Me.BtnRefresh.Text = "Refresh"
         '
         'BCreatePO
         '
@@ -194,7 +225,7 @@ Partial Class FormOLStoreRestock
         'XTPOtherWH
         '
         Me.XTPOtherWH.Name = "XTPOtherWH"
-        Me.XTPOtherWH.Size = New System.Drawing.Size(630, 296)
+        Me.XTPOtherWH.Size = New System.Drawing.Size(728, 361)
         Me.XTPOtherWH.Text = "Other WH"
         '
         'PanelControl1
@@ -271,35 +302,15 @@ Partial Class FormOLStoreRestock
         Me.LabelControl3.TabIndex = 6
         Me.LabelControl3.Text = "Code"
         '
-        'PanelControl2
+        'GridColumnnote
         '
-        Me.PanelControl2.Controls.Add(Me.BtnPrint)
-        Me.PanelControl2.Controls.Add(Me.BtnRefresh)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(728, 44)
-        Me.PanelControl2.TabIndex = 20
-        '
-        'BtnRefresh
-        '
-        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(626, 2)
-        Me.BtnRefresh.Name = "BtnRefresh"
-        Me.BtnRefresh.Size = New System.Drawing.Size(100, 40)
-        Me.BtnRefresh.TabIndex = 0
-        Me.BtnRefresh.Text = "Refresh"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(543, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(83, 40)
-        Me.BtnPrint.TabIndex = 1
-        Me.BtnPrint.Text = "Print"
+        Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.FieldName = "note"
+        Me.GridColumnnote.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.OptionsColumn.ReadOnly = True
+        Me.GridColumnnote.Visible = True
+        Me.GridColumnnote.VisibleIndex = 0
         '
         'FormOLStoreRestock
         '
@@ -318,14 +329,14 @@ Partial Class FormOLStoreRestock
         CType(Me.GCOnlineWH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVOnlineWH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoSP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -353,4 +364,5 @@ Partial Class FormOLStoreRestock
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
 End Class
