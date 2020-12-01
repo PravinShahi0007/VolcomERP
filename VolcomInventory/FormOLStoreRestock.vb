@@ -1,4 +1,6 @@
 ﻿Public Class FormOLStoreRestock
+    Public id_oos As String = "-1"
+    Public id_web_order As String = "-1"
     Public id_product As String = "-1"
     Public product_code As String = ""
     Public product_name As String = ""
@@ -91,4 +93,50 @@
         print(GCOnlineWH, "ONLINE WH STOCK LIST")
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVOnlineWH)
+        GCOnlineWH.RefreshDataSource()
+        GVOnlineWH.RefreshData()
+
+        If checkValidQtyRestock() Then
+
+        Else
+            stopCustom("Already on process restock")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Function checkValidQtyRestock() As Boolean
+        Dim total_order As Decimal = GVOnlineWH.Columns("total_order").SummaryItem.SummaryValue
+        Dim query_tot As String = "SELECT SUM(od.ol_order_qty - od.sales_order_det_qty) AS `total_oos`, 
+        IFNULL(op.total_restock_open,0) AS `total_restock_open`,
+        IFNULL(cl.total_restock_close,0) AS `total_restock_close`,
+        ((SUM(od.ol_order_qty - od.sales_order_det_qty))-(IFNULL(op.total_restock_open,0) + IFNULL(cl.total_restock_close,0))) AS `total_allowed`
+        FROM tb_ol_store_order od 
+        LEFT JOIN (
+	        SELECT sod.id_product, SUM(sod.sales_order_det_qty) AS `total_restock_open`
+	        FROM tb_sales_order so
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+	        WHERE so.id_report_status=6 AND so.id_prepare_status=1 AND so.id_ol_store_oos='" + id_oos + "' AND sod.id_product='" + id_product + "'
+        ) op ON op.id_product = od.id_product
+        LEFT JOIN (
+	        SELECT td.id_product, SUM(td.fg_trf_det_qty) AS `total_restock_close`
+	        FROM tb_sales_order so
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+	        INNER JOIN tb_fg_trf_det td ON td.id_sales_order_det = sod.id_sales_order_det
+	        INNER JOIN tb_fg_trf t ON t.id_fg_trf = td.id_fg_trf
+	        WHERE so.id_report_status=6 AND so.id_prepare_status=2
+	        AND t.id_report_status=6  
+	        AND so.id_ol_store_oos='" + id_oos + "' AND td.id_product='" + id_product + "'
+        ) cl ON cl.id_product = od.id_product
+        WHERE od.id='" + id_web_order + "' AND od.id_comp_group='" + id_comp_group + "' AND od.id_product='" + id_product + "' "
+        Dim data_tot As DataTable = execute_query(query_tot, -1, True, "", "", "", "")
+        If total_order <= data_tot.Rows(0)("total_allowed") Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class

@@ -101,6 +101,7 @@
         If GVProduct.RowCount > 0 And GVProduct.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
             If GVProduct.GetFocusedRowCellValue("is_poss_replace").ToString = "1" Then
+                FormOLStoreRestock.id_oos = id
                 FormOLStoreRestock.id_product = GVProduct.GetFocusedRowCellValue("id_product").ToString
                 FormOLStoreRestock.product_code = GVProduct.GetFocusedRowCellValue("code").ToString
                 FormOLStoreRestock.product_name = GVProduct.GetFocusedRowCellValue("name").ToString
