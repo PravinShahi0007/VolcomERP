@@ -46,9 +46,9 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LDelType = New DevExpress.XtraEditors.LabelControl()
+        Me.LStore = New DevExpress.XtraEditors.LabelControl()
+        Me.L3PL = New DevExpress.XtraEditors.LabelControl()
         Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -99,29 +99,41 @@ Partial Class FormSalesReturnOrderMailDet
         Me.SBSend = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAddROR = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtPackageQty = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.LPackageQty = New DevExpress.XtraEditors.LabelControl()
         Me.TxtEstWeight = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEstWeight = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEmployee = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEEmployee = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLUECity = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.LSubDistrict = New DevExpress.XtraEditors.LabelControl()
+        Me.LCity = New DevExpress.XtraEditors.LabelControl()
+        Me.L3PLMinWeight = New DevExpress.XtraEditors.LabelControl()
         Me.Txt3PLMinWeight = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.L3PLRate = New DevExpress.XtraEditors.LabelControl()
         Me.Txt3PLRate = New DevExpress.XtraEditors.TextEdit()
         Me.TxtStoreAddress = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.LStoreAddress = New DevExpress.XtraEditors.LabelControl()
         Me.DEWHReceive = New DevExpress.XtraEditors.DateEdit()
         Me.DEPickupDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.LWHReceive = New DevExpress.XtraEditors.LabelControl()
+        Me.LPickupDate = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SBRemoveROR = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LType = New DevExpress.XtraEditors.LabelControl()
+        Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,6 +175,8 @@ Partial Class FormSalesReturnOrderMailDet
         CType(Me.TxtEstWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUECity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Txt3PLMinWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,6 +189,10 @@ Partial Class FormSalesReturnOrderMailDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -382,6 +400,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.CCBEStore.Name = "CCBEStore"
         Me.CCBEStore.Properties.AllowMultiSelect = True
         Me.CCBEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEStore.Properties.IncrementalSearch = True
         Me.CCBEStore.Size = New System.Drawing.Size(350, 20)
         Me.CCBEStore.TabIndex = 3
         '
@@ -415,32 +434,32 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 0
         '
-        'LabelControl7
+        'LDelType
         '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(15, 123)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(62, 13)
-        Me.LabelControl7.TabIndex = 99
-        Me.LabelControl7.Text = "Jenis Service"
+        Me.LDelType.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LDelType.Location = New System.Drawing.Point(15, 123)
+        Me.LDelType.Name = "LDelType"
+        Me.LDelType.Size = New System.Drawing.Size(62, 13)
+        Me.LDelType.TabIndex = 99
+        Me.LDelType.Text = "Jenis Service"
         '
-        'LabelControl4
+        'LStore
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(15, 45)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl4.TabIndex = 99
-        Me.LabelControl4.Text = "Store"
+        Me.LStore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LStore.Location = New System.Drawing.Point(15, 45)
+        Me.LStore.Name = "LStore"
+        Me.LStore.Size = New System.Drawing.Size(26, 13)
+        Me.LStore.TabIndex = 99
+        Me.LStore.Text = "Store"
         '
-        'LabelControl1
+        'L3PL
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(15, 149)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(17, 13)
-        Me.LabelControl1.TabIndex = 99
-        Me.LabelControl1.Text = "3PL"
+        Me.L3PL.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.L3PL.Location = New System.Drawing.Point(15, 149)
+        Me.L3PL.Name = "L3PL"
+        Me.L3PL.Size = New System.Drawing.Size(17, 13)
+        Me.L3PL.TabIndex = 99
+        Me.L3PL.Text = "3PL"
         '
         'SLUE3PL
         '
@@ -517,10 +536,10 @@ Partial Class FormSalesReturnOrderMailDet
         'XTCMail
         '
         Me.XTCMail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCMail.Location = New System.Drawing.Point(0, 291)
+        Me.XTCMail.Location = New System.Drawing.Point(0, 362)
         Me.XTCMail.Name = "XTCMail"
         Me.XTCMail.SelectedTabPage = Me.XTPreview
-        Me.XTCMail.Size = New System.Drawing.Size(1008, 390)
+        Me.XTCMail.Size = New System.Drawing.Size(1008, 319)
         Me.XTCMail.TabIndex = 99
         Me.XTCMail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPreview, Me.XTPData, Me.XTPHistory})
         '
@@ -529,7 +548,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.XTPreview.Controls.Add(Me.PanelControl3)
         Me.XTPreview.Controls.Add(Me.PanelControl4)
         Me.XTPreview.Name = "XTPreview"
-        Me.XTPreview.Size = New System.Drawing.Size(1002, 362)
+        Me.XTPreview.Size = New System.Drawing.Size(1002, 291)
         Me.XTPreview.Text = "Preview"
         '
         'PanelControl3
@@ -539,7 +558,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl3.Location = New System.Drawing.Point(266, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Padding = New System.Windows.Forms.Padding(20)
-        Me.PanelControl3.Size = New System.Drawing.Size(736, 362)
+        Me.PanelControl3.Size = New System.Drawing.Size(736, 291)
         Me.PanelControl3.TabIndex = 100
         '
         'WebBrowser
@@ -548,7 +567,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.WebBrowser.Location = New System.Drawing.Point(22, 22)
         Me.WebBrowser.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser.Name = "WebBrowser"
-        Me.WebBrowser.Size = New System.Drawing.Size(692, 318)
+        Me.WebBrowser.Size = New System.Drawing.Size(692, 247)
         Me.WebBrowser.TabIndex = 99
         '
         'PanelControl4
@@ -566,7 +585,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(266, 362)
+        Me.PanelControl4.Size = New System.Drawing.Size(266, 291)
         Me.PanelControl4.TabIndex = 0
         '
         'SBAttachment
@@ -650,7 +669,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.XTPData.Controls.Add(Me.GCDetail)
         Me.XTPData.Name = "XTPData"
-        Me.XTPData.Size = New System.Drawing.Size(1002, 362)
+        Me.XTPData.Size = New System.Drawing.Size(1002, 291)
         Me.XTPData.Text = "Data"
         '
         'GCDetail
@@ -659,7 +678,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(1002, 362)
+        Me.GCDetail.Size = New System.Drawing.Size(1002, 291)
         Me.GCDetail.TabIndex = 99
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -724,7 +743,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.XTPHistory.Controls.Add(Me.GCHistory)
         Me.XTPHistory.Name = "XTPHistory"
-        Me.XTPHistory.Size = New System.Drawing.Size(1002, 362)
+        Me.XTPHistory.Size = New System.Drawing.Size(1002, 291)
         Me.XTPHistory.Text = "History 3PL"
         '
         'GCHistory
@@ -733,7 +752,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GCHistory.Location = New System.Drawing.Point(0, 0)
         Me.GCHistory.MainView = Me.GVHistory
         Me.GCHistory.Name = "GCHistory"
-        Me.GCHistory.Size = New System.Drawing.Size(1002, 362)
+        Me.GCHistory.Size = New System.Drawing.Size(1002, 291)
         Me.GCHistory.TabIndex = 99
         Me.GCHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHistory})
         '
@@ -791,6 +810,7 @@ Partial Class FormSalesReturnOrderMailDet
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.SBClose)
+        Me.PanelControl2.Controls.Add(Me.SBSubmit)
         Me.PanelControl2.Controls.Add(Me.SBCancel)
         Me.PanelControl2.Controls.Add(Me.SBSendApprove)
         Me.PanelControl2.Controls.Add(Me.SBOther3PL)
@@ -807,10 +827,10 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(117, 2)
+        Me.SBClose.Location = New System.Drawing.Point(27, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(85, 44)
-        Me.SBClose.TabIndex = 16
+        Me.SBClose.TabIndex = 17
         Me.SBClose.Text = "Close"
         '
         'SBCancel
@@ -898,15 +918,15 @@ Partial Class FormSalesReturnOrderMailDet
         Me.TxtPackageQty.Size = New System.Drawing.Size(350, 20)
         Me.TxtPackageQty.TabIndex = 5
         '
-        'LabelControl13
+        'LPackageQty
         '
-        Me.LabelControl13.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(537, 71)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(61, 13)
-        Me.LabelControl13.TabIndex = 99
-        Me.LabelControl13.Text = "Package Qty"
+        Me.LPackageQty.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LPackageQty.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPackageQty.Location = New System.Drawing.Point(537, 71)
+        Me.LPackageQty.Name = "LPackageQty"
+        Me.LPackageQty.Size = New System.Drawing.Size(61, 13)
+        Me.LPackageQty.TabIndex = 99
+        Me.LPackageQty.Text = "Package Qty"
         '
         'TxtEstWeight
         '
@@ -922,46 +942,88 @@ Partial Class FormSalesReturnOrderMailDet
         Me.TxtEstWeight.Size = New System.Drawing.Size(350, 20)
         Me.TxtEstWeight.TabIndex = 4
         '
-        'LabelControl8
+        'LEstWeight
         '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(15, 71)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(84, 13)
-        Me.LabelControl8.TabIndex = 99
-        Me.LabelControl8.Text = "Estimated Weight"
+        Me.LEstWeight.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEstWeight.Location = New System.Drawing.Point(15, 71)
+        Me.LEstWeight.Name = "LEstWeight"
+        Me.LEstWeight.Size = New System.Drawing.Size(84, 13)
+        Me.LEstWeight.TabIndex = 99
+        Me.LEstWeight.Text = "Estimated Weight"
         '
         'PanelControl6
         '
+        Me.PanelControl6.Controls.Add(Me.LEmployee)
+        Me.PanelControl6.Controls.Add(Me.SLUEEmployee)
         Me.PanelControl6.Controls.Add(Me.SLUESubDistrict)
         Me.PanelControl6.Controls.Add(Me.SLUECity)
         Me.PanelControl6.Controls.Add(Me.CCBEStore)
-        Me.PanelControl6.Controls.Add(Me.LabelControl22)
-        Me.PanelControl6.Controls.Add(Me.LabelControl21)
-        Me.PanelControl6.Controls.Add(Me.LabelControl18)
+        Me.PanelControl6.Controls.Add(Me.LSubDistrict)
+        Me.PanelControl6.Controls.Add(Me.LCity)
+        Me.PanelControl6.Controls.Add(Me.L3PLMinWeight)
         Me.PanelControl6.Controls.Add(Me.Txt3PLMinWeight)
-        Me.PanelControl6.Controls.Add(Me.LabelControl17)
+        Me.PanelControl6.Controls.Add(Me.L3PLRate)
         Me.PanelControl6.Controls.Add(Me.Txt3PLRate)
         Me.PanelControl6.Controls.Add(Me.TxtStoreAddress)
-        Me.PanelControl6.Controls.Add(Me.LabelControl16)
+        Me.PanelControl6.Controls.Add(Me.LStoreAddress)
         Me.PanelControl6.Controls.Add(Me.SLUEDelType)
-        Me.PanelControl6.Controls.Add(Me.LabelControl7)
+        Me.PanelControl6.Controls.Add(Me.LDelType)
         Me.PanelControl6.Controls.Add(Me.TxtEstWeight)
         Me.PanelControl6.Controls.Add(Me.SLUE3PL)
-        Me.PanelControl6.Controls.Add(Me.LabelControl1)
-        Me.PanelControl6.Controls.Add(Me.LabelControl4)
-        Me.PanelControl6.Controls.Add(Me.LabelControl8)
+        Me.PanelControl6.Controls.Add(Me.L3PL)
+        Me.PanelControl6.Controls.Add(Me.LStore)
+        Me.PanelControl6.Controls.Add(Me.LEstWeight)
         Me.PanelControl6.Controls.Add(Me.TxtPackageQty)
-        Me.PanelControl6.Controls.Add(Me.LabelControl13)
+        Me.PanelControl6.Controls.Add(Me.LPackageQty)
         Me.PanelControl6.Controls.Add(Me.DEWHReceive)
         Me.PanelControl6.Controls.Add(Me.DEPickupDate)
-        Me.PanelControl6.Controls.Add(Me.LabelControl14)
-        Me.PanelControl6.Controls.Add(Me.LabelControl15)
+        Me.PanelControl6.Controls.Add(Me.LWHReceive)
+        Me.PanelControl6.Controls.Add(Me.LPickupDate)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 70)
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 113)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(1008, 177)
-        Me.PanelControl6.TabIndex = 99
+        Me.PanelControl6.Size = New System.Drawing.Size(1008, 205)
+        Me.PanelControl6.TabIndex = 1
+        '
+        'LEmployee
+        '
+        Me.LEmployee.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEmployee.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEmployee.Location = New System.Drawing.Point(537, 175)
+        Me.LEmployee.Name = "LEmployee"
+        Me.LEmployee.Size = New System.Drawing.Size(46, 13)
+        Me.LEmployee.TabIndex = 99
+        Me.LEmployee.Text = "Employee"
+        '
+        'SLUEEmployee
+        '
+        Me.SLUEEmployee.Location = New System.Drawing.Point(636, 172)
+        Me.SLUEEmployee.Name = "SLUEEmployee"
+        Me.SLUEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEEmployee.Properties.View = Me.GridView6
+        Me.SLUEEmployee.Size = New System.Drawing.Size(350, 20)
+        Me.SLUEEmployee.TabIndex = 4
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn27})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.FieldName = "id_employee"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Employee"
+        Me.GridColumn27.FieldName = "employee_name"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 0
         '
         'SLUECity
         '
@@ -993,34 +1055,34 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 0
         '
-        'LabelControl22
+        'LSubDistrict
         '
-        Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl22.Location = New System.Drawing.Point(537, 19)
-        Me.LabelControl22.Name = "LabelControl22"
-        Me.LabelControl22.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl22.TabIndex = 103
-        Me.LabelControl22.Text = "Sub District"
+        Me.LSubDistrict.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LSubDistrict.Location = New System.Drawing.Point(537, 19)
+        Me.LSubDistrict.Name = "LSubDistrict"
+        Me.LSubDistrict.Size = New System.Drawing.Size(54, 13)
+        Me.LSubDistrict.TabIndex = 103
+        Me.LSubDistrict.Text = "Sub District"
         '
-        'LabelControl21
+        'LCity
         '
-        Me.LabelControl21.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(15, 19)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(19, 13)
-        Me.LabelControl21.TabIndex = 101
-        Me.LabelControl21.Text = "City"
+        Me.LCity.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LCity.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCity.Location = New System.Drawing.Point(15, 19)
+        Me.LCity.Name = "LCity"
+        Me.LCity.Size = New System.Drawing.Size(19, 13)
+        Me.LCity.TabIndex = 101
+        Me.LCity.Text = "City"
         '
-        'LabelControl18
+        'L3PLMinWeight
         '
-        Me.LabelControl18.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl18.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl18.Location = New System.Drawing.Point(537, 149)
-        Me.LabelControl18.Name = "LabelControl18"
-        Me.LabelControl18.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl18.TabIndex = 99
-        Me.LabelControl18.Text = "Min. Weight"
+        Me.L3PLMinWeight.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.L3PLMinWeight.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.L3PLMinWeight.Location = New System.Drawing.Point(537, 149)
+        Me.L3PLMinWeight.Name = "L3PLMinWeight"
+        Me.L3PLMinWeight.Size = New System.Drawing.Size(57, 13)
+        Me.L3PLMinWeight.TabIndex = 99
+        Me.L3PLMinWeight.Text = "Min. Weight"
         '
         'Txt3PLMinWeight
         '
@@ -1038,15 +1100,15 @@ Partial Class FormSalesReturnOrderMailDet
         Me.Txt3PLMinWeight.Size = New System.Drawing.Size(350, 20)
         Me.Txt3PLMinWeight.TabIndex = 99
         '
-        'LabelControl17
+        'L3PLRate
         '
-        Me.LabelControl17.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Location = New System.Drawing.Point(537, 123)
-        Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl17.TabIndex = 99
-        Me.LabelControl17.Text = "Rate"
+        Me.L3PLRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.L3PLRate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.L3PLRate.Location = New System.Drawing.Point(537, 123)
+        Me.L3PLRate.Name = "L3PLRate"
+        Me.L3PLRate.Size = New System.Drawing.Size(23, 13)
+        Me.L3PLRate.TabIndex = 99
+        Me.L3PLRate.Text = "Rate"
         '
         'Txt3PLRate
         '
@@ -1073,15 +1135,15 @@ Partial Class FormSalesReturnOrderMailDet
         Me.TxtStoreAddress.Size = New System.Drawing.Size(350, 20)
         Me.TxtStoreAddress.TabIndex = 99
         '
-        'LabelControl16
+        'LStoreAddress
         '
-        Me.LabelControl16.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(537, 45)
-        Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(39, 13)
-        Me.LabelControl16.TabIndex = 99
-        Me.LabelControl16.Text = "Address"
+        Me.LStoreAddress.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LStoreAddress.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LStoreAddress.Location = New System.Drawing.Point(537, 45)
+        Me.LStoreAddress.Name = "LStoreAddress"
+        Me.LStoreAddress.Size = New System.Drawing.Size(39, 13)
+        Me.LStoreAddress.TabIndex = 99
+        Me.LStoreAddress.Text = "Address"
         '
         'DEWHReceive
         '
@@ -1114,31 +1176,31 @@ Partial Class FormSalesReturnOrderMailDet
         Me.DEPickupDate.Size = New System.Drawing.Size(350, 20)
         Me.DEPickupDate.TabIndex = 6
         '
-        'LabelControl14
+        'LWHReceive
         '
-        Me.LabelControl14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl14.Location = New System.Drawing.Point(537, 97)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(84, 13)
-        Me.LabelControl14.TabIndex = 99
-        Me.LabelControl14.Text = "WH Receive Date"
+        Me.LWHReceive.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LWHReceive.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LWHReceive.Location = New System.Drawing.Point(537, 97)
+        Me.LWHReceive.Name = "LWHReceive"
+        Me.LWHReceive.Size = New System.Drawing.Size(84, 13)
+        Me.LWHReceive.TabIndex = 99
+        Me.LWHReceive.Text = "WH Receive Date"
         '
-        'LabelControl15
+        'LPickupDate
         '
-        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(15, 97)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(60, 13)
-        Me.LabelControl15.TabIndex = 99
-        Me.LabelControl15.Text = "Pick Up Date"
+        Me.LPickupDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPickupDate.Location = New System.Drawing.Point(15, 97)
+        Me.LPickupDate.Name = "LPickupDate"
+        Me.LPickupDate.Size = New System.Drawing.Size(60, 13)
+        Me.LPickupDate.TabIndex = 99
+        Me.LPickupDate.Text = "Pick Up Date"
         '
         'PanelControl5
         '
         Me.PanelControl5.Controls.Add(Me.SBRemoveROR)
         Me.PanelControl5.Controls.Add(Me.SBAddROR)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 247)
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 318)
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(1008, 44)
         Me.PanelControl5.TabIndex = 99
@@ -1158,6 +1220,66 @@ Partial Class FormSalesReturnOrderMailDet
         Me.ErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.ErrorProvider.ContainerControl = Me
         '
+        'PanelControl7
+        '
+        Me.PanelControl7.Controls.Add(Me.SLUEType)
+        Me.PanelControl7.Controls.Add(Me.LType)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl7.Location = New System.Drawing.Point(0, 70)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(1008, 43)
+        Me.PanelControl7.TabIndex = 0
+        '
+        'SLUEType
+        '
+        Me.SLUEType.Location = New System.Drawing.Point(110, 12)
+        Me.SLUEType.Name = "SLUEType"
+        Me.SLUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEType.Properties.ShowClearButton = False
+        Me.SLUEType.Properties.View = Me.GridView2
+        Me.SLUEType.Size = New System.Drawing.Size(350, 20)
+        Me.SLUEType.TabIndex = 0
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.FieldName = "id_type"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Type"
+        Me.GridColumn2.FieldName = "type"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'LType
+        '
+        Me.LType.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LType.Location = New System.Drawing.Point(15, 15)
+        Me.LType.Name = "LType"
+        Me.LType.Size = New System.Drawing.Size(24, 13)
+        Me.LType.TabIndex = 99
+        Me.LType.Text = "Type"
+        '
+        'SBSubmit
+        '
+        Me.SBSubmit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSubmit.Image = CType(resources.GetObject("SBSubmit.Image"), System.Drawing.Image)
+        Me.SBSubmit.Location = New System.Drawing.Point(112, 2)
+        Me.SBSubmit.Name = "SBSubmit"
+        Me.SBSubmit.Size = New System.Drawing.Size(90, 44)
+        Me.SBSubmit.TabIndex = 16
+        Me.SBSubmit.Text = "Submit"
+        '
         'FormSalesReturnOrderMailDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1166,6 +1288,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.Controls.Add(Me.XTCMail)
         Me.Controls.Add(Me.PanelControl5)
         Me.Controls.Add(Me.PanelControl6)
+        Me.Controls.Add(Me.PanelControl7)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
@@ -1216,6 +1339,8 @@ Partial Class FormSalesReturnOrderMailDet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUECity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Txt3PLMinWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1228,6 +1353,11 @@ Partial Class FormSalesReturnOrderMailDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        Me.PanelControl7.PerformLayout()
+        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1254,7 +1384,7 @@ Partial Class FormSalesReturnOrderMailDet
     Friend WithEvents SBSend As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLUE3PL As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents L3PL As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SBAccept As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
@@ -1267,21 +1397,21 @@ Partial Class FormSalesReturnOrderMailDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBDecline As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LStore As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SBOther3PL As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLUEDelType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LDelType As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SBAddROR As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtPackageQty As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LPackageQty As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtEstWeight As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEstWeight As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEWHReceive As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEPickupDate As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LWHReceive As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LPickupDate As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
@@ -1302,10 +1432,10 @@ Partial Class FormSalesReturnOrderMailDet
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ErrorProvider As ErrorProvider
     Friend WithEvents TxtStoreAddress As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LStoreAddress As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents L3PLMinWeight As DevExpress.XtraEditors.LabelControl
     Friend WithEvents Txt3PLMinWeight As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents L3PLRate As DevExpress.XtraEditors.LabelControl
     Friend WithEvents Txt3PLRate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SLUEStatus As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1322,8 +1452,8 @@ Partial Class FormSalesReturnOrderMailDet
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LSubDistrict As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LCity As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CCBEStore As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents SLUESubDistrict As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1333,4 +1463,16 @@ Partial Class FormSalesReturnOrderMailDet
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLUEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LType As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEmployee As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLUEEmployee As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBSubmit As DevExpress.XtraEditors.SimpleButton
 End Class
