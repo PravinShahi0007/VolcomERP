@@ -107,14 +107,29 @@
             data_subject.Rows.Add(get_setup_field("sales_return_order_3pl_subject"))
 
             'controls
-            SBAccept.Visible = False
-            SBDecline.Visible = False
-            SBSend.Visible = True
-            SBOther3PL.Visible = False
-            SBSendApprove.Visible = False
-            SBCancel.Visible = False
+            If SLUEType.EditValue.ToString = "1" Then
+                SBAccept.Visible = False
+                SBDecline.Visible = False
+                SBSend.Visible = False
+                SBOther3PL.Visible = False
+                SBSendApprove.Visible = False
+                SBCancel.Visible = False
 
-            SBAttachment.Visible = False
+                SBSubmit.Visible = True
+                SBApprove.Visible = False
+                SBPrint.Visible = False
+            Else
+                SBAccept.Visible = False
+                SBDecline.Visible = False
+                SBSend.Visible = True
+                SBOther3PL.Visible = False
+                SBSendApprove.Visible = False
+                SBCancel.Visible = False
+
+                SBSubmit.Visible = False
+                SBApprove.Visible = False
+                SBPrint.Visible = False
+            End If
         Else
             'head
             Dim query As String = "
@@ -388,6 +403,37 @@
                 End If
 
                 SBAttachment.Visible = True
+            End If
+
+            'controls
+            If SLUEType.EditValue.ToString = "2" Then
+                SBAccept.Visible = False
+                SBDecline.Visible = False
+                SBSend.Visible = False
+                SBOther3PL.Visible = False
+                SBSendApprove.Visible = False
+                SBCancel.Visible = False
+
+                SBSubmit.Visible = False
+                SBApprove.Visible = False
+                SBCancel.Visible = True
+                SBPrint.Visible = False
+
+                Dim is_user_approve As String = execute_query("
+                    SELECT COUNT(*) AS total
+                    FROM tb_report_mark
+                    WHERE id_user = " + id_user + " AND report_mark_type = 279 AND id_report_status = 3 AND id_report = " + id_mail_3pl + "
+                ", 0, True, "", "", "", "")
+
+                If Not is_user_approve = "0" Then
+                    SBApprove.Visible = True
+                End If
+
+                If data.Rows(0)("id_status").ToString = "6" Then
+                    SBApprove.Visible = False
+                    SBCancel.Visible = False
+                    SBPrint.Visible = True
+                End If
             End If
         End If
 
@@ -682,7 +728,7 @@
 
                             If id_mail_3pl = "-1" Then
                                 Dim query As String = "
-                                    INSERT INTO tb_sales_return_order_mail_3pl (id_3pl, id_3pl_rate, id_city, id_sub_district, id_del_type, id_status, estimate_weight, estimate_qty, pick_up_date, wh_receive_date, subject_request, from_request, to_request, cc_request, body_request, created_date, created_by) VALUES (" + id_3pl + ", " + SLUE3PL.EditValue.ToString + ", " + SLUECity.EditValue.ToString + ", " + SLUESubDistrict.EditValue.ToString + ", " + SLUEDelType.EditValue.ToString + ", 2, " + decimalSQL(TxtEstWeight.EditValue.ToString) + ", " + TxtPackageQty.EditValue.ToString + ", '" + Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DEWHReceive.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + addSlashes(MESubject.EditValue.ToString) + "', '" + addSlashes(text_from) + "', '" + addSlashes(text_to) + "', '" + addSlashes(text_cc) + "', '" + addSlashes(WebBrowser.DocumentText) + "', NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();
+                                    INSERT INTO tb_sales_return_order_mail_3pl (id_type, id_3pl, id_3pl_rate, id_city, id_sub_district, id_del_type, id_status, estimate_weight, estimate_qty, pick_up_date, wh_receive_date, subject_request, from_request, to_request, cc_request, body_request, created_date, created_by) VALUES (" + SLUEType.EditValue.ToString + ", " + id_3pl + ", " + SLUE3PL.EditValue.ToString + ", " + SLUECity.EditValue.ToString + ", " + SLUESubDistrict.EditValue.ToString + ", " + SLUEDelType.EditValue.ToString + ", 2, " + decimalSQL(TxtEstWeight.EditValue.ToString) + ", " + TxtPackageQty.EditValue.ToString + ", '" + Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DEWHReceive.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + addSlashes(MESubject.EditValue.ToString) + "', '" + addSlashes(text_from) + "', '" + addSlashes(text_to) + "', '" + addSlashes(text_cc) + "', '" + addSlashes(WebBrowser.DocumentText) + "', NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();
                                 "
 
                                 id_mail_3pl = execute_query(query, 0, True, "", "", "", "")
@@ -1042,8 +1088,8 @@
             CCBEStore.Location = New Point(110, 16)
             LPickupDate.Location = New Point(15, 45)
             DEPickupDate.Location = New Point(110, 42)
-            LEmployee.Location = New Point(537, 19)
-            SLUEEmployee.Location = New Point(636, 16)
+            LEmployee.Location = New Point(793, 19)
+            SLUEEmployee.Location = New Point(892, 16)
 
             PanelControl6.Height = 74
         Else
@@ -1083,30 +1129,55 @@
             'location
             LCity.Location = New Point(15, 19)
             SLUECity.Location = New Point(110, 16)
-            LSubDistrict.Location = New Point(537, 19)
-            SLUESubDistrict.Location = New Point(636, 16)
+            LSubDistrict.Location = New Point(793, 19)
+            SLUESubDistrict.Location = New Point(892, 16)
             LStore.Location = New Point(15, 45)
             CCBEStore.Location = New Point(110, 42)
-            LStoreAddress.Location = New Point(537, 45)
-            TxtStoreAddress.Location = New Point(636, 42)
+            LStoreAddress.Location = New Point(793, 45)
+            TxtStoreAddress.Location = New Point(892, 42)
             LEstWeight.Location = New Point(15, 71)
             TxtEstWeight.Location = New Point(110, 68)
-            LPackageQty.Location = New Point(537, 71)
-            TxtPackageQty.Location = New Point(636, 68)
+            LPackageQty.Location = New Point(793, 71)
+            TxtPackageQty.Location = New Point(892, 68)
             LPickupDate.Location = New Point(15, 97)
             DEPickupDate.Location = New Point(110, 94)
-            LWHReceive.Location = New Point(537, 97)
-            DEWHReceive.Location = New Point(636, 94)
+            LWHReceive.Location = New Point(793, 97)
+            DEWHReceive.Location = New Point(892, 94)
             LDelType.Location = New Point(15, 123)
             SLUEDelType.Location = New Point(110, 120)
-            L3PLRate.Location = New Point(537, 123)
-            Txt3PLRate.Location = New Point(636, 120)
+            L3PLRate.Location = New Point(793, 123)
+            Txt3PLRate.Location = New Point(892, 120)
             L3PL.Location = New Point(15, 149)
             SLUE3PL.Location = New Point(110, 146)
-            L3PLMinWeight.Location = New Point(537, 149)
-            Txt3PLMinWeight.Location = New Point(636, 146)
+            L3PLMinWeight.Location = New Point(793, 149)
+            Txt3PLMinWeight.Location = New Point(892, 146)
 
             PanelControl6.Height = 177
+        End If
+
+        'controls
+        If SLUEType.EditValue.ToString = "1" Then
+            SBAccept.Visible = False
+            SBDecline.Visible = False
+            SBSend.Visible = False
+            SBOther3PL.Visible = False
+            SBSendApprove.Visible = False
+            SBCancel.Visible = False
+
+            SBSubmit.Visible = True
+            SBApprove.Visible = False
+            SBPrint.Visible = False
+        Else
+            SBAccept.Visible = False
+            SBDecline.Visible = False
+            SBSend.Visible = True
+            SBOther3PL.Visible = False
+            SBSendApprove.Visible = False
+            SBCancel.Visible = False
+
+            SBSubmit.Visible = False
+            SBApprove.Visible = False
+            SBPrint.Visible = False
         End If
     End Sub
 
@@ -1611,7 +1682,7 @@
                 Dim number_skpp As String = execute_query("
                     SELECT LPAD((COUNT(id_mail_3pl) + 1), 3, '0') AS number_skpp
                     FROM tb_sales_return_order_mail_3pl
-                    WHERE id_status = 6 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
+                    WHERE id_status = 6 AND id_type = 2 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
                 ", 0, True, "", "", "", "")
 
                 Dim query As String = "UPDATE tb_sales_return_order_mail_3pl SET skpp_number = '" + number_skpp + "', id_status = 6, subject_accept = '" + addSlashes(MESubject.EditValue.ToString) + "', from_accept = '" + addSlashes(text_from) + "', to_accept = '" + addSlashes(text_to) + "', cc_accept = '" + addSlashes(text_cc) + "', body_accept = '" + addSlashes(WebBrowser.DocumentText) + "', attachment = '" + addSlashes(attachment) + "', updated_date = NOW(), updated_by = " + id_employee_user + " WHERE id_mail_3pl = " + id_mail_3pl
@@ -1662,43 +1733,77 @@
         validating_employee()
 
         If formIsValidInPanel(ErrorProvider, PanelControl6) Then
-            'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit this pickup order ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit this pickup order ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            'If confirm = DialogResult.Yes Then
-            '    FormMain.SplashScreenManager1.ShowWaitForm()
+            If confirm = DialogResult.Yes Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
 
-            '    Dim query As String = "
-            '    INSERT INTO tb_sales_return_order_mail_3pl (id_status, pick_up_date, created_date, created_by) VALUES (); SELECT LAST_INSERT_ID();
-            '                    "
+                Dim query As String = "
+                    INSERT INTO tb_sales_return_order_mail_3pl (id_type, id_employee, id_status, pick_up_date, created_date, created_by) VALUES (" + SLUEType.EditValue.ToString + ", " + SLUEEmployee.EditValue.ToString + ", 7, '" + Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();
+                "
 
-            '    id_mail_3pl = execute_query(query, 0, True, "", "", "", "")
+                id_mail_3pl = execute_query(query, 0, True, "", "", "", "")
 
-            '    execute_non_query("CALL gen_number(" + id_mail_3pl + ", 275)", True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_mail_3pl + ", 279)", True, "", "", "", "")
 
-            '    'store
-            '    Dim stores() As String = CCBEStore.EditValue.ToString.Split(",")
+                'store
+                Dim stores() As String = CCBEStore.EditValue.ToString.Split(",")
 
-            '    For i = 0 To stores.Length - 1
-            '        execute_non_query("INSERT INTO tb_sales_return_order_mail_3pl_store (id_mail_3pl, id_comp) VALUES (" + id_mail_3pl + ", " + stores(i).Replace(" ", "") + ")", True, "", "", "", "")
-            '    Next
+                For i = 0 To stores.Length - 1
+                    execute_non_query("INSERT INTO tb_sales_return_order_mail_3pl_store (id_mail_3pl, id_comp) VALUES (" + id_mail_3pl + ", " + stores(i).Replace(" ", "") + ")", True, "", "", "", "")
+                Next
 
-            '    'detail
-            '    If GVDetail.RowCount > 0 Then
-            '        Dim query_detail As String = "INSERT INTO tb_sales_return_order_mail_3pl_det (id_mail_3pl, id_sales_order_return) VALUES "
+                'detail
+                If GVDetail.RowCount > 0 Then
+                    Dim query_detail As String = "INSERT INTO tb_sales_return_order_mail_3pl_det (id_mail_3pl, id_sales_order_return) VALUES "
 
-            '        For i = 0 To GVDetail.RowCount - 1
-            '            query_detail += "(" + id_mail_3pl + ", " + GVDetail.GetRowCellValue(i, "id_sales_return_order").ToString + "), "
-            '        Next
+                    For i = 0 To GVDetail.RowCount - 1
+                        query_detail += "(" + id_mail_3pl + ", " + GVDetail.GetRowCellValue(i, "id_sales_return_order").ToString + "), "
+                    Next
 
-            '        query_detail = query_detail.Substring(0, query_detail.Length - 2)
+                    query_detail = query_detail.Substring(0, query_detail.Length - 2)
 
-            '        execute_non_query(query_detail, True, "", "", "", "")
-            '    End If
+                    execute_non_query(query_detail, True, "", "", "", "")
+                End If
 
-            '    FormMain.SplashScreenManager1.CloseWaitForm()
-            'End If
+                submit_who_prepared("279", id_mail_3pl, id_user)
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+
+                infoCustom("Pickup Order submitted.")
+            End If
         Else
             stopCustom("Please check your input.")
+        End If
+    End Sub
+
+    Private Sub SBApprove_Click(sender As Object, e As EventArgs) Handles SBApprove.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to approve & send this pickup order ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+
+            Dim number_skpp As String = execute_query("
+                SELECT LPAD((COUNT(id_mail_3pl) + 1), 3, '0') AS number_skpp
+                FROM tb_sales_return_order_mail_3pl
+                WHERE id_status = 6 AND id_type = 1 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
+            ", 0, True, "", "", "", "")
+
+            Dim query As String = "UPDATE tb_sales_return_order_mail_3pl SET skpp_number = '" + number_skpp + "', id_status = 6, updated_date = NOW(), updated_by = " + id_employee_user + " WHERE id_mail_3pl = " + id_mail_3pl
+
+            execute_non_query(query, True, "", "", "", "")
+
+            'update report mark
+            Dim id_report_mark As String = execute_query("SELECT id_report_mark FROM tb_report_mark WHERE report_mark_type = 279 AND id_report = " + id_mail_3pl + " AND id_user = " + id_user + " AND id_report_status = 3", 0, True, "", "", "", "")
+
+            FormReportMarkDet.id_report_mark = id_report_mark
+            FormReportMarkDet.accept("outside")
+
+            FormMain.SplashScreenManager1.CloseWaitForm()
+
+            infoCustom("Pickup Order completed.")
+
+            Close()
         End If
     End Sub
 End Class
