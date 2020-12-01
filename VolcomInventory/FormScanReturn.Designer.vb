@@ -20,6 +20,7 @@ Partial Class FormScanReturn
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -28,11 +29,20 @@ Partial Class FormScanReturn
         Me.GCAwb = New DevExpress.XtraGrid.GridControl()
         Me.GVAwb = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCScanReturn = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScanReturn = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPBAP = New DevExpress.XtraTab.XtraTabPage()
@@ -53,14 +63,6 @@ Partial Class FormScanReturn
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStartBAP = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +89,7 @@ Partial Class FormScanReturn
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BPrintSummary)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.DEUntil)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
@@ -98,9 +101,17 @@ Partial Class FormScanReturn
         Me.PanelControl1.Size = New System.Drawing.Size(897, 45)
         Me.PanelControl1.TabIndex = 0
         '
+        'BPrintSummary
+        '
+        Me.BPrintSummary.Location = New System.Drawing.Point(418, 10)
+        Me.BPrintSummary.Name = "BPrintSummary"
+        Me.BPrintSummary.Size = New System.Drawing.Size(95, 23)
+        Me.BPrintSummary.TabIndex = 8925
+        Me.BPrintSummary.Text = "print summary"
+        '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(365, 10)
+        Me.BView.Location = New System.Drawing.Point(363, 10)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(49, 23)
         Me.BView.TabIndex = 8924
@@ -109,7 +120,7 @@ Partial Class FormScanReturn
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(211, 12)
+        Me.DEUntil.Location = New System.Drawing.Point(209, 12)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -123,7 +134,7 @@ Partial Class FormScanReturn
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(184, 15)
+        Me.LabelControl4.Location = New System.Drawing.Point(182, 15)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl4.TabIndex = 8922
@@ -131,16 +142,16 @@ Partial Class FormScanReturn
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 15)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl5.TabIndex = 8921
-        Me.LabelControl5.Text = "From"
+        Me.LabelControl5.Text = "Date"
         '
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(42, 12)
+        Me.DEStart.Location = New System.Drawing.Point(40, 12)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -165,7 +176,7 @@ Partial Class FormScanReturn
         '
         'GVAwb
         '
-        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn18, Me.GridColumn2, Me.GridColumn6, Me.GridColumn17, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn21, Me.GridColumn9, Me.GridColumn10})
+        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn18, Me.GridColumn2, Me.GridColumn6, Me.GridColumn17, Me.GridColumn22, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn21, Me.GridColumn9, Me.GridColumn10})
         Me.GVAwb.GridControl = Me.GCAwb
         Me.GVAwb.Name = "GVAwb"
         Me.GVAwb.OptionsBehavior.Editable = False
@@ -178,6 +189,12 @@ Partial Class FormScanReturn
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_scan_return"
         Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "ID"
+        Me.GridColumn18.FieldName = "id_return_note"
+        Me.GridColumn18.Name = "GridColumn18"
         '
         'GridColumn2
         '
@@ -197,6 +214,25 @@ Partial Class FormScanReturn
         Me.GridColumn6.VisibleIndex = 1
         Me.GridColumn6.Width = 168
         '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Return label"
+        Me.GridColumn17.FieldName = "label_number"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        Me.GridColumn17.Width = 157
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Return Note Date"
+        Me.GridColumn22.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn22.FieldName = "date_return_note"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 5
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "AWB/Resi"
@@ -210,7 +246,7 @@ Partial Class FormScanReturn
         '
         Me.GridColumn7.Caption = "Store"
         Me.GridColumn7.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.GridColumn7.FieldName = "store_list"
+        Me.GridColumn7.FieldName = "list_store"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
@@ -219,6 +255,88 @@ Partial Class FormScanReturn
         'RepositoryItemMemoEdit1
         '
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.Caption = "Qty Scan"
+        Me.GridColumn4.DisplayFormat.FormatString = "N0"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "qty_scan"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 6
+        Me.GridColumn4.Width = 133
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn5.Caption = "Qty Return Note"
+        Me.GridColumn5.DisplayFormat.FormatString = "N0"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "qty_return_note"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 7
+        Me.GridColumn5.Width = 133
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.Caption = "Qty BAP"
+        Me.GridColumn8.DisplayFormat.FormatString = "N0"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "qty_bap"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.Width = 133
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "BAP Number"
+        Me.GridColumn21.FieldName = "bap_number"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 9
+        Me.GridColumn21.Width = 162
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.Caption = "Different"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "qty_diff"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.UnboundExpression = "[qty_return_note] - [qty_bap] - [qty_scan]"
+        Me.GridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 10
+        Me.GridColumn9.Width = 133
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Date Scan"
+        Me.GridColumn10.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn10.FieldName = "created_date"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 11
+        Me.GridColumn10.Width = 133
         '
         'XTCScanReturn
         '
@@ -407,75 +525,6 @@ Partial Class FormScanReturn
         Me.DEStartBAP.Size = New System.Drawing.Size(136, 20)
         Me.DEStartBAP.TabIndex = 8920
         '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Return label"
-        Me.GridColumn17.FieldName = "label_number"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 2
-        Me.GridColumn17.Width = 157
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "ID"
-        Me.GridColumn18.FieldName = "id_return_note"
-        Me.GridColumn18.Name = "GridColumn18"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Qty Scan"
-        Me.GridColumn4.FieldName = "qty_scan"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 133
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Qty Return Note"
-        Me.GridColumn5.FieldName = "qty_return_note"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
-        Me.GridColumn5.Width = 133
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Qty BAP"
-        Me.GridColumn8.FieldName = "qty_bap"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 133
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Different"
-        Me.GridColumn9.FieldName = "qty_diff"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
-        Me.GridColumn9.Width = 133
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Date Created"
-        Me.GridColumn10.FieldName = "created_date"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 10
-        Me.GridColumn10.Width = 133
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "BAP Number"
-        Me.GridColumn21.FieldName = "bap_number"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 8
-        Me.GridColumn21.Width = 162
-        '
         'FormScanReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -558,4 +607,6 @@ Partial Class FormScanReturn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPrintSummary As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -46,6 +46,7 @@ Partial Class FormScanReturnDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEReturnNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,7 +240,7 @@ Partial Class FormScanReturnDet
         '
         'GVListProduct
         '
-        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.Name = "GVListProduct"
         Me.GVListProduct.OptionsBehavior.Editable = False
@@ -301,6 +302,12 @@ Partial Class FormScanReturnDet
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 256
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Type"
+        Me.GridColumn7.FieldName = "type"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
         'FormScanReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -361,4 +368,5 @@ Partial Class FormScanReturnDet
     Friend WithEvents BDeleteScan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEReturnNote As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
