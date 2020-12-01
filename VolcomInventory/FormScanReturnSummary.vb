@@ -21,7 +21,7 @@ GROUP BY rate.id_comp"
     Sub load_view_wh()
         Dim date_start As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
 
-        Dim q As String = "SELECT rn.id_return_note,emp.employee_name,IF(rn.id_type=1,'WH Inbound','3PL') AS `type`,st_list.store AS store_list,rn.id_inbound_awb,rn.label_number,rn.date_created,rn.number_return_note,rn.qty AS qty_return_note,rn.date_return_note
+        Dim q As String = "SELECT rn.id_return_note,emp.employee_name,IF(rn.id_type=1,'WH Inbound','3PL') AS `type`,st_list.store AS store_list,rn.id_inbound_awb,rn.label_number,rn.date_created,rn.number_return_note,rn.qty AS qty_return_note,rn.date_return_note,rn.date_created
 ,IFNULL(bap.qty_bap,0) AS qty_bap, bap.bap_number
 ,IFNULL(sc.qty_scan,0) AS qty_scan
 ,IF(rn.qty - IFNULL(sc.qty_scan,0)-IFNULL(bap.qty_bap,0)=0,'Ok','Not Balance') as status
@@ -51,8 +51,8 @@ LEFT JOIN
 INNER JOIN tb_m_employee emp ON emp.id_employee=rn.id_emp_driver
 WHERE rn.id_type=1 AND rn.id_emp_driver='" & SLEEmp.EditValue.ToString & "' AND DATE(rn.`date_created`)>='" & date_start & "' AND DATE(rn.`date_created`)<='" & date_start & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        GCAwb.DataSource = dt
-        GVAwb.BestFitColumns()
+        GCLocal.DataSource = dt
+        GVLocal.BestFitColumns()
     End Sub
 
     Private Sub FormScanReturnSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -62,4 +62,62 @@ WHERE rn.id_type=1 AND rn.id_emp_driver='" & SLEEmp.EditValue.ToString & "' AND 
         DEStart3pl.EditValue = Now
     End Sub
 
+    Private Sub BPrintSummary_Click(sender As Object, e As EventArgs) Handles BPrintSummary.Click
+        Dim is_ok As Boolean = True
+        For i As Integer = 0 To GVLocal.RowCount - 1
+            If Not GVLocal.GetRowCellValue(i, "status").ToString = "Ok" Then
+                warningCustom("Qty Return Note tidak sama dengan qty scan + qty BAP")
+                is_ok = False
+                Exit For
+            End If
+        Next
+        If is_ok Then
+            'warning lock
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("BAP, scan return, dan return note akan terkunci. Lanjutkan ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                'lock
+                Dim q As String = ""
+                'lock bap
+                For i = 0 To GVLocal.RowCount - 1
+                    q = "UPDATE tb_scan_return_bap SET is_lock=1 WHERE id_scan_return_bap IN (SELECT id_scan_return_bap FROM tb_scan_return_bap_det WHERE id_return_note='" & GVLocal.GetRowCellValue(i, "id_return_note").ToString & "')"
+                    execute_non_query(q, True, "", "", "", "")
+                Next
+
+                'lock scan return
+                For i = 0 To GVLocal.RowCount - 1
+                    q = "UPDATE tb_scan_return SET is_lock=1 WHERE id_return_note='" & GVLocal.GetRowCellValue(i, "id_return_note").ToString & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                Next
+
+                'lock return note
+                For i = 0 To GVLocal.RowCount - 1
+                    q = "UPDATE tb_return_note SET is_lock=1 WHERE id_return_note='" & GVLocal.GetRowCellValue(i, "id_return_note").ToString & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                Next
+
+                'print
+                Dim Report As New ReportScanReturnLocal()
+                q = "SELECT '" & Date.Parse(DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & "' AS created_date
+,emp_ppr.employee_name AS prepare_by_name,emp_ppr.employee_position AS prepare_by_position
+,emp_mngr.employee_name AS wh_manager_name,emp_mngr.employee_position AS wh_manager_position
+,emp.employee_name AS deliver_staff_name,emp.employee_position AS deliver_staff_position
+,'" & Decimal.Parse(GVLocal.Columns("qty_scan").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS tot_qty_scan
+,'" & Decimal.Parse(GVLocal.Columns("qty_bap").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS tot_qty_bap
+,'" & Decimal.Parse(GVLocal.Columns("qty_return_note").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS tot_qty_return_note
+FROM tb_m_employee emp 
+INNER JOIN tb_m_departement dep ON dep.id_departement=6
+INNER JOIN tb_m_user usr_mngr ON usr_mngr.id_user=dep.id_user_head
+INNER JOIN tb_m_employee emp_mngr ON emp_mngr.id_employee=usr_mngr.id_employee
+INNER JOIN tb_m_user usr_ppr ON usr_ppr.id_user='" & id_user & "'
+INNER JOIN tb_m_employee emp_ppr ON emp_ppr.id_employee=usr_ppr.id_employee
+WHERE emp.id_employee='" & SLEEmp.EditValue.ToString & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                Report.DataSource = dt
+                '
+                Report.data_det = GCLocal.DataSource
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+            End If
+        End If
+    End Sub
 End Class

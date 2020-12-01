@@ -105,9 +105,9 @@ Partial Class FormScanReturn
         '
         Me.BPrintSummary.Location = New System.Drawing.Point(418, 10)
         Me.BPrintSummary.Name = "BPrintSummary"
-        Me.BPrintSummary.Size = New System.Drawing.Size(95, 23)
+        Me.BPrintSummary.Size = New System.Drawing.Size(74, 23)
         Me.BPrintSummary.TabIndex = 8925
-        Me.BPrintSummary.Text = "print summary"
+        Me.BPrintSummary.Text = "Summary"
         '
         'BView
         '
