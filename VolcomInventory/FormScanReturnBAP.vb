@@ -7,7 +7,7 @@
         load_surat_jalan()
         '
         If Not id_bap = "-1" Then
-            Dim q As String = "SELECT bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond`,id_3pl FROM tb_scan_return_bap WHERE id_scan_return_bap='" & id_bap & "'"
+            Dim q As String = "SELECT bap_number,`bap_date`,`is_lubang`,`is_seal_rusak`,`is_basah`,`is_other_cond`,`other_cond`,id_3pl,is_lock FROM tb_scan_return_bap WHERE id_scan_return_bap='" & id_bap & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 TEBAPNumber.Text = dt.Rows(0)("bap_number").ToString
@@ -33,6 +33,12 @@
                     CEAlasanLain.Checked = False
                 End If
                 SLEVendor.EditValue = dt.Rows(0)("id_3pl").ToString
+                '
+                If dt.Rows(0)("is_lock").ToString = "1" Then
+                    BSave.Visible = False
+                Else
+                    BSave.Visible = True
+                End If
             End If
         End If
         '

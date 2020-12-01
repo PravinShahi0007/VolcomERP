@@ -8834,6 +8834,12 @@
     <Compile Include="ReportSampleStockOpname.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportScanReturn3PL.Designer.vb">
+      <DependentUpon>ReportScanReturn3PL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanReturn3PL.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportScanReturnBAP.Designer.vb">
       <DependentUpon>ReportScanReturnBAP.vb</DependentUpon>
     </Compile>
@@ -13744,6 +13750,9 @@
     <EmbeddedResource Include="ReportSampleStockOpname.resx">
       <DependentUpon>ReportSampleStockOpname.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportScanReturn3PL.resx">
+      <DependentUpon>ReportScanReturn3PL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportScanReturnBAP.resx">
       <DependentUpon>ReportScanReturnBAP.vb</DependentUpon>
