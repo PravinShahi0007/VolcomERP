@@ -70,7 +70,7 @@
         Dim q As String = "SELECT sr.created_date,rn.date_return_note,sr.`id_scan_return`,rn.`id_return_note`,rn.`label_number`,rn.`number_return_note`,IFNULL(awb.`awb_number`,'Warheouse') AS awb_number,IFNULL(c.`comp_name`,'Warheouse') AS comp_name
 ,GROUP_CONCAT(DISTINCT(CONCAT(cst.`comp_number`,' - ',cst.comp_name)) ORDER BY cst.`comp_number` SEPARATOR '\n') AS list_store
 ,rn.`qty` AS qty_return_note
-,COUNT(srd.`id_scan_return_det`) AS qty_scan
+,COUNT(DISTINCT srd.`id_scan_return_det`) AS qty_scan
 ,IFNULL(bap.qty_bap,0) AS qty_bap
 ,bap.bap_number
 FROM tb_scan_return_det srd
