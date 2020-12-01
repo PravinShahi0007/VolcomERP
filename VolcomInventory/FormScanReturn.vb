@@ -65,7 +65,35 @@
     End Sub
 
     Sub load_view()
+        Dim date_start As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_until As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim q As String = "SELECT sr.created_date,rn.date_return_note,sr.`id_scan_return`,rn.`id_return_note`,rn.`label_number`,rn.`number_return_note`,IFNULL(awb.`awb_number`,'Warheouse') AS awb_number,IFNULL(c.`comp_name`,'Warheouse') AS comp_name
+,GROUP_CONCAT(DISTINCT(CONCAT(cst.`comp_number`,' - ',cst.comp_name)) ORDER BY cst.`comp_number` SEPARATOR '\n') AS list_store
+,rn.`qty` AS qty_return_note
+,COUNT(DISTINCT srd.`id_scan_return_det`) AS qty_scan
+,IFNULL(bap.qty_bap,0) AS qty_bap
+,bap.bap_number
+FROM tb_scan_return_det srd
+INNER JOIN tb_scan_return sr ON sr.`id_scan_return`=srd.`id_scan_return`
+INNER JOIN tb_return_note rn ON rn.`id_return_note`=sr.`id_return_note`
+LEFT JOIN tb_inbound_awb awb ON rn.`id_inbound_awb`=awb.`id_inbound_awb`
+LEFT JOIN tb_m_comp c ON c.`id_comp`=awb.`id_comp`
+LEFT JOIN tb_return_note_store st ON st.`id_return_note`=rn.`id_return_note`
+LEFT JOIN tb_m_comp cst ON cst.`id_comp`=st.`id_comp`
+LEFT JOIN 
+(
+	SELECT bapd.`id_return_note`,SUM(bapd.`qty`*IF(bapd.`id_type`=1,1,-1)) AS qty_bap ,GROUP_CONCAT(DISTINCT(bap.`bap_number`) ORDER BY bap.`bap_number` SEPARATOR '\n') AS bap_number
+	FROM tb_scan_return_bap_det bapd 
+	INNER JOIN tb_scan_return_bap bap ON bap.`id_scan_return_bap`=bapd.`id_scan_return_bap`
+	GROUP BY bapd.`id_return_note`
+)bap ON bap.id_return_note=rn.`id_return_note`
+WHERE DATE(rn.`date_created`)>='" & date_start & "' AND DATE(rn.`date_created`)<='" & date_until & "'
+GROUP BY srd.`id_scan_return`
+"
 
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCAwb.DataSource = dt
+        GVAwb.BestFitColumns()
     End Sub
 
     Private Sub FormScanReturn_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -94,5 +122,9 @@ WHERE DATE(bap.`created_date`)>='" & date_start & "' AND DATE(bap.`created_date`
     Private Sub GVBAP_DoubleClick(sender As Object, e As EventArgs) Handles GVBAP.DoubleClick
         FormScanReturnBAP.id_bap = GVBAP.GetFocusedRowCellValue("id_scan_return_bap").ToString
         FormScanReturnBAP.ShowDialog()
+    End Sub
+
+    Private Sub BPrintSummary_Click(sender As Object, e As EventArgs) Handles BPrintSummary.Click
+        FormScanReturnSummary.ShowDialog()
     End Sub
 End Class

@@ -9,6 +9,25 @@
     End Sub
 
     Private Sub FormScanReturnDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If Not id_scan_return = "-1" Then
+            Dim q As String = "SELECT sr.id_return_note,rn.label_number,rn.`number_return_note`,rn.qty,GROUP_CONCAT(DISTINCT(CONCAT(cst.`comp_number`,' - ',cst.comp_name)) ORDER BY cst.`comp_number` SEPARATOR '\n') AS list_store
+FROM tb_scan_return sr 
+INNER JOIN tb_return_note rn ON rn.id_return_note=sr.id_return_note
+LEFT JOIN tb_return_note_store st ON st.`id_return_note`=rn.`id_return_note`
+LEFT JOIN tb_m_comp cst ON cst.`id_comp`=st.`id_comp`
+WHERE sr.id_scan_return='" & id_scan_return & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                TEReturnNote.Text = dt.Rows(0)("number_return_note").ToString
+                TEReturnLabel.Text = dt.Rows(0)("label_number").ToString
+                TEQty.EditValue = dt.Rows(0)("qty").ToString
+                MEListStore.Text = dt.Rows(0)("list_store").ToString
+                id_return_note = dt.Rows(0)("id_return_note").ToString
+            End If
+            TEReturnLabel.Enabled = False
+            BReset.Visible = False
+        End If
+
         load_det()
         load_product()
     End Sub
@@ -106,6 +125,7 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
                         End If
                     Next
                 End If
+
                 'tidak dipakai karena produk bisa bolak balik return
                 'If TEScan.Text.Length = 16 Then
                 '    Dim dt_unique_filter As DataRow() = dt_unique.Select("[scanned_code]='" + TEScan.Text + "' ")
@@ -136,7 +156,6 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
                     GVListProduct.SetRowCellValue(GVListProduct.RowCount - 1, "product_full_code", TEScan.Text)
                     GVListProduct.SetRowCellValue(GVListProduct.RowCount - 1, "product_display_name", product_name)
                     GVListProduct.SetRowCellValue(GVListProduct.RowCount - 1, "size", size)
-
                     '
                     GVListProduct.RefreshData()
                 End If
@@ -195,7 +214,7 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
                 'save
                 If id_scan_return = "-1" Then
                     'new
-                    Dim q As String = "INSERT INTO tb_scan_return(id_return_note) VALUES('" & id_return_note & "'); SELECT LAST_INSERT_ID();"
+                    Dim q As String = "INSERT INTO tb_scan_return(id_return_note,created_date,created_by) VALUES('" & id_return_note & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID();"
                     id_scan_return = execute_query(q, 0, True, "", "", "", "")
                     '
                     q = "INSERT INTO `tb_scan_return_det`(`id_scan_return`,`id_product`,`scanned_code`,`size`,`type`) VALUES"
@@ -203,7 +222,7 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
                         If Not i = 0 Then
                             q += ","
                         End If
-                        q += "('" & id_scan_return & "','" & GVListProduct.GetRowCellValue(i, "id_product").ToString & "','" & GVListProduct.GetRowCellValue(i, "scanned_code").ToString & "','" & GVListProduct.GetRowCellValue(i, "size").ToString & "','" & GVListProduct.GetRowCellValue(i, "type").ToString & "')"
+                        q += "('" & id_scan_return & "','" & GVListProduct.GetRowCellValue(i, "id_product").ToString & "','" & GVListProduct.GetRowCellValue(i, "product_full_code").ToString & "','" & GVListProduct.GetRowCellValue(i, "size").ToString & "','" & GVListProduct.GetRowCellValue(i, "type").ToString & "')"
                     Next
                     execute_non_query(q, True, "", "", "", "")
                     infoCustom("Scan saved.")
@@ -218,7 +237,7 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
                         If Not i = 0 Then
                             q += ","
                         End If
-                        q += "('" & id_scan_return & "','" & GVListProduct.GetRowCellValue(i, "id_product").ToString & "','" & GVListProduct.GetRowCellValue(i, "scanned_code").ToString & "','" & GVListProduct.GetRowCellValue(i, "size").ToString & "','" & GVListProduct.GetRowCellValue(i, "type").ToString & "')"
+                        q += "('" & id_scan_return & "','" & GVListProduct.GetRowCellValue(i, "id_product").ToString & "','" & GVListProduct.GetRowCellValue(i, "product_full_code").ToString & "','" & GVListProduct.GetRowCellValue(i, "size").ToString & "','" & GVListProduct.GetRowCellValue(i, "type").ToString & "')"
                     Next
                     execute_non_query(q, True, "", "", "", "")
                     infoCustom("Scan updated.")

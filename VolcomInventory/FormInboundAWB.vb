@@ -67,7 +67,7 @@ WHERE inb.id_inbound_awb='" & id_awb_inbound & "'"
 FROM `tb_inbound_koli`
 WHERE id_inbound_awb='" & id_awb_inbound & "'"
         Else
-            q = "SELECT koli_notes,divide_by,panjang,lebar,tinggi,berat,berat_dimensi
+            q = "SELECT koli_notes,divide_by,panjang,lebar,tinggi,berat
 FROM `tb_inbound_koli`
 WHERE id_inbound_awb='" & id_awb_inbound & "'"
         End If

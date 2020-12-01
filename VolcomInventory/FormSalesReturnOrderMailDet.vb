@@ -9,12 +9,14 @@
     Private data_subject As DataTable = New DataTable
 
     Private Sub FormSalesReturnOrderMailDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_type()
         view_city()
         view_sub_district()
         view_status()
         view_store()
         view_del_type()
         view_3pl()
+        view_employee()
 
         load_form()
 
@@ -392,6 +394,16 @@
         display_recipient()
     End Sub
 
+    Sub view_type()
+        Dim query As String = "
+            SELECT 1 AS id_type, 'Warehouse' AS `type`
+            UNION ALL
+            SELECT 2 AS id_type, '3PL' AS `type`
+        "
+
+        viewSearchLookupQuery(SLUEType, query, "id_type", "type", "id_type")
+    End Sub
+
     Sub view_city()
         Dim query As String = "
             SELECT id_city, city
@@ -469,6 +481,15 @@
             "
         End If
 
+        If SLUEType.EditValue.ToString = "1" Then
+            query = "
+                SELECT id_comp AS id_store, comp_number AS store_account, comp_name AS store_name
+                FROM tb_m_comp
+                WHERE is_active = 1
+                ORDER BY comp_number
+            "
+        End If
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         CCBEStore.Properties.Items.Clear()
@@ -534,6 +555,24 @@
         view_3pl_detail()
     End Sub
 
+    Sub view_employee()
+        Dim query As String = "
+            SELECT id_employee, CONCAT(employee_code, ' - ', employee_name) AS employee_name
+            FROM tb_m_employee
+            WHERE id_employee_active = 1 AND id_departement = 6
+            ORDER BY id_employee_level ASC
+        "
+
+        If Not loaded And Not id_mail_3pl = "-1" Then
+            query = "
+                SELECT id_employee, CONCAT(employee_code, ' - ', employee_name) AS employee_name
+                FROM tb_m_employee
+            "
+        End If
+
+        viewSearchLookupQuery(SLUEEmployee, query, "id_employee", "employee_name", "id_employee")
+    End Sub
+
     Sub display_html(type As String)
         validating_store()
         validating_city()
@@ -589,6 +628,7 @@
         validating_receivedate()
         validating_service()
         validating_3pl()
+        validating_employee()
 
         If formIsValidInPanel(ErrorProvider, PanelControl6) Then
             If Not METo.Text.ToString = "" Then
@@ -962,6 +1002,120 @@
         Return out
     End Function
 
+    Sub view_interfaces()
+        If SLUEType.EditValue.ToString = "1" Then
+            'visible
+            LCity.Visible = False
+            SLUECity.Visible = False
+            LSubDistrict.Visible = False
+            SLUESubDistrict.Visible = False
+            LStoreAddress.Visible = False
+            TxtStoreAddress.Visible = False
+            LEstWeight.Visible = False
+            TxtEstWeight.Visible = False
+            LPackageQty.Visible = False
+            TxtPackageQty.Visible = False
+            LWHReceive.Visible = False
+            DEWHReceive.Visible = False
+            LDelType.Visible = False
+            SLUEDelType.Visible = False
+            L3PLRate.Visible = False
+            Txt3PLRate.Visible = False
+            L3PL.Visible = False
+            SLUE3PL.Visible = False
+            L3PLMinWeight.Visible = False
+            Txt3PLMinWeight.Visible = False
+
+            LStore.Visible = True
+            CCBEStore.Visible = True
+            LPickupDate.Visible = True
+            DEPickupDate.Visible = True
+            LEmployee.Visible = True
+            SLUEEmployee.Visible = True
+
+            PanelControl4.Visible = False
+
+            XTPHistory.PageVisible = False
+
+            'location
+            LStore.Location = New Point(15, 19)
+            CCBEStore.Location = New Point(110, 16)
+            LPickupDate.Location = New Point(15, 45)
+            DEPickupDate.Location = New Point(110, 42)
+            LEmployee.Location = New Point(537, 19)
+            SLUEEmployee.Location = New Point(636, 16)
+
+            PanelControl6.Height = 74
+        Else
+            'visible
+            LEmployee.Visible = False
+            SLUEEmployee.Visible = False
+
+            LCity.Visible = True
+            SLUECity.Visible = True
+            LSubDistrict.Visible = True
+            SLUESubDistrict.Visible = True
+            LStore.Visible = True
+            CCBEStore.Visible = True
+            LStoreAddress.Visible = True
+            TxtStoreAddress.Visible = True
+            LEstWeight.Visible = True
+            TxtEstWeight.Visible = True
+            LPackageQty.Visible = True
+            TxtPackageQty.Visible = True
+            LPickupDate.Visible = True
+            DEPickupDate.Visible = True
+            LWHReceive.Visible = True
+            DEWHReceive.Visible = True
+            LDelType.Visible = True
+            SLUEDelType.Visible = True
+            L3PLRate.Visible = True
+            Txt3PLRate.Visible = True
+            L3PL.Visible = True
+            SLUE3PL.Visible = True
+            L3PLMinWeight.Visible = True
+            Txt3PLMinWeight.Visible = True
+
+            PanelControl4.Visible = True
+
+            XTPHistory.PageVisible = True
+
+            'location
+            LCity.Location = New Point(15, 19)
+            SLUECity.Location = New Point(110, 16)
+            LSubDistrict.Location = New Point(537, 19)
+            SLUESubDistrict.Location = New Point(636, 16)
+            LStore.Location = New Point(15, 45)
+            CCBEStore.Location = New Point(110, 42)
+            LStoreAddress.Location = New Point(537, 45)
+            TxtStoreAddress.Location = New Point(636, 42)
+            LEstWeight.Location = New Point(15, 71)
+            TxtEstWeight.Location = New Point(110, 68)
+            LPackageQty.Location = New Point(537, 71)
+            TxtPackageQty.Location = New Point(636, 68)
+            LPickupDate.Location = New Point(15, 97)
+            DEPickupDate.Location = New Point(110, 94)
+            LWHReceive.Location = New Point(537, 97)
+            DEWHReceive.Location = New Point(636, 94)
+            LDelType.Location = New Point(15, 123)
+            SLUEDelType.Location = New Point(110, 120)
+            L3PLRate.Location = New Point(537, 123)
+            Txt3PLRate.Location = New Point(636, 120)
+            L3PL.Location = New Point(15, 149)
+            SLUE3PL.Location = New Point(110, 146)
+            L3PLMinWeight.Location = New Point(537, 149)
+            Txt3PLMinWeight.Location = New Point(636, 146)
+
+            PanelControl6.Height = 177
+        End If
+    End Sub
+
+    Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEType.EditValueChanged
+        view_store()
+
+        view_interfaces()
+    End Sub
+
     Private Sub SLUECity_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECity.EditValueChanged
         If loaded Then
             view_sub_district()
@@ -1115,6 +1269,25 @@
 
     Private Sub SBRemoveROR_Click(sender As Object, e As EventArgs) Handles SBRemoveROR.Click
         GVDetail.DeleteSelectedRows()
+    End Sub
+
+    Private Sub SLUEEmployee_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SLUEEmployee.Validating
+        validating_employee()
+    End Sub
+
+    Sub validating_employee()
+        Dim id_employee As String = ""
+
+        Try
+            id_employee = SLUEEmployee.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        If id_employee = "" Then
+            ErrorProvider.SetError(SLUECity, "Can't blank.")
+        Else
+            ErrorProvider.SetError(SLUECity, "")
+        End If
     End Sub
 
     Private Sub CCBEStore_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles CCBEStore.Validating
@@ -1474,5 +1647,58 @@
         For i = 0 To GVDetail.RowCount - 1
             GVDetail.SetRowCellValue(i, "no", i + 1)
         Next
+    End Sub
+
+    Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
+        validating_store()
+        validating_city()
+        validating_sub_district()
+        validating_weight()
+        validating_qty()
+        validating_pickupdate()
+        validating_receivedate()
+        validating_service()
+        validating_3pl()
+        validating_employee()
+
+        If formIsValidInPanel(ErrorProvider, PanelControl6) Then
+            'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit this pickup order ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            'If confirm = DialogResult.Yes Then
+            '    FormMain.SplashScreenManager1.ShowWaitForm()
+
+            '    Dim query As String = "
+            '    INSERT INTO tb_sales_return_order_mail_3pl (id_status, pick_up_date, created_date, created_by) VALUES (); SELECT LAST_INSERT_ID();
+            '                    "
+
+            '    id_mail_3pl = execute_query(query, 0, True, "", "", "", "")
+
+            '    execute_non_query("CALL gen_number(" + id_mail_3pl + ", 275)", True, "", "", "", "")
+
+            '    'store
+            '    Dim stores() As String = CCBEStore.EditValue.ToString.Split(",")
+
+            '    For i = 0 To stores.Length - 1
+            '        execute_non_query("INSERT INTO tb_sales_return_order_mail_3pl_store (id_mail_3pl, id_comp) VALUES (" + id_mail_3pl + ", " + stores(i).Replace(" ", "") + ")", True, "", "", "", "")
+            '    Next
+
+            '    'detail
+            '    If GVDetail.RowCount > 0 Then
+            '        Dim query_detail As String = "INSERT INTO tb_sales_return_order_mail_3pl_det (id_mail_3pl, id_sales_order_return) VALUES "
+
+            '        For i = 0 To GVDetail.RowCount - 1
+            '            query_detail += "(" + id_mail_3pl + ", " + GVDetail.GetRowCellValue(i, "id_sales_return_order").ToString + "), "
+            '        Next
+
+            '        query_detail = query_detail.Substring(0, query_detail.Length - 2)
+
+            '        execute_non_query(query_detail, True, "", "", "", "")
+            '    End If
+
+            '    FormMain.SplashScreenManager1.CloseWaitForm()
+            'End If
+        Else
+            stopCustom("Please check your input.")
+        End If
     End Sub
 End Class

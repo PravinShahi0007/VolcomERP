@@ -6422,6 +6422,12 @@
     <Compile Include="FormScanReturnDetManual.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormScanReturnSummary.Designer.vb">
+      <DependentUpon>FormScanReturnSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturnSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSearchDesign.Designer.vb">
       <DependentUpon>FormSearchDesign.vb</DependentUpon>
     </Compile>
@@ -8865,10 +8871,22 @@
     <Compile Include="ReportSampleStockOpname.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportScanReturn3PL.Designer.vb">
+      <DependentUpon>ReportScanReturn3PL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanReturn3PL.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportScanReturnBAP.Designer.vb">
       <DependentUpon>ReportScanReturnBAP.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportScanReturnBAP.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportScanReturnLocal.Designer.vb">
+      <DependentUpon>ReportScanReturnLocal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanReturnLocal.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSetupBudgetOPEX.Designer.vb">
@@ -12399,6 +12417,9 @@
     <EmbeddedResource Include="FormScanReturnDetManual.resx">
       <DependentUpon>FormScanReturnDetManual.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturnSummary.resx">
+      <DependentUpon>FormScanReturnSummary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSearchDesign.resx">
       <DependentUpon>FormSearchDesign.vb</DependentUpon>
     </EmbeddedResource>
@@ -13785,8 +13806,14 @@
       <DependentUpon>ReportSampleStockOpname.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportScanReturn3PL.resx">
+      <DependentUpon>ReportScanReturn3PL.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportScanReturnBAP.resx">
       <DependentUpon>ReportScanReturnBAP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportScanReturnLocal.resx">
+      <DependentUpon>ReportScanReturnLocal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSetupBudgetOPEX.resx">
       <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>
