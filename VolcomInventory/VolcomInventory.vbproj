@@ -3104,6 +3104,12 @@
     <Compile Include="FormOLStorePeriod.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreRestock.Designer.vb">
+      <DependentUpon>FormOLStoreRestock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreRestock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOlStoreRetCust.Designer.vb">
       <DependentUpon>FormOlStoreRetCust.vb</DependentUpon>
     </Compile>
@@ -10403,6 +10409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStorePeriod.resx">
       <DependentUpon>FormOLStorePeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreRestock.resx">
+      <DependentUpon>FormOLStoreRestock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOlStoreRetCust.resx">
       <DependentUpon>FormOlStoreRetCust.vb</DependentUpon>
