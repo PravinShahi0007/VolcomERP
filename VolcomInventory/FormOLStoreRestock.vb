@@ -145,7 +145,6 @@
                     For i As Integer = 0 To GVOnlineWH.RowCount - 1
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Restock " + (i + 1).ToString + "/" + GVOnlineWH.RowCount.ToString)
                         Dim id_wh_from As String = GVOnlineWH.GetRowCellValue(i, "id_comp").ToString
-                        Dim id_product As String = id_product
                         Dim qty As String = decimalSQL(GVOnlineWH.GetRowCellValue(i, "total_order").ToString)
                         execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol + ", " + id_product + ", '" + qty + "');", True, "", "", "", "")
                     Next
