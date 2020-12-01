@@ -326,7 +326,7 @@
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ret.id_store_contact_from
         INNER JOIN tb_m_product prod ON prod.id_product = retd.id_product
         WHERE retd.id_sales_return=" + id_report_par + " "
-        execute_non_query(query, True, "", "", "", "")
+        execute_non_query_long(query, True, "", "", "", "")
     End Sub
 
     Public Sub cancellUnique(ByVal id_report_par As String)
@@ -346,7 +346,7 @@
         WHERE t.id_sales_return=" + id_report_par + "
         AND d.is_old_design=2 
         AND t.is_use_unique_code=1 "
-        execute_non_query(query, True, "", "", "", "")
+        execute_non_query_long(query, True, "", "", "", "")
     End Sub
 
     Public Sub completeUnique(ByVal id_report_par As String)
@@ -366,6 +366,6 @@
         WHERE t.id_sales_return=" + id_report_par + "
         AND d.is_old_design=2 
         AND t.is_use_unique_code=1 "
-        execute_non_query(query, True, "", "", "", "")
+        execute_non_query_long(query, True, "", "", "", "")
     End Sub
 End Class

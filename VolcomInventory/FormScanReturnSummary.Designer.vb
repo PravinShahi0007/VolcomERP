@@ -25,8 +25,8 @@ Partial Class FormScanReturnSummary
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.XTCSummary = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPWH = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCAwb = New DevExpress.XtraGrid.GridControl()
-        Me.GVAwb = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCLocal = New DevExpress.XtraGrid.GridControl()
+        Me.GVLocal = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,6 +42,7 @@ Partial Class FormScanReturnSummary
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEEmp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -76,14 +77,13 @@ Partial Class FormScanReturnSummary
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.DEStart3pl = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSummary.SuspendLayout()
         Me.XTPWH.SuspendLayout()
-        CType(Me.GCAwb, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVAwb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCLocal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVLocal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -152,33 +152,33 @@ Partial Class FormScanReturnSummary
         '
         'XTPWH
         '
-        Me.XTPWH.Controls.Add(Me.GCAwb)
+        Me.XTPWH.Controls.Add(Me.GCLocal)
         Me.XTPWH.Controls.Add(Me.PanelControl2)
         Me.XTPWH.Name = "XTPWH"
         Me.XTPWH.Size = New System.Drawing.Size(1009, 565)
         Me.XTPWH.Text = "WH Inbound"
         '
-        'GCAwb
+        'GCLocal
         '
-        Me.GCAwb.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAwb.Location = New System.Drawing.Point(0, 46)
-        Me.GCAwb.MainView = Me.GVAwb
-        Me.GCAwb.Name = "GCAwb"
-        Me.GCAwb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
-        Me.GCAwb.Size = New System.Drawing.Size(1009, 519)
-        Me.GCAwb.TabIndex = 3
-        Me.GCAwb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAwb})
+        Me.GCLocal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCLocal.Location = New System.Drawing.Point(0, 46)
+        Me.GCLocal.MainView = Me.GVLocal
+        Me.GCLocal.Name = "GCLocal"
+        Me.GCLocal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
+        Me.GCLocal.Size = New System.Drawing.Size(1009, 519)
+        Me.GCLocal.TabIndex = 3
+        Me.GCLocal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLocal})
         '
-        'GVAwb
+        'GVLocal
         '
-        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn18, Me.GridColumn2, Me.GridColumn6, Me.GridColumn17, Me.GridColumn22, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn21, Me.GridColumn9, Me.GridColumn10, Me.GridColumn34})
-        Me.GVAwb.GridControl = Me.GCAwb
-        Me.GVAwb.Name = "GVAwb"
-        Me.GVAwb.OptionsBehavior.Editable = False
-        Me.GVAwb.OptionsBehavior.ReadOnly = True
-        Me.GVAwb.OptionsView.RowAutoHeight = True
-        Me.GVAwb.OptionsView.ShowFooter = True
-        Me.GVAwb.OptionsView.ShowGroupPanel = False
+        Me.GVLocal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn18, Me.GridColumn2, Me.GridColumn6, Me.GridColumn17, Me.GridColumn22, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn21, Me.GridColumn9, Me.GridColumn10, Me.GridColumn34})
+        Me.GVLocal.GridControl = Me.GCLocal
+        Me.GVLocal.Name = "GVLocal"
+        Me.GVLocal.OptionsBehavior.Editable = False
+        Me.GVLocal.OptionsBehavior.ReadOnly = True
+        Me.GVLocal.OptionsView.RowAutoHeight = True
+        Me.GVLocal.OptionsView.ShowFooter = True
+        Me.GVLocal.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -328,6 +328,19 @@ Partial Class FormScanReturnSummary
         Me.GridColumn10.FieldName = "created_date"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Width = 102
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn34.Caption = "Status"
+        Me.GridColumn34.FieldName = "status"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 7
+        Me.GridColumn34.Width = 88
         '
         'PanelControl2
         '
@@ -654,19 +667,6 @@ Partial Class FormScanReturnSummary
         Me.DEStart3pl.Size = New System.Drawing.Size(136, 20)
         Me.DEStart3pl.TabIndex = 8920
         '
-        'GridColumn34
-        '
-        Me.GridColumn34.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn34.Caption = "Status"
-        Me.GridColumn34.FieldName = "status"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 7
-        Me.GridColumn34.Width = 88
-        '
         'FormScanReturnSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -684,8 +684,8 @@ Partial Class FormScanReturnSummary
         CType(Me.XTCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCSummary.ResumeLayout(False)
         Me.XTPWH.ResumeLayout(False)
-        CType(Me.GCAwb, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVAwb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCLocal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVLocal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -713,8 +713,8 @@ Partial Class FormScanReturnSummary
     Friend WithEvents XTCSummary As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPWH As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTP3PL As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCAwb As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVAwb As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCLocal As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVLocal As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn

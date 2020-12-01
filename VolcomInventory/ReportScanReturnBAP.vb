@@ -17,11 +17,8 @@ LEFT JOIN tb_m_comp c ON c.`id_comp`=bap.`id_3pl`
 WHERE bap.`id_scan_return_bap` = '" & id_bap & "'"
         DataSource = execute_query(q, -1, True, "", "", "", "")
         '
-
         Dim id_current As String = ""
-
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
-
 
         For i = 0 To data_det.Rows.Count - 1
             'row

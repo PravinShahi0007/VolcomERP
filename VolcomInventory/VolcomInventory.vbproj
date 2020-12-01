@@ -8840,6 +8840,12 @@
     <Compile Include="ReportScanReturnBAP.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportScanReturnLocal.Designer.vb">
+      <DependentUpon>ReportScanReturnLocal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanReturnLocal.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSetupBudgetOPEX.Designer.vb">
       <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>
     </Compile>
@@ -13741,6 +13747,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportScanReturnBAP.resx">
       <DependentUpon>ReportScanReturnBAP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportScanReturnLocal.resx">
+      <DependentUpon>ReportScanReturnLocal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSetupBudgetOPEX.resx">
       <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>

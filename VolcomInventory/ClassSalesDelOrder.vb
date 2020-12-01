@@ -380,7 +380,7 @@
                     ) u ON u.id_product = p.id_product
                     WHERE t.id_pl_sales_order_del=" + id_report_par + "
                     AND d.is_old_design=2 AND t.is_use_unique_code=1 "
-                execute_non_query(quniq, True, "", "", "", "")
+                execute_non_query_long(quniq, True, "", "", "", "")
             Catch ex As Exception
                 stopCustom("failed insert unique :" + ex.ToString)
             End Try
@@ -402,7 +402,7 @@
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
             WHERE t.id_pl_sales_order_del=" + id_report_par + "
             AND d.is_old_design=2 AND t.is_use_unique_code_wh=1 "
-            execute_non_query(quniq, True, "", "", "", "")
+            execute_non_query_long(quniq, True, "", "", "", "")
         End If
         Dim query As String = String.Format("UPDATE tb_pl_sales_order_del SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_sales_order_del ='{1}'", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")
@@ -474,7 +474,7 @@
                 ) u ON u.id_product = p.id_product
                 WHERE t.id_combine=" + id_report_par + "
                 AND d.is_old_design=2 AND t.is_use_unique_code=1 "
-                execute_non_query(quniq, True, "", "", "", "")
+                execute_non_query_long(quniq, True, "", "", "", "")
             Catch ex As Exception
                 stopCustom("failed insert unique :" + ex.ToString)
             End Try
@@ -494,7 +494,7 @@
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
             WHERE t.id_combine=" + id_report_par + "
             AND d.is_old_design=2 AND t.is_use_unique_code_wh=1 "
-            execute_non_query(quniq, True, "", "", "", "")
+            execute_non_query_long(quniq, True, "", "", "", "")
         End If
 
         'update pre delivery
