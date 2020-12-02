@@ -81,4 +81,47 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Function isRestockOpen(ByVal id_oos As String) As Boolean
+        Dim query As String = "SELECT * FROM tb_sales_order so
+WHERE so.id_report_status=6 AND so.id_ol_store_oos='" + id_oos + "' AND so.id_prepare_status=1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Function adaNoStock(ByVal id_order_par As String, ByVal id_comp_group_par As String) As Boolean
+        Dim query As String = "SELECT (od.ol_order_qty - od.sales_order_det_qty) AS `no_stock` 
+FROM tb_ol_store_order od WHERE od.id='" + id_order_par + "' AND od.id_comp_group='" + id_comp_group_par + "'
+HAVING no_stock>0 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Function isValidFullfill(ByVal id_order_par As String, ByVal id_comp_group_par As String, ByVal id_oos_par As String) As Boolean
+        Dim query As String = "SELECT od.id_product, SUM(od.sales_order_det_qty) AS `so_qty`, IFNULL(st.reserved_qty,0) AS `rsv_qty`
+FROM tb_ol_store_order od 
+LEFT JOIN (
+	SELECT f.id_product,SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `reserved_qty`
+  	FROM tb_storage_fg f
+  	WHERE f.report_mark_type=278 AND f.id_report='" + id_oos_par + "'
+  	GROUP BY f.id_product
+) st ON st.id_product = od.id_product
+WHERE od.id='" + id_order_par + "' AND od.id_comp_group='" + id_comp_group_par + "'
+GROUP BY od.id_product
+HAVING so_qty<>rsv_qty"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 End Class

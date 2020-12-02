@@ -122,9 +122,29 @@
     Private Sub BtnConfirmRestock_Click(sender As Object, e As EventArgs) Handles BtnConfirmRestock.Click
         Cursor = Cursors.WaitCursor
         'cek open too restock
-
+        Dim oos As New ClassOLStore()
+        Dim is_open_restock As Boolean = oos.isRestockOpen(id)
         'cek no stock
+        Dim is_no_stock = oos.adaNoStock(id_order, id_comp_group)
         'cek valid fullfill & reserved qty
+        Dim is_valid_fullfill = oos.isValidFullfill(id_order, id_comp_group, id)
+
+        'jika tidak ada yang open restock & tidak ada no stock & valid fulfill lansung sync
+        If Not is_open_restock And Not is_no_stock And is_valid_fullfill Then
+            'cek on process sync
+            Dim is_processed_order As String = get_setup_field("is_processed_order")
+            If is_processed_order = "1" Then
+                stopCustom("Sync still running")
+                Cursor = Cursors.Default
+            Else
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Processing order")
+                'execute_non_query_long("")
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            End If
+        End If
         Cursor = Cursors.Default
     End Sub
 
