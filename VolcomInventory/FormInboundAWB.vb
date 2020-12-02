@@ -55,6 +55,14 @@ WHERE inb.id_inbound_awb='" & id_awb_inbound & "'"
                 TEAwb.Enabled = False
                 BNext.Enabled = True
                 BSubmitAwb.Enabled = False
+                '
+                'check sudah dipakai
+                Dim qc As String = "SELECT * from tb_return_note WHERE id_inbound_awb='" & id_awb_inbound & "' AND is_void=2"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    BUpdateKoli.Visible = False
+                    BUpdateStore.Visible = False
+                End If
             End If
         End If
         '

@@ -769,6 +769,8 @@
         If XTCPayroll.SelectedTabPage.Name = "XTPSalaryFormat" Then
             load_payroll_detail()
         End If
+
+        BPrint.Enabled = True
     End Sub
 
     Private Sub BarButtonItem5_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIBPJSTK.ItemClick
@@ -1407,6 +1409,15 @@
 
         Dim where_dw As String = If(is_dw = "1", "=", "<>")
 
+        'religion
+        Dim where_employee_religion As String = ""
+
+        If is_thr = "1" Then
+            Dim in_religion As String = execute_query("SELECT id_religion FROM tb_emp_payroll_type WHERE id_payroll_type = " + id_payroll_type, 0, True, "", "", "", "")
+
+            where_employee_religion = "AND e.id_religion IN (" + in_religion + ")"
+        End If
+
         'not active
         Dim where_employee_not_active As String = ""
 
@@ -1437,13 +1448,16 @@
             "
         End If
 
-        'religion
-        Dim where_employee_religion As String = ""
-
         If is_thr = "1" Then
-            Dim in_religion As String = execute_query("SELECT id_religion FROM tb_emp_payroll_type WHERE id_payroll_type = " + id_payroll_type, 0, True, "", "", "", "")
-
-            where_employee_religion = "AND e.id_religion IN (" + in_religion + ")"
+            where_employee_not_active = "
+                UNION
+                -- employee resign <= 30
+                SELECT e.id_employee, e.employee_name
+                FROM tb_m_employee AS e
+                WHERE e.id_employee_active = 3
+                " + where_employee_religion + "
+                AND TIMESTAMPDIFF(DAY, e.employee_last_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) <= 30
+            "
         End If
 
         'actual workdays
@@ -1465,7 +1479,7 @@
         If is_thr = "1" Then
             where_actual_workdays = "
                 -- actual workdays
-                SELECT id_employee, ROUND(DATEDIFF((SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), employee_actual_join_date) / 365, 2) AS actual_workdays
+                SELECT id_employee, ROUND(DATEDIFF(IFNULL(employee_last_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), employee_actual_join_date) / 365, 2) AS actual_workdays
                 FROM tb_m_employee
             "
         End If

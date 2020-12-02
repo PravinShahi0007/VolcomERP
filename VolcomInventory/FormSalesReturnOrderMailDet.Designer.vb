@@ -19,7 +19,6 @@ Partial Class FormSalesReturnOrderMailDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnOrderMailDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.DEUpdatedDate = New DevExpress.XtraEditors.DateEdit()
@@ -91,6 +90,9 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBApprove = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSendApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.SBOther3PL = New DevExpress.XtraEditors.SimpleButton()
@@ -126,14 +128,13 @@ Partial Class FormSalesReturnOrderMailDet
         Me.LPickupDate = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SBRemoveROR = New DevExpress.XtraEditors.SimpleButton()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LType = New DevExpress.XtraEditors.LabelControl()
-        Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,7 +213,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1008, 70)
+        Me.PanelControl1.Size = New System.Drawing.Size(1264, 70)
         Me.PanelControl1.TabIndex = 99
         '
         'DEUpdatedDate
@@ -220,7 +221,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.DEUpdatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DEUpdatedDate.EditValue = Nothing
         Me.DEUpdatedDate.Enabled = False
-        Me.DEUpdatedDate.Location = New System.Drawing.Point(834, 12)
+        Me.DEUpdatedDate.Location = New System.Drawing.Point(1090, 12)
         Me.DEUpdatedDate.Name = "DEUpdatedDate"
         Me.DEUpdatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUpdatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -234,7 +235,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.TxtUpdatedBy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtUpdatedBy.Enabled = False
-        Me.TxtUpdatedBy.Location = New System.Drawing.Point(834, 38)
+        Me.TxtUpdatedBy.Location = New System.Drawing.Point(1090, 38)
         Me.TxtUpdatedBy.Name = "TxtUpdatedBy"
         Me.TxtUpdatedBy.Properties.ReadOnly = True
         Me.TxtUpdatedBy.Size = New System.Drawing.Size(152, 20)
@@ -244,7 +245,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.LabelControl19.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl19.Location = New System.Drawing.Point(756, 41)
+        Me.LabelControl19.Location = New System.Drawing.Point(1012, 41)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl19.TabIndex = 99
@@ -254,7 +255,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.LabelControl20.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl20.Location = New System.Drawing.Point(756, 15)
+        Me.LabelControl20.Location = New System.Drawing.Point(1012, 15)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl20.TabIndex = 99
@@ -323,7 +324,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.DECreatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DECreatedDate.EditValue = Nothing
         Me.DECreatedDate.Enabled = False
-        Me.DECreatedDate.Location = New System.Drawing.Point(567, 12)
+        Me.DECreatedDate.Location = New System.Drawing.Point(823, 12)
         Me.DECreatedDate.Name = "DECreatedDate"
         Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -337,7 +338,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.TxtCreatedBy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtCreatedBy.Enabled = False
-        Me.TxtCreatedBy.Location = New System.Drawing.Point(567, 38)
+        Me.TxtCreatedBy.Location = New System.Drawing.Point(823, 38)
         Me.TxtCreatedBy.Name = "TxtCreatedBy"
         Me.TxtCreatedBy.Properties.ReadOnly = True
         Me.TxtCreatedBy.Size = New System.Drawing.Size(150, 20)
@@ -347,7 +348,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.LabelControl6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(491, 41)
+        Me.LabelControl6.Location = New System.Drawing.Point(747, 41)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl6.TabIndex = 99
@@ -357,7 +358,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.LabelControl5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(491, 15)
+        Me.LabelControl5.Location = New System.Drawing.Point(747, 15)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl5.TabIndex = 99
@@ -365,7 +366,8 @@ Partial Class FormSalesReturnOrderMailDet
         '
         'SLUESubDistrict
         '
-        Me.SLUESubDistrict.Location = New System.Drawing.Point(636, 16)
+        Me.SLUESubDistrict.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SLUESubDistrict.Location = New System.Drawing.Point(892, 16)
         Me.SLUESubDistrict.Name = "SLUESubDistrict"
         Me.SLUESubDistrict.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUESubDistrict.Properties.View = Me.GridView4
@@ -539,7 +541,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.XTCMail.Location = New System.Drawing.Point(0, 362)
         Me.XTCMail.Name = "XTCMail"
         Me.XTCMail.SelectedTabPage = Me.XTPreview
-        Me.XTCMail.Size = New System.Drawing.Size(1008, 319)
+        Me.XTCMail.Size = New System.Drawing.Size(1264, 319)
         Me.XTCMail.TabIndex = 99
         Me.XTCMail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPreview, Me.XTPData, Me.XTPHistory})
         '
@@ -548,7 +550,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.XTPreview.Controls.Add(Me.PanelControl3)
         Me.XTPreview.Controls.Add(Me.PanelControl4)
         Me.XTPreview.Name = "XTPreview"
-        Me.XTPreview.Size = New System.Drawing.Size(1002, 291)
+        Me.XTPreview.Size = New System.Drawing.Size(1258, 291)
         Me.XTPreview.Text = "Preview"
         '
         'PanelControl3
@@ -558,7 +560,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl3.Location = New System.Drawing.Point(266, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Padding = New System.Windows.Forms.Padding(20)
-        Me.PanelControl3.Size = New System.Drawing.Size(736, 291)
+        Me.PanelControl3.Size = New System.Drawing.Size(992, 291)
         Me.PanelControl3.TabIndex = 100
         '
         'WebBrowser
@@ -567,7 +569,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.WebBrowser.Location = New System.Drawing.Point(22, 22)
         Me.WebBrowser.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser.Name = "WebBrowser"
-        Me.WebBrowser.Size = New System.Drawing.Size(692, 247)
+        Me.WebBrowser.Size = New System.Drawing.Size(948, 247)
         Me.WebBrowser.TabIndex = 99
         '
         'PanelControl4
@@ -669,7 +671,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.XTPData.Controls.Add(Me.GCDetail)
         Me.XTPData.Name = "XTPData"
-        Me.XTPData.Size = New System.Drawing.Size(1002, 291)
+        Me.XTPData.Size = New System.Drawing.Size(1258, 291)
         Me.XTPData.Text = "Data"
         '
         'GCDetail
@@ -678,7 +680,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(1002, 291)
+        Me.GCDetail.Size = New System.Drawing.Size(1258, 291)
         Me.GCDetail.TabIndex = 99
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -743,7 +745,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.XTPHistory.Controls.Add(Me.GCHistory)
         Me.XTPHistory.Name = "XTPHistory"
-        Me.XTPHistory.Size = New System.Drawing.Size(1002, 291)
+        Me.XTPHistory.Size = New System.Drawing.Size(1258, 291)
         Me.XTPHistory.Text = "History 3PL"
         '
         'GCHistory
@@ -752,7 +754,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GCHistory.Location = New System.Drawing.Point(0, 0)
         Me.GCHistory.MainView = Me.GVHistory
         Me.GCHistory.Name = "GCHistory"
-        Me.GCHistory.Size = New System.Drawing.Size(1002, 291)
+        Me.GCHistory.Size = New System.Drawing.Size(1258, 291)
         Me.GCHistory.TabIndex = 99
         Me.GCHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHistory})
         '
@@ -810,8 +812,10 @@ Partial Class FormSalesReturnOrderMailDet
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.SBClose)
-        Me.PanelControl2.Controls.Add(Me.SBSubmit)
+        Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.SBCancel)
+        Me.PanelControl2.Controls.Add(Me.SBApprove)
+        Me.PanelControl2.Controls.Add(Me.SBSubmit)
         Me.PanelControl2.Controls.Add(Me.SBSendApprove)
         Me.PanelControl2.Controls.Add(Me.SBOther3PL)
         Me.PanelControl2.Controls.Add(Me.SBDecline)
@@ -820,24 +824,54 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 681)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1008, 48)
+        Me.PanelControl2.Size = New System.Drawing.Size(1264, 48)
         Me.PanelControl2.TabIndex = 4
         '
         'SBClose
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(27, 2)
+        Me.SBClose.Location = New System.Drawing.Point(127, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(85, 44)
-        Me.SBClose.TabIndex = 17
+        Me.SBClose.TabIndex = 18
         Me.SBClose.Text = "Close"
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(212, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(76, 44)
+        Me.SBPrint.TabIndex = 20
+        Me.SBPrint.Text = "Print"
+        '
+        'SBApprove
+        '
+        Me.SBApprove.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBApprove.Image = CType(resources.GetObject("SBApprove.Image"), System.Drawing.Image)
+        Me.SBApprove.Location = New System.Drawing.Point(432, 2)
+        Me.SBApprove.Name = "SBApprove"
+        Me.SBApprove.Size = New System.Drawing.Size(94, 44)
+        Me.SBApprove.TabIndex = 17
+        Me.SBApprove.Text = "Approve"
+        '
+        'SBSubmit
+        '
+        Me.SBSubmit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSubmit.Image = CType(resources.GetObject("SBSubmit.Image"), System.Drawing.Image)
+        Me.SBSubmit.Location = New System.Drawing.Point(526, 2)
+        Me.SBSubmit.Name = "SBSubmit"
+        Me.SBSubmit.Size = New System.Drawing.Size(90, 44)
+        Me.SBSubmit.TabIndex = 16
+        Me.SBSubmit.Text = "Submit"
         '
         'SBCancel
         '
         Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
-        Me.SBCancel.Location = New System.Drawing.Point(202, 2)
+        Me.SBCancel.Location = New System.Drawing.Point(288, 2)
         Me.SBCancel.Name = "SBCancel"
         Me.SBCancel.Size = New System.Drawing.Size(144, 44)
         Me.SBCancel.TabIndex = 15
@@ -847,9 +881,9 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.SBSendApprove.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSendApprove.Image = CType(resources.GetObject("SBSendApprove.Image"), System.Drawing.Image)
-        Me.SBSendApprove.Location = New System.Drawing.Point(346, 2)
+        Me.SBSendApprove.Location = New System.Drawing.Point(616, 2)
         Me.SBSendApprove.Name = "SBSendApprove"
-        Me.SBSendApprove.Size = New System.Drawing.Size(137, 44)
+        Me.SBSendApprove.Size = New System.Drawing.Size(123, 44)
         Me.SBSendApprove.TabIndex = 14
         Me.SBSendApprove.Text = "Approve && Send"
         '
@@ -857,7 +891,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.SBOther3PL.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBOther3PL.Image = CType(resources.GetObject("SBOther3PL.Image"), System.Drawing.Image)
-        Me.SBOther3PL.Location = New System.Drawing.Point(483, 2)
+        Me.SBOther3PL.Location = New System.Drawing.Point(739, 2)
         Me.SBOther3PL.Name = "SBOther3PL"
         Me.SBOther3PL.Size = New System.Drawing.Size(146, 44)
         Me.SBOther3PL.TabIndex = 13
@@ -867,7 +901,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.SBDecline.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBDecline.Image = CType(resources.GetObject("SBDecline.Image"), System.Drawing.Image)
-        Me.SBDecline.Location = New System.Drawing.Point(629, 2)
+        Me.SBDecline.Location = New System.Drawing.Point(885, 2)
         Me.SBDecline.Name = "SBDecline"
         Me.SBDecline.Size = New System.Drawing.Size(146, 44)
         Me.SBDecline.TabIndex = 12
@@ -877,7 +911,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.SBAccept.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBAccept.Image = CType(resources.GetObject("SBAccept.Image"), System.Drawing.Image)
-        Me.SBAccept.Location = New System.Drawing.Point(775, 2)
+        Me.SBAccept.Location = New System.Drawing.Point(1031, 2)
         Me.SBAccept.Name = "SBAccept"
         Me.SBAccept.Size = New System.Drawing.Size(141, 44)
         Me.SBAccept.TabIndex = 11
@@ -887,7 +921,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.SBSend.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSend.Image = CType(resources.GetObject("SBSend.Image"), System.Drawing.Image)
-        Me.SBSend.Location = New System.Drawing.Point(916, 2)
+        Me.SBSend.Location = New System.Drawing.Point(1172, 2)
         Me.SBSend.Name = "SBSend"
         Me.SBSend.Size = New System.Drawing.Size(90, 44)
         Me.SBSend.TabIndex = 10
@@ -897,7 +931,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.SBAddROR.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBAddROR.Image = CType(resources.GetObject("SBAddROR.Image"), System.Drawing.Image)
-        Me.SBAddROR.Location = New System.Drawing.Point(778, 10)
+        Me.SBAddROR.Location = New System.Drawing.Point(1034, 10)
         Me.SBAddROR.Name = "SBAddROR"
         Me.SBAddROR.Size = New System.Drawing.Size(90, 23)
         Me.SBAddROR.TabIndex = 99
@@ -906,7 +940,7 @@ Partial Class FormSalesReturnOrderMailDet
         'TxtPackageQty
         '
         Me.TxtPackageQty.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtPackageQty.Location = New System.Drawing.Point(636, 68)
+        Me.TxtPackageQty.Location = New System.Drawing.Point(892, 68)
         Me.TxtPackageQty.Name = "TxtPackageQty"
         Me.TxtPackageQty.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtPackageQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -922,7 +956,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.LPackageQty.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LPackageQty.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LPackageQty.Location = New System.Drawing.Point(537, 71)
+        Me.LPackageQty.Location = New System.Drawing.Point(793, 71)
         Me.LPackageQty.Name = "LPackageQty"
         Me.LPackageQty.Size = New System.Drawing.Size(61, 13)
         Me.LPackageQty.TabIndex = 99
@@ -982,14 +1016,14 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl6.Location = New System.Drawing.Point(0, 113)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(1008, 205)
+        Me.PanelControl6.Size = New System.Drawing.Size(1264, 205)
         Me.PanelControl6.TabIndex = 1
         '
         'LEmployee
         '
         Me.LEmployee.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LEmployee.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEmployee.Location = New System.Drawing.Point(537, 175)
+        Me.LEmployee.Location = New System.Drawing.Point(793, 175)
         Me.LEmployee.Name = "LEmployee"
         Me.LEmployee.Size = New System.Drawing.Size(46, 13)
         Me.LEmployee.TabIndex = 99
@@ -997,7 +1031,8 @@ Partial Class FormSalesReturnOrderMailDet
         '
         'SLUEEmployee
         '
-        Me.SLUEEmployee.Location = New System.Drawing.Point(636, 172)
+        Me.SLUEEmployee.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SLUEEmployee.Location = New System.Drawing.Point(892, 172)
         Me.SLUEEmployee.Name = "SLUEEmployee"
         Me.SLUEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEEmployee.Properties.View = Me.GridView6
@@ -1057,8 +1092,9 @@ Partial Class FormSalesReturnOrderMailDet
         '
         'LSubDistrict
         '
+        Me.LSubDistrict.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LSubDistrict.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LSubDistrict.Location = New System.Drawing.Point(537, 19)
+        Me.LSubDistrict.Location = New System.Drawing.Point(793, 19)
         Me.LSubDistrict.Name = "LSubDistrict"
         Me.LSubDistrict.Size = New System.Drawing.Size(54, 13)
         Me.LSubDistrict.TabIndex = 103
@@ -1066,7 +1102,6 @@ Partial Class FormSalesReturnOrderMailDet
         '
         'LCity
         '
-        Me.LCity.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LCity.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LCity.Location = New System.Drawing.Point(15, 19)
         Me.LCity.Name = "LCity"
@@ -1078,7 +1113,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.L3PLMinWeight.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.L3PLMinWeight.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.L3PLMinWeight.Location = New System.Drawing.Point(537, 149)
+        Me.L3PLMinWeight.Location = New System.Drawing.Point(793, 149)
         Me.L3PLMinWeight.Name = "L3PLMinWeight"
         Me.L3PLMinWeight.Size = New System.Drawing.Size(57, 13)
         Me.L3PLMinWeight.TabIndex = 99
@@ -1087,7 +1122,7 @@ Partial Class FormSalesReturnOrderMailDet
         'Txt3PLMinWeight
         '
         Me.Txt3PLMinWeight.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Txt3PLMinWeight.Location = New System.Drawing.Point(636, 146)
+        Me.Txt3PLMinWeight.Location = New System.Drawing.Point(892, 146)
         Me.Txt3PLMinWeight.Name = "Txt3PLMinWeight"
         Me.Txt3PLMinWeight.Properties.DisplayFormat.FormatString = "N0"
         Me.Txt3PLMinWeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1104,7 +1139,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.L3PLRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.L3PLRate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.L3PLRate.Location = New System.Drawing.Point(537, 123)
+        Me.L3PLRate.Location = New System.Drawing.Point(793, 123)
         Me.L3PLRate.Name = "L3PLRate"
         Me.L3PLRate.Size = New System.Drawing.Size(23, 13)
         Me.L3PLRate.TabIndex = 99
@@ -1113,7 +1148,7 @@ Partial Class FormSalesReturnOrderMailDet
         'Txt3PLRate
         '
         Me.Txt3PLRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Txt3PLRate.Location = New System.Drawing.Point(636, 120)
+        Me.Txt3PLRate.Location = New System.Drawing.Point(892, 120)
         Me.Txt3PLRate.Name = "Txt3PLRate"
         Me.Txt3PLRate.Properties.DisplayFormat.FormatString = "N0"
         Me.Txt3PLRate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1129,7 +1164,7 @@ Partial Class FormSalesReturnOrderMailDet
         'TxtStoreAddress
         '
         Me.TxtStoreAddress.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtStoreAddress.Location = New System.Drawing.Point(636, 42)
+        Me.TxtStoreAddress.Location = New System.Drawing.Point(892, 42)
         Me.TxtStoreAddress.Name = "TxtStoreAddress"
         Me.TxtStoreAddress.Properties.ReadOnly = True
         Me.TxtStoreAddress.Size = New System.Drawing.Size(350, 20)
@@ -1139,7 +1174,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.LStoreAddress.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LStoreAddress.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LStoreAddress.Location = New System.Drawing.Point(537, 45)
+        Me.LStoreAddress.Location = New System.Drawing.Point(793, 45)
         Me.LStoreAddress.Name = "LStoreAddress"
         Me.LStoreAddress.Size = New System.Drawing.Size(39, 13)
         Me.LStoreAddress.TabIndex = 99
@@ -1149,7 +1184,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.DEWHReceive.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DEWHReceive.EditValue = Nothing
-        Me.DEWHReceive.Location = New System.Drawing.Point(636, 94)
+        Me.DEWHReceive.Location = New System.Drawing.Point(892, 94)
         Me.DEWHReceive.Name = "DEWHReceive"
         Me.DEWHReceive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEWHReceive.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1180,7 +1215,7 @@ Partial Class FormSalesReturnOrderMailDet
         '
         Me.LWHReceive.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LWHReceive.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LWHReceive.Location = New System.Drawing.Point(537, 97)
+        Me.LWHReceive.Location = New System.Drawing.Point(793, 97)
         Me.LWHReceive.Name = "LWHReceive"
         Me.LWHReceive.Size = New System.Drawing.Size(84, 13)
         Me.LWHReceive.TabIndex = 99
@@ -1202,14 +1237,14 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl5.Location = New System.Drawing.Point(0, 318)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(1008, 44)
+        Me.PanelControl5.Size = New System.Drawing.Size(1264, 44)
         Me.PanelControl5.TabIndex = 99
         '
         'SBRemoveROR
         '
         Me.SBRemoveROR.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBRemoveROR.Image = CType(resources.GetObject("SBRemoveROR.Image"), System.Drawing.Image)
-        Me.SBRemoveROR.Location = New System.Drawing.Point(874, 10)
+        Me.SBRemoveROR.Location = New System.Drawing.Point(1130, 10)
         Me.SBRemoveROR.Name = "SBRemoveROR"
         Me.SBRemoveROR.Size = New System.Drawing.Size(112, 23)
         Me.SBRemoveROR.TabIndex = 99
@@ -1227,7 +1262,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl7.Location = New System.Drawing.Point(0, 70)
         Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(1008, 43)
+        Me.PanelControl7.Size = New System.Drawing.Size(1264, 43)
         Me.PanelControl7.TabIndex = 0
         '
         'SLUEType
@@ -1270,21 +1305,11 @@ Partial Class FormSalesReturnOrderMailDet
         Me.LType.TabIndex = 99
         Me.LType.Text = "Type"
         '
-        'SBSubmit
-        '
-        Me.SBSubmit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBSubmit.Image = CType(resources.GetObject("SBSubmit.Image"), System.Drawing.Image)
-        Me.SBSubmit.Location = New System.Drawing.Point(112, 2)
-        Me.SBSubmit.Name = "SBSubmit"
-        Me.SBSubmit.Size = New System.Drawing.Size(90, 44)
-        Me.SBSubmit.TabIndex = 16
-        Me.SBSubmit.Text = "Submit"
-        '
         'FormSalesReturnOrderMailDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.ClientSize = New System.Drawing.Size(1264, 729)
         Me.Controls.Add(Me.XTCMail)
         Me.Controls.Add(Me.PanelControl5)
         Me.Controls.Add(Me.PanelControl6)
@@ -1475,4 +1500,6 @@ Partial Class FormSalesReturnOrderMailDet
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBSubmit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBApprove As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
 End Class

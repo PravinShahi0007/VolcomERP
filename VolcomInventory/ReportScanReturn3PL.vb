@@ -19,7 +19,6 @@
 
         For i = 0 To data_awb.Rows.Count - 1
             'row
-            id_awb_cur = data_awb.Rows(i)("id_inbound_awb").ToString
 
             If i = 0 Then
                 row_awb = XTAWB.InsertRowBelow(XTTopAwb)
@@ -30,11 +29,19 @@
             '
             row_awb.Font = New Font("Tahoma", 7.5, FontStyle.Regular)
             '
-            'awb number
-            Dim awb As DevExpress.XtraReports.UI.XRTableCell = row_awb.Cells.Item(0)
-            awb.Text = data_awb.Rows(i)("awb_number").ToString
-            awb.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-            awb.BackColor = Color.Transparent
+            If Not id_awb_cur = data_awb.Rows(i)("id_inbound_awb").ToString Then
+                'awb number
+                Dim awb As DevExpress.XtraReports.UI.XRTableCell = row_awb.Cells.Item(0)
+                awb.Text = data_awb.Rows(i)("awb_number").ToString
+                awb.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+                awb.BackColor = Color.Transparent
+                '
+                For j = i + 1 To data_awb.Rows.Count - 1
+                    If data_awb.Rows(i)("id_inbound_awb").ToString = data_awb.Rows(j)("id_inbound_awb").ToString Then
+                        awb.RowSpan += 1
+                    End If
+                Next
+            End If
 
             'berat
             Dim berat As DevExpress.XtraReports.UI.XRTableCell = row_awb.Cells.Item(1)
@@ -84,16 +91,21 @@
             final_berat.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
             final_berat.BackColor = Color.Transparent
             '
+            id_awb_cur = data_awb.Rows(i)("id_inbound_awb").ToString
+
             Dim is_insert_total As Boolean = False
+
+            tot_berat += Decimal.Parse(data_awb.Rows(i)("berat").ToString)
+            tot_berat_dimensi += Decimal.Parse(data_awb.Rows(i)("berat_dimensi").ToString)
+            tot_final_berat += Decimal.Parse(data_awb.Rows(i)("final_berat").ToString)
+
             If i = data_awb.Rows.Count - 1 Then
                 is_insert_total = True
             ElseIf Not id_awb_cur = data_awb.Rows(i)("id_inbound_awb").ToString Then
                 is_insert_total = True
             Else
                 'lanjut blm total
-                tot_berat += Decimal.Parse(data_awb.Rows(i)("berat").ToString)
-                tot_berat_dimensi += Decimal.Parse(data_awb.Rows(i)("berat_dimensi").ToString)
-                tot_final_berat += Decimal.Parse(data_awb.Rows(i)("final_berat").ToString)
+
             End If
             '
             If is_insert_total Then
@@ -103,6 +115,8 @@
 
                 Dim awb_tot As DevExpress.XtraReports.UI.XRTableCell = row_awb.Cells.Item(0)
                 awb_tot.BackColor = Color.LightGray
+                awb_tot.Text = "Sub Total"
+
                 'berat
                 Dim berat_tot As DevExpress.XtraReports.UI.XRTableCell = row_awb.Cells.Item(1)
                 berat_tot.BackColor = Color.LightGray
@@ -163,8 +177,16 @@
 
             row.Font = New Font("Tahoma", 7.5, FontStyle.Regular)
 
+            'awb_number
+            Dim awb_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+            awb_number.WordWrap = True
+            awb_number.Multiline = True
+            awb_number.Text = data_det.Rows(i)("awb_number").ToString
+            awb_number.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            awb_number.BackColor = Color.Transparent
+
             'list store
-            Dim list_store As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+            Dim list_store As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
             list_store.WordWrap = True
             list_store.Multiline = True
             list_store.Text = data_det.Rows(i)("store_list").ToString
@@ -172,21 +194,21 @@
             list_store.BackColor = Color.Transparent
 
             'return note
-            Dim nota_retur As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+            Dim nota_retur As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
 
             nota_retur.Text = data_det.Rows(i)("number_return_note").ToString
             nota_retur.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             nota_retur.BackColor = Color.Transparent
 
             'tanggal scan barang
-            Dim date_created As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            Dim date_created As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
 
             date_created.Text = Date.Parse(data_det.Rows(i)("date_created").ToString).ToString("dd MMMM yyyy")
             date_created.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             date_created.BackColor = Color.Transparent
 
             'Qty Return Note
-            Dim qty_return_note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+            Dim qty_return_note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
 
             qty_return_note.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             qty_return_note.Text = Decimal.Parse(data_det.Rows(i)("qty_return_note").ToString).ToString("N0")
@@ -194,7 +216,7 @@
             qty_return_note.BackColor = Color.Transparent
 
             'Qty Scan
-            Dim qty_scan As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            Dim qty_scan As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
 
             qty_scan.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             qty_scan.Text = Decimal.Parse(data_det.Rows(i)("qty_scan").ToString).ToString("N0")
@@ -202,7 +224,7 @@
             qty_scan.BackColor = Color.Transparent
 
             'Diff Qty 
-            Dim qty_bap As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+            Dim qty_bap As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
 
             qty_bap.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             qty_bap.Text = Decimal.Parse(data_det.Rows(i)("qty_bap").ToString).ToString("N0")
@@ -210,14 +232,14 @@
             qty_bap.BackColor = Color.Transparent
 
             'bap number
-            Dim bap_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+            Dim bap_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
             bap_number.Text = data_det.Rows(i)("bap_number").ToString
             bap_number.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             bap_number.BackColor = Color.Transparent
 
             'Remark 
-            Dim notes As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+            Dim notes As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
 
             notes.WordWrap = True
             notes.Multiline = True
@@ -226,5 +248,7 @@
             notes.BackColor = Color.Transparent
         Next
         XRTotal.HeightF = 16
+        XRTotWeight.HeightF = 16
+        XRTotAWB.HeightF = 16
     End Sub
 End Class
