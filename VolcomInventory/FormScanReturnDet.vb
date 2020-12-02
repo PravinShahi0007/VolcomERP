@@ -53,7 +53,7 @@ WHERE dsg.`id_lookup_status_order`!=2"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT scd.id_scan_return_det,scd.id_product,prd.product_full_code,prd.product_display_name,pc.size,scd.`type`,IF(scd.`type`=1,'Ok',IF(scd.`type`=2,'Manual input','Unique Duplicate')) AS notes 
+        Dim q As String = "SELECT scd.id_scan_return_det,scd.id_product,prd.product_full_code,prd.product_display_name,pc.size,scd.`type`,IF(scd.`type`=1,'Ok',IF(scd.`type`=2,'No Tag','Unique Duplicate')) AS notes 
 FROM `tb_scan_return_det` scd
 INNER JOIN tb_m_product prd ON prd.id_product=scd.id_product
 LEFT JOIN 

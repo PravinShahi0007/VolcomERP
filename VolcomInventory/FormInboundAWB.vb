@@ -54,6 +54,7 @@ WHERE inb.id_inbound_awb='" & id_awb_inbound & "'"
                 XTCdetail.Enabled = True
                 TEAwb.Enabled = False
                 BNext.Enabled = True
+                PCHeader.Enabled = False
                 BSubmitAwb.Enabled = False
                 '
                 'check sudah dipakai
@@ -122,6 +123,7 @@ VALUES('" & SLEVendor.EditValue.ToString & "','" & SLEDelType.EditValue.ToString
                 XTCdetail.Enabled = True
                 TEAwb.Enabled = False
                 BNext.Enabled = True
+                PCHeader.Enabled = False
                 BSubmitAwb.Enabled = False
             End If
         End If
@@ -188,6 +190,7 @@ WHERE rte.is_active=1 AND rte.id_del_type='" & SLEDelType.EditValue.ToString & "
     Private Sub BNext_Click(sender As Object, e As EventArgs) Handles BNext.Click
         BSubmitAwb.Enabled = True
         BNext.Enabled = False
+        PCHeader.Enabled = True
         TEAwb.Enabled = True
         XTCdetail.Enabled = False
 
@@ -299,5 +302,19 @@ VALUES"
 
     Private Sub SLERate_EditValueChanged(sender As Object, e As EventArgs) Handles SLERate.EditValueChanged
         load_repo_store()
+    End Sub
+
+    Private Sub BPrintAWB_Click(sender As Object, e As EventArgs) Handles BPrintAWB.Click
+        If Not id_awb_inbound = "-1" Then
+
+        Else
+            warningCustom("Detail AWB not saved yet")
+        End If
+    End Sub
+
+    Private Sub GVKoli_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVKoli.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class
