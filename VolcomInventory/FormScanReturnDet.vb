@@ -197,18 +197,20 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
         ElseIf GVListProduct.RowCount = 0 Then
             warningCustom("Please scan first")
         Else
-            Dim is_ok As Boolean = True
+            Dim is_ok As Boolean = False
 
-            If Not GVListProduct.Columns("size").SummaryItem.SummaryValue = TEQty.EditValue Then
-                Dim confirm As DialogResult
-                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Qty Return note vs Qty Scan not match, continue save ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            'If Not GVListProduct.Columns("size").SummaryItem.SummaryValue = TEQty.EditValue Then
+            '    Dim confirm As DialogResult
+            '    confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Qty Return note vs Qty Scan not match, continue save ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    is_ok = True
-                Else
-                    is_ok = False
-                End If
-            End If
+            '    If confirm = Windows.Forms.DialogResult.Yes Then
+            '        is_ok = True
+            '    Else
+            '        is_ok = False
+            '    End If
+            'End If
+
+            FormScanReturnConfirm.ShowDialog()
 
             If is_ok Then
                 'save
@@ -243,6 +245,8 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
                     infoCustom("Scan updated.")
                     Close()
                 End If
+            Else
+                Close()
             End If
         End If
     End Sub
