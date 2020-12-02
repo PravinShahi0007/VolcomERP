@@ -19,7 +19,7 @@
 
     Sub sendEmailOOS(ByVal id_order_par As String, ByVal id_comp_group_par As String)
         'get id oos
-        Dim data As DataTable = viewListOOS("", "AND os.id_comp_group='" + id_comp_group_par + "' AND os.id_order='" + id_order_par + "' ")
+        Dim data As DataTable = viewListOOS("AND os.id_comp_group='" + id_comp_group_par + "' AND os.id_order='" + id_order_par + "' ")
         Dim id_report As String = data.Rows(0)("id_ol_store_oos").ToString
         Dim id_comp_group As String = data.Rows(0)("id_comp_group").ToString
         Dim comp_group As String = data.Rows(0)("comp_group").ToString
@@ -47,7 +47,7 @@
         m.send_email()
     End Sub
 
-    Function viewListOOS(ByVal type_par As String, ByVal cond_par As String) As DataTable
+    Function viewListOOS(ByVal cond_par As String) As DataTable
         Dim query As String = "SELECT os.id_ol_store_oos, os.number, os.id_comp_group, cg.comp_group, os.id_order, od.sales_order_ol_shop_number AS `order_number`, os.created_date,
         os.manual_send_email_reason, os.sent_email_date,os.id_ol_store_oos_stt, stt.ol_store_oos_stt,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 

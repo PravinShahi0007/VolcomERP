@@ -14,7 +14,7 @@
     Sub actionLoad()
         Cursor = Cursors.WaitCursor
         Dim oos As New ClassOLStore()
-        Dim data As DataTable = oos.viewListOOS("", "AND os.id_ol_store_oos='" + id + "' ")
+        Dim data As DataTable = oos.viewListOOS("AND os.id_ol_store_oos='" + id + "' ")
         TxtOOSNo.Text = data.Rows(0)("number").ToString
         TxtMarketplaceName.Text = data.Rows(0)("comp_group").ToString
         TxtOrderNo.Text = data.Rows(0)("order_number").ToString

@@ -26,7 +26,11 @@
         Dim id_type As String = LEType.EditValue.ToString
         Dim cond As String = ""
         If id_type <> "0" Then
-            cond = "AND status='" + LEType.Text + "'"
+            If id_type = "1" Then
+                cond = "AND os.is_closed=2 "
+            Else
+                cond = "AND os.is_closed=1 "
+            End If
         Else
             cond = ""
         End If
@@ -34,7 +38,7 @@
         If id_ol_store_oos_stt <> "0" Then
             cond += "AND os.id_ol_store_oos_stt='" + id_ol_store_oos_stt + "' "
         End If
-        Dim data As DataTable = ooslist.viewListOOS(cond, "")
+        Dim data As DataTable = ooslist.viewListOOS(cond)
         GCData.DataSource = data
         GVData.BestFitColumns()
         Cursor = Cursors.Default
