@@ -19,6 +19,7 @@ Partial Class FormSalesReturnOrderMailDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnOrderMailDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.DEUpdatedDate = New DevExpress.XtraEditors.DateEdit()
@@ -91,9 +92,9 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSendApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.SBOther3PL = New DevExpress.XtraEditors.SimpleButton()
         Me.SBDecline = New DevExpress.XtraEditors.SimpleButton()
@@ -128,7 +129,7 @@ Partial Class FormSalesReturnOrderMailDet
         Me.LPickupDate = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SBRemoveROR = New DevExpress.XtraEditors.SimpleButton()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -847,6 +848,16 @@ Partial Class FormSalesReturnOrderMailDet
         Me.SBPrint.TabIndex = 20
         Me.SBPrint.Text = "Print"
         '
+        'SBCancel
+        '
+        Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
+        Me.SBCancel.Location = New System.Drawing.Point(288, 2)
+        Me.SBCancel.Name = "SBCancel"
+        Me.SBCancel.Size = New System.Drawing.Size(144, 44)
+        Me.SBCancel.TabIndex = 15
+        Me.SBCancel.Text = "Cancel Pickup Order"
+        '
         'SBApprove
         '
         Me.SBApprove.Dock = System.Windows.Forms.DockStyle.Right
@@ -866,16 +877,6 @@ Partial Class FormSalesReturnOrderMailDet
         Me.SBSubmit.Size = New System.Drawing.Size(90, 44)
         Me.SBSubmit.TabIndex = 16
         Me.SBSubmit.Text = "Submit"
-        '
-        'SBCancel
-        '
-        Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
-        Me.SBCancel.Location = New System.Drawing.Point(288, 2)
-        Me.SBCancel.Name = "SBCancel"
-        Me.SBCancel.Size = New System.Drawing.Size(144, 44)
-        Me.SBCancel.TabIndex = 15
-        Me.SBCancel.Text = "Cancel Pickup Order"
         '
         'SBSendApprove
         '
