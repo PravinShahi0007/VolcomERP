@@ -48,17 +48,66 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProduct.DataSource = data
         GVProduct.BestFitColumns()
+        viewRestockList()
         Cursor = Cursors.Default
     End Sub
 
     Sub viewRestockList()
+        If GVProduct.RowCount > 0 And GVProduct.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "SELECT so.id_sales_order,so.sales_order_number, stt.id_prepare_status,
+            SUM(sod.sales_order_det_qty) AS `qty_too`,IFNULL(t.qty_trf,0) AS `qty_trf`,
+            (IFNULL(t.qty_trf,0)-SUM(sod.sales_order_det_qty)) AS `diff_qty`,
+            stt.prepare_status
+            FROM tb_sales_order so
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+            INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status=so.id_prepare_status
+            LEFT JOIN (
+	            SELECT sod.id_ol_store_oos_restock,SUM(td.fg_trf_det_qty) AS `qty_trf`
+	            FROM tb_sales_order so
+	            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+	            INNER JOIN tb_fg_trf_det td ON td.id_sales_order_det = sod.id_sales_order_det
+	            INNER JOIN tb_fg_trf t ON t.id_fg_trf = td.id_fg_trf
+	            WHERE t.id_report_status=6 AND so.id_ol_store_oos='" + id + "' AND sod.id_product='" + GVProduct.GetFocusedRowCellValue("id_product").ToString + "'
+	            GROUP BY sod.id_ol_store_oos_restock
+            ) t ON t.id_ol_store_oos_restock = sod.id_ol_store_oos_restock
+            WHERE so.id_report_status=6 AND so.id_ol_store_oos='" + id + "' AND sod.id_product='" + GVProduct.GetFocusedRowCellValue("id_product").ToString + "'
+            GROUP BY sod.id_ol_store_oos_restock "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCRestock.DataSource = data
+            Cursor = Cursors.Default
+        Else
+            GCRestock.DataSource = Nothing
+        End If
+    End Sub
 
+    Sub viewSyncInfo()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 'no' AS is_checked, vo.id, vo.sales_order_ol_shop_number, vo.sales_order_ol_shop_date, vo.customer_name, vo.shipping_name, vo.shipping_address, vo.shipping_phone, vo.shipping_city, vo.shipping_post_code,
+        vo.shipping_region, vo.payment_method, vo.tracking_code, vo.ol_store_sku, vo.ol_store_id, vo.sku, vo.design_price, vo.sales_order_det_qty, vo.is_process, IF(vo.is_process=1,'Yes', 'No') AS `is_process_view`,
+        vo.note_price, vo.id_design_cat, vo.id_design_price, vo.id_product, vo.note_stock, vo.note_promo,
+        vo.id_report_trf_order, vo.rmt_trf_order, trf_order.sales_order_number AS `trf_order_number`,
+        vo.id_report_trf, vo.rmt_trf, trf.fg_trf_number AS `trf_number`,
+        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number, vo.fail_reason, vo.id_comp_group, cg.comp_group, cg.description AS `comp_group_name`
+        FROM tb_ol_store_order vo
+        LEFT JOIN tb_sales_order trf_order ON trf_order.id_sales_order = vo.id_report_trf_order
+        LEFT JOIN tb_sales_order actual_order ON actual_order.id_sales_order = vo.id_report_order
+        LEFT JOIN tb_fg_trf trf ON trf.id_fg_trf = vo.id_report_trf
+        LEFT JOIN tb_m_comp_group cg ON cg.id_comp_group = vo.id_comp_group
+        WHERE vo.id='" + id_order + "' AND vo.id_comp_group='" + id_comp_group + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCVolcom.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub allowStatus()
         'show button confirm restock
         If id_ol_store_oos_stt = "1" And id_type = "2" Then
             BtnConfirmRestock.Visible = True
+            GridColumnbtn_restock.Visible = True
+        Else
+            BtnConfirmRestock.Visible = False
+            GridColumnbtn_restock.Visible = False
         End If
         'show button close order
         If id_ol_store_oos_stt = "3" And id_type = "3" Then
@@ -66,9 +115,6 @@
         End If
     End Sub
 
-    Sub viewSyncInfo()
-
-    End Sub
 
     Private Sub FormOLStoreOOSDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -164,6 +210,38 @@
             If id_role_super_user = id_role_login Then
                 BtnSendEmail.Visible = True
             End If
+        End If
+    End Sub
+
+    Private Sub BtnPrintProduct_Click(sender As Object, e As EventArgs) Handles BtnPrintProduct.Click
+        Cursor = Cursors.WaitCursor
+        print(GCProduct, "Product List")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnPrintDetailOrder.Click
+        Cursor = Cursors.WaitCursor
+        print(GCVolcom, "Sync Info")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrintSyncList_Click(sender As Object, e As EventArgs) Handles BtnPrintSyncList.Click
+        Cursor = Cursors.WaitCursor
+        print(GCRestock, "Restock Detail")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVProduct_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProduct.FocusedRowChanged
+        viewRestockList()
+    End Sub
+
+    Private Sub GVProduct_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVProduct.ColumnFilterChanged
+        viewRestockList()
+    End Sub
+
+    Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
+        If XTCData.SelectedTabPageIndex = 1 Then
+            viewSyncInfo()
         End If
     End Sub
 End Class
