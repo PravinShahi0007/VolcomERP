@@ -769,8 +769,6 @@
         If XTCPayroll.SelectedTabPage.Name = "XTPSalaryFormat" Then
             load_payroll_detail()
         End If
-
-        BPrint.Enabled = True
     End Sub
 
     Private Sub BarButtonItem5_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIBPJSTK.ItemClick
