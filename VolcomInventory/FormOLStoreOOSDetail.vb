@@ -131,18 +131,28 @@
 
         'jika tidak ada yang open restock & tidak ada no stock & valid fulfill lansung sync
         If Not is_open_restock And Not is_no_stock And is_valid_fullfill Then
-            'cek on process sync
-            Dim is_processed_order As String = get_setup_field("is_processed_order")
-            If is_processed_order = "1" Then
-                stopCustom("Sync still running")
-                Cursor = Cursors.Default
-            Else
-                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-                    FormMain.SplashScreenManager1.ShowWaitForm()
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Sync Order" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                'cek on process sync
+                Dim is_processed_order As String = get_setup_field("is_processed_order")
+                If is_processed_order = "1" Then
+                    stopCustom("Sync still running")
+                    Cursor = Cursors.Default
+                Else
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    Dim ord As New ClassSalesOrder()
+                    ord.setProceccedWebOrder("1")
+
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing order")
+                    Dim qry As String = "CALL create_oos_close_stock_grp('" + id + "', '" + id_order + "', '" + id_comp_group + "');CALL create_oos_sync_grp(" + id_order + ", " + id_comp_group + ", " + id + ");"
+                    execute_non_query_long(qry, True, "", "", "", "")
+                    ord.setProceccedWebOrder("2")
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                    FormOLStoreOOS.viewData()
+                    Close()
                 End If
-                FormMain.SplashScreenManager1.SetWaitFormDescription("Processing order")
-                'execute_non_query_long("")
-                FormMain.SplashScreenManager1.CloseWaitForm()
             End If
         End If
         Cursor = Cursors.Default
