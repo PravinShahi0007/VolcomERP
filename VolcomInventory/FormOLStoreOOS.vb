@@ -3,12 +3,7 @@
 
     Private Sub FormOLStoreOOS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewType()
-
-        'menu type
-        If id_type <> "1" Then
-            LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_type", id_type)
-            viewData()
-        End If
+        viewProgress()
     End Sub
 
     Private Sub FormOLStoreOOS_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -30,10 +25,14 @@
         Dim ooslist As New ClassOLStore()
         Dim id_type As String = LEType.EditValue.ToString
         Dim cond As String = ""
-        If id_type <> "1" Then
+        If id_type <> "0" Then
             cond = "AND status='" + LEType.Text + "'"
         Else
             cond = ""
+        End If
+        Dim id_ol_store_oos_stt As String = LEProgress.EditValue.ToString
+        If id_ol_store_oos_stt <> "0" Then
+            cond += "AND os.id_ol_store_oos_stt='" + id_ol_store_oos_stt + "' "
         End If
         Dim data As DataTable = ooslist.viewListOOS(cond, "")
         GCData.DataSource = data
@@ -43,16 +42,21 @@
 
     Sub viewType()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 1 AS `id_type`,'all' AS `type`
+        Dim query As String = "SELECT 0 AS `id_type`,'All' AS `type`
         UNION ALL
-        SELECT 2 AS `id_type`,'waiting for restock' AS `type`
+        SELECT 1 AS `id_type`,'Open' AS `type`
         UNION ALL
-        SELECT 3 AS `id_type`,'on process restock' AS `type`
-        UNION ALL 
-        SELECT 4 AS `id_type`,'waiting for confirmation' AS `type`
-        UNION ALL
-        SELECT 5 AS `id_type`,'closed' AS `type` "
+        SELECT 2 AS `id_type`,'Close' AS `type` "
         viewLookupQuery(LEType, query, 0, "type", "id_type")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewProgress()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `id_ol_store_oos_stt`, 'All' AS `ol_store_oos_stt`
+        UNION ALL
+        SELECT s.id_ol_store_oos_stt, s.ol_store_oos_stt FROM tb_ol_store_oos_stt s "
+        viewLookupQuery(LEProgress, query, 0, "ol_store_oos_stt", "id_ol_store_oos_stt")
         Cursor = Cursors.Default
     End Sub
 

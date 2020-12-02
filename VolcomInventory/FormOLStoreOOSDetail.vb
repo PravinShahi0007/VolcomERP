@@ -1,10 +1,10 @@
 ﻿Public Class FormOLStoreOOSDetail
     Public id As String = "-1"
     Public id_type As String = "-1"
-    Dim is_sent_email As String = "-1"
-    Dim is_confirm_restock As String = "-1"
     Dim id_comp_group As String = "-1"
     Dim id_order As String = "-1"
+    Dim id_ol_store_oos_stt As String = "-1"
+    Dim id_role_super_user As String = get_setup_field("id_role_super_admin")
 
 
     Private Sub FormOLStoreOOSDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -19,8 +19,7 @@
         TxtMarketplaceName.Text = data.Rows(0)("comp_group").ToString
         TxtOrderNo.Text = data.Rows(0)("order_number").ToString
         TxtCustomer.Text = data.Rows(0)("customer_name").ToString
-        is_sent_email = data.Rows(0)("is_sent_email").ToString
-        is_confirm_restock = data.Rows(0)("is_confirm_restock").ToString
+        id_ol_store_oos_stt = data.Rows(0)("id_ol_store_oos_stt").ToString
         id_comp_group = data.Rows(0)("id_comp_group").ToString
         id_order = data.Rows(0)("id_order").ToString
         allowStatus()
@@ -57,17 +56,12 @@
     End Sub
 
     Sub allowStatus()
-        'show button email
-        If is_confirm_restock = "1" Then
-            BtnSendEmail.Visible = True
-        End If
-
         'show button confirm restock
-        If is_confirm_restock = "2" And id_type = "2" Then
+        If id_ol_store_oos_stt = "1" And id_type = "2" Then
             BtnConfirmRestock.Visible = True
         End If
         'show button close order
-        If is_confirm_restock = "1" And id_type = "3" Then
+        If id_ol_store_oos_stt = "3" And id_type = "3" Then
             BtnClosedOrder.Visible = True
         End If
     End Sub
@@ -117,10 +111,29 @@
                 FormOLStoreRestock.id_comp_group = id_comp_group
                 FormOLStoreRestock.id_web_order = id_order
                 FormOLStoreRestock.ShowDialog()
+                viewProductList()
             Else
                 stopCustom("Can't restock")
             End If
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnConfirmRestock_Click(sender As Object, e As EventArgs) Handles BtnConfirmRestock.Click
+        Cursor = Cursors.WaitCursor
+        'cek open too restock
+
+        'cek no stock
+        'cek valid fullfill & reserved qty
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormOLStoreOOSDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F7 Then
+            'show button email
+            If id_role_super_user = id_role_login Then
+                BtnSendEmail.Visible = True
+            End If
         End If
     End Sub
 End Class

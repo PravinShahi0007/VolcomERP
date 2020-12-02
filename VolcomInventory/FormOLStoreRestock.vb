@@ -46,8 +46,13 @@
 
     Sub viewStockGOL()
         Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Get stock")
         GCOnlineWH.DataSource = dataStockGOL()
         GVOnlineWH.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
@@ -113,6 +118,10 @@
 
             If checkValidQtyRestock() Then
                 'check stock
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
                 Dim dts As DataTable = dataStockGOL()
                 For c As Integer = 0 To GVOnlineWH.RowCount - 1
                     Dim id_drawer_cek As String = GVOnlineWH.GetRowCellValue(c, "id_wh_drawer").ToString
@@ -136,6 +145,7 @@
                 Else
                     cond_stock = True
                 End If
+                FormMain.SplashScreenManager1.CloseWaitForm()
                 makeSafeGV(GVOnlineWH)
 
                 If cond_stock Then
@@ -149,7 +159,7 @@
                         execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol + ", " + id_product + ", '" + qty + "');", True, "", "", "", "")
                     Next
                     FormMain.SplashScreenManager1.CloseWaitForm()
-                    Close()
+                    viewStockGOL()
                 Else
                     stopCustom("Qty restock exceed available qty")
                 End If

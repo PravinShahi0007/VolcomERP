@@ -49,16 +49,16 @@
 
     Function viewListOOS(ByVal type_par As String, ByVal cond_par As String) As DataTable
         Dim query As String = "SELECT os.id_ol_store_oos, os.number, os.id_comp_group, cg.comp_group, os.id_order, od.sales_order_ol_shop_number AS `order_number`, os.created_date,
-        os.is_sent_email, os.manual_send_email_reason, os.sent_email_date,os.is_confirm_restock,
+        os.manual_send_email_reason, os.sent_email_date,os.id_ol_store_oos_stt, stt.ol_store_oos_stt,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 
         SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty) AS `total_no_stock`,
-        IF(os.is_closed=1, 'closed', IF(os.is_confirm_restock=2,'waiting for restock','waiting for confirmation')) AS `status`, cg.id_comp
+        IF(os.is_closed=1, 'Close', 'Open') AS `status`, cg.id_comp
         FROM tb_ol_store_oos os
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = os.id_comp_group
         INNER JOIN tb_ol_store_order od ON od.id_ol_store_oos = os.id_ol_store_oos
+        INNER JOIN tb_ol_store_oos_stt stt ON stt.id_ol_store_oos_stt= os.id_ol_store_oos_stt
         WHERE 1=1 " + cond_par + "
-        GROUP BY os.id_order 
-        HAVING 1=1 " + type_par + ""
+        GROUP BY os.id_ol_store_oos "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function

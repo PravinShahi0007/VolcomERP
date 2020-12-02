@@ -463,7 +463,7 @@ Partial Class FormOLStoreOOSDetail
         '
         Me.BtnClosedOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClosedOrder.Image = CType(resources.GetObject("BtnClosedOrder.Image"), System.Drawing.Image)
-        Me.BtnClosedOrder.Location = New System.Drawing.Point(595, 2)
+        Me.BtnClosedOrder.Location = New System.Drawing.Point(635, 2)
         Me.BtnClosedOrder.Name = "BtnClosedOrder"
         Me.BtnClosedOrder.Size = New System.Drawing.Size(103, 41)
         Me.BtnClosedOrder.TabIndex = 1
@@ -496,11 +496,11 @@ Partial Class FormOLStoreOOSDetail
         '
         Me.BtnConfirmRestock.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirmRestock.Image = CType(resources.GetObject("BtnConfirmRestock.Image"), System.Drawing.Image)
-        Me.BtnConfirmRestock.Location = New System.Drawing.Point(698, 2)
+        Me.BtnConfirmRestock.Location = New System.Drawing.Point(738, 2)
         Me.BtnConfirmRestock.Name = "BtnConfirmRestock"
-        Me.BtnConfirmRestock.Size = New System.Drawing.Size(128, 41)
+        Me.BtnConfirmRestock.Size = New System.Drawing.Size(88, 41)
         Me.BtnConfirmRestock.TabIndex = 3
-        Me.BtnConfirmRestock.Text = "Confirm Restock"
+        Me.BtnConfirmRestock.Text = "Confirm"
         Me.BtnConfirmRestock.Visible = False
         '
         'FormOLStoreOOSDetail
@@ -511,6 +511,7 @@ Partial Class FormOLStoreOOSDetail
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
+        Me.KeyPreview = True
         Me.MinimizeBox = False
         Me.Name = "FormOLStoreOOSDetail"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

@@ -34,7 +34,6 @@ Partial Class FormOLStoreOOS
         Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnis_sent_email = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsent_email_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_order = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,6 +41,9 @@ Partial Class FormOLStoreOOS
         Me.GridColumntotal_no_stock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEProgress = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GridColumnol_store_oos_stt = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,6 +51,7 @@ Partial Class FormOLStoreOOS
         CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEProgress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -66,7 +69,7 @@ Partial Class FormOLStoreOOS
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(289, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(532, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(81, 41)
         Me.BtnPrint.TabIndex = 3
@@ -76,7 +79,7 @@ Partial Class FormOLStoreOOS
         '
         Me.BtnView.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(208, 2)
+        Me.BtnView.Location = New System.Drawing.Point(451, 2)
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(81, 41)
         Me.BtnView.TabIndex = 1
@@ -85,12 +88,14 @@ Partial Class FormOLStoreOOS
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LEProgress)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.LEType)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(206, 41)
+        Me.PanelControl2.Size = New System.Drawing.Size(449, 41)
         Me.PanelControl2.TabIndex = 2
         '
         'LEType
@@ -121,7 +126,7 @@ Partial Class FormOLStoreOOS
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_oos, Me.GridColumnnumber, Me.GridColumnid_comp_group, Me.GridColumncomp_group, Me.GridColumnid_order, Me.GridColumncreated_date, Me.GridColumnis_sent_email, Me.GridColumnsent_email_date, Me.GridColumncustomer_name, Me.GridColumntotal_order, Me.GridColumntotal_fill, Me.GridColumntotal_no_stock, Me.GridColumnorder_number, Me.GridColumnstatus})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ol_store_oos, Me.GridColumnnumber, Me.GridColumnid_comp_group, Me.GridColumncomp_group, Me.GridColumnid_order, Me.GridColumncreated_date, Me.GridColumnsent_email_date, Me.GridColumncustomer_name, Me.GridColumntotal_order, Me.GridColumntotal_fill, Me.GridColumntotal_no_stock, Me.GridColumnorder_number, Me.GridColumnstatus, Me.GridColumnol_store_oos_stt})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -172,12 +177,6 @@ Partial Class FormOLStoreOOS
         Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumncreated_date.FieldName = "created_date"
         Me.GridColumncreated_date.Name = "GridColumncreated_date"
-        '
-        'GridColumnis_sent_email
-        '
-        Me.GridColumnis_sent_email.Caption = "is_sent_email"
-        Me.GridColumnis_sent_email.FieldName = "is_sent_email"
-        Me.GridColumnis_sent_email.Name = "GridColumnis_sent_email"
         '
         'GridColumnsent_email_date
         '
@@ -243,6 +242,30 @@ Partial Class FormOLStoreOOS
         Me.GridColumnstatus.Visible = True
         Me.GridColumnstatus.VisibleIndex = 8
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(200, 14)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl2.TabIndex = 2
+        Me.LabelControl2.Text = "Progress"
+        '
+        'LEProgress
+        '
+        Me.LEProgress.Location = New System.Drawing.Point(248, 11)
+        Me.LEProgress.Name = "LEProgress"
+        Me.LEProgress.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEProgress.Size = New System.Drawing.Size(187, 20)
+        Me.LEProgress.TabIndex = 3
+        '
+        'GridColumnol_store_oos_stt
+        '
+        Me.GridColumnol_store_oos_stt.Caption = "Progress"
+        Me.GridColumnol_store_oos_stt.FieldName = "ol_store_oos_stt"
+        Me.GridColumnol_store_oos_stt.Name = "GridColumnol_store_oos_stt"
+        Me.GridColumnol_store_oos_stt.Visible = True
+        Me.GridColumnol_store_oos_stt.VisibleIndex = 9
+        '
         'FormOLStoreOOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -262,6 +285,7 @@ Partial Class FormOLStoreOOS
         CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEProgress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -280,7 +304,6 @@ Partial Class FormOLStoreOOS
     Friend WithEvents GridColumncomp_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_order As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnis_sent_email As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsent_email_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotal_order As DevExpress.XtraGrid.Columns.GridColumn
@@ -288,4 +311,7 @@ Partial Class FormOLStoreOOS
     Friend WithEvents GridColumntotal_no_stock As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnorder_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEProgress As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnol_store_oos_stt As DevExpress.XtraGrid.Columns.GridColumn
 End Class
