@@ -148,6 +148,7 @@ Partial Class FormScanReturnConfirm
         Me.TEQtyScan.Properties.Mask.EditMask = "N0"
         Me.TEQtyScan.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEQtyScan.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQtyScan.Properties.ReadOnly = True
         Me.TEQtyScan.Size = New System.Drawing.Size(126, 36)
         Me.TEQtyScan.TabIndex = 10
         '
@@ -162,6 +163,7 @@ Partial Class FormScanReturnConfirm
         Me.TEQtyRetNote.Properties.Mask.EditMask = "N0"
         Me.TEQtyRetNote.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEQtyRetNote.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQtyRetNote.Properties.ReadOnly = True
         Me.TEQtyRetNote.Size = New System.Drawing.Size(126, 36)
         Me.TEQtyRetNote.TabIndex = 11
         '
@@ -176,6 +178,7 @@ Partial Class FormScanReturnConfirm
         Me.TEQtyDiff.Properties.Mask.EditMask = "N0"
         Me.TEQtyDiff.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEQtyDiff.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQtyDiff.Properties.ReadOnly = True
         Me.TEQtyDiff.Size = New System.Drawing.Size(126, 36)
         Me.TEQtyDiff.TabIndex = 12
         '

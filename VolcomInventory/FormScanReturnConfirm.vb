@@ -12,4 +12,9 @@
         TEQtyRetNote.EditValue = FormScanReturnDet.TEQty.EditValue
         TEQtyDiff.EditValue = FormScanReturnDet.GVListProduct.Columns("size").SummaryItem.SummaryValue - FormScanReturnDet.TEQty.EditValue
     End Sub
+
+    Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
+        FormScanReturnDet.is_ok = True
+        Close()
+    End Sub
 End Class

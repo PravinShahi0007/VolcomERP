@@ -3,7 +3,9 @@
     Public id_return_note As String = "-1"
     Dim dt_product As DataTable
     Dim dt_unique As DataTable
-
+    '
+    Public is_ok As Boolean = False
+    '
     Private Sub FormScanReturnDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -197,7 +199,7 @@ WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
         ElseIf GVListProduct.RowCount = 0 Then
             warningCustom("Please scan first")
         Else
-            Dim is_ok As Boolean = False
+            is_ok = False
 
             'If Not GVListProduct.Columns("size").SummaryItem.SummaryValue = TEQty.EditValue Then
             '    Dim confirm As DialogResult
