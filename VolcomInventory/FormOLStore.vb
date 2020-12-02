@@ -662,7 +662,9 @@
                             'jika ndak ada yang bisa direstock langsung kirim email
                             Try
                                 oos.sendEmailOOS(id_order_eval, id_comp_group)
-                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS success", id_comp_group)
+                                Dim id_oos As String = execute_query("SELECT id_ol_store_oos FROM tb_ol_store_oos WHERE id_comp_group='" + id_comp_group + "' AND id_order='" + id_order_eval + "' ", 0, True, "", "", "", "")
+                                execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3 WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
+                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
                             Catch ex As Exception
                                 ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS failed", id_comp_group)
                             End Try

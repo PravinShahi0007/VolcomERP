@@ -55,7 +55,7 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT 0 AS `id_ol_store_oos_stt`, 'All' AS `ol_store_oos_stt`
         UNION ALL
-        SELECT s.id_ol_store_oos_stt, s.ol_store_oos_stt FROM tb_ol_store_oos_stt s "
+        SELECT s.id_ol_store_oos_stt, s.ol_store_oos_stt FROM tb_ol_store_oos_stt s  WHERE s.id_ol_store_oos_stt<=5 "
         viewLookupQuery(LEProgress, query, 0, "ol_store_oos_stt", "id_ol_store_oos_stt")
         Cursor = Cursors.Default
     End Sub
