@@ -48,6 +48,7 @@ WHERE bap.`id_scan_return_bap` = '" & id_bap & "'"
                 rn_number.Text = data_det.Rows(i)("number_return_note").ToString
                 rn_number.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
                 rn_number.BackColor = Color.Transparent
+
                 'search how many rowspan
                 For j = i To data_det.Rows.Count - 1
                     If id_current = data_det.Rows(i)("id_return_note").ToString Then

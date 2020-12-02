@@ -77,7 +77,7 @@ Partial Public Class ReportScanReturn3PL
         Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell20 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XRTotWeight = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LFinalTotBerat = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell23 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -85,7 +85,7 @@ Partial Public Class ReportScanReturn3PL
         Me.XrTableCell25 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LFinalTotVolume = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LFinalTotalBerat = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XRTotAWB = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell28 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LTotalAwB = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell30 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -94,6 +94,8 @@ Partial Public Class ReportScanReturn3PL
         Me.XrTableCell33 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell34 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrTableCell26 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell22 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XTDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTAWB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,7 +103,7 @@ Partial Public Class ReportScanReturn3PL
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XTDetail})
-        Me.Detail.HeightF = 73.33333!
+        Me.Detail.HeightF = 73.33334!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -111,7 +113,7 @@ Partial Public Class ReportScanReturn3PL
         Me.XTDetail.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XTDetail.LocationFloat = New DevExpress.Utils.PointFloat(0!, 13.54166!)
+        Me.XTDetail.LocationFloat = New DevExpress.Utils.PointFloat(0!, 13.54167!)
         Me.XTDetail.Name = "XTDetail"
         Me.XTDetail.Padding = New DevExpress.XtraPrinting.PaddingInfo(3, 3, 3, 3, 100.0!)
         Me.XTDetail.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XTTop, Me.XRTotal})
@@ -122,7 +124,7 @@ Partial Public Class ReportScanReturn3PL
         'XTTop
         '
         Me.XTTop.BackColor = System.Drawing.Color.LightGray
-        Me.XTTop.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell3, Me.XrTableCell1, Me.XrTableCell4, Me.XrTableCell5, Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell2})
+        Me.XTTop.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell22, Me.XrTableCell3, Me.XrTableCell1, Me.XrTableCell4, Me.XrTableCell5, Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell2})
         Me.XTTop.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
         Me.XTTop.Name = "XTTop"
         Me.XTTop.StylePriority.UseBackColor = False
@@ -220,7 +222,7 @@ Partial Public Class ReportScanReturn3PL
         '
         'XRTotal
         '
-        Me.XRTotal.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11, Me.XTQtyReturnNote, Me.XTQtyReturnFisik, Me.XTQtyDiff, Me.XrTableCell15, Me.XrTableCell16})
+        Me.XRTotal.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell26, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11, Me.XTQtyReturnNote, Me.XTQtyReturnFisik, Me.XTQtyDiff, Me.XrTableCell15, Me.XrTableCell16})
         Me.XRTotal.Name = "XRTotal"
         Me.XRTotal.Weight = 0.47179490309495192R
         '
@@ -617,7 +619,7 @@ Partial Public Class ReportScanReturn3PL
         Me.XTAWB.LocationFloat = New DevExpress.Utils.PointFloat(0!, 110.8333!)
         Me.XTAWB.Name = "XTAWB"
         Me.XTAWB.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.XTAWB.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XTTopAwb, Me.XrTableRow2, Me.XrTableRow3})
+        Me.XTAWB.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XTTopAwb, Me.XRTotWeight, Me.XRTotAWB})
         Me.XTAWB.SizeF = New System.Drawing.SizeF(550.0!, 80.0!)
         Me.XTAWB.StylePriority.UseBorders = False
         Me.XTAWB.StylePriority.UsePadding = False
@@ -695,13 +697,13 @@ Partial Public Class ReportScanReturn3PL
         Me.XrTableCell20.Text = "Final Weight"
         Me.XrTableCell20.Weight = 1.0R
         '
-        'XrTableRow2
+        'XRTotWeight
         '
-        Me.XrTableRow2.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell21, Me.LFinalTotBerat, Me.XrTableCell23, Me.XrTableCell24, Me.XrTableCell25, Me.LFinalTotVolume, Me.LFinalTotalBerat})
-        Me.XrTableRow2.Name = "XrTableRow2"
-        Me.XrTableRow2.StylePriority.UseBackColor = False
-        Me.XrTableRow2.Weight = 0.83166694641113281R
+        Me.XRTotWeight.BackColor = System.Drawing.Color.LightGray
+        Me.XRTotWeight.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell21, Me.LFinalTotBerat, Me.XrTableCell23, Me.XrTableCell24, Me.XrTableCell25, Me.LFinalTotVolume, Me.LFinalTotalBerat})
+        Me.XRTotWeight.Name = "XRTotWeight"
+        Me.XRTotWeight.StylePriority.UseBackColor = False
+        Me.XRTotWeight.Weight = 0.83166694641113281R
         '
         'XrTableCell21
         '
@@ -718,7 +720,9 @@ Partial Public Class ReportScanReturn3PL
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LFinalTotBerat.Name = "LFinalTotBerat"
         Me.LFinalTotBerat.StylePriority.UseBorders = False
+        Me.LFinalTotBerat.StylePriority.UseTextAlignment = False
         Me.LFinalTotBerat.Text = "[tot_act_weight" & Global.Microsoft.VisualBasic.ChrW(9) & "]"
+        Me.LFinalTotBerat.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LFinalTotBerat.Weight = 0.5R
         '
         'XrTableCell23
@@ -751,22 +755,26 @@ Partial Public Class ReportScanReturn3PL
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LFinalTotVolume.Name = "LFinalTotVolume"
         Me.LFinalTotVolume.StylePriority.UseBorders = False
+        Me.LFinalTotVolume.StylePriority.UseTextAlignment = False
         Me.LFinalTotVolume.Text = "[tot_vol]"
+        Me.LFinalTotVolume.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LFinalTotVolume.Weight = 1.0R
         '
         'LFinalTotalBerat
         '
         Me.LFinalTotalBerat.Name = "LFinalTotalBerat"
+        Me.LFinalTotalBerat.StylePriority.UseTextAlignment = False
         Me.LFinalTotalBerat.Text = "[tot_final_weight]"
+        Me.LFinalTotalBerat.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LFinalTotalBerat.Weight = 1.0R
         '
-        'XrTableRow3
+        'XRTotAWB
         '
-        Me.XrTableRow3.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell28, Me.LTotalAwB, Me.XrTableCell30, Me.XrTableCell31, Me.XrTableCell32, Me.XrTableCell33, Me.XrTableCell34})
-        Me.XrTableRow3.Name = "XrTableRow3"
-        Me.XrTableRow3.StylePriority.UseBackColor = False
-        Me.XrTableRow3.Weight = 0.83166694641113281R
+        Me.XRTotAWB.BackColor = System.Drawing.Color.LightGray
+        Me.XRTotAWB.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell28, Me.LTotalAwB, Me.XrTableCell30, Me.XrTableCell31, Me.XrTableCell32, Me.XrTableCell33, Me.XrTableCell34})
+        Me.XRTotAWB.Name = "XRTotAWB"
+        Me.XRTotAWB.StylePriority.UseBackColor = False
+        Me.XRTotAWB.Weight = 0.83166694641113281R
         '
         'XrTableCell28
         '
@@ -783,7 +791,9 @@ Partial Public Class ReportScanReturn3PL
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LTotalAwB.Name = "LTotalAwB"
         Me.LTotalAwB.StylePriority.UseBorders = False
+        Me.LTotalAwB.StylePriority.UseTextAlignment = False
         Me.LTotalAwB.Text = "[tot_awb]"
+        Me.LTotalAwB.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LTotalAwB.Weight = 0.5R
         '
         'XrTableCell30
@@ -828,6 +838,27 @@ Partial Public Class ReportScanReturn3PL
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel17, Me.XrLabel16, Me.XTAWB, Me.XrPictureBox2, Me.XrLabel18, Me.XrLabel20, Me.XrLabel2, Me.XrLabel1, Me.XrLabel3, Me.XrLabel4})
         Me.ReportHeader.HeightF = 190.8333!
         Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XrTableCell26
+        '
+        Me.XrTableCell26.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell26.Name = "XrTableCell26"
+        Me.XrTableCell26.StylePriority.UseBorders = False
+        Me.XrTableCell26.StylePriority.UseTextAlignment = False
+        Me.XrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell26.Weight = 1.8386740543919866R
+        '
+        'XrTableCell22
+        '
+        Me.XrTableCell22.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell22.Name = "XrTableCell22"
+        Me.XrTableCell22.StylePriority.UseBorders = False
+        Me.XrTableCell22.StylePriority.UseTextAlignment = False
+        Me.XrTableCell22.Text = "AWB Number"
+        Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell22.Weight = 1.8386740543919866R
         '
         'ReportScanReturn3PL
         '
@@ -901,7 +932,7 @@ Partial Public Class ReportScanReturn3PL
     Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell19 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell20 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XRTotWeight As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell21 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents LFinalTotBerat As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell23 As DevExpress.XtraReports.UI.XRTableCell
@@ -909,7 +940,7 @@ Partial Public Class ReportScanReturn3PL
     Friend WithEvents XrTableCell25 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents LFinalTotVolume As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents LFinalTotalBerat As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XRTotAWB As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell28 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents LTotalAwB As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell30 As DevExpress.XtraReports.UI.XRTableCell
@@ -918,4 +949,6 @@ Partial Public Class ReportScanReturn3PL
     Friend WithEvents XrTableCell33 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell34 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
+    Friend WithEvents XrTableCell22 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell26 As DevExpress.XtraReports.UI.XRTableCell
 End Class
