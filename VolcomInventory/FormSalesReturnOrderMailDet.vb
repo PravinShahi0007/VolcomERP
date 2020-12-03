@@ -1751,46 +1751,50 @@
         validating_employee()
 
         If formIsValidInPanel(ErrorProvider, PanelControl6) Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit this pickup order ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If GVDetail.RowCount > 0 Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit this pickup order ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            If confirm = DialogResult.Yes Then
-                FormMain.SplashScreenManager1.ShowWaitForm()
+                If confirm = DialogResult.Yes Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
 
-                Dim query As String = "
-                    INSERT INTO tb_sales_return_order_mail_3pl (id_type, id_employee, id_status, pick_up_date, created_date, created_by) VALUES (" + SLUEType.EditValue.ToString + ", " + SLUEEmployee.EditValue.ToString + ", 7, '" + Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();
-                "
+                    Dim query As String = "
+                        INSERT INTO tb_sales_return_order_mail_3pl (id_type, id_employee, id_status, pick_up_date, created_date, created_by) VALUES (" + SLUEType.EditValue.ToString + ", " + SLUEEmployee.EditValue.ToString + ", 7, '" + Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();
+                    "
 
-                id_mail_3pl = execute_query(query, 0, True, "", "", "", "")
+                    id_mail_3pl = execute_query(query, 0, True, "", "", "", "")
 
-                execute_non_query("CALL gen_number(" + id_mail_3pl + ", 279)", True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_mail_3pl + ", 279)", True, "", "", "", "")
 
-                'store
-                Dim stores() As String = CCBEStore.EditValue.ToString.Split(",")
+                    'store
+                    Dim stores() As String = CCBEStore.EditValue.ToString.Split(",")
 
-                For i = 0 To stores.Length - 1
-                    execute_non_query("INSERT INTO tb_sales_return_order_mail_3pl_store (id_mail_3pl, id_comp) VALUES (" + id_mail_3pl + ", " + stores(i).Replace(" ", "") + ")", True, "", "", "", "")
-                Next
-
-                'detail
-                If GVDetail.RowCount > 0 Then
-                    Dim query_detail As String = "INSERT INTO tb_sales_return_order_mail_3pl_det (id_mail_3pl, id_sales_order_return) VALUES "
-
-                    For i = 0 To GVDetail.RowCount - 1
-                        query_detail += "(" + id_mail_3pl + ", " + GVDetail.GetRowCellValue(i, "id_sales_return_order").ToString + "), "
+                    For i = 0 To stores.Length - 1
+                        execute_non_query("INSERT INTO tb_sales_return_order_mail_3pl_store (id_mail_3pl, id_comp) VALUES (" + id_mail_3pl + ", " + stores(i).Replace(" ", "") + ")", True, "", "", "", "")
                     Next
 
-                    query_detail = query_detail.Substring(0, query_detail.Length - 2)
+                    'detail
+                    If GVDetail.RowCount > 0 Then
+                        Dim query_detail As String = "INSERT INTO tb_sales_return_order_mail_3pl_det (id_mail_3pl, id_sales_order_return) VALUES "
 
-                    execute_non_query(query_detail, True, "", "", "", "")
+                        For i = 0 To GVDetail.RowCount - 1
+                            query_detail += "(" + id_mail_3pl + ", " + GVDetail.GetRowCellValue(i, "id_sales_return_order").ToString + "), "
+                        Next
+
+                        query_detail = query_detail.Substring(0, query_detail.Length - 2)
+
+                        execute_non_query(query_detail, True, "", "", "", "")
+                    End If
+
+                    submit_who_prepared("279", id_mail_3pl, id_user)
+
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+
+                    infoCustom("Pickup Order submitted.")
+
+                    Close()
                 End If
-
-                submit_who_prepared("279", id_mail_3pl, id_user)
-
-                FormMain.SplashScreenManager1.CloseWaitForm()
-
-                infoCustom("Pickup Order submitted.")
-
-                Close()
+            Else
+                stopCustom("Please input ROR.")
             End If
         Else
             stopCustom("Please check your input.")
