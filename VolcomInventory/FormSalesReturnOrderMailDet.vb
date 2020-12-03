@@ -130,6 +130,8 @@
                 SBApprove.Visible = False
                 SBPrint.Visible = False
             End If
+
+            SBAttachment.Visible = False
         Else
             'head
             Dim query As String = "
