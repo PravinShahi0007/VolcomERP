@@ -4,6 +4,9 @@
     Private Sub FormOLStoreOOS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewType()
         viewProgress()
+        If id_type = "2" Then
+            viewData()
+        End If
     End Sub
 
     Private Sub FormOLStoreOOS_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

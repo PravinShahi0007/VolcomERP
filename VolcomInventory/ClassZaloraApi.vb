@@ -696,4 +696,33 @@
         End If
         Return dt
     End Function
+
+    Function setRTSPending()
+        Dim err_other_act As String = ""
+        'ZALORA
+        Dim query_item As String = "SELECT od.id,od.sales_order_ol_shop_number AS `order_number`, GROUP_CONCAT(DISTINCT od.item_id ORDER BY od.item_id ASC) AS `item_id`, od.tracking_code, od.shipment_provider
+        FROM tb_sales_order so
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        INNER JOIN tb_ol_store_order od ON od.id = so.id_sales_order_ol_shop AND od.id_comp_group= s.id_comp_group
+        WHERE so.id_report_status=6 AND s.id_commerce_type=2 AND !ISNULL(od.item_id) AND od.tracking_code!=''
+        AND s.id_comp_group IN (SELECT o.zalora_comp_group FROM tb_opt o)
+        AND od.is_process=1 AND od.is_rts=2
+        GROUP BY od.sales_order_ol_shop_number "
+        Dim data_item As DataTable = execute_query(query_item, -1, True, "", "", "", "")
+        If data_item.Rows.Count > 0 Then
+            For t As Integer = 0 To data_item.Rows.Count - 1
+                Try
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Set status (rts) : #" + data_item.Rows(t)("order_number").ToString)
+                    setReadyToShip(data_item.Rows(t)("item_id").ToString, data_item.Rows(t)("shipment_provider").ToString, data_item.Rows(t)("tracking_code").ToString)
+                    execute_non_query("UPDATE tb_ol_store_order od SET od.is_rts=1 WHERE od.id_comp_group='" + id_store_group + "' AND od.id='" + data_item.Rows(t)("id").ToString + "' ", True, "", "", "", "")
+                Catch ex As Exception
+                    err_other_act += addSlashes(ex.ToString) + ";"
+                    Dim ord As New ClassSalesOrder()
+                    ord.insertLogWebOrder(data_item.Rows(t)("id").ToString, "Error set status rts : " + addSlashes(ex.ToString), id_store_group)
+                End Try
+            Next
+        End If
+        Return err_other_act
+    End Function
 End Class

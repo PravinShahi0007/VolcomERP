@@ -52,13 +52,14 @@
         os.manual_send_email_reason, os.sent_email_date,os.id_ol_store_oos_stt, stt.ol_store_oos_stt,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 
         SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty) AS `total_no_stock`,
-        IF(os.is_closed=1, 'Close', 'Open') AS `status`, cg.id_comp
+        IF(os.is_closed=1, 'Close', 'Open') AS `status`, cg.id_comp, cg.id_api_type
         FROM tb_ol_store_oos os
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = os.id_comp_group
         INNER JOIN tb_ol_store_order od ON od.id_ol_store_oos = os.id_ol_store_oos
         INNER JOIN tb_ol_store_oos_stt stt ON stt.id_ol_store_oos_stt= os.id_ol_store_oos_stt
         WHERE 1=1 " + cond_par + "
-        GROUP BY os.id_ol_store_oos "
+        GROUP BY os.id_ol_store_oos 
+        ORDER BY os.id_ol_store_oos DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function

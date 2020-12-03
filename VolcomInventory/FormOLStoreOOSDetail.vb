@@ -5,6 +5,7 @@
     Dim id_order As String = "-1"
     Dim id_ol_store_oos_stt As String = "-1"
     Dim id_role_super_user As String = get_setup_field("id_role_super_admin")
+    Dim id_api_type As String = "-1"
 
 
     Private Sub FormOLStoreOOSDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -22,6 +23,7 @@
         id_ol_store_oos_stt = data.Rows(0)("id_ol_store_oos_stt").ToString
         id_comp_group = data.Rows(0)("id_comp_group").ToString
         id_order = data.Rows(0)("id_order").ToString
+        id_api_type = data.Rows(0)("id_api_type").ToString
         allowStatus()
         viewProductList()
         viewRestockList()
@@ -177,7 +179,7 @@
 
         'jika tidak ada yang open restock & tidak ada no stock & valid fulfill lansung sync
         If Not is_open_restock And Not is_no_stock And is_valid_fullfill Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Sync Order" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Create Sales Order" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 'cek on process sync
                 Dim is_processed_order As String = get_setup_field("is_processed_order")
@@ -192,12 +194,39 @@
                     ord.setProceccedWebOrder("1")
 
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Processing order")
-                    Dim qry As String = "CALL create_oos_close_stock_grp('" + id + "', '" + id_order + "', '" + id_comp_group + "');CALL create_oos_sync_grp(" + id_order + ", " + id_comp_group + ", " + id + ");"
-                    execute_non_query_long(qry, True, "", "", "", "")
+                    Dim err_sync As String = ""
+                    Try
+                        Dim qry As String = "CALL create_oos_close_stock_grp('" + id + "', '" + id_order + "', '" + id_comp_group + "');CALL create_oos_sync_grp(" + id_order + ", " + id_comp_group + ", " + id + ");"
+                        execute_non_query_long(qry, True, "", "", "", "")
+                    Catch ex As Exception
+                        err_sync = addSlashes(ex.ToString)
+                        ord.insertLogWebOrder(id_order, "Problem closing order :" + addSlashes(ex.ToString), id_comp_group)
+                    End Try
+
+
+                    'other action
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Other action")
+                    Dim err_other_act As String = ""
+                    If id_api_type = "2" Then
+                        'ZALORA
+                        Try
+                            Dim zal As New ClassZaloraApi()
+                            err_other_act = zal.setRTSPending()
+                        Catch ex As Exception
+                            err_other_act = "Problem set RTS :" + addSlashes(ex.ToString)
+                            ord.insertLogWebOrder(id_order, err_other_act, id_comp_group)
+                        End Try
+                    End If
+
                     ord.setProceccedWebOrder("2")
                     FormMain.SplashScreenManager1.CloseWaitForm()
                     FormOLStoreOOS.viewData()
-                    Close()
+                    If err_other_act = "" And err_sync = "" Then
+                        infoCustom("Order created successfully")
+                        Close()
+                    Else
+                        stopCustom("There is problem when processing order, please see log.")
+                    End If
                 End If
             End If
         End If
