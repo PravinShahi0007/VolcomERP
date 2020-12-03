@@ -67,7 +67,7 @@ WHERE id_comp_cat='6' AND is_active='1'"
         load_repo_store()
         '
         If Not id_return_note = "-1" Then
-            Dim q As String = "SELECT rn.id_type,awb.awb_number,rn.id_emp_driver,rn.id_inbound_awb,rn.label_number,rn.date_created,rn.number_return_note,rn.qty,rn.date_return_note
+            Dim q As String = "SELECT rn.is_lock,rn.id_type,awb.awb_number,rn.id_emp_driver,rn.id_inbound_awb,rn.label_number,rn.date_created,rn.number_return_note,rn.qty,rn.date_return_note
 FROM `tb_return_note` rn
 LEFT JOIN tb_inbound_awb awb ON rn.id_inbound_awb=awb.id_inbound_awb
 WHERE rn.id_return_note='" & id_return_note & "'"
@@ -86,6 +86,14 @@ WHERE rn.id_return_note='" & id_return_note & "'"
                 DEReturnNote.EditValue = dt.Rows(0)("date_return_note")
                 TEQtyReturnNote.EditValue = dt.Rows(0)("qty")
                 TELabelNumber.Text = dt.Rows(0)("label_number").ToString
+                '
+                If dt.Rows(0)("is_lock").ToString = "1" Then
+                    BPrint.Visible = True
+                    BSaveAndPrint.Visible = False
+                Else
+                    BPrint.Visible = False
+                    BSaveAndPrint.Visible = True
+                End If
             End If
         End If
     End Sub
@@ -242,7 +250,14 @@ WHERE rn.id_return_note='" & id_return_note & "'"
     Sub print()
         Cursor = Cursors.WaitCursor
 
-        Dim q As String = "SELECT label_number,number_return_note,FORMAT(qty, 0, 'id_ID') AS qty,DATE_FORMAT(date_return_note,'%d %M %Y') AS date_return_note,DATE_FORMAT(NOW(),'%d %M %Y %H:%i') as printed_date FROM tb_return_note WHERE id_return_note='" & id_return_note & "'"
+        Dim q As String = "SELECT DATE_FORMAT(rn.date_created,'%d %M %Y') AS date_created,GROUP_CONCAT(DISTINCT(CONCAT(cst.`comp_number`,' - ',cst.comp_name)) ORDER BY cst.`comp_number` SEPARATOR '\n') AS store_list,emp.employee_name,rn.label_number,rn.number_return_note,FORMAT(rn.qty, 0, 'id_ID') AS qty,DATE_FORMAT(rn.date_return_note,'%d %M %Y') AS date_return_note,DATE_FORMAT(NOW(),'%d %M %Y %H:%i') as printed_date 
+FROM tb_return_note rn
+INNER JOIN tb_m_user usr ON usr.id_user='" & id_user & "'
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_return_note_store st ON st.id_return_note=rn.id_return_note
+INNER JOIN tb_m_comp cst ON cst.id_comp=st.id_comp
+WHERE rn.id_return_note='" & id_return_note & "'
+GROUP BY rn.id_return_note"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         ReportReturnNote.dt = dt

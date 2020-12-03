@@ -49,6 +49,8 @@ Public Class FormSalesReturnDet
     Public is_non_list As String = "-1"
     Public is_for_approve_combine As String = "-1"
     Public id_wh_awb_det As String = "-1"
+    Public id_return_note As String = "-1"
+
     Dim is_input_manual_ret_store As String = "2"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -128,7 +130,7 @@ Public Class FormSalesReturnDet
 
             'query view based on edit id's
             Dim query As String = "SELECT a.is_non_list,a.id_wh_drawer,dw.wh_drawer_code,b.id_sales_return_order, a.id_store_contact_from, d.id_commerce_type,(d.id_drawer_def) AS `id_wh_drawer_store`,IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
-            query += "a.sales_return_note,a.sales_return_date, a.combine_number,a.sales_return_number, IFNULL(a.id_wh_awb_det,-1) AS `id_wh_awb_det`,sales_return_store_number,b.sales_return_order_number, "
+            query += "a.sales_return_note,a.sales_return_date, a.combine_number,a.sales_return_number, IFNULL(a.id_wh_awb_det,-1) AS `id_wh_awb_det`, IFNULL(a.id_return_note,-1) AS `id_return_note`,sales_return_store_number,b.sales_return_order_number, "
             query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, dw.wh_drawer, rc.wh_rack, loc.wh_locator, a.id_ret_type, rt.ret_type, so.sales_order_ol_shop_number, a.is_use_unique_code "
             query += "FROM tb_sales_return a "
             query += "INNER JOIN tb_sales_return_order b ON a.id_sales_return_order = b.id_sales_return_order "
@@ -152,6 +154,7 @@ Public Class FormSalesReturnDet
             id_comp_contact_to = data.Rows(0)("id_comp_contact_to").ToString
 
             id_wh_awb_det = data.Rows(0)("id_wh_awb_det").ToString
+            id_return_note = data.Rows(0)("id_return_note").ToString
             TxtStoreReturnNumber.Text = data.Rows(0)("sales_return_store_number").ToString
             TxtSalesReturnNumber.Text = data.Rows(0)("sales_return_number").ToString
             TxtSalesReturnOrderNumber.Text = data.Rows(0)("sales_return_order_number").ToString
@@ -361,10 +364,15 @@ Public Class FormSalesReturnDet
     End Sub
 
     Function getRefStoreRetNumber(ByVal id_store_par As String) As DataTable
-        Dim query As String = "SELECT ad.id_wh_awb_det, ad.id_awbill, ad.do_no, ad.qty, ad.is_active 
+        Dim query As String = "SELECT ad.id_wh_awb_det,'0' AS id_return_note,'' AS label_number, ad.do_no, ad.qty, ad.is_active 
         FROM tb_wh_awbill_det_in ad
         INNER JOIN tb_wh_awbill a ON a.id_awbill = ad.id_awbill
-        WHERE a.id_store=" + id_store_par + " AND ad.is_active=1 AND a.is_lock=1 "
+        WHERE a.id_store=" + id_store_par + " AND ad.is_active=1 AND a.is_lock=1 
+        UNION ALL 
+        SELECT '0' AS id_wh_awb_det,rn.id_return_note,rn.label_number,rn.number_return_note AS do_no,rn.qty AS qty,1 AS is_active
+        FROM tb_return_note rn 
+        INNER JOIN tb_return_note_store st ON st.id_return_note=rn.id_return_note AND st.id_comp='" + id_store_par + "'
+        WHERE rn.is_lock=1 AND rn.is_void=2"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
@@ -1121,11 +1129,18 @@ Public Class FormSalesReturnDet
                     Else
                         id_wh_awb_det_simpan = id_wh_awb_det
                     End If
+                    '
+                    Dim id_return_note_simpan As String = "NULL"
+                    If id_return_note = "-1" Or id_return_note = "0" Or id_return_note = "" Then
+                        id_return_note_simpan = "NULL"
+                    Else
+                        id_return_note_simpan = id_return_note
+                    End If
 
                     'header
                     Try
-                        Dim query_main As String = "INSERT tb_sales_return(id_store_contact_from, id_comp_contact_to, id_sales_return_order, sales_return_number, sales_return_store_number, sales_return_date, sales_return_note,id_wh_drawer ,id_report_status, last_update, last_update_by, id_ret_type, is_use_unique_code, is_non_list, id_wh_awb_det) "
-                        query_main += "VALUES('" + id_store_contact_from + "', '" + id_comp_contact_to + "', '" + id_sales_return_order + "', '" + sales_return_number + "', '" + sales_return_store_number + "', NOW(), '" + sales_return_note + "','" + id_drawer + "', '1', NOW(), " + id_user + ",'" + id_ret_type + "', '" + is_use_unique_code + "', '" + is_non_list + "', " + id_wh_awb_det_simpan + ");SELECT LAST_INSERT_ID(); "
+                        Dim query_main As String = "INSERT tb_sales_return(id_store_contact_from, id_comp_contact_to, id_sales_return_order, sales_return_number, sales_return_store_number, sales_return_date, sales_return_note,id_wh_drawer ,id_report_status, last_update, last_update_by, id_ret_type, is_use_unique_code, is_non_list, id_wh_awb_det, id_return_note) "
+                        query_main += "VALUES('" + id_store_contact_from + "', '" + id_comp_contact_to + "', '" + id_sales_return_order + "', '" + sales_return_number + "', '" + sales_return_store_number + "', NOW(), '" + sales_return_note + "','" + id_drawer + "', '1', NOW(), " + id_user + ",'" + id_ret_type + "', '" + is_use_unique_code + "', '" + is_non_list + "', " + id_wh_awb_det_simpan + ", " + id_return_note_simpan + ");SELECT LAST_INSERT_ID(); "
                         id_sales_return = execute_query(query_main, 0, True, "", "", "", "")
 
                         If id_ret_type = "1" Then

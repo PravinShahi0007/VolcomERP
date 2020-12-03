@@ -64,6 +64,7 @@ Partial Class FormReturnNoteDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PCReturnNote, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,6 +170,7 @@ Partial Class FormReturnNoteDet
         '
         'PanelControl8
         '
+        Me.PanelControl8.Controls.Add(Me.BPrint)
         Me.PanelControl8.Controls.Add(Me.BSaveAndPrint)
         Me.PanelControl8.Controls.Add(Me.BNextReturnNote)
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -503,6 +505,17 @@ Partial Class FormReturnNoteDet
         Me.BReset.TabIndex = 4
         Me.BReset.Text = "Reset"
         '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
+        Me.BPrint.Location = New System.Drawing.Point(72, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(90, 39)
+        Me.BPrint.TabIndex = 5
+        Me.BPrint.Text = "Print"
+        Me.BPrint.Visible = False
+        '
         'FormReturnNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -602,4 +615,5 @@ Partial Class FormReturnNoteDet
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DEReturnNote As DevExpress.XtraEditors.DateEdit
     Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -94,15 +94,18 @@
             id_awb_cur = data_awb.Rows(i)("id_inbound_awb").ToString
 
             Dim is_insert_total As Boolean = False
+
+            tot_berat += Decimal.Parse(data_awb.Rows(i)("berat").ToString)
+            tot_berat_dimensi += Decimal.Parse(data_awb.Rows(i)("berat_dimensi").ToString)
+            tot_final_berat += Decimal.Parse(data_awb.Rows(i)("final_berat").ToString)
+
             If i = data_awb.Rows.Count - 1 Then
                 is_insert_total = True
             ElseIf Not id_awb_cur = data_awb.Rows(i)("id_inbound_awb").ToString Then
                 is_insert_total = True
             Else
                 'lanjut blm total
-                tot_berat += Decimal.Parse(data_awb.Rows(i)("berat").ToString)
-                tot_berat_dimensi += Decimal.Parse(data_awb.Rows(i)("berat_dimensi").ToString)
-                tot_final_berat += Decimal.Parse(data_awb.Rows(i)("final_berat").ToString)
+
             End If
             '
             If is_insert_total Then
