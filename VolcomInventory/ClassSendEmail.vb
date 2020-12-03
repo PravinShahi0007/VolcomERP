@@ -3133,8 +3133,7 @@ WHERE pps.`id_design_ecop_pps`='" & id_report & "'"
             mail.Body = body_temp
             client.Send(mail)
         ElseIf report_mark_type = "278" Then
-            If opt = "1" Then
-                Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Out of Stock - Volcom ERP")
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Out of Stock - Volcom ERP")
                 Dim mail As MailMessage = New MailMessage()
                 mail.From = from_mail
 
@@ -3168,144 +3167,169 @@ WHERE pps.`id_design_ecop_pps`='" & id_report & "'"
                     mail.CC.Add(to_mail_cc)
                 Next
 
-                Dim body_temp As String = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
-                <tbody><tr>
-                  <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
-                  <div align='center'>
+                'get body option
+                Dim query_body As String = "SELECT o.subj_oos_partial, o.subj_oos_all, o.body_oos_partial_1, o.body_oos_partial_2, o.body_oos_all_1, o.body_oos_all_2 
+FROM tb_opt o "
+                Dim data_body As DataTable = execute_query(query_body, -1, True, "", "", "", "")
+                Dim subjek As String = ""
+                Dim body1 As String = ""
+                Dim body2 As String = ""
+            If opt = "1" Then
+                subjek = data_body.Rows(0)("subj_oos_all").ToString.Replace("[#comp_group#]", par1).Replace("[#order_number#]", design_code).Replace("[#customer#]", design).Replace("[#oos_number#]", par2)
+                body1 = data_body.Rows(0)("body_oos_all_1").ToString
+                body2 = data_body.Rows(0)("body_oos_all_2").ToString
+            Else
+                subjek = data_body.Rows(0)("subj_oos_partial").ToString.Replace("[#comp_group#]", par1).Replace("[#order_number#]", design_code).Replace("[#customer#]", design).Replace("[#oos_number#]", par2)
+                body1 = data_body.Rows(0)("body_oos_partial_1").ToString
+                body2 = data_body.Rows(0)("body_oos_partial_2").ToString
+            End If
 
-                  <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
-                   <tbody><tr>
-                    <td style='padding:0in 0in 0in 0in'></td>
-                   </tr>
-                   <tr>
-                    <td style='padding:0in 0in 0in 0in'>
-                    <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://d3k81ch9hvuctc.cloudfront.net/company/VFgA3P/images/de2b6f13-9275-426d-ae31-640f3dcfc744.jpeg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
-                    </td>
-                   </tr>
-                   <tr>
-                    <td style='padding:0in 0in 0in 0in'></td>
-                   </tr>
-                   <tr>
-                    <td style='padding:0in 0in 0in 0in'>
-                    <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
-                     <tbody><tr>
-                      <td style='padding:0in 0in 0in 0in'>
+            Dim body_temp As String = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+    <tbody><tr>
+      <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+      <div align='center'>
 
-                      </td>
-                     </tr>
-                    </tbody></table>
+      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+       <tbody><tr>
+        <td style='padding:0in 0in 0in 0in'></td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'>
+        <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://d3k81ch9hvuctc.cloudfront.net/company/VFgA3P/images/de2b6f13-9275-426d-ae31-640f3dcfc744.jpeg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+        </td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'></td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'>
+        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+         <tbody><tr>
+          <td style='padding:0in 0in 0in 0in'>
+
+          </td>
+         </tr>
+        </tbody></table>
 
 
-                    <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
-                    <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
-                
+        <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+        <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+    
 
-                    <!-- start body -->
-                    <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
-                     <tbody>
-                     <tr>
-                      <td style='padding:15.0pt 15.0pt 0pt 15.0pt' colspan='3'>
-                      <div>
-                        <b><span class='MsoNormal' style='line-height:5.25pt;font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Nomer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + par2 + "</span></b><br><br>
-                        <b><span class='MsoNormal' style='line-height:5.25pt;font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Order No. &nbsp;&nbsp;&nbsp;: " + design_code + "</span></b><br><br>
-                        <b><span class='MsoNormal' style='line-height:5.25pt;font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Customer &nbsp;&nbsp;&nbsp;: " + design + "</span></b>
-                        <br><br>
-                      </div>
-                      </td>
-                     </tr>
+        <!-- start body -->
+        <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+         <tbody>
 
-                     <tr>
-                        <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
-                            <p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Dear " + par1 + " Team,</p>
-                            <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Melalui email ini kami informasikan bahwa terdapat pesanan customer yang out of stock di gudang kami. Berikut detail nya :</p>
-                        
-                         </td>
-                     </tr>
+         <tr>
+            <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                <p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Dear " + par1 + " Team,</p>
+                <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + body1 + "</p>
+            
+             </td>
+         </tr>
 
-               
-         
-                     <tr>
-                      <td style='padding:1.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
-                        <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
-                        <tr>
-                          <th>Ol. Store Id</th>
-                          <th>Item Id</th>
-                          <th>Ol. Store SKU</th>
-                          <th>Product</th>
-                          <th>Order</th>
-                          <th>Fullfilled</th>
-                          <th>OOS</th>
-                        </tr> "
+        
+        <tr>
+          <td style='padding:1.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+            <table width='80%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#000000'>
+            <tr style='background-color:black; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#ffffff'>
+              <th>Nomor Order</th>
+              <th>Nama Customer</th>
+              <th>Nomor OOS</th>
+            </tr> 
+            <tr>
+              <td>" + design_code + "</td>
+              <td>" + design + "</td>
+              <td>" + par2 + "</td>
+            </tr> 
 
-                For d As Integer = 0 To dt.Rows.Count - 1
+          <!-- row data -->
+
+          </table>
+          </td>
+
+         </tr>
+
+         <tr>
+          <td style='padding:1.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+            <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#000000'>
+            <tr style='background-color:black; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#ffffff'>
+              <th>SKU Volcom</th>
+              <th>SKU Zalora</th>
+              <th>Description</th>
+              <th>Size</th>
+              <th>Order</th>
+              <th>Terpenuhi</th>
+              <th>Kurang</th>
+            </tr> 
+
+          <!-- row data --> "
+            For d As Integer = 0 To dt.Rows.Count - 1
                     If dt.Rows(d)("oos_qty") > 0 Then
                         body_temp += "<tr style='background-color: yellow;'>"
                     Else
                         body_temp += "<tr>"
                     End If
                     body_temp += "
-                    <td>" + dt.Rows(d)("ol_store_id").ToString + "</td>
-                    <td>" + dt.Rows(d)("item_id").ToString + "</td>
-                    <td>" + dt.Rows(d)("ol_store_sku").ToString + "</td>
-                    <td>" + dt.Rows(d)("product_name").ToString + "</td>
-                    <td>" + dt.Rows(d)("order_qty").ToString + "</td>
-                    <td>" + dt.Rows(d)("so_qty").ToString + "</td>
-                    <td>" + dt.Rows(d)("oos_qty").ToString + "</td>
-                    </tr>"
+<td>" + dt.Rows(d)("sku").ToString + "</td>
+<td>" + dt.Rows(d)("ol_store_sku").ToString + "</td>
+<td>" + dt.Rows(d)("product_name").ToString + "</td>
+<td>" + dt.Rows(d)("size").ToString + "</td>
+<td>" + dt.Rows(d)("order_qty").ToString + "</td>
+<td>" + dt.Rows(d)("so_qty").ToString + "</td>
+<td>" + dt.Rows(d)("oos_qty").ToString + "</td>
+</tr>"
                 Next
-
                 body_temp += "</table>
-                      </td>
+          </td>
 
-                     </tr>
+         </tr>
 
-                     <tr>
-                        <td style='padding:5.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
-                            <p style='line-height:20.25pt;font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Mohon konfirmasinya apakah pesanan dibatalkan atau diteruskan</p>
-                            <p style='line-height:20.25pt;font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Demikian informasi yang dapat saya sampaikan. Terimakasih atas perhatian dan kerjasama nya.</p>
-                         </td>
-                     </tr>
-
-         
-              <tr>
-                      <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
-                      <div>
-                      <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
-
-                      </div>
-                      </td>
-                     </tr>
-                    </tbody>
-                  </table>
-                  <!-- end body -->
+         <tr>
+            <td style='padding:5.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                <p style='line-height:20.25pt;font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>" + body2 + "</p>
+             </td>
+         </tr>
 
 
-                    <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
-                    <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
-                    <div align='center'>
-                    <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
-                     <tbody><tr>
-                      <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
-                        <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
-                      <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><br></p>
-                      </td>
-                     </tr>
-                    </tbody></table>
-                    </div>
-                    </td>
-                   </tr>
-                  </tbody></table>  
-                  </div>
-                  </td>
-                 </tr>
-                </tbody>
-            </table> "
-                mail.Subject = par1 + "-" + par2 + "-" + date_string
-                mail.IsBodyHtml = True
+  <tr>
+          <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+          <div>
+          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Terima kasih, <br /><b>Volcom Marketplace ERP</b><u></u><u></u></span></p>
+
+          </div>
+          </td>
+         </tr>
+        </tbody>
+      </table>
+      <!-- end body -->
+
+
+        <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+        <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+        <div align='center'>
+        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+         <tbody><tr>
+          <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+            <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from Volcom ERP.</b><u></u><u></u></span>
+          <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><br></p>
+          </td>
+         </tr>
+        </tbody></table>
+        </div>
+        </td>
+       </tr>
+      </tbody></table>  
+      </div>
+      </td>
+     </tr>
+    </tbody>
+</table> "
+            mail.Subject = subjek
+            mail.IsBodyHtml = True
                 mail.Body = body_temp
                 client.Send(mail)
             End If
-        End If
     End Sub
 
     Sub send_mail_complete(ByVal report_mark_type As String, ByVal id_report As String, ByVal report_number As String)

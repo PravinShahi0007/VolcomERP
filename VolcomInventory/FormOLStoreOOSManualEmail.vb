@@ -28,7 +28,6 @@
                     Dim oos As New ClassOLStore()
                     oos.sendEmailOOS(id_order, id_comp_group)
                     ord.insertLogWebOrder(id_order, "Send Email OOS success", id_comp_group)
-                    execute_non_query("UPDATE tb_ol_store_oos SET is_sent_email=1, manual_send_email_reason='" + addSlashes(MEReason.Text) + "', sent_email_date=NOW() WHERE id_ol_store_oos='" + id_ol_store_oos + "'", True, "", "", "", "")
                     Close()
                 Catch ex As Exception
                     ord.insertLogWebOrder(id_order, "Send Email OOS failed. " + ex.ToString, id_comp_group)

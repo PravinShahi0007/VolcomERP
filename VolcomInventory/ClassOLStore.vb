@@ -28,15 +28,26 @@
         Dim customer_name As String = data.Rows(0)("customer_name").ToString
         Dim order_no As String = data.Rows(0)("order_number").ToString
         Dim id_comp As String = data.Rows(0)("id_comp").ToString
+        Dim total_fill As Decimal = data.Rows(0)("total_fill")
 
         'detail oos
         Dim data_det As DataTable = viewDetailOOS(id_report)
+
+        'penentuan oos seluruhnya atau sebagian
+        Dim opt_email As String = ""
+        If total_fill <= 0 Then
+            'oos seluruhnya
+            opt_email = "1"
+        Else
+            'oos sebagian
+            opt_email = "2"
+        End If
 
         'send email
         Dim m As New ClassSendEmail()
         m.id_report = id_report
         m.report_mark_type = "278"
-        m.opt = "1"
+        m.opt = opt_email
         m.par1 = comp_group
         m.par2 = number
         m.date_string = created_date
@@ -65,10 +76,12 @@
     End Function
 
     Function viewDetailOOS(ByVal id_oos_par As String)
-        Dim query As String = "SELECT od.id_product, od.ol_store_sku, od.sku, od.ol_store_id, od.item_id, p.product_display_name AS `product_name`, 
+        Dim query As String = "SELECT od.id_product, od.ol_store_sku, od.sku, od.ol_store_id, od.item_id, p.product_display_name AS `product_name`, cd.code_detail_name AS `size`,
         od.ol_order_qty AS `order_qty`,od.sales_order_det_qty AS `so_qty`,(od.ol_order_qty-od.sales_order_det_qty) AS `oos_qty`
         FROM tb_ol_store_order od
         INNER JOIN tb_m_product p ON p.id_product = od.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         WHERE od.id_ol_store_oos='" + id_oos_par + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
