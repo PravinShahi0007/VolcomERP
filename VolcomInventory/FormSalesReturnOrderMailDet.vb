@@ -1610,10 +1610,12 @@
             If SLUEStatus.EditValue.ToString = "6" Then
                 number_skpp = execute_query("SELECT skpp_number FROM tb_sales_return_order_mail_3pl WHERE id_mail_3pl = " + id_mail_3pl, 0, True, "", "", "", "")
             Else
-                number_skpp = execute_query("SELECT LPAD((COUNT(id_mail_3pl) + 1), 3, '0') AS number_skpp FROM tb_sales_return_order_mail_3pl WHERE id_status = 6 AND id_type = 2 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())", 0, True, "", "", "", "")
+                number_skpp = execute_query("
+                    SELECT CONCAT(LPAD((COUNT(id_mail_3pl) + 1), 3, '0'), CONCAT('/EXT/WHD-SKPB/'), (SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW()))) AS number_skpp
+                    FROM tb_sales_return_order_mail_3pl
+                    WHERE id_status = 6 AND id_type = 2 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
+                ", 0, True, "", "", "", "")
             End If
-
-            Dim my As String = execute_query("SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW())", 0, True, "", "", "", "")
 
             Dim store_name As String = execute_query("
                 SELECT comp_name
@@ -1625,7 +1627,7 @@
                 )
             ", 0, True, "", "", "", "")
 
-            html = html.Replace("[number]", number_skpp + "/EXT/WHD-SKPP/" + my)
+            html = html.Replace("[number]", number_skpp)
             html = html.Replace("[3pl]", SLUE3PL.Text)
             html = html.Replace("[3pl_address]", data_3pl.Rows(0)("address_primary").ToString)
             html = html.Replace("[3pl_phone]", data_3pl.Rows(0)("phone").ToString)
@@ -1696,7 +1698,7 @@
                 Dim attachment As String = get_attachment()
 
                 Dim number_skpp As String = execute_query("
-                    SELECT LPAD((COUNT(id_mail_3pl) + 1), 3, '0') AS number_skpp
+                    SELECT CONCAT(LPAD((COUNT(id_mail_3pl) + 1), 3, '0'), CONCAT('/EXT/WHD-SKPB/'), (SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW()))) AS number_skpp
                     FROM tb_sales_return_order_mail_3pl
                     WHERE id_status = 6 AND id_type = 2 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
                 ", 0, True, "", "", "", "")
@@ -1802,7 +1804,7 @@
             FormMain.SplashScreenManager1.ShowWaitForm()
 
             Dim number_skpp As String = execute_query("
-                SELECT LPAD((COUNT(id_mail_3pl) + 1), 3, '0') AS number_skpp
+                SELECT CONCAT(LPAD((COUNT(id_mail_3pl) + 1), 3, '0'), CONCAT('/EXT/WHD-SKPB/'), (SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW()))) AS number_skpp
                 FROM tb_sales_return_order_mail_3pl
                 WHERE id_status = 6 AND id_type = 1 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
             ", 0, True, "", "", "", "")
@@ -1852,6 +1854,8 @@
         For i = 0 To data_store.Rows.Count - 1
             data_store.Rows(i)("no") = i + 1
         Next
+
+        Dim number As String = execute_query("SELECT ", 0, True, "", "", "", "")
 
         report.XLWHManagerName.Text = data_emp.Rows(0)("employee_name").ToString
         report.XLWHManagerPosition.Text = data_emp.Rows(0)("employee_position").ToString
