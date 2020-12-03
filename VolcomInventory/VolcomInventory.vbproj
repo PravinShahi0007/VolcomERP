@@ -7978,6 +7978,12 @@
     <Compile Include="ReportFormInvoiceTrackingSummary.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportInboundAWB.Designer.vb">
+      <DependentUpon>ReportInboundAWB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportInboundAWB.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportInvMat.Designer.vb">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
     </Compile>
@@ -13276,6 +13282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFormInvoiceTrackingSummary.resx">
       <DependentUpon>ReportFormInvoiceTrackingSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportInboundAWB.resx">
+      <DependentUpon>ReportInboundAWB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
