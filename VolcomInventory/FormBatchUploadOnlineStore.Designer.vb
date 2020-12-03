@@ -21,6 +21,8 @@ Partial Class FormBatchUploadOnlineStore
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBatchUploadOnlineStore))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBSearch = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEProductCode = New DevExpress.XtraEditors.TextEdit()
         Me.SLUEDivision = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,7 +34,6 @@ Partial Class FormBatchUploadOnlineStore
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.CCBEProduct = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -47,11 +48,11 @@ Partial Class FormBatchUploadOnlineStore
         Me.RepositoryItemMemoEdit = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBEProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEOnlineStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCBatchUpload, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,10 +62,11 @@ Partial Class FormBatchUploadOnlineStore
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBSearch)
+        Me.PanelControl1.Controls.Add(Me.TEProductCode)
         Me.PanelControl1.Controls.Add(Me.SLUEDivision)
         Me.PanelControl1.Controls.Add(Me.SLUESeason)
         Me.PanelControl1.Controls.Add(Me.Label4)
-        Me.PanelControl1.Controls.Add(Me.CCBEProduct)
         Me.PanelControl1.Controls.Add(Me.Label3)
         Me.PanelControl1.Controls.Add(Me.Label2)
         Me.PanelControl1.Controls.Add(Me.SBExportExcel)
@@ -76,6 +78,22 @@ Partial Class FormBatchUploadOnlineStore
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 124)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SBSearch
+        '
+        Me.SBSearch.Image = CType(resources.GetObject("SBSearch.Image"), System.Drawing.Image)
+        Me.SBSearch.Location = New System.Drawing.Point(297, 91)
+        Me.SBSearch.Name = "SBSearch"
+        Me.SBSearch.Size = New System.Drawing.Size(26, 23)
+        Me.SBSearch.TabIndex = 13
+        '
+        'TEProductCode
+        '
+        Me.TEProductCode.Location = New System.Drawing.Point(91, 93)
+        Me.TEProductCode.Name = "TEProductCode"
+        Me.TEProductCode.Properties.ReadOnly = True
+        Me.TEProductCode.Size = New System.Drawing.Size(200, 20)
+        Me.TEProductCode.TabIndex = 12
         '
         'SLUEDivision
         '
@@ -162,15 +180,6 @@ Partial Class FormBatchUploadOnlineStore
         Me.Label4.TabIndex = 9
         Me.Label4.Text = "Product"
         '
-        'CCBEProduct
-        '
-        Me.CCBEProduct.EditValue = ""
-        Me.CCBEProduct.Location = New System.Drawing.Point(91, 93)
-        Me.CCBEProduct.Name = "CCBEProduct"
-        Me.CCBEProduct.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEProduct.Size = New System.Drawing.Size(200, 20)
-        Me.CCBEProduct.TabIndex = 8
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -202,7 +211,7 @@ Partial Class FormBatchUploadOnlineStore
         'SBView
         '
         Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
-        Me.SBView.Location = New System.Drawing.Point(297, 91)
+        Me.SBView.Location = New System.Drawing.Point(329, 91)
         Me.SBView.Name = "SBView"
         Me.SBView.Size = New System.Drawing.Size(75, 23)
         Me.SBView.TabIndex = 2
@@ -288,11 +297,11 @@ Partial Class FormBatchUploadOnlineStore
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBEProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEOnlineStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCBatchUpload, System.ComponentModel.ISupportInitialize).EndInit()
@@ -315,7 +324,6 @@ Partial Class FormBatchUploadOnlineStore
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents CCBEProduct As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents SLUESeason As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -327,4 +335,6 @@ Partial Class FormBatchUploadOnlineStore
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents SBSearch As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEProductCode As DevExpress.XtraEditors.TextEdit
 End Class
