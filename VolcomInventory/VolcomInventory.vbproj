@@ -6373,6 +6373,12 @@
     <Compile Include="FormScanReturnBAPProduct.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormScanReturnConfirm.Designer.vb">
+      <DependentUpon>FormScanReturnConfirm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanReturnConfirm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormScanReturnDet.Designer.vb">
       <DependentUpon>FormScanReturnDet.vb</DependentUpon>
     </Compile>
@@ -8676,6 +8682,12 @@
       <DependentUpon>ReportSalesReturnOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesReturnOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesReturnOrderMailSKPB.Designer.vb">
+      <DependentUpon>ReportSalesReturnOrderMailSKPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesReturnOrderMailSKPB.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesReturnOrderMailSKPP.Designer.vb">
@@ -12356,6 +12368,9 @@
     <EmbeddedResource Include="FormScanReturnBAPProduct.resx">
       <DependentUpon>FormScanReturnBAPProduct.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormScanReturnConfirm.resx">
+      <DependentUpon>FormScanReturnConfirm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormScanReturnDet.resx">
       <DependentUpon>FormScanReturnDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -13653,6 +13668,9 @@
     <EmbeddedResource Include="ReportSalesReturnOrder.resx">
       <DependentUpon>ReportSalesReturnOrder.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesReturnOrderMailSKPB.resx">
+      <DependentUpon>ReportSalesReturnOrderMailSKPB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesReturnOrderMailSKPP.resx">
       <DependentUpon>ReportSalesReturnOrderMailSKPP.vb</DependentUpon>

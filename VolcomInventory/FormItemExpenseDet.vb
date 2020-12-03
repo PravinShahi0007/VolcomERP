@@ -529,6 +529,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         GVData.RefreshData()
         makeSafeGV(GVData)
+        calculate()
 
         Dim multiple_curr As Boolean = False
 

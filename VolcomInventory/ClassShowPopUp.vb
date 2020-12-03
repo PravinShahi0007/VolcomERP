@@ -2379,6 +2379,9 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_mail_3pl"
             field_number = "number"
             field_date = "updated_date"
+            If report_mark_type = "279" Then
+                field_date = "created_date"
+            End If
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

@@ -41,12 +41,12 @@ Partial Class FormScanReturnDet
         Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVListProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEReturnNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,7 +165,7 @@ Partial Class FormScanReturnDet
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
-        Me.BClose.Location = New System.Drawing.Point(601, 2)
+        Me.BClose.Location = New System.Drawing.Point(585, 2)
         Me.BClose.Name = "BClose"
         Me.BClose.Size = New System.Drawing.Size(109, 41)
         Me.BClose.TabIndex = 5
@@ -175,11 +175,11 @@ Partial Class FormScanReturnDet
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(710, 2)
+        Me.BSave.Location = New System.Drawing.Point(694, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(109, 41)
+        Me.BSave.Size = New System.Drawing.Size(125, 41)
         Me.BSave.TabIndex = 3
-        Me.BSave.Text = "Save"
+        Me.BSave.Text = "Finish Scan"
         '
         'PanelControl3
         '
@@ -211,7 +211,7 @@ Partial Class FormScanReturnDet
         Me.BInputManual.Name = "BInputManual"
         Me.BInputManual.Size = New System.Drawing.Size(125, 39)
         Me.BInputManual.TabIndex = 4
-        Me.BInputManual.Text = "Input Manual"
+        Me.BInputManual.Text = "No Tag"
         '
         'TEScan
         '
@@ -240,6 +240,8 @@ Partial Class FormScanReturnDet
         '
         'GVListProduct
         '
+        Me.GVListProduct.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 11.0!)
+        Me.GVListProduct.Appearance.FooterPanel.Options.UseFont = True
         Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.Name = "GVListProduct"
@@ -253,6 +255,12 @@ Partial Class FormScanReturnDet
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_scan_return_det"
         Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Type"
+        Me.GridColumn7.FieldName = "type"
+        Me.GridColumn7.Name = "GridColumn7"
         '
         'GridColumn2
         '
@@ -301,12 +309,6 @@ Partial Class FormScanReturnDet
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 256
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Type"
-        Me.GridColumn7.FieldName = "type"
-        Me.GridColumn7.Name = "GridColumn7"
         '
         'FormScanReturnDet
         '
