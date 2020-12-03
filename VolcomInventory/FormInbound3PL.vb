@@ -121,8 +121,7 @@ LEFT JOIN
     GROUP BY st.`id_inbound_awb`
 )st_list ON st_list.id_inbound_awb=awb.id_inbound_awb
 WHERE DATE(awb.`created_date`)>='" & date_start & "' AND DATE(awb.`created_date`)<='" & date_until & "' 
-AND awb.`id_comp`='" & SLEVendor.EditValue.ToString & "'
-GROUP BY koli.`id_inbound_koli`"
+AND awb.`id_comp`='" & SLEVendor.EditValue.ToString & "' GROUP BY koli.`id_inbound_koli`"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             Report.data_awb = dt
 

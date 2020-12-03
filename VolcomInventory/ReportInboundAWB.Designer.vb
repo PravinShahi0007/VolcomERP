@@ -152,7 +152,7 @@ Partial Public Class ReportInboundAWB
         Me.XrTableCell13.Name = "XrTableCell13"
         Me.XrTableCell13.StylePriority.UseBorders = False
         Me.XrTableCell13.Text = "Actual " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Weight"
-        Me.XrTableCell13.Weight = 0.78223492422896335R
+        Me.XrTableCell13.Weight = 0.60888253242033608R
         '
         'XrTableCell14
         '
@@ -161,7 +161,7 @@ Partial Public Class ReportInboundAWB
         Me.XrTableCell14.Name = "XrTableCell14"
         Me.XrTableCell14.StylePriority.UseBorders = False
         Me.XrTableCell14.Text = "L"
-        Me.XrTableCell14.Weight = 0.5R
+        Me.XrTableCell14.Weight = 0.608882532420336R
         '
         'XrTableCell17
         '
@@ -170,7 +170,7 @@ Partial Public Class ReportInboundAWB
         Me.XrTableCell17.Name = "XrTableCell17"
         Me.XrTableCell17.StylePriority.UseBorders = False
         Me.XrTableCell17.Text = "W"
-        Me.XrTableCell17.Weight = 0.49999999999999978R
+        Me.XrTableCell17.Weight = 0.60888253242033574R
         '
         'XrTableCell18
         '
@@ -179,7 +179,7 @@ Partial Public Class ReportInboundAWB
         Me.XrTableCell18.Name = "XrTableCell18"
         Me.XrTableCell18.StylePriority.UseBorders = False
         Me.XrTableCell18.Text = "H"
-        Me.XrTableCell18.Weight = 0.5R
+        Me.XrTableCell18.Weight = 0.608882532420336R
         '
         'XrTableCell19
         '
@@ -188,7 +188,7 @@ Partial Public Class ReportInboundAWB
         Me.XrTableCell19.Name = "XrTableCell19"
         Me.XrTableCell19.StylePriority.UseBorders = False
         Me.XrTableCell19.Text = "Volume"
-        Me.XrTableCell19.Weight = 1.0R
+        Me.XrTableCell19.Weight = 0.84670479454761938R
         '
         'XrTableCell20
         '
@@ -201,8 +201,10 @@ Partial Public Class ReportInboundAWB
         '
         Me.XRTotWeight.BackColor = System.Drawing.Color.LightGray
         Me.XRTotWeight.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell21, Me.XrTableCell5, Me.XrTableCell2, Me.LFinalTotBerat, Me.XrTableCell23, Me.XrTableCell24, Me.XrTableCell25, Me.LFinalTotVolume, Me.LFinalTotalBerat})
+        Me.XRTotWeight.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
         Me.XRTotWeight.Name = "XRTotWeight"
         Me.XRTotWeight.StylePriority.UseBackColor = False
+        Me.XRTotWeight.StylePriority.UseFont = False
         Me.XRTotWeight.Weight = 0.83166694641113281R
         '
         'XrTableCell21
@@ -237,9 +239,9 @@ Partial Public Class ReportInboundAWB
         Me.LFinalTotBerat.Name = "LFinalTotBerat"
         Me.LFinalTotBerat.StylePriority.UseBorders = False
         Me.LFinalTotBerat.StylePriority.UseTextAlignment = False
-        Me.LFinalTotBerat.Text = "[tot_act_weight" & Global.Microsoft.VisualBasic.ChrW(9) & "]"
+        Me.LFinalTotBerat.Text = "[tot_act_weight]"
         Me.LFinalTotBerat.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.LFinalTotBerat.Weight = 0.78223492422896324R
+        Me.LFinalTotBerat.Weight = 0.608882532420336R
         '
         'XrTableCell23
         '
@@ -247,7 +249,7 @@ Partial Public Class ReportInboundAWB
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell23.Name = "XrTableCell23"
         Me.XrTableCell23.StylePriority.UseBorders = False
-        Me.XrTableCell23.Weight = 0.5R
+        Me.XrTableCell23.Weight = 0.608882532420336R
         '
         'XrTableCell24
         '
@@ -255,7 +257,7 @@ Partial Public Class ReportInboundAWB
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell24.Name = "XrTableCell24"
         Me.XrTableCell24.StylePriority.UseBorders = False
-        Me.XrTableCell24.Weight = 0.5R
+        Me.XrTableCell24.Weight = 0.608882532420336R
         '
         'XrTableCell25
         '
@@ -263,7 +265,7 @@ Partial Public Class ReportInboundAWB
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell25.Name = "XrTableCell25"
         Me.XrTableCell25.StylePriority.UseBorders = False
-        Me.XrTableCell25.Weight = 0.5R
+        Me.XrTableCell25.Weight = 0.608882532420336R
         '
         'LFinalTotVolume
         '
@@ -274,7 +276,7 @@ Partial Public Class ReportInboundAWB
         Me.LFinalTotVolume.StylePriority.UseTextAlignment = False
         Me.LFinalTotVolume.Text = "[tot_vol]"
         Me.LFinalTotVolume.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.LFinalTotVolume.Weight = 1.0R
+        Me.LFinalTotVolume.Weight = 0.84670479454761938R
         '
         'LFinalTotalBerat
         '
@@ -288,8 +290,10 @@ Partial Public Class ReportInboundAWB
         '
         Me.XRTotAWB.BackColor = System.Drawing.Color.LightGray
         Me.XRTotAWB.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell28, Me.XrTableCell6, Me.XrTableCell3, Me.LTotalAwB, Me.XrTableCell30, Me.XrTableCell31, Me.XrTableCell32, Me.XrTableCell33, Me.XrTableCell34})
+        Me.XRTotAWB.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
         Me.XRTotAWB.Name = "XRTotAWB"
         Me.XRTotAWB.StylePriority.UseBackColor = False
+        Me.XRTotAWB.StylePriority.UseFont = False
         Me.XRTotAWB.Weight = 0.83166694641113281R
         '
         'XrTableCell28
@@ -326,7 +330,7 @@ Partial Public Class ReportInboundAWB
         Me.LTotalAwB.StylePriority.UseTextAlignment = False
         Me.LTotalAwB.Text = "[tot_awb]"
         Me.LTotalAwB.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.LTotalAwB.Weight = 0.78223492422896324R
+        Me.LTotalAwB.Weight = 0.608882532420336R
         '
         'XrTableCell30
         '
@@ -334,7 +338,7 @@ Partial Public Class ReportInboundAWB
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell30.Name = "XrTableCell30"
         Me.XrTableCell30.StylePriority.UseBorders = False
-        Me.XrTableCell30.Weight = 0.5R
+        Me.XrTableCell30.Weight = 0.608882532420336R
         '
         'XrTableCell31
         '
@@ -342,7 +346,7 @@ Partial Public Class ReportInboundAWB
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell31.Name = "XrTableCell31"
         Me.XrTableCell31.StylePriority.UseBorders = False
-        Me.XrTableCell31.Weight = 0.5R
+        Me.XrTableCell31.Weight = 0.608882532420336R
         '
         'XrTableCell32
         '
@@ -350,7 +354,7 @@ Partial Public Class ReportInboundAWB
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell32.Name = "XrTableCell32"
         Me.XrTableCell32.StylePriority.UseBorders = False
-        Me.XrTableCell32.Weight = 0.5R
+        Me.XrTableCell32.Weight = 0.608882532420336R
         '
         'XrTableCell33
         '
@@ -358,7 +362,7 @@ Partial Public Class ReportInboundAWB
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell33.Name = "XrTableCell33"
         Me.XrTableCell33.StylePriority.UseBorders = False
-        Me.XrTableCell33.Weight = 1.0R
+        Me.XrTableCell33.Weight = 0.84670479454761938R
         '
         'XrTableCell34
         '
@@ -647,7 +651,7 @@ Partial Public Class ReportInboundAWB
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(617.7915!, 15.70834!)
         Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.Text = "REKAP SERAH TERIMA PRODUK RETUR ([comp_name] [start_date] until [end_date] )"
+        Me.XrLabel5.Text = "REKAP SERAH TERIMA PRODUK RETUR ([comp_name] [date_start] until [date_until] )"
         '
         'XrPageInfo1
         '
