@@ -512,7 +512,7 @@ Partial Public Class ReportScanReturn3PL
         Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel19.SizeF = New System.Drawing.SizeF(256.5705!, 23.0!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(272.1955!, 23.0!)
         Me.XrLabel19.StylePriority.UseFont = False
         Me.XrLabel19.StylePriority.UseTextAlignment = False
         Me.XrLabel19.Text = "Kuta, [date_cur]"

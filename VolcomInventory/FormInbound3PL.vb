@@ -110,8 +110,16 @@ ORDER BY awb.id_inbound_awb DESC"
             Dim date_until As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
 
             Dim q As String = "SELECT awb.`id_inbound_awb`,awb.created_date,awb.`awb_number`,awb.`id_comp`,koli.`panjang`,koli.`lebar`,koli.`tinggi`,koli.`berat`,koli.`berat_dimensi`,IF(koli.`berat`>koli.`berat_dimensi`,koli.`berat`,koli.`berat_dimensi`) AS final_berat
+,st_list.store AS store_list
 FROM tb_inbound_koli koli
 INNER JOIN tb_inbound_awb awb ON awb.`id_inbound_awb`=koli.`id_inbound_awb`
+LEFT JOIN
+(
+    SELECT st.`id_inbound_awb`,GROUP_CONCAT(DISTINCT CONCAT(c.comp_number,' - ',c.comp_name) ORDER BY c.`comp_number` ASC SEPARATOR '\n') AS store
+    FROM tb_inbound_store st
+    INNER JOIN tb_m_comp c ON c.id_comp=st.id_comp
+    GROUP BY st.`id_inbound_awb`
+)st_list ON st_list.id_inbound_awb=awb.id_inbound_awb
 WHERE DATE(awb.`created_date`)>='" & date_start & "' AND DATE(awb.`created_date`)<='" & date_until & "' 
 AND awb.`id_comp`='" & SLEVendor.EditValue.ToString & "'
 GROUP BY koli.`id_inbound_koli`"
