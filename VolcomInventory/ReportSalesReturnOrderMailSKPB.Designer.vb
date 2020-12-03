@@ -81,7 +81,7 @@ Partial Public Class ReportSalesReturnOrderMailSKPB
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLHead = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
@@ -94,7 +94,7 @@ Partial Public Class ReportSalesReturnOrderMailSKPB
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.SLPickupDate, Me.XrLabel27, Me.XrLabel20, Me.WinControlContainer1, Me.XrLabel19, Me.XrLabel15, Me.XrLabel16, Me.XrLabel17, Me.XrLabel18, Me.XrLabel21, Me.XrLabel22, Me.XrLabel23, Me.WHStaffName, Me.WHStaffPosition, Me.XrLabel26, Me.XrLabel11, Me.XrLabel12, Me.XLWHManagerPosition, Me.XLWHManagerName, Me.XrLabel7, Me.XrLabel8, Me.XrLabel9, Me.XrLabel10, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.SLPickupDate, Me.XrLabel27, Me.XrLabel20, Me.WinControlContainer1, Me.XrLabel19, Me.XrLabel15, Me.XrLabel16, Me.XrLabel17, Me.XrLabel18, Me.XrLabel21, Me.XrLabel22, Me.XrLabel23, Me.WHStaffName, Me.WHStaffPosition, Me.XrLabel26, Me.XrLabel11, Me.XrLabel12, Me.XLWHManagerPosition, Me.XLWHManagerName, Me.XrLabel7, Me.XrLabel8, Me.XrLabel9, Me.XrLabel10, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XLHead})
         Me.Detail.HeightF = 721.875!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -657,18 +657,18 @@ Partial Public Class ReportSalesReturnOrderMailSKPB
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.Text = "Yang  bertandatangan dibawah ini,"
         '
-        'XrLabel1
+        'XLHead
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel1.Multiline = True
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(707.0!, 50.0!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "SURAT TUGAS PENGAMBILAN PRODUK" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "NO: [number]"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.XLHead.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XLHead.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XLHead.Multiline = True
+        Me.XLHead.Name = "XLHead"
+        Me.XLHead.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLHead.SizeF = New System.Drawing.SizeF(707.0!, 50.0!)
+        Me.XLHead.StylePriority.UseFont = False
+        Me.XLHead.StylePriority.UseTextAlignment = False
+        Me.XLHead.Text = "SURAT TUGAS PENGAMBILAN PRODUK" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "NO: [number]"
+        Me.XLHead.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
         'TopMargin
         '
@@ -743,7 +743,7 @@ Partial Public Class ReportSalesReturnOrderMailSKPB
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLHead As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView

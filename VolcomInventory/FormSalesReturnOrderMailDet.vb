@@ -1855,7 +1855,9 @@
             data_store.Rows(i)("no") = i + 1
         Next
 
-        Dim number As String = execute_query("SELECT ", 0, True, "", "", "", "")
+        Dim number As String = execute_query("SELECT skpp_number FROM tb_sales_return_order_mail_3pl WHERE id_mail_3pl = " + id_mail_3pl, 0, True, "", "", "", "")
+
+        report.XLHead.Text = report.XLHead.Text.Replace("[number]", number)
 
         report.XLWHManagerName.Text = data_emp.Rows(0)("employee_name").ToString
         report.XLWHManagerPosition.Text = data_emp.Rows(0)("employee_position").ToString
